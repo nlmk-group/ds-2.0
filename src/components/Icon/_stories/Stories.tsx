@@ -33,7 +33,7 @@ const Stories = (): JSX.Element => {
         title={COMPONENT_NAME}
         description="Компонент иконок, который можно использовать как самостоятельно, так и внутри других компонентов"
         isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/src/components/${COMPONENT_NAME}`}        
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}        
       />
       <div>
         <Typography variant="Heading2">Свойства</Typography>

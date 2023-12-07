@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
         title={COMPONENT_NAME}
         description="Switch - это компонент, который реализует функциональность переключателя, часто используемого в пользовательских интерфейсах для настройки параметров, таких как включение/выключение определенных функций приложения."
         isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/src/components/${COMPONENT_NAME}`}
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_URL}
       />
 

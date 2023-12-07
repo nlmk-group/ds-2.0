@@ -37,7 +37,7 @@ const Stories = (): JSX.Element => {
         title={COMPONENT_NAME}
         description={`Компонент Avatar представляет собой пользовательский компонент, который отображает аватар пользователя. Этот аватар может быть изображением, инициалами пользователя, иконкой профиля, а также может включать индикаторы онлайн-статуса, числовой индикатор или иконку в виде значка (badge). Компонент также поддерживает различные размеры и формы для кастомизации внешнего вида аватара.`}
         isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/src/components/${COMPONENT_NAME}`}
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_URL}
       />
 

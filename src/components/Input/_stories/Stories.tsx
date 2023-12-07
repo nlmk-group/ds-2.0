@@ -126,7 +126,7 @@ export default App;
         title="Input"
         description="Компонент Input позволяет пользователям вводить текстовую информацию. Он поддерживает различные варианты, включая лейблы, иконки, многострочный ввод и различные стили."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Input"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Input"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20850&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

@@ -88,7 +88,7 @@ export default  App = () => {
         title="Modal"
         description="Компонент Modal обеспечивает отображение модальных окон с возможностями перетаскивания, изменения размера и обработки закрытия."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Modal"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Modal"
         figmaLink="https://www.figma.com/file/BU6Pd9uO1AIVa1yDqhr0hw/Drawer%2FModal-window?type=design&node-id=1-17&mode=dev"
       />
 

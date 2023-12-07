@@ -101,7 +101,7 @@ export default App = () => (
         title="Select"
         description="Select позволяет пользователям выбирать один или несколько элементов из списка. Он поддерживает поиск, множественный выбор и другие функции."
         isBeta
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Select"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Select"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A29073&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

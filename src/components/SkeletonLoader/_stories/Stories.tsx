@@ -19,7 +19,7 @@ const Stories = (): JSX.Element => {
         title="SkeletonLoader"
         description="Skeleton Loader — это статический/анимированный элемент для информации, которая все еще загружается."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/SkeletonLoader"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/SkeletonLoader"
       />
 
       <div className={styles.tabs}>

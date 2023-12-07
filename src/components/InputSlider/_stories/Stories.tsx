@@ -71,7 +71,7 @@ export default App;
         title="InputSlider"
         description="InputSlider представляет собой слайдер для ввода числовых значений, который позволяет пользователю выбирать значение в заданном диапазоне."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/InputSlider"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/InputSlider"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20852&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

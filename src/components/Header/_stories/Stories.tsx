@@ -41,7 +41,7 @@ const Stories = (): JSX.Element => {
         description="Header - это функциональный компонент в React, который отображает настраиваемый верхний колонтитул (шапку)
         веб-страницы или приложения."
         isBeta
-        codeLink={`https://github.com/nlmk-group/ds-2.0/src/components/${COMPONENT_NAME}`}        
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}        
       />
 
       <div className={styles.tabs}>

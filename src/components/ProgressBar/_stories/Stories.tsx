@@ -43,7 +43,7 @@ export default  App = () => (
         title="ProgressBar"
         description="ProgressBar представляет собой компонент, показывающий прогресс выполнения задачи или процесса. Он предоставляет наглядное представление о проценте выполнения."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/ProgressBar"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ProgressBar"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A25757&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

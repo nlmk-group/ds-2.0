@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
         title={COMPONENT_NAME}
         description="Snackbar - это компонент, который предоставляет краткое уведомление или сообщение о событии."
         isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/src/components/${COMPONENT_NAME}`}
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_URL}
       />
 

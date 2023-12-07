@@ -22,7 +22,7 @@ const Stories = (): JSX.Element => {
         title="Radio"
         description="Компонент Radio обычно используется для выбора одного из нескольких взаимоисключающих вариантов в рамках определённой группы."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Radio"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Radio"
         figmaLink="https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=455%3A4248&mode=design&t=vcIQVvM3NLAsUO7s-1"
       />
 

@@ -31,7 +31,7 @@ const Stories = (): JSX.Element => {
         title="Tooltip"
         description="Компонент-подсказка, появляющийся при определенном взаимодействии с дочерним элементом компонента (по умолчанию: при наведении курсора). Tooltip рассчитан не только на работу с простой информацией (текст) с единой стилизацией, но и на визуализацию подсказок, содержащих нестандартную информацию (списки, картинки, таблицы)."
         isBeta
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/InputRange"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/InputRange"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43759&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

@@ -49,7 +49,7 @@ export default App;
         title="Link"
         description="Link компонент позволяет пользователям переходить по заданным ссылкам. Он поддерживает иконки, разные размеры и состояния, такие как disabled."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Link"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Link"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A25756&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

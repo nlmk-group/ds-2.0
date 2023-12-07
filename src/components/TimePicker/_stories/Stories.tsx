@@ -47,7 +47,7 @@ export default App;
         title="TimePicker"
         description="TimePicker позволяет пользователям выбирать время или период времени. Поддерживает различные форматы и диапазоны времени."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/TimePicker"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TimePicker"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20847&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

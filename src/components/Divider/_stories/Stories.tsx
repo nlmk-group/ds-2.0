@@ -37,7 +37,7 @@ const Stories = (): JSX.Element => {
         title="Divider"
         description="Компонент Divider - это визуальный элемент, используемый для разделения содержимого на разных частях пользовательского интерфейса, таких как списки, сетки или разделы на странице."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Divider"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Divider"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20848&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

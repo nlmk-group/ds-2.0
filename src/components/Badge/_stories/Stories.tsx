@@ -22,7 +22,7 @@ const Stories = (): JSX.Element => {
         title="Badge"
         description="Компонент Badge используется для отображения меток (badges), таких как лейблы, тэги, статусы и т.д. Обычно Badge используют внутри или в непосредственной близости от другого более крупного компонента интерфейса."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/Badge"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Badge"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20842&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

@@ -20,7 +20,7 @@ const Stories = (): JSX.Element => {
         title="Spinner"
         description="Spinner — это компонент который используется в качестве индикатора загрузки."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/src/components/InputRange"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/InputRange"
         figmaLink="https://www.figma.com/file/aTZAtKI8GYQvLF5bOK84ZH/DS2.0-Loader-%26-Overlay?node-id=2%3A10&mode=dev"
       />
 

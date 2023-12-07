@@ -1,0 +1,19 @@
+.wrapper {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 900px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  padding: 15px;
+}

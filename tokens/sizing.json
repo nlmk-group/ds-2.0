@@ -1,0 +1,182 @@
+{
+  "0-size": {
+    "value": 0,
+    "type": "sizing"
+  },
+  "1-border": {
+    "value": "1px",
+    "type": "borderWidth"
+  },
+  "2-border": {
+    "value": "2px",
+    "type": "borderWidth"
+  },
+  "4-border": {
+    "value": "4px",
+    "type": "borderWidth"
+  },
+  "1-size": {
+    "value": "1px",
+    "type": "sizing"
+  },
+  "2-size": {
+    "value": "2px",
+    "type": "sizing"
+  },
+  "4-size": {
+    "value": "4px",
+    "type": "sizing"
+  },
+  "6-size": {
+    "value": "6px",
+    "type": "sizing"
+  },
+  "8-size": {
+    "value": "8px",
+    "type": "sizing"
+  },
+  "16-size": {
+    "value": "16px",
+    "type": "sizing"
+  },
+  "20-size": {
+    "value": "20px",
+    "type": "sizing"
+  },
+  "24-size": {
+    "value": "24px",
+    "type": "sizing"
+  },
+  "26-size": {
+    "value": "26px",
+    "type": "sizing"
+  },
+  "28-size": {
+    "value": "28px",
+    "type": "sizing"
+  },
+  "30-size": {
+    "value": "30px",
+    "type": "sizing"
+  },
+  "32-size": {
+    "value": "32px",
+    "type": "sizing"
+  },
+  "36-size": {
+    "value": "36px",
+    "type": "sizing"
+  },
+  "38-size": {
+    "value": "38px",
+    "type": "sizing"
+  },
+  "38-size-copy": {
+    "value": "38px",
+    "type": "sizing"
+  },
+  "40-size": {
+    "value": "40px",
+    "type": "sizing"
+  },
+  "48-size": {
+    "value": "48px",
+    "type": "sizing"
+  },
+  "56-size": {
+    "value": "56px",
+    "type": "sizing"
+  },
+  "60-size": {
+    "value": "60px",
+    "type": "sizing"
+  },
+  "64-size": {
+    "value": "64px",
+    "type": "sizing"
+  },
+  "72-size": {
+    "value": "72px",
+    "type": "sizing"
+  },
+  "80-size": {
+    "value": "80px",
+    "type": "sizing"
+  },
+  "86-size": {
+    "value": "86px",
+    "type": "sizing"
+  },
+  "90-size": {
+    "value": "90px",
+    "type": "sizing"
+  },
+  "93-size": {
+    "value": "93-px",
+    "type": "sizing"
+  },
+  "95-size": {
+    "value": "95px",
+    "type": "sizing"
+  },
+  "108-size": {
+    "value": "108px",
+    "type": "sizing"
+  },
+  "112-size": {
+    "value": "112px",
+    "type": "sizing"
+  },
+  "179-size": {
+    "value": "179px",
+    "type": "sizing"
+  },
+  "192-size": {
+    "value": "192px",
+    "type": "sizing"
+  },
+  "207-size": {
+    "value": "207px",
+    "type": "sizing"
+  },
+  "208-size": {
+    "value": "208px",
+    "type": "sizing"
+  },
+  "216-size": {
+    "value": "216px",
+    "type": "sizing"
+  },
+  "225-size": {
+    "value": "225px",
+    "type": "sizing"
+  },
+  "236-size": {
+    "value": "236px",
+    "type": "sizing"
+  },
+  "252-size": {
+    "value": "252px",
+    "type": "sizing"
+  },
+  "268-size": {
+    "value": "268px",
+    "type": "sizing"
+  },
+  "280-size": {
+    "value": "280px",
+    "type": "sizing"
+  },
+  "288-size": {
+    "value": "288px",
+    "type": "sizing"
+  },
+  "292-size": {
+    "value": "292px",
+    "type": "sizing"
+  },
+  "12-size": {
+    "value": "12px",
+    "type": "sizing"
+  }
+}

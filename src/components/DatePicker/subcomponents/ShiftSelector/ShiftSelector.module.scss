@@ -1,0 +1,41 @@
+.root {
+  border: 1px solid var(--text-grey-100);
+  border-radius: 4px;
+  display: flex;
+  color: var(--text-grey-900);
+}
+
+.shift {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-right: 1px solid var(--text-grey-100);
+  }
+
+  &:hover {
+    background-color: #f5f6f6;
+  }
+}
+
+.selected {
+  background-color: var(--divider-divider);
+}
+
+.disabled {
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+.selectedDisabled {
+  background-color: var(--divider-divider);
+
+  &:hover {
+    background-color: var(--divider-divider);
+  }
+}

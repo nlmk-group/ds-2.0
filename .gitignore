@@ -1,0 +1,28 @@
+node_modules/
+dist/
+build/
+lib/
+coverage/
+.DS_STORE
+package-lock.json
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+client-stats.json
+yarn-error.log
+src/**/yarn.lock
+cypress/fixtures/example.json
+storybook-static/
+# IDE
+.vscode/
+.idea/
+cache/
+.jest-test-results.json
+build-storybook.log
+.npmrc
+# Yalc
+.yalc/
+yalc.lock
+

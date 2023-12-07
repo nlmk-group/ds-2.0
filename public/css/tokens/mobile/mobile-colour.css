@@ -1,0 +1,57 @@
+/**
+* Do not edit directly
+* Generated on Mon Nov 27 2023 11:59:06 GMT+0300 (Москва, стандартное время)
+*/
+
+:root {
+  --primary-main: #016dff;
+  --primary-active: #005fee;
+  --primary-medium: #b3d1ff;
+  --primary-light: #e5f0ff;
+  --primary-background: #f3f9ff;
+  --black-30: #001f3d4d;
+  --black-50: #001f3d80;
+  --black-70: #001f3db3;
+  --black-100: #001f3d;
+  --grey-dark: #808f9e;
+  --grey-medium: #b3bcc5;
+  --grey-light: #d9dde2;
+  --grey-background: #f7f8f9;
+  --white-20: #ffffff33;
+  --white-40: #ffffff66;
+  --white-60: #ffffff99;
+  --white-80: #ffffffcc;
+  --white-100: #ffffff;
+  --red-main: #f32738;
+  --red-medium: #faa8af;
+  --red-light: #ffe8ea;
+  --green-main: #01c09e;
+  --green-medium: #b0ebdd;
+  --green-light: #e0fbf5;
+  --violet-main: #8c33ff;
+  --violet-medium: #ddc2ff;
+  --violet-light: #f3ebff;
+  --orange-main: #e19400;
+  --orange-medium: #f4d69e;
+  --orange-light: #faecd1;
+  --gradient-blue-default: linear-gradient(225deg, #016dff 0%, #0052ff 100%);
+  --gradient-blue-active: linear-gradient(224deg, #016ee6 0%, #014ae6 100%);
+  --gradient-green: linear-gradient(45deg, #01c09e 0%, #00d9a9 100%);
+  --gradient-violet: linear-gradient(45deg, #8c33ff 0%, #b455ff 100%);
+  --gradient-grey: linear-gradient(45deg, #708090 0%, #a0aebc 100%);
+  --gradient-light-blue: linear-gradient(255deg, #e6f0ff 0%, #ffffff 100%);
+  --gradient-light-grey: linear-gradient(135deg, #eef1f4 0%, #f7f8f9 100%);
+  --graphic-blue: linear-gradient(180deg, #0052ff 0%, #0052ff00 100%);
+  --graphic-violet: linear-gradient(122deg, #8c33ff 0%, #8e33ff00 100%);
+  --graphic-green: linear-gradient(180deg, #01c09e 0%, #01c09e00 100%);
+  --graphic-grey: linear-gradient(180deg, #808f9e 0%, #808f9e00 100%);
+  --widget-dark-mode-black-background: #1c1c1e;
+  --widget-dark-mode-widget-blue-light: #192234;
+  --widget-dark-mode-widget-violet-light: #2a1741;
+  --widget-dark-mode-widget-green-light: #08362c;
+  --widget-dark-mode-widget-blue-medium: #17274b;
+  --widget-dark-mode-widget-violet-medium: #3f1e67;
+  --widget-dark-mode-widget-green-medium: #075343;
+  --widget-dark-mode-widget-grey-light: #202023;
+  --widget-dark-mode-widget-grey-medium: #282e34;
+}

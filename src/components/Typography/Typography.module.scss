@@ -1,0 +1,309 @@
+@mixin typography-properties($args...) {
+  $font-family: nth($args, 1);
+  $font-size: nth($args, 2);
+  $font-weight: nth($args, 3);
+  $line-height: nth($args, 4);
+  $letter-spacing: nth($args, 5);
+  $text-decoration: nth($args, 6);
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  text-decoration: $text-decoration;
+}
+
+.typography {
+  display: block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.typography--variant-heading1 {
+  @include typography-properties(
+    var(--heading1-font-family),
+    var(--heading1-font-size),
+    var(--heading1-font-weight),
+    var(--heading1-line-height),
+    var(--heading1-letter-spacing),
+    var(--heading1-text-decoration)
+  );
+}
+
+.typography--variant-heading2 {
+  @include typography-properties(
+    var(--heading2-font-family),
+    var(--heading2-font-size),
+    var(--heading2-font-weight),
+    var(--heading2-line-height),
+    var(--heading2-letter-spacing),
+    var(--heading2-text-decoration)
+  );
+}
+
+.typography--variant-heading3 {
+  @include typography-properties(
+    var(--heading3-font-family),
+    var(--heading3-font-size),
+    var(--heading3-font-weight),
+    var(--heading3-line-height),
+    var(--heading3-letter-spacing),
+    var(--heading3-text-decoration)
+  );
+}
+
+.typography--variant-heading4 {
+  @include typography-properties(
+    var(--heading4-font-family),
+    var(--heading4-font-size),
+    var(--heading4-font-weight),
+    var(--heading4-line-height),
+    var(--heading4-letter-spacing),
+    var(--heading4-text-decoration)
+  );
+}
+
+.typography--variant-subheading1 {
+  @include typography-properties(
+    var(--subheading1-font-family),
+    var(--subheading1-font-size),
+    var(--subheading1-font-weight),
+    var(--subheading1-line-height),
+    var(--subheading1-letter-spacing),
+    var(--subheading1-text-decoration)
+  );
+}
+
+.typography--variant-subheading2 {
+  @include typography-properties(
+    var(--subheading2-font-family),
+    var(--subheading2-font-size),
+    var(--subheading2-font-weight),
+    var(--subheading2-line-height),
+    var(--subheading2-letter-spacing),
+    var(--subheading2-text-decoration)
+  );
+}
+
+.typography--variant-subheading2-medium {
+  @include typography-properties(
+    var(--subheading2-medium-font-family),
+    var(--subheading2-medium-font-size),
+    var(--subheading2-medium-font-weight),
+    var(--subheading2-medium-line-height),
+    var(--subheading2-medium-letter-spacing),
+    var(--subheading2-medium-text-decoration)
+  );
+}
+
+.typography--variant-subheading3 {
+  @include typography-properties(
+    var(--subheading3-font-family),
+    var(--subheading3-font-size),
+    var(--subheading3-font-weight),
+    var(--subheading3-line-height),
+    var(--subheading3-letter-spacing),
+    var(--subheading3-text-decoration)
+  );
+}
+
+.typography--variant-subheading3-medium {
+  @include typography-properties(
+    var(--subheading3-medium-font-family),
+    var(--subheading3-medium-font-size),
+    var(--subheading3-medium-font-weight),
+    var(--subheading3-medium-line-height),
+    var(--subheading3-medium-letter-spacing),
+    var(--subheading3-medium-text-decoration)
+  );
+}
+
+.typography--variant-body {
+  @include typography-properties(
+    var(--body-font-family),
+    var(--body-font-size),
+    var(--body-font-weight),
+    var(--body-line-height),
+    var(--body-letter-spacing),
+    var(--body-text-decoration)
+  );
+}
+
+.typography--variant-body1 {
+  @include typography-properties(
+    var(--body1-font-family),
+    var(--body1-font-size),
+    var(--body1-font-weight),
+    var(--body1-line-height),
+    var(--body1-letter-spacing),
+    var(--body1-text-decoration)
+  );
+}
+
+.typography--variant-body1-medium {
+  @include typography-properties(
+    var(--body1-medium-font-family),
+    var(--body1-medium-font-size),
+    var(--body1-medium-font-weight),
+    var(--body1-medium-line-height),
+    var(--body1-medium-letter-spacing),
+    var(--body1-medium-text-decoration)
+  );
+}
+
+.typography--variant-body1-bold {
+  @include typography-properties(
+    var(--body1-bold-font-family),
+    var(--body1-bold-font-size),
+    var(--body1-bold-font-weight),
+    var(--body1-bold-line-height),
+    var(--body1-bold-letter-spacing),
+    var(--body1-bold-text-decoration)
+  );
+}
+
+.typography--variant-body2 {
+  @include typography-properties(
+    var(--body2-font-family),
+    var(--body2-font-size),
+    var(--body2-font-weight),
+    var(--body2-line-height),
+    var(--body2-letter-spacing),
+    var(--body2-text-decoration)
+  );
+}
+
+.typography--variant-body2-medium {
+  @include typography-properties(
+    var(--body2-medium-font-family),
+    var(--body2-medium-font-size),
+    var(--body2-medium-font-weight),
+    var(--body2-medium-line-height),
+    var(--body2-medium-letter-spacing),
+    var(--body2-medium-text-decoration)
+  );
+}
+
+.typography--variant-body2-bold {
+  @include typography-properties(
+    var(--body2-bold-font-family),
+    var(--body2-bold-font-size),
+    var(--body2-bold-font-weight),
+    var(--body2-bold-line-height),
+    var(--body2-bold-letter-spacing),
+    var(--body2-bold-text-decoration)
+  );
+}
+
+.typography--variant-caption {
+  @include typography-properties(
+    var(--caption-font-family),
+    var(--caption-font-size),
+    var(--caption-font-weight),
+    var(--caption-line-height),
+    var(--caption-letter-spacing),
+    var(--caption-text-decoration)
+  );
+}
+
+.typography--variant-caption-medium {
+  @include typography-properties(
+    var(--caption-medium-font-family),
+    var(--caption-medium-font-size),
+    var(--caption-medium-font-weight),
+    var(--caption-medium-line-height),
+    var(--caption-medium-letter-spacing),
+    var(--caption-medium-text-decoration)
+  );
+}
+
+.typography--variant-caption-bold {
+  @include typography-properties(
+    var(--caption-bold-font-family),
+    var(--caption-bold-font-size),
+    var(--caption-bold-font-weight),
+    var(--caption-bold-line-height),
+    var(--caption-bold-letter-spacing),
+    var(--caption-bold-text-decoration)
+  );
+}
+
+.typography--variant-body-18 {
+  @include typography-properties(
+    var(--body-18-font-family),
+    var(--body-18-font-size),
+    var(--body-18-font-weight),
+    var(--body-18-line-height),
+    var(--body-18-letter-spacing),
+    var(--body-18-text-decoration)
+  );
+}
+
+.typography--variant-body-medium-18 {
+  @include typography-properties(
+    var(--body-medium-18-font-family),
+    var(--body-medium-18-font-size),
+    var(--body-medium-18-font-weight),
+    var(--body-medium-18-line-height),
+    var(--body-medium-18-letter-spacing),
+    var(--body-medium-18-text-decoration)
+  );
+}
+
+.typography--variant-body1-16 {
+  @include typography-properties(
+    var(--body1-16-font-family),
+    var(--body1-16-font-size),
+    var(--body1-16-font-weight),
+    var(--body1-16-line-height),
+    var(--body1-16-letter-spacing),
+    var(--body1-16-text-decoration)
+  );
+}
+
+.typography--color-primary {
+  color: var(--text-grey-900);
+}
+
+.typography--color-secondary {
+  color: var(--text-grey-700);
+}
+
+.typography--color-error {
+  color: var(--error-red-600);
+}
+
+.typography--color-hint {
+  color: var(--text-grey-600);
+}
+
+.typography--color-disabled {
+  color: var(--text-grey-400);
+}
+
+.typography--color-success {
+  color: var(--success-green-400);
+}
+
+.typography--color-warning {
+  color: var(--warning-orange-600);
+}
+
+.typography--color-info {
+  color: var(--info-lightblue-300);
+}
+
+.typography--color-text-primary {
+  color: var(--text-grey-900);
+}
+
+.typography--color-text-secondary {
+  color: var(--text-grey-700);
+}
+
+.typography--color-inherit {
+  color: inherit;
+}

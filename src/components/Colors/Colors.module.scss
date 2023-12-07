@@ -1,0 +1,132 @@
+$border-radius: 4px;
+$transition: 0.1s linear;
+
+.colors-page-wrapper {
+  max-width: 1024px;
+  width: calc(100vw - 48px);
+  box-sizing: border-box;
+  padding: 24px 24px;
+  background: var(--bg-paper);
+  border-radius: var(--8-radius);
+  margin: 10px auto 0;
+
+  span {
+    margin: 0;
+  }
+
+  .colors-table-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 36px 0 40px;
+    color: var(--grey-text-primary);
+
+    .colors-table-subtitle {
+      max-width: 1024px;
+      color: var(--grey-text-primary);
+    }
+  }
+
+  .colors-table {
+    .color-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-sizing: border-box;
+      border-bottom: 1px solid var(--grey-phantom);
+      padding: 24px 0;
+      color: var(--grey-text-primary);
+
+      &.color-row-header {
+        padding: 0 0 16px;
+      }
+    }
+
+    .cell-name {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      color: var(--grey-text-primary);
+    }
+
+    .cells-color {
+      display: flex;
+      gap: 16px;
+    }
+
+    .cell-color {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 140px;
+    }
+
+    .color-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+
+      &:hover .color-value {
+        background: var(--bg-smoke);
+      }
+
+      .color {
+        border-radius: $border-radius;
+        width: 100px;
+        height: 30px;
+
+        &.color-white {
+          border: 1px solid var(--misc-divider);
+        }
+      }
+
+      .color-value {
+        transition: $transition;
+        font-size: var(--font-size-1);
+        text-transform: uppercase;
+        color: var(--grey-concrete);
+        text-align: left;
+        padding: 4px;
+        border-radius: $border-radius;
+      }
+    }
+
+
+    code {
+      padding: 4px 8px 4px 8px;
+      font-weight: var(--font-weights-pt-root-ui-0);
+      border-radius: $border-radius;
+      font-size: var(--font-size-1);
+      font-family: monospace;
+      background-color: var(--bg-steel);
+      color: var(--grey-text-primary);
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background: var(--grey-phantom);
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .only-desktop {
+    display: none !important;;
+  }
+  .color-row {
+    flex-direction: column;
+  }
+  .colors-page-wrapper .colors-table .color-wrapper .color-value {
+    color: var(--grey-text-primary);
+  }
+}
+
+@media (min-width: 1024px) {
+  .only-mobile {
+    display: none !important;
+  }
+}

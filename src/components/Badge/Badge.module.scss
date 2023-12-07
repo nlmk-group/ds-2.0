@@ -1,0 +1,79 @@
+@mixin outline {
+  border-style: solid;
+  background-color: transparent;
+  padding: var(--0-space) 6px;
+}
+
+.badge {
+  box-sizing: border-box;
+  min-width: var(--24-size);
+  height: var(--24-size);
+  border-radius: var(--circle-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: var(--2-border);
+  cursor: default;
+  padding: var(--0-space) var(--8-space);
+}
+
+.compact {
+  min-width: var(--16-size);
+  height: var(--16-size);
+  border-width: var(--1-border);
+  padding: var(--0-space) var(--4-space);
+}
+
+.large {
+  min-width: var(--26-size);
+  height: var(--26-size);
+}
+
+// Список ваших цветовых вариантов
+$variants: primary, secondary, error, warning, success, grey;
+
+// Соответствующие цвета для каждого варианта
+$bg-colors: (
+        primary: var(--assigned-colors-badge-main-main-bg-default),
+        secondary: var(--assigned-colors-badge-secondary-secondary-bg-default),
+        error: var(--assigned-colors-badge-error-error-bg-default),
+        warning: var(--assigned-colors-badge-warning-warning-bg-default),
+        success: var(--assigned-colors-badge-success-success-bg-default),
+        grey: var(--assigned-colors-badge-grey-grey-bg-default)
+);
+
+$text-colors: (
+        primary: var(--assigned-colors-badge-text-text-white),
+        secondary: var(--assigned-colors-badge-text-text-black),
+        error: var(--assigned-colors-badge-text-text-white),
+        warning: var(--assigned-colors-badge-text-text-black),
+        success: var(--assigned-colors-badge-text-text-black),
+        grey: var(--assigned-colors-badge-text-text-white)
+);
+
+$outline-colors: (
+        primary: var(--assigned-colors-badge-main-main-bg-default),
+        secondary: var(--assigned-colors-badge-outline-outline-border-secondary-default),
+        error: var(--assigned-colors-badge-error-error-bg-default),
+        warning: var(--assigned-colors-badge-warning-warning-bg-default),
+        success: var(--assigned-colors-badge-success-success-bg-default),
+        grey: var(--assigned-colors-badge-grey-grey-bg-default)
+);
+
+// Цикл для генерации стилей для каждого варианта
+@each $variant in $variants {
+  .#{"" + $variant} {
+    background-color: map-get($bg-colors, $variant);
+    color: map-get($text-colors, $variant);
+  }
+
+  .outline-#{"" + $variant} {
+    @include outline;
+    border-color: map-get($outline-colors, $variant);
+    color: var(--assigned-colors-badge-text-outline-text);
+  }
+}
+
+.compact-outline {
+  padding: var(--0-space) 3px;
+}

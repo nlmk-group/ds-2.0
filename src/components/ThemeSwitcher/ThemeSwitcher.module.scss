@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.checkbox {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  border: 1px solid #ff8a00;
+  border-radius: 10px;
+  background: radial-gradient(circle, #ff8a00 7px, transparent 7px) -9px center;
+  transition: background-position 0.2s;
+  cursor: pointer;
+
+  &:checked {
+    background: radial-gradient(circle, #ff8a00 7px, transparent 7px) 9px center;
+  }
+}

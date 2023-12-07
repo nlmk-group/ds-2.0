@@ -1,0 +1,6 @@
+.prettierrc
+node_modules
+# Ignore artifacts:
+build
+coverage
+storybook-static

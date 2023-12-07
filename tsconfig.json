@@ -1,0 +1,50 @@
+{
+  "exclude": [
+    "node_modules",
+    "lib",
+    ".storybook",
+    "tokens",
+    "src/**/*.stories.mdx",
+    ".jest-test-results.json",
+    "**/*.json"
+  ],
+  "include": ["src/components/**/*"],
+
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "ES5",
+    "lib": ["es6", "dom", "es2019"],
+    "outDir": "./lib",
+    "jsx": "react",
+    "rootDir": "./src/components/",
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": false,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "noEmit": false,
+    "noEmitOnError": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@root/*": ["../*"]
+    },    
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "dashes"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+$greyOpacity24: #97A4B73D;
+$greyOpacity9: #97A4B716;
+$blackOpacity12: rgba(0, 0, 0, 0.12);
+$white: var(--never-changes-white);
+
+@mixin rounded {
+  border-radius: var(--circle-radius);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  position: relative;
+  background-color: var(--text-grey-200);
+
+  &:hover {
+    box-shadow:
+      0 1px 1px 0 $blackOpacity12,
+      0 0 0 2px $greyOpacity24,
+      0 2px 5px 0 $greyOpacity9;
+  }
+
+  &.circle {
+    @include rounded;
+
+    .image {
+      @include rounded;
+    }
+  }
+}
+
+.user-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.online-indicator, .number-indicator {
+  @include rounded;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-shadow:
+    0 2px 5px 0 $greyOpacity9,
+    0 1px 1px 0 $blackOpacity12,
+    inset 0 0 0 var(--1-size) $white;
+}
+
+.online-indicator {
+  width: 16px;
+  height: 16px;
+
+  &.online {
+    background-color: var(--success-green-600);
+  }
+  &.offline {
+    background-color: var(--text-grey-300);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.number-indicator {
+  @include flex-center;
+
+  background-color: var(--primary-blue-600);
+  color: $white;
+  text-align: center;
+}
+
+.letters {
+  @include flex-center;
+
+  width: 100%;
+  height: 100%;
+  color: $white;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

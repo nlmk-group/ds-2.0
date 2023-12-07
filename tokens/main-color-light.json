@@ -1,0 +1,1310 @@
+{
+  "background": {
+    "info": {
+      "value": "#e8f5ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "default": {
+      "value": "#edeeef",
+      "type": "color",
+      "description": "Colors Default\n\nРекомендуется использовать, как цвет основного  BG во всех проектах"
+    },
+    "paper": {
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "white": {
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Default Colour"
+    },
+    "blue": {
+      "value": "#cdddf0",
+      "type": "color",
+      "description": "Default colour"
+    },
+    "light-blue": {
+      "value": "#e2eefc",
+      "type": "color",
+      "description": "Default colour"
+    }
+  },
+  "default": {
+    "main": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Colors Default\nВ светлой теме черный, в темной теме инвертируется в белый"
+    },
+    "second": {
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Colors Default\nВ светлой теме белый, в темной теме инвертируется в черный"
+    }
+  },
+  "dark-primary-navyblue": {
+    "50": {
+      "value": "#e6e9ed",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#bfc7d4",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "200": {
+      "value": "#97a4b7",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "300": {
+      "value": "#70819a",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "400": {
+      "value": "#526787",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "500": {
+      "value": "#005291",
+      "type": "color",
+      "description": "Colors Default\nOld name: Menu Light\n\nКорпоративный цвет, активный пункт в боковом меню "
+    },
+    "600": {
+      "value": "#2c476f",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "700": {
+      "value": "#243e64",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "800": {
+      "value": "#0b3461",
+      "type": "color",
+      "description": "Colors Default\nOld name: Menu Main\n\nОсновной цвет фона бокового меню"
+    },
+    "900": {
+      "value": "#112542",
+      "type": "color",
+      "description": " Colors Default"
+    }
+  },
+  "primary-blue": {
+    "50": {
+      "value": "#e8f5ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#d0e9ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "200": {
+      "value": "#aad5ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "300": {
+      "value": "#5ab1ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "400": {
+      "value": "#32a0ff",
+      "type": "color",
+      "description": "Colors Default\nOld name: primary light"
+    },
+    "500": {
+      "value": "#008fff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "600": {
+      "value": "#167ffb",
+      "type": "color",
+      "description": "Colors Default\nPrimary main\n\nГлавный основной цвет"
+    },
+    "700": {
+      "value": "#1e6ee7",
+      "type": "color",
+      "description": "Colors Default\nOld name: primary button text\n\nЦвет для кнопок на подложке"
+    },
+    "800": {
+      "value": "#215cd4",
+      "type": "color",
+      "description": "Colors Default\nOld name: primary dark\n\nЦвет текстовых ссылок, или пунктом меню при ховере"
+    },
+    "900": {
+      "value": "#243bb5",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "error-red": {
+    "50": {
+      "value": "#ffedf0",
+      "type": "color",
+      "description": "Colors Default\nerror light light"
+    },
+    "100": {
+      "value": "#ffd1d7",
+      "type": "color",
+      "description": "Colors Default\nError light main"
+    },
+    "200": {
+      "value": "#ffa0a0",
+      "type": "color",
+      "description": "Colors Default\nError light dark"
+    },
+    "300": {
+      "value": "#ff7a7a",
+      "type": "color",
+      "description": "Colors Default\nerror light"
+    },
+    "400": {
+      "value": "#ff5955",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "500": {
+      "value": "#ff4839",
+      "type": "color",
+      "description": "Colors Default\nError light"
+    },
+    "600": {
+      "value": "#fc200c",
+      "type": "color",
+      "description": "Colors Default\nerror main\n\nЦвет ошибки или кнопок удаления важной пользовательской информации"
+    },
+    "700": {
+      "value": "#ee1505",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "800": {
+      "value": "#e00000",
+      "type": "color",
+      "description": "Colors Default\nerror dark\n\nИспользуется\nдля текста, рамок, для состояния нажатой кнопки"
+    },
+    "900": {
+      "value": "#c80000",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "warning-orange": {
+    "50": {
+      "value": "#fff3e0",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#ffe0b3",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "200": {
+      "value": "#ffcc82",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "300": {
+      "value": "#ffb650",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "400": {
+      "value": "#ffa62b",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "500": {
+      "value": "#ff970f",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "600": {
+      "value": "#ff8b0f",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "700": {
+      "value": "#f97b0f",
+      "type": "color",
+      "description": "Colors Default\nOld name \"Warning Dark\"\nРекомендуется использовать как высококонтрастный оранжевый цвет для оповещения пользователя о важном, но не критическом событии. Для критического события рекомендуется использовать красный цвет из палитры error-red "
+    },
+    "800": {
+      "value": "#d0710b",
+      "type": "color",
+      "description": "Colors Default\nOld name \"Warning BG icon\"\nРекомендуется использовать в качестве BG на котором будет размещаться иконка"
+    },
+    "900": {
+      "value": "#c65b06",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "success-green": {
+    "50": {
+      "value": "#e5f8e8",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#c2edc6",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "200": {
+      "value": "#98e1a1",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "300": {
+      "value": "#68d679",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "400": {
+      "value": "#39cc59",
+      "type": "color",
+      "description": "Colors Default\nSuccess main\n\nЦвет позитивного подкрепления. Показывает успешный результат действий пользователя\n"
+    },
+    "500": {
+      "value": "#00c236",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "600": {
+      "value": "#00b22c",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "700": {
+      "value": "#0d932b",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "800": {
+      "value": "#00821e",
+      "type": "color",
+      "description": "Colors Default\nSuccess Dark\n\nИспользуется\nдля текста, рамок, для состояния нажатой кнопки"
+    },
+    "900": {
+      "value": "#006e00",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "info-lightblue": {
+    "50": {
+      "value": "#dff7fe",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#adeafd",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "200": {
+      "value": "#72ddfe",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "300": {
+      "value": "#0fd1ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "400": {
+      "value": "#00c4ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "500": {
+      "value": "#00b8ff",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "600": {
+      "value": "#00aaf5",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "700": {
+      "value": "#0096e2",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "800": {
+      "value": "#0085cf",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "900": {
+      "value": "#0064ae",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "text-grey": {
+    "50": {
+      "value": "#f2f3f4",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "100": {
+      "value": "#e5e8ea",
+      "type": "color",
+      "description": "Colors Default\nцвет для состояния hover"
+    },
+    "200": {
+      "value": "#ccd1d4",
+      "type": "color",
+      "description": "Colors Default\nПодсветка для выбранной строки и т.д."
+    },
+    "300": {
+      "value": "#b3b9bf",
+      "type": "color",
+      "description": "Colors Default\nDisabled для кнопок"
+    },
+    "400": {
+      "value": "#99a2a9",
+      "type": "color",
+      "description": "Colors Default\nИспользуется в качестве Active значения в случае кнопок"
+    },
+    "500": {
+      "value": "#808b94",
+      "type": "color",
+      "description": "Colors Default\nDisabled\n\nЗаблокированный текст"
+    },
+    "600": {
+      "value": "#66747e",
+      "type": "color",
+      "description": "Colors Default\nHint\n\nПодсказки и плейсхолдеры\n"
+    },
+    "700": {
+      "value": "#4d5d69",
+      "type": "color",
+      "description": "Colors Default\nSecondary\n\nЦвет дополнительного текста, дескриптеров"
+    },
+    "800": {
+      "value": "#334554",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "900": {
+      "value": "#001729",
+      "type": "color",
+      "description": "Colors Default\nPrimary\n\nОсновной цвет текста, с оттенками цвета бренда. Палитра серого строется из вариантов прозрачности этого цвета"
+    }
+  },
+  "divider": {
+    "divider": {
+      "value": "#00172929",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "spectrum": {
+    "violet": {
+      "50": {
+        "value": "#f4ebfe",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "100": {
+        "value": "#e2cdfd",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "200": {
+        "value": "#cfabfd",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "300": {
+        "value": "#bb86fc",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "400": {
+        "value": "#aa67f9",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "500": {
+        "value": "#994af1",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "600": {
+        "value": "#8e44ea",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "700": {
+        "value": "#803be0",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "800": {
+        "value": "#7335d8",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "900": {
+        "value": "#5f27ca",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    },
+    "yellow": {
+      "50": {
+        "value": "#ffffe6",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "100": {
+        "value": "#fcfdc0",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "200": {
+        "value": "#f9fa93",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "300": {
+        "value": "#f5f662",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "400": {
+        "value": "#f0f234",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "500": {
+        "value": "#ffff00",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "600": {
+        "value": "#ffeb00",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "700": {
+        "value": "#ffd100",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "800": {
+        "value": "#ffb700",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "900": {
+        "value": "#ff8a00",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    },
+    "mint": {
+      "50": {
+        "value": "#e0fbf5",
+        "type": "color",
+        "description": "Colors Default\nФон тегов, кнопок в мобильной системе\nСтарое имя Green Light"
+      },
+      "100": {
+        "value": "#b0ebdd",
+        "type": "color",
+        "description": "Colors Default\nОбводки и заливки кнопок и иконок в APP\nСтарое имя Green Medium"
+      },
+      "200": {
+        "value": "#7bd7c0",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "300": {
+        "value": "#01c09e",
+        "type": "color",
+        "description": "Colors Default\nДля обозначения элементов, с которыми все ок в APP\nСтарое имя green main"
+      },
+      "400": {
+        "value": "#00a486",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "500": {
+        "value": "#019579",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "600": {
+        "value": "#00866e",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "700": {
+        "value": "#037963",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "800": {
+        "value": "#006b57",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "900": {
+        "value": "#005141",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    }
+  },
+  "never-changes": {
+    "white": {
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Colors Default\nПостоянный и неизменяемый белый цвет в любой теме "
+    },
+    "black": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Colors Default\nПостоянный и неизменяемый черный цвет в любой теме "
+    }
+  },
+  "gradient": {
+    "blue-default": {
+      "value": "linear-gradient(225deg, #016dff 14.64%, #0052ff 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "blue-active": {
+      "value": "linear-gradient(224deg, #016ee6 14.64%, #014ae6 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "light-blue": {
+      "value": "linear-gradient(255deg, #e6f0ff 9.18%, #ffffff 90.82%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "green": {
+      "value": "linear-gradient(45deg, #01c09e 14.64%, #00d9a9 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "violet": {
+      "value": "linear-gradient(45deg, #8c33ff 14.64%, #b455ff 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "grey": {
+      "value": "linear-gradient(45deg, #708090 14.64%, #a0aebc 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    },
+    "light-grey": {
+      "value": "linear-gradient(135deg, #eef1f4 14.64%, #f7f8f9 85.36%)",
+      "type": "color",
+      "description": "Colors Default"
+    }
+  },
+  "A100": {
+    "value": "#fcfdc0",
+    "type": "color",
+    "description": "Default theme\nВРЕМЕННЫЙ КОСТЫЛЬ"
+  },
+  "graphic": {
+    "gradient": {
+      "green": {
+        "value": "linear-gradient(180deg, #01c09e 0%, #01c09e00 100%)",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "blue": {
+        "value": "linear-gradient(180deg, #0052ff 0%, #0052ff00 100%)",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "violet": {
+        "value": "linear-gradient(122deg, #8c33ff 0%, #8e33ff00 100%)",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "grey": {
+        "value": "linear-gradient(180deg, #808f9e 0%, #808f9e00 100%)",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    }
+  },
+  "experiment": {
+    "white": {
+      "white-100": {
+        "value": "#ffffff",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "white-80": {
+        "value": "#ffffffcc",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "white-60": {
+        "value": "#ffffff99",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "white-40": {
+        "value": "#ffffff66",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "white-20": {
+        "value": "#ffffff33",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    },
+    "black": {
+      "black-100": {
+        "value": "#000000",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "black-20": {
+        "value": "#00000033",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "black-80": {
+        "value": "#000000cc",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "black-60": {
+        "value": "#00000099",
+        "type": "color",
+        "description": "Colors Default"
+      },
+      "black-40": {
+        "value": "#00000066",
+        "type": "color",
+        "description": "Colors Default"
+      }
+    }
+  },
+  "assigned-colors": {
+    "button": {
+      "main": {
+        "main-bg-default": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "main-bg-hover": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "main-bg-action": {
+          "value": "#215cd4",
+          "type": "color"
+        },
+        "text": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "secondary": {
+        "secondary-bg-default": {
+          "value": "#d0e9ff",
+          "type": "color"
+        },
+        "secondary-bg-hover": {
+          "value": "#e8f5ff",
+          "type": "color"
+        },
+        "secondary-bg-action": {
+          "value": "#aad5ff",
+          "type": "color"
+        },
+        "text": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color"
+        }
+      },
+      "solid-grey": {
+        "solid-grey-bg-default": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "solid-grey-bg-hover": {
+          "value": "#e5e8ea",
+          "type": "color"
+        },
+        "solid-grey-bg-action": {
+          "value": "#ccd1d4",
+          "type": "color"
+        },
+        "text": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color"
+        }
+      },
+      "outline-grey": {
+        "outline-grey-stroke-default": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "outline-grey-stroke-hover": {
+          "value": "#4d5d69",
+          "type": "color"
+        },
+        "outline-grey-fill-hover": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "outline-grey-fill-action": {
+          "value": "#e5e8ea",
+          "type": "color"
+        },
+        "outline-grey-stroke-action": {
+          "value": "#334554",
+          "type": "color"
+        },
+        "text": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#66747e",
+          "type": "color"
+        }
+      },
+      "outline-primary": {
+        "outline-primary-stroke-default": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "outline-primary-stroke-hover": {
+          "value": "#1e6ee7",
+          "type": "color"
+        },
+        "outline-primary-fill-hover": {
+          "value": "#d0e9ff",
+          "type": "color"
+        },
+        "outline-primary-fill-action": {
+          "value": "#aad5ff",
+          "type": "color"
+        },
+        "outline-primary-stroke-action": {
+          "value": "#215cd4",
+          "type": "color"
+        },
+        "text": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color"
+        }
+      },
+      "clear-grey": {
+        "clear-grey-bg-hover": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "clear-grey-bg-action": {
+          "value": "#e5e8ea",
+          "type": "color"
+        },
+        "text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color"
+        }
+      },
+      "clear": {
+        "clear-bg-hover": {
+          "value": "#e8f5ff",
+          "type": "color"
+        },
+        "clear-bg-action": {
+          "value": "#d0e9ff",
+          "type": "color"
+        },
+        "text": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color"
+        }
+      }
+    },
+    "badge": {
+      "main": {
+        "main-bg-default": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "main-bg-hover": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "main-bg-action": {
+          "value": "#1e6ee7",
+          "type": "color"
+        }
+      },
+      "secondary": {
+        "secondary-bg-default": {
+          "value": "#d0e9ff",
+          "type": "color"
+        },
+        "secondary-bg-action": {
+          "value": "#5ab1ff",
+          "type": "color"
+        },
+        "secondary-bg-hover": {
+          "value": "#aad5ff",
+          "type": "color"
+        }
+      },
+      "error": {
+        "error-bg-default": {
+          "value": "#fc200c",
+          "type": "color"
+        },
+        "error-bg-hover": {
+          "value": "#ee1505",
+          "type": "color"
+        },
+        "error-bg-action": {
+          "value": "#e00000",
+          "type": "color"
+        }
+      },
+      "warning": {
+        "warning-bg-default": {
+          "value": "#ffa62b",
+          "type": "color"
+        },
+        "warning-bg-hover": {
+          "value": "#ff8b0f",
+          "type": "color"
+        },
+        "warning-bg-action": {
+          "value": "#f97b0f",
+          "type": "color"
+        }
+      },
+      "success": {
+        "success-bg-default": {
+          "value": "#39cc59",
+          "type": "color"
+        },
+        "success-bg-hover": {
+          "value": "#68d679",
+          "type": "color"
+        },
+        "success-bg-action": {
+          "value": "#00c236",
+          "type": "color"
+        }
+      },
+      "grey": {
+        "grey-bg-default": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "grey-bg-hover": {
+          "value": "#b3b9bf",
+          "type": "color"
+        },
+        "grey-bg-action": {
+          "value": "#808b94",
+          "type": "color"
+        }
+      },
+      "outline": {
+        "outline-border-secondary-hover": {
+          "value": "#32a0ff",
+          "type": "color"
+        },
+        "outline-border-secondary-action": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "outline-border-secondary-default": {
+          "value": "#5ab1ff",
+          "type": "color"
+        }
+      },
+      "text": {
+        "text-black": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "text-white": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "outline-text": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Default theme"
+        }
+      }
+    },
+    "checkbox": {
+      "default": {
+        "default-checked-bg": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "default-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-multipleCheck-bg": {
+          "value": "#808b94",
+          "type": "color"
+        },
+        "default-multipleCheck-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-unchecked-boxside": {
+          "value": "#99a2a9",
+          "type": "color"
+        }
+      },
+      "focused": {
+        "focused-checked-bg": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "focused-checked-focuseBg": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "focused-checked-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "focused-multipleCheck-bg": {
+          "value": "#808b94",
+          "type": "color"
+        },
+        "focused-multipleCheck-focusBg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "focused-multipleCheck-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "focused-unchecked-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "focused-unchecked-boxside": {
+          "value": "#bfc7d4",
+          "type": "color"
+        },
+        "focused-unchecked-focusBg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        }
+      },
+      "normalError": {
+        "normalError-bg": {
+          "value": "#ffedf0",
+          "type": "color"
+        },
+        "normalError-boxside": {
+          "value": "#fc200c",
+          "type": "color"
+        }
+      },
+      "disabledError": {
+        "disabledError-checked-bg": {
+          "value": "#ff7a7a",
+          "type": "color"
+        },
+        "disabledError-checked-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledError-multipleCheck-bg": {
+          "value": "#ff7a7a",
+          "type": "color"
+        },
+        "disabledError-multipleCheck-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledError-unchecked-bg": {
+          "value": "#ffa0a0",
+          "type": "color"
+        },
+        "disabledError-unchecked-boxside": {
+          "value": "#fc200c",
+          "type": "color"
+        }
+      },
+      "disabledSucces": {
+        "disabledSucces-checked-bg": {
+          "value": "#68d679",
+          "type": "color"
+        },
+        "disabledSucces-checked-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledSucces-multipleCheck-bg": {
+          "value": "#68d679",
+          "type": "color"
+        },
+        "disabledSucces-multipleCheck-boxside": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledSucces-unchecked-bg": {
+          "value": "#c2edc6",
+          "type": "color"
+        },
+        "disabledSucces-unchecked-boxside": {
+          "value": "#00c236",
+          "type": "color"
+        }
+      },
+      "disabledWarning": {
+        "disabledWarning-checked-bg": {
+          "value": "#ffb650",
+          "type": "color"
+        },
+        "disabledWarning-checked-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledWarning-multipleCheck-bg": {
+          "value": "#ffb650",
+          "type": "color"
+        },
+        "disabledWarning-multipleCheck-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disabledWarning-uncheked-bg": {
+          "value": "#ffe0b3",
+          "type": "color"
+        },
+        "disabledWarning-uncheked-boxside": {
+          "value": "#ff970f",
+          "type": "color"
+        }
+      },
+      "focusedError": {
+        "focusedError-bg": {
+          "value": "#ffedf0",
+          "type": "color"
+        },
+        "focusedError-boxside": {
+          "value": "#ff4839",
+          "type": "color"
+        }
+      },
+      "disable": {
+        "disable-checked-bg": {
+          "value": "#808b94",
+          "type": "color"
+        },
+        "disable-checked-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disable-multipleCheck-bg": {
+          "value": "#808b94",
+          "type": "color"
+        },
+        "disable-multipleCheck-check": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "disable-uncheck-bg": {
+          "value": "#e6e9ed",
+          "type": "color"
+        },
+        "disable-uncheck-check": {
+          "value": "#bfc7d4",
+          "type": "color"
+        },
+        "disable-uncheck-boxside": {
+          "value": "#808b94",
+          "type": "color"
+        }
+      }
+    },
+    "table": {
+      "tabletop": {
+        "bg-default": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "bg-hover": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "text-default": {
+          "value": "#4d5d69",
+          "type": "color"
+        },
+        "text-hover": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "icon-default": {
+          "value": "#4d5d69",
+          "type": "color"
+        },
+        "icon-hover": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "line-default": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "line-hover": {
+          "value": "#1e6ee7",
+          "type": "color"
+        },
+        "bottom-line": {
+          "value": "#e5e8ea",
+          "type": "color"
+        }
+      },
+      "cell": {
+        "default-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#edeeef",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#e8f5ff",
+          "type": "color"
+        },
+        "selectedHover-bg": {
+          "value": "#d0e9ff",
+          "type": "color"
+        },
+        "red-bg": {
+          "value": "#ff7a7a",
+          "type": "color"
+        },
+        "redHover-bg": {
+          "value": "#ff5955",
+          "type": "color"
+        },
+        "redSelectedHover-bg": {
+          "value": "#ff5955",
+          "type": "color"
+        },
+        "redLight-bg": {
+          "value": "#ffedf0",
+          "type": "color"
+        },
+        "redLightHover-bg": {
+          "value": "#ffd1d7",
+          "type": "color"
+        },
+        "redLightSelectedHover-bg": {
+          "value": "#ffa0a0",
+          "type": "color"
+        },
+        "green-bg": {
+          "value": "#68d679",
+          "type": "color"
+        },
+        "greenHover-bg": {
+          "value": "#39cc59",
+          "type": "color"
+        },
+        "greenSelectedHover-bg": {
+          "value": "#00c236",
+          "type": "color"
+        },
+        "greenLight-bg": {
+          "value": "#e5f8e8",
+          "type": "color"
+        },
+        "greenLightHover-bg": {
+          "value": "#c2edc6",
+          "type": "color"
+        },
+        "greenLightSelectedHover-bg": {
+          "value": "#98e1a1",
+          "type": "color"
+        },
+        "orange-bg": {
+          "value": "#ffa62b",
+          "type": "color"
+        },
+        "orangeHover-bg": {
+          "value": "#ff970f",
+          "type": "color"
+        },
+        "orangeSelectedHover-bg": {
+          "value": "#ff8b0f",
+          "type": "color"
+        },
+        "orangeLight-bg": {
+          "value": "#fff3e0",
+          "type": "color"
+        },
+        "orangeLightHover-bg": {
+          "value": "#ffe0b3",
+          "type": "color"
+        },
+        "orangeLightSelectedHover-bg": {
+          "value": "#ffcc82",
+          "type": "color"
+        }
+      }
+    }
+  }
+}

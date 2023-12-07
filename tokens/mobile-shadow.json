@@ -1,0 +1,170 @@
+{
+  "iOS": {
+    "Shadow": {
+      "Card on white": {
+        "value": {
+          "color": "#274a7f4d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 4,
+          "blur": 24,
+          "spread": 0
+        },
+        "type": "boxShadow"
+      },
+      "Card on color": {
+        "value": {
+          "color": "#274a7f33",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 4,
+          "blur": 24,
+          "spread": 0
+        },
+        "type": "boxShadow"
+      },
+      "Bars": {
+        "value": {
+          "color": "#274a7f4d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 0,
+          "blur": 16,
+          "spread": 0
+        },
+        "type": "boxShadow"
+      },
+      "Violet on white": {
+        "value": {
+          "color": "#8c33ff4d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 4,
+          "blur": 24,
+          "spread": 0
+        },
+        "type": "boxShadow"
+      }
+    }
+  },
+  "Android": {
+    "Shadow": {
+      "Card on white": {
+        "value": [
+          {
+            "color": "#274a7f1f",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 3,
+            "blur": 14,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f24",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 8,
+            "blur": 10,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f33",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 5,
+            "blur": 5,
+            "spread": 0
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "Card on color": {
+        "value": [
+          {
+            "color": "#274a7f14",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 3,
+            "blur": 14,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f1a",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 8,
+            "blur": 10,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f26",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 5,
+            "blur": 5,
+            "spread": 0
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "Bars": {
+        "value": [
+          {
+            "color": "#274a7f1f",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 0,
+            "blur": 18,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f24",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 6,
+            "blur": 14,
+            "spread": 0
+          },
+          {
+            "color": "#274a7f33",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 2,
+            "blur": 6,
+            "spread": 0
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "Violet on white": {
+        "value": [
+          {
+            "color": "#8154bb1f",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 3,
+            "blur": 14,
+            "spread": 0
+          },
+          {
+            "color": "#8154bb33",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 8,
+            "blur": 10,
+            "spread": 0
+          },
+          {
+            "color": "#8e50de66",
+            "type": "dropShadow",
+            "x": 0,
+            "y": 3,
+            "blur": 5,
+            "spread": 0
+          }
+        ],
+        "type": "boxShadow"
+      }
+    }
+  }
+}

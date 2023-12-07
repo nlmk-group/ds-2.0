@@ -1,0 +1,17 @@
+import { Alert } from '@components';
+import { Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Alert/Docs"
+  component={Alert}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/GkHk2iakNrk5m9wZDQZ8zz/DS2.0-Alerts?node-id=1001%3A5914&mode=dev'
+    },
+    jest: ['Alert.test.tsx']
+  }}
+/>
+
+<Stories/>

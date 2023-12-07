@@ -1,0 +1,24 @@
+export interface IArgType {
+  description: string;
+  action?: string;
+  table?: {
+    defaultValue: {
+      summary: string | number | null | undefined;
+    };
+    type?: {
+      summary: string;
+    };
+  };
+  options?: Array<string | number>;
+  control?: {
+    type: string;
+  };
+}
+
+export type TArgsType = {
+  [key: string]: IArgType;
+};
+
+export interface IArgumentsTableProps {
+  args: TArgsType;
+}

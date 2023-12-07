@@ -1,0 +1,19 @@
+.root {
+  color: var(--grey-600);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  background: var(--background-paper);
+}
+
+.weekday {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weights-pt-root-ui-2);
+  font-size: var(--font-size-2);
+  line-height: var(--line-heights-4);
+}

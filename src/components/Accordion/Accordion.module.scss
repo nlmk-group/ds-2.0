@@ -1,0 +1,15 @@
+$accordion-border: solid var(--1-size) var(--text-grey-200);
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0;
+  border: $accordion-border;
+  border-radius: var(--8-size);
+  overflow: hidden;
+
+  & > div:not(:first-child) {
+    border-top: $accordion-border;
+  }
+}

@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  padding: 16px 16px 8px;
+  background-color: var(--background-paper);
+  border-top: 1px solid var(--text-grey-100);
+}
+
+.button {
+  margin-right: 8px;
+}

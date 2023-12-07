@@ -1,0 +1,2574 @@
+{
+  "background": {
+    "info": {
+      "value": "#636f7f",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "default": {
+      "value": "#3c4854",
+      "type": "color",
+      "description": "Dark theme\nРекомендуется использовать, как цвет основного  BG во всех проектах"
+    },
+    "paper": {
+      "value": "#475363",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "white": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Dark theme\nАбсолютно черный - зеркало для абсолютно белого в дефолтной теме"
+    },
+    "blue": {
+      "value": "#4c5f73",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "light-blue": {
+      "value": "#586d84",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "default": {
+    "main": {
+      "value": "#e7e7e7",
+      "type": "color",
+      "description": "Dark theme\n\nВ светлой теме черный, в темной теме инвертируется в белый"
+    },
+    "second": {
+      "value": "#475363",
+      "type": "color",
+      "description": "Dark theme\nВ светлой теме белый, в темной теме инвертируется в черный"
+    }
+  },
+  "dark-primary-navyblue": {
+    "50": {
+      "value": "#eaf0ff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#cedcef",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "200": {
+      "value": "#b5c4db",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "300": {
+      "value": "#9aabc6",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "400": {
+      "value": "#8598b6",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "500": {
+      "value": "#7086a6",
+      "type": "color",
+      "description": "Dark theme\n\nOld name: Menu Light\n\nКорпоративный цвет, активный пункт в боковом меню"
+    },
+    "600": {
+      "value": "#617794",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "700": {
+      "value": "#50627d",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "800": {
+      "value": "#404f66",
+      "type": "color",
+      "description": "Dark theme\n\nOld name: Menu Main\n\nОсновной цвет фона бокового меню"
+    },
+    "900": {
+      "value": "#2d3a4d",
+      "type": "color"
+    }
+  },
+  "primary-blue": {
+    "50": {
+      "value": "#e4f3ff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#bde1ff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "200": {
+      "value": "#92ceff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "300": {
+      "value": "#65bbff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "400": {
+      "value": "#43abff",
+      "type": "color",
+      "description": "Dark theme\n\nOld name: primary light"
+    },
+    "500": {
+      "value": "#279cff",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "600": {
+      "value": "#2a8cff",
+      "type": "color",
+      "description": "Dark theme\nPrimary main\n\nГлавный основной цвет"
+    },
+    "700": {
+      "value": "#2a7beb",
+      "type": "color",
+      "description": "Dark theme\n\nOld name: primary button text\n\nЦвет для кнопок на подложке"
+    },
+    "800": {
+      "value": "#2a69d8",
+      "type": "color",
+      "description": "Dark theme\nOld name: primary dark\n\nЦвет текстовых ссылок, или пунктом меню при ховере"
+    },
+    "900": {
+      "value": "#2849b9",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "error-red": {
+    "50": {
+      "value": "#f5dddc",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#eabbb9",
+      "type": "color",
+      "description": "Dark theme\nError light main"
+    },
+    "200": {
+      "value": "#d48b88",
+      "type": "color",
+      "description": "Dark theme\nError light dark"
+    },
+    "300": {
+      "value": "#cc7a78",
+      "type": "color",
+      "description": "Dark theme\nerror light - 2"
+    },
+    "400": {
+      "value": "#bb5758",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "500": {
+      "value": "#b2474a",
+      "type": "color",
+      "description": "Dark theme\nError light"
+    },
+    "600": {
+      "value": "#a11c2b",
+      "type": "color",
+      "description": "Dark theme\nerror main\n\nЦвет ошибки или кнопок удаления важной пользовательской информации"
+    },
+    "700": {
+      "value": "#8c1524",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "800": {
+      "value": "#76141e",
+      "type": "color",
+      "description": "Dark theme\n\nerror dark\n\nИспользуется\nдля текста, рамок, для состояния нажатой кнопки"
+    },
+    "900": {
+      "value": "#500811",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "warning-orange": {
+    "50": {
+      "value": "#d8d1c4",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#d8c2a0",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "200": {
+      "value": "#d8b279",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "300": {
+      "value": "#f9c76a",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "400": {
+      "value": "#d89333",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "500": {
+      "value": "#d8871d",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "600": {
+      "value": "#ffad0f",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "700": {
+      "value": "#d78b1e",
+      "type": "color",
+      "description": "Dark theme\nOld name \"Warning Dark\"\nРекомендуется использовать как высококонтрастный оранжевый цвет для оповещения пользователя о важном, но не критическом событии. Для критического события рекомендуется использовать красный цвет из палитры error-red"
+    },
+    "800": {
+      "value": "#d77e1e",
+      "type": "color",
+      "description": "Dark theme\n\nOld name \"Warning BG icon\"\nРекомендуется использовать в качестве BG на котором будет размещаться иконка"
+    },
+    "900": {
+      "value": "#9a570d",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "success-green": {
+    "50": {
+      "value": "#c5d6cc",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#aad1b3",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "200": {
+      "value": "#8cca99",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "300": {
+      "value": "#3d6645",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "400": {
+      "value": "#0ea743",
+      "type": "color",
+      "description": "Dark theme\n\nSuccess main\n\nЦвет позитивного подкрепления. Показывает успешный результат действий пользователя"
+    },
+    "500": {
+      "value": "#0cb84a",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "600": {
+      "value": "#0caa42",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "700": {
+      "value": "#0c9b37",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "800": {
+      "value": "#0c8d2c",
+      "type": "color",
+      "description": "Dark theme\n\nSuccess Dark\n\nИспользуется\nдля текста, рамок, для состояния нажатой кнопки"
+    },
+    "900": {
+      "value": "#0c731a",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "info-lightblue": {
+    "50": {
+      "value": "#6a7885",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#5d6c7a",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "200": {
+      "value": "#50606f",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "300": {
+      "value": "#435464",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "400": {
+      "value": "#374959",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "500": {
+      "value": "#2a3d4f",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "600": {
+      "value": "#1e3244",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "700": {
+      "value": "#162736",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "800": {
+      "value": "#101d29",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "900": {
+      "value": "#08121b",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "text-grey": {
+    "50": {
+      "value": "#4e6273",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "100": {
+      "value": "#556878",
+      "type": "color",
+      "description": "Dark theme\n\nцвет для состояния hover"
+    },
+    "200": {
+      "value": "#5e7383",
+      "type": "color",
+      "description": "Dark theme\nПодсветка для выбранной строки и т.д."
+    },
+    "300": {
+      "value": "#697b8a",
+      "type": "color",
+      "description": "Dark theme\nDisabled для кнопок"
+    },
+    "400": {
+      "value": "#788996",
+      "type": "color",
+      "description": "Dark theme\n\nИспользуется в качестве Active значения в случае кнопок"
+    },
+    "500": {
+      "value": "#8f9ca6",
+      "type": "color",
+      "description": "Dark theme\nDisabled\n\nЗаблокированный текст"
+    },
+    "600": {
+      "value": "#b3b9bf",
+      "type": "color",
+      "description": "Dark theme\n\nHint\n\nПодсказки и плейсхолдеры"
+    },
+    "700": {
+      "value": "#ccd1d4",
+      "type": "color",
+      "description": "Dark theme\nSecondary\n\nЦвет дополнительного текста, дескриптеров"
+    },
+    "800": {
+      "value": "#e5e8ea",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "900": {
+      "value": "#f2f3f4",
+      "type": "color",
+      "description": "Dark theme\nPrimary\n\nОсновной цвет текста, с оттенками цвета бренда. Палитра серого строется из вариантов прозрачности этого цвета"
+    }
+  },
+  "divider": {
+    "divider": {
+      "value": "#c1c6c84d",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "spectrum": {
+    "violet": {
+      "50": {
+        "value": "#5f27ca",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "100": {
+        "value": "#7335d8",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "200": {
+        "value": "#803be0",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "300": {
+        "value": "#8e44ea",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "400": {
+        "value": "#994af1",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "500": {
+        "value": "#aa67f9",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "600": {
+        "value": "#bb86fc",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "700": {
+        "value": "#cfabfd",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "800": {
+        "value": "#e2cdfd",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "900": {
+        "value": "#f4ebfe",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    },
+    "yellow": {
+      "50": {
+        "value": "#ff8a00",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "100": {
+        "value": "#ffb700",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "200": {
+        "value": "#ffd100",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "300": {
+        "value": "#ffeb00",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "400": {
+        "value": "#ffff00",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "500": {
+        "value": "#f0f234",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "600": {
+        "value": "#f5f662",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "700": {
+        "value": "#f9fa93",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "800": {
+        "value": "#fcfdc0",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "900": {
+        "value": "#ffffe6",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    },
+    "mint": {
+      "50": {
+        "value": "#e0fbf5",
+        "type": "color",
+        "description": "Фон тегов, кнопок в мобильной системе\nСтарое имя Green Light"
+      },
+      "100": {
+        "value": "#b0ebdd",
+        "type": "color",
+        "description": "Обводки и заливки кнопок и иконок в APP\nСтарое имя Green Medium"
+      },
+      "200": {
+        "value": "#7bd7c0",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "300": {
+        "value": "#01c09e",
+        "type": "color",
+        "description": "Для обозначения элементов, с которыми все ок в APP\nСтарое имя green main"
+      },
+      "400": {
+        "value": "#00a486",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "500": {
+        "value": "#019579",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "600": {
+        "value": "#00866e",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "700": {
+        "value": "#037963",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "800": {
+        "value": "#006b57",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "900": {
+        "value": "#005141",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    }
+  },
+  "A100": {
+    "value": "#5f6047",
+    "type": "color",
+    "description": "Dark theme\nВРЕМЕННЫЙ КОСТЫЛЬ"
+  },
+  "never-changes": {
+    "white": {
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Dark theme\nПостоянный и неизменяемый белый цвет в любой теме"
+    },
+    "black": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Dark theme\nПостоянный и неизменяемый черный цвет в любой теме"
+    }
+  },
+  "gradient": {
+    "blue-default": {
+      "value": "linear-gradient(225deg, #016dff 14.64%, #0052ff 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "blue-active": {
+      "value": "linear-gradient(224deg, #016ee6 14.64%, #014ae6 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "light-blue": {
+      "value": "linear-gradient(255deg, #e6f0ff 9.18%, #ffffff 90.82%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "green": {
+      "value": "linear-gradient(45deg, #01c09e 14.64%, #00d9a9 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "violet": {
+      "value": "linear-gradient(45deg, #8c33ff 14.64%, #b455ff 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "grey": {
+      "value": "linear-gradient(45deg, #708090 14.64%, #a0aebc 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    },
+    "light-grey": {
+      "value": "linear-gradient(135deg, #eef1f4 14.64%, #f7f8f9 85.36%)",
+      "type": "color",
+      "description": "Dark theme"
+    }
+  },
+  "graphic": {
+    "gradient": {
+      "blue": {
+        "value": "linear-gradient(180deg, #004ae7 0%, #0052ff00 100%)",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "green": {
+        "value": "linear-gradient(180deg, #009f83 0%, #01c09e00 100%)",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "violet": {
+        "value": "linear-gradient(122deg, #8021fc 0%, #8e33ff00 100%)",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "grey": {
+        "value": "linear-gradient(180deg, #808f9e 0%, #808f9e00 100%)",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    }
+  },
+  "experiment": {
+    "white": {
+      "white-100": {
+        "value": "#ffffff",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "white-80": {
+        "value": "#ffffffcc",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "white-60": {
+        "value": "#ffffff99",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "white-40": {
+        "value": "#ffffff66",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "white-20": {
+        "value": "#ffffff33",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    },
+    "black": {
+      "black-100": {
+        "value": "#000000",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "black-80": {
+        "value": "#000000cc",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "black-60": {
+        "value": "#00000099",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "black-40": {
+        "value": "#00000066",
+        "type": "color",
+        "description": "Dark theme"
+      },
+      "black-20": {
+        "value": "#00000033",
+        "type": "color",
+        "description": "Dark theme"
+      }
+    }
+  },
+  "ac": {
+    "button": {
+      "primary": {
+        "soild": {
+          "default-bg": {
+            "value": "#2a8cff",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Solid, Default.\nТЕМНАЯ ТЕМА"
+          },
+          "default-text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Solid, Default.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Soild, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Soild, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#2a69d8",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Soild, Pressed.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Soild, Pressed.\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "outline": {
+          "default-stroke": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет контура Primary Button, Outline, Default.\nТЕМНАЯ ТЕМА"
+          },
+          "default-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Outline, Default.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-stroke": {
+            "value": "#43abff",
+            "type": "color",
+            "description": "Цвет контура Primary Button, Outline, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#50627d",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Outline, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Outline, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-stroke": {
+            "value": "#2a8cff",
+            "type": "color",
+            "description": "Цвет контура Primary Button, Outline, Pressed.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#404f66",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Outline, Pressed.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Outline, Pressed.\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "clear": {
+          "default-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Clear, Default.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#50627d",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Clear, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Clear, Hover.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#404f66",
+            "type": "color",
+            "description": "Цвет заливки Primary Button, Clear, Pressed.\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#279cff",
+            "type": "color",
+            "description": "Цвет текста Primary Button, Clear, Pressed.\nТЕМНАЯ ТЕМА"
+          }
+        }
+      },
+      "secondary": {
+        "soild": {
+          "default-bg": {
+            "value": "#617794",
+            "type": "color",
+            "description": "Цвет заливки Secondary Button, Soild, Default\nТЕМНАЯ ТЕМА"
+          },
+          "default-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Secondary Button, Soild, Default\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#7086a6",
+            "type": "color",
+            "description": "Цвет заливки Secondary Button, Soild, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Secondary Button, Soild, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#50627d",
+            "type": "color",
+            "description": "Цвет заливки Secondary Button, Soild, Pressed\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Secondary Button, Soild, Pressed\nТЕМНАЯ ТЕМА"
+          }
+        }
+      },
+      "grey": {
+        "soild": {
+          "default-bg": {
+            "value": "#556878",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Soild, Default\nТЕМНАЯ ТЕМА"
+          },
+          "default-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Soild, Default\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#5e7383",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Soild, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Soild, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#4e6273",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Soild, Pressed\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#eaf0ff",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Soild, Pressed\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "outline": {
+          "default-stroke": {
+            "value": "#b3b9bf",
+            "type": "color",
+            "description": "Цвет контура Grey Button, Outline, Default\nТЕМНАЯ ТЕМА"
+          },
+          "default-text": {
+            "value": "#b3b9bf",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Outline, Default\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#435464",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Outline, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "hover-stroke": {
+            "value": "#ccd1d4",
+            "type": "color",
+            "description": "Цвет контура Grey Button, Outline, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#b3b9bf",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Outline, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#50606f",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Outline, Pressed\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-stroke": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет контура Grey Button, Outline, Pressed\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#b3b9bf",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Outline, Pressed\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "clear": {
+          "default-text": {
+            "value": "#cedcef",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Clear, Default\nТЕМНАЯ ТЕМА"
+          },
+          "hover-bg": {
+            "value": "#435464",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Clear, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "hover-text": {
+            "value": "#cedcef",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Clear, Hover\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-bg": {
+            "value": "#50606f",
+            "type": "color",
+            "description": "Цвет заливки Grey Button, Clear, Pressed\nТЕМНАЯ ТЕМА"
+          },
+          "pressed-text": {
+            "value": "#cedcef",
+            "type": "color",
+            "description": "Цвет текста Grey Button, Clear, Pressed\nТЕМНАЯ ТЕМА"
+          }
+        }
+      }
+    },
+    "radiobutton": {
+      "selected": {
+        "normal": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет radiobutton в состоянии Selected, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-bg": {
+          "value": "#3c4854",
+          "type": "color",
+          "description": "Цвет фона radiobutton в состоянии Selected, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "focused": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет radiobutton в состоянии Selected, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-focus": {
+          "value": "#50627d",
+          "type": "color",
+          "description": "Цвет заливки круга вокруг radiobutton в состоянии Selected, Focused\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "unselected": {
+        "normal-fill": {
+          "value": "#3c4854",
+          "type": "color",
+          "description": "Цвет заливки radiobutton в состоянии Unselected, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-stroke": {
+          "value": "#b5c4db",
+          "type": "color",
+          "description": "Цвет контура radiobutton в состоянии Unselected, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "focused-fill": {
+          "value": "#3c4854",
+          "type": "color",
+          "description": "Цвет заливки radiobutton в состоянии Unselected, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-stroke": {
+          "value": "#b5c4db",
+          "type": "color",
+          "description": "Цвет контура radiobutton в состоянии Unselected, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-focus": {
+          "value": "#50627d",
+          "type": "color",
+          "description": "Цвет заливки круга вокруг radiobutton в состоянии Unselected, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки radiobutton в состоянии Unselected, Disabled\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-stroke": {
+          "value": "#b5c4db",
+          "type": "color",
+          "description": "Цвет контура radiobutton в состоянии Unselected, Disabled\nТЕМНАЯ ТЕМА"
+        }
+      }
+    },
+    "switch": {
+      "on": {
+        "normal-track": {
+          "value": "#92ceff",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии On, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-thumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет ползунка тогла в состоянии On, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "focused-track": {
+          "value": "#92ceff",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии On, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-thumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет ползунка тогла в состоянии On, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-focus": {
+          "value": "#50627d",
+          "type": "color",
+          "description": "Цвет заливки круга на фоне ползунка тогла в состоянии On, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-track": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии On, Disabled\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-thumb": {
+          "value": "#b5c4db",
+          "type": "color",
+          "description": "Цвет ползунка тогла в состоянии On, Disabled\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "off": {
+        "normal-track": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии Off, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-thumb": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет заливки ползунка тогла в состоянии Off, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-stroke": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет контура ползунка тогла в состоянии Off, Normal\nТЕМНАЯ ТЕМА"
+        },
+        "focused-track": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии Off, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-thumb": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет заливки ползунка тогла в состоянии Off, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-focus": {
+          "value": "#50627d",
+          "type": "color",
+          "description": "Цвет заливки круга на фоне ползунка тогла в состоянии Off, Focused\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-track": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет фона тогла в состоянии Off, Disabled\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-thumb": {
+          "value": "#b5c4db",
+          "type": "color",
+          "description": "Цвет заливки ползунка тогла в состоянии Off, Disabled\nТЕМНАЯ ТЕМА"
+        },
+        "focused-stroke": {
+          "value": "#5e7383",
+          "type": "color"
+        }
+      }
+    },
+    "pagination": {
+      "default-number": {
+        "value": "#eaf0ff",
+        "type": "color",
+        "description": "Цвет заливки номера в состоянии Default\nТЕМНАЯ ТЕМА"
+      },
+      "hover-bg": {
+        "value": "#435464",
+        "type": "color",
+        "description": "Цвет заливки фона в состоянии Hover\nТЕМНАЯ ТЕМА"
+      },
+      "hover-number": {
+        "value": "#eaf0ff",
+        "type": "color",
+        "description": "Цвет заливки номера в состоянии Hover\nТЕМНАЯ ТЕМА"
+      },
+      "selected-bg": {
+        "value": "#5d6c7a",
+        "type": "color",
+        "description": "Цвет заливки фона в состоянии Selected\nТЕМНАЯ ТЕМА"
+      },
+      "selected-number": {
+        "value": "#eaf0ff",
+        "type": "color",
+        "description": "Цвет заливки номера в состоянии Selected\nТЕМНАЯ ТЕМА"
+      }
+    },
+    "subtitle": {
+      "default": {
+        "value": "#eaf0ff",
+        "type": "color",
+        "description": "Цвет заливки и иконки для компонента Subtitle\nТЕМНАЯ ТЕМА"
+      }
+    },
+    "checkbox": {
+      "checked": {
+        "bg": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет фона за иконкой (цвет галочки)\nТЕМНАЯ ТЕМА"
+        },
+        "normal": {
+          "value": "#2a69d8",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, normal\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-error": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, disabled-error\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-success": {
+          "value": "#0c8d2c",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, disabled-success\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-warning": {
+          "value": "#d77e1e",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, disabled-warning\nТЕМНАЯ ТЕМА"
+        },
+        "focused": {
+          "value": "#2a69d8",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-focus": {
+          "value": "#50627d",
+          "type": "color",
+          "description": "Цвет заливки круга на фоне иконки в состоянии checked, focused\nТЕМНАЯ ТЕМА"
+        },
+        "disabled": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked, disabled\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "checked-multiple": {
+        "bg": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет фона за иконкой (цвет прочерка)\nТЕМНАЯ ТЕМА"
+        },
+        "normal": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked-multiple, normal\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-error": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked-multiple, disabled-error\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-success": {
+          "value": "#0c8d2c",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked-multiple, disabled-success\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-warning": {
+          "value": "#d77e1e",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked-multiple, disabled-warning\nТЕМНАЯ ТЕМА"
+        },
+        "focused": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет иконки в состоянии checked-multiple, focused\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "unchecked": {
+        "normal-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, normal\nТЕМНАЯ ТЕМА"
+        },
+        "normal-error-stroke": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, normal-error\nТЕМНАЯ ТЕМА"
+        },
+        "normal-error-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, normal-error\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-error-stroke": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, disabled-error\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-error-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, disabled-error\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-success-stroke": {
+          "value": "#0c8d2c",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, disabled-success\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-success-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, disabled-success\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-warning-stroke": {
+          "value": "#d77e1e",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, disabled-warning\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-warning-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, disabled-warning\nТЕМНАЯ ТЕМА"
+        },
+        "focused-error-stroke": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, focused-error\nТЕМНАЯ ТЕМА"
+        },
+        "focused-error-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, focused-error\nТЕМНАЯ ТЕМА"
+        },
+        "focused-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, focused\nТЕМНАЯ ТЕМА"
+        },
+        "focused-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, focused\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-stroke": {
+          "value": "#b3b9bf",
+          "type": "color",
+          "description": "Цвет контура в состоянии unchecked, disabled\nТЕМНАЯ ТЕМА"
+        },
+        "disabled-fill": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки в состоянии unchecked, disabled\nТЕМНАЯ ТЕМА"
+        }
+      }
+    },
+    "badge": {
+      "soild": {
+        "primary": {
+          "text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет номера бейджа Primary\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#2a7beb",
+            "type": "color",
+            "description": "Цвет заливки бейджа Primary\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "secondary": {
+          "text": {
+            "value": "#2d3a4d",
+            "type": "color",
+            "description": "Цвет номера бейджа Secondary\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#b5c4db",
+            "type": "color",
+            "description": "Цвет заливки бейджа Secondary\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "error": {
+          "text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет номера бейджа Error\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#8c1524",
+            "type": "color",
+            "description": "Цвет заливки бейджа Error\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "warning": {
+          "text": {
+            "value": "#2d3a4d",
+            "type": "color",
+            "description": "Цвет номера бейджа Warning\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#d78b1e",
+            "type": "color",
+            "description": "Цвет заливки бейджа Warning\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "success": {
+          "text": {
+            "value": "#2d3a4d",
+            "type": "color",
+            "description": "Цвет номера бейджа Success\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#0c9b37",
+            "type": "color",
+            "description": "Цвет заливки бейджа Success\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "grey": {
+          "text": {
+            "value": "#f2f3f4",
+            "type": "color",
+            "description": "Цвет номера бейджа Grey\nТЕМНАЯ ТЕМА"
+          },
+          "fill": {
+            "value": "#5e7383",
+            "type": "color",
+            "description": "Цвет заливки бейджа Grey\nТЕМНАЯ ТЕМА"
+          }
+        }
+      },
+      "outline": {
+        "primary": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Primary\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#2a7beb",
+            "type": "color",
+            "description": "Цвет контура бейджа Primary\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "secondary": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Secondary\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#b5c4db",
+            "type": "color",
+            "description": "Цвет контура бейджа Secondary\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "error": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Error\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#8c1524",
+            "type": "color",
+            "description": "Цвет контура бейджа Error\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "warning": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Warning\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#d78b1e",
+            "type": "color",
+            "description": "Цвет контура бейджа Warning\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "success": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Success\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#0c9b37",
+            "type": "color",
+            "description": "Цвет контура бейджа Success\nТЕМНАЯ ТЕМА"
+          }
+        },
+        "grey": {
+          "text": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет номера бейджа Grey\nТЕМНАЯ ТЕМА"
+          },
+          "stroke": {
+            "value": "#5e7383",
+            "type": "color",
+            "description": "Цвет контура бейджа Grey\nТЕМНАЯ ТЕМА"
+          }
+        }
+      }
+    },
+    "segment": {
+      "text": {
+        "value": "#eaf0ff",
+        "type": "color",
+        "description": "Цвет текста в ячейке\nТЕМНАЯ ТЕМА"
+      },
+      "stroke": {
+        "value": "#8f9ca6",
+        "type": "color",
+        "description": "Контур ячейки\nТЕМНАЯ ТЕМА"
+      },
+      "default-bg": {
+        "value": "#617794",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Default\nТЕМНАЯ ТЕМА"
+      },
+      "hover-bg": {
+        "value": "#404f66",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Hover\nТЕМНАЯ ТЕМА"
+      },
+      "active-bg": {
+        "value": "#2a69d8",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Active\nТЕМНАЯ ТЕМА"
+      },
+      "error-bg": {
+        "value": "#76141e",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Error\nТЕМНАЯ ТЕМА"
+      },
+      "warning-bg": {
+        "value": "#d77e1e",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Warning\nТЕМНАЯ ТЕМА"
+      },
+      "success-bg": {
+        "value": "#0c8d2c",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Success\nТЕМНАЯ ТЕМА"
+      },
+      "disabled-bg": {
+        "value": "#4e6273",
+        "type": "color",
+        "description": "Цвет заливки ячейки в состоянии Disabled\nТЕМНАЯ ТЕМА"
+      }
+    },
+    "link": {
+      "default": {
+        "value": "#2a8cff",
+        "type": "color",
+        "description": "Цвет текста ссылки в состоянии Default"
+      },
+      "hover": {
+        "value": "#43abff",
+        "type": "color",
+        "description": "Цвет текста ссылки в состоянии Hover"
+      },
+      "active": {
+        "value": "#43abff",
+        "type": "color",
+        "description": "Цвет текста ссылки в состоянии Active"
+      },
+      "click": {
+        "value": "#65bbff",
+        "type": "color",
+        "description": "Цвет текста ссылки в состоянии Click"
+      },
+      "disabled": {
+        "value": "#697b8a",
+        "type": "color",
+        "description": "Цвет текста ссылки в состоянии Disabled"
+      }
+    },
+    "alert": {
+      "error": {
+        "bg": {
+          "value": "#76141e",
+          "type": "color"
+        },
+        "text": {
+          "value": "#d48b88",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#d48b88",
+          "type": "color"
+        }
+      },
+      "warning": {
+        "bg": {
+          "value": "#9a570d",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f9c76a",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#f9c76a",
+          "type": "color"
+        }
+      },
+      "info": {
+        "bg": {
+          "value": "#2849b9",
+          "type": "color"
+        },
+        "text": {
+          "value": "#bde1ff",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#92ceff",
+          "type": "color"
+        }
+      },
+      "success": {
+        "bg": {
+          "value": "#3d6645",
+          "type": "color"
+        },
+        "text": {
+          "value": "#c5d6cc",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#8cca99",
+          "type": "color"
+        }
+      }
+    },
+    "snackbar": {
+      "dark": {
+        "bg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "text": {
+          "value": "#475363",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#475363",
+          "type": "color"
+        }
+      },
+      "green": {
+        "bg": {
+          "value": "#0caa42",
+          "type": "color"
+        },
+        "text": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "text-button": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "red": {
+        "bg": {
+          "value": "#a11c2b",
+          "type": "color"
+        },
+        "text": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "text-button": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "grey": {
+        "bg": {
+          "value": "#3c4854",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#f2f3f4",
+          "type": "color"
+        }
+      },
+      "white": {
+        "bg": {
+          "value": "#000000",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#f2f3f4",
+          "type": "color"
+        }
+      },
+      "light green": {
+        "bg": {
+          "value": "#c5d6cc",
+          "type": "color"
+        },
+        "text": {
+          "value": "#4e6273",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#0c9b37",
+          "type": "color"
+        }
+      },
+      "pink": {
+        "bg": {
+          "value": "#f5dddc",
+          "type": "color"
+        },
+        "text": {
+          "value": "#4e6273",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#b2474a",
+          "type": "color"
+        }
+      }
+    },
+    "accordeon": {
+      "default": {
+        "default-bgHead": {
+          "value": "#3c4854",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии default, default"
+        },
+        "default-heading": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии default, default"
+        },
+        "default-bgText": {
+          "value": "#3c4854",
+          "type": "color",
+          "description": "Цвет фона раскрытого блока с контентом в состоянии default, default"
+        },
+        "default-icon": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии default, default"
+        },
+        "default-text": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет текста в раскрытом аккордеоне в \nсостоянии default, default"
+        },
+        "hover-bgHead": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии hover, default"
+        },
+        "hover-heading": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии hover, default"
+        },
+        "hover-icon": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии hover, default"
+        },
+        "disabled-bgHead": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии disabled, default"
+        },
+        "disabled-heading": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии disabled, default"
+        },
+        "disabled-icon": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии disabled, default"
+        },
+        "divider": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет разделительных линий"
+        }
+      },
+      "paper": {
+        "default -bgHead": {
+          "value": "#475363",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии default, paper"
+        },
+        "default-heading": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии default, paper"
+        },
+        "default-bgText": {
+          "value": "#475363",
+          "type": "color",
+          "description": "Цвет фона раскрытого блока с контентом в состоянии default, paper"
+        },
+        "default-icon": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии default, paper"
+        },
+        "default-text": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет текста в раскрытом аккордеоне в \nсостоянии default, paper"
+        },
+        "hover-bgHead": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии hover, paper"
+        },
+        "hover-heading": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии hover, paper"
+        },
+        "hover-icon": {
+          "value": "#e5e8ea",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии hover, paper"
+        },
+        "disabled-bgHead": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона заголовка аккордеона в состоянии disabled, paper"
+        },
+        "disabled-heading": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет заголовка аккордеона в\nсостоянии disabled, paper"
+        },
+        "disabled-icon": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет иконок раскрывающих аккордеон в состоянии disabled, paper"
+        },
+        "divider": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет разделительных линий"
+        }
+      }
+    },
+    "inputRange": {
+      "onlyLine": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, onlyLine"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, onlyLine"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, onlyLine"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, onlyLine"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, onlyLine"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, onlyLine"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, onlyLine"
+        }
+      },
+      "upperTooltipIndicator": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, upperTooltipIndicator"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, upperTooltipIndicator"
+        },
+        "default-sliderThumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, upperTooltipIndicator"
+        },
+        "default-sliderLabel": {
+          "value": "#2d3a4d",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии default, upperTooltipIndicator"
+        },
+        "default-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, upperTooltipIndicator"
+        },
+        "hover-sliderThumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, upperTooltipIndicator"
+        },
+        "hover-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, lowerTooltipIndicator"
+        },
+        "hover-sliderLabel": {
+          "value": "#2d3a4d",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии hover, upperTooltipIndicator"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, upperTooltipIndicator"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, upperTooltipIndicator"
+        },
+        "disabled-sliderThumb": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии disabled, upperTooltipIndicator"
+        },
+        "disabled-sliderLabel": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии disabled, upperTooltipIndicator"
+        },
+        "disabled-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, upperTooltipIndicator"
+        }
+      },
+      "lowerTooltipIndicator": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, lowerTooltipIndicator"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, lowerTooltipIndicator"
+        },
+        "default-sliderThumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, lowerTooltipIndicator"
+        },
+        "default-sliderLabel": {
+          "value": "#2d3a4d",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии default, lowerTextIndicator"
+        },
+        "default-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, lowerTooltipIndicator"
+        },
+        "hover-sliderThumb": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, lowerTooltipIndicator"
+        },
+        "hover-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, lowerTooltipIndicator"
+        },
+        "hover-sliderLabel": {
+          "value": "#2d3a4d",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии hover, lowerTextIndicator"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, lowerTooltipIndicator"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, lowerTooltipIndicator"
+        },
+        "disabled-sliderThumb": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, lowerTooltipIndicator"
+        },
+        "disabled-sliderLabel": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет фона подсказки в состоянии disabled, lowerTextIndicator"
+        },
+        "disabled-percent": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, lowerTooltipIndicator"
+        }
+      },
+      "upperTextIndicator": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, upperTextIndicator"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, upperTextIndicator"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, upperTextIndicator"
+        },
+        "default-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, upperTextIndicator"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, upperTextIndicator"
+        },
+        "hover-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, upperTextIndicator"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, upperTextIndicator"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, upperTextIndicator"
+        },
+        "disabled-percent": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, upperTextIndicator"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, upperTextIndicator"
+        }
+      },
+      "lowerTextIndicator": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, lowerTextIndicator"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, lowerTextIndicator"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, lowerTextIndicator"
+        },
+        "default-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, lowerTextIndicator"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, lowerTextIndicator"
+        },
+        "hover-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, lowerTextIndicator"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, lowerTextIndicator"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, lowerTextIndicator"
+        },
+        "disabled-percent": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, lowerTextIndicator"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, lowerTextIndicator"
+        }
+      }
+    },
+    "toast": {
+      "warning": {
+        "bg": {
+          "value": "#d77e1e",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#d8d1c4",
+          "type": "color"
+        },
+        "text-button": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "error": {
+        "bg": {
+          "value": "#8c1524",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#eabbb9",
+          "type": "color"
+        },
+        "text-button": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "success": {
+        "bg": {
+          "value": "#0c8d2c",
+          "type": "color"
+        },
+        "text": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#c5d6cc",
+          "type": "color"
+        },
+        "text-button": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "info": {
+        "bg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "text": {
+          "value": "#475363",
+          "type": "color"
+        },
+        "icon": {
+          "value": "#7086a6",
+          "type": "color"
+        }
+      }
+    },
+    "icon": {
+      "blue": {
+        "value": "#279cff",
+        "type": "color"
+      },
+      "white": {
+        "value": "#f2f3f4",
+        "type": "color"
+      },
+      "grey": {
+        "value": "#b3b9bf",
+        "type": "color"
+      },
+      "error": {
+        "value": "#8c1524",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#d78b1e",
+        "type": "color"
+      },
+      "success": {
+        "value": "#0c9b37",
+        "type": "color"
+      }
+    },
+    "toggle-button": {
+      "default": {
+        "default-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Default, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "default-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет обводки в toggle-button, цвет Default, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "hover-bg": {
+          "value": "#404f66",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Default, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "hover-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Default, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "active-bg": {
+          "value": "#2a69d8",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Default, статус Active\nТЕМНАЯ ТЕМА"
+        },
+        "active-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Default, статус Active\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "success": {
+        "default-text": {
+          "value": "#0cb84a",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Success, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "default-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет обводки toggle-button, цвет Success, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "hover-bg": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Success, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "hover-text": {
+          "value": "#0cb84a",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Success, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "active-bg": {
+          "value": "#0c9b37",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Success, статус Active\nТЕМНАЯ ТЕМА"
+        },
+        "active-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Success, статус Active\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "warning": {
+        "default-text": {
+          "value": "#ffad0f",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Warning, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "default-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет обводки toggle-button, цвет Warning, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "hover-bg": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Warning, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "hover-text": {
+          "value": "#ffad0f",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Warning, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "active-bg": {
+          "value": "#d77e1e",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Warning, статус Active\nТЕМНАЯ ТЕМА"
+        },
+        "active-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Warning, статус Active\nТЕМНАЯ ТЕМА"
+        }
+      },
+      "error": {
+        "default-text": {
+          "value": "#cc7a78",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Error, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "default-stroke": {
+          "value": "#8f9ca6",
+          "type": "color",
+          "description": "Цвет обводки toggle-button, цвет Error, статус Default\nТЕМНАЯ ТЕМА"
+        },
+        "hover-bg": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Error, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "hover-text": {
+          "value": "#cc7a78",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Error, статус Hover\nТЕМНАЯ ТЕМА"
+        },
+        "active-bg": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "Цвет заливки toggle-button, цвет Error, статус Active\nТЕМНАЯ ТЕМА"
+        },
+        "active-text": {
+          "value": "#eaf0ff",
+          "type": "color",
+          "description": "Цвет текста в toggle-button, цвет Error, статус Active\nТЕМНАЯ ТЕМА"
+        }
+      }
+    },
+    "avatar": {
+      "badges": {
+        "bg-birthdays-violet": {
+          "value": "#bb86fc",
+          "type": "color",
+          "description": "Цвет фона бейджа для обозначения событий, например День Рождения"
+        },
+        "stroke-birthdays-violet": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет обводки бейджа"
+        },
+        "icon-birthdays-violet": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет иконки в бейдже"
+        },
+        "bg-default-green": {
+          "value": "#0caa42",
+          "type": "color",
+          "description": "Цвет фона бейджа для обозначения подтвержденного профиля"
+        }
+      },
+      "number-indicator": {
+        "bg": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет фона бейджа для обозначения кол-ва уведомлений"
+        },
+        "stroke": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет обводки бейджа number-indicator"
+        },
+        "number": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет цифр в бейдже number-indicator"
+        }
+      },
+      "online-Indicators": {
+        "bg-onlineTrue": {
+          "value": "#0caa42",
+          "type": "color",
+          "description": "Цвет фона индикатора пользователя в сети"
+        },
+        "stroke-onlineTrue": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет обводки индикатора online-Indicators"
+        },
+        "bg-onlineFalse": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет фона индикатора пользователя не в сети"
+        },
+        "stroke-onlineFalse": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет обводки индикатора online-Indicators"
+        }
+      },
+      "icon": {
+        "default-bg": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона аватара в состоянии default,icon"
+        },
+        "default-icon": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет иконки в состоянии default, icon"
+        },
+        "hover-bg": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона аватара в состоянии hover, icon"
+        },
+        "hover-icon": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет иконки в состоянии hover, icon"
+        }
+      },
+      "placeholder": {
+        "default-bg": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона аватара в состоянии default,   placeholder"
+        },
+        "default-initials": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет для инициалов в состоянии default, placeholder"
+        },
+        "hover-bg": {
+          "value": "#5e7383",
+          "type": "color",
+          "description": "Цвет фона аватара в состоянии hover,   placeholder"
+        },
+        "hover-initials": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет для инициалов в состоянии hover, placeholder"
+        }
+      }
+    },
+    "inputSlider": {
+      "none": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, none"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, none"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, none"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, none"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, none"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, none"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, none"
+        }
+      },
+      "text-value": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, text-value"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, text-value"
+        },
+        "default-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, text-value"
+        },
+        "default-label": {
+          "value": "#ccd1d4",
+          "type": "color",
+          "description": "Цвет текста в состоянии default, text-value"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, text-value"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, text-value"
+        },
+        "hover-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, text-value"
+        },
+        "hover-label": {
+          "value": "#ccd1d4",
+          "type": "color",
+          "description": "Цвет текста в состоянии hover, text-value"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, text-value"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, text-value"
+        },
+        "disabled-label": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет текста в состоянии disabled, text-value"
+        },
+        "disabled-percent": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, text-value"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, text-value"
+        }
+      },
+      "onlyValue": {
+        "default-bg": {
+          "value": "#bde1ff",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии default, onlyValue"
+        },
+        "default-line": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии default, onlyValue"
+        },
+        "default-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии default, onlyValue"
+        },
+        "default-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии default, onlyValue"
+        },
+        "hover-point": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии hover, onlyValue"
+        },
+        "hover-percent": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии hover, onlyValue"
+        },
+        "disabled-bg": {
+          "value": "#556878",
+          "type": "color",
+          "description": "Цвет фона линии ползунка в состоянии disabled, onlyValue"
+        },
+        "disabled-line": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет линии ползунка в состоянии disabled, onlyValue"
+        },
+        "disabled-point": {
+          "value": "#697b8a",
+          "type": "color",
+          "description": "Цвет точки ползунка в состоянии disabled, onlyValue"
+        },
+        "disabled-percent": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет текста(процента) в состоянии disabled, onlyValue"
+        }
+      }
+    }
+  }
+}

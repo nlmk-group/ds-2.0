@@ -1,0 +1,8 @@
+.sp-layout {
+  border: 1px solid rgba(0, 23, 41, 0.16) !important;
+  background-color: transparent !important;
+}
+
+.sp-loading {
+    background: white !important;
+}

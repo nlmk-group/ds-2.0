@@ -1,0 +1,58 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--experiment-black-black-40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  border-radius: 4px;
+  background: var(--background-paper);
+  padding: 0 var(--32-space) var(--32-space);
+  position: relative;
+  overflow: hidden;
+  z-index: 1010;
+
+  &.resizable {
+    resize: both;
+    overflow: auto;
+  }
+
+  &.topPadding {
+    padding-top: var(--32-space);
+  }
+}
+
+.dragHandle {
+  height: var(--32-space);
+  width: 100%;
+  cursor: default;
+  background-color: inherit;
+  text-align: center;
+  user-select: none;
+
+  &.draggable {
+    cursor: move;
+  }
+}
+
+.modalClose {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+
+  &:hover {
+    background: none !important;
+  }
+
+  & svg {
+    color: var(--default-white) !important;
+  }
+}

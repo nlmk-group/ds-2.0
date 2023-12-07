@@ -1,0 +1,66 @@
+$padding-size: var(--16-size);
+$text-grey: var(--text-grey-100);
+$background-paper: var(--background-paper);
+
+@mixin padding($top-bottom, $left-right) {
+  .header {
+    padding: $top-bottom $left-right;
+  }
+
+  .content {
+    padding: $top-bottom $left-right;
+  }
+}
+
+.accordionItem {
+  width: 100%;
+  color: var(--text-grey-900);
+  position: relative;
+
+  .header {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 16px 1fr 16px;
+    gap: var(--16-size);
+    align-items: center;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    color: var(--text-grey-400);
+  }
+
+  &.default {
+    background-color: var(--background-default);
+
+    &.hovered, &.disabled {
+        background-color: $text-grey;
+    }
+  }
+
+  &.paper {
+    background-color: $background-paper;
+
+    &.hovered {
+      .header {
+        background-color: $text-grey;
+      }
+    }
+
+    &.disabled {
+      background-color: $background-paper;
+    }
+  }
+
+  &.m {
+    @include padding(var(--16-size), $padding-size);
+  }
+
+  &.s {
+    @include padding(var(--8-size), $padding-size);
+  }
+
+  &.xs {
+    @include padding(var(--4-size), $padding-size);
+  }
+}

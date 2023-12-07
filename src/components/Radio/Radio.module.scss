@@ -1,0 +1,118 @@
+.root {
+  @mixin size-list {
+    appearance: none;
+    height: var(--20-size);
+    width: var(--20-size);
+  }
+
+  @mixin small-size-list {
+    appearance: none;
+    height: var(--16-size);
+    width: var(--16-size);
+  }
+
+  @mixin padding-list {
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  input[type="radio"] {
+    @include size-list;
+    position: relative;
+  }
+
+  input[type="radio"] {
+    &:before {
+      @include size-list;
+      @include padding-list;
+      content: "";
+      cursor: pointer;
+      position: absolute;
+      border: var(--2-border) solid var(--text-grey-100);
+      background-color: transparent;
+    }
+  }
+
+  input[type="radio"] {
+    &:not(:disabled) {
+      &:not(:checked) {
+        &:hover {
+          &:before {
+            border-color: var(--text-grey-100);
+            box-shadow: 0 0 0 6px var(--text-grey-50);
+          }
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:hover {
+      &:checked {
+        &:not(:disabled) {
+          &:before {
+            border-color: var(--primary-blue-500);
+            box-shadow: 0 0 0 var(--1-space) var(--default-second),
+              0 0 0 var(--6-size) var(--primary-blue-50);
+          }
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:disabled {
+      &:before {
+        background-color: var(--text-grey-100);
+        border-color: var(--text-grey-200);
+        cursor: default;
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:checked {
+      &:after {
+        @include small-size-list;
+        @include padding-list;
+        content: "";
+        position: absolute;
+        background-color: var(--primary-blue-500);
+        visibility: visible;
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:checked {
+      &:disabled {
+        &:after {
+          cursor: default;
+          background-color: var(--text-grey-100);
+        }
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:checked {
+      &:before {
+        border-color: var(--primary-blue-500);
+      }
+    }
+  }
+
+  input[type="radio"] {
+    &:checked {
+      &:disabled {
+        &:before {
+          cursor: default;
+          background-color: transparent;
+          border-color: var(--text-grey-100);
+        }
+      }
+    }
+  }
+}

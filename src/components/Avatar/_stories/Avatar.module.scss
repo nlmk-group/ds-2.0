@@ -1,0 +1,13 @@
+.wrapper {
+  background-color: var(--default-second);
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  gap: 64px;
+}
+
+.row {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 32px;
+}

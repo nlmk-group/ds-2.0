@@ -1,0 +1,36 @@
+.action {
+  color: var(--action-active);
+}
+
+.disabled {
+  color: var(--action-disabled);
+}
+
+.error {
+  color: var(--error-red-600);
+}
+
+.primary {
+  color: var(--primary-blue-600);
+}
+
+.secondary {
+  color: var(--primary-blue-100);
+}
+
+.inherit {
+  color: inherit;
+}
+
+.success {
+  color: var(--success-green-500);
+}
+
+.warning {
+  color: var(--warning-orange-600);
+}
+
+.mask {
+  mask: url(#masked);
+  mask-type: alpha;
+}

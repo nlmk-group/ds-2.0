@@ -1,0 +1,12 @@
+export const FILES_DEFAULT = 'File (по умолчанию)';
+export const FILES_LONG_LABEL = 'File (длинный лэйбл)';
+export const FILES_DESCRIPTION = 'File (с описанием)';
+export const FILES_LEFT_ICON = 'File (вариации левой иконки)';
+export const FILES_CONTROL = 'File (с контролами)';
+export const FILES_WITHOUT_TITLE = 'AttachFiles (без заголовка)';
+export const FILES_WITH_TITLE = 'AttachFiles (с заголовком)';
+export const FILES_LIST = 'AttachFiles (со списком)';
+export const FILES_ADD_FILE_BUTTON = 'AttachFiles (с кнопкой добавления файла)';
+export const FILES_WITH_CHECKBOXES = 'AttachFiles (с чекбоксами)';
+export const FILE_NAME = 'Название файла.pdf';
+export const LONG_LABEL = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et volutpat enim.';

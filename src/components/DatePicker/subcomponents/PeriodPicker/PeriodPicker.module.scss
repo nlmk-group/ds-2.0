@@ -1,0 +1,48 @@
+.root {
+  padding: 10px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-paper);
+  width: 280px;
+}
+
+.disableContent {
+  & .content {
+    &:hover {
+      background-color: var(--background-paper);
+      cursor: default;
+    }
+  }
+}
+
+.content {
+  margin: 0 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 5px 20px;
+
+  &:hover {
+    background-color: #F5F6F6;
+  }
+}
+
+.contentText {
+  margin-right: 4px;
+  color: var(--text-grey-900);
+  white-space: nowrap;
+  font-weight: var(--font-weights-pt-root-ui-2);
+  font-size: var(--font-size-2);
+  line-height: var(--line-heights-4);
+}
+
+.icon {
+  border-radius: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F5F6F6;
+  }
+}

@@ -1,0 +1,24 @@
+@mixin content-mixin {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.wrapper {
+  background-color: var(--background-default);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+}
+
+.table {
+  @include content-mixin;
+  grid-template-columns: 100px 100px;
+  max-width: 100%;
+  gap: 40px 5px;
+}
+
+.row {
+  @include content-mixin;
+  grid-template-columns: 1fr repeat(6, 1fr);
+  padding: 10px 0 0 0;
+}

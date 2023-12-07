@@ -1,0 +1,28 @@
+.root {
+  height: var(--40-size);
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  position: absolute;
+  top: -8px;
+  color: var(--text-grey-700);
+
+  &.error {
+    color: var(--error-red-500);
+  }
+
+  &.warning {
+    color: var(--warning-orange-600);
+  }
+
+  &.success {
+    color: var(--success-green-700);
+  }
+}
+
+.text {
+  position: absolute;
+  top: 8px;
+}

@@ -1,0 +1,27 @@
+$paddingChild: 18px;
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 8px 24px 8px 12px;
+  height: 40px;
+  box-sizing: border-box;
+  color: var(--text-grey-900);
+
+  &:last-child,
+  &:first-child {
+    height: 48px;
+  }
+
+  &:first-child {
+    padding-top: $paddingChild;
+  }
+
+  &:last-child {
+    padding-bottom: $paddingChild;
+  }
+
+  &:hover {
+    background-color: var(--text-grey-100);
+  }
+}

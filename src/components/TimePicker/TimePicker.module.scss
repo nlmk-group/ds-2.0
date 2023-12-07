@@ -1,0 +1,14 @@
+.root {
+  user-select: none;
+  transition: 0.2s;
+  width: 100%;
+  position: relative;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.opened {
+  z-index: 10;
+}

@@ -1,0 +1,26 @@
+$bgPositionWidth: 200px;
+$margin: 10px;
+
+@keyframes animation-skeleton-loader {
+  from {
+    background-position: (-$bgPositionWidth) 0;
+  }
+
+  to {
+    background-position: calc($bgPositionWidth + 100%) 0;
+  }
+}
+
+.loading-wrapper {
+  display: inline-block;
+  line-height: 1;  
+  margin-right: $margin;
+  margin-bottom: $margin;
+  background-color: var(--text-grey-50);
+  background-image: linear-gradient(90deg, var(--text-grey-50), var(--text-grey-100), var(--text-grey-50));
+  background-size: $bgPositionWidth 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  cursor: wait;
+  animation: animation-skeleton-loader 1.2s ease-in-out infinite;
+}

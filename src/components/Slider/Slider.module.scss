@@ -1,0 +1,76 @@
+@mixin thumb-mixin {
+    appearance: none;
+    pointer-events: all;
+    width: 32px;
+    height: 12px;
+    border-radius: 0;
+    border: 0 none;
+    cursor: grab;
+  
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  
+  @mixin track-mixin {
+    appearance: none;
+    background: transparent;
+    border: transparent;
+  }
+  
+  .wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-wrapper {
+    width: calc(100% + 32px);
+    position: absolute;
+    margin: 0 calc(16px / -2);
+    height: 12px;
+  }
+  
+  .control-wrapper {
+    width: 100%;
+    position: absolute;
+    height: 12px;
+  }
+  
+  .input {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    appearance: none;
+    height: 100%;
+    opacity: 0;
+    z-index: 3;
+    padding: 0;
+  
+    &::-ms-track {
+      @include track-mixin;
+    }
+  
+    &::-moz-range-track {
+      @include track-mixin;
+    }
+  
+    &:focus {
+      &::-webkit-slider-runnable-track {
+        @include track-mixin;
+      }
+    }
+  
+    &::-ms-thumb {
+      @include thumb-mixin;
+    }
+  
+    &::-moz-range-thumb {
+      @include thumb-mixin;
+    }
+  
+    &::-webkit-slider-thumb {
+      @include thumb-mixin;
+    }
+  }
+  

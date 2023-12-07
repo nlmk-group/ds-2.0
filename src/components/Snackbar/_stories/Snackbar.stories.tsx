@@ -1,0 +1,177 @@
+import React, { ReactNode } from 'react'
+
+import { Snackbar, Icon } from '@components/index';
+import { action } from '@storybook/addon-actions';
+import { Meta, Story } from '@storybook/react';
+
+import styles from '@components/_storybook/styles.module.scss';
+import { withDesign } from 'storybook-addon-designs';
+
+
+import { ISnackbar } from '../types'
+import argsTypes from './argsTypes';
+import {
+  DEFAULT_SNACKBAR,
+  SNACKBAR_CLOSE,
+  SNACKBAR_ACTION,
+  SNACKBAR_COLOR,
+  SNACKBAR_ICON,
+  SNACKBAR_CUSTOM_ICON,
+  SNACKBAR_OPACITY
+} from './constants';
+import { colorMapping } from '../enums';
+
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+
+export default {
+  title: 'Components/Snackbar/Stories',
+  component: Snackbar,
+  decorators: [withDesign, withWrapper],
+  argTypes: argsTypes
+} as Meta<typeof Snackbar>;
+
+export const DefaultSnackbar = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <Snackbar {...argTypes} />
+  );
+};
+
+DefaultSnackbar.storyName = DEFAULT_SNACKBAR;
+DefaultSnackbar.args = {
+  children: DEFAULT_SNACKBAR
+};
+
+export const SnackbarClose = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <Snackbar {...argTypes} />
+  );
+};
+
+SnackbarClose.storyName = SNACKBAR_CLOSE;
+SnackbarClose.args = {
+  children: SNACKBAR_CLOSE,
+  close: action('onClose')
+};
+
+export const SnackbarAction = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <Snackbar {...argTypes} />
+  );
+};
+
+SnackbarAction.storyName = SNACKBAR_ACTION;
+SnackbarAction.args = {
+  children: SNACKBAR_ACTION,
+  actionButton: action('onActionClicked')
+};
+
+export const SnackbarColor = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--8-space'
+      }}
+    >
+      {Object.values(colorMapping).map((color: colorMapping) => (
+        <Snackbar key={color} {...argTypes} color={color} />
+      ))}
+    </div>
+  );
+};
+
+SnackbarColor.storyName = SNACKBAR_COLOR;
+SnackbarColor.args = {
+  children: SNACKBAR_COLOR,
+  close: action('onClose'),
+  actionButton: action('onActionClicked')
+};
+
+export const SnackbarIcon = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--8-space'
+      }}
+    >
+      {Object.values(colorMapping).map((color: colorMapping) => (
+        <Snackbar key={color} {...argTypes} withIcon color={color} />
+      ))}
+    </div>
+  );
+};
+
+SnackbarIcon.storyName = SNACKBAR_ICON;
+SnackbarIcon.args = {
+  children: SNACKBAR_ICON,
+  close: action('onClose'),
+  actionButton: action('onActionClicked')
+};
+
+export const SnackbarCustomIcon = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <Snackbar
+      {...argTypes}
+      customIcon={(
+        <Icon
+          name='IconEducation24'
+          containerSize={24}
+          htmlColor={'var(--default-second)'}
+        />
+      )}
+    />
+  );
+};
+
+SnackbarCustomIcon.storyName = SNACKBAR_CUSTOM_ICON;
+SnackbarCustomIcon.args = {
+  withIcon: true,
+  children: SNACKBAR_CUSTOM_ICON,
+  color: colorMapping.dark,
+  close: action('onClose'),
+  actionButton: action('onActionClicked')
+};
+
+export const SnackbarOpacity = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        gap: 'var(--8-space'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--8-space'
+        }}
+      >
+        {Object.values(colorMapping).map((color: colorMapping) => (
+          <Snackbar key={color} {...argTypes} withIcon color={color} />
+        ))}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--8-space'
+        }}
+      >
+        {Object.values(colorMapping).map((color: colorMapping) => (
+          <Snackbar key={`${color}_opacity`} {...argTypes} withIcon color={color} bgOpacity={70} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+SnackbarOpacity.storyName = SNACKBAR_OPACITY;
+SnackbarOpacity.args = {
+  children: SNACKBAR_OPACITY,
+  close: action('onClose'),
+  actionButton: action('onActionClicked')
+};

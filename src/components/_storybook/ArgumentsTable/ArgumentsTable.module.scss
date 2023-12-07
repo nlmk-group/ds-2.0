@@ -1,0 +1,26 @@
+.table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.th {
+  text-align: left;
+  color: rgba(51, 51, 51, 0.75);
+  padding: 10px 15px;
+}
+
+.tbody {
+  box-shadow: rgba(0, 0, 0, 0.04) 0 1px 3px 1px, rgba(0, 0, 0, 0.09) 0 0 0 1px;
+  border-radius: 4px;
+}
+
+.td {
+  padding: 10px 0 10px 20px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--border-args-table);
+}
+
+.td:last-child {
+  padding: 10px 20px;
+}

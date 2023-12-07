@@ -1,0 +1,59 @@
+.wrapper {
+  display: grid;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  align-items: center;
+
+  &-height {
+    min-height: 400px;
+  }
+}
+
+.placements {
+  display: grid;
+  grid-template-areas: "bottom bottom" "right left" "top top";
+  gap: 100px;
+  justify-items: center;
+}
+
+.behaviors {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 60px;
+  justify-items: center;
+}
+
+.custom {
+  display: grid;
+  gap: 8px 0;
+
+  &-item {
+    display: inline-grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: 0 12px;
+
+    & p {
+      margin: 0;
+    }
+  }
+}
+
+.tooltip {
+  &-top {
+    grid-area: top;
+  }
+
+  &-bottom {
+    grid-area: bottom;
+  }
+
+  &-left {
+    grid-area: left;
+  }
+
+  &-right {
+    grid-area: right;
+  }
+}

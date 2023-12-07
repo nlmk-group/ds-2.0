@@ -1,0 +1,61 @@
+import { Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
+import { ArgumentsTable } from '../../_storybook/ArgumentsTable';
+import Tab from '..';
+import argsTypes from './argsTypes';
+
+import {
+  TEXT_DEFAULT,
+  TEXT_ACTIVE,
+  TEXT_WITH_BADGE,
+  TEXT_TOOLTIP,
+  TEXT_ON_CLICK,
+} from './text';
+
+<Meta
+  title="Components/Tab/Docs"
+  component={Tab}
+  parameters={{
+    jest: ['Tab.test.tsx']
+  }}
+/>
+
+<Title>Tab</Title>
+<Description>
+    Tab — это компонент который используется в качестве главного строительного блока для компонента Tabs.
+</Description>
+
+<ArgumentsTable args={argsTypes} />
+
+<Title>Примеры:</Title>
+
+<Description>
+    {TEXT_DEFAULT}
+</Description>
+
+<Canvas>
+  <Story id="components-tab-stories--tab-default" />
+</Canvas>
+
+<Description>{TEXT_ACTIVE}</Description>
+
+<Canvas>
+  <Story id="components-tab-stories--tab-active" />
+</Canvas>
+
+<Description>{TEXT_WITH_BADGE}</Description>
+
+<Canvas>
+  <Story id="components-tab-stories--tab-with-badge" />
+</Canvas>
+
+<Description>{TEXT_TOOLTIP}</Description>
+
+<Canvas>
+  <Story id="components-tab-stories--tab-with-tooltip" />
+</Canvas>
+
+<Description>{TEXT_ON_CLICK}</Description>
+
+<Canvas>
+  <Story id="components-tab-stories--tab-with-onclick" />
+</Canvas>

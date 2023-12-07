@@ -1,0 +1,15 @@
+.clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-right: 4px;
+}
+
+.cursor {
+  cursor: default;
+}
+
+.input {
+  width: 100%;
+}

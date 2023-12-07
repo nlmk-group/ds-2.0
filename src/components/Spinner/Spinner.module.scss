@@ -1,0 +1,58 @@
+@keyframes animation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-wrapper {
+  position: relative;
+}
+
+.bg {
+  display: inline-block;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: var(--text-grey-100);
+  transform: rotate(-90deg);
+  svg {
+    display: block;
+    circle {
+      stroke: currentColor;
+      transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+  }
+}
+
+@mixin animationBlock {
+  display: inline-block;
+  animation: 1.2s linear 0s infinite normal none running animation;
+}
+
+.icon {
+  @include animationBlock;
+}
+
+.loader {
+  @include animationBlock;
+  color: var(--primary-blue-600);
+  position: absolute;
+  left: 0px;
+  svg {
+    display: block;
+    circle {
+      stroke-linecap: round;
+      stroke: currentColor;
+      stroke-dasharray: 80px, 200px;
+      stroke-dashoffset: 0;
+    }
+  }
+}

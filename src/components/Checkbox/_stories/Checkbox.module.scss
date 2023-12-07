@@ -1,0 +1,16 @@
+.wrapper {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.child-checkboxes {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}

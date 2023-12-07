@@ -1,0 +1,15 @@
+.wrapper {
+  background-color: var(--background-default);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  max-width: 100%;
+  gap: 40px 5px;
+  justify-items: center;
+  align-items: center;
+}

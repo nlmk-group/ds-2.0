@@ -1,0 +1,68 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-shadow": "off",
+      "no-console": ["error", { "allow": ["error"] }],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true,
+          "avoidEscape": true
+        }
+      ],
+      "@typescript-eslint/no-empty-interface": "off",
+      "@typescript-eslint/no-namespace": [
+        "error",
+        {
+          "allowDeclarations": true
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "space-before-function-paren": [
+        "error",
+        {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ],
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "no-empty": "off",
+      "valid-jsdoc": "off",
+      //    todo правила, которые стоит обсудить
+      "@typescript-eslint/no-unnecessary-type-assertion": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/no-non-null-assertion": "off"
+    }
+  }
+  

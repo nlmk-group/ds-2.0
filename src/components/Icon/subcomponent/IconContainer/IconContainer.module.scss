@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container16 {
+  width: var(--16-size);
+  height: var(--16-size);
+}
+
+.container24 {
+  width: var(--24-size);
+  height: var(--24-size);
+}
+
+.container32 {
+  width: var(--32-size);
+  height: var(--32-size);
+}

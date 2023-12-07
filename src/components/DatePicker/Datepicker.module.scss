@@ -1,0 +1,13 @@
+.root {
+  font-family: var(--font-families-pt-root-ui);
+  user-select: none;
+  transition: 0.2s;
+  width: 100%;
+  position: relative;
+}
+.disabled {
+  pointer-events: none;
+}
+.isOpen {
+  z-index: 99999;
+}

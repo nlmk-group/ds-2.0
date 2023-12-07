@@ -35,7 +35,7 @@ const Stories = (): JSX.Element => {
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}        
       />
-      <div>
+      <div style={{color: 'var(--text-grey-900)'}}>
         <Typography variant="Heading2">Свойства</Typography>
         <ul>
           <li>
@@ -92,7 +92,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Компонент Icon по умолчанию"
-            code={`import { Icon } from '@nlmk/design-system'
+            code={`import { Icon } from '@nlmk/ds-2.0'
 const App = () => (
   <Icon
     name={'IconTackleCrane24'}
@@ -103,8 +103,11 @@ const App = () => (
 export default App;
               `}
           />
-
-          <Typography variant="Heading2">Все доступные иконки</Typography>
+          <br/>
+          <div style={{color: 'var(--text-grey-900)'}}>
+            <Typography variant="Heading2">Все доступные иконки</Typography>
+          </div>
+          <br/>
           <AllIcons />
 
           <Properties argsTypes={argsTypes} />

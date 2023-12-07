@@ -2,7 +2,7 @@ import { create } from '@storybook/theming';
 
 const brand = {
   brandTitle: 'Дизайн Система NLMK',
-  brandUrl: 'http://design-system.gitpages.dp.nlmk.com/public-ds',
+  brandUrl: 'https://nlmk-group.github.io/ds-2.0',
   brandImage: 'img/logo.svg',
   brandTarget: '_self'
 };

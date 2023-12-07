@@ -1,0 +1,7 @@
+:root {
+  /* временные глобальные переменные */
+    --border-args-table: #E6E6E6;
+    --white: #FFFFFF;
+    --tooltip-placement: calc(100% + 8px);
+    --lighter-primary-blue-600: color-mix(in srgb, var(--primary-blue-600) 50%, white 50%);
+}

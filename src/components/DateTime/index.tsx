@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './DateTime.module.scss';
 
 export const getDate = (currentDate: Date): string => {
@@ -24,8 +24,17 @@ export const getTime = (currentDate: Date): string => {
 
 const DateTime = (): JSX.Element => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const refTimer = useRef<NodeJS.Timeout>()
 
-  setInterval(() => setCurrentDate(new Date()), 60000);
+  useEffect(() => {
+    refTimer.current = setInterval(() => setCurrentDate(new Date()), 60000);
+
+    return () => {
+      clearInterval(refTimer.current)
+    }
+  }, [])
+
+  
   return (
     <div
       style={{ display: 'flex' }}

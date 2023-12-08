@@ -4,6 +4,10 @@ import { Typography } from '@components/index';
 import { Sandpack } from '@codesandbox/sandpack-react';
 
 import styles from '../Stories.module.scss';
+// Add TS disable error comment for import file from under the root direction 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { version } from '@root/package.json';
 
 const Editor: FC<{ code: string; description?: string; height?: number}> = ({ code, description, height = 280 }) => {
   const {origin, pathname} = window.parent.location;
@@ -19,7 +23,7 @@ const Editor: FC<{ code: string; description?: string; height?: number}> = ({ co
       <Sandpack
         customSetup={{
           dependencies: {
-            '@nlmk/ds-2.0': '1.0.1'
+            '@nlmk/ds-2.0': version
           }
         }}
         theme={{

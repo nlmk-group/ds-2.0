@@ -14,8 +14,7 @@ const Tests:FC<{componentName: string}> = ({componentName}) => {
   ));
   
   return (
-    <div className={styles.tests}>
-      <h1>Test</h1>
+    <div className={styles.tests}>      
       {currentComponentTest?.assertionResults.map(({title, status}) => (
         <div className={styles.test} key={title}>
           <div className={styles[status]}></div>

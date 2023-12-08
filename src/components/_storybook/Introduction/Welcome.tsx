@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import StarSvgIcon from '@components/Icon/icons_internal/StarSvgIcon'
@@ -134,24 +134,24 @@ export const WelcomePage = () => {
           >
             <Link href="https://www.npmjs.com/package/@nlmk/ds-2.0" target='_blank' className={styles.links}>
               <Button startIcon={<StarSvgIcon />} variant="primary">
-                ДС 2.0 на NPM
+                NPM
               </Button>
             </Link>
             <Link href="https://github.com/nlmk-group/ds-2.0" target='_blank' className={styles.links}>
               <Button startIcon={<GitHubSvgIcon />} variant="primary">
-                Мы на Github
+                Github
               </Button>
             </Link>
             <Link href="https://ds.nlmk.com/" target='_blank' className={styles.links}>
               <Button
                 startIcon={<WebSvgIcon />}
               >
-                Сайт дизайн-системы
+                Сайт дизайн-системы 2.0
               </Button>
             </Link>
             <Link href="https://www.figma.com/community/file/1314246600711980667" target='_blank' className={styles.links}>
               <Button startIcon={<FigmaLogoSvgIcon />} variant="primary">
-                Наш UI-Kit
+                UI-Kit
               </Button>
             </Link>
           </div>

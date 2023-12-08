@@ -12,9 +12,10 @@ const Tests:FC<{componentName: string}> = ({componentName}) => {
   const currentComponentTest = testResults.find(({name}) => (
     name.includes(componentName)
   ));
-
+  
   return (
     <div className={styles.tests}>
+      <h1>Test</h1>
       {currentComponentTest?.assertionResults.map(({title, status}) => (
         <div className={styles.test} key={title}>
           <div className={styles[status]}></div>

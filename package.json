@@ -7,7 +7,7 @@
   "types": "lib/index.d.ts",
   "files": [
     "lib"
-  ],  
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -39,7 +39,7 @@
     "lint"
   ],
   "license": "MIT",
-  "dependencies": {    
+  "dependencies": {
     "@popperjs/core": "2.11.2",
     "@snowpack/plugin-sass": "1.4.0",
     "@tanstack/match-sorter-utils": "8.7.2",
@@ -97,10 +97,10 @@
     "@types/flat": "^5.0.2",
     "@types/jest": "26.0.24",
     "@types/lodash": "^4.14.195",
-    "@types/react": "18.0.17",
+    "@types/react": "18",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-dnd": "3.0.2",
-    "@types/react-dom": "18.0.6",
+    "@types/react-dom": "18",
     "@types/react-input-mask": "2.0.4",
     "@types/react-router": "5.1.16",
     "@types/react-transition-group": "4.4.5",
@@ -131,8 +131,8 @@
     "node-fetch": "3.2.10",
     "pre-commit": "1.2.2",
     "prettier": "2.3.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18",
+    "react-dom": "18",
     "sass-loader": "10.1.0",
     "snowpack": "3.8.1",
     "snowpack-plugin-svgr": "0.1.2",

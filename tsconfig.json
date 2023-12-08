@@ -6,10 +6,8 @@
     "tokens",
     "src/**/*.stories.mdx",
     ".jest-test-results.json",
-    "**/*.json"
   ],
   "include": ["src/components/**/*"],
-
   "compilerOptions": {
     "module": "commonjs",
     "noImplicitAny": true,

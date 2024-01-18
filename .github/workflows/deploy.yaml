@@ -18,7 +18,6 @@ jobs:
 
       - name: Install and Build
         run: |
-          export NODE_OPTIONS=--openssl-legacy-provider
           npm install --global yarn
           yarn
           yarn storybook:build

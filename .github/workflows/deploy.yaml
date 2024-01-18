@@ -21,6 +21,7 @@ jobs:
           npm install --global yarn
           yarn
           yarn storybook:build
+          touch ./storybook-static/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.6.2

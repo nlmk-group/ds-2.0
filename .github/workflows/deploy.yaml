@@ -11,6 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.1
 
+      - name: Install v16 Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
       - name: Install and Build
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
@@ -22,4 +27,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           branch: gh-pages
-          folder: storybook-static 
+          folder: storybook-static

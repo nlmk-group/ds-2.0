@@ -12,18 +12,10 @@ export const useIsDisabledQuarter = (enabledFrom?: Date, enabledTo?: Date) => {
       if (enabledTo && year > enabledTo.getFullYear()) {
         return true;
       }
-      if (
-        enabledFrom &&
-        enabledFrom.getFullYear() === year &&
-        enabledFrom.getMonth() > month
-      ) {
+      if (enabledFrom && enabledFrom.getFullYear() === year && enabledFrom.getMonth() > month) {
         return true;
       }
-      if (
-        enabledTo &&
-        enabledTo.getFullYear() === year &&
-        enabledTo.getMonth() < month
-      ) {
+      if (enabledTo && enabledTo.getFullYear() === year && enabledTo.getMonth() < month) {
         return true;
       }
       return false;

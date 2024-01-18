@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconCrane24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M20.1885 9.51458L14.0965 4.83949H19.8577C20.259 4.83949 20.625 4.50857 20.625 4.10725C20.625 3.70591 20.2977 3.375 19.8964 3.375H4.11551C3.71431 3.375 3.38348 3.70591 3.38348 4.10725C3.38348 4.50857 3.71431 4.83949 4.11551 4.83949H9.87671C9.87671 4.83949 3.65448 9.61665 3.64392 9.6237C3.43979 9.77513 3.34477 10.0145 3.38348 10.2538V19.8928C3.38348 20.2941 3.71431 20.625 4.11551 20.625H19.8577C20.259 20.625 20.5898 20.2941 20.625 19.9279V10.187C20.6285 9.88777 20.4455 9.63075 20.1885 9.51458ZM17.7531 9.45473H6.19547L11.9884 5.02255L17.7531 9.45473ZM19.1644 19.1957H4.81235V10.884H19.1644V19.1957Z"
         fill={htmlColor || 'currentColor'}

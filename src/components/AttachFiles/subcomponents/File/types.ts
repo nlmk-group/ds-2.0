@@ -1,4 +1,4 @@
-import { PropsWithChildren, ChangeEvent } from 'react';
+import { ChangeEvent, PropsWithChildren } from 'react';
 
 export interface IFile extends PropsWithChildren<any> {
   children?: JSX.Element;
@@ -9,7 +9,7 @@ export interface IFile extends PropsWithChildren<any> {
   commented?: boolean;
   saved?: boolean;
   addFile?: boolean;
-  onCheckedChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onCheckedChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   removedOnClick?: () => void;
   commentedOnClick?: () => void;
   savedOnClick?: () => void;

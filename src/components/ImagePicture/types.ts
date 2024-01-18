@@ -1,5 +1,6 @@
-import { ImgHTMLAttributes } from 'react'
-import { ImagePictureRadius, ImagePictureRatios } from './enums'
+import { ImgHTMLAttributes } from 'react';
+
+import { ImagePictureRadius, ImagePictureRatios } from './enums';
 
 export interface IImagePicture extends ImgHTMLAttributes<HTMLImageElement> {
   aspectRatio?: `${ImagePictureRatios}`;

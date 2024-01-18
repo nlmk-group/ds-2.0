@@ -8,22 +8,12 @@ import clsx from 'clsx';
 
 import styles from './Footer.module.scss';
 
-export const Footer: FC<FooterProps> = ({
-  className,
-  onAccept,
-  onDecline,
-  disable
-}) => {
+export const Footer: FC<FooterProps> = ({ className, onAccept, onDecline, disable }) => {
   const language = useLocale();
 
   return (
     <div className={clsx(styles.root, className)}>
-      <Button
-        className={styles.button}
-        onClick={onAccept}
-        variant="primary"
-        disabled={disable}
-      >
+      <Button className={styles.button} onClick={onAccept} variant="primary" disabled={disable}>
         {locale[language].buttons.accept}
       </Button>
       <Button onClick={onDecline} variant="secondary">

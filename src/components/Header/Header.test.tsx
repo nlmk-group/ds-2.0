@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 
 import { Header } from '@components/index';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import { typeMapping } from './enums';
 
 describe('src/components/Header', () => {
@@ -20,24 +21,14 @@ describe('src/components/Header', () => {
   });
 
   test('It should render a Header with compact type', () => {
-    render(
-      <Header
-        title={testTitle}
-        type={typeMapping.compact}
-      />
-    );
+    render(<Header title={testTitle} type={typeMapping.compact} />);
     const headerComponent = screen.getByTestId('HEADER_WRAPPER');
     expect(headerComponent.classList.contains('wrapper-compact')).toBe(true);
   });
 
   describe('While rendering back button', () => {
     const mockCallBack = jest.fn();
-    const HeaderHelper = () => (
-      <Header
-        title={testTitle}
-        back={mockCallBack}
-      />
-    );
+    const HeaderHelper = () => <Header title={testTitle} back={mockCallBack} />;
 
     test('It should render a Header with back button', () => {
       render(<HeaderHelper />);
@@ -48,7 +39,7 @@ describe('src/components/Header', () => {
     test('It should call function of back button', () => {
       render(<HeaderHelper />);
       const headerBackBtn = screen.getByTestId('HEADER_BACK');
-      fireEvent.click(headerBackBtn)
+      fireEvent.click(headerBackBtn);
       expect(mockCallBack).toHaveBeenCalledTimes(1);
     });
   });
@@ -60,12 +51,7 @@ describe('src/components/Header', () => {
 
   describe('While rendering favorite button', () => {
     const favoriteMockCallBack = jest.fn();
-    const HeaderHelper = () => (
-      <Header
-        title={testTitle}
-        favorite={favoriteMockCallBack}
-      />
-    );
+    const HeaderHelper = () => <Header title={testTitle} favorite={favoriteMockCallBack} />;
 
     test('It should render a Header with favorite button', () => {
       render(<HeaderHelper />);
@@ -76,7 +62,7 @@ describe('src/components/Header', () => {
     test('It should call function of favorite button', () => {
       render(<HeaderHelper />);
       const headerFavoriteBtn = screen.getByTestId('HEADER_FAVORITE');
-      fireEvent.click(headerFavoriteBtn)
+      fireEvent.click(headerFavoriteBtn);
       expect(favoriteMockCallBack).toHaveBeenCalledTimes(1);
     });
   });
@@ -84,12 +70,8 @@ describe('src/components/Header', () => {
   describe('While rendering notification button', () => {
     const notificationMockCallBack = jest.fn();
     const amountNumber = 5;
-    const HeaderHelper: FC<{amount?: number}> = ({ amount }) => (
-      <Header
-        title={testTitle}
-        notification={notificationMockCallBack}
-        notificationAmount={amount || amountNumber}
-      />
+    const HeaderHelper: FC<{ amount?: number }> = ({ amount }) => (
+      <Header title={testTitle} notification={notificationMockCallBack} notificationAmount={amount || amountNumber} />
     );
 
     test('It should render a Header with notification button', () => {
@@ -101,7 +83,7 @@ describe('src/components/Header', () => {
     test('It should call function of notification button', () => {
       render(<HeaderHelper />);
       const headerNotificationBtn = screen.getByTestId('HEADER_NOTIFICATION');
-      fireEvent.click(headerNotificationBtn)
+      fireEvent.click(headerNotificationBtn);
       expect(notificationMockCallBack).toHaveBeenCalledTimes(1);
     });
 
@@ -112,7 +94,7 @@ describe('src/components/Header', () => {
     });
 
     test('It should render a Header with maximum number of notifications', () => {
-      render(<HeaderHelper amount={101}/>);
+      render(<HeaderHelper amount={101} />);
       const headerNotificationAmount = screen.getByTestId('HEADER_NOTIFICATION_AMOUNT');
       expect(headerNotificationAmount).toHaveTextContent('..99');
     });

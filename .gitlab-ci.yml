@@ -1,4 +1,4 @@
-image: "nlmk-baseimages.dp.nlmk.com/node/node-16:latest"
+image: 'nlmk-baseimages.dp.nlmk.com/node/node-16:latest'
 
 stages:
   - build
@@ -52,4 +52,4 @@ pages:
     paths:
       - public
   only:
-    - master
+    - dev

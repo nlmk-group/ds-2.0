@@ -8,6 +8,6 @@ export interface IBadgeProps {
   color?: TBadgeColors;
   size?: `${sizesMapping}`;
   variant?: `${variantsMapping}`;
-  children?: string;
+  children?: string | number;
   className?: string;
 }

@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
-import { clsx } from 'clsx';
-import { ICard } from './types';
-import styles from './Card.module.scss';
-import {
-  orientationMapping,
-  indicatorStatusMapping
-} from './enums';
+
 import { sizesMapping } from '@components/declaration';
+import { clsx } from 'clsx';
+
+import { ICard } from './types';
+
+import styles from './Card.module.scss';
+
+import { indicatorStatusMapping, orientationMapping } from './enums';
 
 const Card: FC<ICard> = ({
   className,
@@ -17,7 +18,7 @@ const Card: FC<ICard> = ({
 }) => {
   return (
     <div
-      data-testid='CARD_WRAPPER'
+      data-testid="CARD_WRAPPER"
       className={clsx(
         styles.wrapper,
         styles[`wrapper-${orientation}`],
@@ -29,7 +30,7 @@ const Card: FC<ICard> = ({
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

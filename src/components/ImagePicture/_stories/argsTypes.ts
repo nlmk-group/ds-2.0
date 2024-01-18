@@ -1,7 +1,6 @@
-import { ImagePictureRatios, ImagePictureRadius } from '../enums';
+import { ImagePictureRadius, ImagePictureRatios } from '../enums';
 
 export const argsTypes = {
-
   aspectRatio: {
     description: `Пропорции изображения: ${Object.values(ImagePictureRatios).join(' | ')}`,
     table: {

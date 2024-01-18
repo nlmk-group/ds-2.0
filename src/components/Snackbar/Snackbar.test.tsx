@@ -1,16 +1,17 @@
 import React from 'react';
 
 import { Icon, Snackbar } from '@components/index';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import { colorMapping } from './enums';
 
 describe('src/components/Snackbar', () => {
   const testTitle = 'Hello world!';
   const SnackbarHelper = () => (
     <Snackbar>
-      <span data-testid='SNACKBAR_TITLE'>{testTitle}</span>
+      <span data-testid="SNACKBAR_TITLE">{testTitle}</span>
     </Snackbar>
-  )
+  );
 
   test('It should render a Snackbar', () => {
     const { container } = render(<SnackbarHelper />);
@@ -25,21 +26,13 @@ describe('src/components/Snackbar', () => {
 
   test('It should render a Snackbar with custom opacity', () => {
     const bgOpacityTest = 70;
-    render(
-      <Snackbar bgOpacity={bgOpacityTest}>
-        Hello!
-      </Snackbar>
-    );
+    render(<Snackbar bgOpacity={bgOpacityTest}>Hello!</Snackbar>);
     expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveStyle(`opacity: ${bgOpacityTest}%`);
   });
 
   Object.values(colorMapping).forEach((color: colorMapping) => {
     test(`It should render a Snackbar with ${color} background`, () => {
-      render(
-        <Snackbar color={color}>
-          Hello!
-        </Snackbar>
-      );
+      render(<Snackbar color={color}>Hello!</Snackbar>);
       expect(screen.getByTestId('SNACKBAR_WRAPPER').classList.contains(`background-${color}`)).toBe(true);
     });
   });
@@ -51,7 +44,7 @@ describe('src/components/Snackbar', () => {
           Hello!
         </Snackbar>
       );
-      expect(screen.getByTestId(`SNACKBAR_ICON_${color}`)).toBeInTheDocument()
+      expect(screen.getByTestId(`SNACKBAR_ICON_${color}`)).toBeInTheDocument();
     });
   });
 
@@ -59,15 +52,11 @@ describe('src/components/Snackbar', () => {
     render(
       <Snackbar
         withIcon
-        customIcon={(
-          <div data-testid='SNACKBAR_CUSTOM_ICON'>
-            <Icon
-              name='IconEducation24'
-              containerSize={24}
-              htmlColor={'var(--default-second)'}
-            />
+        customIcon={
+          <div data-testid="SNACKBAR_CUSTOM_ICON">
+            <Icon name="IconEducation24" containerSize={24} htmlColor={'var(--default-second)'} />
           </div>
-        )}
+        }
       >
         Hello!
       </Snackbar>
@@ -78,20 +67,12 @@ describe('src/components/Snackbar', () => {
   describe('While rendering action button', () => {
     const actionCallBack = jest.fn();
     test('It should render a Snackbar action button', () => {
-      render(
-        <Snackbar actionButton={actionCallBack}>
-          Hello
-        </Snackbar>
-      );
+      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
       expect(screen.getByTestId('SNACKBAR_ACTION')).toBeInTheDocument();
     });
 
     test('It should render a Snackbar action button with default label', () => {
-      render(
-        <Snackbar actionButton={actionCallBack}>
-          Hello
-        </Snackbar>
-      );
+      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
       expect(screen.getByTestId('SNACKBAR_ACTION')).toHaveTextContent('Посмотреть');
     });
 
@@ -106,35 +87,23 @@ describe('src/components/Snackbar', () => {
     });
 
     test('It should use passed action function', () => {
-      render(
-        <Snackbar actionButton={actionCallBack}>
-          Hello
-        </Snackbar>
-      );
+      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
       const btn = screen.getByTestId('SNACKBAR_ACTION');
-      fireEvent.click(btn)
+      fireEvent.click(btn);
       expect(actionCallBack).toHaveBeenCalledTimes(1);
     });
   });
   describe('While rendering close button', () => {
     const closeCallBack = jest.fn();
     test('It should render a Snackbar action button', () => {
-      render(
-        <Snackbar close={closeCallBack}>
-          Hello
-        </Snackbar>
-      );
+      render(<Snackbar close={closeCallBack}>Hello</Snackbar>);
       expect(screen.getByTestId('SNACKBAR_CLOSE')).toBeInTheDocument();
     });
 
     test('It should use passed close function', () => {
-      render(
-        <Snackbar close={closeCallBack}>
-          Hello
-        </Snackbar>
-      );
+      render(<Snackbar close={closeCallBack}>Hello</Snackbar>);
       const btn = screen.getByTestId('SNACKBAR_CLOSE');
-      fireEvent.click(btn)
+      fireEvent.click(btn);
       expect(closeCallBack).toHaveBeenCalledTimes(1);
     });
   });

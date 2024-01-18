@@ -1,9 +1,9 @@
-import { AttachFiles } from '@components';
-import { Meta } from '@storybook/addon-docs';
-import Stories from './Stories'
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import AttachFiles from '..';
+import Stories from './Stories';
 
 <Meta
-  title="Components/AttachFiles/Docs"
+  title="Components/AttachFiles/Info"
   component={AttachFiles}
   parameters={{
     design: {
@@ -15,4 +15,6 @@ import Stories from './Stories'
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

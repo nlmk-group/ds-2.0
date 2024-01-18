@@ -1,33 +1,32 @@
-import React, { ReactNode } from 'react'
-import { action } from '@storybook/addon-actions';
+import React, { ReactNode } from 'react';
 
-import { Breadcrumbs, Header } from '@components/index';
-import { Meta, Story } from '@storybook/react';
-
-import { withDesign } from 'storybook-addon-designs';
 import { breadcrumbs } from '@components/Breadcrumbs/constants';
+import { Breadcrumbs, Header } from '@components/index';
+import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
+
 import styles from '@components/_storybook/styles.module.scss';
 
-import { IHeader } from '../types'
+import { typeMapping } from '../enums';
+import { IHeader } from '../types';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_HEADER,
   HEADER_BACK,
+  HEADER_BACKGROUND,
+  HEADER_BREADCRUMBS,
   HEADER_DATE,
   HEADER_FAVORITE,
   HEADER_NOTIFICATION,
-  HEADERS_DIFFERENT_SPACING,
-  HEADER_BACKGROUND,
-  HEADER_BREADCRUMBS
+  HEADERS_DIFFERENT_SPACING
 } from './text';
-import { typeMapping } from '../enums';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
 export default {
   title: 'Components/Header/Stories',
   component: Header,
-  decorators: [withDesign, withWrapper],
+  decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Header>;
 
@@ -118,7 +117,7 @@ HeaderNotification.args = {
   back: action('goBack'),
   date: true,
   notification: action('addToNotification'),
-  notificationAmount: 9,
+  notificationAmount: 9
 };
 
 export const HeaderBackground = (argTypes: IHeader): ReactNode => {
@@ -148,7 +147,7 @@ HeaderBackground.args = {
   date: true,
   favorite: action('addToFavorite'),
   notification: action('addToNotification'),
-  notificationAmount: 9,
+  notificationAmount: 9
 };
 
 export const HeaderSpacing = (argTypes: IHeader): ReactNode => {
@@ -184,7 +183,7 @@ HeaderSpacing.args = {
   date: true,
   favorite: action('addToFavorite'),
   notification: action('addToNotification'),
-  notificationAmount: 9,
+  notificationAmount: 9
 };
 
 export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
@@ -195,7 +194,7 @@ export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
         back={argTypes.back || undefined}
         favorite={argTypes.favorite || undefined}
         notification={argTypes.notification || undefined}
-        breadcrumbs={(<Breadcrumbs crumbs={breadcrumbs}/>)}
+        breadcrumbs={<Breadcrumbs crumbs={breadcrumbs} />}
       />
     </>
   );
@@ -209,5 +208,5 @@ HeaderBreadcrumbs.args = {
   date: true,
   favorite: action('addToFavorite'),
   notification: action('addToNotification'),
-  notificationAmount: 9,
+  notificationAmount: 9
 };

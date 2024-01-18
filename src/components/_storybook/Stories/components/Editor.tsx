@@ -1,29 +1,23 @@
 import React, { FC } from 'react';
 
-import { Typography } from '@components/index';
 import { Sandpack } from '@codesandbox/sandpack-react';
+import { Typography } from '@components/index';
 
 import styles from '../Stories.module.scss';
-// Add TS disable error comment for import file from under the root direction 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { version } from '@root/package.json';
 
-const Editor: FC<{ code: string; description?: string; height?: number}> = ({ code, description, height = 280 }) => {
-  const {origin, pathname} = window.parent.location;
+const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
+  const { origin, pathname } = window.parent.location;
   const path = pathname === '/' ? '' : pathname;
   const url = `${origin}${path}`;
   return (
     <>
       <div className={styles.description}>
-        <Typography>
-          {description ?? 'Опишите здесь ваш пример, как можно более подробно.'}
-        </Typography>
+        <Typography>{description ?? 'Опишите здесь ваш пример, как можно более подробно.'}</Typography>
       </div>
       <Sandpack
         customSetup={{
           dependencies: {
-            '@nlmk/ds-2.0': version
+            '@nlmk/ds-2.0': '1.1.0'
           }
         }}
         theme={{
@@ -69,9 +63,9 @@ const Editor: FC<{ code: string; description?: string; height?: number}> = ({ co
         files={{
           '/App.js': code,
           '/styles.css': {
-            code: ` 
-             @import url('${url}/css/main.css');                          
-      @import url('https://fonts.cdnfonts.com/css/pt-root-ui');              
+            code: `
+             @import url('${url}/css/main.css');
+      @import url('https://fonts.cdnfonts.com/css/pt-root-ui');
     #root {
       -webkit-font-smoothing: auto;
       -moz-font-smoothing: auto;
@@ -82,14 +76,14 @@ const Editor: FC<{ code: string; description?: string; height?: number}> = ({ co
       -webkit-tap-highlight-color: transparent;
       -webkit-touch-callout: none;
       margin: 20px;
-      display: flex;                
+      display: flex;
       align-items: center;
-      gap: 20px;  
+      gap: 20px;
       flex-wrap: wrap;
     }
 
     * {
-    font-family: 'PT Root UI', sans-serif !important;                                                
+    font-family: 'PT Root UI', sans-serif !important;
     }
                   `,
             hidden: true

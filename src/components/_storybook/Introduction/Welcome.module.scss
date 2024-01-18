@@ -90,7 +90,7 @@
 }
 
 .links {
-  border-bottom: none !important;  
+  border-bottom: none !important;
   svg {
     path {
       fill: white !important;
@@ -116,5 +116,26 @@
   color: var(--assigned-colors-button-main-main-bg-default);
   &:hover {
     text-decoration: none;
+  }
+}
+
+.date {
+  opacity: 0.5;
+}
+
+.history {
+  margin-top: -10px;
+}
+
+.link {
+  border-bottom: none !important;
+}
+
+.list {
+  font-size: 18px;
+  li {
+    display: flex;
+    gap: 2.5px;
+    margin-bottom: 10px;
   }
 }

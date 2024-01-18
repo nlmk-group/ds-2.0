@@ -1,39 +1,35 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 
-import { Snackbar, Icon } from '@components/index';
+import { Icon, Snackbar } from '@components/index';
 import { action } from '@storybook/addon-actions';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
-import { withDesign } from 'storybook-addon-designs';
 
-
-import { ISnackbar } from '../types'
+import { colorMapping } from '../enums';
+import { ISnackbar } from '../types';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_SNACKBAR,
-  SNACKBAR_CLOSE,
   SNACKBAR_ACTION,
+  SNACKBAR_CLOSE,
   SNACKBAR_COLOR,
-  SNACKBAR_ICON,
   SNACKBAR_CUSTOM_ICON,
+  SNACKBAR_ICON,
   SNACKBAR_OPACITY
 } from './constants';
-import { colorMapping } from '../enums';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
 export default {
   title: 'Components/Snackbar/Stories',
   component: Snackbar,
-  decorators: [withDesign, withWrapper],
+  decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Snackbar>;
 
 export const DefaultSnackbar = (argTypes: ISnackbar): ReactNode => {
-  return (
-    <Snackbar {...argTypes} />
-  );
+  return <Snackbar {...argTypes} />;
 };
 
 DefaultSnackbar.storyName = DEFAULT_SNACKBAR;
@@ -42,9 +38,7 @@ DefaultSnackbar.args = {
 };
 
 export const SnackbarClose = (argTypes: ISnackbar): ReactNode => {
-  return (
-    <Snackbar {...argTypes} />
-  );
+  return <Snackbar {...argTypes} />;
 };
 
 SnackbarClose.storyName = SNACKBAR_CLOSE;
@@ -54,9 +48,7 @@ SnackbarClose.args = {
 };
 
 export const SnackbarAction = (argTypes: ISnackbar): ReactNode => {
-  return (
-    <Snackbar {...argTypes} />
-  );
+  return <Snackbar {...argTypes} />;
 };
 
 SnackbarAction.storyName = SNACKBAR_ACTION;
@@ -115,13 +107,7 @@ export const SnackbarCustomIcon = (argTypes: ISnackbar): ReactNode => {
   return (
     <Snackbar
       {...argTypes}
-      customIcon={(
-        <Icon
-          name='IconEducation24'
-          containerSize={24}
-          htmlColor={'var(--default-second)'}
-        />
-      )}
+      customIcon={<Icon name="IconEducation24" containerSize={24} htmlColor={'var(--default-second)'} />}
     />
   );
 };

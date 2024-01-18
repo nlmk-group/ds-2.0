@@ -5,13 +5,7 @@ import clsx from 'clsx';
 
 import styles from './Radio.module.scss';
 
-export const Radio: FC<IRadioProps> = ({
-  checked,
-  disabled,
-  value,
-  onChange,
-  className
-}) => {
+export const Radio: FC<IRadioProps> = ({ checked, disabled, value, onChange, className }) => {
   return (
     <div className={clsx(styles.root, className)}>
       <input

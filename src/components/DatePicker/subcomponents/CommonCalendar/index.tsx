@@ -1,11 +1,7 @@
 import React, { forwardRef } from 'react';
 
 import { locale } from '@components/DatePicker/helpers';
-import {
-  Footer,
-  PeriodPicker,
-  ShiftSelector
-} from '@components/DatePicker/subcomponents';
+import { Footer, PeriodPicker, ShiftSelector } from '@components/DatePicker/subcomponents';
 import { CommonCalendarProps } from '@components/DatePicker/subcomponents/CommonCalendar/types';
 import { useLocale } from '@components/DatePicker/utils';
 import clsx from 'clsx';
@@ -44,19 +40,10 @@ export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
-          styles.root,
-          Boolean(timeSlot) && styles.withTime,
-          Boolean(withSeconds) && styles.withSeconds
-        )}
+        className={clsx(styles.root, Boolean(timeSlot) && styles.withTime, Boolean(withSeconds) && styles.withSeconds)}
         {...props}
       >
-        <div
-          className={clsx(
-            timeSlot && styles.withTimeSlot,
-            withSeconds && styles.withSecondsSlot
-          )}
-        >
+        <div className={clsx(timeSlot && styles.withTimeSlot, withSeconds && styles.withSecondsSlot)}>
           <PeriodPicker
             disableContent={disableChange || disableContentOfPeriodPicker}
             onLeftClick={onLeftClick}
@@ -72,9 +59,7 @@ export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
         </div>
         {showShiftsSelector && (
           <div className={styles.period}>
-            <div className={styles.periodTitle}>
-              {locale[language].shiftDescription}
-            </div>
+            <div className={styles.periodTitle}>{locale[language].shiftDescription}</div>
             <div className={styles.periodSelectors}>
               <ShiftSelector
                 disabled={disableChange}
@@ -93,12 +78,7 @@ export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
           </div>
         )}
         {showFooter && (
-          <Footer
-            onDecline={onDecline}
-            onAccept={onAccept}
-            className={styles.footer}
-            disable={disableChange}
-          />
+          <Footer onDecline={onDecline} onAccept={onAccept} className={styles.footer} disable={disableChange} />
         )}
       </div>
     );

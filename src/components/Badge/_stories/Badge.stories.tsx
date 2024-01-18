@@ -2,20 +2,17 @@ import React from 'react';
 
 import { Badge } from '@components/Badge';
 import { IBadgeProps } from '@components/Badge/types';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Badge.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80 }}>{Story()}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
 export default {
   title: 'Components/Badge/Stories',
   component: Badge,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 

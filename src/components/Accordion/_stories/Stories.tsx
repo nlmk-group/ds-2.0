@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 
-import {argsTypes} from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
+
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import '@components/_storybook/Stories/styles.css';
 import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+import { argsTypes } from './argsTypes';
 
 enum TabIds {
-  dev, design, tests
+  dev,
+  design,
+  tests
 }
 
-const COMPONENT_NAME = 'Accordion'
-const FIGMA_URL = 'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1026%3A7066&mode=design&t=awyt3Fzj1XS6th7v-1'
+const COMPONENT_NAME = 'Accordion';
+const FIGMA_URL =
+  'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1026%3A7066&mode=design&t=awyt3Fzj1XS6th7v-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
   const isActive = (tab: TabIds) => {
-    return activeTab === tab
-  }
+    return activeTab === tab;
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -41,9 +44,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          <Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
-          <Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
+          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
 
@@ -184,9 +187,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab == TabIds.design && (
-        <FigmaEmbed url={FIGMA_URL} />
-      )}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
       {activeTab == TabIds.tests && (
         <Typography variant="Heading4" color="primary">
           <Tests componentName={COMPONENT_NAME} />

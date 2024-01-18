@@ -4,9 +4,7 @@ import { FooterProps } from '@components/DatePicker/subcomponents/Footer/types';
 import { PeriodPickerProps } from '@components/DatePicker/subcomponents/PeriodPicker/types';
 import { TLevel } from '@components/DatePicker/types';
 
-export interface CommonCalendarProps
-  extends PeriodPickerProps,
-    Omit<FooterProps, 'className'> {
+export interface CommonCalendarProps extends PeriodPickerProps, Omit<FooterProps, 'className'> {
   period?: ReactNode;
   level: TLevel;
   timeSlot?: ReactNode;

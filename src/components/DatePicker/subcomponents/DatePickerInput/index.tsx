@@ -1,11 +1,4 @@
-import React, {
-  ChangeEvent,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import React, { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 
 import {
   dateFormat,
@@ -40,21 +33,18 @@ import {
   quarterFormatInput,
   quarterMonthKeys
 } from '@components/DatePicker/helpers';
-import InputMaskCorrect from '@components/InputMaskCorrect';
 import { DatePickerInputProps } from '@components/DatePicker/subcomponents/DatePickerInput/types';
 import { useLocale } from '@components/DatePicker/utils';
 import { CalendarSvgIcon } from '@components/Icon/icons_internal';
 import { Input } from '@components/index';
+import InputMaskCorrect from '@components/InputMaskCorrect';
 import clsx from 'clsx';
 import { format, isValid, parse, set } from 'date-fns';
 import { isInteger, range } from 'lodash';
 
 import styles from './DatePickerInput.module.scss';
 
-export const DatePickerInput = forwardRef<
-  HTMLInputElement | null,
-  DatePickerInputProps
->(
+export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInputProps>(
   (
     {
       withPeriod,
@@ -106,10 +96,7 @@ export const DatePickerInput = forwardRef<
           setInnerMaskedValue('');
         } else {
           // Добавляем отступы и разбиваем на блоки условия, чтобы лучше читать код
-          if (
-            level === LEVEL_MAPPING_ENUM.month ||
-            level === LEVEL_MAPPING_ENUM.year
-          ) {
+          if (level === LEVEL_MAPPING_ENUM.month || level === LEVEL_MAPPING_ENUM.year) {
             // Извлекаем формат даты, основываясь на пропсе level
             const dateFormat = dateFormatByLevel[level];
             setInnerMaskedValue(format(value, dateFormat));
@@ -120,19 +107,17 @@ export const DatePickerInput = forwardRef<
             setInnerMaskedValue(`${quarter} квартал ${year}`);
           } else {
             // Извлекаем формат даты или времени, основываясь на настройках
-            const dateFormatMask = isHideYear
-              ? dateFormatWithoutYear
-              : dateFormat;
-            const dateTimeFormatMask = isHideYear
-              ? dateTimeFormatWithoutYear
-              : dateTimeFormat;
-            const dateTimeSecondsFormatMask = isHideYear
-              ? dateTimeSecondsFormatWithoutYear
-              : dateTimeSecondsFormat;
-            const defaultFormat = showTime
-              ? withSeconds
+            const dateFormatMask = isHideYear ? dateFormatWithoutYear : dateFormat;
+            const dateTimeFormatMask = isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat;
+            const dateTimeSecondsFormatMask = isHideYear ? dateTimeSecondsFormatWithoutYear : dateTimeSecondsFormat;
+            const withSecondsCondition  = () => {
+              return withSeconds
                 ? dateTimeSecondsFormatMask
-                : dateTimeFormatMask
+                : dateTimeFormatMask;
+            }
+              
+            const defaultFormat = showTime
+              ? withSecondsCondition()
               : dateFormatMask;
 
             setInnerMaskedValue(format(value, defaultFormat));
@@ -141,12 +126,8 @@ export const DatePickerInput = forwardRef<
       }
 
       if (withPeriod) {
-        const valueFromFormatted = valueFrom
-          ? format(valueFrom, dateFormatByLevel[level])
-          : '';
-        const valueToFormatted = valueTo
-          ? format(valueTo, dateFormatByLevel[level])
-          : '';
+        const valueFromFormatted = valueFrom ? format(valueFrom, dateFormatByLevel[level]) : '';
+        const valueToFormatted = valueTo ? format(valueTo, dateFormatByLevel[level]) : '';
 
         if (!valueFromFormatted && !valueToFormatted) {
           setInnerMaskedValue('');
@@ -161,30 +142,13 @@ export const DatePickerInput = forwardRef<
 
         if (withShift) {
           formattedValue = `${valueFromFormatted}/${shiftFromValue}${periodSeparator}${valueToFormatted}/${shiftToValue}`;
-        } else if (
-          valueFrom &&
-          valueTo &&
-          level === LEVEL_MAPPING_ENUM.quarter
-        ) {
-          formattedValue = `${quarterFormatInput(
-            valueFrom
-          )}${periodSeparator}${quarterFormatInput(valueTo)}`;
+        } else if (valueFrom && valueTo && level === LEVEL_MAPPING_ENUM.quarter) {
+          formattedValue = `${quarterFormatInput(valueFrom)}${periodSeparator}${quarterFormatInput(valueTo)}`;
         }
 
         setInnerMaskedValue(formattedValue);
       }
-    }, [
-      level,
-      shiftFrom,
-      shiftTo,
-      showTime,
-      value,
-      valueFrom,
-      valueTo,
-      withPeriod,
-      withSeconds,
-      withShift
-    ]);
+    }, [level, shiftFrom, shiftTo, showTime, value, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
     const mask = useMemo(() => {
       // Форматирование значения valueFrom для использования в маске
@@ -198,31 +162,19 @@ export const DatePickerInput = forwardRef<
       }
 
       // Маски для разных уровней даты/времени с одной датой или периодом
-      const oneDateMask = periodMaskByLeveWithOneDate(
-        locale[language].quarterTranslation
-      )[level];
-      const periodMask = periodMaskByLevel(locale[language].quarterTranslation)[
-        level
-      ];
+      const oneDateMask = periodMaskByLeveWithOneDate(locale[language].quarterTranslation)[level];
+      const periodMask = periodMaskByLevel(locale[language].quarterTranslation)[level];
 
       // Маски со временем для скрытия года
-      const dateTimeMaskValue = isHideYear
-        ? dateTimeMaskWithoutYear
-        : dateTimeMask;
-      const dateTimeSecondsMaskValue = isHideYear
-        ? dateTimeSecondsMaskWithoutYear
-        : dateTimeSecondsMask;
+      const dateTimeMaskValue = isHideYear ? dateTimeMaskWithoutYear : dateTimeMask;
+      const dateTimeSecondsMaskValue = isHideYear ? dateTimeSecondsMaskWithoutYear : dateTimeSecondsMask;
 
       // Маски для периодов со сменой
       const periodWithShiftsMaskDefaultValue =
-        shiftLength === defaultShiftLength
-          ? periodWithShiftsMaskDefault
-          : periodWithShiftsMaskCustom;
+        shiftLength === defaultShiftLength ? periodWithShiftsMaskDefault : periodWithShiftsMaskCustom;
 
       // Маски для периодов с внутренней маской
-      const periodInnerMask = periodInnerMaskByLevel(
-        locale[language].quarterTranslation
-      )[level];
+      const periodInnerMask = periodInnerMaskByLevel(locale[language].quarterTranslation)[level];
 
       // Установка маски в зависимости от настроек
       if (level !== LEVEL_MAPPING_ENUM.day && !withPeriod) {
@@ -232,20 +184,10 @@ export const DatePickerInput = forwardRef<
         if (withShift) {
           return periodWithShiftsMaskDefaultValue;
         }
-        if (
-          !focused &&
-          valueFrom &&
-          valueTo &&
-          isEqualDatesAfterLevel(level, valueFrom, valueTo)
-        ) {
+        if (!focused && valueFrom && valueTo && isEqualDatesAfterLevel(level, valueFrom, valueTo)) {
           return oneDateMask;
         }
-        if (
-          focused &&
-          valueFrom &&
-          valueTo &&
-          isEqualDatesAfterLevel(level, valueFrom, valueTo)
-        ) {
+        if (focused && valueFrom && valueTo && isEqualDatesAfterLevel(level, valueFrom, valueTo)) {
           setInnerMaskedValue(`${valueFromFormatted} — ${periodInnerMask}`);
           return periodMask;
         } else {
@@ -259,63 +201,36 @@ export const DatePickerInput = forwardRef<
         return dateTimeMaskValue;
       }
       return isHideYear ? dateMaskWithoutYear : dateMask;
-    }, [
-      focused,
-      level,
-      shiftLength,
-      showTime,
-      valueFrom,
-      valueTo,
-      withPeriod,
-      withSeconds,
-      withShift
-    ]);
+    }, [focused, level, shiftLength, showTime, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
-    const isValueMatchesTheMask = (mask: string, value: string) =>
-      mask.replace(/9/gi, '_') === value;
+    const isValueMatchesTheMask = (mask: string, value: string) => mask.replace(/9/gi, '_') === value;
 
     const applyIfEnabled: (
       dateFrom?: Date | null,
       dateTo?: Date | null,
       shiftFrom?: number,
       shiftTo?: number
-    ) => [any, any, any, any] = (
-      dateFrom: Date | null = null,
-      dateTo: Date | null = null,
-      shiftFrom,
-      shiftTo
-    ) => {
+    ) => [any, any, any, any] = (dateFrom: Date | null = null, dateTo: Date | null = null, shiftFrom, shiftTo) => {
       const args = [shiftFrom, shiftTo];
       const hourFrom = enabledHourFrom && Number(enabledHourFrom(new Date()));
       const hourTo = enabledHourTo && Number(enabledHourTo(new Date()));
-      const minuteFrom =
-        enabledMinuteFrom && Number(enabledMinuteFrom(new Date()));
+      const minuteFrom = enabledMinuteFrom && Number(enabledMinuteFrom(new Date()));
       const minuteTo = enabledMinuteTo && Number(enabledMinuteTo(new Date()));
-      const withHoursRange = Boolean(
-        enabledHourFrom || enabledHourTo || enabledHourFrom === 0
-      );
-      const withMinutesRange = Boolean(
-        enabledMinuteFrom || enabledMinuteFrom === 0 || enabledMinuteTo
-      );
+      const withHoursRange = Boolean(enabledHourFrom || enabledHourTo || enabledHourFrom === 0);
+      const withMinutesRange = Boolean(enabledMinuteFrom || enabledMinuteFrom === 0 || enabledMinuteTo);
       const enabledHoursRange = range(hourFrom || 0, (hourTo || 23) + 1);
       const enabledMinutesRange = range(
         minuteFrom && isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0,
         minuteTo && isInteger(minuteTo) && minuteTo < 60 ? minuteTo + 1 : 60
       );
       const makeEnabledTimeRangeDate = (date: Date) => {
-        const isEnabledHour =
-          date && enabledHoursRange.includes(new Date(date).getHours());
-        const isEnabledMinute =
-          date && enabledMinutesRange.includes(new Date(date).getMinutes());
+        const isEnabledHour = date && enabledHoursRange.includes(new Date(date).getHours());
+        const isEnabledMinute = date && enabledMinutesRange.includes(new Date(date).getMinutes());
         return (
           date &&
           set(new Date(date), {
-            hours: isEnabledHour
-              ? date && new Date(date).getHours()
-              : enabledHoursRange[0],
-            minutes: isEnabledMinute
-              ? date && new Date(date).getMinutes()
-              : enabledMinutesRange[0]
+            hours: isEnabledHour ? date && new Date(date).getHours() : enabledHoursRange[0],
+            minutes: isEnabledMinute ? date && new Date(date).getMinutes() : enabledMinutesRange[0]
           })
         );
       };
@@ -335,12 +250,8 @@ export const DatePickerInput = forwardRef<
           }
         }
         if (
-          (dateFrom &&
-            numberedDateByLevel(dateFrom, level) >=
-              numberedDateByLevel(enabledFrom, level)) ||
-          (dateTo &&
-            numberedDateByLevel(dateTo, level) >=
-              numberedDateByLevel(enabledFrom, level))
+          (dateFrom && numberedDateByLevel(dateFrom, level) >= numberedDateByLevel(enabledFrom, level)) ||
+          (dateTo && numberedDateByLevel(dateTo, level) >= numberedDateByLevel(enabledFrom, level))
         ) {
           if (withPeriod) {
             return [
@@ -350,19 +261,9 @@ export const DatePickerInput = forwardRef<
               args[1] as any
             ];
           } else if (withHoursRange || withMinutesRange) {
-            return [
-              makeEnabledTimeRangeDate(dateFrom),
-              null,
-              args[0] as any,
-              args[1] as any
-            ];
+            return [makeEnabledTimeRangeDate(dateFrom), null, args[0] as any, args[1] as any];
           } else {
-            return [
-              dateFrom ? new Date(dateFrom) : null,
-              null,
-              args[0] as any,
-              args[1] as any
-            ];
+            return [dateFrom ? new Date(dateFrom) : null, null, args[0] as any, args[1] as any];
           }
         } else {
           if (withPeriod) {
@@ -373,19 +274,9 @@ export const DatePickerInput = forwardRef<
               args[1] as any
             ];
           } else if (withHoursRange || withMinutesRange) {
-            return [
-              value ? makeEnabledTimeRangeDate(value) : null,
-              null,
-              args[0] as any,
-              args[1] as any
-            ];
+            return [value ? makeEnabledTimeRangeDate(value) : null, null, args[0] as any, args[1] as any];
           } else {
-            return [
-              value ? new Date(value) : null,
-              null,
-              args[0] as any,
-              args[1] as any
-            ];
+            return [value ? new Date(value) : null, null, args[0] as any, args[1] as any];
           }
         }
       }
@@ -405,12 +296,8 @@ export const DatePickerInput = forwardRef<
           }
         }
         if (
-          (dateFrom &&
-            numberedDateByLevel(dateFrom, level) <=
-              numberedDateByLevel(enabledTo, level)) ||
-          (dateTo &&
-            numberedDateByLevel(dateTo, level) <=
-              numberedDateByLevel(enabledTo, level))
+          (dateFrom && numberedDateByLevel(dateFrom, level) <= numberedDateByLevel(enabledTo, level)) ||
+          (dateTo && numberedDateByLevel(dateTo, level) <= numberedDateByLevel(enabledTo, level))
         ) {
           if (withPeriod) {
             return [
@@ -433,12 +320,7 @@ export const DatePickerInput = forwardRef<
               args[1] as any
             ];
           } else if (withHoursRange || withMinutesRange) {
-            return [
-              value ? makeEnabledTimeRangeDate(value) : null,
-              null,
-              null,
-              null
-            ];
+            return [value ? makeEnabledTimeRangeDate(value) : null, null, null, null];
           } else {
             return [value ? new Date(value) : null, null, null, null];
           }
@@ -460,18 +342,10 @@ export const DatePickerInput = forwardRef<
           }
         }
         if (
-          ((dateFrom &&
-            numberedDateByLevel(dateFrom, level) >=
-              numberedDateByLevel(enabledFrom, level)) ||
-            (dateTo &&
-              numberedDateByLevel(dateTo, level) >=
-                numberedDateByLevel(enabledFrom, level))) &&
-          ((dateFrom &&
-            numberedDateByLevel(dateFrom, level) <=
-              numberedDateByLevel(enabledTo, level)) ||
-            (dateTo &&
-              numberedDateByLevel(dateTo, level) <=
-                numberedDateByLevel(enabledTo, level)))
+          ((dateFrom && numberedDateByLevel(dateFrom, level) >= numberedDateByLevel(enabledFrom, level)) ||
+            (dateTo && numberedDateByLevel(dateTo, level) >= numberedDateByLevel(enabledFrom, level))) &&
+          ((dateFrom && numberedDateByLevel(dateFrom, level) <= numberedDateByLevel(enabledTo, level)) ||
+            (dateTo && numberedDateByLevel(dateTo, level) <= numberedDateByLevel(enabledTo, level)))
         ) {
           if (withPeriod) {
             return [
@@ -494,12 +368,7 @@ export const DatePickerInput = forwardRef<
               args[1] as any
             ];
           } else if (withHoursRange || withMinutesRange) {
-            return [
-              value ? makeEnabledTimeRangeDate(value) : null,
-              null,
-              null,
-              null
-            ];
+            return [value ? makeEnabledTimeRangeDate(value) : null, null, null, null];
           } else {
             return [value ? new Date(value) : null, null, null, null];
           }
@@ -514,12 +383,7 @@ export const DatePickerInput = forwardRef<
             args[1] as any
           ];
         } else if (withHoursRange || withMinutesRange) {
-          return [
-            dateFrom ? makeEnabledTimeRangeDate(dateFrom) : null,
-            null,
-            null,
-            null
-          ];
+          return [dateFrom ? makeEnabledTimeRangeDate(dateFrom) : null, null, null, null];
         } else {
           return [dateFrom ? new Date(dateFrom) : null, null, null, null];
         }
@@ -534,12 +398,7 @@ export const DatePickerInput = forwardRef<
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const computeNewDate: () => [
-      Date | null,
-      Date | null,
-      number | undefined,
-      number | undefined
-    ] = useCallback(() => {
+    const computeNewDate: () => [Date | null, Date | null, number | undefined, number | undefined] = useCallback(() => {
       try {
         if (!withPeriod) {
           const numOfPlaceholders = innerMaskedValue.match(/_/gi);
@@ -548,22 +407,13 @@ export const DatePickerInput = forwardRef<
 
             if (level === LEVEL_MAPPING_ENUM.quarter) {
               const [quarter, , year] = innerMaskedValue.split(' ');
-              newDate = new Date(
-                +year,
-                quarterMonthKeys[
-                  quarter as unknown as keyof typeof quarterMonthKeys
-                ]
-              );
+              newDate = new Date(+year, quarterMonthKeys[quarter as unknown as keyof typeof quarterMonthKeys]);
             } else {
               // Форматы со временем для скрытия года
               const formats = {
                 date: isHideYear ? dateFormatWithoutYear : dateFormat,
-                dateTime: isHideYear
-                  ? dateTimeFormatWithoutYear
-                  : dateTimeFormat,
-                dateTimeSeconds: isHideYear
-                  ? dateTimeSecondsFormatWithoutYear
-                  : dateTimeSecondsFormat
+                dateTime: isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat,
+                dateTimeSeconds: isHideYear ? dateTimeSecondsFormatWithoutYear : dateTimeSecondsFormat
               };
 
               let format = formats.date;
@@ -573,9 +423,7 @@ export const DatePickerInput = forwardRef<
               } else if (level === LEVEL_MAPPING_ENUM.month) {
                 format = monthAndYearFormat;
               } else if (showTime) {
-                format = withSeconds
-                  ? formats.dateTimeSeconds
-                  : formats.dateTime;
+                format = withSeconds ? formats.dateTimeSeconds : formats.dateTime;
               }
 
               newDate = parse(innerMaskedValue, format, new Date());
@@ -593,29 +441,17 @@ export const DatePickerInput = forwardRef<
             month: monthAndYearMask,
             quarter: quarterAndYearMask(locale[language].quarterTranslation)
           };
-          const mask = showTime
-            ? withSeconds
-              ? dateTimeSecondsMask
-              : dateTimeMask
-            : dateMask;
-          const maskForMatching =
-            levelMasks[level as keyof typeof levelMasks] || mask;
-          const isValueMatchingMask = isValueMatchesTheMask(
-            maskForMatching,
-            innerMaskedValue
-          );
+          const withSecondsCondition = withSeconds ? dateTimeSecondsMask : dateTimeMask;
+          const mask = showTime ? withSecondsCondition : dateMask;
+          const maskForMatching = levelMasks[level as keyof typeof levelMasks] || mask;
+          const isValueMatchingMask = isValueMatchesTheMask(maskForMatching, innerMaskedValue);
 
           if (isValueMatchingMask) {
             return [null, null, undefined, undefined];
           }
 
           if (numOfPlaceholders) {
-            return [
-              value === undefined || value === null ? null : value,
-              undefined,
-              undefined,
-              undefined
-            ];
+            return [value === undefined || value === null ? null : value, undefined, undefined, undefined];
           }
         } else {
           let [maskedValueFrom, maskedValueTo] = innerMaskedValue.split(' — ');
@@ -630,12 +466,7 @@ export const DatePickerInput = forwardRef<
           const toPlaceholders = maskedValueTo.match(/_/gi);
           const shiftToInt = shiftTo ? parseInt(shiftTo, 10) : undefined;
 
-          if (
-            !fromPlaceholders &&
-            maskedValueFrom &&
-            !toPlaceholders &&
-            maskedValueTo
-          ) {
+          if (!fromPlaceholders && maskedValueFrom && !toPlaceholders && maskedValueTo) {
             let parsedFrom, parsedTo;
 
             if (level === LEVEL_MAPPING_ENUM.quarter) {
@@ -644,16 +475,9 @@ export const DatePickerInput = forwardRef<
 
               parsedFrom = new Date(
                 +yearFrom,
-                quarterMonthKeys[
-                  quarterFrom as unknown as keyof typeof quarterMonthKeys
-                ]
+                quarterMonthKeys[quarterFrom as unknown as keyof typeof quarterMonthKeys]
               );
-              parsedTo = new Date(
-                +yearTo,
-                quarterMonthKeys[
-                  quarterTo as unknown as keyof typeof quarterMonthKeys
-                ]
-              );
+              parsedTo = new Date(+yearTo, quarterMonthKeys[quarterTo as unknown as keyof typeof quarterMonthKeys]);
             } else {
               const dateFormat = dateFormatByLevel[level];
               parsedFrom = parse(maskedValueFrom, dateFormat, new Date());
@@ -661,22 +485,15 @@ export const DatePickerInput = forwardRef<
             }
 
             if (isValid(parsedFrom) && isValid(parsedTo)) {
-              const [dateFrom, dateTo] =
-                +parsedFrom > +parsedTo
-                  ? [parsedTo, parsedFrom]
-                  : [parsedFrom, parsedTo];
-              const shiftFromInt = shiftFrom
-                ? parseInt(shiftFrom, 10)
-                : undefined;
+              const [dateFrom, dateTo] = +parsedFrom > +parsedTo ? [parsedTo, parsedFrom] : [parsedFrom, parsedTo];
+              const shiftFromInt = shiftFrom ? parseInt(shiftFrom, 10) : undefined;
 
               return [dateFrom, dateTo, shiftFromInt, shiftToInt];
             }
 
             const dateFrom = valueFrom ? new Date(valueFrom) : null;
             const dateTo = valueTo ? new Date(valueTo) : null;
-            const shiftFromInt = shiftFrom
-              ? parseInt(shiftFrom, 10)
-              : undefined;
+            const shiftFromInt = shiftFrom ? parseInt(shiftFrom, 10) : undefined;
 
             return [dateFrom, dateTo, shiftFromInt, shiftToInt];
           }
@@ -686,18 +503,14 @@ export const DatePickerInput = forwardRef<
             const parsedFrom = parse(maskedValueFrom, dateFormat, new Date());
 
             if (isValid(parsedFrom)) {
-              const shiftFromInt = shiftFrom
-                ? parseInt(shiftFrom, 10)
-                : undefined;
+              const shiftFromInt = shiftFrom ? parseInt(shiftFrom, 10) : undefined;
 
               return [parsedFrom, parsedFrom, shiftFromInt, shiftToInt];
             }
 
             const dateFrom = valueFrom ? new Date(valueFrom) : null;
             const dateTo = valueTo ? new Date(valueTo) : null;
-            const shiftFromInt = shiftFrom
-              ? parseInt(shiftFrom, 10)
-              : undefined;
+            const shiftFromInt = shiftFrom ? parseInt(shiftFrom, 10) : undefined;
 
             return [dateFrom, dateTo, shiftFromInt, shiftToInt];
           }
@@ -710,17 +523,7 @@ export const DatePickerInput = forwardRef<
         console.error(e);
       }
       return [null, null, undefined, undefined];
-    }, [
-      innerMaskedValue,
-      level,
-      showTime,
-      value,
-      valueFrom,
-      valueTo,
-      withPeriod,
-      withSeconds,
-      withShift
-    ]);
+    }, [innerMaskedValue, level, showTime, value, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
@@ -736,10 +539,7 @@ export const DatePickerInput = forwardRef<
           onInputFocus();
         }}
         onBlur={() => {
-          if (
-            (!value && !withPeriod) ||
-            (!valueFrom && !valueTo && withPeriod)
-          ) {
+          if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
             setInnerMaskedValue('');
           }
           if (onBlur) {
@@ -767,11 +567,7 @@ export const DatePickerInput = forwardRef<
             }}
             className={clsx(className, styles.input)}
             disabled={disabled}
-            label={
-              showTime
-                ? locale[language].label.showtime
-                : locale[language].label.default
-            }
+            label={showTime ? locale[language].label.showtime : locale[language].label.default}
             icon={
               <div className={styles.calendar}>
                 <CalendarSvgIcon onClick={onFocus} />

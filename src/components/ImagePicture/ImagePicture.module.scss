@@ -10,15 +10,29 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
   position: relative;
 
   // Aspect ratio variants
-  &.ratio-1x1 { @include aspect-ratio(1, 1); }
-  &.ratio-4x3 { @include aspect-ratio(4, 3); }
-  &.ratio-3x4 { @include aspect-ratio(3, 4); }
-  &.ratio-16x9 { @include aspect-ratio(16, 9); }
+  &.ratio-1x1 {
+    @include aspect-ratio(1, 1);
+  }
+  &.ratio-4x3 {
+    @include aspect-ratio(4, 3);
+  }
+  &.ratio-3x4 {
+    @include aspect-ratio(3, 4);
+  }
+  &.ratio-16x9 {
+    @include aspect-ratio(16, 9);
+  }
 
   // Border radius variants
-  &.radius-none { border-radius: 0; }
-  &.radius-4px { border-radius: var(--4-radius); }
-  &.radius-8px { border-radius: var(--8-radius); }
+  &.radius-none {
+    border-radius: 0;
+  }
+  &.radius-4px {
+    border-radius: var(--4-radius);
+  }
+  &.radius-8px {
+    border-radius: var(--8-radius);
+  }
 
   // Image common styles
   .image {

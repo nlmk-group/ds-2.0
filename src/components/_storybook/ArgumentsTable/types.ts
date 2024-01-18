@@ -3,7 +3,7 @@ export interface IArgType {
   action?: string;
   table?: {
     defaultValue: {
-      summary: string | number | null | undefined;
+      summary: string | number | boolean | null | undefined;
     };
     type?: {
       summary: string;

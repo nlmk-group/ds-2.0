@@ -1,7 +1,6 @@
 export const argsTypes = {
   onChange: {
-    description:
-      'Callback, который будет вызван при изменении значения внутри компонента InputRange',
+    description: 'Callback, который будет вызван при изменении значения внутри компонента InputRange',
     action: 'изменено value'
   },
   value: {

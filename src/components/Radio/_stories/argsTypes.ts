@@ -12,8 +12,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   value: {
-    description:
-      'Значение для однозначной идентификации какой из компонентов Radio был выбран пользователем',
+    description: 'Значение для однозначной идентификации какой из компонентов Radio был выбран пользователем',
     table: {
       defaultValue: {
         summary: ''

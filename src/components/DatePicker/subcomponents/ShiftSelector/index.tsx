@@ -6,12 +6,7 @@ import clsx from 'clsx';
 
 import styles from './ShiftSelector.module.scss';
 
-export const ShiftSelector: FC<ShiftSelectorProps> = ({
-  value,
-  shiftLength = 2,
-  onChange,
-  disabled = false
-}) => {
+export const ShiftSelector: FC<ShiftSelectorProps> = ({ value, shiftLength = 2, onChange, disabled = false }) => {
   const handleClick = (shift: number) => {
     if (!disabled) {
       onChange(shift);

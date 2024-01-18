@@ -1,23 +1,23 @@
 .rail {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 6px;
-    border-radius: 2px;
-    background-color: var(--text-grey-200);
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 6px;
+  border-radius: 2px;
+  background-color: var(--text-grey-200);
 
-    &-disabled {
-        opacity: 50%;
-    }
+  &-disabled {
+    opacity: 50%;
+  }
 }
-  
-.inner-rail {
-    position: absolute;
-    height: 100%;
-    background-color: var(--primary-blue-600);
 
-    &-disabled {
-        background-color: var(--lighter-primary-blue-600);
-    }
+.inner-rail {
+  position: absolute;
+  height: 100%;
+  background-color: var(--primary-blue-600);
+
+  &-disabled {
+    background-color: var(--lighter-primary-blue-600);
+  }
 }

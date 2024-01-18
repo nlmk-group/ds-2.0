@@ -1,4 +1,4 @@
 export interface IIconBadgeProps {
-  iconName: string
-  className?: string
+  iconName: string;
+  className?: string;
 }

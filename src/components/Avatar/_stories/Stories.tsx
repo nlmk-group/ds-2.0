@@ -6,7 +6,7 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tab, Tabs, Typography } from '@components/index';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -43,22 +43,22 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          <Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
-          <Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
+          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
 
       {activeTab == TabIds.dev && (
         <>
           <Editor
+            height={220}
             description="Дефолтный аватар"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 const App = () => (
   <>
-  <Avatar />
+    <Avatar />
   </>
 )
 export default App
@@ -66,70 +66,65 @@ export default App
           />
           <Editor
             description="Аватары различных размеров"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-  <Avatar src="${AVATAR_MOCK_SRC}" size="xxl" />
-  <Avatar src="${AVATAR_MOCK_SRC}" size="xl" />
-  <Avatar src="${AVATAR_MOCK_SRC}" size="l" />
-  <Avatar src="${AVATAR_MOCK_SRC}" size="m" />
-  <Avatar src="${AVATAR_MOCK_SRC}" size="s" />
+    <Avatar src="${AVATAR_MOCK_SRC}" size="xxl" />
+    <Avatar src="${AVATAR_MOCK_SRC}" size="xl" />
+    <Avatar src="${AVATAR_MOCK_SRC}" size="l" />
+    <Avatar src="${AVATAR_MOCK_SRC}" size="m" />
+    <Avatar src="${AVATAR_MOCK_SRC}" size="s" />
   </>
 )
               `}
           />
           <Editor
             description="Типы аватаров: иконка, изображение, инициалы"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-  <Avatar />
-  <Avatar src="${AVATAR_MOCK_SRC}" />
-  <Avatar userName='Антон' userSurname='Валуев' />
+    <Avatar />
+    <Avatar src="${AVATAR_MOCK_SRC}" />
+    <Avatar userName='Антон' userSurname='Валуев' />
   </>
 )
               `}
           />
           <Editor
             description="Формы аватаров: круг, скругленный квадрат"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-  <Avatar />
-  <Avatar shape="square" />
+    <Avatar />
+    <Avatar shape="square" />
   </>
 )
               `}
           />
           <Editor
             description="Индикаторы аватаров: онлайн, оффлайн, количество"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-  <Avatar online />
-  <Avatar online={false} />
-  <Avatar numberIndicator={8} />
+    <Avatar online />
+    <Avatar online={false} />
+    <Avatar numberIndicator={8} />
   </>
 )
               `}
           />
           <Editor
             description="Бейджи аватаров: иконка, специальный бейдж (День Рождения)"
-            code={`
-import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-  <Avatar badgeIconName="IconDone24" />
-  <Avatar badgeIconName="IconBirthday16" />
+    <Avatar badgeIconName="IconDone24" />
+    <Avatar badgeIconName="IconBirthday16" />
   </>
 )
               `}

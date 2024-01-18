@@ -3,7 +3,6 @@ import React, { ReactNode, useState } from 'react';
 import { Button, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Modal.module.scss';
 
@@ -16,7 +15,7 @@ const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</d
 export default {
   title: 'Components/Modal/Stories',
   component: Modal,
-  decorators: [withDesign, withWrapper],
+  decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Modal>;
 

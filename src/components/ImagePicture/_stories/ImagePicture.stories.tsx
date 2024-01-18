@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ImagePicture from '@components/ImagePicture';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './ImagePicture.module.scss';
 
@@ -16,7 +15,7 @@ const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story(
 export default {
   title: 'Components/ImagePicture/Stories',
   component: ImagePicture,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 

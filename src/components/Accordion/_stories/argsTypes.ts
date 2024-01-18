@@ -1,7 +1,6 @@
 import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
 
 export const argsTypes = {
-
   size: {
     description: `Размер: ${Object.values(sizesMapping).join(' | ')}`,
     table: {
@@ -41,7 +40,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   startIcon: {
-    description: `Иконка слева от заголовка: ${Object.values(iconsMapping).join(' | ')}` ,
+    description: `Иконка слева от заголовка: ${Object.values(iconsMapping).join(' | ')}`,
     table: {
       defaultValue: {
         summary: iconsMapping.arrow
@@ -54,7 +53,7 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   endIcon: {
-    description: `Иконка справа от заголовка: ${Object.values(iconsMapping).join(' | ')}` ,
+    description: `Иконка справа от заголовка: ${Object.values(iconsMapping).join(' | ')}`,
     table: {
       defaultValue: {
         summary: 'null'

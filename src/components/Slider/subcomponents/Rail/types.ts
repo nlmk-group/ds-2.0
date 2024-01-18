@@ -1,5 +1,5 @@
 export interface IControlRailProps {
-    disabled?: boolean;
-    minPosition: number;
-    maxPosition: number;
+  disabled?: boolean;
+  minPosition: number;
+  maxPosition: number;
 }

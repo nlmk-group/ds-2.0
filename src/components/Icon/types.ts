@@ -1,12 +1,4 @@
-export type IconColor =
-  | 'action'
-  | 'disabled'
-  | 'error'
-  | 'primary'
-  | 'secondary'
-  | 'inherit'
-  | 'success'
-  | 'warning';
+export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning';
 
 export type TIconProps =
   | {

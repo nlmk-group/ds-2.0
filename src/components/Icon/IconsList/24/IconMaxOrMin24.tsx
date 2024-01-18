@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconMaxOrMin24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M12.3246 12.9917L13.4996 11.8167L15.8333 14.1423V7.00065H17.5V14.1423L19.8167 11.8167L21 13L16.6667 17.334L12.3246 12.9917Z"
         fill={htmlColor || 'currentColor'}

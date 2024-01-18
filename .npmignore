@@ -18,7 +18,7 @@ yarn-error.log
 cypress/fixtures/example.json
 snowpack.config.js
 tsconfig.json
-tslint.json 
+tslint.json
 storybook-static/
 .storybook/
 tokens/

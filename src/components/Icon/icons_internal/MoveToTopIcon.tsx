@@ -7,14 +7,7 @@ export const MoveToTopIcon: FC<SVGProps<SVGSVGElement>> = ({
   ...props
 }): JSX.Element => {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

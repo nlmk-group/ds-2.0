@@ -72,6 +72,7 @@ export { default as IconPlayOutlined32 } from './IconPlayOutlined32';
 export { default as IconReplayOutlined32 } from './IconReplayOutlined32';
 export { default as IconTelegramFilled32 } from './IconTelegramFilled32';
 export { default as IconWarningFilled32 } from './IconWarningFilled32';
+export { default as IconWarningOutline32 } from './IconWarningOutline32';
 export { default as IconAutorenewSystemOutlined32 } from './IconAutorenewSystemOutlined32';
 export { default as IconHelperMailOutlined32 } from './IconHelperMailOutlined32';
 export { default as IconJsonOutlined32 } from './IconJsonOutlined32';
@@ -109,6 +110,9 @@ export { default as IconFilterMultipleChoice32 } from './IconFilterMultipleChoic
 export { default as IconFilterNotEqualSign32 } from './IconFilterNotEqualSign32';
 export { default as IconFilterSelectionContain32 } from './IconFilterSelectionContain32';
 export { default as IconFilterStartingContains32 } from './IconFilterStartingContains32';
+export { default as IconUploadFile32 } from './IconUploadFile32';
+export { default as IconUploadImage32 } from './IconUploadImage32';
+export { default as IconUploadVideo32 } from './IconUploadVideo32';
 export { default as IconVagon32 } from './IconVagon32';
 export { default as IconBunkerOutlined32 } from './IconBunkerOutlined32';
 export { default as IconWhatShotFire32 } from './IconWhatShotFire32';
@@ -121,3 +125,5 @@ export { default as IconChevronArrowDownFilled32 } from './IconChevronArrowDownF
 export { default as IconChevronArrowDownOutlined32 } from './IconChevronArrowDownOutlined32';
 export { default as IconSchedule32 } from './IconSchedule32';
 export { default as IconProfile32 } from '../32/IconProfile32';
+export { default as IconAddPlusCircleOutlined32 } from './IconAddPlusCircleOutlined32';
+export { default as IconDeleteBinOutlined32 } from './IconDeleteBinOutlined32';

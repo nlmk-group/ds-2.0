@@ -19,7 +19,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: ['m', 'l'],
+    options: ['s', 'm'],
     control: { type: 'select' }
   },
   labelColor: {

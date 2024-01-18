@@ -2,13 +2,15 @@ import React from 'react';
 
 import { Icon, Link } from '@components/index';
 import { render, screen } from '@testing-library/react';
+
+import styles from './Link.module.scss';
+
 import { sizeMapping, targetMapping } from './enums';
 import { getTypography, typographyMapping } from './helpers';
-import styles from './Link.module.scss';
 
 describe('src/components/Header', () => {
   const testTitle = 'Hello world!';
-  const href = 'https://mdxjs.com/docs/what-is-mdx/'
+  const href = 'https://mdxjs.com/docs/what-is-mdx/';
 
   test('It should render a Link', () => {
     const { container } = render(<Link href={href}>{testTitle}</Link>);
@@ -17,7 +19,7 @@ describe('src/components/Header', () => {
   });
 
   test('It should render a Link with custom className', () => {
-    const className = 'test-style'
+    const className = 'test-style';
     render(
       <Link href={href} className={styles[className]}>
         {testTitle}
@@ -40,7 +42,11 @@ describe('src/components/Header', () => {
   });
 
   test('It should render disabled Link', () => {
-    render(<Link href={href} disabled={true}>{testTitle}</Link>);
+    render(
+      <Link href={href} disabled={true}>
+        {testTitle}
+      </Link>
+    );
     const linkComponent = screen.getByTestId('WRAPPER');
     expect(linkComponent.classList.contains('disabled')).toBe(true);
   });
@@ -48,19 +54,20 @@ describe('src/components/Header', () => {
   describe('while rendering with different targets', () => {
     Object.values(targetMapping).forEach((target: targetMapping) => {
       test(`It should render a Link with ${target} target`, () => {
-        render(<Link href={href} target={target}>{testTitle}</Link>);
+        render(
+          <Link href={href} target={target}>
+            {testTitle}
+          </Link>
+        );
         const linkComponent = screen.getByTestId('LINK');
         expect(linkComponent).toHaveAttribute('target', target);
-      })
+      });
     });
   });
 
   test('It should render Link with left icon', () => {
     render(
-      <Link
-        href={href}
-        leftIcon={<Icon name='IconStorage16' />}
-      >
+      <Link href={href} leftIcon={<Icon name="IconStorage16" />}>
         {testTitle}
       </Link>
     );
@@ -70,10 +77,7 @@ describe('src/components/Header', () => {
 
   test('It should render Link with right icon', () => {
     render(
-      <Link
-        href={href}
-        rightIcon={<Icon name='IconStorage16' />}
-      >
+      <Link href={href} rightIcon={<Icon name="IconStorage16" />}>
         {testTitle}
       </Link>
     );
@@ -87,15 +91,11 @@ describe('src/components/Header', () => {
         expect(getTypography(size)).toBe(typographyMapping[size]);
       });
     });
-    
+
     Object.values(sizeMapping).forEach((size: sizeMapping) => {
       test(`It should render icon wrapper with ${size} size`, () => {
         render(
-          <Link
-            href={href}
-            size={size}
-            leftIcon={<Icon name='IconStorage16' />}
-          >
+          <Link href={href} size={size} leftIcon={<Icon name="IconStorage16" />}>
             {testTitle}
           </Link>
         );

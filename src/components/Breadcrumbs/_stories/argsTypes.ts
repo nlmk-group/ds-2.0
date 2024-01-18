@@ -58,4 +58,4 @@ export const breadcrumbsItemsArgsTypes = {
   }
 };
 
-export default { ...breadcrumbsArgsTypes, ...breadcrumbsItemsArgsTypes}
+export default { ...breadcrumbsArgsTypes, ...breadcrumbsItemsArgsTypes };

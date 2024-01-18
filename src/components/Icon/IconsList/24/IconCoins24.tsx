@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconCoins24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="25"
-      height="24"
-      viewBox="0 0 25 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M8.41009 8.31555C12.607 8.31555 15.743 6.64842 15.743 5.15774C15.743 3.6672 12.607 2 8.41009 2C4.21322 2 1.07722 3.6672 1.07722 5.15774C1.07722 6.64842 4.21315 8.31555 8.41009 8.31555Z"
         fill={htmlColor || 'currentColor'}

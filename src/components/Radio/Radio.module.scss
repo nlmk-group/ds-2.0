@@ -54,8 +54,7 @@
         &:not(:disabled) {
           &:before {
             border-color: var(--primary-blue-500);
-            box-shadow: 0 0 0 var(--1-space) var(--default-second),
-              0 0 0 var(--6-size) var(--primary-blue-50);
+            box-shadow: 0 0 0 var(--1-space) var(--default-second), 0 0 0 var(--6-size) var(--primary-blue-50);
           }
         }
       }

@@ -1,15 +1,15 @@
 import React, { FC, PropsWithChildren, useState } from 'react';
 
 import Tooltip from '@components/Tooltip';
-import { copyToClipboard } from '@components/utils/copyToClipboard';
 import { TooltipPlacementType } from '@components/Tooltip/types';
+import { copyToClipboard } from '@components/utils/copyToClipboard';
 
 interface ICopyWrapper extends PropsWithChildren {
   copy: string;
   placement?: TooltipPlacementType;
 }
 
-export const CopyWrapper: FC<ICopyWrapper> = ({ copy, children, placement = 'top'  }) => {
+export const CopyWrapper: FC<ICopyWrapper> = ({ copy, children, placement = 'top' }) => {
   const [isCopy, setCopy] = useState(false);
 
   const onClick = () => {

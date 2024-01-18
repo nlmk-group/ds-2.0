@@ -220,6 +220,7 @@ export { default as IconPlayOutlined24 } from './IconPlayOutlined24';
 export { default as IconReplayOutlined24 } from './IconReplayOutlined24';
 export { default as IconTelegramFilled24 } from './IconTelegramFilled24';
 export { default as IconWarningFilled24 } from './IconWarningFilled24';
+export { default as IconWarningOutline24 } from './IconWarningOutline24';
 export { default as IconAutorenewSystemOutlined24 } from './IconAutorenewSystemOutlined24';
 export { default as IconHelperMailOutlined24 } from './IconHelperMailOutlined24';
 export { default as IconJsonOutlined24 } from './IconJsonOutlined24';
@@ -257,6 +258,9 @@ export { default as IconFilterMultipleChoice24 } from './IconFilterMultipleChoic
 export { default as IconFilterNotEqualSign24 } from './IconFilterNotEqualSign24';
 export { default as IconFilterSelectionContain24 } from './IconFilterSelectionContain24';
 export { default as IconFilterStartingContains24 } from './IconFilterStartingContains24';
+export { default as IconUploadFile24 } from './IconUploadFile24';
+export { default as IconUploadImage24 } from './IconUploadImage24';
+export { default as IconUploadVideo24 } from './IconUploadVideo24';
 export { default as IconVagon24 } from './IconVagon24';
 export { default as IconBunkerOutlined24 } from './IconBunkerOutlined24';
 export { default as IconWhatShotFire24 } from './IconWhatShotFire24';
@@ -270,3 +274,5 @@ export { default as IconChevronArrowUpOutlined24 } from './IconChevronArrowUpOut
 export { default as IconChevronArrowUpFilled24 } from './IconChevronArrowUpFilled24';
 export { default as IconChevronArrowDownOutlined24 } from './IconChevronArrowDownOutlined24';
 export { default as IconChevronArrowDownFilled24 } from './IconChevronArrowDownFilled24';
+export { default as IconAddPlusCircleOutlined24 } from './IconAddPlusCircleOutlined24';
+export { default as IconDeleteBinOutlined24 } from './IconDeleteBinOutlined24';

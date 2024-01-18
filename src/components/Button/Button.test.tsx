@@ -48,19 +48,9 @@ describe('src/components/Button', () => {
 
   // Check className
   test('Кнопка должна корректно принимать разные варианты отображения', () => {
-    const variants: string[] = [
-      'primary',
-      'secondary',
-      'grey',
-      'outline',
-      'greyOutline',
-      'text',
-      'bar'
-    ];
+    const variants: string[] = ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text', 'bar'];
     variants.map((className: string) => {
-      const { container } = render(
-        <Button variant={className as IButtonProps['variant']} />
-      );
+      const { container } = render(<Button variant={className as IButtonProps['variant']} />);
       const button = container.getElementsByTagName('button')[0];
       expect(button).toHaveClass(className);
     });
@@ -68,11 +58,7 @@ describe('src/components/Button', () => {
 
   // Check icon render
   test('Кнопка должна корректно отображать иконку', () => {
-    const { container } = render(
-      <Button iconButton={<span className="material-icons-outlined">ok</span>}>
-        ok
-      </Button>
-    );
+    const { container } = render(<Button iconButton={<span className="material-icons-outlined">ok</span>}>ok</Button>);
     const button = container.getElementsByTagName('button')[0];
     const span = container.getElementsByTagName('span')[0];
     expect(button).toContainElement(span);
@@ -80,9 +66,7 @@ describe('src/components/Button', () => {
 
   // Check badge render
   test('Кнопка должна корректно отображать бейдж', () => {
-    const { container } = render(
-      <Button badge={<Badge color="secondary">1</Badge>}>ok</Button>
-    );
+    const { container } = render(<Button badge={<Badge color="secondary">1</Badge>}>ok</Button>);
     const button = container.getElementsByTagName('button')[0];
     const badge = container.getElementsByTagName('div')[0];
     expect(badge).toHaveClass('secondary');

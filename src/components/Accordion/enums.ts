@@ -1,6 +1,6 @@
 export enum iconsMapping {
   plus = 'plus',
-  arrow = 'arrow',
+  arrow = 'arrow'
 }
 
 export enum sizesMapping {
@@ -9,7 +9,7 @@ export enum sizesMapping {
   m = 'm'
 }
 
-export enum  variantsMapping {
+export enum variantsMapping {
   default = 'default',
-  paper = 'paper',
+  paper = 'paper'
 }

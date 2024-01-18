@@ -3,7 +3,6 @@ import React from 'react';
 import { Badge } from '@components/Badge';
 import Chip from '@components/Chip';
 import { IChipProps } from '@components/Chip/types';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Chip.module.scss';
 
@@ -14,7 +13,7 @@ const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story(
 export default {
   title: 'Components/Chip/Stories',
   component: Badge,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 

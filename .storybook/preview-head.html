@@ -1,32 +1,5 @@
+<link href="https://fonts.cdnfonts.com/css/pt-root-ui" rel="stylesheet">
 <style type="text/css">
-  @font-face {
-    font-family: 'PT Root UI';
-    src: url('fonts/PT_Root_Regular.eot');
-    src: url('fonts/PT_Root_Regular.eot?#iefix') format('embedded-opentype'),
-      url('fonts/PT_Root_Regular.woff2') format('woff2'), url('fonts/PT_Root_Regular.woff') format('woff'),
-      url('fonts/PT_Root_Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'PT Root UI';
-    src: url('fonts/PT_Root_Bold.eot');
-    src: url('fonts/PT_Root_Bold.eot?#iefix') format('embedded-opentype'),
-      url('fonts/PT_Root_Bold.woff2') format('woff2'), url('fonts/PT_Root_Bold.woff') format('woff'),
-      url('fonts/PT_Root_Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'PT Root UI';
-    src: url('fonts/PT_Root_Medium.woff2') format('woff2'), url('fonts/PT_Root_Medium.woff') format('woff'),
-      url('fonts/PT_Root_Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-  }
-
   :root {
     --body-font-family: PT Root UI;
     --body-font-style: normal;
@@ -41,7 +14,7 @@
   }
 
   * {
-    font-family: var(--font-families-pt-root-ui) !important;
+    font-family: var(--body-font-family) !important;
   }
 
   .development-block {
@@ -52,7 +25,7 @@
   }
 
   body {
-    font-family: var(--font-families-pt-root-ui), sans-serif;
+    font-family: var(--body-font-family), sans-serif;
   }
 
   .sb-show-main.sb-main-centered #root {

@@ -1,9 +1,9 @@
-import { Alert } from '@components';
-import { Canvas, Description, Meta, Story, Title } from '@storybook/addon-docs';
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Alert from '..';
 import Stories from './Stories';
 
 <Meta
-  title="Components/Alert/Docs"
+  title="Components/Alert/Info"
   component={Alert}
   parameters={{
     design: {
@@ -14,4 +14,6 @@ import Stories from './Stories';
   }}
 />
 
-<Stories/>
+<Unstyled>
+  <Stories />
+</Unstyled>

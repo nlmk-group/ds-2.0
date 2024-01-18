@@ -1,8 +1,4 @@
-import {
-  colorsMapping,
-  sizesMapping,
-  variantsMapping
-} from '@components/declaration/enums';
+import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
 
 export const argsTypes = {
   children: {
@@ -10,7 +6,9 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   size: {
-    description: `Размер чипа <b>${Object.values(sizesMapping).filter(i => i !== 'l').join(' | ')}</b>`,
+    description: `Размер чипа <b>${Object.values(sizesMapping)
+      .filter(i => i !== 'l')
+      .join(' | ')}</b>`,
     table: {
       defaultValue: {
         summary: sizesMapping.m
@@ -19,13 +17,13 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: Object.values(sizesMapping).filter(
-      item => item !== sizesMapping.l
-    ),
+    options: Object.values(sizesMapping).filter(item => item !== sizesMapping.l),
     control: { type: 'select' }
   },
   color: {
-    description: `Тип чипа – <b>${Object.values(colorsMapping).filter(i => ['warning', 'primary', 'success', 'error'].includes(i)).join(' | ')}</b>`,
+    description: `Тип чипа – <b>${Object.values(colorsMapping)
+      .filter(i => ['warning', 'primary', 'success', 'error'].includes(i))
+      .join(' | ')}</b>`,
     table: {
       defaultValue: {
         summary: colorsMapping.primary

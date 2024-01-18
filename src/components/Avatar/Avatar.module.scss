@@ -1,5 +1,5 @@
-$greyOpacity24: #97A4B73D;
-$greyOpacity9: #97A4B716;
+$greyOpacity24: #97a4b73d;
+$greyOpacity9: #97a4b716;
 $blackOpacity12: rgba(0, 0, 0, 0.12);
 $white: var(--never-changes-white);
 
@@ -18,10 +18,7 @@ $white: var(--never-changes-white);
   background-color: var(--text-grey-200);
 
   &:hover {
-    box-shadow:
-      0 1px 1px 0 $blackOpacity12,
-      0 0 0 2px $greyOpacity24,
-      0 2px 5px 0 $greyOpacity9;
+    box-shadow: 0 1px 1px 0 $blackOpacity12, 0 0 0 2px $greyOpacity24, 0 2px 5px 0 $greyOpacity9;
   }
 
   &.circle {
@@ -40,15 +37,13 @@ $white: var(--never-changes-white);
   transform: translate(-50%, -50%);
 }
 
-.online-indicator, .number-indicator {
+.online-indicator,
+.number-indicator {
   @include rounded;
   position: absolute;
   right: 0;
   bottom: 0;
-  box-shadow:
-    0 2px 5px 0 $greyOpacity9,
-    0 1px 1px 0 $blackOpacity12,
-    inset 0 0 0 var(--1-size) $white;
+  box-shadow: 0 2px 5px 0 $greyOpacity9, 0 1px 1px 0 $blackOpacity12, inset 0 0 0 var(--1-size) $white;
 }
 
 .online-indicator {

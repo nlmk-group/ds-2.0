@@ -21,10 +21,7 @@ export function numberedDateByLevel(date: Date, level: string): number {
       return +new Date(year, month, day);
     }
     case 'quarter': {
-      return +new Date(
-        year,
-        quarterQuarterKeys[month as keyof typeof quarterQuarterKeys]
-      );
+      return +new Date(year, quarterQuarterKeys[month as keyof typeof quarterQuarterKeys]);
     }
     case 'month': {
       return +new Date(year, month);

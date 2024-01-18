@@ -1,9 +1,6 @@
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
-import {
-  COLORS_MAPPING_ENUM,
-  VARIANTS_MAPPING_ENUM
-} from '@components/Typography/constants';
+import { COLORS_MAPPING_ENUM, VARIANTS_MAPPING_ENUM } from '@components/Typography/constants';
 
 export type TVariant = keyof typeof VARIANTS_MAPPING_ENUM;
 

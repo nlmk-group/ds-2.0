@@ -3,11 +3,7 @@ import React, { FC } from 'react';
 import Badge from '@components/Badge';
 import { IBadgeProps, TBadgeColors } from '@components/Badge/types';
 import { IChipProps } from '@components/Chip/types';
-import {
-  colorsMapping,
-  sizesMapping,
-  variantsMapping
-} from '@components/declaration/enums';
+import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
 import { Typography } from '@components/index';
 import { ITypographyProps } from '@components/Typography/types';
 import clsx from 'clsx';

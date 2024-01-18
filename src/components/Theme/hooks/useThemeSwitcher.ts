@@ -1,6 +1,8 @@
-import {darkThemeStyles} from '@components/ThemeSwitcher/DarkTheme';
 import { useEffect, useState } from 'react';
-import {Theme, Themes} from '../types';
+
+import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
+
+import { Theme, Themes } from '../types';
 
 const tagName = 'style';
 
@@ -9,9 +11,9 @@ export const useThemeSwitcher = (customTheme?: Themes) => {
 
   useEffect(() => {
     if (customTheme) {
-      setTheme(customTheme)
+      setTheme(customTheme);
     }
-  }, [customTheme])
+  }, [customTheme]);
 
   useEffect(() => {
     const addStyle = (styles: string) => {

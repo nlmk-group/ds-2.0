@@ -1,21 +1,14 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
+import { Slider } from '@components/Slider';
+
 import { IInputSliderProps } from './types';
 
-import {Slider} from '@components/Slider';
-
-const InputSlider: FC<IInputSliderProps> = ({
-  min,
-  max,
-  step = 1,
-  value: outerValue,
-  onChange,
-  disabled = false
-}) => {
+const InputSlider: FC<IInputSliderProps> = ({ min, max, step = 1, value: outerValue, onChange, disabled = false }) => {
   const [value, setValue] = useState(outerValue ?? min);
 
   useEffect(() => {
-    if (outerValue !== undefined) setValue(outerValue)
+    if (outerValue !== undefined) setValue(outerValue);
   }, [outerValue]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,14 +27,7 @@ const InputSlider: FC<IInputSliderProps> = ({
   return (
     <Slider.Wrapper>
       <Slider.InputWrapper>
-        <Slider.Input
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          onChange={handleChange}
-          disabled={disabled}
-        />
+        <Slider.Input value={value} min={min} max={max} step={step} onChange={handleChange} disabled={disabled} />
       </Slider.InputWrapper>
       <Slider.ControlWrapper>
         <Slider.Rail maxPosition={rangePos} minPosition={0} disabled={disabled} />

@@ -6,20 +6,10 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-export const IconAutorenewSystemOutlined16: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+export const IconAutorenewSystemOutlined16: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M11.8182 8H9.90906L12.4545 10.5L15 8H13.0909C13.0909 5.2375 10.8127 3 7.99997 3C7.00088 3 6.07179 3.2875 5.28906 3.775L6.21815 4.6875C6.74634 4.40625 7.35724 4.25 7.99997 4.25C10.1063 4.25 11.8182 5.93125 11.8182 8Z"
         fill={htmlColor || 'currentColor'}

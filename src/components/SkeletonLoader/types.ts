@@ -1,8 +1,7 @@
 export interface ISkeletonLoading {
-    id?: string;
-    className?: string;
-    count?: number;
-    width?: string;
-    height?: string;
+  id?: string;
+  className?: string;
+  count?: number;
+  width?: string;
+  height?: string;
 }
-

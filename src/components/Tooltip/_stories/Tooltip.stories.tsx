@@ -5,7 +5,6 @@ import { Button, Tooltip } from '@components/index';
 import Typography from '@components/Typography';
 import { Args } from '@storybook/react';
 import clsx from 'clsx';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Tooltip.stories.module.scss';
 
@@ -14,7 +13,6 @@ import { argsTypes } from './argsTypes';
 export default {
   title: 'Components/Tooltip/Stories',
   component: Tooltip,
-  decorators: [withDesign],
   argTypes: argsTypes
 };
 
@@ -61,11 +59,7 @@ export const TooltipWithFull = (): JSX.Element => {
       <Tooltip
         title="Заголовок текста подсказки"
         description="Сюда вы можете добавить текст/подсказу для компонента"
-        list={[
-          'Здесь, вы можете',
-          'добавить нужную вам',
-          'информацию по пунктам'
-        ]}
+        list={['Здесь, вы можете', 'добавить нужную вам', 'информацию по пунктам']}
       >
         <Button variant="secondary">Наведи на меня курсор!</Button>
       </Tooltip>
@@ -108,25 +102,13 @@ export const TooltipBehaviors = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.behaviors}>
-        <Tooltip
-          placement="top"
-          behavior="hover"
-          description="Tooltip on hover"
-        >
+        <Tooltip placement="top" behavior="hover" description="Tooltip on hover">
           <Button variant="secondary">Тултип появится при наведении!</Button>
         </Tooltip>
-        <Tooltip
-          placement="top"
-          behavior="click"
-          description="Tooltip on click"
-        >
+        <Tooltip placement="top" behavior="click" description="Tooltip on click">
           <Button variant="secondary">Тултип появится при клике!</Button>
         </Tooltip>
-        <Tooltip
-          placement="top"
-          behavior="focus"
-          description="Tooltip on focus"
-        >
+        <Tooltip placement="top" behavior="focus" description="Tooltip on focus">
           <Button variant="secondary">Тултип появится при фокусе!</Button>
         </Tooltip>
       </div>
@@ -159,9 +141,7 @@ export const TooltipWithCustom = (): JSX.Element => {
         list={['Внутри вы можете добавить', 'Нужную вам разметку']}
         render={renderCustom()}
       >
-        <Button variant="secondary">
-          Нажми на меня для появления тултипа!
-        </Button>
+        <Button variant="secondary">Нажми на меня для появления тултипа!</Button>
       </Tooltip>
     </div>
   );

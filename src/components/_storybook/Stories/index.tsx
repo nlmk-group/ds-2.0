@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
+import { Tabs, Typography } from '@components/index';
 import { argsTypes } from '@components/Radio/_stories/argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from './components/Editor';
 import FigmaEmbed from './components/FigmaEmbed';
@@ -28,9 +28,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -39,7 +39,7 @@ const Stories = (): JSX.Element => {
           <Editor
             description="Компонент radio по умолчанию."
             code={`import { useState } from 'react';
-import { Radio } from '@nlmk/ds-2.0';             
+import { Radio } from '@nlmk/ds-2.0';
 
 export default  App = () => {
   const [checked, setChecked] = useState('yes');
@@ -65,16 +65,16 @@ export default  App = () => {
 
           <Editor
             description="Компонент может быть неактивным для пользователя (disabled)."
-            code={`import { Radio, Typography } from '@nlmk/ds-2.0';              
-            
-export default  App = () =>( 
-  <>  
-    <Radio disabled /> 
+            code={`import { Radio, Typography } from '@nlmk/ds-2.0';
+
+export default  App = () =>(
+  <>
+    <Radio disabled />
     <Typography variant="Body1-Bold" color="disabled">Я Радиокнопка</Typography>
   </>
 )`}
-          />          
-          
+          />
+
           <Properties argsTypes={argsTypes} />
         </>
       )}

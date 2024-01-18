@@ -6,7 +6,7 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tab, Tabs, Typography } from '@components/index';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -37,9 +37,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -47,9 +47,9 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Тултип по умолчанию c описанием."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента">
       <Button variant="secondary">Наведи на меня курсор!</Button>
@@ -61,32 +61,32 @@ export default  App = () => (
 
           <Editor
             description="Тултип с разными вариантами расположения."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
-              export default  App = () => ( 
-                <div style=${style}>
-                  <Tooltip placement="top" description="Tooltip on top">
-                    <Button variant="secondary">Наведи, тултип будет сверху!</Button>
-                  </Tooltip>
-                  <Tooltip placement="bottom" description="Tooltip on bottom">
-                    <Button variant="secondary">Наведи, тултип будет снизу!</Button>
-                  </Tooltip>
-                  <Tooltip placement="left" description="Tooltip on left">
-                    <Button variant="secondary">Наведи, тултип будет слева!</Button>
-                  </Tooltip>
-                  <Tooltip placement="right" description="Tooltip on right">
-                    <Button variant="secondary">Наведи, тултип будет справа!</Button>
-                  </Tooltip>
-                </div>
-              )
-            `}
+export default  App = () => (
+  <div style=${style}>
+    <Tooltip placement="top" description="Tooltip on top">
+      <Button variant="secondary">Наведи, тултип будет сверху!</Button>
+    </Tooltip>
+    <Tooltip placement="bottom" description="Tooltip on bottom">
+      <Button variant="secondary">Наведи, тултип будет снизу!</Button>
+    </Tooltip>
+    <Tooltip placement="left" description="Tooltip on left">
+      <Button variant="secondary">Наведи, тултип будет слева!</Button>
+    </Tooltip>
+    <Tooltip placement="right" description="Tooltip on right">
+      <Button variant="secondary">Наведи, тултип будет справа!</Button>
+    </Tooltip>
+  </div>
+)
+`}
           />
 
           <Editor
             description="Тултип с вариантами поведения на отображение."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Tooltip
       placement="top"
@@ -116,9 +116,9 @@ export default  App = () => (
 
           <Editor
             description="Тултип с отображением заголовка, описания и списка."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Tooltip
       title="Заголовок текста подсказки"
@@ -138,9 +138,9 @@ export default  App = () => (
 
           <Editor
             description="По умолчанию Тултип не открывается вокруг disabled элементов. Для того чтобы Тултип открывался корректно в этом случае, нужно оборачиваемый элемент обернуть простым элементом-оберткой, например span."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента">
       <span>
@@ -156,7 +156,7 @@ export default  App = () => (
 
           <Editor
             description="Тултип с кастомной JSX разметкой внутри"
-            code={`import { Tooltip, Button, Typography, Icon } from '@nlmk/ds-2.0';              
+            code={`import { Tooltip, Button, Typography, Icon } from '@nlmk/ds-2.0';
 
 const RenderCustom = () => {
   return (
@@ -177,7 +177,7 @@ const RenderCustom = () => {
   );
 };
 
-export default  App = () =>( 
+export default  App = () =>(
   <div style=${style}>
     <Tooltip
       behavior="click"

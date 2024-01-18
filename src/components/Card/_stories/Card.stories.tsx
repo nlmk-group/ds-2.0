@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 
 import { Card } from '@components/index';
 import { Meta } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -27,7 +26,7 @@ const withWrapper = (Story: any) => (
 export default {
   title: 'Components/Card/Stories',
   component: Card,
-  decorators: [withDesign, withWrapper],
+  decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Card>;
 

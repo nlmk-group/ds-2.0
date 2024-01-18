@@ -4,12 +4,7 @@ import { normalizeDateToYear } from '@components/DatePicker/subcomponents/YearsC
 import { useIsMidYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidYear = ({
-  dateCurrentHover,
-  withPeriod,
-  dateFrom,
-  dateTo
-}: useIsMidYearParams) =>
+export const useIsMidYear = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidYearParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {
@@ -20,10 +15,8 @@ export const useIsMidYear = ({
       const normalizedDayAsDate = normalizeDateToYear(dayAsDate);
       if (dateCurrentHover) {
         return Boolean(
-          (isAfter(normalizedDayAsDate, normalizedFromDate) &&
-            isBefore(normalizedDayAsDate, dateCurrentHover)) ||
-            (isBefore(normalizedDayAsDate, normalizedFromDate) &&
-              isAfter(normalizedDayAsDate, dateCurrentHover))
+          (isAfter(normalizedDayAsDate, normalizedFromDate) && isBefore(normalizedDayAsDate, dateCurrentHover)) ||
+            (isBefore(normalizedDayAsDate, normalizedFromDate) && isAfter(normalizedDayAsDate, dateCurrentHover))
         );
       } else {
         return Boolean(

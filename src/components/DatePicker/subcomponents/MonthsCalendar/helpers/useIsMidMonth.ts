@@ -4,12 +4,7 @@ import { normalizeDateToMonth } from '@components/DatePicker/subcomponents/Month
 import { useIsMidMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidMonth = ({
-  dateCurrentHover,
-  withPeriod,
-  dateFrom,
-  dateTo
-}: useIsMidMonthParams) =>
+export const useIsMidMonth = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidMonthParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {
@@ -20,10 +15,8 @@ export const useIsMidMonth = ({
       const normalizedDayAsDate = normalizeDateToMonth(dayAsDate);
       if (dateCurrentHover) {
         return Boolean(
-          (isAfter(normalizedDayAsDate, normalizedDateFrom) &&
-            isBefore(normalizedDayAsDate, dateCurrentHover)) ||
-            (isBefore(normalizedDayAsDate, normalizedDateFrom) &&
-              isAfter(normalizedDayAsDate, dateCurrentHover))
+          (isAfter(normalizedDayAsDate, normalizedDateFrom) && isBefore(normalizedDayAsDate, dateCurrentHover)) ||
+            (isBefore(normalizedDayAsDate, normalizedDateFrom) && isAfter(normalizedDayAsDate, dateCurrentHover))
         );
       } else {
         return Boolean(

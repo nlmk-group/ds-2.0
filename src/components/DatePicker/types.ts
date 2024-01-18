@@ -8,7 +8,7 @@ export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 export type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 export type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 
-interface BaseProps {
+export interface BaseProps {
   id?: number | string;
   locale?: string;
   className?: string;
@@ -33,7 +33,7 @@ interface BaseProps {
   size?: sizesMappingInput;
 }
 
-interface BaseRegularProps extends BaseProps {
+export interface BaseRegularProps extends BaseProps {
   value?: Date;
   shiftFrom?: undefined;
   shiftTo?: undefined;
@@ -45,19 +45,19 @@ interface BaseRegularProps extends BaseProps {
   level?: TLevel;
 }
 
-interface DatePickerRegularProps extends BaseRegularProps {
+export interface DatePickerRegularProps extends BaseRegularProps {
   type?: 'date';
 }
 
-interface DateTimePickerRegularProps extends BaseRegularProps {
+export interface DateTimePickerRegularProps extends BaseRegularProps {
   type?: 'time';
 }
 
-interface DateTimeSecondsPickerRegularProps extends BaseRegularProps {
+export interface DateTimeSecondsPickerRegularProps extends BaseRegularProps {
   type?: 'seconds';
 }
 
-interface BasePeriodProps extends BaseProps {
+export interface BasePeriodProps extends BaseProps {
   valueFrom?: Date;
   valueTo?: Date;
   onChange?: undefined;
@@ -65,7 +65,7 @@ interface BasePeriodProps extends BaseProps {
   level?: undefined;
 }
 
-interface DatePickerPeriodProps extends BasePeriodProps {
+export interface DatePickerPeriodProps extends BasePeriodProps {
   shiftFrom?: undefined;
   shiftTo?: undefined;
   shiftLength?: 2 | 3;
@@ -73,7 +73,7 @@ interface DatePickerPeriodProps extends BasePeriodProps {
   type?: 'period';
 }
 
-interface DatePickerUnFullPeriodProps extends BaseProps {
+export interface DatePickerUnFullPeriodProps extends BaseProps {
   valueFrom?: Date;
   valueTo?: Date;
   onChange?: undefined;
@@ -86,7 +86,7 @@ interface DatePickerUnFullPeriodProps extends BaseProps {
   level?: TLevel;
 }
 
-interface DatePickerPeriodShiftProps extends BasePeriodProps {
+export interface DatePickerPeriodShiftProps extends BasePeriodProps {
   shiftFrom?: number;
   shiftTo?: number;
   shiftLength?: 2 | 3;

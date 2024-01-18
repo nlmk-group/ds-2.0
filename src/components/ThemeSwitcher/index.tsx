@@ -1,5 +1,6 @@
-import {useThemeSwitcher} from '@components/Theme/hooks';
 import React, { FC } from 'react';
+
+import { useThemeSwitcher } from '@components/Theme/hooks';
 
 import styles from './ThemeSwitcher.module.scss';
 

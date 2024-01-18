@@ -1,22 +1,22 @@
-import React, {useState} from 'react';
-
-import {argsTypes} from './argsTypes';
-import {Tab, Tabs, Typography} from '@components/index';
+import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
+
+import { argsTypes } from './argsTypes';
 
 const InputSliderStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const sliderDefaultCode = `
-import { useState } from 'react';
-import { InputSlider } from '@nlmk/ds-2.0';
+  const sliderDefaultCode = `import { useState } from 'react';
+import { InputSlider, Chip } from '@nlmk/ds-2.0';
+
 const App = () => {
     const [value, setValue] = useState(20);
 
@@ -33,15 +33,18 @@ const App = () => {
                 value={value}
                 onChange={handleChange}
             />
-        </div>  
+            <Chip>{value}</Chip>
+        </div>
     );
   };
+
 export default App;
 `;
 
-  const sliderDisabledCode = `
-import { useState } from 'react';
+  const sliderDisabledCode = `import { useState } from 'react';
+
 import { InputSlider } from '@nlmk/ds-2.0';
+
 const App = () => {
     const [value, setValue] = useState(500);
 
@@ -59,9 +62,10 @@ const App = () => {
                 onChange={handleChange}
                 disabled
             />
-        </div>  
+        </div>
     );
   };
+
 export default App;
 `;
 
@@ -77,34 +81,33 @@ export default App;
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)}/>
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)}/>
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)}/>
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) === 0 && (
         <>
           <Editor
+            height={350}
             description="InputSlider по умолчанию. Позволяет пользователю выбирать значение от 0 до 100."
             code={sliderDefaultCode}
           />
-
           <Editor
+            height={350}
             description="Неактивный InputSlider. Слайдер установлен в состояние 'disabled', что предотвращает взаимодействие пользователя."
             code={sliderDisabledCode}
           />
-
-          <Properties argsTypes={argsTypes}/>
+          <Properties argsTypes={argsTypes} />
         </>
       )}
       {Number(activeTab) === 1 && (
-        <FigmaEmbed
-          url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20852&mode=design&t=awyt3Fzj1XS6th7v-1"/>
+        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20852&mode=design&t=awyt3Fzj1XS6th7v-1" />
       )}
       {Number(activeTab) === 2 && (
         <Typography variant="Heading4" color="primary">
-          <Tests componentName="InputSlider"/>
+          <Tests componentName="InputSlider" />
         </Typography>
       )}
     </div>

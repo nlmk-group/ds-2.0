@@ -2,24 +2,13 @@ import { useIsSelectedMonthParams } from '@components/DatePicker/subcomponents/M
 import { isAfter, isBefore, isEqual } from 'date-fns';
 
 export const useIsSelectedMonth =
-  ({
-    withPeriod,
-    dateFrom,
-    dateTo,
-    selectedDate,
-    panelValue
-  }: useIsSelectedMonthParams) =>
+  ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: useIsSelectedMonthParams) =>
     (dayAsDate: Date) => {
       return Boolean(
         withPeriod
-          ? (withPeriod &&
-            dateFrom &&
-            dateTo &&
-            isBefore(dayAsDate, dateTo) &&
-            isAfter(dayAsDate, dateFrom)) ||
+          ? (withPeriod && dateFrom && dateTo && isBefore(dayAsDate, dateTo) && isAfter(dayAsDate, dateFrom)) ||
             (withPeriod && dateTo && isEqual(dateTo, dayAsDate)) ||
             (withPeriod && dateFrom && isEqual(dateFrom, dayAsDate))
-          : selectedDate?.getFullYear() === panelValue?.getFullYear() &&
-            selectedDate?.getMonth() === dayAsDate.getMonth()
+          : selectedDate?.getFullYear() === panelValue?.getFullYear() && selectedDate?.getMonth() === dayAsDate.getMonth()
       );
     };

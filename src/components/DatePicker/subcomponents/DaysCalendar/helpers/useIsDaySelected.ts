@@ -15,13 +15,11 @@ export const useIsDaySelected = ({
   useCallback(
     (dayAsDate: Date) => {
       const normalizedDayAsDate = normalizeDateToDay(dayAsDate);
-      const normalizedSelectedDate =
-        selectedDate && normalizeDateToDay(selectedDate);
+      const normalizedSelectedDate = selectedDate && normalizeDateToDay(selectedDate);
       if (withPeriod) {
         if (dateFrom && dateTo) {
           return Boolean(
-            (isBefore(normalizedDayAsDate, dateTo) &&
-              isAfter(normalizedDayAsDate, dateFrom)) ||
+            (isBefore(normalizedDayAsDate, dateTo) && isAfter(normalizedDayAsDate, dateFrom)) ||
               isEqual(dateTo, normalizedDayAsDate) ||
               isEqual(dateFrom, normalizedDayAsDate)
           );
@@ -30,10 +28,7 @@ export const useIsDaySelected = ({
         }
       } else {
         if (withTime) {
-          return Boolean(
-            normalizedSelectedDate &&
-              isEqual(normalizedSelectedDate, normalizedDayAsDate)
-          );
+          return Boolean(normalizedSelectedDate && isEqual(normalizedSelectedDate, normalizedDayAsDate));
         }
         return Boolean(
           normalizedSelectedDate &&

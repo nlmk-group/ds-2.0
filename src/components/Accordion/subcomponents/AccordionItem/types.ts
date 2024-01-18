@@ -1,5 +1,6 @@
-import { iconsMapping, sizesMapping, variantsMapping } from '@components/Accordion/enums';
 import { ReactNode } from 'react';
+
+import { iconsMapping, sizesMapping, variantsMapping } from '@components/Accordion/enums';
 
 export type TAccordionItem = {
   id: string | number;
@@ -7,7 +8,7 @@ export type TAccordionItem = {
   content: ReactNode;
   disabled?: boolean;
   initiallyExpanded?: boolean;
-}
+};
 
 export interface IAccordionItemProps extends Omit<TAccordionItem, 'content'> {
   isExpanded: boolean;

@@ -6,5 +6,5 @@ export enum severityMapping {
   success = 'success',
   error = 'error',
   warning = 'warning',
-  info = 'info',
+  info = 'info'
 }

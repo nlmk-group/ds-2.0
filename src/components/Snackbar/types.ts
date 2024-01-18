@@ -1,4 +1,4 @@
-import { PropsWithChildren, MouseEventHandler } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 
 export interface ISnackbar extends PropsWithChildren<any> {
   color?: string;

@@ -1,13 +1,15 @@
-import { Meta } from '@storybook/addon-docs';
-import SkeletonLoader from '@components/SkeletonLoader';
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import SkeletonLoader from '..';
 import Stories from './Stories';
 
 <Meta
-  title="Components/SkeletonLoader/Docs"
+  title="Components/SkeletonLoader/Info"
   component={SkeletonLoader}
-  parameters={{    
+  parameters={{
     jest: ['SkeletonLoader.test.tsx']
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

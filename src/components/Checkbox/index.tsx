@@ -21,12 +21,8 @@ const Checkbox: FC<ICheckboxProps> = ({
   className
 }) => {
   const colorClassName = styles[color as keyof typeof styles];
-  const IconComponent = multiple
-    ? CustomCheckboxMultipleIcon
-    : CustomCheckboxIcon;
-  const checkmarkStyle = multiple
-    ? styles['checkmark-multiple']
-    : styles.checkmark;
+  const IconComponent = multiple ? CustomCheckboxMultipleIcon : CustomCheckboxIcon;
+  const checkmarkStyle = multiple ? styles['checkmark-multiple'] : styles.checkmark;
 
   return (
     <div className={clsx(styles['label-wrapper'], className)}>
@@ -48,11 +44,7 @@ const Checkbox: FC<ICheckboxProps> = ({
           </span>
           <span className={styles['hover-circle']} />
         </div>
-        {label && (
-          <span className={clsx(styles.text, disabled && styles.disabled)}>
-            {label}
-          </span>
-        )}
+        {label && <span className={clsx(styles.text, disabled && styles.disabled)}>{label}</span>}
       </label>
     </div>
   );

@@ -4,9 +4,7 @@
  * @return Массив объектов, представляющих единицы времени.
  */
 const createTimeArray = (length: number) =>
-  new Array(length)
-    .fill(null)
-    .map((_, idx) => ({ value: idx, label: idx.toString().padStart(2, '0') }));
+  new Array(length).fill(null).map((_, idx) => ({ value: idx, label: idx.toString().padStart(2, '0') }));
 
 // Создаем массив из 24 элементов для представления часов
 export const hours = createTimeArray(24);

@@ -28,31 +28,15 @@ export const MonthsCalendar: FC<MonthsCalendarProps> = ({
 }) => {
   const language = useLocale();
   const isTodayMonth = useIsTodayMonth({ panelValue });
-  const dateFrom = useMemo(
-    () => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()),
-    [valueFrom]
-  );
-  const dateTo = useMemo(
-    () => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()),
-    [valueTo]
-  );
+  const dateFrom = useMemo(() => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()), [valueFrom]);
+  const dateTo = useMemo(() => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
   const currentHover = useMemo(
     () => (!valueFrom || !valueTo ? innerCurrentHover : null),
     [innerCurrentHover, valueFrom, valueTo]
   );
   const dateCurrentHover = useMemo(
-    () =>
-      currentHover &&
-      new Date(
-        currentHover.getFullYear(),
-        currentHover.getMonth(),
-        1,
-        0,
-        0,
-        0,
-        0
-      ),
+    () => currentHover && new Date(currentHover.getFullYear(), currentHover.getMonth(), 1, 0, 0, 0, 0),
     [currentHover]
   );
 
@@ -86,19 +70,14 @@ export const MonthsCalendar: FC<MonthsCalendarProps> = ({
   return (
     <div className={styles.root}>
       {locale[language].months.map((month, idx) => {
-        const dayAsDate = new Date(
-          (panelValue || new Date()).getFullYear(),
-          idx
-        );
+        const dayAsDate = new Date((panelValue || new Date()).getFullYear(), idx);
         return (
           <Day
             onClick={() => onSelect && onSelect(dayAsDate)}
             onHover={() => withPeriod && setCurrentHover(dayAsDate)}
             isHoverState={Boolean(dateCurrentHover)}
             selected={isSelectedMonth(dayAsDate)}
-            disabled={
-              disableChange || isDisabled(panelValue?.getFullYear(), idx)
-            }
+            disabled={disableChange || isDisabled(panelValue?.getFullYear(), idx)}
             today={isTodayMonth(idx)}
             start={isStartMonth(dayAsDate)}
             mid={isMidMonth(dayAsDate)}

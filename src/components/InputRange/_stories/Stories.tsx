@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
+
 import argsTypes from './argsTypes';
 
 const Stories = (): JSX.Element => {
@@ -28,9 +29,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -39,7 +40,7 @@ const Stories = (): JSX.Element => {
           <Editor
             description="Компонент InputRange представляет собой отрезок с min/max величинами."
             code={`import { InputRange } from '@nlmk/ds-2.0';
-import { useState } from 'react'              
+import { useState } from 'react'
 
 export default  App = () => {
   const [value, setInputRangeValue] = useState({ min: 20, max: 80 });
@@ -65,7 +66,7 @@ export default  App = () => {
           <Editor
             description="Компонент не доступен для ввода/изменения."
             code={`import { InputRange } from '@nlmk/ds-2.0';
-import { useState } from 'react'              
+import { useState } from 'react'
 
 export default  App = () => {
   const [value, setInputRangeValue] = useState({ min: 20, max: 80 });

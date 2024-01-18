@@ -9,9 +9,7 @@ describe('src/components/Typography', () => {
 
   test('Render Typography component', () => {
     const text = 'Header1';
-    const { container, getByText } = render(
-      <Typography variant="Heading1">{text}</Typography>
-    );
+    const { container, getByText } = render(<Typography variant="Heading1">{text}</Typography>);
     expect(container.getElementsByTagName('span')[0]).toBeInTheDocument();
     expect(getByText(text)).toBeInTheDocument();
   });
@@ -28,16 +26,12 @@ describe('src/components/Typography', () => {
   });
 
   test('Applies additional className', () => {
-    const { container } = render(
-      <Typography className="custom-class">{text}</Typography>
-    );
+    const { container } = render(<Typography className="custom-class">{text}</Typography>);
     expect(container.firstChild).toHaveClass('custom-class');
   });
 
   test('Passes additional props to the element', () => {
-    const { getByText } = render(
-      <Typography data-testid="typography">{text}</Typography>
-    );
+    const { getByText } = render(<Typography data-testid="typography">{text}</Typography>);
     expect(getByText(text)).toHaveAttribute('data-testid', 'typography');
   });
 });

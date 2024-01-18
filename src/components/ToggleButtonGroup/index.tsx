@@ -1,60 +1,60 @@
-import React, { FC, Fragment, useState, useMemo } from 'react'
-import {
-  IToggleButtonGroup,
-  IToggleButtonGroupItem,
-  IBaseToggleButtonGroupItem,
-  IActiveHelper
-} from './types'
-import styles from './ToggleButtonGroup.module.scss';
-import ToggleButton from './ToggleButton'
-import { Divider } from '..';
+import React, { Children, cloneElement, createContext, isValidElement, ReactNode, useEffect, useState } from 'react';
+
 import { clsx } from 'clsx';
+
+import { IButtonGroupProperties, IToggleButtonGroup, IToggleButtonGroupItemWithProps } from './types';
+
+import styles from './ToggleButtonGroup.module.scss';
+
 import { sizeMapping, statusMapping } from './enums';
+import ToggleButton from './ToggleButton';
 
-const ToggleButtonGroup: FC<IToggleButtonGroup> = ({
+export const ButtonGroupProperties = createContext<IButtonGroupProperties>({
+  size: sizeMapping.default,
+  status: statusMapping.default
+});
+
+const ToggleButtonGroup = ({
   className = '',
-  btnGroup,
   size = sizeMapping.default,
-  status = statusMapping.default
-}) => {
-  const toggleBtn = (id: number, isActive: boolean) => {
-    const result = group.map((btn: IActiveHelper) => ({
-      ...btn,
-      active: btn.id === id ? !isActive : false
-    }));
-    setGroup(result)
-  }
+  status = statusMapping.default,
+  children
+}: IToggleButtonGroup) => {
+  const [activeId, setActiveId] = useState<number | null>(null);
+  const [childrenWithProps, setChildrenWithProps] = useState<ReactNode | ReactNode[]>(null);
 
-  const createGroup = () => {
-    return btnGroup.map((btn: IBaseToggleButtonGroupItem, index) => ({
-      ...btn,
-      id: index,
-      onBtnClick: toggleBtn
-    }));
+  const handleToggle = (index: number) => {
+    setActiveId(activeId === index ? null : index);
   };
-  
-  const transformedBtnGroup = useMemo(() => createGroup(), [btnGroup])
-  const [group, setGroup] = useState<IActiveHelper[]>(transformedBtnGroup.map((btn) => ({id: btn.id, active: !!btn.active})));
+  useEffect(() => {
+    setChildrenWithProps(
+      Children.map(children, (child, index) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, {
+            active: activeId === index,
+            isLast: index === Children.toArray(children).length - 1,
+            toggleButton: () => handleToggle(index)
+          } as IToggleButtonGroupItemWithProps);
+        }
+        return child;
+      })
+    );
+  }, [activeId]);
+
+  const defaultProperties = {
+    size,
+    status
+  };
 
   return (
-    <div className={clsx(className, styles.wrapper)}>
-      {transformedBtnGroup.map((btn: IToggleButtonGroupItem, index: number) => (
-        <Fragment key={index}>
-          <ToggleButton
-            {...btn}
-            active={group[index].active}
-            size={size}
-            status={btn.status || status}
-          />
-          {btn !== transformedBtnGroup.at(-1) && (
-            <div className={styles['divider-wrapper']}>
-              <Divider type="vertical" className={styles['divider-space-color']} />
-            </div>
-          )}
-        </Fragment>
-      ))}
-    </div>
-  )
-}
+    <ButtonGroupProperties.Provider value={defaultProperties}>
+      <div className={clsx(styles.wrapper, className)} data-testid="TOGGLE_BUTTON_WRAPPER">
+        {childrenWithProps}
+      </div>
+    </ButtonGroupProperties.Provider>
+  );
+};
 
-export default ToggleButtonGroup
+ToggleButtonGroup.Button = ToggleButton;
+
+export default ToggleButtonGroup;

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
-import argsTypes from './argsTypes'
+
+import argsTypes from './argsTypes';
 import {
+  FILE_NAME,
   FILES_ADD_FILE_BUTTON,
   FILES_DEFAULT,
   FILES_DESCRIPTION,
   FILES_WITH_CHECKBOXES,
   FILES_WITH_TITLE,
-  FILE_NAME,
   LONG_LABEL
 } from './text';
 
@@ -36,19 +37,19 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
-        <>          
+        <>
           <Editor
             description="Компонент файла, представляет собой иконку с названием файла."
-            code={`import { File } from '@nlmk/ds-2.0';              
+            code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <File label="${FILES_DEFAULT}" />
   </>
@@ -58,9 +59,9 @@ export default  App = () => (
 
           <Editor
             description="Файл может содержать длинный заголовок, если это было указано."
-            code={`import { File } from '@nlmk/ds-2.0';              
+            code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <File
       label="${LONG_LABEL}"
@@ -73,9 +74,9 @@ export default  App = () => (
 
           <Editor
             description="Компонент файл может содержать дополнительное описание. Дополнительное описание передается при помощи параметра description."
-            code={`import { File } from '@nlmk/ds-2.0';              
+            code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <File
       description="${FILES_DESCRIPTION}"
@@ -88,9 +89,9 @@ export default  App = () => (
 
           <Editor
             description="В компоненте файла слева может быть использована иконка файла (по умолчанию), чекбокс (свойство: checked), иконка IconTick24 (свойство: tick) или же не быть ничего."
-            code={`import { File } from '@nlmk/ds-2.0';              
+            code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <File label="${FILE_NAME}" />
     <File label="${FILE_NAME}" checked />
@@ -103,9 +104,9 @@ export default  App = () => (
 
           <Editor
             description="В компоненте файла справа находится блок управления: до трех кнопок (удалить, загрузить, комментировать) или одна кнопка добавления файла. Добавление кнопок осуществляется при помощи свойств: removed - кнопка удаления, saved - кнопка загрузки, commented - комментировать, addFile - добавить файлы. Для каждой кнопки существует соответствующий ей обработчик события onClick: removedOnClick, savedOnClick, commentedOnClick, addFileOnClick."
-            code={`import { File } from '@nlmk/ds-2.0';              
+            code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <File
       label="${FILE_NAME}"
@@ -151,9 +152,9 @@ export default  App = () => (
 
           <Editor
             description="Компонент AttachFiles может быть без заголовка: несколько файлов, объединенных в один контейнер."
-            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';              
+            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <AttachFiles>
       <File
@@ -174,9 +175,9 @@ export default  App = () => (
 
           <Editor
             description="Компонент AttachFiles может быть с заголовком. Для передачи заголовка используется свойство - title. В качестве заголовка используется компонент File в любой из возможных вариаций."
-            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';              
+            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <AttachFiles title={<File label="${FILES_WITH_TITLE}" checked />}>
       <File label="${FILE_NAME}" />
@@ -191,9 +192,9 @@ export default  App = () => (
 
           <Editor
             description={FILES_ADD_FILE_BUTTON}
-            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';              
+            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <AttachFiles title={<File label="${FILE_NAME}" addFile />}>
       <File label="${FILE_NAME}" />
@@ -208,9 +209,9 @@ export default  App = () => (
 
           <Editor
             description={FILES_WITH_CHECKBOXES}
-            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';              
+            code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <AttachFiles
       title={
@@ -245,7 +246,7 @@ export default  App = () => (
       )}
       {Number(activeTab) == 2 && (
         <Typography variant="Heading4" color="primary">
-          <Tests componentName="AttachFiles"/>
+          <Tests componentName="AttachFiles" />
         </Typography>
       )}
     </div>

@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/addon-docs';
-import { Chip } from '../index';
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Chip from '..';
 import Stories from './Stories';
 
 <Meta
-  title="Components/Chip/Docs"
+  title="Components/Chip/Info"
   component={Chip}
   parameters={{
     design: {
@@ -14,4 +14,6 @@ import Stories from './Stories';
   }}
 />
 
-<Stories/>
+<Unstyled>
+  <Stories />
+</Unstyled>

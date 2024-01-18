@@ -3,12 +3,7 @@ import { useCallback } from 'react';
 import { useIsMidDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidDay = ({
-  dateCurrentHover,
-  withPeriod,
-  dateFrom,
-  dateTo
-}: useIsMidDayParams) =>
+export const useIsMidDay = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidDayParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {
@@ -16,15 +11,11 @@ export const useIsMidDay = ({
       }
       if (dateCurrentHover) {
         return Boolean(
-          (isAfter(dayAsDate, dateFrom) &&
-            isBefore(dayAsDate, dateCurrentHover)) ||
-            (isBefore(dayAsDate, dateFrom) &&
-              isAfter(dayAsDate, dateCurrentHover))
+          (isAfter(dayAsDate, dateFrom) && isBefore(dayAsDate, dateCurrentHover)) ||
+            (isBefore(dayAsDate, dateFrom) && isAfter(dayAsDate, dateCurrentHover))
         );
       } else {
-        return Boolean(
-          dateTo && isBefore(dayAsDate, dateTo) && isAfter(dayAsDate, dateFrom)
-        );
+        return Boolean(dateTo && isBefore(dayAsDate, dateTo) && isAfter(dayAsDate, dateFrom));
       }
     },
     [dateCurrentHover, dateFrom, dateTo, withPeriod]

@@ -228,9 +228,9 @@ const TimePicker: FC<TTimePickerType> = ({
     </div>
   );
 
-  return pseudo ? (
-    <PseudoInput label={label}>{pseudoTime}</PseudoInput>
-  ) : isOpenOnInputFocus ? (
+  if (pseudo) return <PseudoInput label={label}>{pseudoTime}</PseudoInput>
+
+  if (isOpenOnInputFocus) return (
     <ClickAwayListener
       onClickAway={() => {
         handleAccept();
@@ -238,9 +238,9 @@ const TimePicker: FC<TTimePickerType> = ({
     >
       {renderTimepicker()}
     </ClickAwayListener>
-  ) : (
-    <>{renderTimepicker()}</>
-  );
+  )
+
+  else return <>{renderTimepicker()}</>
 };
 
 export default TimePicker;

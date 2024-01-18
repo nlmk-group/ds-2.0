@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconPdfFile24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M7.06972 15.4409C7.06972 15.0423 6.79316 14.8047 6.30519 14.8047C6.10592 14.8047 5.97098 14.8243 5.90039 14.8431V16.1219C5.98397 16.1408 6.08671 16.147 6.22833 16.147C6.74846 16.147 7.06972 15.8842 7.06972 15.4409Z"
         fill={htmlColor || 'currentColor'}

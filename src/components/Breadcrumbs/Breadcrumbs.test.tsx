@@ -1,15 +1,17 @@
 import React from 'react';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+
 import { Breadcrumbs } from '@components/index';
-import { Breadcrumb } from './types'
-import { breadcrumbs } from './constants';
-import LinkComponent from './LinkComponent';
+import { fireEvent, render, screen, within } from '@testing-library/react';
+
+import { Breadcrumb } from './types';
+
 import BasicBreadcrumbs from './BasicBreadcrumbs';
-import ShortenBreadcrumbs from './ShortenBreadcrumbs';
+import { breadcrumbs } from './constants';
 import { targetMapping } from './enums';
+import LinkComponent from './LinkComponent';
+import ShortenBreadcrumbs from './ShortenBreadcrumbs';
 
 describe('src/components/Breadcrumbs', () => {
-
   test('It should render an Breadcrumbs', () => {
     const { container } = render(<Breadcrumbs crumbs={breadcrumbs} />);
     const breadcrumbsComponent = container.getElementsByTagName('div')[0];
@@ -18,7 +20,6 @@ describe('src/components/Breadcrumbs', () => {
 
   // LinkComponent
   describe('While rendering LinkComponent', () => {
-
     const crumb = breadcrumbs.at(0) as Breadcrumb;
 
     test('It should render the LinkComponent', () => {
@@ -36,7 +37,7 @@ describe('src/components/Breadcrumbs', () => {
     test('It should render the LinkComponent with correct url', () => {
       render(<LinkComponent {...crumb} />);
       const breadcrumbsComponent = screen.getByTestId('LINK_HREF');
-      expect(breadcrumbsComponent).toHaveAttribute('href', crumb.href)
+      expect(breadcrumbsComponent).toHaveAttribute('href', crumb.href);
     });
 
     Object.values(targetMapping).forEach((target: targetMapping) => {
@@ -94,7 +95,7 @@ describe('src/components/Breadcrumbs', () => {
       test('It should render the list of LinkComponent', () => {
         render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
         const showListBtn = screen.getByTestId('HIDDEN_OPTIONS_BUTTON');
-        fireEvent.click(showListBtn)
+        fireEvent.click(showListBtn);
         expect(screen.getByTestId('HIDDEN_OPTIONS_LIST')).toBeInTheDocument();
       });
 
@@ -102,10 +103,10 @@ describe('src/components/Breadcrumbs', () => {
       test('It should render the list of LinkComponent', () => {
         render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
         const showListBtn = screen.getByTestId('HIDDEN_OPTIONS_BUTTON');
-        fireEvent.click(showListBtn)
-        const optionList = within(screen.getByTestId('HIDDEN_OPTIONS_LIST'))
+        fireEvent.click(showListBtn);
+        const optionList = within(screen.getByTestId('HIDDEN_OPTIONS_LIST'));
         expect(optionList.getAllByTestId('LINK_HREF').length).toBe(breadcrumbs.length - 2);
       });
-    })
+    });
   });
 });

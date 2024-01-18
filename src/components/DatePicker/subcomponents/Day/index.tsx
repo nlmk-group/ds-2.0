@@ -21,11 +21,7 @@ export const Day: FC<DayProps & PropsWithChildren> = ({
 }) => {
   return (
     <div
-      onClick={
-        !disabled
-          ? (onClick as MouseEventHandler<HTMLDivElement> | undefined)
-          : undefined
-      }
+      onClick={!disabled ? (onClick as MouseEventHandler<HTMLDivElement> | undefined) : undefined}
       className={clsx(styles.root, {
         [styles.selected]: selected,
         [styles.disabled]: disabled,

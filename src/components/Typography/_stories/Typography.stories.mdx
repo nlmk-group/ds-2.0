@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/addon-docs';
-import Typography from '../index';
-import Stories from './Stories'
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Typography from '..';
+import Stories from './Stories';
 
 <Meta
-  title="Components/Typography/Docs"
+  title="Components/Typography/Info"
   component={Typography}
   parameters={{
     design: {
@@ -14,4 +14,6 @@ import Stories from './Stories'
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

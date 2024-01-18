@@ -10,7 +10,4 @@ export interface BreadcrumbsProps {
   width?: number;
 }
 
-export type TNodeWidth = Pick<
-  HTMLElement,
-  'offsetWidth' | 'scrollWidth'
->;
+export type TNodeWidth = Pick<HTMLElement, 'offsetWidth' | 'scrollWidth'>;

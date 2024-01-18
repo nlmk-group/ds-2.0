@@ -254,15 +254,15 @@ export const DatePicker: TDatePickerProps = ({
     </div>
   );
 
+  const BodyHandler = () => {
+    if (pseudo) return <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
+    if (isOpenOnFocus) return <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>
+    else return <>{renderDatepicker()}</>
+  }
+
   return (
     <LocaleProvider value={locale}>
-      {pseudo ? (
-        <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
-      ) : isOpenOnFocus ? (
-        <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>
-      ) : (
-        <>{renderDatepicker()}</>
-      )}
+      <BodyHandler />
     </LocaleProvider>
   );
 };

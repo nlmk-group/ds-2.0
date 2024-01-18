@@ -6,20 +6,10 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-export const IconJsonOutlined16: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+export const IconJsonOutlined16: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M5 1.75C3.48122 1.75 2.25 2.98122 2.25 4.5V6C2.25 6.69036 1.69036 7.25 1 7.25V8.75C1.69036 8.75 2.25 9.30964 2.25 10V11.5C2.25 13.0188 3.48122 14.25 5 14.25H6V12.75H5C4.30964 12.75 3.75 12.1904 3.75 11.5V10C3.75 9.21199 3.41856 8.50138 2.88747 8C3.41856 7.49862 3.75 6.78801 3.75 6V4.5C3.75 3.80964 4.30964 3.25 5 3.25H6V1.75H5Z"
         fill={htmlColor || 'currentColor'}

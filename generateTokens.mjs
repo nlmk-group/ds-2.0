@@ -1,8 +1,7 @@
-import fetch from 'node-fetch';
-import fs from 'fs';
 import { exec } from 'child_process';
+import fs from 'fs';
+import fetch from 'node-fetch';
 import StyleDictionary from 'style-dictionary';
-
 
 const projectPath = process.env.GITLAB_PROJECT_PATH;
 const tokenName = 'tokens%2Ejson'; // символ "." меняем на %2E
@@ -25,7 +24,7 @@ function fixTypographyCSS(token) {
     Black: 900
   };
 
-  const convertPercentsToEm = (percent) => {
+  const convertPercentsToEm = percent => {
     const num = Number(percent.slice(0, -1)) / 100;
     return `${num}em`;
   };
@@ -56,9 +55,9 @@ if (!fs.existsSync(tokensBuildDir)) {
 async function getToken() {
   try {
     const res = await fetch(tokenUrl, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "PRIVATE-TOKEN": process.env.GITLAB_ACCESS_KEY
+        'PRIVATE-TOKEN': process.env.GITLAB_ACCESS_KEY
       }
     });
     return await res.json();
@@ -68,7 +67,7 @@ async function getToken() {
 }
 
 const response = await getToken();
-const token = JSON.parse(Buffer.from(response.content, "base64").toString());
+const token = JSON.parse(Buffer.from(response.content, 'base64').toString());
 
 // Сохраняем base-token в файл
 fs.writeFileSync(`${tokensBuildDir}/${baseTokenName}`, JSON.stringify(token, null, 2));
@@ -141,29 +140,28 @@ function buildCss(filename) {
       return (
         `/**\n* Do not edit directly\n* Generated on ${new Date()}\n*/\n\n:root {\n` +
         dictionary.allTokens
-          .map((token) => {
+          .map(token => {
             return prepareToken(token);
           })
           .join('\n') +
         `\n}`
       );
     }
-  })
+  });
 
-  StyleDictionary
-    .extend({
-      "source": [`${tokensBuildDir}/${filename}.json`],
-      "platforms": {
-        "css": {
-          "transformGroup": "css",
-          "buildPath": cssBuildPath,
-          "files": [{
-            "destination": `${filename}.css`,
-            'format': 'custom/css/variables'
-          }]
-        }
+  StyleDictionary.extend({
+    source: [`${tokensBuildDir}/${filename}.json`],
+    platforms: {
+      css: {
+        transformGroup: 'css',
+        buildPath: cssBuildPath,
+        files: [
+          {
+            destination: `${filename}.css`,
+            format: 'custom/css/variables'
+          }
+        ]
       }
-    })
-    .buildAllPlatforms();
-
+    }
+  }).buildAllPlatforms();
 }

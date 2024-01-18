@@ -1,22 +1,18 @@
 import React from 'react';
 
-import {Spinner, Icon} from '@components/index';
-import { withDesign } from 'storybook-addon-designs';
+import { Icon, Spinner } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import argsTypes from './argsTypes';
+import { COLORS, DEFAULT_TEXT, ICON, TEXT_M_SIZE } from './text';
 
-import { DEFAULT_TEXT, TEXT_M_SIZE, COLORS, ICON } from './text';
-
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80 }}>{Story()}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
 export default {
   title: 'Components/Spinner/Stories',
   component: Spinner,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 

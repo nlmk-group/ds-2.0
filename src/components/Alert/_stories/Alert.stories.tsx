@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 
 import { Alert } from '@components/index';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -12,7 +11,6 @@ import { DEFAULT_ALERT } from './text';
 export default {
   title: 'Components/Alert/Stories',
   component: Alert,
-  decorators: [withDesign],
   argTypes: argsTypes
 };
 

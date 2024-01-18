@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
-import argsTypes from './argsTypes'
-import {
-  breadcrumbsSimple,
-  breadcrumbsTarget,
-  breadcrumbsThreeOptions
-} from '../constants';
+
+import { breadcrumbsSimple, breadcrumbsTarget, breadcrumbsThreeOptions } from '../constants';
+import argsTypes from './argsTypes';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -31,9 +28,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -41,9 +38,9 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Обычное использование компонента."
-            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';              
+            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsSimple, null, 4)}} />
   </>
@@ -53,9 +50,9 @@ export default  App = () => (
 
           <Editor
             description="Компоненту можно задать значение ширины в процентах. Процент будет считываться отширины родителя."
-            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';              
+            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsThreeOptions, null, 4)}} />
     <Breadcrumbs width="50" crumbs={${JSON.stringify(breadcrumbsThreeOptions, null, 4)}} />
@@ -66,16 +63,15 @@ export default  App = () => (
 
           <Editor
             description="Компонент может содержать ссылки с разными target."
-            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';              
+            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsTarget, null, 4)}} />
   </>
 )
             `}
           />
-
 
           <Properties argsTypes={argsTypes} />
         </>

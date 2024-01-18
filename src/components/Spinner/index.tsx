@@ -4,15 +4,10 @@ import { ISpinner, sizes } from './types';
 
 import styles from './Spinner.module.scss';
 
-const spinnerSizes: { [key: string]: number } = { l: 40, m: 32 };
+const spinnerSizes: { [key: string]: number } = { xxl: 96, xl: 56, l: 40, m: 32 };
 const defaultSize = spinnerSizes[sizes.LARGE];
 
-const Spinner: FC<ISpinner> = ({
-  size = defaultSize,
-  bgColor,
-  color,
-  children
-}) => {
+const Spinner: FC<ISpinner> = ({ size = defaultSize, bgColor, color, children }) => {
   const spinnerSize = spinnerSizes[size] ?? defaultSize;
   const isIcon = children?.type.name === 'Icon';
 
@@ -30,28 +25,12 @@ const Spinner: FC<ISpinner> = ({
             role="progressbar"
           >
             <svg viewBox="22 22 44 44">
-              <circle
-                cx="44"
-                cy="44"
-                r="20"
-                fill="none"
-                strokeWidth="4"
-              ></circle>
+              <circle cx="44" cy="44" r="20" fill="none" strokeWidth="4"></circle>
             </svg>
           </span>
-          <span
-            className={styles.loader}
-            style={{ width: spinnerSize, height: spinnerSize, color }}
-            role="progressbar"
-          >
+          <span className={styles.loader} style={{ width: spinnerSize, height: spinnerSize, color }} role="progressbar">
             <svg viewBox="22 22 44 44">
-              <circle
-                cx="44"
-                cy="44"
-                r="20"
-                fill="none"
-                strokeWidth="4"
-              ></circle>
+              <circle cx="44" cy="44" r="20" fill="none" strokeWidth="4"></circle>
             </svg>
           </span>
         </>

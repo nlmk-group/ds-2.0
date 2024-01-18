@@ -28,42 +28,22 @@ export const DaysCalendar: FC<CalendarProps> = ({
 }) => {
   const isToday = useIsToday();
   const dateFrom = useMemo(
-    () =>
-      valueFrom &&
-      new Date(
-        valueFrom.getFullYear(),
-        valueFrom.getMonth(),
-        valueFrom.getDate()
-      ),
+    () => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth(), valueFrom.getDate()),
     [valueFrom]
   );
   const dateTo = useMemo(
-    () =>
-      valueTo &&
-      new Date(valueTo.getFullYear(), valueTo.getMonth(), valueTo.getDate()),
+    () => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth(), valueTo.getDate()),
     [valueTo]
   );
-  const year = useMemo(
-    () => (panelValue ?? new Date()).getFullYear(),
-    [panelValue]
-  );
-  const month = useMemo(
-    () => (panelValue ?? new Date()).getMonth(),
-    [panelValue]
-  );
+  const year = useMemo(() => (panelValue ?? new Date()).getFullYear(), [panelValue]);
+  const month = useMemo(() => (panelValue ?? new Date()).getMonth(), [panelValue]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
   const currentHover = useMemo(
     () => (!valueFrom || !valueTo ? innerCurrentHover : null),
     [innerCurrentHover, valueFrom, valueTo]
   );
   const dateCurrentHover = useMemo(
-    () =>
-      currentHover &&
-      new Date(
-        currentHover.getFullYear(),
-        currentHover.getMonth(),
-        currentHover.getDate()
-      ),
+    () => currentHover && new Date(currentHover.getFullYear(), currentHover.getMonth(), currentHover.getDate()),
     [currentHover]
   );
 

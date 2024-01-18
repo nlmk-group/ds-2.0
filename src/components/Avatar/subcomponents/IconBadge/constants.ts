@@ -1,1 +1,1 @@
-export const SPECIAL_ICONS = ['IconBirthday16']
+export const SPECIAL_ICONS = ['IconBirthday16'];

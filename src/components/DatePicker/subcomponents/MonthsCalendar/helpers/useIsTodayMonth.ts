@@ -3,8 +3,5 @@ import { useIsTodayMonthParams } from '@components/DatePicker/subcomponents/Mont
 export const useIsTodayMonth =
   ({ panelValue }: useIsTodayMonthParams) =>
     (monthNumber: number) => {
-      return Boolean(
-        new Date().getMonth() === monthNumber &&
-        new Date().getFullYear() === panelValue?.getFullYear()
-      );
+      return Boolean(new Date().getMonth() === monthNumber && new Date().getFullYear() === panelValue?.getFullYear());
     };

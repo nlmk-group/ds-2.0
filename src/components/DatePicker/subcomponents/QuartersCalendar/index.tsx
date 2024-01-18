@@ -28,31 +28,15 @@ export const QuartersCalendar: FC<QuartersCalendarProps> = ({
 }) => {
   const language = useLocale();
   const isTodayQuarter = useIsTodayQuarter({ panelValue });
-  const dateFrom = useMemo(
-    () => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()),
-    [valueFrom]
-  );
-  const dateTo = useMemo(
-    () => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()),
-    [valueTo]
-  );
+  const dateFrom = useMemo(() => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()), [valueFrom]);
+  const dateTo = useMemo(() => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
   const currentHover = useMemo(
     () => (!valueFrom || !valueTo ? innerCurrentHover : null),
     [innerCurrentHover, valueFrom, valueTo]
   );
   const dateCurrentHover = useMemo(
-    () =>
-      currentHover &&
-      new Date(
-        currentHover.getFullYear(),
-        currentHover.getMonth(),
-        1,
-        0,
-        0,
-        0,
-        0
-      ),
+    () => currentHover && new Date(currentHover.getFullYear(), currentHover.getMonth(), 1, 0, 0, 0, 0),
     [currentHover]
   );
 
@@ -86,20 +70,14 @@ export const QuartersCalendar: FC<QuartersCalendarProps> = ({
   return (
     <div className={styles.root}>
       {locale[language].quarters.map((quarter, idx) => {
-        const dayAsDate = new Date(
-          (panelValue || new Date()).getFullYear(),
-          quarter.month
-        );
+        const dayAsDate = new Date((panelValue || new Date()).getFullYear(), quarter.month);
         return (
           <Day
             onClick={() => onSelect && onSelect(dayAsDate)}
             onHover={() => withPeriod && setCurrentHover(dayAsDate)}
             isHoverState={Boolean(dateCurrentHover)}
             selected={isSelectedQuarter(dayAsDate, quarter)}
-            disabled={
-              disableChange ||
-              isDisabled(panelValue?.getFullYear(), quarter.month)
-            }
+            disabled={disableChange || isDisabled(panelValue?.getFullYear(), quarter.month)}
             today={isTodayQuarter(idx)}
             start={isStartQuarter(dayAsDate)}
             mid={isMidQuarter(dayAsDate)}

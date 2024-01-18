@@ -1,12 +1,11 @@
 import { sizesMapping } from '@components/declaration';
-import {
-  orientationMapping,
-  indicatorStatusMapping
-} from '../enums';
+
+import { indicatorStatusMapping, orientationMapping } from '../enums';
 
 const argsTypes = {
   children: {
-    description: 'Свойство компонента Card, которое позволяет передавать элементы JSX или ReactNode для отображения в Card',
+    description:
+      'Свойство компонента Card, которое позволяет передавать элементы JSX или ReactNode для отображения в Card',
     control: { type: 'text' }
   },
   className: {

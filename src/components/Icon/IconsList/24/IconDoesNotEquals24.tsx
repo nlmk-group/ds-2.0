@@ -6,20 +6,10 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-const IconDoesNotEquals24: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+const IconDoesNotEquals24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M18.9096 19.1419L4.28632 4.51868L2.87211 5.9329L17.4954 20.5562L18.9096 19.1419Z"
         fill={htmlColor || 'currentColor'}

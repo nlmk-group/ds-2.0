@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import '@components/_storybook/Stories/styles.css';
+import { argsTypes } from './argsTypes';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,29 +27,30 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
+            height={150}
             description="Компонент бэйджа по умолчанию."
-            code={`import { Badge } from '@nlmk/ds-2.0';              
+            code={`import { Badge } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
-  <Badge>1</Badge>   
+  <Badge>1</Badge>
 )`}
           />
 
           <Editor
             description="Badge является компоненетом с обязательно примененными стилем: цветом (color). Доступные стили: primary (отображается по умолчанию), secondary, grey, error, warning, success."
-            code={`import { Badge } from '@nlmk/ds-2.0';              
-            
+            code={`import { Badge } from '@nlmk/ds-2.0';
+
 export default  App = () =>(
-  <>   
+  <>
     <Badge>1</Badge>
     <Badge color="secondary">1</Badge>
     <Badge color="grey">1</Badge>
@@ -63,9 +63,9 @@ export default  App = () =>(
 
           <Editor
             description="Badge представлен в нескольких вариациях (стилях): solid (с заливкой) и outline (с контуром)."
-            code={`import { Badge } from '@nlmk/ds-2.0';              
+            code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
+export default  App = () =>(
   <>
     <Badge variant="outline">1</Badge>
     <Badge color="secondary" variant="outline">1</Badge>
@@ -79,11 +79,11 @@ export default  App = () =>(
 
           <Editor
             description="Компонент Badge доступен в трёх размерах: s - маленький бэйдж с высотой 16px, m - средний бэйдж, его высота 24px и l - большой бэйдж высотой 26px."
-            code={`import { Badge } from '@nlmk/ds-2.0';              
+            code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
+export default  App = () =>(
   <>
-    <Badge size="s">1</Badge>    
+    <Badge size="s">1</Badge>
     <Badge size="m">1</Badge>
     <Badge size="l">1</Badge>
   </>

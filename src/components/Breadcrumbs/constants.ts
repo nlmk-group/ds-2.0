@@ -1,5 +1,6 @@
 import { Breadcrumb } from './types';
-import { targetMapping } from './enums'
+
+import { targetMapping } from './enums';
 
 export const breadcrumbsSimple: Breadcrumb[] = [
   {
@@ -73,4 +74,4 @@ export const breadcrumbsTarget: Breadcrumb[] = [
     label: `${targetMapping._top}`,
     target: targetMapping._top
   }
-]
+];

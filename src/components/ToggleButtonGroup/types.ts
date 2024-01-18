@@ -1,51 +1,40 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { sizeMapping, statusMapping } from './enums';
+import { IconColor } from '@components/Icon/types';
 
 export type SizeType = `${sizeMapping}`;
-export type StatusType =`${statusMapping}`;
-
-export interface IBaseToggleButtonGroupItem {
-  label: string;
-  active?: boolean;
-  status?: StatusType;
-  withIcon?: boolean;
-  customIcon?: JSX.Element;
-  disabled?: boolean;
-  action?: MouseEventHandler<HTMLDivElement>;
-  actionNumber?: string;
-}
+export type StatusType = `${statusMapping}`;
 
 export interface IToggleButtonGroup {
   className?: string;
-  btnGroup: IBaseToggleButtonGroupItem[];
   status?: StatusType;
   size?: SizeType;
+  children: ReactNode;
 }
 
-export interface IToggleButtonGroupItem extends IBaseToggleButtonGroupItem {
-  id: number;
-  onBtnClick: (id: number, isActive: boolean)=>void;
+export interface IToggleButtonGroupItemWithProps {
+  className?: string;
+  status?: StatusType;
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLDivElement> | null;
+  active?: boolean;
+  toggleButton?: ()=>void;
+  isLast?: boolean;
+  children: ReactNode;
 }
 
-export interface IToggleButtonGroupItemWithProps extends IToggleButtonGroupItem {
+export interface IButtonGroupProperties {
   size: SizeType;
   status: StatusType;
 }
 
-interface IHelper {
-  size: SizeType;
-}
-
-export interface IBadgeHelper extends IHelper {
+export interface IButtonProperties {
   status: StatusType;
-  actionNumber: string;
 }
 
-export interface IIconHelper extends IHelper {
-  customIcon: JSX.Element | null;
-}
-
-export interface IActiveHelper {
-  id: number;
-  active: boolean;
+export interface IWithIcon {
+  name?: string;
+  color?: IconColor;
+  htmlColor?: string;
+  containerSize?: 16 | 24 | 32;
 }

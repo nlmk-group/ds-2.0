@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  gap: 2px;
+}
+
+.wrapper-horizontal {
+  flex-direction: row;
+}
+
+.wrapper-vertical {
+  flex-direction: column;
+}
+
+.test-custom-style {
+  border: var(--1-border) solid var(--primary-blue-900);
+  margin: var(--24-space);
+  background: var(--info-lightblue-200);
+}
+
+.showcase-wrapper-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--12-space);
+}
+
+.showcase-wrapper-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--12-space);
+}

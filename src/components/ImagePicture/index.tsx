@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react'
-import clsx from 'clsx'
-import { ImagePictureRadius, ImagePictureRatios } from './enums'
-import { IImagePicture } from './types'
-import styles from './ImagePicture.module.scss'
-import EmptyIcon from './subcomponents/EmptyIcon'
-import Icon from '@components/Icon'
+import React, { FC, useState } from 'react';
+
+import Icon from '@components/Icon';
+import clsx from 'clsx';
+
+import { IImagePicture } from './types';
+
+import styles from './ImagePicture.module.scss';
+
+import { ImagePictureRadius, ImagePictureRatios } from './enums';
+import EmptyIcon from './subcomponents/EmptyIcon';
 
 const ImagePicture: FC<IImagePicture> = ({
   src,
@@ -14,16 +18,16 @@ const ImagePicture: FC<IImagePicture> = ({
   zoom = true,
   ...restImgProps
 }) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const shouldShowZoomOverlay = zoom && src && isHovered
+  const [isHovered, setIsHovered] = useState(false);
+  const shouldShowZoomOverlay = zoom && src && isHovered;
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    setIsHovered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
+    setIsHovered(false);
+  };
 
   return (
     <div
@@ -34,14 +38,22 @@ const ImagePicture: FC<IImagePicture> = ({
       onMouseLeave={handleMouseLeave}
       data-testid="IMAGE_PICTURE"
     >
-      {shouldShowZoomOverlay && <>
-        <div className={styles['hover-icon']}><Icon name='IconZoomIn24' containerSize={32} /></div>
-        <div className={styles['hover-overlay']} />
-      </>}
+      {shouldShowZoomOverlay && (
+        <>
+          <div className={styles['hover-icon']}>
+            <Icon name="IconZoomIn24" containerSize={32} />
+          </div>
+          <div className={styles['hover-overlay']} />
+        </>
+      )}
       {src && <img src={src} className={styles.image} alt={restImgProps.alt} {...restImgProps} />}
-      {!src && <div className={styles['empty-icon']}><EmptyIcon /></div>}
+      {!src && (
+        <div className={styles['empty-icon']}>
+          <EmptyIcon />
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ImagePicture;

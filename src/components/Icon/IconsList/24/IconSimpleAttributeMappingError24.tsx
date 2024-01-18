@@ -6,30 +6,12 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-const IconSimpleAttributeMappingError24: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+const IconSimpleAttributeMappingError24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <g clipPath="url(#clip0_28632_300873)">
-        <mask
-          id="masked"
-          maskUnits="userSpaceOnUse"
-          x="0"
-          y="-2"
-          width="26"
-          height="26"
-          className={styles.mask}
-        >
+        <mask id="masked" maskUnits="userSpaceOnUse" x="0" y="-2" width="26" height="26" className={styles.mask}>
           <path
             fillRule="evenodd"
             clipRule="evenodd"

@@ -1,8 +1,8 @@
 import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
-import InputMaskCorrect from '@components/InputMaskCorrect';
 import { IconSchedule24 } from '@components/Icon/IconsList/24';
 import { Input } from '@components/index';
+import InputMaskCorrect from '@components/InputMaskCorrect';
 import {
   timeFormat,
   timeMask,

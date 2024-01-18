@@ -2,17 +2,9 @@ import React, { FC } from 'react';
 
 import { IIconsProps } from '../types';
 
-export const InVisibleSvgIcon: FC<IIconsProps> = ({
-  htmlColor
-}): JSX.Element => {
+export const InVisibleSvgIcon: FC<IIconsProps> = ({ htmlColor }): JSX.Element => {
   return (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -9,11 +9,7 @@ import { isEqual, startOfDay, startOfMonth, startOfYear } from 'date-fns';
  * @param {Date} valueTo - вторая дата для сравнения.
  * @returns {boolean} Возвращает true, если даты равны с учетом заданного уровня детализации, иначе false.
  */
-export const isEqualDatesAfterLevel = (
-  level: string,
-  valueFrom: Date,
-  valueTo: Date
-): boolean => {
+export const isEqualDatesAfterLevel = (level: string, valueFrom: Date, valueTo: Date): boolean => {
   // Определяем действия по уровням.
   const levelActions = {
     day: (date: Date) => startOfDay(date),
@@ -33,17 +29,10 @@ export const isEqualDatesAfterLevel = (
 
   if (level === 'quarter') {
     // Если уровень - квартал, сравниваем кварталы и года.
-    const quarterKeyValueFrom =
-      quarterQuarterKeys[
-        valueFrom.getMonth() as keyof typeof quarterQuarterKeys
-      ];
-    const quarterKeyValueTo =
-      quarterQuarterKeys[valueTo.getMonth() as keyof typeof quarterQuarterKeys];
+    const quarterKeyValueFrom = quarterQuarterKeys[valueFrom.getMonth() as keyof typeof quarterQuarterKeys];
+    const quarterKeyValueTo = quarterQuarterKeys[valueTo.getMonth() as keyof typeof quarterQuarterKeys];
 
-    return (
-      quarterKeyValueFrom === quarterKeyValueTo &&
-      valueFrom.getFullYear() === valueTo.getFullYear()
-    );
+    return quarterKeyValueFrom === quarterKeyValueTo && valueFrom.getFullYear() === valueTo.getFullYear();
   }
 
   // Сравниваем даты.

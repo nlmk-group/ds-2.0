@@ -6,5 +6,5 @@
 :root {
   --block-shadow: [object Object];
   --popup-shadow: [object Object];
-  --switch-shadow: [object Object],[object Object],[object Object];
+  --switch-shadow: [object Object], [object Object], [object Object];
 }

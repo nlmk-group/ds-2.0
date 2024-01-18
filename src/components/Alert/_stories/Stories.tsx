@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import '@components/_storybook/Stories/styles.css';
+import { argsTypes } from './argsTypes';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -22,15 +21,15 @@ const Stories = (): JSX.Element => {
         title="Alert"
         description="Компонент Alert представляет собой компонент уведомления или предупреждения. Он используется для отображения важных сообщений пользователю с цветовой кодировкой в зависимости от уровня серьёзности ситуации. Поддерживает несколько вариантов отображения: стандартный, заполненный и с обведённым контуром."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Alert"
+        codeLink="https://git.nlmk.com/design-system/open-source/-/tree/master/src/components/Alert"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A9739&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -38,12 +37,12 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Компонент Alert разработан в разных вариантах: успешным, с ошибкой, с предупреждением и в качестве информационного оповещения. Для собственных вариантов используйте className."
-            code={`import { Alert } from '@nlmk/ds-2.0';              
+            code={`import { Alert } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
-  <>   
+  <>
     <Alert title="Оповещение по умолчанию" />
-    <Alert severity="error" title="Оповещение об ошибке" />  
+    <Alert severity="error" title="Оповещение об ошибке" />
     <Alert severity="warning" title="Оповещение предупреждения" />
     <Alert severity="info" title="Информационное оповещение" />
   </>
@@ -52,9 +51,9 @@ export default  App = () =>(
 
           <Editor
             description="Компонент Alert можно использовать с описанием, которое можно добавить к оповещению."
-            code={`import { Alert } from '@nlmk/ds-2.0';              
+            code={`import { Alert } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
+export default  App = () =>(
   <>
   <Alert
     severity="error"
@@ -68,19 +67,19 @@ export default  App = () =>(
 
           <Editor
             description="Компонент Alert может быть добавлен с кнопками, которые выполняют различные действия."
-            code={`import { Alert, Button, Icon } from '@nlmk/ds-2.0';              
+            code={`import { Alert, Button, Icon } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
-  <Alert severity="info" 
-    action={      
+export default  App = () =>(
+  <Alert severity="info"
+    action={
       <Button variant="text" onClick={() => alert('Я нажал!')}>
         <Icon
           name="IconClose24"
           containerSize={24}
           htmlColor='var(--ac-alert-info-text)'
         />
-      </Button>      
-    } 
+      </Button>
+    }
     title="Оповещение с кнопкой"/>
 )`}
           />

@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { Alert } from '@components/index';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { severityMapping } from './enums';
-import styles from './Alert.module.scss'
+import { fireEvent, render, screen } from '@testing-library/react';
 
+import styles from './Alert.module.scss';
+
+import { severityMapping } from './enums';
 
 describe('src/components/Alert', () => {
   const TITLE = 'Hello World'!;
@@ -24,51 +25,31 @@ describe('src/components/Alert', () => {
   // Check success variants
   test('It should render success standard alert', () => {
     render(<Alert title={TITLE} />);
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-success')).toBe(true)
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-success')).toBe(true);
   });
 
   // Check error variants
   test('It should render error standard alert', () => {
-    render(
-      <Alert
-        title={TITLE}
-        severity={severityMapping.error}
-      />
-    );
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-error')).toBe(true)
+    render(<Alert title={TITLE} severity={severityMapping.error} />);
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-error')).toBe(true);
   });
 
   // Check warning variants
   test('It should render warning standard alert', () => {
-    render(
-      <Alert
-        title={TITLE}
-        severity={severityMapping.warning}
-      />
-    );
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-warning')).toBe(true)
+    render(<Alert title={TITLE} severity={severityMapping.warning} />);
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-warning')).toBe(true);
   });
 
   // Check info variants
   test('It should render info standard alert', () => {
-    render(
-      <Alert
-        title={TITLE}
-        severity={severityMapping.info}
-      />
-    );
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-info')).toBe(true)
+    render(<Alert title={TITLE} severity={severityMapping.info} />);
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-info')).toBe(true);
   });
 
   // Check adding custom styles
   test('It should render alert with custom styles', () => {
-    render(
-      <Alert
-        title={TITLE}
-        className={styles['test-custom-style']}
-      />
-    );
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('test-custom-style')).toBe(true)
+    render(<Alert title={TITLE} className={styles['test-custom-style']} />);
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('test-custom-style')).toBe(true);
   });
 
   test('It should render alert with children', () => {
@@ -84,12 +65,7 @@ describe('src/components/Alert', () => {
 
   describe('While rendering alert with button', () => {
     const mockCallBack = jest.fn();
-    const AlertWithButton = () => (
-      <Alert
-        title={TITLE}
-        close={mockCallBack}
-      />
-    )
+    const AlertWithButton = () => <Alert title={TITLE} close={mockCallBack} />;
     test('It should render alert with close button', () => {
       const { container } = render(<AlertWithButton />);
       const button = container.getElementsByTagName('button')[0];
@@ -99,7 +75,7 @@ describe('src/components/Alert', () => {
     test('It should call function on click action', () => {
       const { container } = render(<AlertWithButton />);
       const button = container.getElementsByTagName('button')[0];
-      fireEvent.click(button)
+      fireEvent.click(button);
       expect(mockCallBack).toHaveBeenCalledTimes(1);
     });
   });

@@ -1,7 +1,7 @@
 const argsTypes = {
   size: {
-    description: 'Размер спиннера `m | l`',
-    control: { type: 'select', options: ['m', 'l'] },
+    description: 'Размер спиннера `m | l | xl | xxl`',
+    control: { type: 'select', options: ['m', 'l', 'xl', 'xxl'] },
     table: {
       defaultValue: {
         summary: 'l'
@@ -28,7 +28,7 @@ const argsTypes = {
   },
   children: {
     description: 'React children элемент, может быть только компонентом Icon',
-    control: { type: 'object' }    
+    control: { type: 'object' }
   }
 };
 

@@ -1,17 +1,10 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
+import { Slider } from '@components/Slider';
+
 import { IInputRangeProps } from './types';
 
-import {Slider} from '@components/Slider';
-
-const InputRange: FC<IInputRangeProps> = ({
-  min,
-  max,
-  step = 1,
-  value,
-  onChange,
-  disabled = false
-}) => {
+const InputRange: FC<IInputRangeProps> = ({ min, max, step = 1, value, onChange, disabled = false }) => {
   const [minValue, setMinValue] = useState(value ? value.min : min);
   const [maxValue, setMaxValue] = useState(value ? value.max : max);
 

@@ -1,8 +1,11 @@
-import React, { FC, useState, MouseEvent } from 'react';
-import { ISwitch } from './types';
-import styles from './Switch.module.scss';
-import { clsx } from 'clsx';
+import React, { FC, MouseEvent, useState } from 'react';
+
 import Typography from '@components/Typography';
+import { clsx } from 'clsx';
+
+import { ISwitch } from './types';
+
+import styles from './Switch.module.scss';
 
 const Switch: FC<ISwitch> = ({
   className = '',
@@ -20,44 +23,28 @@ const Switch: FC<ISwitch> = ({
     if (onChange !== null) {
       onChange(e);
     }
-  }
+  };
 
   return (
     <label
-      className={clsx(
-        className,
-        styles.wrapper,
-        disabled && styles.disabled
-      )}
+      className={clsx(className, styles.wrapper, disabled && styles.disabled)}
       tabIndex={!disabled ? 0 : undefined}
       aria-checked={isChecked}
       aria-disabled={disabled}
       role="switch"
-      data-testid='SWITCH_WRAPPER'
+      data-testid="SWITCH_WRAPPER"
     >
-      <div
-        data-testid='CONTROLLER'
-        className={styles.root}
-        onClick={handleOnClick}
-      >
+      <div data-testid="CONTROLLER" className={styles.root} onClick={handleOnClick}>
         <div
-          data-testid='TRACK'
-          className={clsx(
-            styles['track'],
-            isChecked
-              ? styles['track-active']
-              : styles['track-inactive']
-          )}
+          data-testid="TRACK"
+          className={clsx(styles['track'], isChecked ? styles['track-active'] : styles['track-inactive'])}
         >
           <div
-            data-testid='TOUCH'
+            data-testid="TOUCH"
             className={clsx(
               styles.touch,
               disabled && !isChecked && styles['touch-disabled'],
-              isChecked
-                ? styles.active
-                : styles.inactive
-
+              isChecked ? styles.active : styles.inactive
             )}
           >
             <div className={styles.iconWrapper}>
@@ -65,30 +52,19 @@ const Switch: FC<ISwitch> = ({
               {!isChecked && inactiveIcon !== null && inactiveIcon}
             </div>
             <div
-              data-testid='FOCUS'
-              className={clsx(
-                styles.focus,
-                isChecked
-                  ? styles['focus-active']
-                  : styles['focus-inactive']
-              )}
+              data-testid="FOCUS"
+              className={clsx(styles.focus, isChecked ? styles['focus-active'] : styles['focus-inactive'])}
             />
           </div>
         </div>
       </div>
       {label.length !== 0 && (
-        <span
-          className={styles.label}
-          data-testid='LABEL'
-          onClick={handleOnClick}
-        >
-          <Typography variant='Body1-Medium'>
-            {label}
-          </Typography>
+        <span className={styles.label} data-testid="LABEL" onClick={handleOnClick}>
+          <Typography variant="Body1-Medium">{label}</Typography>
         </span>
       )}
     </label>
-  )
-}
+  );
+};
 
-export default Switch
+export default Switch;

@@ -89,7 +89,9 @@ export const argsTypes = {
     control: { type: 'number' }
   },
   badgeIconName: {
-    description: `Имя иконки для бейджа. Если это ${SPECIAL_ICONS.join(' | ')}, то бейдж будет отображен на специальной подложке` ,
+    description: `Имя иконки для бейджа. Если это ${SPECIAL_ICONS.join(
+      ' | '
+    )}, то бейдж будет отображен на специальной подложке`,
     table: {
       defaultValue: {
         summary: 'undefined'

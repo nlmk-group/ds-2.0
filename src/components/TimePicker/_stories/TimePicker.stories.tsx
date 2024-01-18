@@ -6,7 +6,6 @@ import { TTimePickerType } from '@components/TimePicker/types';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 import { addMinutes } from 'date-fns';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './TimePicker.module.scss';
 
@@ -15,7 +14,7 @@ const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</d
 export default {
   title: 'Components/TimePicker/Stories',
   component: TimePicker,
-  decorators: [withDesign, withWrapper],
+  decorators: [withWrapper],
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: argsTypes
 } as Meta<typeof TimePicker>;

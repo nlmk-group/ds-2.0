@@ -1,32 +1,31 @@
 import React from 'react';
 
 import Accordion from '@components/Accordion';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Accordion.module.scss';
 
-import { argsTypes } from './argsTypes';
-import { ACCORDION_ITEMS_MOCK, ACCORDION_MULTI_EXPANDED_MOCK, FOLDED_ACCORDION_ITEMS_MOCK } from '../_mock/accordionItems';
+import {
+  ACCORDION_ITEMS_MOCK,
+  ACCORDION_MULTI_EXPANDED_MOCK,
+  FOLDED_ACCORDION_ITEMS_MOCK
+} from '../_mock/accordionItems';
+import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
 import { IAccordionProps } from '../types';
-import { variantsMapping, iconsMapping, sizesMapping } from '../enums';
+import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80 }}>{Story()}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
 export default {
   title: 'Components/Accordion/Stories',
   component: Accordion,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 
 export const AccordionDefault = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Accordion
-          {...argTypes}
-        />
+      <Accordion {...argTypes} />
     </div>
   );
 };
@@ -38,11 +37,10 @@ AccordionDefault.args = {
 export const AccordionSizes = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      {Object.values(sizesMapping).map((size, index) => (<Accordion
-        key={index}
-        {...argTypes}
-        size={size}
-        />))};
+      {Object.values(sizesMapping).map((size, index) => (
+        <Accordion key={index} {...argTypes} size={size} />
+      ))}
+      ;
     </div>
   );
 };
@@ -56,19 +54,11 @@ export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
     <div className={styles.wrapper}>
       {Object.values(iconsMapping).map((icon, index) => (
         <>
-          <Accordion
-            key={index}
-            {...argTypes}
-            startIcon={icon}
-          />
-          <Accordion
-            key={index}
-            {...argTypes}
-            startIcon={null}
-            endIcon={icon}
-          />
+          <Accordion key={index} {...argTypes} startIcon={icon} />
+          <Accordion key={index} {...argTypes} startIcon={null} endIcon={icon} />
         </>
-      ))};
+      ))}
+      ;
     </div>
   );
 };
@@ -80,10 +70,7 @@ AccordionIcons.args = {
 export const AccordionPaper = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Accordion
-          {...argTypes}
-          variant={variantsMapping.paper}
-        />
+      <Accordion {...argTypes} variant={variantsMapping.paper} />
     </div>
   );
 };
@@ -95,10 +82,7 @@ AccordionPaper.args = {
 export const FoldedAccordion = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Accordion
-          {...argTypes}
-          startIcon={iconsMapping.plus}
-        />
+      <Accordion {...argTypes} startIcon={iconsMapping.plus} />
     </div>
   );
 };
@@ -110,10 +94,7 @@ FoldedAccordion.args = {
 export const MultiExpandedAccordion = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Accordion
-          {...argTypes}
-          multipleExpanded
-        />
+      <Accordion {...argTypes} multipleExpanded />
     </div>
   );
 };

@@ -16,12 +16,8 @@
     "deps": false
   },
   "max-len": 72,
-  "scopeDescriptions": [
-    "Здесь должен быть указан номер задачи"
-  ],
-  "subjectDescriptions": [
-    "Здесь указываются изменения проекта, произведенные в коммите"
-  ],
+  "scopeDescriptions": ["Здесь должен быть указан номер задачи"],
+  "subjectDescriptions": ["Здесь указываются изменения проекта, произведенные в коммите"],
   "showInvalidHeader": true,
   "scopeRequired": true
 }

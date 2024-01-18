@@ -22,8 +22,7 @@ export const dateTimeMaskWithoutYear = '99.99 99:99';
 export const dateTimeSecondsMaskWithoutYear = '99.99 99:99:99';
 export const periodYearMask = '9999 — 9999';
 export const periodMonthMask = '99.9999 — 99.9999';
-export const periodQuarterMask = (quarter: string) =>
-  `9 ${quarter} 9999 — 9 ${quarter} 9999`;
+export const periodQuarterMask = (quarter: string) => `9 ${quarter} 9999 — 9 ${quarter} 9999`;
 export const periodDefaultMask = '99.99.9999 — 99.99.9999';
 export const periodWithShiftsMaskDefault = '99.99.9999/3 — 99.99.9999/3';
 export const periodWithShiftsMaskCustom = '99.99.9999/2 — 99.99.9999/2';

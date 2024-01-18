@@ -6,13 +6,11 @@ import { isAfter, isBefore } from 'date-fns';
 export const useIsDisabled = (enabledFrom?: Date, enabledTo?: Date) =>
   useCallback(
     (date: Date) => {
-      const normalizedEnabledFrom =
-        enabledFrom && normalizeDateToDay(enabledFrom);
+      const normalizedEnabledFrom = enabledFrom && normalizeDateToDay(enabledFrom);
       const normalizedEnabledTo = enabledTo && normalizeDateToDay(enabledTo);
       const normalizedDate = normalizeDateToDay(date);
       return !!(
-        (normalizedEnabledFrom &&
-          isBefore(normalizedDate, normalizedEnabledFrom)) ||
+        (normalizedEnabledFrom && isBefore(normalizedDate, normalizedEnabledFrom)) ||
         (normalizedEnabledTo && isAfter(normalizedDate, normalizedEnabledTo))
       );
     },

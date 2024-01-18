@@ -9,16 +9,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: [
-      'action',
-      'disabled',
-      'error',
-      'primary',
-      'secondary',
-      'inherit',
-      'success',
-      'warning'
-    ],
+    options: ['action', 'disabled', 'error', 'primary', 'secondary', 'inherit', 'success', 'warning'],
     control: { type: 'select' }
   },
   size: {

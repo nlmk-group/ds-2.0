@@ -14,11 +14,13 @@ export const argsTypes = {
     control: { type: 'string' }
   },
   preventRedirect: {
-    description: 'Необязательный атрибут. Если установлено значение true, перехода по ссылке не будет, по умолчанию false.',
+    description:
+      'Необязательный атрибут. Если установлено значение true, перехода по ссылке не будет, по умолчанию false.',
     control: { type: 'boolean' }
   },
   disabled: {
-    description: 'Необязательный атрибут. Если установлено значение true, ссылка будет некликабельной, по умолчанию false.',
+    description:
+      'Необязательный атрибут. Если установлено значение true, ссылка будет некликабельной, по умолчанию false.',
     control: { type: 'boolean' }
   },
   size: {
@@ -35,7 +37,8 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   target: {
-    description: 'Необязательный атрибут. Определяет, как ссылка будет открываться, по умолчанию _parent. Примеры: _self, _blank, _top.',
+    description:
+      'Необязательный атрибут. Определяет, как ссылка будет открываться, по умолчанию _parent. Примеры: _self, _blank, _top.',
     table: {
       defaultValue: {
         summary: targetMapping.parent

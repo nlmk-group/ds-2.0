@@ -16,7 +16,7 @@
 
 .container {
   align-items: center;
-  @include display-container
+  @include display-container;
 }
 
 .clear-style {

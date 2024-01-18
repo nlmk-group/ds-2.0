@@ -1,20 +1,17 @@
 import React from 'react';
 
 import SkeletonLoader from '@components/SkeletonLoader';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import argsTypes from './argsTypes';
 
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80 }}>{Story()}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
 export default {
   title: 'Components/SkeletonLoader/Stories',
   component: SkeletonLoader,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 
@@ -36,7 +33,7 @@ export const SkeletonLoaderMulti = (): JSX.Element => {
         <SkeletonLoader width="50px" count={2} height="50px" />
         <SkeletonLoader width="50px" count={2} height="50px" />
         <SkeletonLoader width="780px" count={2} height="50px" />
-      </div>      
+      </div>
       <div className={styles.row}>
         <SkeletonLoader width="600px" count={4} height="50px" />
         <SkeletonLoader width="230px" count={4} height="50px" />
@@ -45,5 +42,4 @@ export const SkeletonLoaderMulti = (): JSX.Element => {
     </div>
   );
 };
-SkeletonLoaderMulti.storyName =
-  'Skeleton loader с множественными блоками';
+SkeletonLoaderMulti.storyName = 'Skeleton loader с множественными блоками';

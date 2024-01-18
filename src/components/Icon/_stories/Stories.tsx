@@ -5,7 +5,7 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tab, Tabs, Typography } from '@components/index';
+import { Divider, Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -33,9 +33,9 @@ const Stories = (): JSX.Element => {
         title={COMPONENT_NAME}
         description="Компонент иконок, который можно использовать как самостоятельно, так и внутри других компонентов"
         isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}        
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
-      <div style={{color: 'var(--text-grey-900)'}}>
+      <div>
         <Typography variant="Heading2">Свойства</Typography>
         <ul>
           <li>
@@ -83,8 +83,8 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />          
-          <Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
+          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
 
@@ -92,7 +92,8 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Компонент Icon по умолчанию"
-            code={`import { Icon } from '@nlmk/ds-2.0'
+            code={`import { Icon } from '@nlmk/ds-2.0';
+
 const App = () => (
   <Icon
     name={'IconTackleCrane24'}
@@ -100,19 +101,17 @@ const App = () => (
     containerSize={32}
   />
 )
+
 export default App;
-              `}
+`}
           />
           <br/>
-          <div style={{color: 'var(--text-grey-900)'}}>
-            <Typography variant="Heading2">Все доступные иконки</Typography>
-          </div>
-          <br/>
+          <Typography variant="Heading3">Все доступные иконки</Typography>
           <AllIcons />
 
           <Properties argsTypes={argsTypes} />
         </>
-      )}      
+      )}
       {activeTab == TabIds.tests && (
         <Typography variant="Heading4" color="primary">
           <Tests componentName={COMPONENT_NAME} />

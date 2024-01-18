@@ -1,11 +1,15 @@
 import React, { FC } from 'react';
-import { ISnackbar } from './types';
-import styles from './Snackbar.module.scss';
+
 import { clsx } from 'clsx';
-import { colorMapping } from './enums';
-import IconHelper from './IconHelper';
+
+import { ISnackbar } from './types';
+
+import styles from './Snackbar.module.scss';
+
 import ActionButton from './ActionBtn';
 import CloseBtn from './CloseBtn';
+import { colorMapping } from './enums';
+import IconHelper from './IconHelper';
 
 const Snackbar: FC<ISnackbar> = ({
   actionButton = null,
@@ -17,25 +21,17 @@ const Snackbar: FC<ISnackbar> = ({
   customIcon = null,
   withIcon = false
 }) => {
-  const darkRedGreenCondition = [
-    colorMapping.dark,
-    colorMapping.red,
-    colorMapping.green
-  ];
+  const darkRedGreenCondition = [colorMapping.dark, colorMapping.red, colorMapping.green];
 
   return (
     <div
       className={clsx(styles.wrapper, styles[`background-${color}`])}
-      data-testid='SNACKBAR_WRAPPER'
+      data-testid="SNACKBAR_WRAPPER"
       style={{ opacity: `${bgOpacity}%` }}
     >
       {withIcon && (
         <div data-testid={`SNACKBAR_ICON_${color}`}>
-          {
-            customIcon !== null
-              ? customIcon
-              : <IconHelper color={color as colorMapping} />
-          }
+          {customIcon !== null ? customIcon : <IconHelper color={color as colorMapping} />}
         </div>
       )}
       <div
@@ -50,18 +46,12 @@ const Snackbar: FC<ISnackbar> = ({
       </div>
       <div className={styles['btn-wrapper']}>
         {actionButton !== null && (
-          <ActionButton
-            color={color}
-            actionButtonText={actionButtonText}
-            actionButton={actionButton}
-          />
+          <ActionButton color={color} actionButtonText={actionButtonText} actionButton={actionButton} />
         )}
-        {close !== null && (
-          <CloseBtn close={close} color={color} />
-        )}
+        {close !== null && <CloseBtn close={close} color={color} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Snackbar
+export default Snackbar;

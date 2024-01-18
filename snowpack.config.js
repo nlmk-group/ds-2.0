@@ -6,7 +6,7 @@ module.exports = {
   buildOptions: {
     out: 'lib'
   },
-  packageOptions: {    
+  packageOptions: {
     external: EXTERNAL_MODULES
   },
   mount: {
@@ -17,11 +17,7 @@ module.exports = {
   devOptions: {
     open: 'none'
   },
-  plugins: [
-    '@snowpack/plugin-react-refresh',
-    '@snowpack/plugin-sass',
-    'snowpack-plugin-svgr'
-  ],
+  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-sass', 'snowpack-plugin-svgr'],
   alias: {
     '@components': './src/components',
     '@root': './'

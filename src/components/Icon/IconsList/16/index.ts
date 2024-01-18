@@ -33,6 +33,7 @@ export { default as IconPlayOutlined16 } from './IconPlayOutlined16';
 export { default as IconReplayOutlined16 } from './IconReplayOutlined16';
 export { default as IconTelegramFilled16 } from './IconTelegramFilled16';
 export { default as IconWarningFilled16 } from './IconWarningFilled16';
+export { default as IconWarningOutline16 } from './IconWarningOutline16';
 export { default as IconAutorenewSystemOutlined16 } from './IconAutorenewSystemOutlined16';
 export { default as IconHelperMailOutlined16 } from './IconHelperMailOutlined16';
 export { default as IconJsonOutlined16 } from './IconJsonOutlined16';
@@ -70,6 +71,9 @@ export { default as IconFilterMultipleChoice16 } from './IconFilterMultipleChoic
 export { default as IconFilterNotEqualSign16 } from './IconFilterNotEqualSign16';
 export { default as IconFilterSelectionContain16 } from './IconFilterSelectionContain16';
 export { default as IconFilterStartingContains16 } from './IconFilterStartingContains16';
+export { default as IconUploadFile16 } from './IconUploadFile16';
+export { default as IconUploadImage16 } from './IconUploadImage16';
+export { default as IconUploadVideo16 } from './IconUploadVideo16';
 export { default as IconVagon16 } from './IconVagon16';
 export { default as IconBunkerOutlined16 } from './IconBunkerOutlined16';
 export { default as IconWhatShotFire16 } from './IconWhatShotFire16';
@@ -82,3 +86,5 @@ export { default as IconChevronArrowUpFilled16 } from './IconChevronArrowUpFille
 export { default as IconChevronArrowUpOutlined16 } from './IconChevronArrowUpOutlined16';
 export { default as IconChevronArrowDownFilled16 } from './IconChevronArrowDownFilled16';
 export { default as IconChevronArrowDownOutlined16 } from './IconChevronArrowDownOutlined16';
+export { default as IconAddPlusCircleOutlined16 } from './IconAddPlusCircleOutlined16';
+export { default as IconDeleteBinOutlined16 } from './IconDeleteBinOutlined16';

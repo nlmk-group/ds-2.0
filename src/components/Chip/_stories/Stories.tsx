@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import '@components/_storybook/Stories/styles.css';
+import { argsTypes } from './argsTypes';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,17 +27,18 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
+            height={150}
             description="Компонент chip по умолчанию."
-            code={`import { Chip } from '@nlmk/ds-2.0';              
+            code={`import { Chip } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <Chip>1234</Chip>
@@ -47,10 +47,10 @@ export default  App = () => (
 
           <Editor
             description="Компонент Chip может использовать разные стили: primary (отображается по умолчанию), error, warning, success."
-            code={`import { Chip } from '@nlmk/ds-2.0';              
-            
+            code={`import { Chip } from '@nlmk/ds-2.0';
+
 export default  App = () =>(
-  <>   
+  <>
     <Chip>1234</Chip>
     <Chip color="error">1234</Chip>
     <Chip color="success">1234</Chip>
@@ -63,7 +63,7 @@ export default  App = () =>(
             description="Компонент доступен в двух типах заливки: solid - полностью закрашенный, outline - закрашенна только граница."
             code={`import { Chip } from '@nlmk/ds-2.0';;
 
-export default  App = () =>( 
+export default  App = () =>(
   <>
     <Chip variant="outline">1234</Chip>
     <Chip color="error" variant="outline">1234</Chip>
@@ -74,8 +74,9 @@ export default  App = () =>(
           />
 
           <Editor
+            height={230}
             description="Компонент доступен в двух размерах: s - маленький чип с высотой 16px, m - средний чип, его высота 24px."
-            code={`import { Chip } from '@nlmk/ds-2.0';    
+            code={`import { Chip } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <>
@@ -86,7 +87,7 @@ export default  App = () => (
           />
           <Editor
             description="Чип может содержать суффикс."
-            code={`import { Chip } from '@nlmk/ds-2.0';    
+            code={`import { Chip } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <>
@@ -99,7 +100,7 @@ export default  App = () => (
           />
           <Editor
             description="Чип может содержать суффикс."
-            code={`import { Chip } from '@nlmk/ds-2.0';    
+            code={`import { Chip } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <>

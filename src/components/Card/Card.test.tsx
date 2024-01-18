@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  render,
-  screen
-} from '@testing-library/react';
-import { Card } from '@components/index';
-import {
-  orientationMapping,
-  indicatorStatusMapping
-} from './enums'
+
 import { sizesMapping } from '@components/declaration';
+import { Card } from '@components/index';
+import { render, screen } from '@testing-library/react';
+
+import { indicatorStatusMapping, orientationMapping } from './enums';
 
 describe('src/components/Card', () => {
-
   test('It should render a Card', () => {
     const { container } = render(<Card>hello</Card>);
     const cardComponent = container.getElementsByTagName('div')[0];
@@ -42,7 +37,7 @@ describe('src/components/Card', () => {
   test('It should render a Card with content', () => {
     render(
       <Card>
-        <div data-testid='CONTENT'>Hello</div>
+        <div data-testid="CONTENT">Hello</div>
       </Card>
     );
     expect(screen.getByTestId('CONTENT')).toBeInTheDocument();

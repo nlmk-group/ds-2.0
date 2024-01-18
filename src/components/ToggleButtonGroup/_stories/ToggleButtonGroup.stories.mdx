@@ -1,9 +1,9 @@
-import { ToggleButtonGroup } from '@components';
-import { Meta } from '@storybook/addon-docs';
-import Stories from './Stories'
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import ToggleButtonGroup from '..';
+import Stories from './Stories';
 
 <Meta
-  title="Components/ToggleButtonGroup/Docs"
+  title="Components/ToggleButtonGroup/Info"
   component={ToggleButtonGroup}
   parameters={{
     design: {
@@ -14,4 +14,6 @@ import Stories from './Stories'
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

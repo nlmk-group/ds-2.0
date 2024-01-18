@@ -1,33 +1,31 @@
 import React, { FC } from 'react';
-import { ICloseBtn } from './types';
+
 import { Button, Icon } from '@components/.';
+
+import { ICloseBtn } from './types';
+
 import { colorMapping } from './enums';
 
 const CloseBtn: FC<ICloseBtn> = ({ close, color }) => {
-  const lightGreenPinkDarkCondition = [
-    colorMapping.green,
-    colorMapping.red
-  ]
+  const lightGreenPinkDarkCondition = [colorMapping.green, colorMapping.red];
 
   return (
     <Button
-      data-testid='SNACKBAR_CLOSE'
-      variant='bar'
-      size='s'
+      data-testid="SNACKBAR_CLOSE"
+      variant="bar"
+      size="s"
       onClick={close}
-      iconButton={(
+      iconButton={
         <Icon
-          name='IconClose24'
+          name="IconClose24"
           containerSize={24}
           htmlColor={
-            lightGreenPinkDarkCondition.includes(color as colorMapping)
-              ? 'var(--ac-icon-white)'
-              : 'var(--ac-icon-grey)'
+            lightGreenPinkDarkCondition.includes(color as colorMapping) ? 'var(--ac-icon-white)' : 'var(--ac-icon-grey)'
           }
         />
-      )}
+      }
     />
-  )
-}
+  );
+};
 
-export default CloseBtn
+export default CloseBtn;

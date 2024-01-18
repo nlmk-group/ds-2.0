@@ -1,10 +1,9 @@
-import { Meta } from '@storybook/addon-docs';
-import Spinner from '@components/Spinner';
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Spinner from '..';
 import Stories from './Stories';
 
-
 <Meta
-  title="Components/Spinner/Docs"
+  title="Components/Spinner/Info"
   component={Spinner}
   parameters={{
     design: {
@@ -15,4 +14,6 @@ import Stories from './Stories';
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

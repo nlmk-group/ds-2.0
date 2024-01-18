@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
+
+import { argsTypes } from './argsTypes';
 
 const InputStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const inputDefaultCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputDefaultCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input />
@@ -23,8 +23,8 @@ export default App = () => (
 );
 `;
 
-  const inputWithLabelCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputWithLabelCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input label="Label" />
@@ -32,8 +32,8 @@ export default App = () => (
 );
 `;
 
-  const inputWithHelperCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputWithHelperCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input label="Label" helperText="Helper text" />
@@ -41,8 +41,8 @@ export default App = () => (
 );
 `;
 
-  const inputDisabledCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputDisabledCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input disabled value="Disabled Input" />
@@ -50,8 +50,8 @@ export default App = () => (
 );
 `;
 
-  const inputErrorCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputErrorCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input color="error" helperText="Error message" />
@@ -59,8 +59,8 @@ export default App = () => (
 );
 `;
 
-  const inputWarningCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputWarningCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input color="warning" helperText="Warning message" />
@@ -68,8 +68,8 @@ export default App = () => (
 );
 `;
 
-  const inputSuccessCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputSuccessCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input color="success" helperText="Success message" />
@@ -77,8 +77,8 @@ export default App = () => (
 );
 `;
 
-  const inputTextareaCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputTextareaCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input multiline />
@@ -86,8 +86,8 @@ export default App = () => (
 );
 `;
 
-  const inputTextareaResizeCode = `
-import { Input } from '@nlmk/ds-2.0';
+  const inputTextareaResizeCode = `import { Input } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Input multiline resize />
@@ -95,9 +95,9 @@ export default App = () => (
 );
 `;
 
-  const inputWithPseudoCode = `
-import { useState, SetStateAction } from 'react';
+  const inputWithPseudoCode = `import { useState, SetStateAction } from 'react';
 import { Input, Button } from '@nlmk/ds-2.0';
+
 const App = () => {
     const [isPseudo, setIsPseudo] = useState(false);
     const [innerValue, setInnerValue] = useState('value');
@@ -117,6 +117,7 @@ const App = () => {
         </>
     );
 };
+
 export default App;
 `;
 
@@ -132,60 +133,34 @@ export default App;
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            description="Input по умолчанию"
-            code={inputDefaultCode}
-          />
+          <Editor height={200} description="Input по умолчанию" code={inputDefaultCode} />
+
+          <Editor height={200} description="Input с лейблом" code={inputWithLabelCode} />
+
+          <Editor height={200} description="Input с лейблом и вспомогательным текстом" code={inputWithHelperCode} />
+
+          <Editor height={200} description="Input в состоянии disabled" code={inputDisabledCode} />
+
+          <Editor height={200} description="Input в состоянии error" code={inputErrorCode} />
+
+          <Editor height={200} description="Input в состоянии warning" code={inputWarningCode} />
+
+          <Editor height={200} description="Input в состоянии success" code={inputSuccessCode} />
+
+          <Editor height={200} description="Textarea по умолчанию" code={inputTextareaCode} />
+
+          <Editor height={200} description="Textarea со свойством ресайз" code={inputTextareaResizeCode} />
 
           <Editor
-            description="Input с лейблом"
-            code={inputWithLabelCode}
-          />
-
-          <Editor
-            description="Input с лейблом и вспомогательным текстом"
-            code={inputWithHelperCode}
-          />
-
-          <Editor
-            description="Input в состоянии disabled"
-            code={inputDisabledCode}
-          />
-
-          <Editor
-            description="Input в состоянии error"
-            code={inputErrorCode}
-          />
-
-          <Editor
-            description="Input в состоянии warning"
-            code={inputWarningCode}
-          />
-
-          <Editor
-            description="Input в состоянии success"
-            code={inputSuccessCode}
-          />
-
-          <Editor
-            description="Textarea по умолчанию"
-            code={inputTextareaCode}
-          />
-
-          <Editor
-            description="Textarea со свойством ресайз"
-            code={inputTextareaResizeCode}
-          />
-
-          <Editor
+            height={350}
             description="Возможно реализовать переключение компонента Input в PseudoInput с помощью пропса pseudo"
             code={inputWithPseudoCode}
           />
@@ -199,7 +174,7 @@ export default App;
       )}
       {Number(activeTab) === 2 && (
         <Typography variant="Heading4" color="primary">
-          <Tests componentName="Input"/>
+          <Tests componentName="Input" />
         </Typography>
       )}
     </div>

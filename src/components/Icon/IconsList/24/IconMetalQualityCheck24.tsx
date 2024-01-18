@@ -6,20 +6,10 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-const IconMetalQualityCheck24: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+const IconMetalQualityCheck24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -36,18 +26,8 @@ const IconMetalQualityCheck24: FC<IIconsProps> = ({
         d="M11.3074 10.3529C11.8662 8.42112 13.8401 7.32108 15.6954 7.85781C17.5507 8.39454 18.6324 10.3785 18.0735 12.3103C17.5147 14.2421 15.5409 15.3421 13.6855 14.8054C11.8302 14.2686 10.7485 12.2846 11.3074 10.3529ZM16.0567 6.60902C13.4855 5.86518 10.8093 7.39666 10.0586 9.99161C9.30789 12.5866 10.753 15.3103 13.3243 16.0542C14.2323 16.3169 15.1535 16.2958 15.9984 16.0442L18.1811 20.111C18.3509 20.4273 18.745 20.5461 19.0613 20.3763C19.3776 20.2066 19.4964 19.8125 19.3266 19.4962L17.1859 15.5079C18.1847 14.8843 18.968 13.8964 19.3223 12.6716C20.073 10.0766 18.6279 7.35285 16.0567 6.60902Z"
         fill={htmlColor || 'currentColor'}
       />
-      <path
-        d="M14.5181 12.5977L16.686 10.0996"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-      />
-      <path
-        d="M14.5181 12.5974L12.686 11.0612"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-      />
+      <path d="M14.5181 12.5977L16.686 10.0996" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M14.5181 12.5974L12.686 11.0612" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
     </svg>
   );
 };

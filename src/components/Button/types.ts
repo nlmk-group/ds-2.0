@@ -16,9 +16,7 @@ export enum variant {
   bar = 'bar'
 }
 
-export interface IButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-  PropsWithChildren<any> {
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
   badge?: ReactNode;
   startIcon?: ReactNode;
   endIcon?: ReactNode;

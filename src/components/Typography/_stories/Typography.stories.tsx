@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { TVariant } from '@components/Typography/types';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Typography.stories.module.scss';
 
@@ -13,7 +12,7 @@ const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story(
 export default {
   title: 'Components/Typography/Stories',
   component: Typography,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: argsTypes
 };
 

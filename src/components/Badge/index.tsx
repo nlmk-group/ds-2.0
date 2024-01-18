@@ -1,10 +1,6 @@
 import React, { FC, useMemo } from 'react';
 
-import {
-  colorsMapping,
-  sizesMapping,
-  variantsMapping
-} from '@components/declaration/enums';
+import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
 import { Typography } from '@components/index';
 import clsx from 'clsx';
 
@@ -42,9 +38,7 @@ export const Badge: FC<IBadgeProps> = ({
 
   return (
     <div className={classes}>
-      <Typography variant={large ? 'Body1-Bold' : 'Caption-Bold'}>
-        {children}
-      </Typography>
+      <Typography variant={large ? 'Body1-Bold' : 'Caption-Bold'}>{children}</Typography>
     </div>
   );
 };

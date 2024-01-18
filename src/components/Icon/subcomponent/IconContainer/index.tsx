@@ -8,9 +8,6 @@ export const IconContainer: FC<{
   containerSize: 32 | 24 | 16;
   children: ReactNode;
 }> = ({ containerSize = 24, children }) => {
-  const classes = clsx(
-    styles[`container${containerSize}` as keyof typeof styles],
-    styles.container
-  );
+  const classes = clsx(styles[`container${containerSize}` as keyof typeof styles], styles.container);
   return <div className={classes}>{children}</div>;
 };

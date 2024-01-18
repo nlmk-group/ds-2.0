@@ -23,7 +23,8 @@
     background: var($hv);
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     background: var($ac);
   }
 
@@ -77,7 +78,7 @@
   margin: 0;
 
   & > div {
-    border-right-color: var(--text-grey-200)
+    border-right-color: var(--text-grey-200);
   }
 }
 
@@ -110,16 +111,12 @@
 .badge-default {
   @include badge-helper(
     --assigned-colors-badge-secondary-secondary-bg-default,
-    --assigned-colors-badge-text-text-black,
+    --assigned-colors-badge-text-text-black
   );
 }
 
 .btn-success {
-  @include btn-helper(
-    --success-green-700,
-    --success-green-50,
-    --success-green-100
-  );
+  @include btn-helper(--success-green-700, --success-green-50, --success-green-100);
 }
 
 .btn-active-success {
@@ -127,18 +124,11 @@
 }
 
 .badge-success {
-  @include badge-helper(
-    --assigned-colors-badge-success-success-bg-default,
-    --assigned-colors-badge-text-text-black,
-  );
+  @include badge-helper(--assigned-colors-badge-success-success-bg-default, --assigned-colors-badge-text-text-black);
 }
 
 .btn-warning {
-  @include btn-helper(
-    --warning-orange-700,
-    --warning-orange-50,
-    --warning-orange-100
-  );
+  @include btn-helper(--warning-orange-700, --warning-orange-50, --warning-orange-100);
 }
 
 .btn-active-warning {
@@ -146,18 +136,11 @@
 }
 
 .badge-warning {
-  @include badge-helper(
-    --assigned-colors-badge-warning-warning-bg-default,
-    --assigned-colors-badge-text-text-black,
-  );
+  @include badge-helper(--assigned-colors-badge-warning-warning-bg-default, --assigned-colors-badge-text-text-black);
 }
 
 .btn-error {
-  @include btn-helper(
-    --error-red-500,
-    --error-red-50,
-    --error-red-100
-  );
+  @include btn-helper(--error-red-500, --error-red-50, --error-red-100);
 }
 
 .btn-active-error {
@@ -169,4 +152,44 @@
     --error-red-500,
     --assigned-colors-badge-text-text-white,
   );
+}
+
+.test-class-wrapper {
+  border-color: var(--primary-blue-900);
+}
+
+.test-class-btn {
+  background-color: var(--primary-blue-500);
+}
+
+.tooltip-side-helper {
+  div:nth-child(2) {
+    bottom: unset;
+    transform: translateY(-30%);
+  }
+}
+
+.tooltip-compact {
+  div:nth-child(2) {
+    padding: calc(var(--12-space) / 2) var(--8-space);
+  }
+}
+
+.tooltip-compact-side-helper {
+  div:nth-child(2) {
+    bottom: unset;
+    transform: translateY(-25%);
+  }
+}
+
+.tooltip-compact-top-helper {
+  div:nth-child(2) {
+    bottom: calc(var(--24-space) + var(--2-space))!important;
+  }
+}
+
+.tooltip-compact-bottom-helper {
+  div:nth-child(2) {
+    top: calc(var(--24-space) + var(--2-space))!important;
+  }
 }

@@ -1,6 +1,8 @@
+import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
+
 import { ISelectOption } from '@components/Select/types';
-import { MouseEventHandler, ReactNode, ChangeEventHandler } from 'react';
-import { OrientationType } from '../types'
+
+import { OrientationType } from '../types';
 
 export interface IButton {
   label: string;
@@ -9,7 +11,7 @@ export interface IButton {
 }
 
 export interface ITitle {
-  title: string,
+  title: string;
   href?: string;
   checked?: boolean;
   checkAction?: ChangeEventHandler<HTMLInputElement>;

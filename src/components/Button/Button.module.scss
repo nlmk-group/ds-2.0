@@ -49,15 +49,20 @@
   @include compactStyles(var(--28-size), var(--4-space) var(--4-space));
 }
 
-.left-icon, .right-icon, .bar-left-icon, .bar-right-icon {
+.left-icon,
+.right-icon,
+.bar-left-icon,
+.bar-right-icon {
   display: flex;
 }
 
-.left-icon, .bar-left-icon {
+.left-icon,
+.bar-left-icon {
   padding-right: var(--4-space);
 }
 
-.right-icon, .bar-right-icon {
+.right-icon,
+.bar-right-icon {
   padding-left: var(--4-space);
 }
 
@@ -74,7 +79,8 @@
   margin: auto;
 }
 
-.bar-left-icon, .bar-right-icon {
+.bar-left-icon,
+.bar-right-icon {
   color: var(--assigned-colors-button-clear-grey-icon);
 }
 

@@ -22,37 +22,21 @@ export const getLastValue = (
   }
 
   // Получаем ключ квартала по месяцу
-  const quarterKey =
-    quarterQuarterKeys[date.getMonth() as keyof typeof quarterQuarterKeys];
+  const quarterKey = quarterQuarterKeys[date.getMonth() as keyof typeof quarterQuarterKeys];
 
   // Находим последний месяц в квартале
-  const lastMonthInQuarter = quarters.find(el => el.month === quarterKey)
-    ?.values[2];
+  const lastMonthInQuarter = quarters.find(el => el.month === quarterKey)?.values[2];
 
   // Для каждого уровня устанавливаем последний момент времени
   switch (level) {
     case 'day':
-      return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        23,
-        59,
-        59
-      );
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
 
     case 'month':
       return new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59);
 
     case 'quarter':
-      return new Date(
-        date.getFullYear(),
-        (lastMonthInQuarter || date.getMonth()) + 1,
-        0,
-        23,
-        59,
-        59
-      );
+      return new Date(date.getFullYear(), (lastMonthInQuarter || date.getMonth()) + 1, 0, 23, 59, 59);
 
     default:
       return new Date(date.getFullYear(), 11, 31, 23, 59, 59);

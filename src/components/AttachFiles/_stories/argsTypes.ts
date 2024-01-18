@@ -1,7 +1,7 @@
-
 export const argsTypes = {
   children: {
-    description: 'Свойство компонента AttachFiles, которое позволяет передавать массив компонентов File (JSX.Element[]) для отображения в контейнере',
+    description:
+      'Свойство компонента AttachFiles, которое позволяет передавать массив компонентов File (JSX.Element[]) для отображения в контейнере',
     control: { type: 'text' }
   },
   title: {

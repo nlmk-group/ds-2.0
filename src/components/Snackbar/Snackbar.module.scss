@@ -14,55 +14,34 @@ $box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .background-grey {
-  @include content-helper(
-    var(--ac-snackbar-grey-bg),
-    var(--ac-snackbar-grey-text)
-  );
+  @include content-helper(var(--ac-snackbar-grey-bg), var(--ac-snackbar-grey-text));
   box-shadow: $box-shadow;
 }
 
 .background-dark {
-  @include content-helper(
-    var(--ac-snackbar-dark-bg),
-    var(--ac-snackbar-dark-text)
-  );
+  @include content-helper(var(--ac-snackbar-dark-bg), var(--ac-snackbar-dark-text));
 }
 
 .background-green {
-  @include content-helper(
-    var(--ac-snackbar-green-bg),
-    var(--ac-snackbar-green-text)
-  );
+  @include content-helper(var(--ac-snackbar-green-bg), var(--ac-snackbar-green-text));
 }
 
 .background-red {
-  @include content-helper(
-    var(--ac-snackbar-red-bg),
-    var(--ac-snackbar-red-text)
-  );
+  @include content-helper(var(--ac-snackbar-red-bg), var(--ac-snackbar-red-text));
 }
 
 .background-white {
-  @include content-helper(
-    var(--ac-snackbar-white-bg),
-    var(--ac-snackbar-white-text)
-  );
+  @include content-helper(var(--ac-snackbar-white-bg), var(--ac-snackbar-white-text));
   box-shadow: $box-shadow;
 }
 
 .background-light-green {
-  @include content-helper(
-    var(--ac-snackbar-light-green-bg),
-    var(--ac-snackbar-light-green-text)
-  );
+  @include content-helper(var(--ac-snackbar-light-green-bg), var(--ac-snackbar-light-green-text));
   box-shadow: $box-shadow;
 }
 
 .background-pink {
-  @include content-helper(
-    var(--ac-snackbar-pink-bg),
-    var(--ac-snackbar-pink-text)
-  );
+  @include content-helper(var(--ac-snackbar-pink-bg), var(--ac-snackbar-pink-text));
   box-shadow: $box-shadow;
 }
 

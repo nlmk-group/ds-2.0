@@ -53,7 +53,9 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   color: {
-    description: `Цвет компонента, отображающий разные состояния – <b>${Object.values(customInputColors).join(' | ')}</b>`,
+    description: `Цвет компонента, отображающий разные состояния – <b>${Object.values(customInputColors).join(
+      ' | '
+    )}</b>`,
     table: {
       defaultValue: {
         summary: customInputColors.default

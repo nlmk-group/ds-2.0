@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconWIFI24: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="25"
-      viewBox="0 0 24 25"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

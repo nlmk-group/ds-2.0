@@ -33,8 +33,9 @@ $background-paper: var(--background-paper);
   &.default {
     background-color: var(--background-default);
 
-    &.hovered, &.disabled {
-        background-color: $text-grey;
+    &.hovered,
+    &.disabled {
+      background-color: $text-grey;
     }
   }
 

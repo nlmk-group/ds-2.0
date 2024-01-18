@@ -66,7 +66,9 @@
   align-items: center;
 }
 
-.icon-h1, .icon-h2, .icon-sub1 {
+.icon-h1,
+.icon-h2,
+.icon-sub1 {
   > div {
     height: var(--32-size);
     width: var(--32-size);
@@ -77,7 +79,8 @@
   }
 }
 
-.icon-h3, .icon-sub2 {
+.icon-h3,
+.icon-sub2 {
   > div {
     height: var(--24-size);
     width: var(--24-size);
@@ -88,7 +91,12 @@
   }
 }
 
-.icon-h4, .icon-sub3, .icon-body, .icon-body1, .icon-body2, .icon-caption {
+.icon-h4,
+.icon-sub3,
+.icon-body,
+.icon-body1,
+.icon-body2,
+.icon-caption {
   > div {
     height: var(--16-size);
     width: var(--16-size);

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { IAccordionProps } from './types';
 
 import styles from './Accordion.module.scss';
+
 import { iconsMapping, sizesMapping, variantsMapping } from './enums';
 import AccordionItem from './subcomponents/AccordionItem';
 import { TAccordionItem } from './subcomponents/AccordionItem/types';
@@ -23,23 +24,23 @@ export const Accordion: React.FC<IAccordionProps> = ({
   const [expandedItemIds, setExpandedItemIds] = useState<TAccordionItem['id'][]>([]);
 
   const handleExpand = (id: TAccordionItem['id']) => {
-    const isExpanded = expandedItemIds.includes(id)
+    const isExpanded = expandedItemIds.includes(id);
 
     if (multipleExpanded) {
-      setExpandedItemIds((prev) => isExpanded ? prev.filter((item) => item !== id) : [...prev, id]);
+      setExpandedItemIds(prev => (isExpanded ? prev.filter(item => item !== id) : [...prev, id]));
     } else {
       setExpandedItemIds(() => (isExpanded ? [] : [id]));
     }
-  }
+  };
 
   useEffect(() => {
-    const expandedOnStartIds = items.filter(i => i.initiallyExpanded).map(i => i.id)
-    setExpandedItemIds(expandedOnStartIds)
-  }, [items])
+    const expandedOnStartIds = items.filter(i => i.initiallyExpanded).map(i => i.id);
+    setExpandedItemIds(expandedOnStartIds);
+  }, [items]);
 
   return (
     <div className={clsx(styles.wrapper, className)} {...props}>
-      {items.map((item) => {
+      {items.map(item => {
         return (
           <AccordionItem
             key={item.id}
@@ -55,7 +56,8 @@ export const Accordion: React.FC<IAccordionProps> = ({
           >
             {item.content}
           </AccordionItem>
-        )})}
+        );
+      })}
     </div>
   );
 };

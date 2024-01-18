@@ -44,9 +44,6 @@ describe('useThemeSwitcher', () => {
     });
     // Сделал так чтобы сохранить правило eslint и игнорировать только эту строку
     // eslint-disable-next-line @typescript-eslint/unbound-method
-    expect(window.sessionStorage.setItem).toHaveBeenCalledWith(
-      'theme',
-      Themes.DARK
-    );
+    expect(window.sessionStorage.setItem).toHaveBeenCalledWith('theme', Themes.DARK);
   });
 });

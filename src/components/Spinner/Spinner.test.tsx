@@ -27,7 +27,7 @@ describe('src/components/Spinner', () => {
     expect(firstChild).toHaveAttribute('style', 'width: 32px; height: 32px;');
   });
 
-  const { container: colorContainer } = render(<Spinner bgColor="rgb(30, 61, 89)" color='rgb(255, 110, 64)' />);
+  const { container: colorContainer } = render(<Spinner bgColor="rgb(30, 61, 89)" color="rgb(255, 110, 64)" />);
   const colorLoader = colorContainer.getElementsByTagName('div')[0];
 
   // Check color property in spinner at DOM

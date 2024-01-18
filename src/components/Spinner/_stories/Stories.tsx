@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
+
 import argsTypes from './argsTypes';
 
 const Stories = (): JSX.Element => {
@@ -26,19 +27,20 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
+            height={200}
             description="Spinner состояние по умолчанию"
-            code={`import { Spinner } from '@nlmk/ds-2.0';              
+            code={`import { Spinner } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Spinner />
   </>
@@ -47,10 +49,11 @@ export default  App = () => (
           />
 
           <Editor
+            height={250}
             description="Spinner размера medium и large"
-            code={`import { Spinner } from '@nlmk/ds-2.0';              
+            code={`import { Spinner } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Spinner size="m" />
     <div/>
@@ -61,10 +64,11 @@ export default  App = () => (
           />
 
           <Editor
+            height={200}
             description="Spinner с разными цветами"
-            code={`import { Spinner } from '@nlmk/ds-2.0';              
+            code={`import { Spinner } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Spinner bgColor="#ff6e40" color="#1e3d59" />
   </>
@@ -74,9 +78,9 @@ export default  App = () => (
 
           <Editor
             description="Spinner где Icon, как children (JSX.Element)"
-            code={`import { Spinner, Icon } from '@nlmk/ds-2.0';              
+            code={`import { Spinner, Icon } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <Spinner>
       <Icon color="primary" containerSize={32} name="IconAutorenew24" />

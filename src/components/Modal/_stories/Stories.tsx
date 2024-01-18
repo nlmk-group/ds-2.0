@@ -5,7 +5,7 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tab, Tabs, Typography } from '@components/index';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -16,21 +16,21 @@ const ModalStories = (): JSX.Element => {
 
   const modalDefaultCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
+
 export default  App = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
       <>
-        <div>
-            <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
-            <Modal
-                isOpen={isOpen}
-                onClose={() => {
-                    setIsOpen(false);
-                }}
-            >
-                <Typography color="primary">Содержимое модального окна</Typography>
-            </Modal>
-        </div>
+        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Modal
+            isOpen={isOpen}
+            onClose={() => {
+                setIsOpen(false);
+            }}
+        >
+            <Typography color="primary">Содержимое модального окна</Typography>
+        </Modal>
       </>
   );
 };
@@ -38,22 +38,22 @@ export default  App = () => {
 
   const modalDraggableCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
+
 export default  App = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
       <>
-        <div>
-            <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
-            <Modal
-                isOpen={isOpen}
-                isDraggable
-                onClose={() => {
-                    setIsOpen(false);
-                }}
-            >
-                <Typography color="primary">Содержимое модального окна</Typography>
-            </Modal>
-        </div>
+        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Modal
+            isOpen={isOpen}
+            isDraggable
+            onClose={() => {
+                setIsOpen(false);
+            }}
+        >
+            <Typography color="primary">Содержимое модального окна</Typography>
+        </Modal>
       </>
   );
 };
@@ -61,22 +61,21 @@ export default  App = () => {
 
   const modalResizableCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
+
 export default  App = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
       <>
-        <div>
-            <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
-            <Modal
-                isOpen={isOpen}
-                isResizable
-                onClose={() => {
-                    setIsOpen(false);
-                }}
-            >
-                <Typography color="primary">Содержимое модального окна</Typography>
-            </Modal>
-        </div>
+        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Modal
+            isOpen={isOpen}
+            isResizable
+            onClose={() => {
+                setIsOpen(false);
+            }}
+        >
+            <Typography color="primary">Содержимое модального окна</Typography>
+        </Modal>
       </>
   );
 };
@@ -94,9 +93,9 @@ export default  App = () => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -104,9 +103,17 @@ export default  App = () => {
         <>
           <Editor height={350} description="Пример базового использования модального окна." code={modalDefaultCode} />
 
-          <Editor height={350} description="Пример модального окна с возможностью перетаскивания." code={modalDraggableCode} />
+          <Editor
+            height={350}
+            description="Пример модального окна с возможностью перетаскивания."
+            code={modalDraggableCode}
+          />
 
-          <Editor height={350} description="Пример модального окна с возможностью изменения размера." code={modalResizableCode} />
+          <Editor
+            height={350}
+            description="Пример модального окна с возможностью изменения размера."
+            code={modalResizableCode}
+          />
 
           <Properties argsTypes={argsTypes} />
         </>

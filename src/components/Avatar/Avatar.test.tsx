@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import Avatar from '.';
 import { AvatarShape, AvatarSize } from './enums';
 import { SPECIAL_ICONS } from './subcomponents/IconBadge/constants';
@@ -7,7 +9,7 @@ import { SPECIAL_ICONS } from './subcomponents/IconBadge/constants';
 const defaultProps = {
   shape: AvatarShape.circle,
   size: AvatarSize.m
-}
+};
 
 describe('src/components/Avatar', () => {
   test('Avatar renders with default props', () => {
@@ -16,13 +18,13 @@ describe('src/components/Avatar', () => {
     expect(screen.getByTestId('AVATAR_ICON')).toBeInTheDocument();
   });
 
-  test('Avatar renders user\'s image', () => {
+  test("Avatar renders user's image", () => {
     render(<Avatar {...defaultProps} imageSrc={'fake/url'} />);
     expect(screen.getByTestId('AVATAR_IMAGE')).toBeInTheDocument();
   });
 
-  test('Avatar renders user\'s letters', () => {
-    render(<Avatar {...defaultProps} userName='Антон' userSurname='Валуев' />);
+  test("Avatar renders user's letters", () => {
+    render(<Avatar {...defaultProps} userName="Антон" userSurname="Валуев" />);
     expect(screen.getByTestId('AVATAR_LETTERS')).toBeInTheDocument();
     expect(screen.getByText('АВ')).toBeInTheDocument();
   });
@@ -38,7 +40,7 @@ describe('src/components/Avatar', () => {
   });
 
   test('Avatar renders default badge', () => {
-    render(<Avatar {...defaultProps} badgeIconName='IconDone24' />);
+    render(<Avatar {...defaultProps} badgeIconName="IconDone24" />);
     expect(screen.getByTestId('AVATAR_BADGE_DEFAULT')).toBeInTheDocument();
   });
 

@@ -50,12 +50,8 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
   }, [hoursFrom, hoursTo]);
 
   const enabledMinutes = useMemo(() => {
-    const minutesFromEnabled =
-      minutesFrom && isInteger(minutesFrom) && minutesFrom > 0
-        ? minutesFrom
-        : 0;
-    const minutesToEnabled =
-      minutesTo && isInteger(minutesTo) && minutesTo < 60 ? minutesTo : 59;
+    const minutesFromEnabled = minutesFrom && isInteger(minutesFrom) && minutesFrom > 0 ? minutesFrom : 0;
+    const minutesToEnabled = minutesTo && isInteger(minutesTo) && minutesTo < 60 ? minutesTo : 59;
     return minutes.slice(minutesFromEnabled, minutesToEnabled + 1);
   }, [minutesFrom, minutesTo]);
   const handleHourClick = useCallback(
@@ -83,12 +79,9 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
     },
     [onChange, selectedTime]
   );
-  const [minutesContainerRef, setMinutesContainerRef] =
-    useState<null | HTMLDivElement>(null);
-  const [hoursContainerRef, setHoursContainerRef] =
-    useState<null | HTMLDivElement>(null);
-  const [secondsContainerRef, setSecondsContainerRef] =
-    useState<null | HTMLDivElement>(null);
+  const [minutesContainerRef, setMinutesContainerRef] = useState<null | HTMLDivElement>(null);
+  const [hoursContainerRef, setHoursContainerRef] = useState<null | HTMLDivElement>(null);
+  const [secondsContainerRef, setSecondsContainerRef] = useState<null | HTMLDivElement>(null);
 
   useEffect(() => {
     if (value) {
@@ -125,9 +118,7 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
           <Day
             key={minute.value}
             disabled={disabled}
-            selected={
-              selectedTime && minute.value === selectedTime.getMinutes()
-            }
+            selected={selectedTime && minute.value === selectedTime.getMinutes()}
             onClick={() => handleMinuteClick(minute.value)}
           >
             {minute.label}
@@ -141,9 +132,7 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
             <Day
               key={second.value}
               disabled={disabled}
-              selected={
-                selectedTime && second.value === selectedTime.getSeconds()
-              }
+              selected={selectedTime && second.value === selectedTime.getSeconds()}
               onClick={() => handleSecondClick(second.value)}
             >
               {second.label}

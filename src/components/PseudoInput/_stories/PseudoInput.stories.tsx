@@ -2,7 +2,6 @@ import React from 'react';
 
 import { customInputColors } from '@components/declaration';
 import { Meta } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './PseudoInput.module.scss';
 
@@ -19,7 +18,7 @@ export default {
   title: 'Components/PseudoInput/Stories',
   component: PseudoInput,
   argTypes: argsTypes,
-  decorators: [withDesign, withWrapper]
+  decorators: [withWrapper]
 } as Meta<typeof PseudoInput>;
 
 export const PseudoInputDefault = (argTypes: IPseudoInputProps): JSX.Element => (

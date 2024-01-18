@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
+
 import argsTypes from './argsTypes';
 import {
   DASHED_DIVIDER,
@@ -17,11 +18,11 @@ import {
   DIVIDER_ORIENTATION_CUSTOM_SPACE,
   DIVIDER_TYPE,
   VERTICAL_DIVIDER
-} from './text'
+} from './text';
 
 const style = '{{ width: 900, padding: 30 }}';
 
-const styleVariations = `{{  
+const styleVariations = `{{
     padding: '30px',
     display: 'flex',
     flexDirection: 'column',
@@ -43,9 +44,9 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -53,9 +54,9 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description={DEFAULT_DIVIDER}
-            code={`import { Divider } from '@nlmk/ds-2.0';              
+            code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Divider>
       <span>
@@ -69,9 +70,9 @@ export default  App = () => (
 
           <Editor
             description={DASHED_DIVIDER}
-            code={`import { Divider } from '@nlmk/ds-2.0';              
+            code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Divider dashed>
       <span>
@@ -85,9 +86,9 @@ export default  App = () => (
 
           <Editor
             description={DIVIDER_ORIENTATION}
-            code={`import { Divider } from '@nlmk/ds-2.0';              
+            code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Divider orientation="left">
       <span>
@@ -113,9 +114,9 @@ export default  App = () => (
 
           <Editor
             description={DIVIDER_ORIENTATION_CUSTOM_SPACE}
-            code={`import { Divider } from '@nlmk/ds-2.0';              
+            code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <Divider
       orientation="left"
@@ -141,9 +142,9 @@ export default  App = () => (
 
           <Editor
             description={VERTICAL_DIVIDER}
-            code={`import { Divider } from '@nlmk/ds-2.0';              
+            code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <div style=${style}>
     <div
       style={{
@@ -171,10 +172,11 @@ export default  App = () => (
           />
 
           <Editor
+            height={400}
             description={DIVIDER_TYPE}
             code={`import { Divider, Button, Icon } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
+export default  App = () =>(
   <div style=${styleVariations}>
     <Divider dashed />
     <div
@@ -256,6 +258,7 @@ export default  App = () =>(
         </Button>
       </div>
     </Divider>
+    <Divider dashed />
   </div>
 )
 `}

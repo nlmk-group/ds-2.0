@@ -25,35 +25,16 @@ export const YearsCalendar: FC<YearsCalendarProps> = ({
   onSelect
 }) => {
   const today = useMemo(() => new Date(), []);
-  const startYear = useMemo(
-    () => (panelValue ?? new Date()).getFullYear() - 6,
-    [panelValue]
-  );
-  const dateFrom = useMemo(
-    () => valueFrom && normalizeDateToYear(valueFrom),
-    [valueFrom]
-  );
-  const dateTo = useMemo(
-    () => valueTo && normalizeDateToYear(valueTo),
-    [valueTo]
-  );
+  const startYear = useMemo(() => (panelValue ?? new Date()).getFullYear() - 6, [panelValue]);
+  const dateFrom = useMemo(() => valueFrom && normalizeDateToYear(valueFrom), [valueFrom]);
+  const dateTo = useMemo(() => valueTo && normalizeDateToYear(valueTo), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
   const currentHover = useMemo(
     () => (!valueFrom || !valueTo ? innerCurrentHover : null),
     [innerCurrentHover, valueFrom, valueTo]
   );
   const dateCurrentHover = useMemo(
-    () =>
-      currentHover &&
-      new Date(
-        currentHover.getFullYear(),
-        currentHover.getMonth(),
-        1,
-        0,
-        0,
-        0,
-        0
-      ),
+    () => currentHover && new Date(currentHover.getFullYear(), currentHover.getMonth(), 1, 0, 0, 0, 0),
     [currentHover]
   );
 

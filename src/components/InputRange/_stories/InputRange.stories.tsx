@@ -18,13 +18,7 @@ export const InputRangeDefault = (): JSX.Element => {
 
   return (
     <div className={styles.wrapper}>
-      <InputRange
-        min={0}
-        max={100}
-        step={1}
-        value={value}
-        onChange={handleValuesChange}
-      />
+      <InputRange min={0} max={100} step={1} value={value} onChange={handleValuesChange} />
     </div>
   );
 };
@@ -40,14 +34,7 @@ export const InputRangeDisabled = (): JSX.Element => {
 
   return (
     <div className={styles.wrapper}>
-      <InputRange
-        min={100}
-        max={1000}
-        step={10}
-        value={value}
-        onChange={handleValuesChange}
-        disabled
-      />
+      <InputRange min={100} max={1000} step={10} value={value} onChange={handleValuesChange} disabled />
     </div>
   );
 };

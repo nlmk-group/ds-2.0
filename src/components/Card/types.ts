@@ -1,9 +1,8 @@
 import { PropsWithChildren } from 'react';
-import {
-  orientationMapping,
-  indicatorStatusMapping
-} from './enums';
+
 import { sizesMapping } from '@components/declaration';
+
+import { indicatorStatusMapping, orientationMapping } from './enums';
 
 export type OrientationType = `${orientationMapping}`;
 export type IndicatorSizeType = `${sizesMapping}`;

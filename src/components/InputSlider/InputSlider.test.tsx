@@ -47,18 +47,14 @@ describe('src/components/InputSlider', () => {
   });
 
   test('Renders without crashing when no onChange provided for min', () => {
-    const { getByDisplayValue } = render(
-      <InputSlider {...defaultProps} onChange={undefined} />
-    );
+    const { getByDisplayValue } = render(<InputSlider {...defaultProps} onChange={undefined} />);
     const minInput = getByDisplayValue('10');
     fireEvent.change(minInput, { target: { value: '20' } });
     expect(getByDisplayValue('20')).toBeInTheDocument();
   });
 
   test('Renders without crashing when no onChange provided for max', () => {
-    const { getByDisplayValue } = render(
-      <InputSlider {...defaultProps} onChange={undefined} />
-    );
+    const { getByDisplayValue } = render(<InputSlider {...defaultProps} onChange={undefined} />);
     const maxInput = getByDisplayValue('10');
     fireEvent.change(maxInput, { target: { value: '80' } });
     expect(getByDisplayValue('80')).toBeInTheDocument();

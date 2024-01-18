@@ -21,44 +21,24 @@ export const PeriodPicker: FC<PeriodPickerProps & PropsWithChildren> = ({
   selectedPanel
 }) => {
   const handleClick =
-    disableContent || (isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month)
-      ? undefined
-      : onContentClick;
+    disableContent || (isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month) ? undefined : onContentClick;
 
   const [shouldShowIcon, setShouldShowIcon] = useState(
-    !disableContent &&
-      !(isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month)
+    !disableContent && !(isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month)
   );
 
   useEffect(() => {
-    setShouldShowIcon(
-      !disableContent &&
-        !(isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month)
-    );
+    setShouldShowIcon(!disableContent && !(isHideYear && selectedPanel === LEVEL_MAPPING_ENUM.month));
   }, [disableContent, isHideYear, selectedPanel]);
 
   return (
     <div className={clsx(styles.root, disableContent && styles.disableContent)}>
-      <DatePickerArrowLeftSvgIcon
-        data-testid="left-panel-icon"
-        className={styles.icon}
-        onClick={onLeftClick}
-      />
-      <div
-        data-testid="level-switcher"
-        className={styles.content}
-        onClick={handleClick}
-      >
+      <DatePickerArrowLeftSvgIcon data-testid="left-panel-icon" className={styles.icon} onClick={onLeftClick} />
+      <div data-testid="level-switcher" className={styles.content} onClick={handleClick}>
         <div className={styles.contentText}>{children}</div>
-        {shouldShowIcon && (
-          <DatePickerArrowDownSvgIcon className={styles.icon} />
-        )}
+        {shouldShowIcon && <DatePickerArrowDownSvgIcon className={styles.icon} />}
       </div>
-      <DatePickerArrowRightSvgIcon
-        data-testid="right-panel-icon"
-        className={styles.icon}
-        onClick={onRightClick}
-      />
+      <DatePickerArrowRightSvgIcon data-testid="right-panel-icon" className={styles.icon} onClick={onRightClick} />
     </div>
   );
 };

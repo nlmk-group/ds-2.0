@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   modulePathIgnorePatterns: ['lib'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom'],
   moduleDirectories: ['<rootDir>/src', 'node_modules'],
   moduleNameMapper: {
     '\\.(sa|sc|le|c)ss$': 'identity-obj-proxy',

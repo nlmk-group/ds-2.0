@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconSourceDoc32: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -27,14 +20,8 @@ const IconSourceDoc32: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
         d="M27 22.5026C26.9987 23.6932 26.0092 24.667 24.8 24.667L24.8 10.5835L19.3 5.1667L9.4 5.1667C9.4 3.97501 10.39 3 11.6 3H20.4L27 9.50009V22.5003L27 22.5026Z"
         fill={htmlColor || 'currentColor'}
       />
-      <path
-        d="M9.4 18.1665H18.2V20.3332H9.4V18.1665Z"
-        fill={htmlColor || 'currentColor'}
-      />
-      <path
-        d="M9.4 22.4999H15.2667V24.6666H9.4V22.4999Z"
-        fill={htmlColor || 'currentColor'}
-      />
+      <path d="M9.4 18.1665H18.2V20.3332H9.4V18.1665Z" fill={htmlColor || 'currentColor'} />
+      <path d="M9.4 22.4999H15.2667V24.6666H9.4V22.4999Z" fill={htmlColor || 'currentColor'} />
     </svg>
   );
 };

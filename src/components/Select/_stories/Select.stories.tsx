@@ -6,7 +6,6 @@ import { Select } from '@components/index';
 import { argsTypes } from '@components/Select/_stories/argsTypes';
 import { ISelectOption, ISelectProps } from '@components/Select/types';
 import { Meta } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from './Select.module.scss';
 
@@ -16,7 +15,7 @@ export default {
   title: 'Components/Select/Stories',
   component: Select,
   argTypes: argsTypes,
-  decorators: [withDesign, withWrapper]
+  decorators: [withWrapper]
 } as Meta<typeof Select>;
 
 const options: ISelectOption[] = [

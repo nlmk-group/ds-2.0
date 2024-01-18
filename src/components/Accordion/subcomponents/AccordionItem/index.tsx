@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 
-import styles from './AccordionItem.module.scss';
-import { IAccordionItemProps, TAccordionItem } from './types';
-import clsx from 'clsx';
-import Icon from '@components/Icon';
 import { iconsMapping } from '@components/Accordion/enums';
+import Icon from '@components/Icon';
 import Typography from '@components/Typography';
+import clsx from 'clsx';
+
+import { IAccordionItemProps, TAccordionItem } from './types';
+
+import styles from './AccordionItem.module.scss';
+
 import { ICON_SIZE, TYPOGRAPHY_CONTENT_VARIANTS, TYPOGRAPHY_TITLE_VARIANTS } from './constants';
 
-const AccordionItem: React.FC<IAccordionItemProps> = ({ id,
+const AccordionItem: React.FC<IAccordionItemProps> = ({
+  id,
   title,
   size,
   variant,
@@ -20,7 +24,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({ id,
   children,
   ...props
 }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   const expandIcons = {
     [iconsMapping.plus]: isExpanded ? 'IconClose24' : 'IconAdd24',
@@ -28,19 +32,19 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({ id,
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    setIsHovered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
+    setIsHovered(false);
+  };
 
   const handleClick = (id: TAccordionItem['id']): void => {
     if (disabled) {
-      return
+      return;
     }
-    onExpand(id)
-  }
+    onExpand(id);
+  };
 
   return (
     <div
@@ -54,18 +58,28 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({ id,
     >
       <div className={styles.header} onClick={() => handleClick(id)}>
         <div>
-          {startIcon && <div data-testid="ACCORDION_LEFT_ICON"><Icon name={expandIcons[startIcon]} containerSize={ICON_SIZE} /></div>}
+          {startIcon && (
+            <div data-testid="ACCORDION_LEFT_ICON">
+              <Icon name={expandIcons[startIcon]} containerSize={ICON_SIZE} />
+            </div>
+          )}
         </div>
         <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
         <div>
-          {endIcon && <div data-testid="ACCORDION_RIGHT_ICON"><Icon name={expandIcons[endIcon]} containerSize={ICON_SIZE} /></div>}
+          {endIcon && (
+            <div data-testid="ACCORDION_RIGHT_ICON">
+              <Icon name={expandIcons[endIcon]} containerSize={ICON_SIZE} />
+            </div>
+          )}
         </div>
       </div>
-      {isExpanded && !disabled &&
-        <Typography variant={TYPOGRAPHY_CONTENT_VARIANTS[size]} className={styles.content}>{children}</Typography>
-      }
+      {isExpanded && !disabled && (
+        <Typography variant={TYPOGRAPHY_CONTENT_VARIANTS[size]} className={styles.content}>
+          {children}
+        </Typography>
+      )}
     </div>
-  )
+  );
 };
 
-export default AccordionItem
+export default AccordionItem;

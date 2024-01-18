@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import '@components/_storybook/Stories/styles.css';
+import { argsTypes } from './argsTypes';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,29 +27,30 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
+            height={150}
             description="Компонент checkbox по умолчанию."
-            code={`import { Checkbox } from '@nlmk/ds-2.0';              
+            code={`import { Checkbox } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Checkbox onChange={() => console.log('Changed!')} />   
+  <Checkbox onChange={() => console.log('Changed!')} />
 )`}
           />
 
           <Editor
             description="Актуальные состояния компонента checkbox."
-            code={`import { Checkbox } from '@nlmk/ds-2.0';              
-            
+            code={`import { Checkbox } from '@nlmk/ds-2.0';
+
 export default  App = () =>(
-  <>   
+  <>
     <Checkbox />
     <Checkbox color="error"/>
     <Checkbox color="success"/>
@@ -63,7 +63,7 @@ export default  App = () =>(
             description="Checkbox с установленными флагами для параметров checked, disabled, multiple и с текстом label."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () =>( 
+export default  App = () =>(
   <>
     <Checkbox label="default" />
     <Checkbox label="disabled" disabled />
@@ -75,26 +75,26 @@ export default  App = () =>(
 
           <Editor
             description="Ниже представлен checkbox с параметром multiple, который меняет свое состояние в зависимости от количества выбранных дочерних элементов (работает только при наличии пропса checked)."
-            code={`import {useState} from 'react';
-import { Checkbox } from '@nlmk/ds-2.0';    
+            code={`import { useState } from 'react';
+import { Checkbox } from '@nlmk/ds-2.0';
 
 export default  App = () => {
   const [checked, setChecked] = useState([true, false]);
-  
+
   const handleChange1 = (event: { target: { checked: boolean } }) => {
     setChecked([event.target.checked, event.target.checked]);
   };
-            
+
   const handleChange2 = (event: { target: { checked: boolean } }) => {
     setChecked([event.target.checked, checked[1]]);
   };
-            
+
   const handleChange3 = (event: { target: { checked: boolean } }) => {
     setChecked([checked[0], event.target.checked]);
   };
-            
+
   const isCheckedMultiple = checked[0] !== checked[1];
-  
+
   return (
             <>
               <Checkbox
@@ -102,7 +102,7 @@ export default  App = () => {
                 checked={isCheckedMultiple || (checked[0] && checked[1])}
                 multiple={isCheckedMultiple}
                 onChange={handleChange1}
-              />                      
+              />
               <Checkbox
                 label="Child 1"
                 checked={checked[0]}

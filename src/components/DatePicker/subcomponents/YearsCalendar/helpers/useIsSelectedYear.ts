@@ -23,15 +23,11 @@ export const useIsSelectedYear = ({
             normalizedToDate &&
             isBefore(normalizedDayAsDate, normalizedToDate) &&
             isAfter(normalizedDayAsDate, normalizedFromDate)) ||
-            (normalizedToDate &&
-              isEqual(normalizedToDate, normalizedDayAsDate)) ||
-            (normalizedFromDate &&
-              isEqual(normalizedFromDate, normalizedDayAsDate))
+            (normalizedToDate && isEqual(normalizedToDate, normalizedDayAsDate)) ||
+            (normalizedFromDate && isEqual(normalizedFromDate, normalizedDayAsDate))
         );
       } else {
-        return Boolean(
-          selectedDate?.getFullYear() === normalizedDayAsDate.getFullYear()
-        );
+        return Boolean(selectedDate?.getFullYear() === normalizedDayAsDate.getFullYear());
       }
     },
     [dateFrom, selectedDate, dateTo, withPeriod, dateCurrentHover]

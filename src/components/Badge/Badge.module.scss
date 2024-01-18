@@ -34,30 +34,30 @@ $variants: primary, secondary, error, warning, success, grey;
 
 // Соответствующие цвета для каждого варианта
 $bg-colors: (
-        primary: var(--assigned-colors-badge-main-main-bg-default),
-        secondary: var(--assigned-colors-badge-secondary-secondary-bg-default),
-        error: var(--assigned-colors-badge-error-error-bg-default),
-        warning: var(--assigned-colors-badge-warning-warning-bg-default),
-        success: var(--assigned-colors-badge-success-success-bg-default),
-        grey: var(--assigned-colors-badge-grey-grey-bg-default)
+  primary: var(--assigned-colors-badge-main-main-bg-default),
+  secondary: var(--assigned-colors-badge-secondary-secondary-bg-default),
+  error: var(--assigned-colors-badge-error-error-bg-default),
+  warning: var(--assigned-colors-badge-warning-warning-bg-default),
+  success: var(--assigned-colors-badge-success-success-bg-default),
+  grey: var(--assigned-colors-badge-grey-grey-bg-default)
 );
 
 $text-colors: (
-        primary: var(--assigned-colors-badge-text-text-white),
-        secondary: var(--assigned-colors-badge-text-text-black),
-        error: var(--assigned-colors-badge-text-text-white),
-        warning: var(--assigned-colors-badge-text-text-black),
-        success: var(--assigned-colors-badge-text-text-black),
-        grey: var(--assigned-colors-badge-text-text-white)
+  primary: var(--assigned-colors-badge-text-text-white),
+  secondary: var(--assigned-colors-badge-text-text-black),
+  error: var(--assigned-colors-badge-text-text-white),
+  warning: var(--assigned-colors-badge-text-text-black),
+  success: var(--assigned-colors-badge-text-text-black),
+  grey: var(--assigned-colors-badge-text-text-white)
 );
 
 $outline-colors: (
-        primary: var(--assigned-colors-badge-main-main-bg-default),
-        secondary: var(--assigned-colors-badge-outline-outline-border-secondary-default),
-        error: var(--assigned-colors-badge-error-error-bg-default),
-        warning: var(--assigned-colors-badge-warning-warning-bg-default),
-        success: var(--assigned-colors-badge-success-success-bg-default),
-        grey: var(--assigned-colors-badge-grey-grey-bg-default)
+  primary: var(--assigned-colors-badge-main-main-bg-default),
+  secondary: var(--assigned-colors-badge-outline-outline-border-secondary-default),
+  error: var(--assigned-colors-badge-error-error-bg-default),
+  warning: var(--assigned-colors-badge-warning-warning-bg-default),
+  success: var(--assigned-colors-badge-success-success-bg-default),
+  grey: var(--assigned-colors-badge-grey-grey-bg-default)
 );
 
 // Цикл для генерации стилей для каждого варианта

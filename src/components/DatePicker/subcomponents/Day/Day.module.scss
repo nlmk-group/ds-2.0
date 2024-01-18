@@ -41,7 +41,6 @@
   }
 }
 
-
 .selected {
   & .wrapper {
     background-color: var(--primary-blue-600);
@@ -54,7 +53,6 @@
   }
 }
 
-
 .disableTimeChange {
   & .wrapper {
     color: var(--text-grey-600);
@@ -63,13 +61,11 @@
   }
 }
 
-
 .today {
   & .wrapper {
     border: 1px solid var(--dark-primary-navyblue-600);
   }
 }
-
 
 .disabled {
   cursor: not-allowed;
@@ -92,7 +88,7 @@
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     right: -2px;
     top: 0;
@@ -130,7 +126,6 @@
   }
 }
 
-
 .mid {
   background-color: var(--text-grey-100);
 
@@ -142,7 +137,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -2px;
     top: 0;
@@ -152,7 +147,7 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     right: -2px;
     top: 0;
@@ -184,7 +179,6 @@
   }
 }
 
-
 .end {
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
@@ -195,7 +189,7 @@
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -2px;
     top: 0;
@@ -232,9 +226,7 @@
     }
 
     & .wrapper {
-      background-color: var(--primary-blue-600),
+      background-color: var(--primary-blue-600);
     }
   }
 }
-
-

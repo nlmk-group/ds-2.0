@@ -1,8 +1,4 @@
-import {
-  colorsMapping,
-  sizesMapping,
-  variantsMapping
-} from '@components/declaration/enums';
+import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
 
 export const argsTypes = {
   children: {
@@ -33,10 +29,7 @@ export const argsTypes = {
       }
     },
     options: Object.values(colorsMapping).filter(
-      item =>
-        item !== colorsMapping.disabled &&
-        item !== colorsMapping.inherit &&
-        item !== colorsMapping.info
+      item => item !== colorsMapping.disabled && item !== colorsMapping.inherit && item !== colorsMapping.info
     ),
     control: { type: 'select' }
   },

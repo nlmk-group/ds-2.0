@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -16,7 +16,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Tabs"
-        description="Компонент Tabs, который объединил в себя Tab элементы."
+        description="Компонент Tabs, который объединил в себя Tab элементы. Компонент использует подход compound pattern."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Tabs"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43757&mode=design&t=awyt3Fzj1XS6th7v-1"
@@ -24,50 +24,51 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
+            height={400}
             description="Обычное использование компонента."
-            code={`import { Tabs, Tab, Tooltip, Icon, Typography } from '@nlmk/ds-2.0';             
+            code={`import { Tabs, Typography } from '@nlmk/ds-2.0';
 import { useState } from 'react';
-              
+
 export default  App = () => {
   const [activeTab, setActiveTab] = useState(0);
-  
-  return ( 
+
+  return (
     <>
       <Tabs>
-        <Tab
+        <Tabs.Tab
           label="Входящие"
           active={0 === Number(activeTab)}
           onClick={() => setActiveTab(0)}
         />
-        <Tab
+        <Tabs.Tab
           label="Мои папки"
           active={1 === Number(activeTab)}
           onClick={() => setActiveTab(1)}
         />
-        <Tab
+        <Tabs.Tab
           label="Спам"
           active={2 === Number(activeTab)}
           onClick={() => setActiveTab(2)}
           badgeNumber="91"
         >
-          <Tooltip description="Сюда вы можете добавить текстподсказу для компонента">
-            <Icon
+          <Tabs.Tooltip description="Сюда вы можете добавить текстподсказу для компонента">
+            <Tabs.Icon
               name="IconInfo16"
               containerSize={16}
               htmlColor="var(--text-grey-500)"
             />
-          </Tooltip>
-        </Tab>
-        <Tab
+          </Tabs.Tooltip>
+        </Tabs.Tab>
+        <Tabs.Tab
           label="Черновики"
           active={3 === Number(activeTab)}
           onClick={() => setActiveTab(3)}
@@ -100,7 +101,6 @@ export default  App = () => {
 }
 `}
           />
-
         </>
       )}
       {Number(activeTab) == 1 && (

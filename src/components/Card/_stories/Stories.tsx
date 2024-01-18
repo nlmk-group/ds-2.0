@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, Typography } from '@components/index';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import '@components/_storybook/Stories/styles.css';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
-import '@components/_storybook/Stories/styles.css';
-import argsTypes from './argsTypes'
+
+import argsTypes from './argsTypes';
 import { CARD_ORIENTATION, DEFAULT_CARD } from './text';
 
 const Stories = (): JSX.Element => {
@@ -27,20 +28,20 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={300}
+            height={350}
             description={DEFAULT_CARD}
-            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';              
+            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
-export default  App = () => ( 
+export default  App = () => (
   <>
     <div style={{
       backgroundColor: 'var(--background-default)',
@@ -53,7 +54,7 @@ export default  App = () => (
       </Typography>
 
       <Select
-        label="Выбеите язык прогромирования"
+        label="Выберите язык программирования"
         options={[
           {
             label: 'C++',
@@ -83,7 +84,7 @@ export default  App = () => (
           <Editor
             height={400}
             description={CARD_ORIENTATION}
-            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';              
+            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <div style={{
@@ -101,7 +102,7 @@ export default  App = () => (
       </Typography>
 
       <Select
-        label="Выбеите язык прогромирования"
+        label="Выберите язык программирования"
         options={[
           {
             label: 'C++',
@@ -132,7 +133,7 @@ export default  App = () => (
         </Typography>
 
         <Select
-          label="Выбеите язык прогромирования"
+          label="Выберите язык программирования"
           options={[
             {
               label: 'C++',

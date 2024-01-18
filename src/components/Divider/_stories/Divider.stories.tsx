@@ -1,30 +1,27 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 
-import { Divider, Button, Icon } from '@components/index';
-
-import styles from '@components/_storybook/styles.module.scss';
-import style from '../Divider.module.scss';
+import { Button, Divider, Icon } from '@components/index';
 import { clsx } from 'clsx';
-import { withDesign } from 'storybook-addon-designs';
 
+import style from '../Divider.module.scss';
+import styles from '@components/_storybook/styles.module.scss';
 
-import { IDivider } from '../types'
+import { orientationMapping, typeMapping } from '../enums';
+import { IDivider } from '../types';
 import argsTypes from './argsTypes';
 import {
-  DEFAULT_DIVIDER,
   DASHED_DIVIDER,
+  DEFAULT_DIVIDER,
+  DIVIDER_CUSTOM_CLASSNAME,
   DIVIDER_ORIENTATION,
   DIVIDER_ORIENTATION_CUSTOM_SPACE,
   DIVIDER_TYPE,
-  VERTICAL_DIVIDER,
-  DIVIDER_CUSTOM_CLASSNAME
+  VERTICAL_DIVIDER
 } from './text';
-import { orientationMapping, typeMapping } from '../enums';
 
 export default {
   title: 'Components/Divider/Stories',
   component: Divider,
-  decorators: [withDesign],
   argTypes: argsTypes
 };
 
@@ -38,7 +35,7 @@ export const DefaultDivider = (argTypes: IDivider): ReactNode => {
 
 DefaultDivider.storyName = DEFAULT_DIVIDER;
 DefaultDivider.args = {
-  children: (<span className={style['divider-content']}>{DEFAULT_DIVIDER}</span>)
+  children: <span className={style['divider-content']}>{DEFAULT_DIVIDER}</span>
 };
 
 export const DashedDivider = (argTypes: IDivider): ReactNode => {
@@ -51,7 +48,7 @@ export const DashedDivider = (argTypes: IDivider): ReactNode => {
 
 DashedDivider.storyName = DASHED_DIVIDER;
 DashedDivider.args = {
-  children: (<span className={style['divider-content']}>{DASHED_DIVIDER}</span>),
+  children: <span className={style['divider-content']}>{DASHED_DIVIDER}</span>,
   dashed: true
 };
 
@@ -59,7 +56,7 @@ export const DividerOrientation = (argTypes: IDivider): ReactNode => {
   return (
     <div className={styles.wrapper}>
       {Object.values(orientationMapping).map((orientation: orientationMapping) => (
-        <Divider {...argTypes} orientation={orientation} key={orientation}/>
+        <Divider {...argTypes} orientation={orientation} key={orientation} />
       ))}
     </div>
   );
@@ -67,29 +64,21 @@ export const DividerOrientation = (argTypes: IDivider): ReactNode => {
 
 DividerOrientation.storyName = DIVIDER_ORIENTATION;
 DividerOrientation.args = {
-  children: (<span className={style['divider-content']}>{DIVIDER_ORIENTATION}</span>),
+  children: <span className={style['divider-content']}>{DIVIDER_ORIENTATION}</span>
 };
 
 export const DividerOrientationWithCustomSpace = (argTypes: IDivider): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Divider
-        {...argTypes}
-        orientation={orientationMapping.left}
-        orientationSpace={68}
-      />
-      <Divider
-        {...argTypes}
-        orientation={orientationMapping.right}
-        orientationSpace={72}
-      />
+      <Divider {...argTypes} orientation={orientationMapping.left} orientationSpace={68} />
+      <Divider {...argTypes} orientation={orientationMapping.right} orientationSpace={72} />
     </div>
   );
 };
 
 DividerOrientationWithCustomSpace.storyName = DIVIDER_ORIENTATION_CUSTOM_SPACE;
 DividerOrientationWithCustomSpace.args = {
-  children: (<span className={style['divider-content']}>{DIVIDER_ORIENTATION_CUSTOM_SPACE}</span>),
+  children: <span className={style['divider-content']}>{DIVIDER_ORIENTATION_CUSTOM_SPACE}</span>
 };
 
 export const DividerVertical = (argTypes: IDivider): ReactNode => {
@@ -107,25 +96,16 @@ export const DividerVertical = (argTypes: IDivider): ReactNode => {
 };
 
 DividerVertical.storyName = VERTICAL_DIVIDER;
-DividerVertical.args = {
-};
+DividerVertical.args = {};
 
 export const DividerCustomClassName = (argTypes: IDivider): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Divider
-        {...argTypes}
-        orientation={orientationMapping.left}
-        className={style['test-classname']}
-      >
+      <Divider {...argTypes} orientation={orientationMapping.left} className={style['test-classname']}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Экспертиза</span>
           <Button variant="text">
-            <Icon
-              name="IconChemical24"
-              containerSize={24}
-              htmlColor='var(--primary-blue-600)'
-            />
+            <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
           </Button>
         </div>
       </Divider>
@@ -135,7 +115,7 @@ export const DividerCustomClassName = (argTypes: IDivider): ReactNode => {
 
 DividerCustomClassName.storyName = DIVIDER_CUSTOM_CLASSNAME;
 DividerCustomClassName.args = {
-  children: DIVIDER_CUSTOM_CLASSNAME,
+  children: DIVIDER_CUSTOM_CLASSNAME
 };
 
 export const DividerType = (argTypes: IDivider): ReactNode => {
@@ -167,11 +147,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         </Button>
         <Divider {...argTypes} type={typeMapping.vertical} dashed />
         <Button variant="text">
-          <Icon
-            name="IconChemical24"
-            containerSize={24}
-            htmlColor='var(--primary-blue-600)'
-          />
+          <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
         </Button>
       </div>
 
@@ -179,11 +155,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Экспертиза</span>
           <Button variant="text">
-            <Icon
-              name="IconChemical24"
-              containerSize={24}
-              htmlColor='var(--primary-blue-600)'
-            />
+            <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
           </Button>
         </div>
       </Divider>
@@ -192,5 +164,4 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
 };
 
 DividerType.storyName = DIVIDER_TYPE;
-DividerType.args = {
-};
+DividerType.args = {};

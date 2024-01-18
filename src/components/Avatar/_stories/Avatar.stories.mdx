@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/addon-docs';
-import Avatar from '@components/Avatar';
-import Stories from './Stories'
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Avatar from '..';
+import Stories from './Stories';
 
 <Meta
-  title="Components/Avatar/Docs"
+  title="Components/Avatar/Info"
   component={Avatar}
   parameters={{
     design: {
@@ -14,4 +14,6 @@ import Stories from './Stories'
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

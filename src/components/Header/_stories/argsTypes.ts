@@ -73,7 +73,8 @@ const argsTypes = {
     }
   },
   breadcrumbs: {
-    description: 'Свойство, в которое можно добавить отдельный компонент Breadcrumbs, при этом он будет отображаться как часть Header',
+    description:
+      'Свойство, в которое можно добавить отдельный компонент Breadcrumbs, при этом он будет отображаться как часть Header',
     control: { type: 'string' }
   }
 };

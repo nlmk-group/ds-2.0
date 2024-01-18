@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import DatePicker from '@components/DatePicker';
+import { argsTypes } from '@components/DatePicker/_stories/argsTypes';
 import { TEnabledHourFrom, TEnabledHourTo } from '@components/DatePicker/types';
 import { sizesMappingInput } from '@components/declaration';
 import { Button } from '@components/index';
 import { Meta } from '@storybook/react';
 import { format } from 'date-fns';
-import { withDesign } from 'storybook-addon-designs';
 
 import styles from '@components/DatePicker/_stories/DatePicker.module.scss';
 
@@ -15,31 +15,8 @@ const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</d
 export default {
   title: 'Components/DatePicker/Stories',
   component: DatePicker,
-  decorators: [withDesign, withWrapper],
-  argTypes: {
-    withTime: {
-      control: { type: 'boolean' }
-    },
-    withPeriod: {
-      control: { type: 'boolean' }
-    },
-    enabledFrom: {
-      control: { type: 'date' }
-    },
-    enabledTo: {
-      control: { type: 'date' }
-    },
-    withShift: {
-      control: { type: 'boolean' }
-    },
-    level: {
-      options: ['day', 'month', 'year'],
-      control: { type: 'select' }
-    },
-    colored: {
-      control: { type: 'boolean' }
-    }
-  }
+  decorators: [withWrapper],
+  argTypes: argsTypes
 } as Meta<typeof DatePicker>;
 
 export const Default = (): JSX.Element => {

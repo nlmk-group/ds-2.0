@@ -1,4 +1,4 @@
-import {sizes, variant} from '../types';
+import { sizes, variant } from '../types';
 
 export const argsTypes = {
   children: {
@@ -28,15 +28,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: [
-      'primary',
-      'secondary',
-      'grey',
-      'outline',
-      'greyOutline',
-      'text',
-      'bar'
-    ],
+    options: ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text', 'bar'],
     control: { type: 'select' }
   },
   disabled: {
@@ -52,13 +44,11 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   startIcon: {
-    description:
-      'Элемент с иконкой, который располагается с левой стороны кнопки.',
+    description: 'Элемент с иконкой, который располагается с левой стороны кнопки.',
     control: { type: 'string' }
   },
   endIcon: {
-    description:
-      'Элемент с иконкой, который располагается с правой стороны кнопки.',
+    description: 'Элемент с иконкой, который располагается с правой стороны кнопки.',
     control: { type: 'string' }
   },
   iconButton: {

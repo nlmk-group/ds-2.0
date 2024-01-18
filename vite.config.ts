@@ -1,6 +1,5 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import path from 'path';
 import dts from 'vite-plugin-dts';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
@@ -11,10 +10,13 @@ export default defineConfig({
     open: true,
     port: 3000
   },
+  define: {
+    'process.env': process.env
+  },
   plugins: [
     tsConfigPaths(),
     dts({
-      tsConfigFilePath: '../tsconfig.json',
+      tsConfigFilePath: './tsconfig.json',
       include: ['src/components']
     }),
     react({

@@ -4,13 +4,7 @@ import { IIconsProps } from '../../types';
 
 const IconJira16: FC<IIconsProps> = () => {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M14.1082 1.33496H7.68921C7.68921 2.10346 7.99449 2.84048 8.5379 3.38389C9.08132 3.9273 9.81834 4.23259 10.5868 4.23259H11.7693V5.37427C11.7703 6.97312 13.0662 8.26902 14.665 8.27007V1.89181C14.665 1.58436 14.4158 1.33496 14.1082 1.33496Z"
         fill="#1492FF"

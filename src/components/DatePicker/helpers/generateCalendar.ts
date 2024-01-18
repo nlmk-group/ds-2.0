@@ -5,10 +5,7 @@
  * @param toYear Конечный год диапазона. По умолчанию равен начальному году.
  * @return Объект, где ключ - это год, а значение - массив месяцев.
  */
-export function getCalendar(
-  fromYear: number,
-  toYear: number = fromYear
-): { [key: number]: string[][] } {
+export function getCalendar(fromYear: number, toYear: number = fromYear): { [key: number]: string[][] } {
   const res: { [key: number]: string[][] } = {};
   for (let y = fromYear; y <= toYear; y++) {
     res[y] = getYearArray(y);
@@ -62,13 +59,10 @@ function getDayCountInMonth(year: number, month: number) {
  * @param isFirstDayMonday Флаг, указывающий на то, что первый день недели - понедельник.
  * @return Номер дня недели первого дня в месяце (0 - воскресенье, 1 - понедельник и т.д.).
  */
-function getNumOfFirstDay(
-  year: number,
-  month: number,
-  isFirstDayMonday: boolean
-) {
+function getNumOfFirstDay(year: number, month: number, isFirstDayMonday: boolean) {
   const day = new Date(year, month - 1).getDay();
-  return isFirstDayMonday ? (day ? day - 1 : 6) : day;
+  const firstDayMonday = day ? day - 1 : 6
+  return isFirstDayMonday ? firstDayMonday : day;
 }
 
 /*

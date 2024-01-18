@@ -1,13 +1,15 @@
-import { Meta } from '@storybook/addon-docs';
-import {Tabs} from '@components';
+import { Meta, Unstyled } from '@storybook/addon-docs';
+import Tabs from '..';
 import Stories from './Stories';
 
 <Meta
-  title="Components/Tabs/Docs"
+  title="Components/Tabs/Info"
   component={Tabs}
-  parameters={{    
+  parameters={{
     jest: ['Tabs.test.tsx']
   }}
 />
 
-<Stories />
+<Unstyled>
+  <Stories />
+</Unstyled>

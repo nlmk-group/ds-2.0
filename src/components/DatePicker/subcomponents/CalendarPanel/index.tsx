@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import React, { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 
 import ClickAwayListener from '@components/ClickAwayListener';
 import {
@@ -15,10 +9,7 @@ import {
   yearsAfterCurrent,
   yearsBeforeCurrent
 } from '@components/DatePicker/helpers';
-import {
-  CommonCalendar,
-  TimeSelector
-} from '@components/DatePicker/subcomponents';
+import { CommonCalendar, TimeSelector } from '@components/DatePicker/subcomponents';
 import { CalendarPanelProps } from '@components/DatePicker/subcomponents/CalendarPanel/types';
 import { TLevel } from '@components/DatePicker/types';
 import { useLocale } from '@components/DatePicker/utils';
@@ -58,9 +49,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
   ) => {
     const language = useLocale();
     const [selectedPanel, setSelectedPanel] = useState<TLevel>('day');
-    const [innerValue, innerOnChange] = useState(
-      withPeriod ? valueFrom : value
-    );
+    const [innerValue, innerOnChange] = useState(withPeriod ? valueFrom : value);
     const [selectedTime, setSelectedTime] = useState(new Date());
     const [innerPeriodValue, innerPeriodOnChange] = useState<{
       valueFrom?: Date;
@@ -69,17 +58,14 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
       valueFrom,
       valueTo
     });
-    const [panelValue, setPanelValue] = useState(
-      (withPeriod ? valueFrom : value) || new Date()
-    );
+    const [panelValue, setPanelValue] = useState((withPeriod ? valueFrom : value) || new Date());
     const [innerShiftFrom, setInnerShiftFrom] = useState(shiftFrom ?? 1);
     const [innerShiftTo, setInnerShiftTo] = useState(shiftTo ?? 1);
 
     const isChangeOnBlur = useMemo(() => {
       return (
         disableChangesOnBlur ||
-        (withPeriod &&
-          (!innerPeriodValue.valueFrom || !innerPeriodValue.valueTo)) ||
+        (withPeriod && (!innerPeriodValue.valueFrom || !innerPeriodValue.valueTo)) ||
         (!withPeriod && !innerValue)
       );
     }, [disableChangesOnBlur, innerPeriodValue, innerValue, withPeriod]);
@@ -109,20 +95,13 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
         return '';
       }
       if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
-        return `${
-          locale[language].months[panelValue.getMonth()]
-        }, ${panelValue.getFullYear()}`;
+        return `${locale[language].months[panelValue.getMonth()]}, ${panelValue.getFullYear()}`;
       }
-      if (
-        selectedPanel === LEVEL_MAPPING_ENUM.month ||
-        selectedPanel === LEVEL_MAPPING_ENUM.quarter
-      ) {
+      if (selectedPanel === LEVEL_MAPPING_ENUM.month || selectedPanel === LEVEL_MAPPING_ENUM.quarter) {
         return panelValue.getFullYear();
       }
       const currentYear = panelValue.getFullYear();
-      return `${currentYear - yearsBeforeCurrent} — ${
-        currentYear + yearsAfterCurrent
-      }`;
+      return `${currentYear - yearsBeforeCurrent} — ${currentYear + yearsAfterCurrent}`;
     }, [panelValue, selectedPanel]);
 
     const handleAccept = useCallback(() => {
@@ -132,18 +111,9 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
 
       if (withPeriod && onPeriodChange) {
         const valueFrom = innerPeriodValue.valueFrom;
-        const valueTo = getLastValue(
-          level,
-          innerPeriodValue.valueTo,
-          valueFrom,
-          locale[language].quarters
-        );
-        const withShiftFunc = (shift: number) =>
-          withShift ? shift : undefined;
-        const [shiftFrom, shiftTo] = [
-          withShiftFunc(innerShiftFrom),
-          withShiftFunc(innerShiftTo)
-        ];
+        const valueTo = getLastValue(level, innerPeriodValue.valueTo, valueFrom, locale[language].quarters);
+        const withShiftFunc = (shift: number) => (withShift ? shift : undefined);
+        const [shiftFrom, shiftTo] = [withShiftFunc(innerShiftFrom), withShiftFunc(innerShiftTo)];
         onPeriodChange(valueFrom, valueTo, shiftFrom, shiftTo);
       }
 
@@ -195,22 +165,15 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
           setPanelValue(date);
         }
 
-        if (
-          selectedPanel === LEVEL_MAPPING_ENUM.month &&
-          level === LEVEL_MAPPING_ENUM.day
-        ) {
+        if (selectedPanel === LEVEL_MAPPING_ENUM.month && level === LEVEL_MAPPING_ENUM.day) {
           setSelectedPanel('day');
         }
-        if (
-          selectedPanel === LEVEL_MAPPING_ENUM.year &&
-          level === LEVEL_MAPPING_ENUM.quarter
-        ) {
+        if (selectedPanel === LEVEL_MAPPING_ENUM.year && level === LEVEL_MAPPING_ENUM.quarter) {
           setSelectedPanel('quarter');
         }
         if (
           selectedPanel === LEVEL_MAPPING_ENUM.year &&
-          (level === LEVEL_MAPPING_ENUM.month ||
-            level === LEVEL_MAPPING_ENUM.day)
+          (level === LEVEL_MAPPING_ENUM.month || level === LEVEL_MAPPING_ENUM.day)
         ) {
           setSelectedPanel('month');
         }
@@ -254,26 +217,16 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
     const onLeftArrowClick = useCallback(() => {
       switch (selectedPanel) {
         case LEVEL_MAPPING_ENUM.day: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel && set(prevPanel, { month: prevPanel.getMonth() - 1 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { month: prevPanel.getMonth() - 1 }));
           break;
         }
         case LEVEL_MAPPING_ENUM.quarter:
         case LEVEL_MAPPING_ENUM.month: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel && set(prevPanel, { year: prevPanel.getFullYear() - 1 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() - 1 }));
           break;
         }
         case LEVEL_MAPPING_ENUM.year: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel &&
-              set(prevPanel, { year: prevPanel.getFullYear() - 12 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() - 12 }));
           break;
         }
       }
@@ -282,26 +235,16 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
     const onRightArrowClick = useCallback(() => {
       switch (selectedPanel) {
         case LEVEL_MAPPING_ENUM.day: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel && set(prevPanel, { month: prevPanel.getMonth() + 1 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { month: prevPanel.getMonth() + 1 }));
           break;
         }
         case LEVEL_MAPPING_ENUM.quarter:
         case LEVEL_MAPPING_ENUM.month: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel && set(prevPanel, { year: prevPanel.getFullYear() + 1 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() + 1 }));
           break;
         }
         case LEVEL_MAPPING_ENUM.year: {
-          setPanelValue(
-            prevPanel =>
-              prevPanel &&
-              set(prevPanel, { year: prevPanel.getFullYear() + 12 })
-          );
+          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() + 12 }));
           break;
         }
       }
@@ -355,9 +298,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
         onDecline={handleDecline}
         disableChange={disableChange}
         showFooter={withTime || withShift || withSeconds || withPeriod}
-        showShiftsSelector={
-          withShift && selectedPanel === LEVEL_MAPPING_ENUM.day
-        }
+        showShiftsSelector={withShift && selectedPanel === LEVEL_MAPPING_ENUM.day}
         shiftFrom={innerShiftFrom}
         shiftTo={innerShiftTo}
         shiftLength={shiftLength}
@@ -386,9 +327,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
     return isOpenOnFocus ? (
       <>{renderCalendarPanel()}</>
     ) : (
-      <ClickAwayListener
-        onClickAway={() => (isChangeOnBlur ? onClose() : handleAccept())}
-      >
+      <ClickAwayListener onClickAway={() => (isChangeOnBlur ? onClose() : handleAccept())}>
         {renderCalendarPanel()}
       </ClickAwayListener>
     );

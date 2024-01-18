@@ -6,29 +6,11 @@ import styles from '../IconsList.module.scss';
 
 import { IIconsProps } from '../../types';
 
-const IconSourceData32: FC<IIconsProps> = ({
-  color = 'inherit',
-  htmlColor
-}) => {
+const IconSourceData32: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
-      <mask
-        id="masked"
-        maskUnits="userSpaceOnUse"
-        x="2"
-        y="4"
-        width="16"
-        height="16"
-        className={styles.mask}
-      >
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
+      <mask id="masked" maskUnits="userSpaceOnUse" x="2" y="4" width="16" height="16" className={styles.mask}>
         <path
           d="M7.5 14.7376C7.5 8.8074 12.201 4 18 4H2V19.8508H8.03354C7.68976 18.4517 7.5 16.7592 7.5 14.7376Z"
           fill={htmlColor || 'currentColor'}

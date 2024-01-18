@@ -9,14 +9,7 @@ import { IIconsProps } from '../../types';
 const IconScissors24: FC<IIconsProps> = ({ color = 'inherit' }) => {
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={classes}
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
       <path
         d="M7 20C8.65685 20 10 18.6569 10 17C10 15.3431 8.65685 14 7 14C5.34315 14 4 15.3431 4 17C4 18.6569 5.34315 20 7 20Z"
         stroke="currentColor"
@@ -38,13 +31,7 @@ const IconScissors24: FC<IIconsProps> = ({ color = 'inherit' }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        d="M6 4L14.85 14.85"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M6 4L14.85 14.85" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 };

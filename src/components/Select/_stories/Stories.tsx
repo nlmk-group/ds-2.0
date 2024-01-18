@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 
-import { argsTypes } from './argsTypes';
-import { Tab, Tabs, Typography } from '@components/index';
-
 import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
+import { argsTypes } from './argsTypes';
+
 const SelectStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
+
   const optionsExample = `const options = [
     { value: 'apple', label: 'Apple' },
     { value: 'banana', label: 'Banana' },
@@ -24,7 +25,9 @@ const SelectStories = (): JSX.Element => {
   ];`;
 
   const selectDefaultCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default  App = () => (
   <>
     <Select options={options} label="Одиночный выбор" multiple={false} />
@@ -33,7 +36,9 @@ export default  App = () => (
 `;
 
   const selectMultipleCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default  App = () => (
   <>
     <Select options={options} label="Множественный выбор" multiple />
@@ -42,7 +47,9 @@ export default  App = () => (
 `;
 
   const selectSearchableCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default App = () => (
   <>
     <Select options={options} label="Выбор с поиском" isSearchable />
@@ -51,7 +58,9 @@ export default App = () => (
 `;
 
   const selectDisabledCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default App = () => (
   <>
     <Select options={options} label="Disabled" disabled />
@@ -60,7 +69,9 @@ export default App = () => (
 `;
 
   const selectExtraCompactCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default App = () => (
   <>
     <Select options={options} label="Размер xs" size="xs" />
@@ -69,7 +80,9 @@ export default App = () => (
 `;
 
   const selectScrollingItemsCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default App = () => (
   <>
     <Select options={options} label="Скролл" scrollingItems={2} />
@@ -78,7 +91,9 @@ export default App = () => (
 `;
 
   const selectSuccessCode = `import { Select } from '@nlmk/ds-2.0';
+
 ${optionsExample}
+
 export default App = () => (
   <>
     <Select options={options} label="Цвет success" color="success" />
@@ -87,13 +102,13 @@ export default App = () => (
 `;
 
   const selectEmptyCode = `import { Select } from '@nlmk/ds-2.0';
+
 export default App = () => (
   <>
     <Select options={[]} label="Пустой select" />
   </>
 );
 `;
-
 
   return (
     <div className={styles.wrapper}>
@@ -107,54 +122,22 @@ export default App = () => (
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            description="Компонент Select с одиночным выбором"
-            code={selectDefaultCode}
-          />
-
-          <Editor
-            description="Компонент Select с возможностью множественного выбора"
-            code={selectMultipleCode}
-          />
-
-          <Editor
-            description="Компонент Select с возможностью поиска нужного элемента"
-            code={selectSearchableCode}
-          />
-
-          <Editor
-            description="Select в состоянии disabled"
-            code={selectDisabledCode}
-          />
-
-          <Editor
-            description="Экстра компактный Select"
-            code={selectExtraCompactCode}
-          />
-
-          <Editor
-            description="Select с установленным скроллом"
-            code={selectScrollingItemsCode}
-          />
-
-          <Editor
-            description="Select с цветом success"
-            code={selectSuccessCode}
-          />
-
-          <Editor
-            description="Пустой Select"
-            code={selectEmptyCode}
-          />
-
+          <Editor description="Компонент Select с одиночным выбором" code={selectDefaultCode} />
+          <Editor description="Компонент Select с возможностью множественного выбора" code={selectMultipleCode} />
+          <Editor description="Компонент Select с возможностью поиска нужного элемента" code={selectSearchableCode} />
+          <Editor description="Select в состоянии disabled" code={selectDisabledCode} />
+          <Editor description="Экстра компактный Select" code={selectExtraCompactCode} />
+          <Editor description="Select с установленным скроллом" code={selectScrollingItemsCode} />
+          <Editor description="Select с цветом success" code={selectSuccessCode} />
+          <Editor height={200} description="Пустой Select" code={selectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}
@@ -163,7 +146,7 @@ export default App = () => (
       )}
       {Number(activeTab) === 2 && (
         <Typography variant="Heading4" color="primary">
-          <Tests componentName="Select"/>
+          <Tests componentName="Select" />
         </Typography>
       )}
     </div>

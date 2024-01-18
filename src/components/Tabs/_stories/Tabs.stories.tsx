@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 
-import { Icon, Tab, Tabs, Tooltip, Typography } from '@components/index';
-import { withDesign } from 'storybook-addon-designs';
+import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import { TEXT_DEFAULT } from './text';
 
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80 }}>{Story()}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
 export default {
   title: 'Components/Tabs/Stories',
   component: Tabs,
-  decorators: [withDesign, withPadding],
+  decorators: [withPadding],
   argTypes: {}
 };
 
@@ -23,36 +20,14 @@ export const TabsDefault = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Tabs>
-        <Tab
-          label="Входящие"
-          active={0 === Number(activeTab)}
-          onClick={() => setActiveTab(0)}
-        />
-        <Tab
-          label="Мои папки"
-          active={1 === Number(activeTab)}
-          onClick={() => setActiveTab(1)}
-        />
-        <Tab
-          label="Спам"
-          active={2 === Number(activeTab)}
-          onClick={() => setActiveTab(2)}
-          badgeNumber="91"
-        >
-          <Tooltip description="Сюда вы можете добавить текст подсказу для компонента">
-            <Icon
-              name="IconInfo16"
-              containerSize={16}
-              htmlColor="var(--text-grey-500)"
-            />
-          </Tooltip>
-        </Tab>
-        <Tab
-          label="Черновики"
-          active={3 === Number(activeTab)}
-          onClick={() => setActiveTab(3)}
-          badgeNumber="2"
-        />
+        <Tabs.Tab label="Входящие" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Спам" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} badgeNumber="91">
+          <Tabs.Tooltip description="Сюда вы можете добавить текст подсказу для компонента">
+            <Tabs.Icon name="IconInfo16" containerSize={16} htmlColor="var(--text-grey-500)" />
+          </Tabs.Tooltip>
+        </Tabs.Tab>
+        <Tabs.Tab label="Черновики" active={3 === Number(activeTab)} onClick={() => setActiveTab(3)} badgeNumber="2" />
       </Tabs>
 
       {Number(activeTab) == 0 && (

@@ -1,12 +1,11 @@
-import {Meta} from '@storybook/addon-docs';
-import {WelcomePage, Footer} from './Welcome';
+import { Meta, Unstyled } from '@storybook/addon-docs';
 import License from './License';
+import { Footer, WelcomePage } from './Welcome';
 
-<Meta title="Introduction/Welcome"/>
+<Meta title="Introduction/Welcome" />
 
-<WelcomePage/>
-
-<Footer/>
-
-<License/>
-
+<Unstyled>
+  <WelcomePage />
+  <Footer />
+  <License />
+</Unstyled>

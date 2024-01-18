@@ -3,10 +3,10 @@ export enum AvatarSize {
   xl = 'xl',
   l = 'l',
   m = 'm',
-  s = 's',
+  s = 's'
 }
 
 export enum AvatarShape {
   circle = 'circle',
-  square = 'square',
+  square = 'square'
 }

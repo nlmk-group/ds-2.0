@@ -11,6 +11,19 @@
   width: 900px;
 }
 
+.wrapper-fit-content {
+  background-color: var(--background-paper);
+  padding: 30px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.wrapper-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 .table {
   @include content-mixin;
   grid-template-columns: 100px 100px;

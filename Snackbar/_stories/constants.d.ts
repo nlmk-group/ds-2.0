@@ -1,0 +1,8 @@
+export declare const DEFAULT_SNACKBAR = "Snackbar \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E";
+export declare const SNACKBAR_CLOSE = "Snackbar \u0441 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u0437\u0430\u043A\u0440\u044B\u0442\u044C";
+export declare const SNACKBAR_ACTION = "Snackbar \u0441 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F";
+export declare const SNACKBAR_COLOR = "\u0412\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u0446\u0432\u0435\u0442\u0430 Snackbar";
+export declare const SNACKBAR_ICON = "Snackbar \u0441 \u0438\u043A\u043E\u043D\u043A\u043E\u0439";
+export declare const SNACKBAR_CUSTOM_ICON = "Snackbar \u0441 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u043E\u0439 \u0438\u043A\u043E\u043D\u043A\u043E\u0439";
+export declare const SNACKBAR_OPACITY = "Snackbar \u0441 \u0440\u0430\u0437\u043D\u043E\u0439 \u043F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u043E\u0441\u0442\u044C\u044E";
+//# sourceMappingURL=constants.d.ts.map

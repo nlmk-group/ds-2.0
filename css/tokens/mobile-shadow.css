@@ -8,8 +8,8 @@
   --i-os-shadow-card-on-color: [object Object];
   --i-os-shadow-bars: [object Object];
   --i-os-shadow-violet-on-white: [object Object];
-  --android-shadow-card-on-white: [object Object],[object Object],[object Object];
-  --android-shadow-card-on-color: [object Object],[object Object],[object Object];
-  --android-shadow-bars: [object Object],[object Object],[object Object];
-  --android-shadow-violet-on-white: [object Object],[object Object],[object Object];
+  --android-shadow-card-on-white: [object Object], [object Object], [object Object];
+  --android-shadow-card-on-color: [object Object], [object Object], [object Object];
+  --android-shadow-bars: [object Object], [object Object], [object Object];
+  --android-shadow-violet-on-white: [object Object], [object Object], [object Object];
 }

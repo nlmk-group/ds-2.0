@@ -1,0 +1,13 @@
+export declare const FILES_DEFAULT = "File (\u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E)";
+export declare const FILES_LONG_LABEL = "File (\u0434\u043B\u0438\u043D\u043D\u044B\u0439 \u043B\u044D\u0439\u0431\u043B)";
+export declare const FILES_DESCRIPTION = "File (\u0441 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435\u043C)";
+export declare const FILES_LEFT_ICON = "File (\u0432\u0430\u0440\u0438\u0430\u0446\u0438\u0438 \u043B\u0435\u0432\u043E\u0439 \u0438\u043A\u043E\u043D\u043A\u0438)";
+export declare const FILES_CONTROL = "File (\u0441 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u0430\u043C\u0438)";
+export declare const FILES_WITHOUT_TITLE = "AttachFiles (\u0431\u0435\u0437 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0430)";
+export declare const FILES_WITH_TITLE = "AttachFiles (\u0441 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u043C)";
+export declare const FILES_LIST = "AttachFiles (\u0441\u043E \u0441\u043F\u0438\u0441\u043A\u043E\u043C)";
+export declare const FILES_ADD_FILE_BUTTON = "AttachFiles (\u0441 \u043A\u043D\u043E\u043F\u043A\u043E\u0439 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0444\u0430\u0439\u043B\u0430)";
+export declare const FILES_WITH_CHECKBOXES = "AttachFiles (\u0441 \u0447\u0435\u043A\u0431\u043E\u043A\u0441\u0430\u043C\u0438)";
+export declare const FILE_NAME = "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0444\u0430\u0439\u043B\u0430.pdf";
+export declare const LONG_LABEL = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et volutpat enim.";
+//# sourceMappingURL=text.d.ts.map

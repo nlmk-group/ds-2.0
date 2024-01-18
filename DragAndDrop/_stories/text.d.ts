@@ -1,0 +1,10 @@
+export declare const DEFAULT_DND = "DragAndDrop \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E";
+export declare const DND_SIZES = "DragAndDrop \u043F\u043E \u0440\u0430\u0437\u043C\u0435\u0440\u0430\u043C";
+export declare const DND_FILE_TYPES = "DragAndDrop \u043F\u043E \u0442\u0438\u043F\u0430\u043C \u0444\u0430\u0439\u043B\u043E\u0432";
+export declare const DND_CUSTOM_ACCEPT = "DragAndDrop \u0441 \u043A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u043C \u043D\u0430\u0431\u043E\u0440\u043E\u043C \u043F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u043C\u044B\u0445 \u0444\u0430\u0439\u043B\u043E\u0432";
+export declare const DND_STATUSES = "DragAndDrop \u043F\u043E \u0441\u0442\u0430\u0442\u0443\u0441\u0430\u043C";
+export declare const DND_SMALL_TEXT = "DragAndDrop Small-Text";
+export declare const DND_SMALL_ICON = "DragAndDrop Small-Icon";
+export declare const DND_CUSTOM_ICON = "DragAndDrop \u0441 \u0438\u043A\u043E\u043D\u043A\u043E\u0439";
+export declare const DND_CUSTOM = "DragAndDrop \u0441 \u0441\u0430\u043C\u043E\u0441\u0442\u043E\u044F\u0442\u0435\u043B\u044C\u043D\u044B\u043C \u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u043E\u043C";
+//# sourceMappingURL=text.d.ts.map

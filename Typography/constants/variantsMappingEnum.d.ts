@@ -1,0 +1,25 @@
+export declare enum VARIANTS_MAPPING_ENUM {
+    'Heading1' = "heading1",
+    'Heading2' = "heading2",
+    'Heading3' = "heading3",
+    'Heading4' = "heading4",
+    'Subheading1' = "subheading1",
+    'Subheading2' = "subheading2",
+    'Subheading2-Medium' = "subheading2-medium",
+    'Subheading3' = "subheading3",
+    'Subheading3-Medium' = "subheading3-medium",
+    'Body' = "body",
+    'Body1' = "body1",
+    'Body1-Medium' = "body1-medium",
+    'Body1-Bold' = "body1-bold",
+    'Body2' = "body2",
+    'Body2-Medium' = "body2-medium",
+    'Body2-Bold' = "body2-bold",
+    'Body (18)' = "body-18",
+    'Body1 (16)' = "body1-16",
+    'Body-Medium (18)' = "body-medium-18",
+    'Caption' = "caption",
+    'Caption-Medium' = "caption-medium",
+    'Caption-Bold' = "caption-bold"
+}
+//# sourceMappingURL=variantsMappingEnum.d.ts.map

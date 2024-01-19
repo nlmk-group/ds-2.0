@@ -78,8 +78,10 @@ export const Footer: FC = () => {
             <Typography variant="Body1">
               Добавлен основной набор компонентов, который поможет, как конструктор в строительстве вашего проекта.
             </Typography>
-            <br/>
-            <Link href="./?path=/docs/introduction-changelog--docs" target='_blank'>История изменений</Link>
+            <br />
+            <Link href="./?path=/docs/introduction-changelog--docs" target="_blank">
+              История изменений
+            </Link>
           </>
         }
       />
@@ -121,7 +123,7 @@ export const WelcomePage = () => {
               </Button>
             </Link>
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
-              <Button startIcon={<WebSvgIcon />}>Сайт ДС 2.0</Button>
+              <Button startIcon={<WebSvgIcon />}>ДС 2.0</Button>
             </Link>
             <Link
               href="https://www.figma.com/community/file/1314246600711980667"
@@ -135,7 +137,7 @@ export const WelcomePage = () => {
           </div>
         </div>
         <div className={styles.icon}>
-          <img src="img/picture-pc.png" alt="NLMK UI Picture" />
+          <img src="img/preview.svg" alt="NLMK UI Picture" width={500} />
         </div>
       </div>
     </div>

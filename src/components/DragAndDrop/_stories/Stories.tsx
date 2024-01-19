@@ -21,7 +21,7 @@ const Stories = (): JSX.Element => {
         title="DragAndDrop"
         description="Компонент DragAndDrop представляет собой компонент ..."
         isBeta
-        codeLink="https://git.nlmk.com/design-system/open-source/-/tree/master/src/components/DragAndDrop"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/DragAndDrop"
         figmaLink="https://www.figma.com/file/6TeplhuWEqaYbru1WEvbcA/Treelist?node-id=228%3A38735&mode=dev"
       />
 

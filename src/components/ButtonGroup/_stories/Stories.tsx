@@ -24,7 +24,7 @@ const Stories = (): JSX.Element => {
         title="ButtonGroup"
         description="Компонент ButtonGroup представляет собой группу кнопок, которая позволяет объединять несколько элементов управления кнопками для создания более сложного и функционального пользовательского интерфейса."
         isStable
-        codeLink="https://git.nlmk.com/design-system/open-source/-/tree/master/src/components/ButtonGroup"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ButtonGroup"
         figmaLink="https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?node-id=3471%3A2090&mode=dev"
       />
 

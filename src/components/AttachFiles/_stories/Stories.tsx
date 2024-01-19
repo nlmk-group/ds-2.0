@@ -31,7 +31,7 @@ const Stories = (): JSX.Element => {
         description="Компонент, используемый для прикрепления файла. Компонент AttachFiles
           собирается из необходимого количества компонентов File."
         isStable
-        codeLink="https://git.nlmk.com/design-system/public-ds/-/tree/DESIGNSYS-1719/src/components/AttachFiles"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/master/tree/src/components/AttachFiles"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20840&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 

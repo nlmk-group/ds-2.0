@@ -14,8 +14,7 @@ import { argsTypes } from './argsTypes';
 const DatePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const datepickerDefaultCode = `
-import { useState } from 'react';
+  const datepickerDefaultCode = `import { useState } from 'react';
 import { DatePicker } from '@nlmk/ds-2.0';
 
 const App = () => {
@@ -28,8 +27,7 @@ const App = () => {
 export default App;
 `;
 
-  const datepickerTimeCode = `
-import { useState } from 'react';
+  const datepickerTimeCode = `import { useState } from 'react';
 import { DatePicker } from '@nlmk/ds-2.0';
 
 const App = () => {
@@ -42,8 +40,7 @@ const App = () => {
 export default App;
 `;
 
-  const datepickerPeriodCode = `
-import { useState } from 'react';
+  const datepickerPeriodCode = `import { useState } from 'react';
 import { DatePicker } from '@nlmk/ds-2.0';
 
 const App = () => {
@@ -57,8 +54,7 @@ const App = () => {
 export default App;
 `;
 
-  const datepickerWithEnabledDateCode = `
-import { useState } from 'react';
+  const datepickerWithEnabledDateCode = `import { useState } from 'react';
 import { DatePicker } from '@nlmk/ds-2.0';
 
 const App = () => {

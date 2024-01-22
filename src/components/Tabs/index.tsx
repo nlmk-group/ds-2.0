@@ -16,8 +16,8 @@ const Tabs: FC<ITabs> &
   Record<'Tab', FC<ITab>> &
   Record<'Tooltip', FC<ITooltipProps>> &
   Record<'Icon', FC<TIconProps>> = ({ children, className }) => {
-  return <div className={clsx(styles['tabs-wrapper'], className)}>{children}</div>;
-};
+    return <div className={clsx(styles['tabs-wrapper'], className)}>{children}</div>;
+  };
 
 Tabs.Tab = Tab;
 Tabs.Tooltip = Tooltip;

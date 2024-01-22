@@ -20,6 +20,22 @@ export const Changelog = () => {
       </div>
       <div className={styles.history}>
         <Typography variant="Subheading3-Medium">
+          v1.1.1 - <span className={styles.date}>22.01.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Исправлена работа компонента
+            <Link href="./?path=/docs/components-datepicker-info--docs" target="blank">
+              DatePicker
+            </Link>
+            .
+          </li>
+          <li>• Удалены ненужные зависимости из package.json.</li>
+          <li>• Обновление версии Storybook до 7.6.10.</li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
           v1.1.0 - <span className={styles.date}>17.01.24</span>
         </Typography>
         <ul className={styles.list}>

@@ -78,10 +78,8 @@ export const Footer: FC = () => {
             <Typography variant="Body1">
               Добавлен основной набор компонентов, который поможет, как конструктор в строительстве вашего проекта.
             </Typography>
-            <br />
-            <Link href="./?path=/docs/introduction-changelog--docs" target="_blank">
-              История изменений
-            </Link>
+            <br/>
+            <Link href="./?path=/docs/introduction-changelog--docs" target='_blank'>История изменений</Link>
           </>
         }
       />

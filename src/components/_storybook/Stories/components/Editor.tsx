@@ -17,7 +17,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
       <Sandpack
         customSetup={{
           dependencies: {
-            '@nlmk/ds-2.0': '1.1.0'
+            '@nlmk/ds-2.0': '1.1.1'
           }
         }}
         theme={{

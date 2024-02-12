@@ -25,6 +25,12 @@ declare const _default: {
                 type: string;
             };
         };
+        close: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
         action: {
             description: string;
             control: {

@@ -181,5 +181,16 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    portalContainerId: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

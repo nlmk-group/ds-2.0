@@ -21,6 +21,12 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    close: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     action: {
         description: string;
         control: {

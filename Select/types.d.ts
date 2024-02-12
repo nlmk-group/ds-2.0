@@ -26,5 +26,6 @@ export interface ISelectProps {
     onBlur?: () => void;
     onFocus?: () => void;
     isClearSearchOnBlur?: boolean;
+    className?: string;
 }
 //# sourceMappingURL=types.d.ts.map

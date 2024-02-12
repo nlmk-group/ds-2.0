@@ -6,6 +6,12 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    className: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     options: {
         description: string;
         control: {

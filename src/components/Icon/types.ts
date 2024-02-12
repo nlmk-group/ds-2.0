@@ -1,24 +1,13 @@
 export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning';
 
-export type TIconProps =
-  | {
-      name: string;
-      color?: IconColor;
-      htmlColor?: string;
-      containerSize?: 32;
-    }
-  | {
-      name: string;
-      color?: IconColor;
-      htmlColor?: string;
-      containerSize?: 24;
-    }
-  | {
-      name: string;
-      color?: IconColor;
-      htmlColor?: string;
-      containerSize?: 16;
-    };
+export type TContainerSize = 32 | 24 | 16;
+
+export interface TIconProps {
+  name: string;
+  color?: IconColor;
+  htmlColor?: string;
+  containerSize?: TContainerSize;
+}
 
 export interface IIconsProps {
   color?: IconColor;

@@ -18,9 +18,13 @@ export const argsTypes = {
     options: Object.values(severityMapping),
     control: { type: 'select' }
   },
-  action: {
-    description: 'Свойство добавления альтернативного действия компонента',
+  close: {
+    description: 'Свойство добавления действия для закрытия компонента',
     control: { type: 'boolean' }
+  },
+  action: {
+    description: 'Свойство добавления компонента альтернативного действия',
+    control: { type: 'text' }
   },
   className: {
     description: 'В компонент можно передать альтернативные стили',

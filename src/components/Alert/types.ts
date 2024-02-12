@@ -1,5 +1,4 @@
-import React from 'react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
 import { severityMapping } from './enums';
 
@@ -7,7 +6,8 @@ export interface IAlert extends PropsWithChildren<any> {
   title: string;
   severity?: string;
   className?: string;
-  action?: JSX.Element | React.ReactNode;
+  action?: ReactNode;
+  close?: ()=>void;
 }
 
 export type IIconSeverityColor = Record<severityMapping, string>;

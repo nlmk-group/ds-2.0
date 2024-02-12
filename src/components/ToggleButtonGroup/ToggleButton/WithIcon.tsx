@@ -9,20 +9,29 @@ export const WithIcon: FC<IWithIcon> = ({
   name = 'IconArticle24',
   color = 'inherit',
   containerSize = 24,
-  htmlColor = 'var(--text-grey-900)'
+  htmlColor = 'var(--text-grey-900)',
+  children = null
 }) => {
   const { size } = useContext<IButtonGroupProperties>(ButtonGroupProperties);
   return (
     <div
       data-testid='ICON'
-      className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}
+      className={clsx(
+        styles['icon-wrapper'],
+        styles[`icon-${size}`]
+      )}
     >
-      <Icon
-        name={name}
-        containerSize={containerSize}
-        color={color}
-        htmlColor={htmlColor}
-      />
+      {children !== null
+        ? children
+        : (
+          <Icon
+            name={name}
+            containerSize={containerSize}
+            color={color}
+            htmlColor={htmlColor}
+          />
+        )
+      }
     </div>
   )
 }

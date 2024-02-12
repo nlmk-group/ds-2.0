@@ -30,7 +30,8 @@ const Select: FC<ISelectProps> = ({
   withPortal = false,
   onEnterPress,
   onBlur,
-  onFocus
+  onFocus,
+  className
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -188,7 +189,7 @@ const Select: FC<ISelectProps> = ({
   }
 
   const renderContent = () => (
-    <div className={styles.select} ref={containerRef}>
+    <div className={clsx(styles.select, className)} ref={containerRef}>
       <Input
         id={id}
         size={size}

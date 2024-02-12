@@ -5,6 +5,10 @@ export const argsTypes = {
     description: 'Идентификатор компонента',
     control: { type: 'text' }
   },
+  className: {
+    description: 'Добавление кастомного CSS класса',
+    control: { type: 'text' }
+  },
   options: {
     description: 'Массив объектов, представляющих доступные опции для выбора',
     control: { type: 'object' }

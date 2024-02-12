@@ -22,6 +22,7 @@ export const DatePicker: TDatePickerProps = ({
   level = 'day',
   type = 'date',
   name,
+  portalContainerId = 'root',
   valueFrom: outerValueFrom,
   valueTo: outerValueTo,
   enabledFrom = new Date(1900, 0, 1),
@@ -196,6 +197,8 @@ export const DatePicker: TDatePickerProps = ({
     />
   );
 
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+
   const renderDatepicker = () => (
     <div
       className={clsx(styles.root, className, restInputProps.disabled && styles.disabled, isOpen && styles.isOpen)}
@@ -249,7 +252,7 @@ export const DatePicker: TDatePickerProps = ({
         (!withPortal ? (
           <>{renderCalendarPanel()}</>
         ) : (
-          ReactDOM.createPortal(<>{renderCalendarPanel()}</>, document.getElementById('root') as HTMLElement)
+          ReactDOM.createPortal(<>{renderCalendarPanel()}</>, portalContainer)
         ))}
     </div>
   );
@@ -259,8 +262,9 @@ export const DatePicker: TDatePickerProps = ({
       {pseudo ? (
         <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
       ) : (
-        isOpenOnFocus && <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>
-        || <>{renderDatepicker()}</>
+        (isOpenOnFocus && <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
+          <>{renderDatepicker()}</>
+        )
       )}
     </LocaleProvider>
   );

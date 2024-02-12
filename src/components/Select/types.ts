@@ -127,4 +127,8 @@ export interface ISelectProps {
    * Условие удаление поискового запроса при отработке onBlur на Input
    */
   isClearSearchOnBlur?: boolean;
+  /**
+   * Добавление самостоятельного CSS класса
+   */
+  className?: string;
 }

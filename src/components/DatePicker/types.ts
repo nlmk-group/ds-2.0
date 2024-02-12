@@ -10,6 +10,7 @@ export type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 
 export interface BaseProps {
   id?: number | string;
+  portalContainerId?: string;
   locale?: string;
   className?: string;
   enabledFrom?: Date;

@@ -166,5 +166,15 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  portalContainerId: {
+    description:
+      'Идентификатор контейнера, в который будет рендериться календарь с помощью React Portal. По умолчанию используется "root".',
+    table: {
+      defaultValue: {
+        summary: 'root'
+      }
+    },
+    control: { type: 'text' }
   }
 };

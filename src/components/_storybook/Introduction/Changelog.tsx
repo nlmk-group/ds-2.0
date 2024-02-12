@@ -20,6 +20,28 @@ export const Changelog = () => {
       </div>
       <div className={styles.history}>
         <Typography variant="Subheading3-Medium">
+          v1.1.3 - <span className={styles.date}>02.02.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Исправлено поведение action для компонента 
+            <Link href="./?path=/docs/components-alert-info--docs" target="blank">
+              Alert
+            </Link>
+            .
+          </li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
+          v1.1.2 - <span className={styles.date}>25.01.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>• Реализована возможность добавить CSS класс для компонента Select.</li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
           v1.1.1 - <span className={styles.date}>22.01.24</span>
         </Typography>
         <ul className={styles.list}>

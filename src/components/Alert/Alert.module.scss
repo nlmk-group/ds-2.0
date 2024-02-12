@@ -30,16 +30,10 @@
   flex-direction: column;
 }
 
-.icon-wrapper {
-  margin-right: var(--8-space);
-}
-
-.title {
-  font-weight: var(--body2-mono-bold-14-font-weight);
-  font-size: var(--body2-mono-bold-14-font-size);
-  min-height: var(--24-size);
+.content-main {
   display: flex;
   align-items: center;
+  gap: var(--8-space);
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: break-word;
@@ -58,28 +52,37 @@
 
 .action-wrapper {
   margin-left: auto;
-}
-
-.action-container {
   display: flex;
   gap: var(--8-space);
 }
 
 // Standard
 .standard-success {
-  @include standard-helper(var(--ac-alert-success-bg), var(--ac-alert-success-text));
+  @include standard-helper(
+    var(--ac-alert-success-bg),
+    var(--ac-alert-success-text)
+  );
 }
 
 .standard-error {
-  @include standard-helper(var(--ac-alert-error-bg), var(--ac-alert-error-text));
+  @include standard-helper(
+    var(--ac-alert-error-bg),
+    var(--ac-alert-error-text)
+  );
 }
 
 .standard-warning {
-  @include standard-helper(var(--ac-alert-warning-bg), var(--ac-alert-warning-text));
+  @include standard-helper(
+    var(--ac-alert-warning-bg),
+    var(--ac-alert-warning-text)
+  );
 }
 
 .standard-info {
-  @include standard-helper(var(--ac-alert-info-bg), var(--ac-alert-info-text));
+  @include standard-helper(
+    var(--ac-alert-info-bg),
+    var(--ac-alert-info-text)
+  );
 }
 
 .test-custom-style {
@@ -89,5 +92,13 @@
 
   svg {
     stroke: var(--spectrum-violet-900) !important;
+  }
+}
+
+.btn-close {
+  height: unset!important;
+  &:hover {
+    background-color: unset!important;
+    opacity: .5;
   }
 }

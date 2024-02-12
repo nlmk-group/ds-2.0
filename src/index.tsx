@@ -4,8 +4,9 @@ import { createRoot } from 'react-dom/client';
 import Stories from './components/_storybook/Stories';
 import { IFile } from './components/AttachFiles/subcomponents/File/types';
 
-import { Accordion, Alert, DragAndDrop, Tabs, ToggleButtonGroup, ThemeSwitcher } from './components';
-const {Button} = ToggleButtonGroup;
+import { Accordion, Alert, DragAndDrop, Select, Tabs, ThemeSwitcher, ToggleButtonGroup } from './components';
+
+const { Button } = ToggleButtonGroup;
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -16,26 +17,30 @@ const items = [
   { id: '3', title: 'title 3', content: 'content 3' }
 ];
 
+const options = [
+  { value: 'apple', label: 'Apple' },
+  { value: 'banana', label: 'Banana' },
+  { value: 'cherry', label: 'Cherry', disabled: true },
+  { value: 'date', label: 'Date' },
+  { value: 'elderberry', label: 'Elderberry' },
+  { value: 'fig', label: 'Fig' },
+  { value: 'grape', label: 'Grape' }
+];
+
 const SomeTabs = () => {
   return (
     <ToggleButtonGroup>
-    <Button>
-      <Button.Label>
-        Plus
-      </Button.Label>
-    </Button>
-    <ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button.Label>
-        Check result
-      </ToggleButtonGroup.Button.Label>
-    </ToggleButtonGroup.Button>
-    <ToggleButtonGroup.Button>
-      <ToggleButtonGroup.Button.Label>
-        Minus
-      </ToggleButtonGroup.Button.Label>
-    </ToggleButtonGroup.Button>
-  </ToggleButtonGroup>
-  )
+      <Button>
+        <Button.Label>Plus</Button.Label>
+      </Button>
+      <ToggleButtonGroup.Button>
+        <ToggleButtonGroup.Button.Label>Check result</ToggleButtonGroup.Button.Label>
+      </ToggleButtonGroup.Button>
+      <ToggleButtonGroup.Button>
+        <ToggleButtonGroup.Button.Label>Minus</ToggleButtonGroup.Button.Label>
+      </ToggleButtonGroup.Button>
+    </ToggleButtonGroup>
+  );
 };
 
 const App = () => {
@@ -74,7 +79,8 @@ root.render(
       {/* <App />
       <br />
       <ThemeSwitcher /> */}
-      <SomeTabs />
+      {/* <SomeTabs /> */}
+      <Select options={options} label="Одиночный выбор" multiple={false} />
       {/* <ThemeSwitcher />
       <Button variant="primary">Great day!</Button>
       <DatePicker /> */}

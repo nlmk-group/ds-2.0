@@ -7,7 +7,7 @@
   background: var(--default-second);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
   overflow-y: auto;
-  z-index: 1;
+  z-index: 20;
 
   &::-webkit-scrollbar {
     width: 16px;

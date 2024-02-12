@@ -9,7 +9,14 @@ import styles from './Alert.module.scss';
 
 import { severityMapping } from './enums';
 
-const Alert: FC<IAlert> = ({ title, severity = severityMapping.success, children, close = null, className }) => {
+const Alert: FC<IAlert> = ({
+  title,
+  severity = severityMapping.success,
+  children = null,
+  close = null,
+  action = null,
+  className
+}) => {
   const iconColorHandler = (): string => {
     const severityStyles: IIconSeverityColor = {
       [severityMapping.success]: 'var(--ac-alert-success-icon)',
@@ -24,22 +31,35 @@ const Alert: FC<IAlert> = ({ title, severity = severityMapping.success, children
   return (
     <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`standard-${severity}`], className)}>
       <div className={styles.info}>
-        <div data-testid="ALERT_TITLE" className={styles.title}>
-          <div className={styles['icon-wrapper']}>
-            <Icon name="IconInfo24" containerSize={24} htmlColor={iconColorHandler()} />
-          </div>
-          {title}
-          {!!close && (
-            <div className={styles['action-wrapper']}>
-              <Button variant="text" onClick={typeof close === 'boolean' ? undefined : close}>
-                <Icon name="IconClose24" containerSize={24} htmlColor="var(--text-primary)" />
+        <div data-testid="ALERT_TITLE" className={styles['content-main']}>
+          <Icon name="IconInfo24" containerSize={24} htmlColor={iconColorHandler()} />
+          <Typography variant="Body2-Bold">
+            {title}
+          </Typography>
+          
+          <div className={styles['action-wrapper']}>
+            {action !== null && action}
+            {!!close && close !== null && (
+              <Button
+                variant='text'
+                onClick={close}
+                className={styles['btn-close']}
+                size='xs'
+              >
+                <Icon
+                  name="IconClose24"
+                  containerSize={16}
+                  htmlColor='var(--ac-icon-grey)'
+                />
               </Button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-        <div className={styles['content-wrapper']}>
-          <Typography variant="Body2-Medium">{children}</Typography>
-        </div>
+        {children !== null && (
+          <div className={styles['content-wrapper']}>
+            <Typography variant="Body2-Medium">{children}</Typography>
+          </div>
+        )}
       </div>
     </div>
   );

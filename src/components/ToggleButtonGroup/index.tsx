@@ -26,10 +26,14 @@ const ToggleButtonGroup = ({
   const handleToggle = (index: number) => {
     setActiveId(activeId === index ? null : index);
   };
+
   useEffect(() => {
     setChildrenWithProps(
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
+          if (child.props.active) {
+            setActiveId(index)
+          }
           return cloneElement(child, {
             active: activeId === index,
             isLast: index === Children.toArray(children).length - 1,

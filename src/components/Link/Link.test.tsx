@@ -67,7 +67,7 @@ describe('src/components/Header', () => {
 
   test('It should render Link with left icon', () => {
     render(
-      <Link href={href} leftIcon={<Icon name="IconStorage16" />}>
+      <Link href={href} leftIcon={<Icon name="IconBunkerOutlined16" />}>
         {testTitle}
       </Link>
     );
@@ -77,7 +77,7 @@ describe('src/components/Header', () => {
 
   test('It should render Link with right icon', () => {
     render(
-      <Link href={href} rightIcon={<Icon name="IconStorage16" />}>
+      <Link href={href} rightIcon={<Icon name="IconBunkerOutlined16" />}>
         {testTitle}
       </Link>
     );
@@ -95,7 +95,7 @@ describe('src/components/Header', () => {
     Object.values(sizeMapping).forEach((size: sizeMapping) => {
       test(`It should render icon wrapper with ${size} size`, () => {
         render(
-          <Link href={href} size={size} leftIcon={<Icon name="IconStorage16" />}>
+          <Link href={href} size={size} leftIcon={<Icon name="IconBunkerOutlined16" />}>
             {testTitle}
           </Link>
         );

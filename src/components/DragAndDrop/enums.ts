@@ -59,8 +59,8 @@ export enum spinnerWidthHelperMapping {
 }
 
 export enum smallIconMapping {
-  default = 'IconAdd24',
-  info = 'IconAdd24',
-  error = 'IconErrorOutline32',
-  warning = 'IconWarningOutline32'
+  default = 'IconAddPlusOutlined24',
+  info = 'IconAddAddPlusOutlined24',
+  error = 'IconAttentionWarningAlertErrorOutlined32',
+  warning = 'IconAttentionWarningAlertErrorOutlined32'
 }

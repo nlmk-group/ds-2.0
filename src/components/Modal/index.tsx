@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { IconClose32 } from '@components/Icon/IconsList/32';
-import { Button, ClickAwayListener } from '@components/index';
+import { Button, ClickAwayListener, IconCloseOutlined32 } from '@components/index';
 import clsx from 'clsx';
 
 import { IModalProps } from './types';
@@ -93,7 +92,7 @@ const Modal: FC<IModalProps> = ({
         </div>
       </ClickAwayListener>
       <Button
-        iconButton={<IconClose32 />}
+        iconButton={<IconCloseOutlined32 />}
         variant="text"
         className={styles.modalClose}
         onClick={onClose}

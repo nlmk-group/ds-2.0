@@ -6,7 +6,7 @@ import {
   DatePickerArrowDownSvgIcon,
   DatePickerArrowLeftSvgIcon,
   DatePickerArrowRightSvgIcon
-} from '@components/Icon/icons_internal';
+} from '@components/Icon/IconsInternal';
 import clsx from 'clsx';
 
 import styles from './PeriodPicker.module.scss';

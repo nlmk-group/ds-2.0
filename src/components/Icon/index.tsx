@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 
 import { TIconProps } from './types';
 
-import { IconContainer } from '../Icon/subcomponent/IconContainer';
-import icons from './IconsList';
+import IconContainer from '../Icon/subcomponent/IconContainer';
+import icons from './IconsDirectory';
 
 export const Icon: FC<TIconProps> = ({ color = 'inherit', name, containerSize = 24, htmlColor }) => {
   const iconSize = Number(name.slice(-2));

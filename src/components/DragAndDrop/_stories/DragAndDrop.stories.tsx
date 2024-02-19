@@ -183,7 +183,7 @@ dndSmallIcon.args = {
 };
 
 export const dndCustomIcon = (argTypes: IDragAndDrop): ReactNode => {
-  return <DragAndDrop customIcon={<Icon name="IconUpload24" />} {...argTypes} />;
+  return <DragAndDrop customIcon={<Icon name="IconUploadOutlined24" />} {...argTypes} />;
 };
 
 dndCustomIcon.storyName = DND_CUSTOM_ICON;
@@ -192,7 +192,7 @@ export const dndCustom = (argTypes: IDragAndDrop): ReactNode => {
   return (
     <DragAndDrop {...argTypes}>
       <div className={customStyle['custom-component-style']}>
-        <Icon name="IconUpload24" />
+        <Icon name="IconUploadOutlined24" />
         <div>Just throw something here!</div>
       </div>
     </DragAndDrop>

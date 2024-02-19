@@ -35,7 +35,7 @@ import {
 } from '@components/DatePicker/helpers';
 import { DatePickerInputProps } from '@components/DatePicker/subcomponents/DatePickerInput/types';
 import { useLocale } from '@components/DatePicker/utils';
-import { CalendarSvgIcon } from '@components/Icon/icons_internal';
+import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
 import clsx from 'clsx';
@@ -115,7 +115,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInp
                 ? dateTimeSecondsFormatMask
                 : dateTimeFormatMask;
             }
-              
+
             const defaultFormat = showTime
               ? withSecondsCondition()
               : dateFormatMask;

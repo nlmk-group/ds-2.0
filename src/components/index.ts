@@ -22,6 +22,7 @@ export { default as Checkbox } from './Checkbox';
 export { default as Typography } from './Typography';
 export { default as Tooltip } from './Tooltip';
 export { default as Icon } from './Icon';
+export { default as IconContainer } from './Icon/subcomponent/IconContainer';
 export { default as ThemeSwitcher } from './ThemeSwitcher';
 export { default as DatePicker } from './DatePicker';
 export { default as DateTime } from './DateTime';
@@ -41,7 +42,7 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup';
 export { default as ImagePicture } from './ImagePicture';
 export { default as Modal } from './Modal';
 export * from './ThemeSwitcher';
-export * from './Icon';
+export * from './Icon/IconsDirectory';
 
 /** Хуки */
 export * from './Theme/hooks';

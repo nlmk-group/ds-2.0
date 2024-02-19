@@ -9,7 +9,7 @@ import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { argsTypes } from './argsTypes';
+import argsTypes from './argsTypes';
 import { AllIcons } from './Icon.stories';
 
 enum TabIds {
@@ -35,8 +35,10 @@ const Stories = (): JSX.Element => {
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
-      <div>
-        <Typography variant="Heading2">Свойства</Typography>
+      <div className={styles['header-wrapper']}>
+        <Typography variant="Heading2" color="primary">
+          Свойства
+        </Typography>
         <ul>
           <li>
             <b>name: string</b> - название иконки
@@ -57,7 +59,9 @@ const Stories = (): JSX.Element => {
           </li>
         </ul>
 
-        <Typography variant="Heading2">Иконки</Typography>
+        <Typography variant="Heading2" color="primary">
+          Иконки
+        </Typography>
         <p>Существует 2 разных способа добавить иконку в проект:</p>
 
         <ol>
@@ -65,7 +69,9 @@ const Stories = (): JSX.Element => {
           <li>Использовать каждую кастомизированную иконку, как отдельный компонент</li>
         </ol>
 
-        <Typography variant="Heading2">Примеры</Typography>
+        <Typography variant="Heading2" color="primary">
+          Примеры
+        </Typography>
         <p>
           Компонент Icon - каждая иконка данного компонента имеет контейнер (размер контейнера по умолчанию равен
           размеру иконки). Важно: загрузка иконки осуществляется по её имени в соответствии с макетом figma.
@@ -105,8 +111,11 @@ const App = () => (
 export default App;
 `}
           />
-          <br/>
-          <Typography variant="Heading3">Все доступные иконки</Typography>
+          <br />
+          <Typography color="primary" variant="Heading3">
+            Все доступные иконки
+          </Typography>
+          <br />
           <AllIcons />
 
           <Properties argsTypes={argsTypes} />

@@ -162,15 +162,15 @@ const RenderCustom = () => {
   return (
     <div>
       <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDone24" color="success"/>
+        <Icon name="IconDoneCheckOutlined24" color="success"/>
         <Typography variant="Caption-Medium">Первый пункт</Typography>
       </div>
       <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDone24" color="success"/>
+        <Icon name="IconDoneCheckOutlined24" color="success"/>
         <Typography variant="Caption-Medium">Второй пункт</Typography>
       </div>
       <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDone24" color="success"/>
+        <Icon name="IconDoneCheckOutlined24" color="success"/>
         <Typography variant="Caption-Medium">Третий пункт</Typography>
       </div>
     </div>

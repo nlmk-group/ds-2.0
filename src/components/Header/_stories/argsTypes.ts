@@ -2,7 +2,7 @@ import { typeMapping } from '../enums';
 
 const argsTypes = {
   title: {
-    description: 'Cтрока, представляющая текст, отображаемый в качестве заголовка.',
+    description: 'Строка, представляющая текст, отображаемый в качестве заголовка.',
     control: { type: 'string' }
   },
   type: {

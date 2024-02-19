@@ -13,7 +13,7 @@ const Properties: FC<{ argsTypes?: TArgsType }> = ({ argsTypes = {} }) => {
     <div className={styles.properties}>
       <Button
         variant="secondary"
-        startIcon={<Icon containerSize={24} name={isOpen ? 'IconExpandMore24' : 'IconExpandLess24'} />}
+        startIcon={<Icon containerSize={24} name={isOpen ? 'IconChevronArrowUpFilled24' : 'IconChevronArrowDownFilled24'} />}
         onClick={() => setIsOpen(!isOpen)}
       >
         Свойства компонента

@@ -12,7 +12,7 @@ const BtnFavorite: FC<{
       <Button
         data-testid="HEADER_FAVORITE"
         onClick={favorite}
-        iconButton={<Icon name="IconStarBorder24" containerSize={24} htmlColor={'var(--text-grey-400)'} />}
+        iconButton={<Icon name="IconStarOutlined24" containerSize={24} htmlColor={'var(--text-grey-400)'} />}
         variant="text"
         size="xs"
       />

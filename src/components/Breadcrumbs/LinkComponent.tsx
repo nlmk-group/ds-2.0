@@ -24,7 +24,7 @@ const LinkComponent: FC<Breadcrumb> = ({ label, href, active, target = targetMap
         {label}
       </span>
       <div className={styles['link-separator']}>
-        <Icon name="IconChevronRight24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
+        <Icon name="IconChevronArrowRightOutlined24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
       </div>
     </a>
   );

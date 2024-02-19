@@ -12,7 +12,7 @@ const BtnBack: FC<{
       <Button
         data-testid="HEADER_BACK"
         onClick={back}
-        iconButton={<Icon name="IconChevronLeft24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />}
+        iconButton={<Icon name="IconChevronArrowLeftOutlined24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />}
         variant="outline"
       />
     </div>

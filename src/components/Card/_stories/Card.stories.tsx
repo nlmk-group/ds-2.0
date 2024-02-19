@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import { Card } from '@components/index';
 import { Meta } from '@storybook/react';
 
+import stylesCard from './Card.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import ContentExample from '../ContentExample';
@@ -32,7 +33,7 @@ export default {
 
 export const CardDefault = (argTypes: ICard): ReactNode => {
   return (
-    <Card {...argTypes}>
+    <Card {...argTypes} className={stylesCard['card-vertical']}>
       <ContentExample />
     </Card>
   );
@@ -44,7 +45,7 @@ export const CardOrientation = (argTypes: ICard): ReactNode => {
   return (
     <div style={{ display: 'flex', gap: '20px' }}>
       {Object.values(orientationMapping).map((orientation: orientationMapping, index: number) => (
-        <Card key={index} {...argTypes} orientation={orientation}>
+        <Card key={index} {...argTypes} orientation={orientation} className={stylesCard[`card-${orientation}`]}>
           <ContentExample orientation={orientation} />
         </Card>
       ))}

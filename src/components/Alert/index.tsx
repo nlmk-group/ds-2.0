@@ -32,11 +32,11 @@ const Alert: FC<IAlert> = ({
     <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`standard-${severity}`], className)}>
       <div className={styles.info}>
         <div data-testid="ALERT_TITLE" className={styles['content-main']}>
-          <Icon name="IconInfo24" containerSize={24} htmlColor={iconColorHandler()} />
+          <Icon name="IconInfoOutlined24" containerSize={24} htmlColor={iconColorHandler()} />
           <Typography variant="Body2-Bold">
             {title}
           </Typography>
-          
+
           <div className={styles['action-wrapper']}>
             {action !== null && action}
             {!!close && close !== null && (
@@ -47,7 +47,7 @@ const Alert: FC<IAlert> = ({
                 size='xs'
               >
                 <Icon
-                  name="IconClose24"
+                  name="IconCloseOutlined24"
                   containerSize={16}
                   htmlColor='var(--ac-icon-grey)'
                 />

@@ -6,7 +6,7 @@ import Icon from '@components/Icon';
 import { ButtonGroupProperties } from '..';
 
 export const WithIcon: FC<IWithIcon> = ({
-  name = 'IconArticle24',
+  name = 'IconArticleOutlined24',
   color = 'inherit',
   containerSize = 24,
   htmlColor = 'var(--text-grey-900)',

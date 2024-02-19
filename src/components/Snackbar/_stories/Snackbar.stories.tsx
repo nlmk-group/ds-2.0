@@ -107,7 +107,7 @@ export const SnackbarCustomIcon = (argTypes: ISnackbar): ReactNode => {
   return (
     <Snackbar
       {...argTypes}
-      customIcon={<Icon name="IconEducation24" containerSize={24} htmlColor={'var(--default-second)'} />}
+      customIcon={<Icon name="IconEducationOutlined24" containerSize={24} htmlColor={'var(--default-second)'} />}
     />
   );
 };

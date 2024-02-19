@@ -23,7 +23,7 @@ const TitleHelper: FC<ITitle> = ({ title, href = '', checkAction = null, checked
   if (href.length) {
     return (
       <div data-testid="TITLE_LINK">
-        <Link href={href} size="h3" rightIcon={<Icon name="IconArrowForward24" />}>
+        <Link href={href} size="h3" rightIcon={<Icon name="IconArrowRightOutlined24" />}>
           {title}
         </Link>
       </div>

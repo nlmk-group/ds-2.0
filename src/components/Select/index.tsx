@@ -2,8 +2,14 @@ import React, { FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from '
 import ReactDOM from 'react-dom';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { IconChevronArrowDownOutlined24, IconChevronArrowUpOutlined24 } from '@components/Icon/IconsList/24';
-import { Button, Checkbox, Input, Typography } from '@components/index';
+import {
+  Button,
+  Checkbox,
+  IconChevronArrowDownOutlined24,
+  IconChevronArrowUpOutlined24,
+  Input,
+  Typography
+} from '@components/index';
 import List from '@components/List';
 import ListItem from '@components/ListItem';
 import clsx from 'clsx';

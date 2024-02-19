@@ -14,7 +14,7 @@ const Card: FC<ICard> = ({
   children,
   orientation = orientationMapping.vertical,
   indicatorSize = sizesMapping.s,
-  indicatorStatus = indicatorStatusMapping.success
+  indicatorStatus = indicatorStatusMapping.default
 }) => {
   return (
     <div
@@ -22,10 +22,10 @@ const Card: FC<ICard> = ({
       className={clsx(
         styles.wrapper,
         styles[`wrapper-${orientation}`],
-        className,
         styles[`indicator-${orientation}`],
         styles[`indicator-${indicatorSize}`],
-        styles[`indicator-${indicatorStatus}`]
+        styles[`indicator-${indicatorStatus}`],
+        className
       )}
     >
       {children}

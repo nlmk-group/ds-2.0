@@ -20,11 +20,49 @@ export const Changelog = () => {
       </div>
       <div className={styles.history}>
         <Typography variant="Subheading3-Medium">
+          v1.2.2 - <span className={styles.date}>19.02.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Исправлено отображение статуса в компоненте Card, добавлено состояние default.
+          </li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
+          v1.2.1 - <span className={styles.date}>15.02.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Добавлены новые иконки для таблиц
+            <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              Icon
+            </Link>
+            .
+          </li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
+          v1.2.0 - <span className={styles.date}>09.02.24</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Добавлены иконки и документация с поиском для компонента
+            <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              Icon
+            </Link>
+            .
+          </li>
+        </ul>
+      </div>
+      <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
           v1.1.3 - <span className={styles.date}>02.02.24</span>
         </Typography>
         <ul className={styles.list}>
           <li>
-            • Исправлено поведение action для компонента 
+            • Исправлено поведение action для компонента
             <Link href="./?path=/docs/components-alert-info--docs" target="blank">
               Alert
             </Link>

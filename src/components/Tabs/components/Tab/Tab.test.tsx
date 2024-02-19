@@ -31,7 +31,7 @@ describe('src/components/Tab', () => {
     const { container } = render(
       <Tabs.Tab label="Hello World!">
         <Tabs.Tooltip description="Сюда вы можете добавить текст подсказу для компонента">
-          <Tabs.Icon name="IconInfo16" containerSize={16} htmlColor="var(--text-grey-500)" />
+          <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--text-grey-500)" />
         </Tabs.Tooltip>
       </Tabs.Tab>
     );

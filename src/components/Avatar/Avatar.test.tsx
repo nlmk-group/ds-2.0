@@ -40,7 +40,7 @@ describe('src/components/Avatar', () => {
   });
 
   test('Avatar renders default badge', () => {
-    render(<Avatar {...defaultProps} badgeIconName="IconDone24" />);
+    render(<Avatar {...defaultProps} badgeIconName="IconDoneCheckFilled24" />);
     expect(screen.getByTestId('AVATAR_BADGE_DEFAULT')).toBeInTheDocument();
   });
 

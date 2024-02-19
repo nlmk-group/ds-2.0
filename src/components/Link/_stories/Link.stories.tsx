@@ -73,8 +73,8 @@ IconLink.args = {
   href: 'https://www.lipsum.com/',
   size: sizeMapping.h1,
   disabled: false,
-  leftIcon: <Icon name="IconStorage16" />,
-  rightIcon: <Icon name="IconStorage16" />
+  leftIcon: <Icon name="IconBunkerOutlined16" />,
+  rightIcon: <Icon name="IconBunkerOutlined16" />
 };
 
 export const LinkSizes = (argTypes: ILink): ReactNode => {

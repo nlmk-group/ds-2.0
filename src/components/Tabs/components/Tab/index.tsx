@@ -14,7 +14,7 @@ const Tab: FC<ITab> = ({ label, active, children, badgeNumber, ...props }) => {
   return (
     <div className={clsx(styles['tab-wrapper'], active && styles['tab-active'])} {...props}>
       <span className={clsx(styles.text, active && styles['text-active'])}>{label}</span>
-      {toolTipName === 'Tooltip' && iconName === 'IconInfo16' && <div className={styles.tooltip}>{children}</div>}
+      {toolTipName === 'Tooltip' && iconName === 'IconInfoOutlined16' && <div className={styles.tooltip}>{children}</div>}
       {badgeNumber && (
         <div className={styles.badge}>
           <Badge color="secondary">{badgeNumber}</Badge>

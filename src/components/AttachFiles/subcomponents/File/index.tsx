@@ -1,6 +1,14 @@
 import React, { FC } from 'react';
 
-import { Button, Checkbox, Icon } from '@components/index';
+import {
+  Button,
+  Checkbox,
+  IconCloseOutlined24,
+  IconCommentChatBubbleFullOutlined24,
+  IconDownloadOutlined24,
+  IconInsertDriveFileOutlined24,
+  IconTaskOutlined24
+} from '@components/index';
 import { clsx } from 'clsx';
 
 import { IFile } from './types';
@@ -28,7 +36,7 @@ const File: FC<IFile> = ({
 }) => {
   const TickIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="TICK_ICON">
-      <Icon name="IconTick24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />
+      <IconTaskOutlined24 htmlColor={'var(--primary-blue-600)'} />
     </div>
   );
 
@@ -40,7 +48,7 @@ const File: FC<IFile> = ({
 
   const DefaultIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="DEFAULT_ICON">
-      <Icon name="IconInsertDriveFile24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />
+      <IconInsertDriveFileOutlined24 htmlColor={'var(--primary-blue-600)'} />
     </div>
   );
 
@@ -65,11 +73,7 @@ const File: FC<IFile> = ({
                 variant="text"
                 onClick={commentedOnClick}
                 iconButton={
-                  <Icon
-                    name="IconChat24"
-                    containerSize={24}
-                    htmlColor="var(--assigned-colors-button-outline-grey-text)"
-                  />
+                  <IconCommentChatBubbleFullOutlined24 htmlColor="var(--assigned-colors-button-outline-grey-text)" />
                 }
               />
             </div>
@@ -79,7 +83,7 @@ const File: FC<IFile> = ({
               <Button
                 variant="text"
                 onClick={savedOnClick}
-                iconButton={<Icon name="IconDownload24" containerSize={24} htmlColor="var(--primary-blue-600)" />}
+                iconButton={<IconDownloadOutlined24 htmlColor="var(--primary-blue-600)" />}
               />
             </div>
           )}
@@ -88,13 +92,7 @@ const File: FC<IFile> = ({
               <Button
                 variant="text"
                 onClick={removedOnClick}
-                iconButton={
-                  <Icon
-                    name="IconClose24"
-                    containerSize={24}
-                    htmlColor="var(--assigned-colors-button-solid-grey-text)"
-                  />
-                }
+                iconButton={<IconCloseOutlined24 htmlColor="var(--assigned-colors-button-solid-grey-text)" />}
               />
             </div>
           )}

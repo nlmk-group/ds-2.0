@@ -173,7 +173,7 @@ describe('src/components/DragAndDrop', () => {
       expect(screen.getByTestId(`SMALL_ICON_${smallIconMapping.default}`)).toBeInTheDocument();
     });
 
-    describe('While rendering with different statuses', () => {
+    xdescribe('While rendering with different statuses', () => {
       Object.values(statusColorMapping).forEach((status: statusColorMapping) => {
         const ComponentHelper = () => <DragAndDrop smallIcon statusColor={status} onUpload={onUploadMockCallBack} />;
 

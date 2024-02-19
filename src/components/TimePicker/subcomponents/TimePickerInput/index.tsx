@@ -1,7 +1,6 @@
 import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { IconSchedule24 } from '@components/Icon/IconsList/24';
-import { Input } from '@components/index';
+import { IconScheduleTimeWatchOutlined24, Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
 import {
   timeFormat,
@@ -142,7 +141,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
           }}
           className={clsx(styles.clock, !withPicker && styles.cursor)}
         >
-          <IconSchedule24 />
+          <IconScheduleTimeWatchOutlined24 />
         </div>
       ) : null;
     }, [onFocus, withIcon, withPicker]);

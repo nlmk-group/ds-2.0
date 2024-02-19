@@ -40,8 +40,8 @@ export default App;
 
 const App = () => (
   <Link href="https://www.w3schools.com/"
-    leftIcon={<Icon name='IconStorage16' />}
-    rightIcon={<Icon name='IconStorage16' />
+    leftIcon={<Icon name='IconBunkerOutlined16' />}
+    rightIcon={<Icon name='IconBunkerOutlined16' />
   }>
     Ссылка с иконками
   </Link>

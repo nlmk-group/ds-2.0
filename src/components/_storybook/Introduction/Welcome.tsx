@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 
+
+
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
-import FigmaLogoSvgIcon from '@components/Icon/icons_internal/FigmaLogoSvgIcon';
-import GitHubSvgIcon from '@components/Icon/icons_internal/GitHubSvgIcon';
-import StarSvgIcon from '@components/Icon/icons_internal/StarSvgIcon';
-import WebSvgIcon from '@components/Icon/icons_internal/WebSvgIcon';
+import { FigmaLogoSvgIcon, GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, Link, Typography } from '@components/index';
 // Add TS disable error comment for import file from under the root direction
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -12,7 +11,10 @@ import { Button, Icon, Link, Typography } from '@components/index';
 import { version } from '@root/package.json';
 import clsx from 'clsx';
 
+
+
 import styles from './Welcome.module.scss';
+
 
 const FooterSection: FC<{
   title: string;
@@ -48,7 +50,7 @@ export const Footer: FC = () => {
               <CopyWrapper copy={'npm install @nlmk/ds-2.0'} placement="bottom">
                 <code className={styles.code}>
                   <div>npm install @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopy24" color="inherit" />
+                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
                 </code>
               </CopyWrapper>
             </li>
@@ -56,7 +58,7 @@ export const Footer: FC = () => {
               <CopyWrapper copy={'yarn add @nlmk/ds-2.0'} placement="bottom">
                 <code className={styles.code}>
                   <div>yarn add @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopy24" color="inherit" />
+                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
                 </code>
               </CopyWrapper>
             </li>
@@ -64,7 +66,7 @@ export const Footer: FC = () => {
               <CopyWrapper copy={'pnpm install @nlmk/ds-2.0'} placement="bottom">
                 <code className={styles.code}>
                   <div>pnpm install @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopy24" color="inherit" />
+                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
                 </code>
               </CopyWrapper>
             </li>

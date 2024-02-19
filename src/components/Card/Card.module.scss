@@ -2,18 +2,16 @@
   display: flex;
   border-radius: var(--4-radius);
   background: var(--background-paper);
-  gap: var(--24-space);
+  box-sizing: border-box;
 }
 
 .wrapper-vertical {
   padding: var(--32-space) var(--16-space);
-  width: calc(var(--192-size) * 2);
   flex-direction: column;
 }
 
 .wrapper-horizontal {
   padding: var(--16-space) var(--32-space);
-  height: var(--292-size);
   flex-direction: row;
 }
 
@@ -35,6 +33,10 @@
 
 .indicator-l {
   border-width: 8px;
+}
+
+.indicator-default {
+  border-color: var(--background-paper);
 }
 
 .indicator-success {

@@ -12,7 +12,7 @@ const BtnGroup: FC<IBtnGroup> = ({ primaryButton, secondaryButton }) => {
           <Button
             startIcon={
               primaryButton.startIcon || (
-                <Icon name="IconArticle24" containerSize={24} htmlColor={'var(--assigned-colors-button-main-text)'} />
+                <Icon name="IconArticleOutlined24" containerSize={24} htmlColor={'var(--assigned-colors-button-main-text)'} />
               )
             }
             onClick={primaryButton.onClick}

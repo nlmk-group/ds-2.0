@@ -41,7 +41,7 @@ const ImagePicture: FC<IImagePicture> = ({
       {shouldShowZoomOverlay && (
         <>
           <div className={styles['hover-icon']}>
-            <Icon name="IconZoomIn24" containerSize={32} />
+            <Icon name="IconZoomInOutlined24" containerSize={32} />
           </div>
           <div className={styles['hover-overlay']} />
         </>

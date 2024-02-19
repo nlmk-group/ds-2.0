@@ -17,7 +17,7 @@ const CloseBtn: FC<ICloseBtn> = ({ close, color }) => {
       onClick={close}
       iconButton={
         <Icon
-          name="IconClose24"
+          name="IconCloseOutlined24"
           containerSize={24}
           htmlColor={
             lightGreenPinkDarkCondition.includes(color as colorMapping) ? 'var(--ac-icon-white)' : 'var(--ac-icon-grey)'

@@ -26,7 +26,7 @@ const ShortenBreadcrumbs: FC<{ crumbs: Breadcrumb[] }> = ({ crumbs }): JSX.Eleme
       >
         ...
         <div className={clsx(styles['link-separator'], styles['custom-link'])}>
-          <Icon name="IconChevronRight24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
+          <Icon name="IconChevronArrowRightOutlined24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
         </div>
         {showItems && (
           <ClickAwayListener onClickAway={() => setShowItems(!showItems)}>

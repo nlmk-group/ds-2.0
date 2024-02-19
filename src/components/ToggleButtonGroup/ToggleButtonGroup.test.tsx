@@ -152,7 +152,7 @@ describe('src/components/ToggleButtonGroup', () => {
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
           <ToggleButtonGroup.Button.Icon
-            name='IconStarBorder24'
+            name='IconStarOutlined24'
           />
           <ToggleButtonGroup.Button.Label>
             {btnTitle}

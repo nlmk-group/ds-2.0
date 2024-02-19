@@ -54,7 +54,7 @@ describe('src/components/Snackbar', () => {
         withIcon
         customIcon={
           <div data-testid="SNACKBAR_CUSTOM_ICON">
-            <Icon name="IconEducation24" containerSize={24} htmlColor={'var(--default-second)'} />
+            <Icon name="IconEducationOutlined24" containerSize={24} htmlColor={'var(--default-second)'} />
           </div>
         }
       >

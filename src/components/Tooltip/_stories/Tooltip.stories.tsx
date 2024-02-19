@@ -1,7 +1,6 @@
 import React from 'react';
 
-import IconDone24 from '@components/Icon/IconsList/24/IconDone24';
-import { Button, Tooltip } from '@components/index';
+import { Button, IconDoneCheckOutlined24, Tooltip } from '@components/index';
 import Typography from '@components/Typography';
 import { Args } from '@storybook/react';
 import clsx from 'clsx';
@@ -124,7 +123,7 @@ export const TooltipWithCustom = (): JSX.Element => {
       <div className={styles.custom}>
         {customMap.map((item, index) => (
           <div key={`${item}-${index}`} className={styles['custom-item']}>
-            <IconDone24 color="success" />
+            <IconDoneCheckOutlined24 color="success" />
             <Typography variant="Caption-Medium">{item}</Typography>
           </div>
         ))}

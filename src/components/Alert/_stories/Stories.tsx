@@ -74,7 +74,7 @@ export default  App = () =>(
     action={
       <Button variant="text" onClick={() => alert('Я нажал!')}>
         <Icon
-          name="IconClose24"
+          name="IconCloseOutlined24"
           containerSize={24}
           htmlColor='var(--ac-alert-info-text)'
         />

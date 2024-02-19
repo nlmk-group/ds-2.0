@@ -27,7 +27,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const expandIcons = {
-    [iconsMapping.plus]: isExpanded ? 'IconClose24' : 'IconAdd24',
+    [iconsMapping.plus]: isExpanded ? 'IconCloseOutlined24' : 'IconAddPlusOutlined24',
     [iconsMapping.arrow]: isExpanded ? 'IconChevronArrowUpOutlined24' : 'IconChevronArrowDownOutlined24'
   };
 

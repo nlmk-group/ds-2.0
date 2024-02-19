@@ -13,7 +13,7 @@ const BtnNotification: FC<INotification> = ({ notification, notificationAmount =
       <Button
         data-testid="HEADER_NOTIFICATION"
         onClick={notification}
-        iconButton={<Icon name="IconNotifications24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />}
+        iconButton={<Icon name="IconNotificationsBellOutlined24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />}
         variant="text"
         size="xs"
       />

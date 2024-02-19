@@ -3,7 +3,6 @@ const path = require('path');
 
 module.exports = {
   staticDirs: ['../public'],
-  core: { builder: '@storybook/builder-vite' },
   stories: ['../src/**/*.stories.@(tsx|mdx)'],
 
   async viteFinal(config) {
@@ -47,9 +46,11 @@ module.exports = {
     name: '@storybook/react-vite',
     options: {}
   },
+
   features: {
     storyStoreV7: true
   },
+
   docs: {
     autodocs: true
   }

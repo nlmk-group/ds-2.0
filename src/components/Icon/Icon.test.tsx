@@ -10,7 +10,7 @@ import { Icon } from './index';
 describe('src/components/Button', () => {
   // Check render button at DOM
   test('Render icon', () => {
-    const { container } = render(<Icon name={'Icon2Bunker24'} />);
+    const { container } = render(<Icon name={'IconBunkerOutlined24'} />);
     const icon = container.getElementsByTagName('div')[0];
     expect(icon).toBeInTheDocument();
   });
@@ -19,7 +19,9 @@ describe('src/components/Button', () => {
   test('Container size', () => {
     const sizes: number[] = [iconsSizesMapping.Small, iconsSizesMapping.Medium, iconsSizesMapping.Large];
     sizes.map((size: number) => {
-      const { container } = render(<Icon name={'Icon3Bunker16'} containerSize={size as TIconProps['containerSize']} />);
+      const { container } = render(
+        <Icon name={'IconBunkerOutlined16'} containerSize={size as TIconProps['containerSize']} />
+      );
       const icon = container.getElementsByTagName('div')[0];
       expect(icon).toHaveClass(`container${size}`);
     });
@@ -29,7 +31,7 @@ describe('src/components/Button', () => {
   test('Icon color', () => {
     const colors: string[] = ['action', 'disabled', 'error', 'primary', 'secondary', 'inherit', 'success', 'warning'];
     colors.map((color: string) => {
-      const { container } = render(<Icon name={'Icon3Bunker16'} color={color as TIconProps['color']} />);
+      const { container } = render(<Icon name={'IconBunkerOutlined16'} color={color as TIconProps['color']} />);
       const icon = container.getElementsByTagName('svg')[0];
       expect(icon).toHaveClass(color);
     });
@@ -38,7 +40,7 @@ describe('src/components/Button', () => {
   // Check html color
   test('Html color', () => {
     const htmlColor = '#8f509d';
-    const { container } = render(<Icon name={'Icon3Bunker16'} htmlColor={htmlColor} />);
+    const { container } = render(<Icon name={'IconBunkerOutlined16'} htmlColor={htmlColor} />);
     const icon = container.getElementsByTagName('path')[0];
     expect(icon).toHaveAttribute('fill', `${htmlColor}`);
   });
@@ -47,7 +49,7 @@ describe('src/components/Button', () => {
   test('Icon size', () => {
     const sizes: number[] = [iconsSizesMapping.Small, iconsSizesMapping.Medium, iconsSizesMapping.Large];
     sizes.map((size: number) => {
-      const { container } = render(<Icon name={`Icon3Bunker${size}`} />);
+      const { container } = render(<Icon name={`IconBunkerOutlined${size}`} />);
       const icon = container.getElementsByTagName('svg')[0];
       expect(icon).toHaveAttribute('width', `${size}`);
       expect(icon).toHaveAttribute('height', `${size}`);

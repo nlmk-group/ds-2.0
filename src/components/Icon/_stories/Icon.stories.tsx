@@ -1,95 +1,212 @@
-import React from 'react';
+import React, { createElement, ReactNode, useEffect, useRef, useState } from 'react';
 
-import Icon from '@components/Icon';
-import { argsTypes } from '@components/Icon/_stories/argsTypes';
+import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
+import argsTypes from '@components/Icon/_stories/argsTypes';
+import { Card, Icon, Input, Typography } from '@components/index';
+import { Meta, StoryFn } from '@storybook/react';
+import { clsx } from 'clsx';
+import { startCase } from 'lodash';
 
 import styles from './Icon.module.scss';
 
-import icons from '../IconsList';
-import { TIconProps } from '../types';
+import icons from '../IconsDirectory';
 
 export default {
   title: 'Components/Icon/Stories',
   component: Icon,
-  argTypes: argsTypes
-};
+  argTypes: argsTypes,
+  parameters: {
+    layout: 'fullscreen'
+  }
+} as Meta<typeof Icon>;
 
-export const IconComponent = (argsTypes: any): JSX.Element => {
+interface IconsWithSizesAndColors {
+  [iconName: string]: {
+    [size: string]: ReactNode;
+  };
+}
+
+export const IconComponent = ({
+  name = 'IconArmatura32',
+  color = 'primary',
+  containerSize = 32,
+  ...args
+}: any): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
-      <Icon name={'IconTackleCrane24'} color="primary" containerSize={32} {...argsTypes} />
-      <Icon name="IconFeedback32" color="primary" containerSize={32} {...argsTypes} />
+    <div className={clsx(styles.wrapper, styles.sized)}>
+      <Icon name={name} color={color} containerSize={containerSize} {...args} />
     </div>
   );
 };
+
 IconComponent.storyName = 'Компонент Icon по умолчанию';
+IconComponent.args = {
+  name: 'IconArmatura32',
+  color: 'primary',
+  containerSize: 32
+};
+IconComponent.decorators = [
+  (Story: StoryFn) => (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+      <Story />
+    </div>
+  )
+];
 
 export const AllIcons = (): JSX.Element => {
-  const allIcon = { ...icons[16], ...icons[24], ...icons[32] };
-  const iconsWithColors = Object.keys(allIcon).map(iconName => {
-    const SpecificStory = allIcon[iconName];
+  // Иконки только со stroke
+  const iconsUseStroke = [
+    'IconJsonOutlined24',
+    'IconLightningStroke16',
+    'IconLightningStroke24',
+    'IconLightningStroke32',
+    'IconPhoneCallContact16',
+    'IconPhoneCallContact24',
+    'IconPhoneCallContact32',
+    'IconTemperatureStroke16',
+    'IconTemperatureStroke24',
+    'IconTemperatureStroke32'
+  ];
+  // Иконки и с fill, и со stroke
+  const iconsUseFillAndStroke = [
+    'IconLightningFilled16',
+    'IconLightningFilled24',
+    'IconLightningFilled32',
+    'IconBasketBuying16',
+    'IconBasketBuying24',
+    'IconBasketBuying32',
+    'IconPlay16',
+    'IconPlay24',
+    'IconPlay32',
+    'IconBalanceOutlined16',
+    'IconBalanceOutlined24',
+    'IconBalanceOutlined32',
+    'IconKovsh16',
+    'IconKovsh24',
+    'IconKovsh32'
+  ];
+  // Иконки которые задуманы для использования только в одном цвете
+  const iconsAlwaysDefaultColor = ['IconBorder16', 'IconBorder24', 'IconBorder32'];
 
-    return {
-      title: iconName,
-      default: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory
-      }),
-      action: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'action'
-      }),
-      disabled: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'disabled'
-      }),
-      error: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'error'
-      }),
-      inherit: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'inherit'
-      }),
-      primary: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'primary'
-      }),
-      secondary: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'secondary'
-      }),
-      success: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'success'
-      }),
-      warning: React.createElement<TIconProps>(SpecificStory, {
-        name: SpecificStory,
-        color: 'warning'
-      })
+  const [searchText, setSearchText] = useState('');
+  const [debouncedSearchText, setDebouncedSearchText] = useState(searchText);
+  const iconsByNames: IconsWithSizesAndColors = {};
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchText(searchText);
+    }, 500);
+
+    return () => {
+      clearTimeout(timerId);
     };
+  }, [searchText]);
+
+  const handleChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newColor = e.target.value;
+    document.documentElement.style.setProperty('--icon-color', newColor);
+  };
+
+  const formatIconName = (name: string) => {
+    return name.replace('Icon', '');
+  };
+
+  Object.keys(icons).forEach(size => {
+    Object.keys(icons[size]).forEach(iconName => {
+      const formattedIconName = formatIconName(iconName).replace(size, '');
+      if (!iconsByNames[formattedIconName]) {
+        iconsByNames[formattedIconName] = {};
+      }
+      const useStroke = iconName.includes('Kovsh');
+      // const useFillAndStroke = iconName.includes('Calendar');
+      iconsByNames[formattedIconName][size] = createElement(icons[size][iconName], {
+        color: 'primary',
+        style: {
+          ...(useStroke && { stroke: 'var(--icon-color)' })
+        }
+      });
+    });
   });
+
+  const filteredIcons = Object.keys(iconsByNames)
+    .filter(iconName => {
+      const searchWords = debouncedSearchText.toLowerCase().split(' ');
+      return searchWords.every(word => iconName.toLowerCase().includes(word));
+    })
+    .map(iconName => ({
+      title: iconName,
+      sizes: iconsByNames[iconName]
+    }));
+
+  const colorInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const initialColor =
+      getComputedStyle(document.documentElement).getPropertyValue('--icon-color').trim() || '#167ffb';
+    if (colorInputRef.current) {
+      colorInputRef.current.value = initialColor;
+    }
+  }, []);
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.controls}>
+        <Input
+          label="Поиск иконок"
+          value={searchText}
+          onChange={e => setSearchText(e.target.value)}
+          className={styles.input}
+        />
+        <div className={styles.colorControl}>
+          <Typography variant="Body1" className={styles.colorControlTitle}>
+            Выберите цвет:
+          </Typography>
+          <input
+            type="color"
+            ref={colorInputRef}
+            defaultValue="#167ffb"
+            onChange={handleChangeColor}
+            className={styles.colorInput}
+          />
+        </div>
+      </div>
       <div className={styles.table}>
-        {iconsWithColors.map((icon, key) => {
-          const isWhiteIcon =
-            icon.title === 'LogoSvgIcon' || icon.title === 'LogoutSvgIcon' || icon.title === 'WhiteStarSvgIcon';
-          return (
-            <div key={key} className={styles.row}>
-              <div>{icon.title}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.default}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.action}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.disabled}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.error}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.inherit}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.primary}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.secondary}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.warning}</div>
-              <div style={{ backgroundColor: isWhiteIcon ? 'black' : undefined }}>{icon.success}</div>
-            </div>
-          );
-        })}
+        {filteredIcons.length > 0 ? (
+          filteredIcons.map((icon, key) => (
+            <Card key={key} className={styles.card}>
+              <div className={styles.cardHeader}>
+                <Typography variant="Body1" color="primary">
+                  {startCase(formatIconName(icon.title))}
+                </Typography>
+              </div>
+              <div className={styles.icons}>
+                {Object.entries(icon.sizes).map(([size, iconElement]) => {
+                  const useStroke = iconsUseStroke.includes(`Icon${icon.title}${size}`);
+                  const useFillAndStroke = iconsUseFillAndStroke.includes(`Icon${icon.title}${size}`);
+                  const isAlwaysDefaultColorIcon = iconsAlwaysDefaultColor.includes(`Icon${icon.title}${size}`);
+                  return (
+                    <CopyWrapper copy={`Icon${icon.title}${size}`} placement="bottom">
+                      <div
+                        key={size}
+                        className={clsx(styles.icon, {
+                          [styles.strokeIcon]: useStroke,
+                          [styles.fillAndStrokeIcon]: useFillAndStroke,
+                          [styles.iconFill]: !useStroke && !useFillAndStroke && !isAlwaysDefaultColorIcon
+                        })}
+                      >
+                        {iconElement}
+                      </div>
+                    </CopyWrapper>
+                  );
+                })}
+              </div>
+            </Card>
+          ))
+        ) : (
+          <Typography variant="Heading2" className={styles.noResults}>
+            Ничего не найдено
+          </Typography>
+        )}
       </div>
     </div>
   );

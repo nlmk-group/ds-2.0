@@ -9,6 +9,7 @@ export enum orientationMapping {
 }
 
 export enum indicatorStatusMapping {
+  default = 'default',
   success = 'success',
   error = 'error',
   warning = 'warning',

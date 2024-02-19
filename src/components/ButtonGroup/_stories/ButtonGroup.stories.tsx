@@ -112,8 +112,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
             {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
                 <Button
-                  startIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -124,8 +124,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
                   {gradient}
                 </Button>
                 <Button
-                  startIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -136,8 +136,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
                   {gradient}
                 </Button>
                 <Button
-                  startIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticle24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -159,13 +159,13 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
             {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
                 <Button onClick={action('onClick')}>
-                  <Icon name="IconInfo24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
+                  <Icon name="IconInfoOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
                 </Button>
                 <Button onClick={action('onClick')}>
                   <Icon name="IconMixer24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
                 </Button>
                 <Button onClick={action('onClick')}>
-                  <Icon name="IconPanTool24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
+                  <Icon name="IconHandPanToolPalmsOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
                 </Button>
               </ButtonGroup>
             ))}

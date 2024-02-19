@@ -1,0 +1,7 @@
+import{j as t}from"./clsx.m-3764cf42.js";import{B as a,r as m}from"./index-f014e98c.js";import{a as n}from"./argsTypes-7fd08490.js";import"./index-f1f749bf.js";import"./_commonjsHelpers-042e6b4d.js";import"./index-ec455f54.js";import"./index-c9e69acb.js";import"./index-fb030d50.js";import"./index-095d5581.js";import"./index-147655d7.js";import"./index-96c5f47c.js";import"./index-e99519f1.js";import"./index-5196d16d.js";import"./index-c1da5c13.js";import"./index-2cdebf62.js";import"./index-28363b14.js";import"./index-bc089e17.js";import"./get-78cac09e.js";const c="_wrapper_1j4j2_1",d="_table_1j4j2_8",l="_row_1j4j2_17",s={wrapper:c,table:d,row:l},h=e=>t("div",{style:{minHeight:80},children:e()}),H={title:"Components/Chip/Stories",component:a,decorators:[h],argTypes:n},r=e=>t("div",{className:s.wrapper,children:t("div",{className:s.row,children:t(m,{...e,children:e.children})})});r.storyName="Чип по умолчанию";r.args={children:"1234"};var o,i,p;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`(argsTypes: IChipProps): JSX.Element => {
+  return <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <Chip {...argsTypes} children={argsTypes.children} />
+      </div>
+    </div>;
+}`,...(p=(i=r.parameters)==null?void 0:i.docs)==null?void 0:p.source}}};const I=["ChipDefault"];export{r as ChipDefault,I as __namedExportsOrder,H as default};

@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
-export declare const IconContainer: FC<{
+declare const IconContainer: FC<{
     containerSize: 32 | 24 | 16;
     children: ReactNode;
 }>;
+export default IconContainer;
 //# sourceMappingURL=index.d.ts.map

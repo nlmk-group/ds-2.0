@@ -1,0 +1,5 @@
+import { FC } from 'react';
+import { IIconsProps } from '../../../types';
+declare const IconFilterListOutlined24: FC<IIconsProps>;
+export default IconFilterListOutlined24;
+//# sourceMappingURL=24.d.ts.map

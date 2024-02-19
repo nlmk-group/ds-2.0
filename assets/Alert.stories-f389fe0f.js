@@ -1,0 +1,5 @@
+import{j as t}from"./clsx.m-3764cf42.js";import{A as p}from"./index-f014e98c.js";import"./index-ec455f54.js";import"./index-095d5581.js";import"./index-e99519f1.js";import"./index-147655d7.js";import"./index-fb030d50.js";import"./index-c9e69acb.js";import"./index-5196d16d.js";import"./index-2cdebf62.js";import"./index-28363b14.js";import"./index-bc089e17.js";import"./index-f1f749bf.js";import{s as i}from"./styles.module-caf3a80a.js";import{b as l}from"./argsTypes-b4309d92.js";import"./index-96c5f47c.js";import"./_commonjsHelpers-042e6b4d.js";import"./get-78cac09e.js";import"./index-c1da5c13.js";const m="Оповещение по умолчанию",S={title:"Components/Alert/Stories",component:p,argTypes:l},r=a=>t("div",{className:i.wrapper,children:t(p,{...a})});r.storyName=m;r.args={title:m};var e,o,s;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`(argTypes: IAlert): ReactNode => {
+  return <div className={styles.wrapper}>
+      <Alert {...argTypes} />
+    </div>;
+}`,...(s=(o=r.parameters)==null?void 0:o.docs)==null?void 0:s.source}}};const b=["AlertDefault"];export{r as AlertDefault,b as __namedExportsOrder,S as default};

@@ -1,0 +1,5 @@
+import { FC } from 'react';
+import { IIconsProps } from '../../../types';
+declare const IconPechivtoFilled32: FC<IIconsProps>;
+export default IconPechivtoFilled32;
+//# sourceMappingURL=32.d.ts.map

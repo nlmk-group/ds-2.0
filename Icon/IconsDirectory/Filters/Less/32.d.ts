@@ -1,0 +1,5 @@
+import { FC } from 'react';
+import { IIconsProps } from '../../../types';
+declare const IconLess32: FC<IIconsProps>;
+export default IconLess32;
+//# sourceMappingURL=32.d.ts.map

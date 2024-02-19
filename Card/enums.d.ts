@@ -3,6 +3,7 @@ export declare enum orientationMapping {
     horizontal = "horizontal"
 }
 export declare enum indicatorStatusMapping {
+    default = "default",
     success = "success",
     error = "error",
     warning = "warning",

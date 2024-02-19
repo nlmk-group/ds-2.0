@@ -1,4 +1,19 @@
-export declare const argsTypes: {
+declare const argsTypes: {
+    name: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: string[];
+        control: {
+            type: string;
+        };
+    };
     color: {
         description: string;
         table: {
@@ -14,11 +29,25 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    size: {
+    htmlColor: {
         description: string;
         table: {
             defaultValue: {
-                summary: number;
+                summary: undefined;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    containerSize: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
             };
             type: {
                 summary: string;
@@ -29,11 +58,11 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    containerSize: {
+    size: {
         description: string;
         table: {
             defaultValue: {
-                summary: number;
+                summary: string;
             };
             type: {
                 summary: string;
@@ -45,4 +74,5 @@ export declare const argsTypes: {
         };
     };
 };
+export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

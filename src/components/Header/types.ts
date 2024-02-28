@@ -10,6 +10,7 @@ export interface IHeader {
   date?: boolean;
   notificationAmount?: number;
   breadcrumbs?: JSX.Element | ReactNode;
+  className?: string;
 }
 
 export interface INotification {

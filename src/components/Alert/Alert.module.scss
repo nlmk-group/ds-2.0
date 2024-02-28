@@ -41,6 +41,11 @@
 
 .content-wrapper {
   margin-left: var(--32-space);
+
+  ul {
+    margin-top: unset;
+    padding-left: var(--16-space);
+  }
 }
 
 .list-example {
@@ -100,5 +105,9 @@
   &:hover {
     background-color: unset!important;
     opacity: .5;
+  }
+
+  path {
+    fill: var(--ac-icon-grey)!important;
   }
 }

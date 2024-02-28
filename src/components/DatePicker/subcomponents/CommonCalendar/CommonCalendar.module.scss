@@ -8,24 +8,24 @@
 .root {
   width: 312px;
   box-sizing: border-box;
-  background: var(--background-paper);
-  padding: 8px 16px 10px 16px;
-  border-radius: 4px;
-  margin-top: 8px;
+  background: var(--ac-calendar-general-bg);
+  padding: var(--8-space) var(--16-space) 10px var(--16-space);
+  border-radius: var(--4-radius);
+  margin-top: var(--8-space);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 99999;
 }
 .withTime {
-  width: 424px;
+  width: 460px;
 }
 .withSeconds {
-  width: 473px;
+  width: 504px;
 }
 .withTimeSlot {
   @include grid-mixin(116px);
 }
 .withSecondsSlot {
-  @include grid-mixin(135px);
+  @include grid-mixin(152px);
 }
 .calendarPanel {
   grid-column: 1/2;
@@ -39,23 +39,25 @@
   position: relative;
 }
 .footer {
-  margin: 0 -16px;
+  margin: 0 calc(var(--16-space) * -1);
 }
+
+.period-wrapper {
+  margin: 0 calc(var(--16-space) * -1);
+}
+
 .period {
-  display: grid;
-  grid-template-rows: 16px 30px;
-  gap: 8px;
-  padding: 16px 0;
+  padding: var(--16-space);
 }
+
 .periodTitle {
-  color: var(--divider-divider);
-  font-size: var(--font-size-0);
-  line-height: var(--line-heights-6);
+  color: var(--ac-calendar-shift-title);
+  margin-bottom: var(--8-space);
 }
 .periodSelectors {
   display: grid;
   grid-template-columns: repeat(3, auto) 1fr;
   align-items: center;
   gap: 10px;
-  color: var(--text-grey-900);
+  color: var(--default-main);
 }

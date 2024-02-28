@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Icon, Switch } from '@components/index';
+import { IconMetallalomScrap16, Switch } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -151,8 +151,8 @@ export const IconsSwitch = (argTypes: ISwitch): ReactNode => {
           argTypes.onChange(e);
         }
       }}
-      activeIcon={<Icon name="IconMetallalomScrapFilled16" containerSize={16} htmlColor={'var(--text-grey-100)'} />}
-      inactiveIcon={<Icon name="IconMetallalomScrap16" containerSize={16} htmlColor={'var(--primary-blue-600)'} />}
+      activeIcon={<IconMetallalomScrap16 htmlColor={'var(--ac-icon-white)'} />}
+      inactiveIcon={<IconMetallalomScrap16 htmlColor={'var(--ac-icon-blue)'} />}
     />
   );
 };

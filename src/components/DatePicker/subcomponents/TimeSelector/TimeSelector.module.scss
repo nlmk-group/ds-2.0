@@ -1,8 +1,8 @@
 .root {
   display: grid;
-  grid-template-columns: repeat(3, 36px);
-  gap: 4px;
-  border-left: 1px solid var(--text-grey-100);
+  grid-template-columns: repeat(3, var(--40-size));
+  gap: var(--4-space);
+  border-left: var(--1-border) solid var(--divider-divider);
   padding-top: 20px;
   padding-left: 18px;
   padding-bottom: 20px;
@@ -19,7 +19,7 @@
 .column {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4px;
+  gap: var(--4-space);
   overflow: auto;
   scroll-behavior: smooth;
 
@@ -32,14 +32,11 @@
 .columnTitle {
   position: sticky;
   top: 0;
-  color: #909090;
-  font-weight: var(--font-weights-pt-root-ui-2);
-  font-size: var(--font-size-2);
-  line-height: var(--line-heights-4);
-  background: var(--background-paper);
+  color: var(--ac-calendar-general-title);
+  background: var(--ac-calendar-general-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: var(--40-size);
+  height: var(--48-size);
 }

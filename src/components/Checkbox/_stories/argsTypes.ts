@@ -1,4 +1,4 @@
-import { customInputColors } from '@components/declaration';
+import { ECheckboxColors } from '../types';
 
 export const argsTypes = {
   id: {
@@ -53,18 +53,18 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   color: {
-    description: `Цвет компонента, отображающий разные состояния – <b>${Object.values(customInputColors).join(
+    description: `Цвет компонента, отображающий разные состояния – <b>${Object.values(ECheckboxColors).join(
       ' | '
     )}</b>`,
     table: {
       defaultValue: {
-        summary: customInputColors.default
+        summary: ECheckboxColors.default
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(customInputColors),
+    options: Object.values(ECheckboxColors),
     control: { type: 'select' }
   }
 };

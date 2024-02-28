@@ -1,10 +1,9 @@
 .root {
-  display: flex;
-  padding: 16px 16px 8px;
-  background-color: var(--background-paper);
-  border-top: 1px solid var(--text-grey-100);
+  background-color: var(--ac-calendar-general-bg);
 }
 
-.button {
-  margin-right: 8px;
+.btn-collection {
+  display: flex;
+  gap: var(--8-space);
+  padding: var(--16-space) var(--16-space) var(--8-space);
 }

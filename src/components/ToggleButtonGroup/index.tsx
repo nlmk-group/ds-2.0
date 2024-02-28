@@ -11,13 +11,15 @@ import ToggleButton from './ToggleButton';
 
 export const ButtonGroupProperties = createContext<IButtonGroupProperties>({
   size: sizeMapping.default,
-  status: statusMapping.default
+  status: statusMapping.default,
+  disabled: false
 });
 
 const ToggleButtonGroup = ({
   className = '',
   size = sizeMapping.default,
   status = statusMapping.default,
+  disabled = false,
   children
 }: IToggleButtonGroup) => {
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -47,7 +49,8 @@ const ToggleButtonGroup = ({
 
   const defaultProperties = {
     size,
-    status
+    status,
+    disabled
   };
 
   return (

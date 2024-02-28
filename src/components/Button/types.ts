@@ -12,8 +12,7 @@ export enum variant {
   grey = 'grey',
   outline = 'outline',
   greyOutline = 'greyOutline',
-  text = 'text',
-  bar = 'bar'
+  text = 'text'
 }
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
@@ -23,4 +22,5 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, P
   iconButton?: ReactNode;
   size?: `${sizes}`;
   variant?: `${variant}`;
+  className?: string;
 }

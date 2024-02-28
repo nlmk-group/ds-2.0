@@ -6,6 +6,7 @@ export interface Breadcrumb {
 }
 
 export interface BreadcrumbsProps {
+  className?: string;
   crumbs: Breadcrumb[];
   width?: number;
 }

@@ -25,7 +25,7 @@
   @include buttonBase;
   height: var(--40-size);
   border-radius: var(--4-radius);
-  padding: 0 var(--12-space);
+  padding: var(--8-space) var(--12-space);
 }
 
 .icon-button {
@@ -42,27 +42,33 @@
 }
 
 .compact {
+  border-width: var(--1-border) !important;
   @include compactStyles(var(--32-size), var(--4-space) var(--4-space));
+  svg {
+    height: var(--24-size);
+    width: var(--24-size);
+  }
 }
 
 .extra-compact {
+  border-width: var(--1-border) !important;
   @include compactStyles(var(--28-size), var(--4-space) var(--4-space));
+  svg {
+    height: var(--16-size);
+    width: var(--16-size);
+  }
 }
 
 .left-icon,
-.right-icon,
-.bar-left-icon,
-.bar-right-icon {
+.right-icon {
   display: flex;
 }
 
-.left-icon,
-.bar-left-icon {
+.left-icon {
   padding-right: var(--4-space);
 }
 
-.right-icon,
-.bar-right-icon {
+.right-icon {
   padding-left: var(--4-space);
 }
 
@@ -79,58 +85,67 @@
   margin: auto;
 }
 
-.bar-left-icon,
-.bar-right-icon {
-  color: var(--assigned-colors-button-clear-grey-icon);
-}
-
 /* primary variant */
 
 .primary {
-  background-color: var(--assigned-colors-button-main-main-bg-default);
-  color: var(--assigned-colors-button-main-text);
+  background-color: var(--ac-button-primary-solid-default-bg);
+  color: var(--ac-button-primary-solid-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background: var(--assigned-colors-button-main-main-bg-hover);
+      background: var(--ac-button-primary-solid-hover-bg);
+      color: var(--ac-button-primary-solid-hover-text);
     }
 
     &:active {
-      background: var(--assigned-colors-button-main-main-bg-action);
+      background: var(--ac-button-primary-solid-pressed-bg);
+      color: var(--ac-button-primary-solid-pressed-text);
     }
+  }
+
+  path {
+    fill: var(--ac-icon-white);
   }
 }
 
 /* secondary variant */
 
 .secondary {
-  background-color: var(--assigned-colors-button-secondary-secondary-bg-default);
-  color: var(--assigned-colors-button-secondary-text);
+  background-color: var(--ac-button-secondary-solid-default-bg);
+  color: var(--ac-button-secondary-solid-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background: var(--assigned-colors-button-secondary-secondary-bg-hover);
+      background: var(--ac-button-secondary-solid-hover-bg);
+      color: var(--ac-button-secondary-solid-hover-text);
     }
 
     &:active {
-      background: var(--assigned-colors-button-secondary-secondary-bg-action);
+      background: var(--ac-button-secondary-solid-pressed-bg);
+      color: var(--ac-button-secondary-solid-pressed-text);
     }
+  }
+
+  path {
+    fill: var(--ac-icon-blue);
   }
 }
 
 /* grey variant */
 
 .grey {
-  background-color: var(--assigned-colors-button-solid-grey-solid-grey-bg-default);
-  color: var(--assigned-colors-button-solid-grey-text);
+  background-color: var(--ac-button-grey-solid-default-bg);
+  color: var(--ac-button-grey-solid-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background-color: var(--assigned-colors-button-solid-grey-solid-grey-bg-hover);
+      background-color: var(--ac-button-grey-solid-hover-bg);
+      color: var(--ac-button-grey-solid-hover-text);
     }
 
     &:active {
-      background-color: var(--assigned-colors-button-solid-grey-solid-grey-bg-action);
+      background-color: var(--ac-button-grey-solid-pressed-bg);
+      color: var(--ac-button-grey-solid-pressed-text);
     }
   }
 }
@@ -139,19 +154,25 @@
 
 .outline {
   background-color: transparent;
-  border: var(--2-size) solid var(--assigned-colors-button-outline-primary-outline-primary-stroke-default);
-  color: var(--assigned-colors-button-outline-primary-text);
+  border: var(--2-border) solid var(--ac-button-primary-outline-default-stroke);
+  color: var(--ac-button-primary-outline-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background-color: var(--assigned-colors-button-outline-primary-outline-primary-fill-hover);
-      border-color: var(--assigned-colors-button-outline-primary-outline-primary-stroke-hover);
+      background-color: var(--ac-button-primary-outline-hover-bg);
+      border-color: var(--ac-button-primary-outline-hover-stroke);
+      color: var(--ac-button-primary-outline-hover-text);
     }
 
     &:active {
-      background-color: var(--assigned-colors-button-outline-primary-outline-primary-fill-action);
-      border-color: var(--assigned-colors-button-outline-primary-outline-primary-stroke-action);
+      background-color: var(--ac-button-primary-outline-pressed-bg);
+      border-color: var(--ac-button-primary-outline-pressed-stroke);
+      color: var(--ac-button-primary-outline-pressed-text);
     }
+  }
+
+  path {
+    fill: var(--ac-icon-blue);
   }
 }
 
@@ -159,19 +180,25 @@
 
 .greyOutline {
   background-color: transparent;
-  border: var(--2-size) solid var(--assigned-colors-button-outline-grey-outline-grey-stroke-default);
-  color: var(--assigned-colors-button-outline-grey-text);
+  border: var(--2-border) solid var(--ac-button-grey-outline-default-stroke);
+  color: var(--ac-button-grey-outline-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background-color: var(--assigned-colors-button-outline-grey-outline-grey-fill-hover);
-      border-color: var(--assigned-colors-button-outline-grey-outline-grey-stroke-hover);
+      background-color: var(--ac-button-grey-outline-hover-bg);
+      border-color: var(--ac-button-grey-outline-hover-stroke);
+      color: var(--ac-button-grey-outline-hover-text);
     }
 
     &:active {
-      background-color: var(--assigned-colors-button-outline-grey-outline-grey-fill-action);
-      border-color: var(--assigned-colors-button-outline-grey-outline-grey-stroke-action);
+      background-color: var(--ac-button-grey-outline-pressed-bg);
+      border-color: var(--ac-button-grey-outline-pressed-stroke);
+      color: var(--ac-button-grey-outline-pressed-text);
     }
+  }
+
+  path {
+    fill: var(--ac-icon-grey);
   }
 }
 
@@ -179,32 +206,38 @@
 
 .text {
   background-color: transparent;
-  color: var(--assigned-colors-button-clear-text);
+  color: var(--ac-button-primary-clear-default-text);
 
   &:not(:disabled) {
     &:hover {
-      background-color: var(--assigned-colors-button-clear-clear-bg-hover);
+      background-color: var(--ac-button-primary-clear-hover-bg);
+      color: var(--ac-button-primary-clear-hover-text);
     }
 
     &:active {
-      background-color: var(--assigned-colors-button-clear-clear-bg-action);
+      background-color: var(--ac-button-primary-clear-pressed-bg);
+      color: var(--ac-button-primary-clear-pressed-text);
     }
+  }
+
+  path {
+    fill: var(--ac-icon-blue);
   }
 }
 
-/* bar variant */
+.text-height-m {
+  height: var(--24-size);
+  line-height: var(--24-size);
+}
+.text-height-s {
+  height: var(--24-size);
+  line-height: var(--24-size);
+}
+.text-height-xs {
+  height: var(--16-size);
+  line-height: var(--16-size);
+}
 
-.bar {
-  background-color: transparent;
-  color: var(--assigned-colors-button-clear-grey-text);
-
-  &:not(:disabled) {
-    &:hover {
-      background-color: var(--assigned-colors-button-clear-grey-clear-grey-bg-hover);
-    }
-
-    &:active {
-      background-color: var(--assigned-colors-button-clear-grey-clear-grey-bg-action);
-    }
-  }
+.icon-big-wrapper {
+  margin: unset;
 }

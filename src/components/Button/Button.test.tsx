@@ -48,7 +48,7 @@ describe('src/components/Button', () => {
 
   // Check className
   test('Кнопка должна корректно принимать разные варианты отображения', () => {
-    const variants: string[] = ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text', 'bar'];
+    const variants: string[] = ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text'];
     variants.map((className: string) => {
       const { container } = render(<Button variant={className as IButtonProps['variant']} />);
       const button = container.getElementsByTagName('button')[0];

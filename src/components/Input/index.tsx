@@ -9,11 +9,6 @@ import { TInputProps } from './types';
 
 import styles from './Input.module.scss';
 
-const sizeToVariantMapping = {
-  [sizesMappingInput.xs]: 'Caption-Medium',
-  [sizesMappingInput.s]: 'Body2-Medium',
-  [sizesMappingInput.m]: 'Body1-Medium'
-} as const;
 
 const Input: FC<TInputProps> = ({
   id,
@@ -38,7 +33,6 @@ const Input: FC<TInputProps> = ({
 
   const isCompact = size === sizesMappingInput.s;
   const isExtraCompact = size === sizesMappingInput.xs;
-  const typographyVariant = sizeToVariantMapping[size];
 
   const { s, m } = sizesMappingInput;
 
@@ -58,7 +52,13 @@ const Input: FC<TInputProps> = ({
         <textarea
           ref={ref as React.Ref<HTMLTextAreaElement>}
           id={id}
-          className={clsx(styles['text-field'], styles.textarea, resize && styles.resize, colorClassName)}
+          className={clsx(
+            styles['text-field'],
+            styles.textarea,
+            resize && styles.resize,
+            colorClassName,
+            disabled && styles['disabled-input']
+          )}
           disabled={disabled}
           placeholder=" "
           value={value}
@@ -74,7 +74,8 @@ const Input: FC<TInputProps> = ({
             icon && styles['input-with-icon'],
             isCompact && styles.compact,
             isExtraCompact && styles['extra-compact'],
-            colorClassName
+            colorClassName,
+            disabled && styles['disabled-input']
           )}
           disabled={disabled}
           type="text"
@@ -86,7 +87,7 @@ const Input: FC<TInputProps> = ({
       )}
       {label && (
         <label className={clsx(styles.label, colorClassName)} htmlFor={id}>
-          <Typography variant={typographyVariant} className={styles.typography}>
+          <Typography variant='Body2-Medium' className={styles.typography}>
             {label}
           </Typography>
         </label>

@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-
+import clsx from 'clsx';
+import styles from './Snackbar.module.scss'
 import { Button, Icon } from '@components/.';
-
 import { ICloseBtn } from './types';
-
 import { colorMapping } from './enums';
 
 const CloseBtn: FC<ICloseBtn> = ({ close, color }) => {
@@ -11,17 +10,19 @@ const CloseBtn: FC<ICloseBtn> = ({ close, color }) => {
 
   return (
     <Button
-      data-testid="SNACKBAR_CLOSE"
-      variant="bar"
-      size="s"
+      className={clsx(
+        lightGreenPinkDarkCondition.includes(color as colorMapping)
+          ? styles['btn-icon-white']
+          : styles['btn-icon-grey']
+      )}
+      data-testid='SNACKBAR_CLOSE'
+      variant='text'
+      size='m'
       onClick={close}
       iconButton={
         <Icon
-          name="IconCloseOutlined24"
+          name='IconCloseOutlined24'
           containerSize={24}
-          htmlColor={
-            lightGreenPinkDarkCondition.includes(color as colorMapping) ? 'var(--ac-icon-white)' : 'var(--ac-icon-grey)'
-          }
         />
       }
     />

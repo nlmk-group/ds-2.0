@@ -3,14 +3,14 @@ $paddingChild: 18px;
 .item {
   display: flex;
   align-items: center;
-  padding: 8px 24px 8px 12px;
+  padding: var(--8-space) var(--24-space) var(--8-space) var(--12-space);
   height: 40px;
   box-sizing: border-box;
   color: var(--text-grey-900);
 
   &:last-child,
   &:first-child {
-    height: 48px;
+    height: var(--48-size);
   }
 
   &:first-child {

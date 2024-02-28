@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { TIconProps } from '@components/Icon/types';
 import { ITypography } from '@components/Typography/types';
@@ -12,7 +12,8 @@ export interface IAvatarProps {
   userName?: string;
   userSurname?: string;
   online?: boolean;
-  badgeIconName?: string;
+  badgeIconName?: ReactNode;
+  badgeSpecialIcon?: boolean;
   numberIndicator?: number;
   className?: string;
 }

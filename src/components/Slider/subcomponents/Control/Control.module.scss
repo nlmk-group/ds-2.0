@@ -10,10 +10,31 @@
   margin-left: calc(32px / -2);
   transform: translate3d(0, -50%, 0);
   z-index: 2;
-  background-color: var(--primary-blue-600);
+  background-color: var(--ac-input-slider-none-default-point);
 
   &-disabled {
-    background-color: var(--lighter-primary-blue-600);
+    background-color: var(--ac-input-slider-none-disabled-point);
+  }
+
+  .hover-wrapper {
+    position: relative;
+  }
+
+  &:hover {
+    background-color: var(--ac-input-slider-none-hover-point);
+
+    .point-hover {
+      position: absolute;
+      z-index: -1;
+      bottom: 50%;
+      right: 50%;
+      transform: translate(44%, 50%);
+      width: 48px;
+      height: 48px;
+      opacity: var(--15-opacity);
+      border-radius: var(--circle-radius);
+      background-color: var(--ac-input-slider-none-hover-point);
+    }
   }
 }
 

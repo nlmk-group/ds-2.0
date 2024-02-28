@@ -6,8 +6,9 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
 import { Tabs, Typography } from '@components/index';
-
 import styles from '@components/_storybook/Stories/Stories.module.scss';
+
+const FIGMA_LINK = 'https://www.figma.com/file/byZZI6bYz2Iv2Jst7ycZ7M/DS2.0-Navigation?type=design&node-id=1-10&mode=design&t=Oysvun6QjDqPZDKX-0';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,7 +20,7 @@ const Stories = (): JSX.Element => {
         description="Компонент Tabs, который объединил в себя Tab элементы. Компонент использует подход compound pattern."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Tabs"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43757&mode=design&t=awyt3Fzj1XS6th7v-1"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -104,7 +105,7 @@ export default  App = () => {
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43757&mode=design&t=awyt3Fzj1XS6th7v-1" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && (
         <Typography variant="Heading4" color="primary">

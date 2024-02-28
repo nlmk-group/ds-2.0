@@ -5,19 +5,19 @@
   transform: translateY(-50%);
   height: 6px;
   border-radius: 2px;
-  background-color: var(--text-grey-200);
+  background-color: var(--ac-input-slider-none-default-bg);
 
   &-disabled {
-    opacity: 50%;
+    background-color: var(--ac-input-slider-none-disabled-bg);
   }
 }
 
 .inner-rail {
   position: absolute;
   height: 100%;
-  background-color: var(--primary-blue-600);
+  background-color: var(--ac-input-slider-none-default-line);
 
   &-disabled {
-    background-color: var(--lighter-primary-blue-600);
+    background-color: var(--ac-input-slider-none-disabled-line);
   }
 }

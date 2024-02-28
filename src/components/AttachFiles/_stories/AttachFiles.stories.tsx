@@ -54,20 +54,6 @@ AttachFilesDefault.args = {
   label: FILE_NAME
 };
 
-export const AttachFilesLongLabel = (argTypes: IFile): JSX.Element => {
-  return (
-    <div className={styles.wrapper}>
-      <File {...argTypes} />
-    </div>
-  );
-};
-
-AttachFilesLongLabel.storyName = FILES_LONG_LABEL;
-AttachFilesLongLabel.args = {
-  longTitle: true,
-  label: LONG_LABEL
-};
-
 export const AttachFilesDescription = (argTypes: IFile): JSX.Element => {
   return (
     <div className={styles.wrapper}>

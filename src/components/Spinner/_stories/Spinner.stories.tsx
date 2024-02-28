@@ -1,11 +1,18 @@
 import React from 'react';
 
-import { Icon, Spinner } from '@components/index';
+import { IconAutoRenewReloadOutlined24, Spinner } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import argsTypes from './argsTypes';
-import { COLORS, DEFAULT_TEXT, ICON, TEXT_M_SIZE } from './text';
+import {
+  COLORS,
+  DEFAULT_TEXT,
+  ICON,
+  TEXT_M_SIZE,
+  ICON_PERCENT
+} from './text';
+import { sizes } from '../types';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
@@ -54,10 +61,43 @@ export const SpinnerWithIcon = (): JSX.Element => {
     <div className={styles.wrapper} style={{ width: 30 }}>
       <div className={styles.row}>
         <Spinner>
-          <Icon color="primary" containerSize={32} name="IconAutorenew24" />
+          <IconAutoRenewReloadOutlined24 />
         </Spinner>
       </div>
     </div>
   );
 };
 SpinnerWithIcon.storyName = ICON;
+
+export const SpinnerWithPercent = (): JSX.Element => {
+  return (
+    <div className={styles.wrapper}>
+      <div
+        className={styles.row}
+        style={{
+          width: 500,
+          display: 'flex',
+          gap: 20
+        }}
+      >
+        <Spinner
+          size={sizes.EXTRA_EXTRA_LARGE}
+          percent={96}
+        />
+        <Spinner
+          size={sizes.EXTRA_LARGE}
+          percent={56}
+        />
+        <Spinner
+          size={sizes.LARGE}
+          percent={40}
+        />
+        <Spinner
+          size={sizes.MEDIUM}
+          percent={32}
+        />
+      </div>
+    </div>
+  );
+};
+SpinnerWithPercent.storyName = ICON_PERCENT;

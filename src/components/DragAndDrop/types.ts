@@ -50,7 +50,7 @@ export interface IDragAndDrop
   smallIcon?: boolean;
   disabled?: boolean;
   accept?: string;
-  onUpload: (a: IFile) => void;
+  onUpload: (a: FileList) => void;
   cancelUpload?: () => void;
 }
 

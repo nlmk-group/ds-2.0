@@ -17,7 +17,7 @@ const Tests: FC<{ componentName: string }> = ({ componentName }) => {
       {currentComponentTest?.assertionResults.map(({ title, status }) => (
         <div className={styles.test} key={title}>
           <div className={styles[status]}></div>
-          <Typography variant="Body1-Bold">{title}</Typography>
+          <Typography variant="Body1-Bold" className={styles.text}>{title}</Typography>
           <div className={styles.chip}>
             <Chip color="success" variant="solid">
               {status}

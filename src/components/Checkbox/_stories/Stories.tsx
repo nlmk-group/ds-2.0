@@ -12,6 +12,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=3360-16500&mode=design&t=U47unVezMPIQMdQU-0';
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -22,7 +24,7 @@ const Stories = (): JSX.Element => {
         description="Компонент Checkbox является элементом пользовательского интерфейса, который позволяет пользователю взаимодействовать с формой, выбирая или снимая выбор с определённых опций. "
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Checkbox"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20846&mode=design&t=awyt3Fzj1XS6th7v-1"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -53,8 +55,6 @@ export default  App = () =>(
   <>
     <Checkbox />
     <Checkbox color="error"/>
-    <Checkbox color="success"/>
-    <Checkbox color="warning"/>
   </>
 )`}
           />
@@ -120,7 +120,7 @@ export default  App = () => {
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20846&mode=design&t=awyt3Fzj1XS6th7v-1" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && (
         <Typography variant="Heading4" color="primary">

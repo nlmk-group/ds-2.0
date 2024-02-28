@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { DateTime } from '@components/.';
+import { DateTime, Typography } from '@components/.';
 import { clsx } from 'clsx';
 
 import { IHeader } from './types';
@@ -21,24 +21,36 @@ const Header: FC<IHeader> = ({
   favorite = null,
   notification = null,
   notificationAmount = 0,
-  breadcrumbs = null
+  breadcrumbs = null,
+  className
 }): JSX.Element => {
   return (
     <div
-      data-testid="HEADER_WRAPPER"
+      data-testid='HEADER_WRAPPER'
       className={clsx(
         styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'],
-        bg && styles['alternative-background']
+        bg && styles['alternative-background'],
+        className
       )}
     >
-      {breadcrumbs !== null && <div className={styles['breadcrumbs-wrapper']}>{breadcrumbs}</div>}
+      {breadcrumbs !== null && (
+        <div className={styles['breadcrumbs-wrapper']}>
+          {breadcrumbs}
+        </div>
+      )}
 
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
           <div className={styles['title-btn-wrapper']}>
             {back !== null && <BtnBack back={back} />}
-            <div data-testid="HEADER_TITLE" className={styles.title} title={title}>
-              {title}
+            <div
+              data-testid='HEADER_TITLE'
+              className={styles.title}
+              title={title}
+            >
+              <Typography variant='Heading2'>
+                {title}
+              </Typography>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@
 }
 
 .wrapper {
-  background-color: var(--white);
+  background-color: var(--background-default);
   margin: 0;
   padding: 24px;
   border-radius: 10px;
@@ -55,6 +55,7 @@
 
 .colorControlTitle {
   white-space: nowrap;
+  color: var(--text-grey-900);
 }
 
 .colorControl {
@@ -85,7 +86,7 @@
 
 .icon {
   @include iconStyle;
-  background-color: var(--no-change-white);
+  background-color: var(--background-paper);
 }
 
 .iconFill path {

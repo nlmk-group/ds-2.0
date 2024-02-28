@@ -10,35 +10,44 @@
     padding: 0 4px 0 0 !important;
 
     &:hover {
-      background-color: var(--default-second) !important;
+      background-color: var(--ac-input-default-bg) !important;
     }
 
     &.disabled {
-      background: var(--text-grey-50);
+      background: var(--ac-input-disabled-bg);
+
+      path {
+        fill: var(--ac-icon-grey);
+      }
 
       &:hover {
-        background: var(--text-grey-50) !important;
+        background: var(--ac-input-disabled-bg) !important;
       }
     }
   }
 
   .item {
+    color: var(--ac-select-item-default-label);
+
     &:hover {
-      background-color: var(--info-lightblue-100);
+      color: var(--ac-select-item-hover-label);
+      background-color: var(--ac-select-item-hover-bg);
     }
 
     &.disabled {
-      background: var(--text-grey-50);
+      opacity: var(--45-opacity);
       &:hover {
         cursor: default;
       }
     }
 
     &.selected {
-      background: var(--info-lightblue-200);
+      background: var(--ac-select-item-selected-bg);
+      color: var(--ac-select-item-selected-label);
 
       &:hover {
-        background-color: var(--info-lightblue-300);
+        background-color: var(--ac-select-item-activehover-bg);
+        color: var(--ac-select-item-activehover-label);
       }
     }
   }
@@ -55,7 +64,6 @@
     text-overflow: ellipsis;
 
     &__disabled {
-      background: var(--text-grey-50);
 
       &:hover {
         cursor: default;

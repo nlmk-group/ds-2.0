@@ -1,6 +1,8 @@
-import { PropsWithChildren } from 'react';
+import { ReactElement, ReactNode } from 'react';
+import { IFile } from './subcomponents/File/types'
 
-export interface IAttachFiles extends PropsWithChildren<any> {
-  children: JSX.Element[];
-  title?: JSX.Element;
+export interface IAttachFiles {
+  className?: string;
+  title?: ReactElement<IFile, any>;
+  children?: ReactNode[] | ReactNode;
 }

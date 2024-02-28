@@ -4,6 +4,7 @@ import { TimeType } from '@components/declaration/enums';
 import MeasureUnit from '@components/TimePicker/subcomponents/MeasureUnit';
 import clsx from 'clsx';
 import { set } from 'date-fns';
+import { Typography } from '@components/.'
 
 import { ITimeSelectorProps } from './types';
 
@@ -67,7 +68,11 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
         {...props}
       >
         <div className={styles['selector-column']} ref={setHoursContainerRef}>
-          <div className={styles['selector-column-title']}>чч</div>
+          <div className={styles['selector-column-title']}>
+            <Typography variant='Body1-Medium'>
+              чч
+            </Typography>
+          </div>
           {enabledHours.map(hour => (
             <MeasureUnit
               key={hour}
@@ -80,7 +85,11 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
           ))}
         </div>
         <div className={styles['selector-column']} ref={setMinutesContainerRef}>
-          <div className={styles['selector-column-title']}>мм</div>
+          <div className={styles['selector-column-title']}>
+            <Typography variant='Body1-Medium'>
+              мм
+            </Typography>
+          </div>
           {enabledMinutes.map(minute => (
             <MeasureUnit
               key={minute}

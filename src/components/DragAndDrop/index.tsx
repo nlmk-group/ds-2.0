@@ -55,7 +55,6 @@ const DragAndDrop: FC<IDragAndDrop> = ({
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      // handleFiles(e.dataTransfer.files);
       onUpload(e.dataTransfer.files);
     }
   };
@@ -64,7 +63,6 @@ const DragAndDrop: FC<IDragAndDrop> = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
-      // handleFiles(e.target.files);
       onUpload(e.target.files);
     }
   };

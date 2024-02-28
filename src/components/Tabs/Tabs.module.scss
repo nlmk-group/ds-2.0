@@ -1,7 +1,7 @@
 .tabs-wrapper {
-  border-bottom: 1px solid rgba(0, 23, 41, 0.16);
+  border-bottom: var(--1-border) solid var(--divider-divider);
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: var(--24-space);
   width: fit-content;
 }

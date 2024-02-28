@@ -1,13 +1,9 @@
-import React, { ComponentType } from 'react';
-
 import { withTests } from '@storybook/addon-jest';
-import { useDarkMode } from 'storybook-dark-mode';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 import results from '../.jest-test-results.json';
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import { useThemeSwitcher } from '../src/components';
-import { Themes } from '../src/components/Theme';
 import { getSystemTheme } from '../src/components/Theme/utils';
 import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
 
@@ -25,7 +21,7 @@ div.style.cssText = `
   left: 10px;
 `;
 div.innerHTML = `<code>${name} - v.${version}</code>`;
-header.append(div);
+header?.append(div);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -63,15 +59,13 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story: ComponentType, context: any) => {
-    const darkMode = useDarkMode();
-    useThemeSwitcher(darkMode ? Themes.DARK : Themes.LIGHT);
-    return (
-      <>
-        <Story {...context} />
-      </>
-    );
-  },
+  withThemeByDataAttribute({
+    themes: {
+      light: 'light-theme',
+      dark: 'dark-theme'
+    },
+    defaultTheme: 'light'
+  }),
   withTests({
     results
   })

@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-
-
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import { FigmaLogoSvgIcon, GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, Link, Typography } from '@components/index';
@@ -11,10 +9,7 @@ import { Button, Icon, Link, Typography } from '@components/index';
 import { version } from '@root/package.json';
 import clsx from 'clsx';
 
-
-
 import styles from './Welcome.module.scss';
-
 
 const FooterSection: FC<{
   title: string;
@@ -80,8 +75,10 @@ export const Footer: FC = () => {
             <Typography variant="Body1">
               Добавлен основной набор компонентов, который поможет, как конструктор в строительстве вашего проекта.
             </Typography>
-            <br/>
-            <Link href="./?path=/docs/introduction-changelog--docs" target='_blank'>История изменений</Link>
+            <br />
+            <Link href="./?path=/docs/introduction-changelog--docs" target="_blank">
+              История изменений
+            </Link>
           </>
         }
       />

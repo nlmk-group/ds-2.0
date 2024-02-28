@@ -34,30 +34,39 @@ $variants: primary, secondary, error, warning, success, grey;
 
 // Соответствующие цвета для каждого варианта
 $bg-colors: (
-  primary: var(--assigned-colors-badge-main-main-bg-default),
-  secondary: var(--assigned-colors-badge-secondary-secondary-bg-default),
-  error: var(--assigned-colors-badge-error-error-bg-default),
-  warning: var(--assigned-colors-badge-warning-warning-bg-default),
-  success: var(--assigned-colors-badge-success-success-bg-default),
-  grey: var(--assigned-colors-badge-grey-grey-bg-default)
+  primary: var(--ac-badge-solid-primary-fill),
+  secondary: var(--ac-badge-solid-secondary-fill),
+  error: var(--ac-badge-solid-error-fill),
+  warning: var(--ac-badge-solid-warning-fill),
+  success: var(--ac-badge-solid-success-fill),
+  grey: var(--ac-badge-solid-grey-fill)
 );
 
 $text-colors: (
-  primary: var(--assigned-colors-badge-text-text-white),
-  secondary: var(--assigned-colors-badge-text-text-black),
-  error: var(--assigned-colors-badge-text-text-white),
-  warning: var(--assigned-colors-badge-text-text-black),
-  success: var(--assigned-colors-badge-text-text-black),
-  grey: var(--assigned-colors-badge-text-text-white)
+  primary: var(--ac-badge-solid-primary-text),
+  secondary: var(--ac-badge-solid-secondary-text),
+  error: var(--ac-badge-solid-error-text),
+  warning: var(--ac-badge-solid-warning-text),
+  success: var(--ac-badge-solid-success-text),
+  grey: var(--ac-badge-solid-grey-text)
 );
 
 $outline-colors: (
-  primary: var(--assigned-colors-badge-main-main-bg-default),
-  secondary: var(--assigned-colors-badge-outline-outline-border-secondary-default),
-  error: var(--assigned-colors-badge-error-error-bg-default),
-  warning: var(--assigned-colors-badge-warning-warning-bg-default),
-  success: var(--assigned-colors-badge-success-success-bg-default),
-  grey: var(--assigned-colors-badge-grey-grey-bg-default)
+  primary: var(--ac-badge-outline-primary-stroke),
+  secondary: var(--ac-badge-outline-secondary-stroke),
+  error: var(--ac-badge-outline-error-stroke),
+  warning: var(--ac-badge-outline-warning-stroke),
+  success: var(--ac-badge-outline-success-stroke),
+  grey: var(--ac-badge-outline-grey-stroke)
+);
+
+$outline-text: (
+  primary: var(--ac-badge-outline-primary-text),
+  secondary: var(--ac-badge-outline-secondary-text),
+  error: var(--ac-badge-outline-error-text),
+  warning: var(--ac-badge-outline-warning-text),
+  success: var(--ac-badge-outline-success-text),
+  grey: var(--ac-badge-outline-grey-text)
 );
 
 // Цикл для генерации стилей для каждого варианта
@@ -70,7 +79,7 @@ $outline-colors: (
   .outline-#{"" + $variant} {
     @include outline;
     border-color: map-get($outline-colors, $variant);
-    color: var(--assigned-colors-badge-text-outline-text);
+    color: map-get($outline-text, $variant);
   }
 }
 

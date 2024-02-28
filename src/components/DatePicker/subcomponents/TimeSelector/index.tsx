@@ -5,6 +5,7 @@ import { Day } from '@components/DatePicker/subcomponents';
 import { TimeSelectorProps } from '@components/DatePicker/subcomponents/TimeSelector/types';
 import { set } from 'date-fns';
 import { isInteger } from 'lodash';
+import { Typography } from '@components/.'
 
 import styles from './TimeSelector.module.scss';
 
@@ -100,7 +101,11 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
   return (
     <div className={styles.root}>
       <div className={styles.column} ref={setHoursContainerRef}>
-        <div className={styles.columnTitle}>чч</div>
+        <div className={styles.columnTitle}>
+          <Typography variant='Body1-Medium'>
+            чч
+          </Typography>
+        </div>
         {enabledHours.map(hour => (
           <Day
             key={hour.value}
@@ -113,7 +118,11 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
         ))}
       </div>
       <div className={styles.column} ref={setMinutesContainerRef}>
-        <div className={styles.columnTitle}>мм</div>
+        <div className={styles.columnTitle}>
+          <Typography variant='Body1-Medium'>
+            мм
+          </Typography>
+        </div>
         {enabledMinutes.map(minute => (
           <Day
             key={minute.value}
@@ -127,7 +136,11 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
       </div>
       {withSeconds && (
         <div className={styles.column} ref={setSecondsContainerRef}>
-          <div className={styles.columnTitle}>сс</div>
+          <div className={styles.columnTitle}>
+            <Typography variant='Body1-Medium'>
+              сс
+            </Typography>
+          </div>
           {seconds.map(second => (
             <Day
               key={second.value}

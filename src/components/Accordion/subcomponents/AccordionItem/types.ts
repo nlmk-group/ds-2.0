@@ -18,4 +18,5 @@ export interface IAccordionItemProps extends Omit<TAccordionItem, 'content'> {
   size: `${sizesMapping}`;
   variant: `${variantsMapping}`;
   children: ReactNode;
+  className?: string;
 }

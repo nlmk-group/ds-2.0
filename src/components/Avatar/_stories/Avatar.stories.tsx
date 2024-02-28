@@ -6,9 +6,9 @@ import { IAvatarProps } from '@components/Avatar/types';
 import styles from './Avatar.module.scss';
 
 import { AvatarShape, AvatarSize } from '../enums';
-import { SPECIAL_ICONS } from '../subcomponents/IconBadge/constants';
 import { getAvatarImageSrc } from '../utils';
 import { argsTypes } from './argsTypes';
+import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDirectory';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
@@ -130,7 +130,7 @@ export const AvatarWithDefaultBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithDefaultBadge.storyName = 'Аватар c дефолтным бейджем';
 AvatarWithDefaultBadge.args = {
-  badgeIconName: 'IconDone24'
+  badgeIconName: <IconDoneCheckFilled16 color='secondary'/>
 };
 
 export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => {
@@ -142,5 +142,6 @@ export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithSpecialBadge.storyName = 'Аватар cо специальным бейджем';
 AvatarWithSpecialBadge.args = {
-  badgeIconName: SPECIAL_ICONS[0]
+  badgeIconName: <IconBirthday16 color='secondary'/>,
+  badgeSpecialIcon: true
 };

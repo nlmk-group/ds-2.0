@@ -26,7 +26,7 @@
     }
   }
 
-  &:focus {
+  &:visited {
     > a {
       color: var(--ac-link-active);
       border-bottom-color: var(--ac-link-active);

@@ -1,40 +1,20 @@
 import React, { FC, useContext } from 'react';
-import { clsx } from 'clsx';
-import { IButtonGroupProperties, IWithIcon } from '../types';
-import styles from '../ToggleButtonGroup.module.scss'
-import Icon from '@components/Icon';
-import { ButtonGroupProperties } from '..';
 
-export const WithIcon: FC<IWithIcon> = ({
-  name = 'IconArticleOutlined24',
-  color = 'inherit',
-  containerSize = 24,
-  htmlColor = 'var(--text-grey-900)',
-  children = null
-}) => {
+import { IconArticleOutlined24 } from '@components/.';
+import { clsx } from 'clsx';
+
+import styles from '../ToggleButtonGroup.module.scss';
+
+import { ButtonGroupProperties } from '..';
+import { IButtonGroupProperties, IWithIcon } from '../types';
+
+export const WithIcon: FC<IWithIcon> = ({ htmlColor = 'var(--text-grey-900)', children = null }) => {
   const { size } = useContext<IButtonGroupProperties>(ButtonGroupProperties);
   return (
-    <div
-      data-testid='ICON'
-      className={clsx(
-        styles['icon-wrapper'],
-        styles[`icon-${size}`]
-      )}
-    >
-      {children !== null
-        ? children
-        : (
-          <Icon
-            name={name}
-            containerSize={containerSize}
-            color={color}
-            htmlColor={htmlColor}
-          />
-        )
-      }
+    <div data-testid="ICON" className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}>
+      {children !== null ? children : <IconArticleOutlined24 htmlColor={htmlColor} />}
     </div>
-  )
-}
+  );
+};
 
-
-export default WithIcon
+export default WithIcon;

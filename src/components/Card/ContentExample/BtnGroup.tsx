@@ -23,7 +23,7 @@ const BtnGroup: FC<IBtnGroup> = ({ primaryButton, secondaryButton }) => {
       )}
       {secondaryButton !== null && (
         <div data-testid="CARD_BUTTON_SECONDARY">
-          <Button variant="bar" startIcon={secondaryButton.startIcon} onClick={secondaryButton.onClick}>
+          <Button variant="text" startIcon={secondaryButton.startIcon} onClick={secondaryButton.onClick}>
             {secondaryButton.label}
           </Button>
         </div>

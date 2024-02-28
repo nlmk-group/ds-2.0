@@ -34,19 +34,19 @@ export default {
 };
 
 export const dndDefault = (argTypes: IDragAndDrop): ReactNode => {
-  const [files, setFiles] = useState<IFile>([]);
+  const [files, setFiles] = useState<FileList[0] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [uploadingFile, setUploadingFile] = useState<string>('');
   const [percent, setPercent] = useState<number>(0);
   const intervalID = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const handleOnUpload = async (a: IFile) => {
+  const handleOnUpload = async (a: FileList) => {
     setLoading(true);
     setUploadingFile(`${a[0].name}, ${a[0].size}`);
     await new Promise(() =>
       setTimeout(() => {
         setLoading(false);
-        setFiles(a);
+        setFiles(a[0]);
       }, 2000)
     );
   };
@@ -154,7 +154,9 @@ export const dndSmallText = (argTypes: IDragAndDrop): ReactNode => {
       {Object.values(statusColorMapping).map((status: statusColorMapping) => (
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
-      <DragAndDrop title={smallTextUploadText} loading={true} percentUpload={99} {...argTypes} />
+      <div style={{ color: 'var(--ac-drag-drop-default-text-title)' }}>
+        <DragAndDrop loading title={smallTextUploadText} percentUpload={99} {...argTypes} />
+      </div>
     </div>
   );
 };
@@ -171,7 +173,7 @@ export const dndSmallIcon = (argTypes: IDragAndDrop): ReactNode => {
       {Object.values(statusColorMapping).map((status: statusColorMapping) => (
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
-      <DragAndDrop title={smallTextUploadText} loading={true} percentUpload={99} {...argTypes} />
+      <DragAndDrop title={smallTextUploadText} loading percentUpload={99} {...argTypes} />
     </div>
   );
 };
@@ -193,7 +195,7 @@ export const dndCustom = (argTypes: IDragAndDrop): ReactNode => {
     <DragAndDrop {...argTypes}>
       <div className={customStyle['custom-component-style']}>
         <Icon name="IconUploadOutlined24" />
-        <div>Just throw something here!</div>
+        <div style={{ color: 'var(--text-grey-900)' }}>Just throw something here!</div>
       </div>
     </DragAndDrop>
   );

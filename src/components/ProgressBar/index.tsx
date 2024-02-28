@@ -1,14 +1,19 @@
 import React, { FC } from 'react';
+import clsx from 'clsx';
 
 import { Typography } from '@components/index';
 import { IProgressBarProps } from '@components/ProgressBar/types';
 
 import styles from './ProgressBar.module.scss';
 
-const ProgressBar: FC<IProgressBarProps> = ({ percentage = 0, label }) => {
+const ProgressBar: FC<IProgressBarProps> = ({
+  percentage = 0,
+  label,
+  className
+}) => {
   const validPercentage = Math.min(Math.max(percentage, 0), 100);
   return (
-    <div className={styles.root}>
+    <div className={clsx(styles.root, className)}>
       <div className={styles['progress']} role="progressBar">
         <div className={styles['progress-fill']} style={{ width: `${validPercentage}%` }} />
         {label && (

@@ -2,7 +2,7 @@ const MODULES = ['react', 'react-dom', 'react-helmet-async', '@codesandbox/nodeb
 const EXTERNAL_MODULES = process.env.NODE_ENV !== 'production' ? [] : MODULES;
 
 module.exports = {
-  exclude: ['**/_stories/**/*', '**/*.html', '**/img/**/*'],
+  exclude: ['**/_stories/**/*', '**/*.html', '**/img/**/*', '**/generateIconsExports.ts'],
   buildOptions: {
     out: 'lib'
   },

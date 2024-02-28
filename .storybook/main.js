@@ -38,6 +38,7 @@ module.exports = {
     '@storybook/testing-library',
     '@storybook/addon-interactions',
     'storybook-dark-mode',
+    '@storybook/addon-themes',
     '@storybook/addon-storysource',
     '@storybook/addon-mdx-gfm'
   ],
@@ -48,6 +49,7 @@ module.exports = {
   },
 
   features: {
+    interactionsDebugger: true,
     storyStoreV7: true
   },
 

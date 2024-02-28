@@ -132,7 +132,7 @@ export default App = () => (
     color="dark"
     customIcon={(
       <Icon
-        name='IconEducation24'
+        name='IconEducationOutlined24'
         containerSize={24}
         htmlColor="red"
       />

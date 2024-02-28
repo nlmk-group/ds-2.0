@@ -4,9 +4,13 @@ import { IAttachFiles } from './types';
 
 import styles from './AttachFiles.module.scss';
 
-const AttachFiles: FC<IAttachFiles> = ({ title, children }) => {
+const AttachFiles: FC<IAttachFiles> = ({
+  title,
+  children,
+  className
+}) => {
   return (
-    <div data-testid="ATTACHFILES_WRAPPER">
+    <div className={className} data-testid="ATTACHFILES_WRAPPER">
       <div className={styles.title} data-testid="ATTACHFILES_TITLE">
         {title}
       </div>

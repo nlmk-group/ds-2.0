@@ -1,9 +1,10 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "author": "NLMK IT",
   "public": false,
   "main": "lib/index.js",
+  "license": "MIT",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
@@ -12,9 +13,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "check-types": "tsc --noemit",
     "convert:dark-theme-tokens": "node script/creatingDarkThemeConst.js",
     "start": "yarn convert:dark-theme-tokens && vite",
-    "lint": "eslint ./src --ext .ts,.tsx --config .eslintrc.json",
+    "lint": "eslint ./src --ext .ts,.tsx --config .eslintrc.json && yarn check-types",
     "clean": "rm -rf lib && rm -rf cache",
     "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build --polyfill-node",
     "build": "./script/build",
@@ -32,19 +34,22 @@
     "storybook:dev": "yarn convert:dark-theme-tokens  && storybook dev -p 6006",
     "storybook:build": "yarn convert:dark-theme-tokens && rm -rf storybook-static && yarn prebuild:storybook && storybook build && cp -r dist/* storybook-static",
     "storybook:build:windows": "yarn convert:dark-theme-tokens && (if exist storybook-static ( rd /s /q storybook-static)) && yarn prebuild:storybook && storybook build && xcopy /s /y dist storybook-static",
+    "token:generate": "export $(cat .env | xargs) && node generateTokens.mjs",
+    "token:generate:windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && node generateTokens.mjs",
     "commit": "cz",
     "packpackage": "cd lib && yarn pack",
-    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon"
+    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon",
+    "chromatic": "yarn storybook:build && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
+    "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
   },
   "pre-commit": [
     "lint"
   ],
-  "license": "MIT",
   "dependencies": {
     "@snowpack/plugin-sass": "1.4.0",
-    "date-fns": "2.30.0",
+    "date-fns": "3.3.1",
     "react-input-mask": "2.0.4",
-    "react-popper": "2.2.5",
+    "react-popper": "2.3.0",
     "react-transition-group": "4.4.5"
   },
   "devDependencies": {
@@ -67,21 +72,22 @@
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-typescript": "^11.0.0",
     "@snowpack/plugin-react-refresh": "2.5.0",
-    "@storybook/addon-actions": "^7.6.15",
-    "@storybook/addon-backgrounds": "^7.6.15",
-    "@storybook/addon-docs": "^7.6.15",
-    "@storybook/addon-essentials": "^7.6.15",
-    "@storybook/addon-interactions": "^7.6.15",
-    "@storybook/addon-jest": "^7.6.15",
-    "@storybook/addon-links": "^7.6.15",
-    "@storybook/addon-mdx-gfm": "^7.6.15",
-    "@storybook/addon-storysource": "^7.6.15",
-    "@storybook/addons": "^7.6.15",
+    "@storybook/addon-actions": "^7.6.17",
+    "@storybook/addon-backgrounds": "^7.6.17",
+    "@storybook/addon-docs": "^7.6.17",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-jest": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/addon-mdx-gfm": "^7.6.17",
+    "@storybook/addon-storysource": "^7.6.17",
+    "@storybook/addon-themes": "^7.6.17",
+    "@storybook/addons": "^7.6.17",
     "@storybook/jest": "0.2.3",
-    "@storybook/react": "^7.6.15",
-    "@storybook/react-vite": "^7.6.15",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-vite": "^7.6.17",
     "@storybook/testing-library": "0.2.2",
-    "@storybook/theming": "^7.6.15",
+    "@storybook/theming": "^7.6.17",
     "@testing-library/jest-dom": "6.1.6",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.2",
@@ -129,7 +135,7 @@
     "sass-loader": "10.1.0",
     "snowpack": "3.8.1",
     "snowpack-plugin-svgr": "0.1.2",
-    "storybook": "^7.6.15",
+    "storybook": "^7.6.17",
     "storybook-addon-turbo-build": "2.0.1",
     "storybook-dark-mode": "3.0.3",
     "style-dictionary": "3.7.1",
@@ -142,9 +148,9 @@
     "tslib": "2.3.0",
     "typescript": "5.0.4",
     "typescript-plugin-css-modules": "3.4.0",
-    "vite": "^4.1.4",
-    "vite-plugin-dts": "^2.0.2",
-    "vite-tsconfig-paths": "^4.0.5"
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "resolutions": {
     "wrap-ansi": "7.0.0",

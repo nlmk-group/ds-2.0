@@ -1,10 +1,15 @@
 import { ChangeEventHandler, InputHTMLAttributes } from 'react';
 
-import { customInputColors } from '@components/declaration';
+export enum ECheckboxColors {
+  default = 'default',
+  error = 'error'
+}
+
+type TCheckboxColors = `${ECheckboxColors}`;
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  color?: customInputColors;
+  color?: TCheckboxColors;
   disabled?: boolean;
   checked?: boolean;
   id?: string;

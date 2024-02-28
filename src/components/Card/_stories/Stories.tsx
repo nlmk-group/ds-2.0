@@ -49,30 +49,40 @@ export default  App = () => (
       padding: '20px'
   }}>
     <Card>
-      <Typography variant='Heading3'>
-        Заголовок
-      </Typography>
+      <div
+        style={{
+          height: '200px',
+          width: '300px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px'
+        }}
+      >
+        <Typography variant='Heading3'>
+          Заголовок
+        </Typography>
 
-      <Select
-        label="Выберите язык программирования"
-        options={[
-          {
-            label: 'C++',
-            value: 'C++'
-          },
-          {
-            label: 'C#',
-            value: 'C#'
-          }]}
-      />
+        <Select
+          label="Выберите язык программирования"
+          options={[
+            {
+              label: 'C++',
+              value: 'C++'
+            },
+            {
+              label: 'C#',
+              value: 'C#'
+            }]}
+        />
 
-      <div style={{ display: 'flex', gap: '8px' }}>
-        <Button>
-          Button
-        </Button>
-        <Button variant="secondary">
-          Button
-        </Button>
+        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
+          <Button>
+            Button
+          </Button>
+          <Button variant="secondary">
+            Button
+          </Button>
+        </div>
       </div>
     </Card>
   </div>
@@ -95,32 +105,42 @@ export default  App = () => (
     gap: '20px'
   }}>
     <Card>
-      <Typography
-        variant='Heading3'
+    <div
+        style={{
+          height: '200px',
+          width: '300px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px'
+        }}
       >
-        Заголовок
-      </Typography>
+        <Typography
+          variant='Heading3'
+        >
+          Заголовок
+        </Typography>
 
-      <Select
-        label="Выберите язык программирования"
-        options={[
-          {
-            label: 'C++',
-            value: 'C++'
-          },
-          {
-            label: 'C#',
-            value: 'C#'
-          }]}
-      />
+        <Select
+          label="Выберите язык программирования"
+          options={[
+            {
+              label: 'C++',
+              value: 'C++'
+            },
+            {
+              label: 'C#',
+              value: 'C#'
+            }]}
+        />
 
-      <div style={{ display: 'flex', gap: '8px' }}>
-        <Button>
-          Button
-        </Button>
-        <Button variant="secondary">
-          Button
-        </Button>
+        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
+          <Button>
+            Button
+          </Button>
+          <Button variant="secondary">
+            Button
+          </Button>
+        </div>
       </div>
     </Card>
 

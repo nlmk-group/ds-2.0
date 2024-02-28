@@ -15,7 +15,7 @@ describe('src/components/Tab', () => {
   test('It should render an Tab with badge inside', () => {
     const number = '90';
     const { container } = render(<Tabs.Tab label="Hello World!" badgeNumber={number} />);
-    const tabComponent = container.getElementsByClassName('typography')[0];
+    const tabComponent = container.getElementsByClassName('badge')[0];
     expect(tabComponent).toHaveTextContent(number);
   });
 

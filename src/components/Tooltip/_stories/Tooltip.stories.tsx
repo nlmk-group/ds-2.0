@@ -18,7 +18,7 @@ export default {
 export const TooltipDefault = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Tooltip {...argsTypes}>
+      <Tooltip description='Тултип по умолчанию' {...argsTypes}>
         <Button variant="secondary">Наведи на меня курсор!</Button>
       </Tooltip>
     </div>
@@ -26,10 +26,10 @@ export const TooltipDefault = (argsTypes: Args): JSX.Element => {
 };
 TooltipDefault.storyName = 'Тултип по умолчанию';
 
-export const TooltipWithDescription = (): JSX.Element => {
+export const TooltipWithDescription = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента">
+      <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента" {...argsTypes}>
         <Button variant="secondary">Наведи на меня курсор!</Button>
       </Tooltip>
     </div>
@@ -37,10 +37,10 @@ export const TooltipWithDescription = (): JSX.Element => {
 };
 TooltipWithDescription.storyName = 'Тултип с текстом';
 
-export const TooltipWrappedDisabled = (): JSX.Element => {
+export const TooltipWrappedDisabled = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента">
+      <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента" {...argsTypes}>
         <span>
           <Button variant="secondary" disabled>
             Наведи на меня курсор!
@@ -52,13 +52,14 @@ export const TooltipWrappedDisabled = (): JSX.Element => {
 };
 TooltipWrappedDisabled.storyName = 'Тултип обернутый вокруг disabled элемента';
 
-export const TooltipWithFull = (): JSX.Element => {
+export const TooltipWithFull = (argsTypes: Args): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, styles['wrapper-height'])}>
       <Tooltip
         title="Заголовок текста подсказки"
         description="Сюда вы можете добавить текст/подсказу для компонента"
         list={['Здесь, вы можете', 'добавить нужную вам', 'информацию по пунктам']}
+        {...argsTypes}
       >
         <Button variant="secondary">Наведи на меня курсор!</Button>
       </Tooltip>
@@ -67,27 +68,27 @@ export const TooltipWithFull = (): JSX.Element => {
 };
 TooltipWithFull.storyName = 'Тултип с заголовком, текстом и списком';
 
-export const TooltipPlacements = (): JSX.Element => {
+export const TooltipPlacements = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.placements}>
         <div className={styles['tooltip-top']}>
-          <Tooltip placement="top" description="Tooltip on top">
+          <Tooltip placement="top" description="Tooltip on top" {...argsTypes}>
             <Button variant="secondary">Наведи, тултип будет сверху!</Button>
           </Tooltip>
         </div>
         <div className={styles['tooltip-bottom']}>
-          <Tooltip placement="bottom" description="Tooltip on bottom">
+          <Tooltip placement="bottom" description="Tooltip on bottom" {...argsTypes}>
             <Button variant="secondary">Наведи, тултип будет снизу!</Button>
           </Tooltip>
         </div>
         <div className={styles['tooltip-left']}>
-          <Tooltip placement="left" description="Tooltip on left">
+          <Tooltip placement="left" description="Tooltip on left" {...argsTypes}>
             <Button variant="secondary">Наведи, тултип будет слева!</Button>
           </Tooltip>
         </div>
         <div className={styles['tooltip-right']}>
-          <Tooltip placement="right" description="Tooltip on right">
+          <Tooltip placement="right" description="Tooltip on right" {...argsTypes}>
             <Button variant="secondary">Наведи, тултип будет справа!</Button>
           </Tooltip>
         </div>
@@ -97,17 +98,17 @@ export const TooltipPlacements = (): JSX.Element => {
 };
 TooltipPlacements.storyName = 'Варианты расположения тултипа';
 
-export const TooltipBehaviors = (): JSX.Element => {
+export const TooltipBehaviors = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.behaviors}>
-        <Tooltip placement="top" behavior="hover" description="Tooltip on hover">
+        <Tooltip placement="top" behavior="hover" description="Tooltip on hover" {...argsTypes}>
           <Button variant="secondary">Тултип появится при наведении!</Button>
         </Tooltip>
-        <Tooltip placement="top" behavior="click" description="Tooltip on click">
+        <Tooltip placement="top" behavior="click" description="Tooltip on click" {...argsTypes}>
           <Button variant="secondary">Тултип появится при клике!</Button>
         </Tooltip>
-        <Tooltip placement="top" behavior="focus" description="Tooltip on focus">
+        <Tooltip placement="top" behavior="focus" description="Tooltip on focus" {...argsTypes}>
           <Button variant="secondary">Тултип появится при фокусе!</Button>
         </Tooltip>
       </div>
@@ -116,7 +117,7 @@ export const TooltipBehaviors = (): JSX.Element => {
 };
 TooltipBehaviors.storyName = 'Варианты поведения тултипа';
 
-export const TooltipWithCustom = (): JSX.Element => {
+export const TooltipWithCustom = (argsTypes: Args): JSX.Element => {
   const renderCustom = () => {
     const customMap = ['Первый пункт', 'Второй пункт', 'Третий пункт'];
     return (
@@ -139,6 +140,7 @@ export const TooltipWithCustom = (): JSX.Element => {
         description="за добавление кастомного элемента отвечает prop - render"
         list={['Внутри вы можете добавить', 'Нужную вам разметку']}
         render={renderCustom()}
+        {...argsTypes}
       >
         <Button variant="secondary">Нажми на меня для появления тултипа!</Button>
       </Tooltip>

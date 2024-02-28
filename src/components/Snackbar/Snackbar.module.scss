@@ -51,9 +51,24 @@ $box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   gap: var(--8-space);
 }
 
-.child-wrapper {
-  font-size: var(--body1-medium-font-size);
-  font-weight: var(--body1-medium-font-weight);
-  min-height: var(--body1-medium-line-height);
-  line-height: var(--body1-medium-line-height);
+.btn-icon-white {
+  path {
+    fill: var(--ac-icon-white);
+  }
+
+  &:hover {
+    path {
+      fill: var(--text-grey-900);
+    }
+  }
+}
+
+.btn-icon-grey {
+  path {
+    fill: var(--ac-icon-grey);
+  }
+}
+
+.btn-color-green-red {
+  color: var(--ac-button-grey-clear-default-text);
 }

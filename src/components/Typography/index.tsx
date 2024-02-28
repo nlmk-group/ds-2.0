@@ -6,7 +6,13 @@ import clsx from 'clsx';
 
 import styles from './Typography.module.scss';
 
-const Typography: FC<ITypography> = ({ variant = 'Body1', color = 'inherit', children, className, ...props }) => {
+const Typography: FC<ITypography> = ({
+  variant = 'Body1',
+  color = 'inherit',
+  children,
+  className,
+  ...props
+}) => {
   return (
     <span
       className={clsx(

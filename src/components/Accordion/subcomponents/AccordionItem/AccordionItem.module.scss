@@ -1,67 +1,112 @@
-$padding-size: var(--16-size);
-$text-grey: var(--text-grey-100);
-$background-paper: var(--background-paper);
-
 @mixin padding($top-bottom, $left-right) {
   .header {
     padding: $top-bottom $left-right;
   }
+}
 
-  .content {
-    padding: $top-bottom $left-right;
+@mixin contentColorHelper($bg, $cl, $icon) {
+  background-color: $bg;
+  color: $cl;
+
+  path {
+    fill: $icon;
   }
 }
 
 .accordionItem {
   width: 100%;
-  color: var(--text-grey-900);
   position: relative;
 
   .header {
     cursor: pointer;
     display: grid;
     grid-template-columns: 16px 1fr 16px;
-    gap: var(--16-size);
+    gap: var(--16-space);
     align-items: center;
   }
 
   &.disabled {
     pointer-events: none;
-    color: var(--text-grey-400);
   }
 
   &.default {
-    background-color: var(--background-default);
+    @include contentColorHelper(
+      var(--ac-accordeon-default-default-bg-head),
+      var(--ac-accordeon-default-default-heading),
+      var(--ac-accordeon-default-default-icon)
+    );
 
-    &.hovered,
+    &.hovered {
+      @include contentColorHelper(
+        var(--ac-accordeon-default-hover-bg-head),
+        var(--ac-accordeon-default-hover-heading),
+        var(--ac-accordeon-default-hover-icon)
+      );
+    }
     &.disabled {
-      background-color: $text-grey;
+      @include contentColorHelper(
+        var(--ac-accordeon-default-disabled-bg-head),
+        var(--ac-accordeon-default-disabled-heading),
+        var(--ac-accordeon-default-disabled-icon)
+      );
     }
   }
 
   &.paper {
-    background-color: $background-paper;
+    @include contentColorHelper(
+      var(--ac-accordeon-paper-default-bg-head),
+      var(--ac-accordeon-paper-default-heading),
+      var(--ac-accordeon-paper-default-icon)
+    );
 
     &.hovered {
-      .header {
-        background-color: $text-grey;
-      }
+      @include contentColorHelper(
+        var(--ac-accordeon-paper-hover-bg-head),
+        var(--ac-accordeon-paper-hover-heading),
+        var(--ac-accordeon-paper-hover-icon)
+      );
     }
 
     &.disabled {
-      background-color: $background-paper;
+      @include contentColorHelper(
+        var(--ac-accordeon-paper-disabled-bg-head),
+        var(--ac-accordeon-default-disabled-heading),
+        var(--ac-accordeon-paper-disabled-icon)
+      );
     }
   }
 
   &.m {
-    @include padding(var(--16-size), $padding-size);
+    @include padding(var(--16-space), var(--16-space));
+
+    .content {
+      padding: var(--8-space) var(--16-space) var(--16-space) var(--16-space);
+    }
   }
 
   &.s {
-    @include padding(var(--8-size), $padding-size);
+    @include padding(var(--8-space), var(--16-space));
+
+    .content {
+      padding: var(--4-space) var(--16-space) var(--8-space) var(--16-space);
+    }
   }
 
   &.xs {
-    @include padding(var(--4-size), $padding-size);
+    @include padding(var(--4-space), var(--16-space));
+
+    .content {
+      padding: var(--2-space) var(--16-space) var(--4-space) var(--16-space);
+    }
+  }
+}
+
+.icon-plus-size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    height: calc(var(--6-size) * 2);
+    width: calc(var(--6-size) * 2);
   }
 }

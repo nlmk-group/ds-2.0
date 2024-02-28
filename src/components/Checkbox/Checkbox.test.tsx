@@ -56,9 +56,7 @@ describe('src/components/Checkbox', () => {
   it('Должен произойти рендер компонента с разными состояниями цвета', () => {
     const checkboxColorStates: ICheckboxProps['color'][] = [
       customInputColors.default,
-      customInputColors.error,
-      customInputColors.warning,
-      customInputColors.success
+      customInputColors.error
     ];
     checkboxColorStates.map(checkboxColor => {
       const { container } = render(<Checkbox label={labelText} color={checkboxColor} />);

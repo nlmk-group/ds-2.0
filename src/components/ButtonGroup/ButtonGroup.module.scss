@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  gap: 2px;
+  gap: var(--2-space);
 }
 
 .wrapper-horizontal {
@@ -28,4 +28,6 @@
   display: flex;
   flex-direction: row;
   gap: var(--12-space);
+  width: 100%;
+  justify-content: center;
 }

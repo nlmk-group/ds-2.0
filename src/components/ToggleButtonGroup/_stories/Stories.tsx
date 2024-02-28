@@ -30,7 +30,7 @@ enum TabIds {
 
 const COMPONENT_NAME = 'ToggleButtonGroup';
 const FIGMA_URL =
-  'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43758&mode=design&t=awyt3Fzj1XS6th7v-1';
+  'https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=3302-7747&mode=design&t=v2uTZplRrFW7s4RK-0';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -176,7 +176,7 @@ export default App = () => {
           <Editor
             height={400}
             description={TOGGLE_BUTTON_ICON}
-            code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
+            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
 const { Button } = ToggleButtonGroup;
@@ -186,10 +186,9 @@ export default App = () => {
   return (
     <ToggleButtonGroup>
       <Button onClick={() => setCount(count+1)}>
-        <Button.Icon
-          name='IconAdd24'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconAddPlusCircleOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Plus {count}
         </Button.Label>
@@ -201,10 +200,9 @@ export default App = () => {
         </Button.Label>
       </Button>
       <Button onClick={() => setCount(count-1)}>
-        <Button.Icon
-          name='IconDeleteMinusOutlined32'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconDeleteMinusOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Minus {count}
         </Button.Label>
@@ -218,7 +216,7 @@ export default App = () => {
           <Editor
             height={400}
             description={TOGGLE_BUTTON_BADGE}
-            code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
+            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
 const { Button } = ToggleButtonGroup;
@@ -228,10 +226,9 @@ export default App = () => {
   return (
     <ToggleButtonGroup>
       <Button onClick={() => setCount(count+1)}>
-        <Button.Icon
-          name='IconAdd24'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconAddPlusCircleOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Plus
         </Button.Label>
@@ -249,10 +246,9 @@ export default App = () => {
         </Button.Badge>
       </Button>
       <Button onClick={() => setCount(count-1)}>
-        <Button.Icon
-          name='IconDeleteMinusOutlined32'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconDeleteMinusOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Minus
         </Button.Label>
@@ -332,7 +328,7 @@ export default App = () => {
           <Editor
             height={400}
             description={TOGGLE_BUTTON_COLOR_OPTIONS}
-            code={`import { ToggleButtonGroup} from '@nlmk/ds-2.0';
+            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
 const { Button } = ToggleButtonGroup;
@@ -342,10 +338,9 @@ export default App = () => {
   return (
     <ToggleButtonGroup status="default">
       <Button onClick={() => setCount(count+1)} status="success">
-        <Button.Icon
-          name='IconAdd24'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconAddPlusCircleOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Plus
         </Button.Label>
@@ -363,10 +358,9 @@ export default App = () => {
         </Button.Badge>
       </Button>
       <Button onClick={() => setCount(count-1)} status="error">
-        <Button.Icon
-          name='IconDeleteMinusOutlined32'
-          containerSize={24}
-        />
+        <Button.Icon>
+          <IconDeleteMinusOutlined24 />
+        </Button.Icon>
         <Button.Label>
           Minus
         </Button.Label>

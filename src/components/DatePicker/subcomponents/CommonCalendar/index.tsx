@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
+import clsx from 'clsx';
 
 import { locale } from '@components/DatePicker/helpers';
 import { Footer, PeriodPicker, ShiftSelector } from '@components/DatePicker/subcomponents';
 import { CommonCalendarProps } from '@components/DatePicker/subcomponents/CommonCalendar/types';
 import { useLocale } from '@components/DatePicker/utils';
-import clsx from 'clsx';
-
+import { Divider, Typography } from '@components/.'
 import styles from './CommonCalendar.module.scss';
 
 export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
@@ -58,22 +58,29 @@ export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
           {timeSlot && <div className={styles.timePanel}>{timeSlot}</div>}
         </div>
         {showShiftsSelector && (
-          <div className={styles.period}>
-            <div className={styles.periodTitle}>{locale[language].shiftDescription}</div>
-            <div className={styles.periodSelectors}>
-              <ShiftSelector
-                disabled={disableChange}
-                value={shiftFrom}
-                shiftLength={shiftLength}
-                onChange={onChangeShiftFrom}
-              />{' '}
-              —{' '}
-              <ShiftSelector
-                disabled={disableChange}
-                value={shiftTo}
-                shiftLength={shiftLength}
-                onChange={onChangeShiftTo}
-              />
+          <div className={styles['period-wrapper']}>
+            <Divider />
+            <div className={styles.period}>
+              <div className={styles.periodTitle}>
+                <Typography variant='Caption'>
+                  {locale[language].shiftDescription}
+                </Typography>
+              </div>
+              <div className={styles.periodSelectors}>
+                <ShiftSelector
+                  disabled={disableChange}
+                  value={shiftFrom}
+                  shiftLength={shiftLength}
+                  onChange={onChangeShiftFrom}
+                />{' '}
+                —{' '}
+                <ShiftSelector
+                  disabled={disableChange}
+                  value={shiftTo}
+                  shiftLength={shiftLength}
+                  onChange={onChangeShiftTo}
+                />
+              </div>
             </div>
           </div>
         )}

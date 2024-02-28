@@ -28,7 +28,16 @@ const ButtonGroup: FC<IButtonGroup> = ({
     });
   };
 
-  return <div className={clsx(className, styles.wrapper, styles[`wrapper-${orientation}`])}>{renderChildren()}</div>;
+  return (
+    <div className={clsx(
+      styles.wrapper,
+      styles[`wrapper-${orientation}`],
+      className
+    )}
+    >
+      {renderChildren()}
+    </div>
+  );
 };
 
 export default ButtonGroup;

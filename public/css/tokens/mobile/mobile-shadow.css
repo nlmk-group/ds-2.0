@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Mon Nov 27 2023 11:59:06 GMT+0300 (Москва, стандартное время)
+* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -8,8 +8,8 @@
   --i-os-shadow-card-on-color: [object Object];
   --i-os-shadow-bars: [object Object];
   --i-os-shadow-violet-on-white: [object Object];
-  --android-shadow-card-on-white: [object Object], [object Object], [object Object];
-  --android-shadow-card-on-color: [object Object], [object Object], [object Object];
-  --android-shadow-bars: [object Object], [object Object], [object Object];
-  --android-shadow-violet-on-white: [object Object], [object Object], [object Object];
+  --android-shadow-card-on-white: [object Object],[object Object],[object Object];
+  --android-shadow-card-on-color: [object Object],[object Object],[object Object];
+  --android-shadow-bars: [object Object],[object Object],[object Object];
+  --android-shadow-violet-on-white: [object Object],[object Object],[object Object];
 }

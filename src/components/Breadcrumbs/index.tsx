@@ -1,13 +1,21 @@
-import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
-
+import React, {
+  FC,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react';
+import clsx from 'clsx';
 import { BreadcrumbsProps } from './types';
-
 import styles from './Breadcrumbs.module.scss';
-
 import BasicBreadcrumbs from './BasicBreadcrumbs';
 import ShortenBreadcrumbs from './ShortenBreadcrumbs';
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ crumbs, width = 100 }) => {
+const Breadcrumbs: FC<BreadcrumbsProps> = ({
+  crumbs,
+  width = 100,
+  className
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState<number>(0);
   const [linkSumWidth, setLinkSumWidth] = useState<number>(0);
@@ -50,7 +58,15 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ crumbs, width = 100 }) => {
   const condition = elementWidth > linkSumWidth || crumbs.length <= 2;
 
   return (
-    <div data-testid="BREADCRUMBS_WRAPPER" ref={ref} className={styles.wrapper} style={{ width: `${width}%` }}>
+    <div
+      data-testid='BREADCRUMBS_WRAPPER'
+      ref={ref}
+      className={clsx(
+        styles.wrapper,
+        className
+      )}
+      style={{ width: `${width}%` }}
+    >
       {condition ? <BasicBreadcrumbs crumbs={crumbs} /> : <ShortenBreadcrumbs crumbs={crumbs} />}
     </div>
   );

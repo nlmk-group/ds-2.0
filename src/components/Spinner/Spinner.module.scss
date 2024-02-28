@@ -21,7 +21,7 @@
 .bg {
   display: inline-block;
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: var(--text-grey-100);
+  color: var(--ac-loader-stroke-bg);
   transform: rotate(-90deg);
   svg {
     display: block;
@@ -38,12 +38,14 @@
 }
 
 .icon {
+  aspect-ratio: 1 / 1;
+  min-height: 16px;
   @include animationBlock;
 }
 
 .loader {
   @include animationBlock;
-  color: var(--primary-blue-600);
+  color: var(--ac-loader-stroke-progress);
   position: absolute;
   left: 0px;
   svg {
@@ -55,4 +57,12 @@
       stroke-dashoffset: 0;
     }
   }
+}
+
+.percent-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ac-loader-amount-text);
 }

@@ -5,11 +5,13 @@
 }
 
 .day {
-  width: 36px;
+  width: var(--40-size);
+  height: var(--40-size);
 }
 
 .month {
-  width: 90px;
+  height: var(--40-size);
+  width: var(--90-size);
 }
 
 .quarter {
@@ -20,11 +22,16 @@
   width: 90px;
 }
 
+@mixin background-helper($color, $opacity) {
+  background: $color;
+  opacity: $opacity;
+}
+
 .wrapper {
   cursor: pointer;
-  color: var(--text-grey-900);
-  background-color: var(--background-paper);
-  border-radius: 100px;
+  color: var(--ac-calendar-general-text);
+  background-color: var(--ac-calendar-general-bg);
+  border-radius: var(--circle-radius);
   border: 1px solid transparent;
   width: 100%;
   height: 100%;
@@ -32,38 +39,35 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  font-weight: var(--font-weights-pt-root-ui-2);
-  font-size: var(--font-size-2);
-  line-height: var(--line-heights-4);
+  transition: 0.3s;
 
   &:hover {
-    background-color: var(--text-grey-100);
+    background-color: var(--ac-calendar-state-hover-bg);
   }
 }
 
 .selected {
   & .wrapper {
-    background-color: var(--primary-blue-600);
-    color: var(--never-changes-white);
-    cursor: default;
+    background-color: var(--ac-calendar-state-selected-bg);
+    color: var(--ac-calendar-state-selected-text);
 
     &:hover {
-      background-color: var(--primary-blue-600);
+      opacity: var(--50-opacity);
     }
   }
 }
 
 .disableTimeChange {
   & .wrapper {
-    color: var(--text-grey-600);
-    background-color: var(--background-paper);
+    opacity: var(--50-opacity);
+    background-color: var(--ac-calendar-general-bg);
     cursor: not-allowed;
   }
 }
 
 .today {
   & .wrapper {
-    border: 1px solid var(--dark-primary-navyblue-600);
+    border: var(--1-border) solid var(--ac-calendar-state-today-stroke);
   }
 }
 
@@ -72,14 +76,14 @@
   pointer-events: none;
 
   & .wrapper {
-    color: var(--text-grey-600);
+    opacity: var(--50-opacity);
   }
 }
 
 .start {
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-  background-color: var(--text-grey-100);
+  border-top-left-radius: var(--circle-radius);
+  border-bottom-left-radius: var(--circle-radius);
+  background-color: unset;
 
   & .wrapper {
     background-color: transparent;
@@ -87,33 +91,45 @@
 
   position: relative;
 
+  &:hover .wrapper {
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--95-opacity));
+  }
+
   &::after {
     content: "";
     position: absolute;
     right: -2px;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: var(--text-grey-100);
+    width: 100%;
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    z-index: -1;
+    border-top-left-radius: var(--circle-radius);
+    border-bottom-left-radius: var(--circle-radius);
   }
 
   &.selected {
-    background: var(--primary-blue-100);
+    background: unset;
 
     &.hoverState {
-      background-color: var(--text-grey-100);
+      background-color: unset;
 
       &::before {
-        background-color: var(--text-grey-100);
+        background-color: var(--ac-calendar-state-hover-extra);
       }
 
       &::after {
-        background-color: var(--text-grey-100);
+        @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+        width: 100%;
       }
     }
 
     &::after {
-      background-color: var(--primary-blue-100);
+      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      width: 100%;
+      border-top-left-radius: var(--circle-radius);
+      border-bottom-left-radius: var(--circle-radius);
+      z-index: -1;
     }
 
     &::before {
@@ -121,17 +137,21 @@
     }
 
     & .wrapper {
-      background-color: var(--primary-blue-600);
+      background-color: var(--ac-calendar-state-selected-bg);
+    }
+
+    &:hover .wrapper {
+      opacity: var(--50-opacity);
     }
   }
 }
 
 .mid {
-  background-color: var(--text-grey-100);
+  background-color: unset;
 
   & .wrapper {
     background-color: transparent;
-    color: var(--text-grey-900);
+    color: var(--ac-calendar-general-text);
   }
 
   position: relative;
@@ -143,7 +163,9 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background-color: var(--text-grey-100);
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    width: 100%;
+    z-index: -1;
   }
 
   &::after {
@@ -152,8 +174,9 @@
     right: -2px;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: var(--text-grey-100);
+    width: var(--4-size);
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    z-index: -1;
   }
 
   &.selected {
@@ -163,29 +186,36 @@
       cursor: pointer;
     }
 
-    background: var(--primary-blue-100);
+    position:relative;
+    background: unset;
 
-    &:hover .wrapper {
-      background-color: var(--primary-blue-100);
+    &:hover {
+      background-color: var(--ac-calendar-state-hover-bg);
     }
 
     &::before {
-      background-color: var(--primary-blue-100);
+      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      width: 100%;
+      height: 100%;
     }
 
     &::after {
-      background-color: var(--primary-blue-100);
+      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      width: 4px;
+      height: 100%;
     }
   }
 }
 
 .end {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  background-color: var(--text-grey-100);
+  background-color: unset;
 
   & .wrapper {
     background-color: transparent;
+  }
+
+  &:hover .wrapper {
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--95-opacity));
   }
 
   &::before {
@@ -194,8 +224,11 @@
     left: -2px;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: var(--text-grey-100);
+    width: 100%;
+    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    border-top-right-radius: var(--circle-radius);
+    border-bottom-right-radius: var(--circle-radius);
+    z-index: -1;
   }
 
   position: relative;
@@ -211,22 +244,35 @@
   }
 
   &.selected {
-    background: var(--primary-blue-100);
+    background: unset;
 
     &.hoverState {
-      background-color: var(--text-grey-100);
+      background-color: unset;
 
       &::before {
-        background-color: var(--text-grey-100);
+        background-color: var(--ac-calendar-state-hover-extra);
+        width: 100%;
+        @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+        border-top-right-radius: var(--circle-radius);
+        border-bottom-right-radius: var(--circle-radius);
+        z-index: -1;
       }
     }
 
     &::before {
-      background-color: var(--primary-blue-100);
+      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      width: 100%;
+      border-top-right-radius: var(--circle-radius);
+      border-bottom-right-radius: var(--circle-radius);
+      z-index: -1;
     }
 
     & .wrapper {
-      background-color: var(--primary-blue-600);
+      background-color: var(--ac-calendar-state-selected-bg);
+    }
+
+    &:hover .wrapper {
+      opacity: var(--50-opacity);
     }
   }
 }

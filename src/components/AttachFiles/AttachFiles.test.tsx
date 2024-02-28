@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { AttachFiles, File } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { FILE_NAME, FILES_DESCRIPTION, LONG_LABEL } from './_stories/text';
+import { FILE_NAME, FILES_DESCRIPTION } from './_stories/text';
 
 describe('src/components/AttachFiles', () => {
   // Check render AttachFiles at DOM
@@ -16,12 +16,6 @@ describe('src/components/AttachFiles', () => {
   test('It should render a File with correct label', () => {
     render(<File label={FILE_NAME} />);
     expect(screen.getByTestId('FILE_TITLE')).toHaveTextContent(FILE_NAME);
-  });
-
-  test('It should render a File with long label', () => {
-    render(<File longTitle label={LONG_LABEL} />);
-    expect(screen.getByTestId('FILE_TITLE')).toHaveTextContent(LONG_LABEL);
-    expect(screen.getByTestId('FILE_TITLE').classList.contains('long-title')).toBe(true);
   });
 
   test('It should render a File with description', () => {

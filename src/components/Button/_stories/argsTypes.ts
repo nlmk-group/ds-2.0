@@ -28,7 +28,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text', 'bar'],
+    options: ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text'],
     control: { type: 'select' }
   },
   disabled: {

@@ -1,7 +1,6 @@
-import { ChangeEvent, PropsWithChildren } from 'react';
+import { ChangeEvent } from 'react';
 
-export interface IFile extends PropsWithChildren<any> {
-  children?: JSX.Element;
+export interface IFile {
   title?: string;
   label?: string;
   checked?: boolean;
@@ -18,6 +17,6 @@ export interface IFile extends PropsWithChildren<any> {
   empty?: boolean;
   checkedValue?: boolean;
   indeterminate?: boolean;
-  longTitle?: boolean;
   tick?: boolean;
+  className?: string;
 }

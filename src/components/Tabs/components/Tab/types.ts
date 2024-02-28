@@ -5,4 +5,5 @@ export interface ITab extends PropsWithChildren<any> {
   active?: boolean;
   badgeNumber?: string;
   children?: JSX.Element;
+  className?: string;
 }

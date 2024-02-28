@@ -45,7 +45,7 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
   .hover-overlay {
     width: 100%;
     height: 100%;
-    background-color: var(--never-changes-black);
+    background-color: var(--ac-image-picture-hover-bg);
     opacity: var(--65-opacity);
     position: absolute;
     top: 0;
@@ -60,17 +60,23 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
     transform: translate(-50%, -50%);
     color: var(--never-changes-white);
     z-index: 1;
+    cursor: pointer;
   }
 
   // No Content State
   &.no-content {
-    background-color: var(--dark-primary-navyblue-50);
+    background-color: var(--ac-image-picture-no-content-bg);
     display: flex;
     align-items: center;
     justify-content: center;
 
     .empty-icon {
       width: 17%;
+
+      div {
+        width: unset;
+        height: unset;
+      }
     }
   }
 }

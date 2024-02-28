@@ -8,11 +8,21 @@ import { ISliderControlProps } from './types';
 import styles from './Control.module.scss';
 
 export const Control: FC<ISliderControlProps> = ({ position, value, disabled }) => {
+
   return (
-    <div className={clsx(styles.control, disabled && styles['control-disabled'])} style={{ left: `${position}%` }}>
-      <div className={styles['two-sticks']} />
+    <div
+      className={clsx(
+        styles.control,
+        disabled && styles['control-disabled']
+      )}
+      style={{ left: `${position}%` }}
+    >
+      <div className={styles['two-sticks']}></div>
       <div className={clsx(styles['control-tooltip'], disabled && styles['control-tooltip-disabled'])}>
         <Typography variant="Body2-Medium">{value}</Typography>
+      </div>
+      <div className={styles['hover-wrapper']}>
+        <div className={styles['point-hover']} />
       </div>
     </div>
   );

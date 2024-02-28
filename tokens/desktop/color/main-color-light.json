@@ -812,7 +812,7 @@
         }
       },
       "secondary": {
-        "soild": {
+        "solid": {
           "default-bg": {
             "value": "#d0e9ff",
             "type": "color",
@@ -846,7 +846,7 @@
         }
       },
       "grey": {
-        "soild": {
+        "solid": {
           "default-bg": {
             "value": "#f2f3f4",
             "type": "color",
@@ -945,6 +945,109 @@
             "value": "#001729",
             "type": "color",
             "description": "Цвет текста Grey Button, Clear, Pressed"
+          }
+        }
+      },
+      "black": {
+        "solid": {
+          "default-text": {
+            "value": "#ffffff",
+            "type": "color",
+            "description": "Цвет текста Black Button, Soild, Default"
+          },
+          "default-bg": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Soild, Default"
+          },
+          "hover-text": {
+            "value": "#ffffff",
+            "type": "color",
+            "description": "Цвет текста Black Button, Soild, Hover"
+          },
+          "hover-bg": {
+            "value": "#334554",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Soild, Hover"
+          },
+          "pressed-text": {
+            "value": "#ffffff",
+            "type": "color",
+            "description": "Цвет текста Black Button, Soild, Pressed"
+          },
+          "pressed-bg": {
+            "value": "#000000",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Soild, Pressed"
+          }
+        },
+        "outline": {
+          "default-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Outline, Default"
+          },
+          "default-stroke": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет контура Black Button, Outline, Default"
+          },
+          "hover-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Outline, Hover"
+          },
+          "hover-stroke": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет контура Black Button, Outline, Hover"
+          },
+          "hover-bg": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Outline, Hover"
+          },
+          "pressed-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Outline, Pressed"
+          },
+          "pressed-stroke": {
+            "value": "#000000",
+            "type": "color",
+            "description": "Цвет контура Black Button, Outline, Pressed"
+          },
+          "pressed-bg": {
+            "value": "#ccd1d4",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Outline, Pressed"
+          }
+        },
+        "clear": {
+          "default-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Clear, Default"
+          },
+          "hover-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Clear, Hover"
+          },
+          "hover-bg": {
+            "value": "#e5e8ea",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Clear, Hover"
+          },
+          "pressed-text": {
+            "value": "#001729",
+            "type": "color",
+            "description": "Цвет текста Black Button, Clear, Pressed"
+          },
+          "pressed-bg": {
+            "value": "#ccd1d4",
+            "type": "color",
+            "description": "Цвет заливки Black Button, Clear, Pressed"
           }
         }
       }
@@ -1169,21 +1272,6 @@
           "type": "color",
           "description": "Цвет иконки в состоянии checked, normal"
         },
-        "disabled-error": {
-          "value": "#ff7a7a",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked, disabled-error"
-        },
-        "disabled-success": {
-          "value": "#68d679",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked, disabled-success"
-        },
-        "disabled-warning": {
-          "value": "#ffb650",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked, disabled-warning"
-        },
         "focused": {
           "value": "#167ffb",
           "type": "color",
@@ -1200,38 +1288,6 @@
           "description": "Цвет иконки в состоянии checked, disabled"
         }
       },
-      "checked-multiple": {
-        "bg": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "Цвет фона за иконкой (цвет прочерка)"
-        },
-        "normal": {
-          "value": "#808b94",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked-multiple, normal"
-        },
-        "disabled-error": {
-          "value": "#ff7a7a",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked-multiple, disabled-error"
-        },
-        "disabled-success": {
-          "value": "#68d679",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked-multiple, disabled-success"
-        },
-        "disabled-warning": {
-          "value": "#ffb650",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked-multiple, disabled-warning"
-        },
-        "focused": {
-          "value": "#808b94",
-          "type": "color",
-          "description": "Цвет иконки в состоянии checked-multiple, focused"
-        }
-      },
       "unchecked": {
         "normal-stroke": {
           "value": "#bfc7d4",
@@ -1243,55 +1299,15 @@
           "type": "color",
           "description": "Цвет заливки в состоянии unchecked, normal"
         },
-        "normal-error-stroke": {
+        "error-stroke": {
           "value": "#fc200c",
           "type": "color",
-          "description": "Цвет контура в состоянии unchecked, normal-error"
+          "description": "Цвет контура в состоянии unchecked, error"
         },
-        "normal-error-fill": {
+        "error-fill": {
           "value": "#ffedf0",
           "type": "color",
-          "description": "Цвет заливки в состоянии unchecked, normal-error"
-        },
-        "disabled-error-stroke": {
-          "value": "#fc200c",
-          "type": "color",
-          "description": "Цвет контура в состоянии unchecked, disabled-error"
-        },
-        "disabled-error-fill": {
-          "value": "#ffa0a0",
-          "type": "color",
-          "description": "Цвет заливки в состоянии unchecked, disabled-error"
-        },
-        "disabled-success-stroke": {
-          "value": "#00c236",
-          "type": "color",
-          "description": "Цвет контура в состоянии unchecked, disabled-success"
-        },
-        "disabled-success-fill": {
-          "value": "#c2edc6",
-          "type": "color",
-          "description": "Цвет заливки в состоянии unchecked, disabled-success"
-        },
-        "disabled-warning-stroke": {
-          "value": "#ff970f",
-          "type": "color",
-          "description": "Цвет контура в состоянии unchecked, disabled-warning"
-        },
-        "disabled-warning-fill": {
-          "value": "#ffe0b3",
-          "type": "color",
-          "description": "Цвет заливки в состоянии unchecked, disabled-warning"
-        },
-        "focused-error-stroke": {
-          "value": "#ff4839",
-          "type": "color",
-          "description": "Цвет контура в состоянии unchecked, focused-error"
-        },
-        "focused-error-fill": {
-          "value": "#ffedf0",
-          "type": "color",
-          "description": "Цвет заливки в состоянии unchecked, focused-error"
+          "description": "Цвет заливки в состоянии unchecked, error"
         },
         "focused-stroke": {
           "value": "#bfc7d4",
@@ -1302,6 +1318,11 @@
           "value": "#ffffff",
           "type": "color",
           "description": "Цвет заливки в состоянии unchecked, focused"
+        },
+        "focused-focus": {
+          "value": "#b3b9bf",
+          "type": "color",
+          "description": "Цвет заливки круга на фоне иконки в состоянии Unchecked, Focused"
         },
         "disabled-stroke": {
           "value": "#808b94",
@@ -1699,6 +1720,10 @@
           "value": "#ffffff",
           "type": "color",
           "description": "Цвет текста(процента) в состоянии disabled, upperTooltipIndicator"
+        },
+        "disabled-sliderLabel": {
+          "value": "#b3b9bf",
+          "type": "color"
         }
       },
       "lowerTooltipIndicator": {
@@ -2113,10 +2138,6 @@
         "icon": {
           "value": "#ffe0b3",
           "type": "color"
-        },
-        "text-button": {
-          "value": "#ffffff",
-          "type": "color"
         }
       },
       "error": {
@@ -2131,10 +2152,6 @@
         "icon": {
           "value": "#ffd1d7",
           "type": "color"
-        },
-        "text-button": {
-          "value": "#ffffff",
-          "type": "color"
         }
       },
       "success": {
@@ -2148,10 +2165,6 @@
         },
         "icon": {
           "value": "#c2edc6",
-          "type": "color"
-        },
-        "text-button": {
-          "value": "#ffffff",
           "type": "color"
         }
       },
@@ -2367,11 +2380,6 @@
         "text": {
           "value": "#ffffff",
           "type": "color"
-        },
-        "icon": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "иконка слева в snackbar"
         }
       },
       "green": {
@@ -2384,16 +2392,6 @@
           "value": "#ffffff",
           "type": "color",
           "description": "текст snackbar вида green"
-        },
-        "icon": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "иконка snackbar вида green"
-        },
-        "text-button": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "текст кнопки в snackbar вида green"
         }
       },
       "red": {
@@ -2406,16 +2404,6 @@
           "value": "#ffffff",
           "type": "color",
           "description": "текст snackbar вида red"
-        },
-        "icon": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "иконка snackbar вида red"
-        },
-        "text-button": {
-          "value": "#ffffff",
-          "type": "color",
-          "description": "текст кнопки в snackbar вида red"
         }
       },
       "grey": {
@@ -2428,11 +2416,6 @@
           "value": "#66747e",
           "type": "color",
           "description": "текст snackbar вида grey"
-        },
-        "icon": {
-          "value": "#4d5d69",
-          "type": "color",
-          "description": "иконка snackbar вида grey"
         }
       },
       "white": {
@@ -2445,11 +2428,6 @@
           "value": "#66747e",
           "type": "color",
           "description": "текст snackbar вида white"
-        },
-        "icon": {
-          "value": "#4d5d69",
-          "type": "color",
-          "description": "иконка snackbar вида white"
         }
       },
       "light green": {
@@ -2462,11 +2440,6 @@
           "value": "#66747e",
           "type": "color",
           "description": "текст  snackbar вида light green"
-        },
-        "icon": {
-          "value": "#00c236",
-          "type": "color",
-          "description": "иконка snackbar вида light green\n"
         }
       },
       "pink": {
@@ -2479,11 +2452,6 @@
           "value": "#66747e",
           "type": "color",
           "description": "текст snackbar вида pink"
-        },
-        "icon": {
-          "value": "#fc200c",
-          "type": "color",
-          "description": "иконка snackbar вида pink"
         }
       }
     },
@@ -2768,6 +2736,677 @@
           "type": "color",
           "description": "Цвет заливки компонента tree list при перетаскивании (drag&drop) в состоянии Edited"
         }
+      }
+    },
+    "image-picture": {
+      "hover-bg": {
+        "value": "#000000",
+        "type": "color",
+        "description": "Затемнение картинки в состоянии hover"
+      },
+      "hover-icon": {
+        "value": "#ffffff",
+        "type": "color",
+        "description": "Цвет иконки в состоянии hover"
+      },
+      "noContent-bg": {
+        "value": "#e6e9ed",
+        "type": "color",
+        "description": "Цвет фона блока без картинки в состоянии noContent"
+      },
+      "noContent-icon": {
+        "value": "#97a4b7",
+        "type": "color",
+        "description": "Цвет иконки в состоянии noContent"
+      }
+    },
+    "label-input": {
+      "default": {
+        "value": "#808b94",
+        "type": "color"
+      },
+      "disabled": {
+        "value": "#b3b9bf",
+        "type": "color"
+      },
+      "focused": {
+        "value": "#167ffb",
+        "type": "color"
+      },
+      "error": {
+        "value": "#fc200c",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#ff8b0f",
+        "type": "color"
+      },
+      "success": {
+        "value": "#00b22c",
+        "type": "color"
+      }
+    },
+    "description-input": {
+      "default": {
+        "value": "#808b94",
+        "type": "color"
+      },
+      "error": {
+        "value": "#ff4839",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#ff8b0f",
+        "type": "color"
+      },
+      "success": {
+        "value": "#00b22c",
+        "type": "color"
+      }
+    },
+    "scrollbar": {
+      "default-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "default-scroll": {
+        "value": "#ccd1d4",
+        "type": "color"
+      },
+      "hover-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "hover-scroll": {
+        "value": "#b3b9bf",
+        "type": "color"
+      },
+      "stroke": {
+        "value": "#f2f3f4",
+        "type": "color"
+      }
+    },
+    "input": {
+      "default-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "default-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "default-stroke": {
+        "value": "#ccd1d4",
+        "type": "color"
+      },
+      "disabled-bg": {
+        "value": "#f2f3f4",
+        "type": "color"
+      },
+      "disabled-text": {
+        "value": "#808b94",
+        "type": "color"
+      },
+      "disabled-stroke": {
+        "value": "#ccd1d4",
+        "type": "color"
+      },
+      "hover-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "hover-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "hover-stroke": {
+        "value": "#2c476f",
+        "type": "color"
+      },
+      "focused-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "focused-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "focused-stroke": {
+        "value": "#167ffb",
+        "type": "color"
+      },
+      "error-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "error-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "error-stroke": {
+        "value": "#fc200c",
+        "type": "color"
+      },
+      "warning-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "warning-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "warning-stroke": {
+        "value": "#ff8b0f",
+        "type": "color"
+      },
+      "success-bg": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "success-text": {
+        "value": "#001729",
+        "type": "color"
+      },
+      "success-stroke": {
+        "value": "#00b22c",
+        "type": "color"
+      },
+      "renew-bg": {
+        "value": "#ffffe6",
+        "type": "color"
+      }
+    },
+    "select": {
+      "search": {
+        "default-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#e5e8ea",
+          "type": "color"
+        },
+        "hover-text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "click-bg": {
+          "value": "#e8f5ff",
+          "type": "color"
+        },
+        "click-text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "found-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "noresult-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "item": {
+        "default-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "default-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#EBF1FB",
+          "type": "color"
+        },
+        "hover-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "hover-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#D3E4FF",
+          "type": "color"
+        },
+        "selected-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "selected-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "activehover-bg": {
+          "value": "#BBD6FF",
+          "type": "color"
+        },
+        "activehover-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "activehover-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        }
+      },
+      "filter": {
+        "default-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "default-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#EBF1FB",
+          "type": "color"
+        },
+        "hover-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "hover-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#D3E4FF",
+          "type": "color"
+        },
+        "selected-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "selected-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "activehover-bg": {
+          "value": "#BBD6FF",
+          "type": "color"
+        },
+        "activehover-label": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "activehover-sublabel": {
+          "value": "#66747e",
+          "type": "color"
+        },
+        "disabled-bg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "disabled-label": {
+          "value": "#808b94",
+          "type": "color"
+        },
+        "disabled-sublabel": {
+          "value": "#b3b9bf",
+          "type": "color"
+        }
+      }
+    },
+    "drag-drop": {
+      "default": {
+        "stroke": {
+          "value": "#66747e",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Default"
+        },
+        "icon": {
+          "value": "#97a4b7",
+          "type": "color",
+          "description": "Цвет иконки в drag&drop area, состояние Default"
+        },
+        "text-title": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Default"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) и элемента Or в drag&drop area, состояние Default"
+        },
+        "text-only": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет текста в компоненте DragAndDropTextDefault, состояние Default"
+        }
+      },
+      "hover": {
+        "stroke": {
+          "value": "#66747e",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Hover"
+        },
+        "bg": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "Цвет заливки drag&drop area, состояние Hover"
+        },
+        "icon": {
+          "value": "#97a4b7",
+          "type": "color",
+          "description": "Цвет иконки в drag&drop area, состояние Hover"
+        },
+        "text-title": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Hover"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) и элемента Or в drag&drop area, состояние Hover"
+        },
+        "text-only": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет текста в компоненте DragAndDropTextDefault, состояние Hover"
+        }
+      },
+      "dragging": {
+        "stroke": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Dragging"
+        },
+        "bg": {
+          "value": "#e8f5ff",
+          "type": "color",
+          "description": "Цвет заливки drag&drop area, состояние Dragging"
+        },
+        "icon": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет иконки в drag&drop area, состояние Dragging"
+        },
+        "text-title": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Dragging"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) и элемента Or в drag&drop area, состояние Dragging"
+        },
+        "text-only": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет текста в компоненте DragAndDropTextDefault, состояние Dragging"
+        }
+      },
+      "error": {
+        "stroke": {
+          "value": "#fc200c",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Error"
+        },
+        "bg": {
+          "value": "#ffedf0",
+          "type": "color",
+          "description": "Цвет заливки drag&drop area, состояние Error"
+        },
+        "icon": {
+          "value": "#fc200c",
+          "type": "color",
+          "description": "Цвет иконки в drag&drop area, состояние Error"
+        },
+        "text-title": {
+          "value": "#fc200c",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Error\n"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) в drag&drop area, состояние Error"
+        },
+        "text-only": {
+          "value": "#fc200c",
+          "type": "color",
+          "description": "Цвет текста в компоненте DragAndDropTextDefault, состояние Error"
+        },
+        "small-icon": {
+          "value": "#fc200c",
+          "type": "color",
+          "description": "Цвет иконки в компоненте DragAndDropIconDefault, состояние Error"
+        }
+      },
+      "warning": {
+        "stroke": {
+          "value": "#ffa62b",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Warning"
+        },
+        "bg": {
+          "value": "#fff3e0",
+          "type": "color",
+          "description": "Цвет заливки drag&drop area, состояние Warning"
+        },
+        "icon": {
+          "value": "#f97b0f",
+          "type": "color",
+          "description": "Цвет иконки в drag&drop area, состояние Warning"
+        },
+        "text-title": {
+          "value": "#f97b0f",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Warning"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) в drag&drop area, состояние Warning"
+        },
+        "text-only": {
+          "value": "#f97b0f",
+          "type": "color",
+          "description": "Цвет текста в компоненте DragAndDropTextDefault, состояние Warning"
+        },
+        "small-icon": {
+          "value": "#ffa62b",
+          "type": "color",
+          "description": "Цвет иконки в компоненте DragAndDropIconDefault, состояние Warning"
+        }
+      },
+      "uploading": {
+        "stroke": {
+          "value": "#66747e",
+          "type": "color",
+          "description": "Цвет обводки drag&drop area, состояние Uploading"
+        },
+        "bg": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "Цвет заливки drag&drop area, состояние Uploading"
+        },
+        "text-title": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет заголовка (Title) в drag&drop area, состояние Uploading\n\nЦвет текста Uploading... в компоненте DragAndDropTextDefault, состояние Uploading"
+        },
+        "text-details": {
+          "value": "#001729",
+          "type": "color",
+          "description": "Цвет дополнительного текста (File requirements) в drag&drop area, состояние Uploading"
+        },
+        "number": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет процентов/иного количества в компоненте DragAndDropTextDefault, состояние Uploading"
+        }
+      },
+      "dragging-file": {
+        "bg": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "Цвет заливки перетягивоемого файла в область Drag&Drop"
+        },
+        "text": {
+          "value": "#e8f5ff",
+          "type": "color",
+          "description": "Цвет текста имени перетягивоемого файла в область Drag&Drop"
+        }
+      }
+    },
+    "loader": {
+      "amount-text": {
+        "value": "#167ffb",
+        "type": "color",
+        "description": "Цвет номера/процентов в компоненте loader-amount-light"
+      },
+      "stroke-progress": {
+        "value": "#167ffb",
+        "type": "color",
+        "description": "Цвет контура линии загрузки в компоненте loader-amount-light и loader-light"
+      },
+      "stroke-bg": {
+        "value": "#e5e8ea",
+        "type": "color",
+        "description": "Цвет контура общего загружаемого количества в компоненте loader-amount-light и loader-light"
+      }
+    },
+    "sidebar": {
+      "section": {
+        "text": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "default-bg": {
+          "value": "#0b3461",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#2c476f",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#005291",
+          "type": "color"
+        },
+        "top-section-bg": {
+          "value": "#112542",
+          "type": "color"
+        },
+        "logo-color": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "subsection": {
+        "text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "default-bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#e6e9ed",
+          "type": "color"
+        },
+        "selected-text": {
+          "value": "#167ffb",
+          "type": "color"
+        },
+        "selected-hover-bg": {
+          "value": "#aad5ff",
+          "type": "color"
+        },
+        "icon-hover-bg": {
+          "value": "#F4F8FF",
+          "type": "color"
+        }
+      }
+    },
+    "calendar": {
+      "general": {
+        "bg": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "text": {
+          "value": "#001729",
+          "type": "color"
+        },
+        "title": {
+          "value": "#66747e",
+          "type": "color"
+        }
+      },
+      "state": {
+        "hover-extra": {
+          "value": "#ccd1d4",
+          "type": "color"
+        },
+        "hover-bg": {
+          "value": "#e5e8ea",
+          "type": "color"
+        },
+        "today-stroke": {
+          "value": "#2c476f",
+          "type": "color"
+        },
+        "selected-bg": {
+          "value": "#008fff",
+          "type": "color"
+        },
+        "selected-text": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "shift": {
+        "stroke": {
+          "value": "#ccd1d4",
+          "type": "color"
+        },
+        "selected": {
+          "value": "#e8f5ff",
+          "type": "color"
+        },
+        "hover": {
+          "value": "#f2f3f4",
+          "type": "color"
+        },
+        "title": {
+          "value": "#66747e",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "uiColorStyle": {
+    "txt": {
+      "info": {
+        "value": "#508EFE",
+        "type": "color"
       }
     }
   }

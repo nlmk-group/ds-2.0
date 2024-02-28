@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { IconAddPlusOutlined24, Select } from '@components/index';
+import { IconAddPlusOutlined16, Select } from '@components/index';
 import { argsTypes } from '@components/Select/_stories/argsTypes';
 import { ISelectOption, ISelectProps } from '@components/Select/types';
 import { Meta } from '@storybook/react';
@@ -25,11 +25,11 @@ const options: ISelectOption[] = [
       'in istenecessitatibus odit optio quidem tenetur! Assumenda deleniti fugiat ' +
       'itaque minus omnis quidem temporibus.Necessitatibus rerum, ullam!'
   },
-  { value: 'banana', label: 'Banana', icon: <IconAddPlusOutlined24 /> },
+  { value: 'banana', label: 'Banana', icon: <IconAddPlusOutlined16 /> },
   { value: 'cherry', label: 'Cherry', disabled: true },
   { value: 'date', label: 'Date' },
   { value: 'elderberry', label: 'Elderberry' },
-  { value: 'fig', label: 'Fig', icon: <IconAddPlusOutlined24 /> },
+  { value: 'fig', label: 'Fig', icon: <IconAddPlusOutlined16 /> },
   { value: 'grape', label: 'Grape' }
 ];
 

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { shifts } from '@components/DatePicker/helpers';
 import { ShiftSelectorProps } from '@components/DatePicker/subcomponents/ShiftSelector/types';
 import clsx from 'clsx';
-
+import { Typography } from '@components/.'
 import styles from './ShiftSelector.module.scss';
 
 export const ShiftSelector: FC<ShiftSelectorProps> = ({ value, shiftLength = 2, onChange, disabled = false }) => {
@@ -24,7 +24,9 @@ export const ShiftSelector: FC<ShiftSelectorProps> = ({ value, shiftLength = 2, 
           })}
           onClick={() => handleClick(shift)}
         >
-          {shift}
+          <Typography variant='Body1-Medium'>
+            {shift}
+          </Typography>
         </div>
       ))}
     </div>

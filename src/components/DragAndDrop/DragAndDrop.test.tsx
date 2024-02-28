@@ -10,7 +10,6 @@ import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } fr
 import {
   fileTypeMapping,
   iconTypeMapping,
-  smallIconMapping,
   spinnerWidthHelperMapping,
   statusColorMapping
 } from './enums';
@@ -164,24 +163,6 @@ describe('src/components/DragAndDrop', () => {
       const btn = screen.getByText(dragNDropBtnLabel);
       fireEvent.click(btn);
       expect(cancelUploadCallBack).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('While rendering SmallIcon', () => {
-    test('It should render default DnD with SmallIcon', () => {
-      render(<DragAndDrop smallIcon onUpload={onUploadMockCallBack} />);
-      expect(screen.getByTestId(`SMALL_ICON_${smallIconMapping.default}`)).toBeInTheDocument();
-    });
-
-    xdescribe('While rendering with different statuses', () => {
-      Object.values(statusColorMapping).forEach((status: statusColorMapping) => {
-        const ComponentHelper = () => <DragAndDrop smallIcon statusColor={status} onUpload={onUploadMockCallBack} />;
-
-        test(`It should render SmallIcon with ${status} status`, () => {
-          render(<ComponentHelper />);
-          expect(screen.getByTestId(`SMALL_ICON_${smallIconMapping[status]}`)).toBeInTheDocument();
-        });
-      });
     });
   });
 

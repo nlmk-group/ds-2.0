@@ -2,7 +2,7 @@ import React, { FC, MouseEventHandler, PropsWithChildren } from 'react';
 
 import { DayProps } from '@components/DatePicker/subcomponents/Day/types';
 import clsx from 'clsx';
-
+import { Typography } from '@components/.'
 import styles from './Day.module.scss';
 
 export const Day: FC<DayProps & PropsWithChildren> = ({
@@ -36,7 +36,11 @@ export const Day: FC<DayProps & PropsWithChildren> = ({
       onMouseOver={!disabled ? onHover : undefined}
       {...{ 'data-testid': selected ? 'selected' : undefined }}
     >
-      <div className={styles.wrapper}>{children}</div>
+      <div className={styles.wrapper}>
+        <Typography variant='Body1-Medium'>
+          {children}
+        </Typography>
+      </div>
     </div>
   );
 };

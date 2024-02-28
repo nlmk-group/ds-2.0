@@ -17,7 +17,7 @@ export const argsTypes = {
     }
   },
   label: {
-    description: 'Текстовая метка, которая будет отображаться поверх полосы прогресса.',
+    description: 'Текстовая метка, которая будет отображаться ниже полосы прогресса.',
     table: {
       type: {
         summary: 'string'

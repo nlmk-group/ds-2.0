@@ -1,21 +1,41 @@
 .action {
   color: var(--action-active);
+
+  path {
+    fill: var(--action-active);
+  }
 }
 
 .disabled {
   color: var(--action-disabled);
+
+  path {
+    fill: var(--action-disabled);
+  }
 }
 
 .error {
-  color: var(--error-red-600);
+  color: var(--ac-icon-error);
+
+  path {
+    fill: var(--ac-icon-error);
+  }
 }
 
 .primary {
   color: var(--primary-blue-600);
+
+  path {
+    fill: var(--primary-blue-600);
+  }
 }
 
 .secondary {
   color: var(--primary-blue-100);
+
+  path {
+    fill: var(--primary-blue-100);
+  }
 }
 
 .inherit {
@@ -24,10 +44,18 @@
 
 .success {
   color: var(--success-green-500);
+
+  path {
+    fill: var(--success-green-500);
+  }
 }
 
 .warning {
   color: var(--warning-orange-600);
+
+  path {
+    fill: var(--warning-orange-600);
+  }
 }
 
 .mask {

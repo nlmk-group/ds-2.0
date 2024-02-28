@@ -14,7 +14,7 @@ export const IconMock: FC<IIconMock> = ({ weight }) => {
         width: '32px',
         minWidth: '32px',
         height: '32px',
-        color: 'var(--grey-900)',
+        color: 'var(--text-grey-900)',
         zIndex: 5
       }}
     >

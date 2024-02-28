@@ -1,14 +1,9 @@
 import React, { FC, useState } from 'react';
-
 import Icon from '@components/Icon';
 import clsx from 'clsx';
-
 import { IImagePicture } from './types';
-
 import styles from './ImagePicture.module.scss';
-
 import { ImagePictureRadius, ImagePictureRatios } from './enums';
-import EmptyIcon from './subcomponents/EmptyIcon';
 
 const ImagePicture: FC<IImagePicture> = ({
   src,
@@ -31,9 +26,15 @@ const ImagePicture: FC<IImagePicture> = ({
 
   return (
     <div
-      className={clsx(styles['image-wrapper'], className, styles[aspectRatio], styles[radius], {
-        [styles['no-content']]: !src
-      })}
+      className={clsx(
+        styles['image-wrapper'],
+        styles[aspectRatio],
+        styles[radius],
+        {
+          [styles['no-content']]: !src
+        },
+        className
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-testid="IMAGE_PICTURE"
@@ -41,7 +42,10 @@ const ImagePicture: FC<IImagePicture> = ({
       {shouldShowZoomOverlay && (
         <>
           <div className={styles['hover-icon']}>
-            <Icon name="IconZoomInOutlined24" containerSize={32} />
+            <Icon
+              name='IconZoomInOutlined24'
+              containerSize={32}
+            />
           </div>
           <div className={styles['hover-overlay']} />
         </>
@@ -49,7 +53,10 @@ const ImagePicture: FC<IImagePicture> = ({
       {src && <img src={src} className={styles.image} alt={restImgProps.alt} {...restImgProps} />}
       {!src && (
         <div className={styles['empty-icon']}>
-          <EmptyIcon />
+          <Icon
+            name='IconFactory32'
+            htmlColor={'var(--ac-image-picture-no-content-icon)'}
+          />
         </div>
       )}
     </div>

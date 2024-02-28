@@ -54,8 +54,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Аккордеон по умолчанию"
-            code={`
-import { Accordion } from '@nlmk/ds-2.0';
+            code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
     {
@@ -84,8 +83,7 @@ export default App = () => (
 
           <Editor
             description={`Варианты размеров аккордеона: ${Object.values(sizesMapping).join(' | ')}`}
-            code={`
-import { Accordion } from '@nlmk/ds-2.0';
+            code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
   {
@@ -117,8 +115,7 @@ export default App = () => (
           />
           <Editor
             description={`Варианты иконок аккордеона: ${Object.values(iconsMapping).join(' | ')}`}
-            code={`
-import { Accordion } from '@nlmk/ds-2.0';
+            code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
   {
@@ -152,8 +149,7 @@ export default App = () => (
 
           <Editor
             description={`Цветовые варианты аккордеона: ${Object.values(variantsMapping).join(' | ')}`}
-            code={`
-import { Accordion } from '@nlmk/ds-2.0';
+            code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
   {

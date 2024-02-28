@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-
+import clsx from 'clsx'
 import { colorsMapping, sizesMapping } from '@components/declaration';
-import { Badge, Button, Icon } from '@components/index';
+import { Badge, Button, IconNotificationsBellOutlined24 } from '@components/index';
 
 import { INotification } from './types';
 
@@ -9,16 +9,28 @@ import styles from './Header.module.scss';
 
 const BtnNotification: FC<INotification> = ({ notification, notificationAmount = 0 }) => {
   return (
-    <div className={styles['button-padding-unset']}>
+    <div
+      className={clsx(
+        styles['button-padding-unset'],
+        styles['btn-icon-size']
+      )}
+    >
       <Button
-        data-testid="HEADER_NOTIFICATION"
+        data-testid='HEADER_NOTIFICATION'
         onClick={notification}
-        iconButton={<Icon name="IconNotificationsBellOutlined24" containerSize={24} htmlColor={'var(--primary-blue-600)'} />}
-        variant="text"
-        size="xs"
+        iconButton={
+          <IconNotificationsBellOutlined24
+            htmlColor={'var(--primary-blue-600)'}
+          />
+        }
+        variant='text'
+        size='xs'
       />
       {notificationAmount > 0 && (
-        <div data-testid="HEADER_NOTIFICATION_AMOUNT" className={styles['notification-amount']}>
+        <div
+          data-testid='HEADER_NOTIFICATION_AMOUNT'
+          className={styles['notification-amount']}
+        >
           <Badge color={colorsMapping.error} size={sizesMapping.s}>
             {notificationAmount > 99 ? '..99' : notificationAmount.toString()}
           </Badge>

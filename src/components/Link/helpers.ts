@@ -6,12 +6,12 @@ export const typographyMapping = {
   [sizeMapping.h3]: 'Heading3',
   [sizeMapping.h4]: 'Heading4',
   [sizeMapping.sub1]: 'Subheading1',
-  [sizeMapping.sub2]: 'Subheading2',
-  [sizeMapping.sub3]: 'Subheading3',
+  [sizeMapping.sub2]: 'Subheading2-Medium',
+  [sizeMapping.sub3]: 'Subheading3-Medium',
   [sizeMapping.body]: 'Body',
-  [sizeMapping.body1]: 'Body1',
-  [sizeMapping.body2]: 'Body2',
-  [sizeMapping.caption]: 'Caption'
+  [sizeMapping.body1]: 'Body1-Medium',
+  [sizeMapping.body2]: 'Body2-Medium',
+  [sizeMapping.caption]: 'Caption-Medium'
 };
 
 export const getTypography = (str: sizeMapping) => {

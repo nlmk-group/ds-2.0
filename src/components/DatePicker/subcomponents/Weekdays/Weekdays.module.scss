@@ -1,19 +1,16 @@
 .root {
-  color: var(--grey-600);
+  color: var(--ac-calendar-general-title);
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  background: var(--background-paper);
+  gap: var(--4-space);
+  background: var(--ac-calendar-general-bg);
 }
 
 .weekday {
-  width: 36px;
-  min-width: 36px;
-  height: 36px;
+  width: var(--40-size);
+  min-width: var(--40-size);
+  height: var(--40-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: var(--font-weights-pt-root-ui-2);
-  font-size: var(--font-size-2);
-  line-height: var(--line-heights-4);
 }

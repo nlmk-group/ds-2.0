@@ -40,7 +40,6 @@ export const AccordionSizes = (argTypes: IAccordionProps): JSX.Element => {
       {Object.values(sizesMapping).map((size, index) => (
         <Accordion key={index} {...argTypes} size={size} />
       ))}
-      ;
     </div>
   );
 };
@@ -58,7 +57,6 @@ export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
           <Accordion key={index} {...argTypes} startIcon={null} endIcon={icon} />
         </>
       ))}
-      ;
     </div>
   );
 };

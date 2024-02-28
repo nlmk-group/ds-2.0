@@ -1,35 +1,24 @@
 @mixin icon-size($size) {
-  & > div {
+  svg {
     width: var(--#{$size}-size);
     height: var(--#{$size}-size);
-    & > svg {
-      width: var(--#{$size}-size);
-      height: var(--#{$size}-size);
-    }
   }
 }
 
-@mixin badge-helper($bg, $cl) {
-  & > div {
-    background: var($bg);
-    color: var($cl);
-  }
-}
-
-@mixin btn-helper($cl, $hv, $ac) {
-  color: var($cl);
-
-  &:hover {
-    background: var($hv);
-  }
-
-  &:active,
-  &:focus {
-    background: var($ac);
-  }
+@mixin btn-helper($color, $bg) {
+  color: $color;
+  background: $bg;
 
   path {
-    fill: var($cl);
+    fill: $color;
+  }
+}
+
+@mixin divider-helper($b-color) {
+  margin: 0;
+
+  & > div {
+    border-right-color: $b-color;
   }
 }
 
@@ -46,11 +35,12 @@
   display: flex;
   gap: var(--4-space);
   border-radius: 3px;
-  transition: all 0.3s ease-out;
+  transition: all 0.03s ease-out;
 }
 
 .icon-wrapper {
-  margin: auto 0;
+  display: flex;
+  align-items: center;
 }
 
 .icon-default {
@@ -74,12 +64,17 @@
   margin: auto 0;
 }
 
-.divider-space-color {
-  margin: 0;
-
-  & > div {
-    border-right-color: var(--text-grey-200);
-  }
+.divider-color-default {
+  @include divider-helper(var(--ac-toggle-button-default-default-stroke))
+}
+.divider-color-success {
+  @include divider-helper(var(--ac-toggle-button-success-default-stroke))
+}
+.divider-color-warning {
+  @include divider-helper(var(--ac-toggle-button-warning-default-stroke))
+}
+.divider-color-error {
+  @include divider-helper(var(--ac-toggle-button-error-default-stroke))
 }
 
 .btn-disabled {
@@ -98,60 +93,130 @@
 
 .btn-default {
   @include btn-helper(
-    --text-grey-900,
-    --assigned-colors-button-secondary-secondary-bg-hover,
-    --assigned-colors-button-secondary-secondary-bg-action
+    var(--ac-toggle-button-default-default-text),
+    transparent
   );
+
+  path {
+    fill: var(--ac-icon-blue);
+  }
+
+  &:hover {
+    @include btn-helper(
+      var(--ac-toggle-button-default-hover-text),
+      var(--ac-toggle-button-default-hover-bg)
+    )
+  }
+
+  &:active {
+    @include btn-helper(
+      var(--ac-toggle-button-default-active-text),
+      var(--ac-toggle-button-default-active-bg)
+    )
+  }
 }
 
 .btn-active-default {
-  background: var(--assigned-colors-button-secondary-secondary-bg-action);
-}
-
-.badge-default {
-  @include badge-helper(
-    --assigned-colors-badge-secondary-secondary-bg-default,
-    --assigned-colors-badge-text-text-black
-  );
+  @include btn-helper(
+    var(--ac-toggle-button-default-active-text),
+    var(--ac-toggle-button-default-active-bg)
+  )
 }
 
 .btn-success {
-  @include btn-helper(--success-green-700, --success-green-50, --success-green-100);
+  @include btn-helper(
+    var(--ac-toggle-button-success-default-text),
+    transparent
+  );
+
+  path {
+    fill: var(--ac-icon-success);
+  }
+
+  &:hover {
+    @include btn-helper(
+      var(--ac-toggle-button-success-hover-text),
+      var(--ac-toggle-button-success-hover-bg)
+    )
+  }
+
+  &:active {
+    @include btn-helper(
+      var(--ac-toggle-button-success-active-text),
+      var(--ac-toggle-button-success-active-bg)
+    )
+  }
 }
 
 .btn-active-success {
-  background: var(--success-green-100);
-}
-
-.badge-success {
-  @include badge-helper(--assigned-colors-badge-success-success-bg-default, --assigned-colors-badge-text-text-black);
+  @include btn-helper(
+    var(--ac-toggle-button-success-active-text),
+    var(--ac-toggle-button-success-active-bg)
+  )
 }
 
 .btn-warning {
-  @include btn-helper(--warning-orange-700, --warning-orange-50, --warning-orange-100);
+  @include btn-helper(
+    var(--ac-toggle-button-warning-default-text),
+    transparent
+  );
+
+  path {
+    fill: var(--ac-icon-warning);
+  }
+
+  &:hover {
+    @include btn-helper(
+      var(--ac-toggle-button-warning-hover-text),
+      var(--ac-toggle-button-warning-hover-bg)
+    )
+  }
+
+  &:active {
+    @include btn-helper(
+      var(--ac-toggle-button-warning-active-text),
+      var(--ac-toggle-button-warning-active-bg)
+    )
+  }
 }
 
 .btn-active-warning {
-  background: var(--warning-orange-100);
-}
-
-.badge-warning {
-  @include badge-helper(--assigned-colors-badge-warning-warning-bg-default, --assigned-colors-badge-text-text-black);
+  @include btn-helper(
+      var(--ac-toggle-button-warning-active-text),
+      var(--ac-toggle-button-warning-active-bg)
+    )
 }
 
 .btn-error {
-  @include btn-helper(--error-red-500, --error-red-50, --error-red-100);
+  @include btn-helper(
+    var(--ac-toggle-button-error-default-text),
+    transparent
+  );
+
+  path {
+    fill: var(--ac-icon-error);
+  }
+
+  &:hover {
+    @include btn-helper(
+      var(--ac-toggle-button-error-hover-text),
+      var(--ac-toggle-button-error-hover-bg)
+    )
+  }
+
+  &:active {
+    @include btn-helper(
+      var(--ac-toggle-button-error-active-text),
+      var(--ac-toggle-button-error-active-bg)
+    )
+  }
 }
 
 .btn-active-error {
-  background: var(--error-red-100);
-}
-
-.badge-error {
-  @include badge-helper(
-    --error-red-500,
-    --assigned-colors-badge-text-text-white,
-  );
+  @include btn-helper(
+    var(--ac-toggle-button-error-active-text),
+    var(--ac-toggle-button-error-active-bg)
+  )
 }
 
 .test-class-wrapper {

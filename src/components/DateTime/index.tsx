@@ -13,14 +13,14 @@ export const getDate = (currentDate: Date): string => {
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
-  return `${day}.${month}.${year}, ${toUpperCase(weekDay)}`;
+  return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}, ${toUpperCase(weekDay)}`;
 };
 
 export const getTime = (currentDate: Date): string => {
   const hh = currentDate.getHours();
   const mm = currentDate.getMinutes();
 
-  return `${hh}:${mm < 10 ? `0${mm}` : mm}`;
+  return `${hh < 10 ? `0${hh}` : hh}:${mm < 10 ? `0${mm}` : mm}`;
 };
 
 const DateTime = (): JSX.Element => {

@@ -63,10 +63,6 @@ export const argsTypes = {
   indeterminate: {
     description: 'Свойство, позволяющее включить промежуточное состояние чекбокса'
   },
-  longTitle: {
-    description: 'Условие, позволяющее корректно отобржать длинный заголовок',
-    control: { type: 'boolean' }
-  },
   tick: {
     description: 'Условие отображения IconTick24 слева',
     control: { type: 'boolean' }

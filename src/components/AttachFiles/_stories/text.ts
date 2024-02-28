@@ -9,4 +9,4 @@ export const FILES_LIST = 'AttachFiles (со списком)';
 export const FILES_ADD_FILE_BUTTON = 'AttachFiles (с кнопкой добавления файла)';
 export const FILES_WITH_CHECKBOXES = 'AttachFiles (с чекбоксами)';
 export const FILE_NAME = 'Название файла.pdf';
-export const LONG_LABEL = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et volutpat enim.';
+export const LONG_LABEL = 'Sed eget erat enim. Donec elementum nibh lobortis mattis commodo. Duis viverra tortor nibh, vitae pellentesque nunc ultrices id. Morbi est turpis, sagittis eget metus pellentesque, vestibulum blandit nulla. In nec sem at enim feugiat dictum sed lacinia elit. Ut ultrices vulputate commodo. Integer ex dolor, dictum nec elit sit amet, sollicitudin congue lorem. Aenean rutrum erat nec nunc viverra, eget aliquet odio dictum. Nam mattis vehicula augue, id tincidunt urna placerat vitae. Etiam tempor aliquet ligula quis consectetur. Maecenas eget felis vitae massa placerat molestie et sit amet lorem. Sed scelerisque lorem urna, in feugiat neque laoreet ac. Aliquam et sagittis justo. Nam sollicitudin ac ipsum imperdiet semper.';

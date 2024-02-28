@@ -17,8 +17,7 @@ import {
   FILES_DEFAULT,
   FILES_DESCRIPTION,
   FILES_WITH_CHECKBOXES,
-  FILES_WITH_TITLE,
-  LONG_LABEL
+  FILES_WITH_TITLE
 } from './text';
 
 const Stories = (): JSX.Element => {
@@ -52,21 +51,6 @@ const Stories = (): JSX.Element => {
 export default  App = () => (
   <>
     <File label="${FILES_DEFAULT}" />
-  </>
-)
-            `}
-          />
-
-          <Editor
-            description="Файл может содержать длинный заголовок, если это было указано."
-            code={`import { File } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <>
-    <File
-      label="${LONG_LABEL}"
-      longTitle
-    />
   </>
 )
             `}
@@ -107,7 +91,7 @@ export default  App = () => (
             code={`import { File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <>
+  <div style={{ width: '600px' }}>
     <File
       label="${FILE_NAME}"
       removed
@@ -145,7 +129,7 @@ export default  App = () => (
       addFile
       label="${FILE_NAME}"
     />
-  </>
+  </div>
 )
             `}
           />
@@ -155,7 +139,7 @@ export default  App = () => (
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <>
+  <div style={{ width: '600px' }}>
     <AttachFiles>
       <File
         commented
@@ -168,7 +152,7 @@ export default  App = () => (
         label="${FILE_NAME}"
       />
     </AttachFiles>
-  </>
+  </div>
 )
             `}
           />
@@ -195,14 +179,14 @@ export default  App = () => (
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <>
+  <div style={{ width: '600px' }}>
     <AttachFiles title={<File label="${FILE_NAME}" addFile />}>
       <File label="${FILE_NAME}" />
       <File label="${FILE_NAME}" checked />
       <File label="${FILE_NAME}" tick />
       <File label="${FILE_NAME}" empty />
     </AttachFiles>
-  </>
+  </div>
 )
             `}
           />
@@ -212,7 +196,7 @@ export default  App = () => (
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <>
+  <div style={{ width: '600px' }}>
     <AttachFiles
       title={
         <File
@@ -233,7 +217,7 @@ export default  App = () => (
         removed
       />
     </AttachFiles>
-  </>
+  </div>
 )
             `}
           />

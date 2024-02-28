@@ -2,6 +2,7 @@ import React, { FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from '
 import ReactDOM from 'react-dom';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
+import { IconColor } from '@components/Icon/types';
 import {
   Button,
   Checkbox,
@@ -194,6 +195,19 @@ const Select: FC<ISelectProps> = ({
     displayValue = displayLabels[0] || '';
   }
 
+  const colorIconHelper = (): IconColor => {
+    switch (color) {
+      case customInputColors.error:
+        return customInputColors.error;
+      case customInputColors.success:
+        return customInputColors.success;
+      case customInputColors.warning:
+        return customInputColors.warning;
+      default:
+        return 'primary';
+    }
+  };
+
   const renderContent = () => (
     <div className={clsx(styles.select, className)} ref={containerRef}>
       <Input
@@ -208,9 +222,15 @@ const Select: FC<ISelectProps> = ({
         onKeyDown={handleKeyDown}
         icon={
           <Button
-            iconButton={isOpen ? <IconChevronArrowUpOutlined24 /> : <IconChevronArrowDownOutlined24 />}
+            iconButton={
+              isOpen ? (
+                <IconChevronArrowUpOutlined24 color={colorIconHelper()} />
+              ) : (
+                <IconChevronArrowDownOutlined24 color={colorIconHelper()} />
+              )
+            }
             variant="text"
-            size="xs"
+            size="s"
             onClick={toggleDropdown}
             className={clsx(styles.select__arrow, {
               [styles.disabled]: disabled

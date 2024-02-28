@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import Avatar from '.';
 import { AvatarShape, AvatarSize } from './enums';
-import { SPECIAL_ICONS } from './subcomponents/IconBadge/constants';
+import { IconDoneCheckFilled24 } from '..';
 
 const defaultProps = {
   shape: AvatarShape.circle,
@@ -40,12 +40,27 @@ describe('src/components/Avatar', () => {
   });
 
   test('Avatar renders default badge', () => {
-    render(<Avatar {...defaultProps} badgeIconName="IconDoneCheckFilled24" />);
+    render(
+      <Avatar
+        {...defaultProps}
+        badgeIconName={(
+          <IconDoneCheckFilled24 />
+        )}
+      />
+    );
     expect(screen.getByTestId('AVATAR_BADGE_DEFAULT')).toBeInTheDocument();
   });
 
   test('Avatar renders special badge', () => {
-    render(<Avatar {...defaultProps} badgeIconName={SPECIAL_ICONS[0]} />);
+    render(
+      <Avatar
+        {...defaultProps}
+        badgeIconName={(
+          <IconDoneCheckFilled24 />
+        )}
+        badgeSpecialIcon
+      />
+    );
     expect(screen.getByTestId('AVATAR_BADGE_SPECIAL')).toBeInTheDocument();
   });
 });

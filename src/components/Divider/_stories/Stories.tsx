@@ -59,7 +59,7 @@ const Stories = (): JSX.Element => {
 export default  App = () => (
   <div style=${style}>
     <Divider>
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Divider по умолчанию
       </span>
     </Divider>
@@ -75,7 +75,7 @@ export default  App = () => (
 export default  App = () => (
   <div style=${style}>
     <Divider dashed>
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Divider по умолчанию
       </span>
     </Divider>
@@ -91,19 +91,19 @@ export default  App = () => (
 export default  App = () => (
   <div style=${style}>
     <Divider orientation="left">
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Вариант ориентации Divider влево
       </span>
     </Divider>
     <br/>
     <Divider orientation="right">
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Вариант ориентации Divider вправо
       </span>
     </Divider>
     <br/>
     <Divider orientation="center">
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Вариант ориентации Divider по середине
       </span>
     </Divider>
@@ -122,7 +122,7 @@ export default  App = () => (
       orientation="left"
       orientationSpace={68}
     >
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Кастомизация размера пространства
       </span>
     </Divider>
@@ -131,7 +131,7 @@ export default  App = () => (
       orientation="right"
       orientationSpace={72}
     >
-      <span>
+      <span style={{color: "var(--text-grey-900)"}}>
         Кастомизация размера пространства
       </span>
     </Divider>
@@ -151,18 +151,18 @@ export default  App = () => (
         display: 'flex'
       }}
     >
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №1
       </span>
       <Divider type="vertical" />
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №2
       </span>
       <Divider
         dashed
         type="vertical"
       />
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №3
       </span>
     </div>
@@ -184,18 +184,18 @@ export default  App = () =>(
         display: 'flex'
       }}
     >
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №1
       </span>
       <Divider type="vertical" />
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №2
       </span>
       <Divider
         dashed
         type="vertical"
       />
-      <span className="_divider-content_12xmv_74">
+      <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
         Текст №3
       </span>
     </div>
@@ -217,7 +217,7 @@ export default  App = () =>(
           display: 'flex'
         }}
       >
-        <span className="_divider-content_12xmv_74">
+        <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
           Текст №1
         </span>
       </div>
@@ -246,7 +246,7 @@ export default  App = () =>(
           display: 'flex'
         }}
       >
-        <span className="_divider-content_12xmv_74">
+        <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
           Экспертиза
         </span>
         <Button variant="text">

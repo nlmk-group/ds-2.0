@@ -9,5 +9,6 @@ export interface ISpinner {
   size?: `${sizes}`;
   color?: string;
   bgColor?: string;
+  percent?: number;
   children?: JSX.Element;
 }

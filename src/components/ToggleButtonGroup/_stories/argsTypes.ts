@@ -95,5 +95,14 @@ export const argsTypes = {
     },
     options: Object.values(sizeMapping),
     control: { type: 'select' }
+  },
+  disabled: {
+    description: 'Необязательный свойство. Флаг-условие блокировки доступа к копке',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    },
+    control: { type: 'boolean' }
   }
 };

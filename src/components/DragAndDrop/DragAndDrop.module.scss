@@ -39,6 +39,7 @@
 }
 
 .label-file-upload {
+  cursor: pointer;
   padding: var(--16-space) var(--24-space);
   display: flex;
   align-items: center;
@@ -67,6 +68,15 @@
     transparent,
     var(--ac-drag-drop-default-icon)
   );
+
+  &:hover {
+    @include bg-border-icon-helper(
+      var(--1-border),
+      var(--ac-drag-drop-hover-stroke),
+      var(--ac-drag-drop-hover-bg),
+      var(--ac-drag-drop-hover-icon)
+    );
+  }
 }
 
 .label-info {

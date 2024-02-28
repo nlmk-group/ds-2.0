@@ -1,11 +1,17 @@
-import { Meta, Unstyled } from '@storybook/addon-docs';
+import { Meta, Unstyled, Story } from '@storybook/addon-docs';
 import License from './License';
 import { Footer, WelcomePage } from './Welcome';
 
+import styles from './Welcome.module.scss';
+
 <Meta title="Introduction/Welcome" />
 
-<Unstyled>
-  <WelcomePage />
-  <Footer />
-  <License />
-</Unstyled>
+<Story name="Docs">
+  <Unstyled>
+    <div className={styles.wrapper}>
+      <WelcomePage />
+      <Footer />
+      <License />
+    </div>
+  </Unstyled>
+</Story>

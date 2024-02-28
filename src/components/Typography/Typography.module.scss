@@ -131,6 +131,16 @@
     var(--body-text-decoration)
   );
 }
+.typography--variant-body-medium {
+  @include typography-properties(
+    var(--body-medium-18-font-family),
+    var(--body-medium-18-font-size),
+    var(--body-medium-18-font-weight),
+    var(--body-medium-18-line-height),
+    var(--body-medium-18-letter-spacing),
+    var(--body-medium-18-text-decoration)
+  );
+}
 
 .typography--variant-body1 {
   @include typography-properties(
@@ -151,6 +161,28 @@
     var(--body1-medium-line-height),
     var(--body1-medium-letter-spacing),
     var(--body1-medium-text-decoration)
+  );
+}
+
+.typography--variant-body1-mono-medium {
+  @include typography-properties(
+    var(--body1-mono-medium-font-family),
+    var(--body1-mono-medium-font-size),
+    var(--body1-mono-medium-font-weight),
+    var(--body1-mono-medium-line-height),
+    var(--body1-mono-medium-letter-spacing),
+    var(--body1-mono-medium-text-decoration)
+  );
+}
+
+.typography--variant-body1-mono-bold {
+  @include typography-properties(
+    var(--body1-mono-bold-font-family),
+    var(--body1-mono-bold-font-size),
+    var(--body1-mono-bold-font-weight),
+    var(--body1-mono-bold-line-height),
+    var(--body1-mono-bold-letter-spacing),
+    var(--body1-mono-bold-text-decoration)
   );
 }
 
@@ -184,6 +216,28 @@
     var(--body2-medium-line-height),
     var(--body2-medium-letter-spacing),
     var(--body2-medium-text-decoration)
+  );
+}
+
+.typography--variant-body2-mono-medium {
+  @include typography-properties(
+    var(--body2-mono-medium-font-family),
+    var(--body2-mono-medium-font-size),
+    var(--body2-mono-medium-font-weight),
+    var(--body2-mono-medium-line-height),
+    var(--body2-mono-medium-letter-spacing),
+    var(--body2-mono-medium-text-decoration)
+  );
+}
+
+.typography--variant-body2-mono-bold {
+  @include typography-properties(
+    var(--body2-mono-bold-font-family),
+    var(--body2-mono-bold-font-size),
+    var(--body2-mono-bold-font-weight),
+    var(--body2-mono-bold-line-height),
+    var(--body2-mono-bold-letter-spacing),
+    var(--body2-mono-bold-text-decoration)
   );
 }
 
@@ -228,6 +282,39 @@
     var(--caption-bold-line-height),
     var(--caption-bold-letter-spacing),
     var(--caption-bold-text-decoration)
+  );
+}
+
+.typography--variant-caption-mono {
+  @include typography-properties(
+    var(--caption-mono-font-family),
+    var(--caption-mono-font-size),
+    var(--caption-mono-font-weight),
+    var(--caption-mono-line-height),
+    var(--caption-mono-letter-spacing),
+    var(--caption-mono-text-decoration)
+  );
+}
+
+.typography--variant-caption-mono-medium {
+  @include typography-properties(
+    var(--caption-mono-medium-12-font-family),
+    var(--caption-mono-medium-12-font-size),
+    var(--caption-mono-medium-12-font-weight),
+    var(--caption-mono-medium-12-line-height),
+    var(--caption-mono-medium-12-letter-spacing),
+    var(--caption-mono-medium-12-text-decoration)
+  );
+}
+
+.typography--variant-caption-mono-bold {
+  @include typography-properties(
+    var(--caption-mono-bold-12-font-family),
+    var(--caption-mono-bold-12-font-size),
+    var(--caption-mono-bold-12-font-weight),
+    var(--caption-mono-bold-12-line-height),
+    var(--caption-mono-bold-12-letter-spacing),
+    var(--caption-mono-bold-12-text-decoration)
   );
 }
 
@@ -293,7 +380,7 @@
 }
 
 .typography--color-info {
-  color: var(--info-lightblue-300);
+  color: var(--ui-color-style-txt-info);
 }
 
 .typography--color-text-primary {

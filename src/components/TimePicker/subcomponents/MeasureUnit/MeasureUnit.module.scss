@@ -1,40 +1,36 @@
-$size40: 40px;
-
 .root {
-  width: $size40;
-  height: $size40;
+  width: var(--40-size);
+  height: var(--40-size);
   cursor: pointer;
 }
 
 .wrapper {
   cursor: pointer;
-  color: var(--text-grey-900);
-  background-color: var(--background-paper);
-  font-weight: var(--font-weights-pt-root-ui-2);
-  font-size: var(--font-size-2);
-  line-height: var(--line-heights-4);
-  border-radius: 100px;
-  border: 1px solid transparent;
+  color: var(--ac-calendar-general-text);
+  background-color: var(--ac-calendar-general-bg);
+  border-radius: var(--circle-radius);
+  border: var(--1-border) solid transparent;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  transition: 0.3s;
 
   &:hover {
-    background-color: var(--text-grey-100);
+    background-color: var(--ac-calendar-state-hover-bg);
   }
 }
 
 .selected {
   .wrapper {
-    background-color: var(--primary-blue-600);
-    color: var(--never-changes-white);
+    background-color: var(--ac-calendar-state-selected-bg);
+    color: var(--ac-calendar-state-selected-text);
     cursor: default;
 
     &:hover {
-      background-color: var(--primary-blue-600);
+      opacity: var(--50-opacity);
     }
   }
 }
@@ -42,8 +38,5 @@ $size40: 40px;
 .disabled {
   cursor: not-allowed;
   pointer-events: none;
-
-  .wrapper {
-    color: var(--text-grey-600);
-  }
+  opacity: var(--50-opacity);
 }

@@ -3,7 +3,7 @@ import React, { FC, MouseEvent } from 'react';
 import clsx from 'clsx';
 
 import { IMeasureUnitProps } from './types';
-
+import { Typography } from '@components/.'
 import styles from './MeasureUnit.module.scss';
 
 const MeasureUnit: FC<IMeasureUnitProps> = ({ onHover, onClick, selected, disabled, children }) => {
@@ -31,7 +31,11 @@ const MeasureUnit: FC<IMeasureUnitProps> = ({ onHover, onClick, selected, disabl
       onMouseOver={handleMouseOver}
       data-testid={selected ? 'selected' : undefined}
     >
-      <div className={styles.wrapper}>{children}</div>
+      <div className={styles.wrapper}>
+        <Typography variant='Body1-Medium'>
+          {children}
+        </Typography>
+      </div>
     </div>
   );
 };

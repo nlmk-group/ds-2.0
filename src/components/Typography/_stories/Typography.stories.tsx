@@ -18,7 +18,7 @@ export default {
 
 export const TypographyDefault = (argsTypes: any): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} style={{color: 'var(--text-grey-900)'}}>
       <Typography {...argsTypes}>Default Typography Component</Typography>
     </div>
   );
@@ -178,7 +178,14 @@ TypographyVariants.storyName = 'Варианты типографии';
 
 export const TypographyColor = (): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px'
+      }}
+    >
       <Typography variant="Heading1" color="primary">
         variant: Heading1, color: primary
       </Typography>

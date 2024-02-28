@@ -12,27 +12,11 @@
   &.error {
     color: var(--error-red-300);
   }
-
-  &.warning {
-    color: var(--warning-orange-300);
-  }
-
-  &.success {
-    color: var(--success-green-300);
-  }
 }
 
 @mixin checkmark-colors-states {
   &.error {
     color: var(--error-red-500);
-  }
-
-  &.warning {
-    color: var(--warning-orange-500);
-  }
-
-  &.success {
-    color: var(--success-green-500);
   }
 }
 
@@ -55,8 +39,8 @@
         appearance: none;
         -webkit-appearance: none;
         margin: 0;
-        background-color: var(--default-second);
-        border: 2px solid var(--dark-primary-navyblue-100);
+        background-color: transparent;
+        border: 2px solid var(--ac-checkbox-unchecked-normal-stroke);
         border-radius: var(--2-radius);
         width: 100%;
         height: 100%;
@@ -69,24 +53,10 @@
           }
 
           &.error {
-            border-color: var(--error-red-500);
-
+            border-color: var(--ac-checkbox-unchecked-error-stroke);
             ~ .hover-circle {
-              background-color: var(--error-red-50);
-            }
-          }
-          &.warning {
-            border-color: var(--warning-orange-500);
-
-            ~ .hover-circle {
-              background-color: var(--warning-orange-50);
-            }
-          }
-          &.success {
-            border-color: var(--success-green-500);
-
-            ~ .hover-circle {
-              background-color: var(--success-green-50);
+              opacity: 1;
+              background-color: var(--ac-checkbox-unchecked-error-fill);
             }
           }
         }
@@ -94,12 +64,14 @@
         // input :checked states
         &:checked {
           border: none;
-          background-color: var(--default-second) !important;
+          background-color: var(--ac-checkbox-checked-bg);
+          height: var(--16-size);
+          width: var(--16-size);
           -webkit-appearance: none;
 
           ~ .checkmark {
             display: inline-flex;
-            left: -1px;
+            left: -2px;
             top: -1px;
 
             &:hover:enabled ~ .hover-circle {
@@ -123,7 +95,7 @@
           &:disabled {
             ~ .checkmark {
               cursor: default;
-              color: var(--dark-primary-navyblue-50);
+              color: var(--ac-checkbox-checked-disabled);
             }
           }
 
@@ -135,26 +107,10 @@
                 color: var(--error-red-600);
               }
 
-              &.warning {
-                color: var(--warning-orange-600);
-              }
-
-              &.success {
-                color: var(--success-green-600);
-              }
-
               + .hover-circle {
-                //background-color: var(--primary-blue-50);
+              
                 &.error {
                   background-color: var(--error-red-200);
-                }
-
-                &.warning {
-                  background-color: var(--warning-orange-200);
-                }
-
-                &.success {
-                  background-color: var(--success-green-200);
                 }
               }
             }
@@ -168,21 +124,11 @@
         // input :disabled
         &:disabled {
           cursor: default;
-          border-color: var(--dark-primary-navyblue-100);
-          background-color: var(--dark-primary-navyblue-50);
+          border-color: var(--ac-checkbox-unchecked-disabled-stroke);
+          background-color: var(--ac-checkbox-unchecked-disabled-fill);
 
           &.error {
             background-color: var(--error-red-200);
-          }
-
-          &.warning {
-            border-color: var(--warning-orange-500);
-            background-color: var(--warning-orange-100);
-          }
-
-          &.success {
-            border-color: var(--success-green-500);
-            background-color: var(--success-green-100);
           }
 
           ~ .checkmark,
@@ -192,7 +138,7 @@
 
           ~ .checkmark-multiple {
             cursor: default;
-            color: var(--dark-primary-navyblue-50);
+            color: var(--ac-checkbox-checked-disabled);
           }
 
           .text {
@@ -201,16 +147,7 @@
         }
 
         &.error {
-          border-color: var(--error-red-600);
-          background-color: var(--error-red-50);
-        }
-        &.warning {
-          border-color: var(--warning-orange-600);
-          background-color: var(--warning-orange-50);
-        }
-        &.success {
-          border-color: var(--success-green-600);
-          background-color: var(--success-green-50);
+          border-color: var(--ac-checkbox-unchecked-error-stroke);
         }
       }
 
@@ -219,11 +156,16 @@
         width: var(--32-size);
         height: var(--32-size);
         border-radius: 50%;
-        background-color: var(--text-grey-50);
+        opacity: var(--8-opacity);
+        background-color: var(--ac-checkbox-unchecked-focused-focus);
         z-index: -1;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+      }
+
+      .hover-circle-checked {
+        background-color: var(--ac-checkbox-checked-focused);
       }
 
       // default color states for checkmarks
@@ -234,7 +176,7 @@
       }
 
       .checkmark.default {
-        color: var(--primary-blue-500);
+        color: var(--ac-checkbox-checked-normal);
       }
 
       .checkmark-multiple.default {

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { ToggleButtonGroup } from '@components/index';
+import { IconStarOutlined24, ToggleButtonGroup } from '@components/index';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { IToggleButtonGroup } from '../types'
@@ -142,15 +142,15 @@ export const BtnGroupIcon = (argTypes: IToggleButtonGroup): ReactNode => {
         <ToggleButtonGroup.Button.Icon/>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Icon
-          name='IconStarBorder24'
-        />
+        <ToggleButtonGroup.Button.Icon>
+          <IconStarOutlined24 />
+        </ToggleButtonGroup.Button.Icon>
         <ToggleButtonGroup.Button.Label>
           Конфеты
         </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Icon
-          name='IconStarBorder24'
-        />
+        <ToggleButtonGroup.Button.Icon>
+          <IconStarOutlined24 />
+        </ToggleButtonGroup.Button.Icon>
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
   );
@@ -185,7 +185,7 @@ export const BtnGroupIconBadge = (argTypes: IToggleButtonGroup): ReactNode => {
         <ToggleButtonGroup.Button.Label>
           Конфеты
         </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Badge>
+        <ToggleButtonGroup.Button.Badge variant="outline">
           {7+5}
         </ToggleButtonGroup.Button.Badge>
       </ToggleButtonGroup.Button>

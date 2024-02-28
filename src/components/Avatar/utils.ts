@@ -3,7 +3,6 @@ import { CSSProperties } from 'react';
 import { TGetSizingStylesArgs, TSizingStyles } from './types';
 
 import { AvatarSize } from './enums';
-import { SPECIAL_ICONS } from './subcomponents/IconBadge/constants';
 
 export const getSizingStyles = ({
   sizeParameters,
@@ -85,8 +84,6 @@ export const getSizingStyles = ({
     badgeStyles: getBadgeStyles()
   };
 };
-
-export const isSpecialBadge = (iconName?: string) => SPECIAL_ICONS.includes(iconName || '');
 
 export const getAvatarImageSrc = () => {
   const avatarImageMock = '/assets/avatar_mock.png';

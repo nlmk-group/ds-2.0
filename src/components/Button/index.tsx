@@ -41,10 +41,9 @@ export const Button: FC<IButtonProps> = ({
   const iconClass = (position: 'left' | 'right') =>
     clsx(
       styles.icon,
-      variant === 'bar'
-        ? styles[`bar-${position}-icon` as keyof typeof styles]
-        : styles[`${position}-icon` as keyof typeof styles],
-      (size === 's' || size === 'xs') && styles[`compact-${position}-icon` as keyof typeof styles]
+      styles[`${position}-icon` as keyof typeof styles],
+      (size === 's' || size === 'xs') && styles[`compact-${position}-icon` as keyof typeof styles],
+      size === 'm' && styles['icon-big-wrapper']
     );
 
   if (iconButton) {
@@ -58,7 +57,9 @@ export const Button: FC<IButtonProps> = ({
   return (
     <button className={clsx(classes, className)} {...props}>
       {startIcon && <span className={iconClass('left')}>{startIcon}</span>}
-      <Typography variant={size === 'xs' ? 'Caption-Bold' : 'Body1-Bold'}>{children}</Typography>
+      <Typography className={styles[`text-height-${size}`]} variant={size === 'xs' ? 'Caption-Bold' : 'Body1-Bold'}>
+        {children}
+      </Typography>
       {endIcon && <span className={iconClass('right')}>{endIcon}</span>}
       {badge && <span className={iconClass('right')}>{badge}</span>}
     </button>

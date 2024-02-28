@@ -24,15 +24,15 @@
 }
 
 .indicator-s {
-  border-width: 2px;
+  border-width: var(--2-border);
 }
 
 .indicator-m {
-  border-width: 4px;
+  border-width: var(--4-border);
 }
 
 .indicator-l {
-  border-width: 8px;
+  border-width: calc(var(--4-border) * 2);
 }
 
 .indicator-default {

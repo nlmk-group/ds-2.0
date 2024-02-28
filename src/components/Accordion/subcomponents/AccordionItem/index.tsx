@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { iconsMapping } from '@components/Accordion/enums';
-import Icon from '@components/Icon';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 
@@ -9,7 +8,17 @@ import { IAccordionItemProps, TAccordionItem } from './types';
 
 import styles from './AccordionItem.module.scss';
 
-import { ICON_SIZE, TYPOGRAPHY_CONTENT_VARIANTS, TYPOGRAPHY_TITLE_VARIANTS } from './constants';
+import {
+  TYPOGRAPHY_CONTENT_VARIANTS,
+  TYPOGRAPHY_TITLE_VARIANTS
+} from './constants';
+
+import {
+  IconAddPlusOutlined16,
+  IconChevronArrowDownOutlined16,
+  IconChevronArrowUpOutlined16,
+  IconCloseOutlined16
+} from '@components/Icon/IconsDirectory';
 
 const AccordionItem: React.FC<IAccordionItemProps> = ({
   id,
@@ -22,13 +31,18 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   onExpand,
   disabled,
   children,
+  className,
   ...props
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const iconProps = {
+    htmlColor: 'var(--ac-accordeon-default-default-icon)'
+  }
+
   const expandIcons = {
-    [iconsMapping.plus]: isExpanded ? 'IconCloseOutlined24' : 'IconAddPlusOutlined24',
-    [iconsMapping.arrow]: isExpanded ? 'IconChevronArrowUpOutlined24' : 'IconChevronArrowDownOutlined24'
+    [iconsMapping.plus]: isExpanded ? <IconCloseOutlined16 {...iconProps} /> : <div className={styles['icon-plus-size']}><IconAddPlusOutlined16 {...iconProps} /></div>,
+    [iconsMapping.arrow]: isExpanded ? <IconChevronArrowUpOutlined16 {...iconProps} /> : <IconChevronArrowDownOutlined16 {...iconProps} />
   };
 
   const handleMouseEnter = () => {
@@ -48,10 +62,16 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
 
   return (
     <div
-      className={clsx(styles.accordionItem, styles[size], styles[variant], {
-        [styles.disabled]: disabled,
-        [styles.hovered]: isHovered
-      })}
+      className={clsx(
+        styles.accordionItem,
+        styles[size],
+        styles[variant],
+        {
+          [styles.disabled]: disabled,
+          [styles.hovered]: isHovered
+        },
+        className
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...props}
@@ -60,7 +80,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
         <div>
           {startIcon && (
             <div data-testid="ACCORDION_LEFT_ICON">
-              <Icon name={expandIcons[startIcon]} containerSize={ICON_SIZE} />
+              {expandIcons[startIcon]}
             </div>
           )}
         </div>
@@ -68,7 +88,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
         <div>
           {endIcon && (
             <div data-testid="ACCORDION_RIGHT_ICON">
-              <Icon name={expandIcons[endIcon]} containerSize={ICON_SIZE} />
+              {expandIcons[endIcon]}
             </div>
           )}
         </div>

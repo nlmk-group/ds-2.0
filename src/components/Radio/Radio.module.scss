@@ -30,8 +30,8 @@
       content: "";
       cursor: pointer;
       position: absolute;
-      border: var(--2-border) solid var(--text-grey-100);
-      background-color: transparent;
+      border: var(--2-border) solid var(--ac-radiobutton-unselected-normal-stroke);
+      background: transparent;
     }
   }
 
@@ -40,8 +40,8 @@
       &:not(:checked) {
         &:hover {
           &:before {
-            border-color: var(--text-grey-100);
-            box-shadow: 0 0 0 6px var(--text-grey-50);
+            border-color: var(--ac-radiobutton-unselected-focused-stroke);
+            box-shadow: 0 0 0 6px var(--ac-radiobutton-unselected-focused-focus);
           }
         }
       }
@@ -53,8 +53,8 @@
       &:checked {
         &:not(:disabled) {
           &:before {
-            border-color: var(--primary-blue-500);
-            box-shadow: 0 0 0 var(--1-space) var(--default-second), 0 0 0 var(--6-size) var(--primary-blue-50);
+            border-color: var(--ac-radiobutton-selected-focused);
+            box-shadow: 0 0 0 var(--1-space) var(--default-second), 0 0 0 var(--6-size) var(--ac-radiobutton-selected-focused-focus);
           }
         }
       }
@@ -64,8 +64,8 @@
   input[type="radio"] {
     &:disabled {
       &:before {
-        background-color: var(--text-grey-100);
-        border-color: var(--text-grey-200);
+        background-color: var(--ac-radiobutton-unselected-disabled-fill);
+        border-color: var(--ac-radiobutton-unselected-disabled-stroke);
         cursor: default;
       }
     }
@@ -78,7 +78,7 @@
         @include padding-list;
         content: "";
         position: absolute;
-        background-color: var(--primary-blue-500);
+        background-color: var(--ac-radiobutton-selected-normal);
         visibility: visible;
       }
     }
@@ -89,7 +89,7 @@
       &:disabled {
         &:after {
           cursor: default;
-          background-color: var(--text-grey-100);
+          opacity: var(--50-opacity);
         }
       }
     }
@@ -98,7 +98,7 @@
   input[type="radio"] {
     &:checked {
       &:before {
-        border-color: var(--primary-blue-500);
+        border-color: var(--ac-radiobutton-selected-normal);
       }
     }
   }
@@ -108,8 +108,7 @@
       &:disabled {
         &:before {
           cursor: default;
-          background-color: transparent;
-          border-color: var(--text-grey-100);
+          opacity: var(--50-opacity);
         }
       }
     }

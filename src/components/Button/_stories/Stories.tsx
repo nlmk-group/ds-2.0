@@ -59,7 +59,7 @@ export default  App = () =>(
 
           <Editor
             description="Всего представлено для кнопки семь различных стилей – primary (отображается по умолчанию), secondary,
-          grey, outline, greyOutline, text, bar."
+          grey, outline, greyOutline, text."
             code={`import { Button } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -80,9 +80,6 @@ export default  App = () =>(
     Button
   </Button>
   <Button variant="text">
-    Button
-  </Button>
-  <Button variant="bar">
     Button
   </Button>
   </>
@@ -113,9 +110,6 @@ export default  App = () =>(
   <Button variant="text" disabled>
     Button
   </Button>
-  <Button variant="bar" disabled>
-    Button
-  </Button>
   </>
 )`}
           />
@@ -123,28 +117,22 @@ export default  App = () =>(
           <Editor
             description=" Компонент может быть стилизован с помощью иконок. Они могут быть отображены слева (startIcon) и справа
           (endIcon) или одновременно с двух сторон от текста кнопки или только отображать иконку."
-            code={`import { Button, Icon } from '@nlmk/ds-2.0';
+            code={`import { Button, IconArticleFilled24 } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
   <>
-    <Button startIcon={<Icon
+    <Button startIcon={<IconArticleFilled24
       htmlColor="white"
-      containerSize={24}
-      name="IconArticle24"
     />}>
       Button
     </Button>
-    <Button variant="secondary" endIcon={<Icon
+    <Button variant="secondary" endIcon={<IconArticleFilled24
       color="primary"
-      containerSize={24}
-      name="IconArticle24"
     />}>
       Button
     </Button>
-    <Button variant="outline" iconButton={<Icon
+    <Button variant="outline" iconButton={<IconArticleFilled24
       color="primary"
-      containerSize={24}
-      name="IconArticle24"
     />}/>
 
   </>

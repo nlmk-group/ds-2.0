@@ -1,7 +1,15 @@
 import React, { ReactNode } from 'react';
 
 import { sizesMappingInput } from '@components/declaration';
-import { Badge, Button, ButtonGroup, Icon } from '@components/index';
+import {
+  Badge,
+  Button,
+  ButtonGroup,
+  IconArticleOutlined32,
+  IconHandPanToolPalmsOutlined32,
+  IconInfoOutlined32,
+  IconMixer32
+} from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 
@@ -112,8 +120,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
             {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
                 <Button
-                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<IconArticleOutlined32 />}
+                  endIcon={<IconArticleOutlined32 />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -124,8 +132,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
                   {gradient}
                 </Button>
                 <Button
-                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<IconArticleOutlined32 />}
+                  endIcon={<IconArticleOutlined32 />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -136,8 +144,8 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
                   {gradient}
                 </Button>
                 <Button
-                  startIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
-                  endIcon={<Icon name="IconArticleOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />}
+                  startIcon={<IconArticleOutlined32 />}
+                  endIcon={<IconArticleOutlined32 />}
                   badge={
                     <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
                       1
@@ -158,15 +166,18 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
           <div key={gradient} className={style['showcase-wrapper-column']}>
             {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
-                <Button onClick={action('onClick')}>
-                  <Icon name="IconInfoOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
-                </Button>
-                <Button onClick={action('onClick')}>
-                  <Icon name="IconMixer24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
-                </Button>
-                <Button onClick={action('onClick')}>
-                  <Icon name="IconHandPanToolPalmsOutlined24" containerSize={iconSizeMappingHelper[argTypes.size || size]} />
-                </Button>
+                <Button
+                  onClick={action('onClick')}
+                  iconButton={<IconInfoOutlined32 />}
+                />
+                <Button
+                  onClick={action('onClick')}
+                  iconButton={<IconMixer32 />}
+                />
+                <Button
+                  onClick={action('onClick')}
+                  iconButton={<IconHandPanToolPalmsOutlined32 />}
+                />
               </ButtonGroup>
             ))}
           </div>

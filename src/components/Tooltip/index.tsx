@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent, useMemo, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { ITooltipProps } from '@components/Tooltip/types';
+import { ITooltipProps } from './types';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 

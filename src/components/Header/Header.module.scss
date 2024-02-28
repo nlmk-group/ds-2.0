@@ -44,10 +44,6 @@
 
 .title {
   color: var(--text-grey-900);
-  font-weight: var(--heading2-font-weight);
-  font-size: var(--heading2-font-size);
-  min-height: var(--heading2-line-height);
-  line-height: var(--heading2-line-height);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -64,18 +60,6 @@
   line-height: var(--heading2-line-height);
 }
 
-.date-wrapper {
-  color: var(--text-grey-400);
-  font-size: var(--font-size-1);
-  margin-right: var(--8-space);
-}
-
-.time-wrapper {
-  color: var(--text-grey-900);
-  font-size: var(--heading4-font-size);
-  font-weight: var(--heading4-font-weight);
-}
-
 .button-padding-unset {
   position: relative;
   button {
@@ -87,4 +71,17 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.btn-icon-size {
+  svg {
+    height: var(--24-size);
+    width: var(--24-size);
+  }
+}
+
+.favorite-icon-color {
+  path {
+    fill: var(--ac-icon-grey);
+  }
 }

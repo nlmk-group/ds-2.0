@@ -42,7 +42,12 @@ const Checkbox: FC<ICheckboxProps> = ({
           <span className={clsx(checkmarkStyle, colorClassName)}>
             <IconComponent />
           </span>
-          <span className={styles['hover-circle']} />
+          <span
+            className={clsx(
+              styles['hover-circle'],
+              (value || checked) && styles['hover-circle-checked']
+            )}
+          />
         </div>
         {label && <span className={clsx(styles.text, disabled && styles.disabled)}>{label}</span>}
       </label>

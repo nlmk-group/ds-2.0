@@ -78,12 +78,12 @@ export default  App = () => (
 
           <Editor
             description="Spinner где Icon, как children (JSX.Element)"
-            code={`import { Spinner, Icon } from '@nlmk/ds-2.0';
+            code={`import { Spinner, IconAutoRenewReloadOutlined24 } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <>
     <Spinner>
-      <Icon color="primary" containerSize={32} name="IconAutorenew24" />
+      <IconAutoRenewReloadOutlined24 />
     </Spinner>
   </>
 )

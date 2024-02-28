@@ -155,6 +155,42 @@
       ],
       "type": "boxShadow",
       "description": "Используется для бейджей в аватаре"
+    },
+    "Header shadow": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 12,
+        "spread": 0,
+        "color": "#97a4b71f",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для компонента Header"
+    },
+    "card-desktop": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 12,
+        "spread": 0,
+        "color": "#97a4b73d",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для карточек в версии Desktop"
+    },
+    "card-mobile": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 8,
+        "spread": 0,
+        "color": "#97a4b729",
+        "type": "innerShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для карточек в версии Mobile"
     }
   },
   "main-shadow": {

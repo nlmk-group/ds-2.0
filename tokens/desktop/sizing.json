@@ -178,5 +178,9 @@
   "12-size": {
     "value": "12px",
     "type": "sizing"
+  },
+  "42-size": {
+    "value": 42,
+    "type": "sizing"
   }
 }

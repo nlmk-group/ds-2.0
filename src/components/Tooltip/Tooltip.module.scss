@@ -31,8 +31,8 @@
     align-items: center;
     width: max-content;
     z-index: 1000;
-    color: var(--default-second);
-    background-color: var(--text-grey-900);
+    color: var(--ac-tooltip-text);
+    background-color: var(--ac-tooltip-bg);
     border-radius: var(--4-radius);
     transform: translateX(-50%);
     pointer-events: none;

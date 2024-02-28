@@ -6,9 +6,9 @@
       "description": "Colors Default"
     },
     "default": {
-      "value": "#edeeef",
+      "value": "#f4f5f7",
       "type": "color",
-      "description": "Colors Default\n\nРекомендуется использовать, как цвет основного  BG во всех проектах"
+      "description": "Colors HR Portal\n\nРекомендуется использовать, как цвет основного BG в макетах HR Портала"
     },
     "paper": {
       "value": "#ffffff",
@@ -1345,7 +1345,7 @@
             "description": "Цвет номера бейджа Primary"
           },
           "fill": {
-            "value": "#167ffb",
+            "value": "#1e6ee7",
             "type": "color",
             "description": "Цвет заливки бейджа Primary"
           }
@@ -1536,7 +1536,7 @@
     "accordeon": {
       "default": {
         "default-bgHead": {
-          "value": "#edeeef",
+          "value": "#f4f5f7",
           "type": "color",
           "description": "Цвет фона заголовка аккордеона в состоянии default, default"
         },
@@ -1546,7 +1546,7 @@
           "description": "Цвет заголовка аккордеона в\nсостоянии default, default"
         },
         "default-bgText": {
-          "value": "#edeeef",
+          "value": "#f4f5f7",
           "type": "color",
           "description": "Цвет фона раскрытого блока с контентом в состоянии default, default"
         },
@@ -2095,7 +2095,7 @@
     },
     "icon": {
       "blue": {
-        "value": "#167ffb",
+        "value": "#1e6ee7",
         "type": "color",
         "description": "Цвет иконки в элементах на светлом фоне"
       },
@@ -2105,7 +2105,7 @@
         "description": "Цвет элементов на темном или цветном фоне"
       },
       "grey": {
-        "value": "#66747e",
+        "value": "#97a4b7",
         "type": "color",
         "description": "Цвет иконки для элементов в серой цветовой гамме"
       },
@@ -2186,32 +2186,32 @@
     "toggle-button": {
       "default": {
         "default-text": {
-          "value": "#001729",
+          "value": "#1e6ee7",
           "type": "color",
           "description": "Цвет текста в toggle-button, цвет Default, статус Default"
         },
         "default-stroke": {
-          "value": "#ccd1d4",
+          "value": "#ffffff",
           "type": "color",
           "description": "Цвет обводки toggle-button, цвет Default, статус Default"
         },
         "hover-bg": {
-          "value": "#d0e9ff",
+          "value": "#e8f5ff",
           "type": "color",
           "description": "Цвет заливки toggle-button, цвет Default, статус Hover"
         },
         "hover-text": {
-          "value": "#001729",
+          "value": "#1e6ee7",
           "type": "color",
           "description": "Цвет текста в toggle-button, цвет Default, статус Hover"
         },
         "active-bg": {
-          "value": "#aad5ff",
+          "value": "#d0e9ff",
           "type": "color",
           "description": "Цвет заливки toggle-button, цвет Default, статус Active"
         },
         "active-text": {
-          "value": "#001729",
+          "value": "#1e6ee7",
           "type": "color",
           "description": "Цвет текста в toggle-button, цвет Default, статус Active"
         }
@@ -2408,7 +2408,7 @@
       },
       "grey": {
         "bg": {
-          "value": "#edeeef",
+          "value": "#f4f5f7",
           "type": "color",
           "description": "заливка snackbar вида grey"
         },
@@ -2524,9 +2524,9 @@
       },
       "icon": {
         "default-bg": {
-          "value": "#ccd1d4",
+          "value": "#b3b9bf",
           "type": "color",
-          "description": "Цвет фона аватара в состоянии default,icon"
+          "description": "Цвет фона аватара в состоянии default, icon"
         },
         "default-icon": {
           "value": "#ffffff",
@@ -2546,7 +2546,7 @@
       },
       "placeholder": {
         "default-bg": {
-          "value": "#ccd1d4",
+          "value": "#b3b9bf",
           "type": "color",
           "description": "Цвет фона аватара в состоянии default,   placeholder"
         },
@@ -2762,7 +2762,7 @@
     },
     "label-input": {
       "default": {
-        "value": "#808b94",
+        "value": "#66747e",
         "type": "color"
       },
       "disabled": {
@@ -2828,7 +2828,7 @@
     },
     "input": {
       "default-bg": {
-        "value": "#ffffff",
+        "value": "#f2f3f4",
         "type": "color"
       },
       "default-text": {
@@ -3399,6 +3399,189 @@
           "value": "#66747e",
           "type": "color"
         }
+      }
+    },
+    "table": {
+      "top": {
+        "bg": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "цвет подложки в шапке таблицы"
+        },
+        "separator": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "цвет линии под заголовком в шапке таблицы"
+        }
+      },
+      "cell": {
+        "textDark": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "цвет текста на темной подложке"
+        },
+        "icon": {
+          "value": "#001729",
+          "type": "color",
+          "description": "цвет иконки в ячейке таблицы"
+        },
+        "default": {
+          "value": "#ffffff",
+          "type": "color",
+          "description": "цвет подложки в состоянии default"
+        },
+        "hover": {
+          "value": "#e8f5ff",
+          "type": "color",
+          "description": "цвет подложки в состоянии hover в макетах HR продуктов"
+        },
+        "selected": {
+          "value": "#e8f5ff",
+          "type": "color",
+          "description": "цвет подложки в состоянии selected"
+        },
+        "selected-hover": {
+          "value": "#d0e9ff",
+          "type": "color",
+          "description": "цвет подложки в состоянии selected hover"
+        },
+        "stroke-active": {
+          "value": "#167ffb",
+          "type": "color",
+          "description": "цвет обводки в состоянии active"
+        },
+        "red": {
+          "value": "#ff7a7a",
+          "type": "color",
+          "description": "цвет подложки в состоянии red"
+        },
+        "red-hover": {
+          "value": "#ff5955",
+          "type": "color",
+          "description": "цвет подложки в состоянии red hover"
+        },
+        "red-selected": {
+          "value": "#ff4839",
+          "type": "color",
+          "description": "цвет подложки в состоянии red selected"
+        },
+        "red-selected-hover": {
+          "value": "#ff4839",
+          "type": "color",
+          "description": "цвет подложки в состоянии red selected hover"
+        },
+        "redLight": {
+          "value": "#ffedf0",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight"
+        },
+        "redLight-hover": {
+          "value": "#ffd1d7",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight hover"
+        },
+        "redLight-selected": {
+          "value": "#ffa0a0",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight selected"
+        },
+        "redLight-selected-hover": {
+          "value": "#ff7a7a",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight selected hover"
+        },
+        "green": {
+          "value": "#68d679",
+          "type": "color",
+          "description": "цвет подложки в состоянии green"
+        },
+        "green-hover": {
+          "value": "#39cc59",
+          "type": "color",
+          "description": "цвет подложки в состоянии green hover"
+        },
+        "green-selected": {
+          "value": "#00c236",
+          "type": "color",
+          "description": "цвет подложки в состоянии green selected"
+        },
+        "green-selected-hover": {
+          "value": "#00b22c",
+          "type": "color",
+          "description": "цвет подложки в состоянии green selected hover"
+        },
+        "greenLight": {
+          "value": "#e5f8e8",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight"
+        },
+        "greenLight-hover": {
+          "value": "#c2edc6",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight hover"
+        },
+        "greenLight-selected": {
+          "value": "#98e1a1",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight selected"
+        },
+        "greenLight-selected-hover": {
+          "value": "#68d679",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight selected hover"
+        },
+        "orange": {
+          "value": "#ffa62b",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange"
+        },
+        "orange-hover": {
+          "value": "#ff970f",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange hover"
+        },
+        "orange-selected": {
+          "value": "#ff8b0f",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange selected"
+        },
+        "orange-selected-hover": {
+          "value": "#f97b0f",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange selected hover"
+        },
+        "orangeLight": {
+          "value": "#fff3e0",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight"
+        },
+        "orangeLight-hover": {
+          "value": "#ffe0b3",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight hover"
+        },
+        "orangeLight-selected": {
+          "value": "#ffcc82",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight selected"
+        },
+        "orangeLight-selected-hover": {
+          "value": "#ffb650",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight selected hover"
+        }
+      }
+    },
+    "overlay": {
+      "bg": {
+        "value": "#00172950",
+        "type": "color",
+        "description": "Цвет фона для попапов в HR портале. Затемняет содержимое экрана"
+      },
+      "button": {
+        "value": "#ffffff",
+        "type": "color",
+        "description": "Цвет кнопки для закрытия попапа "
       }
     }
   }

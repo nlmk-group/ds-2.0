@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
+* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -215,7 +215,7 @@
   --ac-switch-on-normal-thumb: #2a8cff;
   --ac-switch-on-focused-track: #92ceff;
   --ac-switch-on-focused-thumb: #2a8cff;
-  --ac-switch-on-focused-focus: #2a8cff;
+  --ac-switch-on-focused-focus: #50627d;
   --ac-switch-on-disabled-track: #4e6273;
   --ac-switch-on-disabled-thumb: #b5c4db;
   --ac-switch-off-normal-track: #5e7383;
@@ -236,7 +236,7 @@
   --ac-checkbox-checked-bg: #f2f3f4;
   --ac-checkbox-checked-normal: #2a69d8;
   --ac-checkbox-checked-focused: #2a69d8;
-  --ac-checkbox-checked-focused-focus: #50627d;
+  --ac-checkbox-checked-focused-focus: #eaf0ff;
   --ac-checkbox-checked-disabled: #788996;
   --ac-checkbox-unchecked-normal-stroke: #8f9ca6;
   --ac-checkbox-unchecked-normal-fill: #4e6273;
@@ -655,7 +655,44 @@
   --ac-calendar-shift-selected: #2a69d8;
   --ac-calendar-shift-hover: #617794;
   --ac-calendar-shift-title: #e5e8ea;
+  --ac-table-top-bg: #475363;
+  --ac-table-top-separator: #279cff;
+  --ac-table-cell-text-dark: #4e6273;
+  --ac-table-cell-icon: #f2f3f4;
+  --ac-table-cell-default: #475363;
+  --ac-table-cell-hover: #556878;
+  --ac-table-cell-selected: #617794;
+  --ac-table-cell-selected-hover: #7086a6;
+  --ac-table-cell-stroke-active: #2a8cff;
+  --ac-table-cell-red: #a11c2b;
+  --ac-table-cell-red-hover: #b2474a;
+  --ac-table-cell-red-selected: #bb5758;
+  --ac-table-cell-red-selected-hover: #cc7a78;
+  --ac-table-cell-red-light: #500811;
+  --ac-table-cell-red-light-hover: #76141e;
+  --ac-table-cell-red-light-selected: #8c1524;
+  --ac-table-cell-red-light-selected-hover: #a11c2b;
+  --ac-table-cell-green: #519C4F;
+  --ac-table-cell-green-hover: #68B668;
+  --ac-table-cell-green-selected: #7FCE80;
+  --ac-table-cell-green-selected-hover: #97E89A;
+  --ac-table-cell-green-light: #215112;
+  --ac-table-cell-green-light-hover: #2D6922;
+  --ac-table-cell-green-light-selected: #3E8338;
+  --ac-table-cell-green-light-selected-hover: #519C4F;
+  --ac-table-cell-orange: #F99B44;
+  --ac-table-cell-orange-hover: #FEAC60;
+  --ac-table-cell-orange-selected: #F8C487;
+  --ac-table-cell-orange-selected-hover: #FEDDAA;
+  --ac-table-cell-orange-light: #8F4C19;
+  --ac-table-cell-orange-light-hover: #A86522;
+  --ac-table-cell-orange-light-selected: #C1732B;
+  --ac-table-cell-orange-light-selected-hover: #DC8535;
   --ac-overlay-bg: #00000040;
   --ac-overlay-button: #ffffff;
-  --ui-color-style-txt-info: #65bbff;
+  --ac-tooltip-bg: #f2f3f4;
+  --ac-tooltip-text: #475363;
+  --ac-toggletip-bg: #f2f3f4;
+  --ac-toggletip-text: #475363;
+  --ac-toggletip-comment: #8f9ca6;
 }

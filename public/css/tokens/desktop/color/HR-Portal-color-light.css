@@ -1,11 +1,11 @@
 /**
 * Do not edit directly
-* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
+* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
   --background-info: #e8f5ff;
-  --background-default: #edeeef;
+  --background-default: #f4f5f7;
   --background-paper: #ffffff;
   --background-white: #ffffff;
   --background-blue: #cdddf0;
@@ -253,7 +253,7 @@
   --ac-checkbox-unchecked-disabled-stroke: #808b94;
   --ac-checkbox-unchecked-disabled-fill: #e6e9ed;
   --ac-badge-solid-primary-text: #ffffff;
-  --ac-badge-solid-primary-fill: #167ffb;
+  --ac-badge-solid-primary-fill: #1e6ee7;
   --ac-badge-solid-secondary-text: #001729;
   --ac-badge-solid-secondary-fill: #d0e9ff;
   --ac-badge-solid-error-text: #ffffff;
@@ -285,9 +285,9 @@
   --ac-segment-warning-bg: #ffcc82;
   --ac-segment-success-bg: #98e1a1;
   --ac-segment-disabled-bg: #e5e8ea;
-  --ac-accordeon-default-default-bg-head: #edeeef;
+  --ac-accordeon-default-default-bg-head: #f4f5f7;
   --ac-accordeon-default-default-heading: #001729;
-  --ac-accordeon-default-default-bg-text: #edeeef;
+  --ac-accordeon-default-default-bg-text: #f4f5f7;
   --ac-accordeon-default-default-icon: #001729;
   --ac-accordeon-default-default-text: #334554;
   --ac-accordeon-default-hover-bg-head: #e5e8ea;
@@ -392,9 +392,9 @@
   --ac-input-slider-only-value-disabled-line: #b3b9bf;
   --ac-input-slider-only-value-disabled-point: #b3b9bf;
   --ac-input-slider-only-value-disabled-percent: #99a2a9;
-  --ac-icon-blue: #167ffb;
+  --ac-icon-blue: #1e6ee7;
   --ac-icon-white: #ffffff;
-  --ac-icon-grey: #66747e;
+  --ac-icon-grey: #97a4b7;
   --ac-icon-error: #fc200c;
   --ac-icon-warning: #ffa62b;
   --ac-icon-success: #39cc59;
@@ -410,12 +410,12 @@
   --ac-toast-info-bg: #001729;
   --ac-toast-info-text: #ffffff;
   --ac-toast-info-icon: #bfc7d4;
-  --ac-toggle-button-default-default-text: #001729;
-  --ac-toggle-button-default-default-stroke: #ccd1d4;
-  --ac-toggle-button-default-hover-bg: #d0e9ff;
-  --ac-toggle-button-default-hover-text: #001729;
-  --ac-toggle-button-default-active-bg: #aad5ff;
-  --ac-toggle-button-default-active-text: #001729;
+  --ac-toggle-button-default-default-text: #1e6ee7;
+  --ac-toggle-button-default-default-stroke: #ffffff;
+  --ac-toggle-button-default-hover-bg: #e8f5ff;
+  --ac-toggle-button-default-hover-text: #1e6ee7;
+  --ac-toggle-button-default-active-bg: #d0e9ff;
+  --ac-toggle-button-default-active-text: #1e6ee7;
   --ac-toggle-button-success-default-text: #0d932b;
   --ac-toggle-button-success-default-stroke: #ccd1d4;
   --ac-toggle-button-success-hover-bg: #e5f8e8;
@@ -452,7 +452,7 @@
   --ac-snackbar-green-text: #ffffff;
   --ac-snackbar-red-bg: #ff5955;
   --ac-snackbar-red-text: #ffffff;
-  --ac-snackbar-grey-bg: #edeeef;
+  --ac-snackbar-grey-bg: #f4f5f7;
   --ac-snackbar-grey-text: #66747e;
   --ac-snackbar-white-bg: #ffffff;
   --ac-snackbar-white-text: #66747e;
@@ -472,11 +472,11 @@
   --ac-avatar-online-indicators-stroke-online-true: #ffffff;
   --ac-avatar-online-indicators-bg-online-false: #b3b9bf;
   --ac-avatar-online-indicators-stroke-online-false: #ffffff;
-  --ac-avatar-icon-default-bg: #ccd1d4;
+  --ac-avatar-icon-default-bg: #b3b9bf;
   --ac-avatar-icon-default-icon: #ffffff;
   --ac-avatar-icon-hover-bg: #ccd1d4;
   --ac-avatar-icon-hover-icon: #ffffff;
-  --ac-avatar-placeholder-default-bg: #ccd1d4;
+  --ac-avatar-placeholder-default-bg: #b3b9bf;
   --ac-avatar-placeholder-default-initials: #ffffff;
   --ac-avatar-placeholder-hover-bg: #ccd1d4;
   --ac-avatar-placeholder-hover-initials: #ffffff;
@@ -517,7 +517,7 @@
   --ac-image-picture-hover-icon: #ffffff;
   --ac-image-picture-no-content-bg: #e6e9ed;
   --ac-image-picture-no-content-icon: #97a4b7;
-  --ac-label-input-default: #808b94;
+  --ac-label-input-default: #66747e;
   --ac-label-input-disabled: #b3b9bf;
   --ac-label-input-focused: #167ffb;
   --ac-label-input-error: #fc200c;
@@ -532,7 +532,7 @@
   --ac-scrollbar-hover-bg: #ffffff;
   --ac-scrollbar-hover-scroll: #b3b9bf;
   --ac-scrollbar-stroke: #f2f3f4;
-  --ac-input-default-bg: #ffffff;
+  --ac-input-default-bg: #f2f3f4;
   --ac-input-default-text: #001729;
   --ac-input-default-stroke: #ccd1d4;
   --ac-input-disabled-bg: #f2f3f4;
@@ -655,4 +655,39 @@
   --ac-calendar-shift-selected: #e8f5ff;
   --ac-calendar-shift-hover: #f2f3f4;
   --ac-calendar-shift-title: #66747e;
+  --ac-table-top-bg: #ffffff;
+  --ac-table-top-separator: #167ffb;
+  --ac-table-cell-text-dark: #f2f3f4;
+  --ac-table-cell-icon: #001729;
+  --ac-table-cell-default: #ffffff;
+  --ac-table-cell-hover: #e8f5ff;
+  --ac-table-cell-selected: #e8f5ff;
+  --ac-table-cell-selected-hover: #d0e9ff;
+  --ac-table-cell-stroke-active: #167ffb;
+  --ac-table-cell-red: #ff7a7a;
+  --ac-table-cell-red-hover: #ff5955;
+  --ac-table-cell-red-selected: #ff4839;
+  --ac-table-cell-red-selected-hover: #ff4839;
+  --ac-table-cell-red-light: #ffedf0;
+  --ac-table-cell-red-light-hover: #ffd1d7;
+  --ac-table-cell-red-light-selected: #ffa0a0;
+  --ac-table-cell-red-light-selected-hover: #ff7a7a;
+  --ac-table-cell-green: #68d679;
+  --ac-table-cell-green-hover: #39cc59;
+  --ac-table-cell-green-selected: #00c236;
+  --ac-table-cell-green-selected-hover: #00b22c;
+  --ac-table-cell-green-light: #e5f8e8;
+  --ac-table-cell-green-light-hover: #c2edc6;
+  --ac-table-cell-green-light-selected: #98e1a1;
+  --ac-table-cell-green-light-selected-hover: #68d679;
+  --ac-table-cell-orange: #ffa62b;
+  --ac-table-cell-orange-hover: #ff970f;
+  --ac-table-cell-orange-selected: #ff8b0f;
+  --ac-table-cell-orange-selected-hover: #f97b0f;
+  --ac-table-cell-orange-light: #fff3e0;
+  --ac-table-cell-orange-light-hover: #ffe0b3;
+  --ac-table-cell-orange-light-selected: #ffcc82;
+  --ac-table-cell-orange-light-selected-hover: #ffb650;
+  --ac-overlay-bg: #00172950;
+  --ac-overlay-button: #ffffff;
 }

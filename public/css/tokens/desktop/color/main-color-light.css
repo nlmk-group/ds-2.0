@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
+* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -655,5 +655,56 @@
   --ac-calendar-shift-selected: #e8f5ff;
   --ac-calendar-shift-hover: #f2f3f4;
   --ac-calendar-shift-title: #66747e;
-  --ui-color-style-txt-info: #508EFE;
+  --ac-table-top-bg: #ffffff;
+  --ac-table-top-separator: #167ffb;
+  --ac-table-cell-text-dark: #f2f3f4;
+  --ac-table-cell-icon: #001729;
+  --ac-table-cell-default: #ffffff;
+  --ac-table-cell-hover: #e5e8ea;
+  --ac-table-cell-selected: #e8f5ff;
+  --ac-table-cell-selected-hover: #d0e9ff;
+  --ac-table-cell-stroke-active: #167ffb;
+  --ac-table-cell-red: #ff7a7a;
+  --ac-table-cell-red-hover: #ff5955;
+  --ac-table-cell-red-selected: #ff4839;
+  --ac-table-cell-red-selected-hover: #ff4839;
+  --ac-table-cell-red-light: #ffedf0;
+  --ac-table-cell-red-light-hover: #ffd1d7;
+  --ac-table-cell-red-light-selected: #ffa0a0;
+  --ac-table-cell-red-light-selected-hover: #ff7a7a;
+  --ac-table-cell-green: #68d679;
+  --ac-table-cell-green-hover: #39cc59;
+  --ac-table-cell-green-selected: #00c236;
+  --ac-table-cell-green-selected-hover: #00b22c;
+  --ac-table-cell-green-light: #e5f8e8;
+  --ac-table-cell-green-light-hover: #c2edc6;
+  --ac-table-cell-green-light-selected: #98e1a1;
+  --ac-table-cell-green-light-selected-hover: #68d679;
+  --ac-table-cell-orange: #ffa62b;
+  --ac-table-cell-orange-hover: #ff970f;
+  --ac-table-cell-orange-selected: #ff8b0f;
+  --ac-table-cell-orange-selected-hover: #f97b0f;
+  --ac-table-cell-orange-light: #fff3e0;
+  --ac-table-cell-orange-light-hover: #ffe0b3;
+  --ac-table-cell-orange-light-selected: #ffcc82;
+  --ac-table-cell-orange-light-selected-hover: #ffb650;
+  --ac-overlay-bg: #00000040;
+  --ac-overlay-button: #ffffff;
+  --ac-uploading-file-text: #0b3461;
+  --ac-uploading-file-description: #808b94;
+  --ac-uploading-file-default-bg: #ffffff;
+  --ac-uploading-file-error-bg: #ffedf0;
+  --ac-uploading-file-error-description-text: #4d5d69;
+  --ac-uploading-file-warning-bg: #fff3e0;
+  --ac-uploading-file-warning-description-text: #4d5d69;
+  --ac-uploading-file-default-hover-bg: #f2f3f4;
+  --ac-uploading-file-error-hover-bg: #ffd1d7;
+  --ac-uploading-file-warning-hover-bg: #ffe0b3;
+  --ac-uploading-file-section-stroke: #167ffb;
+  --ac-uploading-file-section-bg: #ffffff;
+  --ac-tooltip-bg: #001729;
+  --ac-tooltip-text: #ffffff;
+  --ac-toggletip-bg: #001729;
+  --ac-toggletip-text: #ffffff;
+  --ac-toggletip-comment: #808b94;
 }

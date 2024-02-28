@@ -1135,7 +1135,7 @@
           "description": "Цвет ползунка тогла в состоянии On, Focused\nТЕМНАЯ ТЕМА"
         },
         "focused-focus": {
-          "value": "#2a8cff",
+          "value": "#50627d",
           "type": "color",
           "description": "Цвет заливки круга на фоне ползунка тогла в состоянии On, Focused\nТЕМНАЯ ТЕМА"
         },
@@ -1249,7 +1249,7 @@
           "description": "Цвет иконки в состоянии checked, focused\nТЕМНАЯ ТЕМА"
         },
         "focused-focus": {
-          "value": "#50627d",
+          "value": "#eaf0ff",
           "type": "color",
           "description": "Цвет заливки круга на фоне иконки в состоянии checked, focused\nТЕМНАЯ ТЕМА"
         },
@@ -3388,6 +3388,177 @@
         }
       }
     },
+    "table": {
+      "top": {
+        "bg": {
+          "value": "#475363",
+          "type": "color",
+          "description": "цвет подложки в шапке таблицы"
+        },
+        "separator": {
+          "value": "#279cff",
+          "type": "color",
+          "description": "цвет линии под заголовком в шапке таблицы"
+        }
+      },
+      "cell": {
+        "textDark": {
+          "value": "#4e6273",
+          "type": "color",
+          "description": "цвет текста на светлой подложке"
+        },
+        "icon": {
+          "value": "#f2f3f4",
+          "type": "color",
+          "description": "цвет иконки в ячейке таблицы"
+        },
+        "default": {
+          "value": "#475363",
+          "type": "color",
+          "description": "цвет подложки в состоянии default"
+        },
+        "hover": {
+          "value": "#556878",
+          "type": "color",
+          "description": "цвет подложки в состоянии hover"
+        },
+        "selected": {
+          "value": "#617794",
+          "type": "color",
+          "description": "цвет подложки в состоянии selected"
+        },
+        "selected-hover": {
+          "value": "#7086a6",
+          "type": "color",
+          "description": "цвет подложки в состоянии selected hover"
+        },
+        "stroke-active": {
+          "value": "#2a8cff",
+          "type": "color",
+          "description": "цвет обводки в состоянии active"
+        },
+        "red": {
+          "value": "#a11c2b",
+          "type": "color",
+          "description": "цвет подложки в состоянии red"
+        },
+        "red-hover": {
+          "value": "#b2474a",
+          "type": "color",
+          "description": "цвет подложки в состоянии red hover"
+        },
+        "red-selected": {
+          "value": "#bb5758",
+          "type": "color",
+          "description": "цвет подложки в состоянии red selected"
+        },
+        "red-selected-hover": {
+          "value": "#cc7a78",
+          "type": "color",
+          "description": "цвет подложки в состоянии red selected hover"
+        },
+        "redLight": {
+          "value": "#500811",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight"
+        },
+        "redLight-hover": {
+          "value": "#76141e",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight hover"
+        },
+        "redLight-selected": {
+          "value": "#8c1524",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight selected"
+        },
+        "redLight-selected-hover": {
+          "value": "#a11c2b",
+          "type": "color",
+          "description": "цвет подложки в состоянии redLight selected hover"
+        },
+        "green": {
+          "value": "#519C4F",
+          "type": "color",
+          "description": "цвет подложки в состоянии green"
+        },
+        "green-hover": {
+          "value": "#68B668",
+          "type": "color",
+          "description": "цвет подложки в состоянии green hover"
+        },
+        "green-selected": {
+          "value": "#7FCE80",
+          "type": "color",
+          "description": "цвет подложки в состоянии green selected"
+        },
+        "green-selected-hover": {
+          "value": "#97E89A",
+          "type": "color",
+          "description": "цвет подложки в состоянии green selected hover"
+        },
+        "greenLight": {
+          "value": "#215112",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight"
+        },
+        "greenLight-hover": {
+          "value": "#2D6922",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight hover"
+        },
+        "greenLight-selected": {
+          "value": "#3E8338",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight selected"
+        },
+        "greenLight-selected-hover": {
+          "value": "#519C4F",
+          "type": "color",
+          "description": "цвет подложки в состоянии greenLight selected hover"
+        },
+        "orange": {
+          "value": "#F99B44",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange"
+        },
+        "orange-hover": {
+          "value": "#FEAC60",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange hover"
+        },
+        "orange-selected": {
+          "value": "#F8C487",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange selected"
+        },
+        "orange-selected-hover": {
+          "value": "#FEDDAA",
+          "type": "color",
+          "description": "цвет подложки в состоянии orange selected hover"
+        },
+        "orangeLight": {
+          "value": "#8F4C19",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight"
+        },
+        "orangeLight-hover": {
+          "value": "#A86522",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight hover"
+        },
+        "orangeLight-selected": {
+          "value": "#C1732B",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight selected"
+        },
+        "orangeLight-selected-hover": {
+          "value": "#DC8535",
+          "type": "color",
+          "description": "цвет подложки в состоянии orangeLight selected hover"
+        }
+      }
+    },
     "overlay": {
       "bg": {
         "value": "#00000040",
@@ -3399,13 +3570,34 @@
         "type": "color",
         "description": "Цвет кнопки закрытия модального окна"
       }
-    }
-  },
-  "uiColorStyle": {
-    "txt": {
-      "info": {
-        "value": "#65bbff",
-        "type": "color"
+    },
+    "tooltip": {
+      "bg": {
+        "value": "#f2f3f4",
+        "type": "color",
+        "description": "цвет фона dark theme"
+      },
+      "text": {
+        "value": "#475363",
+        "type": "color",
+        "description": "цвет текста dark theme"
+      }
+    },
+    "toggletip": {
+      "bg": {
+        "value": "#f2f3f4",
+        "type": "color",
+        "description": "цвет фона dark theme"
+      },
+      "text": {
+        "value": "#475363",
+        "type": "color",
+        "description": "цвет текста dark theme"
+      },
+      "comment": {
+        "value": "#8f9ca6",
+        "type": "color",
+        "description": "цвет текста в комментарии dark theme"
       }
     }
   }

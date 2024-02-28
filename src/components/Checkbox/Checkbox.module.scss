@@ -14,12 +14,6 @@
   }
 }
 
-@mixin checkmark-colors-states {
-  &.error {
-    color: var(--error-red-500);
-  }
-}
-
 .label-wrapper {
   label {
     @include flex-align-center;
@@ -29,7 +23,6 @@
     width: fit-content;
 
     .input-wrapper {
-      @include flex-align-center;
       position: relative;
       z-index: 0;
       width: 18px;
@@ -39,12 +32,13 @@
         appearance: none;
         -webkit-appearance: none;
         margin: 0;
-        background-color: transparent;
-        border: 2px solid var(--ac-checkbox-unchecked-normal-stroke);
+        background-color: var(--ac-checkbox-unchecked-normal-fill);
+        border: var(--2-border) solid var(--ac-checkbox-unchecked-normal-stroke);
         border-radius: var(--2-radius);
-        width: 100%;
-        height: 100%;
+        width: inherit;
+        height: inherit;
         cursor: pointer;
+        position: absolute;
 
         // input :hover states
         &:hover:enabled {
@@ -65,29 +59,22 @@
         &:checked {
           border: none;
           background-color: var(--ac-checkbox-checked-bg);
-          height: var(--16-size);
-          width: var(--16-size);
           -webkit-appearance: none;
 
           ~ .checkmark {
-            display: inline-flex;
-            left: -2px;
-            top: -1px;
+            display: block;
+            width: 19px;
+            height: 19px;
+            border-radius: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 
             &:hover:enabled ~ .hover-circle {
               cursor: pointer;
               display: block;
               background-color: var(--primary-blue-50);
-            }
-          }
-
-          ~ .checkmark-multiple {
-            display: inline-flex;
-            left: -3px;
-            top: -3px;
-
-            &:hover:enabled ~ .hover-circle {
-              display: block;
             }
           }
 
@@ -157,30 +144,11 @@
         height: var(--32-size);
         border-radius: 50%;
         opacity: var(--8-opacity);
-        background-color: var(--ac-checkbox-unchecked-focused-focus);
+        background-color: var(--ac-checkbox-checked-focused-focus);
         z-index: -1;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-      }
-
-      .hover-circle-checked {
-        background-color: var(--ac-checkbox-checked-focused);
-      }
-
-      // default color states for checkmarks
-      .checkmark,
-      .checkmark-multiple {
-        @include d-none-absolute;
-        @include checkmark-colors-states;
-      }
-
-      .checkmark.default {
-        color: var(--ac-checkbox-checked-normal);
-      }
-
-      .checkmark-multiple.default {
-        color: var(--text-grey-400);
       }
     }
 
@@ -193,5 +161,39 @@
         color: var(--text-grey-500);
       }
     }
+  }
+}
+
+.checkmark-default {
+  background-color: var(--ac-checkbox-checked-normal);
+}
+
+.checkmark-error {
+  background-color: var(--error-red-500);
+}
+
+.checkbox-wrapper {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--2-radius);
+  path {
+    fill: var(--ac-checkbox-checked-bg);
+  }
+}
+
+.checkmark-single {
+  svg {
+    height: 15px;
+    width: 14px;
+  }
+}
+
+.checkmark-multiple {
+  svg {
+    height: 14px;
+    width: 15px;
   }
 }

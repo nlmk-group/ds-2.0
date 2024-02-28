@@ -22,6 +22,7 @@
   background-color: var(--background-default);
   margin: 0;
   padding: 24px;
+  width: 99%;
   border-radius: 10px;
 }
 
@@ -77,6 +78,7 @@
 .cardHeader {
   @include flexCenter;
   gap: 24px;
+  margin-bottom: 20px;
 }
 
 .icons {

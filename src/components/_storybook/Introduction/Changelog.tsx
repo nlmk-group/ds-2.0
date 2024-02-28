@@ -21,6 +21,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.3.1 - <span className={styles.date}>28.02.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены переменные токенов для компонента{' '}
+              <Link href="./?path=/docs/components-checkbox-info--docs" target="blank">
+                Checkbox
+              </Link>{' '}
+              и
+              <Link href="./?path=/docs/components-tooltip-info--docs" target="blank">
+                Tooltip
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.3.0 - <span className={styles.date}>27.02.24</span>
             <Chip variant="outline" color="warning">
               Breaking Changes

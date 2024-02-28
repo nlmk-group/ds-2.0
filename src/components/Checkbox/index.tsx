@@ -5,9 +5,10 @@ import clsx from 'clsx';
 import type { ICheckboxProps } from './types';
 
 import styles from './Checkbox.module.scss';
-
-import { CustomCheckboxIcon } from './icons/CustomCheckboxIcon';
-import { CustomCheckboxMultipleIcon } from './icons/CustomCheckboxMultipleIcon';
+import {
+  IconDeleteMinusFilled16,
+  IconDoneCheckFilled16
+} from '..';
 
 const Checkbox: FC<ICheckboxProps> = ({
   id,
@@ -21,9 +22,16 @@ const Checkbox: FC<ICheckboxProps> = ({
   className
 }) => {
   const colorClassName = styles[color as keyof typeof styles];
-  const IconComponent = multiple ? CustomCheckboxMultipleIcon : CustomCheckboxIcon;
-  const checkmarkStyle = multiple ? styles['checkmark-multiple'] : styles.checkmark;
 
+  const Checkmark = () => (
+    <div className={clsx(
+      styles['checkbox-wrapper'],
+      styles[`checkmark-${color}`],
+      multiple ? styles['checkmark-multiple'] : styles['checkmark-single'])}>
+      {multiple ? <IconDeleteMinusFilled16 /> :<IconDoneCheckFilled16 />}
+    </div>
+  )
+  
   return (
     <div className={clsx(styles['label-wrapper'], className)}>
       <label htmlFor={id}>
@@ -39,15 +47,10 @@ const Checkbox: FC<ICheckboxProps> = ({
             value={value}
             aria-label={label ? undefined : 'checkbox'}
           />
-          <span className={clsx(checkmarkStyle, colorClassName)}>
-            <IconComponent />
-          </span>
-          <span
-            className={clsx(
-              styles['hover-circle'],
-              (value || checked) && styles['hover-circle-checked']
-            )}
-          />
+          <div className={clsx(styles.checkmark, colorClassName)}>
+            <Checkmark />
+          </div>
+          <span className={styles['hover-circle']}/>
         </div>
         {label && <span className={clsx(styles.text, disabled && styles.disabled)}>{label}</span>}
       </label>

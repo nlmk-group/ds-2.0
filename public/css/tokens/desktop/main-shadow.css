@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
+* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -12,6 +12,9 @@
   --semantic-shadow-toast-shadow: [object Object];
   --semantic-shadow-snackbar-shadow: [object Object];
   --semantic-shadow-badges-avatar-shadow: [object Object],[object Object];
+  --semantic-shadow-header-shadow: [object Object];
+  --semantic-shadow-card-desktop: [object Object];
+  --semantic-shadow-card-mobile: [object Object];
   --main-shadow-xs: [object Object],[object Object],[object Object],[object Object],[object Object];
   --main-shadow-s: [object Object],[object Object],[object Object],[object Object],[object Object];
   --main-shadow-m: [object Object],[object Object],[object Object],[object Object],[object Object];

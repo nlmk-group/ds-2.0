@@ -23,8 +23,16 @@
     "value": "12px",
     "type": "spacing"
   },
+  "14-space": {
+    "value": "14px",
+    "type": "spacing"
+  },
   "16-space": {
     "value": "16px",
+    "type": "spacing"
+  },
+  "20-space": {
+    "value": "20px",
     "type": "spacing"
   },
   "24-space": {

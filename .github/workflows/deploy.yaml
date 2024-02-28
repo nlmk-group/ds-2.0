@@ -11,10 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.1
 
-      - name: Install v16 Node version
+      - name: Install v20 Node version
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Install and Build
         run: |

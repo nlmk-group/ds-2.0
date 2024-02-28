@@ -1,4 +1,4 @@
-import { TLevel } from '../../../DatePicker/types';
+import { TLevel } from '../../types';
 export interface PeriodPickerProps {
     onLeftClick?: () => void;
     onRightClick?: () => void;

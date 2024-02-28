@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { TIconProps } from '../Icon/types';
 import { ITypography } from '../Typography/types';
 import { AvatarShape, AvatarSize } from './enums';
@@ -9,7 +9,8 @@ export interface IAvatarProps {
     userName?: string;
     userSurname?: string;
     online?: boolean;
-    badgeIconName?: string;
+    badgeIconName?: ReactNode;
+    badgeSpecialIcon?: boolean;
     numberIndicator?: number;
     className?: string;
 }

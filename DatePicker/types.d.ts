@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { LEVEL_MAPPING_ENUM } from '../DatePicker/helpers/levelMappingEnum';
+import { LEVEL_MAPPING_ENUM } from './helpers/levelMappingEnum';
 import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES, sizesMappingInput } from '../declaration';
 export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 export type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];

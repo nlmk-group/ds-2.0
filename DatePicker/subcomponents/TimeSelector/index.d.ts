@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TimeSelectorProps } from '../../../DatePicker/subcomponents/TimeSelector/types';
+import { TimeSelectorProps } from './types';
 export declare const TimeSelector: FC<TimeSelectorProps>;
 export default TimeSelector;
 //# sourceMappingURL=index.d.ts.map

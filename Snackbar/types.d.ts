@@ -1,5 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react';
 export interface ISnackbar extends PropsWithChildren<any> {
+    className?: string;
     color?: string;
     bgOpacity?: number;
     withIcon?: boolean;

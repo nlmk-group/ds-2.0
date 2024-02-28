@@ -97,12 +97,6 @@ declare const _default: {
         indeterminate: {
             description: string;
         };
-        longTitle: {
-            description: string;
-            control: {
-                type: string;
-            };
-        };
         tick: {
             description: string;
             control: {
@@ -116,14 +110,6 @@ export declare const AttachFilesDefault: {
     (argTypes: IFile): JSX.Element;
     storyName: string;
     args: {
-        label: string;
-    };
-};
-export declare const AttachFilesLongLabel: {
-    (argTypes: IFile): JSX.Element;
-    storyName: string;
-    args: {
-        longTitle: boolean;
         label: string;
     };
 };

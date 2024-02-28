@@ -1,5 +1,5 @@
 import React from 'react';
-import { IBadgeProps } from '../../Badge/types';
+import { IBadgeProps } from '../types';
 declare const _default: {
     title: string;
     component: React.FC<IBadgeProps>;

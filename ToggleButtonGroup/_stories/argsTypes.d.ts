@@ -103,5 +103,16 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    disabled: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

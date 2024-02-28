@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { iconsMapping, sizesMapping, variantsMapping } from '../../../Accordion/enums';
+import { iconsMapping, sizesMapping, variantsMapping } from '../../enums';
 export type TAccordionItem = {
     id: string | number;
     title: string;
@@ -15,5 +15,6 @@ export interface IAccordionItemProps extends Omit<TAccordionItem, 'content'> {
     size: `${sizesMapping}`;
     variant: `${variantsMapping}`;
     children: ReactNode;
+    className?: string;
 }
 //# sourceMappingURL=types.d.ts.map

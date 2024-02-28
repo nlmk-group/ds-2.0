@@ -1,12 +1,12 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import { sizeMapping, statusMapping } from './enums';
-import { IconColor, TContainerSize } from '../Icon/types';
 export type SizeType = `${sizeMapping}`;
 export type StatusType = `${statusMapping}`;
 export interface IToggleButtonGroup {
     className?: string;
     status?: StatusType;
     size?: SizeType;
+    disabled?: boolean;
     children: ReactNode;
 }
 export interface IToggleButtonGroupItemWithProps {
@@ -22,15 +22,14 @@ export interface IToggleButtonGroupItemWithProps {
 export interface IButtonGroupProperties {
     size: SizeType;
     status: StatusType;
+    disabled: boolean;
 }
 export interface IButtonProperties {
     status: StatusType;
+    active: boolean;
 }
 export interface IWithIcon {
-    name?: string;
-    color?: IconColor;
     htmlColor?: string;
-    containerSize?: TContainerSize;
     children?: ReactNode;
 }
 //# sourceMappingURL=types.d.ts.map

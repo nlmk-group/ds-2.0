@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { TLevel } from '../../../DatePicker/types';
+import { TLevel } from '../../types';
 export interface DayProps {
     selected?: boolean;
     disabled?: boolean;

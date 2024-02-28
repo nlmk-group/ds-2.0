@@ -63,4 +63,8 @@ export declare const SpinnerWithIcon: {
     (): JSX.Element;
     storyName: string;
 };
+export declare const SpinnerWithPercent: {
+    (): JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Spinner.stories.d.ts.map

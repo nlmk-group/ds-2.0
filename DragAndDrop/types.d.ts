@@ -44,7 +44,7 @@ export interface IDragAndDrop extends PropsWithChildren<{
     smallIcon?: boolean;
     disabled?: boolean;
     accept?: string;
-    onUpload: (a: IFile) => void;
+    onUpload: (a: FileList) => void;
     cancelUpload?: () => void;
 }
 export interface IUploadHelper {

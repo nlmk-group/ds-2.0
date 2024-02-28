@@ -10,8 +10,7 @@ export declare enum variant {
     grey = "grey",
     outline = "outline",
     greyOutline = "greyOutline",
-    text = "text",
-    bar = "bar"
+    text = "text"
 }
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
     badge?: ReactNode;
@@ -20,5 +19,6 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, P
     iconButton?: ReactNode;
     size?: `${sizes}`;
     variant?: `${variant}`;
+    className?: string;
 }
 //# sourceMappingURL=types.d.ts.map

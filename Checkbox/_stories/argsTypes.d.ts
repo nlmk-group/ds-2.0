@@ -1,4 +1,4 @@
-import { customInputColors } from '../../declaration';
+import { ECheckboxColors } from '../types';
 export declare const argsTypes: {
     id: {
         description: string;
@@ -65,13 +65,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: customInputColors;
+                summary: ECheckboxColors;
             };
             type: {
                 summary: string;
             };
         };
-        options: customInputColors[];
+        options: ECheckboxColors[];
         control: {
             type: string;
         };

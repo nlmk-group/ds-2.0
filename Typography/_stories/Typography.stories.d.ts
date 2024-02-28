@@ -1,7 +1,7 @@
 import React from 'react';
 declare const _default: {
     title: string;
-    component: React.FC<import('../../Typography/types').ITypography>;
+    component: React.FC<import('../types').ITypography>;
     decorators: ((Story: () => any) => JSX.Element)[];
     argTypes: {
         variant: {

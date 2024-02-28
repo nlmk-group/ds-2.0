@@ -1,10 +1,20 @@
 /**
 * Do not edit directly
-* Generated on Mon Nov 27 2023 11:59:06 GMT+0300 (Москва, стандартное время)
+* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
-  --block-shadow: [object Object];
-  --popup-shadow: [object Object];
-  --switch-shadow: [object Object], [object Object], [object Object];
+  --semantic-shadow-block-shadow: [object Object];
+  --semantic-shadow-popup-shadow: [object Object];
+  --semantic-shadow-switch-shadow: [object Object],[object Object],[object Object];
+  --semantic-shadow-avatar-shadow: [object Object],[object Object],[object Object];
+  --semantic-shadow-input-range: [object Object],[object Object],[object Object];
+  --semantic-shadow-toast-shadow: [object Object];
+  --semantic-shadow-snackbar-shadow: [object Object];
+  --semantic-shadow-badges-avatar-shadow: [object Object],[object Object];
+  --main-shadow-xs: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-s: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-m: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-l: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-xl: [object Object],[object Object],[object Object],[object Object],[object Object];
 }

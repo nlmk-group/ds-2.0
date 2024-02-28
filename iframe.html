@@ -18,7 +18,7 @@
     window.LOGLEVEL = 'info';
     window.FRAMEWORK_OPTIONS = {};
     window.CHANNEL_OPTIONS = {};
-    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false};
+    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false,"interactionsDebugger":true};
     window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(tsx|mdx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(tsx|mdx))$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":true};
 
@@ -359,57 +359,53 @@
   }
 </script>
 <link href="https://fonts.cdnfonts.com/css/pt-root-ui" rel="stylesheet">
+<link href="css/dark-theme-storybook.css" rel="stylesheet"/>
 <style type="text/css">
-  :root {
-    --body-font-family: PT Root UI;
-    --body-font-style: normal;
-    --body-font-weight: 500;
-    --body-line-height: 24px;
-    --body-font-size: 18px;
-    --ac-link-default: #167ffb;
-    --ac-link-hover: #32a0ff;
-    --ac-link-active: #32a0ff;
-    --ac-link-click: #5ab1ff;
-    --ac-link-disabled: #99a2a9;
-  }
+    :root {
+        --body-font-family: PT Root UI;
+        --body-font-style: normal;
+        --body-font-weight: 500;
+        --body-line-height: 24px;
+        --body-font-size: 18px;
+    }
 
-  * {
-    font-family: var(--body-font-family) !important;
-  }
+    * {
+        font-family: var(--body-font-family) !important;
+    }
 
-  .development-block {
-    margin: 20px auto;
-    border: 1px blue solid;
-    padding: 20px;
-    width: 90%;
-  }
+    .development-block {
+        margin: 20px auto;
+        border: 1px blue solid;
+        padding: 20px;
+        width: 90%;
+    }
 
-  body {
-    font-family: var(--body-font-family), sans-serif;
-  }
+    body {
+        font-family: var(--body-font-family), sans-serif;
+    }
 
-  .sb-show-main.sb-main-centered #root {
-    padding: 0 !important;
-  }
+    .sb-show-main.sb-main-centered #root {
+        padding: 0 !important;
+    }
 
-  .innerZoomElementWrapper > * {
-    width: calc(100% - 18px) !important;
-  }
+    .innerZoomElementWrapper>* {
+        width: calc(100% - 18px) !important;
+    }
 
-  .sbdocs-content {
-    max-width: 1200px !important;
-  }
+    .sbdocs-content {
+        max-width: 1200px !important;
+    }
 
-  .sbdocs {
-    font-size: 16px !important;
-  }
+    .sbdocs {
+        font-size: 16px !important;
+    }
 </style>
 
 <script>
-  window.global = window;
+    window.global = window;
 </script>
 
-  <script type="module" crossorigin src="./assets/iframe-6c91f604.js"></script>
+  <script type="module" crossorigin src="./assets/iframe-wD_hPM--.js"></script>
 </head>
 
 <body>
@@ -503,8 +499,6 @@
 
   <div id="storybook-root"></div>
   <div id="storybook-docs"></div>
-  
-  
 </body>
 
 </html>

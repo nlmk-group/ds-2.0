@@ -1,5 +1,5 @@
 import React from 'react';
-import { IToggleButtonGroupItemWithProps, IButtonProperties } from '../types';
+import { IButtonProperties, IToggleButtonGroupItemWithProps } from '../types';
 export declare const ButtonProperties: React.Context<IButtonProperties>;
 declare const ToggleButton: {
     ({ className, onClick, status, disabled, active, children, isLast, toggleButton }: IToggleButtonGroupItemWithProps): JSX.Element;

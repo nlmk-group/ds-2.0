@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAvatarProps } from '../../Avatar/types';
+import { IAvatarProps } from '../types';
 import { AvatarShape, AvatarSize } from '../enums';
 declare const _default: {
     title: string;
@@ -120,6 +120,20 @@ declare const _default: {
                 type: string;
             };
         };
+        badgeSpecialIcon: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
     };
 };
 export default _default;
@@ -156,14 +170,15 @@ export declare const AvatarWithDefaultBadge: {
     (argsTypes: IAvatarProps): JSX.Element;
     storyName: string;
     args: {
-        badgeIconName: string;
+        badgeIconName: JSX.Element;
     };
 };
 export declare const AvatarWithSpecialBadge: {
     (argsTypes: IAvatarProps): JSX.Element;
     storyName: string;
     args: {
-        badgeIconName: string;
+        badgeIconName: JSX.Element;
+        badgeSpecialIcon: boolean;
     };
 };
 //# sourceMappingURL=Avatar.stories.d.ts.map

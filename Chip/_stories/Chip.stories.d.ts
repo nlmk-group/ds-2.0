@@ -1,5 +1,5 @@
 import React from 'react';
-import { IChipProps } from '../../Chip/types';
+import { IChipProps } from '../types';
 declare const _default: {
     title: string;
     component: React.FC<import("../../Badge/types").IBadgeProps>;

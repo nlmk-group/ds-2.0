@@ -57,27 +57,27 @@ export declare const TooltipDefault: {
     storyName: string;
 };
 export declare const TooltipWithDescription: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 export declare const TooltipWrappedDisabled: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 export declare const TooltipWithFull: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 export declare const TooltipPlacements: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 export declare const TooltipBehaviors: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 export declare const TooltipWithCustom: {
-    (): JSX.Element;
+    (argsTypes: Args): JSX.Element;
     storyName: string;
 };
 //# sourceMappingURL=Tooltip.stories.d.ts.map

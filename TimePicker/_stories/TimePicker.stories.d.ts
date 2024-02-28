@@ -1,4 +1,4 @@
-import { TTimePickerType } from '../../TimePicker/types';
+import { TTimePickerType } from '../types';
 declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, TTimePickerType>;
 export default _default;
 export declare const TimePickerDefault: (argTypes: TTimePickerType) => JSX.Element;

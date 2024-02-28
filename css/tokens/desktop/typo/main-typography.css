@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Mon Nov 27 2023 11:59:06 GMT+0300 (Москва, стандартное время)
+* Generated on Thu Feb 22 2024 16:38:14 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -9,19 +9,21 @@
   --line-heights-1: 40px;
   --line-heights-2: 32px;
   --line-heights-3: 28px;
-  --line-heights-4: 22px;
-  --line-heights-5: 18px;
-  --line-heights-6: 16px;
+  --line-heights-4: 24px;
+  --line-heights-5: 22px;
+  --line-heights-6: 18px;
+  --line-heights-7: 16px;
   --font-weights-pt-root-ui-0: 700;
   --font-weights-pt-root-ui-1: 400;
   --font-weights-pt-root-ui-2: 500;
   --font-size-0: 12px;
   --font-size-1: 14px;
   --font-size-2: 16px;
-  --font-size-3: 20px;
-  --font-size-4: 24px;
-  --font-size-5: 32px;
-  --font-size-6: 48px;
+  --font-size-3: 18px;
+  --font-size-4: 20px;
+  --font-size-5: 24px;
+  --font-size-6: 32px;
+  --font-size-7: 48px;
   --letter-spacing-0: 0em;
   --paragraph-spacing-0: 0;
   --paragraph-spacing-1: 8;
@@ -120,7 +122,7 @@
   --body1-16-text-decoration: none;
   --body1-medium-16-font-family: PT Root UI;
   --body1-medium-16-font-weight: 500;
-  --body1-medium-16-line-height: 18px;
+  --body1-medium-16-line-height: 22px;
   --body1-medium-16-font-size: 16px;
   --body1-medium-16-letter-spacing: 0em;
   --body1-medium-16-paragraph-spacing: 0;
@@ -138,7 +140,7 @@
   --body1-bold-16-text-decoration: none;
   --body2-16-font-family: PT Root UI;
   --body2-16-font-weight: 400;
-  --body2-16-line-height: 22px;
+  --body2-16-line-height: 24px;
   --body2-16-font-size: 16px;
   --body2-16-letter-spacing: 0em;
   --body2-16-paragraph-spacing: 0;
@@ -147,7 +149,7 @@
   --body2-16-text-decoration: none;
   --body2-medium-16-font-family: PT Root UI;
   --body2-medium-16-font-weight: 500;
-  --body2-medium-16-line-height: 18px;
+  --body2-medium-16-line-height: 22px;
   --body2-medium-16-font-size: 14px;
   --body2-medium-16-letter-spacing: 0em;
   --body2-medium-16-paragraph-spacing: 12;
@@ -191,4 +193,49 @@
   --caption-bold-12-text-case: none;
   --caption-bold-12-text-decoration: none;
   --paragraph-indent-0: 0px;
+  --body-18-font-family: PT Root UI;
+  --body-18-font-weight: 400;
+  --body-18-line-height: 24px;
+  --body-18-font-size: 18px;
+  --body-18-letter-spacing: 0em;
+  --body-18-paragraph-spacing: 0;
+  --body-18-paragraph-indent: 0px;
+  --body-18-text-case: none;
+  --body-18-text-decoration: none;
+  --body-medium-18-font-family: PT Root UI;
+  --body-medium-18-font-weight: 500;
+  --body-medium-18-line-height: 24px;
+  --body-medium-18-font-size: 18px;
+  --body-medium-18-letter-spacing: 0em;
+  --body-medium-18-paragraph-spacing: 0;
+  --body-medium-18-paragraph-indent: 0px;
+  --body-medium-18-text-case: none;
+  --body-medium-18-text-decoration: none;
+  --body-bold-18-font-family: PT Root UI;
+  --body-bold-18-font-weight: 700;
+  --body-bold-18-line-height: 24px;
+  --body-bold-18-font-size: 18px;
+  --body-bold-18-letter-spacing: 0em;
+  --body-bold-18-paragraph-spacing: 0;
+  --body-bold-18-paragraph-indent: 0px;
+  --body-bold-18-text-case: none;
+  --body-bold-18-text-decoration: none;
+  --body2-14-font-family: PT Root UI;
+  --body2-14-font-weight: 400;
+  --body2-14-line-height: 18px;
+  --body2-14-font-size: 14px;
+  --body2-14-letter-spacing: 0em;
+  --body2-14-paragraph-spacing: 0;
+  --body2-14-paragraph-indent: 0px;
+  --body2-14-text-case: none;
+  --body2-14-text-decoration: none;
+  --body2-medium-14-font-family: PT Root UI;
+  --body2-medium-14-font-weight: 500;
+  --body2-medium-14-line-height: 18px;
+  --body2-medium-14-font-size: 14px;
+  --body2-medium-14-letter-spacing: 0em;
+  --body2-medium-14-paragraph-spacing: 12;
+  --body2-medium-14-paragraph-indent: 0px;
+  --body2-medium-14-text-case: none;
+  --body2-medium-14-text-decoration: none;
 }

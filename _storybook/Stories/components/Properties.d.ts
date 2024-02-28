@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TArgsType } from '../../../_storybook/ArgumentsTable/types';
+import { TArgsType } from '../../ArgumentsTable/types';
 declare const Properties: FC<{
     argsTypes?: TArgsType;
 }>;

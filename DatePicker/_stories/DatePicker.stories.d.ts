@@ -1,4 +1,4 @@
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, import('../../DatePicker/types').DatePickerRegularProps | import('../../DatePicker/types').DateTimePickerRegularProps | import('../../DatePicker/types').DateTimeSecondsPickerRegularProps | import('../../DatePicker/types').DatePickerPeriodProps | import('../../DatePicker/types').DatePickerUnFullPeriodProps | import('../../DatePicker/types').DatePickerPeriodShiftProps>;
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, import('../types').DatePickerRegularProps | import('../types').DateTimePickerRegularProps | import('../types').DateTimeSecondsPickerRegularProps | import('../types').DatePickerPeriodProps | import('../types').DatePickerUnFullPeriodProps | import('../types').DatePickerPeriodShiftProps>;
 export default _default;
 export declare const Default: () => JSX.Element;
 export declare const WithColored: () => JSX.Element;

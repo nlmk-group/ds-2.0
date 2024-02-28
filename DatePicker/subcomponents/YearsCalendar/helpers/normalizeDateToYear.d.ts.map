@@ -1,1 +1,1 @@
-{"version":3,"file":"normalizeDateToYear.d.ts","sourceRoot":"","sources":["../../../../../../../src/components/DatePicker/subcomponents/YearsCalendar/helpers/normalizeDateToYear.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,mBAAmB,SAAU,IAAI,SAAmD,CAAC"}
+{"version":3,"file":"normalizeDateToYear.d.ts","sourceRoot":"","sources":["../../../../../src/components/DatePicker/subcomponents/YearsCalendar/helpers/normalizeDateToYear.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,mBAAmB,SAAU,IAAI,SAAmD,CAAC"}

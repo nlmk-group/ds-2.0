@@ -1,1 +1,1 @@
-{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../../../src/components/Avatar/subcomponents/IconBadge/types.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,eAAe;IAC9B,QAAQ,EAAE,MAAM,CAAC;IACjB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB"}
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/Avatar/subcomponents/IconBadge/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAElC,MAAM,WAAW,eAAe;IAC9B,QAAQ,EAAE,SAAS,CAAC;IACpB,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,gBAAgB,EAAE,OAAO,CAAC;CAC3B"}

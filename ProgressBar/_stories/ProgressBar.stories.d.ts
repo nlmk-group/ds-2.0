@@ -1,4 +1,4 @@
-import { IProgressBarProps } from '../../ProgressBar/types';
+import { IProgressBarProps } from '../types';
 declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, IProgressBarProps>;
 export default _default;
 export declare const ProgressBarDefault: {

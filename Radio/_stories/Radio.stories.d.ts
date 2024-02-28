@@ -1,4 +1,5 @@
 import React from 'react';
+import './Radio.stories.scss';
 import { IRadioProps } from '../types';
 declare const _default: {
     title: string;

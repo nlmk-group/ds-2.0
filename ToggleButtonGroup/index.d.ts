@@ -2,7 +2,7 @@ import React from 'react';
 import { IButtonGroupProperties, IToggleButtonGroup, IToggleButtonGroupItemWithProps } from './types';
 export declare const ButtonGroupProperties: React.Context<IButtonGroupProperties>;
 declare const ToggleButtonGroup: {
-    ({ className, size, status, children }: IToggleButtonGroup): JSX.Element;
+    ({ className, size, status, disabled, children }: IToggleButtonGroup): JSX.Element;
     Button: {
         ({ className, onClick, status, disabled, active, children, isLast, toggleButton }: IToggleButtonGroupItemWithProps): JSX.Element;
         Label: React.FC<{

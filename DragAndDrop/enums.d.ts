@@ -39,10 +39,4 @@ export declare enum spinnerWidthHelperMapping {
     m = "56px",
     s = "40px"
 }
-export declare enum smallIconMapping {
-    default = "IconAddPlusOutlined24",
-    info = "IconAddAddPlusOutlined24",
-    error = "IconAttentionWarningAlertErrorOutlined32",
-    warning = "IconAttentionWarningAlertErrorOutlined32"
-}
 //# sourceMappingURL=enums.d.ts.map

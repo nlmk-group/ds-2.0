@@ -86,12 +86,6 @@ export declare const argsTypes: {
     indeterminate: {
         description: string;
     };
-    longTitle: {
-        description: string;
-        control: {
-            type: string;
-        };
-    };
     tick: {
         description: string;
         control: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IButtonProps } from '../../Button/types';
+import { IButtonProps } from '../types';
 declare const _default: {
     title: string;
     component: React.FC<IButtonProps>;

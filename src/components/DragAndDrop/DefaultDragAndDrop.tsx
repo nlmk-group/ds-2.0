@@ -49,7 +49,7 @@ const DefaultDragAndDrop: FC<IDefaultDnD> = ({
         )}
         {btnLabel.length > 0 && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button variant="text" onClick={onButtonClick}>
+            <Button variant="primary" fill="clear" onClick={onButtonClick}>
               <div className={styles[`btn-text-${statusColor}`]}>{btnLabel}</div>
             </Button>
           </div>

@@ -1,12 +1,18 @@
+import { CSSProperties } from 'react';
+
+import { TIconName } from '@components/Icon/IconsDirectory/unionType';
+
 export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning';
 
 export type TContainerSize = 32 | 24 | 16;
 
 export interface TIconProps {
-  name: string;
+  name: TIconName;
   color?: IconColor;
   htmlColor?: string;
   containerSize?: TContainerSize;
+  className?: string;
+  style?: CSSProperties;
 }
 
 export interface IIconsProps {
@@ -19,9 +25,3 @@ export interface ISvgProps {
   onClick?: (e: any) => void;
   active?: boolean;
 }
-
-export type TIconsMap = {
-  [key: number]: {
-    [key: string]: any;
-  };
-};

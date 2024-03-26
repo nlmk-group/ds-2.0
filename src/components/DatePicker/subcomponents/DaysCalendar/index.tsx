@@ -78,6 +78,7 @@ export const DaysCalendar: FC<CalendarProps> = ({
           const dayAsDate = new Date(year, month, parseInt(day));
           return day ? (
             <Day
+              date={dayAsDate}
               onClick={() => onSelect && onSelect(dayAsDate)}
               onHover={() => withPeriod && setCurrentHover(dayAsDate)}
               isHoverState={Boolean(dateCurrentHover)}

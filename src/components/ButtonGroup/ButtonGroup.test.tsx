@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { sizesMappingInput } from '@components/declaration';
 import { Button, ButtonGroup } from '@components/index';
 import { render } from '@testing-library/react';
 
 import styles from './ButtonGroup.module.scss';
 
-import { gradientMapping, orientationMapping } from './enums';
+import { orientationMapping } from './enums';
+import { EVariant, EFill, ESizes } from '@components/Button/enums';
 
 describe('src/components/ButtonGroup', () => {
   test('It should render a ButtonGroup', () => {
@@ -54,7 +54,7 @@ describe('src/components/ButtonGroup', () => {
     expect(button).toHaveAttribute('disabled');
   });
 
-  Object.values(sizesMappingInput).forEach((size: sizesMappingInput) => {
+  Object.values(ESizes).forEach((size: ESizes) => {
     // It was taken from @components/Button
     const sizeClassesMapping = {
       s: 'compact',
@@ -69,20 +69,26 @@ describe('src/components/ButtonGroup', () => {
       );
 
       const button = container.getElementsByTagName('button')[0];
-      expect(size === sizesMappingInput.m ? true : button.classList.contains(sizeClassesMapping[size])).toBe(true);
+      expect(size === ESizes.m ? true : button.classList.contains(sizeClassesMapping[size])).toBe(true);
     });
   });
 
-  Object.values(gradientMapping).forEach((gradient: gradientMapping) => {
-    test(`It should render a ButtonGroup with ${gradient} size buttons`, () => {
-      const { container } = render(
-        <ButtonGroup variant={gradient}>
-          <Button>Hello</Button>
-        </ButtonGroup>
-      );
-
-      const button = container.getElementsByTagName('button')[0];
-      expect(button).toHaveClass(gradient);
-    });
+  Object.values(EVariant).forEach((gradient: EVariant) => {
+    Object.values(EFill).forEach((fill: EFill) => {
+      test(`It should render a ButtonGroup with ${gradient}-${fill} size buttons`, () => {
+        const { container } = render(
+          <ButtonGroup variant={gradient} fill={fill}>
+            <Button>Hello</Button>
+          </ButtonGroup>
+        );
+  
+        const button = container.getElementsByTagName('button')[0];
+        if (gradient === EVariant.secondary) {
+          expect(button).toHaveClass(gradient);
+        } else {
+          expect(button).toHaveClass(`${gradient}-${fill}`);
+        }
+      });
+    })
   });
 });

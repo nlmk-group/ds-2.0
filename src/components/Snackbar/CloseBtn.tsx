@@ -16,7 +16,8 @@ const CloseBtn: FC<ICloseBtn> = ({ close, color }) => {
           : styles['btn-icon-grey']
       )}
       data-testid='SNACKBAR_CLOSE'
-      variant='text'
+      variant='primary'
+      fill='clear'
       size='m'
       onClick={close}
       iconButton={

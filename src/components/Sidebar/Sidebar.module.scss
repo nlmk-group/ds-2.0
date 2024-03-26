@@ -1,0 +1,146 @@
+@mixin column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin cell {
+  display: flex;
+  height: var(--80-size);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.root {
+  @include column;
+  position: sticky;
+  flex-shrink: 0;
+  top: 0;
+  width: var(--80-size);
+  transition: width 0.5s;
+
+  &-vertical {
+    height: 100vh;
+
+    &-expanded {
+      width: 256px;
+    }
+  }
+
+  &-horizontal {
+    height: var(--80-size);
+
+    &-expanded {
+      width: 100%;
+    }
+  }
+}
+
+.menu {
+  position: relative;
+  z-index: 100;
+  background: var(--ac-sidebar-section-default-bg);
+  flex-shrink: 0;
+  justify-content: space-between;
+
+  &-vertical {
+    @include column;
+    height: 100%;
+  }
+
+  &-horizontal {
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+.burger {
+  @include cell;
+  width: var(--80-size);
+  justify-content: center;
+  background: var(--ac-sidebar-section-default-bg);
+
+  &:hover {
+    background: var(--ac-sidebar-section-hover-bg);
+  }
+}
+
+.head {
+  @include column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.top {
+  @include cell;
+  cursor: initial;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ac-sidebar-section-top-section-bg);
+  padding: 0 var(--8-space);
+
+  &-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--64-size);
+  height: var(--64-size);
+  flex-shrink: 0;
+}
+
+.company {
+  color: var(--ac-sidebar-section-text);
+  margin: 0 var(--4-space);
+  opacity: 0.5;
+}
+
+.logout{
+  &:hover {
+    background: var(--ac-button-black-clear-hover-bg);
+  }
+}
+
+.body {
+  display: flex;
+  flex-grow: 1;
+
+  &-vertical {
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &-horizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+}
+
+.topSection,
+.bottomSection {
+  @include column;
+}
+
+.rightSection {
+  @include cell;
+}
+
+.search {
+  @include cell;
+  justify-content: center;
+  width: var(--64-size);
+
+  &:hover {
+    background: var(--ac-sidebar-section-hover-bg);
+  }
+}

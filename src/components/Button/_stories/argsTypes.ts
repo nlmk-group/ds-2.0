@@ -1,4 +1,4 @@
-import { sizes, variant } from '../types';
+import { EFill, ESizes, EVariant } from '../enums';
 
 export const argsTypes = {
   children: {
@@ -6,7 +6,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   size: {
-    description: `Размер кнопки – <b>${Object.values(sizes).join(' | ')}</b>.`,
+    description: `Размер кнопки – <b>${Object.values(ESizes).join(' | ')}</b>.`,
     table: {
       defaultValue: {
         summary: 'm'
@@ -15,11 +15,11 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: ['m', 's', 'xs'],
+    options: Object.values(ESizes),
     control: { type: 'select' }
   },
   variant: {
-    description: `Тип кнопки – <b>${Object.values(variant).join(' | ')}</b>.`,
+    description: `Тип кнопки – <b>${Object.values(EVariant).join(' | ')}</b>.`,
     table: {
       defaultValue: {
         summary: 'primary'
@@ -28,7 +28,20 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text'],
+    options: Object.values(EVariant),
+    control: { type: 'select' }
+  },
+  fill: {
+    description: `Тип кнопки заливки – <b>${Object.values(EFill).join(' | ')}</b>.`,
+    table: {
+      defaultValue: {
+        summary: 'primary'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(EFill),
     control: { type: 'select' }
   },
   disabled: {

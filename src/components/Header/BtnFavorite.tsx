@@ -24,7 +24,8 @@ const BtnFavorite: FC<{
             htmlColor={'var(--text-grey-400)'}
           />
         }
-        variant='text'
+        variant='primary'
+        fill='clear'
         size='xs'
       />
     </div>

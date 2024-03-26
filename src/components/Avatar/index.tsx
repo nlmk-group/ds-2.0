@@ -4,7 +4,7 @@ import Icon from '@components/Icon';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 
-import { IAvatarProps } from './types';
+import { IAvatarComponent } from './types';
 
 import styles from './Avatar.module.scss';
 
@@ -13,7 +13,7 @@ import { AvatarShape, AvatarSize } from './enums';
 import { IconBadge } from './subcomponents/IconBadge';
 import { getSizingStyles } from './utils';
 
-const Avatar: React.FC<IAvatarProps> = ({
+const Avatar: IAvatarComponent = ({
   size = AvatarSize.m,
   shape = AvatarShape.circle,
   imageSrc,
@@ -47,12 +47,7 @@ const Avatar: React.FC<IAvatarProps> = ({
 
   return (
     <div
-      className={clsx(
-        styles.avatar,
-        styles[size],
-        styles[shape],
-        className
-      )}
+      className={clsx(styles.avatar, styles[size], styles[shape], className)}
       style={avatarStyles}
       data-testid="AVATAR"
     >
@@ -68,38 +63,22 @@ const Avatar: React.FC<IAvatarProps> = ({
       )}
 
       {shouldShowIcon && (
-        <div
-          className={styles['user-icon']}
-          data-testid='AVATAR_ICON'
-        >
-          <Icon
-            name='IconPersonFilled32'
-            containerSize={iconSize}
-            htmlColor='var(--never-changes-white)'
-          />
+        <div className={styles['user-icon']} data-testid="AVATAR_ICON">
+          <Icon name="IconPersonFilled32" containerSize={iconSize} htmlColor="var(--never-changes-white)" />
         </div>
       )}
 
       {shouldShowOnlineIndicator && (
         <div
-          className={clsx(
-            styles['online-indicator'],
-            styles[online ? 'online' : 'offline']
-          )}
+          className={clsx(styles['online-indicator'], styles[online ? 'online' : 'offline'])}
           style={onlineIndicatorStyles}
-          data-testid='AVATAR_INDICATOR_ONLINE'
+          data-testid="AVATAR_INDICATOR_ONLINE"
         />
       )}
 
       {hasNumberIndicator && (
-        <div
-          className={styles['number-indicator']}
-          style={numberIndicatorStyles}
-          data-testid='AVATAR_INDICATOR_NUMBER'
-        >
-          <Typography variant='Caption-Bold'>
-            {numberIndicator}
-          </Typography>
+        <div className={styles['number-indicator']} style={numberIndicatorStyles} data-testid="AVATAR_INDICATOR_NUMBER">
+          <Typography variant="Caption-Bold">{numberIndicator}</Typography>
         </div>
       )}
 
@@ -111,5 +90,7 @@ const Avatar: React.FC<IAvatarProps> = ({
     </div>
   );
 };
+
+Avatar.componentType = 'Avatar';
 
 export default Avatar;

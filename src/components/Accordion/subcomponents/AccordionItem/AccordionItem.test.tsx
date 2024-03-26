@@ -63,5 +63,5 @@ test("AccordionItem doesn't expand/collapse on click if disabled", () => {
     </AccordionItem>
   );
   fireEvent.click(screen.getByText('Item 1'));
-  expect(screen.queryByText('Content 1')).toBeNull();
+  expect(screen.getByText('Content 1').classList.contains('content')).toBe(false);
 });

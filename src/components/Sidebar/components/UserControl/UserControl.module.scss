@@ -1,0 +1,61 @@
+@mixin cell {
+  display: flex;
+  height: var(--80-size);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user{
+  @include cell;
+  padding: 0 var(--12-space) 0 var(--8-space);
+
+  &-text {
+    color: var(--ac-sidebar-section-text);
+  }
+
+  &:hover {
+    background: var(--ac-sidebar-section-hover-bg);
+  }
+}
+
+.login {
+  @include cell;
+  padding: 0 var(--12-space);
+
+  &-collapsed {
+    justify-content: center;
+  }
+
+  &-text {
+    color: var(--ac-button-primary-clear-default-text);
+    padding: 0 var(--4-space) 0 var(--12-space);
+  }
+
+  &:hover {
+    background: var(--ac-sidebar-section-hover-bg);
+  }
+}
+
+.logout {
+  @include cell;
+  justify-content: center;
+  width: var(--80-size);
+  background: var(--ac-sidebar-section-top-section-bg);
+
+  &:hover {
+    button {
+      background: var(--ac-button-black-clear-hover-bg);
+    }
+  }
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--64-size);
+  height: var(--64-size);
+  flex-shrink: 0;
+}

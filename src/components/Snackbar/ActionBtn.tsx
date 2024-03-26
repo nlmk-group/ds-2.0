@@ -11,7 +11,8 @@ const ActionButton: FC<IActionBtn> = ({ actionButton, actionButtonText, color })
   return (
     <Button
       data-testid='SNACKBAR_ACTION'
-      variant='text'
+      variant='primary'
+      fill='clear'
       size='m'
       onClick={actionButton}
       className={clsx(redGreenCondition.includes(color as colorMapping) && styles['btn-color-green-red'])}

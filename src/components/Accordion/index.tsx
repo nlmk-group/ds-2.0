@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 
 import clsx from 'clsx';
 
@@ -40,22 +40,23 @@ export const Accordion: React.FC<IAccordionProps> = ({
 
   return (
     <div className={clsx(styles.wrapper, className)} {...props}>
-      {items.map(item => {
+      {items.map((item: TAccordionItem) => {
         return (
-          <AccordionItem
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            onExpand={handleExpand}
-            isExpanded={expandedItemIds.includes(item.id)}
-            startIcon={startIcon}
-            endIcon={endIcon}
-            size={size}
-            variant={variant}
-            disabled={disabled || item.disabled}
-          >
-            {item.content}
-          </AccordionItem>
+          <Fragment key={item.id}>
+            <AccordionItem
+              id={item.id}
+              title={item.title}
+              onExpand={handleExpand}
+              isExpanded={expandedItemIds.includes(item.id)}
+              startIcon={startIcon}
+              endIcon={endIcon}
+              size={size}
+              variant={variant}
+              disabled={disabled || item.disabled}
+            >
+              {item.content}
+            </AccordionItem>
+          </Fragment>
         );
       })}
     </div>

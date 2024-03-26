@@ -104,7 +104,7 @@ export const DividerCustomClassName = (argTypes: IDivider): ReactNode => {
       <Divider {...argTypes} orientation={orientationMapping.left} className={style['test-classname']}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Экспертиза</span>
-          <Button variant="text">
+          <Button variant="primary" fill="clear">
             <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
           </Button>
         </div>
@@ -146,7 +146,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
           <span>Нажать</span>
         </Button>
         <Divider {...argTypes} type={typeMapping.vertical} dashed />
-        <Button variant="text">
+        <Button variant="primary" fill="clear">
           <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
         </Button>
       </div>
@@ -154,7 +154,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
       <Divider {...argTypes} orientation={orientationMapping.left}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Экспертиза</span>
-          <Button variant="text">
+          <Button variant="primary" fill="clear">
             <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
           </Button>
         </div>

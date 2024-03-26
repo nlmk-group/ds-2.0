@@ -119,12 +119,12 @@ export default App = () => (
           />
           <Editor
             description="Бейджи аватаров: иконка, специальный бейдж (День Рождения)"
-            code={`import { Avatar } from '@nlmk/ds-2.0';
+            code={`import { Avatar, IconDoneCheckFilled16, IconBirthday16 } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-    <Avatar badgeIconName="IconDoneCheckFilled24" />
-    <Avatar badgeIconName="IconBirthday24" badgeSpecialIcon />
+    <Avatar badgeIconName={<IconDoneCheckFilled16/>} />
+    <Avatar badgeIconName={<IconBirthday16 />} badgeSpecialIcon />
   </>
 )
               `}

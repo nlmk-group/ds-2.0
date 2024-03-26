@@ -4,3 +4,8 @@
   border-radius: 10px;
   width: 900px;
 }
+
+.helper-text-wrapper {
+  display: flex;
+  gap: var(--8-space);
+}

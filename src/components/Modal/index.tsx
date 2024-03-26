@@ -93,7 +93,8 @@ const Modal: FC<IModalProps> = ({
       </ClickAwayListener>
       <Button
         iconButton={<IconCloseOutlined32 />}
-        variant="text"
+        variant="primary"
+        fill="clear"
         className={styles.modalClose}
         onClick={onClose}
         aria-label="Close"

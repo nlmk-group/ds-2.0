@@ -37,7 +37,7 @@ export const Badge: FC<IBadgeProps> = ({
   }, [color, compact, outline, className]);
 
   return (
-    <div className={classes}>
+    <div className={classes} data-testid='BADGE_WRAPPER'>
       <Typography variant={large ? 'Body1-Bold' : 'Caption-Bold'}>{children}</Typography>
     </div>
   );

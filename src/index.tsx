@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import Stories from './components/_storybook/Stories';
 import { IFile } from './components/AttachFiles/subcomponents/File/types';
 
-import { Accordion, Alert, DragAndDrop, Select, Tabs, ThemeSwitcher, ToggleButtonGroup } from './components';
+import { Accordion, Alert, DragAndDrop, Select, Switch, Tabs, ThemeSwitcher, ToggleButtonGroup } from './components';
 
 const { Button } = ToggleButtonGroup;
 
@@ -73,14 +73,39 @@ const App = () => {
   );
 };
 
+const RenderSwitch = () => {
+  const [checked, setChecked] = useState(false);
+  const [secondChecked, setSecondChecked] = useState(false);
+  return (
+    <>
+      <Switch
+        checked={checked}
+        onChange={() => {
+          setChecked(!checked);
+        }}
+        label="Произвольный текст"
+      />
+      <br/>
+      <Switch
+        checked={true}
+        onChange={() => {
+          setSecondChecked(!secondChecked);
+        }}
+        label="Произвольный текст"
+      />
+    </>
+  );
+};
+
 root.render(
   <StrictMode>
     <div className="development-block">
+      <RenderSwitch />
       {/* <App />
       <br />
       <ThemeSwitcher /> */}
       {/* <SomeTabs /> */}
-      <Select options={options} label="Одиночный выбор" multiple={false} />
+      {/* <Select options={options} label="Одиночный выбор" multiple={false} /> */}
       {/* <ThemeSwitcher />
       <Button variant="primary">Great day!</Button>
       <DatePicker /> */}

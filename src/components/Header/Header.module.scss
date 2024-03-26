@@ -42,6 +42,12 @@
   }
 }
 
+.btn-back-icon {
+  path {
+    fill: var(--primary-blue-600);
+  }
+}
+
 .title {
   color: var(--text-grey-900);
   overflow: hidden;

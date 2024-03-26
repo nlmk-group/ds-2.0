@@ -54,13 +54,15 @@ const Alert: FC<IAlert> = ({
     <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`standard-${severity}`], className)}>
       <div className={styles.info}>
         <div data-testid="ALERT_TITLE" className={styles['content-main']}>
-          <IconHelper htmlColor={iconColorHandler()}/>
+          <div className={styles['icon-wrapper']}>
+            <IconHelper htmlColor={iconColorHandler()}/>
+          </div>
           <Typography variant="Body2-Bold">{title}</Typography>
 
           <div className={styles['action-wrapper']}>
             {action !== null && action}
             {!!close && close !== null && (
-              <Button variant="text" onClick={close} className={styles['btn-close']} size="xs">
+              <Button variant="primary" fill="clear" onClick={close} className={styles['btn-close']} size="xs">
                 <IconCloseOutlined24 />
               </Button>
             )}

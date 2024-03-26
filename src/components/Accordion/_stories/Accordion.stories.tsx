@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Accordion from '@components/Accordion';
 
@@ -6,6 +6,9 @@ import styles from './Accordion.module.scss';
 
 import {
   ACCORDION_ITEMS_MOCK,
+  ACCORDION_ITEMS_MOCK_TWO,
+  ACCORDION_ITEMS_MOCK_THIRD,
+  ACCORDION_ITEMS_MOCK_FOURTH,
   ACCORDION_MULTI_EXPANDED_MOCK,
   FOLDED_ACCORDION_ITEMS_MOCK
 } from '../_mock/accordionItems';
@@ -21,6 +24,13 @@ export default {
   decorators: [withPadding],
   argTypes: argsTypes
 };
+
+const mockArr = [
+  ACCORDION_ITEMS_MOCK,
+  ACCORDION_ITEMS_MOCK_TWO,
+  ACCORDION_ITEMS_MOCK_THIRD,
+  ACCORDION_ITEMS_MOCK_FOURTH
+]
 
 export const AccordionDefault = (argTypes: IAccordionProps): JSX.Element => {
   return (
@@ -38,32 +48,40 @@ export const AccordionSizes = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       {Object.values(sizesMapping).map((size, index) => (
-        <Accordion key={index} {...argTypes} size={size} />
+        <Accordion
+          key={index}
+          {...argTypes}
+          size={size}
+          items={mockArr[index]}
+        />
       ))}
     </div>
   );
 };
 AccordionSizes.storyName = 'Варианты размеров аккордеона';
-AccordionSizes.args = {
-  items: ACCORDION_ITEMS_MOCK
-};
 
 export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       {Object.values(iconsMapping).map((icon, index) => (
-        <>
-          <Accordion key={index} {...argTypes} startIcon={icon} />
-          <Accordion key={index} {...argTypes} startIcon={null} endIcon={icon} />
-        </>
+        <Fragment key={index}>
+          <Accordion
+            {...argTypes}
+            startIcon={icon}
+            items={mockArr[index]}
+          />
+          <Accordion
+            {...argTypes}
+            startIcon={null}
+            endIcon={icon}
+            items={mockArr[index+2]}
+          />
+        </Fragment>
       ))}
     </div>
   );
 };
 AccordionIcons.storyName = 'Варианты аккордеона с иконками';
-AccordionIcons.args = {
-  items: ACCORDION_ITEMS_MOCK
-};
 
 export const AccordionPaper = (argTypes: IAccordionProps): JSX.Element => {
   return (

@@ -1,0 +1,33 @@
+.root {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey-300) transparent;
+}
+
+.webkit {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--grey-300);
+    border-radius: 2px;
+  }
+}
+
+.safari {
+  scrollbar-gutter: stable;
+}

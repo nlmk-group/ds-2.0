@@ -4,10 +4,15 @@ import path from 'path';
 // Корневая директория
 const rootDir = path.resolve(__dirname, '..');
 // Папки, которые нужно обработать
-const foldersToProcess: string[] = ['System', 'Metallurgy', 'Custom', 'MES', 'NLMKONE', 'Filters'];
+const foldersToProcess: string[] = ['System', 'Metallurgy', 'Custom', 'MES', 'NLMKONE', 'Filters', 'SPEP'];
 // Размеры иконок
-type IconSizes = 16 | 24 | 32;
-const iconSizes: IconSizes[] = [16, 24, 32];
+enum EIconSize {
+  Small = 16,
+  Medium = 24,
+  Large = 32
+}
+const iconSizes: EIconSize[] = Object.values(EIconSize) as EIconSize[];
+
 // Объект для хранения всех названий иконок по папкам
 const allIconNamesByFolder: { [folder: string]: string[] } = {};
 
@@ -23,8 +28,8 @@ function createFileHeader(): string {
 \n`;
 }
 
-function getAvailableIconSizes(directory: string, iconFolder: string): IconSizes[] {
-  return iconSizes.filter(size => fs.existsSync(path.join(directory, iconFolder, `${size}.tsx`))) as IconSizes[];
+function getAvailableIconSizes(directory: string, iconFolder: string): EIconSize[] {
+  return iconSizes.filter(size => fs.existsSync(path.join(directory, iconFolder, `${size}.tsx`))) as EIconSize[];
 }
 
 function updateIndexFiles(directory: string): void {
@@ -111,7 +116,6 @@ const processFolders = (): void => {
 
       return sizeIconsEntries ? `  ${size}: {\n${sizeIconsEntries}\n  }` : '';
     })
-    // Отфильтровываем пустые строки
     .filter(part => part)
     .join(',\n');
 
@@ -120,6 +124,20 @@ const processFolders = (): void => {
     fileHeader +
     importsExportsContent +
     `\n\nconst icons: any = {\n${iconsObjectParts}\n} as const;\n\nexport default icons;`;
+
+  // Сбор всех имен иконок в один массив
+  const allIconNames = Object.values(allIconNamesByFolder).flat();
+
+  // Генерация строки с объявлением типа
+  const typeDefinition = `export type TIconName = '${allIconNames.join("' | '")}';\n`;
+
+  // Путь к файлу unionType.ts
+  const unionTypeFilePath = path.join(rootDir, 'Icon/IconsDirectory/unionType.ts');
+
+  // Запись в файл
+  fs.writeFileSync(unionTypeFilePath, typeDefinition, 'utf8');
+  logger(`Файл unionType.ts был успешно обновлен.`);
+
   fs.writeFileSync(iconsFilePath, exportContent);
 
   logger(`Объект icons сохранен в ${iconsFilePath}`);

@@ -1,6 +1,5 @@
-import { sizesMappingInput } from '@components/declaration';
-
-import { gradientMapping, orientationMapping } from '../enums';
+import { orientationMapping } from '../enums';
+import { EFill, ESizes, EVariant } from '@components/Button/enums'
 
 const argsTypes = {
   children: {
@@ -27,26 +26,39 @@ const argsTypes = {
     description: 'Необязательный атрибут. Определяет размер кнопок в группе.',
     table: {
       defaultValue: {
-        summary: sizesMappingInput.m
+        summary: ESizes.m
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(sizesMappingInput),
+    options: Object.values(ESizes),
     control: { type: 'select' }
   },
   variant: {
     description: 'Необязательный атрибут. Определяет тип кнопок в группе.',
     table: {
       defaultValue: {
-        summary: gradientMapping.primary
+        summary: EVariant.primary
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(gradientMapping),
+    options: Object.values(EVariant),
+    control: { type: 'select' }
+  },
+  fill: {
+    description: 'Необязательный атрибут. Определяет тип заливки кнопок в группе.',
+    table: {
+      defaultValue: {
+        summary: EVariant.primary
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(EFill),
     control: { type: 'select' }
   },
   orientation: {

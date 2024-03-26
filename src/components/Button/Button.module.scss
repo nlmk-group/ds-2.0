@@ -4,6 +4,8 @@
   border: 0;
   outline: none;
   cursor: pointer;
+  transition: 0.08s;
+  width: max-content;
 
   &:disabled {
     cursor: default;
@@ -85,144 +87,188 @@
   margin: auto;
 }
 
-/* primary variant */
-
-.primary {
-  background-color: var(--ac-button-primary-solid-default-bg);
-  color: var(--ac-button-primary-solid-default-text);
+@mixin solid-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon) {
+  background-color: $bg;
+  color: $tx;
 
   &:not(:disabled) {
     &:hover {
-      background: var(--ac-button-primary-solid-hover-bg);
-      color: var(--ac-button-primary-solid-hover-text);
+      background: $hbg;
+      color: $htx;
     }
 
     &:active {
-      background: var(--ac-button-primary-solid-pressed-bg);
-      color: var(--ac-button-primary-solid-pressed-text);
+      background: $abg;
+      color: $atx
     }
   }
 
   path {
-    fill: var(--ac-icon-white);
+    fill: $icon;
   }
+}
+
+@mixin outline-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon, $br, $hbr, $abr) {
+  @include solid-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon);
+  border: var(--2-border) solid $br;
+  &:not(:disabled) {
+    &:hover {
+      border-color: $hbr;
+    }
+
+    &:active {
+      border-color: $abr;
+    }
+  }
+}
+
+/* primary solid variant */
+
+.primary-solid {
+  @include solid-btn(
+    var(--ac-button-primary-solid-default-bg),
+    var(--ac-button-primary-solid-default-text),
+    var(--ac-button-primary-solid-hover-bg),
+    var(--ac-button-primary-solid-hover-text),
+    var(--ac-button-primary-solid-pressed-bg),
+    var(--ac-button-primary-solid-pressed-text),
+    var(--ac-icon-white)
+  )
+}
+
+/* primary outline variant */
+
+.primary-outline {
+  @include outline-btn(
+    transparent,
+    var(--ac-button-primary-outline-default-text),
+    var(--ac-button-primary-outline-hover-bg),
+    var(--ac-button-primary-outline-hover-text),
+    var(--ac-button-primary-outline-pressed-bg),
+    var(--ac-button-primary-outline-pressed-text),
+    var(--ac-icon-blue),
+    var(--ac-button-primary-outline-default-stroke),
+    var(--ac-button-primary-outline-hover-stroke),
+    var(--ac-button-primary-outline-pressed-stroke)
+  )
+}
+
+/* primary clear variant */
+
+.primary-clear {
+  @include solid-btn(
+    transparent,
+    var(--ac-button-primary-clear-default-text),
+    var(--ac-button-primary-clear-hover-bg),
+    var(--ac-button-primary-clear-hover-text),
+    var(--ac-button-primary-clear-pressed-bg),
+    var(--ac-button-primary-clear-pressed-text),
+    var(--ac-icon-blue)
+  )
 }
 
 /* secondary variant */
 
 .secondary {
-  background-color: var(--ac-button-secondary-solid-default-bg);
-  color: var(--ac-button-secondary-solid-default-text);
-
-  &:not(:disabled) {
-    &:hover {
-      background: var(--ac-button-secondary-solid-hover-bg);
-      color: var(--ac-button-secondary-solid-hover-text);
-    }
-
-    &:active {
-      background: var(--ac-button-secondary-solid-pressed-bg);
-      color: var(--ac-button-secondary-solid-pressed-text);
-    }
-  }
-
-  path {
-    fill: var(--ac-icon-blue);
-  }
+  @include solid-btn(
+    var(--ac-button-secondary-solid-default-bg),
+    var(--ac-button-secondary-solid-default-text),
+    var(--ac-button-secondary-solid-hover-bg),
+    var(--ac-button-secondary-solid-hover-text),
+    var(--ac-button-secondary-solid-pressed-bg),
+    var(--ac-button-secondary-solid-pressed-text),
+    var(--ac-icon-blue)
+  )
 }
 
-/* grey variant */
+/* grey solid variant */
 
-.grey {
-  background-color: var(--ac-button-grey-solid-default-bg);
-  color: var(--ac-button-grey-solid-default-text);
-
-  &:not(:disabled) {
-    &:hover {
-      background-color: var(--ac-button-grey-solid-hover-bg);
-      color: var(--ac-button-grey-solid-hover-text);
-    }
-
-    &:active {
-      background-color: var(--ac-button-grey-solid-pressed-bg);
-      color: var(--ac-button-grey-solid-pressed-text);
-    }
-  }
+.grey-solid {
+  @include solid-btn(
+    var(--ac-button-grey-solid-default-bg),
+    var(--ac-button-grey-solid-default-text),
+    var(--ac-button-grey-solid-hover-bg),
+    var(--ac-button-grey-solid-hover-text),
+    var(--ac-button-grey-solid-pressed-bg),
+    var(--ac-button-grey-solid-pressed-text),
+    var(--ac-icon-blue)
+  )
 }
 
-/* outline variant */
+/* grey outline variant */
 
-.outline {
-  background-color: transparent;
-  border: var(--2-border) solid var(--ac-button-primary-outline-default-stroke);
-  color: var(--ac-button-primary-outline-default-text);
-
-  &:not(:disabled) {
-    &:hover {
-      background-color: var(--ac-button-primary-outline-hover-bg);
-      border-color: var(--ac-button-primary-outline-hover-stroke);
-      color: var(--ac-button-primary-outline-hover-text);
-    }
-
-    &:active {
-      background-color: var(--ac-button-primary-outline-pressed-bg);
-      border-color: var(--ac-button-primary-outline-pressed-stroke);
-      color: var(--ac-button-primary-outline-pressed-text);
-    }
-  }
-
-  path {
-    fill: var(--ac-icon-blue);
-  }
+.grey-outline {
+  @include outline-btn(
+    transparent,
+    var(--ac-button-grey-outline-default-text),
+    var(--ac-button-grey-outline-hover-bg),
+    var(--ac-button-grey-outline-hover-text),
+    var(--ac-button-grey-outline-pressed-bg),
+    var(--ac-button-grey-outline-pressed-text),
+    var(--ac-icon-grey),
+    var(--ac-button-grey-outline-default-stroke),
+    var(--ac-button-grey-outline-hover-stroke),
+    var(--ac-button-grey-outline-pressed-stroke)
+  )
 }
 
-/* greyOutline variant */
+/* grey clear variant */
 
-.greyOutline {
-  background-color: transparent;
-  border: var(--2-border) solid var(--ac-button-grey-outline-default-stroke);
-  color: var(--ac-button-grey-outline-default-text);
-
-  &:not(:disabled) {
-    &:hover {
-      background-color: var(--ac-button-grey-outline-hover-bg);
-      border-color: var(--ac-button-grey-outline-hover-stroke);
-      color: var(--ac-button-grey-outline-hover-text);
-    }
-
-    &:active {
-      background-color: var(--ac-button-grey-outline-pressed-bg);
-      border-color: var(--ac-button-grey-outline-pressed-stroke);
-      color: var(--ac-button-grey-outline-pressed-text);
-    }
-  }
-
-  path {
-    fill: var(--ac-icon-grey);
-  }
+.grey-clear {
+  @include solid-btn(
+    transparent,
+    var(--ac-button-grey-clear-default-text),
+    var(--ac-button-grey-clear-hover-bg),
+    var(--ac-button-grey-clear-hover-text),
+    var(--ac-button-grey-clear-pressed-bg),
+    var(--ac-button-grey-clear-pressed-text),
+    var(--ac-icon-grey)
+  )
 }
 
-/* text variant */
+/* black solid variant */
 
-.text {
-  background-color: transparent;
-  color: var(--ac-button-primary-clear-default-text);
+.black-solid {
+  @include solid-btn(
+    var(--ac-button-black-solid-default-bg),
+    var(--ac-button-black-solid-default-text),
+    var(--ac-button-black-solid-hover-bg),
+    var(--ac-button-black-solid-hover-text),
+    var(--ac-button-black-solid-pressed-bg),
+    var(--ac-button-black-solid-pressed-text),
+    var(--ac-icon-white)
+  )
+}
 
-  &:not(:disabled) {
-    &:hover {
-      background-color: var(--ac-button-primary-clear-hover-bg);
-      color: var(--ac-button-primary-clear-hover-text);
-    }
+/* black outline variant */
 
-    &:active {
-      background-color: var(--ac-button-primary-clear-pressed-bg);
-      color: var(--ac-button-primary-clear-pressed-text);
-    }
-  }
+.black-outline {
+  @include outline-btn(
+    transparent,
+    var(--ac-button-black-outline-default-text),
+    var(--ac-button-black-outline-hover-bg),
+    var(--ac-button-black-outline-hover-text),
+    var(--ac-button-black-outline-pressed-bg),
+    var(--ac-button-black-outline-pressed-text),
+    var(--ac-icon-grey),
+    var(--ac-button-black-outline-default-stroke),
+    var(--ac-button-black-outline-hover-stroke),
+    var(--ac-button-black-outline-pressed-stroke)
+  )
+}
 
-  path {
-    fill: var(--ac-icon-blue);
-  }
+/* black clear variant */
+
+.black-clear {
+  @include solid-btn(
+    transparent,
+    var(--ac-button-black-clear-default-text),
+    var(--ac-button-black-clear-hover-bg),
+    var(--ac-button-black-clear-hover-text),
+    var(--ac-button-black-clear-pressed-bg),
+    var(--ac-button-black-clear-pressed-text),
+    var(--ac-icon-grey)
+  )
 }
 
 .text-height-m {

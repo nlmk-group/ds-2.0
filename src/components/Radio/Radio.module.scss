@@ -1,14 +1,14 @@
 .root {
   @mixin size-list {
     appearance: none;
-    height: var(--20-size);
-    width: var(--20-size);
+    height: var(--16-size);
+    width: var(--16-size);
   }
 
   @mixin small-size-list {
     appearance: none;
-    height: var(--16-size);
-    width: var(--16-size);
+    height: calc(var(--20-size) / 2);
+    width: calc(var(--20-size) / 2);
   }
 
   @mixin padding-list {
@@ -19,8 +19,10 @@
   }
 
   input[type="radio"] {
-    @include size-list;
+    height: var(--20-size);
+    width: var(--20-size);
     position: relative;
+    margin: 0;
   }
 
   input[type="radio"] {
@@ -31,7 +33,7 @@
       cursor: pointer;
       position: absolute;
       border: var(--2-border) solid var(--ac-radiobutton-unselected-normal-stroke);
-      background: transparent;
+      background: var(--ac-radiobutton-selected-normal-bg);
     }
   }
 

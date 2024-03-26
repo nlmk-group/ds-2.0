@@ -65,7 +65,16 @@ export const AllIcons = (): JSX.Element => {
     'IconPhoneCallContact32',
     'IconTemperatureStroke16',
     'IconTemperatureStroke24',
-    'IconTemperatureStroke32'
+    'IconTemperatureStroke32',
+    'IconWeightTypeOutlined16',
+    'IconWeightTypeOutlined24',
+    'IconWeightTypeOutlined32',
+    'IconMesBunkerOutlined16',
+    'IconMesBunkerOutlined24',
+    'IconMesBunkerOutlined32',
+    'IconPicInPic16',
+    'IconPicInPic24',
+    'IconPicInPic32'
   ];
   // Иконки и с fill, и со stroke
   const iconsUseFillAndStroke = [
@@ -83,7 +92,10 @@ export const AllIcons = (): JSX.Element => {
     'IconBalanceOutlined32',
     'IconKovsh16',
     'IconKovsh24',
-    'IconKovsh32'
+    'IconKovsh32',
+    'IconWeightTypeFilled16',
+    'IconWeightTypeFilled24',
+    'IconWeightTypeFilled32'
   ];
   // Иконки которые задуманы для использования только в одном цвете
   const iconsAlwaysDefaultColor = ['IconBorder16', 'IconBorder24', 'IconBorder32'];
@@ -118,9 +130,7 @@ export const AllIcons = (): JSX.Element => {
         iconsByNames[formattedIconName] = {};
       }
       const useStroke = iconName.includes('Kovsh');
-      // const useFillAndStroke = iconName.includes('Calendar');
       iconsByNames[formattedIconName][size] = createElement(icons[size][iconName], {
-        color: 'primary',
         style: {
           ...(useStroke && { stroke: 'var(--icon-color)' })
         }
@@ -173,7 +183,7 @@ export const AllIcons = (): JSX.Element => {
       <div className={styles.table}>
         {filteredIcons.length > 0 ? (
           filteredIcons.map((icon, key) => (
-            <Card key={key} className={styles.card}>
+            <Card key={key} className={styles.card} indicatorStatus="info">
               <div className={styles.cardHeader}>
                 <Typography variant="Body1" color="primary">
                   {startCase(formatIconName(icon.title))}
@@ -185,7 +195,7 @@ export const AllIcons = (): JSX.Element => {
                   const useFillAndStroke = iconsUseFillAndStroke.includes(`Icon${icon.title}${size}`);
                   const isAlwaysDefaultColorIcon = iconsAlwaysDefaultColor.includes(`Icon${icon.title}${size}`);
                   return (
-                    <CopyWrapper copy={`Icon${icon.title}${size}`} placement="bottom">
+                    <CopyWrapper key={`Icon${icon.title}${size}`} copy={`Icon${icon.title}${size}`} placement="bottom">
                       <div
                         key={size}
                         className={clsx(styles.icon, {
@@ -203,7 +213,7 @@ export const AllIcons = (): JSX.Element => {
             </Card>
           ))
         ) : (
-          <Typography variant="Heading2" className={styles.noResults}>
+          <Typography variant="Heading2" color="primary" className={styles.noResults}>
             Ничего не найдено
           </Typography>
         )}

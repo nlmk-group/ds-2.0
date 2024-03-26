@@ -13,6 +13,28 @@
   }
 }
 
+.expandable {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.expanded {
+  grid-template-rows: 1fr;
+}
+
+.content-basic {
+  overflow: hidden;
+  padding: unset;
+  transition: all 0.3s ease-in-out;
+  transform-origin: left top;
+  opacity: 0;
+}
+
+.content {
+  opacity: var(--100-opacity);
+}
+
 .accordionItem {
   width: 100%;
   position: relative;
@@ -20,7 +42,7 @@
   .header {
     cursor: pointer;
     display: grid;
-    grid-template-columns: 16px 1fr 16px;
+    grid-template-columns: var(--16-space) 1fr var(--16-space);
     gap: var(--16-space);
     align-items: center;
   }
@@ -86,7 +108,6 @@
 
   &.s {
     @include padding(var(--8-space), var(--16-space));
-
     .content {
       padding: var(--4-space) var(--16-space) var(--8-space) var(--16-space);
     }
@@ -94,19 +115,38 @@
 
   &.xs {
     @include padding(var(--4-space), var(--16-space));
-
     .content {
       padding: var(--2-space) var(--16-space) var(--4-space) var(--16-space);
     }
   }
 }
 
-.icon-plus-size {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.icon-helper {
   svg {
-    height: calc(var(--6-size) * 2);
-    width: calc(var(--6-size) * 2);
+    transition: 0.3s ease-out;
+  }
+}
+
+.icon-plus {
+  svg {
+    transform: rotate(45deg);
+  }
+}
+
+.icon-cross {
+  svg {
+    transform: rotate(0)
+  }
+}
+
+.icon-down {
+  svg {
+    transform: rotate(0);
+  }
+}
+
+.icon-up {
+  svg {
+    transform: rotate(180deg)
   }
 }

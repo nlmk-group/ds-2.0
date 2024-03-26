@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-
-import { IButtonProps } from './types';
-
-import Badge from '../Badge';
+import { render, screen } from '@testing-library/react';
 import { Button } from './index';
+import { EVariant } from './enums'
+import { IcombinedOption, combinedOptions } from './displayHelper';
 
 describe('src/components/Button', () => {
   const text = 'Some example text';
@@ -46,14 +44,21 @@ describe('src/components/Button', () => {
     expect(button).toHaveAttribute('disabled');
   });
 
-  // Check className
-  test('Кнопка должна корректно принимать разные варианты отображения', () => {
-    const variants: string[] = ['primary', 'secondary', 'grey', 'outline', 'greyOutline', 'text'];
-    variants.map((className: string) => {
-      const { container } = render(<Button variant={className as IButtonProps['variant']} />);
+
+  // check button options
+  combinedOptions().forEach((option: IcombinedOption) => {
+    const { variant, fill } = option
+    test(`Кнопка должна быть отрендерена со стилем ${variant}-${fill}`, () => {
+      const { container } = render(
+        <Button variant={variant} fill={fill}/>
+      );
       const button = container.getElementsByTagName('button')[0];
-      expect(button).toHaveClass(className);
-    });
+      if (variant === EVariant.secondary) {
+        expect(button.classList.contains(variant)).toBeTruthy();
+      } else {
+        expect(button.classList.contains(`${variant}-${fill}`)).toBeTruthy();
+      }
+    })
   });
 
   // Check icon render
@@ -66,11 +71,10 @@ describe('src/components/Button', () => {
 
   // Check badge render
   test('Кнопка должна корректно отображать бейдж', () => {
-    const { container } = render(<Button badge={<Badge color="secondary">1</Badge>}>ok</Button>);
-    const button = container.getElementsByTagName('button')[0];
-    const badge = container.getElementsByTagName('div')[0];
-    expect(badge).toHaveClass('secondary');
-    expect(button).toContainElement(badge);
+    const badgeContent = 1;
+    render(<Button badge={badgeContent}>ok</Button>);
+    expect(screen.getByTestId('BADGE_WRAPPER')).toBeInTheDocument();
+    expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeContent.toString())
   });
 
   // Check compact button prop
@@ -78,5 +82,12 @@ describe('src/components/Button', () => {
     const { container } = render(<Button size="s" />);
     const button = container.getElementsByTagName('button')[0];
     expect(button).toHaveClass('compact');
+  });
+
+  // Check extra compact button prop
+  test('Кнопка должна поддерживать отображение в экстра компактном размере', () => {
+    const { container } = render(<Button size="xs" />);
+    const button = container.getElementsByTagName('button')[0];
+    expect(button).toHaveClass('extra-compact');
   });
 });

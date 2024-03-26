@@ -7,10 +7,12 @@ import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
 import { Tabs, Typography } from '@components/index';
-
+import { EFill, ESizes, EVariant } from '../enums'
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
+
+const FIGMA_LINK = 'https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=102-26898&mode=design&t=AyZ6cEr1XAJLQdOB-0'
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -23,7 +25,7 @@ const Stories = (): JSX.Element => {
           размер, иконки, знаки и стили."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Button"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20844&mode=design&t=awyt3Fzj1XS6th7v-1"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -47,10 +49,10 @@ export default  App = () =>(
   <Button>
     Button
   </Button>
-  <Button size="s">
+  <Button size="${ESizes.s}">
     Button
   </Button>
-  <Button size="xs">
+  <Button size="${ESizes.xs}">
     Button
   </Button>
   </>
@@ -67,21 +69,33 @@ export default  App = () =>(
     <Button>
       Button
     </Button>
-    <Button variant="secondary">
+    <Button fill="${EFill.outline}">
       Button
     </Button>
-    <Button variant="grey">
+    <Button fill="${EFill.clear}">
       Button
     </Button>
-    <Button variant="outline">
-    Button
-  </Button>
-  <Button variant="greyOutline">
-    Button
-  </Button>
-  <Button variant="text">
-    Button
-  </Button>
+    <Button variant="${EVariant.secondary}">
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}">
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}" fill="${EFill.outline}">
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}" fill="${EFill.clear}">
+      Button
+    </Button>
+    <Button variant="${EVariant.black}">
+      Button
+    </Button>
+    <Button variant="${EVariant.black}" fill="${EFill.outline}">
+      Button
+    </Button>
+    <Button variant="${EVariant.black}" fill="${EFill.clear}">
+      Button
+    </Button>
   </>
 )`}
           />
@@ -95,21 +109,33 @@ export default  App = () =>(
     <Button disabled>
       Button
     </Button>
-    <Button variant="secondary" disabled>
+    <Button fill="${EFill.outline}" disabled>
       Button
     </Button>
-    <Button variant="grey" disabled>
+    <Button fill="${EFill.clear}" disabled>
       Button
     </Button>
-    <Button variant="outline" disabled>
-    Button
-  </Button>
-  <Button variant="greyOutline" disabled>
-    Button
-  </Button>
-  <Button variant="text" disabled>
-    Button
-  </Button>
+    <Button variant="${EVariant.secondary}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}" fill="${EFill.outline}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.grey}" fill="${EFill.clear}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.black}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.black}" fill="${EFill.outline}" disabled>
+      Button
+    </Button>
+    <Button variant="${EVariant.black}" fill="${EFill.clear}" disabled>
+      Button
+    </Button>
   </>
 )`}
           />
@@ -121,19 +147,13 @@ export default  App = () =>(
 
 export default  App = () =>(
   <>
-    <Button startIcon={<IconArticleFilled24
-      htmlColor="white"
-    />}>
+    <Button startIcon={<IconArticleFilled24 />}>
       Button
     </Button>
-    <Button variant="secondary" endIcon={<IconArticleFilled24
-      color="primary"
-    />}>
+    <Button variant="${EVariant.secondary}" endIcon={<IconArticleFilled24 />}>
       Button
     </Button>
-    <Button variant="outline" iconButton={<IconArticleFilled24
-      color="primary"
-    />}/>
+    <Button fill="${EFill.outline}" iconButton={<IconArticleFilled24 />}/>
 
   </>
 )`}
@@ -146,15 +166,15 @@ export default  App = () =>(
 
 export default  App = () =>(
   <>
-  <Button badge={<Badge color="secondary">1</Badge>}>
-  Button
-</Button>
-<Button variant="secondary" badge={<Badge color="primary">1</Badge>}>
-  Button
-</Button>
-<Button variant="outline" badge={<Badge color="primary">1</Badge>}>
-  Button
-</Button>
+    <Button badge={1}>
+      Button
+    </Button>
+    <Button variant="${EVariant.secondary}" badge={1}>
+      Button
+    </Button>
+    <Button fill="${EFill.outline}" badge={1}>
+      Button
+    </Button>
   </>
 )`}
           />
@@ -162,7 +182,7 @@ export default  App = () =>(
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20844&mode=design&t=awyt3Fzj1XS6th7v-1" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && (
         <Typography variant="Heading4" color="primary">

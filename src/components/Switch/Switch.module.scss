@@ -1,18 +1,34 @@
 $transition-time: 0.3s;
 $--7-space: 7px;
 $--32-size: 32px;
+$track-width: 34px;
 
 .wrapper {
   display: flex;
   gap: 5px;
+  position: relative;
+}
+
+.checkbox {
+  display: none;
+}
+
+.switch-input {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .root {
-  width: var(--60-size);
-  height: var(--38-size);
+  height: var(--30-size);
   display: flex;
   align-items: center;
-  padding: 0 var(--12-space);
+  padding: var(--4-space) calc(var(--2-space) * 3) var(--4-space) var(--4-space);
   z-index: 0;
   position: relative;
   box-sizing: border-box;
@@ -30,13 +46,12 @@ $--32-size: 32px;
     }
 
     .focus-active {
-      right: 6px;
+      left: calc(var(--12-space) + 3px);
       background: var(--ac-switch-on-focused-focus);
     }
 
     .focus-inactive {
-      top: 4px;
-      left: 6px;
+      right: calc(var(--12-space) + 3px);
       opacity: var(--100-opacity);
       background: var(--ac-switch-off-focused-focus);
     }
@@ -48,9 +63,8 @@ $--32-size: 32px;
 }
 
 .track {
-  transition: all $transition-time ease-in-out;
   height: calc($--7-space * 2);
-  width: 34px;
+  width: $track-width;
   border-radius: $--7-space;
   z-index: 1;
 }
@@ -58,27 +72,24 @@ $--32-size: 32px;
 .track-active {
   background-color: var(--ac-switch-on-normal-track);
 }
-
 .track-active-disabled {
   background-color: var(--ac-switch-on-disabled-track);
 }
-
 .track-inactive {
   background-color: var(--ac-switch-off-normal-track);
 }
-
 .track-inactive-disabled {
   background-color: var(--ac-switch-off-disabled-track);
 }
 
 .touch {
   z-index: 1;
-  top: 9px;
+  top: 5px;
   position: absolute;
   height: var(--20-size);
   width: var(--20-size);
   border-radius: var(--circle-radius);
-  transition: 0.3;
+  transition: background $transition-time;
 }
 
 .focus-wrapper {
@@ -86,36 +97,12 @@ $--32-size: 32px;
   z-index: -2;
 }
 
-@keyframes slide-right {
-  0% {
-    left: unset;
-    right: var(--26-size);
-  }
-
-  100% {
-    right: var(--12-size);
-    left: unset;
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    left: var(--26-size);
-    right: unset;
-  }
-
-  100% {
-    left: var(--12-size);
-    right: unset;
-  }
-}
-
 .inactive {
   background-color: var(--ac-switch-off-normal-thumb);
-  left: var(--12-size);
-  right: unset;
-  animation-name: slide-left;
-  animation-duration: $transition-time;
+  height: calc(var(--20-size) - 2px);
+  width: calc(var(--20-size) - 2px);
+  transform: translateX(-1px);
+  transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: var(--circle-radius);
   border: var(--1-border) solid var(--ac-switch-off-normal-stroke);
 }
@@ -126,12 +113,9 @@ $--32-size: 32px;
 
 .active {
   background-color: var(--ac-switch-on-normal-thumb);
-  right: var(--12-size);
-  left: unset;
-  animation-name: slide-right;
-  animation-duration: $transition-time;
+  transform: translateX(17px);
+  transition: right 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
-
 
 .label {
   display: flex;
@@ -141,10 +125,10 @@ $--32-size: 32px;
 }
 
 .label-disabled {
-  color: var(--text-grey-500)
+  color: var(--text-grey-500);
 }
 
-.iconWrapper {
+.icon-wrapper {
   height: 100%;
   width: 100%;
   display: flex;

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { IconMetallalomScrap16, Switch } from '@components/index';
+import { IconDarkModeOutlined16, IconLightModeOutlined16, Switch } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -39,7 +39,7 @@ export const DefaultSwitch = (argTypes: ISwitch): ReactNode => {
       onChange={(e: any) => {
         setIsChecked(!isChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e);
+          argTypes.onChange(e, isChecked);
         }
       }}
     />
@@ -68,7 +68,7 @@ export const DisabledSwitch = (argTypes: ISwitch): ReactNode => {
       onChange={(e: any) => {
         setIsChecked(!isChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e);
+          argTypes.onChange(e, isChecked);
         }
       }}
     />
@@ -95,7 +95,7 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
         onChange={(e: any) => {
           setIsChecked(!isChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e);
+            argTypes.onChange(e, isChecked);
           }
         }}
         label={'Не активный Switch'}
@@ -106,7 +106,7 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
         onChange={(e: any) => {
           setIsSecondChecked(!isSecondChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e);
+            argTypes.onChange(e, isSecondChecked);
           }
         }}
         label={'Активный Switch'}
@@ -117,7 +117,7 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
         onChange={(e: any) => {
           setIsThirdChecked(!isThirdChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e);
+            argTypes.onChange(e, isThirdChecked);
           }
         }}
         label={'Заблокированный Switch'}
@@ -148,11 +148,11 @@ export const IconsSwitch = (argTypes: ISwitch): ReactNode => {
       onChange={(e: any) => {
         setIsChecked(!isChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e);
+          argTypes.onChange(e, isChecked);
         }
       }}
-      activeIcon={<IconMetallalomScrap16 htmlColor={'var(--ac-icon-white)'} />}
-      inactiveIcon={<IconMetallalomScrap16 htmlColor={'var(--ac-icon-blue)'} />}
+      activeIcon={<IconDarkModeOutlined16 htmlColor={'var(--ac-icon-white)'} />}
+      inactiveIcon={<IconLightModeOutlined16 htmlColor={'var(--ac-icon-blue)'} />}
     />
   );
 };

@@ -10,7 +10,7 @@ export interface IInputAdditionalProps {
   multiline?: boolean;
   pseudo?: boolean;
   icon?: ReactNode;
-  helperText?: string;
+  helperText?: string | ReactNode;
   resize?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   size?: sizesMappingInput;

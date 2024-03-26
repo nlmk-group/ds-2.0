@@ -6,12 +6,12 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { sizesMappingInput } from '@components/declaration';
 import { Tabs, Typography } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { gradientMapping, orientationMapping } from '../enums';
+import { orientationMapping } from '../enums';
+import { EFill, EVariant, ESizes } from '@components/Button/enums'
 import argsTypes from './argsTypes';
 import { BTN_GROUP_GRADIENTS, BTN_GROUP_SIZES, BTN_GROUP_VERTICAL, DEFAULT_BTN_GROUP } from './text';
 
@@ -71,7 +71,7 @@ export default  App = () => (
       gap: '12px'
     }}
   >
-    <ButtonGroup size="${sizesMappingInput.m}">
+    <ButtonGroup size="${ESizes.m}">
       <Button>
         Button
       </Button>
@@ -82,7 +82,7 @@ export default  App = () => (
         Button
       </Button>
     </ButtonGroup>
-    <ButtonGroup size="${sizesMappingInput.s}">
+    <ButtonGroup size="${ESizes.s}">
       <Button>
         Button
       </Button>
@@ -93,7 +93,7 @@ export default  App = () => (
         Button
       </Button>
     </ButtonGroup>
-    <ButtonGroup size="${sizesMappingInput.xs}">
+    <ButtonGroup size="${ESizes.xs}">
       <Button>
         Button
       </Button>
@@ -120,7 +120,7 @@ export default  App = () => (
       gap: '12px'
     }}
   >
-    <ButtonGroup variant="${gradientMapping.outline}">
+    <ButtonGroup>
       <Button>
         Button
       </Button>
@@ -131,7 +131,7 @@ export default  App = () => (
         Button
       </Button>
     </ButtonGroup>
-    <ButtonGroup variant="${gradientMapping.primary}">
+    <ButtonGroup fill="${EFill.outline}">
       <Button>
         Button
       </Button>
@@ -142,7 +142,84 @@ export default  App = () => (
         Button
       </Button>
     </ButtonGroup>
-    <ButtonGroup variant="${gradientMapping.text}">
+    <ButtonGroup fill="${EFill.clear}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.secondary}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.grey}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.grey}" fill="${EFill.outline}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.grey}" fill="${EFill.clear}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.black}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.black}" fill="${EFill.outline}">
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+      <Button>
+        Button
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup variant="${EVariant.black}" fill="${EFill.clear}">
       <Button>
         Button
       </Button>

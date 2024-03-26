@@ -20,13 +20,13 @@ const argsTypes = {
     description: 'Текст, отображающийся рядом с переключателем.',
     table: {
       defaultValue: {
-        summary: ''
+        summary: 'Произвольный текст'
       },
       type: {
         summary: 'string'
       }
     },
-    control: { type: 'string' }
+    control: { type: 'text' }
   },
   disabled: {
     description: 'Отключает функциональность переключателя.',

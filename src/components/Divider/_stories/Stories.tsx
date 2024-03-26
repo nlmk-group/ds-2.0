@@ -174,7 +174,7 @@ export default  App = () => (
           <Editor
             height={400}
             description={DIVIDER_TYPE}
-            code={`import { Divider, Button, Icon } from '@nlmk/ds-2.0';
+            code={`import { Divider, Button, Icon, IconChemical24 } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
   <div style=${styleVariations}>
@@ -231,30 +231,23 @@ export default  App = () =>(
         dashed
         type="vertical"
       />
-      <Button variant="text">
-        <Icon
-          containerSize={24}
-          htmlColor="var(--primary-blue-600)"
-          name="IconChemical24"
-        />
+      <Button fill="clear">
+        <IconChemical24 />
       </Button>
     </div>
     <Divider orientation="left">
       <div
         style={{
           alignItems: 'center',
-          display: 'flex'
+          display: 'flex',
+          gap: '8px'
         }}
       >
         <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
           Экспертиза
         </span>
-        <Button variant="text">
-          <Icon
-            containerSize={24}
-            htmlColor="var(--primary-blue-600)"
-            name="IconChemical24"
-          />
+        <Button fill="clear">
+          <IconChemical24 />
         </Button>
       </div>
     </Divider>

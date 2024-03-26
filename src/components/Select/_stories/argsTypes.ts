@@ -77,6 +77,10 @@ export const argsTypes = {
     description: 'Выбранный(е) элемент(ы) (введите строку или массив строк, разделенный запятыми)',
     control: { type: 'text' }
   },
+  enableScrollToActiveOption: {
+    description: 'Условие фокуса на опциях компонента при раскрытии списка',
+    control: { type: 'text' }
+  },
   onSelectionChange: {
     description: 'Callback при изменении выбранного элемента',
     action: 'изменено selection'

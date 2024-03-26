@@ -1,27 +1,28 @@
 import React, { Children, cloneElement, FC, ReactElement } from 'react';
-
-import { IButtonProps } from '@components/Button/types';
-import { sizesMappingInput } from '@components/declaration';
 import clsx from 'clsx';
 
+import { IButtonProps } from '@components/Button/types';
+
 import { IButtonGroup } from './types';
+import { orientationMapping } from './enums';
+import { EFill, ESizes, EVariant } from '@components/Button/enums'
 
 import styles from './ButtonGroup.module.scss';
-
-import { gradientMapping, orientationMapping } from './enums';
 
 const ButtonGroup: FC<IButtonGroup> = ({
   children,
   className,
   disabled = false,
-  size = sizesMappingInput.m,
-  variant = gradientMapping.primary,
+  size = ESizes.m,
+  variant = EVariant.primary,
+  fill = EFill.solid,
   orientation = orientationMapping.horizontal
 }) => {
   const renderChildren = () => {
     return Children.map(children as ReactElement<IButtonProps>, (child: ReactElement<IButtonProps>) => {
       return cloneElement(child, {
         variant: variant,
+        fill: fill,
         size: size,
         disabled: disabled
       });

@@ -2,12 +2,12 @@ import React, { FC, useEffect, useRef } from 'react';
 
 import { IClickAwayListenerProps } from '@components/ClickAwayListener/types';
 
-const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, onClickAway }) => {
+const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, onClickAway, excludeRef }) => {
   const node = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (e: MouseEvent) => {
-    if (node.current?.contains(e.target as Node)) {
-      // Внутри элемента, игнорируем
+    if (node.current?.contains(e.target as Node) || excludeRef?.current?.contains(e.target as Node)) {
+      // Внутри элемента или исключенного элемента, игнорируем
       return;
     }
     // Клик снаружи элемента
@@ -20,9 +20,9 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, onClickAway 
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
-  }, [handleClick]);
+  }, [handleClick, excludeRef]);
 
-  return <div ref={node}>{children}</div>;
+  return <div ref={node} className={className}>{children}</div>;
 };
 
 export default ClickAwayListener;

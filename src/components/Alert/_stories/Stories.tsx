@@ -67,15 +67,13 @@ export default  App = () =>(
 
           <Editor
             description="Компонент Alert может быть добавлен с кнопками, которые выполняют различные действия."
-            code={`import { Alert, Button, Icon } from '@nlmk/ds-2.0';
+            code={`import { Alert, Button, IconCloseOutlined24 } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
   <Alert severity="info"
     action={
-      <Button variant="text" onClick={() => alert('Я нажал!')}>
-        <Icon
-          name="IconCloseOutlined24"
-          containerSize={24}
+      <Button fill="clear" onClick={() => alert('Я нажал!')}>
+        <IconCloseOutlined24
           htmlColor='var(--ac-alert-info-text)'
         />
       </Button>

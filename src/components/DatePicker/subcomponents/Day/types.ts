@@ -14,4 +14,5 @@ export interface DayProps {
   onClick?: (event: MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onHover?: () => void;
   disableTimeChange?: boolean;
+  date?: Date;
 }

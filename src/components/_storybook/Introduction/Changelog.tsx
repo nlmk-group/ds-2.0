@@ -16,8 +16,149 @@ export const Changelog = () => {
             target="blank"
             className={styles.link}
           >
-            <Button variant="greyOutline">NPM</Button>
+            <Button variant="grey" fill="outline">
+              NPM
+            </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.5 - <span className={styles.date}>23.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен дизайн компонента радио кнопки
+              <Link href="./?path=/docs/components-radio-info--docs" target="blank">
+                Radio
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.4 - <span className={styles.date}>21.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлено переключение компонента <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+                Switch
+              </Link>, когда на странице таких компонентов находится несколько.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.3 - <span className={styles.date}>20.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+                Switch
+              </Link>. Компонент стал контролируемым.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.2 - <span className={styles.date}>15.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены иконки MES, Metallurgy
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.1 - <span className={styles.date}>12.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлениы иконки MES, SPEP
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлен аттрибут id с датой в контейнер с днём в компоненте
+              <Link href="./?path=/docs/components-datepicker-info--docs" target="blank">
+                DatePicker
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено отображение иконки в
+              <Link href="./?path=/docs/components-alert-info--docs" target="blank">
+                Alert
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.0 - <span className={styles.date}>04.03.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+                Sidebar
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлены отступы в компоненте{' '}
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+                Switch
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлен баг с отображением label поверх placeholder в компоненте{' '}
+              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+                Input
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлена возможность вставлять элементы в аргумент helperText{' '}
+              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+                Input
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлены варианты кнопок
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлен тип заливки в кнопках
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено присвоение значений badge{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
@@ -181,13 +322,11 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              <li>
-                • Добавлен компонент
-                <Link href="./?path=/docs/components-modal-info--docs" target="blank">
-                  Modal
-                </Link>
-                .
-              </li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-modal-info--docs" target="blank">
+                Modal
+              </Link>
+              .
             </li>
           </ul>
         </div>

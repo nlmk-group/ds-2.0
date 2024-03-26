@@ -131,4 +131,9 @@ export interface ISelectProps {
    * Добавление самостоятельного CSS класса
    */
   className?: string;
+
+  /**
+   * Условие фокуса на опциях компонента при раскрытии списка
+   */
+  enableScrollToActiveOption?: boolean;
 }

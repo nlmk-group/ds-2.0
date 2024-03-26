@@ -72,6 +72,15 @@
   textarea:not(:placeholder-shown):not(:focus):disabled ~ label {
     background: linear-gradient(to top, var(--text-grey-50) 50%, transparent 50%);
   }
+
+  input:not(:placeholder-shown),
+  textarea:not(:placeholder-shown),
+  input:not(:focus),
+  textarea:not(:focus) {
+    &::placeholder {
+      visibility: hidden;
+    }
+  }
 }
 
 .text-field {
@@ -128,7 +137,7 @@
     border-color: var(--ac-input-hover-stroke);
     background-color: var(--ac-input-hover-bg);
     color: var(--ac-input-hover-text);
-    
+
     @include input-border-color-states;
   }
 

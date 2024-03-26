@@ -80,7 +80,8 @@ const File: FC<IFile> = ({
               className={styles['control-btn']}
             >
               <Button
-                variant="text"
+                variant="primary"
+                fill="clear"
                 onClick={commentedOnClick}
                 iconButton={
                   <IconCommentChatBubbleFullOutlined24 />
@@ -94,7 +95,8 @@ const File: FC<IFile> = ({
               className={styles['control-btn']}
             >
               <Button
-                variant='text'
+                variant="primary"
+                fill="clear"
                 onClick={savedOnClick}
                 iconButton={
                   <IconDownloadOutlined24 />
@@ -108,7 +110,8 @@ const File: FC<IFile> = ({
               className={styles['control-btn']}
             >
               <Button
-                variant='text'
+                variant="primary"
+                fill="clear"
                 onClick={removedOnClick}
                 iconButton={
                   <IconCloseOutlined24 />

@@ -12,6 +12,7 @@ import Input from '..';
 import { IconMock } from '../mock/IconMock';
 import { TInputProps } from '../types';
 import { argsTypes } from './argsTypes';
+import { IconAttentionWarningAlertOutlined16, IconCancelOutlined16, IconSuccessOutlined16 } from '@components/index';
 
 const labelText = 'Label';
 const helperText = 'Helper text';
@@ -40,6 +41,66 @@ export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => (
   <Input label={labelText} helperText={helperText} icon={<IconMock weight="кг" />} {...argTypes} />
 );
 InputWithLabelHelperTextAndTextIcon.storyName = 'Input с лейблом, вспомогательным текстом и текстовой иконкой';
+
+export const InputWithLabelHelperTextElement= (argTypes: TInputProps) => {
+  const DefaultHelper = () => (
+    <div className={styles['helper-text-wrapper']}>
+      <IconSuccessOutlined16 />
+      <div>
+        Etiam ultricies non odio eu interdum
+      </div>
+    </div>
+  );
+  const ErrorHelper = () => (
+    <div className={styles['helper-text-wrapper']}>
+      <IconCancelOutlined16 />
+      <div>
+        Etiam ultricies non odio eu interdum
+      </div>
+    </div>
+  );
+  const WarningHelper = () => (
+    <div className={styles['helper-text-wrapper']}>
+      <IconAttentionWarningAlertOutlined16 />
+      <div>
+        Etiam ultricies non odio eu interdum
+      </div>
+    </div>
+  );
+  const SuccessHelper = () => (
+    <div className={styles['helper-text-wrapper']}>
+      <IconSuccessOutlined16 />
+      <div>
+        Etiam ultricies non odio eu interdum
+      </div>
+    </div>
+  );
+  const messageHelper = {
+    [customInputColors.default]: <DefaultHelper />,
+    [customInputColors.error]: <ErrorHelper />,
+    [customInputColors.warning]: <WarningHelper />,
+    [customInputColors.success]: <SuccessHelper />
+  }
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px'
+      }}
+    >
+      {Object.values(customInputColors).map((color: customInputColors) => (
+        <Input
+          label={labelText}
+          helperText={messageHelper[color]}
+          color={color}
+          {...argTypes}
+        />
+      ))}
+    </div>
+  )
+};
+InputWithLabelHelperTextElement.storyName = 'Input с лейблом, вспомогательным текстом в виде элемента';
 
 export const InputDisabled = (argTypes: TInputProps) => (
   <Input label={labelText} helperText={helperText} disabled value="value" {...argTypes} />

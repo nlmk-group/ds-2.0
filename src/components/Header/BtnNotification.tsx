@@ -23,7 +23,8 @@ const BtnNotification: FC<INotification> = ({ notification, notificationAmount =
             htmlColor={'var(--primary-blue-600)'}
           />
         }
-        variant='text'
+        variant='primary'
+        fill='clear'
         size='xs'
       />
       {notificationAmount > 0 && (

@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import { sizesMappingInput } from '@components/declaration';
 import {
   Badge,
   Button,
@@ -16,7 +15,8 @@ import { Meta, Story } from '@storybook/react';
 import style from '../ButtonGroup.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { badgeSizeMappingHelper, gradientMapping, iconSizeMappingHelper, orientationMapping } from '../enums';
+import { orientationMapping } from '../enums';
+import { EFill, ESizes, EVariant } from '@components/Button/enums';
 import { IButtonGroup } from '../types';
 import argsTypes from './argsTypes';
 import {
@@ -26,6 +26,7 @@ import {
   BTN_GROUP_VERTICAL,
   DEFAULT_BTN_GROUP
 } from './text';
+import { IcombinedOption, combinedOptions } from '@components/Button/displayHelper';
 
 const withWrapper = (Story: any) => (
   <div style={{ width: 'fit-content' }} className={styles.wrapper}>
@@ -55,7 +56,7 @@ DefaultButtonGroup.storyName = DEFAULT_BTN_GROUP;
 export const ButtonGroupSizes = (argTypes: IButtonGroup): ReactNode => {
   return (
     <div className={style['showcase-wrapper-column']}>
-      {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
+      {Object.values(ESizes).map((size: ESizes) => (
         <ButtonGroup key={size} {...argTypes} size={argTypes.size || size}>
           <Button onClick={action('onClick')}>Size {size}</Button>
           <Button onClick={action('onClick')}>Size {size}</Button>
@@ -71,9 +72,9 @@ ButtonGroupSizes.storyName = BTN_GROUP_SIZES;
 export const ButtonGroupGradient = (argTypes: IButtonGroup): ReactNode => {
   return (
     <div className={style['showcase-wrapper-row']}>
-      {Object.values(gradientMapping).map((gradient: gradientMapping) => (
+      {Object.values(EVariant).map((gradient: EVariant) => (
         <div key={gradient} className={style['showcase-wrapper-column']}>
-          {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
+          {Object.values(ESizes).map((size: ESizes) => (
             <ButtonGroup key={`${gradient}_${size}`} size={size} variant={gradient} {...argTypes}>
               <Button onClick={action('onClick')}>{gradient}</Button>
               <Button onClick={action('onClick')}>{gradient}</Button>
@@ -91,9 +92,9 @@ ButtonGroupGradient.storyName = BTN_GROUP_GRADIENTS;
 export const ButtonGroupVertical = (argTypes: IButtonGroup): ReactNode => {
   return (
     <div className={style['showcase-wrapper-row']}>
-      {Object.values(gradientMapping).map((gradient: gradientMapping) => (
+      {Object.values(EVariant).map((gradient: EVariant) => (
         <div key={gradient} className={style['showcase-wrapper-column']}>
-          {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
+          {Object.values(ESizes).map((size: ESizes) => (
             <ButtonGroup key={`${gradient}_${size}`} size={size} variant={gradient} {...argTypes}>
               <Button onClick={action('onClick')}>{gradient}</Button>
               <Button onClick={action('onClick')}>{gradient}</Button>
@@ -115,56 +116,50 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
   return (
     <div>
       <div className={style['showcase-wrapper-column']}>
-        {Object.values(gradientMapping).map((gradient: gradientMapping) => (
-          <div key={gradient} className={style['showcase-wrapper-column']}>
-            {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
-              <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
-                <Button
-                  startIcon={<IconArticleOutlined32 />}
-                  endIcon={<IconArticleOutlined32 />}
-                  badge={
-                    <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
-                      1
-                    </Badge>
-                  }
-                  onClick={action('onClick')}
-                >
-                  {gradient}
-                </Button>
-                <Button
-                  startIcon={<IconArticleOutlined32 />}
-                  endIcon={<IconArticleOutlined32 />}
-                  badge={
-                    <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
-                      1
-                    </Badge>
-                  }
-                  onClick={action('onClick')}
-                >
-                  {gradient}
-                </Button>
-                <Button
-                  startIcon={<IconArticleOutlined32 />}
-                  endIcon={<IconArticleOutlined32 />}
-                  badge={
-                    <Badge color="secondary" size={badgeSizeMappingHelper[argTypes.size || size]}>
-                      1
-                    </Badge>
-                  }
-                  onClick={action('onClick')}
-                >
-                  {gradient}
-                </Button>
-              </ButtonGroup>
-            ))}
-          </div>
-        ))}
+        {combinedOptions(true).map((option: IcombinedOption) => {
+          const { fill, variant, size } = option;
+          if (variant === EVariant.secondary && (fill === EFill.outline || fill === EFill.clear)) return <></>
+          return (
+            <ButtonGroup
+              key={`${variant}_${fill}_${size}`}
+              variant={variant}
+              fill={fill}
+              size={argTypes.size || size}
+              {...argTypes}
+            >
+              <Button
+                startIcon={<IconArticleOutlined32 />}
+                endIcon={<IconArticleOutlined32 />}
+                badge={1}
+                onClick={action('onClick')}
+              >
+                {variant} {fill} {size}
+              </Button>
+              <Button
+                startIcon={<IconArticleOutlined32 />}
+                endIcon={<IconArticleOutlined32 />}
+                badge={1}
+                onClick={action('onClick')}
+              >
+                {variant} {fill} {size}
+              </Button>
+              <Button
+                startIcon={<IconArticleOutlined32 />}
+                endIcon={<IconArticleOutlined32 />}
+                badge={1}
+                onClick={action('onClick')}
+              >
+                {variant} {fill} {size}
+              </Button>
+            </ButtonGroup>
+          )
+        })}
       </div>
       <div style={{ marginBottom: '12px' }} />
       <div className={style['showcase-wrapper-row']}>
-        {Object.values(gradientMapping).map((gradient: gradientMapping) => (
+        {Object.values(EVariant).map((gradient: EVariant) => (
           <div key={gradient} className={style['showcase-wrapper-column']}>
-            {Object.values(sizesMappingInput).map((size: sizesMappingInput) => (
+            {Object.values(ESizes).map((size: ESizes) => (
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
                 <Button
                   onClick={action('onClick')}

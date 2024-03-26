@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "1.3.1",
+  "version": "1.4.5",
   "author": "NLMK IT",
   "public": false,
   "main": "lib/index.js",
@@ -33,12 +33,13 @@
     "storybook": "yarn convert:dark-theme-tokens && yarn prebuild:storybook && storybook dev -p 6006",
     "storybook:dev": "yarn convert:dark-theme-tokens  && storybook dev -p 6006",
     "storybook:build": "yarn convert:dark-theme-tokens && rm -rf storybook-static && yarn prebuild:storybook && storybook build && cp -r dist/* storybook-static",
+    "serve": "yarn storybook:build && npx serve storybook-static",
     "storybook:build:windows": "yarn convert:dark-theme-tokens && (if exist storybook-static ( rd /s /q storybook-static)) && yarn prebuild:storybook && storybook build && xcopy /s /y dist storybook-static",
     "token:generate": "export $(cat .env | xargs) && node generateTokens.mjs",
     "token:generate:windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && node generateTokens.mjs",
     "commit": "cz",
     "packpackage": "cd lib && yarn pack",
-    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon"    
+    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon"
   },
   "pre-commit": [
     "lint"

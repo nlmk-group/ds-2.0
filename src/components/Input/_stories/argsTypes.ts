@@ -10,7 +10,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   helperText: {
-    description: 'Строка для вспомогательно текста под инпутом',
+    description: 'Строка для вспомогательно текста под инпутом. Может быть как текстом, так и элементом ReactNode',
     control: { type: 'text' }
   },
   label: {

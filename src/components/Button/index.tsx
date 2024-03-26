@@ -1,19 +1,22 @@
 import React, { FC } from 'react';
-
-import Typography from '@components/Typography';
 import clsx from 'clsx';
 
+import Typography from '@components/Typography';
+
 import { IButtonProps } from './types';
+import { EVariant, ESizes, EFill } from './enums'
 
 import styles from './Button.module.scss';
+import BadgeHelper from './BadgeHelper'
 
 export const Button: FC<IButtonProps> = ({
   children,
-  variant = 'primary',
+  variant = EVariant['primary'],
+  fill = EFill.solid,
   startIcon,
   endIcon,
   badge,
-  size = 'm',
+  size = ESizes.m,
   iconButton = false,
   className,
   ...props
@@ -31,7 +34,7 @@ export const Button: FC<IButtonProps> = ({
   };
 
   const classes = clsx(
-    styles[variant as keyof typeof styles],
+    variant === EVariant.secondary ? styles[variant] : styles[`${variant}-${fill}`],
     styles.button,
     iconButton && styles['icon-button'],
     sizeClassesMapping[size],
@@ -61,7 +64,18 @@ export const Button: FC<IButtonProps> = ({
         {children}
       </Typography>
       {endIcon && <span className={iconClass('right')}>{endIcon}</span>}
-      {badge && <span className={iconClass('right')}>{badge}</span>}
+      {badge && (
+        <span className={iconClass('right')}>
+          <BadgeHelper
+            {...{
+              badge,
+              variant,
+              fill,
+              size
+            }}
+          />
+        </span>
+      )}
     </button>
   );
 };

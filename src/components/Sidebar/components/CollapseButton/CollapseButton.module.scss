@@ -1,0 +1,32 @@
+.root {
+  height: var(--80-size);
+  width: 100%;
+  max-width: 256px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--12-space) 0 var(--24-space);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--ac-sidebar-section-hover-bg);
+  }
+
+  &-active {
+    background: var(--ac-sidebar-section-selected-bg);
+  }
+}
+
+.arrow {
+  transition: transform 0.5s ease-in-out;
+}
+
+.arrow-expanded {
+  transform: rotate(180deg);
+}
+
+.text {
+  color: var(--ac-sidebar-section-text);
+  margin-left: var(--16-space);
+}

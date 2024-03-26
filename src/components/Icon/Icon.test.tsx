@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { iconsSizesMapping } from '@components/declaration/enums/iconSizesMapping';
+import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { render } from '@testing-library/react';
 
 import { TIconProps } from './types';
@@ -49,7 +50,7 @@ describe('src/components/Button', () => {
   test('Icon size', () => {
     const sizes: number[] = [iconsSizesMapping.Small, iconsSizesMapping.Medium, iconsSizesMapping.Large];
     sizes.map((size: number) => {
-      const { container } = render(<Icon name={`IconBunkerOutlined${size}`} />);
+      const { container } = render(<Icon name={`IconBunkerOutlined${size}` as TIconName} />);
       const icon = container.getElementsByTagName('svg')[0];
       expect(icon).toHaveAttribute('width', `${size}`);
       expect(icon).toHaveAttribute('height', `${size}`);

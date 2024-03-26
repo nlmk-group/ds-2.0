@@ -14,8 +14,6 @@ import {
 } from './constants';
 
 import {
-  IconAddPlusOutlined16,
-  IconChevronArrowDownOutlined16,
   IconChevronArrowUpOutlined16,
   IconCloseOutlined16
 } from '@components/Icon/IconsDirectory';
@@ -41,8 +39,22 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   }
 
   const expandIcons = {
-    [iconsMapping.plus]: isExpanded ? <IconCloseOutlined16 {...iconProps} /> : <div className={styles['icon-plus-size']}><IconAddPlusOutlined16 {...iconProps} /></div>,
-    [iconsMapping.arrow]: isExpanded ? <IconChevronArrowUpOutlined16 {...iconProps} /> : <IconChevronArrowDownOutlined16 {...iconProps} />
+    [iconsMapping.plus]: (
+      <div className={clsx(
+        styles['icon-helper'],
+        isExpanded ? styles['icon-cross'] : styles['icon-plus']
+      )}>
+        <IconCloseOutlined16 {...iconProps} />
+      </div>
+    ),
+    [iconsMapping.arrow]: (
+      <div className={clsx(
+        styles['icon-helper'],
+        isExpanded ? styles['icon-down'] : styles['icon-up']
+      )}>
+        <IconChevronArrowUpOutlined16 {...iconProps} />
+      </div>
+    )
   };
 
   const handleMouseEnter = () => {
@@ -93,11 +105,17 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
           )}
         </div>
       </div>
-      {isExpanded && !disabled && (
-        <Typography variant={TYPOGRAPHY_CONTENT_VARIANTS[size]} className={styles.content}>
+      <div className={clsx(styles.expandable, isExpanded && styles.expanded)}>
+        <Typography
+          variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
+          className={clsx(
+            styles['content-basic'],
+            isExpanded && styles.content
+          )}
+        >
           {children}
         </Typography>
-      )}
+      </div>
     </div>
   );
 };

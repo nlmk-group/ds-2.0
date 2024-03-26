@@ -1,4 +1,11 @@
-import React, { FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  FC,
+  KeyboardEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import ReactDOM from 'react-dom';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
@@ -38,12 +45,14 @@ const Select: FC<ISelectProps> = ({
   onEnterPress,
   onBlur,
   onFocus,
+  enableScrollToActiveOption = false,
   className
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredOptions, setFilteredOptions] = useState(options);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
   const [selectedValues, setSelectedValues] = useState<string[]>(() => {
     if (multiple && Array.isArray(selected)) {
       return selected;
@@ -61,6 +70,22 @@ const Select: FC<ISelectProps> = ({
     }
     return [];
   });
+
+  const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(0)
+
+  useEffect(() => {
+    if (!enableScrollToActiveOption) return;
+    
+    if (isOpen) {
+      setCurrentScrollPosition(document.documentElement.scrollTop || document.body.scrollTop);
+      listRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      return;
+    }
+    window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' })
+  }, [isOpen, enableScrollToActiveOption]);
 
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
@@ -229,8 +254,9 @@ const Select: FC<ISelectProps> = ({
                 <IconChevronArrowDownOutlined24 color={colorIconHelper()} />
               )
             }
-            variant="text"
-            size="s"
+            variant='primary'
+            fill='clear'
+            size='s'
             onClick={toggleDropdown}
             className={clsx(styles.select__arrow, {
               [styles.disabled]: disabled
@@ -239,72 +265,77 @@ const Select: FC<ISelectProps> = ({
           />
         }
         color={color}
-        className={styles.select__input}
+        className={clsx(
+          styles.select__input,
+          !isSearchable && styles['not-searchable']
+        )}
         data-testid="select-input"
       />
       {isOpen && (
-        <List style={{ maxHeight: `${scrollingItems * 40 + 16}px` }}>
-          {multiple && isAllSelectView && (
-            <ListItem
-              className={clsx(styles.item, {
-                [styles.selected]: selectedValues.length === availableOptionsCount
-              })}
-              title={allSelectText}
-            >
-              <Checkbox
-                className={styles.checkbox}
-                checked={selectedValues.length === availableOptionsCount}
-                onChange={handleSelectAllClick}
-              />
-              <div onClick={handleSelectAllClick} className={styles.label}>
-                <Typography variant="Body1-Medium">{allSelectText}</Typography>
-              </div>
-            </ListItem>
-          )}
-          {filteredOptions && filteredOptions.length > 0 ? (
-            filteredOptions.map(option => (
+        <div ref={listRef}>
+          <List style={{ maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))` }}>
+            {multiple && isAllSelectView && (
               <ListItem
                 className={clsx(styles.item, {
-                  [styles.selected]: selectedValues.includes(option.value),
-                  [styles.disabled]: option.disabled
+                  [styles.selected]: selectedValues.length === availableOptionsCount
                 })}
-                key={option.value}
-                onClick={() => {
-                  if (!multiple && !option.disabled) {
-                    handleSelect(option.value, selectedValues.includes(option.value));
-                  }
-                }}
-                style={{ cursor: !multiple && !option.disabled ? 'pointer' : 'default' }}
-                title={option.label}
+                title={allSelectText}
               >
-                {multiple && (
-                  <Checkbox
-                    className={styles.checkbox}
-                    checked={selectedValues.includes(option.value)}
-                    disabled={option.disabled}
-                    onChange={() => handleSelect(option.value, selectedValues.includes(option.value))}
-                  />
-                )}
-                <div className={styles.content}>
-                  <Typography
-                    variant="Body1-Medium"
-                    onClick={event => handleTypographyClick(option, event)}
-                    className={clsx(styles.label, {
-                      [styles['label__disabled']]: option.disabled
-                    })}
-                  >
-                    {option.label}
-                  </Typography>
-                  {option.icon && <div className={styles.icon}>{option.icon}</div>}
+                <Checkbox
+                  className={styles.checkbox}
+                  checked={selectedValues.length === availableOptionsCount}
+                  onChange={handleSelectAllClick}
+                />
+                <div onClick={handleSelectAllClick} className={styles.label}>
+                  <Typography variant="Body1-Medium">{allSelectText}</Typography>
                 </div>
               </ListItem>
-            ))
-          ) : (
-            <ListItem className={styles.disabled}>
-              <Typography variant="Body1-Medium">Ничего не найдено</Typography>
-            </ListItem>
-          )}
-        </List>
+            )}
+            {filteredOptions && filteredOptions.length > 0 ? (
+              filteredOptions.map(option => (
+                <ListItem
+                  className={clsx(styles.item, {
+                    [styles.selected]: selectedValues.includes(option.value),
+                    [styles.disabled]: option.disabled
+                  })}
+                  key={option.value}
+                  onClick={() => {
+                    if (!multiple && !option.disabled) {
+                      handleSelect(option.value, selectedValues.includes(option.value));
+                    }
+                  }}
+                  style={{ cursor: !multiple && !option.disabled ? 'pointer' : 'default' }}
+                  title={option.label}
+                >
+                  {multiple && (
+                    <Checkbox
+                      className={styles.checkbox}
+                      checked={selectedValues.includes(option.value)}
+                      disabled={option.disabled}
+                      onChange={() => handleSelect(option.value, selectedValues.includes(option.value))}
+                    />
+                  )}
+                  <div className={styles.content}>
+                    <Typography
+                      variant="Body1-Medium"
+                      onClick={event => handleTypographyClick(option, event)}
+                      className={clsx(styles.label, {
+                        [styles['label__disabled']]: option.disabled
+                      })}
+                    >
+                      {option.label}
+                    </Typography>
+                    {option.icon && <div className={styles.icon}>{option.icon}</div>}
+                  </div>
+                </ListItem>
+              ))
+            ) : (
+              <ListItem className={styles.disabled}>
+                <Typography variant="Body1-Medium">Ничего не найдено</Typography>
+              </ListItem>
+            )}
+          </List>
+        </div>
       )}
     </div>
   );

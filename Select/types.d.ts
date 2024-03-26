@@ -27,5 +27,6 @@ export interface ISelectProps {
     onFocus?: () => void;
     isClearSearchOnBlur?: boolean;
     className?: string;
+    enableScrollToActiveOption?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

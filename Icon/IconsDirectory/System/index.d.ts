@@ -134,6 +134,8 @@ export { IconEyeFilled16, IconEyeFilled24, IconEyeFilled32 } from './EyeFilled';
 export { IconEyeOffFilled16, IconEyeOffFilled24, IconEyeOffFilled32 } from './EyeOffFilled';
 export { IconEyeOffOutlined16, IconEyeOffOutlined24, IconEyeOffOutlined32 } from './EyeOffOutlined';
 export { IconEyeOutlined16, IconEyeOutlined24, IconEyeOutlined32 } from './EyeOutlined';
+export { IconEyeglassesFill16, IconEyeglassesFill24, IconEyeglassesFill32 } from './EyeglassesFill';
+export { IconEyeglassesOutlined16, IconEyeglassesOutlined24, IconEyeglassesOutlined32 } from './EyeglassesOutlined';
 export { IconFilterListFilled16, IconFilterListFilled24, IconFilterListFilled32 } from './FilterListFilled';
 export { IconFilterListOutlined16, IconFilterListOutlined24, IconFilterListOutlined32 } from './FilterListOutlined';
 export { IconFilterSortFilled16, IconFilterSortFilled24, IconFilterSortFilled32 } from './FilterSortFilled';

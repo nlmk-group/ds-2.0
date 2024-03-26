@@ -1,14 +1,13 @@
 import { PropsWithChildren } from 'react';
-import { sizesMappingInput } from '../declaration';
-import { gradientMapping, orientationMapping } from './enums';
-export type GradientType = `${gradientMapping}`;
+import { orientationMapping } from './enums';
+import { TFill, TSize, TVariant } from '../Button/types';
 export type OrientationType = `${orientationMapping}`;
-export type SizeType = `${sizesMappingInput}`;
 export interface IButtonGroup extends PropsWithChildren {
     className?: string;
     disabled?: boolean;
-    size?: SizeType;
-    variant?: GradientType;
+    size?: TSize;
+    variant?: TVariant;
+    fill?: TFill;
     orientation?: OrientationType;
 }
 //# sourceMappingURL=types.d.ts.map

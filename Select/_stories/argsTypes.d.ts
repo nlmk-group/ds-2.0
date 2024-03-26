@@ -104,6 +104,12 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    enableScrollToActiveOption: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     onSelectionChange: {
         description: string;
         action: string;

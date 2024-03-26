@@ -1,9 +1,8 @@
-import React from 'react';
 import { IAvatarProps } from '../types';
 import { AvatarShape, AvatarSize } from '../enums';
 declare const _default: {
     title: string;
-    component: React.FC<IAvatarProps>;
+    component: import('../types').IAvatarComponent;
     decorators: ((Story: () => any) => JSX.Element)[];
     argTypes: {
         size: {

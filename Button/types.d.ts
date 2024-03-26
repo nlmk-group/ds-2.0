@@ -1,24 +1,31 @@
 import { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
-export declare enum sizes {
-    m = "m",
-    s = "s",
-    xs = "xs"
-}
-export declare enum variant {
-    primary = "primary",
-    secondary = "secondary",
-    grey = "grey",
-    outline = "outline",
-    greyOutline = "greyOutline",
-    text = "text"
-}
+import { EFill, ESizes, EVariant } from './enums';
+import { colorsMapping, variantsMapping } from '../declaration';
+export type TSize = `${ESizes}`;
+export type TVariant = `${EVariant}`;
+export type TFill = `${EFill}`;
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
-    badge?: ReactNode;
+    badge?: string | number;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     iconButton?: ReactNode;
-    size?: `${sizes}`;
-    variant?: `${variant}`;
+    size?: TSize;
+    variant?: TVariant;
+    fill?: TFill;
     className?: string;
 }
+interface IbadgeProps {
+    color: colorsMapping;
+    variant: variantsMapping;
+}
+export type TbadgeTypes = {
+    [key: string | EVariant]: IbadgeProps;
+};
+export interface IBadgeHelper {
+    size: TSize;
+    variant: TVariant;
+    fill: TFill;
+    badge: string | number;
+}
+export {};
 //# sourceMappingURL=types.d.ts.map

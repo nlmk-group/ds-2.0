@@ -1,3 +1,4 @@
+import { EFill, ESizes, EVariant } from '../enums';
 export declare const argsTypes: {
     children: {
         description: string;
@@ -15,7 +16,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: string[];
+        options: ESizes[];
         control: {
             type: string;
         };
@@ -30,7 +31,22 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: string[];
+        options: EVariant[];
+        control: {
+            type: string;
+        };
+    };
+    fill: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: EFill[];
         control: {
             type: string;
         };

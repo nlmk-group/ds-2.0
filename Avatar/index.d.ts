@@ -1,5 +1,4 @@
-import React from 'react';
-import { IAvatarProps } from './types';
-declare const Avatar: React.FC<IAvatarProps>;
+import { IAvatarComponent } from './types';
+declare const Avatar: IAvatarComponent;
 export default Avatar;
 //# sourceMappingURL=index.d.ts.map

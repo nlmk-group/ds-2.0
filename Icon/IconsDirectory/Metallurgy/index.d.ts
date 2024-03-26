@@ -1,3 +1,4 @@
+export { IconASM16, IconASM24, IconASM32 } from './ASM';
 export { IconAnalysisnpFilled16, IconAnalysisnpFilled24, IconAnalysisnpFilled32 } from './AnalysisnpFilled';
 export { IconAnalysisnpOutlined16, IconAnalysisnpOutlined24, IconAnalysisnpOutlined32 } from './AnalysisnpOutlined';
 export { IconAnalyticalUIFilled16, IconAnalyticalUIFilled24, IconAnalyticalUIFilled32 } from './AnalyticalUIFilled';
@@ -17,6 +18,7 @@ export { IconCraneOutlined16, IconCraneOutlined24, IconCraneOutlined32 } from '.
 export { IconCut16, IconCut24, IconCut32 } from './Cut';
 export { IconDataFilled16, IconDataFilled24, IconDataFilled32 } from './DataFilled';
 export { IconDataOutlined16, IconDataOutlined24, IconDataOutlined32 } from './DataOutlined';
+export { IconDirectories16, IconDirectories24, IconDirectories32 } from './Directories';
 export { IconDocsFilled16, IconDocsFilled24, IconDocsFilled32 } from './DocsFilled';
 export { IconDocsOutlined16, IconDocsOutlined24, IconDocsOutlined32 } from './DocsOutlined';
 export { IconDowntimeAnalysisFilled16, IconDowntimeAnalysisFilled24, IconDowntimeAnalysisFilled32 } from './DowntimeAnalysisFilled';

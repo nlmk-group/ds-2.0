@@ -20,6 +20,10 @@ export declare const InputWithLabelHelperTextAndTextIcon: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
 };
+export declare const InputWithLabelHelperTextElement: {
+    (argTypes: TInputProps): JSX.Element;
+    storyName: string;
+};
 export declare const InputDisabled: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;

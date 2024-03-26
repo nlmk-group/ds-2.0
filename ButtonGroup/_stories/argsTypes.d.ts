@@ -1,5 +1,5 @@
-import { sizesMappingInput } from '../../declaration';
-import { gradientMapping, orientationMapping } from '../enums';
+import { orientationMapping } from '../enums';
+import { EFill, ESizes, EVariant } from '../../Button/enums';
 declare const argsTypes: {
     children: {
         description: string;
@@ -31,13 +31,13 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: sizesMappingInput;
+                summary: ESizes;
             };
             type: {
                 summary: string;
             };
         };
-        options: sizesMappingInput[];
+        options: ESizes[];
         control: {
             type: string;
         };
@@ -46,13 +46,28 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: gradientMapping;
+                summary: EVariant;
             };
             type: {
                 summary: string;
             };
         };
-        options: gradientMapping[];
+        options: EVariant[];
+        control: {
+            type: string;
+        };
+    };
+    fill: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: EVariant;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: EFill[];
         control: {
             type: string;
         };

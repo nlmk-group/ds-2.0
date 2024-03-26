@@ -107,16 +107,10 @@ export declare const AccordionDefault: {
 export declare const AccordionSizes: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
-    args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
-    };
 };
 export declare const AccordionIcons: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
-    args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
-    };
 };
 export declare const AccordionPaper: {
     (argTypes: IAccordionProps): JSX.Element;

@@ -1,10 +1,10 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, FC, ReactNode } from 'react';
 import { TIconProps } from '../Icon/types';
 import { ITypography } from '../Typography/types';
 import { AvatarShape, AvatarSize } from './enums';
 export interface IAvatarProps {
-    size: `${AvatarSize}`;
-    shape: `${AvatarShape}`;
+    size?: `${AvatarSize}`;
+    shape?: `${AvatarShape}`;
     imageSrc?: string;
     userName?: string;
     userSurname?: string;
@@ -39,4 +39,7 @@ export type TGetSizingStylesArgs = {
     isSpecialBadge: boolean;
     sizeVariant: IAvatarProps['size'];
 };
+export interface IAvatarComponent extends FC<IAvatarProps> {
+    componentType?: string;
+}
 //# sourceMappingURL=types.d.ts.map

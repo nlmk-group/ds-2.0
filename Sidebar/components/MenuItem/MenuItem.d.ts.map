@@ -1,0 +1,1 @@
+{"version":3,"file":"MenuItem.d.ts","sourceRoot":"","sources":["../../../../src/components/Sidebar/components/MenuItem/MenuItem.tsx"],"names":[],"mappings":"AAAA,OAAc,EAA0B,EAAE,EAAgE,MAAM,OAAO,CAAC;AAIxH,OAAO,EAAE,cAAc,EAAyC,MAAM,2BAA2B,CAAC;AAMlG,UAAU,kBAAmB,SAAQ,EAAE,CAAC,cAAc,CAAC;IACrD,aAAa,CAAC,EAAE,MAAM,CAAC;CACxB;AAED,QAAA,MAAM,QAAQ,EAAE,kBA0Df,CAAC;AAIF,eAAe,QAAQ,CAAC"}

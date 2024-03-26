@@ -21,7 +21,7 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: string[];
+            options: import("../enums").ESizes[];
             control: {
                 type: string;
             };
@@ -36,7 +36,22 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: string[];
+            options: import("../enums").EVariant[];
+            control: {
+                type: string;
+            };
+        };
+        fill: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: import("../enums").EFill[];
             control: {
                 type: string;
             };

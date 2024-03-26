@@ -1,0 +1,5 @@
+import { FC } from 'react';
+import { IIconsProps } from '../../../types';
+declare const IconSmenniyRaport32: FC<IIconsProps>;
+export default IconSmenniyRaport32;
+//# sourceMappingURL=32.d.ts.map

@@ -21,6 +21,7 @@
   input[type="radio"] {
     height: var(--20-size);
     width: var(--20-size);
+    appearance: none;
     position: relative;
     margin: 0;
   }

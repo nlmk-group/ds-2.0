@@ -7,5 +7,6 @@ export interface IModalProps {
     isResizable?: boolean;
     onEscapeDown?: () => void;
     className?: string;
+    disableBackdropClick?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

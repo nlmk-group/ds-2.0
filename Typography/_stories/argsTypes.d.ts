@@ -1,12 +1,25 @@
 export declare const argsTypes: {
+    '*': {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+    };
     variant: {
         description: string;
         table: {
             defaultValue: {
                 summary: string;
             };
+            type: {
+                summary: string;
+            };
         };
-        options: string[];
         control: {
             type: string;
         };

@@ -4,14 +4,27 @@ declare const _default: {
     component: React.FC<import('../types').ITypography>;
     decorators: ((Story: () => any) => JSX.Element)[];
     argTypes: {
+        '*': {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+        };
         variant: {
             description: string;
             table: {
                 defaultValue: {
                     summary: string;
                 };
+                type: {
+                    summary: string;
+                };
             };
-            options: string[];
             control: {
                 type: string;
             };

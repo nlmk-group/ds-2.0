@@ -7,6 +7,7 @@ export type ISelectOption = {
     icon?: ReactNode;
     [key: string]: any;
 };
+export type TSelected = string | string[];
 export interface ISelectProps {
     id?: string;
     options: ISelectOption[] | null;
@@ -19,8 +20,8 @@ export interface ISelectProps {
     allSelectText?: string;
     isAllSelectView?: boolean;
     isSearchable?: boolean;
-    selected?: string | string[];
-    onSelectionChange?: (selected: string | string[]) => void;
+    selected: TSelected;
+    onSelectionChange: (selected: TSelected) => void;
     withPortal?: boolean;
     onEnterPress?: (item: string) => void | string[];
     onBlur?: () => void;

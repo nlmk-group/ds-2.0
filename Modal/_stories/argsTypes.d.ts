@@ -30,6 +30,13 @@ export declare const argsTypes: {
         };
         defaultValue: boolean;
     };
+    disableBackdropClick: {
+        description: string;
+        control: {
+            type: string;
+        };
+        defaultValue: boolean;
+    };
     onEscapeDown: {
         description: string;
         action: string;

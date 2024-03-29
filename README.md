@@ -5,6 +5,7 @@
 </div>
 
 # Дизайн-система 2.0 НЛМК
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Набор компонентов, инструментов и правил, которые упростят создание, визуальное и техническое обновление продуктов НЛМК.
 

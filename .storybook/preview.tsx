@@ -5,8 +5,8 @@ import results from '../.jest-test-results.json';
 import { name, version } from '../package.json';
 import '../public/css/main.css';
 import { getSystemTheme } from '../src/components/Theme/utils';
+import DocsThemeContainer from './Docs';
 import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
-
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
 div.style.cssText = `
@@ -42,8 +42,14 @@ export const parameters = {
     current: getSystemTheme()
   },
   backgrounds: {
-    default: 'light'
+    default: 'default',
+    values: [
+      { name: 'default', value: 'var(--background-default, #3c4854)' },
+      { name: 'info', value: 'var(--background-info, #636f7f)'},
+      { name: 'blue', value: 'var(--background-blue, #4c5f73)'}
+    ]
   },
+  docs: { container: DocsThemeContainer },
   options: {
     showPanel: true,
     panelPosition: 'bottom',
@@ -64,7 +70,7 @@ export const decorators = [
       light: 'light-theme',
       dark: 'dark-theme'
     },
-    defaultTheme: 'light'
+    defaultTheme: getSystemTheme()
   }),
   withTests({
     results

@@ -6,7 +6,7 @@
 
 @mixin cardStyle {
   box-shadow: 0 4px 6px var(--grey-500);
-  background-color: var(--background-default);
+  background-color: var(--background-paper);
 }
 
 @mixin iconStyle {
@@ -19,7 +19,7 @@
 }
 
 .wrapper {
-  background-color: var(--background-default);
+  background-color: var(--background-paper);
   margin: 0;
   padding: 24px;
   //width: 99%;

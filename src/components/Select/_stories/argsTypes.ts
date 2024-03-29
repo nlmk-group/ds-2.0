@@ -74,7 +74,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   selected: {
-    description: 'Выбранный(е) элемент(ы) (введите строку или массив строк, разделенный запятыми)',
+    description: 'Выбранный(е) элемент(ы) (введите массив строк, разделенный запятыми)',
     control: { type: 'text' }
   },
   enableScrollToActiveOption: {

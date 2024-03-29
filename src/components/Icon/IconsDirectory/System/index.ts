@@ -558,6 +558,7 @@ export { IconPictureInPictureOff16, IconPictureInPictureOff24, IconPictureInPict
 export { IconPictureInPictureOn16, IconPictureInPictureOn24, IconPictureInPictureOn32 } from './PictureInPictureOn';
 export { IconPlay16, IconPlay24, IconPlay32 } from './Play';
 export { IconPlayOutlined16, IconPlayOutlined24, IconPlayOutlined32 } from './PlayOutlined';
+export { IconPlayerStop16, IconPlayerStop24, IconPlayerStop32 } from './PlayerStop';
 export {
   IconPlaylistAddMenuFilled16,
   IconPlaylistAddMenuFilled24,

@@ -44,7 +44,7 @@ const Stories = (): JSX.Element => {
 export default  App = () => (
   <>
     <div style={{
-      backgroundColor: 'var(--background-default)',
+      backgroundColor: 'var(--background-paper)',
       width: 'fit-content',
       padding: '20px'
   }}>
@@ -98,7 +98,7 @@ export default  App = () => (
 
 export default  App = () => (
   <div style={{
-    backgroundColor: 'var(--background-default)',
+    backgroundColor: 'var(--background-paper)',
     width: 'fit-content',
     padding: '20px',
     display: 'flex',

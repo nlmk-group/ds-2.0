@@ -11,7 +11,7 @@ export const argsTypes = {
       }
     },
     control: {
-      type: 'number',
+      type: 'range',
       min: 0,
       max: 100
     }

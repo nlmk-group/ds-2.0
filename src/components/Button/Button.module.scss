@@ -1,6 +1,7 @@
 @mixin buttonBase {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 0;
   outline: none;
   cursor: pointer;
@@ -28,6 +29,7 @@
   height: var(--40-size);
   border-radius: var(--4-radius);
   padding: var(--8-space) var(--12-space);
+  transition: 0.1s ease-in-out;
 }
 
 .icon-button {
@@ -46,19 +48,11 @@
 .compact {
   border-width: var(--1-border) !important;
   @include compactStyles(var(--32-size), var(--4-space) var(--4-space));
-  svg {
-    height: var(--24-size);
-    width: var(--24-size);
-  }
 }
 
 .extra-compact {
   border-width: var(--1-border) !important;
   @include compactStyles(var(--28-size), var(--4-space) var(--4-space));
-  svg {
-    height: var(--16-size);
-    width: var(--16-size);
-  }
 }
 
 .left-icon,
@@ -286,4 +280,8 @@
 
 .icon-big-wrapper {
   margin: unset;
+}
+
+.label-wrapper {
+  padding: 0 var(--4-space);
 }

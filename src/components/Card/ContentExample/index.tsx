@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Badge, Select, Typography } from '@components/index';
 import { clsx } from 'clsx';
@@ -15,6 +15,7 @@ import TitleHelper from './TitleHelper';
 const ContentExample: FC<{
   orientation?: OrientationType;
 }> = ({ orientation = orientationMapping.vertical }) => {
+  const [selected, setSelected] = useState<string | string[]>('');
   return (
     <>
       <ImageHelper orientation={orientation} imageURL={imageURL} badges={badges} />
@@ -29,8 +30,9 @@ const ContentExample: FC<{
         <Badge className={styles['badge-helper']}>12</Badge>
 
         <Select
+          selected={selected}
           label={selector.label || ''}
-          onSelectionChange={selector.onSelectionChange}
+          onSelectionChange={setSelected}
           options={selector.options}
         />
 

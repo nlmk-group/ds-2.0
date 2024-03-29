@@ -8,4 +8,5 @@ export interface IModalProps {
   isResizable?: boolean;
   onEscapeDown?: () => void;
   className?: string;
+  disableBackdropClick?: boolean;
 }

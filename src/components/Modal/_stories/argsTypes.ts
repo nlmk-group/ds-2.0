@@ -22,6 +22,11 @@ export const argsTypes = {
     control: { type: 'boolean' },
     defaultValue: false
   },
+  disableBackdropClick: {
+    description: 'Указывает, можно ли закрыть модальное окно только по клику на крестик',
+    control: { type: 'boolean' },
+    defaultValue: false
+  },
   onEscapeDown: {
     description: 'Функция, вызываемая при нажатии клавиши Escape',
     action: 'escapePressed'

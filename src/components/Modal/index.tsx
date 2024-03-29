@@ -14,6 +14,7 @@ const Modal: FC<IModalProps> = ({
   onEscapeDown,
   isDraggable = false,
   isResizable = false,
+  disableBackdropClick = false,
   className
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -85,7 +86,7 @@ const Modal: FC<IModalProps> = ({
 
   return (
     <div className={clsx(styles.modalOverlay, className)}>
-      <ClickAwayListener onClickAway={onClose}>
+      <ClickAwayListener onClickAway={() => disableBackdropClick ? void(0) : onClose()}>
         <div className={modalClasses} ref={modalRef} onMouseDown={handleMouseDown}>
           {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
           {children}

@@ -33,6 +33,9 @@ export type ISelectOption = {
   [key: string]: any;
 };
 
+export type TSelected = string | string[];
+
+
 /**
  * @interface {ISelectProps}
  * Интерфейс для пропсов компонента Select.
@@ -96,12 +99,12 @@ export interface ISelectProps {
   /**
    * Выбранные значения.
    */
-  selected?: string | string[];
+  selected: TSelected;
 
   /**
    * Обработчик изменения выбора.
    */
-  onSelectionChange?: (selected: string | string[]) => void;
+  onSelectionChange: (selected: TSelected) => void;
 
   /**
    * Использовать ли портал для отображения.

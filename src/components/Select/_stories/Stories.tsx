@@ -24,37 +24,70 @@ const SelectStories = (): JSX.Element => {
     { value: 'grape', label: 'Grape' }
   ];`;
 
-  const selectDefaultCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectDefaultCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default  App = () => (
-  <>
-    <Select options={options} label="Одиночный выбор" multiple={false} />
-  </>
-);
+export default  App = () => {
+  const [selected, setSelected] = useState([]);
+  return (
+    <>
+      <Select
+        options={options}
+        label="Одиночный выбор"
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  )
+};
 `;
 
-  const selectMultipleCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectMultipleCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default  App = () => (
-  <>
-    <Select options={options} label="Множественный выбор" multiple />
-  </>
-);
+export default  App = () => {
+  const [selected, setSelected] = useState([]);
+  return (
+    <>
+      <Select
+        options={options}
+        label="Множественный выбор"
+        multiple
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  )
+};
 `;
 
-  const selectSearchableCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectSearchableCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default App = () => (
-  <>
-    <Select options={options} label="Выбор с поиском" isSearchable />
-  </>
-);
+export default App = () => {
+  const [selected, setSelected] = useState([]);
+
+  return (
+    <>
+      <Select
+        options={options}
+        label="Выбор с поиском"
+        isSearchable
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  );
+}
 `;
 
   const selectDisabledCode = `import { Select } from '@nlmk/ds-2.0';
@@ -68,46 +101,91 @@ export default App = () => (
 );
 `;
 
-  const selectExtraCompactCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectExtraCompactCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default App = () => (
-  <>
-    <Select options={options} label="Размер xs" size="xs" />
-  </>
-);
+export default App = () => {
+  const [selected, setSelected] = useState([]);
+
+  return (
+    <>
+      <Select
+        options={options}
+        label="Размер xs"
+        size="xs"
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  );
+}
 `;
 
-  const selectScrollingItemsCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectScrollingItemsCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default App = () => (
-  <>
-    <Select options={options} label="Скролл" scrollingItems={2} />
-  </>
-);
+export default App = () => {
+  const [selected, setSelected] = useState([]);
+
+  return (
+    <>
+      <Select
+        options={options}
+        label="Скролл"
+        scrollingItems={2}
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  );
+}
 `;
 
-  const selectSuccessCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectSuccessCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
 ${optionsExample}
 
-export default App = () => (
-  <>
-    <Select options={options} label="Цвет success" color="success" />
-  </>
-);
+export default App = () => {
+  const [selected, setSelected] = useState([]);
+  return (
+    <>
+      <Select
+        options={options}
+        label="Цвет success"
+        color="success"
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  );
+}
 `;
 
-  const selectEmptyCode = `import { Select } from '@nlmk/ds-2.0';
+  const selectEmptyCode = `
+  import { Select } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
 
-export default App = () => (
-  <>
-    <Select options={[]} label="Пустой select" />
-  </>
-);
+export default App = () => {
+  const [selected, setSelected] = useState([]);
+  return (
+    <>
+      <Select
+        options={[]}
+        label="Пустой select"
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </>
+  );
+}
 `;
 
   return (

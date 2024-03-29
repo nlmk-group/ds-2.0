@@ -23,11 +23,71 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.4.9 - <span className={styles.date}>28.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлено выравнивание текста у компонента
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.8 - <span className={styles.date}>27.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены отступы у компонента
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+            <li>
+              • ДС-2.0 не конролирует размер иконки в компоненте
+              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+                Button
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлена опция disableBackdropClick для компонента{' '}
+              <Link href="./?path=/docs/components-modal-info--docs" target="blank">
+                Modal
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.7 - <span className={styles.date}>26.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена иконка Player Stop для компонента
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              и исправлен
+              <Link href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Icon" target="blank">
+                Readme
+              </Link>
+              в нем.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.4.6 - <span className={styles.date}>25.03.24</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен бордер компонента радио кнопки
+              • Исправлен бордер компонента
               <Link href="./?path=/docs/components-radio-info--docs" target="blank">
                 Radio
               </Link>
@@ -37,15 +97,15 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v1.4.5 - <span className={styles.date}>23.03.24</span>
+            v1.4.5 - <span className={styles.date}>22.03.24</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен дизайн компонента радио кнопки
+              • Исправлен компонент
               <Link href="./?path=/docs/components-radio-info--docs" target="blank">
                 Radio
               </Link>
-              .
+              согласно дизайну.
             </li>
           </ul>
         </div>
@@ -55,9 +115,11 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено переключение компонента <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+              • Исправлено переключение компонента
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
                 Switch
-              </Link>, когда на странице таких компонентов находится несколько.
+              </Link>
+              , если на странице их несколько.
             </li>
           </ul>
         </div>
@@ -67,9 +129,11 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен компонент <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
                 Switch
-              </Link>. Компонент стал контролируемым.
+              </Link>
+              . Компонент стал контролируемым.
             </li>
           </ul>
         </div>
@@ -93,7 +157,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлениы иконки MES, SPEP
+              • Добавлены иконки MES, SPEP
               <Link href="./?path=/docs/components-icon-info--docs" target="blank">
                 Icon
               </Link>

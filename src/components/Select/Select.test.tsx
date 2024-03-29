@@ -11,7 +11,14 @@ describe('Select Component', () => {
   ];
 
   test('renders Select component and opens options on focus', async () => {
-    render(<Select options={options} label="Select Label" />);
+    render(
+      <Select
+        options={options}
+        label="Select Label"
+        selected={[]}
+        onSelectionChange={jest.fn()}
+      />
+    );
 
     const selectInput = screen.getByTestId('select-input');
     expect(selectInput).toBeInTheDocument();
@@ -26,7 +33,14 @@ describe('Select Component', () => {
   });
 
   test('closes the options list when an option is clicked', async () => {
-    render(<Select options={options} label="Select Label" />);
+    render(
+      <Select
+        options={options}
+        label="Select Label"
+        selected={[]}
+        onSelectionChange={jest.fn()}
+      />
+    );
 
     fireEvent.focus(screen.getByTestId('select-input'));
 
@@ -38,7 +52,14 @@ describe('Select Component', () => {
   });
 
   test('displays no options message when options are empty', () => {
-    render(<Select options={[]} label="Select Label" />);
+    render(
+      <Select
+        options={[]}
+        label="Select Label"
+        selected={[]}
+        onSelectionChange={jest.fn()}
+      />
+    );
 
     fireEvent.focus(screen.getByTestId('select-input'));
 

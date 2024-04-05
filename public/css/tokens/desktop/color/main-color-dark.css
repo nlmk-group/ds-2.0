@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
+* Generated on Tue Apr 02 2024 10:04:27 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -234,8 +234,8 @@
   --ac-pagination-selected-number: #eaf0ff;
   --ac-subtitle-default: #eaf0ff;
   --ac-checkbox-checked-bg: #f2f3f4;
-  --ac-checkbox-checked-normal: #2a69d8;
-  --ac-checkbox-checked-focused: #2a69d8;
+  --ac-checkbox-checked-normal: #2a8cff;
+  --ac-checkbox-checked-focused: #2a8cff;
   --ac-checkbox-checked-focused-focus: #eaf0ff;
   --ac-checkbox-checked-disabled: #788996;
   --ac-checkbox-unchecked-normal-stroke: #8f9ca6;
@@ -248,7 +248,7 @@
   --ac-checkbox-unchecked-disabled-stroke: #b3b9bf;
   --ac-checkbox-unchecked-disabled-fill: #4e6273;
   --ac-badge-solid-primary-text: #f2f3f4;
-  --ac-badge-solid-primary-fill: #2a7beb;
+  --ac-badge-solid-primary-fill: #2a8cff;
   --ac-badge-solid-secondary-text: #2d3a4d;
   --ac-badge-solid-secondary-fill: #b5c4db;
   --ac-badge-solid-error-text: #f2f3f4;
@@ -260,7 +260,7 @@
   --ac-badge-solid-grey-text: #f2f3f4;
   --ac-badge-solid-grey-fill: #5e7383;
   --ac-badge-outline-primary-text: #e5e8ea;
-  --ac-badge-outline-primary-stroke: #2a7beb;
+  --ac-badge-outline-primary-stroke: #2a8cff;
   --ac-badge-outline-secondary-text: #e5e8ea;
   --ac-badge-outline-secondary-stroke: #b5c4db;
   --ac-badge-outline-error-text: #e5e8ea;
@@ -275,7 +275,7 @@
   --ac-segment-stroke: #8f9ca6;
   --ac-segment-default-bg: #617794;
   --ac-segment-hover-bg: #404f66;
-  --ac-segment-active-bg: #2a69d8;
+  --ac-segment-active-bg: #2a8cff;
   --ac-segment-error-bg: #76141e;
   --ac-segment-warning-bg: #A86522;
   --ac-segment-success-bg: #2D6922;
@@ -311,30 +311,30 @@
   --ac-snackbar-light-green-text: #4e6273;
   --ac-snackbar-pink-bg: #f5dddc;
   --ac-snackbar-pink-text: #4e6273;
-  --ac-accordeon-default-default-bg-head: #3c4854;
-  --ac-accordeon-default-default-heading: #f2f3f4;
-  --ac-accordeon-default-default-bg-text: #3c4854;
-  --ac-accordeon-default-default-icon: #e5e8ea;
-  --ac-accordeon-default-default-text: #e5e8ea;
-  --ac-accordeon-default-hover-bg-head: #556878;
-  --ac-accordeon-default-hover-heading: #f2f3f4;
-  --ac-accordeon-default-hover-icon: #e5e8ea;
-  --ac-accordeon-default-disabled-bg-head: #556878;
-  --ac-accordeon-default-disabled-heading: #788996;
-  --ac-accordeon-default-disabled-icon: #788996;
-  --ac-accordeon-default-divider: #5e7383;
-  --ac-accordeon-paper-default-bg-head: #475363;
-  --ac-accordeon-paper-default-heading: #f2f3f4;
-  --ac-accordeon-paper-default-bg-text: #475363;
-  --ac-accordeon-paper-default-icon: #e5e8ea;
-  --ac-accordeon-paper-default-text: #e5e8ea;
-  --ac-accordeon-paper-hover-bg-head: #556878;
-  --ac-accordeon-paper-hover-heading: #f2f3f4;
-  --ac-accordeon-paper-hover-icon: #e5e8ea;
-  --ac-accordeon-paper-disabled-bg-head: #556878;
-  --ac-accordeon-paper-disabled-heading: #8f9ca6;
-  --ac-accordeon-paper-disabled-icon: #8f9ca6;
-  --ac-accordeon-paper-divider: #5e7383;
+  --ac-accordion-default-default-bg-head: #3c4854;
+  --ac-accordion-default-default-heading: #f2f3f4;
+  --ac-accordion-default-default-bg-text: #3c4854;
+  --ac-accordion-default-default-icon: #e5e8ea;
+  --ac-accordion-default-default-text: #e5e8ea;
+  --ac-accordion-default-hover-bg-head: #556878;
+  --ac-accordion-default-hover-heading: #f2f3f4;
+  --ac-accordion-default-hover-icon: #e5e8ea;
+  --ac-accordion-default-disabled-bg-head: #556878;
+  --ac-accordion-default-disabled-heading: #788996;
+  --ac-accordion-default-disabled-icon: #788996;
+  --ac-accordion-default-divider: #5e7383;
+  --ac-accordion-paper-default-bg-head: #475363;
+  --ac-accordion-paper-default-heading: #f2f3f4;
+  --ac-accordion-paper-default-bg-text: #475363;
+  --ac-accordion-paper-default-icon: #e5e8ea;
+  --ac-accordion-paper-default-text: #e5e8ea;
+  --ac-accordion-paper-hover-bg-head: #556878;
+  --ac-accordion-paper-hover-heading: #f2f3f4;
+  --ac-accordion-paper-hover-icon: #e5e8ea;
+  --ac-accordion-paper-disabled-bg-head: #556878;
+  --ac-accordion-paper-disabled-heading: #8f9ca6;
+  --ac-accordion-paper-disabled-icon: #8f9ca6;
+  --ac-accordion-paper-divider: #5e7383;
   --ac-input-range-only-line-default-bg: #bde1ff;
   --ac-input-range-only-line-default-line: #2a8cff;
   --ac-input-range-only-line-default-point: #2a8cff;
@@ -410,7 +410,7 @@
   --ac-toggle-button-default-default-stroke: #8f9ca6;
   --ac-toggle-button-default-hover-bg: #50627d;
   --ac-toggle-button-default-hover-text: #eaf0ff;
-  --ac-toggle-button-default-active-bg: #2a69d8;
+  --ac-toggle-button-default-active-bg: #2a7beb;
   --ac-toggle-button-default-active-text: #eaf0ff;
   --ac-toggle-button-success-default-text: #68B668;
   --ac-toggle-button-success-default-stroke: #8f9ca6;
@@ -493,7 +493,7 @@
   --ac-treelist-warning-bg: #8F4C19;
   --ac-treelist-warning-hover-bg: #A86522;
   --ac-treelist-warning-icon: #F8C487;
-  --ac-treelist-success-bg: #97E89A;
+  --ac-treelist-success-bg: #3E8338;
   --ac-treelist-success-hover-bg: #215112;
   --ac-treelist-success-icon: #D2FDDF;
   --ac-treelist-edited-dot: #2a8cff;
@@ -636,6 +636,8 @@
   --ac-sidebar-section-selected-bg: #2a8cff;
   --ac-sidebar-section-top-section-bg: #162736;
   --ac-sidebar-section-logo-color: #f2f3f4;
+  --ac-sidebar-section-text-disabled: #788996;
+  --ac-sidebar-section-icon-disabled: #788996;
   --ac-sidebar-subsection-text: #f2f3f4;
   --ac-sidebar-subsection-default-bg: #475363;
   --ac-sidebar-subsection-hover-bg: #556878;

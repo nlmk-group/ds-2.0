@@ -43,6 +43,10 @@
     "value": "32px",
     "type": "spacing"
   },
+  "40-space": {
+    "value": "40px",
+    "type": "spacing"
+  },
   "48-space": {
     "value": "48px",
     "type": "spacing"

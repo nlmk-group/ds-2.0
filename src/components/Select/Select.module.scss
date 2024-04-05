@@ -1,5 +1,18 @@
+@mixin common-wrapper-styles {
+  display: flex;
+  height: var(--24-size);
+  align-items: center;
+  gap: var(--8-space);
+}
+
+@mixin set-height-and-line-height($size) {
+  height: $size;
+  line-height: $size;
+}
+
 .select {
   position: relative;
+  width: 100%;
 
   &__input {
     cursor: pointer;
@@ -27,6 +40,7 @@
   }
 
   .item {
+    position: relative;
     color: var(--ac-select-item-default-label);
 
     &:hover {
@@ -36,8 +50,9 @@
 
     &.disabled {
       opacity: var(--45-opacity);
-      &:hover {
+      div {
         cursor: default;
+        pointer-events: none;
       }
     }
 
@@ -53,7 +68,11 @@
   }
 
   .checkbox {
-    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    label:first-child {
+      padding: unset;
+    }
   }
 
   .label {
@@ -76,13 +95,149 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    height: var(--24-size);
     width: 100%;
+  }
+}
 
-    .icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.left-wrapper,
+.right-wrapper,
+.inconspicuous-left-wrapper,
+.inconspicuous-right-wrapper {
+  @include common-wrapper-styles;
+}
+
+.left-wrapper {
+  margin: 0 var(--8-space) auto 0;
+}
+
+.inconspicuous-right-wrapper {
+  margin-left: auto;
+}
+
+.right-wrapper {
+  margin: 0 0 auto auto;
+}
+
+.inconspicuous {
+  width: 100%;
+  cursor: pointer;
+  transition: 0.1s;
+  color: var(--text-grey-400);
+  path {
+    fill: var(--text-grey-400);
+  }
+
+  &:hover {
+    color: var(--text-grey-500);
+    path {
+      fill: var(--text-grey-500)
     }
+  }
+}
+
+.inconspicuous-disabled {
+  opacity: var(--45-opacity);
+  cursor: default;
+  pointer-events: none;
+}
+
+.inconspicuous-m {
+  @include set-height-and-line-height(var(--40-size));
+}
+
+.inconspicuous-s {
+  @include set-height-and-line-height(var(--32-size));
+}
+
+.inconspicuous-xs {
+  @include set-height-and-line-height(var(--28-size));
+}
+
+.inconspicuous-item {
+  display: flex;
+  gap: var(--4-space);
+  align-items: center;
+}
+
+.inconspicuous-item-icon {
+  display: flex;
+  align-items: center;
+}
+
+.multiple-label {
+  width: 80%;
+}
+
+.icon-wrapper {
+  height: var(--24-size);
+  width: var(--24-size);
+  svg {
+    color: var(--ac-select-item-default-label);
+  }
+}
+
+.icon-selected {
+  svg {
+    color: var(--ac-icon-blue);
+  }
+}
+
+.badge-amount-wrapper {
+  position: absolute;
+  top: calc(var(--4-space) * -1);
+  right: calc(var(--4-space) * -1);
+}
+
+.item-with-sub-label {
+  height: var(--60-size)!important;
+}
+
+.sub-label-wrapper {
+  cursor: pointer;
+  color: var(--text-grey-600);
+}
+
+.sub-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-container {
+  width: -webkit-fill-available;
+}
+
+.text-container-item {
+  width: 70%;
+}
+
+.nested-icon {
+  display: flex;
+  cursor: pointer;
+}
+
+// TODO: add nested list of options
+// Link: https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/DS2.0-Input?type=design&node-id=2559-8688&mode=design&t=Bt67vU7ZD9gbIntW-0
+// .nested-list {
+//   position:absolute;
+//   background-color:green;
+//   height: 200px;
+//   border:2px solid black;
+// }
+
+.show-only-icon {
+  width: 28px;
+  & > div:first-child {
+    width: 28px;
+    overflow: hidden;
+  }
+}
+
+.inconspicuous-active {
+  color: var(--primary-blue-600);
+  path {
+    fill: var(--ac-icon-blue)
   }
 }
 
@@ -102,13 +257,13 @@
   transform: rotate(180deg);
 }
 
-// TODO: make list smooth appear
-// .option-list {
-//   transition: 0.3s ease-out;
-// }
+.input-helper {
+  input {
+    cursor: pointer;
+    text-overflow: ellipsis;
+  }
+}
 
-// .option-list-closed {
-//   opacity: 0;
-//   visibility: hidden;
-//   top: calc(var(--16-space) * -1);
-// }
+.child-wrapper {
+  width: min-content;
+}

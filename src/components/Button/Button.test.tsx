@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Button } from './index';
 import { EVariant } from './enums'
-import { IcombinedOption, combinedOptions } from './displayHelper';
+import { ICombinedOption, combinedOptions } from './displayHelper';
 
 describe('src/components/Button', () => {
   const text = 'Some example text';
@@ -46,7 +46,7 @@ describe('src/components/Button', () => {
 
 
   // check button options
-  combinedOptions().forEach((option: IcombinedOption) => {
+  combinedOptions().forEach((option: ICombinedOption) => {
     const { variant, fill } = option
     test(`Кнопка должна быть отрендерена со стилем ${variant}-${fill}`, () => {
       const { container } = render(

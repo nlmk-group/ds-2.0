@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { ISidebarProperties, ISubmenuProperties } from '../types';
-import { orientationMapping, submenuVersionMapping } from '../enums';
+import { orientationMapping } from '../enums';
 
 export const SidebarProperties = createContext<ISidebarProperties>({
   isExpanded: false,
@@ -9,17 +9,17 @@ export const SidebarProperties = createContext<ISidebarProperties>({
   orientation: orientationMapping.vertical,
   setSubmenuItems: () => {},
   setActiveItem: () => {},
-  setSubmenuOffset: () => {},
   isScrollingDueToClick: false,
-  setIsScrollingDueToClick: () => {}
+  setIsScrollingDueToClick: () => {},
+  currentPath: ''
 });
 
 export const SubmenuProperties = createContext<ISubmenuProperties>({
   showFavorites: false,
   activeItem: null,
-  version: submenuVersionMapping.version1,
   handleFavorites: () => {},
   checkIsFavorite: () => false,
+  checkChildIsFavorite: () => false,
   setActiveItem: () => {},
   setSubmenuItems: () => {}
 });

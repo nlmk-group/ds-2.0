@@ -12,9 +12,3 @@ export enum positionMapping {
   top = 'top',
   bottom = 'bottom'
 }
-
-export enum submenuVersionMapping {
-  version1 = 'version1',
-  version2 = 'version2',
-  version3 = 'version3'
-}

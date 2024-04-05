@@ -11,7 +11,7 @@ const CollapseButton = forwardRef<HTMLDivElement, ICollapseButtonProps>(({ isExp
   return (
     <div ref={ref} className={styles.root} onClick={onClick} title={isExpanded ? 'Свернуть' : 'Развернуть'}>
       <div className={clsx(styles.arrow, { [styles['arrow-expanded']]: isExpanded })}>
-        <Icon name={'IconArrowRightOutlined32'} containerSize={32} htmlColor="var(--ac-icon-white)" />
+        <Icon name={'IconChevronArrowRightOutlined32'} containerSize={32} htmlColor="var(--ac-icon-white)" />
       </div>
       {isExpanded && (
         <Typography variant="Body1-Medium" className={styles.text}>

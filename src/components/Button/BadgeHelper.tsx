@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { EFill, ESizes, EVariant } from './enums';
-import { IBadgeHelper, TbadgeTypes } from './types';
+import { IBadgeHelper, TBadgeTypes } from './types';
 import {
   colorsMapping,
   sizesMapping,
@@ -9,7 +9,7 @@ import {
 import { Badge } from '..';
 
 
-const badgeTypeMap: TbadgeTypes = {
+const badgeTypeMap: TBadgeTypes = {
   [`${EVariant.primary}-${EFill.solid}`]: { color: colorsMapping.secondary, variant: variantsMapping.solid },
   [`${EVariant.primary}-${EFill.outline}`]: { color: colorsMapping.primary, variant: variantsMapping.outline },
   [`${EVariant.primary}-${EFill.clear}`]: { color: colorsMapping.primary, variant: variantsMapping.solid },

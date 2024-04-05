@@ -1438,7 +1438,7 @@
         },
         "error": {
           "text": {
-            "value": "#001729",
+            "value": "#fc200c",
             "type": "color",
             "description": "Цвет номера бейджа Error"
           },
@@ -1450,19 +1450,19 @@
         },
         "warning": {
           "text": {
-            "value": "#001729",
+            "value": "#ff8b0f",
             "type": "color",
             "description": "Цвет номера бейджа Warning"
           },
           "stroke": {
-            "value": "#ffa62b",
+            "value": "#ff8b0f",
             "type": "color",
             "description": "Цвет контура бейджа Warning"
           }
         },
         "success": {
           "text": {
-            "value": "#001729",
+            "value": "#39cc59",
             "type": "color",
             "description": "Цвет номера бейджа Success"
           },
@@ -1474,7 +1474,7 @@
         },
         "grey": {
           "text": {
-            "value": "#001729",
+            "value": "#66747e",
             "type": "color",
             "description": "Цвет номера бейджа Grey"
           },
@@ -2115,7 +2115,7 @@
         "description": "Цвет иконки в состоянии Error"
       },
       "warning": {
-        "value": "#ffa62b",
+        "value": "#ffb700",
         "type": "color",
         "description": "Цвет иконки в состоянии Warning"
       },
@@ -2534,7 +2534,7 @@
           "description": "Цвет иконки в состоянии default, icon"
         },
         "hover-bg": {
-          "value": "#ccd1d4",
+          "value": "#b3b9bf",
           "type": "color",
           "description": "Цвет фона аватара в состоянии hover,icon"
         },
@@ -2556,9 +2556,9 @@
           "description": "Цвет для инициалов в состоянии default, placeholder"
         },
         "hover-bg": {
-          "value": "#ccd1d4",
+          "value": "#b3b9bf",
           "type": "color",
-          "description": "Цвет фона аватара в состоянии hover,   placeholder"
+          "description": "Цвет фона аватара в состоянии hover, placeholder"
         },
         "hover-initials": {
           "value": "#ffffff",

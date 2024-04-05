@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, MouseEvent, ReactElement } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
@@ -15,7 +15,12 @@ export type ISelectOption = {
   /**
    * Отображаемый текст опции.
    */
-  label: string;
+  label: string | ReactElement;
+
+  /**
+   * Описание опции.
+   */
+  subLabel?: string;
 
   /**
    * Отключена ли опция.
@@ -23,9 +28,15 @@ export type ISelectOption = {
   disabled?: boolean;
 
   /**
-   * Иконка для опции.
-   */
-  icon?: ReactNode;
+   * Иконки для опции.
+  */
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+
+  /**
+    * Отключена ли опция.
+    */
+  options?: ISelectOption[];
 
   /**
    * Дополнительные свойства опции.
@@ -33,6 +44,7 @@ export type ISelectOption = {
   [key: string]: any;
 };
 
+type TSize = `${sizesMappingInput}`;
 export type TSelected = string | string[];
 
 
@@ -41,6 +53,14 @@ export type TSelected = string | string[];
  * Интерфейс для пропсов компонента Select.
  */
 export interface ISelectProps {
+  /**
+   * Элемент представляющий собой селект
+   */
+  children?: ReactNode;
+  /**
+   * Минимальная ширина меню опций
+   */
+  listMinWidth?: number;
   /**
    * Идентификатор компонента.
    */
@@ -64,7 +84,7 @@ export interface ISelectProps {
   /**
    * Размер компонента.
    */
-  size?: sizesMappingInput;
+  size?: TSize;
 
   /**
    * Количество элементов после которого включается прокрутка.
@@ -135,8 +155,76 @@ export interface ISelectProps {
    */
   className?: string;
 
-  /**
-   * Условие фокуса на опциях компонента при раскрытии списка
+  /*
+   * Условие для незаметного инпута
    */
+  stealthy?: boolean;
+
+  /*
+  * Отображать выбранные элементы иконкой
+  */
+  highlightSelected?: boolean;
+
+  /*
+  * Отображать без чекбоксов
+  */
+  withoutCheckbox?: boolean;
+
+  /*
+  * Отображать badge с количеством выбранных опций
+  */
+  badgeAmount?: number;
+
+  /*
+  * Выделять значение синим цветом, доступно в stealthy
+  */
+  activeSelectedValue?: boolean;
+
+  /**
+ * Условие фокуса на опциях компонента при раскрытии списка
+  */
   enableScrollToActiveOption?: boolean;
+}
+
+export interface IStealthyItem {
+  option?: ISelectOption;
+  size: TSize;
+  displayValue: string;
+  multiple: boolean;
+  label?: string | ReactElement;
+  activeSelectedValue: boolean;
+}
+
+export interface IMenu {
+  availableOptionsCount: number;
+  filteredOptions: ISelectOption[];
+}
+
+export interface ISelectSharedProperties {
+  multiple: boolean;
+  listMinWidth?: number;
+  withoutCheckbox: boolean;
+  highlightSelected: boolean;
+  allSelectText: string;
+  isAllSelectView: boolean;
+  scrollingItems: number;
+  selectedValues: TSelected;
+  handleSelect: (option: string, includes: boolean) => void;
+  handleTypographyClick: (option: string, event: MouseEvent<HTMLParagraphElement>) => void;
+  handleSelectAllClick: () => void;
+}
+
+export interface IMenuItem extends ISelectOption {
+}
+
+
+export interface IBadgeAmount {
+  children: number
+}
+
+export interface ISelectButton {
+  isOpen: boolean;
+  disabled: boolean;
+  color: `${customInputColors}`;
+  toggleDropdown: ()=>void;
 }

@@ -9,6 +9,14 @@ export const argsTypes = {
     description: 'Добавление кастомного CSS класса',
     control: { type: 'text' }
   },
+  listMinWidth: {
+    description: 'Минимальное значение ширины меню опций',
+    control: { type: 'number' }
+  },
+  children: {
+    description: 'Свойство которое позволяет передавать компонент (JSX.Element) для отображения в контейнер Select',
+    control: { type: 'string' }
+  },
   options: {
     description: 'Массив объектов, представляющих доступные опции для выбора',
     control: { type: 'object' }
@@ -45,6 +53,26 @@ export const argsTypes = {
   },
   disabled: {
     description: 'Условие блокировки Select для выбора',
+    control: { type: 'boolean' }
+  },
+  badgeAmount: {
+    description: 'Номер для отображения в бадже вправом верхнем углу Select',
+    control: { type: 'number' }
+  },
+  stealthy: {
+    description: 'Условие для "незаметного" Select: без границ и бекграунда',
+    control: { type: 'boolean' }
+  },
+  highlightSelected: {
+    description: 'Условие для отображения иконки в выбраных опциях селекта',
+    control: { type: 'boolean' }
+  },
+  activeSelectedValue: {
+    description: 'Условие для выделения значения синим цветом, доступно только с опцией stealthy',
+    control: { type: 'boolean' }
+  },
+  withoutCheckbox: {
+    description: 'Условие для алтернативного отображения множественных опций. Работает только в случае множественного выбора',
     control: { type: 'boolean' }
   },
   color: {

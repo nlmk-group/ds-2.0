@@ -29,7 +29,6 @@ const Sidebar: FC<ISidebarProps> &
   Record<'SubmenuItem', FC<ISubmenuItemProps>> = ({
     variant = variantMapping.default,
     orientation = orientationMapping.vertical,
-    submenuVersion,
     allowFavorites = false,
     isLoggedIn,
     systemName,
@@ -40,7 +39,8 @@ const Sidebar: FC<ISidebarProps> &
     onLogout,
     onLogin,
     onSearch,
-    onClickLogo
+    onClickLogo,
+    currentPath
   }) => {
     const isBurger = variant === variantMapping.burger;
     const isVertical = orientation === orientationMapping.vertical;
@@ -48,7 +48,6 @@ const Sidebar: FC<ISidebarProps> &
     const [isExpanded, setExpanded] = useState(!isVertical && !isBurger);
     const [activeItem, setActiveItem] = useState<string | null>(null);
     const [submenuItems, setSubmenuItems] = useState<ReactNode | ReactNode[]>(null);
-    const [submenuOffset, setSubmenuOffset] = useState<number>(0);
     const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
     const positionRef = useRef<HTMLDivElement>(null);
@@ -124,7 +123,9 @@ const Sidebar: FC<ISidebarProps> &
       [menuItems]
     );
 
-    const { x: menuOffset = 0, width: menuWidth } = positionRef.current?.getClientRects()[0] ?? {};
+    const actionIconName = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
+    const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
+    const handleAction = isLoggedIn && onLogout ? onLogout : onLogin;
 
     const renderUserControl = () => (
       <UserControl
@@ -157,9 +158,9 @@ const Sidebar: FC<ISidebarProps> &
           orientation,
           setSubmenuItems,
           setActiveItem,
-          setSubmenuOffset,
           isScrollingDueToClick,
-          setIsScrollingDueToClick
+          setIsScrollingDueToClick,
+          currentPath
         }}
       >
         <ClickAwayListener
@@ -171,14 +172,14 @@ const Sidebar: FC<ISidebarProps> &
         >
           <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
             {isBurger && !isVertical && (
-              <div className={styles.burger} onClick={expandSidebar}>
+              <div className={clsx(styles.burger, styles['burger-expanded'])} onClick={expandSidebar}>
                 <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
               </div>
             )}
             <div className={styles.head}>
               {isVertical && isBurger && <CollapseButton isExpanded={isExpanded} onClick={expandSidebar} />}
 
-              <div className={styles.top}>
+              <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
                 <div className={styles['top-left']}>
                   <div className={styles.logo} onClick={onClickLogo}>
                     <LogoSvgIcon />
@@ -189,20 +190,21 @@ const Sidebar: FC<ISidebarProps> &
                     </Typography>
                   )}
                 </div>
-                {isExpanded && isLoggedIn && isVertical && Boolean(onLogout) && (
+                {isExpanded && isVertical && handleAction && (
                   <Button
                     variant="primary"
-                    fill="outline"
-                    className={styles.logout}
-                    onClick={onLogout}
-                    iconButton={<Icon name={'IconExitOutlined24'} />}
+                    fill="clear"
+                    className={styles.auth}
+                    onClick={handleAction}
+                    iconButton={<Icon name={actionIconName} />}
+                    title={actionTitle}
                   />
                 )}
               </div>
             </div>
 
             <Scrollbar
-              className={clsx(styles.body, styles[`body-${orientation}`], styles.customScrollbar)}
+              className={clsx(styles.body, styles[`body-${orientation}`], styles.scrollbar)}
               ref={scrollRef}
             >
               {isVertical ? (
@@ -238,14 +240,7 @@ const Sidebar: FC<ISidebarProps> &
             )}
           </div>
 
-          <Submenu
-            title={activeItem ?? ''}
-            isOpen={Boolean(activeItem)}
-            orientation={orientation}
-            offset={submenuOffset - menuOffset}
-            menuWidth={menuWidth}
-            version={submenuVersion}
-          >
+          <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>
             {submenuItems}
           </Submenu>
         </ClickAwayListener>

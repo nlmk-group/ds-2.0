@@ -1,6 +1,6 @@
 const argsTypes = {
   size: {
-    description: 'Размер спиннера `m | l | xl | xxl`',
+    description: 'Размер спиннера <b>m | l | xl | xxl</b>',
     control: { type: 'select', options: ['m', 'l', 'xl', 'xxl'] },
     table: {
       defaultValue: {

@@ -1,0 +1,20 @@
+import { Meta, Unstyled, Story } from '@storybook/addon-docs';
+import Box from '..';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Box/Info"
+  component={Box}
+  parameters={{
+    design: {
+      type: 'figma'
+    },
+    jest: ['Box.test.tsx']
+  }}
+/>
+
+<Story name='Docs'>
+  <Unstyled>
+    <Stories />
+  </Unstyled>
+</Story>

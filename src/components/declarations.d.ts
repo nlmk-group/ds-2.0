@@ -1,6 +1,6 @@
-declare module '*.module.scss' {
-  const scss: { [key: string]: string };
-  export default scss;
+declare module '*.scss' {
+  const content: Record<string, string>;
+  export default content;
 }
 
 declare module '*.json' {

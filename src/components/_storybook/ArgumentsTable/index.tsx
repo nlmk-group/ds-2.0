@@ -14,7 +14,9 @@ export const ArgumentsTable: FC<IArgumentsTableProps> = ({ args = {} }) => {
               <b>{key}</b>
             </td>
             <td className={styles.td} dangerouslySetInnerHTML={{ __html: value.description }} />
-            <td className={styles.td}>{(value.table && value.table.defaultValue.summary) || '-'}</td>
+            <td className={styles.td}>
+              {(value.table && value.table.defaultValue && value.table.defaultValue.summary) || '-'}
+            </td>
           </tr>
         ))}
       </tbody>

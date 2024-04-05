@@ -1,4 +1,7 @@
 .root {
+  display: flex;
+  gap: var(--12-space);
+
   @mixin size-list {
     appearance: none;
     height: var(--16-size);
@@ -116,4 +119,17 @@
       }
     }
   }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-grey-900);
+}
+
+.label-disabled {
+  color: var(--text-grey-500);
+  pointer-events: none;
+  cursor: default;
 }

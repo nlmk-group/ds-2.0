@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Radio from '.';
 
@@ -32,4 +32,13 @@ describe('src/components/Radio', () => {
     radio.setAttribute('checked', 'true');
     expect(radio).toBeChecked();
   });
+
+  test('Проверка значения свойства label', () => {
+    const testLabel = 'Hello world!';
+    render(
+      <Radio label={testLabel} />
+    );
+
+    expect(screen.getByTestId('radio-label')).toHaveTextContent(testLabel);
+  })
 });

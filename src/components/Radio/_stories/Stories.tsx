@@ -51,11 +51,13 @@ export default  App = () => {
         checked={checked === 'yes'}
         onChange={handleChange}
         value="yes"
+        label="Yes"
       />
       <Radio
         checked={checked === 'no'}
         onChange={handleChange}
         value="no"
+        label="No"
       />
     </>
   )

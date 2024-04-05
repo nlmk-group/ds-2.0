@@ -1305,7 +1305,7 @@
           "description": "Цвет контура в состоянии unchecked, error"
         },
         "error-fill": {
-          "value": "#ffedf0",
+          "value": "#ffffff",
           "type": "color",
           "description": "Цвет заливки в состоянии unchecked, error"
         },
@@ -1533,7 +1533,7 @@
         "description": "Цвет заливки ячейки в состоянии Disabled"
       }
     },
-    "accordeon": {
+    "accordion": {
       "default": {
         "default-bgHead": {
           "value": "#edeeef",
@@ -1597,7 +1597,7 @@
         }
       },
       "paper": {
-        "default -bgHead": {
+        "default-bgHead": {
           "value": "#ffffff",
           "type": "color",
           "description": "Цвет фона заголовка аккордеона в состоянии default, paper"
@@ -3312,6 +3312,16 @@
         "logo-color": {
           "value": "#ffffff",
           "type": "color"
+        },
+        "text-disabled": {
+          "value": "#97a4b7",
+          "type": "color",
+          "description": "Цвет текста в состоянии Disabled"
+        },
+        "icon-disabled": {
+          "value": "#97a4b7",
+          "type": "color",
+          "description": "Цвет иконки в состоянии Disabled"
         }
       },
       "subsection": {
@@ -3328,7 +3338,7 @@
           "type": "color"
         },
         "selected-bg": {
-          "value": "#e6e9ed",
+          "value": "#e8f5ff",
           "type": "color"
         },
         "selected-text": {

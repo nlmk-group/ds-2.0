@@ -33,7 +33,13 @@ const Checkbox: FC<ICheckboxProps> = ({
   )
   
   return (
-    <div className={clsx(styles['label-wrapper'], className)}>
+    <div
+      className={clsx(
+        styles['label-wrapper'],
+        className
+      )}
+      data-testid='checkbox'
+    >
       <label htmlFor={id}>
         <div className={styles['input-wrapper']}>
           <input

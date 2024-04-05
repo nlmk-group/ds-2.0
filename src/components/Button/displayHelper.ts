@@ -1,6 +1,6 @@
 import { EFill, EVariant, ESizes } from './enums';
 
-export interface IcombinedOption {
+export interface ICombinedOption {
   variant: EVariant;
   fill: EFill;
   size?: ESizes;
@@ -11,7 +11,7 @@ const fillMapping = Object.values(EFill);
 const sizeMapping = Object.values(ESizes);
 
 export const combinedOptions = (flag?: boolean) => {
-  const arr: IcombinedOption[] = [];
+  const arr: ICombinedOption[] = [];
   variantMapping.forEach((variant: EVariant) => {
     fillMapping.forEach((fill: EFill) => {
       if (flag) {

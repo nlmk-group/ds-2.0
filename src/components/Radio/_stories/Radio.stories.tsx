@@ -33,7 +33,7 @@ export const RadioDefault = (argTypes: IRadioProps): JSX.Element => {
       }}
     >
       <Radio {...argTypes} checked={checked === argTypes.value} onChange={handleChange} />
-      <Radio checked={checked === 'option 2'} onChange={handleChange} value="option 2" />
+      <Radio checked={checked === 'option 2'} onChange={handleChange} value="option 2" label="Привет мир!" />
       <div style={{ color: 'var(--text-grey-900)'}}>
         <Typography variant="Body1-Bold">Выбранная опция: {checked}</Typography>
       </div>

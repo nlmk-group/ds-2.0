@@ -2,12 +2,15 @@ import React, { CSSProperties, forwardRef } from 'react';
 
 import clsx from 'clsx';
 
-import { IScrollbarProps } from './types';
+import { EOverflow, IScrollbarProps } from './types';
 
 import styles from './Scrollbar.module.scss';
 
 const Scrollbar = forwardRef<HTMLDivElement, IScrollbarProps>(
-  ({ className, style, children, overflowX, overflowY, overflow }, ref) => {
+  (
+    { className, style, children, overflowX = EOverflow.hidden, overflowY = EOverflow.auto, overflow = EOverflow.auto },
+    ref
+  ) => {
     const isSafari = () => {
       const userAgent = navigator.userAgent;
       return /^((?!chrome|android).)*safari/i.test(userAgent);

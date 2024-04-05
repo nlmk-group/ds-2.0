@@ -5,3 +5,27 @@
   width: 900px;
   height: 400px;
 }
+
+@mixin flex-column-wrapper {
+  padding: 50px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item-column-wrapper {
+  @include flex-column-wrapper;
+}
+
+.item-column-center-wrapper {
+  @include flex-column-wrapper;
+  margin: 0 auto;
+}
+
+.table-cell {
+  padding: 2px;
+  width: 168px;
+  display: flex;
+  border: 1px solid grey;
+}

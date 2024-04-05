@@ -1239,12 +1239,12 @@
           "description": "Цвет фона за иконкой (цвет галочки)\nТЕМНАЯ ТЕМА"
         },
         "normal": {
-          "value": "#2a69d8",
+          "value": "#2a8cff",
           "type": "color",
           "description": "Цвет иконки в состоянии checked, normal\nТЕМНАЯ ТЕМА"
         },
         "focused": {
-          "value": "#2a69d8",
+          "value": "#2a8cff",
           "type": "color",
           "description": "Цвет иконки в состоянии checked, focused\nТЕМНАЯ ТЕМА"
         },
@@ -1316,7 +1316,7 @@
             "description": "Цвет номера бейджа Primary\nТЕМНАЯ ТЕМА"
           },
           "fill": {
-            "value": "#2a7beb",
+            "value": "#2a8cff",
             "type": "color",
             "description": "Цвет заливки бейджа Primary\nТЕМНАЯ ТЕМА"
           }
@@ -1390,7 +1390,7 @@
             "description": "Цвет номера бейджа Primary\nТЕМНАЯ ТЕМА"
           },
           "stroke": {
-            "value": "#2a7beb",
+            "value": "#2a8cff",
             "type": "color",
             "description": "Цвет контура бейджа Primary\nТЕМНАЯ ТЕМА"
           }
@@ -1479,7 +1479,7 @@
         "description": "Цвет заливки ячейки в состоянии Hover\nТЕМНАЯ ТЕМА"
       },
       "active-bg": {
-        "value": "#2a69d8",
+        "value": "#2a8cff",
         "type": "color",
         "description": "Цвет заливки ячейки в состоянии Active\nТЕМНАЯ ТЕМА"
       },
@@ -1661,7 +1661,7 @@
         }
       }
     },
-    "accordeon": {
+    "accordion": {
       "default": {
         "default-bgHead": {
           "value": "#3c4854",
@@ -1725,7 +1725,7 @@
         }
       },
       "paper": {
-        "default -bgHead": {
+        "default-bgHead": {
           "value": "#475363",
           "type": "color",
           "description": "Цвет фона заголовка аккордеона в состоянии default, paper"
@@ -2177,7 +2177,7 @@
           "description": "Цвет текста в toggle-button, цвет Default, статус Hover\nТЕМНАЯ ТЕМА"
         },
         "active-bg": {
-          "value": "#2a69d8",
+          "value": "#2a7beb",
           "type": "color",
           "description": "Цвет заливки toggle-button, цвет Default, статус Active\nТЕМНАЯ ТЕМА"
         },
@@ -2621,7 +2621,7 @@
         "description": "Цвет иконки в компоненте tree list в состоянии Warning и Warning-Hover\nТЕМНАЯ ТЕМА"
       },
       "success-bg": {
-        "value": "#97E89A",
+        "value": "#3E8338",
         "type": "color",
         "description": "Цвет заливки компонента tree list в состоянии Success\nТЕМНАЯ ТЕМА"
       },
@@ -3299,6 +3299,16 @@
         "logo-color": {
           "value": "#f2f3f4",
           "type": "color"
+        },
+        "text-disabled": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет текста в состоянии Disabled\nТЕМНАЯ ТЕМА"
+        },
+        "icon-disabled": {
+          "value": "#788996",
+          "type": "color",
+          "description": "Цвет иконки в состоянии Disabled\nТЕМНАЯ ТЕМА"
         }
       },
       "subsection": {

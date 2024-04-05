@@ -4,8 +4,9 @@
 @import './tokens/sizing.css';
 @import './tokens/opacity.css';
 @import './tokens/radius.css';
-@import './tokens/main-typography.css';
 @import './temp-variables.css';
+@import './tokens/main-typography.css';
+@import './tokens/desktop/typo/main-typography.css';
 @import './tokens/desktop/color/main-color-light.css';
 
 * {

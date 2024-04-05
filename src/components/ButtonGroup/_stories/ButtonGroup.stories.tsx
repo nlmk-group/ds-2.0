@@ -26,7 +26,7 @@ import {
   BTN_GROUP_VERTICAL,
   DEFAULT_BTN_GROUP
 } from './text';
-import { IcombinedOption, combinedOptions } from '@components/Button/displayHelper';
+import { ICombinedOption, combinedOptions } from '@components/Button/displayHelper';
 
 const withWrapper = (Story: any) => (
   <div style={{ width: 'fit-content' }} className={styles.wrapper}>
@@ -116,7 +116,7 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
   return (
     <div>
       <div className={style['showcase-wrapper-column']}>
-        {combinedOptions(true).map((option: IcombinedOption) => {
+        {combinedOptions(true).map((option: ICombinedOption) => {
           const { fill, variant, size } = option;
           if (variant === EVariant.secondary && (fill === EFill.outline || fill === EFill.clear)) return <></>
           return (

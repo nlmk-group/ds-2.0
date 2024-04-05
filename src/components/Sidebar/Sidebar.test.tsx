@@ -10,6 +10,7 @@ describe('src/components/Sidebar', () => {
       onOpenUser={()=>{}}
       onLogout={()=>{}}
       onLogin={()=>{}}
+      currentPath=''
     />
   );
   const sidebar = container.getElementsByTagName('div')[0];

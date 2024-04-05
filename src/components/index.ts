@@ -11,6 +11,7 @@ export { default as ListItem } from './ListItem';
 export { default as Select } from './Select';
 export { default as PseudoInput } from './PseudoInput';
 export { default as Radio } from './Radio';
+export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as ButtonGroup } from './ButtonGroup';
 export { default as Badge } from './Badge';

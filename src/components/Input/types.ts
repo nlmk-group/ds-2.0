@@ -2,6 +2,8 @@ import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from 're
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
+type TSize = `${sizesMappingInput}`;
+
 export interface IInputAdditionalProps {
   id?: string;
   value?: string;
@@ -13,7 +15,7 @@ export interface IInputAdditionalProps {
   helperText?: string | ReactNode;
   resize?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  size?: sizesMappingInput;
+  size?: TSize;
   color?: customInputColors;
 }
 

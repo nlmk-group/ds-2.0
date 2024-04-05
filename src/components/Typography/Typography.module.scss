@@ -123,14 +123,15 @@
 
 .typography--variant-body {
   @include typography-properties(
-    var(--body-font-family),
-    var(--body-font-size),
-    var(--body-font-weight),
-    var(--body-line-height),
-    var(--body-letter-spacing),
-    var(--body-text-decoration)
+    var(--body-18-font-family),
+    var(--body-18-font-size),
+    var(--body-18-font-weight),
+    var(--body-18-line-height),
+    var(--body-18-letter-spacing),
+    var(--body-18-text-decoration)
   );
 }
+
 .typography--variant-body-medium {
   @include typography-properties(
     var(--body-medium-18-font-family),
@@ -139,6 +140,17 @@
     var(--body-medium-18-line-height),
     var(--body-medium-18-letter-spacing),
     var(--body-medium-18-text-decoration)
+  );
+}
+
+.typography--variant-body-bold {
+  @include typography-properties(
+      var(--body-bold-18-font-family),
+      var(--body-bold-18-font-size),
+      var(--body-bold-18-font-weight),
+      var(--body-bold-18-line-height),
+      var(--body-bold-18-letter-spacing),
+      var(--body-bold-18-text-decoration)
   );
 }
 
@@ -315,39 +327,6 @@
     var(--caption-mono-bold-12-line-height),
     var(--caption-mono-bold-12-letter-spacing),
     var(--caption-mono-bold-12-text-decoration)
-  );
-}
-
-.typography--variant-body-18 {
-  @include typography-properties(
-    var(--body-18-font-family),
-    var(--body-18-font-size),
-    var(--body-18-font-weight),
-    var(--body-18-line-height),
-    var(--body-18-letter-spacing),
-    var(--body-18-text-decoration)
-  );
-}
-
-.typography--variant-body-medium-18 {
-  @include typography-properties(
-    var(--body-medium-18-font-family),
-    var(--body-medium-18-font-size),
-    var(--body-medium-18-font-weight),
-    var(--body-medium-18-line-height),
-    var(--body-medium-18-letter-spacing),
-    var(--body-medium-18-text-decoration)
-  );
-}
-
-.typography--variant-body1-16 {
-  @include typography-properties(
-    var(--body1-16-font-family),
-    var(--body1-16-font-size),
-    var(--body1-16-font-weight),
-    var(--body1-16-line-height),
-    var(--body1-16-letter-spacing),
-    var(--body1-16-text-decoration)
   );
 }
 

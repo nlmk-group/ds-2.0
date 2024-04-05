@@ -23,6 +23,18 @@ export const argsTypes = {
     },
     control: { type: 'text' }
   },
+  label: {
+    description: 'Необязательное свойство. Текст справа от radio button',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
   checked: {
     description: 'Состояние активного компонента',
     table: {

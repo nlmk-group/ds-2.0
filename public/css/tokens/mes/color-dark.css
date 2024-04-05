@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Thu Jan 25 2024 16:19:38 GMT+0300 (Москва, стандартное время)
+* Generated on Mon Apr 01 2024 15:53:03 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -43,17 +43,22 @@
   --accent-yellow-hover: #ae861e;
   --accent-yellow-normal: #cc9c20;
   --accent-yellow-selected: #c59f3e;
+  --accent-orange-normal: #D27E35;
+  --accent-orange-hover: #B97337;
+  --accent-orange-selected: #D78B49;
+  --table-default-hover: #3c4854;
+  --table-default-normal: #475363;
+  --table-default-selected: #636f7f;
+  --table-default-selected-hover: #7c8796;
   --table-blueberry-hover: #4a578b;
   --table-blueberry-normal: #55639d;
   --table-blueberry-selected: #6672a4;
   --table-coffee-hover: #63524e;
   --table-coffee-normal: #74605b;
   --table-coffee-selected: #85706b;
-  --table-default: #475363;
   --table-green-hover: #436545;
   --table-green-normal: #507c53;
   --table-green-selected: #558659;
-  --table-hover: #3c4854;
   --table-khaki-hover: #435347;
   --table-khaki-normal: #4c5e51;
   --table-khaki-selected: #57675b;
@@ -66,8 +71,6 @@
   --table-salad-hover: #5f6440;
   --table-salad-normal: #777d51;
   --table-salad-selected: #83895f;
-  --table-selected: #636f7f;
-  --table-selected-hover: #7c8796;
   --table-sky-hover: #3c5871;
   --table-sky-normal: #486178;
   --table-sky-selected: #506b85;
@@ -80,6 +83,9 @@
   --table-yellow-hover: #8f742d;
   --table-yellow-normal: #9f8236;
   --table-yellow-selected: #a88c44;
+  --table-orange-normal: #9F6236;
+  --table-orange-hover: #8C562F;
+  --table-orange-selected: #A67652;
   --grey-concrete: #788996;
   --grey-granite: #ccd1d4;
   --grey-phantom: #5e7383;
@@ -89,11 +95,14 @@
   --sidebar-logo: #353b47;
   --sidebar-menu: #4c586a;
   --sidebar-menu-selected: #62738c;
+  --sidebar-zyfra-bg: #434E5E;
+  --sidebar-zyfra-divider: #69727E;
   --icon-blue: #53a2e5;
   --icon-green: #45c265;
   --icon-grey: #b3b9bf;
   --icon-red: #fc6c69;
   --icon-yellow: #ddaf35;
+  --icon-orange: #E57318;
   --bg-default: #3c4854;
   --bg-info: #636f7f;
   --bg-paper: #475363;
@@ -240,11 +249,11 @@
   --input-all-bg: #475363;
   --input-blue: #43abff;
   --input-disabled-bg: #4e6273;
-  --input-green: #33944b;
-  --input-grey-dark: #7d8c98;
+  --input-green: #38A553;
+  --input-grey-dark: #97A4AE;
   --input-grey-light: #5e7383;
   --input-hover: #2d3a4d;
-  --input-red: #bd4343;
+  --input-red: #DC4848;
   --input-renew-bg: #635a44;
   --input-yellow: #cc9c20;
   --select-bg: #475363;
@@ -266,6 +275,7 @@
   --select-normal-red-light: #86484f;
   --select-normal-yellow-dark: #ddaf35;
   --select-normal-yellow-light: #927e47;
+  --select-normal-secondary: #45678F;
   --tooltip-bg: #001729;
   --tooltip-text-primary: #ffffff;
   --tooltip-text-secondary: #808b94;

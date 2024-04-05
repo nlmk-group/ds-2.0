@@ -23,6 +23,79 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.5.1 - <span className={styles.date}>04.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен label для компонента
+              <Link href="./?path=/docs/components-radio-stories--docs" target="blank">
+                Radio
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.0 - <span className={styles.date}>03.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+                Box
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.11 - <span className={styles.date}>02.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены стили компонента
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+                SideBar
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.4.10 - <span className={styles.date}>01.04.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент
+              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+                Select
+              </Link>
+              . Компонент стал контролируемым.
+            </li>
+            <li>
+              • Обновленный компонент
+              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+                Select
+              </Link>
+              содержит:
+            </li>
+            <li className={styles['left-padding']}>- Анимированную иконку раскрытия</li>
+            <li className={styles['left-padding']}>- Настраиваемый скроллбар</li>
+            <li className={styles['left-padding']}>- Автофокус на активном элементе</li>
+            <li className={styles['left-padding']}>- Дополнительные иконки и описания</li>
+            <li className={styles['left-padding']}>- Улучшенное выделение всех элементов</li>
+            <li className={styles['left-padding']}>- Поддержка множественного выбора</li>
+            <li className={styles['left-padding']}>- Визуальные подсказки: подсветка и бейджи</li>
+            <li className={styles['left-padding']}>- Дизайн "Незаметный" (stealthy)</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.4.9 - <span className={styles.date}>28.03.24</span>
           </Typography>
           <ul className={styles.list}>

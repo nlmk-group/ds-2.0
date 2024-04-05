@@ -4,8 +4,9 @@ import fetch from 'node-fetch';
 import StyleDictionary from 'style-dictionary';
 
 const projectPath = process.env.GITLAB_PROJECT_PATH;
+const branch = process.env.GITLAB_BRANCH || 'main';
 const tokenName = 'tokens%2Ejson'; // символ "." меняем на %2E
-const tokenUrl = `https://gitlab.com/api/v4/projects/${projectPath}/repository/files/${tokenName}?ref=main`;
+const tokenUrl = `https://gitlab.com/api/v4/projects/${projectPath}/repository/files/${tokenName}?ref=${branch}`;
 const tokensBuildDir = './tokens';
 const baseTokenName = 'base-token.json';
 const cssBuildPath = 'public/css/tokens/';

@@ -1,0 +1,21 @@
+.space {
+  margin: 0 var(--24-space);
+}
+
+.divider-content {
+  color: var(--text-grey-900);
+}
+
+.test-classname {
+  color: var(--accent-blue-normal);
+  & * {
+    border-bottom-width: var(--2-size);
+    border-bottom-color: var(--ui-color-style-txt-info);
+  }
+}
+
+.show-divider-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--24-space);
+}

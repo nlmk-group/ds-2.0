@@ -5,7 +5,7 @@
 
 @mixin cell {
   display: flex;
-  height: var(--80-size);
+  height: var(--64-size);
   box-sizing: border-box;
   flex-shrink: 0;
   align-items: center;
@@ -17,8 +17,8 @@
   position: sticky;
   flex-shrink: 0;
   top: 0;
-  width: var(--80-size);
-  transition: width 0.5s;
+  width: var(--64-size);
+  transition: width 0.3s;
 
   &-vertical {
     height: 100vh;
@@ -29,7 +29,7 @@
   }
 
   &-horizontal {
-    height: var(--80-size);
+    height: var(--64-size);
 
     &-expanded {
       width: 100%;
@@ -57,12 +57,16 @@
 
 .burger {
   @include cell;
-  width: var(--80-size);
+  width: var(--64-size);
   justify-content: center;
   background: var(--ac-sidebar-section-default-bg);
 
   &:hover {
     background: var(--ac-sidebar-section-hover-bg);
+  }
+
+  &-expanded {
+    background: var(--ac-sidebar-section-selected-bg);
   }
 }
 
@@ -79,12 +83,16 @@
   justify-content: space-between;
   align-items: center;
   background: var(--ac-sidebar-section-top-section-bg);
-  padding: 0 var(--8-space);
+  transition: padding-left 0.3s ease;
 
   &-left {
     display: flex;
     align-items: center;
     flex-grow: 1;
+  }
+
+  &-expanded {
+    padding: 0 var(--8-space);
   }
 }
 
@@ -100,12 +108,14 @@
 .company {
   color: var(--ac-sidebar-section-text);
   margin: 0 var(--4-space);
-  opacity: 0.5;
+  opacity: var(--50-opacity);
 }
 
-.logout{
+.auth {
+  margin: 0 var(--8-space);
+
   &:hover {
-    background: var(--ac-button-black-clear-hover-bg);
+    background: var(--ac-button-primary-clear-hover-bg);
   }
 }
 

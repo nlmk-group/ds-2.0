@@ -1,10 +1,10 @@
 .root {
-  height: var(--80-size);
+  height: var(--64-size);
   width: 100%;
   max-width: 256px;
   display: flex;
   align-items: center;
-  padding: 0 var(--12-space) 0 var(--24-space);
+  padding: 0 var(--16-space);
   box-sizing: border-box;
   flex-shrink: 0;
   cursor: pointer;
@@ -15,6 +15,15 @@
 
   &-active {
     background: var(--ac-sidebar-section-selected-bg);
+  }
+
+  &-disabled {
+    background: var(--ac-sidebar-section-default-bg);
+    cursor: default;
+
+    &:hover {
+      background: var(--ac-sidebar-section-default-bg);
+    }
   }
 }
 
@@ -29,10 +38,14 @@
 .text {
   color: var(--ac-sidebar-section-text);
   margin-left: var(--16-space);
+
+  &-disabled {
+    color: var(--ac-sidebar-section-text-disabled);
+  }
 }
 
 .icon {
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 
   &-vertical {
     &-rotated {

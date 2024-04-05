@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { Button, Divider, Icon } from '@components/index';
 import { clsx } from 'clsx';
 
-import style from '../Divider.module.scss';
+import style from './Divider.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { orientationMapping, typeMapping } from '../enums';
@@ -86,9 +86,9 @@ export const DividerVertical = (argTypes: IDivider): ReactNode => {
     <div className={styles.wrapper}>
       <div style={{ display: 'flex' }}>
         <span className={style['divider-content']}>Текст №1</span>
-        <Divider {...argTypes} type={typeMapping.vertical} />
+        <Divider {...argTypes} type={typeMapping.vertical} className={style.space} />
         <span className={style['divider-content']}>Текст №2</span>
-        <Divider {...argTypes} type={typeMapping.vertical} dashed />
+        <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
         <span className={style['divider-content']}>Текст №3</span>
       </div>
     </div>
@@ -141,11 +141,11 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Текст №1</span>
         </div>
-        <Divider {...argTypes} type={typeMapping.vertical} />
+        <Divider {...argTypes} type={typeMapping.vertical} className={style.space} />
         <Button variant="secondary">
           <span>Нажать</span>
         </Button>
-        <Divider {...argTypes} type={typeMapping.vertical} dashed />
+        <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
         <Button variant="primary" fill="clear">
           <Icon name="IconChemical24" containerSize={24} htmlColor="var(--primary-blue-600)" />
         </Button>

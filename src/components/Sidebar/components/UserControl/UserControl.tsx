@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 
 import { Avatar, Button, Icon, Typography } from '@components/index';
 import { IUserControlProps } from '@components/Sidebar/types';
-import clsx from 'clsx';
 
 import styles from './UserControl.module.scss';
 
@@ -18,38 +17,31 @@ const UserControl: FC<IUserControlProps> = ({
   onLogout
 }) => {
   const fullName = `${userName ?? ''} ${userSurname ?? ''}`;
-  return isLoggedIn ? (
+  const actionIconName = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
+  const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
+  const handleAction = isLoggedIn && onLogout ? onLogout : onLogin;
+
+  return (
     <>
-      <div className={styles.user} onClick={onOpenUser}>
-        <div className={styles.avatar}>{children ?? <Avatar size="s" shape="circle" />}</div>
-        {isExpanded && isVertical && (
-          <Typography variant="Body1-Medium" className={styles['user-text']} title={fullName}>
-            {fullName}
-          </Typography>
-        )}
-      </div>
-      {!isVertical && Boolean(onLogout) && (
-        <div className={styles.logout}>
-          <Button
-            variant="primary"
-            fill="outline"
-            onClick={onLogout}
-            iconButton={<Icon name={'IconExitOutlined24'} />}
-            title="Выйти"
-          />
-        </div>
-      )}
-    </>
-  ) : (
-    <>
-      {Boolean(onLogin) && (
-        <div className={clsx(styles.login, { [styles['login-collapsed']]: !isExpanded })} onClick={onLogin}>
-          {isExpanded && (
-            <Typography variant="Body1-Bold" className={styles['login-text']} title="Войти">
-              Войти
+      {isLoggedIn && (
+        <div className={styles.user} onClick={onOpenUser}>
+          <div className={styles.avatar}>{children ?? <Avatar size="s" shape="circle" />}</div>
+          {isExpanded && isVertical && (
+            <Typography variant="Body1-Medium" className={styles['user-text']} title={fullName}>
+              {fullName}
             </Typography>
           )}
-          <Icon name="IconEnterOutlined24" htmlColor="var(--ac-icon-blue)" />
+        </div>
+      )}
+      {!isVertical && Boolean(handleAction) && (
+        <div className={styles.auth}>
+          <Button
+            variant="primary"
+            fill="clear"
+            onClick={handleAction}
+            iconButton={<Icon name={actionIconName} />}
+            title={actionTitle}
+          />
         </div>
       )}
     </>

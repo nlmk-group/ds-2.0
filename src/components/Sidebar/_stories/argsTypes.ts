@@ -1,4 +1,5 @@
-import { orientationMapping, variantMapping, submenuVersionMapping } from '../enums';
+import { orientationMapping, variantMapping } from '../enums';
+import { positionMapping } from '../enums';
 
 export const argsTypes = {
   orientation: {
@@ -27,21 +28,20 @@ export const argsTypes = {
     options: [variantMapping.default, variantMapping.burger],
     control: { type: 'select' }
   },
-  submenuVersion: {
-    description: `Версия сабменю – <b>${Object.values(submenuVersionMapping).join(' | ')}</b>.`,
-    table: {
-      defaultValue: {
-        summary: submenuVersionMapping.version1
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: [submenuVersionMapping.version1, submenuVersionMapping.version2, submenuVersionMapping.version3],
-    control: { type: 'select' }
-  },
   allowFavorites: {
     description: 'Условие доступности добавления разделов в избранное',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  isLoggedIn: {
+    description: 'Свойство, указывающее, залогинен ли пользователь',
     table: {
       defaultValue: {
         summary: 'false'
@@ -64,8 +64,75 @@ export const argsTypes = {
     description: 'Фамилия пользователя',
     control: { type: 'text' }
   },
-  isLoggedIn: {
-    description: 'Свойство, указывающее, залогинен ли пользователь',
+  currentPath: {
+    description: 'Текущий путь',
+    control: { type: 'text' }
+  }
+};
+
+export const menuItemArgsTypes = {
+  position: {
+    description: `Расположение элемента меню – <b>${Object.values(positionMapping).join(' | ')}</b>.`,
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(positionMapping),
+    control: { type: 'select' }
+  },
+  label: {
+    description: 'Текст элемента меню',
+    control: { type: 'text' }
+  },
+  icon: {
+    description: 'Иконка элемента меню'
+  },
+  path: {
+    description: 'Путь элемента меню',
+    control: { type: 'text' }
+  },
+  disabled: {
+    description: 'Флаг отключения элемента меню',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  }
+};
+
+export const submenuItemArgsTypes = {
+  label: {
+    description: 'Текст элемента подменю',
+    control: { type: 'text' }
+  },
+  image: {
+    description: 'Изображение элемента подменю',
+    control: { type: 'text' }
+  },
+  depth: {
+    description: 'Глубина вложенности элемента подменю',
+    table: {
+      defaultValue: {
+        summary: '1'
+      },
+      type: {
+        summary: 'number'
+      }
+    },
+    control: { type: 'number' }
+  },
+  path: {
+    description: 'Путь элемента подменю',
+    control: { type: 'text' }
+  },
+  disabled: {
+    description: 'Флаг отключения элемента подменю',
     table: {
       defaultValue: {
         summary: 'false'

@@ -1,22 +1,33 @@
-import React, { Children, cloneElement, FC, isValidElement, MouseEvent, ReactElement, useContext, useRef } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useRef
+} from 'react';
 
 import { Icon, Typography } from '@components/index';
 import { SidebarProperties } from '@components/Sidebar/context';
+import { orientationMapping } from '@components/Sidebar/enums';
 import { IMenuItemProps, ISidebarProperties, ISubmenuItemProps } from '@components/Sidebar/types';
 import clsx from 'clsx';
 
 import styles from './MenuItem.module.scss';
-import { orientationMapping } from '@components/Sidebar/enums';
 
 interface IMenuItemComponent extends FC<IMenuItemProps> {
   componentType?: string;
 }
 
-const MenuItem: IMenuItemComponent = ({ label, children, icon, onClick }) => {
-  const { isExpanded, activeItem, orientation, setSubmenuItems, setActiveItem, setSubmenuOffset, setIsScrollingDueToClick } =
+const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, disabled = false }) => {
+  const { isExpanded, currentPath, orientation, activeItem, setSubmenuItems, setActiveItem, setIsScrollingDueToClick } =
     useContext<ISidebarProperties>(SidebarProperties);
   const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
+  const hasChildren = Children.count(children) > 0;
 
   const submenu = Children.map(
     children as ReactElement<ISubmenuItemProps>,
@@ -31,8 +42,25 @@ const MenuItem: IMenuItemComponent = ({ label, children, icon, onClick }) => {
     }
   );
 
+  const hasActiveChild = (item: ReactNode): boolean => {
+    if (!isValidElement(item)) return false;
+
+    if (item.props.path === currentPath) return true;
+
+    if (item.props.children) {
+      return Children.toArray(item.props.children).some(hasActiveChild);
+    }
+
+    return false;
+  };
+
+  const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveChild);
+
   const handleClick = (event: MouseEvent) => {
-    event.stopPropagation();
+    event.preventDefault();
+    if (disabled) {
+      return;
+    }
     if (orientation === orientationMapping.horizontal) {
       setIsScrollingDueToClick(true);
       targetRef.current?.scrollIntoView();
@@ -41,20 +69,28 @@ const MenuItem: IMenuItemComponent = ({ label, children, icon, onClick }) => {
     setActiveItem(isActive ? null : label);
 
     if (submenu) {
-      setSubmenuOffset(isActive ? 0 : Math.round(targetRef.current?.getClientRects()[0].x ?? 0));
       setSubmenuItems(submenu);
     } else {
       setActiveItem(null);
     }
-    if (onClick && typeof onClick === 'function') onClick();
+    if (!hasChildren && onClick && typeof onClick === 'function') onClick();
   };
 
   return (
-    <div className={clsx(styles.root, { [styles['root-active']]: isActive })} onClick={handleClick} ref={targetRef} title={label}>
-      <Icon name={icon} containerSize={32} htmlColor="var(--ac-icon-white)" />
+    <div
+      className={clsx(styles.root, { [styles['root-active']]: isActivePath, [styles['root-disabled']]: disabled })}
+      onClick={handleClick}
+      ref={targetRef}
+      title={label}
+    >
+      <Icon
+        name={icon}
+        containerSize={32}
+        htmlColor={!disabled ? 'var(--ac-icon-white)' : 'var(--ac-sidebar-section-icon-disabled)'}
+      />
       {isExpanded && (
         <div className={styles.expanded}>
-          <Typography variant="Body1-Medium" className={styles.text}>
+          <Typography variant="Body1-Medium" className={clsx(styles.text, { [styles['text-disabled']]: disabled })}>
             {label}
           </Typography>
           {submenu && (

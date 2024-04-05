@@ -31,7 +31,7 @@ export const AVATAR_SIZE_PARAMETERS: Record<AvatarSize, TAvatarSizeParameter> = 
     avatarSize: 48,
     iconSize: 24,
     squareRadius: 8,
-    lettersVariant: 'Body-Medium (18)',
+    lettersVariant: 'Body-Medium',
     lettersSize: 18,
     badgeNumbersSize: 12,
     numberIndicatorSize: 24,

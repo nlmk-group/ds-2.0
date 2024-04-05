@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 
+import Typography from '@components/Typography';
 import clsx from 'clsx';
 
 import type { ICheckboxProps } from './types';
 
 import styles from './Checkbox.module.scss';
-import {
-  IconDeleteMinusFilled16,
-  IconDoneCheckFilled16
-} from '..';
+
+import { IconDeleteMinusFilled16, IconDoneCheckFilled16 } from '..';
 
 const Checkbox: FC<ICheckboxProps> = ({
   id,
@@ -24,22 +23,19 @@ const Checkbox: FC<ICheckboxProps> = ({
   const colorClassName = styles[color as keyof typeof styles];
 
   const Checkmark = () => (
-    <div className={clsx(
-      styles['checkbox-wrapper'],
-      styles[`checkmark-${color}`],
-      multiple ? styles['checkmark-multiple'] : styles['checkmark-single'])}>
-      {multiple ? <IconDeleteMinusFilled16 /> :<IconDoneCheckFilled16 />}
-    </div>
-  )
-  
-  return (
     <div
       className={clsx(
-        styles['label-wrapper'],
-        className
+        styles['checkbox-wrapper'],
+        styles[`checkmark-${color}`],
+        multiple ? styles['checkmark-multiple'] : styles['checkmark-single']
       )}
-      data-testid='checkbox'
     >
+      {multiple ? <IconDeleteMinusFilled16 /> : <IconDoneCheckFilled16 />}
+    </div>
+  );
+
+  return (
+    <div className={clsx(styles['label-wrapper'], className)} data-testid="checkbox">
       <label htmlFor={id}>
         <div className={styles['input-wrapper']}>
           <input
@@ -56,9 +52,16 @@ const Checkbox: FC<ICheckboxProps> = ({
           <div className={clsx(styles.checkmark, colorClassName)}>
             <Checkmark />
           </div>
-          <span className={styles['hover-circle']}/>
+          <span className={styles['hover-circle']} />
         </div>
-        {label && <span className={clsx(styles.text, disabled && styles.disabled)}>{label}</span>}
+        {label && (
+          <Typography
+            variant="Body1-Medium"
+            style={{ color: disabled ? 'var(--text-grey-500)' : 'var(--text-grey-900)' }}
+          >
+            {label}
+          </Typography>
+        )}
       </label>
     </div>
   );

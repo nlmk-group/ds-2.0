@@ -1,7 +1,8 @@
 .wrapper {
   height: inherit;
   display: flex;
-  gap: var(--24-space);
+  gap: var(--16-space);
+  color: var(--text-grey-900);
 }
 
 .child-wrapper {

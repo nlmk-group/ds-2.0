@@ -2,13 +2,13 @@ import React from 'react';
 
 import Avatar from '@components/Avatar';
 import { IAvatarProps } from '@components/Avatar/types';
+import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDirectory';
 
 import styles from './Avatar.module.scss';
 
 import { AvatarShape, AvatarSize } from '../enums';
 import { getAvatarImageSrc } from '../utils';
 import { argsTypes } from './argsTypes';
-import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDirectory';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
 
@@ -130,7 +130,7 @@ export const AvatarWithDefaultBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithDefaultBadge.storyName = 'Аватар c дефолтным бейджем';
 AvatarWithDefaultBadge.args = {
-  badgeIconName: <IconDoneCheckFilled16 color='secondary'/>
+  badgeIconName: <IconDoneCheckFilled16 htmlColor="white" />
 };
 
 export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => {
@@ -142,6 +142,6 @@ export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithSpecialBadge.storyName = 'Аватар cо специальным бейджем';
 AvatarWithSpecialBadge.args = {
-  badgeIconName: <IconBirthday16 color='secondary'/>,
+  badgeIconName: <IconBirthday16 htmlColor="white" />,
   badgeSpecialIcon: true
 };

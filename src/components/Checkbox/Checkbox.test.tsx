@@ -20,7 +20,7 @@ describe('src/components/Checkbox', () => {
 
   it('Должен отобразиться компонент с текстом лейбла', () => {
     const { container, getByText } = render(<Checkbox label={labelText} />);
-    const span = container.getElementsByClassName('text')[0];
+    const span = container.getElementsByTagName('span')[0];
     expect(span).toBeInTheDocument();
     const text = getByText(labelText);
     expect(text).toBeInTheDocument();
@@ -31,8 +31,9 @@ describe('src/components/Checkbox', () => {
     const checkbox = getByLabelText(labelText);
     expect(checkbox).toBeDisabled();
     expect(checkbox).toHaveAttribute('disabled');
-    const span = container.getElementsByClassName('text')[0];
-    expect(span).toHaveClass('disabled');
+    const span = container.getElementsByTagName('span')[0];
+    expect(span).toBeInTheDocument();
+    expect(span).toHaveStyle({ color: 'var(--text-grey-500)' });
   });
 
   it('Должен отобразиться компонент активный, уже выбранный', () => {
@@ -54,10 +55,7 @@ describe('src/components/Checkbox', () => {
   });
 
   it('Должен произойти рендер компонента с разными состояниями цвета', () => {
-    const checkboxColorStates: ICheckboxProps['color'][] = [
-      customInputColors.default,
-      customInputColors.error
-    ];
+    const checkboxColorStates: ICheckboxProps['color'][] = [customInputColors.default, customInputColors.error];
     checkboxColorStates.map(checkboxColor => {
       const { container } = render(<Checkbox label={labelText} color={checkboxColor} />);
       const checkmark = container.getElementsByClassName('checkmark')[0];

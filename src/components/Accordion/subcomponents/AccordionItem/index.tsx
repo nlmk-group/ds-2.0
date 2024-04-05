@@ -35,7 +35,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const iconProps = {
-    htmlColor: 'var(--ac-accordeon-default-default-icon)'
+    htmlColor: 'var(--ac-accordion-default-default-icon)'
   }
 
   const expandIcons = {

@@ -16,7 +16,7 @@ const withWrapper = (Story: any) => (
   <div
     className={styles.wrapper}
     style={{
-      background: 'var(--background-paper)',
+      background: 'var(--background-default)',
       width: 'fit-content'
     }}
   >
@@ -43,7 +43,7 @@ CardDefault.storyName = DEFAULT_CARD;
 
 export const CardOrientation = (argTypes: ICard): ReactNode => {
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <div style={{ display: 'inline-grid', gap: 'var(--24-size)' }}>
       {Object.values(orientationMapping).map((orientation: orientationMapping, index: number) => (
         <Card key={index} {...argTypes} orientation={orientation} className={stylesCard[`card-${orientation}`]}>
           <ContentExample orientation={orientation} />

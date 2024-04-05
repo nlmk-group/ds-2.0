@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { Button, Divider, Icon } from '@components/index';
+import { Button, Divider, Icon, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import style from './Divider.module.scss';
@@ -35,7 +35,7 @@ export const DefaultDivider = (argTypes: IDivider): ReactNode => {
 
 DefaultDivider.storyName = DEFAULT_DIVIDER;
 DefaultDivider.args = {
-  children: <span className={style['divider-content']}>{DEFAULT_DIVIDER}</span>
+  children: <Typography>{DEFAULT_DIVIDER}</Typography>
 };
 
 export const DashedDivider = (argTypes: IDivider): ReactNode => {
@@ -123,7 +123,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
     <div className={clsx(styles.wrapper, style['show-divider-group'])}>
       <Divider {...argTypes} dashed />
 
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', gap: 'var(--16-size)' }}>
         <span className={style['divider-content']}>Текст №1</span>
         <Divider {...argTypes} type={typeMapping.vertical} />
         <span className={style['divider-content']}>Текст №2</span>
@@ -137,7 +137,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         </Button>
       </Divider>
 
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', gap: 'var(--16-size)' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <span className={style['divider-content']}>Текст №1</span>
         </div>

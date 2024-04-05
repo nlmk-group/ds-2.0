@@ -1,5 +1,5 @@
 .space {
-  margin: 0 var(--24-space);
+  margin: 0 var(--16-space);
 }
 
 .divider-content {
@@ -7,10 +7,10 @@
 }
 
 .test-classname {
-  color: var(--accent-blue-normal);
+  color: var(--text-grey-900);
   & * {
-    border-bottom-width: var(--2-size);
-    border-bottom-color: var(--ui-color-style-txt-info);
+    border-bottom-width: var(--1-size);
+    border-bottom-color: var(--text-grey-900);
   }
 }
 

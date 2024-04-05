@@ -1533,7 +1533,7 @@
         "description": "Цвет заливки ячейки в состоянии Disabled"
       }
     },
-    "accordeon": {
+    "accordion": {
       "default": {
         "default-bgHead": {
           "value": "#f4f5f7",

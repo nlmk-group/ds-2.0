@@ -23,6 +23,28 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.5.2 - <span className={styles.date}>05.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Добавлена новая версия токенов.</li>
+            <li>
+              • Исправлены отступы для компонента
+              <Link href="./?path=/docs/components-divider-stories--docs" target="blank">
+                Divider
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлен label для компонента
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+                Checkbox
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.5.1 - <span className={styles.date}>04.04.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -59,6 +81,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
                 SideBar
               </Link>
+              .
             </li>
           </ul>
         </div>

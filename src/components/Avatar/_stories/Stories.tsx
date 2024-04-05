@@ -123,8 +123,8 @@ export default App = () => (
 
 export default App = () => (
   <>
-    <Avatar badgeIconName={<IconDoneCheckFilled16/>} />
-    <Avatar badgeIconName={<IconBirthday16 />} badgeSpecialIcon />
+    <Avatar badgeIconName={<IconDoneCheckFilled16 htmlColor="white" />} />
+    <Avatar badgeIconName={<IconBirthday16 htmlColor="white" />} badgeSpecialIcon />
   </>
 )
               `}

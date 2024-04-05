@@ -1,0 +1,361 @@
+{
+  "main-shadow": {
+    "XS": {
+      "value": [
+        {
+          "color": "#97a4b71f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 8,
+          "blur": 12,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Стандартная тень для большинства компонентов HR портала"
+    },
+    "S": {
+      "value": [
+        {
+          "color": "#97a4b73d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 8,
+          "blur": 12,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Тень для дропдаунов HR портала"
+    },
+    "M": {
+      "value": [
+        {
+          "color": "#0017290d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 2,
+          "blur": 5,
+          "spread": 0
+        },
+        {
+          "color": "#0017290a",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 9,
+          "blur": 9,
+          "spread": 0
+        },
+        {
+          "color": "#00172908",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 20,
+          "blur": 12,
+          "spread": 0
+        },
+        {
+          "color": "#00172903",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 35,
+          "blur": 14,
+          "spread": 0
+        },
+        {
+          "color": "#00172900",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 54,
+          "blur": 15,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "L": {
+      "value": [
+        {
+          "color": "#0017290f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 4,
+          "blur": 8,
+          "spread": 0
+        },
+        {
+          "color": "#0017290d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 15,
+          "blur": 15,
+          "spread": 0
+        },
+        {
+          "color": "#00172908",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 34,
+          "blur": 21,
+          "spread": 0
+        },
+        {
+          "color": "#00172903",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 61,
+          "blur": 24,
+          "spread": 0
+        },
+        {
+          "color": "#00172900",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 96,
+          "blur": 27,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "XL": {
+      "value": [
+        {
+          "color": "#00172912",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 4,
+          "blur": 10,
+          "spread": 0
+        },
+        {
+          "color": "#0017290f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 17,
+          "blur": 17,
+          "spread": 0
+        },
+        {
+          "color": "#0017290a",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 39,
+          "blur": 23,
+          "spread": 0
+        },
+        {
+          "color": "#00172903",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 69,
+          "blur": 28,
+          "spread": 0
+        },
+        {
+          "color": "#00172900",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 108,
+          "blur": 30,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow"
+    }
+  },
+  "semantic-shadow": {
+    "Block shadow": {
+      "value": {
+        "x": 0,
+        "y": 6,
+        "blur": 18,
+        "spread": 0,
+        "color": "#0000000d",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "Popup shadow": {
+      "value": {
+        "x": 0,
+        "y": 2,
+        "blur": 8,
+        "spread": 0,
+        "color": "#00000040",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "switch-shadow": {
+      "value": [
+        {
+          "color": "#00000033",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 1,
+          "blur": 3,
+          "spread": 0
+        },
+        {
+          "color": "#0000001f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 2,
+          "blur": 2,
+          "spread": 0
+        },
+        {
+          "color": "#00000024",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 0,
+          "blur": 2,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "avatar-shadow": {
+      "value": [
+        {
+          "color": "#0000001f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 1,
+          "blur": 1,
+          "spread": 0
+        },
+        {
+          "color": "#97a4b73d",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 0,
+          "blur": 0,
+          "spread": 2
+        },
+        {
+          "color": "#97a4b714",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 2,
+          "blur": 5,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Используется для состояния hover в аватаре"
+    },
+    "input-range": {
+      "value": [
+        {
+          "color": "#4c4e641f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 1,
+          "blur": 5,
+          "spread": 0
+        },
+        {
+          "color": "#4c4e6424",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 2,
+          "blur": 2,
+          "spread": 0
+        },
+        {
+          "color": "#4c4e6433",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 3,
+          "blur": 1,
+          "spread": -2
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "toast-shadow": {
+      "value": {
+        "color": "#00000040",
+        "type": "dropShadow",
+        "x": 0,
+        "y": 2,
+        "blur": 8,
+        "spread": 0
+      },
+      "type": "boxShadow",
+      "description": "default theme"
+    },
+    "snackbar-shadow": {
+      "value": {
+        "color": "#0000001a",
+        "type": "dropShadow",
+        "x": 0,
+        "y": 2,
+        "blur": 4,
+        "spread": 0
+      },
+      "type": "boxShadow",
+      "description": "default theme"
+    },
+    "badges-avatar-shadow": {
+      "value": [
+        {
+          "color": "#676e7614",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 2,
+          "blur": 5,
+          "spread": 0
+        },
+        {
+          "color": "#0000001f",
+          "type": "dropShadow",
+          "x": 0,
+          "y": 1,
+          "blur": 1,
+          "spread": 0
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Используется для бейджей в аватаре"
+    },
+    "Header shadow": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 12,
+        "spread": 0,
+        "color": "#97a4b71f",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для компонента Header"
+    },
+    "card-desktop": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 12,
+        "spread": 0,
+        "color": "#97a4b73d",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для карточек в версии Desktop"
+    },
+    "card-mobile": {
+      "value": {
+        "x": 0,
+        "y": 8,
+        "blur": 8,
+        "spread": 0,
+        "color": "#97a4b729",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow",
+      "description": "Тень для карточек в версии Mobile"
+    }
+  }
+}

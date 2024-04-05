@@ -4,10 +4,10 @@ import {
   Badge,
   Button,
   ButtonGroup,
-  IconArticleOutlined32,
-  IconHandPanToolPalmsOutlined32,
-  IconInfoOutlined32,
-  IconMixer32
+  IconArticleOutlined24,
+  IconHandPanToolPalmsOutlined24,
+  IconInfoOutlined24,
+  IconMixer24
 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
@@ -128,24 +128,24 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
               {...argTypes}
             >
               <Button
-                startIcon={<IconArticleOutlined32 />}
-                endIcon={<IconArticleOutlined32 />}
+                startIcon={<IconArticleOutlined24 />}
+                endIcon={<IconArticleOutlined24 />}
                 badge={1}
                 onClick={action('onClick')}
               >
                 {variant} {fill} {size}
               </Button>
               <Button
-                startIcon={<IconArticleOutlined32 />}
-                endIcon={<IconArticleOutlined32 />}
+                startIcon={<IconArticleOutlined24 />}
+                endIcon={<IconArticleOutlined24 />}
                 badge={1}
                 onClick={action('onClick')}
               >
                 {variant} {fill} {size}
               </Button>
               <Button
-                startIcon={<IconArticleOutlined32 />}
-                endIcon={<IconArticleOutlined32 />}
+                startIcon={<IconArticleOutlined24 />}
+                endIcon={<IconArticleOutlined24 />}
                 badge={1}
                 onClick={action('onClick')}
               >
@@ -163,15 +163,15 @@ export const ButtonGroupVariations = (argTypes: IButtonGroup): ReactNode => {
               <ButtonGroup key={`${gradient}_${size}`} size={argTypes.size || size} variant={gradient} {...argTypes}>
                 <Button
                   onClick={action('onClick')}
-                  iconButton={<IconInfoOutlined32 />}
+                  iconButton={<IconInfoOutlined24 />}
                 />
                 <Button
                   onClick={action('onClick')}
-                  iconButton={<IconMixer32 />}
+                  iconButton={<IconMixer24 />}
                 />
                 <Button
                   onClick={action('onClick')}
-                  iconButton={<IconHandPanToolPalmsOutlined32 />}
+                  iconButton={<IconHandPanToolPalmsOutlined24 />}
                 />
               </ButtonGroup>
             ))}

@@ -14,12 +14,12 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, P
     fill?: TFill;
     className?: string;
 }
-interface IbadgeProps {
+interface IBadgeProps {
     color: colorsMapping;
     variant: variantsMapping;
 }
-export type TbadgeTypes = {
-    [key: string | EVariant]: IbadgeProps;
+export type TBadgeTypes = {
+    [key: string | EVariant]: IBadgeProps;
 };
 export interface IBadgeHelper {
     size: TSize;

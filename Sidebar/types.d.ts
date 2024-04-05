@@ -1,10 +1,9 @@
 import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from 'react';
-import { orientationMapping, positionMapping, submenuVersionMapping, variantMapping } from './enums';
 import { TIconName } from '../Icon/IconsDirectory/unionType';
+import { orientationMapping, positionMapping, variantMapping } from './enums';
 export interface ISidebarProps extends PropsWithChildren {
     orientation?: `${orientationMapping}`;
     variant?: `${variantMapping}`;
-    submenuVersion?: `${submenuVersionMapping}`;
     allowFavorites?: boolean;
     isLoggedIn?: boolean;
     systemName?: string;
@@ -15,6 +14,7 @@ export interface ISidebarProps extends PropsWithChildren {
     onLogin?: () => void;
     onSearch?: () => void;
     onClickLogo?: () => void;
+    currentPath: string;
 }
 export interface ICollapseButtonProps {
     isExpanded?: boolean;
@@ -35,6 +35,8 @@ export interface IMenuItemProps extends PropsWithChildren {
     label: string;
     icon: TIconName;
     onClick?: () => void;
+    path: string;
+    disabled?: boolean;
 }
 export interface ISidebarProperties {
     isExpanded: boolean;
@@ -43,29 +45,23 @@ export interface ISidebarProperties {
     orientation: `${orientationMapping}`;
     setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
     setActiveItem: Dispatch<SetStateAction<string | null>>;
-    setSubmenuOffset: Dispatch<SetStateAction<number>>;
     isScrollingDueToClick: boolean;
     setIsScrollingDueToClick: Dispatch<SetStateAction<boolean>>;
+    currentPath: string;
 }
 export interface ISubmenuProperties {
     showFavorites: boolean;
     activeItem: string | null;
-    version: `${submenuVersionMapping}`;
-    handleFavorites: (id: string) => void;
+    handleFavorites: (id: string, children: string[]) => void;
     checkIsFavorite: (id: string) => boolean;
+    checkChildIsFavorite: (id: string) => boolean;
     setActiveItem: Dispatch<SetStateAction<string | null>>;
     setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
 }
 export interface ISubmenuProps extends PropsWithChildren {
     orientation: `${orientationMapping}`;
-    version?: `${submenuVersionMapping}`;
     isOpen: boolean;
     title: string;
-    offset?: number;
-    menuWidth?: number;
-    direction?: string;
-    isNested?: boolean;
-    image?: string;
 }
 export interface ISubmenuItemProps extends PropsWithChildren {
     id?: string;
@@ -73,6 +69,8 @@ export interface ISubmenuItemProps extends PropsWithChildren {
     image?: string;
     depth?: number;
     onClick?: () => void;
+    path: string;
+    disabled?: boolean;
 }
 export interface IComponentWithType extends FC<ISidebarProps> {
     componentType?: string;

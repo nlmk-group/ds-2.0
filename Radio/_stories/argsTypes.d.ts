@@ -27,6 +27,20 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    label: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
     checked: {
         description: string;
         table: {

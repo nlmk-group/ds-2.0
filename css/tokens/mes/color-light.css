@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Thu Jan 25 2024 16:19:38 GMT+0300 (Москва, стандартное время)
+* Generated on Mon Apr 01 2024 15:35:24 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -43,17 +43,22 @@
   --accent-yellow-hover: #f99b0d;
   --accent-yellow-normal: #ffbb1e;
   --accent-yellow-selected: #ffc848;
+  --accent-orange-normal: #FA7F16;
+  --accent-orange-hover: #E67311;
+  --accent-orange-selected: #EE9852;
+  --table-default-hover: #edeeef;
+  --table-default-normal: #ffffff;
+  --table-default-selected: #e8f5ff;
+  --table-default-selected-hover: #d0e9ff;
   --table-blueberry-hover: #9babee;
   --table-blueberry-normal: #aebdfa;
   --table-blueberry-selected: #d3dbfa;
   --table-coffee-hover: #cfb7b0;
   --table-coffee-normal: #dfc5be;
   --table-coffee-selected: #f1e0db;
-  --table-default: #ffffff;
   --table-green-hover: #8dd38c;
   --table-green-normal: #9edf9d;
   --table-green-selected: #bdf6bc;
-  --table-hover: #edeeef;
   --table-khaki-hover: #b1c8b6;
   --table-khaki-normal: #cddfd2;
   --table-khaki-selected: #deeee2;
@@ -66,8 +71,6 @@
   --table-salad-hover: #c2cf6e;
   --table-salad-normal: #d5e37b;
   --table-salad-selected: #e8f2ae;
-  --table-selected: #e8f5ff;
-  --table-selected-hover: #d0e9ff;
   --table-sky-hover: #b5d5f3;
   --table-sky-normal: #d0e3f5;
   --table-sky-selected: #deefff;
@@ -80,6 +83,9 @@
   --table-yellow-hover: #eedc7c;
   --table-yellow-normal: #fae784;
   --table-yellow-selected: #fcefae;
+  --table-orange-normal: #FCBA7E;
+  --table-orange-hover: #F9A85E;
+  --table-orange-selected: #FFCDA0;
   --grey-concrete: #99a2a9;
   --grey-granite: #4d5d69;
   --grey-phantom: #ccd1d4;
@@ -89,11 +95,14 @@
   --sidebar-logo: #112542;
   --sidebar-menu: #0b3461;
   --sidebar-menu-selected: #184f8b;
+  --sidebar-zyfra-bg: #112542;
+  --sidebar-zyfra-divider: #264169;
   --icon-blue: #2e9aee;
   --icon-green: #21ae40;
   --icon-grey: #66747e;
   --icon-red: #f34e5c;
   --icon-yellow: #eeb41f;
+  --icon-orange: #E57318;
   --bg-default: #edeeef;
   --bg-info: #e8f5ff;
   --bg-paper: #ffffff;
@@ -266,6 +275,7 @@
   --select-normal-red-light: #ffd0d0;
   --select-normal-yellow-dark: #eeb41f;
   --select-normal-yellow-light: #fdf2be;
+  --select-normal-secondary: #D0E9FF;
   --tooltip-bg: #001729;
   --tooltip-text-primary: #ffffff;
   --tooltip-text-secondary: #808b94;

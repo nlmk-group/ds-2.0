@@ -1,6 +1,6 @@
 /**
 * Do not edit directly
-* Generated on Wed Feb 28 2024 16:23:04 GMT+0300 (Moscow Standard Time)
+* Generated on Tue Apr 02 2024 10:04:27 GMT+0300 (Moscow Standard Time)
 */
 
 :root {
@@ -246,7 +246,7 @@
   --ac-checkbox-unchecked-normal-stroke: #bfc7d4;
   --ac-checkbox-unchecked-normal-fill: #ffffff;
   --ac-checkbox-unchecked-error-stroke: #fc200c;
-  --ac-checkbox-unchecked-error-fill: #ffedf0;
+  --ac-checkbox-unchecked-error-fill: #ffffff;
   --ac-checkbox-unchecked-focused-stroke: #bfc7d4;
   --ac-checkbox-unchecked-focused-fill: #ffffff;
   --ac-checkbox-unchecked-focused-focus: #b3b9bf;
@@ -285,30 +285,30 @@
   --ac-segment-warning-bg: #ffcc82;
   --ac-segment-success-bg: #98e1a1;
   --ac-segment-disabled-bg: #e5e8ea;
-  --ac-accordeon-default-default-bg-head: #edeeef;
-  --ac-accordeon-default-default-heading: #001729;
-  --ac-accordeon-default-default-bg-text: #edeeef;
-  --ac-accordeon-default-default-icon: #001729;
-  --ac-accordeon-default-default-text: #334554;
-  --ac-accordeon-default-hover-bg-head: #e5e8ea;
-  --ac-accordeon-default-hover-heading: #001729;
-  --ac-accordeon-default-hover-icon: #334554;
-  --ac-accordeon-default-disabled-bg-head: #e5e8ea;
-  --ac-accordeon-default-disabled-heading: #99a2a9;
-  --ac-accordeon-default-disabled-icon: #99a2a9;
-  --ac-accordeon-default-divider: #ccd1d4;
-  --ac-accordeon-paper-default-bg-head: #ffffff;
-  --ac-accordeon-paper-default-heading: #001729;
-  --ac-accordeon-paper-default-bg-text: #ffffff;
-  --ac-accordeon-paper-default-icon: #334554;
-  --ac-accordeon-paper-default-text: #334554;
-  --ac-accordeon-paper-hover-bg-head: #e5e8ea;
-  --ac-accordeon-paper-hover-heading: #001729;
-  --ac-accordeon-paper-hover-icon: #334554;
-  --ac-accordeon-paper-disabled-bg-head: #ffffff;
-  --ac-accordeon-paper-disabled-heading: #b3b9bf;
-  --ac-accordeon-paper-disabled-icon: #b3b9bf;
-  --ac-accordeon-paper-divider: #ccd1d4;
+  --ac-accordion-default-default-bg-head: #edeeef;
+  --ac-accordion-default-default-heading: #001729;
+  --ac-accordion-default-default-bg-text: #edeeef;
+  --ac-accordion-default-default-icon: #001729;
+  --ac-accordion-default-default-text: #334554;
+  --ac-accordion-default-hover-bg-head: #e5e8ea;
+  --ac-accordion-default-hover-heading: #001729;
+  --ac-accordion-default-hover-icon: #334554;
+  --ac-accordion-default-disabled-bg-head: #e5e8ea;
+  --ac-accordion-default-disabled-heading: #99a2a9;
+  --ac-accordion-default-disabled-icon: #99a2a9;
+  --ac-accordion-default-divider: #ccd1d4;
+  --ac-accordion-paper-default-bg-head: #ffffff;
+  --ac-accordion-paper-default-heading: #001729;
+  --ac-accordion-paper-default-bg-text: #ffffff;
+  --ac-accordion-paper-default-icon: #334554;
+  --ac-accordion-paper-default-text: #334554;
+  --ac-accordion-paper-hover-bg-head: #e5e8ea;
+  --ac-accordion-paper-hover-heading: #001729;
+  --ac-accordion-paper-hover-icon: #334554;
+  --ac-accordion-paper-disabled-bg-head: #ffffff;
+  --ac-accordion-paper-disabled-heading: #b3b9bf;
+  --ac-accordion-paper-disabled-icon: #b3b9bf;
+  --ac-accordion-paper-divider: #ccd1d4;
   --ac-input-range-upper-tooltip-indicator-default-bg: #d0e9ff;
   --ac-input-range-upper-tooltip-indicator-default-line: #167ffb;
   --ac-input-range-upper-tooltip-indicator-default-slider-thumb: #167ffb;
@@ -636,10 +636,12 @@
   --ac-sidebar-section-selected-bg: #005291;
   --ac-sidebar-section-top-section-bg: #112542;
   --ac-sidebar-section-logo-color: #ffffff;
+  --ac-sidebar-section-text-disabled: #97a4b7;
+  --ac-sidebar-section-icon-disabled: #97a4b7;
   --ac-sidebar-subsection-text: #001729;
   --ac-sidebar-subsection-default-bg: #ffffff;
   --ac-sidebar-subsection-hover-bg: #f2f3f4;
-  --ac-sidebar-subsection-selected-bg: #e6e9ed;
+  --ac-sidebar-subsection-selected-bg: #e8f5ff;
   --ac-sidebar-subsection-selected-text: #167ffb;
   --ac-sidebar-subsection-selected-hover-bg: #aad5ff;
   --ac-sidebar-subsection-icon-hover-bg: #F4F8FF;

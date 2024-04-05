@@ -12,6 +12,18 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    listMinWidth: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    children: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     options: {
         description: string;
         control: {
@@ -57,6 +69,36 @@ export declare const argsTypes: {
         };
     };
     disabled: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    badgeAmount: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    stealthy: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    highlightSelected: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    activeSelectedValue: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    withoutCheckbox: {
         description: string;
         control: {
             type: string;

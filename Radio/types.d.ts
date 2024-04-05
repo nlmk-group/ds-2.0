@@ -4,5 +4,6 @@ export type IRadioProps = {
     disabled?: boolean;
     onChange?: (event?: any) => void;
     className?: string;
+    label?: string;
 };
 //# sourceMappingURL=types.d.ts.map

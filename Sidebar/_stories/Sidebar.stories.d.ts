@@ -35,22 +35,21 @@ declare const _default: {
                 type: string;
             };
         };
-        submenuVersion: {
+        allowFavorites: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../enums").submenuVersionMapping;
+                    summary: string;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../enums").submenuVersionMapping[];
             control: {
                 type: string;
             };
         };
-        allowFavorites: {
+        isLoggedIn: {
             description: string;
             table: {
                 defaultValue: {
@@ -82,16 +81,8 @@ declare const _default: {
                 type: string;
             };
         };
-        isLoggedIn: {
+        currentPath: {
             description: string;
-            table: {
-                defaultValue: {
-                    summary: string;
-                };
-                type: {
-                    summary: string;
-                };
-            };
             control: {
                 type: string;
             };
@@ -105,25 +96,37 @@ export default _default;
 export declare const SidebarDefault: {
     (argTypes: ISidebarProps): JSX.Element;
     storyName: string;
+    args: {
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
 };
 export declare const VerticalBurgerSidebar: {
     (argTypes: ISidebarProps): ReactNode;
     storyName: string;
+    args: {
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
 };
 export declare const SidebarHorizontal: {
     (argTypes: ISidebarProps): ReactNode;
     storyName: string;
+    args: {
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
 };
 export declare const HorizontalBurgerSidebar: {
     (argTypes: ISidebarProps): ReactNode;
     storyName: string;
-};
-export declare const SidebarHorizontalV2: {
-    (argTypes: ISidebarProps): ReactNode;
-    storyName: string;
-};
-export declare const SidebarHorizontalV3: {
-    (argTypes: ISidebarProps): ReactNode;
-    storyName: string;
+    args: {
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
 };
 //# sourceMappingURL=Sidebar.stories.d.ts.map

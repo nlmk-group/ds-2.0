@@ -1,4 +1,5 @@
-import { orientationMapping, variantMapping, submenuVersionMapping } from '../enums';
+import { orientationMapping, variantMapping } from '../enums';
+import { positionMapping } from '../enums';
 export declare const argsTypes: {
     orientation: {
         description: string;
@@ -30,22 +31,21 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    submenuVersion: {
+    allowFavorites: {
         description: string;
         table: {
             defaultValue: {
-                summary: submenuVersionMapping;
+                summary: string;
             };
             type: {
                 summary: string;
             };
         };
-        options: submenuVersionMapping[];
         control: {
             type: string;
         };
     };
-    allowFavorites: {
+    isLoggedIn: {
         description: string;
         table: {
             defaultValue: {
@@ -77,7 +77,90 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    isLoggedIn: {
+    currentPath: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+};
+export declare const menuItemArgsTypes: {
+    position: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+        options: positionMapping[];
+        control: {
+            type: string;
+        };
+    };
+    label: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    icon: {
+        description: string;
+    };
+    path: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    disabled: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+};
+export declare const submenuItemArgsTypes: {
+    label: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    image: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    depth: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    path: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    disabled: {
         description: string;
         table: {
             defaultValue: {

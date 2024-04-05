@@ -2,7 +2,7 @@ export interface IArgType {
     description: string;
     action?: string;
     table?: {
-        defaultValue: {
+        defaultValue?: {
             summary: string | number | boolean | null | undefined;
         };
         type?: {

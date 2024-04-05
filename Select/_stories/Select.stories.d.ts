@@ -1,4 +1,4 @@
-import { ISelectProps } from '../types';
+import { ISelectOption, ISelectProps } from '../types';
 declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, ISelectProps>;
 export default _default;
 export declare const SelectDefault: {
@@ -54,6 +54,62 @@ export declare const SelectEmpty: {
     storyName: string;
 };
 export declare const SelectWithClearSearchOnBlur: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+};
+export declare const SelectWithIcons: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+    };
+};
+export declare const SelectInvisible: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+        stealthy: boolean;
+    };
+};
+export declare const SelectIconSelected: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+    };
+};
+export declare const SelectBadgeAmount: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+        multiple: boolean;
+        badgeAmount: number;
+    };
+};
+export declare const SelectWithDescription: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+    };
+};
+export declare const SelectTable: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        size: string;
+    };
+};
+export declare const SelectWithColorfulIcons: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        options: ISelectOption[];
+    };
+};
+export declare const NativeMenu: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;
 };

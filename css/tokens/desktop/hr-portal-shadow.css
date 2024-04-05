@@ -1,0 +1,23 @@
+/**
+* Do not edit directly
+* Generated on Fri Apr 05 2024 13:41:35 GMT+0300 (Moscow Standard Time)
+*/
+
+:root {
+  --main-shadow-xs: [object Object];
+  --main-shadow-s: [object Object];
+  --main-shadow-m: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-l: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --main-shadow-xl: [object Object],[object Object],[object Object],[object Object],[object Object];
+  --semantic-shadow-block-shadow: [object Object];
+  --semantic-shadow-popup-shadow: [object Object];
+  --semantic-shadow-switch-shadow: [object Object],[object Object],[object Object];
+  --semantic-shadow-avatar-shadow: [object Object],[object Object],[object Object];
+  --semantic-shadow-input-range: [object Object],[object Object],[object Object];
+  --semantic-shadow-toast-shadow: [object Object];
+  --semantic-shadow-snackbar-shadow: [object Object];
+  --semantic-shadow-badges-avatar-shadow: [object Object],[object Object];
+  --semantic-shadow-header-shadow: [object Object];
+  --semantic-shadow-card-desktop: [object Object];
+  --semantic-shadow-card-mobile: [object Object];
+}

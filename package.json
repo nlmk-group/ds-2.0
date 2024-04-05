@@ -39,9 +39,7 @@
     "token:generate:windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && node generateTokens.mjs",
     "commit": "cz",
     "packpackage": "cd lib && yarn pack",
-    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon",
-    "chromatic": "yarn storybook:build && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
-    "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
+    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon"
   },
   "pre-commit": [
     "lint"

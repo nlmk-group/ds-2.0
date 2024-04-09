@@ -3,6 +3,7 @@ import React, { FC, PropsWithChildren, useState } from 'react';
 import Tooltip from '@components/Tooltip';
 import { TooltipPlacementType } from '@components/Tooltip/types';
 import { copyToClipboard } from '@components/utils/copyToClipboard';
+import Typography from '@components/Typography'
 
 interface ICopyWrapper extends PropsWithChildren {
   copy: string;
@@ -20,7 +21,14 @@ export const CopyWrapper: FC<ICopyWrapper> = ({ copy, children, placement = 'top
   };
 
   return (
-    <Tooltip title={isCopy ? 'Скопировано в буфер обмена' : 'Копировать'} placement={placement}>
+    <Tooltip
+      render={
+        <Typography variant='Body2-Bold'>
+          {isCopy ? 'Скопировано в буфер обмена' : 'Копировать'}
+        </Typography>
+      }
+      placement={placement}
+    >
       <div onClick={onClick}>{children}</div>
     </Tooltip>
   );

@@ -111,3 +111,23 @@
     }
   }
 }
+
+.tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--8-space);
+  width: max-content;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tooltip .tooltip-wrapper {
+  border-radius: var(--4-radius);
+  background-color: var(--ac-tooltip-bg);
+  color: var(--ac-tooltip-text);
+  padding: var(--8-space) var(--12-space);
+}
+
+.arrow-styling {
+  display: none;
+}

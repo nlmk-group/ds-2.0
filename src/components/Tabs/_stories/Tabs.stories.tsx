@@ -23,7 +23,7 @@ export const TabsDefault = (): JSX.Element => {
         <Tabs.Tab label="Входящие" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
         <Tabs.Tab label="Мои папки" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
         <Tabs.Tab label="Спам" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} badgeNumber="91">
-          <Tabs.Tooltip description="Сюда вы можете добавить текст подсказу для компонента">
+          <Tabs.Tooltip render={<Typography variant='Caption-Medium'>Сюда вы можете добавить текст подсказу для компонента</Typography>}>
             <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--text-grey-500)" />
           </Tabs.Tooltip>
         </Tabs.Tab>

@@ -1,3 +1,5 @@
+import { ETooltipBehaviorType, ETooltipPlacementType } from '../enums';
+
 export const argsTypes = {
   title: {
     description: 'Заголовок',
@@ -11,24 +13,30 @@ export const argsTypes = {
     description: 'Поведение тултипа',
     table: {
       defaultValue: {
-        summary: 'hover'
+        summary: ETooltipBehaviorType.hover
       }
     },
-    options: ['hover', 'click', 'focus'],
+    options: Object.values(ETooltipBehaviorType),
     control: { type: 'select' }
   },
   placement: {
     description: 'Расположение тултипа',
     table: {
       defaultValue: {
-        summary: 'top'
+        summary: ETooltipPlacementType.top
       }
     },
-    options: ['top', 'bottom', 'left', 'right'],
+    options: Object.values(ETooltipPlacementType),
     control: { type: 'select' }
   },
-  list: {
-    description: 'Элементы маркированного списка'
+  clickable: {
+    description: 'Отвечает за кликабельность тултипа.',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    }
   },
   render: {
     description: 'Кастомный ReactNode элемент внутри тултипа'

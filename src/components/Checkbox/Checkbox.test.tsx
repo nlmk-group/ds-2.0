@@ -45,15 +45,6 @@ describe('src/components/Checkbox', () => {
     expect(checkmark).toBeInTheDocument();
   });
 
-  it('Должен отобразиться компонент активный и уже выбранный с пропсой multiple', () => {
-    const { container, getByLabelText } = render(<Checkbox label={labelText} checked multiple />);
-    const checkbox = getByLabelText(labelText);
-    expect(checkbox).toBeChecked();
-    expect(checkbox).toHaveAttribute('checked');
-    const checkmark = container.getElementsByClassName('checkmark-multiple')[0];
-    expect(checkmark).toBeInTheDocument();
-  });
-
   it('Должен произойти рендер компонента с разными состояниями цвета', () => {
     const checkboxColorStates: ICheckboxProps['color'][] = [customInputColors.default, customInputColors.error];
     checkboxColorStates.map(checkboxColor => {
@@ -61,5 +52,14 @@ describe('src/components/Checkbox', () => {
       const checkmark = container.getElementsByClassName('checkmark')[0];
       expect(checkmark).toHaveClass(checkboxColor as string);
     });
+  });
+
+  it('Должен отобразиться компонент активный и уже выбранный с пропсом multiple', () => {
+    const { getByLabelText, getByTestId } = render(<Checkbox label={labelText} checked multiple />);
+    const checkbox = getByLabelText(labelText);
+    expect(checkbox).toBeChecked();
+
+    const iconDoneCheckFilled16 = getByTestId('IconDeleteMinusFilled16');
+    expect(iconDoneCheckFilled16).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { IconStarOutlined24, ToggleButtonGroup } from '@components/index';
+import { IconStarOutlined24, ToggleButtonGroup, Typography } from '@components/index';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { IToggleButtonGroup } from '../types'
@@ -54,28 +54,28 @@ export const BtnGroupTooltip = (argTypes: IToggleButtonGroup): ReactNode => {
   return (
     <ToggleButtonGroup {...argTypes}>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip description='Печенье' placement='left'>
+        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Печенье</Typography>} placement='left'>
           <ToggleButtonGroup.Button.Label>
             Печенье
           </ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip description='Торты'>
+        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Торты</Typography>}>
           <ToggleButtonGroup.Button.Label>
             Торты
           </ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip description='Кексы' placement='bottom'>
+        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Кексы</Typography>} placement='bottom'>
           <ToggleButtonGroup.Button.Label>
             Кексы
           </ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip description='Конфеты' placement='right'>
+        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Конфеты</Typography>} placement='right'>
           <ToggleButtonGroup.Button.Label>
             Конфеты
           </ToggleButtonGroup.Button.Label>

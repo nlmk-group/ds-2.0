@@ -10,6 +10,7 @@ export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, 
   height?: TBorderProps;
   width?: TBorderProps;
   border?: string;
+  color?: string;
   borderRadius?: TBorderProps;
   display?: CSSProperties['display'];
   flexDirection?: CSSProperties['flexDirection'];

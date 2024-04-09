@@ -10,7 +10,7 @@ export const Changelog = () => {
       <div className={styles.intro}>
         <div className={styles.description}>
           <Typography variant="Heading1">История изменений</Typography>
-          <br />
+          <br/>
           <Link
             href="https://www.npmjs.com/package/@nlmk/ds-2.0?activeTab=versions"
             target="blank"
@@ -20,6 +20,40 @@ export const Changelog = () => {
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.4 - <span className={styles.date}>09.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Переработана логика и добавлено свойство clickable в компоненте
+              <Link href="./?path=/docs/components-tooltip-stories--docs" target="blank">
+                Tooltip
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлено свойство color для компонента
+              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+                Box
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.3 - <span className={styles.date}>08.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Исправлено позиционирование иконки внутри компонента
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+                Checkbox
+              </Link>
+              .
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">

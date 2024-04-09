@@ -22,48 +22,35 @@ const Checkbox: FC<ICheckboxProps> = ({
 }) => {
   const colorClassName = styles[color as keyof typeof styles];
 
-  const Checkmark = () => (
-    <div
-      className={clsx(
-        styles['checkbox-wrapper'],
-        styles[`checkmark-${color}`],
-        multiple ? styles['checkmark-multiple'] : styles['checkmark-single']
-      )}
-    >
-      {multiple ? <IconDeleteMinusFilled16 /> : <IconDoneCheckFilled16 />}
-    </div>
-  );
-
   return (
-    <div className={clsx(styles['label-wrapper'], className)} data-testid="checkbox">
-      <label htmlFor={id}>
-        <div className={styles['input-wrapper']}>
-          <input
-            type="checkbox"
-            id={id}
-            checked={onChange ? checked : undefined}
-            defaultChecked={!onChange ? checked : undefined}
-            disabled={disabled}
-            className={clsx(styles.checkbox, colorClassName)}
-            onChange={onChange}
-            value={value}
-            aria-label={label ? undefined : 'checkbox'}
-          />
-          <div className={clsx(styles.checkmark, colorClassName)}>
-            <Checkmark />
-          </div>
-          <span className={styles['hover-circle']} />
-        </div>
-        {label && (
-          <Typography
-            variant="Body1-Medium"
-            style={{ color: disabled ? 'var(--text-grey-500)' : 'var(--text-grey-900)' }}
-          >
-            {label}
-          </Typography>
+    <label className={clsx(styles.label, className)} htmlFor={id} data-testid="checkbox">
+      <input
+        type="checkbox"
+        id={id}
+        checked={onChange ? checked : undefined}
+        defaultChecked={!onChange ? checked : undefined}
+        disabled={disabled}
+        className={clsx(styles.checkbox, colorClassName)}
+        onChange={onChange}
+        value={value}
+        aria-label={label || 'checkbox'}
+      />
+      <span className={clsx(styles.checkmark, colorClassName)}>
+        {multiple ? (
+          <IconDeleteMinusFilled16 htmlColor="var(--ac-checkbox-checked-bg)" />
+        ) : (
+          <IconDoneCheckFilled16 htmlColor="var(--ac-checkbox-checked-bg)" />
         )}
-      </label>
-    </div>
+      </span>
+      {label && (
+        <Typography
+          variant="Body1-Medium"
+          style={{ color: disabled ? 'var(--text-grey-500)' : 'var(--text-grey-900)' }}
+        >
+          {label}
+        </Typography>
+      )}
+    </label>
   );
 };
 

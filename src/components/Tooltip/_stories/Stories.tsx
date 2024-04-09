@@ -19,7 +19,8 @@ const style = `{{
   gap: '12px',
   padding: '30px',
   margin: '0 auto',
-  height: '180px'
+  height: '180px',
+  color: 'var(--text-grey-900)'
 }}`;
 
 const Stories = (): JSX.Element => {
@@ -30,7 +31,7 @@ const Stories = (): JSX.Element => {
       <Header
         title="Tooltip"
         description="Компонент-подсказка, появляющийся при определенном взаимодействии с дочерним элементом компонента (по умолчанию: при наведении курсора). Tooltip рассчитан не только на работу с простой информацией (текст) с единой стилизацией, но и на визуализацию подсказок, содержащих нестандартную информацию (списки, картинки, таблицы)."
-        isBeta
+        isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/InputRange"
         figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A43759&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
@@ -115,28 +116,6 @@ export default  App = () => (
           />
 
           <Editor
-            description="Тултип с отображением заголовка, описания и списка."
-            code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <div style=${style}>
-    <Tooltip
-      title="Заголовок текста подсказки"
-      description="Сюда вы можете добавить текст/подсказу для компонента"
-      list={[
-        'Здесь, вы можете',
-        'добавить нужную вам',
-        'информацию по пунктам'
-      ]}
-    >
-      <Button variant="secondary">Наведи на меня курсор!</Button>
-    </Tooltip>
-  </div>
-)
-`}
-          />
-
-          <Editor
             description="По умолчанию Тултип не открывается вокруг disabled элементов. Для того чтобы Тултип открывался корректно в этом случае, нужно оборачиваемый элемент обернуть простым элементом-оберткой, например span."
             code={`import { Tooltip, Button } from '@nlmk/ds-2.0';
 
@@ -155,24 +134,25 @@ export default  App = () => (
           />
 
           <Editor
+            height={600}
             description="Тултип с кастомной JSX разметкой внутри"
-            code={`import { Tooltip, Button, Typography, Icon } from '@nlmk/ds-2.0';
+            code={`import { Tooltip, Button, Typography, Icon, Box } from '@nlmk/ds-2.0';
 
 const RenderCustom = () => {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDoneCheckOutlined24" color="success"/>
-        <Typography variant="Caption-Medium">Первый пункт</Typography>
-      </div>
-      <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDoneCheckOutlined24" color="success"/>
+    <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
+      <Icon name="IconDoneCheckOutlined16" color="success"/>
+      <Typography variant="Caption-Medium">Первый пункт</Typography>
+    </Box>
+      <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
+        <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Второй пункт</Typography>
-      </div>
-      <div style={{ display: 'flex', gap: '8px'}}>
-        <Icon name="IconDoneCheckOutlined24" color="success"/>
+      </Box>
+        <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
+        <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Третий пункт</Typography>
-      </div>
+      </Box>
     </div>
   );
 };
@@ -183,7 +163,6 @@ export default  App = () =>(
       behavior="click"
       title="Заголовок тултипа с кастомным элементом"
       description="за добавление кастомного элемента отвечает prop - render"
-      list={['Внутри вы можете добавить', 'Нужную вам разметку']}
       render={<RenderCustom/>}
     >
       <Button variant="secondary">

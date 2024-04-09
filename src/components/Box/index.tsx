@@ -14,6 +14,7 @@ const Box: FC<IBox> = ({
   background,
   height,
   width,
+  color = 'var(--text-grey-900)',
   border,
   borderRadius = 0,
   display = 'flex',
@@ -27,6 +28,7 @@ const Box: FC<IBox> = ({
   const propsStyles = {
     backgroundColor: background,
     height,
+    color,
     width,
     border,
     borderRadius,

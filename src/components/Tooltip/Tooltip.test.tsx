@@ -8,7 +8,7 @@ import Tooltip from './index';
 describe('src/components/Tooltip', () => {
   xtest('Render default Tooltip component', () => {
     render(
-      <Tooltip title="Text in tooltip" placement="top">
+      <Tooltip render="Text in tooltip" placement="top">
         <div data-testid="trigger">Button</div>
       </Tooltip>
     );
@@ -22,7 +22,7 @@ describe('src/components/Tooltip', () => {
 
   xtest('Render Tooltip component with "click" behavior', () => {
     render(
-      <Tooltip title="Text in tooltip" placement="bottom" behavior="click">
+      <Tooltip render="Text in tooltip" placement="bottom" behavior="click">
         <div data-testid="trigger">Button</div>
       </Tooltip>
     );

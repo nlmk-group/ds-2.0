@@ -104,7 +104,7 @@ describe('src/components/ToggleButtonGroup', () => {
     const { container } = render(
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
-          <ToggleButtonGroup.Button.Tooltip description={btnTitle}>
+          <ToggleButtonGroup.Button.Tooltip render={btnTitle}>
             <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button.Tooltip>
         </ToggleButtonGroup.Button>

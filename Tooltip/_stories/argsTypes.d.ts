@@ -1,3 +1,4 @@
+import { ETooltipBehaviorType, ETooltipPlacementType } from '../enums';
 export declare const argsTypes: {
     title: {
         description: string;
@@ -15,10 +16,10 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: string;
+                summary: ETooltipBehaviorType;
             };
         };
-        options: string[];
+        options: ETooltipBehaviorType[];
         control: {
             type: string;
         };
@@ -27,16 +28,24 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: string;
+                summary: ETooltipPlacementType;
             };
         };
-        options: string[];
+        options: ETooltipPlacementType[];
         control: {
             type: string;
         };
     };
-    list: {
+    clickable: {
         description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
     };
     render: {
         description: string;

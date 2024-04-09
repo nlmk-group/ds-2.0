@@ -1,5 +1,6 @@
 import React from 'react';
 import { Args } from '@storybook/react';
+import { ETooltipPlacementType } from '../enums';
 declare const _default: {
     title: string;
     component: React.FC<import("../types").ITooltipProps>;
@@ -20,10 +21,10 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: string;
+                    summary: import("../enums").ETooltipBehaviorType;
                 };
             };
-            options: string[];
+            options: import("../enums").ETooltipBehaviorType[];
             control: {
                 type: string;
             };
@@ -32,16 +33,24 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: string;
+                    summary: ETooltipPlacementType;
                 };
             };
-            options: string[];
+            options: ETooltipPlacementType[];
             control: {
                 type: string;
             };
         };
-        list: {
+        clickable: {
             description: string;
+            control: {
+                type: string;
+            };
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+            };
         };
         render: {
             description: string;
@@ -56,15 +65,7 @@ export declare const TooltipDefault: {
     (argsTypes: Args): JSX.Element;
     storyName: string;
 };
-export declare const TooltipWithDescription: {
-    (argsTypes: Args): JSX.Element;
-    storyName: string;
-};
 export declare const TooltipWrappedDisabled: {
-    (argsTypes: Args): JSX.Element;
-    storyName: string;
-};
-export declare const TooltipWithFull: {
     (argsTypes: Args): JSX.Element;
     storyName: string;
 };

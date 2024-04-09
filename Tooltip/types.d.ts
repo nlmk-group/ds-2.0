@@ -1,14 +1,15 @@
 import { ReactNode } from 'react';
-export type TooltipBehaviorType = 'hover' | 'click' | 'focus';
-export type TooltipPlacementType = 'top' | 'bottom' | 'left' | 'right';
+import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
+export type TooltipBehaviorType = `${ETooltipBehaviorType}`;
+export type TooltipPlacementType = `${ETooltipPlacementType}`;
 export interface ITooltipProps {
     className?: string;
     behavior?: TooltipBehaviorType;
     placement?: TooltipPlacementType;
     children: ReactNode;
-    title?: string;
-    list?: string[];
-    description?: string;
     render?: ReactNode;
+    title?: string;
+    description?: string;
+    clickable?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

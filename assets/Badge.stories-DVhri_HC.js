@@ -1,0 +1,7 @@
+import{j as e}from"./jsx-runtime-2xDJh5tt.js";import{G as i}from"./index-CnL2Y1yT.js";import{a as m}from"./argsTypes-BxL9Xuc9.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./generateUUID-BVRVPcdt.js";import"./clsx.m-CH7BE6MN.js";import"./index-CkVMA9Py.js";import"./32-CH6kctYz.js";import"./index-jIJAWU0x.js";import"./index-BxqmQ_Es.js";import"./index-CjrtVycB.js";import"./index-DGfD3wI4.js";import"./index-B8bUpJH3.js";import"./index-BtM5VmRH.js";import"./types-CpBSVUgC.js";import"./index-Cs1erf_V.js";import"./index-prZMZXcd.js";import"./index-DFf4wlr3.js";import"./index-lhFT6koy.js";import"./index-fHOzSRtI.js";import"./get-DbIoSxMH.js";const n="_wrapper_1jpvi_1",d="_table_1jpvi_8",c="_row_1jpvi_17",o={wrapper:n,table:d,row:c},l=t=>e("div",{style:{minHeight:80},children:t()}),J={title:"Components/Badge/Stories",component:i,decorators:[l],argTypes:m},r=t=>e("div",{className:o.wrapper,children:e("div",{className:o.row,children:e(i,{...t,children:"1"})})});r.storyName="Бэйдж по умолчанию";var s,a,p;r.parameters={...r.parameters,docs:{...(s=r.parameters)==null?void 0:s.docs,source:{originalSource:`(argsTypes: IBadgeProps): JSX.Element => {
+  return <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <Badge {...argsTypes}>1</Badge>
+      </div>
+    </div>;
+}`,...(p=(a=r.parameters)==null?void 0:a.docs)==null?void 0:p.source}}};const O=["BadgeDefault"];export{r as BadgeDefault,O as __namedExportsOrder,J as default};

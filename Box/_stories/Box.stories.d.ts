@@ -23,17 +23,50 @@ declare const _default: {
                 type: string;
             };
         };
-        paddingSpace: {
+        color: {
             description: string;
-            table: {
-                defaultValue: {
-                    summary: import("../../declaration").sizesMappingInput;
-                };
-                type: {
-                    summary: string;
-                };
+            control: {
+                type: string;
             };
-            options: import("../../declaration").sizesMappingInput[];
+        };
+        p: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        px: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        py: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pt: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pb: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pl: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pr: {
+            description: string;
             control: {
                 type: string;
             };
@@ -45,6 +78,12 @@ declare const _default: {
             };
         };
         width: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        maxWidth: {
             description: string;
             control: {
                 type: string;

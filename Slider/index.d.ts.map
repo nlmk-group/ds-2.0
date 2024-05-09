@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/components/Slider/index.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,EAAE,iBAAiB,EAAE,mBAAmB,EAAE,iBAAiB,EAAE,MAAM,OAAO,CAAC;AAMzF,eAAO,MAAM,MAAM;;;4BAGO,iBAAiB;iCACZ,iBAAiB;mCACf,iBAAiB;mBACjC,kBAAkB,oBAAoB,gBAAgB,CAAC,EAAE,gBAAgB,CAAC;CAG1F,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/components/Slider/index.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,EAAE,iBAAiB,EAAE,MAAM,OAAO,CAAC;AAOjD,eAAO,MAAM,MAAM;;;4BAGO,iBAAiB;iCACZ,iBAAiB;mCACf,iBAAiB;;CAEjD,CAAC"}

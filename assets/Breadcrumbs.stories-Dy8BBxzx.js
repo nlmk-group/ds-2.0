@@ -1,0 +1,13 @@
+import{j as t}from"./jsx-runtime-2xDJh5tt.js";import{B as o,t as r}from"./index-CnL2Y1yT.js";import"./generateUUID-BVRVPcdt.js";import"./index-jIJAWU0x.js";import"./index-B8bUpJH3.js";import"./index-DGfD3wI4.js";import"./index-CjrtVycB.js";import"./index-CkVMA9Py.js";import"./index-BxqmQ_Es.js";import"./index-Cs1erf_V.js";import"./index-DFf4wlr3.js";import"./index-lhFT6koy.js";import"./index-fHOzSRtI.js";import"./32-CH6kctYz.js";import"./index-CBqU2yxZ.js";import{s as p}from"./styles.module-DeLvTIFi.js";import{b as B}from"./constants-BDUjkYZk.js";import{b as h}from"./argsTypes-B0WH6KH3.js";import"./clsx.m-CH7BE6MN.js";import"./index-BtM5VmRH.js";import"./_commonjsHelpers-BosuxZz1.js";import"./types-CpBSVUgC.js";import"./get-DbIoSxMH.js";import"./index-prZMZXcd.js";const T="Обычное использование компонента",y="Компонент с заданной шириной",N="Компонент содержащий ссылки с разными target",J={title:"Components/Breadcrumbs/Stories",component:o,argTypes:h},e=m=>t("div",{className:p.wrapper,children:t(o,{...m})});e.storyName=T;e.args={crumbs:B,width:100};const s=m=>t("div",{className:p.wrapper,children:t(o,{...m})});s.storyName=y;s.args={width:70,crumbs:B};const a=m=>t("div",{className:p.wrapper,children:t(o,{...m})});a.storyName=N;a.args={width:100,crumbs:[{href:"https://www.lipsum.com/",label:`${r._blank}`,target:r._blank},{href:"https://www.lipsum.com/",label:`${r._parent}`,target:r._parent},{href:"https://www.lipsum.com/",label:`${r._self}`,target:r._self},{href:"https://www.lipsum.com/",label:`${r._top}`,target:r._top}]};var c,i,d;e.parameters={...e.parameters,docs:{...(c=e.parameters)==null?void 0:c.docs,source:{originalSource:`(argTypes: BreadcrumbsProps): ReactNode => {
+  return <div className={styles.wrapper}>
+      <Breadcrumbs {...argTypes} />
+    </div>;
+}`,...(d=(i=e.parameters)==null?void 0:i.docs)==null?void 0:d.source}}};var n,u,l;s.parameters={...s.parameters,docs:{...(n=s.parameters)==null?void 0:n.docs,source:{originalSource:`(argTypes: BreadcrumbsProps): ReactNode => {
+  return <div className={styles.wrapper}>
+      <Breadcrumbs {...argTypes} />
+    </div>;
+}`,...(l=(u=s.parameters)==null?void 0:u.docs)==null?void 0:l.source}}};var b,g,w;a.parameters={...a.parameters,docs:{...(b=a.parameters)==null?void 0:b.docs,source:{originalSource:`(argTypes: BreadcrumbsProps): ReactNode => {
+  return <div className={styles.wrapper}>
+      <Breadcrumbs {...argTypes} />
+    </div>;
+}`,...(w=(g=a.parameters)==null?void 0:g.docs)==null?void 0:w.source}}};const K=["BreadcrumbsDefault","BreadcrumbsWidth","BreadcrumbsTarget"];export{e as BreadcrumbsDefault,a as BreadcrumbsTarget,s as BreadcrumbsWidth,K as __namedExportsOrder,J as default};

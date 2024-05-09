@@ -6,6 +6,7 @@ export interface IInputAdditionalProps {
     value?: string;
     disabled?: boolean;
     label?: string;
+    name?: string;
     multiline?: boolean;
     pseudo?: boolean;
     icon?: ReactNode;
@@ -14,6 +15,7 @@ export interface IInputAdditionalProps {
     onChange?: ChangeEventHandler<HTMLInputElement>;
     size?: TSize;
     color?: customInputColors;
+    colored?: boolean;
 }
 export type TInputProps = IInputAdditionalProps & Omit<ComponentPropsWithoutRef<'input'>, 'size'> & Omit<ComponentPropsWithoutRef<'textarea'>, 'size'> & {
     inputRef?: Ref<HTMLInputElement | HTMLTextAreaElement>;

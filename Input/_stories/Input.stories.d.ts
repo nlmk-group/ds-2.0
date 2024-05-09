@@ -64,6 +64,10 @@ export declare const InputMultilineDisabled: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
 };
+export declare const InputWithColored: {
+    (): JSX.Element;
+    storyName: string;
+};
 export declare const InputMultilineError: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;

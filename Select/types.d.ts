@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, ReactElement } from 'react';
+import { ReactNode, MouseEvent, ReactElement, CSSProperties } from 'react';
 import { customInputColors, sizesMappingInput } from '../declaration';
 export type ISelectOption = {
     value: string;
@@ -40,6 +40,9 @@ export interface ISelectProps {
     badgeAmount?: number;
     activeSelectedValue?: boolean;
     enableScrollToActiveOption?: boolean;
+    portalContainerId?: string;
+    name?: string;
+    style?: CSSProperties;
 }
 export interface IStealthyItem {
     option?: ISelectOption;
@@ -65,6 +68,7 @@ export interface ISelectSharedProperties {
     handleSelect: (option: string, includes: boolean) => void;
     handleTypographyClick: (option: string, event: MouseEvent<HTMLParagraphElement>) => void;
     handleSelectAllClick: () => void;
+    withPortal?: boolean;
 }
 export interface IMenuItem extends ISelectOption {
 }
@@ -75,7 +79,7 @@ export interface ISelectButton {
     isOpen: boolean;
     disabled: boolean;
     color: `${customInputColors}`;
-    toggleDropdown: () => void;
+    toggleDropdown: React.MouseEventHandler;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

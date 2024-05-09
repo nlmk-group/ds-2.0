@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, FC } from 'react';
 import { TIconName } from './IconsDirectory/unionType';
 export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning' | 'default';
 export type TContainerSize = 32 | 24 | 16;
@@ -19,4 +19,10 @@ export interface ISvgProps {
     onClick?: (e: any) => void;
     active?: boolean;
 }
+export type TIconComponent = FC<IIconsProps>;
+export type TIconsObject = {
+    [size: string]: {
+        [key in TIconName]?: TIconComponent;
+    };
+};
 //# sourceMappingURL=types.d.ts.map

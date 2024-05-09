@@ -1,4 +1,3 @@
-import { sizesMappingInput } from '../../declaration';
 export declare const argsTypes: {
     children: {
         description: string;
@@ -18,17 +17,50 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    paddingSpace: {
+    color: {
         description: string;
-        table: {
-            defaultValue: {
-                summary: sizesMappingInput;
-            };
-            type: {
-                summary: string;
-            };
+        control: {
+            type: string;
         };
-        options: sizesMappingInput[];
+    };
+    p: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    px: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    py: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    pt: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    pb: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    pl: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    pr: {
+        description: string;
         control: {
             type: string;
         };
@@ -40,6 +72,12 @@ export declare const argsTypes: {
         };
     };
     width: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    maxWidth: {
         description: string;
         control: {
             type: string;

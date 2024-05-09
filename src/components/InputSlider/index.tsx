@@ -6,6 +6,7 @@ import { IInputSliderProps } from './types';
 
 const InputSlider: FC<IInputSliderProps> = ({ min, max, step = 1, value: outerValue, onChange, disabled = false }) => {
   const [value, setValue] = useState(outerValue ?? min);
+  const [controlHover, setControlHover] = useState(false);
 
   useEffect(() => {
     if (outerValue !== undefined) setValue(outerValue);
@@ -27,11 +28,11 @@ const InputSlider: FC<IInputSliderProps> = ({ min, max, step = 1, value: outerVa
   return (
     <Slider.Wrapper>
       <Slider.InputWrapper>
-        <Slider.Input value={value} min={min} max={max} step={step} onChange={handleChange} disabled={disabled} />
+        <Slider.Input value={value} min={min} max={max} step={step} onChange={handleChange} disabled={disabled} setHover={setControlHover}/>
       </Slider.InputWrapper>
       <Slider.ControlWrapper>
         <Slider.Rail maxPosition={rangePos} minPosition={0} disabled={disabled} />
-        <Slider.Control position={rangePos} value={value} disabled={disabled} />
+        <Slider.Control position={rangePos} value={value} disabled={disabled} hover={controlHover} />
       </Slider.ControlWrapper>
     </Slider.Wrapper>
   );

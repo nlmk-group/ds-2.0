@@ -18,65 +18,62 @@
 
   .hover-wrapper {
     position: relative;
-  }
-
-  &:hover {
     background-color: var(--ac-input-slider-none-hover-point);
-
-    .point-hover {
-      position: absolute;
-      z-index: -1;
-      bottom: 50%;
-      right: 50%;
-      transform: translate(44%, 50%);
-      width: 48px;
-      height: 48px;
-      opacity: var(--15-opacity);
-      border-radius: var(--circle-radius);
-      background-color: var(--ac-input-slider-none-hover-point);
-    }
   }
-}
 
-.control-tooltip {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 19px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0 8px;
-  min-width: 11px;
-  height: 32px;
-  color: var(--background-white);
-  border-radius: 2px;
-  background-color: var(--text-grey-600);
-  opacity: 85%;
-
-  &:before {
-    content: "";
+  .point-hover {
     position: absolute;
-    top: 100%;
-    left: 50%;
-    border-top: 8px solid transparent;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
-    border-bottom: none;
-    margin-left: -6px;
-    border-top-color: var(--text-grey-600);
+    z-index: -1;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(44%, 50%);
+    width: 48px;
+    height: 48px;
+    opacity: var(--15-opacity);
+    border-radius: var(--circle-radius);
+    background-color: var(--ac-input-slider-none-hover-point);
+  }
 
-    &-disabled {
-      opacity: 50%;
+  .control-tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 8px;
+    min-width: 11px;
+    height: 32px;
+    color: var(--background-white);
+    border-radius: 2px;
+    background-color: var(--text-grey-600);
+    opacity: 85%;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      border-top: 8px solid transparent;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+      border-bottom: none;
+      margin-left: -6px;
+      border-top-color: var(--text-grey-600);
+
+      &-disabled {
+        opacity: 50%;
+      }
     }
   }
-}
 
-.two-sticks {
-  height: 4px;
-  width: 4px;
-  background-color: inherit;
-  border-right: 1px solid var(--default-second);
-  border-left: 1px solid var(--default-second);
+  .two-sticks {
+    height: 4px;
+    width: 4px;
+    background-color: inherit;
+    border-right: 1px solid var(--default-second);
+    border-left: 1px solid var(--default-second);
+  }
 }

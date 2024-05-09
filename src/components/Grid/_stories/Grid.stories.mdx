@@ -1,0 +1,21 @@
+import { Meta, Unstyled, Story } from '@storybook/addon-docs';
+import Grid from '..';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Grid/Info"
+  component={Grid}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/UrNaiI72SjVg0aHW6NYVCi/DS2.0-Grid?type=design&node-id=207-40301&mode=design&t=H6uAggyoryLoFprh-0'
+    },
+    jest: ['Grid.test.tsx']
+  }}
+/>
+
+<Story name='Docs'>
+  <Unstyled>
+    <Stories />
+  </Unstyled>
+</Story>

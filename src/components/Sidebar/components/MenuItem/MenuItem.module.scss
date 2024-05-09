@@ -1,7 +1,9 @@
+$width: 256px;
+
 .root {
   height: var(--64-size);
   width: 100%;
-  max-width: 256px;
+  max-width: $width;
   display: flex;
   align-items: center;
   padding: 0 var(--16-space);
@@ -33,6 +35,8 @@
   align-items: center;
   flex-grow: 1;
   flex-shrink: 0;
+  width: calc($width - var(--32-size) - var(--24-size) - var(--16-space));
+  text-wrap: balance;
 }
 
 .text {

@@ -1,6 +1,7 @@
 /**
  * Этот файл сгенерирован автоматически.
  */
+import { TIconsObject } from '../types';
 import { IconUploadFile32, IconUploadImage32, IconUploadVideo32 } from './Custom';
 import {
   IconCalendarClearToday16,
@@ -732,6 +733,12 @@ import {
   IconFilterListOutlined16,
   IconFilterListOutlined24,
   IconFilterListOutlined32,
+  IconFilterSortAscendedFilled16,
+  IconFilterSortAscendedFilled24,
+  IconFilterSortAscendedFilled32,
+  IconFilterSortAscendedOutlined16,
+  IconFilterSortAscendedOutlined24,
+  IconFilterSortAscendedOutlined32,
   IconFilterSortFilled16,
   IconFilterSortFilled24,
   IconFilterSortFilled32,
@@ -786,6 +793,9 @@ import {
   IconHandPanToolPalmsOutlined16,
   IconHandPanToolPalmsOutlined24,
   IconHandPanToolPalmsOutlined32,
+  IconHeartFilled16,
+  IconHeartFilled24,
+  IconHeartFilled32,
   IconHelperMailOutlined16,
   IconHelperMailOutlined24,
   IconHelperMailOutlined32,
@@ -1032,6 +1042,7 @@ import {
   IconReservedTo16,
   IconReservedTo24,
   IconReservedTo32,
+  IconResizingOutlined16,
   IconRightColumnArrowFilled16,
   IconRightColumnArrowFilled24,
   IconRightColumnArrowFilled32,
@@ -1644,6 +1655,12 @@ export {
   IconFilterListOutlined16,
   IconFilterListOutlined24,
   IconFilterListOutlined32,
+  IconFilterSortAscendedFilled16,
+  IconFilterSortAscendedFilled24,
+  IconFilterSortAscendedFilled32,
+  IconFilterSortAscendedOutlined16,
+  IconFilterSortAscendedOutlined24,
+  IconFilterSortAscendedOutlined32,
   IconFilterSortFilled16,
   IconFilterSortFilled24,
   IconFilterSortFilled32,
@@ -1698,6 +1715,9 @@ export {
   IconHandPanToolPalmsOutlined16,
   IconHandPanToolPalmsOutlined24,
   IconHandPanToolPalmsOutlined32,
+  IconHeartFilled16,
+  IconHeartFilled24,
+  IconHeartFilled32,
   IconHelpFilled16,
   IconHelpFilled24,
   IconHelpFilled32,
@@ -1944,6 +1964,7 @@ export {
   IconReservedTo16,
   IconReservedTo24,
   IconReservedTo32,
+  IconResizingOutlined16,
   IconRightColumnArrowFilled16,
   IconRightColumnArrowFilled24,
   IconRightColumnArrowFilled32,
@@ -2451,7 +2472,7 @@ export {
   IconProductPerformanceManagement32
 };
 
-const icons: any = {
+const icons: TIconsObject = {
   16: {
     IconAddCommentFilled16,
     IconAddCommentOutlined16,
@@ -2593,6 +2614,8 @@ const icons: any = {
     IconEyeglassesOutlined16,
     IconFilterListFilled16,
     IconFilterListOutlined16,
+    IconFilterSortAscendedFilled16,
+    IconFilterSortAscendedOutlined16,
     IconFilterSortFilled16,
     IconFilterSortOutlined16,
     IconFolderFilled16,
@@ -2611,6 +2634,7 @@ const icons: any = {
     IconGraphChartTimeline16,
     IconHandPanToolPalmsFilled16,
     IconHandPanToolPalmsOutlined16,
+    IconHeartFilled16,
     IconHelpFilled16,
     IconHelpOutlined16,
     IconHelperMailOutlined16,
@@ -2693,6 +2717,7 @@ const icons: any = {
     IconReplayOutlined16,
     IconReservedFrom16,
     IconReservedTo16,
+    IconResizingOutlined16,
     IconRightColumnArrowFilled16,
     IconRightColumnArrowOutlined16,
     IconRoundedArrowBackFilled16,
@@ -2999,6 +3024,8 @@ const icons: any = {
     IconEyeglassesOutlined24,
     IconFilterListFilled24,
     IconFilterListOutlined24,
+    IconFilterSortAscendedFilled24,
+    IconFilterSortAscendedOutlined24,
     IconFilterSortFilled24,
     IconFilterSortOutlined24,
     IconFolderFilled24,
@@ -3017,6 +3044,7 @@ const icons: any = {
     IconGraphChartTimeline24,
     IconHandPanToolPalmsFilled24,
     IconHandPanToolPalmsOutlined24,
+    IconHeartFilled24,
     IconHelpFilled24,
     IconHelpOutlined24,
     IconHelperMailOutlined24,
@@ -3405,6 +3433,8 @@ const icons: any = {
     IconEyeglassesOutlined32,
     IconFilterListFilled32,
     IconFilterListOutlined32,
+    IconFilterSortAscendedFilled32,
+    IconFilterSortAscendedOutlined32,
     IconFilterSortFilled32,
     IconFilterSortOutlined32,
     IconFolderFilled32,
@@ -3423,6 +3453,7 @@ const icons: any = {
     IconGraphChartTimeline32,
     IconHandPanToolPalmsFilled32,
     IconHandPanToolPalmsOutlined32,
+    IconHeartFilled32,
     IconHelpFilled32,
     IconHelpOutlined32,
     IconHelperMailOutlined32,

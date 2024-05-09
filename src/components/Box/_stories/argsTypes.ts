@@ -1,5 +1,3 @@
-import { sizesMappingInput } from '@components/declaration';
-
 export const argsTypes = {
   children: {
     description: 'Элементы и компоненты внутри Box',
@@ -13,18 +11,37 @@ export const argsTypes = {
     description: 'В компонент можно передать цвет заднего фона',
     control: { type: 'color' }
   },
-  paddingSpace: {
-    description: `Размер отступов - <b>${Object.values(sizesMappingInput).join(' | ')}</b>`,
-    table: {
-      defaultValue: {
-        summary: sizesMappingInput.m
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(sizesMappingInput),
-    control: { type: 'select' }
+  color: {
+    description: 'В компонент можно передать цвет',
+    control: { type: 'color' }
+  },
+  p: {
+    description: 'Размер отступов со всех сторон',
+    control: { type: 'text' }
+  },
+  px: {
+    description: 'Размер горизонтальных отступов (слева и справа)',
+    control: { type: 'text' }
+  },
+  py: {
+    description: 'Размер вертикальных отступов (сверху и снизу)',
+    control: { type: 'text' }
+  },
+  pt: {
+    description: 'Размер отступа сверху',
+    control: { type: 'text' }
+  },
+  pb: {
+    description: 'Размер отступа снизу',
+    control: { type: 'text' }
+  },
+  pl: {
+    description: 'Размер отступа слева',
+    control: { type: 'text' }
+  },
+  pr: {
+    description: 'Размер отступа справа',
+    control: { type: 'text' }
   },
   height: {
     description: 'В компонент можно передать кастомное значение высоты в пикселях.',
@@ -32,6 +49,10 @@ export const argsTypes = {
   },
   width: {
     description: 'В компонент можно передать кастомное значение ширины в пикселях.',
+    control: { type: 'text' }
+  },
+  maxWidth: {
+    description: 'В компонент можно передать кастомное значение максимальной ширины контейнера.',
     control: { type: 'text' }
   },
   gap: {

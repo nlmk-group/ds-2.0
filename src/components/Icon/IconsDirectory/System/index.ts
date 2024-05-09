@@ -366,6 +366,16 @@ export { IconEyeglassesFill16, IconEyeglassesFill24, IconEyeglassesFill32 } from
 export { IconEyeglassesOutlined16, IconEyeglassesOutlined24, IconEyeglassesOutlined32 } from './EyeglassesOutlined';
 export { IconFilterListFilled16, IconFilterListFilled24, IconFilterListFilled32 } from './FilterListFilled';
 export { IconFilterListOutlined16, IconFilterListOutlined24, IconFilterListOutlined32 } from './FilterListOutlined';
+export {
+  IconFilterSortAscendedFilled16,
+  IconFilterSortAscendedFilled24,
+  IconFilterSortAscendedFilled32
+} from './FilterSortAscendedFilled';
+export {
+  IconFilterSortAscendedOutlined16,
+  IconFilterSortAscendedOutlined24,
+  IconFilterSortAscendedOutlined32
+} from './FilterSortAscendedOutlined';
 export { IconFilterSortFilled16, IconFilterSortFilled24, IconFilterSortFilled32 } from './FilterSortFilled';
 export { IconFilterSortOutlined16, IconFilterSortOutlined24, IconFilterSortOutlined32 } from './FilterSortOutlined';
 export { IconFolderFilled16, IconFolderFilled24, IconFolderFilled32 } from './FolderFilled';
@@ -420,6 +430,7 @@ export {
   IconHandPanToolPalmsOutlined24,
   IconHandPanToolPalmsOutlined32
 } from './HandPanToolPalmsOutlined';
+export { IconHeartFilled16, IconHeartFilled24, IconHeartFilled32 } from './HeartFilled';
 export { IconHelpFilled16, IconHelpFilled24, IconHelpFilled32 } from './HelpFilled';
 export { IconHelpOutlined16, IconHelpOutlined24, IconHelpOutlined32 } from './HelpOutlined';
 export { IconHelperMailOutlined16, IconHelperMailOutlined24, IconHelperMailOutlined32 } from './HelperMailOutlined';
@@ -598,6 +609,7 @@ export { IconRepairWrenchTo16, IconRepairWrenchTo24, IconRepairWrenchTo32 } from
 export { IconReplayOutlined16, IconReplayOutlined24, IconReplayOutlined32 } from './ReplayOutlined';
 export { IconReservedFrom16, IconReservedFrom24, IconReservedFrom32 } from './ReservedFrom';
 export { IconReservedTo16, IconReservedTo24, IconReservedTo32 } from './ReservedTo';
+export { IconResizingOutlined16 } from './ResizingOutlined';
 export {
   IconRightColumnArrowFilled16,
   IconRightColumnArrowFilled24,

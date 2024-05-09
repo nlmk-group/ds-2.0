@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, FC } from 'react';
 
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 
@@ -34,3 +34,11 @@ export interface ISvgProps {
   onClick?: (e: any) => void;
   active?: boolean;
 }
+
+export type TIconComponent = FC<IIconsProps>;
+
+export type TIconsObject = {
+  [size: string]: {
+    [key in TIconName]?: TIconComponent;
+  };
+};

@@ -28,13 +28,15 @@ export const Chip: FC<IChipProps> = ({
 
   return (
     <div className={clsx(styles.chip, className)}>
-      <Typography
-        className={clsx(styles.label, compact ? styles['label-compact'] : styles['label-large'])}
-        variant={typographyVariant}
-        color="hint"
-      >
-        {label}
-      </Typography>
+      {label && (
+        <Typography
+          className={clsx(styles.label, compact ? styles['label-compact'] : styles['label-large'])}
+          variant={typographyVariant}
+          color="hint"
+        >
+          {label}
+        </Typography>
+      )}
       <div className={styles.container}>
         <Badge
           color={color as TBadgeColors}

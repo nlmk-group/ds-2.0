@@ -5,17 +5,20 @@
   height: 12px;
   border-radius: 0;
   border: 0 none;
-  cursor: grab;
-
-  &:active {
-    cursor: grabbing;
-  }
 }
 
 @mixin track-mixin {
   appearance: none;
   background: transparent;
   border: transparent;
+}
+
+@mixin cursor-mixin {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .wrapper {
@@ -73,3 +76,19 @@
     @include thumb-mixin;
   }
 }
+
+.input:not([disabled]) {
+  &::-ms-thumb {
+    @include cursor-mixin;
+  }
+
+  &::-moz-range-thumb {
+    @include cursor-mixin;
+  }
+
+  &::-webkit-slider-thumb {
+    @include cursor-mixin;
+  }
+}
+
+

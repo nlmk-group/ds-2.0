@@ -1,14 +1,20 @@
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
-import { sizesMappingInput } from '@components/declaration';
-
 type TBorderProps = string | number;
+
 export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: ReactNode;
-  paddingSpace?: sizesMappingInput;
+  p?: TBorderProps;
+  px?: TBorderProps;
+  py?: TBorderProps;
+  pt?: TBorderProps;
+  pb?: TBorderProps;
+  pl?: TBorderProps;
+  pr?: TBorderProps;
   background?: string;
   height?: TBorderProps;
   width?: TBorderProps;
+  maxWidth?: TBorderProps;
   border?: string;
   color?: string;
   borderRadius?: TBorderProps;

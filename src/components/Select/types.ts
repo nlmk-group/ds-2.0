@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, ReactElement } from 'react';
+import { ReactNode, MouseEvent, ReactElement, CSSProperties } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
@@ -155,27 +155,27 @@ export interface ISelectProps {
    */
   className?: string;
 
-  /*
+  /**
    * Условие для незаметного инпута
    */
   stealthy?: boolean;
 
-  /*
+  /**
   * Отображать выбранные элементы иконкой
   */
   highlightSelected?: boolean;
 
-  /*
+  /**
   * Отображать без чекбоксов
   */
   withoutCheckbox?: boolean;
 
-  /*
+  /**
   * Отображать badge с количеством выбранных опций
   */
   badgeAmount?: number;
 
-  /*
+  /**
   * Выделять значение синим цветом, доступно в stealthy
   */
   activeSelectedValue?: boolean;
@@ -184,6 +184,21 @@ export interface ISelectProps {
  * Условие фокуса на опциях компонента при раскрытии списка
   */
   enableScrollToActiveOption?: boolean;
+
+  /**
+   * id рутового контейнера для создания портала
+   */
+  portalContainerId?: string;
+
+  /**
+   * name определяет имя элемента, используется для ссылки на элемент
+   */
+  name?: string;
+
+  /**
+   * Кастомные стили для компонента.
+   */
+  style?: CSSProperties;
 }
 
 export interface IStealthyItem {
@@ -212,6 +227,7 @@ export interface ISelectSharedProperties {
   handleSelect: (option: string, includes: boolean) => void;
   handleTypographyClick: (option: string, event: MouseEvent<HTMLParagraphElement>) => void;
   handleSelectAllClick: () => void;
+  withPortal?: boolean;
 }
 
 export interface IMenuItem extends ISelectOption {
@@ -226,5 +242,5 @@ export interface ISelectButton {
   isOpen: boolean;
   disabled: boolean;
   color: `${customInputColors}`;
-  toggleDropdown: ()=>void;
+  toggleDropdown: React.MouseEventHandler
 }

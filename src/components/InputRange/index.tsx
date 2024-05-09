@@ -7,6 +7,8 @@ import { IInputRangeProps } from './types';
 const InputRange: FC<IInputRangeProps> = ({ min, max, step = 1, value, onChange, disabled = false }) => {
   const [minValue, setMinValue] = useState(value ? value.min : min);
   const [maxValue, setMaxValue] = useState(value ? value.max : max);
+  const [leftControlHover, setLeftControlHover] = useState(false);
+  const [rightControlHover, setRightControlHover] = useState(false);
 
   useEffect(() => {
     if (value) {
@@ -49,6 +51,7 @@ const InputRange: FC<IInputRangeProps> = ({ min, max, step = 1, value, onChange,
           step={step}
           onChange={handleMinRangeChange}
           disabled={disabled}
+          setHover={setLeftControlHover}
         />
         <Slider.Input
           value={maxValue}
@@ -57,12 +60,13 @@ const InputRange: FC<IInputRangeProps> = ({ min, max, step = 1, value, onChange,
           step={step}
           onChange={handleMaxRangeChange}
           disabled={disabled}
+          setHover={setRightControlHover}
         />
       </Slider.InputWrapper>
       <Slider.ControlWrapper>
-        <Slider.Control position={minRangePos} value={value.min} disabled={disabled} />
+        <Slider.Control position={minRangePos} value={value.min} disabled={disabled} hover={leftControlHover}/>
         <Slider.Rail maxPosition={maxRangePos} minPosition={minRangePos} disabled={disabled} />
-        <Slider.Control position={maxRangePos} value={value.max} disabled={disabled} />
+        <Slider.Control position={maxRangePos} value={value.max} disabled={disabled} hover={rightControlHover}/>
       </Slider.ControlWrapper>
     </Slider.Wrapper>
   );

@@ -10,7 +10,7 @@ export const Changelog = () => {
       <div className={styles.intro}>
         <div className={styles.description}>
           <Typography variant="Heading1">История изменений</Typography>
-          <br/>
+          <br />
           <Link
             href="https://www.npmjs.com/package/@nlmk/ds-2.0?activeTab=versions"
             target="blank"
@@ -20,6 +20,132 @@ export const Changelog = () => {
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.6.0 - <span className={styles.date}>08.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-errorpage-info--docs" target="blank">
+                ErrorPage
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.9 - <span className={styles.date}>07.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлено поведение withPortal и ClickAwayListener в компоненте
+              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+                Select
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено поведение при hover эффекте в состоянии disabled компонента
+              <Link href="./?path=/docs/components-inputslider-info--docs" target="blank">
+                InputSlider
+              </Link>,
+              <Link href="./?path=/docs/components-inputrange-info--docs" target="blank">
+                InputRange
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.8 - <span className={styles.date}>26.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен тип свойства name и добавлен обработчик ошибки в компоненте
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлено свойство name для
+              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+                Input
+              </Link>
+              и
+              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+                Select
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.7 - <span className={styles.date}>24.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.6 - <span className={styles.date}>19.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+                Grid
+              </Link>
+              .
+            </li>
+            <li>
+              • Доработана логики отступов в компоненте
+              <Link href="./?path=/docs/components-box-info--docs" target="blank">
+                Box
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлен пропс colored для обозначения измененного значения в компоненте
+              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+                Input
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.5.5 - <span className={styles.date}>10.04.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена логика работы withPortal в компоненте
+              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+                Select
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлена возможность переноса длинного заголовка в компоненте
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+                Sidebar
+              </Link>
+              .
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
@@ -47,7 +173,8 @@ export const Changelog = () => {
             v1.5.3 - <span className={styles.date}>08.04.24</span>
           </Typography>
           <ul className={styles.list}>
-            <li>• Исправлено позиционирование иконки внутри компонента
+            <li>
+              • Исправлено позиционирование иконки внутри компонента
               <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
                 Checkbox
               </Link>

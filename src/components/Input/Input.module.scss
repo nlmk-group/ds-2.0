@@ -214,8 +214,12 @@
   color: var(--text-grey-500);
   background-color: var(--text-grey-50);
   cursor: default;
+
+  &-input {
+    pointer-events: none !important;
+  }
 }
 
-.disabled-input {
-  pointer-events: none!important;
+.colored {
+  background-color: var(--ac-input-renew-bg) !important;
 }

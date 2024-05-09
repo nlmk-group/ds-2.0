@@ -93,5 +93,17 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  colored: {
+    description: 'Свойство, позволяющее изменить цвет фона инпута на светло-желтый',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
   }
 };

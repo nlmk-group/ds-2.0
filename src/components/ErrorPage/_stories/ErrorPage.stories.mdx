@@ -1,0 +1,21 @@
+import ErrorPage from '../';
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Stories from './Stories';
+
+<Meta
+  title="Components/ErrorPage/Info"
+  component={ErrorPage}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/ocBJCN1akiFe5oQljRKNi0/DS2.0-Error?type=design&node-id=2-10&mode=design&t=RSFbkTXfvL8sjP7n-0'
+    },
+    jest: ['ErrorPage.test.tsx']
+  }}
+/>
+
+<Story name='Docs'>
+  <Unstyled>
+    <Stories />
+  </Unstyled>
+</Story>

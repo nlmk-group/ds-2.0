@@ -2,6 +2,8 @@ import React, { createElement, ReactNode, useEffect, useRef, useState } from 're
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import argsTypes from '@components/Icon/_stories/argsTypes';
+import { TIconName } from '@components/Icon/IconsDirectory/unionType';
+import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Card, Icon, Input, Typography } from '@components/index';
 import { Meta, StoryFn } from '@storybook/react';
 import { clsx } from 'clsx';
@@ -31,10 +33,10 @@ export const IconComponent = ({
   color = 'primary',
   containerSize = 32,
   ...args
-}: any): JSX.Element => {
+}: TIconProps): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, styles.sized)}>
-      <Icon name={name} color={color} containerSize={containerSize} {...args} />
+      <Icon name="IconArmatura32" color={color} containerSize={containerSize} {...args} />
     </div>
   );
 };
@@ -123,18 +125,22 @@ export const AllIcons = (): JSX.Element => {
     return name.replace('Icon', '');
   };
 
-  Object.keys(icons).forEach(size => {
-    Object.keys(icons[size]).forEach(iconName => {
-      const formattedIconName = formatIconName(iconName).replace(size, '');
+  Object.keys(icons).forEach((size: keyof TIconsObject) => {
+    Object.keys(icons[size] || {}).forEach((iconName: string) => {
+      const formattedIconName = formatIconName(iconName as TIconName).replace(size.toString(), '');
       if (!iconsByNames[formattedIconName]) {
         iconsByNames[formattedIconName] = {};
       }
       const useStroke = iconName.includes('Kovsh');
-      iconsByNames[formattedIconName][size] = createElement(icons[size][iconName], {
-        style: {
-          ...(useStroke && { stroke: 'var(--icon-color)' })
-        }
-      });
+      const iconComponent = icons[size][iconName as TIconName];
+      if (iconComponent) {
+        const iconProps: Record<string, any> = {
+          style: {
+            ...(useStroke && { stroke: 'var(--icon-color)' })
+          }
+        };
+        iconsByNames[formattedIconName][size.toString()] = createElement(iconComponent, iconProps);
+      }
     });
   });
 

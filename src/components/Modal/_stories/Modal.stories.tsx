@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Button, Typography } from '@components/index';
+import { Button, Select, Typography, Input } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -9,6 +9,9 @@ import styles from './Modal.module.scss';
 import Modal from '..';
 import { IModalProps } from '../types';
 import { argsTypes } from './argsTypes';
+import DatePicker from '@components/DatePicker';
+import { options } from '@components/Select/_stories/mocks';
+import { TSelected } from '@components/Select/types';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
@@ -64,6 +67,8 @@ DraggableModal.args = { isDraggable: true };
 
 export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
+  const [value, onChange] = useState(new Date());
+  const [selected, setSelected] = useState<TSelected>([]);
 
   return (
     <div>
@@ -75,8 +80,12 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
           setIsOpen(false);
           action('modalClosed')();
         }}
+        disableBackdropClick
       >
-        <Typography color="primary">Это модальное окно изменяемого размера.</Typography>
+        <Typography color="primary" style={{ marginBottom: '10px' }}>Это модальное окно изменяемого размера.</Typography>
+        <DatePicker withPortal value={value} onChange={onChange} />
+        <Select options={options} selected={selected} onSelectionChange={setSelected} withPortal style={{ marginTop: '10px'}} />
+        <Input style={{ marginTop: '10px' }} />
       </Modal>
     </div>
   );

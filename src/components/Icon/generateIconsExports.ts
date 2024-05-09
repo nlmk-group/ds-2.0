@@ -123,7 +123,7 @@ const processFolders = (): void => {
   const exportContent =
     fileHeader +
     importsExportsContent +
-    `\n\nconst icons: any = {\n${iconsObjectParts}\n} as const;\n\nexport default icons;`;
+    `\n\nimport { TIconsObject } from '../types';\n\nconst icons: TIconsObject = {\n${iconsObjectParts}\n} as const;\n\nexport default icons;`;
 
   // Сбор всех имен иконок в один массив
   const allIconNames = Object.values(allIconNamesByFolder).flat();

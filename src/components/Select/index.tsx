@@ -1,35 +1,23 @@
-import React, {
-  FC,
-  KeyboardEvent,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  createContext
-} from 'react';
+import React, { createContext, FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import clsx from 'clsx';
-import {
-  customInputColors,
-  generateUUID,
-  sizesMappingInput
-} from '@components/declaration';
-import { Input, Scrollbar } from '@components/index';
-import {
-  ISelectOption,
-  ISelectProps,
-  ISelectSharedProperties
-} from './types';
-import styles from './Select.module.scss';
-import StealthyItem from './subcomponents/StealthyItem';
-import Menu from './subcomponents/Menu';
-import BadgeAmount from './subcomponents/BadgeAmount';
-import SelectButton from './subcomponents/SelectButton';
-import { getLabel } from './helpers';
+import { usePopper } from 'react-popper';
 
-export const SelectSharedProperties = createContext<
-  ISelectSharedProperties
->({
+import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
+import { ClickAwayListener, Scrollbar } from '@components/index';
+import { InputWithRef } from '@components/Select/subcomponents/SelectInput';
+import clsx from 'clsx';
+
+import { ISelectOption, ISelectProps, ISelectSharedProperties } from './types';
+
+import styles from './Select.module.scss';
+
+import { getLabel } from './helpers';
+import BadgeAmount from './subcomponents/BadgeAmount';
+import Menu from './subcomponents/Menu';
+import SelectButton from './subcomponents/SelectButton';
+import StealthyItem from './subcomponents/StealthyItem';
+
+export const SelectSharedProperties = createContext<ISelectSharedProperties>({
   multiple: false,
   withoutCheckbox: false,
   highlightSelected: false,
@@ -37,13 +25,15 @@ export const SelectSharedProperties = createContext<
   isAllSelectView: true,
   scrollingItems: 6,
   selectedValues: [],
-  handleSelect: ()=>{},
-  handleSelectAllClick: ()=>{},
-  handleTypographyClick: ()=>{}
+  handleSelect: () => {},
+  handleSelectAllClick: () => {},
+  handleTypographyClick: () => {},
+  withPortal: false
 });
 
 const Select: FC<ISelectProps> = ({
   id,
+  name,
   options,
   label = '',
   multiple = false,
@@ -57,6 +47,7 @@ const Select: FC<ISelectProps> = ({
   isClearSearchOnBlur = false,
   selected = '',
   withPortal = false,
+  portalContainerId = 'root',
   stealthy = false,
   highlightSelected = false,
   withoutCheckbox = false,
@@ -69,24 +60,36 @@ const Select: FC<ISelectProps> = ({
   onSelectionChange,
   onEnterPress,
   onBlur,
-  onFocus
+  onFocus,
+  style
 }) => {
   const generateDisplayValue = (): string => {
     if (multiple) {
-      return options?.filter((option: ISelectOption) => selected?.includes(option.value))
-        .map((option: ISelectOption) => getLabel(option.label)).join(', ') || '';
+      return (
+        options
+          ?.filter((option: ISelectOption) => selected?.includes(option.value))
+          .map((option: ISelectOption) => getLabel(option.label))
+          .join(', ') || ''
+      );
     }
 
     return getLabel(options?.find((option: ISelectOption) => option.value === selected)?.label || '');
-  }
-  
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredOptions, setFilteredOptions] = useState(options);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
+  const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
+  const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
-  const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(0)
+  const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
+    placement: 'bottom-start'
+  });
+
+  const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(0);
 
   useEffect(() => {
     if (!enableScrollToActiveOption) return;
@@ -99,20 +102,18 @@ const Select: FC<ISelectProps> = ({
       });
       return;
     }
-    window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' })
+    window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' });
   }, [isOpen, enableScrollToActiveOption]);
 
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-      if (isClearSearchOnBlur) {
-        setSearchTerm('');
-      }
-      if (onBlur) {
-        onBlur();
-      }
+  const handleOutsideClick = () => {
+    setIsOpen(false);
+    if (isClearSearchOnBlur) {
+      setSearchTerm('');
+    }
+    if (onBlur) {
+      onBlur();
     }
   };
 
@@ -124,20 +125,14 @@ const Select: FC<ISelectProps> = ({
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
-
-  useEffect(() => {
     if (isSearchable && options) {
-      setFilteredOptions(options.filter(option => getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase())));
+      setFilteredOptions(
+        options.filter(option => getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase()))
+      );
     } else {
       setFilteredOptions(options);
     }
   }, [searchTerm, options, isSearchable]);
-
 
   const availableOptionsCount = useMemo(() => {
     return options ? options.filter(option => !option.disabled).length : 0;
@@ -154,7 +149,7 @@ const Select: FC<ISelectProps> = ({
             onSelectionChange(newSelectedValues);
           }
         } else {
-          onSelectionChange([selected, value])
+          onSelectionChange([selected, value]);
         }
       } else {
         setIsOpen(false);
@@ -168,7 +163,6 @@ const Select: FC<ISelectProps> = ({
   const handleSelectAllClick = () => {
     if (options) {
       if (selected?.length === availableOptionsCount) {
-
         if (onSelectionChange) {
           onSelectionChange([]);
         }
@@ -183,7 +177,9 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
-  const toggleDropdown = () => {
+  const toggleDropdown: React.MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isOpen && onBlur) {
       onBlur();
     }
@@ -217,86 +213,89 @@ const Select: FC<ISelectProps> = ({
     listMinWidth,
     handleSelect,
     handleTypographyClick,
-    handleSelectAllClick
-  }
+    handleSelectAllClick,
+    withPortal
+  };
 
-  const renderContent = () => (
-    <div className={clsx(styles.select, className)} ref={containerRef}>
-      {children === undefined && stealthy && (
-        <div
-          className={clsx(
-            styles.inconspicuous,
-            styles[`inconspicuous-${size}`],
-            disabled && [styles['inconspicuous-disabled']]
-          )}
-          onClick={handleFocusClick}
-          data-testid='select-inconspicuous'
-        >
-          <StealthyItem
-            option={!multiple ? options?.filter(item => item.value === selected)[0] : undefined}
-            size={size}
-            displayValue={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
-            multiple={multiple}
-            label={label}
-            activeSelectedValue={activeSelectedValue}
-          />
-        </div>
-      )}
-      {children === undefined && !stealthy && (
-        <Input
-          id={id}
-          size={size}
-          label={label}
-          disabled={disabled}
-          value={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
-          onChange={e => isSearchable && setSearchTerm(e.target.value)}
-          readOnly={!isSearchable}
-          onFocus={handleFocusClick}
-          onKeyDown={handleKeyDown}
-          icon={
-            <SelectButton
-              isOpen={isOpen}
-              disabled={disabled}
-              color={color}
-              toggleDropdown={toggleDropdown}
-            />
-          }
-          color={color}
-          className={clsx(styles.select__input, styles['input-helper'])}
-          data-testid="select-input"
-        />
-      )}
-      {children !== undefined && (
-        <div
-          onClick={handleFocusClick}
-          data-testid='select-children'
-        >
-          {children}
-        </div>
-      )}
-      {isOpen && (
-        <SelectSharedProperties.Provider value={sharedProps}>
-          <Scrollbar>
-            <div ref={listRef}>
-              <Menu
-                availableOptionsCount={availableOptionsCount}
-                filteredOptions={filteredOptions || []}
-              />
-            </div>
-          </Scrollbar>
-        </SelectSharedProperties.Provider>
-      )}
-      {badgeAmount && (
-        <BadgeAmount>
-          {badgeAmount}
-        </BadgeAmount>
-      )}
+  const renderItems = () => {
+    return (
+      <>
+        {isOpen && (
+          <SelectSharedProperties.Provider value={sharedProps}>
+            <Scrollbar>
+              <div ref={listRef}>
+                <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} />
+              </div>
+            </Scrollbar>
+          </SelectSharedProperties.Provider>
+        )}
+      </>
+    );
+  };
+
+  const renderMenu = () => (
+    <div
+      className={clsx(withPortal ? styles.wrapper : null)}
+      ref={setMenuRef}
+      style={popperStyles.popper}
+      {...attributes.popper}
+    >
+      {renderItems()}
     </div>
   );
 
-  return withPortal
-    ? ReactDOM.createPortal(renderContent(), document.getElementById('root') as HTMLElement)
-    : renderContent();
+  return (
+    <ClickAwayListener onClickAway={handleOutsideClick} excludeRef={listRef}>
+      <div className={clsx(styles.select, className)} ref={containerRef} style={style}>
+        {children === undefined && stealthy && (
+          <div
+            className={clsx(
+              styles.inconspicuous,
+              styles[`inconspicuous-${size}`],
+              disabled && [styles['inconspicuous-disabled']]
+            )}
+            onClick={handleFocusClick}
+            data-testid="select-inconspicuous"
+          >
+            <StealthyItem
+              option={!multiple ? options?.filter(item => item.value === selected)[0] : undefined}
+              size={size}
+              displayValue={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
+              multiple={multiple}
+              label={label}
+              activeSelectedValue={activeSelectedValue}
+            />
+          </div>
+        )}
+        {children === undefined && !stealthy && (
+          <InputWithRef
+            id={id}
+            name={name}
+            size={size}
+            label={label}
+            ref={setInputRef}
+            disabled={disabled}
+            value={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
+            onChange={e => isSearchable && setSearchTerm(e.target.value)}
+            readOnly={!isSearchable}
+            onFocus={handleFocusClick}
+            onKeyDown={handleKeyDown}
+            icon={<SelectButton isOpen={isOpen} disabled={disabled} color={color} toggleDropdown={toggleDropdown} />}
+            color={color}
+            className={clsx(styles.select__input, styles['input-helper'])}
+            data-testid="select-input"
+          />
+        )}
+        {children !== undefined && (
+          <div onClick={handleFocusClick} data-testid="select-children">
+            {children}
+          </div>
+        )}
+        {withPortal ? ReactDOM.createPortal(<>{renderMenu()}</>, portalContainer) : <>{renderItems()}</>}
+        {badgeAmount && <BadgeAmount>{badgeAmount}</BadgeAmount>}
+      </div>
+    </ClickAwayListener>
+  );
 };
 
 export default Select;

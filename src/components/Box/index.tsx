@@ -10,10 +10,17 @@ const Box: FC<IBox> = ({
   children,
   st,
   className,
-  paddingSpace = 'm',
+  p = 0,
+  px,
+  py,
+  pt,
+  pb,
+  pl,
+  pr,
   background,
   height,
   width,
+  maxWidth,
   color = 'var(--text-grey-900)',
   border,
   borderRadius = 0,
@@ -30,6 +37,7 @@ const Box: FC<IBox> = ({
     height,
     color,
     width,
+    maxWidth,
     border,
     borderRadius,
     display,
@@ -38,18 +46,26 @@ const Box: FC<IBox> = ({
     alignItems,
     flexWrap,
     gap,
+    padding: p,
+    paddingTop: pt,
+    paddingBottom: pb,
+    paddingLeft: pl,
+    paddingRight: pr,
     ...st
   };
 
-  const paddingClassName = `padding-space-${paddingSpace}`;
+  if (px !== undefined) {
+    propsStyles.paddingLeft = px;
+    propsStyles.paddingRight = px;
+  }
+
+  if (py !== undefined) {
+    propsStyles.paddingTop = py;
+    propsStyles.paddingBottom = py;
+  }
 
   return (
-    <div
-      data-testid="BOX_WRAPPER"
-      className={clsx(styles.wrapper, styles[paddingClassName], className)}
-      style={propsStyles}
-      {...rest}
-    >
+    <div data-testid="BOX_WRAPPER" className={clsx(styles.wrapper, className)} style={propsStyles} {...rest}>
       {children}
     </div>
   );

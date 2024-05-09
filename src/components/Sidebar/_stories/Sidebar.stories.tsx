@@ -42,7 +42,7 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
       <Sidebar.Avatar imageSrc="" />
       <Sidebar.MenuItem
         path="cars"
-        label="cars"
+        label="Задание на добавление"
         position="top"
         icon="IconKovsh32"
         onClick={() => setCurrentPath('cars')}

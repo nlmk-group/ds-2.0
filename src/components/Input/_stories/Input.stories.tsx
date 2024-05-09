@@ -149,6 +149,26 @@ export const InputMultilineDisabled = (argTypes: TInputProps): JSX.Element => (
 );
 InputMultilineDisabled.storyName = 'Textarea в состоянии disabled';
 
+export const InputWithColored = (): JSX.Element => {
+  const [colored, setColored] = useState(false);
+  const [value, setValue] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+    setColored(true);
+  };
+
+  return (
+    <>
+      <Input label="Label" value={value} colored={colored} onChange={handleChange} />
+      <Button style={{ marginTop: '10px' }} onClick={() => setColored(false)}>
+        Сохранить
+      </Button>
+    </>
+  );
+};
+InputWithColored.storyName = 'Input с подсветкой';
+
 export const InputMultilineError = (argTypes: TInputProps): JSX.Element => (
   <Input multiline label={labelText} helperText={helperText} color={customInputColors.error} {...argTypes} />
 );

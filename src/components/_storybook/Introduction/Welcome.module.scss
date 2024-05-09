@@ -8,6 +8,7 @@
   }
   a > span,
   button > span,
+  div[role="tooltip"] > span,
   div[data-testid="tooltip"] > div > span {
     color: inherit !important;
   }

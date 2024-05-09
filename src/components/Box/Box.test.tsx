@@ -1,10 +1,6 @@
 import React from 'react';
-
-import { sizesMappingInput } from '@components/declaration';
 import { render, screen } from '@testing-library/react';
-
 import styles from './_stories/Box.module.scss';
-
 import Box from './index';
 
 describe('src/components/Box', () => {
@@ -39,18 +35,6 @@ describe('src/components/Box', () => {
     );
 
     expect(screen.getByTestId('BOX_WRAPPER').classList.contains('test-style')).toBe(true);
-  });
-
-  Object.values(sizesMappingInput).forEach((size: sizesMappingInput) => {
-    test(`It must render Box with ${size} spacing`, () => {
-      render(
-        <Box paddingSpace={size}>
-          <div>10</div>
-        </Box>
-      );
-
-      expect(screen.getByTestId('BOX_WRAPPER').classList.contains(`padding-space-${size}`)).toBe(true);
-    });
   });
 
   test('It must render Box with custom background', () => {
@@ -101,5 +85,28 @@ describe('src/components/Box', () => {
     render(<Box borderRadius={borderRadius}>10</Box>);
 
     expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`border-radius: ${borderRadius}px`);
+  });
+
+  test('It must render Box with custom padding', () => {
+    const padding = 16;
+    render(<Box p={padding}>10</Box>);
+
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${padding}px`);
+  });
+
+  test('It must render Box with custom horizontal padding', () => {
+    const paddingHorizontal = 16;
+    render(<Box px={paddingHorizontal}>10</Box>);
+
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-left: ${paddingHorizontal}px`);
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-right: ${paddingHorizontal}px`);
+  });
+
+  test('It must render Box with custom vertical padding', () => {
+    const paddingVertical = 16;
+    render(<Box py={paddingVertical}>10</Box>);
+
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-top: ${paddingVertical}px`);
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-bottom: ${paddingVertical}px`);
   });
 });

@@ -1,8 +1,9 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import styles from './Slider.module.scss';
 
 import { Control, Rail } from './subcomponents';
+import InputSlider from './subcomponents/InputSlider';
 
 export const Slider = {
   Control,
@@ -10,7 +11,5 @@ export const Slider = {
   Wrapper: ({ children }: PropsWithChildren) => <div className={styles.wrapper}>{children}</div>,
   InputWrapper: ({ children }: PropsWithChildren) => <div className={styles['input-wrapper']}>{children}</div>,
   ControlWrapper: ({ children }: PropsWithChildren) => <div className={styles['control-wrapper']}>{children}</div>,
-  Input: (props: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => (
-    <input className={styles.input} type="range" {...props} />
-  )
+  Input: InputSlider
 };

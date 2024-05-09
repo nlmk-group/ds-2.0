@@ -9,7 +9,6 @@ import { TInputProps } from './types';
 
 import styles from './Input.module.scss';
 
-
 const Input: FC<TInputProps> = ({
   id,
   value,
@@ -25,6 +24,7 @@ const Input: FC<TInputProps> = ({
   color = customInputColors.default,
   className,
   inputRef,
+  colored = false,
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -57,7 +57,8 @@ const Input: FC<TInputProps> = ({
             styles.textarea,
             resize && styles.resize,
             colorClassName,
-            disabled && styles['disabled-input']
+            disabled && styles['disabled-input'],
+            colored && styles.colored
           )}
           disabled={disabled}
           placeholder=" "
@@ -75,6 +76,7 @@ const Input: FC<TInputProps> = ({
             isCompact && styles.compact,
             isExtraCompact && styles['extra-compact'],
             colorClassName,
+            colored && styles.colored,
             disabled && styles['disabled-input']
           )}
           disabled={disabled}
@@ -87,7 +89,7 @@ const Input: FC<TInputProps> = ({
       )}
       {label && (
         <label className={clsx(styles.label, colorClassName)} htmlFor={id}>
-          <Typography variant='Body2-Medium' className={styles.typography}>
+          <Typography variant="Body2-Medium" className={styles.typography}>
             {label}
           </Typography>
         </label>

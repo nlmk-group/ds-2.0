@@ -59,6 +59,8 @@ export interface ISmallText {
     loading: boolean;
     percentUpload: number;
     statusColor: TStatusColorType;
+    disabled: boolean;
+    cancelUpload?: () => void;
 }
 export interface IDefaultDnD {
     disabled: boolean;
@@ -72,7 +74,6 @@ export interface IDefaultDnD {
     statusColor: TStatusColorType;
     description: string | ReactNode;
     btnLabel: string;
-    onButtonClick: () => void;
 }
 export interface ISmallIcon {
     loading: boolean;

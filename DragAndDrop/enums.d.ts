@@ -21,7 +21,7 @@ export declare enum titleSizeHelperMapping {
 }
 export declare enum descriptionSizeHelperMapping {
     l = "Subheading3",
-    m = "Caption",
+    m = "Body1",
     s = "Caption"
 }
 export declare enum spinnerSizeHelperMapping {

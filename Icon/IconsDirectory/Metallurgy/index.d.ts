@@ -23,6 +23,8 @@ export { IconDocsFilled16, IconDocsFilled24, IconDocsFilled32 } from './DocsFill
 export { IconDocsOutlined16, IconDocsOutlined24, IconDocsOutlined32 } from './DocsOutlined';
 export { IconDowntimeAnalysisFilled16, IconDowntimeAnalysisFilled24, IconDowntimeAnalysisFilled32 } from './DowntimeAnalysisFilled';
 export { IconDowntimeAnalysisOutlined16, IconDowntimeAnalysisOutlined24, IconDowntimeAnalysisOutlined32 } from './DowntimeAnalysisOutlined';
+export { IconDplayersFilled16, IconDplayersFilled24, IconDplayersFilled32 } from './DplayersFilled';
+export { IconDplayersOutlined16, IconDplayersOutlined24, IconDplayersOutlined32 } from './DplayersOutlined';
 export { IconGaugeIzmerenie16, IconGaugeIzmerenie24, IconGaugeIzmerenie32 } from './GaugeIzmerenie';
 export { IconGaugeIzmerenieFilled16, IconGaugeIzmerenieFilled24, IconGaugeIzmerenieFilled32 } from './GaugeIzmerenieFilled';
 export { IconHelmetFilled16, IconHelmetFilled24, IconHelmetFilled32 } from './HelmetFilled';

@@ -1,7 +1,7 @@
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 type TBorderProps = string | number;
 export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    children: ReactNode;
+    children?: ReactNode;
     p?: TBorderProps;
     px?: TBorderProps;
     py?: TBorderProps;

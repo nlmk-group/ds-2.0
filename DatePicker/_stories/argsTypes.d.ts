@@ -95,6 +95,17 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    withoutWeekdays: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
     name: {
         description: string;
     };

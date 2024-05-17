@@ -1,6 +1,10 @@
+import { TDatePickerProps } from '../types';
 declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, import('../types').DatePickerRegularProps | import('../types').DateTimePickerRegularProps | import('../types').DateTimeSecondsPickerRegularProps | import('../types').DatePickerPeriodProps | import('../types').DatePickerUnFullPeriodProps | import('../types').DatePickerPeriodShiftProps>;
 export default _default;
-export declare const Default: () => JSX.Element;
+export declare const Default: {
+    (argTypes: TDatePickerProps): JSX.Element;
+    args: {};
+};
 export declare const WithColored: () => JSX.Element;
 export declare const LevelMonth: () => JSX.Element;
 export declare const LevelQuarter: () => JSX.Element;

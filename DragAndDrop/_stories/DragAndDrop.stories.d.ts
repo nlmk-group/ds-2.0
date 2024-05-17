@@ -262,11 +262,20 @@ export declare const dndStatuses: {
         cancelUpload: import("@storybook/addon-actions").HandlerFunction;
     };
 };
+export declare const dndStatuses2: {
+    (argTypes: IDragAndDrop): ReactNode;
+    storyName: string;
+    args: {
+        onUpload: import("@storybook/addon-actions").HandlerFunction;
+        cancelUpload: import("@storybook/addon-actions").HandlerFunction;
+    };
+};
 export declare const dndSmallText: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
         onUpload: import("@storybook/addon-actions").HandlerFunction;
+        cancelUpload: import("@storybook/addon-actions").HandlerFunction;
         smallText: boolean;
     };
 };

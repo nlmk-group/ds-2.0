@@ -28,6 +28,7 @@ export interface BaseProps {
     pseudoChildren?: ReactNode;
     isHideYear?: boolean;
     size?: sizesMappingInput;
+    withoutWeekdays?: boolean;
 }
 export interface BaseRegularProps extends BaseProps {
     value?: Date;

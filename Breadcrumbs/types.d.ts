@@ -3,6 +3,7 @@ export interface Breadcrumb {
     href: string;
     active?: boolean;
     target?: string;
+    isLast?: boolean;
 }
 export interface BreadcrumbsProps {
     className?: string;

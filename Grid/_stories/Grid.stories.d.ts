@@ -162,8 +162,6 @@ export declare const GridDefault: {
     storyName: string;
     args: {
         background: string;
-        borderRadius: number;
-        border: string;
     };
 };
 export declare const GridOrientation: {
@@ -171,8 +169,63 @@ export declare const GridOrientation: {
     storyName: string;
     args: {
         background: string;
-        borderRadius: number;
-        border: string;
+    };
+};
+export declare const GridEqualWidthColumns: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const SettingOneColumnWidth: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const VariableWidthContent: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+        justifyContent: string;
+    };
+};
+export declare const EqualWidthMultiRow: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const VerticalAlignment: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const HorizontalAlignment: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const ColumnWrapping: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
+    };
+};
+export declare const ColumnBreaks: {
+    (argTypes: IBox): JSX.Element;
+    storyName: string;
+    args: {
+        background: string;
     };
 };
 //# sourceMappingURL=Grid.stories.d.ts.map

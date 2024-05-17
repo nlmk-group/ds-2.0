@@ -1,7 +1,8 @@
 import { TLevel } from '../../types';
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '../../../declaration';
+import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES, sizesMappingInput } from '../../../declaration';
 type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
+type TSize = `${sizesMappingInput}`;
 export interface DatePickerInputProps {
     value?: Date;
     valueFrom?: Date;
@@ -31,6 +32,7 @@ export interface DatePickerInputProps {
     colored?: boolean;
     isOpenOnFocus?: boolean;
     isHideYear?: boolean;
+    size?: TSize;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

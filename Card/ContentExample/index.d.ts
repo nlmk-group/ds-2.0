@@ -1,7 +1,5 @@
 import { FC } from 'react';
-import { OrientationType } from '../types';
-declare const ContentExample: FC<{
-    orientation?: OrientationType;
-}>;
+import { IContentExample } from './types';
+declare const ContentExample: FC<IContentExample>;
 export default ContentExample;
 //# sourceMappingURL=index.d.ts.map

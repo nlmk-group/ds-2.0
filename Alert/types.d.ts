@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import { severityMapping } from './enums';
-export interface IAlert extends PropsWithChildren<any> {
+export interface IAlert extends PropsWithChildren {
     title: string;
     severity?: string;
     className?: string;

@@ -7,6 +7,7 @@ import { IUploadHelper } from './types';
 import styles from './DragAndDrop.module.scss';
 
 import { percentageSizeHelperMapping, spinnerSizeHelperMapping, spinnerWidthHelperMapping } from './enums';
+import clsx from 'clsx';
 
 const UploadIcon: FC<IUploadHelper> = ({
   smallText = false,
@@ -36,7 +37,10 @@ const UploadIcon: FC<IUploadHelper> = ({
 
   return (
     <div
-      className={styles['loader-wrapper']}
+      className={clsx(
+        (!smallText && !smallIcon) && styles['loader-wrapper'],
+        smallText && styles['loader-wrapper-small-text']
+      )}
       style={{
         height: wrapperSize[0],
         width: wrapperSize[1]

@@ -17,12 +17,9 @@
   background: var(--dark-primary-navyblue-50);
 }
 
-.image-vertical {
-  height: var(--288-size);
-}
-
-.image-horizontal {
-  width: calc((var(--90-size) * 4));
+.image-container {
+  width: 350px;
+  height: 265px;
 }
 
 .image-content {
@@ -59,11 +56,12 @@
 }
 
 .info-block-vertical {
-  width: calc(var(--4-size) * 95);
+  width: 353px;
 }
 
 .info-block-horizontal {
   width: calc((var(--90-size) * 4));
+  gap: 21.5px;
 }
 
 .title-wrapper {

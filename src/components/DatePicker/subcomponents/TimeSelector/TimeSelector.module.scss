@@ -1,7 +1,6 @@
 .root {
   display: grid;
   grid-template-columns: repeat(3, var(--40-size));
-  gap: var(--4-space);
   border-left: var(--1-border) solid var(--divider-divider);
   padding-top: 20px;
   padding-left: 18px;
@@ -19,7 +18,6 @@
 .column {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--4-space);
   overflow: auto;
   scroll-behavior: smooth;
 

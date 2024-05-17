@@ -12,7 +12,12 @@ import Input from '..';
 import { IconMock } from '../mock/IconMock';
 import { TInputProps } from '../types';
 import { argsTypes } from './argsTypes';
-import { IconAttentionWarningAlertOutlined16, IconCancelOutlined16, IconSuccessOutlined16 } from '@components/index';
+import {
+  DefaultHelper,
+  ErrorHelper,
+  SuccessHelper,
+  WarningHelper
+} from '../mock/HelperText';
 
 const labelText = 'Label';
 const helperText = 'Helper text';
@@ -43,38 +48,6 @@ export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => (
 InputWithLabelHelperTextAndTextIcon.storyName = 'Input с лейблом, вспомогательным текстом и текстовой иконкой';
 
 export const InputWithLabelHelperTextElement= (argTypes: TInputProps) => {
-  const DefaultHelper = () => (
-    <div className={styles['helper-text-wrapper']}>
-      <IconSuccessOutlined16 />
-      <div>
-        Etiam ultricies non odio eu interdum
-      </div>
-    </div>
-  );
-  const ErrorHelper = () => (
-    <div className={styles['helper-text-wrapper']}>
-      <IconCancelOutlined16 />
-      <div>
-        Etiam ultricies non odio eu interdum
-      </div>
-    </div>
-  );
-  const WarningHelper = () => (
-    <div className={styles['helper-text-wrapper']}>
-      <IconAttentionWarningAlertOutlined16 />
-      <div>
-        Etiam ultricies non odio eu interdum
-      </div>
-    </div>
-  );
-  const SuccessHelper = () => (
-    <div className={styles['helper-text-wrapper']}>
-      <IconSuccessOutlined16 />
-      <div>
-        Etiam ultricies non odio eu interdum
-      </div>
-    </div>
-  );
   const messageHelper = {
     [customInputColors.default]: <DefaultHelper />,
     [customInputColors.error]: <ErrorHelper />,
@@ -135,12 +108,15 @@ export const InputMultilineWithLabel = (argTypes: TInputProps): JSX.Element => (
 InputMultilineWithLabel.storyName = 'Textarea с лейблом';
 
 export const InputMultilineWithLabelAndHelperText = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} helperText={helperText} {...argTypes} />
+  <div className={styles['column-wrapper']}>
+    <Input multiline label={labelText} helperText={helperText} {...argTypes} />
+    <Input multiline label={labelText} helperText={<DefaultHelper />} {...argTypes} />
+  </div>
 );
 InputMultilineWithLabelAndHelperText.storyName = 'Textarea с лейблом и вспомогательным текстом';
 
 export const InputMultilineResize = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} resize {...argTypes} />
+    <Input multiline label={labelText} resize {...argTypes} />
 );
 InputMultilineResize.storyName = 'Textarea со свойством ресайз';
 

@@ -15,6 +15,15 @@
   flex-direction: row;
 }
 
+.card-vertical {
+  gap: var(--24-space);
+  width: 385px;
+}
+
+.card-horizontal {
+  gap: var(--24-space);
+}
+
 .indicator-vertical {
   border-top-style: solid;
 }

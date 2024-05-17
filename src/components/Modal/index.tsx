@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { Button, ClickAwayListener, IconCloseOutlined32 } from '@components/index';
+import { ESizes } from '@components/Button/enums';
+import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
 import { IModalProps } from './types';
@@ -86,19 +87,20 @@ const Modal: FC<IModalProps> = ({
 
   return (
     <div className={clsx(styles.modalOverlay, className)}>
-      <ClickAwayListener onClickAway={() => disableBackdropClick ? void(0) : onClose()}>
+      <ClickAwayListener onClickAway={() => (disableBackdropClick ? void 0 : onClose())}>
         <div className={modalClasses} ref={modalRef} onMouseDown={handleMouseDown}>
           {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
           {children}
         </div>
       </ClickAwayListener>
       <Button
-        iconButton={<IconCloseOutlined32 />}
+        iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
         variant="primary"
         fill="clear"
         className={styles.modalClose}
         onClick={onClose}
         aria-label="Close"
+        size={ESizes.s}
       />
     </div>
   );

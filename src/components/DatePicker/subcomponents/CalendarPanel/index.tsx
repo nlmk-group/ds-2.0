@@ -43,6 +43,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
       disableChangesOnBlur,
       isOpenOnFocus,
       isHideYear,
+      withoutWeekdays,
       ...props
     },
     ref
@@ -320,6 +321,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
           enabledFrom={enabledFrom}
           enabledTo={enabledTo}
           panelValue={panelValue}
+          withoutWeekdays={withoutWeekdays}
         />
       </CommonCalendar>
     );

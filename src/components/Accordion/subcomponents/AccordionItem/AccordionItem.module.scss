@@ -54,7 +54,7 @@
   &.default {
     @include contentColorHelper(
       var(--ac-accordion-default-default-bg-head),
-      var(--ac-accordion-default-default-heading),
+      var(--ac-accordion-default-default-text),
       var(--ac-accordion-default-default-icon)
     );
 
@@ -122,6 +122,12 @@
 }
 
 .icon-helper {
+  height: var(--24-size);
+  width: var(--24-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   svg {
     transition: 0.3s ease-out;
   }

@@ -45,7 +45,7 @@ const Checkbox: FC<ICheckboxProps> = ({
       {label && (
         <Typography
           variant="Body1-Medium"
-          style={{ color: disabled ? 'var(--text-grey-500)' : 'var(--text-grey-900)' }}
+          style={{ color: disabled ? 'var(--text-grey-500)' : 'var(--text-grey-900)', lineHeight: '18px' }}
         >
           {label}
         </Typography>

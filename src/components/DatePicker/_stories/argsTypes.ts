@@ -90,6 +90,15 @@ export const argsTypes = {
     },
     control: { type: 'boolean' }
   },
+  withoutWeekdays: {
+    description: 'Убрать панель с отображением дней недели',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    },
+    control: { type: 'boolean' }
+  },
   name: {
     description: 'Название поля(нужно для использования пикера как нативного - без value и onChange)'
   },

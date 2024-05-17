@@ -43,6 +43,7 @@ import { format, isValid, parse, set } from 'date-fns';
 import { isInteger, range } from 'lodash';
 
 import styles from './DatePickerInput.module.scss';
+import { sizesMappingInput } from '@components/declaration';
 
 export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInputProps>(
   (
@@ -570,7 +571,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInp
             label={showTime ? locale[language].label.showtime : locale[language].label.default}
             icon={
               <div className={styles.calendar}>
-                <CalendarSvgIcon onClick={onFocus} />
+                <CalendarSvgIcon
+                  className={clsx(props.size === sizesMappingInput.xs && styles['icon-xs'])}
+                  onClick={onFocus}
+                />
               </div>
             }
             {...props}

@@ -29,6 +29,8 @@ const styleVariations = `{{
     gap: '24px'
 }}`;
 
+const FIGMA_LINK = 'https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/DS2.0-Input?type=design&node-id=4230-7104&mode=design&t=hGZk1uvXm3rDzcu6-0';
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -39,7 +41,7 @@ const Stories = (): JSX.Element => {
         description="Компонент Divider - это визуальный элемент, используемый для разделения содержимого на разных частях пользовательского интерфейса, таких как списки, сетки или разделы на странице."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Divider"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20848&mode=design&t=awyt3Fzj1XS6th7v-1"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -261,7 +263,7 @@ export default  App = () =>(
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20848&mode=design&t=awyt3Fzj1XS6th7v-1" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && (
         <Typography variant="Heading4" color="primary">

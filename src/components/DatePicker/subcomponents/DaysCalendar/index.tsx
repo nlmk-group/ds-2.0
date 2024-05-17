@@ -24,6 +24,7 @@ export const DaysCalendar: FC<CalendarProps> = ({
   enabledTo,
   panelValue,
   selectedDate,
+  withoutWeekdays,
   onSelect
 }) => {
   const isToday = useIsToday();
@@ -72,7 +73,7 @@ export const DaysCalendar: FC<CalendarProps> = ({
 
   return (
     <>
-      <Weekdays />
+      {!withoutWeekdays && <Weekdays />}
       <div className={styles.content}>
         {getCalendar(year)[year][month].map((day, idx) => {
           const dayAsDate = new Date(year, month, parseInt(day));

@@ -123,7 +123,7 @@ export const WelcomePage = () => {
               <Button startIcon={<WebSvgIcon />}>ДС 2.0</Button>
             </Link>
             <Link
-              href="https://www.figma.com/community/file/1314246600711980667"
+              href="https://www.figma.com/file/srTmLeX98K7PejgB9RWEBi/%D0%92%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D0%B0-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2?type=design&node-id=4%3A49&mode=design&t=yLQKAPeBrmYZrb4C-1"
               target="_blank"
               className={styles.links}
             >

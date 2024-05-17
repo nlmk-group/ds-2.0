@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { Icon, Link } from '@components/index';
+import { Box, Icon, Link } from '@components/index';
 import { Meta, Story } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
@@ -20,12 +20,16 @@ export default {
 } as Meta<typeof Link>;
 
 export const DefaultLink = (argTypes: ILink): ReactNode => {
-  return <Link {...argTypes} children={argTypes.children} />;
+  return (
+    <Box width="200px">
+      <Link {...argTypes} children={argTypes.children} />
+    </Box>
+  );
 };
 
 DefaultLink.storyName = DEFAULT_LINK;
 DefaultLink.args = {
-  children: 'W3Schools',
+  children: 'W3Schools & Power of knowledge',
   href: 'https://www.w3schools.com/'
 };
 

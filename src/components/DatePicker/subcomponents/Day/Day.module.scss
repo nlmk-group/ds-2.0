@@ -15,10 +15,12 @@
 }
 
 .quarter {
+  height: var(--40-size);
   width: 140px;
 }
 
 .year {
+  height: var(--40-size);
   width: 90px;
 }
 
@@ -200,8 +202,7 @@
     }
 
     &::after {
-      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
-      width: 4px;
+      @include background-helper(transparent, var(--15-opacity));
       height: 100%;
     }
   }

@@ -13,7 +13,7 @@ export interface IFile extends PropsWithChildren<any> {
   commented?: boolean;
   saved?: boolean;
   addFile?: boolean;
-  onCheckedChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onCheckedChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   removedOnClick?: () => void;
   commentedOnClick?: () => void;
   savedOnClick?: () => void;
@@ -67,6 +67,8 @@ export interface ISmallText {
   loading: boolean;
   percentUpload: number;
   statusColor: TStatusColorType;
+  disabled: boolean;
+  cancelUpload?: () => void;
 }
 
 export interface IDefaultDnD {
@@ -81,7 +83,6 @@ export interface IDefaultDnD {
   statusColor: TStatusColorType;
   description: string | ReactNode;
   btnLabel: string;
-  onButtonClick: () => void;
 }
 
 export interface ISmallIcon {

@@ -15,6 +15,7 @@ const Typography: FC<ITypography> = ({
 }) => {
   return (
     <span
+      data-testid='typography-wrapper'
       className={clsx(
         {
           [styles[`typography--variant-${VARIANTS_MAPPING_ENUM[variant]}` as keyof typeof styles]]: variant,

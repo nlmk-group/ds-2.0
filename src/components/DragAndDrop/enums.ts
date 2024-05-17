@@ -36,7 +36,7 @@ export enum titleSizeHelperMapping {
 
 export enum descriptionSizeHelperMapping {
   l = 'Subheading3',
-  m = 'Caption',
+  m = 'Body1',
   s = 'Caption'
 }
 

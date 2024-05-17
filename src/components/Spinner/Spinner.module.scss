@@ -47,7 +47,7 @@
   @include animationBlock;
   color: var(--ac-loader-stroke-progress);
   position: absolute;
-  left: 0px;
+  left: 0;
   svg {
     display: block;
     circle {

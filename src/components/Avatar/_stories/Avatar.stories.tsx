@@ -142,6 +142,6 @@ export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithSpecialBadge.storyName = 'Аватар cо специальным бейджем';
 AvatarWithSpecialBadge.args = {
-  badgeIconName: <IconBirthday16 htmlColor="white" />,
+  badgeIconName: <IconBirthday16 htmlColor="var(--ac-avatar-badges-icon-birthdays-violet)" />,
   badgeSpecialIcon: true
 };

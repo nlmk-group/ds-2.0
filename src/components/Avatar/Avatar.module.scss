@@ -15,10 +15,13 @@ $white: var(--never-changes-white);
 
 .avatar {
   position: relative;
-  background-color: var(--text-grey-200);
+  background-color: var(--ac-avatar-icon-default-bg);
+  color: var(--ac-avatar-placeholder-default-initials);
 
   &:hover {
+    background-color: var(--ac-avatar-icon-hover-bg);
     box-shadow: 0 1px 1px 0 $blackOpacity12, 0 0 0 2px $greyOpacity24, 0 2px 5px 0 $greyOpacity9;
+    color: var(--ac-avatar-placeholder-hover-initials);
   }
 
   &.circle {
@@ -43,7 +46,7 @@ $white: var(--never-changes-white);
   position: absolute;
   right: 0;
   bottom: 0;
-  box-shadow: 0 2px 5px 0 $greyOpacity9, 0 1px 1px 0 $blackOpacity12, inset 0 0 0 var(--1-size) $white;
+  box-shadow: 0 2px 5px rgba(103, 110, 118, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12);
 }
 
 .online-indicator {
@@ -51,10 +54,12 @@ $white: var(--never-changes-white);
   height: 16px;
 
   &.online {
-    background-color: var(--success-green-600);
+    background-color: var(--ac-avatar-online-indicators-bg-online-true);
+    border: var(--1-border) solid var(--ac-avatar-online-indicators-stroke-online-true)
   }
   &.offline {
-    background-color: var(--text-grey-300);
+    background-color: var(--ac-avatar-online-indicators-bg-online-false);
+    border: var(--1-border) solid var(--ac-avatar-online-indicators-stroke-online-false);
   }
 }
 
@@ -66,18 +71,18 @@ $white: var(--never-changes-white);
 
 .number-indicator {
   @include flex-center;
-
-  background-color: var(--primary-blue-600);
-  color: $white;
+  cursor: default;
+  background-color: var(--ac-avatar-number-indicator-bg);
+  color: var(--ac-avatar-number-indicator-number);
   text-align: center;
+  border: var(--1-border) solid var(--ac-avatar-number-indicator-stroke);
 }
 
 .letters {
   @include flex-center;
-
+  cursor: default;
   width: 100%;
   height: 100%;
-  color: $white;
 }
 
 .badge {

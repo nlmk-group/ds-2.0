@@ -106,8 +106,10 @@
 }
 
 .links {
-  border-bottom: none !important;
   text-wrap: nowrap !important;
+  &:hover {
+    text-decoration: none !important;
+  }
   svg {
     path {
       fill: white !important;
@@ -146,6 +148,9 @@
 
 .link {
   border-bottom: none !important;
+  &:hover {
+    text-decoration: none !important;
+  }
 }
 
 .list {

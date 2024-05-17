@@ -7,6 +7,10 @@
 }
 .disabled {
   pointer-events: none;
+
+  path {
+    fill: var(--ac-icon-grey);
+  }
 }
 .isOpen {
   z-index: 99999;

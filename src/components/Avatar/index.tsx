@@ -64,7 +64,7 @@ const Avatar: IAvatarComponent = ({
 
       {shouldShowIcon && (
         <div className={styles['user-icon']} data-testid="AVATAR_ICON">
-          <Icon name="IconPersonFilled32" containerSize={iconSize} htmlColor="var(--never-changes-white)" />
+          <Icon name="IconPersonFilled32" containerSize={iconSize} htmlColor="var(--ac-avatar-icon-default-icon)" />
         </div>
       )}
 

@@ -46,6 +46,7 @@ export const DatePicker: TDatePickerProps = ({
   disableChangesOnBlur = false,
   isOpenOnFocus = false,
   isHideYear = false,
+  withoutWeekdays = false,
   ...restInputProps
 }) => {
   const withPeriod = useMemo(() => ['period', 'shift'].includes(type), [type]);
@@ -193,6 +194,7 @@ export const DatePicker: TDatePickerProps = ({
       withSeconds={withSeconds}
       isOpenOnFocus={isOpenOnFocus}
       isHideYear={isHideYear}
+      withoutWeekdays={withoutWeekdays}
       {...attributes.popper}
     />
   );

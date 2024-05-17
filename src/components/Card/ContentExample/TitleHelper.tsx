@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { Checkbox, Icon, Link, Typography } from '@components/index';
 
@@ -7,12 +7,6 @@ import { ITitle } from './types';
 import styles from './ContentExample.module.scss';
 
 const TitleHelper: FC<ITitle> = ({ title, href = '', checkAction = null, checked = false }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(checked);
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(!isChecked);
-    if (checkAction !== null) checkAction(e);
-  };
 
   const Header = () => (
     <Typography variant="Heading3" className={styles['title-typography-helper']}>
@@ -34,7 +28,7 @@ const TitleHelper: FC<ITitle> = ({ title, href = '', checkAction = null, checked
     return (
       <div className={styles['title-wrapper']} data-testid="TITLE_CHECKBOX">
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Checkbox checked={isChecked} onChange={handleOnChange} />
+          <Checkbox checked={checked} onChange={() => checkAction(!checked)} />
         </div>
         <Header />
       </div>

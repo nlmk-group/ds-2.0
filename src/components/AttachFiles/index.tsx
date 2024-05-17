@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-
+import clsx from 'clsx';
 import { IAttachFiles } from './types';
-
 import styles from './AttachFiles.module.scss';
 
 const AttachFiles: FC<IAttachFiles> = ({
@@ -10,11 +9,11 @@ const AttachFiles: FC<IAttachFiles> = ({
   className
 }) => {
   return (
-    <div className={className} data-testid="ATTACHFILES_WRAPPER">
-      <div className={styles.title} data-testid="ATTACHFILES_TITLE">
+    <div className={clsx(styles['list-center'], className)} data-testid="ATTACHFILES_WRAPPER">
+      <div data-testid="ATTACHFILES_TITLE">
         {title}
       </div>
-      <div className={styles[title ? 'list-with-title' : 'list']} data-testid="ATTACHFILES_LIST">
+      <div className={clsx(title && styles['list-with-title'])} data-testid="ATTACHFILES_LIST">
         {children}
       </div>
     </div>

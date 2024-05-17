@@ -1,5 +1,5 @@
 .root {
-  padding: 10px var(--4-space);
+  padding: var(--8-space) var(--4-space);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,12 +17,11 @@
 }
 
 .content {
-  margin: 0 var(--16-space);
   display: flex;
   align-items: center;
   border-radius: var(--circle-radius);
   cursor: pointer;
-  padding: 5px 10px 5px 20px;
+  padding: var(--4-space) var(--12-space) var(--4-space) var(--12-space);
   transition: 0.3s;
 
   &:hover {
@@ -50,18 +49,12 @@
   }
 }
 
-.icon {
-  @include control-with-icon(var(--ac-icon-grey));
-}
-
-.icon-month-wrapper {
-  width: var(--32-size);
+.btn-icon-arrow {
+  border-radius: var(--circle-radius);
   height: var(--32-size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  min-width: var(--32-size);
 
-.icon-month {
-  @include control-with-icon(var(--ac-icon-blue));
+  &:hover {
+    background-color: var(--ac-calendar-state-hover-bg)!important;
+  }
 }

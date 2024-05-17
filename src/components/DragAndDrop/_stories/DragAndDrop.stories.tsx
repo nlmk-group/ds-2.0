@@ -81,9 +81,9 @@ dndDefault.storyName = DEFAULT_DND;
 export const dndSizes = (argTypes: IDragAndDrop): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(sizesMapping).map((size: sizesMapping) => (
-        <DragAndDrop key={size} size={size} {...argTypes} />
-      ))}
+      {Object.values(sizesMapping).map((size: sizesMapping) => {
+        if (size !== sizesMapping.s) return <DragAndDrop key={size} size={size} {...argTypes} />;
+      })}
     </div>
   );
 };
@@ -128,9 +128,29 @@ dndCustomAccept.args = {
 export const dndStatuses = (argTypes: IDragAndDrop): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(statusColorMapping).map((status: statusColorMapping) => (
-        <DragAndDrop key={status} statusColor={status} {...argTypes} />
-      ))}
+      {Object.values(statusColorMapping)
+        .slice(0, 3)
+        .map((status: statusColorMapping) => (
+          <DragAndDrop key={status} statusColor={status} {...argTypes} />
+        ))}
+    </div>
+  );
+};
+
+dndStatuses.storyName = DND_STATUSES;
+dndStatuses.args = {
+  onUpload: action('OnUpload'),
+  cancelUpload: action('onCancelUpload')
+};
+
+export const dndStatuses2 = (argTypes: IDragAndDrop): ReactNode => {
+  return (
+    <div className={styles['wrapper-row']}>
+      {Object.values(statusColorMapping)
+        .slice(3)
+        .map((status: statusColorMapping) => (
+          <DragAndDrop key={status} statusColor={status} {...argTypes} />
+        ))}
       <DragAndDrop
         loading={true}
         percentUpload={75}
@@ -142,8 +162,8 @@ export const dndStatuses = (argTypes: IDragAndDrop): ReactNode => {
   );
 };
 
-dndStatuses.storyName = DND_STATUSES;
-dndStatuses.args = {
+dndStatuses2.storyName = DND_STATUSES;
+dndStatuses2.args = {
   onUpload: action('OnUpload'),
   cancelUpload: action('onCancelUpload')
 };
@@ -155,7 +175,13 @@ export const dndSmallText = (argTypes: IDragAndDrop): ReactNode => {
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
       <div style={{ color: 'var(--ac-drag-drop-default-text-title)' }}>
-        <DragAndDrop loading title={smallTextUploadText} percentUpload={99} {...argTypes} />
+        <DragAndDrop
+          loading
+          title={smallTextUploadText}
+          percentUpload={99}
+          cancelUpload={action('onCancelUpload')}
+          {...argTypes}
+        />
       </div>
     </div>
   );
@@ -164,6 +190,7 @@ export const dndSmallText = (argTypes: IDragAndDrop): ReactNode => {
 dndSmallText.storyName = DND_SMALL_TEXT;
 dndSmallText.args = {
   onUpload: action('OnUpload'),
+  cancelUpload: action('onCancelUpload'),
   smallText: true
 };
 

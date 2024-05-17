@@ -1,6 +1,4 @@
 .content {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: var(--4-space) 0 0 0;
-  gap: var(--4-space);
 }

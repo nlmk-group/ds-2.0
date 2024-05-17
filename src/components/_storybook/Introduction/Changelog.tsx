@@ -23,6 +23,105 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.1 - <span className={styles.date}>17.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлено нижнее подчеркивание в компоненте
+              <Link href="./?path=/docs/components-link-info--docs" target="blank">
+                Link
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.0 - <span className={styles.date}>16.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-drawer-info--docs" target="blank">
+                Drawer
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.7.1 - <span className={styles.date}>15.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен клик по иконкам в DragAndDrop
+              <Link href="./?path=/docs/components-draganddrop-stories--dnd-small-icon" target="blank">
+                Dnd Small Icon
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено поведение при hover эффекте на Avatar с специальным бейджем
+              <Link href="./?path=/docs/components-avatar-stories--avatar-with-special-badge" target="blank">
+                Avatar with special badge
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено смещение чекбокса с label
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+                Checkbox
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлена реакция disabled checkbox на hover
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+                Checkbox
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлен цвет спиннера с иконкой
+              <Link href="./?path=/docs/components-spinner-stories--spinner-with-icon" target="blank">
+                Spinner with icon
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.7.0 - <span className={styles.date}>14.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент
+              <Link href="./?path=/docs/components-slidetoggle-info--docs" target="blank">
+                SlideToggle
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.6.1 - <span className={styles.date}>13.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены иконки DplayersOutlined, PeopleCheckDoneFilled, DplayersFilled в
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+                Icon
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.6.0 - <span className={styles.date}>08.05.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -51,7 +150,8 @@ export const Changelog = () => {
               • Исправлено поведение при hover эффекте в состоянии disabled компонента
               <Link href="./?path=/docs/components-inputslider-info--docs" target="blank">
                 InputSlider
-              </Link>,
+              </Link>
+              ,
               <Link href="./?path=/docs/components-inputrange-info--docs" target="blank">
                 InputRange
               </Link>
@@ -105,7 +205,7 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Добавлен компонент
-              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+              <Link href="./?path=/docs/components-grid-stories--docs" target="blank">
                 Grid
               </Link>
               .

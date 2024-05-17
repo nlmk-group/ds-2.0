@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Checkbox from '@components/Checkbox';
 import { Meta } from '@storybook/react';

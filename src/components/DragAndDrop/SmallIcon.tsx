@@ -7,30 +7,40 @@ import { ISmallIcon } from './types';
 
 import styles from './DragAndDrop.module.scss';
 
+import {
+  Button,
+  IconAddPlusOutlined24,
+  IconAttentionWarningAlertErrorOutlined24,
+  IconAttentionWarningAlertOutlined24
+} from '..';
 import { statusColorMapping } from './enums';
 import UploadIcon from './UploadIcon';
-import { IconAddPlusCircleOutlined24, IconAttentionWarningAlertErrorOutlined24 } from '..';
 
 const SmallIcon: FC<ISmallIcon> = ({ loading, percentUpload, statusColor, customIcon }) => {
   const iconHelper = () => {
-    switch(statusColor) {
+    switch (statusColor) {
       case statusColorMapping.error:
-        return <IconAttentionWarningAlertErrorOutlined24 />
+        return <Button variant="grey" fill="clear" iconButton={<IconAttentionWarningAlertErrorOutlined24 />} />;
       case statusColorMapping.info:
-        return <IconAddPlusCircleOutlined24 />;
+        return <Button variant="primary" fill="clear" iconButton={<IconAddPlusOutlined24 />} />;
       case statusColorMapping.warning:
-        return <IconAttentionWarningAlertErrorOutlined24 />;
+        return (
+          <Button
+            variant="grey"
+            fill="clear"
+            className={styles['small-warning-icon']}
+            iconButton={<IconAttentionWarningAlertOutlined24 />}
+          />
+        );
       default:
-        return <IconAddPlusCircleOutlined24 />;
+        return <Button variant="grey" fill="clear" iconButton={<IconAddPlusOutlined24 />} />;
     }
-  }
+  };
+
   return (
     <div
-      className={clsx(
-        styles['icon-s'],
-        styles['small-icon-margin']
-      )}
-      style={{ height: 'var(--24-size)' }}
+      className={clsx(styles['icon-s'], styles['small-icon-margin'])}
+      style={{ height: 'var(--24-size)', display: 'flex', alignItems: 'center' }}
     >
       {loading ? (
         <UploadIcon smallIcon showSpinner={false} size={sizesMapping.m} percentUpload={percentUpload} />

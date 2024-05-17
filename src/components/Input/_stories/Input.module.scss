@@ -9,3 +9,9 @@
   display: flex;
   gap: var(--8-space);
 }
+
+.column-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--12-space);
+}

@@ -7,7 +7,7 @@ import { IDefaultDnD } from './types';
 
 import styles from './DragAndDrop.module.scss';
 
-import { descriptionSizeHelperMapping, iconTypeMapping, titleSizeHelperMapping } from './enums';
+import { descriptionSizeHelperMapping, iconTypeMapping, statusColorMapping, titleSizeHelperMapping } from './enums';
 import UploadIcon from './UploadIcon';
 
 const DefaultDragAndDrop: FC<IDefaultDnD> = ({
@@ -21,8 +21,7 @@ const DefaultDragAndDrop: FC<IDefaultDnD> = ({
   title,
   statusColor,
   description,
-  btnLabel,
-  onButtonClick
+  btnLabel
 }) => {
   return (
     <div>
@@ -38,19 +37,32 @@ const DefaultDragAndDrop: FC<IDefaultDnD> = ({
 
       <div className={styles['text-wrapper']}>
         {JSON.stringify(title).length > 0 && (
-          <Typography variant={titleSizeHelperMapping[size]} className={styles[`title-${statusColor}`]}>
+          <Typography
+            variant={titleSizeHelperMapping[size]}
+            className={clsx(styles[`title-${statusColor}`], loading && styles['title-loading'])}
+          >
             {title}
           </Typography>
         )}
         {JSON.stringify(description).length > 0 && (
-          <Typography variant={descriptionSizeHelperMapping[size]} className={styles['text-color']}>
+          <Typography
+            variant={descriptionSizeHelperMapping[size]}
+            className={clsx(styles[`text-${statusColor}`], loading && styles['text-loading'])}
+          >
             {description}
           </Typography>
         )}
         {btnLabel.length > 0 && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button variant="primary" fill="clear" onClick={onButtonClick}>
-              <div className={styles[`btn-text-${statusColor}`]}>{btnLabel}</div>
+            <Button
+              variant={
+                statusColor === statusColorMapping.default || statusColor === statusColorMapping.info
+                  ? 'primary'
+                  : 'grey'
+              }
+              fill="clear"
+            >
+              {btnLabel}
             </Button>
           </div>
         )}

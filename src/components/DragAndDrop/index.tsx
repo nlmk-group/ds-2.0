@@ -82,6 +82,7 @@ const DragAndDrop: FC<IDragAndDrop> = ({
       className={clsx(styles['form-file-upload'], disabled && styles.disabled, className)}
       onDragEnter={handleDrag}
       onSubmit={e => e.preventDefault()}
+      onClick={onButtonClick}
     >
       <input
         ref={inputRef}
@@ -95,15 +96,24 @@ const DragAndDrop: FC<IDragAndDrop> = ({
       <label
         className={clsx(
           styles['label-file-upload'],
-          styles[`label-${statusColor}`],
+          loading ? styles['label-loading'] : styles[`label-${statusColor}`],
+          smallIcon && statusColorMapping.default && styles['label-s-default'],
           dragActive && styles[`label-${statusColorMapping.info}`],
-          smallText || smallIcon ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`]
+          smallText ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`],
+          smallIcon && styles['label-file-upload-small-icon']
         )}
         htmlFor="input-file-upload"
       >
         {children !== null && children}
         {children === null && smallText && !smallIcon && (
-          <SmallText loading={loading} percentUpload={percentUpload} statusColor={statusColor} title={title} />
+          <SmallText
+            loading={loading}
+            percentUpload={percentUpload}
+            statusColor={statusColor}
+            title={title}
+            disabled={disabled}
+            cancelUpload={cancelUpload || undefined}
+          />
         )}
         {children === null && smallIcon && !smallText && (
           <SmallIcon
@@ -126,7 +136,6 @@ const DragAndDrop: FC<IDragAndDrop> = ({
             statusColor={statusColor}
             description={description}
             btnLabel={btnLabel}
-            onButtonClick={onButtonClick}
           />
         )}
       </label>

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from 'react';
 
 import { IClickAwayListenerProps } from '@components/ClickAwayListener/types';
 
-const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, onClickAway, excludeRef }) => {
+const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, style, onClickAway, excludeRef }) => {
   const node = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (e: MouseEvent) => {
@@ -22,7 +22,11 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, o
     };
   }, [handleClick, excludeRef]);
 
-  return <div ref={node} className={className}>{children}</div>;
+  return (
+    <div ref={node} className={className} style={style}>
+      {children}
+    </div>
+  );
 };
 
 export default ClickAwayListener;

@@ -9,6 +9,7 @@ export interface CalendarProps {
   valueTo?: Date;
   withPeriod?: boolean;
   withTime?: boolean;
+  withoutWeekdays: boolean;
 }
 
 export interface useIsDaySelectedParams {

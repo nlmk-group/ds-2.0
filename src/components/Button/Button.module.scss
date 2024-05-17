@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
+  border: unset;
   outline: none;
   cursor: pointer;
   transition: 0.08s;
@@ -34,11 +34,12 @@
 
 .icon-button {
   @include buttonBase;
-  @include iconButtonSize(var(--40-size));
+  @include iconButtonSize(var(--48-size));
 }
 
 .icon-button-compact {
   @include iconButtonSize(var(--32-size));
+  width: var(--32-size);
 }
 
 .icon-button-extra-compact {
@@ -263,19 +264,6 @@
     var(--ac-button-black-clear-pressed-text),
     var(--ac-icon-grey)
   )
-}
-
-.text-height-m {
-  height: var(--24-size);
-  line-height: var(--24-size);
-}
-.text-height-s {
-  height: var(--24-size);
-  line-height: var(--24-size);
-}
-.text-height-xs {
-  height: var(--16-size);
-  line-height: var(--16-size);
 }
 
 .icon-big-wrapper {

@@ -39,6 +39,8 @@ export {
   IconDowntimeAnalysisOutlined24,
   IconDowntimeAnalysisOutlined32
 } from './DowntimeAnalysisOutlined';
+export { IconDplayersFilled16, IconDplayersFilled24, IconDplayersFilled32 } from './DplayersFilled';
+export { IconDplayersOutlined16, IconDplayersOutlined24, IconDplayersOutlined32 } from './DplayersOutlined';
 export { IconGaugeIzmerenie16, IconGaugeIzmerenie24, IconGaugeIzmerenie32 } from './GaugeIzmerenie';
 export {
   IconGaugeIzmerenieFilled16,

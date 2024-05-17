@@ -152,8 +152,20 @@ AttachFilesWithoutTitle.storyName = FILES_WITHOUT_TITLE;
 
 export const AttachFilesWithTitle = (): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--16-space)'
+      }}
+    >
       <AttachFiles title={<File label={FILE_NAME} checked />}>
+        {FileCollection.map((FileItem: JSX.Element, index: number) => (
+          <Fragment key={index}>{FileItem}</Fragment>
+        ))}
+      </AttachFiles>
+      <AttachFiles title={<File label={FILE_NAME} empty />}>
         {FileCollection.map((FileItem: JSX.Element, index: number) => (
           <Fragment key={index}>{FileItem}</Fragment>
         ))}

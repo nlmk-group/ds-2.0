@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import { iconsMapping } from '@components/Accordion/enums';
+import { TIcon } from '@components/Accordion/types';
+import { IconChevronArrowUpOutlined24, IconCloseOutlined16 } from '@components/Icon/IconsDirectory';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 
@@ -8,15 +10,7 @@ import { IAccordionItemProps, TAccordionItem } from './types';
 
 import styles from './AccordionItem.module.scss';
 
-import {
-  TYPOGRAPHY_CONTENT_VARIANTS,
-  TYPOGRAPHY_TITLE_VARIANTS
-} from './constants';
-
-import {
-  IconChevronArrowUpOutlined16,
-  IconCloseOutlined16
-} from '@components/Icon/IconsDirectory';
+import { TYPOGRAPHY_CONTENT_VARIANTS, TYPOGRAPHY_TITLE_VARIANTS } from './constants';
 
 const AccordionItem: React.FC<IAccordionItemProps> = ({
   id,
@@ -36,25 +30,27 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
 
   const iconProps = {
     htmlColor: 'var(--ac-accordion-default-default-icon)'
-  }
+  };
 
-  const expandIcons = {
-    [iconsMapping.plus]: (
-      <div className={clsx(
-        styles['icon-helper'],
-        isExpanded ? styles['icon-cross'] : styles['icon-plus']
-      )}>
-        <IconCloseOutlined16 {...iconProps} />
+  const getExpandIcon = (icon: TIcon, testid: string) => {
+    const iconsStyles = {
+      plus: ['icon-cross', 'icon-plus'],
+      arrow: ['icon-down', 'icon-up']
+    };
+
+    const Icon = icon === iconsMapping.plus ? IconCloseOutlined16 : IconChevronArrowUpOutlined24;
+
+    return (
+      <div
+        data-testid={testid}
+        className={clsx(
+          styles['icon-helper'],
+          isExpanded ? styles[iconsStyles[icon][0]] : styles[iconsStyles[icon][1]]
+        )}
+      >
+        <Icon {...iconProps} />
       </div>
-    ),
-    [iconsMapping.arrow]: (
-      <div className={clsx(
-        styles['icon-helper'],
-        isExpanded ? styles['icon-down'] : styles['icon-up']
-      )}>
-        <IconChevronArrowUpOutlined16 {...iconProps} />
-      </div>
-    )
+    );
   };
 
   const handleMouseEnter = () => {
@@ -89,29 +85,14 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
       {...props}
     >
       <div className={styles.header} onClick={() => handleClick(id)}>
-        <div>
-          {startIcon && (
-            <div data-testid="ACCORDION_LEFT_ICON">
-              {expandIcons[startIcon]}
-            </div>
-          )}
-        </div>
+        {startIcon && getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}
+        {endIcon && getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}
         <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
-        <div>
-          {endIcon && (
-            <div data-testid="ACCORDION_RIGHT_ICON">
-              {expandIcons[endIcon]}
-            </div>
-          )}
-        </div>
       </div>
       <div className={clsx(styles.expandable, isExpanded && styles.expanded)}>
         <Typography
           variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
-          className={clsx(
-            styles['content-basic'],
-            isExpanded && styles.content
-          )}
+          className={clsx(styles['content-basic'], isExpanded && styles.content)}
         >
           {children}
         </Typography>

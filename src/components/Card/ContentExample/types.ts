@@ -1,8 +1,19 @@
-import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 import { ISelectOption } from '@components/Select/types';
 
 import { OrientationType } from '../types';
+
+interface ICheckable {
+  checked?: boolean;
+  checkAction?: (v: boolean) => void;
+}
+
+export interface IContentExample extends ICheckable {
+  orientation?: OrientationType;
+  imageURL?: string;
+  href?: string;
+}
 
 export interface IButton {
   label: string;
@@ -10,11 +21,9 @@ export interface IButton {
   startIcon?: ReactNode;
 }
 
-export interface ITitle {
+export interface ITitle extends ICheckable {
   title: string;
   href?: string;
-  checked?: boolean;
-  checkAction?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface ISelector {
@@ -25,7 +34,6 @@ export interface ISelector {
 }
 
 export interface IImageHelper {
-  orientation: OrientationType;
   imageURL: string;
   badges: string[];
 }

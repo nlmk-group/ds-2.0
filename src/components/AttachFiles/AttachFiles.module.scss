@@ -1,7 +1,8 @@
-@mixin list-center {
+.list-center {
   display: flex;
   flex-direction: column;
-  gap: var(--8-space);
+  border: var(--1-border) solid var(--divider-divider);
+  border-radius: var(--4-radius);
 }
 
 .vertical-wrapper {
@@ -14,16 +15,6 @@
   background: var(--default-second);
 }
 
-.title {
-  margin-bottom: var(--16-space);
-}
-
-.list {
-  @include list-center;
-  padding: 0 var(--16-space) var(--16-space) var(--16-space);
-}
-
 .list-with-title {
-  @include list-center;
   padding: 0 var(--16-space) var(--16-space) var(--32-space);
 }

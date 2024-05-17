@@ -62,7 +62,7 @@ const Alert: FC<IAlert> = ({
           <div className={styles['action-wrapper']}>
             {action !== null && action}
             {!!close && close !== null && (
-              <Button variant="primary" fill="clear" onClick={close} className={styles['btn-close']} size="xs">
+              <Button variant="grey" fill="clear" onClick={close} className={styles['btn-close']} size="xs">
                 <IconCloseOutlined24 />
               </Button>
             )}

@@ -10,7 +10,6 @@ import styles from './Card.module.scss';
 import { indicatorStatusMapping, orientationMapping } from './enums';
 
 const Card: FC<ICard> = ({
-  className,
   children,
   orientation = orientationMapping.vertical,
   indicatorSize = sizesMapping.s,
@@ -23,9 +22,9 @@ const Card: FC<ICard> = ({
         styles.wrapper,
         styles[`wrapper-${orientation}`],
         styles[`indicator-${orientation}`],
-        styles[`indicator-${indicatorSize}`],
+        indicatorStatus !== indicatorStatusMapping.default && styles[`indicator-${indicatorSize}`],
         styles[`indicator-${indicatorStatus}`],
-        className
+        styles[`card-${orientation}`]
       )}
     >
       {children}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import DatePicker from '@components/DatePicker';
 import { argsTypes } from '@components/DatePicker/_stories/argsTypes';
-import { TEnabledHourFrom, TEnabledHourTo } from '@components/DatePicker/types';
+import { TDatePickerProps, TEnabledHourFrom, TEnabledHourTo } from '@components/DatePicker/types';
 import { sizesMappingInput } from '@components/declaration';
 import { Button } from '@components/index';
 import { Meta } from '@storybook/react';
@@ -19,14 +19,19 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof DatePicker>;
 
-export const Default = (): JSX.Element => {
+export const Default = (argTypes: TDatePickerProps): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '330px' }}>
-      <DatePicker value={value} onChange={onChange} />
+      <DatePicker
+        {...argTypes}
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 };
+Default.args = {};
 
 export const WithColored = (): JSX.Element => {
   const [colored, setColored] = useState(false);

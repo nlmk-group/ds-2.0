@@ -41,7 +41,11 @@ const File: FC<IFile> = ({
 
   const CheckedIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper-checked']} data-testid="CHECKED_ICON">
-      <Checkbox checked={checkedValue} onChange={onCheckedChange} multiple={indeterminate} />
+      <Checkbox
+        checked={checkedValue}
+        onChange={onCheckedChange}
+        multiple={indeterminate}
+      />
     </div>
   );
 
@@ -52,7 +56,7 @@ const File: FC<IFile> = ({
   );
 
   const IconHelper = (): JSX.Element => {
-    if (empty) return <div className={styles['icon-wrapper-checked']} data-testid="EMPTY_ICON" />;
+    if (empty) return <></>;
     if (checked) return <CheckedIcon />;
     if (tick) return <TickIcon />;
     else return <DefaultIcon />;
@@ -80,7 +84,7 @@ const File: FC<IFile> = ({
               className={styles['control-btn']}
             >
               <Button
-                variant="primary"
+                variant="grey"
                 fill="clear"
                 onClick={commentedOnClick}
                 iconButton={
@@ -110,7 +114,7 @@ const File: FC<IFile> = ({
               className={styles['control-btn']}
             >
               <Button
-                variant="primary"
+                variant="grey"
                 fill="clear"
                 onClick={removedOnClick}
                 iconButton={

@@ -1,63 +1,71 @@
+@mixin transition-effect {
+  transition: all 0.3s ease-in-out;
+}
+
+@mixin icon-size($size) {
+  > div {
+    height: var(--#{$size}-size);
+    width: var(--#{$size}-size);
+    > svg {
+      height: var(--#{$size}-size);
+      width: var(--#{$size}-size);
+    }
+  }
+}
+
 .wrapper {
   display: flex;
   gap: var(--4-space);
   cursor: pointer;
-
-  > a {
-    transition: all 0.3s ease-in-out;
+  width: fit-content;
+  > a,
+  path {
+    @include transition-effect;
     color: var(--ac-link-default);
     text-decoration: none;
-    border-bottom: var(--1-border) solid transparent;
   }
 
-  path {
-    transition: all 0.3s ease-in-out;
-    fill: var(--ac-link-default);
-  }
-
-  &:hover {
-    > a {
-      color: var(--ac-link-hover);
-      border-bottom-color: var(--ac-link-hover);
-    }
-
+  &:hover,
+  &:visited,
+  &:active {
+    > a,
     path {
+      color: var(--ac-link-hover);
+      text-decoration: underline;
       fill: var(--ac-link-hover);
     }
   }
 
-  &:visited {
-    > a {
-      color: var(--ac-link-active);
-      border-bottom-color: var(--ac-link-active);
-    }
-
-    path {
-      fill: var(--ac-link-active);
-    }
+  > a {
+    text-decoration-skip-ink: none;
   }
 
-  &:active {
-    > a {
-      color: var(--ac-link-click);
-      border-bottom-color: var(--ac-link-click);
-    }
+  &:hover > a,
+  &:hover path {
+    color: var(--ac-link-hover);
+    fill: var(--ac-link-hover);
+  }
 
-    path {
-      fill: var(--ac-link-click);
-    }
+  &:visited > a,
+  &:visited path {
+    color: var(--ac-link-active);
+    fill: var(--ac-link-active);
+  }
+
+  &:active > a,
+  &:active path {
+    color: var(--ac-link-click);
+    fill: var(--ac-link-click);
   }
 }
 
 .disabled {
   pointer-events: none;
-  > a {
-    color: var(--ac-link-disabled);
-    border-bottom: 1px solid var(--ac-link-disabled);
-  }
-
+  > a,
   path {
+    color: var(--ac-link-disabled);
     fill: var(--ac-link-disabled);
+    text-decoration: underline;
   }
 }
 
@@ -66,29 +74,16 @@
   align-items: center;
 }
 
+// Обобщение стилей для иконок с учетом размера
 .icon-h1,
 .icon-h2,
 .icon-sub1 {
-  > div {
-    height: var(--32-size);
-    width: var(--32-size);
-    > svg {
-      height: var(--32-size);
-      width: var(--32-size);
-    }
-  }
+  @include icon-size(32);
 }
 
 .icon-h3,
 .icon-sub2 {
-  > div {
-    height: var(--24-size);
-    width: var(--24-size);
-    > svg {
-      height: var(--24-size);
-      width: var(--24-size);
-    }
-  }
+  @include icon-size(24);
 }
 
 .icon-h4,
@@ -97,14 +92,7 @@
 .icon-body1,
 .icon-body2,
 .icon-caption {
-  > div {
-    height: var(--16-size);
-    width: var(--16-size);
-    > svg {
-      height: var(--16-size);
-      width: var(--16-size);
-    }
-  }
+  @include icon-size(16);
 }
 
 .test-style {

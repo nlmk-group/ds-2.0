@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@components/Button';
 import { IButtonProps } from '@components/Button/types';
 import { IconArticleOutlined24 } from '@root/src/components';
+import { StoryFn } from '@storybook/react';
 
 import styles from './Button.module.scss';
 

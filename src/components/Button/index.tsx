@@ -61,10 +61,7 @@ export const Button: FC<IButtonProps> = ({
     <button className={clsx(classes, className)} {...props}>
       {startIcon && <span className={iconClass('left')}>{startIcon}</span>}
       <Typography
-        className={clsx(
-          styles[`text-height-${size}`],
-          styles['label-wrapper']
-        )}
+        className={styles['label-wrapper']}
         variant={size === 'xs' ? 'Caption-Bold' : 'Body1-Bold'}
       >
         {children}

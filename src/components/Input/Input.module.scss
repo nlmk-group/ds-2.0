@@ -16,6 +16,20 @@
   }
 }
 
+@mixin description-color-states {
+  &.error {
+    color: var(--ac-description-input-error);
+  }
+
+  &.warning {
+    color: var(--ac-description-input-warning);
+  }
+
+  &.success {
+    color: var(--ac-description-input-success);
+  }
+}
+
 @mixin input-border-color-states {
   &.error {
     border-color: var(--ac-input-error-stroke);
@@ -54,7 +68,6 @@
   textarea:not(:placeholder-shown):not(:focus) ~ label {
     top: -6px;
     left: 12px;
-    font-size: var(--body2-font-size);
     line-height: 11px;
     background: linear-gradient(to top, var(--default-second) 50%, transparent 50%);
 
@@ -165,13 +178,16 @@
   &.resize {
     resize: both;
   }
+
+  ::-webkit-resizer {
+    display: none;
+  }
+
 }
 
 .label {
   position: absolute;
-  margin: 0;
-  padding: 11px var(--16-space) 10px var(--16-space);
-  top: 1px;
+  padding: 10px var(--16-space);
   left: 0;
   color: var(--ac-label-input-default);
 
@@ -194,20 +210,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-blue-600);
+  color: var(--ac-input-default-text);
   cursor: pointer;
   background: var(--default-second);
-
+  margin-right: var(--16-space);
   @include input-color-states;
 }
 
 .helper-text {
   display: flex;
   margin: 0;
-  padding: var(--4-space) var(--16-space);
-  color: var(--text-grey-500);
+  padding-top: var(--4-space);
+  padding-left: var(--16-space);
+  color: var(--ac-description-input-default);
 
-  @include input-color-states;
+  @include description-color-states;
 }
 
 .disabled {

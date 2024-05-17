@@ -8,3 +8,11 @@
 .input {
   width: 100%;
 }
+.icon-xs {
+  height: var(--24-size);
+  width: var(--24-size);
+  svg {
+    height: var(--24-size);
+    width: var(--24-size);
+  }
+}

@@ -22,7 +22,7 @@ describe('src/components/Card', () => {
 
   Object.values(sizesMapping).forEach((indicatorSize: sizesMapping) => {
     test(`It should render a Card's indicator with ${indicatorSize} size`, () => {
-      render(<Card indicatorSize={indicatorSize}>hello</Card>);
+      render(<Card indicatorStatus={indicatorStatusMapping.success} indicatorSize={indicatorSize}>hello</Card>);
       expect(screen.getByTestId('CARD_WRAPPER').classList.contains(`indicator-${indicatorSize}`)).toBe(true);
     });
   });

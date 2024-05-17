@@ -30,11 +30,6 @@ describe('src/components/AttachFiles', () => {
       expect(screen.getByTestId('DEFAULT_ICON')).toBeInTheDocument();
     });
 
-    test('It should render a File without icon', () => {
-      render(<File label={FILE_NAME} empty />);
-      expect(screen.getByTestId('EMPTY_ICON')).toBeInTheDocument();
-    });
-
     test('It should render a File with tick icon', () => {
       render(<File label={FILE_NAME} tick />);
       expect(screen.getByTestId('TICK_ICON')).toBeInTheDocument();

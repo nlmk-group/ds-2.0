@@ -11,6 +11,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/file/kFsgdsZ2n2j8bDlKW67YTc/DS2.0-Calendar?type=design&node-id=1113-8156&mode=design&t=4GLACqnE6wnER5XM-0'
+
 const DatePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -75,7 +77,7 @@ export default App;
         description="Компонент для выбора даты и времени, с возможностью ограничения времени, выбором периода времени и опциональным сдвигом."
         isBeta
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/DatePicker"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20847&mode=design&t=awyt3Fzj1XS6th7v-1"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -106,7 +108,7 @@ export default App;
       )}
 
       {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20847&mode=design&t=awyt3Fzj1XS6th7v-1" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) === 2 && (
         <Typography variant="Heading4" color="primary">

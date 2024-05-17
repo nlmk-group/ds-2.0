@@ -30,6 +30,24 @@
   &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error)):hover::after {
     opacity: var(--8-opacity);
   }
+
+  &:has(.checkbox:checked) {
+    &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error))::after {
+      background-color: var(--ac-checkbox-checked-focused-focus);
+    }
+  }
+
+  &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error))::after {
+    background-color: var(--ac-checkbox-unchecked-focused-focus);
+  }
+
+  &:not(.checkbox:disabled).checkbox:not(.error):hover {
+    input.checkbox {
+      border-color: var(--ac-checkbox-unchecked-focused-stroke);
+      background-color: var(--ac-checkbox-unchecked-focused-fill);
+    }
+  }
+
 }
 
 .checkbox {
@@ -54,19 +72,31 @@
 
   &.error {
     border-color: var(--ac-checkbox-unchecked-error-stroke);
+    background-color: var(--ac-checkbox-unchecked-error--fill);
 
     ~ .checkmark {
       background-color: var(--ac-checkbox-unchecked-error-stroke);
     }
   }
 
+  &:checked:disabled {
+    cursor: default;
+    border: unset;
+    background-color: var(--ac-checkbox-unchecked-disabled-fill);
+
+    ~ .checkmark {
+      opacity: var(--50-opacity);
+      background-color: var(--ac-checkbox-checked-disabled);
+    }
+  }
+
   &:disabled {
+    opacity: var(--50-opacity);
     cursor: default;
     border-color: var(--ac-checkbox-unchecked-disabled-stroke);
     background-color: var(--ac-checkbox-unchecked-disabled-fill);
 
     ~ .checkmark {
-      cursor: default;
       background-color: var(--ac-checkbox-checked-disabled);
     }
   }

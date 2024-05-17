@@ -89,7 +89,7 @@ const Input: FC<TInputProps> = ({
       )}
       {label && (
         <label className={clsx(styles.label, colorClassName)} htmlFor={id}>
-          <Typography variant="Body2-Medium" className={styles.typography}>
+          <Typography variant="Body1-Medium" className={styles.typography}>
             {label}
           </Typography>
         </label>

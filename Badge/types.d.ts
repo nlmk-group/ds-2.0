@@ -8,5 +8,11 @@ export interface IBadgeProps {
     children?: string | number;
     className?: string;
 }
+export declare enum ESizesBadgeMapping {
+    l = "l",
+    m = "m",
+    s = "s",
+    xs = "xs"
+}
 export {};
 //# sourceMappingURL=types.d.ts.map

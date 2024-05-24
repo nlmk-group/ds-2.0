@@ -7,6 +7,11 @@ declare const _default: {
     argTypes: {
         children: {
             description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
             control: {
                 type: string;
             };
@@ -15,13 +20,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").sizesMapping;
+                    summary: import('../types').ESizesBadgeMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").sizesMapping[];
+            options: import('../types').ESizesBadgeMapping[];
             control: {
                 type: string;
             };
@@ -62,5 +67,8 @@ export default _default;
 export declare const BadgeDefault: {
     (argsTypes: IBadgeProps): JSX.Element;
     storyName: string;
+    args: {
+        children: string;
+    };
 };
 //# sourceMappingURL=Badge.stories.d.ts.map

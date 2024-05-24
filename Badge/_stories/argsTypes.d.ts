@@ -1,7 +1,13 @@
-import { colorsMapping, sizesMapping, variantsMapping } from '../../declaration/enums';
+import { colorsMapping, variantsMapping } from '../../declaration/enums';
+import { ESizesBadgeMapping } from '../types';
 export declare const argsTypes: {
     children: {
         description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
         control: {
             type: string;
         };
@@ -10,13 +16,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: sizesMapping;
+                summary: ESizesBadgeMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: sizesMapping[];
+        options: ESizesBadgeMapping[];
         control: {
             type: string;
         };

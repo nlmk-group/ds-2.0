@@ -8,5 +8,6 @@ export interface ICard extends PropsWithChildren<any> {
     orientation?: OrientationType;
     indicatorSize?: IndicatorSizeType;
     indicatorStatus?: IndicatorStatusType;
+    className?: string;
 }
 //# sourceMappingURL=types.d.ts.map

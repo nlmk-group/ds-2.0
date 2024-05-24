@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, ReactNode } from 'react';
 import { TIconName } from './IconsDirectory/unionType';
 export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning' | 'default';
 export type TContainerSize = 32 | 24 | 16;
@@ -9,6 +9,7 @@ export interface TIconProps {
     containerSize?: TContainerSize;
     className?: string;
     style?: CSSProperties;
+    badge?: ReactNode;
 }
 export interface IIconsProps {
     color?: IconColor;

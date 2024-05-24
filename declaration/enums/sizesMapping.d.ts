@@ -1,6 +1,6 @@
 export declare enum sizesMapping {
-    s = "s",
+    l = "l",
     m = "m",
-    l = "l"
+    s = "s"
 }
 //# sourceMappingURL=sizesMapping.d.ts.map

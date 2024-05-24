@@ -73,6 +73,24 @@ declare const argsTypes: {
             type: string;
         };
     };
+    badge: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+        mapping: {
+            false: string;
+            true: JSX.Element;
+        };
+    };
 };
 export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

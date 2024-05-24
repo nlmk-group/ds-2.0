@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/react';
 declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, TIconProps>;
 export default _default;
 export declare const IconComponent: {
-    ({ name, color, containerSize, ...args }: TIconProps): JSX.Element;
+    (argsTypes: TIconProps): JSX.Element;
     storyName: string;
     args: {
         name: string;

@@ -2,26 +2,26 @@ import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
 
 export const argsTypes = {
   size: {
-    description: `Размер: ${Object.values(sizesMapping).join(' | ')}`,
+    description: 'Размер',
     table: {
       defaultValue: {
         summary: sizesMapping.m
       },
       type: {
-        summary: 'string'
+        summary: Object.values(sizesMapping).join(' | ')
       }
     },
     options: Object.values(sizesMapping),
     control: { type: 'select' }
   },
   variant: {
-    description: `Тип аккордеона: ${Object.values(variantsMapping).join(' | ')}`,
+    description: 'Тип аккордеона',
     table: {
       defaultValue: {
         summary: variantsMapping.default
       },
       type: {
-        summary: 'string'
+        summary: Object.values(variantsMapping).join(' | ')
       }
     },
     options: Object.values(variantsMapping),
@@ -40,26 +40,26 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   startIcon: {
-    description: `Иконка слева от заголовка: ${Object.values(iconsMapping).join(' | ')}`,
+    description: 'Иконка слева от заголовка',
     table: {
       defaultValue: {
         summary: iconsMapping.arrow
       },
       type: {
-        summary: 'string'
+        summary: Object.values(iconsMapping).join(' | ')
       }
     },
     options: Object.values(iconsMapping),
     control: { type: 'select' }
   },
   endIcon: {
-    description: `Иконка справа от заголовка: ${Object.values(iconsMapping).join(' | ')}`,
+    description: 'Иконка справа от заголовка',
     table: {
       defaultValue: {
         summary: 'null'
       },
       type: {
-        summary: 'string'
+        summary: Object.values(iconsMapping).join(' | ')
       }
     },
     options: Object.values(iconsMapping),

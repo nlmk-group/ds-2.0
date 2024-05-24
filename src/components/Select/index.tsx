@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { ClickAwayListener, Scrollbar } from '@components/index';
+import { ClickAwayListener } from '@components/index';
 import { InputWithRef } from '@components/Select/subcomponents/SelectInput';
 import clsx from 'clsx';
 
@@ -222,11 +222,9 @@ const Select: FC<ISelectProps> = ({
       <>
         {isOpen && (
           <SelectSharedProperties.Provider value={sharedProps}>
-            <Scrollbar>
-              <div ref={listRef}>
-                <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} />
-              </div>
-            </Scrollbar>
+            <div ref={listRef}>
+              <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} />
+            </div>
           </SelectSharedProperties.Provider>
         )}
       </>

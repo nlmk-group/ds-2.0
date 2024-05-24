@@ -7,6 +7,7 @@ import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
 import { Tabs, Typography } from '@components/index';
 
+import localStyles from './Icon.module.scss';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
@@ -36,29 +37,6 @@ const Stories = (): JSX.Element => {
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
       <div className={styles['header-wrapper']}>
-        <Typography variant="Heading2" color="primary">
-          Свойства
-        </Typography>
-        <ul>
-          <li>
-            <b>name: string</b> - название иконки
-          </li>
-          <li>
-            <b>color: action | disabled | error | primary | secondary | inherit | success | warning</b> - свойство цвета
-            иконки
-          </li>
-          <li>
-            <b>htmlColor: string</b> - свойство пользовательского цвета иконки
-          </li>
-          <li>
-            <b>containerSize: 16 | 24 | 32</b> - контейнер иконки, по умолчанию равен размеру иконки. Пропс доступен
-            только для компонента Icon
-          </li>
-          <li>
-            <b>size: 16 | 24 | 32</b> - размер иконки.
-          </li>
-        </ul>
-
         <Typography variant="Heading2" color="primary">
           Иконки
         </Typography>
@@ -116,7 +94,9 @@ export default App;
             Все доступные иконки
           </Typography>
           <br />
-          <AllIcons />
+          <div className={localStyles['wrapper-info']}>
+            <AllIcons />
+          </div>
 
           <Properties argsTypes={argsTypes} />
         </>

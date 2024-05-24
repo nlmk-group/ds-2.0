@@ -1,7 +1,6 @@
 @mixin outline {
-  border-style: solid;
+  outline-style: solid;
   background-color: transparent;
-  padding: var(--0-space) 6px;
 }
 
 .badge {
@@ -12,7 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-width: var(--2-border);
+  outline-width: var(--2-border);
+  outline-offset: calc(var(--2-border) * -1);
   cursor: default;
   padding: var(--0-space) var(--8-space);
 }
@@ -20,8 +20,21 @@
 .compact {
   min-width: var(--16-size);
   height: var(--16-size);
-  border-width: var(--1-border);
+  // ширина бордера для варианта outline
+  outline-width: var(--1-border);
+  outline-offset: calc(var(--1-border) * -1);
   padding: var(--0-space) var(--4-space);
+}
+
+.xs {
+  min-width: var(--12-size);
+  height: var(--12-size);
+  padding: var(--0-space) var(--3-space);
+  outline-width: var(--1-border);
+  outline-offset: calc(var(--1-border) * -1);
+  span {
+    font-size: var(--9-size);
+  }
 }
 
 .large {
@@ -78,7 +91,7 @@ $outline-text: (
 
   .outline-#{"" + $variant} {
     @include outline;
-    border-color: map-get($outline-colors, $variant);
+    outline-color: map-get($outline-colors, $variant);
     color: map-get($outline-text, $variant);
   }
 }

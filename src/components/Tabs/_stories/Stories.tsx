@@ -36,7 +36,7 @@ const Stories = (): JSX.Element => {
           <Editor
             height={400}
             description="Обычное использование компонента."
-            code={`import { Tabs, Typography } from '@nlmk/ds-2.0';
+            code={`import { Tabs, Typography, Box } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
 export default  App = () => {
@@ -77,26 +77,28 @@ export default  App = () => {
         />
       </Tabs>
 
-      {Number(activeTab) == 0 && (
-        <Typography variant="Heading4" color="primary">
-          Входящие
-        </Typography>
-      )}
-      {Number(activeTab) == 1 && (
-        <Typography variant="Heading4" color="primary">
-          Мои папки
-        </Typography>
-      )}
-      {Number(activeTab) == 2 && (
-        <Typography variant="Heading4" color="primary">
-          Папка с спамом
-        </Typography>
-      )}
-      {Number(activeTab) == 3 && (
-        <Typography variant="Heading4" color="primary">
-          Черновики
-        </Typography>
-      )}
+      <Box width={350}>
+        {Number(activeTab) == 0 && (
+          <Typography variant="Heading4" color="primary">
+            Входящие
+          </Typography>
+        )}
+        {Number(activeTab) == 1 && (
+          <Typography variant="Heading4" color="primary">
+            Мои папки
+          </Typography>
+        )}
+        {Number(activeTab) == 2 && (
+          <Typography variant="Heading4" color="primary">
+            Папка с спамом
+          </Typography>
+        )}
+        {Number(activeTab) == 3 && (
+          <Typography variant="Heading4" color="primary">
+            Черновики
+          </Typography>
+        )}
+      </Box>
     </>
   )
 }

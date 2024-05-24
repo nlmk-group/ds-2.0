@@ -1,6 +1,7 @@
 .table {
   width: 100%;
   margin-bottom: 1.5rem;
+  table-layout: fixed;
 }
 
 .th {
@@ -23,4 +24,20 @@
 
 .td:last-child {
   padding: 10px 20px;
+}
+
+code {
+  line-height: 1;
+  padding: 3px 5px;
+  white-space: nowrap;
+  border-radius: 3px;
+  border: 1px solid #454e54;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: hsla(203, 50%, 30%, 0.15);
+  font-family: monospace;
+  font-size: 14px;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+  margin: 0;
 }

@@ -65,12 +65,15 @@ describe('src/components/Modal', () => {
   it('It should closes on click away when ClickAwayListener is triggered', () => {
     const handleClose = jest.fn();
     render(
-      <Modal isOpen onClose={handleClose}>
-        <div>Content</div>
-      </Modal>
+      <div>
+        <Modal isOpen onClose={handleClose}>
+          <div>Content</div>
+        </Modal>
+        <div data-testid="outside">Outside Modal</div>
+      </div>
     );
 
-    fireEvent.mouseDown(document);
+    fireEvent.mouseUp(screen.getByTestId('outside')); // Убедитесь, что клик происходит вне модального окна
     expect(handleClose).toHaveBeenCalled();
   });
 

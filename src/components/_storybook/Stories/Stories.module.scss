@@ -37,7 +37,7 @@
 }
 
 .link {
-  border-bottom: none !important;
+  text-decoration: none !important;
 }
 
 .iframe {
@@ -47,7 +47,7 @@
 .properties {
   position: fixed;
   bottom: 20px;
-  z-index: 9;
+  z-index: 9999;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: (0, 0, 0, 0.1) 0px 1px 3px 0px;

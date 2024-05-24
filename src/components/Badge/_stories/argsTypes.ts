@@ -1,31 +1,38 @@
-import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { colorsMapping, variantsMapping } from '@components/declaration/enums';
+
+import { ESizesBadgeMapping } from '../types';
 
 export const argsTypes = {
   children: {
     description: 'Текст лейбла бэйджа',
-    control: { type: 'text' }
-  },
-  size: {
-    description: `Размер бэйджа – <b>${Object.values(sizesMapping).join(' | ')}</b>`,
     table: {
-      defaultValue: {
-        summary: sizesMapping.m
-      },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(sizesMapping),
+    control: { type: 'number' }
+  },
+  size: {
+    description: 'Размер бэйджа',
+    table: {
+      defaultValue: {
+        summary: ESizesBadgeMapping.m
+      },
+      type: {
+        summary: Object.values(ESizesBadgeMapping).join(' | ')
+      }
+    },
+    options: Object.values(ESizesBadgeMapping),
     control: { type: 'select' }
   },
   color: {
-    description: `Цвет бэйджа – <b>${Object.values(colorsMapping).join(' | ')}</b>`,
+    description: 'Цвет бэйджа',
     table: {
       defaultValue: {
         summary: colorsMapping.primary
       },
       type: {
-        summary: 'string'
+        summary: Object.values(colorsMapping).join(' | ')
       }
     },
     options: Object.values(colorsMapping).filter(
@@ -34,13 +41,13 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   variant: {
-    description: `Вариант бэйджа <b>${Object.values(variantsMapping).join(' | ')}</b>`,
+    description: 'Вариант бэйджа',
     table: {
       defaultValue: {
         summary: variantsMapping.solid
       },
       type: {
-        summary: 'string'
+        summary: Object.values(variantsMapping).join(' | ')
       }
     },
     options: Object.values(variantsMapping),

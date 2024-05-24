@@ -28,24 +28,19 @@ interface IconsWithSizesAndColors {
   };
 }
 
-export const IconComponent = ({
-  name = 'IconArmatura32',
-  color = 'primary',
-  containerSize = 32,
-  ...args
-}: TIconProps): JSX.Element => {
+export const IconComponent = (argsTypes: TIconProps): JSX.Element => {
   return (
-    <div className={clsx(styles.wrapper, styles.sized)}>
-      <Icon name="IconArmatura32" color={color} containerSize={containerSize} {...args} />
+    <div className={clsx(styles.wrapper, styles.sized, styles['wrapper-border-radius'])}>
+      <Icon {...argsTypes} />
     </div>
   );
 };
 
 IconComponent.storyName = 'Компонент Icon по умолчанию';
 IconComponent.args = {
-  name: 'IconArmatura32',
+  name: 'IconTuneControlOutlined32',
   color: 'primary',
-  containerSize: 32
+  containerSize: 24
 };
 IconComponent.decorators = [
   (Story: StoryFn) => (
@@ -189,7 +184,7 @@ export const AllIcons = (): JSX.Element => {
       <div className={styles.table}>
         {filteredIcons.length > 0 ? (
           filteredIcons.map((icon, key) => (
-            <Card key={key} className={styles.card} indicatorStatus="info">
+            <Card key={key} className={styles.card} indicatorStatus="default">
               <div className={styles.cardHeader}>
                 <Typography variant="Body1" color="primary">
                   {startCase(formatIconName(icon.title))}

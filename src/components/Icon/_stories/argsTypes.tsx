@@ -1,3 +1,7 @@
+import React from 'react';
+
+import { Badge } from '@components/index';
+
 import icons from '../IconsDirectory';
 
 const argsTypes = {
@@ -28,7 +32,7 @@ const argsTypes = {
     control: { type: 'select' }
   },
   htmlColor: {
-    description: 'HTML цвет иконки',
+    description: 'HTML цвет иконки. Чтобы его включить нужно в опциях цвета выбрать inherit.',
     table: {
       defaultValue: {
         summary: undefined
@@ -64,6 +68,26 @@ const argsTypes = {
     },
     options: [16, 24, 32],
     control: { type: 'select' }
+  },
+  badge: {
+    description: 'JSX код компонента Badge',
+    table: {
+      defaultValue: {
+        summary: "<Badge size='s' color='error'>1</Badge>"
+      },
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    control: { type: 'boolean' },
+    mapping: {
+      false: '',
+      true: (
+        <Badge size="s" color="error">
+          1
+        </Badge>
+      )
+    }
   }
 };
 

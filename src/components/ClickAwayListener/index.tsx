@@ -1,12 +1,23 @@
 import React, { FC, useEffect, useRef } from 'react';
 
-import { IClickAwayListenerProps } from '@components/ClickAwayListener/types';
+import { EClickAwayEvent, IClickAwayListenerProps } from '@components/ClickAwayListener/types';
 
-const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, style, onClickAway, excludeRef }) => {
+const ClickAwayListener: FC<IClickAwayListenerProps> = ({
+  children,
+  className,
+  style,
+  onClickAway,
+  excludeRef,
+  eventType = EClickAwayEvent.mouseup
+}) => {
   const node = useRef<HTMLDivElement | null>(null);
 
-  const handleClick = (e: MouseEvent) => {
-    if (node.current?.contains(e.target as Node) || excludeRef?.current?.contains(e.target as Node)) {
+  const handleEvent = (e: MouseEvent | TouchEvent) => {
+    const excludeRefs = Array.isArray(excludeRef) ? excludeRef : [excludeRef];
+    if (
+      node.current?.contains(e.target as Node) ||
+      excludeRefs.some((ref) => ref?.current?.contains(e.target as Node))
+    ) {
       // Внутри элемента или исключенного элемента, игнорируем
       return;
     }
@@ -15,12 +26,12 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = ({ children, className, s
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener(eventType, handleEvent);
 
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener(eventType, handleEvent);
     };
-  }, [handleClick, excludeRef]);
+  }, [handleEvent, excludeRef, eventType]);
 
   return (
     <div ref={node} className={className} style={style}>

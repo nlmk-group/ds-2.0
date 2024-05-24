@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { IArgumentsTableProps } from '@components/_storybook/ArgumentsTable/types';
+import { Box } from '@components/index';
 
 import styles from './ArgumentsTable.module.scss';
 
@@ -14,8 +15,21 @@ export const ArgumentsTable: FC<IArgumentsTableProps> = ({ args = {} }) => {
               <b>{key}</b>
             </td>
             <td className={styles.td} dangerouslySetInnerHTML={{ __html: value.description }} />
+
             <td className={styles.td}>
-              {(value.table && value.table.defaultValue && value.table.defaultValue.summary) || '-'}
+              {value.table?.type?.summary ? (
+                <Box display="flex" flexWrap="wrap" gap={4} border="none" justifyContent="center">
+                  {value.table?.type?.summary.split('|').map((summary, index) => (
+                    <code key={index}>{summary}</code>
+                  ))}
+                </Box>
+              ) : (
+                <Box justifyContent="center">–</Box>
+              )}
+            </td>
+
+            <td className={styles.td}>
+              <Box justifyContent="center">{value.table?.defaultValue?.summary || '–'}</Box>
             </td>
           </tr>
         ))}

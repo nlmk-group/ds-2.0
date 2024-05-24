@@ -6,4 +6,8 @@
     --lighter-primary-blue-600: color-mix(in srgb, var(--primary-blue-600) 50%, white 50%);
     --drawer-default-width: 416px;
     --drawer-default-height: 416px;
+    /* размер шрифта xs размера в badge */
+    --9-size: 9px;
+    /* для padding xs размера в badge */
+    --3-space: 3px;
 }

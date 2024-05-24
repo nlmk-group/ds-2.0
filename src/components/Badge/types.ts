@@ -11,3 +11,11 @@ export interface IBadgeProps {
   children?: string | number;
   className?: string;
 }
+
+
+export enum ESizesBadgeMapping {
+  l = 'l',
+  m = 'm',
+  s = 's',
+  xs = 'xs'
+}

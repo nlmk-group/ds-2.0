@@ -23,12 +23,106 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.6 - <span className={styles.date}>24.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен ouline border и его позиционирование для компонента{' '}
+              <Link href="./?path=/docs/components-badge-info--docs" target="blank" className={styles['link-changelog']}>
+                Badge
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.5 - <span className={styles.date}>23.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена возможность использовать Badge в компоненте{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлен размер xs для компонента{' '}
+              <Link href="./?path=/docs/components-badge-info--docs" target="blank" className={styles['link-changelog']}>
+                Badge
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлено добавление JSX.Element для title и description{' '}
+              <Link href="./?path=/docs/components-draganddrop-info--docs" target="blank" className={styles['link-changelog']}>
+                DragAndDrop
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.4 - <span className={styles.date}>22.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ClickAwayListener"
+                target="blank" className={styles['link-changelog']}
+              >
+                ClickAwayListener
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>
+              - Компонент может принимать массив рефов в проп excludeRef для исключения элементов из обработки кликов
+              вне компонента.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.3 - <span className={styles.date}>20.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен скроллбар в компоненте{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
+                Select
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.2 - <span className={styles.date}>19.05.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена возможность изменять тип события в компоненте{' '}
+              <Link
+                href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ClickAwayListener"
+                target="blank" className={styles['link-changelog']}
+              >
+                ClickAwayListener
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.8.1 - <span className={styles.date}>17.05.24</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено нижнее подчеркивание в компоненте
-              <Link href="./?path=/docs/components-link-info--docs" target="blank">
+              • Исправлено нижнее подчеркивание в компоненте{' '}
+              <Link href="./?path=/docs/components-link-info--docs" target="blank" className={styles['link-changelog']}>
                 Link
               </Link>
               .
@@ -42,8 +136,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-drawer-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-drawer-info--docs" target="blank" className={styles['link-changelog']}>
                 Drawer
               </Link>
               .
@@ -56,36 +150,36 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен клик по иконкам в DragAndDrop
-              <Link href="./?path=/docs/components-draganddrop-stories--dnd-small-icon" target="blank">
+              • Исправлен клик по иконкам в DragAndDrop{' '}
+              <Link href="./?path=/docs/components-draganddrop-stories--dnd-small-icon" target="blank" className={styles['link-changelog']}>
                 Dnd Small Icon
               </Link>
               .
             </li>
             <li>
-              • Исправлено поведение при hover эффекте на Avatar с специальным бейджем
-              <Link href="./?path=/docs/components-avatar-stories--avatar-with-special-badge" target="blank">
+              • Исправлено поведение при hover эффекте на{' '}
+              <Link href="./?path=/docs/components-avatar-stories--avatar-with-special-badge" target="blank" className={styles['link-changelog']}>
                 Avatar with special badge
               </Link>
               .
             </li>
             <li>
-              • Исправлено смещение чекбокса с label
-              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+              • Исправлено смещение чекбокса с label{' '}
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank" className={styles['link-changelog']}>
                 Checkbox
               </Link>
               .
             </li>
             <li>
-              • Исправлена реакция disabled checkbox на hover
-              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+              • Исправлена реакция disabled checkbox на hover{' '}
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank" className={styles['link-changelog']}>
                 Checkbox
               </Link>
               .
             </li>
             <li>
-              • Исправлен цвет спиннера с иконкой
-              <Link href="./?path=/docs/components-spinner-stories--spinner-with-icon" target="blank">
+              • Исправлен цвет спиннера с иконкой{' '}
+              <Link href="./?path=/docs/components-spinner-stories--spinner-with-icon" target="blank" className={styles['link-changelog']}>
                 Spinner with icon
               </Link>
               .
@@ -98,8 +192,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-slidetoggle-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-slidetoggle-info--docs" target="blank" className={styles['link-changelog']}>
                 SlideToggle
               </Link>
               .
@@ -112,8 +206,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки DplayersOutlined, PeopleCheckDoneFilled, DplayersFilled в
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены иконки DplayersOutlined, PeopleCheckDoneFilled, DplayersFilled в{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
@@ -126,8 +220,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-errorpage-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-errorpage-info--docs" target="blank" className={styles['link-changelog']}>
                 ErrorPage
               </Link>
               .
@@ -140,19 +234,19 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено поведение withPortal и ClickAwayListener в компоненте
-              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+              • Исправлено поведение withPortal и ClickAwayListener в компоненте{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
                 Select
               </Link>
               .
             </li>
             <li>
-              • Исправлено поведение при hover эффекте в состоянии disabled компонента
-              <Link href="./?path=/docs/components-inputslider-info--docs" target="blank">
+              • Исправлено поведение при hover эффекте в состоянии disabled компонента{' '}
+              <Link href="./?path=/docs/components-inputslider-info--docs" target="blank" className={styles['link-changelog']}>
                 InputSlider
               </Link>
-              ,
-              <Link href="./?path=/docs/components-inputrange-info--docs" target="blank">
+              ,{' '}
+              <Link href="./?path=/docs/components-inputrange-info--docs" target="blank" className={styles['link-changelog']}>
                 InputRange
               </Link>
               .
@@ -165,19 +259,19 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен тип свойства name и добавлен обработчик ошибки в компоненте
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Исправлен тип свойства name и добавлен обработчик ошибки в компоненте{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
             </li>
             <li>
-              • Добавлено свойство name для
-              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+              • Добавлено свойство name для{' '}
+              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
                 Input
               </Link>
-              и
-              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+              {' '}и{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
                 Select
               </Link>
               .
@@ -190,8 +284,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
@@ -204,22 +298,22 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-grid-stories--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-grid-stories--docs" target="blank" className={styles['link-changelog']}>
                 Grid
               </Link>
               .
             </li>
             <li>
-              • Доработана логики отступов в компоненте
-              <Link href="./?path=/docs/components-box-info--docs" target="blank">
+              • Доработана логики отступов в компоненте{' '}
+              <Link href="./?path=/docs/components-box-info--docs" target="blank" className={styles['link-changelog']}>
                 Box
               </Link>
               .
             </li>
             <li>
-              • Добавлен пропс colored для обозначения измененного значения в компоненте
-              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+              • Добавлен пропс colored для обозначения измененного значения в компоненте{' '}
+              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
                 Input
               </Link>
               .
@@ -232,15 +326,15 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлена логика работы withPortal в компоненте
-              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+              • Исправлена логика работы withPortal в компоненте{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
                 Select
               </Link>
               .
             </li>
             <li>
-              • Добавлена возможность переноса длинного заголовка в компоненте
-              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+              • Добавлена возможность переноса длинного заголовка в компоненте{' '}
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank" className={styles['link-changelog']}>
                 Sidebar
               </Link>
               .
@@ -253,15 +347,15 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Переработана логика и добавлено свойство clickable в компоненте
-              <Link href="./?path=/docs/components-tooltip-stories--docs" target="blank">
+              • Переработана логика и добавлено свойство clickable в компоненте{' '}
+              <Link href="./?path=/docs/components-tooltip-stories--docs" target="blank" className={styles['link-changelog']}>
                 Tooltip
               </Link>
               .
             </li>
             <li>
-              • Добавлено свойство color для компонента
-              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+              • Добавлено свойство color для компонента{' '}
+              <Link href="./?path=/docs/components-box-stories--docs" target="blank" className={styles['link-changelog']}>
                 Box
               </Link>
               .
@@ -274,8 +368,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено позиционирование иконки внутри компонента
-              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+              • Исправлено позиционирование иконки внутри компонента{' '}
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank" className={styles['link-changelog']}>
                 Checkbox
               </Link>
               .
@@ -289,15 +383,15 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>• Добавлена новая версия токенов.</li>
             <li>
-              • Исправлены отступы для компонента
-              <Link href="./?path=/docs/components-divider-stories--docs" target="blank">
+              • Исправлены отступы для компонента{' '}
+              <Link href="./?path=/docs/components-divider-stories--docs" target="blank" className={styles['link-changelog']}>
                 Divider
               </Link>
               .
             </li>
             <li>
-              • Исправлен label для компонента
-              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank">
+              • Исправлен label для компонента{' '}
+              <Link href="./?path=/docs/components-checkbox-stories--docs" target="blank" className={styles['link-changelog']}>
                 Checkbox
               </Link>
               .
@@ -310,8 +404,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен label для компонента
-              <Link href="./?path=/docs/components-radio-stories--docs" target="blank">
+              • Добавлен label для компонента{' '}
+              <Link href="./?path=/docs/components-radio-stories--docs" target="blank" className={styles['link-changelog']}>
                 Radio
               </Link>
               .
@@ -324,8 +418,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-box-stories--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-box-stories--docs" target="blank" className={styles['link-changelog']}>
                 Box
               </Link>
               .
@@ -338,8 +432,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлены стили компонента
-              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+              • Исправлены стили компонента{' '}
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank" className={styles['link-changelog']}>
                 SideBar
               </Link>
               .
@@ -355,17 +449,17 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен компонент
-              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
                 Select
               </Link>
               . Компонент стал контролируемым.
             </li>
             <li>
-              • Обновленный компонент
-              <Link href="./?path=/docs/components-select-info--docs" target="blank">
+              • Обновленный компонент{' '}
+              <Link href="./?path=/docs/components-select-info--docs" target="blank" className={styles['link-changelog']}>
                 Select
-              </Link>
+              </Link>{' '}
               содержит:
             </li>
             <li className={styles['left-padding']}>- Анимированную иконку раскрытия</li>
@@ -384,8 +478,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено выравнивание текста у компонента
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              • Исправлено выравнивание текста у компонента{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
@@ -398,22 +492,22 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлены отступы у компонента
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              • Исправлены отступы у компонента{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
             </li>
             <li>
-              • ДС-2.0 не конролирует размер иконки в компоненте
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              • ДС-2.0 не конролирует размер иконки в компоненте{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
             </li>
             <li>
               • Добавлена опция disableBackdropClick для компонента{' '}
-              <Link href="./?path=/docs/components-modal-info--docs" target="blank">
+              <Link href="./?path=/docs/components-modal-info--docs" target="blank" className={styles['link-changelog']}>
                 Modal
               </Link>
               .
@@ -426,14 +520,14 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлена иконка Player Stop для компонента
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлена иконка Player Stop для компонента{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
-              и исправлен
-              <Link href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Icon" target="blank">
+              и исправлен{' '}
+              <Link href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Icon" target="blank" className={styles['link-changelog']}>
                 Readme
-              </Link>
+              </Link>{' '}
               в нем.
             </li>
           </ul>
@@ -444,8 +538,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен бордер компонента
-              <Link href="./?path=/docs/components-radio-info--docs" target="blank">
+              • Исправлен бордер компонента{' '}
+              <Link href="./?path=/docs/components-radio-info--docs" target="blank" className={styles['link-changelog']}>
                 Radio
               </Link>
               .
@@ -458,10 +552,10 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен компонент
-              <Link href="./?path=/docs/components-radio-info--docs" target="blank">
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-radio-info--docs" target="blank" className={styles['link-changelog']}>
                 Radio
-              </Link>
+              </Link>{' '}
               согласно дизайну.
             </li>
           </ul>
@@ -472,10 +566,10 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено переключение компонента
-              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+              • Исправлено переключение компонента{' '}
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank" className={styles['link-changelog']}>
                 Switch
-              </Link>
+              </Link>{' '}
               , если на странице их несколько.
             </li>
           </ul>
@@ -487,9 +581,9 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Исправлен компонент{' '}
-              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank" className={styles['link-changelog']}>
                 Switch
-              </Link>
+              </Link>{' '}
               . Компонент стал контролируемым.
             </li>
           </ul>
@@ -500,8 +594,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки MES, Metallurgy
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены иконки MES, Metallurgy{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
@@ -514,22 +608,22 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки MES, SPEP
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены иконки MES, SPEP{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
             </li>
             <li>
-              • Добавлен аттрибут id с датой в контейнер с днём в компоненте
-              <Link href="./?path=/docs/components-datepicker-info--docs" target="blank">
+              • Добавлен аттрибут id с датой в контейнер с днём в компоненте{' '}
+              <Link href="./?path=/docs/components-datepicker-info--docs" target="blank" className={styles['link-changelog']}>
                 DatePicker
               </Link>
               .
             </li>
             <li>
-              • Исправлено отображение иконки в
-              <Link href="./?path=/docs/components-alert-info--docs" target="blank">
+              • Исправлено отображение иконки в{' '}
+              <Link href="./?path=/docs/components-alert-info--docs" target="blank" className={styles['link-changelog']}>
                 Alert
               </Link>
               .
@@ -545,50 +639,50 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-sidebar-info--docs" target="blank" className={styles['link-changelog']}>
                 Sidebar
               </Link>
               .
             </li>
             <li>
               • Исправлены отступы в компоненте{' '}
-              <Link href="./?path=/docs/components-switch-info--docs" target="blank">
+              <Link href="./?path=/docs/components-switch-info--docs" target="blank" className={styles['link-changelog']}>
                 Switch
               </Link>
               .
             </li>
             <li>
               • Исправлен баг с отображением label поверх placeholder в компоненте{' '}
-              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
                 Input
               </Link>
               .
             </li>
             <li>
               • Добавлена возможность вставлять элементы в аргумент helperText{' '}
-              <Link href="./?path=/docs/components-input-info--docs" target="blank">
+              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
                 Input
               </Link>
               .
             </li>
             <li>
-              • Исправлены варианты кнопок
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              • Исправлены варианты кнопок{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
             </li>
             <li>
-              • Добавлен тип заливки в кнопках
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              • Добавлен тип заливки в кнопках{' '}
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
             </li>
             <li>
               • Исправлено присвоение значений badge{' '}
-              <Link href="./?path=/docs/components-button-info--docs" target="blank">
+              <Link href="./?path=/docs/components-button-info--docs" target="blank" className={styles['link-changelog']}>
                 Button
               </Link>
               .
@@ -602,11 +696,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Исправлены переменные токенов для компонента{' '}
-              <Link href="./?path=/docs/components-checkbox-info--docs" target="blank">
+              <Link href="./?path=/docs/components-checkbox-info--docs" target="blank" className={styles['link-changelog']}>
                 Checkbox
               </Link>{' '}
-              и
-              <Link href="./?path=/docs/components-tooltip-info--docs" target="blank">
+              и{' '}
+              <Link href="./?path=/docs/components-tooltip-info--docs" target="blank" className={styles['link-changelog']}>
                 Tooltip
               </Link>
               .
@@ -638,8 +732,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены новые иконки для таблиц
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены новые иконки для таблиц{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
@@ -655,8 +749,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки и документация с поиском для компонента
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank">
+              • Добавлены иконки и документация с поиском для компонента{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
@@ -669,8 +763,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлено поведение action для компонента
-              <Link href="./?path=/docs/components-alert-info--docs" target="blank">
+              • Исправлено поведение action для компонента{' '}
+              <Link href="./?path=/docs/components-alert-info--docs" target="blank" className={styles['link-changelog']}>
                 Alert
               </Link>
               .
@@ -691,8 +785,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлена работа компонента
-              <Link href="./?path=/docs/components-datepicker-info--docs" target="blank">
+              • Исправлена работа компонента{' '}
+              <Link href="./?path=/docs/components-datepicker-info--docs" target="blank" className={styles['link-changelog']}>
                 DatePicker
               </Link>
               .
@@ -710,8 +804,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-togglebuttongroup-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-togglebuttongroup-info--docs" target="blank" className={styles['link-changelog']}>
                 ToggleButtonGroup
               </Link>
               .
@@ -719,22 +813,22 @@ export const Changelog = () => {
             <li>• Обновление версии Storybook до 7.6.9.</li>
             <li>
               • Сделан рефакторинг компонента{' '}
-              <Link href="./?path=/docs/components-tabs-info--docs" target="blank">
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
                 Tabs
-              </Link>
+              </Link>{' '}
               , теперь он использует подход compound pattern.
             </li>
             <li>
               • Добавлен компонент
-              <Link href="./?path=/docs/components-draganddrop-info--docs" target="blank">
+              <Link href="./?path=/docs/components-draganddrop-info--docs" target="blank" className={styles['link-changelog']}>
                 DragAndDrop
               </Link>{' '}
               - Beta.
             </li>
             <li>• Добавлены иконки IconAddCircleOutline, DeleteBinOutlined.</li>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-buttongroup-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-buttongroup-info--docs" target="blank" className={styles['link-changelog']}>
                 ButtonGroup
               </Link>
               .
@@ -757,8 +851,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент
-              <Link href="./?path=/docs/components-modal-info--docs" target="blank">
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/components-modal-info--docs" target="blank" className={styles['link-changelog']}>
                 Modal
               </Link>
               .

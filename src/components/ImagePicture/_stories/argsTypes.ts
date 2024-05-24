@@ -2,26 +2,26 @@ import { ImagePictureRadius, ImagePictureRatios } from '../enums';
 
 export const argsTypes = {
   aspectRatio: {
-    description: `Пропорции изображения: ${Object.values(ImagePictureRatios).join(' | ')}`,
+    description: 'Пропорции изображения',
     table: {
       defaultValue: {
         summary: ImagePictureRatios['ratio-1x1']
       },
       type: {
-        summary: 'string'
+        summary: Object.values(ImagePictureRatios).join(' | ')
       }
     },
     options: Object.values(ImagePictureRatios),
     control: { type: 'select' }
   },
   radius: {
-    description: `Варианты скругления углов: ${Object.values(ImagePictureRadius).join(' | ')}`,
+    description: 'Варианты скругления углов',
     table: {
       defaultValue: {
         summary: ImagePictureRadius['radius-none']
       },
       type: {
-        summary: 'string'
+        summary: Object.values(ImagePictureRadius).join(' | ')
       }
     },
     options: Object.values(ImagePictureRadius),

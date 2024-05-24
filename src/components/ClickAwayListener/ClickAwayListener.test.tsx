@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ClickAwayListener from '@components/ClickAwayListener/index';
 import { fireEvent, render } from '@testing-library/react';
 
@@ -11,7 +10,7 @@ describe('src/components/ClickAwayListener', () => {
   });
 
   test('calls onClickAway when clicked outside', () => {
-    render(
+    const { getByText } = render(
       <div>
         <ClickAwayListener onClickAway={onClickAway}>
           <button>Inside</button>
@@ -20,18 +19,18 @@ describe('src/components/ClickAwayListener', () => {
       </div>
     );
 
-    fireEvent.mouseDown(document.querySelector('button:nth-child(2)')!);
+    fireEvent.mouseUp(getByText('Outside')); // Используем mouseUp вместо mouseDown
     expect(onClickAway).toHaveBeenCalled();
   });
 
   test('does not call onClickAway when clicked inside', () => {
-    render(
+    const { getByText } = render(
       <ClickAwayListener onClickAway={onClickAway}>
         <button>Inside</button>
       </ClickAwayListener>
     );
 
-    fireEvent.mouseDown(document.querySelector('button')!);
+    fireEvent.mouseUp(getByText('Inside')); // Используем mouseUp вместо mouseDown
     expect(onClickAway).not.toHaveBeenCalled();
   });
 });

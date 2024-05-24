@@ -85,9 +85,10 @@ export default  App = () =>(
 
 export default  App = () =>(
   <>
-    <Badge size="s">1</Badge>
-    <Badge size="m">1</Badge>
     <Badge size="l">1</Badge>
+    <Badge size="m">1</Badge>
+    <Badge size="s">1</Badge>
+    <Badge size="xs">1</Badge>
   </>
 )`}
           />

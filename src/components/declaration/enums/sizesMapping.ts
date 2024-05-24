@@ -2,7 +2,7 @@
  * @type {enum} sizesMapping
  */
 export enum sizesMapping {
-  s = 's',
+  l = 'l',
   m = 'm',
-  l = 'l'
+  s = 's'
 }

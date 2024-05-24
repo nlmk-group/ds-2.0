@@ -1,13 +1,17 @@
 import React, { forwardRef } from 'react';
 
-import { IListProps } from '@components/List/types';
+import Scrollbar from '@components/Scrollbar';
 import clsx from 'clsx';
+
+import { IListProps } from './types';
 
 import styles from './List.module.scss';
 
 const List = forwardRef<HTMLDivElement, IListProps>(({ children, className, ...props }, ref) => (
   <div ref={ref} className={clsx(styles.list, className)} {...props}>
-    {children}
+    <Scrollbar overflowY="auto" style={{ maxHeight: 'inherit' }}>
+      {children}
+    </Scrollbar>
   </div>
 ));
 

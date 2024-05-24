@@ -7,21 +7,5 @@
   border-radius: var(--8-radius);
   background: var(--ac-select-item-default-bg);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
-  overflow-y: auto;
   z-index: 20;
-
-  &::-webkit-scrollbar {
-    width: var(--16-size);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--action-disabled-background);
-    border-radius: var(--16-radius);
-    border: var(--4-radius) solid transparent;
-    background-clip: padding-box;
-  }
-
-  &::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
 }

@@ -40,7 +40,7 @@ export const argsTypes = {
   },
   btnLabel: {
     description:
-      'Название кнопки. Если пустая строка, то кнопка отображаться не будет. Можно передать компонент типа ReactNode.',
+      'Название кнопки. Если пустая строка, то кнопка отображаться не будет.',
     table: {
       defaultValue: {
         summary: dragNDropBtnLabel
@@ -52,43 +52,39 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   fileType: {
-    description: `Необязательное свойство. Тип расширения загружаемого файла -  - <b>${Object.values(
-      fileTypeMapping
-    ).join(' | ')}</b>`,
+    description: 'Необязательное свойство. Тип расширения загружаемого файла.',
     table: {
       defaultValue: {
         summary: fileTypeMapping.image
       },
       type: {
-        summary: 'string'
+        summary: Object.values(fileTypeMapping).join(' | ')
       }
     },
     options: Object.values(fileTypeMapping),
     control: { type: 'select' }
   },
   statusColor: {
-    description: `Необязательное свойство. Цвета заливки компонента - <b>${Object.values(statusColorMapping).join(
-      ' | '
-    )}</b>`,
+    description: 'Необязательное свойство. Цвета заливки компонента.',
     table: {
       defaultValue: {
         summary: statusColorMapping.default
       },
       type: {
-        summary: 'string'
+        summary: Object.values(statusColorMapping).join(' | ')
       }
     },
     options: Object.values(statusColorMapping),
     control: { type: 'select' }
   },
   size: {
-    description: `Необязательное свойство. Размер компонента – <b>${Object.values(sizesMapping).join(' | ')}</b>`,
+    description: 'Необязательное свойство. Размер компонента.',
     table: {
       defaultValue: {
         summary: sizesMapping.l
       },
       type: {
-        summary: 'string'
+        summary: Object.values(sizesMapping).join(' | ')
       }
     },
     options: Object.values(sizesMapping),

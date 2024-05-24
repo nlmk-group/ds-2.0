@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import * as ReactIs from 'react-is';
 
 import { Button, Icon, Typography } from '@components/index';
 import { clsx } from 'clsx';
@@ -36,7 +37,9 @@ const DefaultDragAndDrop: FC<IDefaultDnD> = ({
       )}
 
       <div className={styles['text-wrapper']}>
-        {JSON.stringify(title).length > 0 && (
+        {ReactIs.typeOf(title) === ReactIs.Element ? (
+          <>{title}</>
+        ) : (
           <Typography
             variant={titleSizeHelperMapping[size]}
             className={clsx(styles[`title-${statusColor}`], loading && styles['title-loading'])}
@@ -44,7 +47,9 @@ const DefaultDragAndDrop: FC<IDefaultDnD> = ({
             {title}
           </Typography>
         )}
-        {JSON.stringify(description).length > 0 && (
+        {ReactIs.typeOf(description) === ReactIs.Element ? (
+          <>{description}</>
+        ) : (
           <Typography
             variant={descriptionSizeHelperMapping[size]}
             className={clsx(styles[`text-${statusColor}`], loading && styles['text-loading'])}

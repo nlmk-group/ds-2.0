@@ -1,44 +1,38 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 
-import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { colorsMapping, variantsMapping } from '@components/declaration/enums';
 import { Typography } from '@components/index';
 import clsx from 'clsx';
 
-import { IBadgeProps } from './types';
+import { IBadgeProps, ESizesBadgeMapping } from './types';
 
 import styles from './Badge.module.scss';
 
 export const Badge: FC<IBadgeProps> = ({
   color = colorsMapping.primary,
-  size = sizesMapping.m,
+  size = ESizesBadgeMapping.m,
   variant = variantsMapping.solid,
   children,
   className
 }) => {
-  const sizeClassesMapping = {
-    [sizesMapping.s]: styles.compact,
-    [sizesMapping.m]: null,
-    [sizesMapping.l]: styles.large
+  const sizeClassesMapping: { [K in keyof typeof ESizesBadgeMapping]?: string } = {
+    s: styles.compact,
+    l: styles.large,
+    xs: styles.xs
+    // m не нужно указывать, если для этого размера класс не задается
   };
 
-  const large = size === sizesMapping.l;
-  const compact = size === sizesMapping.s;
-  const outline = variant === variantsMapping.outline;
-
-  const classes = useMemo(() => {
-    return clsx(
-      styles[color as keyof typeof styles],
-      styles.badge,
-      sizeClassesMapping[size],
-      outline && styles[`outline-${String(color)}` as keyof typeof styles],
-      outline && compact && styles[`compact-outline` as keyof typeof styles],
-      className
-    );
-  }, [color, compact, outline, className]);
+  const badgeClasses = clsx(
+    styles.badge,
+    styles[color],
+    sizeClassesMapping[size],
+    variant === 'outline' && [styles[`outline-${color}`], size === 's' && styles['compact-outline']],
+    className
+  );
 
   return (
-    <div className={classes} data-testid='BADGE_WRAPPER'>
-      <Typography variant={large ? 'Body1-Bold' : 'Caption-Bold'}>{children}</Typography>
+    <div className={badgeClasses} data-testid="BADGE_WRAPPER">
+      <Typography variant={size === 'l' ? 'Body1-Bold' : 'Caption-Bold'}>{children}</Typography>
     </div>
   );
 };

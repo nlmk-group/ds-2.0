@@ -5,8 +5,7 @@
 }
 
 @mixin cardStyle {
-  box-shadow: 0 4px 6px var(--grey-500);
-  background-color: var(--background-paper);
+  background-color: var(--background-default);
 }
 
 @mixin iconStyle {
@@ -18,18 +17,31 @@
   justify-content: center;
 }
 
+.wrapper-border-radius {
+  border-radius: 10px;
+}
+
+.wrapper-info {
+  border-radius: 4px;
+  border: 1px solid var(--divider-divider);
+  overflow: hidden;
+}
+
 .wrapper {
   background-color: var(--background-paper);
   margin: 0;
   padding: 24px;
-  //width: 99%;
-  border-radius: 10px;
+  width: 98%;
 }
 
 .sized {
   @include flexCenter;
   width: 80px;
   height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .table {
@@ -45,7 +57,7 @@
 
 .controls {
   @include flexCenter;
-  width: 100%;
+  width: 98%;
   margin-bottom: 24px;
 }
 

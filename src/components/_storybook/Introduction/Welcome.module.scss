@@ -156,9 +156,12 @@
 .list {
   font-size: 18px;
   li {
-    display: flex;
+    display: block;
     gap: 2.5px;
     margin-bottom: 10px;
+  }
+  .link-changelog {
+    display: inline-flex;
   }
   .left-padding {
     padding-left: 20px;

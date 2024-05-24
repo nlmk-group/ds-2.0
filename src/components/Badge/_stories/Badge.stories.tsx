@@ -20,9 +20,12 @@ export const BadgeDefault = (argsTypes: IBadgeProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.row}>
-        <Badge {...argsTypes}>1</Badge>
+        <Badge {...argsTypes}>{argsTypes.children}</Badge>
       </div>
     </div>
   );
 };
 BadgeDefault.storyName = 'Бэйдж по умолчанию';
+BadgeDefault.args = {
+  children: '1'
+};

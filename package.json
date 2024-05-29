@@ -47,6 +47,7 @@
     "lint"
   ],
   "dependencies": {
+    "@nlmk/ds-2.0": "^1.8.6",
     "@snowpack/plugin-sass": "1.4.0",
     "date-fns": "3.3.1",
     "react-input-mask": "2.0.4",

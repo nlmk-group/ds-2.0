@@ -1,6 +1,7 @@
 import React, { FC, useMemo, useRef } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
+import Icon from '@components/Icon';
 import { PseudoInput } from '@components/index';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
@@ -20,7 +21,10 @@ const Input: FC<TInputProps> = ({
   resize = false,
   helperText,
   size = sizesMappingInput.m,
+  reset = false,
   onChange,
+  onReset,
+  onBlur,
   color = customInputColors.default,
   className,
   inputRef,
@@ -45,6 +49,7 @@ const Input: FC<TInputProps> = ({
   }
 
   const colorClassName = styles[color as keyof typeof styles];
+  const isIconVisible = value && value.length > 0;
 
   return (
     <div className={clsx(styles['input-wrapper'], className)}>
@@ -64,6 +69,7 @@ const Input: FC<TInputProps> = ({
           placeholder=" "
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           {...props}
         />
       ) : (
@@ -84,6 +90,7 @@ const Input: FC<TInputProps> = ({
           placeholder=" "
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           {...props}
         />
       )}
@@ -94,7 +101,27 @@ const Input: FC<TInputProps> = ({
           </Typography>
         </label>
       )}
-      {icon && <div className={clsx(styles.icon, disabled && styles.disabled, colorClassName)}>{icon}</div>}
+      {reset && onReset && isIconVisible && !disabled && (
+        <div
+          className={clsx(
+            styles.icon,
+            icon && styles['close-icon-with-text'],
+            !icon && styles['close-icon-without-text'],
+            disabled && styles.disabled,
+            colorClassName
+          )}
+          data-testid="CLOSE_ICON"
+          onClick={reset && onReset}
+        >
+          {<Icon color={disabled ? 'disabled' : 'primary'} containerSize={24} name="IconCloseOutlined24" />}
+        </div>
+      )}
+      {icon && (
+        <div className={clsx(styles.icon, styles['icon-text'], disabled && styles.disabled, colorClassName)}>
+          {icon}
+        </div>
+      )}
+
       {helperText && (
         <Typography
           variant="Caption-Medium"

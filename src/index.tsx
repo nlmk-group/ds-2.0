@@ -9,8 +9,10 @@ import {
   Alert,
   Badge,
   Box,
+  DatePicker,
   DragAndDrop,
   Icon,
+  Input,
   Select,
   Switch,
   Tabs,
@@ -109,11 +111,46 @@ const RenderSwitch = () => {
   );
 };
 
+const InputRender = () => {
+  const [value, setValue] = useState('');
+  const [date, setDate] = useState(new Date('2024-06-04T13:12:50.463Z'));
+  const [selected, setSelected] = useState([]);
+  return (
+    <>
+      <Input
+        label="Label"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        onBlur={e => setValue(e.target.value)}
+        reset
+        onReset={() => setValue('')}
+      />
+      <hr />
+      <DatePicker
+        onChange={e => setDate(e)}
+        error
+        onPeriodChange={() => {}}
+        value={date}
+      />
+      <hr/>
+      <Select
+        options={options}
+        label="Одиночный выбор"
+        selected={selected}
+        onSelectionChange={setSelected}
+        reset
+        onReset={() => setSelected('')}
+      />
+    </>
+  );
+};
 
 root.render(
   <StrictMode>
     <div className="development-block">
-      <h3>Icon with badge</h3>
+      <h3>Input with reset icon</h3>
+      <InputRender />
+      {/* <h3>Icon with badge</h3>
       <Icon color="primary" containerSize={16} name="IconStarOutlined16" badge={<Badge size="xs" color='error'>1</Badge>} />
       <Icon color="primary" containerSize={24} name="IconPlaylistMenuSettingOutlined24" badge={<Badge size="s" color='error'>1</Badge>} />
       <Icon color="primary" containerSize={32} name="IconStarOutlined32" badge={<Badge size="s" color='error'>1</Badge>} />
@@ -164,11 +201,11 @@ root.render(
       </Badge>
       <hr />
       <h3>L</h3>
-      <Badge size="l">1</Badge>
+      <Badge size="l" className='large'>1</Badge>
       <br />
-      <Badge size="l" variant="outline">
+      <Badge size="l" variant="outline" className='large'>
         1
-      </Badge>
+      </Badge> */}
       {/* <App />
       <br />
       <ThemeSwitcher /> */}

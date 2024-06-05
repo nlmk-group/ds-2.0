@@ -1,9 +1,27 @@
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
 export const argsTypes = {
+  onBlur: {
+    description:
+      'Callback, который будет вызван при изменении значения внутри input, используйте для логики валидации или других действий при потере фокуса',
+    action: 'изменено value'
+  },
   onChange: {
     description: 'Callback, который будет вызван при изменении значения внутри input',
     action: 'изменено value'
+  },
+  onReset: {
+    description: 'Callback, который будет вызван при клике по иконке сброса',
+    action: 'изменено value'
+  },
+  reset: {
+    description: 'Булевое значение для показа иконки сброса',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: false
+      }
+    }
   },
   value: {
     description: 'Значение поля input',

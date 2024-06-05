@@ -34,19 +34,19 @@
   &.error {
     border-color: var(--ac-input-error-stroke);
     background-color: var(--ac-input-error-bg);
-    color: var(--ac-input-error-text);
+    color: var(--ac-description-input-error);
   }
 
   &.warning {
     border-color: var(--ac-input-warning-stroke);
     background-color: var(--ac-input-warning-bg);
-    color: var(--ac-input-warning-text);
+    color: var(--ac-description-input-warning);
   }
 
   &.success {
     border-color: var(--ac-input-success-stroke);
     background-color: var(--ac-input-success-bg);
-    color: var(--ac-input-success-text);
+    color: var(--ac-description-input-success);
   }
 }
 
@@ -204,7 +204,6 @@
 
 .icon {
   position: absolute;
-  inset-inline-end: var(--4-space);
   inset-block-start: var(--4-space);
   height: var(--32-size);
   display: flex;
@@ -213,8 +212,19 @@
   color: var(--ac-input-default-text);
   cursor: pointer;
   background: var(--default-second);
-  margin-right: var(--16-space);
   @include input-color-states;
+}
+
+.close-icon-with-text {
+  inset-inline-end: var(--48-space);
+}
+
+.close-icon-without-text {
+  inset-inline-end: var(--8-space);
+}
+
+.icon-text {
+  inset-inline-end: var(--1-space);
 }
 
 .helper-text {

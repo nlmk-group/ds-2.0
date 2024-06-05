@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { IInputAdditionalProps } from './types';
 
 import Input from '.';
 import { IconMock } from './mock/IconMock';
+import { userEvent } from '@storybook/testing-library';
 
 const inputColorClassNames: IInputAdditionalProps['color'][] = [
   customInputColors.default,
@@ -14,6 +15,27 @@ const inputColorClassNames: IInputAdditionalProps['color'][] = [
   customInputColors.warning,
   customInputColors.success
 ];
+
+const TestInputComponent = () => {
+  const [value, setValue] = useState('');
+
+  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setValue(e.target.value);
+  };
+
+  const handleReset = () => {
+    setValue('');
+  };
+
+  return (
+    <Input
+      value={value}
+      onChange={handleChange}
+      onReset={handleReset}
+      reset
+    />
+  );
+};
 
 describe('src/components/Input', () => {
   test('It should render an input', () => {
@@ -98,5 +120,17 @@ describe('src/components/Input', () => {
     const input = container.getElementsByTagName('input')[0];
     fireEvent.change(input, { target: { value: newValue } });
     expect(mockCallBack).toHaveBeenCalled();
+  });
+
+  test('It should be resettable', async () => {
+    render(<TestInputComponent />);
+
+    const inputElement = screen.getByRole('textbox');
+    await userEvent.type(inputElement, 'Testing');
+    expect(inputElement).toHaveValue('Testing');
+
+    const resetIcon = screen.getByTestId('CLOSE_ICON');
+    fireEvent.click(resetIcon);
+    expect(inputElement).toHaveValue('');
   });
 });

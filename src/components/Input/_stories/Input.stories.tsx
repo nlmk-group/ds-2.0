@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
 import Button from '@components/Button';
 import { customInputColors, sizesMappingInput } from '@components/declaration';
@@ -9,15 +9,10 @@ import { userEvent, waitFor, within } from '@storybook/testing-library';
 import styles from './Input.module.scss';
 
 import Input from '..';
+import { DefaultHelper, ErrorHelper, SuccessHelper, WarningHelper } from '../mock/HelperText';
 import { IconMock } from '../mock/IconMock';
 import { TInputProps } from '../types';
 import { argsTypes } from './argsTypes';
-import {
-  DefaultHelper,
-  ErrorHelper,
-  SuccessHelper,
-  WarningHelper
-} from '../mock/HelperText';
 
 const labelText = 'Label';
 const helperText = 'Helper text';
@@ -31,29 +26,83 @@ export default {
   decorators: [withWrapper]
 } as Meta<typeof Input>;
 
-export const InputDefault = (argTypes: TInputProps): JSX.Element => <Input {...argTypes} />;
-InputDefault.storyName = 'Input по умолчанию';
+export const InputDefault = (argTypes: TInputProps): JSX.Element => {
+  const [value, setValue] = useState('');
 
-export const InputWithLabel = (argTypes: TInputProps): JSX.Element => <Input label={labelText} {...argTypes} />;
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    // какая-нибудь логика после прекращения ввода в input
+  };
+
+  const handleReset = () => {
+    setValue('');
+  };
+
+  console.log({argTypes})
+
+  return (
+    <Input
+      {...argTypes}
+      value={value}
+      reset={argTypes.reset}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      onReset={handleReset}
+      label={labelText}
+    />
+  );
+};
+InputDefault.storyName = 'Input по умолчанию';
+InputDefault.args = {};
+
+export const InputWithLabel = (argTypes: TInputProps): JSX.Element => <Input {...argTypes} label={labelText} />;
 InputWithLabel.storyName = 'Input с лейблом';
+InputWithLabel.args = {};
 
 export const InputWithLabelAndHelperText = (argTypes: TInputProps) => (
-  <Input label={labelText} helperText={helperText} {...argTypes} />
+  <Input {...argTypes} label={labelText} helperText={helperText} />
 );
 InputWithLabelAndHelperText.storyName = 'Input с лейблом и вспомогательным текстом';
+InputWithLabelAndHelperText.args = {};
 
-export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => (
-  <Input label={labelText} helperText={helperText} icon={<IconMock weight="кг" />} {...argTypes} />
-);
-InputWithLabelHelperTextAndTextIcon.storyName = 'Input с лейблом, вспомогательным текстом и текстовой иконкой';
+export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => {
+  const [value, setValue] = useState('');
 
-export const InputWithLabelHelperTextElement= (argTypes: TInputProps) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleReset = () => {
+    setValue('');
+  };
+
+  return (
+    <Input
+      {...argTypes}
+      value={value}
+      reset
+      onChange={handleChange}
+      onReset={handleReset}
+      label={labelText}
+      helperText={helperText}
+      icon={<IconMock weight="кг" />}
+    />
+  );
+};
+InputWithLabelHelperTextAndTextIcon.storyName =
+  'Input с лейблом, вспомогательным текстом и текстовой иконкой и кнопкой сброса';
+InputWithLabelHelperTextAndTextIcon.args = {};
+
+export const InputWithLabelHelperTextElement = (argTypes: TInputProps) => {
   const messageHelper = {
     [customInputColors.default]: <DefaultHelper />,
     [customInputColors.error]: <ErrorHelper />,
     [customInputColors.warning]: <WarningHelper />,
     [customInputColors.success]: <SuccessHelper />
-  }
+  };
   return (
     <div
       style={{
@@ -63,65 +112,70 @@ export const InputWithLabelHelperTextElement= (argTypes: TInputProps) => {
       }}
     >
       {Object.values(customInputColors).map((color: customInputColors) => (
-        <Input
-          label={labelText}
-          helperText={messageHelper[color]}
-          color={color}
-          {...argTypes}
-        />
+        <Input key={color} {...argTypes} label={labelText} helperText={messageHelper[color]} color={color} />
       ))}
     </div>
-  )
+  );
 };
 InputWithLabelHelperTextElement.storyName = 'Input с лейблом, вспомогательным текстом в виде элемента';
+InputWithLabelHelperTextElement.args = {};
 
 export const InputDisabled = (argTypes: TInputProps) => (
-  <Input label={labelText} helperText={helperText} disabled value="value" {...argTypes} />
+  <Input {...argTypes} label={labelText} helperText={helperText} disabled value="value" />
 );
 InputDisabled.storyName = 'Input в состоянии disabled';
+InputDisabled.args = {};
 
 export const InputError = (argTypes: TInputProps) => (
-  <Input helperText={helperText} label={labelText} color={customInputColors.error} id="InputNLMK" {...argTypes} />
+  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.error} id="InputNLMK" />
 );
 InputError.storyName = 'Input в состоянии error';
+InputError.args = {};
 
 export const InputWarning = (argTypes: TInputProps) => (
-  <Input helperText={helperText} label={labelText} color={customInputColors.warning} {...argTypes} />
+  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.warning} />
 );
 InputWarning.storyName = 'Input в состоянии warning';
+InputWarning.args = {};
 
 export const InputSuccess = (argTypes: TInputProps) => (
-  <Input helperText={helperText} label={labelText} color={customInputColors.success} {...argTypes} />
+  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.success} />
 );
 InputSuccess.storyName = 'Input в состоянии success';
+InputSuccess.args = {};
 
-export const InputCompact = (argTypes: TInputProps) => <Input size={sizesMappingInput.s} label="Label" {...argTypes} />;
+export const InputCompact = (argTypes: TInputProps) => <Input {...argTypes} size={sizesMappingInput.s} label="Label" />;
 InputCompact.storyName = 'Input компактный';
+InputCompact.args = {};
 
 // Textarea
-export const InputMultilineDefault = (argTypes: TInputProps): JSX.Element => <Input multiline {...argTypes} />;
+export const InputMultilineDefault = (argTypes: TInputProps): JSX.Element => <Input {...argTypes} multiline />;
 InputMultilineDefault.storyName = 'Textarea по умолчанию';
+InputMultilineDefault.args = {};
 
 export const InputMultilineWithLabel = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} />
 );
 InputMultilineWithLabel.storyName = 'Textarea с лейблом';
+InputMultilineWithLabel.args = {};
 
 export const InputMultilineWithLabelAndHelperText = (argTypes: TInputProps): JSX.Element => (
   <div className={styles['column-wrapper']}>
-    <Input multiline label={labelText} helperText={helperText} {...argTypes} />
-    <Input multiline label={labelText} helperText={<DefaultHelper />} {...argTypes} />
+    <Input {...argTypes} multiline label={labelText} helperText={helperText} />
+    <Input {...argTypes} multiline label={labelText} helperText={<DefaultHelper />} />
   </div>
 );
 InputMultilineWithLabelAndHelperText.storyName = 'Textarea с лейблом и вспомогательным текстом';
+InputMultilineWithLabelAndHelperText.args = {};
 
 export const InputMultilineResize = (argTypes: TInputProps): JSX.Element => (
-    <Input multiline label={labelText} resize {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} resize />
 );
 InputMultilineResize.storyName = 'Textarea со свойством ресайз';
+InputMultilineResize.args = {};
 
 export const InputMultilineDisabled = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} helperText={helperText} disabled {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} helperText={helperText} disabled />
 );
 InputMultilineDisabled.storyName = 'Textarea в состоянии disabled';
 
@@ -134,9 +188,14 @@ export const InputWithColored = (): JSX.Element => {
     setColored(true);
   };
 
+  const handleReset = () => {
+    setValue('');
+    setColored(false);
+  };
+
   return (
     <>
-      <Input label="Label" value={value} colored={colored} onChange={handleChange} />
+      <Input label="Label" value={value} colored={colored} reset onChange={handleChange} onReset={handleReset} />
       <Button style={{ marginTop: '10px' }} onClick={() => setColored(false)}>
         Сохранить
       </Button>
@@ -146,19 +205,22 @@ export const InputWithColored = (): JSX.Element => {
 InputWithColored.storyName = 'Input с подсветкой';
 
 export const InputMultilineError = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} helperText={helperText} color={customInputColors.error} {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.error} />
 );
 InputMultilineError.storyName = 'Textarea в состоянии error';
+InputMultilineError.args = {};
 
 export const InputMultilineWarning = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} helperText={helperText} color={customInputColors.warning} {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.warning} />
 );
 InputMultilineWarning.storyName = 'Textarea в состоянии warning';
+InputMultilineWarning.args = {};
 
 export const InputMultilineSuccess = (argTypes: TInputProps): JSX.Element => (
-  <Input multiline label={labelText} helperText={helperText} color={customInputColors.success} {...argTypes} />
+  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.success} />
 );
 InputMultilineSuccess.storyName = 'Textarea в состоянии success';
+InputMultilineSuccess.args = {};
 
 // Переключатель на PseudoInput
 export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element => {
@@ -169,16 +231,25 @@ export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element =
     setInnerValue(e.target.value);
   };
 
+  const handleReset = () => setInnerValue('');
+
   return (
     <>
-      <Input pseudo={isPseudo} value={innerValue} label={labelText} onChange={handleChange} {...argTypes} />
+      <Input
+        {...argTypes}
+        pseudo={isPseudo}
+        value={innerValue}
+        label={labelText}
+        reset
+        onChange={handleChange}
+        onReset={handleReset}
+      />
       <Button onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
         Переключить
       </Button>
     </>
   );
 };
-InputPseudoDefaultChecking.storyName = 'PseudoInput переключатель';
 
 InputPseudoDefaultChecking.args = {
   onChange: jest.fn()

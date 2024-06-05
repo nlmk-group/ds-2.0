@@ -12,7 +12,10 @@ export interface IInputAdditionalProps {
     icon?: ReactNode;
     helperText?: string | ReactNode;
     resize?: boolean;
-    onChange?: ChangeEventHandler<HTMLInputElement>;
+    reset?: boolean;
+    onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    onReset?: () => void;
+    onBlur?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     size?: TSize;
     color?: customInputColors;
     colored?: boolean;

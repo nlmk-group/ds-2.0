@@ -7,58 +7,72 @@ export default _default;
 export declare const InputDefault: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputWithLabel: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputWithLabelAndHelperText: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputWithLabelHelperTextAndTextIcon: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputWithLabelHelperTextElement: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputDisabled: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputError: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputWarning: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputSuccess: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputCompact: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineDefault: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineWithLabel: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineWithLabelAndHelperText: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineResize: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineDisabled: {
     (argTypes: TInputProps): JSX.Element;
@@ -71,18 +85,20 @@ export declare const InputWithColored: {
 export declare const InputMultilineError: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineWarning: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputMultilineSuccess: {
     (argTypes: TInputProps): JSX.Element;
     storyName: string;
+    args: {};
 };
 export declare const InputPseudoDefaultChecking: {
     (argTypes: TInputProps): JSX.Element;
-    storyName: string;
     args: {
         onChange: import("jest-mock").Mock<unknown, unknown[]>;
     };

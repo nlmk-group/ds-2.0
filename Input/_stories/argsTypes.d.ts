@@ -1,8 +1,27 @@
 import { customInputColors, sizesMappingInput } from '../../declaration';
 export declare const argsTypes: {
+    onBlur: {
+        description: string;
+        action: string;
+    };
     onChange: {
         description: string;
         action: string;
+    };
+    onReset: {
+        description: string;
+        action: string;
+    };
+    reset: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: boolean;
+            };
+        };
     };
     value: {
         description: string;

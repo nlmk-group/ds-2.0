@@ -83,7 +83,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: var(--24-size);
   .test {
     display: flex;
     align-items: center;

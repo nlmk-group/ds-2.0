@@ -23,6 +23,35 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.9 - <span className={styles.date}>07.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена иллюстрация для компонента{' '}
+              <Link
+                href="./?path=/docs/components-errorpage-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ErrorPage
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлен hover для компонента{' '}
+              <Link
+                href="./?path=/docs/components-select-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.8.8 - <span className={styles.date}>03.06.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -45,12 +74,26 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки IdentificationOutlined, MatrixOutlined, RMRecommendationOutlined,
-              ASIImplementationOutlined, HeartOutlined в{' '}
+              • Добавлены иконки в компонент{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
               .
+            </li>
+            <li className={styles['left-padding']}>
+              - IdentificationOutlined
+            </li>
+            <li className={styles['left-padding']}>
+              - MatrixOutlined
+            </li>
+            <li className={styles['left-padding']}>
+              - RMRecommendationOutlined
+            </li>
+            <li className={styles['left-padding']}>
+              - ASIImplementationOutlined
+            </li>
+            <li className={styles['left-padding']}>
+              - HeartOutlined
             </li>
             <li>
               • Удален отступ иконки справа в компоненте{' '}

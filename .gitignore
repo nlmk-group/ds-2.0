@@ -26,3 +26,4 @@ build-storybook.log
 .yalc/
 yalc.lock
 
+node_modules

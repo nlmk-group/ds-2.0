@@ -44,6 +44,15 @@
   transform: translate(-50%, -50%);
 }
 
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--24-size);
+  width: 96% !important;
+  margin: 0em 1em;
+}
+
 .table {
   display: flex;
   flex-wrap: wrap;
@@ -84,6 +93,8 @@
 .card {
   margin: 6px 0;
   width: 320px;
+  height: 180px;
+  height: fit-content;
   @include cardStyle;
 }
 
@@ -91,6 +102,9 @@
   @include flexCenter;
   gap: 24px;
   margin-bottom: 20px;
+  span {
+    height: 22px;
+  }
 }
 
 .icons {

@@ -23,6 +23,53 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.11 - <span className={styles.date}>13.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
+              компонента{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.10 - <span className={styles.date}>12.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена иконка в компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>
+              - Formula
+            </li>
+            <li>
+              • Исправлен тип кнопки в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-select-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.8.9 - <span className={styles.date}>07.06.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -440,7 +487,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
+              в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>

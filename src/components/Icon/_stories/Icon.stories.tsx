@@ -185,12 +185,7 @@ export const AllIcons = (): JSX.Element => {
           <Typography variant="Body1" className={styles.colorControlTitle}>
             Выберите цвет:
           </Typography>
-          <input
-            type="color"
-            ref={colorInputRef}
-            onChange={handleChangeColor}
-            className={styles.colorInput}
-          />
+          <input type="color" ref={colorInputRef} onChange={handleChangeColor} className={styles.colorInput} />
         </div>
       </div>
       <div className={styles.table}>

@@ -22,6 +22,7 @@ const SelectButton: FC<ISelectButton> = ({ disabled, color, isOpen, toggleDropdo
 
   return (
     <Button
+      type="button"
       iconButton={
         <div className={clsx(styles['toggle-list-btn'], isOpen && styles['toggle-list-btn-open'])}>
           <IconChevronArrowDownOutlined24 color={colorIconHelper()} />

@@ -9,7 +9,8 @@ const foldersToProcess: string[] = ['System', 'Metallurgy', 'Custom', 'MES', 'NL
 enum EIconSize {
   Small = 16,
   Medium = 24,
-  Large = 32
+  Large = 32,
+  FortyFour = 44
 }
 const iconSizes: EIconSize[] = Object.values(EIconSize) as EIconSize[];
 

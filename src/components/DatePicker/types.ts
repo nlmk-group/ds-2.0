@@ -33,6 +33,8 @@ export interface BaseProps {
   isHideYear?: boolean;
   size?: sizesMappingInput;
   withoutWeekdays?: boolean;
+  onPanelChange?: (date: Date) => void;
+  onSelect?: (date: Date) => void;
 }
 
 export interface BaseRegularProps extends BaseProps {

@@ -44,6 +44,8 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
       isOpenOnFocus,
       isHideYear,
       withoutWeekdays,
+      onPanelChange,
+      onSelect,
       ...props
     },
     ref
@@ -158,6 +160,8 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
 
     const handleSelect = useCallback(
       (date: Date) => {
+        onSelect && onSelect(date);
+
         if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
           innerOnChange(date);
         }
@@ -215,41 +219,42 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
       [selectedPanel, level, onChange, onClose, withPeriod, withTime]
     );
 
+    const dateAdjustments = {
+      [LEVEL_MAPPING_ENUM.day]: (date: Date) => set(date, { month: date.getMonth() - 1 }),
+      [LEVEL_MAPPING_ENUM.quarter]: (date: Date) => set(date, { year: date.getFullYear() - 1 }),
+      [LEVEL_MAPPING_ENUM.month]: (date: Date) => set(date, { year: date.getFullYear() - 1 }),
+      [LEVEL_MAPPING_ENUM.year]: (date: Date) => set(date, { year: date.getFullYear() - 12 })
+    };
+
     const onLeftArrowClick = useCallback(() => {
-      switch (selectedPanel) {
-        case LEVEL_MAPPING_ENUM.day: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { month: prevPanel.getMonth() - 1 }));
-          break;
-        }
-        case LEVEL_MAPPING_ENUM.quarter:
-        case LEVEL_MAPPING_ENUM.month: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() - 1 }));
-          break;
-        }
-        case LEVEL_MAPPING_ENUM.year: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() - 12 }));
-          break;
-        }
-      }
-    }, [selectedPanel]);
+      setPanelValue((prevPanel) => {
+        if (!prevPanel) return prevPanel;
+
+        const adjustDate = dateAdjustments[selectedPanel];
+        const newDate = adjustDate ? adjustDate(prevPanel) : prevPanel;
+
+        onPanelChange?.(newDate);
+        return newDate;
+      });
+    }, [selectedPanel, onPanelChange]);
 
     const onRightArrowClick = useCallback(() => {
-      switch (selectedPanel) {
-        case LEVEL_MAPPING_ENUM.day: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { month: prevPanel.getMonth() + 1 }));
-          break;
-        }
-        case LEVEL_MAPPING_ENUM.quarter:
-        case LEVEL_MAPPING_ENUM.month: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() + 1 }));
-          break;
-        }
-        case LEVEL_MAPPING_ENUM.year: {
-          setPanelValue(prevPanel => prevPanel && set(prevPanel, { year: prevPanel.getFullYear() + 12 }));
-          break;
-        }
-      }
-    }, [selectedPanel]);
+      setPanelValue((prevPanel) => {
+        if (!prevPanel) return prevPanel;
+
+        const adjustDate = {
+          [LEVEL_MAPPING_ENUM.day]: (date: Date) => set(date, { month: date.getMonth() + 1 }),
+          [LEVEL_MAPPING_ENUM.quarter]: (date: Date) => set(date, { year: date.getFullYear() + 1 }),
+          [LEVEL_MAPPING_ENUM.month]: (date: Date) => set(date, { year: date.getFullYear() + 1 }),
+          [LEVEL_MAPPING_ENUM.year]: (date: Date) => set(date, { year: date.getFullYear() + 12 })
+        }[selectedPanel];
+
+        const newDate = adjustDate ? adjustDate(prevPanel) : prevPanel;
+
+        onPanelChange?.(newDate);
+        return newDate;
+      });
+    }, [selectedPanel, onPanelChange]);
 
     const onContentClick = useCallback(() => {
       switch (selectedPanel) {

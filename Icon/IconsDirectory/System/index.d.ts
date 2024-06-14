@@ -1,4 +1,3 @@
-export { IconASIImplementationOutlined16, IconASIImplementationOutlined24, IconASIImplementationOutlined32 } from './ASIImplementationOutlined';
 export { IconAddCommentFilled16, IconAddCommentFilled24, IconAddCommentFilled32 } from './AddCommentFilled';
 export { IconAddCommentOutlined16, IconAddCommentOutlined24, IconAddCommentOutlined32 } from './AddCommentOutlined';
 export { IconAddPlusCircleFilled16, IconAddPlusCircleFilled24, IconAddPlusCircleFilled32 } from './AddPlusCircleFilled';
@@ -152,6 +151,7 @@ export { IconFormatListFilled16, IconFormatListFilled24, IconFormatListFilled32 
 export { IconFormatListNumberedFilled16, IconFormatListNumberedFilled24, IconFormatListNumberedFilled32 } from './FormatListNumberedFilled';
 export { IconFormatListNumberedOutlined16, IconFormatListNumberedOutlined24, IconFormatListNumberedOutlined32 } from './FormatListNumberedOutlined';
 export { IconFormatListOutlined16, IconFormatListOutlined24, IconFormatListOutlined32 } from './FormatListOutlined';
+export { IconFormula16, IconFormula24, IconFormula32, IconFormula44 } from './Formula';
 export { IconFullScreenExitCloseFilled16, IconFullScreenExitCloseFilled24, IconFullScreenExitCloseFilled32 } from './FullScreenExitCloseFilled';
 export { IconFullScreenExitCloseOutlined16, IconFullScreenExitCloseOutlined24, IconFullScreenExitCloseOutlined32 } from './FullScreenExitCloseOutlined';
 export { IconFullScreenOpenFilled16, IconFullScreenOpenFilled24, IconFullScreenOpenFilled32 } from './FullScreenOpenFilled';
@@ -166,7 +166,6 @@ export { IconHelpOutlined16, IconHelpOutlined24, IconHelpOutlined32 } from './He
 export { IconHelperMailOutlined16, IconHelperMailOutlined24, IconHelperMailOutlined32 } from './HelperMailOutlined';
 export { IconHomeOutlined16, IconHomeOutlined24, IconHomeOutlined32 } from './HomeOutlined';
 export { IconHourglassEmptyOutlined16, IconHourglassEmptyOutlined24, IconHourglassEmptyOutlined32 } from './HourglassEmptyOutlined';
-export { IconIdentificationOutlined16, IconIdentificationOutlined24, IconIdentificationOutlined32 } from './IdentificationOutlined';
 export { IconInfoFilled16, IconInfoFilled24, IconInfoFilled32 } from './InfoFilled';
 export { IconInfoOutlined16, IconInfoOutlined24, IconInfoOutlined32 } from './InfoOutlined';
 export { IconInputFilled16, IconInputFilled24, IconInputFilled32 } from './InputFilled';
@@ -201,7 +200,6 @@ export { IconMapOutlined16, IconMapOutlined24, IconMapOutlined32 } from './MapOu
 export { IconMapPinaltFilled16, IconMapPinaltFilled24, IconMapPinaltFilled32 } from './MapPinaltFilled';
 export { IconMapPinaltOutlined16, IconMapPinaltOutlined24, IconMapPinaltOutlined32 } from './MapPinaltOutlined';
 export { IconMarkUnreadMailboxOutlined16, IconMarkUnreadMailboxOutlined24, IconMarkUnreadMailboxOutlined32 } from './MarkUnreadMailboxOutlined';
-export { IconMatrixOutlined16, IconMatrixOutlined24, IconMatrixOutlined32 } from './MatrixOutlined';
 export { IconMenuBurgerFilled16, IconMenuBurgerFilled24, IconMenuBurgerFilled32 } from './MenuBurgerFilled';
 export { IconMenuBurgerOutlined16, IconMenuBurgerOutlined24, IconMenuBurgerOutlined32 } from './MenuBurgerOutlined';
 export { IconMoreHorizDotsFilled16, IconMoreHorizDotsFilled24, IconMoreHorizDotsFilled32 } from './MoreHorizDotsFilled';
@@ -238,7 +236,6 @@ export { IconQualityFilled16, IconQualityFilled24, IconQualityFilled32 } from '.
 export { IconQualityOutlined16, IconQualityOutlined24, IconQualityOutlined32 } from './QualityOutlined';
 export { IconQuestionMarkFilled16, IconQuestionMarkFilled24, IconQuestionMarkFilled32 } from './QuestionMarkFilled';
 export { IconQuestionMarkOutlined16, IconQuestionMarkOutlined24, IconQuestionMarkOutlined32 } from './QuestionMarkOutlined';
-export { IconRMRecommendationOutlined16, IconRMRecommendationOutlined24, IconRMRecommendationOutlined32 } from './RMRecommendationOutlined';
 export { IconRedoArrowFilled16, IconRedoArrowFilled24, IconRedoArrowFilled32 } from './RedoArrowFilled';
 export { IconRedoArrowOutlined16, IconRedoArrowOutlined24, IconRedoArrowOutlined32 } from './RedoArrowOutlined';
 export { IconRepairWrenchFrom16, IconRepairWrenchFrom24, IconRepairWrenchFrom32 } from './RepairWrenchFrom';

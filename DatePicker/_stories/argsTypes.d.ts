@@ -203,5 +203,13 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    onPanelChange: {
+        description: string;
+        action: string;
+    };
+    onSelect: {
+        description: string;
+        action: string;
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

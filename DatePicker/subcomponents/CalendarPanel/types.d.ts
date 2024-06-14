@@ -28,6 +28,8 @@ export interface CalendarPanelProps {
     disableChangesOnBlur?: boolean;
     isOpenOnFocus?: boolean;
     isHideYear: boolean;
+    onPanelChange?: (date: Date) => void;
+    onSelect?: (date: Date) => void;
     [key: string]: any;
 }
 export {};

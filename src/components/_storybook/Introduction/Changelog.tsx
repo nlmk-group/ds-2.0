@@ -23,6 +23,42 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.13 - <span className={styles.date}>21.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен баг out of memory компонента DateTime, который используется внутри
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                 DatePicker
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.12 - <span className={styles.date}>18.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена ширина меню компонента
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                 Select
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.8.11 - <span className={styles.date}>13.06.24</span>
           </Typography>
           <ul className={styles.list}>

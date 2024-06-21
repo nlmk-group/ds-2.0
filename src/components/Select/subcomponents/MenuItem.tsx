@@ -14,6 +14,9 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
     useContext<ISelectSharedProperties>(SelectSharedProperties);
 
   const notDisabledNotMultiple = !multiple && !disabled;
+  const hasLeftElement = iconLeft || (multiple && !withoutCheckbox);
+  const hasRightElement = iconRight;
+  const isFullWidthLabel = !hasLeftElement && !hasRightElement;
 
   const selectedCondition = (): boolean => {
     if (multiple) {
@@ -36,7 +39,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
       style={{ cursor: notDisabledNotMultiple ? 'pointer' : 'default' }}
       title={getLabel(label)}
     >
-      {Boolean(iconLeft || (multiple && !withoutCheckbox)) && (
+      {hasLeftElement && (
         <div className={styles['left-wrapper']}>
           {iconLeft && (
             <div
@@ -59,7 +62,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
           )}
         </div>
       )}
-      <div className={styles['text-container-item']}>
+      <div className={isFullWidthLabel ?  styles['text-container-item-full-width'] : styles['text-container-item']}>
         <div className={styles.content}>
           <Typography
             variant="Body1-Medium"
@@ -84,7 +87,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
         )}
       </div>
       <div className={styles['right-wrapper']}>
-        {iconRight && (
+        {hasRightElement && (
           <div
             className={clsx(
               styles['icon-wrapper'],

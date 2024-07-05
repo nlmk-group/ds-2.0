@@ -65,6 +65,10 @@ export declare const TooltipDefault: {
     (argsTypes: Args): JSX.Element;
     storyName: string;
 };
+export declare const TooltipWithOpacity: {
+    (argsTypes: Args): JSX.Element;
+    storyName: string;
+};
 export declare const TooltipWrappedDisabled: {
     (argsTypes: Args): JSX.Element;
     storyName: string;

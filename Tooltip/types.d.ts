@@ -4,6 +4,7 @@ export type TooltipBehaviorType = `${ETooltipBehaviorType}`;
 export type TooltipPlacementType = `${ETooltipPlacementType}`;
 export interface ITooltipProps {
     className?: string;
+    popupClassName?: string;
     behavior?: TooltipBehaviorType;
     placement?: TooltipPlacementType;
     children: ReactNode;

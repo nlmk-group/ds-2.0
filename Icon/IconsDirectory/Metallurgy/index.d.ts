@@ -1,3 +1,4 @@
+export { IconACACriticalityAnalysis16, IconACACriticalityAnalysis24, IconACACriticalityAnalysis32 } from './ACACriticalityAnalysis';
 export { IconASIImplementationOutlined16, IconASIImplementationOutlined24, IconASIImplementationOutlined32 } from './ASIImplementationOutlined';
 export { IconASM16, IconASM24, IconASM32 } from './ASM';
 export { IconAnalysisnpFilled16, IconAnalysisnpFilled24, IconAnalysisnpFilled32 } from './AnalysisnpFilled';
@@ -50,6 +51,7 @@ export { IconMixer16, IconMixer24, IconMixer32 } from './Mixer';
 export { IconMixerFilled16, IconMixerFilled24, IconMixerFilled32 } from './MixerFilled';
 export { IconMnemoFilled16, IconMnemoFilled24, IconMnemoFilled32 } from './MnemoFilled';
 export { IconMnemoOutlined16, IconMnemoOutlined24, IconMnemoOutlined32 } from './MnemoOutlined';
+export { IconModelling16, IconModelling24, IconModelling32 } from './Modelling';
 export { IconPechivtoFilled16, IconPechivtoFilled24, IconPechivtoFilled32 } from './PechivtoFilled';
 export { IconPechivtoOutlined16, IconPechivtoOutlined24, IconPechivtoOutlined32 } from './PechivtoOutlined';
 export { IconProkat16, IconProkat24, IconProkat32 } from './Prokat';

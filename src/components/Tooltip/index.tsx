@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
+import { Tooltip as ReactTooltip, TooltipRefProps } from 'react-tooltip';
+
+import { generateUUID } from '@components/declaration';
+import clsx from 'clsx';
 
 import { ITooltipProps } from './types';
-import clsx from 'clsx';
-import { Tooltip as ReactTooltip, TooltipRefProps  } from 'react-tooltip'
 
 import styles from './Tooltip.module.scss';
-import { generateUUID } from '@components/declaration';
-import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
+
 import { Typography } from '..';
+import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
 
 const Tooltip: FC<ITooltipProps> = ({
   title,
@@ -17,16 +19,17 @@ const Tooltip: FC<ITooltipProps> = ({
   behavior = ETooltipBehaviorType.hover,
   placement = ETooltipPlacementType.top,
   render,
-  clickable = false
+  clickable = false,
+  popupClassName
 }) => {
-  const tooltipRef = React.useRef<TooltipRefProps >(null);
+  const tooltipRef = React.useRef<TooltipRefProps>(null);
 
   const handleFocus = () => {
-    behavior === ETooltipBehaviorType.focus && tooltipRef.current?.open()
+    behavior === ETooltipBehaviorType.focus && tooltipRef.current?.open();
   };
 
   const handleBlur = () => {
-    behavior === ETooltipBehaviorType.focus && tooltipRef.current?.close()
+    behavior === ETooltipBehaviorType.focus && tooltipRef.current?.close();
   };
 
   const renderTitle = (title: string): JSX.Element => {
@@ -45,25 +48,25 @@ const Tooltip: FC<ITooltipProps> = ({
     );
   };
 
-
   const tooltipId = generateUUID();
+
+  const hasContent = title || description || render;
+
+  if (!hasContent) {
+    return <>{children}</>;
+  }
 
   return (
     <div className={clsx(styles.tooltip, className)}>
-      <div
-        className={styles['tooltip-target']}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        data-tooltip-id={tooltipId}
-      >
+      <div className={styles['tooltip-target']} onFocus={handleFocus} onBlur={handleBlur} data-tooltip-id={tooltipId}>
         {children}
       </div>
       <ReactTooltip
         ref={tooltipRef}
         id={tooltipId}
-        openOnClick ={behavior === ETooltipBehaviorType.click}
+        openOnClick={behavior === ETooltipBehaviorType.click}
         place={placement}
-        className={styles['tooltip-wrapper']}
+        className={clsx(styles['tooltip-wrapper'], popupClassName)}
         classNameArrow={styles['arrow-styling']}
         clickable={clickable}
       >

@@ -23,17 +23,76 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.8.16 - <span className={styles.date}>01.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена возможность добавления стилей к всплывающему окну {' '}
+              <Link
+                href="./?path=/docs/components-tooltip-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.15 - <span className={styles.date}>27.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены баги отображения компонента{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+            </li>
+            <li>
+              • Добавлена иконка в компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>- ACACriticalityAnalysis</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.8.14 - <span className={styles.date}>24.06.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена иконка в компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>- Modelling</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.8.13 - <span className={styles.date}>21.06.24</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлен баг out of memory компонента DateTime, который используется внутри
+              • Исправлен баг out of memory компонента DateTime, который используется внутри{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                 DatePicker
+                DatePicker
               </Link>
               .
             </li>
@@ -45,13 +104,13 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлена ширина меню компонента
+              • Исправлена ширина меню компонента{' '}
               <Link
                 href="./?path=/docs/components-select-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                 Select
+                Select
               </Link>
               .
             </li>
@@ -63,8 +122,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
-              компонента{' '}
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри компонента{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
@@ -88,9 +146,7 @@ export const Changelog = () => {
               </Link>
               .
             </li>
-            <li className={styles['left-padding']}>
-              - Formula
-            </li>
+            <li className={styles['left-padding']}>- Formula</li>
             <li>
               • Исправлен тип кнопки в компоненте{' '}
               <Link
@@ -163,21 +219,11 @@ export const Changelog = () => {
               </Link>
               .
             </li>
-            <li className={styles['left-padding']}>
-              - IdentificationOutlined
-            </li>
-            <li className={styles['left-padding']}>
-              - MatrixOutlined
-            </li>
-            <li className={styles['left-padding']}>
-              - RMRecommendationOutlined
-            </li>
-            <li className={styles['left-padding']}>
-              - ASIImplementationOutlined
-            </li>
-            <li className={styles['left-padding']}>
-              - HeartOutlined
-            </li>
+            <li className={styles['left-padding']}>- IdentificationOutlined</li>
+            <li className={styles['left-padding']}>- MatrixOutlined</li>
+            <li className={styles['left-padding']}>- RMRecommendationOutlined</li>
+            <li className={styles['left-padding']}>- ASIImplementationOutlined</li>
+            <li className={styles['left-padding']}>- HeartOutlined</li>
             <li>
               • Удален отступ иконки справа в компоненте{' '}
               <Link
@@ -523,8 +569,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
-              в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
@@ -897,7 +942,7 @@ export const Changelog = () => {
                 className={styles['link-changelog']}
               >
                 Switch
-              </Link>{' '}
+              </Link>
               , если на странице их несколько.
             </li>
           </ul>
@@ -915,7 +960,7 @@ export const Changelog = () => {
                 className={styles['link-changelog']}
               >
                 Switch
-              </Link>{' '}
+              </Link>
               . Компонент стал контролируемым.
             </li>
           </ul>

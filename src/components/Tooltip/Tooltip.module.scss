@@ -7,11 +7,11 @@
 .tooltip {
   font: var(--font-families-pt-root-ui);
   position: relative;
-  display: inline-flex;
-  width: max-content;
+  display: inline-block;
+  width: auto;
 
   &-target {
-    display: flex;
+    display: inline-block;
     border: none;
     background: inherit;
     font-size: inherit;
@@ -118,7 +118,7 @@
   gap: var(--8-space);
   width: max-content;
   pointer-events: none;
-  z-index: 1;
+  z-index: 10000;
 }
 
 .tooltip .tooltip-wrapper {

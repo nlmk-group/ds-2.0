@@ -149,3 +149,8 @@
 .line-error {
   background-color: var(--ac-badge-solid-error-fill);
 }
+
+.popup {
+  background-color: var(--error-red-900) !important;
+  color: var(--white) !important;
+}

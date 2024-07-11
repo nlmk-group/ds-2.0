@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/SimpleSelect/subcomponents/Options/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEjD,MAAM,WAAW,aAAa;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,SAAS,CAAC,EAAE,aAAa,CAAC;IAC1B,SAAS,CAAC,EAAE,aAAa,CAAC,OAAO,CAAC,CAAC;CACpC"}

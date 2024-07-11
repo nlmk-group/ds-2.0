@@ -49,6 +49,8 @@ export { default as MenuItem } from './Sidebar';
 export { default as SubmenuItem } from './Sidebar';
 export { default as Scrollbar } from './Scrollbar';
 export { default as Drawer } from './Drawer';
+export { default as SimpleSelect } from './SimpleSelect';
+export { default as OptionItem } from './SimpleSelect/subcomponents/OptionItem';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';
 export * from './Theme/hooks';

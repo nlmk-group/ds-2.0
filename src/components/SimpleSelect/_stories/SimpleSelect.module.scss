@@ -1,0 +1,16 @@
+.wrapper {
+  background-color: var(--background-paper);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+  height: 400px;
+}
+
+.customOption {
+  height: var(--90-size);
+
+  &:last-child,
+  &:first-child,{
+    height: var(--90-size);
+  }
+}

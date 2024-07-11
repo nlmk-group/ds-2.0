@@ -1,0 +1,33 @@
+.item {
+  position: relative;
+  color: var(--ac-select-item-default-label);
+
+  &:hover {
+    color: var(--ac-select-item-hover-label);
+    background-color: var(--ac-select-item-hover-bg);
+  }
+
+  &.disabled {
+    opacity: var(--45-opacity);
+
+    div {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &.focused {
+    color: var(--ac-select-item-hover-label);
+    background-color: var(--ac-select-item-hover-bg);
+  }
+
+  &.selected {
+    background: var(--ac-select-item-selected-bg);
+    color: var(--ac-select-item-selected-label);
+
+    &:hover {
+      background-color: var(--ac-select-item-activehover-bg);
+      color: var(--ac-select-item-activehover-label);
+    }
+  }
+}

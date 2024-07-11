@@ -1,0 +1,14 @@
+.select {
+  position: relative;
+
+  &__input {
+    cursor: pointer;
+  }
+}
+
+.input-helper {
+  input {
+    cursor: pointer;
+    text-overflow: ellipsis;
+  }
+}

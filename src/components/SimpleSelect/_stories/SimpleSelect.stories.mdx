@@ -1,0 +1,21 @@
+import { Meta, Unstyled, Story } from '@storybook/addon-docs';
+import SimpleSelect from '..';
+import Stories from './Stories';
+
+<Meta
+  title="Components/SimpleSelect/Info"
+  component={SimpleSelect}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A29073&mode=design&t=awyt3Fzj1XS6th7v-1'
+    },
+    jest: ['SimpleSelect.test.tsx']
+  }}
+/>
+
+<Story name="Docs">
+  <Unstyled>
+    <Stories />
+  </Unstyled>
+</Story>

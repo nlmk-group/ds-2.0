@@ -6,11 +6,23 @@ $box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper {
+  position: relative;
   display: flex;
   padding: var(--8-space) var(--16-space);
   align-items: center;
   gap: var(--8-space);
   border-radius: var(--4-radius);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 6px;
+    height: 100%;
+    border-radius: var(--4-radius) 0 0 var(--4-radius);
+  }
 }
 
 .background-grey {
@@ -43,6 +55,54 @@ $box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 .background-pink {
   @include content-helper(var(--ac-snackbar-pink-bg), var(--ac-snackbar-pink-text));
   box-shadow: $box-shadow;
+}
+
+.indicator-dark {
+  &:before {
+    @include content-helper(var(--ac-snackbar-dark-bg), var(--ac-snackbar-dark-text));
+  }
+}
+
+.indicator-green {
+  &:before {
+    @include content-helper(var(--ac-snackbar-green-bg), var(--ac-snackbar-green-text));
+  }
+}
+
+.indicator-red {
+  &:before {
+    @include content-helper(var(--ac-snackbar-red-bg), var(--ac-snackbar-red-text));
+  }
+}
+
+.indicator-grey {
+  &:before {
+    @include content-helper(var(--ac-snackbar-grey-bg), var(--ac-snackbar-grey-text));
+  }
+}
+
+.indicator-blue {
+  &:before {
+    @include content-helper(var(--ac-snackbar-blue-bg), var(--ac-snackbar-grey-text));
+  }
+}
+
+.indicator-light-green {
+  &:before {
+    @include content-helper(var(--ac-snackbar-light-green-bg), var(--ac-snackbar-light-green-text));
+  }
+}
+
+.indicator-pink {
+  &:before {
+    @include content-helper(var(--ac-snackbar-pink-bg), var(--ac-snackbar-pink-text));
+  }
+}
+
+.indicator-orange {
+  &:before {
+    @include content-helper(var(--ac-snackbar-orange-bg), var(--ac-snackbar-pink-text));
+  }
 }
 
 .btn-wrapper {

@@ -1,0 +1,9 @@
+.bg {
+  background-color: var(--never-changes-white);
+  > span {
+    color: #66747e;
+  }
+  path {
+    fill: #b3b9bf;
+  }
+}

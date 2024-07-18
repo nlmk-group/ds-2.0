@@ -5,8 +5,9 @@ import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
+import storiesStyles from './SnackbarStories.module.scss';
 
-import { colorMapping } from '../enums';
+import { colorMapping, indicatorMapping } from '../enums';
 import { ISnackbar } from '../types';
 import argsTypes from './argsTypes';
 import {
@@ -15,7 +16,7 @@ import {
   SNACKBAR_CLOSE,
   SNACKBAR_COLOR,
   SNACKBAR_CUSTOM_ICON,
-  SNACKBAR_ICON,
+  SNACKBAR_ICON, SNACKBAR_INDICATOR,
   SNACKBAR_OPACITY
 } from './constants';
 
@@ -63,7 +64,7 @@ export const SnackbarColor = (argTypes: ISnackbar): ReactNode => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--8-space'
+        gap: 'var(--8-space)'
       }}
     >
       {Object.values(colorMapping).map((color: colorMapping) => (
@@ -73,9 +74,32 @@ export const SnackbarColor = (argTypes: ISnackbar): ReactNode => {
   );
 };
 
+export const SnackbarIndicator = (argTypes: ISnackbar): ReactNode => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--8-space)'
+      }}
+    >
+      {Object.values(indicatorMapping).map((color: indicatorMapping) => (
+        <Snackbar key={color} {...argTypes} indicator={color} className={storiesStyles.bg} />
+      ))}
+    </div>
+  );
+};
+
 SnackbarColor.storyName = SNACKBAR_COLOR;
 SnackbarColor.args = {
   children: SNACKBAR_COLOR,
+  close: action('onClose'),
+  actionButton: action('onActionClicked')
+};
+
+SnackbarIndicator.storyName = SNACKBAR_INDICATOR;
+SnackbarIndicator.args = {
+  children: SNACKBAR_INDICATOR,
   close: action('onClose'),
   actionButton: action('onActionClicked')
 };

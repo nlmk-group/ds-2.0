@@ -39,6 +39,7 @@ const OptionItem: FC<IOptionItemProps> = ({
 
   const itemStyles = {
     cursor: disabled ? 'default' : 'pointer',
+    height: 'auto',
     ...style
   };
 

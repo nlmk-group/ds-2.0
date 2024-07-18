@@ -1,4 +1,4 @@
-import { colorMapping } from '../enums';
+import { colorMapping, indicatorMapping } from '../enums';
 
 const argsTypes = {
   children: {
@@ -12,10 +12,20 @@ const argsTypes = {
         summary: colorMapping.grey
       },
       type: {
-        summary: 'colorMapping'
+        summary: Object.values(colorMapping).join(' | ')
       }
     },
     options: Object.values(colorMapping),
+    control: { type: 'select' }
+  },
+  indicator: {
+    description: 'Необязательное свойство. Цветной индикатор Snackbar. По умолчанию отсутствует.',
+    table: {
+      type: {
+        summary: Object.values(indicatorMapping).join(' | ')
+      }
+    },
+    options: Object.values(indicatorMapping),
     control: { type: 'select' }
   },
   bgOpacity: {

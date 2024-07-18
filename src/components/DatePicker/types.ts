@@ -35,6 +35,7 @@ export interface BaseProps {
   withoutWeekdays?: boolean;
   onPanelChange?: (date: Date) => void;
   onSelect?: (date: Date) => void;
+  infiniteTimeScroll?: boolean;
 }
 
 export interface BaseRegularProps extends BaseProps {

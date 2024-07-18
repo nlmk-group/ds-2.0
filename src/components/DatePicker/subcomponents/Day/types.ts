@@ -3,6 +3,7 @@ import { MouseEvent } from 'react';
 import { TLevel } from '@components/DatePicker/types';
 
 export interface DayProps {
+  id?: string;
   selected?: boolean;
   disabled?: boolean;
   today?: boolean;
@@ -15,4 +16,5 @@ export interface DayProps {
   onHover?: () => void;
   disableTimeChange?: boolean;
   date?: Date;
+  infiniteTimeScroll?: boolean;
 }

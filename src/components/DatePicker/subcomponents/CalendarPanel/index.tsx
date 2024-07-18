@@ -46,6 +46,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
       withoutWeekdays,
       onPanelChange,
       onSelect,
+      infiniteTimeScroll,
       ...props
     },
     ref
@@ -291,6 +292,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
               value={value}
               selectedTime={selectedTime}
               onChange={setSelectedTime}
+              infiniteTimeScroll={infiniteTimeScroll}
             />
           ) : undefined
         }

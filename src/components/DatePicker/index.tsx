@@ -49,6 +49,7 @@ export const DatePicker: TDatePickerProps = ({
   withoutWeekdays = false,
   onPanelChange,
   onSelect,
+  infiniteTimeScroll,
   ...restInputProps
 }) => {
   const withPeriod = useMemo(() => ['period', 'shift'].includes(type), [type]);
@@ -199,6 +200,7 @@ export const DatePicker: TDatePickerProps = ({
       withoutWeekdays={withoutWeekdays}
       onPanelChange={onPanelChange}
       onSelect={onSelect}
+      infiniteTimeScroll={infiniteTimeScroll}
       {...attributes.popper}
     />
   );

@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon, Snackbar } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { colorMapping } from './enums';
+import { colorMapping, indicatorMapping } from './enums';
 
 describe('src/components/Snackbar', () => {
   const testTitle = 'Hello world!';
@@ -45,6 +45,13 @@ describe('src/components/Snackbar', () => {
         </Snackbar>
       );
       expect(screen.getByTestId(`SNACKBAR_ICON_${color}`)).toBeInTheDocument();
+    });
+  });
+
+  Object.values(indicatorMapping).forEach((color: indicatorMapping) => {
+    test(`It should render a Snackbar with ${color} indicator`, () => {
+      render(<Snackbar indicator={color}>Hello!</Snackbar>);
+      expect(screen.getByTestId('SNACKBAR_WRAPPER').classList.contains(`indicator-${color}`)).toBe(true);
     });
   });
 

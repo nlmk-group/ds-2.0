@@ -17,7 +17,8 @@ const Snackbar: FC<ISnackbar> = ({
   close = null,
   color = colorMapping.grey,
   customIcon = null,
-  withIcon = false
+  withIcon = false,
+  indicator = ''
 }) => {
 
   return (
@@ -25,6 +26,7 @@ const Snackbar: FC<ISnackbar> = ({
       className={clsx(
         styles.wrapper,
         styles[`background-${color}`],
+        styles[`indicator-${indicator}`],
         className
       )}
       data-testid='SNACKBAR_WRAPPER'

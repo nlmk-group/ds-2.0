@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import styles from './Day.module.scss';
 
 export const Day: FC<DayProps & PropsWithChildren> = ({
+  id,
   isHoverState,
   onHover,
   onClick,
@@ -20,12 +21,13 @@ export const Day: FC<DayProps & PropsWithChildren> = ({
   end,
   children,
   disableTimeChange,
-  date
+  date,
+  infiniteTimeScroll
 }) => {
   const dateId = date ? format(date, 'dd-MM-yyyy') : undefined;
   return (
     <div
-      id={dateId}
+      id={`${dateId ?? ''}${id ?? ''}`}
       onClick={!disabled ? (onClick as MouseEventHandler<HTMLDivElement> | undefined) : undefined}
       className={clsx(styles.root, {
         [styles.selected]: selected,
@@ -36,7 +38,8 @@ export const Day: FC<DayProps & PropsWithChildren> = ({
         [styles.end]: end,
         [styles[type]]: type,
         [styles.hoverState]: isHoverState,
-        [styles.disableTimeChange]: disableTimeChange
+        [styles.disableTimeChange]: disableTimeChange,
+        [styles.infiniteTimeScroll]: infiniteTimeScroll
       })}
       onMouseOver={!disabled ? onHover : undefined}
       {...{ 'data-testid': selected ? 'selected' : undefined }}

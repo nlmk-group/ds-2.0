@@ -14,4 +14,6 @@ export interface TimeSelectorProps {
   enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
   enabledMinuteFrom?: (date: Date | undefined) => number;
   enabledMinuteTo?: (date: Date | undefined) => number;
+  infiniteTimeScroll?: boolean;
 }
+

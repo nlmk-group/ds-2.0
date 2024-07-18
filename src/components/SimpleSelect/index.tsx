@@ -195,7 +195,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           className={clsx(styles.select__input, styles['input-helper'])}
           data-testid="select-input"
         />
-        <Options>
+        <Options menuStyle={{ maxWidth: selectRef.current?.offsetWidth }}>
           {noOptions ? (
             <OptionItem value="" label={noOptionsText} disabled>
               {noOptionsText}

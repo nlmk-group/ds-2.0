@@ -67,6 +67,10 @@
   }
 }
 
+.infiniteTimeScroll {
+  position: relative;
+}
+
 .today {
   & .wrapper {
     border: var(--1-border) solid var(--ac-calendar-state-today-stroke);

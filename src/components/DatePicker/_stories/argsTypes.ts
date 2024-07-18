@@ -193,5 +193,14 @@ export const argsTypes = {
   onSelect: {
     description: 'Callback, который будет вызван при нажатии на любое значение дня/месяца/квартала/года в календаре',
     action: 'изменен день/месяц/квартал/год'
+  },
+  infiniteTimeScroll: {
+    description: 'Включаем бесконечный скролл календаря',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    },
+    control: { type: 'boolean' }    
   }
 };

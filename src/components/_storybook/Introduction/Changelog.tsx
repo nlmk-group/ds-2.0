@@ -23,6 +23,79 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.9.4 - <span className={styles.date}>17.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены стили OptionItem для компонента{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.3 - <span className={styles.date}>16.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлено свойство indicator, оно отвечает за визуальное отображение индикатора в уведомлении для
+              компонента{' '}
+              <Link
+                href="./?path=/docs/components-snackbar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Snackbar
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.2 - <span className={styles.date}>15.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена работа backdrop (теперь реагирует непосредственно на нажатие) для компонента{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.1 - <span className={styles.date}>13.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен бесконечный скролл при выборе времени{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.9.0 - <span className={styles.date}>10.07.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -45,7 +118,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлена возможность добавления стилей к всплывающему окну {' '}
+              • Добавлена возможность добавления стилей к всплывающему окну{' '}
               <Link
                 href="./?path=/docs/components-tooltip-stories--docs"
                 target="blank"
@@ -140,8 +213,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
-              компонента{' '}
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри компонента{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
@@ -588,8 +660,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
-              в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>

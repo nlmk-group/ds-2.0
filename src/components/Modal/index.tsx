@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { ESizes } from '@components/Button/enums';
-import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
+import { Button, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
 import { IModalProps } from './types';
@@ -23,7 +23,6 @@ const Modal: FC<IModalProps> = ({
   const position = useRef({ left: 0, top: 0, dragStartX: 0, dragStartY: 0 });
   const [isDragging, setIsDragging] = useState(false);
 
-  // Обработчик перемещения мыши для перетаскивания
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (!isDragging) return;
@@ -40,10 +39,8 @@ const Modal: FC<IModalProps> = ({
     [isDragging]
   );
 
-  // Обработчик отпускания кнопки мыши после перетаскивания
   const handleMouseUp = useCallback(() => setIsDragging(false), []);
 
-  // Обработчик нажатия на элемент, за который можно тащить
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (!isDraggable || e.target !== dragHandleRef.current) return;
@@ -54,13 +51,18 @@ const Modal: FC<IModalProps> = ({
     [isDraggable]
   );
 
+  const handleBackdropClick = () => {
+    if (!disableBackdropClick) {
+      onClose();
+    }
+  };
+
   useEffect(() => {
     if (isDraggable) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
     }
 
-    // Обработчик нажатия клавиши Escape
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (onEscapeDown) {
@@ -80,29 +82,37 @@ const Modal: FC<IModalProps> = ({
 
   if (!isOpen) return null;
 
-  const modalClasses = `${styles.modal} ${isResizable ? styles.resizable : ''} ${
-    !isDraggable ? styles.topPadding : ''
-  }`;
-  const dragHandleClasses = `${styles.dragHandle} ${isDraggable ? styles.draggable : ''}`;
+  const modalClasses = clsx(
+    styles.modal,
+    {
+      [styles.resizable]: isResizable,
+      [styles.topPadding]: !isDraggable
+    },
+    className
+  );
+  const dragHandleClasses = clsx(styles.dragHandle, {
+    [styles.draggable]: isDraggable
+  });
 
   return (
-    <div className={clsx(styles.modalOverlay, className)}>
-      <ClickAwayListener onClickAway={() => (disableBackdropClick ? void 0 : onClose())}>
+    <>
+      <div className={styles.backdrop} onClick={handleBackdropClick} />
+      <div className={styles.modalWrapper}>
         <div className={modalClasses} ref={modalRef} onMouseDown={handleMouseDown}>
           {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
           {children}
         </div>
-      </ClickAwayListener>
-      <Button
-        iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
-        variant="primary"
-        fill="clear"
-        className={styles.modalClose}
-        onClick={onClose}
-        aria-label="Close"
-        size={ESizes.s}
-      />
-    </div>
+        <Button
+          iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
+          variant="primary"
+          fill="clear"
+          className={styles.modalClose}
+          onClick={onClose}
+          aria-label="Close"
+          size={ESizes.s}
+        />
+      </div>
+    </>
   );
 };
 

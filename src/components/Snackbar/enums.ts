@@ -11,3 +11,19 @@ export enum colorMapping {
   'light-green' = 'light-green',
   pink = 'pink'
 }
+
+/**
+ * @type {enum} indicatorMapping
+ */
+
+export enum indicatorMapping {
+  dark = 'dark',
+  blue = 'blue',
+  green = 'green',
+  red = 'red',
+  orange = 'orange',
+  grey = 'grey',
+  'light-green' = 'light-green',
+  pink = 'pink'
+}
+

@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { hours, minutes, seconds } from '@components/DatePicker/helpers';
-import { Day } from '@components/DatePicker/subcomponents';
+import { Day, InfiniteContainer } from '@components/DatePicker/subcomponents';
 import { TimeSelectorProps } from '@components/DatePicker/subcomponents/TimeSelector/types';
 import { set } from 'date-fns';
 import { isInteger } from 'lodash';
@@ -19,7 +19,8 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
   selectedTime,
   value,
   onChange,
-  innerValue
+  innerValue,
+  infiniteTimeScroll
 }) => {
   let hoursFrom = 0,
     hoursTo = 0,
@@ -98,6 +99,13 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
     }
   }, [secondsContainerRef, hoursContainerRef, minutesContainerRef, value]);
 
+  const checkSelectedTime = (unit: 'Hours' | 'Minutes' | 'Seconds') => 
+    (value: number, selectedTime?: Date) => selectedTime?.[`get${unit}`]() === value;
+
+  const getSelectedHour = checkSelectedTime('Hours');
+  const getSelectedMinutes = checkSelectedTime('Minutes');
+  const getSelectedSeconds = checkSelectedTime('Seconds');
+
   return (
     <div className={styles.root}>
       <div className={styles.column} ref={setHoursContainerRef}>
@@ -106,16 +114,26 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
             чч
           </Typography>
         </div>
-        {enabledHours.map(hour => (
+        {!infiniteTimeScroll && enabledHours.map(hour => (
           <Day
             key={hour.value}
             disabled={disabled}
-            selected={selectedTime && hour.value === selectedTime.getHours()}
+            selected={getSelectedHour(hour.value, selectedTime)}
             onClick={() => handleHourClick(hour.value)}
           >
             {hour.label}
           </Day>
         ))}
+        {infiniteTimeScroll && (
+          <InfiniteContainer 
+            values={enabledHours} 
+            disabled={disabled}
+            selectedTime={selectedTime}
+            handleMinuteClick={handleHourClick}
+            container={hoursContainerRef}
+            getSelected={getSelectedHour}
+          />          
+        )}        
       </div>
       <div className={styles.column} ref={setMinutesContainerRef}>
         <div className={styles.columnTitle}>
@@ -123,11 +141,21 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
             мм
           </Typography>
         </div>
-        {enabledMinutes.map(minute => (
+        {infiniteTimeScroll && (
+          <InfiniteContainer 
+            values={enabledMinutes} 
+            disabled={disabled}
+            selectedTime={selectedTime}
+            handleMinuteClick={handleMinuteClick}
+            container={minutesContainerRef}
+            getSelected={getSelectedMinutes}
+          />
+        )}
+        {!infiniteTimeScroll && enabledMinutes.map(minute => (
           <Day
             key={minute.value}
             disabled={disabled}
-            selected={selectedTime && minute.value === selectedTime.getMinutes()}
+            selected={getSelectedMinutes(minute.value, selectedTime)}
             onClick={() => handleMinuteClick(minute.value)}
           >
             {minute.label}
@@ -141,16 +169,27 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
               сс
             </Typography>
           </div>
-          {seconds.map(second => (
+          {!infiniteTimeScroll && seconds.map(second => (
             <Day
               key={second.value}
               disabled={disabled}
-              selected={selectedTime && second.value === selectedTime.getSeconds()}
+              selected={getSelectedSeconds(second.value, selectedTime)}
               onClick={() => handleSecondClick(second.value)}
             >
               {second.label}
             </Day>
           ))}
+          {infiniteTimeScroll && (
+            <InfiniteContainer 
+              values={seconds} 
+              disabled={disabled}
+              selectedTime={selectedTime}
+              handleMinuteClick={handleSecondClick}
+              container={secondsContainerRef}
+              getSelected={getSelectedSeconds}
+            />            
+
+          )}
         </div>
       )}
     </div>

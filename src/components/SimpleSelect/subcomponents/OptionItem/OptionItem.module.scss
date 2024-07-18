@@ -1,6 +1,9 @@
 .item {
   position: relative;
   color: var(--ac-select-item-default-label);
+  white-space: normal;
+  word-wrap: break-word;
+  text-wrap: balance;
 
   &:hover {
     color: var(--ac-select-item-hover-label);

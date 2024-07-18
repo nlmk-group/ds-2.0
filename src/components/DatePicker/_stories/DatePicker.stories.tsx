@@ -416,3 +416,12 @@ export const ExtraCompact = (): JSX.Element => {
     </div>
   );
 };
+
+export const infiniteTimeScroll = (): JSX.Element => {
+  const [value, onChange] = useState(new Date());
+  return (
+    <div style={{ height: '330px' }}>
+      <DatePicker value={value} size={sizesMappingInput.xs} onChange={onChange} type="seconds" infiniteTimeScroll />
+    </div>
+  );
+};

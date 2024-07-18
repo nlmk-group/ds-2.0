@@ -53,28 +53,30 @@ describe('src/components/Modal', () => {
     expect(handleEscapeDown).toHaveBeenCalled();
   });
 
-  it('It should applies custom className', () => {
+  it('It should apply custom className', () => {
     const { container } = render(
       <Modal isOpen className="custom-class" onClose={() => {}}>
         <div>Content</div>
       </Modal>
     );
-    expect(container.firstChild).toHaveClass('custom-class');
+    expect(container.querySelector('.modalWrapper > div')).toHaveClass('custom-class');
   });
 
-  it('It should closes on click away when ClickAwayListener is triggered', () => {
+  it('It should close on backdrop click', () => {
     const handleClose = jest.fn();
     render(
-      <div>
-        <Modal isOpen onClose={handleClose}>
-          <div>Content</div>
-        </Modal>
-        <div data-testid="outside">Outside Modal</div>
-      </div>
+      <Modal isOpen onClose={handleClose}>
+        <div>Content</div>
+      </Modal>
     );
 
-    fireEvent.mouseUp(screen.getByTestId('outside')); // Убедитесь, что клик происходит вне модального окна
-    expect(handleClose).toHaveBeenCalled();
+    const backdrop = document.querySelector('.backdrop');
+    if (backdrop) {
+      fireEvent.click(backdrop);
+      expect(handleClose).toHaveBeenCalled();
+    } else {
+      throw new Error('Backdrop element not found');
+    }
   });
 
   it('It should not render when isOpen is false', () => {

@@ -33,4 +33,5 @@ export interface CalendarPanelProps {
   onPanelChange?: (date: Date) => void;
   onSelect?: (date: Date) => void;
   [key: string]: any;
+  infiniteTimeScroll?: boolean
 }

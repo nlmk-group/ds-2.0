@@ -4,7 +4,7 @@ $paddingChild: 18px;
   display: flex;
   align-items: center;
   padding: var(--8-space) var(--24-space) var(--8-space) var(--12-space);
-  height: 40px;
+  min-height: var(--40-size);
   box-sizing: border-box;
   color: var(--text-grey-900);
 

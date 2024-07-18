@@ -1,4 +1,4 @@
-import { colorMapping } from '../enums';
+import { colorMapping, indicatorMapping } from '../enums';
 declare const argsTypes: {
     children: {
         description: string;
@@ -17,6 +17,18 @@ declare const argsTypes: {
             };
         };
         options: colorMapping[];
+        control: {
+            type: string;
+        };
+    };
+    indicator: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+        options: indicatorMapping[];
         control: {
             type: string;
         };

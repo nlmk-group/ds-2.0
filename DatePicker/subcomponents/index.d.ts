@@ -11,4 +11,5 @@ export * from './ShiftSelector';
 export * from './TimeSelector';
 export * from './Weekdays';
 export * from './YearsCalendar';
+export * from './InfiniteContainer';
 //# sourceMappingURL=index.d.ts.map

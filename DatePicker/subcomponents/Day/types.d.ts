@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { TLevel } from '../../types';
 export interface DayProps {
+    id?: string;
     selected?: boolean;
     disabled?: boolean;
     today?: boolean;
@@ -13,5 +14,6 @@ export interface DayProps {
     onHover?: () => void;
     disableTimeChange?: boolean;
     date?: Date;
+    infiniteTimeScroll?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

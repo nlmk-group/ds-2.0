@@ -35,6 +35,15 @@ export declare const SnackbarColor: {
         actionButton: import("@storybook/addon-actions").HandlerFunction;
     };
 };
+export declare const SnackbarIndicator: {
+    (argTypes: ISnackbar): ReactNode;
+    storyName: string;
+    args: {
+        children: string;
+        close: import("@storybook/addon-actions").HandlerFunction;
+        actionButton: import("@storybook/addon-actions").HandlerFunction;
+    };
+};
 export declare const SnackbarIcon: {
     (argTypes: ISnackbar): ReactNode;
     storyName: string;

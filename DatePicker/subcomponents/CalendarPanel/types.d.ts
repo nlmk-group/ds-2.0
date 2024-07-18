@@ -31,6 +31,7 @@ export interface CalendarPanelProps {
     onPanelChange?: (date: Date) => void;
     onSelect?: (date: Date) => void;
     [key: string]: any;
+    infiniteTimeScroll?: boolean;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

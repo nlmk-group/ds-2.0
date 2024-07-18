@@ -211,5 +211,16 @@ export declare const argsTypes: {
         description: string;
         action: string;
     };
+    infiniteTimeScroll: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

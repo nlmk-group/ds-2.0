@@ -1,7 +1,9 @@
 import { MouseEventHandler, PropsWithChildren } from 'react';
+import { indicatorMapping } from './enums';
 export interface ISnackbar extends PropsWithChildren<any> {
     className?: string;
     color?: string;
+    indicator?: `${indicatorMapping}`;
     bgOpacity?: number;
     withIcon?: boolean;
     customIcon?: JSX.Element;

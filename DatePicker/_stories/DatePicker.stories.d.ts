@@ -27,4 +27,5 @@ export declare const OpenPickerOnInputFocus: () => JSX.Element;
 export declare const DatepickerWithPseudo: () => JSX.Element;
 export declare const WithoutYear: () => JSX.Element;
 export declare const ExtraCompact: () => JSX.Element;
+export declare const infiniteTimeScroll: () => JSX.Element;
 //# sourceMappingURL=DatePicker.stories.d.ts.map

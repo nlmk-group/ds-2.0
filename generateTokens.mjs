@@ -1,168 +1,64 @@
-import { exec } from 'child_process';
-import fs from 'fs';
-import fetch from 'node-fetch';
-import StyleDictionary from 'style-dictionary';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const projectPath = process.env.GITLAB_PROJECT_PATH;
-const branch = process.env.GITLAB_BRANCH || 'main';
-const tokenName = 'tokens%2Ejson'; // символ "." меняем на %2E
-const tokenUrl = `https://gitlab.com/api/v4/projects/${projectPath}/repository/files/${tokenName}?ref=${branch}`;
-const tokensBuildDir = './tokens';
-const baseTokenName = 'base-token.json';
-const cssBuildPath = 'public/css/tokens/';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// набор фиксов для значений, которые приходят из фигмы не в том виде
-function fixTypographyCSS(token) {
-  const fontWeightAliases = {
-    Thin: 100,
-    Extralight: 200,
-    Light: 300,
-    Regular: 400,
-    Medium: 500,
-    Semibold: 600,
-    Bold: 700,
-    Extrabold: 800,
-    Black: 900
-  };
+// Путь к файлу tokens.json
+const tokensPath = path.join(__dirname, 'tokens.json');
 
-  const convertPercentsToEm = percent => {
-    const num = Number(percent.slice(0, -1)) / 100;
-    return `${num}em`;
-  };
+// Путь, куда будем сохранять CSS файлы
+const outputDir = path.join(__dirname, 'public', 'css', 'tokens');
 
-  switch (token.type) {
-    case 'fontWeights':
-    case 'fontWeight':
-      return fontWeightAliases[token.value];
-    case 'fontSize':
-    case 'fontSizes':
-      return `${token.value}px`;
-    case 'lineHeight':
-    case 'lineHeights':
-      return `${token.value}px`;
-    case 'letterSpacing':
-      return convertPercentsToEm(token.value);
-    default:
-      return token.value;
+// Функция для преобразования значения токена в CSS-совместимый формат
+function formatTokenValue(value, type) {
+  if (typeof value === 'string' || type === 'color') {
+    return value;
   }
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+  return JSON.stringify(value);
 }
 
-// Создаем папку tokens если она не создана
-if (!fs.existsSync(tokensBuildDir)) {
-  fs.mkdirSync(tokensBuildDir);
-}
-
-// Загружаем файл токена из gitHub
-async function getToken() {
+// Функция для рекурсивного обхода объекта токенов и создания CSS переменных
+function tokensToCssVariables(tokens, prefix = '') {
+  let css = '';
   try {
-    const res = await fetch(tokenUrl, {
-      method: 'GET',
-      headers: {
-        'PRIVATE-TOKEN': process.env.GITLAB_ACCESS_KEY
+    for (const [key, value] of Object.entries(tokens)) {
+      if (value && value.type && value.value !== undefined) {
+        const cssVarName = `--${prefix}${key}`;
+        const cssVarValue = formatTokenValue(value.value, value.type);
+        css += `  ${cssVarName}: ${cssVarValue};\n`;
+      } else if (typeof value === 'object' && value !== null) {
+        css += tokensToCssVariables(value, `${prefix}${key}-`);
       }
-    });
-    return await res.json();
+    }
+  } catch (error) {
+    console.error('Ошибка при обработке токенов:', error);
+  }
+  return css;
+}
+
+async function generateTokens() {
+  try {
+    const data = await fs.readFile(tokensPath, 'utf8');
+    const tokens = JSON.parse(data);
+
+    const lightCss = `:root {\n${tokensToCssVariables(tokens.light)}}`;
+    const darkCss = `:root {\n${tokensToCssVariables(tokens.dark)}}`;
+
+    await fs.mkdir(outputDir, { recursive: true });
+
+    await fs.writeFile(path.join(outputDir, 'light-tokens.css'), lightCss);
+    console.log('Файл light-tokens.css успешно создан');
+
+    await fs.writeFile(path.join(outputDir, 'dark-tokens.css'), darkCss);
+    console.log('Файл dark-tokens.css успешно создан');
   } catch (err) {
-    console.error(err);
+    console.error('Произошла ошибка:', err);
   }
 }
 
-const response = await getToken();
-const token = JSON.parse(Buffer.from(response.content, 'base64').toString());
-
-// Сохраняем base-token в файл
-fs.writeFileSync(`${tokensBuildDir}/${baseTokenName}`, JSON.stringify(token, null, 2));
-
-// Создаем css файлы
-buildTokensAndCss(token.$metadata.tokenSetOrder);
-
-/**
- * @description
- * Создает набор .json файлов для каждого токена
- * Создает .css файл из каждого .json файла токена
- * @param files: string[]
- */
-function buildTokensAndCss(files) {
-  for (let filename of files) {
-    buildToken(filename, () => {
-      buildCss(filename);
-    });
-  }
-}
-
-/**
- * @description
- * Создает файл .json для токена и вызывает callback после создания файла
- * токен достается из baseToken с помощью библиотеки token-transformer
- * p.s. у token-transformer есть только cli версия, поэтому пришлось использовать exec
- * @param filename
- * @param callback
- */
-function buildToken(filename, callback) {
-  exec(
-    `node node_modules/token-transformer ${tokensBuildDir}/${baseTokenName} ${tokensBuildDir}/${filename}.json ${filename} --expandTypography=true`,
-    callback
-  );
-}
-
-/**
- * Функция для подготовки токена к экспорту.
- *
- * Если тип токена равен "typography", применяются специфические стили
- * с помощью функции fixTypographyCSS к значению токена.
- * Во всех остальных случаях значение токена остается неизменным.
- *
- * Затем значение токена конвертируется в строковый формат JSON.
- *
- * На выходе функция возвращает строку, которую можно экспортировать
- * как константу в JavaScript с именем токена и его значением.
- *
- * @param {Object} token - Объект токена, содержащий тип и значение.
- * @return {String} - Строка, готовая к экспорту как JavaScript константа.
- */
-function prepareToken(token) {
-  let value = token.value;
-
-  if (token.filePath.includes('typography')) {
-    value = fixTypographyCSS(token);
-  }
-
-  return `  --${token.name}: ${value};`;
-}
-
-/**
- * @description Создает файл .css из файла токена
- * @param filename
- */
-function buildCss(filename) {
-  StyleDictionary.registerFormat({
-    name: 'custom/css/variables',
-    formatter({ dictionary }) {
-      return (
-        `/**\n* Do not edit directly\n* Generated on ${new Date()}\n*/\n\n:root {\n` +
-        dictionary.allTokens
-          .map(token => {
-            return prepareToken(token);
-          })
-          .join('\n') +
-        `\n}`
-      );
-    }
-  });
-
-  StyleDictionary.extend({
-    source: [`${tokensBuildDir}/${filename}.json`],
-    platforms: {
-      css: {
-        transformGroup: 'css',
-        buildPath: cssBuildPath,
-        files: [
-          {
-            destination: `${filename}.css`,
-            format: 'custom/css/variables'
-          }
-        ]
-      }
-    }
-  }).buildAllPlatforms();
-}
+generateTokens();

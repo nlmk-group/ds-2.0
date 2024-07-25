@@ -15,6 +15,7 @@ yarn-error.log
 src/**/yarn.lock
 cypress/fixtures/example.json
 storybook-static/
+
 # IDE
 .vscode/
 .idea/
@@ -22,7 +23,10 @@ cache/
 .jest-test-results.json
 build-storybook.log
 .npmrc
+
 # Yalc
 .yalc/
 yalc.lock
 
+# JSON
+tokens.json

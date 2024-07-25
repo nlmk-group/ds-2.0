@@ -23,6 +23,46 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v1.9.7 - <span className={styles.date}>25.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены новые переменные цветов.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.6 - <span className={styles.date}>23.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена иконка в компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>- ListDelete</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.5 - <span className={styles.date}>23.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлена иконка в компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+            </li>
+            <li className={styles['left-padding']}>- Signal</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v1.9.4 - <span className={styles.date}>17.07.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -213,7 +253,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри компонента{' '}
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
+              компонента{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
@@ -660,7 +701,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
+              в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>

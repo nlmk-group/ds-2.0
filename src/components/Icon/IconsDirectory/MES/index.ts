@@ -19,6 +19,7 @@ export {
   IconPovtornayaObrabotkaPachek24,
   IconPovtornayaObrabotkaPachek32
 } from './PovtornayaObrabotkaPachek';
+export { IconSignal16, IconSignal24, IconSignal32 } from './Signal';
 export { IconSmenniyRaport16, IconSmenniyRaport24, IconSmenniyRaport32 } from './SmenniyRaport';
 export { IconSmennoeZadanie16, IconSmennoeZadanie24, IconSmennoeZadanie32 } from './SmennoeZadanie';
 export { IconStarHalf16, IconStarHalf24, IconStarHalf32 } from './StarHalf';

@@ -11,6 +11,7 @@ export { IconPicInPic16, IconPicInPic24, IconPicInPic32 } from './PicInPic';
 export { IconPicInPicOff16, IconPicInPicOff24, IconPicInPicOff32 } from './PicInPicOff';
 export { IconPicInPicOn16, IconPicInPicOn24, IconPicInPicOn32 } from './PicInPicOn';
 export { IconPovtornayaObrabotkaPachek16, IconPovtornayaObrabotkaPachek24, IconPovtornayaObrabotkaPachek32 } from './PovtornayaObrabotkaPachek';
+export { IconSignal16, IconSignal24, IconSignal32 } from './Signal';
 export { IconSmenniyRaport16, IconSmenniyRaport24, IconSmenniyRaport32 } from './SmenniyRaport';
 export { IconSmennoeZadanie16, IconSmennoeZadanie24, IconSmennoeZadanie32 } from './SmennoeZadanie';
 export { IconStarHalf16, IconStarHalf24, IconStarHalf32 } from './StarHalf';

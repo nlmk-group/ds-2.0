@@ -187,6 +187,7 @@ export { IconLightningFilled16, IconLightningFilled24, IconLightningFilled32 } f
 export { IconLightningStroke16, IconLightningStroke24, IconLightningStroke32 } from './LightningStroke';
 export { IconListAltFilled16, IconListAltFilled24, IconListAltFilled32 } from './ListAltFilled';
 export { IconListAltOutlined16, IconListAltOutlined24, IconListAltOutlined32 } from './ListAltOutlined';
+export { IconListDelete16, IconListDelete24, IconListDelete32 } from './ListDelete';
 export { IconLocationPinaltFilled16, IconLocationPinaltFilled24, IconLocationPinaltFilled32 } from './LocationPinaltFilled';
 export { IconLocationPinaltOutlined16, IconLocationPinaltOutlined24, IconLocationPinaltOutlined32 } from './LocationPinaltOutlined';
 export { IconLockCloseFilled16, IconLockCloseFilled24, IconLockCloseFilled32 } from './LockCloseFilled';

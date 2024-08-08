@@ -1,4 +1,5 @@
-import { severityMapping } from '../enums';
+import { EAlertSeverity } from '../enums';
+
 export declare const argsTypes: {
     title: {
         description: string;
@@ -10,13 +11,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: severityMapping;
+                summary: EAlertSeverity;
             };
             type: {
                 summary: string;
             };
         };
-        options: severityMapping[];
+        options: EAlertSeverity[];
         control: {
             type: string;
         };
@@ -41,6 +42,12 @@ export declare const argsTypes: {
     };
     props: {
         description: string;
+    };
+    showChildren: {
+        description: string;
+        control: {
+            type: string;
+        };
     };
 };
 export default argsTypes;

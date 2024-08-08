@@ -1,4 +1,5 @@
 import { customInputColors } from '../../declaration';
+
 export declare const argsTypes: {
     label: {
         description: string;

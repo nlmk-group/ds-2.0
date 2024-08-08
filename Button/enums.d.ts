@@ -1,15 +1,23 @@
-export declare enum ESizes {
+export declare enum EButtonSizes {
     m = "m",
     s = "s",
     xs = "xs"
 }
-export declare enum EVariant {
+export declare enum EButtonNodesPosition {
+    left = "left",
+    right = "right"
+}
+export declare enum EButtonVariant {
     primary = "primary",
     secondary = "secondary",
     grey = "grey",
-    black = "black"
+    black = "black",
+    success = "success",
+    warning = "warning",
+    error = "error",
+    info = "info"
 }
-export declare enum EFill {
+export declare enum EButtonFill {
     solid = "solid",
     outline = "outline",
     clear = "clear"

@@ -1,4 +1,5 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from '../../../node_modules/react';
+
 declare const BtnBack: FC<{
     back: MouseEventHandler<HTMLButtonElement>;
 }>;

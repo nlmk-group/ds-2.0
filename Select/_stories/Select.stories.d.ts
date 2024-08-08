@@ -1,5 +1,6 @@
 import { ISelectOption, ISelectProps } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, ISelectProps>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISelectProps>;
 export default _default;
 export declare const SelectDefault: {
     (argTypes: ISelectProps): JSX.Element;

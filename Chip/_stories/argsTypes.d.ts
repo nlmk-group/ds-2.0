@@ -1,4 +1,6 @@
-import { colorsMapping, sizesMapping, variantsMapping } from '../../declaration/enums';
+import { EChipColors } from '../enums';
+import { sizesMapping, variantsMapping } from '../../declaration/enums';
+
 export declare const argsTypes: {
     children: {
         description: string;
@@ -25,13 +27,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: colorsMapping;
+                summary: EChipColors;
             };
             type: {
                 summary: string;
             };
         };
-        options: colorsMapping[];
+        options: EChipColors[];
         control: {
             type: string;
         };

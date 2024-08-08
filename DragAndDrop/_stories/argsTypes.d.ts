@@ -1,5 +1,6 @@
 import { sizesMapping } from '../../declaration';
 import { fileTypeMapping, statusColorMapping } from '../enums';
+
 export declare const argsTypes: {
     className: {
         description: string;

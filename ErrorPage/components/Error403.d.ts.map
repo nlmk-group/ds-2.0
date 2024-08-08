@@ -1,1 +1,1 @@
-{"version":3,"file":"Error403.d.ts","sourceRoot":"","sources":["../../../src/components/ErrorPage/components/Error403.tsx"],"names":[],"mappings":"AAEA,QAAA,MAAM,QAAQ,mBA+Lb,CAAC;AACF,eAAe,QAAQ,CAAC"}
+{"version":3,"file":"Error403.d.ts","sourceRoot":"","sources":["../../../src/components/ErrorPage/components/Error403.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,QAAA,MAAM,QAAQ,yBA+Lb,CAAC;AACF,eAAe,QAAQ,CAAC"}

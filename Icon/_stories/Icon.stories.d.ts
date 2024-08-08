@@ -1,6 +1,8 @@
+import { default as React } from '../../../../node_modules/react';
 import { TIconProps } from '../types';
 import { StoryFn } from '@storybook/react';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, TIconProps>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, TIconProps>;
 export default _default;
 export declare const IconComponent: {
     (argsTypes: TIconProps): JSX.Element;
@@ -10,7 +12,7 @@ export declare const IconComponent: {
         color: string;
         containerSize: number;
     };
-    decorators: ((Story: StoryFn) => JSX.Element)[];
+    decorators: ((Story: StoryFn) => React.JSX.Element)[];
 };
 export declare const AllIcons: {
     (): JSX.Element;

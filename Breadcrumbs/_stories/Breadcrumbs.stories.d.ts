@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import { default as React, ReactNode } from '../../../../node_modules/react';
 import { targetMapping } from '../enums';
 import { BreadcrumbsProps } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<BreadcrumbsProps>;
@@ -34,7 +35,7 @@ export declare const BreadcrumbsDefault: {
     (argTypes: BreadcrumbsProps): ReactNode;
     storyName: string;
     args: {
-        crumbs: import("../types").Breadcrumb[];
+        crumbs: import('../types').Breadcrumb[];
         width: number;
     };
 };
@@ -43,7 +44,7 @@ export declare const BreadcrumbsWidth: {
     storyName: string;
     args: {
         width: number;
-        crumbs: import("../types").Breadcrumb[];
+        crumbs: import('../types').Breadcrumb[];
     };
 };
 export declare const BreadcrumbsTarget: {

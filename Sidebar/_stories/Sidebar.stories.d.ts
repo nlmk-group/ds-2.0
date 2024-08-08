@@ -1,21 +1,22 @@
-import React, { ReactNode } from 'react';
+import { default as React, ReactNode } from '../../../../node_modules/react';
 import { ISidebarProps } from '../types';
+
 declare const _default: {
     title: string;
-    component: React.FC<ISidebarProps> & Record<"Avatar", React.FC<import("../../Avatar/types").IAvatarProps>> & Record<"MenuItem", React.FC<import('../types').IMenuItemProps>> & Record<"SubmenuItem", React.FC<import('../types').ISubmenuItemProps>>;
-    decorators: ((Story: any) => JSX.Element)[];
+    component: React.FC<ISidebarProps> & Record<"Avatar", React.FC<import('../../Avatar/types').IAvatarProps>> & Record<"MenuItem", React.FC<import('../types').IMenuItemProps>> & Record<"SubmenuItem", React.FC<import('../types').ISubmenuItemProps>>;
+    decorators: ((Story: any) => React.JSX.Element)[];
     argTypes: {
         orientation: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../enums").orientationMapping;
+                    summary: import('../enums').orientationMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../enums").orientationMapping[];
+            options: import('../enums').orientationMapping[];
             control: {
                 type: string;
             };
@@ -24,13 +25,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../enums").variantMapping;
+                    summary: import('../enums').variantMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../enums").variantMapping[];
+            options: import('../enums').variantMapping[];
             control: {
                 type: string;
             };

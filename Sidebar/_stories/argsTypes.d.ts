@@ -1,5 +1,5 @@
-import { orientationMapping, variantMapping } from '../enums';
-import { positionMapping } from '../enums';
+import { orientationMapping, variantMapping, positionMapping } from '../enums';
+
 export declare const argsTypes: {
     orientation: {
         description: string;

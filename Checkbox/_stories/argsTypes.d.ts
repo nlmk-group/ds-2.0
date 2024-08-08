@@ -1,4 +1,5 @@
 import { ECheckboxColors } from '../types';
+
 export declare const argsTypes: {
     id: {
         description: string;

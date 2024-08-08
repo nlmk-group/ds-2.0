@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from '../../../../../node_modules/react';
+
 export type TIconContainer = {
     containerSize: 32 | 24 | 16;
     children: ReactNode;

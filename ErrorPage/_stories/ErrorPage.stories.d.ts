@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { ErrorPageProps } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<ErrorPageProps>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         errorCode: {
             description: string;
@@ -54,7 +55,7 @@ declare const _default: {
 };
 export default _default;
 export declare const ErrorPageDefault: {
-    (argTypes: ErrorPageProps): JSX.Element;
+    (argTypes: ErrorPageProps): React.JSX.Element;
     storyName: string;
     args: {
         description: string;
@@ -62,7 +63,7 @@ export declare const ErrorPageDefault: {
     };
 };
 export declare const ErrorPage403: {
-    (argTypes: ErrorPageProps): JSX.Element;
+    (argTypes: ErrorPageProps): React.JSX.Element;
     storyName: string;
     args: {
         errorCode: number;
@@ -71,7 +72,7 @@ export declare const ErrorPage403: {
     };
 };
 export declare const ErrorPage404: {
-    (argTypes: ErrorPageProps): JSX.Element;
+    (argTypes: ErrorPageProps): React.JSX.Element;
     storyName: string;
     args: {
         errorCode: number;
@@ -80,7 +81,7 @@ export declare const ErrorPage404: {
     };
 };
 export declare const ErrorPageOthers: {
-    (argTypes: ErrorPageProps): JSX.Element;
+    (argTypes: ErrorPageProps): React.JSX.Element;
     storyName: string;
     args: {
         errorCode: number;

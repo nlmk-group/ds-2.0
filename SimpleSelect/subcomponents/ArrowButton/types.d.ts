@@ -1,4 +1,5 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler } from '../../../../../node_modules/react';
+
 export declare enum ECustomInputColors {
     error = "error",
     success = "success",

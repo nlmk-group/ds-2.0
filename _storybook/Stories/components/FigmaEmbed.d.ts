@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { FC } from '../../../../../node_modules/react';
+
 declare const FigmaEmbed: FC<{
     url: string;
 }>;

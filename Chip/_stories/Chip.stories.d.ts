@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { IChipProps } from '../types';
+
 declare const _default: {
     title: string;
-    component: React.FC<import("../../Badge/types").IBadgeProps>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    component: React.FC<import('../../Badge/types').IBadgeProps>;
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         children: {
             description: string;
@@ -15,13 +16,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").sizesMapping;
+                    summary: import('../../declaration').sizesMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").sizesMapping[];
+            options: import('../../declaration').sizesMapping[];
             control: {
                 type: string;
             };
@@ -30,13 +31,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").colorsMapping;
+                    summary: import('../enums').EChipColors;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").colorsMapping[];
+            options: import('../enums').EChipColors[];
             control: {
                 type: string;
             };
@@ -57,13 +58,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").variantsMapping;
+                    summary: import('../../declaration').variantsMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").variantsMapping[];
+            options: import('../../declaration').variantsMapping[];
             control: {
                 type: string;
             };

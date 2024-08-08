@@ -1,4 +1,5 @@
-import { MouseEvent } from 'react';
+import { MouseEvent } from '../../../node_modules/react';
+
 export interface ISwitch {
     className?: string;
     checked: boolean;

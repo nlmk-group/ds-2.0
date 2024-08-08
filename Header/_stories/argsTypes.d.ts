@@ -1,4 +1,5 @@
 import { typeMapping } from '../enums';
+
 declare const argsTypes: {
     title: {
         description: string;

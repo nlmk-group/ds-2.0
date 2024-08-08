@@ -1,4 +1,5 @@
 import { orientationMapping, typeMapping } from '../enums';
+
 declare const argsTypes: {
     children: {
         description: string;

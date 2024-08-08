@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { Args } from '@storybook/react';
 import { ETooltipPlacementType } from '../enums';
+
 declare const _default: {
     title: string;
-    component: React.FC<import("../types").ITooltipProps>;
+    component: React.FC<import('../types').ITooltipProps>;
     argTypes: {
         title: {
             description: string;
@@ -21,10 +22,10 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../enums").ETooltipBehaviorType;
+                    summary: import('../enums').ETooltipBehaviorType;
                 };
             };
-            options: import("../enums").ETooltipBehaviorType[];
+            options: import('../enums').ETooltipBehaviorType[];
             control: {
                 type: string;
             };

@@ -1,4 +1,5 @@
 import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+
 export declare const argsTypes: {
     size: {
         description: string;

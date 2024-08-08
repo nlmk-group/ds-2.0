@@ -1,4 +1,5 @@
-import { MouseEvent, MouseEventHandler, ReactNode } from 'react';
+import { MouseEvent, MouseEventHandler, ReactNode } from '../../../../../node_modules/react';
+
 export interface IMeasureUnitProps {
     selected?: boolean;
     disabled?: boolean;

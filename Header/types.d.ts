@@ -1,4 +1,5 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from '../../../node_modules/react';
+
 export interface IHeader {
     title: string;
     type?: string;

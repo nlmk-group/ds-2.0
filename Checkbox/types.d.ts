@@ -1,4 +1,5 @@
-import { ChangeEventHandler, InputHTMLAttributes } from 'react';
+import { ChangeEventHandler, InputHTMLAttributes } from '../../../node_modules/react';
+
 export declare enum ECheckboxColors {
     default = "default",
     error = "error"

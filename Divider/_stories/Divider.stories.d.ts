@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import { default as React, ReactNode } from '../../../../node_modules/react';
 import { orientationMapping, typeMapping } from '../enums';
 import { IDivider } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IDivider>;
@@ -71,14 +72,14 @@ export declare const DefaultDivider: {
     (argTypes: IDivider): ReactNode;
     storyName: string;
     args: {
-        children: JSX.Element;
+        children: React.JSX.Element;
     };
 };
 export declare const DashedDivider: {
     (argTypes: IDivider): ReactNode;
     storyName: string;
     args: {
-        children: JSX.Element;
+        children: React.JSX.Element;
         dashed: boolean;
     };
 };
@@ -86,14 +87,14 @@ export declare const DividerOrientation: {
     (argTypes: IDivider): ReactNode;
     storyName: string;
     args: {
-        children: JSX.Element;
+        children: React.JSX.Element;
     };
 };
 export declare const DividerOrientationWithCustomSpace: {
     (argTypes: IDivider): ReactNode;
     storyName: string;
     args: {
-        children: JSX.Element;
+        children: React.JSX.Element;
     };
 };
 export declare const DividerVertical: {

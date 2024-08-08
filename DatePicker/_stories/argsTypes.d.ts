@@ -1,4 +1,5 @@
 import { sizesMappingInput } from '../../declaration';
+
 export declare const argsTypes: {
     onPeriodChange: {
         description: string;

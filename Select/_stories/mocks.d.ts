@@ -1,4 +1,5 @@
 import { ISelectOption } from '../types';
+
 export declare const options: ISelectOption[];
 export declare const optionsWithIcons: ISelectOption[];
 export declare const optionsWithSubLabel: ISelectOption[];

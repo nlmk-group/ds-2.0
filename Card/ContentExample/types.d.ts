@@ -1,6 +1,7 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from '../../../../node_modules/react';
 import { ISelectOption } from '../../Select/types';
 import { OrientationType } from '../types';
+
 interface ICheckable {
     checked?: boolean;
     checkAction?: (v: boolean) => void;

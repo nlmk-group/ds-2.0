@@ -1,4 +1,5 @@
 import { ImagePictureRadius, ImagePictureRatios } from '../enums';
+
 export declare const argsTypes: {
     aspectRatio: {
         description: string;

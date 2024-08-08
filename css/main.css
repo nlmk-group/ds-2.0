@@ -9,6 +9,7 @@
 @import './tokens/desktop/typo/main-typography.css';
 @import './tokens/desktop/color/main-color-light.css';
 @import './tokens/light-tokens.css';
+@import './tokens/typography-tokens.css';
 
 * {
   -webkit-font-smoothing: antialiased;

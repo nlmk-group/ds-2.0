@@ -1,8 +1,9 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
+
 declare const _default: {
     title: string;
-    component: React.FC<import("../types").ISkeletonLoading>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    component: React.FC<import('../types').ISkeletonLoading>;
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         id: {
             description: string;

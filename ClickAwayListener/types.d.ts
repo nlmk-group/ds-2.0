@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode, RefObject } from 'react';
+import { CSSProperties, ReactNode, RefObject } from '../../../node_modules/react';
+
 export declare enum EClickAwayEvent {
     mouseup = "mouseup",
     mousedown = "mousedown",

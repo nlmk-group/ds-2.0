@@ -1,5 +1,6 @@
 import { sizesMapping } from '../../declaration';
 import { indicatorStatusMapping, orientationMapping } from '../enums';
+
 declare const argsTypes: {
     children: {
         description: string;

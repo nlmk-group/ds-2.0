@@ -1,4 +1,6 @@
-import { colorMapping, indicatorMapping } from '../enums';
+import { variantsMapping } from '../../declaration';
+import { ESnackbarColors } from '../enums';
+
 declare const argsTypes: {
     children: {
         description: string;
@@ -10,51 +12,28 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: colorMapping;
+                summary: ESnackbarColors;
             };
             type: {
                 summary: string;
             };
         };
-        options: colorMapping[];
+        options: ESnackbarColors[];
         control: {
             type: string;
         };
     };
-    indicator: {
-        description: string;
-        table: {
-            type: {
-                summary: string;
-            };
-        };
-        options: indicatorMapping[];
-        control: {
-            type: string;
-        };
-    };
-    bgOpacity: {
+    variant: {
         description: string;
         table: {
             defaultValue: {
-                summary: string;
+                summary: variantsMapping;
             };
             type: {
                 summary: string;
             };
         };
-        control: {
-            type: string;
-        };
-    };
-    withIcon: {
-        description: string;
-        control: {
-            type: string;
-        };
-    };
-    customIcon: {
-        description: string;
+        options: variantsMapping[];
         control: {
             type: string;
         };
@@ -71,11 +50,25 @@ declare const argsTypes: {
             type: string;
         };
     };
-    actionButtonText: {
+    actionText: {
         description: string;
         table: {
             defaultValue: {
                 summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    autoHideDuration: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: number;
             };
             type: {
                 summary: string;

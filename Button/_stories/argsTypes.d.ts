@@ -1,5 +1,7 @@
-import { EFill, ESizes, EVariant } from '../enums';
-export declare const argsTypes: {
+import { default as React } from '../../../../node_modules/react';
+import { EButtonFill, EButtonSizes, EButtonVariant } from '../enums';
+
+declare const argsTypes: {
     children: {
         description: string;
         control: {
@@ -16,7 +18,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: ESizes[];
+        options: EButtonSizes[];
         control: {
             type: string;
         };
@@ -31,7 +33,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: EVariant[];
+        options: EButtonVariant[];
         control: {
             type: string;
         };
@@ -46,7 +48,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: EFill[];
+        options: EButtonFill[];
         control: {
             type: string;
         };
@@ -67,14 +69,42 @@ export declare const argsTypes: {
     };
     startIcon: {
         description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: string[];
         control: {
             type: string;
+        };
+        mapping: {
+            IconArticleOutlined32: React.JSX.Element;
+            IconArticleOutlined24: React.JSX.Element;
+            IconArticleOutlined16: React.JSX.Element;
         };
     };
     endIcon: {
         description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: string[];
         control: {
             type: string;
+        };
+        mapping: {
+            IconArticleOutlined32: React.JSX.Element;
+            IconArticleOutlined24: React.JSX.Element;
+            IconArticleOutlined16: React.JSX.Element;
         };
     };
     iconButton: {
@@ -83,11 +113,18 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    badge: {
+    startBadge: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    endBadge: {
         description: string;
         control: {
             type: string;
         };
     };
 };
+export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

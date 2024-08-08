@@ -1,4 +1,5 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent } from '../../../../../node_modules/react';
+
 export interface IFile {
     title?: string;
     label?: string;

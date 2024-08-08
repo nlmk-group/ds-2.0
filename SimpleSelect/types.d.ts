@@ -1,6 +1,7 @@
-import { CSSProperties, ReactNode } from 'react';
-import { customInputColors } from '../declaration';
-import { TSize } from '../Button/types';
+import { CSSProperties, ReactNode } from '../../../node_modules/react';
+import { customInputColors, sizesMappingInput } from '../declaration';
+
+type TSize = `${sizesMappingInput}`;
 export interface ISelectProps {
     value?: string | number;
     onChange?: (value: string | number) => void;
@@ -24,4 +25,5 @@ export interface ISelectProps {
     style?: CSSProperties;
     className?: string;
 }
+export {};
 //# sourceMappingURL=types.d.ts.map

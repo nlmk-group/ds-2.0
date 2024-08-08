@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode } from '../../../../node_modules/react';
 import { typeMapping } from '../enums';
 import { IHeader } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, IHeader>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IHeader>;
 export default _default;
 export declare const DefaultHeader: {
     (argTypes: IHeader): ReactNode;
@@ -15,7 +16,7 @@ export declare const HeaderBack: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const HeaderDate: {
@@ -23,7 +24,7 @@ export declare const HeaderDate: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
     };
 };
@@ -32,9 +33,9 @@ export declare const HeaderFavorite: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
-        favorite: import("@storybook/addon-actions").HandlerFunction;
+        favorite: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const HeaderNotification: {
@@ -42,9 +43,9 @@ export declare const HeaderNotification: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
-        notification: import("@storybook/addon-actions").HandlerFunction;
+        notification: import('@storybook/addon-actions').HandlerFunction;
         notificationAmount: number;
     };
 };
@@ -53,10 +54,10 @@ export declare const HeaderBackground: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
-        favorite: import("@storybook/addon-actions").HandlerFunction;
-        notification: import("@storybook/addon-actions").HandlerFunction;
+        favorite: import('@storybook/addon-actions').HandlerFunction;
+        notification: import('@storybook/addon-actions').HandlerFunction;
         notificationAmount: number;
     };
 };
@@ -65,10 +66,10 @@ export declare const HeaderSpacing: {
     storyName: string;
     args: {
         title: string;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
-        favorite: import("@storybook/addon-actions").HandlerFunction;
-        notification: import("@storybook/addon-actions").HandlerFunction;
+        favorite: import('@storybook/addon-actions').HandlerFunction;
+        notification: import('@storybook/addon-actions').HandlerFunction;
         notificationAmount: number;
     };
 };
@@ -78,10 +79,10 @@ export declare const HeaderBreadcrumbs: {
     args: {
         title: string;
         type: typeMapping;
-        back: import("@storybook/addon-actions").HandlerFunction;
+        back: import('@storybook/addon-actions').HandlerFunction;
         date: boolean;
-        favorite: import("@storybook/addon-actions").HandlerFunction;
-        notification: import("@storybook/addon-actions").HandlerFunction;
+        favorite: import('@storybook/addon-actions').HandlerFunction;
+        notification: import('@storybook/addon-actions').HandlerFunction;
         notificationAmount: number;
     };
 };

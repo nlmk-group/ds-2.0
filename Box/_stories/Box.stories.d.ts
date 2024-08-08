@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { IBox } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IBox>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         children: {
             description: string;

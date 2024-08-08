@@ -1,4 +1,5 @@
 import { ETooltipBehaviorType, ETooltipPlacementType } from '../enums';
+
 export declare const argsTypes: {
     title: {
         description: string;

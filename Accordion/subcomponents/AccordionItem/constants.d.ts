@@ -1,6 +1,6 @@
 import { sizesMapping } from '../../enums';
-import { TVariant } from '../../../Typography/types';
-export declare const ICON_SIZE = 16;
-export declare const TYPOGRAPHY_TITLE_VARIANTS: Record<sizesMapping, TVariant>;
-export declare const TYPOGRAPHY_CONTENT_VARIANTS: Record<sizesMapping, TVariant>;
+import { ETypographyVariants } from '../../../Typography/enums';
+
+export declare const TYPOGRAPHY_TITLE_VARIANTS: Record<sizesMapping, ETypographyVariants>;
+export declare const TYPOGRAPHY_CONTENT_VARIANTS: Record<sizesMapping, ETypographyVariants>;
 //# sourceMappingURL=constants.d.ts.map

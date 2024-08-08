@@ -1,5 +1,6 @@
 import { IPseudoInputProps } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, IPseudoInputProps>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IPseudoInputProps>;
 export default _default;
 export declare const PseudoInputDefault: {
     (argTypes: IPseudoInputProps): JSX.Element;

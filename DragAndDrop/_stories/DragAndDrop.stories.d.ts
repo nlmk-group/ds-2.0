@@ -1,11 +1,12 @@
-import React, { ReactNode } from 'react';
+import { default as React, ReactNode } from '../../../../node_modules/react';
 import { sizesMapping } from '../../declaration';
 import { fileTypeMapping, statusColorMapping } from '../enums';
 import { IDragAndDrop } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IDragAndDrop>;
-    decorators: ((Story: any) => JSX.Element)[];
+    decorators: ((Story: any) => React.JSX.Element)[];
     argTypes: {
         className: {
             description: string;
@@ -233,21 +234,21 @@ export declare const dndSizes: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndFileTypes: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndCustomAccept: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
         accept: string;
         description: string;
         fileType: fileTypeMapping;
@@ -258,24 +259,24 @@ export declare const dndStatuses: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
-        cancelUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
+        cancelUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndStatuses2: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
-        cancelUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
+        cancelUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndSmallText: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
-        cancelUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
+        cancelUpload: import('@storybook/addon-actions').HandlerFunction;
         smallText: boolean;
     };
 };
@@ -283,7 +284,7 @@ export declare const dndSmallIcon: {
     (argTypes: IDragAndDrop): ReactNode;
     storyName: string;
     args: {
-        onUpload: import("@storybook/addon-actions").HandlerFunction;
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
         smallIcon: boolean;
     };
 };

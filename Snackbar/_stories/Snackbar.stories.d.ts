@@ -1,76 +1,95 @@
-import { ReactNode } from 'react';
-import { colorMapping } from '../enums';
-import { ISnackbar } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, ISnackbar>;
+import { default as React, ReactNode } from '../../../../node_modules/react';
+import { ISnackbarProps } from '../types';
+
+declare const _default: {
+    title: string;
+    component: React.FC<ISnackbarProps>;
+    decorators: ((Story: any) => React.JSX.Element)[];
+    argTypes: {
+        children: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        color: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: import('../enums').ESnackbarColors;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: import('../enums').ESnackbarColors[];
+            control: {
+                type: string;
+            };
+        };
+        variant: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: import('../../declaration').variantsMapping;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: import('../../declaration').variantsMapping[];
+            control: {
+                type: string;
+            };
+        };
+        close: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        actionButton: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        actionText: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        autoHideDuration: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: number;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+    };
+};
 export default _default;
 export declare const DefaultSnackbar: {
-    (argTypes: ISnackbar): ReactNode;
+    (argTypes: ISnackbarProps): ReactNode;
     storyName: string;
     args: {
         children: string;
-    };
-};
-export declare const SnackbarClose: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        close: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarAction: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarColor: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        close: import("@storybook/addon-actions").HandlerFunction;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarIndicator: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        close: import("@storybook/addon-actions").HandlerFunction;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarIcon: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        close: import("@storybook/addon-actions").HandlerFunction;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarCustomIcon: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        withIcon: boolean;
-        children: string;
-        color: colorMapping;
-        close: import("@storybook/addon-actions").HandlerFunction;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
-    };
-};
-export declare const SnackbarOpacity: {
-    (argTypes: ISnackbar): ReactNode;
-    storyName: string;
-    args: {
-        children: string;
-        close: import("@storybook/addon-actions").HandlerFunction;
-        actionButton: import("@storybook/addon-actions").HandlerFunction;
     };
 };
 //# sourceMappingURL=Snackbar.stories.d.ts.map

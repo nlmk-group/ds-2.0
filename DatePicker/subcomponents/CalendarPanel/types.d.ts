@@ -1,6 +1,7 @@
 import { CALENDAR_FORMAT_ENUM } from '../../helpers';
 import { TLevel } from '../../types';
 import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '../../../declaration';
+
 type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 export interface CalendarPanelProps {

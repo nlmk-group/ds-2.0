@@ -1,5 +1,6 @@
-import { colorsMapping, variantsMapping } from '../../declaration/enums';
-import { ESizesBadgeMapping } from '../types';
+import { variantsMapping } from '../../declaration/enums';
+import { EBadgeColors, EBadgeSizes } from '../enums';
+
 export declare const argsTypes: {
     children: {
         description: string;
@@ -16,13 +17,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: ESizesBadgeMapping;
+                summary: EBadgeSizes;
             };
             type: {
                 summary: string;
             };
         };
-        options: ESizesBadgeMapping[];
+        options: EBadgeSizes[];
         control: {
             type: string;
         };
@@ -31,13 +32,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: colorsMapping;
+                summary: EBadgeColors;
             };
             type: {
                 summary: string;
             };
         };
-        options: colorsMapping[];
+        options: EBadgeColors[];
         control: {
             type: string;
         };

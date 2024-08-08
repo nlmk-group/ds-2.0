@@ -1,4 +1,5 @@
 import { sizeMapping, targetMapping } from '../enums';
+
 export declare const argsTypes: {
     children: {
         description: string;

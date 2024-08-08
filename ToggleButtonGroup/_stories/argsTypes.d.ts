@@ -1,4 +1,5 @@
 import { sizeMapping, statusMapping } from '../enums';
+
 export declare const buttonGroupItemsArgsTypes: {
     label: {
         description: string;

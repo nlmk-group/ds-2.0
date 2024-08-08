@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode } from '../../../../node_modules/react';
 import { IDrawerProps } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, IDrawerProps>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IDrawerProps>;
 export default _default;
 export declare const DrawerDefault: {
     (args: IDrawerProps): ReactNode;

@@ -1,4 +1,4 @@
-export declare enum severityMapping {
+export declare enum EAlertSeverity {
     success = "success",
     error = "error",
     warning = "warning",

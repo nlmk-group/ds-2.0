@@ -1,4 +1,5 @@
 import { TAccordionItem } from '../subcomponents/AccordionItem/types';
+
 export declare const ACCORDION_ITEMS_MOCK: TAccordionItem[];
 export declare const ACCORDION_ITEMS_MOCK_TWO: TAccordionItem[];
 export declare const ACCORDION_ITEMS_MOCK_THIRD: TAccordionItem[];

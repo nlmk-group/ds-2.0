@@ -1,6 +1,7 @@
-import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from 'react';
+import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from '../../../node_modules/react';
 import { TIconName } from '../Icon/IconsDirectory/unionType';
 import { orientationMapping, positionMapping, variantMapping } from './enums';
+
 export interface ISidebarProps extends PropsWithChildren {
     orientation?: `${orientationMapping}`;
     variant?: `${variantMapping}`;

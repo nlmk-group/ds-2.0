@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { IBadgeProps } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IBadgeProps>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         children: {
             description: string;
@@ -20,13 +21,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../types').ESizesBadgeMapping;
+                    summary: import('../enums').EBadgeSizes;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../types').ESizesBadgeMapping[];
+            options: import('../enums').EBadgeSizes[];
             control: {
                 type: string;
             };
@@ -35,13 +36,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").colorsMapping;
+                    summary: import('../enums').EBadgeColors;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").colorsMapping[];
+            options: import('../enums').EBadgeColors[];
             control: {
                 type: string;
             };
@@ -50,13 +51,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").variantsMapping;
+                    summary: import('../../declaration').variantsMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").variantsMapping[];
+            options: import('../../declaration').variantsMapping[];
             control: {
                 type: string;
             };

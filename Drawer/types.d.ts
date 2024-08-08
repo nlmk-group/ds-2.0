@@ -1,4 +1,5 @@
-import React, { CSSProperties } from 'react';
+import { default as React, CSSProperties } from '../../../node_modules/react';
+
 export interface IDrawerProps {
     isOpen: boolean;
     onClose: () => void;

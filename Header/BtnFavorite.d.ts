@@ -1,4 +1,5 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from '../../../node_modules/react';
+
 declare const BtnFavorite: FC<{
     favorite: MouseEventHandler<HTMLButtonElement>;
 }>;

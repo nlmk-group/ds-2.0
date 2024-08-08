@@ -1,19 +1,10 @@
-export declare enum colorMapping {
+export declare enum ESnackbarColors {
     dark = "dark",
-    green = "green",
-    red = "red",
-    grey = "grey",
-    white = "white",
-    'light-green' = "light-green",
-    pink = "pink"
-}
-export declare enum indicatorMapping {
-    dark = "dark",
-    blue = "blue",
     green = "green",
     red = "red",
     orange = "orange",
     grey = "grey",
+    white = "white",
     'light-green' = "light-green",
     pink = "pink"
 }

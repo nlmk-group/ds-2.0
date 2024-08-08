@@ -1,4 +1,5 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from '../../../node_modules/react';
+
 export interface IListProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
     className?: string;

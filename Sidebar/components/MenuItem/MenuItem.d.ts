@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC } from '../../../../../node_modules/react';
 import { IMenuItemProps } from '../../types';
+
 interface IMenuItemComponent extends FC<IMenuItemProps> {
     componentType?: string;
 }

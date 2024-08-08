@@ -1,3 +1,5 @@
+import { default as React } from '../../../../node_modules/react';
+
 declare const argsTypes: {
     name: {
         description: string;
@@ -88,7 +90,7 @@ declare const argsTypes: {
         };
         mapping: {
             false: string;
-            true: JSX.Element;
+            true: React.JSX.Element;
         };
     };
 };

@@ -1,9 +1,11 @@
+import { default as React } from '../../../../node_modules/react';
 import { IAvatarProps } from '../types';
 import { AvatarShape, AvatarSize } from '../enums';
+
 declare const _default: {
     title: string;
     component: import('../types').IAvatarComponent;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         size: {
             description: string;
@@ -169,14 +171,14 @@ export declare const AvatarWithDefaultBadge: {
     (argsTypes: IAvatarProps): JSX.Element;
     storyName: string;
     args: {
-        badgeIconName: JSX.Element;
+        badgeIconName: React.JSX.Element;
     };
 };
 export declare const AvatarWithSpecialBadge: {
     (argsTypes: IAvatarProps): JSX.Element;
     storyName: string;
     args: {
-        badgeIconName: JSX.Element;
+        badgeIconName: React.JSX.Element;
         badgeSpecialIcon: boolean;
     };
 };

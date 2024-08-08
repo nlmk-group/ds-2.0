@@ -9,18 +9,6 @@ export declare enum colorsMapping {
     inherit = "inherit",
     grey = "grey"
 }
-export declare enum customBadgeColors {
-    disabled = "disabled",
-    info = "info",
-    inherit = "inherit",
-    secondary = "secondary",
-    grey = "grey"
-}
-export declare enum customChipColors {
-    disabled = "disabled",
-    info = "info",
-    inherit = "inherit"
-}
 export declare enum customInputColors {
     default = "default",
     error = "error",

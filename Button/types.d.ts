@@ -1,31 +1,19 @@
-import { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
-import { EFill, ESizes, EVariant } from './enums';
-import { colorsMapping, variantsMapping } from '../declaration';
-export type TSize = `${ESizes}`;
-export type TVariant = `${EVariant}`;
-export type TFill = `${EFill}`;
-export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
-    badge?: string | number;
+import { ButtonHTMLAttributes, ReactNode } from '../../../node_modules/react';
+import { EButtonFill, EButtonSizes, EButtonVariant } from './enums';
+
+export type TButtonSize = `${EButtonSizes}`;
+export type TButtonVariant = `${EButtonVariant}`;
+export type TButtonFill = `${EButtonFill}`;
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    startBadge?: string | number;
+    endBadge?: string | number;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     iconButton?: ReactNode;
-    size?: TSize;
-    variant?: TVariant;
-    fill?: TFill;
+    size?: `${EButtonSizes}`;
+    variant?: `${EButtonVariant}`;
+    fill?: `${EButtonFill}`;
     className?: string;
+    children?: ReactNode;
 }
-interface IBadgeProps {
-    color: colorsMapping;
-    variant: variantsMapping;
-}
-export type TBadgeTypes = {
-    [key: string | EVariant]: IBadgeProps;
-};
-export interface IBadgeHelper {
-    size: TSize;
-    variant: TVariant;
-    fill: TFill;
-    badge: string | number;
-}
-export {};
 //# sourceMappingURL=types.d.ts.map

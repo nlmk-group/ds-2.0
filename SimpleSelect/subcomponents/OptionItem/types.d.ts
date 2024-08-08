@@ -1,4 +1,5 @@
-import { ReactNode, CSSProperties } from 'react';
+import { ReactNode, CSSProperties } from '../../../../../node_modules/react';
+
 export interface IOptionItemProps {
     value: string | number;
     label: string;

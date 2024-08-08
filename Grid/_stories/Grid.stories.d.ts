@@ -1,12 +1,14 @@
+import { default as React } from '../../../../node_modules/react';
 import { IBox } from '../../Box/types';
+
 declare const _default: {
     title: string;
     component: {
-        ({ children, ...props }: import("../types").IGrid): JSX.Element;
-        Column: ({ children, ...props }: import("../types").IGrid) => JSX.Element;
-        Row: ({ children, ...props }: import("../types").IGrid) => JSX.Element;
+        ({ children, ...props }: import('../types').IGrid): React.JSX.Element;
+        Column: ({ children, ...props }: import('../types').IGrid) => React.JSX.Element;
+        Row: ({ children, ...props }: import('../types').IGrid) => React.JSX.Element;
     };
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         children: {
             description: string;
@@ -36,13 +38,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../../declaration").sizesMappingInput;
+                    summary: import('../../declaration').sizesMappingInput;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../../declaration").sizesMappingInput[];
+            options: import('../../declaration').sizesMappingInput[];
             control: {
                 type: string;
             };

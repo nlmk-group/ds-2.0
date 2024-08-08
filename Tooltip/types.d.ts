@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode } from '../../../node_modules/react';
 import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
+
 export type TooltipBehaviorType = `${ETooltipBehaviorType}`;
 export type TooltipPlacementType = `${ETooltipPlacementType}`;
 export interface ITooltipProps {

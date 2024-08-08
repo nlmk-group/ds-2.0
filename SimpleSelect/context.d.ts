@@ -1,4 +1,5 @@
-import { RefObject } from 'react';
+import { RefObject } from '../../../node_modules/react';
+
 interface SelectContextProps {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
@@ -18,6 +19,6 @@ interface SelectContextProps {
     focusedIndex: number;
     setFocusedIndex: (index: number) => void;
 }
-export declare const SelectContext: import("react").Context<SelectContextProps>;
+export declare const SelectContext: import('../../../node_modules/react').Context<SelectContextProps>;
 export {};
 //# sourceMappingURL=context.d.ts.map

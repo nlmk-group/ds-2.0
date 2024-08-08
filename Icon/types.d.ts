@@ -1,5 +1,6 @@
-import { CSSProperties, FC, ReactNode } from 'react';
+import { CSSProperties, FC, ReactNode } from '../../../node_modules/react';
 import { TIconName } from './IconsDirectory/unionType';
+
 export type IconColor = 'action' | 'disabled' | 'error' | 'primary' | 'secondary' | 'inherit' | 'success' | 'warning' | 'default';
 export type TContainerSize = 32 | 24 | 16;
 export interface TIconProps {

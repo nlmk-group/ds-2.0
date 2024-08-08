@@ -1,9 +1,17 @@
-import React, { ReactNode } from 'react';
-import { IAlert } from '../types';
+import { default as React, ReactNode } from '../../../../node_modules/react';
+import { IAlertProps } from '../types';
+
 declare const _default: {
     title: string;
-    component: React.FC<IAlert>;
+    component: React.FC<IAlertProps>;
+    decorators: ((Story: any) => React.JSX.Element)[];
     argTypes: {
+        showChildren: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
         title: {
             description: string;
             control: {
@@ -14,13 +22,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import("../enums").severityMapping;
+                    summary: import('../enums').EAlertSeverity;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import("../enums").severityMapping[];
+            options: import('../enums').EAlertSeverity[];
             control: {
                 type: string;
             };
@@ -49,11 +57,15 @@ declare const _default: {
     };
 };
 export default _default;
+interface IAlertStoryProps extends IAlertProps {
+    showChildren?: boolean;
+}
 export declare const AlertDefault: {
-    (argTypes: IAlert): ReactNode;
+    ({ showChildren, ...argTypes }: IAlertStoryProps): ReactNode;
     storyName: string;
     args: {
         title: string;
+        showChildren: boolean;
     };
 };
 //# sourceMappingURL=Alert.stories.d.ts.map

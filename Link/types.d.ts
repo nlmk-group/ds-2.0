@@ -1,4 +1,5 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from '../../../node_modules/react';
+
 type TLinkOutput = string | ReactNode;
 export interface ILink extends PropsWithChildren<{
     children: TLinkOutput;

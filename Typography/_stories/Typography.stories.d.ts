@@ -1,8 +1,9 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
+
 declare const _default: {
     title: string;
-    component: React.FC<import('../types').ITypography>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    component: React.FC<import('../types').ITypographyProps>;
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         '*': {
             description: string;
@@ -39,7 +40,6 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: string[];
             control: {
                 type: string;
             };
@@ -52,10 +52,6 @@ export declare const TypographyDefault: {
     storyName: string;
 };
 export declare const TypographyVariants: {
-    (): JSX.Element;
-    storyName: string;
-};
-export declare const TypographyColor: {
     (): JSX.Element;
     storyName: string;
 };

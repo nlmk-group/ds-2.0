@@ -1,4 +1,5 @@
 import { targetMapping } from '../enums';
+
 export declare const breadcrumbsArgsTypes: {
     crumbs: {
         description: string;

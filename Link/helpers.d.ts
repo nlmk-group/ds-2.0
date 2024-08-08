@@ -1,4 +1,5 @@
 import { sizeMapping } from './enums';
+
 export declare const typographyMapping: {
     h1: string;
     h2: string;

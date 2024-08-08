@@ -34,7 +34,6 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: string[];
         control: {
             type: string;
         };

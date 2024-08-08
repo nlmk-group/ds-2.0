@@ -1,4 +1,5 @@
 import { customInputColors, sizesMappingInput } from '../../declaration';
+
 export declare const argsTypes: {
     value: {
         description: string;

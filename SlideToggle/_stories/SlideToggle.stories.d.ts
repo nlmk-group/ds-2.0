@@ -1,5 +1,6 @@
 import { ISlideToggleProps } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, ISlideToggleProps>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISlideToggleProps>;
 export default _default;
 export declare const SlideToggleDefault: {
     (argTypes: ISlideToggleProps): JSX.Element;

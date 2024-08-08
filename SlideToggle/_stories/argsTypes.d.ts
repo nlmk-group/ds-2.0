@@ -1,4 +1,5 @@
 import { ESizeMapping } from '../enum';
+
 declare const argsTypes: {
     isShow: {
         description: string;

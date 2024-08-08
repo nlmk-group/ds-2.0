@@ -1,4 +1,5 @@
 import { AvatarShape, AvatarSize } from '../enums';
+
 export declare const argsTypes: {
     size: {
         description: string;

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 export declare enum sizes {
     EXTRA_EXTRA_LARGE = "xxl",
     EXTRA_LARGE = "xl",

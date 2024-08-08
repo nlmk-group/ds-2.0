@@ -1,8 +1,162 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
+import { customInputColors, sizesMappingInput } from '../../declaration';
 import { TInputProps } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, import("../types").IInputAdditionalProps & Omit<Pick<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "key" | keyof React.InputHTMLAttributes<HTMLInputElement>>, "size"> & Omit<Pick<React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>, "key" | keyof React.TextareaHTMLAttributes<HTMLTextAreaElement>>, "size"> & {
-    inputRef?: React.Ref<HTMLInputElement | HTMLTextAreaElement> | undefined;
-}>;
+
+import * as test from '@storybook/test';
+declare const _default: {
+    title: string;
+    component: React.FC<TInputProps>;
+    decorators: ((Story: any) => React.JSX.Element)[];
+    argTypes: {
+        onBlur: {
+            description: string;
+            action: string;
+        };
+        onChange: {
+            description: string;
+            action: string;
+        };
+        onReset: {
+            description: string;
+            action: string;
+        };
+        reset: {
+            description: string;
+            control: {
+                type: string;
+            };
+            table: {
+                defaultValue: {
+                    summary: boolean;
+                };
+            };
+        };
+        value: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        helperText: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        label: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        icon: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        size: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: sizesMappingInput;
+                };
+            };
+            options: sizesMappingInput[];
+            control: {
+                type: string;
+            };
+        };
+        disabled: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        color: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: customInputColors;
+                };
+            };
+            options: customInputColors[];
+            control: {
+                type: string;
+            };
+        };
+        multiline: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        resize: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        id: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pseudo: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        colored: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+    };
+};
 export default _default;
 export declare const InputDefault: {
     (argTypes: TInputProps): JSX.Element;
@@ -15,42 +169,42 @@ export declare const InputWithLabel: {
     args: {};
 };
 export declare const InputWithLabelAndHelperText: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputWithLabelHelperTextAndTextIcon: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputWithLabelHelperTextElement: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputDisabled: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputError: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputWarning: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputSuccess: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
 export declare const InputCompact: {
-    (argTypes: TInputProps): JSX.Element;
+    (argTypes: TInputProps): React.JSX.Element;
     storyName: string;
     args: {};
 };
@@ -100,7 +254,7 @@ export declare const InputMultilineSuccess: {
 export declare const InputPseudoDefaultChecking: {
     (argTypes: TInputProps): JSX.Element;
     args: {
-        onChange: import("jest-mock").Mock<unknown, unknown[]>;
+        onChange: test.Mock<any, any>;
     };
     play({ args, canvasElement }: {
         args: any;

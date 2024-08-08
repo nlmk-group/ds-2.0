@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { default as React, ReactNode } from '../../../../node_modules/react';
 import { sizeMapping } from '../enums';
 import { ILink } from '../types';
-declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0fc72a6d").R, ILink>;
+
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ILink>;
 export default _default;
 export declare const DefaultLink: {
     (argTypes: ILink): ReactNode;
@@ -35,8 +36,8 @@ export declare const IconLink: {
         href: string;
         size: sizeMapping;
         disabled: boolean;
-        leftIcon: JSX.Element;
-        rightIcon: JSX.Element;
+        leftIcon: React.JSX.Element;
+        rightIcon: React.JSX.Element;
     };
 };
 export declare const LinkSizes: {

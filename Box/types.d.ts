@@ -1,4 +1,5 @@
-import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode } from '../../../node_modules/react';
+
 type TBorderProps = string | number;
 export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     children?: ReactNode;

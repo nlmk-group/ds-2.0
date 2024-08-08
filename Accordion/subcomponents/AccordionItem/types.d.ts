@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode } from '../../../../../node_modules/react';
 import { iconsMapping, sizesMapping, variantsMapping } from '../../enums';
+
 export type TAccordionItem = {
     id: string | number;
     title: string;

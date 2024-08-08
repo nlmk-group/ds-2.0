@@ -1,6 +1,7 @@
-import { ChangeEvent, PropsWithChildren, ReactNode } from 'react';
+import { ChangeEvent, PropsWithChildren, ReactNode } from '../../../node_modules/react';
 import { sizesMapping } from '../declaration';
 import { fileTypeMapping, statusColorMapping } from './enums';
+
 export interface IFile extends PropsWithChildren<any> {
     children?: JSX.Element;
     title?: string;

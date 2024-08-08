@@ -1,7 +1,8 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
+
 declare const _default: {
     title: string;
-    component: React.FC<import("../types").IInputRangeProps>;
+    component: React.FC<import('../types').IInputRangeProps>;
 };
 export default _default;
 export declare const InputRangeDefault: {

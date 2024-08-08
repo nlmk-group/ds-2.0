@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC } from '../../../node_modules/react';
 import { Breadcrumb } from './types';
+
 declare const BasicBreadcrumbs: FC<{
     crumbs: Breadcrumb[];
 }>;

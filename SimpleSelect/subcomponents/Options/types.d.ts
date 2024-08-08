@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from '../../../../../node_modules/react';
+
 export interface IOptionsProps {
     children: ReactNode;
     menuStyle?: CSSProperties;

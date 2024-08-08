@@ -1,7 +1,8 @@
+/// <reference types="react" />
 export declare const errorImagesByCode: {
-    readonly 404: () => JSX.Element;
-    readonly 403: () => JSX.Element;
-    readonly default: () => JSX.Element;
+    readonly 404: () => import("react").JSX.Element;
+    readonly 403: () => import("react").JSX.Element;
+    readonly default: () => import("react").JSX.Element;
 };
 export interface ErrorPageProps {
     errorCode?: number;

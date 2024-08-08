@@ -1,10 +1,10 @@
-import React from 'react';
-import './Radio.stories.scss';
+import { default as React } from '../../../../node_modules/react';
 import { IRadioProps } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IRadioProps>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         disabled: {
             description: string;

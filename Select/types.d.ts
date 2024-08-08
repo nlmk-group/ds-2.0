@@ -1,5 +1,6 @@
-import { ReactNode, MouseEvent, ReactElement, CSSProperties } from 'react';
+import { ReactNode, MouseEvent, ReactElement, CSSProperties } from '../../../node_modules/react';
 import { customInputColors, sizesMappingInput } from '../declaration';
+
 export type ISelectOption = {
     value: string;
     label: string | ReactElement;
@@ -66,7 +67,7 @@ export interface ISelectSharedProperties {
     scrollingItems: number;
     selectedValues: TSelected;
     handleSelect: (option: string, includes: boolean) => void;
-    handleTypographyClick: (option: string, event: MouseEvent<HTMLParagraphElement>) => void;
+    handleTypographyClick: (option: string, event: MouseEvent<HTMLSpanElement>) => void;
     handleSelectAllClick: () => void;
     withPortal?: boolean;
 }

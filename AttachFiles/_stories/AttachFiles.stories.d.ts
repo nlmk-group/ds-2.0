@@ -1,9 +1,10 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { IFile } from '../subcomponents/File/types';
+
 declare const _default: {
     title: string;
-    component: React.FC<import("../types").IAttachFiles>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    component: React.FC<import('../types').IAttachFiles>;
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     parameters: {
         actions: {
             argTypesRegex: string;
@@ -129,10 +130,10 @@ export declare const AttachFilesControl: {
     (argTypes: IFile): JSX.Element;
     storyName: string;
     args: {
-        removedOnClick: import("@storybook/addon-actions").HandlerFunction;
-        commentedOnClick: import("@storybook/addon-actions").HandlerFunction;
-        savedOnClick: import("@storybook/addon-actions").HandlerFunction;
-        addFileOnClick: import("@storybook/addon-actions").HandlerFunction;
+        removedOnClick: import('@storybook/addon-actions').HandlerFunction;
+        commentedOnClick: import('@storybook/addon-actions').HandlerFunction;
+        savedOnClick: import('@storybook/addon-actions').HandlerFunction;
+        addFileOnClick: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const AttachFilesWithoutTitle: {

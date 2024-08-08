@@ -1,5 +1,6 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from '../../../node_modules/react';
 import { sizeMapping, statusMapping } from './enums';
+
 export type SizeType = `${sizeMapping}`;
 export type StatusType = `${statusMapping}`;
 export interface IToggleButtonGroup {

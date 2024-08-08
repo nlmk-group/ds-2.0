@@ -1,10 +1,11 @@
-import React from 'react';
+import { default as React } from '../../../../node_modules/react';
 import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
 import { IAccordionProps } from '../types';
+
 declare const _default: {
     title: string;
     component: React.FC<IAccordionProps>;
-    decorators: ((Story: () => any) => JSX.Element)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         size: {
             description: string;
@@ -101,7 +102,7 @@ export declare const AccordionDefault: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
     args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
+        items: import('../subcomponents/AccordionItem/types').TAccordionItem[];
     };
 };
 export declare const AccordionSizes: {
@@ -116,21 +117,21 @@ export declare const AccordionPaper: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
     args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
+        items: import('../subcomponents/AccordionItem/types').TAccordionItem[];
     };
 };
 export declare const FoldedAccordion: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
     args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
+        items: import('../subcomponents/AccordionItem/types').TAccordionItem[];
     };
 };
 export declare const MultiExpandedAccordion: {
     (argTypes: IAccordionProps): JSX.Element;
     storyName: string;
     args: {
-        items: import("../subcomponents/AccordionItem/types").TAccordionItem[];
+        items: import('../subcomponents/AccordionItem/types').TAccordionItem[];
     };
 };
 //# sourceMappingURL=Accordion.stories.d.ts.map

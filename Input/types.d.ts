@@ -1,5 +1,6 @@
-import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from 'react';
+import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from '../../../node_modules/react';
 import { customInputColors, sizesMappingInput } from '../declaration';
+
 type TSize = `${sizesMappingInput}`;
 export interface IInputAdditionalProps {
     id?: string;

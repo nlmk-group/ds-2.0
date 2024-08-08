@@ -107,7 +107,7 @@ export const DividerCustomClassName = (argTypes: IDivider): ReactNode => {
           <Button
             variant="primary"
             fill="clear"
-            size='xs'
+            size="xs"
             className={style['btn-divider-handler']}
             iconButton={<Icon name="IconChemical24" containerSize={16} htmlColor="var(--ac-icon-blue)" />}
           />
@@ -157,7 +157,7 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         />
         <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
         <span style={{ display: 'flex', alignItems: 'center' }}>
-          <Link href='#'>Ссылка</Link>
+          <Link href="#">Ссылка</Link>
         </span>
       </div>
 

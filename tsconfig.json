@@ -1,14 +1,10 @@
 {
-  "exclude": [
-    "node_modules",
-    "lib",
-    ".storybook",
-    "tokens",
-    "src/**/*.stories.mdx",
-    ".jest-test-results.json",
-    "**/*.json"
+  "exclude": ["node_modules", "lib", ".storybook", "tokens", "src/**/*.mdx", ".jest-test-results.json", "**/*.json"],
+  "include": [
+    "src/components/**/*",
+    "src/components/**/**/*",
+    "src/components/**/**/**/*"
   ],
-  "include": ["src/components/**/*"],
 
   "compilerOptions": {
     "module": "commonjs",

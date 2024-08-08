@@ -1,0 +1,23 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import AttachFiles from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/AttachFiles/Info"
+  component={AttachFiles}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/QsL7u2PBZMnMhvOvj9MZzd/DS2.0-Attach-Files?node-id=101%3A8416&mode=dev'
+    },
+    actions: { argTypesRegex: '^on.*' },
+    jest: ['AttachFiles.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

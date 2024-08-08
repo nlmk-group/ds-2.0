@@ -21,7 +21,7 @@ const FooterSection: FC<{
       <Typography className={styles['footer-header']} variant="Subheading3-Medium">
         {title}
       </Typography>
-      <Typography className={styles['footer-text']} variant="Body1">
+      <Typography variant="Body1">
         {description}
       </Typography>
       {buttonText && (

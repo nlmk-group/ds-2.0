@@ -1,10 +1,11 @@
 .wrapper {
-  background-color: var(--default-second);
+  background-color: var(--steel-10);
   padding: 20px;
   border-radius: 4px;
+  margin-top: -20px;
   span,
   ul > li {
-    color: var(--text-grey-900);
+    color: var(--steel-90);
   }
   a > span,
   button > span,
@@ -47,7 +48,7 @@
 .description-buttons,
 .footer-section {
   > * {
-    margin-right: 16px;
+    padding-right: 16px;
   }
 }
 
@@ -62,26 +63,26 @@
 .footer-section {
   grid-template-rows: auto 1fr auto;
   justify-items: start;
-  border: 2px solid #ccdff6;
+  border: 2px solid var(--unique-divider);
   border-radius: 16px;
   padding: 24px 32px;
 }
 
 .description-header {
-  margin-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 .description-subheader,
 .footer-header {
-  margin-bottom: 16px;
+  padding-bottom: 16px;
 }
 
 .description-definition {
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 .description-buttons--primary {
-  margin-bottom: 36px;
+  padding-bottom: 36px;
 }
 
 .code {
@@ -159,11 +160,13 @@
     display: block;
     gap: 2.5px;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
   .link-changelog {
     display: inline-flex;
   }
   .left-padding {
     padding-left: 20px;
+    opacity: 0.5;
   }
 }

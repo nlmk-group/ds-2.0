@@ -139,7 +139,7 @@ export const AllIcons = (): JSX.Element => {
           return (
             <Card key={iconIndex} className={styles.card} indicatorStatus="default">
               <div className={styles.cardHeader}>
-                <Typography variant="Body1" color="primary">
+                <Typography variant="Body1" color="var(--steel-90)">
                   {startCase(formatIconName(icon.title))}
                 </Typography>
               </div>

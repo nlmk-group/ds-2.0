@@ -28,7 +28,7 @@
 }
 
 .wrapper {
-  background-color: var(--background-paper);
+  background-color: var(--steel-20);
   margin: 0;
   padding: 24px;
   width: 98%;
@@ -114,7 +114,7 @@
 
 .icon {
   @include iconStyle;
-  background-color: var(--background-paper);
+  background-color: var(--steel-20);
 }
 
 .iconFill path {

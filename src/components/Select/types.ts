@@ -225,7 +225,7 @@ export interface ISelectSharedProperties {
   scrollingItems: number;
   selectedValues: TSelected;
   handleSelect: (option: string, includes: boolean) => void;
-  handleTypographyClick: (option: string, event: MouseEvent<HTMLParagraphElement>) => void;
+  handleTypographyClick: (option: string, event: MouseEvent<HTMLSpanElement>) => void;
   handleSelectAllClick: () => void;
   withPortal?: boolean;
 }

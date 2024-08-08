@@ -1,117 +1,97 @@
 import React from 'react';
 
-import { Icon, Snackbar } from '@components/index';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { variantsMapping } from '@components/declaration';
+import { Snackbar } from '@components/index';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
-import { colorMapping, indicatorMapping } from './enums';
+import { ESnackbarColors } from './enums';
 
-describe('src/components/Snackbar', () => {
-  const testTitle = 'Hello world!';
-  const SnackbarHelper = () => (
-    <Snackbar>
-      <span data-testid="SNACKBAR_TITLE">{testTitle}</span>
-    </Snackbar>
-  );
+describe('Snackbar component', () => {
+  const testMessage = 'Test message';
 
-  test('It should render a Snackbar', () => {
-    const { container } = render(<SnackbarHelper />);
-    const snackbarComponent = container.getElementsByTagName('div')[0];
-    expect(snackbarComponent).toBeInTheDocument();
+  test('src/components/Snackbar', () => {
+    render(<Snackbar>{testMessage}</Snackbar>);
+    expect(screen.getByText(testMessage)).toBeInTheDocument();
   });
 
-  test('It should render a Snackbar with correct title', () => {
-    render(<SnackbarHelper />);
-    expect(screen.getByTestId('SNACKBAR_TITLE')).toHaveTextContent(testTitle);
+  test.each(Object.values(ESnackbarColors))('renders Snackbar with %s color', color => {
+    render(<Snackbar color={color}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(`snackbar-${color}`);
   });
 
-  test('It should render a Snackbar with custom opacity', () => {
-    const bgOpacityTest = 70;
-    render(<Snackbar bgOpacity={bgOpacityTest}>Hello!</Snackbar>);
-    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveStyle(`opacity: ${bgOpacityTest}%`);
+  test.each(Object.values(variantsMapping))('renders Snackbar with %s variant', variant => {
+    render(<Snackbar variant={variant}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(`snackbar-${variant}`);
   });
 
-  Object.values(colorMapping).forEach((color: colorMapping) => {
-    test(`It should render a Snackbar with ${color} background`, () => {
-      render(<Snackbar color={color}>Hello!</Snackbar>);
-      expect(screen.getByTestId('SNACKBAR_WRAPPER').classList.contains(`background-${color}`)).toBe(true);
-    });
+  test('renders action button with default text', () => {
+    const actionMock = jest.fn();
+    render(<Snackbar actionButton={actionMock}>{testMessage}</Snackbar>);
+    const actionButton = screen.getByTestId('SNACKBAR_ACTION');
+    expect(actionButton).toBeInTheDocument();
+    expect(actionButton).toHaveTextContent('Посмотреть');
   });
 
-  Object.values(colorMapping).forEach((color: colorMapping) => {
-    test(`It should render a Snackbar with ${color} icon`, () => {
-      render(
-        <Snackbar withIcon color={color}>
-          Hello!
-        </Snackbar>
-      );
-      expect(screen.getByTestId(`SNACKBAR_ICON_${color}`)).toBeInTheDocument();
-    });
-  });
-
-  Object.values(indicatorMapping).forEach((color: indicatorMapping) => {
-    test(`It should render a Snackbar with ${color} indicator`, () => {
-      render(<Snackbar indicator={color}>Hello!</Snackbar>);
-      expect(screen.getByTestId('SNACKBAR_WRAPPER').classList.contains(`indicator-${color}`)).toBe(true);
-    });
-  });
-
-  test('It should render a Snackbar with custom icon', () => {
+  test('renders action button with custom text', () => {
+    const actionMock = jest.fn();
+    const actionText = 'Custom Action';
     render(
-      <Snackbar
-        withIcon
-        customIcon={
-          <div data-testid="SNACKBAR_CUSTOM_ICON">
-            <Icon name="IconEducationOutlined24" containerSize={24} htmlColor={'var(--default-second)'} />
-          </div>
-        }
-      >
-        Hello!
+      <Snackbar actionButton={actionMock} actionText={actionText}>
+        {testMessage}
       </Snackbar>
     );
-    expect(screen.getByTestId('SNACKBAR_CUSTOM_ICON')).toBeInTheDocument();
+    const actionButton = screen.getByTestId('SNACKBAR_ACTION');
+    expect(actionButton).toHaveTextContent(actionText);
   });
 
-  describe('While rendering action button', () => {
-    const actionCallBack = jest.fn();
-    test('It should render a Snackbar action button', () => {
-      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
-      expect(screen.getByTestId('SNACKBAR_ACTION')).toBeInTheDocument();
-    });
-
-    test('It should render a Snackbar action button with default label', () => {
-      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
-      expect(screen.getByTestId('SNACKBAR_ACTION')).toHaveTextContent('Посмотреть');
-    });
-
-    test('It should render a Snackbar action button with custom label', () => {
-      const label = 'Click me!';
-      render(
-        <Snackbar actionButton={actionCallBack} actionButtonText={label}>
-          Hello
-        </Snackbar>
-      );
-      expect(screen.getByTestId('SNACKBAR_ACTION')).toHaveTextContent(label);
-    });
-
-    test('It should use passed action function', () => {
-      render(<Snackbar actionButton={actionCallBack}>Hello</Snackbar>);
-      const btn = screen.getByTestId('SNACKBAR_ACTION');
-      fireEvent.click(btn);
-      expect(actionCallBack).toHaveBeenCalledTimes(1);
-    });
+  test('calls action function when action button is clicked', () => {
+    const actionMock = jest.fn();
+    render(<Snackbar actionButton={actionMock}>{testMessage}</Snackbar>);
+    fireEvent.click(screen.getByTestId('SNACKBAR_ACTION'));
+    expect(actionMock).toHaveBeenCalledTimes(1);
   });
-  describe('While rendering close button', () => {
-    const closeCallBack = jest.fn();
-    test('It should render a Snackbar action button', () => {
-      render(<Snackbar close={closeCallBack}>Hello</Snackbar>);
-      expect(screen.getByTestId('SNACKBAR_CLOSE')).toBeInTheDocument();
+
+  test('renders close button when close function is provided', () => {
+    const closeMock = jest.fn();
+    render(<Snackbar close={closeMock}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_CLOSE')).toBeInTheDocument();
+  });
+
+  test('calls close function when close button is clicked', () => {
+    const closeMock = jest.fn();
+    render(<Snackbar close={closeMock}>{testMessage}</Snackbar>);
+    fireEvent.click(screen.getByTestId('SNACKBAR_CLOSE'));
+    expect(closeMock).toHaveBeenCalledTimes(1);
+  });
+
+  test('auto-hides after specified duration', () => {
+    jest.useFakeTimers();
+    const closeMock = jest.fn();
+    render(
+      <Snackbar close={closeMock} autoHideDuration={1000}>
+        {testMessage}
+      </Snackbar>
+    );
+
+    expect(screen.getByText(testMessage)).toBeInTheDocument();
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
     });
 
-    test('It should use passed close function', () => {
-      render(<Snackbar close={closeCallBack}>Hello</Snackbar>);
-      const btn = screen.getByTestId('SNACKBAR_CLOSE');
-      fireEvent.click(btn);
-      expect(closeCallBack).toHaveBeenCalledTimes(1);
-    });
+    expect(closeMock).toHaveBeenCalledTimes(1);
+    jest.useRealTimers();
+  });
+
+  test('applies custom className', () => {
+    const customClass = 'custom-class';
+    render(<Snackbar className={customClass}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(customClass);
+  });
+
+  test('applies custom style', () => {
+    const customStyle = { backgroundColor: 'red' };
+    render(<Snackbar style={customStyle}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveStyle(customStyle);
   });
 });

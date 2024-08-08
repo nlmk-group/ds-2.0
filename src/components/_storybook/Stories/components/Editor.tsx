@@ -86,7 +86,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
               @import url('https://fonts.cdnfonts.com/css/pt-root-ui');
 
               html, body {
-                background-color: var(--default-second);
+                background-color: var(--steel-10);
               }
               #root {
                 -webkit-font-smoothing: auto;
@@ -102,10 +102,10 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 align-items: center;
                 gap: 20px;
                 flex-wrap: wrap;
-                background-color: var(--default-second);
               }
 
-              ${theme === 'dark' ? darkThemeStyles : ''}
+              ${theme === 'dark' ? `:root{${darkThemeStyles}}` : ''}
+
               * {
                 font-family: 'PT Root UI', sans-serif !important;
               }

@@ -1,16 +1,3 @@
-const colors = [
-  'primary',
-  'secondary',
-  'disabled',
-  'hint',
-  'error',
-  'success',
-  'warning',
-  'info',
-  'textSecondary',
-  'textPrimary',
-  'inherit'
-];
 const spanAttributes = [
   'class',
   'id',
@@ -84,16 +71,15 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   'color': {
-    description: `Цвет текста – <b>${colors.join(' | ')}</b>`,
+    description: 'Цвет текста',
     table: {
       defaultValue: {
-        summary: 'inherit'
+        summary: '–'
       },
       type: {
-        summary: '–'
+        summary: 'string'
       }
     },
-    options: colors,
-    control: { type: 'select' }
+    control: { type: 'color' }
   }
 };

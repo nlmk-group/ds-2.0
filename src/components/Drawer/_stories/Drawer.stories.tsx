@@ -1,11 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
-import { ESizes } from '@components/Button/enums';
-import { Box, Button, Drawer, IconCloseOutlined24, Input, Typography } from '@components/index';
+import { Box, Button, Drawer, Input, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
-
-import styles from './Drawer.module.scss';
 
 import { IDrawerProps } from '../types';
 import { argsTypes } from './argsTypes';
@@ -106,7 +103,7 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
         }}
       >
         <Box flexDirection="column" justifyContent="center" gap="var(--20-size)">
-          <Box alignItems='center' justifyContent="center">
+          <Box alignItems="center" justifyContent="center">
             <Typography color="primary">Drawer, открывающийся слева</Typography>
           </Box>
           <Input label="Имя" />

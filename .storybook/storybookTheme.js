@@ -46,8 +46,8 @@ export const storybookDarkTheme = create({
   colorSecondary: '#2A8CFF',
 
   // UI
-  appBg: '#3C4854',
-  appContentBg: '#475363',
+  appBg: '#455161',
+  appContentBg: '#455161ff',
   appBorderColor: '#6C7581',
   appBorderRadius: 4,
 
@@ -62,10 +62,10 @@ export const storybookDarkTheme = create({
   // Toolbar default and active colors
   barTextColor: '#FFFFFF',
   barSelectedColor: '#2A8CFF',
-  barBg: '#3C4854',
+  barBg: '#455161',
 
   // Form colors
-  inputBg: '#475363',
+  inputBg: '#455161ff',
   inputBorder: '#7A879B',
   inputTextColor: '#FFFFFF',
   inputBorderRadius: 4,

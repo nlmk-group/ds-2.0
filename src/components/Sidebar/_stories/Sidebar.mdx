@@ -1,0 +1,23 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Sidebar from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Sidebar/Info"
+  component={Sidebar}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/NVWvbpDg0KxYpZOlCMFXdy/DS2.0-Sidebar?type=design&node-id=0-1&mode=design&t=Qh3zxP2KDdKIeZpx-0'
+    },
+    jest: ['Sidebar.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>
+

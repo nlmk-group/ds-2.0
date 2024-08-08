@@ -23,11 +23,7 @@ export const Default = (argTypes: TDatePickerProps): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '330px' }}>
-      <DatePicker
-        {...argTypes}
-        value={value}
-        onChange={onChange}
-      />
+      <DatePicker {...argTypes} value={value} onChange={onChange} />
     </div>
   );
 };

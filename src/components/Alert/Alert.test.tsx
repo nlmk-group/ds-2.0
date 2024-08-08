@@ -5,48 +5,32 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './Alert.module.scss';
 
-import { severityMapping } from './enums';
+import { EAlertSeverity } from './enums';
 
 describe('src/components/Alert', () => {
   const TITLE = 'Hello World'!;
-  // Check render tab at DOM
+
   test('It should render an Alert', () => {
     const { container } = render(<Alert title="Aloha" />);
     const alertComponent = container.getElementsByTagName('div')[0];
     expect(alertComponent).toBeInTheDocument();
   });
 
-  // Check render correct title
   test('It should render correct title', () => {
     render(<Alert title={TITLE} />);
     expect(screen.getByTestId('ALERT_TITLE')).toHaveTextContent(TITLE);
   });
 
-  // Check success variants
-  test('It should render success standard alert', () => {
-    render(<Alert title={TITLE} />);
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-success')).toBe(true);
+  test.each([
+    ['success', EAlertSeverity.success],
+    ['error', EAlertSeverity.error],
+    ['warning', EAlertSeverity.warning],
+    ['info', EAlertSeverity.info]
+  ])('It should render %s alert', (severityName, severity) => {
+    render(<Alert title={TITLE} severity={severity} />);
+    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains(`wrapper-${severityName}`)).toBe(true);
   });
 
-  // Check error variants
-  test('It should render error standard alert', () => {
-    render(<Alert title={TITLE} severity={severityMapping.error} />);
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-error')).toBe(true);
-  });
-
-  // Check warning variants
-  test('It should render warning standard alert', () => {
-    render(<Alert title={TITLE} severity={severityMapping.warning} />);
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-warning')).toBe(true);
-  });
-
-  // Check info variants
-  test('It should render info standard alert', () => {
-    render(<Alert title={TITLE} severity={severityMapping.info} />);
-    expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('standard-info')).toBe(true);
-  });
-
-  // Check adding custom styles
   test('It should render alert with custom styles', () => {
     render(<Alert title={TITLE} className={styles['test-custom-style']} />);
     expect(screen.getByTestId('ALERT_WRAPPER').classList.contains('test-custom-style')).toBe(true);
@@ -63,20 +47,26 @@ describe('src/components/Alert', () => {
     expect(screen.getByTestId('ALERT_CHILDREN')).toHaveTextContent(content);
   });
 
-  describe('While rendering alert with button', () => {
+  describe('While rendering alert with close button', () => {
     const mockCallBack = jest.fn();
-    const AlertWithButton = () => <Alert title={TITLE} close={mockCallBack} />;
+
     test('It should render alert with close button', () => {
-      const { container } = render(<AlertWithButton />);
-      const button = container.getElementsByTagName('button')[0];
+      render(<Alert title={TITLE} close={mockCallBack} />);
+      const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
     });
 
-    test('It should call function on click action', () => {
-      const { container } = render(<AlertWithButton />);
-      const button = container.getElementsByTagName('button')[0];
+    test('It should call function on click close button', () => {
+      render(<Alert title={TITLE} close={mockCallBack} />);
+      const button = screen.getByRole('button');
       fireEvent.click(button);
       expect(mockCallBack).toHaveBeenCalledTimes(1);
     });
+  });
+
+  test('It should render alert with action', () => {
+    const actionText = 'Action';
+    render(<Alert title={TITLE} action={<button>{actionText}</button>} />);
+    expect(screen.getByText(actionText)).toBeInTheDocument();
   });
 });

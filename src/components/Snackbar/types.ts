@@ -1,25 +1,34 @@
-import { MouseEventHandler, PropsWithChildren } from 'react';
-import { indicatorMapping } from '@components/Snackbar/enums';
+import { CSSProperties, ReactNode } from 'react';
 
-export interface ISnackbar extends PropsWithChildren<any> {
+import { variantsMapping } from '@components/declaration';
+
+import { ESnackbarColors } from './enums';
+
+export interface ISnackbarProps {
+  /** Цвет фона Snackbar */
+  color?: ESnackbarColors;
+
+  /** Вариант отображения Snackbar */
+  variant?: keyof typeof variantsMapping;
+
+  /** Функция, вызываемая при закрытии Snackbar */
+  close?: () => void;
+
+  /** Функция, вызываемая при нажатии на кнопку действия */
+  actionButton?: () => void;
+
+  /** Текст кнопки действия */
+  actionText?: string;
+
+  /** Содержимое Snackbar */
+  children: ReactNode;
+
+  /** Время в миллисекундах, через которое Snackbar автоматически скроется */
+  autoHideDuration?: number;
+
+  /** Дополнительный CSS класс */
   className?: string;
-  color?: string;
-  indicator?: `${indicatorMapping}`;
-  bgOpacity?: number;
-  withIcon?: boolean;
-  customIcon?: JSX.Element;
-  close?: MouseEventHandler<HTMLButtonElement>;
-  actionButton?: MouseEventHandler<HTMLButtonElement>;
-  actionButtonText?: string;
-}
 
-export interface IActionBtn {
-  actionButton: MouseEventHandler<HTMLButtonElement>;
-  actionButtonText: string;
-  color: string;
-}
-
-export interface ICloseBtn {
-  close: MouseEventHandler<HTMLButtonElement>;
-  color: string;
+  /** Inline стили для компонента */
+  style?: CSSProperties;
 }

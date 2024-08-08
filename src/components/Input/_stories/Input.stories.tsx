@@ -2,9 +2,10 @@ import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
 import Button from '@components/Button';
 import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { expect, jest } from '@storybook/jest';
 import { Meta } from '@storybook/react';
-import { userEvent, waitFor, within } from '@storybook/testing-library';
+import { expect } from '@storybook/test';
+import * as test from '@storybook/test';
+import { userEvent, waitFor, within } from '@storybook/test';
 
 import styles from './Input.module.scss';
 
@@ -22,9 +23,9 @@ const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</d
 export default {
   title: 'Components/Input/Stories',
   component: Input,
-  argTypes: argsTypes,
-  decorators: [withWrapper]
-} as Meta<typeof Input>;
+  decorators: [withWrapper],
+  argTypes: argsTypes
+};
 
 export const InputDefault = (argTypes: TInputProps): JSX.Element => {
   const [value, setValue] = useState('');
@@ -41,7 +42,7 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
     setValue('');
   };
 
-  console.log({argTypes})
+  console.log({ argTypes });
 
   return (
     <Input
@@ -252,7 +253,7 @@ export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element =
 };
 
 InputPseudoDefaultChecking.args = {
-  onChange: jest.fn()
+  onChange: test.fn()
 };
 
 // @ts-ignore

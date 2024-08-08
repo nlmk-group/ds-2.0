@@ -6,11 +6,11 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { colorMapping } from '../enums';
+import { ESnackbarColors } from '../enums';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_SNACKBAR,
@@ -52,7 +52,7 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -93,7 +93,7 @@ export default App = () => (
             description={SNACKBAR_COLOR}
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 
-const colors = [${Object.values(colorMapping)
+const colors = [${Object.values(ESnackbarColors)
           .map(c => `"${c}"`)
           .join(', ')}]
 export default App = () => (
@@ -109,7 +109,7 @@ export default App = () => (
             description={SNACKBAR_ICON}
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 
-const colors = [${Object.values(colorMapping)
+const colors = [${Object.values(ESnackbarColors)
           .map(c => `"${c}"`)
           .join(', ')}];
 
@@ -176,11 +176,7 @@ export default App = () => (
         </>
       )}
       {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
-      {activeTab == TabIds.tests && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName={COMPONENT_NAME} />
-        </Typography>
-      )}
+      {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );
 };

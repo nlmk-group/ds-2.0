@@ -1,0 +1,22 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Tooltip from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Tooltip/Info"
+  component={Tooltip}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/b1fUQ56wJbjzskhCh3oj2C/Web-%2F-Tooltip?node-id=312%3A72159&t=lDQrbcLliB0ImlMQ-0'
+    },
+    jest: ['Tooltip.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

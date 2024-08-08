@@ -27,7 +27,7 @@ const Colors: FC<IColors> = ({ colors, groupColorKey, title, subTitle }) => {
     return (
       <div className={styles['cell-color']}>
         {label && (
-          <Typography variant="Body2" color="disabled" className={styles['only-mobile']}>
+          <Typography variant="Body2" color="var(--steel-90)" style={{ opacity: '0.5' }} className={styles['only-mobile']}>
             {label}
           </Typography>
         )}

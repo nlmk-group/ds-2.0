@@ -1,0 +1,18 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Tabs from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Tabs/Info"
+  component={Tabs}
+  parameters={{
+    jest: ['Tabs.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

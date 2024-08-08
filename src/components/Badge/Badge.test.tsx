@@ -2,10 +2,9 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import { TBadgeColors } from './types';
-
-import { sizesMapping, variantsMapping } from '../declaration';
+import { variantsMapping } from '../declaration';
 import { argsTypes } from './_stories/argsTypes';
+import { EBadgeColors, EBadgeSizes } from './enums';
 import { Badge } from './index';
 
 describe('src/components/Badge', () => {
@@ -26,7 +25,7 @@ describe('src/components/Badge', () => {
 
   // Check variant
   test('Проверка варианта стилей внутри компонента', () => {
-    colors.map((className: TBadgeColors) => {
+    colors.map((className: EBadgeColors) => {
       const { container } = render(<Badge color={className}>1</Badge>);
       const badge = container.getElementsByTagName('div')[0];
       expect(badge).toHaveClass(className);
@@ -35,7 +34,7 @@ describe('src/components/Badge', () => {
 
   // Check outline
   test('Проверка вариантов обводки компонента', () => {
-    colors.map((className: TBadgeColors) => {
+    colors.map((className: EBadgeColors) => {
       const { container } = render(
         <Badge variant={variantsMapping.outline} color={className}>
           1
@@ -48,7 +47,7 @@ describe('src/components/Badge', () => {
 
   // Check size
   test('Проверка размера компонента', () => {
-    const { container } = render(<Badge size={sizesMapping.s}>1</Badge>);
+    const { container } = render(<Badge size={EBadgeSizes.s}>1</Badge>);
     const badge = container.getElementsByTagName('div')[0];
     expect(badge).toHaveClass('compact');
   });

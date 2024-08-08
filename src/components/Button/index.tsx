@@ -1,86 +1,117 @@
-import React, { FC } from 'react';
+import React, { forwardRef } from 'react';
+
+import { EBadgeSizes } from '@components/Badge/enums';
+import { variantsWithOneFill } from '@components/Button/helpers';
+import { ButtonBadge } from '@components/Button/subcomponents';
+import Typography from '@components/Typography';
+import { ETypographyVariants } from '@components/Typography/enums';
 import clsx from 'clsx';
 
-import Typography from '@components/Typography';
-
 import { IButtonProps } from './types';
-import { EVariant, ESizes, EFill } from './enums'
 
 import styles from './Button.module.scss';
-import BadgeHelper from './BadgeHelper'
 
-export const Button: FC<IButtonProps> = ({
-  children,
-  variant = EVariant['primary'],
-  fill = EFill.solid,
-  startIcon,
-  endIcon,
-  badge,
-  size = ESizes.m,
-  iconButton = false,
-  className,
-  ...props
-}) => {
-  const sizeClassesMapping = {
-    s: styles.compact,
-    xs: styles['extra-compact'],
-    m: null
-  };
+import { EButtonFill, EButtonNodesPosition, EButtonSizes, EButtonVariant } from './enums';
 
-  const iconButtonSizeClassesMapping = {
-    s: styles['icon-button-compact'],
-    xs: styles['icon-button-extra-compact'],
-    m: null
-  };
+/**
+ * Компонент Button для создания кнопок различных стилей и размеров.
+ * @component
+ * @param {Object} props - Свойства компонента Button.
+ * @param {ReactNode} props.children - Содержимое кнопки.
+ * @param {EButtonVariant} [props.variant=EButtonVariant.primary] - Вариант стиля кнопки.
+ * @param {EButtonFill} [props.fill=EButtonFill.solid] - Тип заливки кнопки.
+ * @param {ReactNode} [props.startIcon] - Иконка в начале кнопки.
+ * @param {ReactNode} [props.endIcon] - Иконка в конце кнопки.
+ * @param {string|number} [props.startBadge] - Бейдж в начале кнопки.
+ * @param {string|number} [props.endBadge] - Бейдж в конце кнопки.
+ * @param {EButtonSizes} [props.size=EButtonSizes.m] - Размер кнопки.
+ * @param {ReactNode} [props.iconButton] - Иконка для кнопки-иконки.
+ * @param {string} [props.className] - Дополнительный CSS класс.
+ * @returns {JSX.Element} Компонент Button.
+ */
+export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+  (
+    {
+      children,
+      variant = EButtonVariant.primary,
+      fill = EButtonFill.solid,
+      startIcon,
+      endIcon,
+      startBadge,
+      endBadge,
+      size = EButtonSizes.m,
+      iconButton,
+      className,
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const sizeClasses = {
+      s: { default: styles.compact, icon: styles['icon-button-compact'] },
+      xs: { default: styles['extra-compact'], icon: styles['icon-button-extra-compact'] },
+      m: { default: null, icon: null }
+    };
 
-  const classes = clsx(
-    variant === EVariant.secondary ? styles[variant] : styles[`${variant}-${fill}`],
-    styles.button,
-    iconButton && styles['icon-button'],
-    sizeClassesMapping[size],
-    iconButton && iconButtonSizeClassesMapping[size]
-  );
+    const getIconClass = (position: EButtonNodesPosition) =>
+      clsx(styles.icon, styles[`icon--${position}--size-${size}`]);
 
-  const iconClass = (position: 'left' | 'right') =>
-    clsx(
-      styles.icon,
-      styles[`${position}-icon` as keyof typeof styles],
-      (size === 's' || size === 'xs') && styles[`compact-${position}-icon` as keyof typeof styles],
-      size === 'm' && styles['icon-big-wrapper']
+    const typographyVariants: Record<EButtonSizes, ETypographyVariants> = {
+      [EBadgeSizes.m]: ETypographyVariants['Body1-Bold'],
+      [EBadgeSizes.s]: ETypographyVariants['Body1-Bold'],
+      [EBadgeSizes.xs]: ETypographyVariants['Caption-Bold']
+    };
+
+    const classes = clsx(
+      variantsWithOneFill.has(EButtonVariant[variant]) ? styles[variant] : styles[`${variant}-${fill}`],
+      styles.button,
+      fill === EButtonFill.outline && styles.outline,
+      iconButton && styles['icon-button'],
+      sizeClasses[size].default,
+      iconButton && sizeClasses[size].icon
     );
 
-  if (iconButton) {
+    if (iconButton) {
+      return (
+        <button className={clsx(classes, className)} {...props}>
+          {iconButton}
+        </button>
+      );
+    }
+
     return (
-      <button className={clsx(classes, className)} {...props}>
-        <span className={styles.icon}>{iconButton}</span>
+      <button ref={ref} className={clsx(classes, className)} {...props}>
+        {startBadge && (
+          <span className={getIconClass(EButtonNodesPosition.left)}>
+            <ButtonBadge
+              {...{
+                badge: startBadge,
+                variant,
+                fill,
+                size
+              }}
+            />
+          </span>
+        )}
+        {startIcon && <span className={getIconClass(EButtonNodesPosition.left)}>{startIcon}</span>}
+        <Typography className={styles['label-wrapper']} variant={typographyVariants[size]}>
+          {children}
+        </Typography>
+        {endIcon && <span className={getIconClass(EButtonNodesPosition.right)}>{endIcon}</span>}
+        {endBadge && (
+          <span className={getIconClass(EButtonNodesPosition.right)}>
+            <ButtonBadge
+              {...{
+                badge: endBadge,
+                variant,
+                fill,
+                size
+              }}
+            />
+          </span>
+        )}
       </button>
     );
   }
-
-  return (
-    <button className={clsx(classes, className)} {...props}>
-      {startIcon && <span className={iconClass('left')}>{startIcon}</span>}
-      <Typography
-        className={styles['label-wrapper']}
-        variant={size === 'xs' ? 'Caption-Bold' : 'Body1-Bold'}
-      >
-        {children}
-      </Typography>
-      {endIcon && <span className={iconClass('right')}>{endIcon}</span>}
-      {badge && (
-        <span className={iconClass('right')}>
-          <BadgeHelper
-            {...{
-              badge,
-              variant,
-              fill,
-              size
-            }}
-          />
-        </span>
-      )}
-    </button>
-  );
-};
+);
 
 export default Button;

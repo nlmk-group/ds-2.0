@@ -31,8 +31,8 @@ code {
   padding: 3px 5px;
   white-space: nowrap;
   border-radius: 3px;
-  border: 1px solid #454e54;
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--unique-divider);
+  color: var(steel-90);
   background-color: hsla(203, 50%, 30%, 0.15);
   font-family: monospace;
   font-size: 14px;

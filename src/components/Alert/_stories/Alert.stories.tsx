@@ -1,28 +1,51 @@
 import React, { ReactNode } from 'react';
 
-import { Alert } from '@components/index';
+import { Alert, Box } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { IAlert } from '../types';
+import { IAlertProps } from '../types';
 import argsTypes from './argsTypes';
-import { DEFAULT_ALERT } from './text';
+
+const withWrapper = (Story: any) => (
+  <Box justifyContent="center" alignItems="center" className={styles.wrapper}>
+    {Story()}
+  </Box>
+);
 
 export default {
   title: 'Components/Alert/Stories',
   component: Alert,
-  argTypes: argsTypes
+  decorators: [withWrapper],
+  argTypes: {
+    ...argsTypes,
+    showChildren: {
+      description: 'Показать дополнительный контент в виде списка',
+      control: { type: 'boolean' }
+    }
+  }
 };
 
-export const AlertDefault = (argTypes: IAlert): ReactNode => {
+interface IAlertStoryProps extends IAlertProps {
+  showChildren?: boolean;
+}
+
+export const AlertDefault = ({ showChildren, ...argTypes }: IAlertStoryProps): ReactNode => {
   return (
-    <div className={styles.wrapper}>
-      <Alert {...argTypes} />
-    </div>
+    <Alert {...argTypes}>
+      {showChildren && (
+        <ul style={{ paddingLeft: '16px', margin: 'unset' }}>
+          <li>Первый пункт списка</li>
+          <li>Второй пункт списка</li>
+          <li>Третий пункт списка</li>
+        </ul>
+      )}
+    </Alert>
   );
 };
 
-AlertDefault.storyName = DEFAULT_ALERT;
+AlertDefault.storyName = 'Alert по умолчанию';
 AlertDefault.args = {
-  title: DEFAULT_ALERT
+  title: 'Alert по умолчанию',
+  showChildren: false
 };

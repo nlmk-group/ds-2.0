@@ -1,7 +1,8 @@
 import { CSSProperties, ReactNode } from 'react';
 
-import { customInputColors } from '@components/declaration';
-import { TSize } from '@components/Button/types';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
+
+type TSize = `${sizesMappingInput}`;
 
 export interface ISelectProps {
   /**

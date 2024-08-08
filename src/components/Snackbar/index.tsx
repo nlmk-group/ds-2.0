@@ -1,50 +1,122 @@
-import React, { FC } from 'react';
-import { clsx } from 'clsx';
-import { ISnackbar } from './types';
-import styles from './Snackbar.module.scss';
-import ActionButton from './ActionBtn';
-import CloseBtn from './CloseBtn';
-import { colorMapping } from './enums';
-import IconHelper from './IconHelper';
-import { Typography } from '@components/.'
+import React, { CSSProperties, FC, ReactNode, useEffect, useState } from 'react';
 
-const Snackbar: FC<ISnackbar> = ({
-  className,
-  actionButton = null,
-  actionButtonText = '',
-  bgOpacity = 100,
+import { variantsMapping } from '@components/declaration';
+import { Button, IconCloseOutlined24, Typography } from '@components/index';
+import { clsx } from 'clsx';
+
+import { ISnackbarProps } from './types';
+
+import styles from './Snackbar.module.scss';
+
+import { ESnackbarColors } from './enums';
+
+/**
+ * Компонент Snackbar для отображения кратковременных сообщений
+ * @component
+ * @param {Object} props - Свойства компонента
+ * @param {ESnackbarColors} [props.color=ESnackbarColors.dark] - Цвет фона Snackbar
+ * @param {variantsMapping} [props.variant=variantsMapping.solid] - Вариант отображения Snackbar
+ * @param {() => void} [props.close] - Функция закрытия Snackbar
+ * @param {() => void} [props.actionButton] - Функция, вызываемая при нажатии на кнопку действия
+ * @param {string} [props.actionText=''] - Текст кнопки действия
+ * @param {ReactNode} props.children - Содержимое Snackbar
+ * @param {number} [props.autoHideDuration=0] - Время автоматического скрытия в миллисекундах
+ * @param {string} [props.className] - Дополнительный CSS класс
+ * @param {CSSProperties} [props.style] - Inline стили для компонента
+ * @returns {JSX.Element | null} Компонент Snackbar
+ */
+
+const Snackbar: FC<ISnackbarProps> = ({
+  actionButton,
+  actionText = '',
   children,
-  close = null,
-  color = colorMapping.grey,
-  customIcon = null,
-  withIcon = false,
-  indicator = ''
-}) => {
+  close,
+  color = ESnackbarColors.dark,
+  variant = variantsMapping.solid,
+  autoHideDuration = 0,
+  className,
+  style
+}: {
+  color?: `${ESnackbarColors}`;
+  variant?: `${variantsMapping}`;
+  close?: () => void;
+  actionButton?: () => void;
+  actionText?: string;
+  children: ReactNode;
+  autoHideDuration?: number;
+  className?: string;
+  style?: CSSProperties;
+}): JSX.Element | null => {
+  const [isVisible, setIsVisible] = useState(true);
+  const isOutline = variant === variantsMapping.outline;
+  const isDarkVariant = [
+    ESnackbarColors.dark,
+    ESnackbarColors.green,
+    ESnackbarColors.red,
+    ESnackbarColors.orange
+  ].includes(color as ESnackbarColors);
+
+  useEffect(() => {
+    if (autoHideDuration > 0) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        if (close) close();
+      }, autoHideDuration);
+      return () => clearTimeout(timer);
+    }
+  }, [autoHideDuration, close]);
+
+  if (!isVisible) return null;
 
   return (
     <div
+      data-testid="SNACKBAR_WRAPPER"
       className={clsx(
-        styles.wrapper,
-        styles[`background-${color}`],
-        styles[`indicator-${indicator}`],
+        styles.snackbar,
+        isOutline ? styles['snackbar-outline'] : styles[`snackbar-${color}`],
+        styles[`snackbar-${variant}`],
+        isOutline && styles[`indicator-${color}`],
         className
       )}
-      data-testid='SNACKBAR_WRAPPER'
-      style={{ opacity: `${bgOpacity}%` }}
+      style={style}
     >
-      {withIcon && (
-        <div data-testid={`SNACKBAR_ICON_${color}`}>
-          {customIcon !== null ? customIcon : <IconHelper color={color as colorMapping} />}
-        </div>
-      )}
-      <Typography variant='Body1-Medium'>
+      <Typography
+        variant="Body1-Medium"
+        className={clsx(isOutline || !isDarkVariant ? styles['text-dark'] : styles['text-light'])}
+      >
         {children}
       </Typography>
-      <div className={styles['btn-wrapper']}>
-        {actionButton !== null && (
-          <ActionButton color={color} actionButtonText={actionButtonText} actionButton={actionButton} />
+      <div className={styles.actions}>
+        {actionButton && (
+          <Button
+            data-testid="SNACKBAR_ACTION"
+            variant="primary"
+            fill="clear"
+            size="m"
+            onClick={actionButton}
+            className={clsx(
+              styles.action,
+              isOutline || !isDarkVariant ? styles['action-dark'] : styles['action-light']
+            )}
+          >
+            <Typography variant="Body1-Bold">{actionText.length > 0 ? actionText : 'Посмотреть'}</Typography>
+          </Button>
         )}
-        {close !== null && <CloseBtn close={close} color={color} />}
+        {close && (
+          <Button
+            data-testid="SNACKBAR_CLOSE"
+            variant="primary"
+            fill="clear"
+            size="m"
+            onClick={close}
+            className={clsx(
+              styles.close,
+              !isDarkVariant ? styles['close-dark'] : styles['close-light'],
+              isOutline && styles['close-outline']
+            )}
+            iconButton={<IconCloseOutlined24 />}
+          />
+        )}
       </div>
     </div>
   );

@@ -5,13 +5,14 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/file/vyvtqfFuN9lCYoWKqEnm9v/DS2.0-Image-%26-Picture?type=design&node-id=667-1393&mode=design&t=hr2Gk5nIjO2Ka48f-0';
+const FIGMA_LINK =
+  'https://www.figma.com/file/vyvtqfFuN9lCYoWKqEnm9v/DS2.0-Image-%26-Picture?type=design&node-id=667-1393&mode=design&t=hr2Gk5nIjO2Ka48f-0';
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -73,7 +74,7 @@ export default App;
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -93,14 +94,8 @@ export default App;
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
-      {Number(activeTab) === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="ImagePicture" />
-        </Typography>
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {Number(activeTab) === 2 && <Tests componentName="ImagePicture" />}
     </div>
   );
 };

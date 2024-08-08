@@ -42,7 +42,7 @@ export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="primary">Содержимое модального окна</Typography>
+        <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
       </Modal>
     </div>
   );

@@ -5,7 +5,6 @@ import Typography from '@components/Typography';
 import './Radio.stories.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-
 import Radio from '..';
 import { IRadioProps } from '../types';
 import { argsTypes } from './argsTypes';
@@ -34,7 +33,7 @@ export const RadioDefault = (argTypes: IRadioProps): JSX.Element => {
     >
       <Radio {...argTypes} checked={checked === argTypes.value} onChange={handleChange} />
       <Radio checked={checked === 'option 2'} onChange={handleChange} value="option 2" label="Привет мир!" />
-      <div style={{ color: 'var(--text-grey-900)'}}>
+      <div style={{ color: 'var(--text-grey-900)' }}>
         <Typography variant="Body1-Bold">Выбранная опция: {checked}</Typography>
       </div>
     </div>

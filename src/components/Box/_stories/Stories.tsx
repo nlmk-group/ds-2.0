@@ -5,7 +5,7 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -72,11 +72,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Box" />
-        </Typography>
-      )}
+      {activeTab === 2 && (<Tests componentName="Box" />)}
     </div>
   );
 };

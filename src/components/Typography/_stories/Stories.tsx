@@ -6,7 +6,7 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -69,134 +69,218 @@ export default App = () => (
             пояснения для целевого использования объектов типографии."
             code={`import { Typography } from '@nlmk/ds-2.0';
 
-const rows = [
-  {
-    title: 'Heading1',
-    fontSize: 48,
-    lineHeight: 56,
-    fontWeight: 700,
-    description: 'Заголовок'
-  },
-  {
-    title: 'Subheading1',
-    fontSize: 32,
-    lineHeight: 40,
-    fontWeight: 400,
-    description: 'Подзаголовок'
-  },
-  {
-    title: 'Heading2',
-    fontSize: 32,
-    lineHeight: 40,
-    fontWeight: 700,
-    description: 'Заголовок'
-  },
-  {
-    title: 'Subheading2',
-    fontSize: 24,
-    lineHeight: 32,
-    fontWeight: 400,
-    description: 'Подзаголовок'
-  },
-  {
-    title: 'Subheading2-Medium',
-    fontSize: 24,
-    lineHeight: 32,
-    fontWeight: 500,
-    description: 'Подзаголовок'
-  },
-  {
-    title: 'Heading3',
-    fontSize: 24,
-    lineHeight: 32,
-    fontWeight: 700,
-    description: 'Заголовок'
-  },
-  {
-    title: 'Subheading3',
-    fontSize: 20,
-    lineHeight: 28,
-    fontWeight: 400,
-    description: 'Подзаголовок'
-  },
-  {
-    title: 'Subheading3-Medium',
-    fontSize: 20,
-    lineHeight: 28,
-    fontWeight: 500,
-    description: 'Подзаголовок'
-  },
-  {
-    title: 'Heading4',
-    fontSize: 20,
-    lineHeight: 28,
-    fontWeight: 700,
-    description: 'Заголовок'
-  },
-  {
-    title: 'Body1',
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: 400,
-    description: 'Текст контента тонкий'
-  },
-  {
-    title: 'Body1-Medium',
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: 500,
-    description: 'Текст инпутов, ячеек таблиц, контента'
-  },
-  {
-    title: 'Body1-Bold',
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: 700,
-    description: 'Текст в кнопках, жирный текст у активных элементов'
-  },
-  {
-    title: 'Body2',
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: 400,
-    description: 'Текст контента тонкий'
-  },
-  {
-    title: 'Body2-Medium',
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: 500,
-    description: 'Текст инпутов, ячеек таблиц, контента'
-  },
-  {
-    title: 'Body2-Bold',
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: 700,
-    description: 'Текст в кнопках, жирный текст у активных элементов'
-  },
-  {
-    title: 'Caption',
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: 400,
-    description: 'Текст мелких подписей, шкал графиков'
-  },
-  {
-    title: 'Caption-Medium',
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: 500,
-    description: 'Текст мелких подписей, шкал графиков'
-  },
-  {
-    title: 'Caption-Bold',
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: 700,
-    description: 'Текст мелких подписей, шкал графиков'
-  }
-];
+  const rows = [
+    {
+      title: 'Heading1',
+      fontSize: 48,
+      lineHeight: 56,
+      fontWeight: 700,
+      description: 'Заголовок'
+    },
+    {
+      title: 'Subheading1',
+      fontSize: 32,
+      lineHeight: 40,
+      fontWeight: 400,
+      description: 'Подзаголовок'
+    },
+    {
+      title: 'Heading2',
+      fontSize: 32,
+      lineHeight: 40,
+      fontWeight: 700,
+      description: 'Заголовок'
+    },
+    {
+      title: 'Subheading2',
+      fontSize: 24,
+      lineHeight: 32,
+      fontWeight: 400,
+      description: 'Подзаголовок'
+    },
+    {
+      title: 'Subheading2-Medium',
+      fontSize: 24,
+      lineHeight: 32,
+      fontWeight: 500,
+      description: 'Подзаголовок'
+    },
+    {
+      title: 'Heading3',
+      fontSize: 24,
+      lineHeight: 32,
+      fontWeight: 700,
+      description: 'Заголовок'
+    },
+    {
+      title: 'Subheading3',
+      fontSize: 20,
+      lineHeight: 28,
+      fontWeight: 400,
+      description: 'Подзаголовок'
+    },
+    {
+      title: 'Subheading3-Medium',
+      fontSize: 20,
+      lineHeight: 28,
+      fontWeight: 500,
+      description: 'Подзаголовок'
+    },
+    {
+      title: 'Heading4',
+      fontSize: 20,
+      lineHeight: 28,
+      fontWeight: 700,
+      description: 'Заголовок'
+    },
+    {
+      title: 'Body',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 400,
+      description: ''
+    },
+    {
+      title: 'Body-Medium',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 500,
+      description: ''
+    },
+    {
+      title: 'Body-Bold',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 700,
+      description: ''
+    },
+    {
+      title: 'Body1',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 400,
+      description: 'Текст контента тонкий'
+    },
+    {
+      title: 'Body1-Medium',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 500,
+      description: 'Текст инпутов, ячеек таблиц, контента'
+    },
+    {
+      title: 'Body1Table-Medium',
+      fontSize: 16,
+      lineHeight: 16,
+      fontWeight: 500,
+      description: 'Текст для ячеек таблиц 40px и 32px'
+    },
+    {
+      title: 'Body1Mono-Medium',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 500,
+      description: 'Текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body1Mono-Bold',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 700,
+      description: 'Жирный текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body1-Bold',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 700,
+      description: 'Текст в кнопках, жирный текст у активных элементов'
+    },
+    {
+      title: 'Body2',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 400,
+      description: 'Текст контента тонкий'
+    },
+    {
+      title: 'Body2-Medium',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 500,
+      description: 'Текст инпутов, ячеек таблиц, контента'
+    },
+    {
+      title: 'Body2Mono-Medium',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 500,
+      description: 'Текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body2Mono-Bold',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 700,
+      description: 'Жирный текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body2-Bold',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 700,
+      description: 'Текст в кнопках, жирный текст у активных элементов'
+    },
+    {
+      title: 'Caption',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 400,
+      description: 'Текст мелкий для подписей, шкал графиков'
+    },
+    {
+      title: 'Caption-Medium',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 500,
+      description: 'Текст мелкий для подписей, шкал графиков'
+    },
+    {
+      title: 'Caption-Bold',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 700,
+      description: 'Текст мелкий для подписей, шкал графиков'
+    },
+    {
+      title: 'CaptionMono',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 400,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'CaptionMono-Medium',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 500,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'CaptionMono-Bold',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 700,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'Additional-Bold',
+      fontSize: 9,
+      lineHeight: 12,
+      fontWeight: 700,
+      description: 'Жирный текст для Badge XS'
+    }
+  ];
 
 export default App = () => (
   <>
@@ -216,59 +300,12 @@ export default App = () => (
 )
               `}
           />
-          <Editor
-            height={400}
-            description="Для типографии доступны следующие цвета: inherit (по умолчанию), primary,
-            secondary, hint, disabled, error, success, warning, info, textSecondary,
-            textPrimary."
-            code={`import { Typography } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <>
-  <Typography variant="Heading1" color="primary">
-    variant: Heading1, color: primary
-  </Typography>
-  <Typography variant="Subheading2-Medium" color="secondary">
-    variant: Subheading2-Medium, color: secondary
-  </Typography>
-  <Typography variant="Caption" color="hint">
-    variant: Caption, color: hint
-  </Typography>
-  <Typography variant="Caption-Bold" color="disabled">
-    variant: Caption-Bold, color: disabled
-  </Typography>
-  <Typography variant="Caption" color="error">
-    variant: Caption, color: error
-  </Typography>
-  <Typography variant="Caption" color="success">
-    variant: Caption, color: success
-  </Typography>
-  <Typography variant="Caption" color="warning">
-    variant: Caption, color: warning
-  </Typography>
-  <Typography variant="Caption" color="info">
-    variant: Caption, color: info
-  </Typography>
-  <Typography variant="Caption" color="textPrimary">
-    variant: Caption, color: textPrimary
-  </Typography>
-  <Typography variant="Caption" color="textSecondary">
-    variant: Caption, color: textSecondary
-  </Typography>
-  </>
-)
-              `}
-          />
 
           <Properties argsTypes={argsTypes} />
         </>
       )}
       {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
-      {activeTab == TabIds.tests && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName={COMPONENT_NAME} />
-        </Typography>
-      )}
+      {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );
 };

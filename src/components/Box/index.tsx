@@ -29,7 +29,7 @@ const Box: FC<IBox> = ({
   justifyContent,
   alignItems,
   flexWrap,
-  gap = 'var(--24-size)',
+  gap = '24px',
   ...rest
 }) => {
   const propsStyles = {

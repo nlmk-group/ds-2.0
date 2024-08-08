@@ -76,15 +76,15 @@ SlideToggleShadow.args = {
 export const SlideToggleCustomized = (argTypes: ISlideToggleProps): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
   const title = (
-    <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px'}}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
       <Button iconButton={<IconArticleOutlined24 />} />
       <Typography>Это кастомный title компонента SlideToggle</Typography>
     </div>
   );
 
   const actionBlock = (
-    <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px'}}>
-      <Input label='input в action block' />
+    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
+      <Input label="input в action block" />
       <Button iconButton={<IconArticleOutlined24 />} />
       <Button iconButton={<IconArticleOutlined24 />} />
       <Button iconButton={<IconArticleOutlined24 />} />

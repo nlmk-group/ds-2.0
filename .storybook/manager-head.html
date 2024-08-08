@@ -3,6 +3,14 @@
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
 <link rel="shortcut icon" href="img/favicon.ico" />
 <style>
+    :root {
+        --border-bar-color: #D6DADD;
+    }
+
+    .dark {
+        --border-bar-color: #6C7581;
+    }
+
     .sidebar-header>div>a {
         display: flex;
         justify-content: center;
@@ -22,6 +30,10 @@
     .sidebar-item svg {
         height: 13px !important;
         width: 13px !important;
+    }
+
+    .sidebar-container {
+        border-right: 1px solid var(--border-bar-color);
     }
 </style>
 

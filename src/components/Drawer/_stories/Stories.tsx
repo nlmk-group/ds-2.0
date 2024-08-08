@@ -5,7 +5,7 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -72,7 +72,7 @@ export default  App = () => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -81,11 +81,7 @@ export default  App = () => {
         <>
           <Editor height={350} description="Пример базового использования Drawer." code={drawerDefaultCode} />
 
-          <Editor
-            height={350}
-            description="Пример Drawer, открывающегося слева."
-            code={drawerLeftCode}
-          />
+          <Editor height={350} description="Пример Drawer, открывающегося слева." code={drawerLeftCode} />
 
           <Properties argsTypes={argsTypes} />
         </>
@@ -93,11 +89,7 @@ export default  App = () => {
       {Number(activeTab) === 1 && (
         <FigmaEmbed url="https://www.figma.com/file/0BGHYt5CjO71I4KhygQJD5/DS2.0-Filtering-%26-Sorting?node-id=534-67220" />
       )}
-      {Number(activeTab) === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Drawer" />
-        </Typography>
-      )}
+      {Number(activeTab) === 2 && <Tests componentName="Drawer" />}
     </div>
   );
 };

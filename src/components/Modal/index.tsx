@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { ESizes } from '@components/Button/enums';
+import { EButtonSizes } from '@components/Button/enums';
 import { Button, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -109,7 +109,7 @@ const Modal: FC<IModalProps> = ({
           className={styles.modalClose}
           onClick={onClose}
           aria-label="Close"
-          size={ESizes.s}
+          size={EButtonSizes.s}
         />
       </div>
     </>

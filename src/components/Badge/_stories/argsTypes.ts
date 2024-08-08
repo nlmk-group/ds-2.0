@@ -1,6 +1,6 @@
-import { colorsMapping, variantsMapping } from '@components/declaration/enums';
+import { variantsMapping } from '@components/declaration/enums';
 
-import { ESizesBadgeMapping } from '../types';
+import { EBadgeColors, EBadgeSizes } from '../enums';
 
 export const argsTypes = {
   children: {
@@ -16,28 +16,26 @@ export const argsTypes = {
     description: 'Размер бэйджа',
     table: {
       defaultValue: {
-        summary: ESizesBadgeMapping.m
+        summary: EBadgeSizes.m
       },
       type: {
-        summary: Object.values(ESizesBadgeMapping).join(' | ')
+        summary: Object.values(EBadgeSizes).join(' | ')
       }
     },
-    options: Object.values(ESizesBadgeMapping),
+    options: Object.values(EBadgeSizes),
     control: { type: 'select' }
   },
   color: {
     description: 'Цвет бэйджа',
     table: {
       defaultValue: {
-        summary: colorsMapping.primary
+        summary: EBadgeColors.primary
       },
       type: {
-        summary: Object.values(colorsMapping).join(' | ')
+        summary: Object.values(EBadgeColors).join(' | ')
       }
     },
-    options: Object.values(colorsMapping).filter(
-      item => item !== colorsMapping.disabled && item !== colorsMapping.inherit && item !== colorsMapping.info
-    ),
+    options: Object.values(EBadgeColors),
     control: { type: 'select' }
   },
   variant: {

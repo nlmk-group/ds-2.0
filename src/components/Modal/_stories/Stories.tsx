@@ -5,7 +5,7 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -29,7 +29,7 @@ export default  App = () => {
                 setIsOpen(false);
             }}
         >
-            <Typography color="primary">Содержимое модального окна</Typography>
+            <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
         </Modal>
       </>
   );
@@ -52,7 +52,7 @@ export default  App = () => {
                 setIsOpen(false);
             }}
         >
-            <Typography color="primary">Содержимое модального окна</Typography>
+            <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
         </Modal>
       </>
   );
@@ -74,7 +74,7 @@ export default  App = () => {
                 setIsOpen(false);
             }}
         >
-            <Typography color="primary">Содержимое модального окна</Typography>
+            <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
         </Modal>
       </>
   );
@@ -94,7 +94,7 @@ export default  App = () => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -121,11 +121,7 @@ export default  App = () => {
       {Number(activeTab) === 1 && (
         <FigmaEmbed url="https://www.figma.com/file/BU6Pd9uO1AIVa1yDqhr0hw/Drawer%2FModal-window?type=design&node-id=1-17&mode=dev" />
       )}
-      {Number(activeTab) === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Modal" />
-        </Typography>
-      )}
+      {Number(activeTab) === 2 && <Tests componentName="Modal" />}
     </div>
   );
 };

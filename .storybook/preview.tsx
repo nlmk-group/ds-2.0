@@ -7,6 +7,7 @@ import '../public/css/main.css';
 import { getSystemTheme } from '../src/components/Theme/utils';
 import DocsThemeContainer from './Docs';
 import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
+
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
 div.style.cssText = `
@@ -44,9 +45,9 @@ export const parameters = {
   backgrounds: {
     default: 'default',
     values: [
-      { name: 'default', value: 'var(--background-default, #3c4854)' },
-      { name: 'info', value: 'var(--background-info, #636f7f)'},
-      { name: 'blue', value: 'var(--background-blue, #4c5f73)'}
+      { name: 'default', value: 'var(--steel-10, #455161)' },
+      { name: 'info', value: 'var(--background-info, #636f7f)' },
+      { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
     ]
   },
   docs: { container: DocsThemeContainer },
@@ -76,3 +77,4 @@ export const decorators = [
     results
   })
 ];
+export const tags = ['autodocs'];

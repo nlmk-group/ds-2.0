@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TVariant } from '@components/Typography/types';
+import { ETypographyVariants } from '@components/Typography/enums';
 
 import styles from './Typography.stories.module.scss';
 
@@ -18,7 +18,7 @@ export default {
 
 export const TypographyDefault = (argsTypes: any): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{color: 'var(--text-grey-900)'}}>
+    <div className={styles.wrapper} style={{ color: 'var(--text-grey-900)' }}>
       <Typography {...argsTypes}>Default Typography Component</Typography>
     </div>
   );
@@ -91,6 +91,27 @@ export const TypographyVariants = (): JSX.Element => {
       description: 'Заголовок'
     },
     {
+      title: 'Body',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 400,
+      description: ''
+    },
+    {
+      title: 'Body-Medium',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 500,
+      description: ''
+    },
+    {
+      title: 'Body-Bold',
+      fontSize: 18,
+      lineHeight: 24,
+      fontWeight: 700,
+      description: ''
+    },
+    {
       title: 'Body1',
       fontSize: 16,
       lineHeight: 22,
@@ -103,6 +124,27 @@ export const TypographyVariants = (): JSX.Element => {
       lineHeight: 22,
       fontWeight: 500,
       description: 'Текст инпутов, ячеек таблиц, контента'
+    },
+    {
+      title: 'Body1Table-Medium',
+      fontSize: 16,
+      lineHeight: 16,
+      fontWeight: 500,
+      description: 'Текст для ячеек таблиц 40px и 32px'
+    },
+    {
+      title: 'Body1Mono-Medium',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 500,
+      description: 'Текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body1Mono-Bold',
+      fontSize: 16,
+      lineHeight: 22,
+      fontWeight: 700,
+      description: 'Жирный текст для цифр в ячейках таблиц'
     },
     {
       title: 'Body1-Bold',
@@ -126,6 +168,20 @@ export const TypographyVariants = (): JSX.Element => {
       description: 'Текст инпутов, ячеек таблиц, контента'
     },
     {
+      title: 'Body2Mono-Medium',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 500,
+      description: 'Текст для цифр в ячейках таблиц'
+    },
+    {
+      title: 'Body2Mono-Bold',
+      fontSize: 14,
+      lineHeight: 18,
+      fontWeight: 700,
+      description: 'Жирный текст для цифр в ячейках таблиц'
+    },
+    {
       title: 'Body2-Bold',
       fontSize: 14,
       lineHeight: 18,
@@ -137,21 +193,49 @@ export const TypographyVariants = (): JSX.Element => {
       fontSize: 12,
       lineHeight: 16,
       fontWeight: 400,
-      description: 'Текст мелких подписей, шкал графиков'
+      description: 'Текст мелкий для подписей, шкал графиков'
     },
     {
       title: 'Caption-Medium',
       fontSize: 12,
       lineHeight: 16,
       fontWeight: 500,
-      description: 'Текст мелких подписей, шкал графиков'
+      description: 'Текст мелкий для подписей, шкал графиков'
     },
     {
       title: 'Caption-Bold',
       fontSize: 12,
       lineHeight: 16,
       fontWeight: 700,
-      description: 'Текст мелких подписей, шкал графиков'
+      description: 'Текст мелкий для подписей, шкал графиков'
+    },
+    {
+      title: 'CaptionMono',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 400,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'CaptionMono-Medium',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 500,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'CaptionMono-Bold',
+      fontSize: 12,
+      lineHeight: 16,
+      fontWeight: 700,
+      description: 'Моноширинное начертание для числовых данных'
+    },
+    {
+      title: 'Additional-Bold',
+      fontSize: 9,
+      lineHeight: 12,
+      fontWeight: 700,
+      description: 'Жирный текст для Badge XS'
     }
   ];
 
@@ -160,14 +244,14 @@ export const TypographyVariants = (): JSX.Element => {
       <div className={styles.table}>
         {rows.map(variant => (
           <div key={variant.title} className={styles.row}>
-            <Typography variant={variant.title as TVariant} color="primary">
+            <Typography variant={variant.title as ETypographyVariants} color="var(--steel-90)">
               {variant.title}
             </Typography>
-            <Typography color="primary">
+            <Typography color="var(--steel-90)">
               {variant.fontSize} - {variant.lineHeight}
             </Typography>
-            <Typography color="primary">{variant.fontWeight}</Typography>
-            <Typography color="primary">{variant.description}</Typography>
+            <Typography color="var(--steel-90)">{variant.fontWeight}</Typography>
+            <Typography color="var(--steel-90)">{variant.description}</Typography>
           </div>
         ))}
       </div>
@@ -175,48 +259,3 @@ export const TypographyVariants = (): JSX.Element => {
   );
 };
 TypographyVariants.storyName = 'Варианты типографии';
-
-export const TypographyColor = (): JSX.Element => {
-  return (
-    <div
-      className={styles.wrapper}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
-      }}
-    >
-      <Typography variant="Heading1" color="primary">
-        variant: Heading1, color: primary
-      </Typography>
-      <Typography variant="Subheading2-Medium" color="secondary">
-        variant: Subheading2-Medium, color: secondary
-      </Typography>
-      <Typography variant="Caption" color="hint">
-        variant: Caption, color: hint
-      </Typography>
-      <Typography variant="Caption-Bold" color="disabled">
-        variant: Caption-Bold, color: disabled
-      </Typography>
-      <Typography variant="Caption" color="error">
-        variant: Caption, color: error
-      </Typography>
-      <Typography variant="Caption" color="success">
-        variant: Caption, color: success
-      </Typography>
-      <Typography variant="Caption" color="warning">
-        variant: Caption, color: warning
-      </Typography>
-      <Typography variant="Caption" color="info">
-        variant: Caption, color: info
-      </Typography>
-      <Typography variant="Caption" color="textPrimary">
-        variant: Caption, color: textPrimary
-      </Typography>
-      <Typography variant="Caption" color="textSecondary">
-        variant: Caption, color: textSecondary
-      </Typography>
-    </div>
-  );
-};
-TypographyColor.storyName = 'Цвета типографии';

@@ -23,7 +23,11 @@ export const TabsDefault = (): JSX.Element => {
         <Tabs.Tab label="Входящие" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
         <Tabs.Tab label="Мои папки" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
         <Tabs.Tab label="Спам" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} badgeNumber="91">
-          <Tabs.Tooltip render={<Typography variant='Caption-Medium'>Сюда вы можете добавить текст подсказу для компонента</Typography>}>
+          <Tabs.Tooltip
+            render={
+              <Typography variant="Caption-Medium">Сюда вы можете добавить текст подсказу для компонента</Typography>
+            }
+          >
             <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--text-grey-500)" />
           </Tabs.Tooltip>
         </Tabs.Tab>
@@ -31,22 +35,22 @@ export const TabsDefault = (): JSX.Element => {
       </Tabs>
 
       {Number(activeTab) == 0 && (
-        <Typography variant="Heading4" color="primary">
+        <Typography variant="Heading4" color="var(--steel-90)">
           Входящие
         </Typography>
       )}
       {Number(activeTab) == 1 && (
-        <Typography variant="Heading4" color="primary">
+        <Typography variant="Heading4" color="var(--steel-90)">
           Мои папки
         </Typography>
       )}
       {Number(activeTab) == 2 && (
-        <Typography variant="Heading4" color="primary">
+        <Typography variant="Heading4" color="var(--steel-90)">
           Спам
         </Typography>
       )}
       {Number(activeTab) == 3 && (
-        <Typography variant="Heading4" color="primary">
+        <Typography variant="Heading4" color="var(--steel-90)">
           Черновики
         </Typography>
       )}

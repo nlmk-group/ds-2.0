@@ -2,11 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   border: unset;
   outline: none;
   cursor: pointer;
   transition: 0.08s;
   width: max-content;
+  box-sizing: border-box;
 
   &:disabled {
     cursor: default;
@@ -16,7 +18,7 @@
 
 @mixin iconButtonSize($size) {
   min-width: $size;
-  padding: var(--0-space);
+  padding: 0;
 }
 
 @mixin compactStyles($size, $padding) {
@@ -24,77 +26,35 @@
   padding: $padding;
 }
 
+@mixin badge-styles($bg, $tx) {
+  .badge {
+    background-color: $bg;
+    color: $tx;
+  }
+}
+
 .button {
   @include buttonBase;
-  height: var(--40-size);
-  border-radius: var(--4-radius);
-  padding: var(--8-space) var(--12-space);
+  height: 40px;
+  border-radius: 4px;
+  padding: 8px 12px;
   transition: 0.1s ease-in-out;
 }
 
-.icon-button {
-  @include buttonBase;
-  @include iconButtonSize(var(--48-size));
-}
-
-.icon-button-compact {
-  @include iconButtonSize(var(--32-size));
-  width: var(--32-size);
-}
-
-.icon-button-extra-compact {
-  @include iconButtonSize(var(--28-size));
-}
-
-.compact {
-  border-width: var(--1-border) !important;
-  @include compactStyles(var(--32-size), var(--4-space) var(--4-space));
-}
-
-.extra-compact {
-  border-width: var(--1-border) !important;
-  @include compactStyles(var(--28-size), var(--4-space) var(--4-space));
-}
-
-.left-icon,
-.right-icon {
-  display: flex;
-}
-
-.left-icon {
-  padding-right: var(--4-space);
-}
-
-.right-icon {
-  padding-left: var(--4-space);
-}
-
-.compact-left-icon {
-  padding-right: var(--2-space);
-}
-
-.compact-right-icon {
-  padding-left: var(--2-space);
-}
-
-.icon {
-  display: flex;
-  margin: auto;
-}
-
-@mixin solid-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon) {
+@mixin solid-btn($bg, $tx, $hbg, $abg, $icon, $badge-bg, $badge-hbg, $badge-abg, $badge-tx) {
   background-color: $bg;
   color: $tx;
+  @include badge-styles($badge-bg, $badge-tx);
 
   &:not(:disabled) {
     &:hover {
       background: $hbg;
-      color: $htx;
+      @include badge-styles($badge-hbg, $badge-tx);
     }
 
     &:active {
       background: $abg;
-      color: $atx
+      @include badge-styles($badge-abg, $badge-tx);
     }
   }
 
@@ -103,31 +63,25 @@
   }
 }
 
-@mixin outline-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon, $br, $hbr, $abr) {
-  @include solid-btn($bg, $tx, $hbg, $htx, $abg, $atx, $icon);
-  border: var(--2-border) solid $br;
-  &:not(:disabled) {
-    &:hover {
-      border-color: $hbr;
-    }
-
-    &:active {
-      border-color: $abr;
-    }
-  }
+@mixin outline-btn($bg, $tx, $hbg, $abg, $icon, $br, $badge-bg, $badge-hbg, $badge-abg, $badge-tx) {
+  @include solid-btn($bg, $tx, $hbg, $abg, $icon, $badge-bg, $badge-hbg, $badge-abg, $badge-tx);
+  outline: 2px solid $br;
+  outline-offset: -2px;
 }
 
 /* primary solid variant */
 
 .primary-solid {
   @include solid-btn(
-    var(--ac-button-primary-solid-default-bg),
-    var(--ac-button-primary-solid-default-text),
-    var(--ac-button-primary-solid-hover-bg),
-    var(--ac-button-primary-solid-hover-text),
-    var(--ac-button-primary-solid-pressed-bg),
-    var(--ac-button-primary-solid-pressed-text),
-    var(--ac-icon-white)
+      var(--brand-sapphire-50),
+      var(--unique-white),
+      var(--brand-sapphire-40),
+      var(--brand-sapphire-60),
+      var(--unique-white),
+      var(--brand-sapphire-40),
+      var(--brand-sapphire-50),
+      var(--brand-sapphire-40),
+      var(--unique-white)
   )
 }
 
@@ -135,30 +89,36 @@
 
 .primary-outline {
   @include outline-btn(
-    transparent,
-    var(--ac-button-primary-outline-default-text),
-    var(--ac-button-primary-outline-hover-bg),
-    var(--ac-button-primary-outline-hover-text),
-    var(--ac-button-primary-outline-pressed-bg),
-    var(--ac-button-primary-outline-pressed-text),
-    var(--ac-icon-blue),
-    var(--ac-button-primary-outline-default-stroke),
-    var(--ac-button-primary-outline-hover-stroke),
-    var(--ac-button-primary-outline-pressed-stroke)
-  )
+      transparent,
+      var(--unique-bluewhite),
+      var(--brand-sapphire-10),
+      var(--brand-sapphire-20),
+      var(--brand-sapphire-60),
+      var(--brand-sapphire-60),
+      transparent,
+      transparent,
+      transparent,
+      var(--steel-90)
+  );
+
+  .badge {
+    outline-color: var(--brand-sapphire-60);
+  }
 }
 
 /* primary clear variant */
 
 .primary-clear {
   @include solid-btn(
-    transparent,
-    var(--ac-button-primary-clear-default-text),
-    var(--ac-button-primary-clear-hover-bg),
-    var(--ac-button-primary-clear-hover-text),
-    var(--ac-button-primary-clear-pressed-bg),
-    var(--ac-button-primary-clear-pressed-text),
-    var(--ac-icon-blue)
+      transparent,
+      var(--unique-bluewhite),
+      var(--brand-sapphire-10),
+      var(--brand-sapphire-20),
+      var(--brand-sapphire-60),
+      var(--brand-sapphire-40),
+      var(--brand-sapphire-40),
+      var(--brand-sapphire-40),
+      var(--unique-white)
   )
 }
 
@@ -166,13 +126,15 @@
 
 .secondary {
   @include solid-btn(
-    var(--ac-button-secondary-solid-default-bg),
-    var(--ac-button-secondary-solid-default-text),
-    var(--ac-button-secondary-solid-hover-bg),
-    var(--ac-button-secondary-solid-hover-text),
-    var(--ac-button-secondary-solid-pressed-bg),
-    var(--ac-button-secondary-solid-pressed-text),
-    var(--ac-icon-blue)
+      var(--brand-sapphire-20),
+      var(--unique-bluewhite),
+      var(--brand-sapphire-10),
+      var(--brand-sapphire-30),
+      var(--unique-bluewhite),
+      var(--brand-sapphire-30),
+      var(--brand-sapphire-30),
+      var(--brand-sapphire-20),
+      var(--steel-90)
   )
 }
 
@@ -180,13 +142,15 @@
 
 .grey-solid {
   @include solid-btn(
-    var(--ac-button-grey-solid-default-bg),
-    var(--ac-button-grey-solid-default-text),
-    var(--ac-button-grey-solid-hover-bg),
-    var(--ac-button-grey-solid-hover-text),
-    var(--ac-button-grey-solid-pressed-bg),
-    var(--ac-button-grey-solid-pressed-text),
-    var(--ac-icon-blue)
+      var(--steel-30),
+      var(--unique-bluewhite),
+      var(--steel-40),
+      var(--steel-50),
+      var(--unique-bluewhite),
+      var(--brand-sapphire-60),
+      var(--brand-sapphire-60),
+      var(--brand-sapphire-60),
+      var(--unique-white)
   )
 }
 
@@ -194,16 +158,16 @@
 
 .grey-outline {
   @include outline-btn(
-    transparent,
-    var(--ac-button-grey-outline-default-text),
-    var(--ac-button-grey-outline-hover-bg),
-    var(--ac-button-grey-outline-hover-text),
-    var(--ac-button-grey-outline-pressed-bg),
-    var(--ac-button-grey-outline-pressed-text),
-    var(--ac-icon-grey),
-    var(--ac-button-grey-outline-default-stroke),
-    var(--ac-button-grey-outline-hover-stroke),
-    var(--ac-button-grey-outline-pressed-stroke)
+      transparent,
+      var(--steel-70),
+      var(--steel-30),
+      var(--steel-40),
+      var(--steel-70),
+      var(--steel-70),
+      transparent,
+      transparent,
+      transparent,
+      var(--steel-90)
   )
 }
 
@@ -211,13 +175,15 @@
 
 .grey-clear {
   @include solid-btn(
-    transparent,
-    var(--ac-button-grey-clear-default-text),
-    var(--ac-button-grey-clear-hover-bg),
-    var(--ac-button-grey-clear-hover-text),
-    var(--ac-button-grey-clear-pressed-bg),
-    var(--ac-button-grey-clear-pressed-text),
-    var(--ac-icon-grey)
+      transparent,
+      var(--steel-70),
+      var(--steel-30),
+      var(--steel-40),
+      var(--steel-70),
+      var(--steel-70),
+      var(--steel-70),
+      var(--steel-70),
+      var(--steel-10)
   )
 }
 
@@ -225,13 +191,15 @@
 
 .black-solid {
   @include solid-btn(
-    var(--ac-button-black-solid-default-bg),
-    var(--ac-button-black-solid-default-text),
-    var(--ac-button-black-solid-hover-bg),
-    var(--ac-button-black-solid-hover-text),
-    var(--ac-button-black-solid-pressed-bg),
-    var(--ac-button-black-solid-pressed-text),
-    var(--ac-icon-white)
+      var(--steel-80),
+      var(--steel-10),
+      var(--steel-70),
+      var(--steel-90),
+      var(--steel-10),
+      var(--steel-70),
+      var(--steel-80),
+      var(--steel-70),
+      var(--steel-10)
   )
 }
 
@@ -239,16 +207,16 @@
 
 .black-outline {
   @include outline-btn(
-    transparent,
-    var(--ac-button-black-outline-default-text),
-    var(--ac-button-black-outline-hover-bg),
-    var(--ac-button-black-outline-hover-text),
-    var(--ac-button-black-outline-pressed-bg),
-    var(--ac-button-black-outline-pressed-text),
-    var(--ac-icon-grey),
-    var(--ac-button-black-outline-default-stroke),
-    var(--ac-button-black-outline-hover-stroke),
-    var(--ac-button-black-outline-pressed-stroke)
+      transparent,
+      var(--steel-90),
+      var(--steel-30),
+      var(--steel-40),
+      var(--steel-90),
+      var(--steel-90),
+      transparent,
+      transparent,
+      transparent,
+      var(--steel-90)
   )
 }
 
@@ -256,20 +224,146 @@
 
 .black-clear {
   @include solid-btn(
-    transparent,
-    var(--ac-button-black-clear-default-text),
-    var(--ac-button-black-clear-hover-bg),
-    var(--ac-button-black-clear-hover-text),
-    var(--ac-button-black-clear-pressed-bg),
-    var(--ac-button-black-clear-pressed-text),
-    var(--ac-icon-grey)
+      transparent,
+      var(--steel-90),
+      var(--steel-30),
+      var(--steel-40),
+      var(--steel-90),
+      var(--steel-70),
+      var(--steel-70),
+      var(--steel-70),
+      var(--steel-10)
   )
 }
 
-.icon-big-wrapper {
-  margin: unset;
+/* info variant */
+
+.info {
+  @include solid-btn(
+      transparent,
+      var(--steel-90),
+      var(--steel-30),
+      var(--steel-40),
+      var(--brand-sapphire-60),
+      var(--brand-sapphire-30),
+      var(--brand-sapphire-30),
+      var(--brand-sapphire-30),
+      var(--steel-90)
+  )
+}
+
+/* error variant */
+
+.error {
+  @include solid-btn(
+      transparent,
+      var(--spectrum-red-60),
+      var(--spectrum-red-10),
+      var(--spectrum-red-20),
+      var(--spectrum-red-60),
+      var(--spectrum-red-40),
+      var(--spectrum-red-40),
+      var(--spectrum-red-40),
+      var(--unique-white)
+  )
+}
+
+/* warning variant */
+
+.warning {
+  @include solid-btn(
+      transparent,
+      var(--spectrum-yellow-60),
+      var(--spectrum-yellow-10),
+      var(--spectrum-yellow-20),
+      var(--spectrum-yellow-60),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-40),
+      var(--unique-white)
+  )
+}
+
+/* success variant */
+
+.success {
+  @include solid-btn(
+      transparent,
+      var(--spectrum-green-60),
+      var(--spectrum-green-10),
+      var(--spectrum-green-20),
+      var(--spectrum-green-60),
+      var(--spectrum-green-40),
+      var(--spectrum-green-40),
+      var(--spectrum-green-40),
+      var(--unique-white)
+  )
 }
 
 .label-wrapper {
-  padding: 0 var(--4-space);
+  padding: 0 4px;
+}
+
+.compact {
+  @include compactStyles(32px, 4px 4px);
+
+  &.outline {
+    outline-width: 1px;
+    outline-offset: -1px;
+  }
+}
+
+.extra-compact {
+  @include compactStyles(28px, 4px 4px);
+
+  &.outline {
+    outline-width: 1px;
+    outline-offset: -1px;
+  }
+}
+
+.icon {
+  display: flex;
+
+  &-button {
+    @include buttonBase;
+    @include iconButtonSize(48px);
+  }
+
+  &-button-compact {
+    @include iconButtonSize(32px);
+    width: 32px;
+  }
+
+  &-button-extra-compact {
+    @include iconButtonSize(28px);
+  }
+
+  &--left {
+    &--size {
+      &-m {
+        margin: unset;
+        padding-right: 4px;
+      }
+
+      &-s,
+      &-xs {
+        padding-right: 2px;
+      }
+    }
+  }
+
+  &--right {
+    &--size {
+      &-m {
+        margin: unset;
+        padding-left: 4px;
+      }
+
+      &-s,
+      &-xs {
+        padding-left: 2px;
+      }
+    }
+  }
 }

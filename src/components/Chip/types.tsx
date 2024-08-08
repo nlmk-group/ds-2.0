@@ -1,15 +1,14 @@
-import { colorsMapping, customChipColors, sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { EChipColors } from '@components/Chip/enums';
 
-export type ChipColor = Exclude<`${colorsMapping}`, `${customChipColors}`>;
 export type ChipSize = Exclude<`${sizesMapping}`, 'l'>;
-export type ChipVariant = `${variantsMapping}`;
 
 export interface IChipProps {
-  color?: ChipColor;
+  color?: `${EChipColors}`;
   size?: ChipSize;
+  variant?: `${variantsMapping}`;
   label?: string;
-  children: string;
+  children: string | number;
   suffix?: string;
   className?: string;
-  variant?: ChipVariant;
 }

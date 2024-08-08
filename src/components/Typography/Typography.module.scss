@@ -20,356 +20,335 @@
   margin-inline-start: 0;
   margin-inline-end: 0;
   font-variant-numeric: tabular-nums lining-nums;
-}
-
-.typography--variant-heading1 {
-  @include typography-properties(
-    var(--heading1-font-family),
-    var(--heading1-font-size),
-    var(--heading1-font-weight),
-    var(--heading1-line-height),
-    var(--heading1-letter-spacing),
-    var(--heading1-text-decoration)
-  );
-}
-
-.typography--variant-heading2 {
-  @include typography-properties(
-    var(--heading2-font-family),
-    var(--heading2-font-size),
-    var(--heading2-font-weight),
-    var(--heading2-line-height),
-    var(--heading2-letter-spacing),
-    var(--heading2-text-decoration)
-  );
-}
-
-.typography--variant-heading3 {
-  @include typography-properties(
-    var(--heading3-font-family),
-    var(--heading3-font-size),
-    var(--heading3-font-weight),
-    var(--heading3-line-height),
-    var(--heading3-letter-spacing),
-    var(--heading3-text-decoration)
-  );
-}
-
-.typography--variant-heading4 {
-  @include typography-properties(
-    var(--heading4-font-family),
-    var(--heading4-font-size),
-    var(--heading4-font-weight),
-    var(--heading4-line-height),
-    var(--heading4-letter-spacing),
-    var(--heading4-text-decoration)
-  );
-}
-
-.typography--variant-subheading1 {
-  @include typography-properties(
-    var(--subheading1-font-family),
-    var(--subheading1-font-size),
-    var(--subheading1-font-weight),
-    var(--subheading1-line-height),
-    var(--subheading1-letter-spacing),
-    var(--subheading1-text-decoration)
-  );
-}
-
-.typography--variant-subheading2 {
-  @include typography-properties(
-    var(--subheading2-font-family),
-    var(--subheading2-font-size),
-    var(--subheading2-font-weight),
-    var(--subheading2-line-height),
-    var(--subheading2-letter-spacing),
-    var(--subheading2-text-decoration)
-  );
-}
-
-.typography--variant-subheading2-medium {
-  @include typography-properties(
-    var(--subheading2-medium-font-family),
-    var(--subheading2-medium-font-size),
-    var(--subheading2-medium-font-weight),
-    var(--subheading2-medium-line-height),
-    var(--subheading2-medium-letter-spacing),
-    var(--subheading2-medium-text-decoration)
-  );
-}
-
-.typography--variant-subheading3 {
-  @include typography-properties(
-    var(--subheading3-font-family),
-    var(--subheading3-font-size),
-    var(--subheading3-font-weight),
-    var(--subheading3-line-height),
-    var(--subheading3-letter-spacing),
-    var(--subheading3-text-decoration)
-  );
-}
-
-.typography--variant-subheading3-medium {
-  @include typography-properties(
-    var(--subheading3-medium-font-family),
-    var(--subheading3-medium-font-size),
-    var(--subheading3-medium-font-weight),
-    var(--subheading3-medium-line-height),
-    var(--subheading3-medium-letter-spacing),
-    var(--subheading3-medium-text-decoration)
-  );
-}
-
-.typography--variant-body {
-  @include typography-properties(
-    var(--body-18-font-family),
-    var(--body-18-font-size),
-    var(--body-18-font-weight),
-    var(--body-18-line-height),
-    var(--body-18-letter-spacing),
-    var(--body-18-text-decoration)
-  );
-}
-
-.typography--variant-body-medium {
-  @include typography-properties(
-    var(--body-medium-18-font-family),
-    var(--body-medium-18-font-size),
-    var(--body-medium-18-font-weight),
-    var(--body-medium-18-line-height),
-    var(--body-medium-18-letter-spacing),
-    var(--body-medium-18-text-decoration)
-  );
-}
-
-.typography--variant-body-bold {
-  @include typography-properties(
-      var(--body-bold-18-font-family),
-      var(--body-bold-18-font-size),
-      var(--body-bold-18-font-weight),
-      var(--body-bold-18-line-height),
-      var(--body-bold-18-letter-spacing),
-      var(--body-bold-18-text-decoration)
-  );
-}
-
-.typography--variant-body1 {
-  @include typography-properties(
-    var(--body1-font-family),
-    var(--body1-font-size),
-    var(--body1-font-weight),
-    var(--body1-line-height),
-    var(--body1-letter-spacing),
-    var(--body1-text-decoration)
-  );
-}
-
-.typography--variant-body1-medium {
-  @include typography-properties(
-    var(--body1-medium-font-family),
-    var(--body1-medium-font-size),
-    var(--body1-medium-font-weight),
-    var(--body1-medium-line-height),
-    var(--body1-medium-letter-spacing),
-    var(--body1-medium-text-decoration)
-  );
-}
-
-.typography--variant-body1-mono-medium {
-  @include typography-properties(
-    var(--body1-mono-medium-font-family),
-    var(--body1-mono-medium-font-size),
-    var(--body1-mono-medium-font-weight),
-    var(--body1-mono-medium-line-height),
-    var(--body1-mono-medium-letter-spacing),
-    var(--body1-mono-medium-text-decoration)
-  );
-}
-
-.typography--variant-body1-mono-bold {
-  @include typography-properties(
-    var(--body1-mono-bold-font-family),
-    var(--body1-mono-bold-font-size),
-    var(--body1-mono-bold-font-weight),
-    var(--body1-mono-bold-line-height),
-    var(--body1-mono-bold-letter-spacing),
-    var(--body1-mono-bold-text-decoration)
-  );
-}
-
-.typography--variant-body1-bold {
-  @include typography-properties(
-    var(--body1-bold-font-family),
-    var(--body1-bold-font-size),
-    var(--body1-bold-font-weight),
-    var(--body1-bold-line-height),
-    var(--body1-bold-letter-spacing),
-    var(--body1-bold-text-decoration)
-  );
-}
-
-.typography--variant-body2 {
-  @include typography-properties(
-    var(--body2-font-family),
-    var(--body2-font-size),
-    var(--body2-font-weight),
-    var(--body2-line-height),
-    var(--body2-letter-spacing),
-    var(--body2-text-decoration)
-  );
-}
-
-.typography--variant-body2-medium {
-  @include typography-properties(
-    var(--body2-medium-font-family),
-    var(--body2-medium-font-size),
-    var(--body2-medium-font-weight),
-    var(--body2-medium-line-height),
-    var(--body2-medium-letter-spacing),
-    var(--body2-medium-text-decoration)
-  );
-}
-
-.typography--variant-body2-mono-medium {
-  @include typography-properties(
-    var(--body2-mono-medium-font-family),
-    var(--body2-mono-medium-font-size),
-    var(--body2-mono-medium-font-weight),
-    var(--body2-mono-medium-line-height),
-    var(--body2-mono-medium-letter-spacing),
-    var(--body2-mono-medium-text-decoration)
-  );
-}
-
-.typography--variant-body2-mono-bold {
-  @include typography-properties(
-    var(--body2-mono-bold-font-family),
-    var(--body2-mono-bold-font-size),
-    var(--body2-mono-bold-font-weight),
-    var(--body2-mono-bold-line-height),
-    var(--body2-mono-bold-letter-spacing),
-    var(--body2-mono-bold-text-decoration)
-  );
-}
-
-.typography--variant-body2-bold {
-  @include typography-properties(
-    var(--body2-bold-font-family),
-    var(--body2-bold-font-size),
-    var(--body2-bold-font-weight),
-    var(--body2-bold-line-height),
-    var(--body2-bold-letter-spacing),
-    var(--body2-bold-text-decoration)
-  );
-}
-
-.typography--variant-caption {
-  @include typography-properties(
-    var(--caption-font-family),
-    var(--caption-font-size),
-    var(--caption-font-weight),
-    var(--caption-line-height),
-    var(--caption-letter-spacing),
-    var(--caption-text-decoration)
-  );
-}
-
-.typography--variant-caption-medium {
-  @include typography-properties(
-    var(--caption-medium-font-family),
-    var(--caption-medium-font-size),
-    var(--caption-medium-font-weight),
-    var(--caption-medium-line-height),
-    var(--caption-medium-letter-spacing),
-    var(--caption-medium-text-decoration)
-  );
-}
-
-.typography--variant-caption-bold {
-  @include typography-properties(
-    var(--caption-bold-font-family),
-    var(--caption-bold-font-size),
-    var(--caption-bold-font-weight),
-    var(--caption-bold-line-height),
-    var(--caption-bold-letter-spacing),
-    var(--caption-bold-text-decoration)
-  );
-}
-
-.typography--variant-caption-mono {
-  @include typography-properties(
-    var(--caption-mono-font-family),
-    var(--caption-mono-font-size),
-    var(--caption-mono-font-weight),
-    var(--caption-mono-line-height),
-    var(--caption-mono-letter-spacing),
-    var(--caption-mono-text-decoration)
-  );
-}
-
-.typography--variant-caption-mono-medium {
-  @include typography-properties(
-    var(--caption-mono-medium-12-font-family),
-    var(--caption-mono-medium-12-font-size),
-    var(--caption-mono-medium-12-font-weight),
-    var(--caption-mono-medium-12-line-height),
-    var(--caption-mono-medium-12-letter-spacing),
-    var(--caption-mono-medium-12-text-decoration)
-  );
-}
-
-.typography--variant-caption-mono-bold {
-  @include typography-properties(
-    var(--caption-mono-bold-12-font-family),
-    var(--caption-mono-bold-12-font-size),
-    var(--caption-mono-bold-12-font-weight),
-    var(--caption-mono-bold-12-line-height),
-    var(--caption-mono-bold-12-letter-spacing),
-    var(--caption-mono-bold-12-text-decoration)
-  );
-}
-
-.typography--color-primary {
-  color: var(--text-grey-900);
-}
-
-.typography--color-secondary {
-  color: var(--text-grey-700);
-}
-
-.typography--color-error {
-  color: var(--error-red-600);
-}
-
-.typography--color-hint {
-  color: var(--text-grey-600);
-}
-
-.typography--color-disabled {
-  color: var(--text-grey-400);
-}
-
-.typography--color-success {
-  color: var(--success-green-400);
-}
-
-.typography--color-warning {
-  color: var(--warning-orange-600);
-}
-
-.typography--color-info {
-  color: var(--ui-color-style-txt-info);
-}
-
-.typography--color-text-primary {
-  color: var(--text-grey-900);
-}
-
-.typography--color-text-secondary {
-  color: var(--text-grey-700);
-}
-
-.typography--color-inherit {
   color: inherit;
+}
+
+.typography--variant-Heading1 {
+  @include typography-properties(
+      var(--heading1-48-fontFamily),
+      var(--heading1-48-fontSize),
+      var(--heading1-48-fontWeight),
+      var(--heading1-48-lineHeight),
+      var(--heading1-48-letterSpacing),
+      var(--heading1-48-textDecoration)
+  );
+}
+
+.typography--variant-Heading2 {
+  @include typography-properties(
+      var(--heading2-32-fontFamily),
+      var(--heading2-32-fontSize),
+      var(--heading2-32-fontWeight),
+      var(--heading2-32-lineHeight),
+      var(--heading2-32-letterSpacing),
+      var(--heading2-32-textDecoration)
+  );
+}
+
+.typography--variant-Heading3 {
+  @include typography-properties(
+      var(--heading3-24-fontFamily),
+      var(--heading3-24-fontSize),
+      var(--heading3-24-fontWeight),
+      var(--heading3-24-lineHeight),
+      var(--heading3-24-letterSpacing),
+      var(--heading3-24-textDecoration)
+  );
+}
+
+.typography--variant-Heading4 {
+  @include typography-properties(
+      var(--heading4-20-fontFamily),
+      var(--heading4-20-fontSize),
+      var(--heading4-20-fontWeight),
+      var(--heading4-20-lineHeight),
+      var(--heading4-20-letterSpacing),
+      var(--heading4-20-textDecoration)
+  );
+}
+
+.typography--variant-Subheading1 {
+  @include typography-properties(
+      var(--subheading1-32-fontFamily),
+      var(--subheading1-32-fontSize),
+      var(--subheading1-32-fontWeight),
+      var(--subheading1-32-lineHeight),
+      var(--subheading1-32-letterSpacing),
+      var(--subheading1-32-textDecoration)
+  );
+}
+
+.typography--variant-Subheading2 {
+  @include typography-properties(
+      var(--subheading2-24-fontFamily),
+      var(--subheading2-24-fontSize),
+      var(--subheading2-24-fontWeight),
+      var(--subheading2-24-lineHeight),
+      var(--subheading2-24-letterSpacing),
+      var(--subheading2-24-textDecoration)
+  );
+}
+
+.typography--variant-Subheading2-Medium {
+  @include typography-properties(
+      var(--subheading2-medium-24-fontFamily),
+      var(--subheading2-medium-24-fontSize),
+      var(--subheading2-medium-24-fontWeight),
+      var(--subheading2-medium-24-lineHeight),
+      var(--subheading2-medium-24-letterSpacing),
+      var(--subheading2-medium-24-textDecoration)
+  );
+}
+
+.typography--variant-Subheading3 {
+  @include typography-properties(
+      var(--subheading3-20-fontFamily),
+      var(--subheading3-20-fontSize),
+      var(--subheading3-20-fontWeight),
+      var(--subheading3-20-lineHeight),
+      var(--subheading3-20-letterSpacing),
+      var(--subheading3-20-textDecoration)
+  );
+}
+
+.typography--variant-Subheading3-Medium {
+  @include typography-properties(
+      var(--subheading3-medium-20-fontFamily),
+      var(--subheading3-medium-20-fontSize),
+      var(--subheading3-medium-20-fontWeight),
+      var(--subheading3-medium-20-lineHeight),
+      var(--subheading3-medium-20-letterSpacing),
+      var(--subheading3-medium-20-textDecoration)
+  );
+}
+
+.typography--variant-Body {
+  @include typography-properties(
+      var(--body-18-fontFamily),
+      var(--body-18-fontSize),
+      var(--body-18-fontWeight),
+      var(--body-18-lineHeight),
+      var(--body-18-letterSpacing),
+      var(--body-18-textDecoration)
+  );
+}
+
+.typography--variant-Body-Medium {
+  @include typography-properties(
+      var(--body-medium-18-fontFamily),
+      var(--body-medium-18-fontSize),
+      var(--body-medium-18-fontWeight),
+      var(--body-medium-18-lineHeight),
+      var(--body-medium-18-letterSpacing),
+      var(--body-medium-18-textDecoration)
+  );
+}
+
+.typography--variant-Body-Bold {
+  @include typography-properties(
+      var(--body-bold-18-fontFamily),
+      var(--body-bold-18-fontSize),
+      var(--body-bold-18-fontWeight),
+      var(--body-bold-18-lineHeight),
+      var(--body-bold-18-letterSpacing),
+      var(--body-bold-18-textDecoration)
+  );
+}
+
+.typography--variant-Body1 {
+  @include typography-properties(
+      var(--body1-16-fontFamily),
+      var(--body1-16-fontSize),
+      var(--body1-16-fontWeight),
+      var(--body1-16-lineHeight),
+      var(--body1-16-letterSpacing),
+      var(--body1-16-textDecoration)
+  );
+}
+
+.typography--variant-Body1-Medium {
+  @include typography-properties(
+      var(--body1-medium-16-fontFamily),
+      var(--body1-medium-16-fontSize),
+      var(--body1-medium-16-fontWeight),
+      var(--body1-medium-16-lineHeight),
+      var(--body1-medium-16-letterSpacing),
+      var(--body1-medium-16-textDecoration)
+  );
+}
+
+.typography--variant-Body1Table-Medium {
+  @include typography-properties(
+      var(--body1-table-medium-16-fontFamily),
+      var(--body1-table-medium-16-fontSize),
+      var(--body1-table-medium-16-fontWeight),
+      var(--body1-table-medium-16-lineHeight),
+      var(--body1-table-medium-16-letterSpacing),
+      var(--body1-table-medium-16-textDecoration)
+  );
+}
+
+.typography--variant-Body1-Bold {
+  @include typography-properties(
+      var(--body1-bold-16-fontFamily),
+      var(--body1-bold-16-fontSize),
+      var(--body1-bold-16-fontWeight),
+      var(--body1-bold-16-lineHeight),
+      var(--body1-bold-16-letterSpacing),
+      var(--body1-bold-16-textDecoration)
+  );
+}
+
+.typography--variant-Body1Mono-Medium {
+  @include typography-properties(
+      var(--body1-mono-medium-16-fontFamily),
+      var(--body1-mono-medium-16-fontSize),
+      var(--body1-mono-medium-16-fontWeight),
+      var(--body1-mono-medium-16-lineHeight),
+      var(--body1-mono-medium-16-letterSpacing),
+      var(--body1-mono-medium-16-textDecoration)
+  );
+}
+
+.typography--variant-Body1Mono-Bold {
+  @include typography-properties(
+      var(--body1-mono-bold-16-fontFamily),
+      var(--body1-mono-bold-16-fontSize),
+      var(--body1-mono-bold-16-fontWeight),
+      var(--body1-mono-bold-16-lineHeight),
+      var(--body1-mono-bold-16-letterSpacing),
+      var(--body1-mono-bold-16-textDecoration)
+  );
+}
+
+.typography--variant-Body2 {
+  @include typography-properties(
+      var(--body2-14-fontFamily),
+      var(--body2-14-fontSize),
+      var(--body2-14-fontWeight),
+      var(--body2-14-lineHeight),
+      var(--body2-14-letterSpacing),
+      var(--body2-14-textDecoration)
+  );
+}
+
+.typography--variant-Body2-Medium {
+  @include typography-properties(
+      var(--body2-medium-14-fontFamily),
+      var(--body2-medium-14-fontSize),
+      var(--body2-medium-14-fontWeight),
+      var(--body2-medium-14-lineHeight),
+      var(--body2-medium-14-letterSpacing),
+      var(--body2-medium-14-textDecoration)
+  );
+}
+
+.typography--variant-Body2-Bold {
+  @include typography-properties(
+      var(--body2-bold-14-fontFamily),
+      var(--body2-bold-14-fontSize),
+      var(--body2-bold-14-fontWeight),
+      var(--body2-bold-14-lineHeight),
+      var(--body2-bold-14-letterSpacing),
+      var(--body2-bold-14-textDecoration)
+  );
+}
+
+.typography--variant-Body2Mono-Medium {
+  @include typography-properties(
+      var(--body2-mono-medium-14-fontFamily),
+      var(--body2-mono-medium-14-fontSize),
+      var(--body2-mono-medium-14-fontWeight),
+      var(--body2-mono-medium-14-lineHeight),
+      var(--body2-mono-medium-14-letterSpacing),
+      var(--body2-mono-medium-14-textDecoration)
+  );
+}
+
+.typography--variant-Body2Mono-Bold {
+  @include typography-properties(
+      var(--body2-mono-bold-14-fontFamily),
+      var(--body2-mono-bold-14-fontSize),
+      var(--body2-mono-bold-14-fontWeight),
+      var(--body2-mono-bold-14-lineHeight),
+      var(--body2-mono-bold-14-letterSpacing),
+      var(--body2-mono-bold-14-textDecoration)
+  );
+}
+
+.typography--variant-Caption {
+  @include typography-properties(
+      var(--caption-12-fontFamily),
+      var(--caption-12-fontSize),
+      var(--caption-12-fontWeight),
+      var(--caption-12-lineHeight),
+      var(--caption-12-letterSpacing),
+      var(--caption-12-textDecoration)
+  );
+}
+
+.typography--variant-Caption-Medium {
+  @include typography-properties(
+      var(--caption-medium-12-fontFamily),
+      var(--caption-medium-12-fontSize),
+      var(--caption-medium-12-fontWeight),
+      var(--caption-medium-12-lineHeight),
+      var(--caption-medium-12-letterSpacing),
+      var(--caption-medium-12-textDecoration)
+  );
+}
+
+.typography--variant-Caption-Bold {
+  @include typography-properties(
+      var(--caption-bold-12-fontFamily),
+      var(--caption-bold-12-fontSize),
+      var(--caption-bold-12-fontWeight),
+      var(--caption-bold-12-lineHeight),
+      var(--caption-bold-12-letterSpacing),
+      var(--caption-bold-12-textDecoration)
+  );
+}
+
+.typography--variant-CaptionMono {
+  @include typography-properties(
+      var(--caption-mono-12-fontFamily),
+      var(--caption-mono-12-fontSize),
+      var(--caption-mono-12-fontWeight),
+      var(--caption-mono-12-lineHeight),
+      var(--caption-mono-12-letterSpacing),
+      var(--caption-mono-12-textDecoration)
+  );
+}
+
+.typography--variant-CaptionMono-Medium {
+  @include typography-properties(
+      var(--caption-mono-medium-12-fontFamily),
+      var(--caption-mono-medium-12-fontSize),
+      var(--caption-mono-medium-12-fontWeight),
+      var(--caption-mono-medium-12-lineHeight),
+      var(--caption-mono-medium-12-letterSpacing),
+      var(--caption-mono-medium-12-textDecoration)
+  );
+}
+
+.typography--variant-CaptionMono-Bold {
+  @include typography-properties(
+      var(--caption-mono-bold-12-fontFamily),
+      var(--caption-mono-bold-12-fontSize),
+      var(--caption-mono-bold-12-fontWeight),
+      var(--caption-mono-bold-12-lineHeight),
+      var(--caption-mono-bold-12-letterSpacing),
+      var(--caption-mono-bold-12-textDecoration)
+  );
+}
+
+.typography--variant-Additional-Bold {
+  @include typography-properties(
+      var(--additional-bold-9-fontFamily),
+      var(--additional-bold-9-fontSize),
+      var(--additional-bold-9-fontWeight),
+      var(--additional-bold-9-lineHeight),
+      var(--additional-bold-9-letterSpacing),
+      var(--additional-bold-9-textDecoration)
+  );
 }

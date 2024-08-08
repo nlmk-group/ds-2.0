@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import Typography from '@components/Typography';
-import { TVariant } from '@components/Typography/types';
+import { ETypographyVariants } from '@components/Typography/enums';
 import { clsx } from 'clsx';
 
 import { ILink } from './types';
@@ -36,7 +36,7 @@ const Link: FC<ILink> = ({
         rel="noreferrer noopener"
         className={className}
       >
-        <Typography variant={getTypography(size as sizeMapping) as TVariant}>{children}</Typography>
+        <Typography variant={getTypography(size as sizeMapping) as ETypographyVariants}>{children}</Typography>
       </a>
       {rightIcon !== null && (
         <div data-testid="RIGHT_ICON" className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}>

@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { EChipColors } from '@components/Chip/enums';
 import { sizesMapping } from '@components/declaration';
 import { render } from '@testing-library/react';
 
-import { ChipColor, ChipSize } from './types';
+import { ChipSize } from './types';
 
 import { argsTypes } from './_stories/argsTypes';
 import { Chip } from './index';
@@ -39,7 +40,7 @@ describe('src/components/Chip', () => {
   test('Проверка компонента на все цветовые варианты', () => {
     colors.map(className => {
       const { container } = render(
-        <Chip label="Label" color={className as ChipColor}>
+        <Chip label="Label" color={className as EChipColors}>
           {text}
         </Chip>
       );
@@ -48,55 +49,21 @@ describe('src/components/Chip', () => {
     });
   });
 
-  // Check size
-  test('Проверка размера компонента (s, m)', () => {
-    const { container } = render(
-      <Chip label="Label" size={sizesMapping.s}>
-        {text}
-      </Chip>
-    );
-    const chip = container.getElementsByTagName('div')[2];
-    expect(chip).toHaveClass('compact');
-  });
-
-  // Check label variant
-  test('Проверка варианта метки компонента', () => {
-    sizes.map(size => {
-      const { container } = render(
-        <Chip label="Label" size={size as ChipSize}>
-          {text}
-        </Chip>
-      );
-      const chip = container.getElementsByTagName('div')[0];
-      const label = chip.getElementsByTagName('span')[0];
-      if (size === sizesMapping.s) {
-        expect(label).toHaveClass('typography--variant-caption-medium typography--color-hint label');
-      } else {
-        expect(label).toHaveClass('typography--variant-body2-medium typography--color-hint label');
-      }
-    });
-  });
-
   // Check suffix variant
   test('Для каждой комбинации размера и цвета создается чип с соответствующим суффиксом, и проверяется, что текстовый элемент суффикса имеет соответствующий набор классов, причём если цвет чипа является primary, то используется класс-цвет hint, в противном случае класс соответствует указанному цвету.', () => {
     sizes.map(size => {
       colors.map(color => {
         const { container } = render(
-          <Chip suffix="кг" size={size as ChipSize} color={color as ChipColor}>
+          <Chip suffix="кг" size={size as ChipSize} color={color as EChipColors}>
             {text}
           </Chip>
         );
         const chip = container.getElementsByTagName('div')[1];
         const suffix = chip.getElementsByTagName('span')[1];
-        const isPrimary = color === 'primary';
         if (size === sizesMapping.s) {
-          expect(suffix).toHaveClass(
-            `typography--variant-caption-bold typography--color-${isPrimary ? 'hint' : String(color)} suffix`
-          );
+          expect(suffix).toHaveClass('typography--variant-Caption-Bold');
         } else {
-          expect(suffix).toHaveClass(
-            `typography--variant-body2-bold typography--color-${isPrimary ? 'hint' : String(color)} suffix`
-          );
+          expect(suffix).toHaveClass('typography--variant-Body2-Bold');
         }
       });
     });

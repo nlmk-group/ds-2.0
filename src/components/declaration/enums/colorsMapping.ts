@@ -13,20 +13,6 @@ export enum colorsMapping {
   grey = 'grey'
 }
 
-export enum customBadgeColors {
-  disabled = 'disabled',
-  info = 'info',
-  inherit = 'inherit',
-  secondary = 'secondary',
-  grey = 'grey'
-}
-
-export enum customChipColors {
-  disabled = 'disabled',
-  info = 'info',
-  inherit = 'inherit'
-}
-
 export enum customInputColors {
   default = 'default',
   error = 'error',

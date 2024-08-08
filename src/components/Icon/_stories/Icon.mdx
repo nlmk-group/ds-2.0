@@ -1,0 +1,21 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Icon from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Icon/Info"
+  component={Icon}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/MgF9yvGQTZuj4qYPcWYTf7/Icons-%CE%B2?node-id=2%3A10&t=STno9o75psLDOLl6-0'
+    }
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

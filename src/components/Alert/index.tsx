@@ -1,79 +1,95 @@
-import React, { FC } from 'react';
-import { clsx } from 'clsx';
+import React, { FC, ReactElement, ReactNode } from 'react';
+
 import {
   Button,
   IconAttentionWarningAlertErrorOutlined24,
-  IconCloseOutlined24,
+  IconCloseOutlined16,
   IconInfoOutlined24,
   IconSuccessOutlined24,
   Typography
 } from '@components/index';
+import { clsx } from 'clsx';
 
-import { IAlert, IIconSeverityColor } from './types';
+import { IAlertProps, IIconSeverityColor } from './types';
 
 import styles from './Alert.module.scss';
 
-import { severityMapping } from './enums';
+import { EAlertSeverity } from './enums';
 
-const Alert: FC<IAlert> = ({
+/**
+ * Компонент Alert для отображения информационных сообщений различных типов.
+ * @component
+ * @param {Object} props - Свойства компонента Alert.
+ * @param {string} props.title - Заголовок сообщения Alert.
+ * @param {EAlertSeverity} [props.severity=EAlertSeverity.success] - Тип сообщения (успех, ошибка, предупреждение, информация).
+ * @param {ReactNode} [props.children] - Дочерние элементы для отображения дополнительного содержимого.
+ * @param {() => void} [props.close] - Функция обратного вызова для закрытия Alert.
+ * @param {ReactNode} [props.action] - Дополнительный элемент действия.
+ * @param {string} [props.className] - Дополнительные CSS классы.
+ * @returns {ReactElement} Компонент Alert.
+ */
+
+const Alert: FC<IAlertProps> = ({
   title,
-  severity = severityMapping.success,
-  children = null,
-  close = null,
-  action = null,
+  severity = EAlertSeverity.success,
+  children,
+  close,
+  action,
   className
-}) => {
-  const iconColorHandler = (): string => {
+}: {
+  title: string;
+  severity?: `${EAlertSeverity}`;
+  children?: ReactNode;
+  close?: () => void;
+  action?: ReactNode;
+  className?: string;
+}): ReactElement => {
+  const AlertIcon = () => {
     const severityStyles: IIconSeverityColor = {
-      [severityMapping.success]: 'var(--ac-alert-success-icon)',
-      [severityMapping.error]: 'var(--ac-alert-error-icon)',
-      [severityMapping.warning]: 'var(--ac-alert-warning-icon)',
-      [severityMapping.info]: 'var(--ac-alert-info-icon)'
+      [EAlertSeverity.success]: 'var(--spectrum-green-60)',
+      [EAlertSeverity.error]: 'var(--spectrum-red-60)',
+      [EAlertSeverity.warning]: 'var(--spectrum-orange-60)',
+      [EAlertSeverity.info]: 'var(--spectrum-sky-60)'
     };
 
-    return severityStyles[severity as keyof IIconSeverityColor] || 'var(--success-green-600)';
+    switch (severity) {
+      case EAlertSeverity.success:
+        return <IconSuccessOutlined24 htmlColor={severityStyles[severity]} />;
+      case EAlertSeverity.error:
+        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={severityStyles[severity]} />;
+      case EAlertSeverity.warning:
+        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={severityStyles[severity]} />;
+      case EAlertSeverity.info:
+        return <IconInfoOutlined24 htmlColor={severityStyles[severity]} />;
+      default:
+        return <IconSuccessOutlined24 htmlColor={severityStyles[severity] || 'var(--spectrum-green-60)'} />;
+    }
   };
 
-
-  const IconHelper = ({htmlColor}: {htmlColor: string}) => {
-    switch(severity) {
-      case severityMapping.success:
-        return <IconSuccessOutlined24 htmlColor={htmlColor} />;
-      case severityMapping.error:
-        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={htmlColor} />;
-      case severityMapping.warning:
-        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={htmlColor} />;
-      case severityMapping.info:
-        return <IconInfoOutlined24 htmlColor={htmlColor} />;
-      default:
-        return <IconInfoOutlined24 htmlColor={htmlColor} />;
-    }
-  }
-
   return (
-    <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`standard-${severity}`], className)}>
-      <div className={styles.info}>
-        <div data-testid="ALERT_TITLE" className={styles['content-main']}>
-          <div className={styles['icon-wrapper']}>
-            <IconHelper htmlColor={iconColorHandler()}/>
-          </div>
-          <Typography variant="Body2-Bold">{title}</Typography>
-
-          <div className={styles['action-wrapper']}>
-            {action !== null && action}
-            {!!close && close !== null && (
-              <Button variant="grey" fill="clear" onClick={close} className={styles['btn-close']} size="xs">
-                <IconCloseOutlined24 />
-              </Button>
-            )}
-          </div>
+    <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`wrapper-${severity}`], className)}>
+      <div data-testid="ALERT_TITLE" className={styles.content}>
+        <AlertIcon />
+        <Typography variant="Body2-Bold">{title}</Typography>
+        <div className={styles['action-wrapper']}>
+          {action && action}
+          {close && (
+            <Button
+              variant="grey"
+              fill="clear"
+              onClick={close}
+              className={styles.close}
+              size="xs"
+              iconButton={<IconCloseOutlined16 htmlColor="var(--steel-80)" />}
+            />
+          )}
         </div>
-        {children !== null && (
-          <div className={styles['content-wrapper']}>
-            <Typography variant="Body2-Medium">{children}</Typography>
-          </div>
-        )}
       </div>
+      {children && (
+        <div className={styles['content-description']}>
+          <Typography variant="Body2-Medium">{children}</Typography>
+        </div>
+      )}
     </div>
   );
 };

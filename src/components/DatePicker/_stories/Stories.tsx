@@ -5,13 +5,14 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/file/kFsgdsZ2n2j8bDlKW67YTc/DS2.0-Calendar?type=design&node-id=1113-8156&mode=design&t=4GLACqnE6wnER5XM-0'
+const FIGMA_LINK =
+  'https://www.figma.com/file/kFsgdsZ2n2j8bDlKW67YTc/DS2.0-Calendar?type=design&node-id=1113-8156&mode=design&t=4GLACqnE6wnER5XM-0';
 
 const DatePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -83,7 +84,7 @@ export default App;
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
         </Tabs>
       </div>
 
@@ -107,14 +108,8 @@ export default App;
         </>
       )}
 
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
-      {Number(activeTab) === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="DatePicker" />
-        </Typography>
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {Number(activeTab) === 2 && <Tests componentName="DatePicker" />}
     </div>
   );
 };

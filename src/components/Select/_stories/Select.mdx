@@ -1,0 +1,23 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Select from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Select/Info"
+  component={Select}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/DS2.0-Input?type=design&node-id=207-40299&mode=dev'
+    },
+    jest: ['Select.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>
+

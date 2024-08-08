@@ -1,4 +1,5 @@
-import { colorsMapping, sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { EChipColors } from '@components/Chip/enums';
+import { sizesMapping, variantsMapping } from '@components/declaration/enums';
 
 export const argsTypes = {
   children: {
@@ -21,25 +22,16 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   color: {
-    description: `Тип чипа – <b>${Object.values(colorsMapping)
-      .filter(i => ['warning', 'primary', 'success', 'error'].includes(i))
-      .join(' | ')}</b>`,
+    description: `Тип чипа – <b>${Object.values(EChipColors).join(' | ')}</b>`,
     table: {
       defaultValue: {
-        summary: colorsMapping.primary
+        summary: EChipColors.primary
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(colorsMapping).filter(
-      item =>
-        item !== colorsMapping.disabled &&
-        item !== colorsMapping.inherit &&
-        item !== colorsMapping.info &&
-        item !== colorsMapping.secondary &&
-        item !== colorsMapping.grey
-    ),
+    options: Object.values(EChipColors),
     control: { type: 'select' }
   },
   label: {

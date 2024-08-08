@@ -1,54 +1,37 @@
-import { colorMapping, indicatorMapping } from '../enums';
+import { variantsMapping } from '@components/declaration';
+
+import { ESnackbarColors } from '../enums';
 
 const argsTypes = {
   children: {
     description: 'Содержимое, которое будет отображаться на Snackbar, например текст.',
-    control: { type: 'ReactNode' }
+    control: { type: 'text' }
   },
   color: {
     description: 'Необязательное свойство. Цвет фона Snackbar. Значение по умолчанию - серый.',
     table: {
       defaultValue: {
-        summary: colorMapping.grey
+        summary: ESnackbarColors.dark
       },
       type: {
-        summary: Object.values(colorMapping).join(' | ')
+        summary: Object.values(ESnackbarColors).join(' | ')
       }
     },
-    options: Object.values(colorMapping),
+    options: Object.values(ESnackbarColors),
     control: { type: 'select' }
   },
-  indicator: {
-    description: 'Необязательное свойство. Цветной индикатор Snackbar. По умолчанию отсутствует.',
-    table: {
-      type: {
-        summary: Object.values(indicatorMapping).join(' | ')
-      }
-    },
-    options: Object.values(indicatorMapping),
-    control: { type: 'select' }
-  },
-  bgOpacity: {
-    description:
-      'Необязательное свойство. Процент прозрачности фона Snackbar. Значение по умолчанию равно 100%. Допустимый диапазон – от 0% до 100%.',
+  variant: {
+    description: 'Вариант Snackbar',
     table: {
       defaultValue: {
-        summary: '100%'
+        summary: variantsMapping.solid
       },
       type: {
-        summary: 'number'
+        summary: Object.values(variantsMapping).join(' | ')
       }
     },
-    control: { type: 'number' }
-  },
-  withIcon: {
-    description:
-      'Необязательное свойство. Флаг, указывающий, следует ли отображать иконку слева от контента Snackbar. Если значение равно true, иконка будет отображаться, если false - иконка не будет отображаться. Значение по умолчанию - false.',
-    control: { type: 'boolean' }
-  },
-  customIcon: {
-    description: 'Необязательное свойство. Пользовательская иконка для отображения слева от контента Snackbar.',
-    control: { type: 'string' }
+    options: Object.values(variantsMapping),
+    control: { type: 'select' }
   },
   close: {
     description:
@@ -60,7 +43,7 @@ const argsTypes = {
       'Необязательное свойство. Функция, которая будет вызываться при клике на кнопку действия. Если не предоставлено, кнопка действия не будет отображаться.',
     control: { type: 'boolean' }
   },
-  actionButtonText: {
+  actionText: {
     description:
       'Необязательное свойство. Текст для кнопки действия. Если не предоставлено, по умолчанию будет использован текст "Посмотреть".',
     table: {
@@ -72,6 +55,19 @@ const argsTypes = {
       }
     },
     control: { type: 'text' }
+  },
+  autoHideDuration: {
+    description:
+      'Необязательное свойство. Время в миллисекундах, через которое Snackbar автоматически скроется. Если установлено в 0 или не указано, Snackbar не будет автоматически скрываться.',
+    table: {
+      defaultValue: {
+        summary: 0
+      },
+      type: {
+        summary: 'number'
+      }
+    },
+    control: { type: 'number' }
   }
 };
 

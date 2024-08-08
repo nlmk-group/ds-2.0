@@ -1,15 +1,13 @@
 import { sizesMapping } from '@components/Accordion/enums';
-import { TVariant } from '@components/Typography/types';
+import { ETypographyVariants } from '@components/Typography/enums';
 
-export const ICON_SIZE = 16;
-
-export const TYPOGRAPHY_TITLE_VARIANTS: Record<sizesMapping, TVariant> = {
-  [sizesMapping.xs]: 'Body-Medium',
-  [sizesMapping.s]: 'Subheading3-Medium',
-  [sizesMapping.m]: 'Subheading3-Medium'
+export const TYPOGRAPHY_TITLE_VARIANTS: Record<sizesMapping, ETypographyVariants> = {
+  [sizesMapping.xs]: ETypographyVariants['Body-Medium'],
+  [sizesMapping.s]: ETypographyVariants['Subheading3-Medium'],
+  [sizesMapping.m]: ETypographyVariants['Subheading3-Medium']
 };
-export const TYPOGRAPHY_CONTENT_VARIANTS: Record<sizesMapping, TVariant> = {
-  [sizesMapping.xs]: 'Body1',
-  [sizesMapping.s]: 'Body',
-  [sizesMapping.m]: 'Body'
+export const TYPOGRAPHY_CONTENT_VARIANTS: Record<sizesMapping, ETypographyVariants> = {
+  [sizesMapping.xs]: ETypographyVariants.Body1,
+  [sizesMapping.s]: ETypographyVariants.Body,
+  [sizesMapping.m]: ETypographyVariants.Body
 };

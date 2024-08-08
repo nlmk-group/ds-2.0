@@ -23,12 +23,118 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v1.9.7 - <span className={styles.date}>25.07.24</span>
+            v2.2.0 - <span className={styles.date}>08.08.24</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены новые переменные цветов.
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-stepper-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Stepper
+              </Link>
+              .
             </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.1.0 - <span className={styles.date}>07.08.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-alert-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Alert
+              </Link>
+              <li className={styles['left-padding']}>- Изменен props color и размеры шрифтов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.0.0 - <span className={styles.date}>05.08.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Переход на новые цвета DS 3.0</li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              . Обновлены типы, добавлены новые пропсы и изменена структура компонента.
+              <li className={styles['left-padding']}>- Добавлены свойства: startBadge, endBadge</li>
+              <li className={styles['left-padding']}>- Удалено свойство: badge</li>
+              <li className={styles['left-padding']}>- Изменены варианты свойства variant</li>
+              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-chip-info--docs" target="blank" className={styles['link-changelog']}>
+                Chip
+              </Link>
+              . Добавлены новые пропсы и изменена структура компонента.
+              <li className={styles['left-padding']}>- Изменено свойство color по умолчанию</li>
+              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Модифицирован компонент{' '}
+              <Link
+                href="./?path=/docs/components-badge-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Badge
+              </Link>
+              . Обновлены типы и добавлены новые варианты отображения.
+              <li className={styles['left-padding']}>- Изменены варианты свойства color</li>
+              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-typography-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Typography
+              </Link>
+              . Добавлены новые пропсы для управления стилями.
+              <li className={styles['left-padding']}>- Изменено поведение свойства color и его варианты</li>
+              <li className={styles['left-padding']}>- Добавлены новые варинты типографии</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.8 - <span className={styles.date}>26.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Обновлена библиотека react-tooltip.</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v1.9.7 - <span className={styles.date}>25.07.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Добавлены новые переменные цветов.</li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -253,8 +359,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
-              компонента{' '}
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри компонента{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
@@ -701,8 +806,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
-              в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>

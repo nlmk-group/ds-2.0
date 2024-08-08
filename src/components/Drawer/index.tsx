@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-import { ESizes } from '@components/Button/enums';
+import { EButtonSizes } from '@components/Button/enums';
 import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -94,7 +94,7 @@ const Drawer: FC<IDrawerProps> = ({
               className={clsx(styles.drawerClose, styles[position])}
               onClick={handleClose}
               aria-label="Close"
-              size={ESizes.s}
+              size={EButtonSizes.s}
               style={dynamicStyleForCloseButton}
             />
           </div>

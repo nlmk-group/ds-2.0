@@ -1,9 +1,0 @@
-export const DEFAULT_ALERT = 'Оповещение по умолчанию';
-export const ERROR_ALERT = 'Оповещение об ошибке';
-export const WARNING_ALERT = 'Оповещение предупреждение';
-export const INFO_ALERT = 'Информационное оповещение';
-export const ALERT_WITH_CONTENT = 'Оповещение с контентом';
-export const ALERT_WITH_BUTTONS = 'Оповещение с кнопками';
-export const ALERT_VARIANTS = 'Варианты оповещений';
-export const ALL_ALERT_COMBINATIONS = 'Все комбинации оповещений';
-export const ALERT_WITH_CUSTOM_CLASSNAME = 'Оповещение с кастомным стилем';

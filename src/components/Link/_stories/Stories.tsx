@@ -5,7 +5,7 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
@@ -63,14 +63,18 @@ export default App;
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={200} description="Основная ссылка. Стандартное использование компонента Link." code={linkDefaultCode} />
+          <Editor
+            height={200}
+            description="Основная ссылка. Стандартное использование компонента Link."
+            code={linkDefaultCode}
+          />
           <Editor
             height={220}
             description="Отключенная ссылка. Пользователь не может взаимодействовать с ссылкой."
@@ -84,11 +88,7 @@ export default App;
       {Number(activeTab) === 1 && (
         <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A25756&mode=design&t=awyt3Fzj1XS6th7v-1" />
       )}
-      {Number(activeTab) === 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Link" />
-        </Typography>
-      )}
+      {Number(activeTab) === 2 && <Tests componentName="Link" />}
     </div>
   );
 };

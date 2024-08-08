@@ -1,9 +1,12 @@
-const reactRefresh = require('@vitejs/plugin-react-refresh');
-const path = require('path');
+import reactRefresh from '@vitejs/plugin-react-refresh';
+import path from 'path';
+import { fileURLToPath, URL } from 'url';
 
-module.exports = {
+const dirname = fileURLToPath(new URL('.', import.meta.url));
+
+export default {
   staticDirs: ['../public'],
-  stories: ['../src/**/*.stories.@(tsx|mdx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
   async viteFinal(config) {
     if (process.env.NODE_ENV === 'production') {
@@ -21,9 +24,9 @@ module.exports = {
       },
       resolve: {
         alias: {
-          '@components': path.resolve(__dirname, '../src/components'),
-          '@root': path.resolve(__dirname, '../'),
-          'path': require.resolve('path-browserify')
+          '@components': path.resolve(dirname, '../src/components'),
+          '@root': path.resolve(dirname, '../'),
+          'path': 'path-browserify'
         }
       }
     };
@@ -35,12 +38,12 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-jest',
-    '@storybook/testing-library',
+    '@storybook/addon-actions',
+    '@storybook/test',
     '@storybook/addon-interactions',
     'storybook-dark-mode',
     '@storybook/addon-themes',
-    '@storybook/addon-storysource',
-    '@storybook/addon-mdx-gfm'
+    '@storybook/addon-storysource'
   ],
 
   framework: {
@@ -49,11 +52,12 @@ module.exports = {
   },
 
   features: {
-    interactionsDebugger: true,
-    storyStoreV7: true
+    interactionsDebugger: true
   },
 
-  docs: {
-    autodocs: true
+  docs: {},
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript'
   }
 };

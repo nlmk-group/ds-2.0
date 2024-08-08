@@ -1,0 +1,11 @@
+.step-button {
+  & > span {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+  .step-name {
+    padding: 0 4px;
+  }
+}

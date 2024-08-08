@@ -27,6 +27,8 @@ build-storybook.log
 # Yalc
 .yalc/
 yalc.lock
+tokens.json
 
 # JSON
 tokens.json
+typographyTokens.json

@@ -1,7 +1,7 @@
 .arrow {
   height: var(--24-size);
   width: var(--24-size);
-  transition: var(--transition-default);
+  transition: 0.3s ease-out;
 
   &.open {
     transform: rotate(180deg);

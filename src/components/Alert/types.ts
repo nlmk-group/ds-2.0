@@ -1,13 +1,28 @@
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { severityMapping } from './enums';
+import { EAlertSeverity } from './enums';
 
-export interface IAlert extends PropsWithChildren {
+/**
+ * Интерфейс свойств компонента Alert.
+ * @interface
+ * @extends {PropsWithChildren<{}>}
+ */
+export interface IAlertProps extends PropsWithChildren {
+  /** Заголовок сообщения Alert. */
   title: string;
-  severity?: string;
+  /** Тип сообщения Alert. */
+  severity?: `${EAlertSeverity}`;
+  /** Дополнительные CSS классы. */
   className?: string;
+  /** Дополнительный элемент действия. */
   action?: ReactNode;
-  close?: ()=>void;
+  /** Функция обратного вызова для закрытия Alert. */
+  close?: () => void;
 }
 
-export type IIconSeverityColor = Record<severityMapping, string>;
+
+/**
+ * Тип для определения цветов иконок в зависимости от типа сообщения.
+ * @typedef {Object.<EAlertSeverity, string>} IIconSeverityColor
+ */
+export type IIconSeverityColor = Record<EAlertSeverity, string>;

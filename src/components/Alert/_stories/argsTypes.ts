@@ -1,4 +1,4 @@
-import { severityMapping } from '../enums';
+import { EAlertSeverity } from '../enums';
 
 export const argsTypes = {
   title: {
@@ -6,16 +6,16 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   severity: {
-    description: `Тип сообщения, влияющий на его фоновый цвет - <b>${Object.values(severityMapping).join(' | ')}</b>`,
+    description: `Тип сообщения, влияющий на его фоновый цвет - <b>${Object.values(EAlertSeverity).join(' | ')}</b>`,
     table: {
       defaultValue: {
-        summary: severityMapping.success
+        summary: EAlertSeverity.success
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(severityMapping),
+    options: Object.values(EAlertSeverity),
     control: { type: 'select' }
   },
   close: {
@@ -32,6 +32,10 @@ export const argsTypes = {
   },
   props: {
     description: 'В компонент можно передавать event handling onClick, onMouseEnter, onMouseLeave и т.д.'
+  },
+  showChildren: {
+    description: 'Показать дополнительный контент в виде списка',
+    control: { type: 'boolean' }
   }
 };
 

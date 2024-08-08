@@ -22,7 +22,7 @@ const PseudoInput: FC<IPseudoInputProps> = ({
       <Typography variant={compact ? 'Caption-Medium' : 'Body2-Medium'} className={clsx(styles.label, colorClassName)}>
         {label}
       </Typography>
-      <Typography variant={compact ? 'Caption-Bold' : 'Body1-Medium'} color="primary" className={styles.text}>
+      <Typography variant={compact ? 'Caption-Bold' : 'Body1-Medium'} color="var(--steel-90)" className={styles.text}>
         {children}
       </Typography>
     </div>

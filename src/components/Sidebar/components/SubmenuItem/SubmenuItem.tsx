@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { ESizes } from '@components/Button/enums';
+import { EButtonSizes } from '@components/Button/enums';
 import { StarSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, ImagePicture, Typography } from '@components/index';
 import { SidebarProperties, SubmenuProperties } from '@components/Sidebar/context';
@@ -121,7 +121,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
             <Button
               variant="primary"
               fill="clear"
-              size={ESizes.s}
+              size={EButtonSizes.s}
               onClick={() => handleFavorites(id, childrenIds)}
               disabled={disabled}
               iconButton={<StarSvgIcon active={Boolean(isFavorite && isChildFavorite)} className={styles.favorite} />}

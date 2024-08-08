@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 import { argsTypes } from '@components/Radio/_stories/argsTypes';
 
 import Editor from './components/Editor';
@@ -29,7 +29,7 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -81,11 +81,7 @@ export default  App = () =>(
       {Number(activeTab) == 1 && (
         <FigmaEmbed url="https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=455%3A4248&mode=design&t=vcIQVvM3NLAsUO7s-1" />
       )}
-      {Number(activeTab) == 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Radio" />
-        </Typography>
-      )}
+      {Number(activeTab) == 2 && <Tests componentName="Radio" />}
     </div>
   );
 };

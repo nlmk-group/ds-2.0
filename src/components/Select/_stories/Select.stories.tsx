@@ -4,7 +4,6 @@ import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Button, IconArticleOutlined24, Select, Typography } from '@components/index';
 import { argsTypes } from '@components/Select/_stories/argsTypes';
 import { ISelectOption, ISelectProps, TSelected } from '@components/Select/types';
-import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import style from '../Select.module.scss';
@@ -479,7 +478,7 @@ export const NativeMenu = (argTypes: ISelectProps): JSX.Element => {
   ];
 
   const handleChange = (f: TSelected) => {
-    setFormat(f.toString())
+    setFormat(f.toString());
   };
 
   return (
@@ -495,31 +494,8 @@ export const NativeMenu = (argTypes: ISelectProps): JSX.Element => {
           Сформировать отчет
         </Button>
       </Select>
-      {format && <Typography color='success'>Вы выбрали файл в формате .{format}.</Typography>}
+      {format && <Typography>Вы выбрали файл в формате .{format}.</Typography>}
     </div>
   );
 };
 NativeMenu.storyName = 'Нативное меню';
-
-// TODO
-// Add feature for nested options
-// Link https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/DS2.0-Input?type=design&node-id=2559-8688&mode=design&t=Bt67vU7ZD9gbIntW-0
-// export const SelectWithNesting = (argTypes: ISelectProps): JSX.Element => {
-//   return (
-//     <div
-//       style={{
-//         padding: '50px',
-//         width: '500px',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         gap: '20px',
-//       }}
-//     >
-//       <Select {...argTypes} multiple highlightSelected />
-//     </div>
-//   );
-// };
-// SelectWithNesting.storyName = 'Select c вложенностью';
-// SelectWithNesting.args = {
-//   options: optionsWithNesting
-// }

@@ -1,14 +1,11 @@
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
-import { COLORS_MAPPING_ENUM, VARIANTS_MAPPING_ENUM } from '@components/Typography/constants';
+import { ETypographyVariants } from './enums';
 
-export type TVariant = keyof typeof VARIANTS_MAPPING_ENUM;
-
-export type TColor = keyof typeof COLORS_MAPPING_ENUM;
-
-export interface ITypographyProps extends HTMLAttributes<HTMLParagraphElement> {
-  variant?: TVariant;
-  color?: TColor;
+export interface ITypographyProps extends HTMLAttributes<HTMLSpanElement> {
+  variant?: `${ETypographyVariants}`;
+  children: ReactNode;
+  className?: string;
+  color?: CSSProperties['color'];
+  style?: CSSProperties;
 }
-
-export type ITypography = ITypographyProps & PropsWithChildren;

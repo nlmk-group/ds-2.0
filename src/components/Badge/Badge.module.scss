@@ -5,81 +5,75 @@
 
 .badge {
   box-sizing: border-box;
-  min-width: var(--24-size);
-  height: var(--24-size);
+  min-width: 24px;
+  height: 24px;
   border-radius: var(--circle-radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  outline-width: var(--2-border);
-  outline-offset: calc(var(--2-border) * -1);
+  outline-width: 2px;
+  outline-offset: -2px;
   cursor: default;
-  padding: var(--0-space) var(--8-space);
-}
-
-.compact {
-  min-width: var(--16-size);
-  height: var(--16-size);
-  // ширина бордера для варианта outline
-  outline-width: var(--1-border);
-  outline-offset: calc(var(--1-border) * -1);
-  padding: var(--0-space) var(--4-space);
-}
-
-.xs {
-  min-width: var(--12-size);
-  height: var(--12-size);
-  padding: var(--0-space) var(--3-space);
-  outline-width: var(--1-border);
-  outline-offset: calc(var(--1-border) * -1);
-  span {
-    font-size: var(--9-size);
-  }
+  padding: 0 8px;
 }
 
 .large {
-  min-width: var(--26-size);
-  height: var(--26-size);
+  min-width: 26px;
+  height: 26px;
 }
 
-// Список ваших цветовых вариантов
-$variants: primary, secondary, error, warning, success, grey;
+.compact {
+  min-width: 16px;
+  height: 16px;
+  // ширина бордера для варианта outline
+  outline-width: 1px;
+  outline-offset: -1px;
+  padding: 0 4px;
+}
+
+.xs {
+  min-width: 12px;
+  height: 12px;
+  padding: 0 3px;
+  outline-width: 1px;
+  outline-offset: -1px;
+}
+
+// Список цветовых вариантов
+$variants: primary, secondary, error, warning, success, grey, light-grey, light-green;
 
 // Соответствующие цвета для каждого варианта
 $bg-colors: (
-  primary: var(--ac-badge-solid-primary-fill),
-  secondary: var(--ac-badge-solid-secondary-fill),
-  error: var(--ac-badge-solid-error-fill),
-  warning: var(--ac-badge-solid-warning-fill),
-  success: var(--ac-badge-solid-success-fill),
-  grey: var(--ac-badge-solid-grey-fill)
+  primary: var(--brand-sapphire-40),
+  secondary: var(--brand-sapphire-30),
+  error: var(--spectrum-red-40),
+  warning: var(--spectrum-yellow-40),
+  success: var(--spectrum-green-40),
+  grey: var(--steel-70),
+  light-grey: var(--steel-50),
+  light-green: var(--spectrum-green-20)
 );
 
 $text-colors: (
-  primary: var(--ac-badge-solid-primary-text),
-  secondary: var(--ac-badge-solid-secondary-text),
-  error: var(--ac-badge-solid-error-text),
-  warning: var(--ac-badge-solid-warning-text),
-  success: var(--ac-badge-solid-success-text),
-  grey: var(--ac-badge-solid-grey-text)
+  primary: var(--unique-white),
+  secondary: var(--steel-90),
+  error: var(--steel-90),
+  warning: var(--steel-90),
+  success: var(--steel-90),
+  grey: var(--steel-10),
+  light-grey: var(--steel-90),
+  light-green: var(--steel-90)
 );
 
 $outline-colors: (
-  primary: var(--ac-badge-outline-primary-stroke),
-  secondary: var(--ac-badge-outline-secondary-stroke),
-  error: var(--ac-badge-outline-error-stroke),
-  warning: var(--ac-badge-outline-warning-stroke),
-  success: var(--ac-badge-outline-success-stroke),
-  grey: var(--ac-badge-outline-grey-stroke)
-);
-
-$outline-text: (
-  primary: var(--ac-badge-outline-primary-text),
-  secondary: var(--ac-badge-outline-secondary-text),
-  error: var(--ac-badge-outline-error-text),
-  warning: var(--ac-badge-outline-warning-text),
-  success: var(--ac-badge-outline-success-text),
-  grey: var(--ac-badge-outline-grey-text)
+  primary: var(--brand-sapphire-40),
+  secondary: var(--brand-sapphire-30),
+  error: var(--spectrum-red-40),
+  warning: var(--spectrum-yellow-40),
+  success: var(--spectrum-green-40),
+  grey: var(--steel-70),
+  light-grey: var(--steel-50),
+  light-green: var(--spectrum-green-20)
 );
 
 // Цикл для генерации стилей для каждого варианта
@@ -92,10 +86,6 @@ $outline-text: (
   .outline-#{"" + $variant} {
     @include outline;
     outline-color: map-get($outline-colors, $variant);
-    color: map-get($outline-text, $variant);
+    color: var(--steel-90);
   }
-}
-
-.compact-outline {
-  padding: var(--0-space) 3px;
 }

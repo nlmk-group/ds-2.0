@@ -30,7 +30,7 @@ const mockArr = [
   ACCORDION_ITEMS_MOCK_TWO,
   ACCORDION_ITEMS_MOCK_THIRD,
   ACCORDION_ITEMS_MOCK_FOURTH
-]
+];
 
 export const AccordionDefault = (argTypes: IAccordionProps): JSX.Element => {
   return (
@@ -48,12 +48,7 @@ export const AccordionSizes = (argTypes: IAccordionProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       {Object.values(sizesMapping).map((size, index) => (
-        <Accordion
-          key={index}
-          {...argTypes}
-          size={size}
-          items={mockArr[index]}
-        />
+        <Accordion key={index} {...argTypes} size={size} items={mockArr[index]} />
       ))}
     </div>
   );
@@ -65,17 +60,8 @@ export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
     <div className={styles.wrapper}>
       {Object.values(iconsMapping).map((icon, index) => (
         <Fragment key={index}>
-          <Accordion
-            {...argTypes}
-            startIcon={icon}
-            items={mockArr[index]}
-          />
-          <Accordion
-            {...argTypes}
-            startIcon={null}
-            endIcon={icon}
-            items={mockArr[index+2]}
-          />
+          <Accordion {...argTypes} startIcon={icon} items={mockArr[index]} />
+          <Accordion {...argTypes} startIcon={null} endIcon={icon} items={mockArr[index + 2]} />
         </Fragment>
       ))}
     </div>

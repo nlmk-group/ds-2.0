@@ -1,21 +1,30 @@
-import { colorsMapping, customBadgeColors, sizesMapping, variantsMapping } from '@components/declaration/enums';
+import { variantsMapping } from '@components/declaration/enums';
 
-type TCustomBadgeColors = `${customBadgeColors}`;
-
-export type TBadgeColors = `${colorsMapping}` | TCustomBadgeColors;
+import { EBadgeColors, EBadgeSizes } from './enums';
 
 export interface IBadgeProps {
-  color?: TBadgeColors;
-  size?: `${sizesMapping}`;
+  /**
+   * Цвет бейджа
+   */
+  color?: `${EBadgeColors}`;
+
+  /**
+   * Размер бейджа
+   */
+  size?: `${EBadgeSizes}`;
+
+  /**
+   * Вариант отображения бейджа
+   */
   variant?: `${variantsMapping}`;
+
+  /**
+   * Контент бейджа
+   */
   children?: string | number;
+
+  /**
+   * Дополнительный CSS класс
+   */
   className?: string;
-}
-
-
-export enum ESizesBadgeMapping {
-  l = 'l',
-  m = 'm',
-  s = 's',
-  xs = 'xs'
 }

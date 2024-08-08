@@ -1,0 +1,17 @@
+import { Meta, Story, Unstyled } from '@storybook/blocks';
+import styles from './Welcome.module.scss';
+import { DecoratorDefault } from '../Decorator.stories';
+import License from './License';
+import { Footer, WelcomePage } from './Welcome';
+
+<Meta title="Introduction/Welcome" />
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <div className={styles.wrapper}>
+    <WelcomePage />
+    <Footer />
+    <License />
+  </div>
+</Unstyled>

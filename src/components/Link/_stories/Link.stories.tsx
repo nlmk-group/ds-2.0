@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { Box, Icon, Link } from '@components/index';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 

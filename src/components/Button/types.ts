@@ -1,45 +1,59 @@
-import {
-  ButtonHTMLAttributes,
-  PropsWithChildren,
-  ReactNode
-} from 'react';
-import {
-  EFill,
-  ESizes,
-  EVariant
-} from './enums';
-import {
-  colorsMapping,
-  variantsMapping
-} from '@components/declaration';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type TSize = `${ESizes}`;
-export type TVariant = `${EVariant}`;
-export type TFill = `${EFill}`;
+import { EButtonFill, EButtonSizes, EButtonVariant } from './enums';
 
-export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren<any> {
-  badge?: string | number;
+export type TButtonSize = `${EButtonSizes}`;
+export type TButtonVariant = `${EButtonVariant}`;
+export type TButtonFill = `${EButtonFill}`;
+
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Контент для бейджа кнопки в начале кнопки
+   */
+  startBadge?: string | number;
+
+  /**
+   * Контент для бейджа кнопки в конце кнопки
+   */
+  endBadge?: string | number;
+
+  /**
+   * Иконка, отображаемая в начале кнопки
+   */
   startIcon?: ReactNode;
+
+  /**
+   * Иконка, отображаемая в конце кнопки
+   */
   endIcon?: ReactNode;
+
+  /**
+   * Иконка для кнопки-иконки
+   */
   iconButton?: ReactNode;
-  size?: TSize;
-  variant?: TVariant;
-  fill?: TFill;
+
+  /**
+   * Размер кнопки
+   */
+  size?: `${EButtonSizes}`;
+
+  /**
+   * Вариант стиля кнопки
+   */
+  variant?: `${EButtonVariant}`;
+
+  /**
+   * Тип заливки кнопки
+   */
+  fill?: `${EButtonFill}`;
+
+  /**
+   * Дополнительный CSS класс для кнопки
+   */
   className?: string;
-}
 
-interface IBadgeProps {
-  color: colorsMapping,
-  variant: variantsMapping
-}
-
-export type TBadgeTypes = {
-  [key: string | EVariant]: IBadgeProps
-}
-
-export interface IBadgeHelper {
-  size: TSize;
-  variant: TVariant;
-  fill: TFill;
-  badge: string | number;
+  /**
+   * Контент кнопки
+   */
+  children?: ReactNode;
 }

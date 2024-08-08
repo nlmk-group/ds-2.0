@@ -16,7 +16,7 @@ const withWrapper = (Story: any) => (
   <div
     className={styles.wrapper}
     style={{
-      background: 'var(--background-default)',
+      background: 'var(--steel-30)',
       width: 'fit-content'
     }}
   >

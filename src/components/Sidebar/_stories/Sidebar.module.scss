@@ -1,6 +1,7 @@
 .wrapper {
-  background-color: var(--background-default);
+  background-color: var(--steel-20);
   min-height: 100vh;
   display: flex;
   overflow-x: hidden;
+  width: calc(100% + 18px);
 }

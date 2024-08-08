@@ -2,8 +2,8 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { Button } from './index';
-import { EVariant } from './enums'
-import { ICombinedOption, combinedOptions } from './displayHelper';
+import { EButtonVariant } from './enums'
+import { ICombinedOption, combinedOptions, variantsWithOneFill } from './helpers';
 
 describe('src/components/Button', () => {
   const text = 'Some example text';
@@ -53,7 +53,7 @@ describe('src/components/Button', () => {
         <Button variant={variant} fill={fill}/>
       );
       const button = container.getElementsByTagName('button')[0];
-      if (variant === EVariant.secondary) {
+      if (variantsWithOneFill.has(EButtonVariant[variant])) {
         expect(button.classList.contains(variant)).toBeTruthy();
       } else {
         expect(button.classList.contains(`${variant}-${fill}`)).toBeTruthy();
@@ -70,9 +70,9 @@ describe('src/components/Button', () => {
   });
 
   // Check badge render
-  test('Кнопка должна корректно отображать бейдж', () => {
+  test('Кнопка должна корректно отображать бейдж в конце кнопки', () => {
     const badgeContent = 1;
-    render(<Button badge={badgeContent}>ok</Button>);
+    render(<Button endBadge={badgeContent}>ok</Button>);
     expect(screen.getByTestId('BADGE_WRAPPER')).toBeInTheDocument();
     expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeContent.toString())
   });

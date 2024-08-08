@@ -1,7 +1,7 @@
 import { CSSProperties, FC, ReactNode } from 'react';
 
 import { TIconProps } from '@components/Icon/types';
-import { ITypography } from '@components/Typography/types';
+import { ITypographyProps } from '@components/Typography/types';
 
 import { AvatarShape, AvatarSize } from './enums';
 
@@ -27,7 +27,7 @@ export type TAvatarSizeParameter = {
   badgeSize: number;
   specialBadgeSize: number;
   iconSize: TIconProps['containerSize'];
-  lettersVariant: ITypography['variant'];
+  lettersVariant: ITypographyProps['variant'];
   badgeTranslate: [number, number];
 };
 

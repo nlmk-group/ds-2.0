@@ -26,7 +26,7 @@ export const ChipDefault = (argsTypes: IChipProps): JSX.Element => {
     </div>
   );
 };
-ChipDefault.storyName = 'Чип по умолчанию';
+ChipDefault.storyName = 'Chip по умолчанию';
 ChipDefault.args = {
   children: '1234'
 };

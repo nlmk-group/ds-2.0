@@ -15,7 +15,7 @@ export default {
   component: ProgressBar,
   argTypes: argsTypes,
   decorators: [withWrapper]
-} as Meta<typeof ProgressBar>;
+};
 
 export const ProgressBarDefault = (argsTypes: IProgressBarProps): JSX.Element => {
   return (

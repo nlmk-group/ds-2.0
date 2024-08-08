@@ -1,0 +1,19 @@
+.icon-rotate {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+  height: 24px;
+  max-width: 24px;
+
+  &-open {
+    transform: rotate(180deg);
+  }
+}
+
+.button {
+  &:focus {
+    background-color: var(--brand-sapphire-30) !important;
+    color: var(--unique-bluewhite) !important;
+  }
+}
+

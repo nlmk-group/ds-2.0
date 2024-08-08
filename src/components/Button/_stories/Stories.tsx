@@ -6,13 +6,15 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs, Typography } from '@components/index';
-import { EFill, ESizes, EVariant } from '../enums'
+import { Tabs } from '@components/index';
+
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { argsTypes } from './argsTypes';
+import { EButtonFill, EButtonSizes, EButtonVariant } from '../enums';
+import argsTypes from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=102-26898&mode=design&t=AyZ6cEr1XAJLQdOB-0'
+const FIGMA_LINK =
+  'https://www.figma.com/file/2bgeOS0URFNqFO1m1bnyvg/DS2.0-Buttons?type=design&node-id=102-26898&mode=design&t=AyZ6cEr1XAJLQdOB-0';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -31,7 +33,7 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -49,10 +51,10 @@ export default  App = () =>(
   <Button>
     Button
   </Button>
-  <Button size="${ESizes.s}">
+  <Button size="${EButtonSizes.s}">
     Button
   </Button>
-  <Button size="${ESizes.xs}">
+  <Button size="${EButtonSizes.xs}">
     Button
   </Button>
   </>
@@ -69,31 +71,31 @@ export default  App = () =>(
     <Button>
       Button
     </Button>
-    <Button fill="${EFill.outline}">
+    <Button fill="${EButtonFill.outline}">
       Button
     </Button>
-    <Button fill="${EFill.clear}">
+    <Button fill="${EButtonFill.clear}">
       Button
     </Button>
-    <Button variant="${EVariant.secondary}">
+    <Button variant="${EButtonVariant.secondary}">
       Button
     </Button>
-    <Button variant="${EVariant.grey}">
+    <Button variant="${EButtonVariant.grey}">
       Button
     </Button>
-    <Button variant="${EVariant.grey}" fill="${EFill.outline}">
+    <Button variant="${EButtonVariant.grey}" fill="${EButtonFill.outline}">
       Button
     </Button>
-    <Button variant="${EVariant.grey}" fill="${EFill.clear}">
+    <Button variant="${EButtonVariant.grey}" fill="${EButtonFill.clear}">
       Button
     </Button>
-    <Button variant="${EVariant.black}">
+    <Button variant="${EButtonVariant.black}">
       Button
     </Button>
-    <Button variant="${EVariant.black}" fill="${EFill.outline}">
+    <Button variant="${EButtonVariant.black}" fill="${EButtonFill.outline}">
       Button
     </Button>
-    <Button variant="${EVariant.black}" fill="${EFill.clear}">
+    <Button variant="${EButtonVariant.black}" fill="${EButtonFill.clear}">
       Button
     </Button>
   </>
@@ -109,31 +111,31 @@ export default  App = () =>(
     <Button disabled>
       Button
     </Button>
-    <Button fill="${EFill.outline}" disabled>
+    <Button fill="${EButtonFill.outline}" disabled>
       Button
     </Button>
-    <Button fill="${EFill.clear}" disabled>
+    <Button fill="${EButtonFill.clear}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.secondary}" disabled>
+    <Button variant="${EButtonVariant.secondary}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.grey}" disabled>
+    <Button variant="${EButtonVariant.grey}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.grey}" fill="${EFill.outline}" disabled>
+    <Button variant="${EButtonVariant.grey}" fill="${EButtonFill.outline}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.grey}" fill="${EFill.clear}" disabled>
+    <Button variant="${EButtonVariant.grey}" fill="${EButtonFill.clear}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.black}" disabled>
+    <Button variant="${EButtonVariant.black}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.black}" fill="${EFill.outline}" disabled>
+    <Button variant="${EButtonVariant.black}" fill="${EButtonFill.outline}" disabled>
       Button
     </Button>
-    <Button variant="${EVariant.black}" fill="${EFill.clear}" disabled>
+    <Button variant="${EButtonVariant.black}" fill="${EButtonFill.clear}" disabled>
       Button
     </Button>
   </>
@@ -150,10 +152,10 @@ export default  App = () =>(
     <Button startIcon={<IconArticleFilled24 />}>
       Button
     </Button>
-    <Button variant="${EVariant.secondary}" endIcon={<IconArticleFilled24 />}>
+    <Button variant="${EButtonVariant.secondary}" endIcon={<IconArticleFilled24 />}>
       Button
     </Button>
-    <Button fill="${EFill.outline}" iconButton={<IconArticleFilled24 />}/>
+    <Button fill="${EButtonFill.outline}" iconButton={<IconArticleFilled24 />}/>
 
   </>
 )`}
@@ -162,17 +164,17 @@ export default  App = () =>(
           <Editor
             description="Компонент может быть стилизован с помощью бэйджа. Бэйдж может отоброжаться непосредственно справа от
           лэйбла или справа от иконки (startIcon)."
-            code={`import { Button, Badge } from '@nlmk/ds-2.0';
+            code={`import { Button } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
   <>
-    <Button badge={1}>
+    <Button endBadge={1}>
       Button
     </Button>
-    <Button variant="${EVariant.secondary}" badge={1}>
+    <Button variant="${EButtonVariant.secondary}" endBadge={1}>
       Button
     </Button>
-    <Button fill="${EFill.outline}" badge={1}>
+    <Button fill="${EButtonFill.outline}" endBadge={1}>
       Button
     </Button>
   </>
@@ -181,14 +183,8 @@ export default  App = () =>(
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
-      {Number(activeTab) == 2 && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName="Button" />
-        </Typography>
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {Number(activeTab) == 2 && <Tests componentName="Button" />}
     </div>
   );
 };

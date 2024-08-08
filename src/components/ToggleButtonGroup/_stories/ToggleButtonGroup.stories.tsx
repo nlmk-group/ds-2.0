@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react'
-import { Meta, Story } from '@storybook/react';
+import React, { ReactNode } from 'react';
+import { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { IconStarOutlined24, ToggleButtonGroup, Typography } from '@components/index';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { IToggleButtonGroup } from '../types'
+import { IToggleButtonGroup } from '../types';
 import { argsTypes } from './argsTypes';
 import {
   DEFAULT_TOGGLE_BUTTON,
@@ -15,7 +15,6 @@ import {
   TOGGLE_BUTTON_COLOR_OPTIONS
 } from './constants';
 import { sizeMapping, statusMapping } from '../enums';
-
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
@@ -30,19 +29,13 @@ export const DefaultBtnGroup = (argTypes: IToggleButtonGroup): ReactNode => {
   return (
     <ToggleButtonGroup {...argTypes}>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Label>
-          Печенье
-        </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Label>
-          Торты
-        </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Label>
-          Конфеты
-        </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
   );
@@ -54,31 +47,32 @@ export const BtnGroupTooltip = (argTypes: IToggleButtonGroup): ReactNode => {
   return (
     <ToggleButtonGroup {...argTypes}>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Печенье</Typography>} placement='left'>
-          <ToggleButtonGroup.Button.Label>
-            Печенье
-          </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Tooltip
+          render={<Typography variant="Caption-Medium">Печенье</Typography>}
+          placement="left"
+        >
+          <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Торты</Typography>}>
-          <ToggleButtonGroup.Button.Label>
-            Торты
-          </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Tooltip render={<Typography variant="Caption-Medium">Торты</Typography>}>
+          <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Кексы</Typography>} placement='bottom'>
-          <ToggleButtonGroup.Button.Label>
-            Кексы
-          </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Tooltip
+          render={<Typography variant="Caption-Medium">Кексы</Typography>}
+          placement="bottom"
+        >
+          <ToggleButtonGroup.Button.Label>Кексы</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Tooltip render={<Typography variant='Caption-Medium'>Конфеты</Typography>} placement='right'>
-          <ToggleButtonGroup.Button.Label>
-            Конфеты
-          </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Tooltip
+          render={<Typography variant="Caption-Medium">Конфеты</Typography>}
+          placement="right"
+        >
+          <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button.Tooltip>
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
@@ -97,25 +91,15 @@ export const BtnGroupSizes = (argTypes: IToggleButtonGroup): ReactNode => {
       }}
     >
       {Object.values(sizeMapping).map((size: sizeMapping, index: number) => (
-        <ToggleButtonGroup
-          size={size}
-          key={index}
-          {...argTypes}
-        >
+        <ToggleButtonGroup size={size} key={index} {...argTypes}>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Label>
-              Печенье
-            </ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Label>
-              Торты
-            </ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Label>
-              Конфеты
-            </ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button>
         </ToggleButtonGroup>
       ))}
@@ -130,24 +114,18 @@ export const BtnGroupIcon = (argTypes: IToggleButtonGroup): ReactNode => {
     <ToggleButtonGroup {...argTypes}>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
         <ToggleButtonGroup.Button.Icon />
-        <ToggleButtonGroup.Button.Label>
-          Печенье
-        </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Icon/>
-        <ToggleButtonGroup.Button.Label>
-          Торты
-        </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Icon/>
+        <ToggleButtonGroup.Button.Icon />
+        <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Icon />
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
         <ToggleButtonGroup.Button.Icon>
           <IconStarOutlined24 />
         </ToggleButtonGroup.Button.Icon>
-        <ToggleButtonGroup.Button.Label>
-          Конфеты
-        </ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
         <ToggleButtonGroup.Button.Icon>
           <IconStarOutlined24 />
         </ToggleButtonGroup.Button.Icon>
@@ -158,36 +136,21 @@ export const BtnGroupIcon = (argTypes: IToggleButtonGroup): ReactNode => {
 
 BtnGroupIcon.storyName = TOGGLE_BUTTON_ICON;
 
-
 export const BtnGroupIconBadge = (argTypes: IToggleButtonGroup): ReactNode => {
   return (
     <ToggleButtonGroup {...argTypes}>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Label>
-          Печенье
-        </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Badge>
-          7
-        </ToggleButtonGroup.Button.Badge>
+        <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Badge>7</ToggleButtonGroup.Button.Badge>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Badge>
-          5
-        </ToggleButtonGroup.Button.Badge>
-        <ToggleButtonGroup.Button.Label>
-          Торты
-        </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Badge>
-          5
-        </ToggleButtonGroup.Button.Badge>
+        <ToggleButtonGroup.Button.Badge>5</ToggleButtonGroup.Button.Badge>
+        <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Badge>5</ToggleButtonGroup.Button.Badge>
       </ToggleButtonGroup.Button>
       <ToggleButtonGroup.Button onClick={action('onClick')}>
-        <ToggleButtonGroup.Button.Label>
-          Конфеты
-        </ToggleButtonGroup.Button.Label>
-        <ToggleButtonGroup.Button.Badge variant="outline">
-          {7+5}
-        </ToggleButtonGroup.Button.Badge>
+        <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Badge variant="outline">{7 + 5}</ToggleButtonGroup.Button.Badge>
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
   );
@@ -205,37 +168,21 @@ export const BtnGroupOptions = (argTypes: IToggleButtonGroup): ReactNode => {
       }}
     >
       {Object.values(statusMapping).map((status: statusMapping, index: number) => (
-        <ToggleButtonGroup
-        status={status}
-        key={index}
-        {...argTypes}
-        >
+        <ToggleButtonGroup status={status} key={index} {...argTypes}>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Icon/>
-            <ToggleButtonGroup.Button.Label>
-              Печенье
-            </ToggleButtonGroup.Button.Label>
-            <ToggleButtonGroup.Button.Badge>
-              7
-            </ToggleButtonGroup.Button.Badge>
+            <ToggleButtonGroup.Button.Icon />
+            <ToggleButtonGroup.Button.Label>Печенье</ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Badge>7</ToggleButtonGroup.Button.Badge>
           </ToggleButtonGroup.Button>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Icon/>
-            <ToggleButtonGroup.Button.Label>
-              Торты
-            </ToggleButtonGroup.Button.Label>
-            <ToggleButtonGroup.Button.Badge>
-              5
-            </ToggleButtonGroup.Button.Badge>
+            <ToggleButtonGroup.Button.Icon />
+            <ToggleButtonGroup.Button.Label>Торты</ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Badge>5</ToggleButtonGroup.Button.Badge>
           </ToggleButtonGroup.Button>
           <ToggleButtonGroup.Button onClick={action('onClick')}>
-            <ToggleButtonGroup.Button.Icon/>
-            <ToggleButtonGroup.Button.Label>
-              Конфеты
-            </ToggleButtonGroup.Button.Label>
-            <ToggleButtonGroup.Button.Badge>
-              3
-            </ToggleButtonGroup.Button.Badge>
+            <ToggleButtonGroup.Button.Icon />
+            <ToggleButtonGroup.Button.Label>Конфеты</ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Badge>3</ToggleButtonGroup.Button.Badge>
           </ToggleButtonGroup.Button>
         </ToggleButtonGroup>
       ))}

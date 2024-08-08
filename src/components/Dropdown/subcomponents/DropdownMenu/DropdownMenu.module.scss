@@ -1,0 +1,9 @@
+.menu {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  min-width: 100%;
+  max-height: 248px;
+  z-index: 1000;
+}

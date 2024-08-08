@@ -37,7 +37,7 @@ const Stories = (): JSX.Element => {
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
       <div className={styles['header-wrapper']}>
-        <Typography variant="Heading2" color="primary">
+        <Typography variant="Heading2" color="var(--steel-90)">
           Иконки
         </Typography>
         <p>Существует 2 разных способа добавить иконку в проект:</p>
@@ -47,7 +47,7 @@ const Stories = (): JSX.Element => {
           <li>Использовать каждую кастомизированную иконку, как отдельный компонент</li>
         </ol>
 
-        <Typography variant="Heading2" color="primary">
+        <Typography variant="Heading2" color="var(--steel-90)">
           Примеры
         </Typography>
         <p>
@@ -90,7 +90,7 @@ export default App;
 `}
           />
           <br />
-          <Typography color="primary" variant="Heading3">
+          <Typography color="var(--steel-90)" variant="Heading3">
             Все доступные иконки
           </Typography>
           <br />
@@ -101,11 +101,7 @@ export default App;
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab == TabIds.tests && (
-        <Typography variant="Heading4" color="primary">
-          <Tests componentName={COMPONENT_NAME} />
-        </Typography>
-      )}
+      {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );
 };

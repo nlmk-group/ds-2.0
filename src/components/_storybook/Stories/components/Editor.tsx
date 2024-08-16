@@ -104,7 +104,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 flex-wrap: wrap;
               }
 
-              ${theme === 'dark' ? `:root{${darkThemeStyles}}` : ''}
+              ${theme === 'dark' ? darkThemeStyles : ''}
 
               * {
                 font-family: 'PT Root UI', sans-serif !important;

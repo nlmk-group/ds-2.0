@@ -1,9 +1,11 @@
 import React, { CSSProperties } from 'react';
 
+import { EDrawerPosition } from './enums';
+
 export interface IDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  position?: 'left' | 'right' | 'top' | 'bottom';
+  position?: `${EDrawerPosition}`;
   className?: string;
   overlayClassName?: string;
   children: React.ReactNode;

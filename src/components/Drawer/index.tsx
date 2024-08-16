@@ -8,10 +8,30 @@ import { IDrawerProps } from './types';
 
 import styles from './Drawer.module.scss';
 
+import { EDrawerPosition } from './enums';
+
+/**
+ * Компонент Drawer для отображения боковой панели.
+ * @component
+ * @param {Object} props - Свойства компонента Drawer.
+ * @param {boolean} props.isOpen - Состояние открытия/закрытия панели.
+ * @param {() => void} props.onClose - Функция для закрытия панели.
+ * @param {EDrawerPosition} [props.position=EDrawerPosition.right] - Позиция панели.
+ * @param {ReactNode} props.children - Содержимое панели.
+ * @param {string} [props.className] - Дополнительные CSS классы для панели.
+ * @param {string} [props.overlayClassName] - Дополнительные CSS классы для оверлея.
+ * @param {string} [props.width='var(--drawer-default-width)'] - Ширина панели (если позиция 'left' или 'right').
+ * @param {string} [props.height='var(--drawer-default-height)'] - Высота панели (если позиция 'top' или 'bottom').
+ * @param {boolean} [props.disableBackdropClick=false] - Отключает закрытие панели по клику вне её области.
+ * @param {boolean} [props.isViewCloseButton=true] - Отображает кнопку закрытия.
+ * @param {boolean} [props.overlay=true] - Отображает оверлей.
+ * @returns {ReactElement | null} Компонент Drawer.
+ */
+
 const Drawer: FC<IDrawerProps> = ({
   isOpen,
   onClose,
-  position = 'right',
+  position = EDrawerPosition.right,
   className,
   overlayClassName,
   children,
@@ -48,13 +68,13 @@ const Drawer: FC<IDrawerProps> = ({
 
   if (!isOpen && !isClosing) return null;
 
-  const isHorizontal = position === 'left' || position === 'right';
+  const isHorizontal = position === EDrawerPosition.left || position === EDrawerPosition.right;
 
   const dynamicStyleForCloseButton = {
-    right: position === 'right' ? `calc(${width} + 16px)` : 'auto',
-    left: position === 'left' ? `calc(${width} + 16px)` : 'auto',
-    top: position === 'top' ? `calc(${height} + 16px)` : 'auto',
-    bottom: position === 'bottom' ? `calc(${height} + 16px)` : 'auto'
+    right: position === EDrawerPosition.right ? `calc(${width} + 16px)` : 'auto',
+    left: position === EDrawerPosition.left ? `calc(${width} + 16px)` : 'auto',
+    top: position === EDrawerPosition.top ? `calc(${height} + 16px)` : 'auto',
+    bottom: position === EDrawerPosition.bottom ? `calc(${height} + 16px)` : 'auto'
   };
 
   return (
@@ -67,10 +87,10 @@ const Drawer: FC<IDrawerProps> = ({
     >
       <ClickAwayListener
         className={clsx(styles.wrapper, styles[position], {
-          [styles.slideOutLeft]: isClosing && position === 'left',
-          [styles.slideOutRight]: isClosing && position === 'right',
-          [styles.slideOutTop]: isClosing && position === 'top',
-          [styles.slideOutBottom]: isClosing && position === 'bottom'
+          [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
+          [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,
+          [styles.slideOutTop]: isClosing && position === EDrawerPosition.top,
+          [styles.slideOutBottom]: isClosing && position === EDrawerPosition.bottom
         })}
         onClickAway={() => (disableBackdropClick ? undefined : handleClose())}
       >

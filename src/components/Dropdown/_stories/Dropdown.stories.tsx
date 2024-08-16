@@ -2,16 +2,20 @@ import React, { ReactNode } from 'react';
 
 import { EButtonSizes } from '@components/Button/enums';
 import { Box, Dropdown, DropdownMenuItem, Typography } from '@components/index';
-import { Meta } from '@storybook/react';
 
-import styles from './Dropdown.module.scss';
+import styles from '@components/_storybook/styles.module.scss';
 
 import { IDropdownProps } from '../types';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => {
   return (
-    <Box alignItems="center" justifyContent="center" st={{ height: '100vh' }} className={styles.wrapper}>
+    <Box
+      alignItems="flex-start"
+      justifyContent="center"
+      st={{ height: '300px', marginTop: '40px', borderRadius: '10px' }}
+      className={styles.wrapper}
+    >
       <Story />
     </Box>
   );
@@ -21,11 +25,8 @@ export default {
   title: 'Components/Dropdown/Stories',
   component: Dropdown,
   decorators: [withWrapper],
-  argTypes: argsTypes,
-  parameters: {
-    layout: 'fullscreen'
-  }
-} as Meta<typeof Dropdown>;
+  argTypes: argsTypes
+};
 
 const positions = [
   { value: 'Сталь' },
@@ -39,7 +40,7 @@ const positions = [
 
 export const DropdownDefault = (args: IDropdownProps): ReactNode => {
   return (
-    <div className={styles.dropdown__container}>
+    <div style={{ position: 'relative' }}>
       <Dropdown {...args}>
         {positions.map(({ value, disabled }) => (
           <DropdownMenuItem
@@ -58,7 +59,9 @@ export const DropdownDefault = (args: IDropdownProps): ReactNode => {
   );
 };
 DropdownDefault.args = {
-  buttonText: 'Dropdown Button',
-  size: EButtonSizes.m
+  buttonChildren: 'Dropdown Button',
+  size: EButtonSizes.m,
+  menuStyle: { width: '200px' }
 };
+
 DropdownDefault.storyName = 'Dropdown по умолчанию';

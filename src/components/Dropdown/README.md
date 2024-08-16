@@ -9,7 +9,7 @@
 ```jsx
 import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
 
-<Dropdown>
+<Dropdown buttonChildren='Dropdown button'>
   {positions.map(({ value, disabled }) => (
     <DropdownMenuItem value={value} disabled={disabled}>
       <Typography variant="Body1-Medium">{value}</Typography>
@@ -20,14 +20,14 @@ import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
 
 ## Props
 
-| Prop       | Type         | Default        | Description                                           |
-|------------|--------------|----------------|-------------------------------------------------------|
-| children   | ReactNode    | -              | Элементы, которые будут отображаться в меню           |
-| disabled   | boolean      | false          | Отключает кнопку и возможность открытия меню          |
-| className  | string       | -              | Дополнительный класс для кнопки                       |
-| buttonText | string       | -              | Текст, отображаемый в кнопке                          |
-| size       | EButtonSizes | EButtonSizes.m | Размер кнопки и меню                                  |
-| startIcon  | ReactNode    | -              | Иконка, которая располагается с левой стороны кнопки. |
+| Prop           | Type          | Default        | Description                                  |
+|----------------|---------------|----------------|----------------------------------------------|
+| children       | ReactNode     | -              | Элементы, которые будут отображаться в меню  |
+| disabled       | boolean       | false          | Отключает кнопку и возможность открытия меню |
+| className      | string        | -              | Дополнительный класс для кнопки              |
+| buttonChildren | ReactNode     | -              | Содержимое кнопки                            |
+| size           | EButtonSizes  | EButtonSizes.m | Размер кнопки и меню                         |
+| menuStyle      | CSSProperties | -              | Кастомные стили кнопки.                      |
 
 ### Стили для компонента `Dropdown`
 
@@ -38,6 +38,5 @@ import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
 - `.icon-padding`: Класс для добавления верхнего отступа иконе
 - `.button`: Класс для стилизации кнопки
 - `&:focus`: Стили для кнопки при фокусе (смена фона и цвета текста)
-- `.start-icon`: Класс для стилизации иконки в начале кнопки, с небольшим сдвигом сверху
 
 Вы можете переопределить эти стили, передав собственный `className`.

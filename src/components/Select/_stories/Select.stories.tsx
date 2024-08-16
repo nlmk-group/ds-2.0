@@ -75,6 +75,26 @@ export const SelectWithSearch = (argTypes: ISelectProps): JSX.Element => {
 };
 SelectWithSearch.storyName = 'Выбор с поиском';
 
+export const SelectWithSearchByEnter = (argTypes: ISelectProps): JSX.Element => {
+  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const [selected, setSelected] = useState<TSelected>([]);
+
+  return (
+    <div style={{ padding: '50px' }}>
+      <Select
+        options={options}
+        label="Автовыбор по Enter"
+        autoSelectSingleOnEnter
+        isSearchable
+        {...otherArgs}
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </div>
+  );
+};
+SelectWithSearchByEnter.storyName = 'Автовыбор по Enter';
+
 export const SelectMultiple = (argTypes: ISelectProps): JSX.Element => {
   const { options: ignoredOptions, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);

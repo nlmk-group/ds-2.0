@@ -30,7 +30,7 @@ ${positionsExample}
 
 const App = () => {
   return (
-    <Dropdown>
+    <Dropdown buttonChildren='Dropdown'>
       {positions.map(({value, disabled}) => (
         <DropdownMenuItem value={value} disabled={disabled}>
           <Typography variant="Body1-Medium">{value}</Typography>
@@ -50,7 +50,7 @@ ${positionsExample}
 
 const App = () => {
   return (
-    <Dropdown disabled>
+    <Dropdown disabled buttonChildren='Dropdown'>
       {positions.map(({value, disabled}) => (
         <DropdownMenuItem value={value} disabled={disabled}>
           <Typography variant="Body1-Medium">{value}</Typography>
@@ -69,7 +69,7 @@ export default App;
         description="Dropdown позволяет пользователям выбирать одно действие из выпадающего меню"
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Dropdown"
-        figmaLink="https://www.figma.com/design/2bgeOS0URFNqFO1m1bnyvg/Button-DS-3.0?node-id=6070-93163&t=nJ2tmRpMpk8P3SWk-0"
+        // figmaLink="https://www.figma.com/design/2bgeOS0URFNqFO1m1bnyvg/Button-DS-3.0?node-id=6070-93163&t=nJ2tmRpMpk8P3SWk-0"
       />
 
       <div className={styles.tabs}>

@@ -1,0 +1,17 @@
+.colors {
+  margin-bottom: -40px;
+  & > div {
+    gap: 0;
+  }
+
+  .color-item {
+    margin-bottom: 20px;
+    & > div  {
+      gap: 20px;
+      & > div {
+        margin-top: 0;
+      }
+    }
+
+  }
+}

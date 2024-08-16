@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import {
@@ -15,7 +15,8 @@ import {
   Tabs,
   ThemeSwitcher,
   ToggleButtonGroup,
-  Typography
+  Typography,
+  useThemeSwitcher
 } from './components';
 import Dropdown from './components/Dropdown';
 import MenuItem from './components/Dropdown/subcomponents/DropdownMenuItem';
@@ -56,12 +57,35 @@ const positions = [
   { value: 'Label', label: 'Tin' }
 ];
 
+const Theme = () => {
+  const [count, setCount] = useState(0);
+  const { theme, toggleTheme } = useThemeSwitcher();
+  const isDark = theme === 'dark';
+
+  return (
+    <div>
+      <Switch checked={isDark} onChange={toggleTheme} label={`${isDark ? 'Темная' : 'Светлая'} тема`} />
+      <br />
+      <Divider dashed>
+        <Button
+          onClick={() => {
+            setCount(count + 1);
+          }}
+        >
+          Count - {count}
+        </Button>
+      </Divider>
+    </div>
+  );
+};
+
 root.render(
   <StrictMode>
     <div className="development-block">
-      <h3>Stepper</h3>
+      <h3>Theme Switch</h3>
       {/* <InputRender /> */}
-      <StepperRender />
+      {/* <StepperRender /> */}
+      <Theme/>
       {/* <h3>Icon with badge</h3>
       <Icon color="primary" containerSize={16} name="IconStarOutlined16" badge={<Badge size="xs" color='error'>1</Badge>} />
       <Icon color="primary" containerSize={24} name="IconPlaylistMenuSettingOutlined24" badge={<Badge size="s" color='error'>1</Badge>} />

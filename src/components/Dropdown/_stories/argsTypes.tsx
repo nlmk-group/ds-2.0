@@ -1,13 +1,4 @@
-import React from 'react';
-
 import { EButtonSizes } from '@components/Button/enums';
-import { IconArticleOutlined16, IconArticleOutlined24, IconArticleOutlined32 } from '@components/index';
-
-const iconOptions = {
-  IconArticleOutlined32: <IconArticleOutlined32 />,
-  IconArticleOutlined24: <IconArticleOutlined24 />,
-  IconArticleOutlined16: <IconArticleOutlined16 />
-};
 
 export const argsTypes = {
   children: {
@@ -53,27 +44,22 @@ export const argsTypes = {
     },
     control: { type: 'text' }
   },
-  buttonText: {
-    description: 'Текст в кнопке Dropdown',
+  buttonChildren: {
+    description: 'Содержимое кнопки Dropdown',
+    table: {
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    control: { type: 'text' }
+  },
+  menuStyle: {
+    description: 'Кастомная ширина меню',
     table: {
       type: {
         summary: 'string'
       }
     },
-    control: { type: 'text' }
-  },
-  startIcon: {
-    description: 'Элемент с иконкой, который располагается с левой стороны кнопки.',
-    table: {
-      defaultValue: {
-        summary: ''
-      },
-      type: {
-        summary: 'ReactNode'
-      }
-    },
-    options: Object.keys(iconOptions),
-    control: { type: 'select' },
-    mapping: iconOptions
+    control: { type: 'object' }
   }
 };

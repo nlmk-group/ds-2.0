@@ -25,7 +25,7 @@ try {
   const storyBookTheme = `:root[data-theme="dark-theme"] {\n${cleanStyles}\n}`;
 
   // Записываем результирующие файлы
-  fs.writeFileSync(writeFilePath, `export const darkThemeStyles = \`${cleanStyles}\`;`);
+  fs.writeFileSync(writeFilePath, `export const darkThemeStyles = \`:root{${cleanStyles}}\``);
   fs.writeFileSync(storyBookCSSFilePath, storyBookTheme);
 
   console.log('Файлы успешно созданы');

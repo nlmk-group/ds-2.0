@@ -4,7 +4,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--ac-overlay-bg);
+  background-color: var(--unique-black);
+  opacity: 60%;
   z-index: 1000;
 }
 
@@ -23,8 +24,8 @@
 
 .modal {
   border-radius: 4px;
-  background: var(--background-paper);
-  padding: 0 var(--32-space) var(--32-space);
+  background: var(--steel-10);
+  padding: 0 32px 32px;
   position: relative;
   overflow: hidden;
   max-width: 90%;
@@ -37,12 +38,12 @@
   }
 
   &.topPadding {
-    padding-top: var(--32-space);
+    padding-top: 32px;
   }
 }
 
 .dragHandle {
-  height: var(--32-space);
+  height: 32px;
   width: 100%;
   cursor: default;
   background-color: inherit;

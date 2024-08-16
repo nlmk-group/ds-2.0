@@ -8,6 +8,21 @@ import { IModalProps } from './types';
 
 import styles from './Modal.module.scss';
 
+/**
+ * Компонент Modal для отображения модального окна.
+ * @component
+ * @param {Object} props - Свойства компонента Modal.
+ * @param {boolean} props.isOpen - Состояние открытия/закрытия модального окна.
+ * @param {() => void} props.onClose - Функция для закрытия модального окна.
+ * @param {ReactNode} props.children - Содержимое модального окна.
+ * @param {boolean} [props.isDraggable=false] - Возможность перетаскивания модального окна.
+ * @param {boolean} [props.isResizable=false] - Возможность изменения размеров модального окна.
+ * @param {() => void} [props.onEscapeDown] - Функция для обработки нажатия клавиши Escape.
+ * @param {string} [props.className] - Дополнительные CSS классы для модального окна.
+ * @param {boolean} [props.disableBackdropClick=false] - Отключает закрытие модального окна по клику вне его области.
+ * @returns {ReactElement | null} Компонент Modal.
+ */
+
 const Modal: FC<IModalProps> = ({
   children,
   isOpen,

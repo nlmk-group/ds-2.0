@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, ReactNode, useRef, useState } from 'react';
+import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useRef, useState } from 'react';
 
 import { EButtonSizes } from '@components/Button/enums';
 import { Button, IconChevronArrowDownOutlined16, IconChevronArrowDownOutlined24 } from '@components/index';
@@ -17,26 +17,26 @@ import { DropdownMenu } from './subcomponents';
  * @param {object} props - Пропсы компонента.
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @param {boolean} [props.disabled=false] - Отключает кнопку и возможность открытия меню.
- * @param {string} props.buttonText - Текст, отображаемый в кнопке.
+ * @param {ReactNode} props.buttonChildren - Содержимое кнопки.
  * @param {string} [props.className] - Дополнительный класс для кнопки.
- * @param {ReactNode} props.startIcon - Иконка в начале кнопки Dropdown.
  * @param {EButtonSizes} [props.size=EButtonSizes.m] - Размер кнопки и меню.
+ * @param {CSSProperties} [props.menuStyle] - Размер кнопки и меню.
  */
 
 const Dropdown: FC<IDropdownProps> = ({
   children,
   disabled = false,
-  buttonText,
+  buttonChildren,
   className,
   size = EButtonSizes.m,
-  startIcon
+  menuStyle
 }: {
   children: ReactNode;
   disabled?: boolean;
-  buttonText: string;
+  buttonChildren?: ReactNode;
   className?: string;
-  size?: EButtonSizes;
-  startIcon?: ReactNode;
+  size?: `${EButtonSizes}`;
+  menuStyle?: CSSProperties;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
@@ -52,8 +52,14 @@ const Dropdown: FC<IDropdownProps> = ({
     }
   };
   const ChevronIcon = size === EButtonSizes.xs ? IconChevronArrowDownOutlined16 : IconChevronArrowDownOutlined24;
+  const Chevron = (
+    <div className={clsx(styles['icon-rotate'], { [styles['icon-rotate-open']]: isOpen })}>
+      <ChevronIcon />
+    </div>
+  );
+
   return (
-    <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonText, buttonRef, size }}>
+    <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonChildren, buttonRef, size, menuStyle }}>
       <Button
         ref={buttonRef}
         className={clsx(styles.button, className)}
@@ -61,14 +67,10 @@ const Dropdown: FC<IDropdownProps> = ({
         onClick={toggleDropdown}
         disabled={disabled}
         size={size}
-        startIcon={startIcon}
-        endIcon={
-          <div className={clsx(styles['icon-rotate'], { [styles['icon-rotate-open']]: isOpen })}>
-            <ChevronIcon />
-          </div>
-        }
+        iconButton={!buttonChildren ? Chevron : undefined}
+        endIcon={buttonChildren ? Chevron : undefined}
       >
-        {buttonText}
+        {buttonChildren}
       </Button>
       {isOpen && <DropdownMenu>{children}</DropdownMenu>}
     </DropdownContext.Provider>

@@ -117,6 +117,11 @@ export interface ISelectProps {
   isSearchable?: boolean;
 
   /**
+   * Выбор значения по Enter, при найденной опции по isSearchable
+   */
+  autoSelectSingleOnEnter?: boolean;
+
+  /**
    * Выбранные значения.
    */
   selected: TSelected;

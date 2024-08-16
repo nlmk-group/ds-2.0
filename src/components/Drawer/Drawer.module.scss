@@ -97,8 +97,8 @@
 }
 
 .drawer {
-  background: var(--background-paper);
-  padding: var(--32-space);
+  background: var(--steel-10);
+  padding: 32px;
   box-sizing: border-box;
 }
 
@@ -120,25 +120,25 @@
   position: absolute;
   display: flex;
   background: transparent;
-  padding: var(--12-space);
+  padding: 12px;
 
   &.left {
     top: 0;
-    right: calc(0px - var(--40-size) - var(--16-space));
+    right: -56px;
   }
 
   &.right {
     top: 0;
-    left: calc(0px - var(--40-size) - var(--16-space));
+    left: -56px;
   }
 
   &.top {
-    bottom: calc(0px - var(--40-size) - var(--16-space));
+    bottom: -56px;
     right: 0;
   }
 
   &.bottom {
-    top: calc(0px - var(--40-size) - var(--16-space));
+    top: -56px;
     right: 0;
   }
 }

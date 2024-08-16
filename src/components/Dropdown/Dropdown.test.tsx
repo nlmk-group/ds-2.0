@@ -26,7 +26,7 @@ describe('src/components/Dropdown', () => {
 
   test('should open and close menu on button click', () => {
     render(
-      <Dropdown disabled={false} buttonText="Dropdown Button">
+      <Dropdown disabled={false} buttonChildren="Dropdown Button">
         <div>Menu Item</div>
       </Dropdown>
     );
@@ -43,7 +43,7 @@ describe('src/components/Dropdown', () => {
 
   test('should close menu when clicking away', () => {
     render(
-      <Dropdown disabled={false} buttonText="Dropdown Button">
+      <Dropdown disabled={false} buttonChildren="Dropdown Button">
         <div>Menu Item</div>
       </Dropdown>
     );
@@ -65,7 +65,7 @@ describe('src/components/Dropdown', () => {
 
   test('should close menu when menu item is clicked', () => {
     render(
-      <Dropdown disabled={false} buttonText="Dropdown Button">
+      <Dropdown disabled={false} buttonChildren="Dropdown Button">
         <div>Menu Item</div>
       </Dropdown>
     );

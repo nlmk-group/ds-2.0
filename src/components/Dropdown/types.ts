@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { EButtonSizes } from '@components/Button/enums';
 
@@ -12,10 +12,10 @@ export interface IDropdownProps {
   disabled?: boolean;
   /** Дополнительный класс для кнопки */
   className?: string;
-  /** Текст, отображаемый в кнопке */
-  buttonText: string;
   /** Размер кнопки и меню */
-  size?: EButtonSizes;
-  /** Иконка в начале кнопки Dropdown */
-  startIcon?: ReactNode;
+  size?: `${EButtonSizes}`;
+  /** Содержимое кнопки */
+  buttonChildren?: ReactNode;
+  /** Кастомные стили меню */
+  menuStyle?: CSSProperties;
 }

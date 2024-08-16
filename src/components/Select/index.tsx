@@ -45,6 +45,7 @@ const Select: FC<ISelectProps> = ({
   allSelectText = 'Выбрать все',
   isSearchable = false,
   isClearSearchOnBlur = false,
+  autoSelectSingleOnEnter = false,
   selected = '',
   withPortal = false,
   portalContainerId = 'root',
@@ -190,9 +191,16 @@ const Select: FC<ISelectProps> = ({
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Enter' && onEnterPress) {
-      onEnterPress(searchTerm);
+    if (event.key === 'Enter') {
+      if (!autoSelectSingleOnEnter) return onEnterPress?.(searchTerm);
+
+      const option = filteredOptions?.[0];
+      if (filteredOptions?.length !== 1) return;
+      if (!option || option.disabled) return;
+      handleSelect(option.value, selected?.includes(option.value));
+      onEnterPress?.(option.value);
     }
+
   };
 
   const handleTypographyClick = (value: string, event: React.MouseEvent<HTMLElement>) => {

@@ -23,6 +23,85 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.3.3 - <span className={styles.date}>14.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен флаг autoSelectSingleOnEnter для автоматического выбора по Enter, если найдена 1 опция</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.3.2 - <span className={styles.date}>12.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-drawer-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Drawer
+              </Link>
+              .<li className={styles['left-padding']}>- Обновлены токены цветов</li>
+              <li className={styles['left-padding']}>- Добавлена документация для компонента</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              .<li className={styles['left-padding']}>- Обновлены токены цветов</li>
+              <li className={styles['left-padding']}>- Обновлен стиль overlay</li>
+              <li className={styles['left-padding']}>- Добавлена документация для компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.3.1 - <span className={styles.date}>12.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .<li className={styles['left-padding']}>- Удалены свойства: startIcon, buttonText</li>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство: buttonChildren для контента внутри кнопки компнента
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.2.1 - <span className={styles.date}>09.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Исправлена генерация токенов темной темы.</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.2.0 - <span className={styles.date}>08.08.24</span>
           </Typography>
           <ul className={styles.list}>

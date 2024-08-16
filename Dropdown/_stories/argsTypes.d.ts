@@ -1,4 +1,3 @@
-import { default as React } from '../../../../node_modules/react';
 import { EButtonSizes } from '../../Button/enums';
 
 export declare const argsTypes: {
@@ -53,7 +52,7 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    buttonText: {
+    buttonChildren: {
         description: string;
         table: {
             type: {
@@ -64,24 +63,15 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    startIcon: {
+    menuStyle: {
         description: string;
         table: {
-            defaultValue: {
-                summary: string;
-            };
             type: {
                 summary: string;
             };
         };
-        options: string[];
         control: {
             type: string;
-        };
-        mapping: {
-            IconArticleOutlined32: React.JSX.Element;
-            IconArticleOutlined24: React.JSX.Element;
-            IconArticleOutlined16: React.JSX.Element;
         };
     };
 };

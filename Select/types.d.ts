@@ -27,6 +27,7 @@ export interface ISelectProps {
     allSelectText?: string;
     isAllSelectView?: boolean;
     isSearchable?: boolean;
+    autoSelectSingleOnEnter?: boolean;
     selected: TSelected;
     onSelectionChange: (selected: TSelected) => void;
     withPortal?: boolean;

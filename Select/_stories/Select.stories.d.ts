@@ -14,6 +14,10 @@ export declare const SelectWithSearch: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;
 };
+export declare const SelectWithSearchByEnter: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+};
 export declare const SelectMultiple: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;

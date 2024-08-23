@@ -1,4 +1,4 @@
-import { quarterParams, useIsSelectedQuarterParams } from '../types';
+import { IQuarterParams, IUseIsSelectedQuarterParams } from '../types';
 
-export declare const useIsSelectedQuarter: ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: useIsSelectedQuarterParams) => (dayAsDate: Date, quarter: quarterParams) => boolean;
+export declare const useIsSelectedQuarter: ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: IUseIsSelectedQuarterParams) => (dayAsDate: Date, quarter: IQuarterParams) => boolean;
 //# sourceMappingURL=useIsSelectedQuarter.d.ts.map

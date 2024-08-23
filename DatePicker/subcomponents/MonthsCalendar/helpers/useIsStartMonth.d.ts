@@ -1,4 +1,4 @@
-import { useIsStartMonthParams } from '../types';
+import { IUseIsStartMonthParams } from '../types';
 
-export declare const useIsStartMonth: ({ withPeriod, dateFrom, dateCurrentHover }: useIsStartMonthParams) => (dayAsDate: Date) => boolean;
+export declare const useIsStartMonth: ({ withPeriod, dateFrom, dateCurrentHover }: IUseIsStartMonthParams) => (dayAsDate: Date) => boolean;
 //# sourceMappingURL=useIsStartMonth.d.ts.map

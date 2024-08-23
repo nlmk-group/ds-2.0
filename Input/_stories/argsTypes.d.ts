@@ -1,6 +1,7 @@
 import { customInputColors, sizesMappingInput } from '../../declaration';
+import { default as React } from '../../../../node_modules/react';
 
-export declare const argsTypes: {
+declare const argsTypes: {
     onBlur: {
         description: string;
         action: string;
@@ -29,6 +30,11 @@ export declare const argsTypes: {
         control: {
             type: string;
         };
+        table: {
+            type: {
+                summary: string;
+            };
+        };
     };
     helperText: {
         description: string;
@@ -36,16 +42,24 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    label: {
+    icon: {
         description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: string[];
         control: {
             type: string;
         };
-    };
-    icon: {
-        description: string;
-        control: {
-            type: string;
+        mapping: {
+            IconArticleOutlined32: React.JSX.Element;
+            IconArticleOutlined24: React.JSX.Element;
+            IconArticleOutlined16: React.JSX.Element;
         };
     };
     size: {
@@ -120,20 +134,6 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    pseudo: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        control: {
-            type: string;
-        };
-    };
     colored: {
         description: string;
         table: {
@@ -148,5 +148,46 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    inputRef: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    name: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    label: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    className: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    pseudo: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
 };
+export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

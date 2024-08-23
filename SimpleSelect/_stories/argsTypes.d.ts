@@ -131,5 +131,34 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    colored: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    onReset: {
+        description: string;
+        action: string;
+    };
+    reset: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: boolean;
+            };
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

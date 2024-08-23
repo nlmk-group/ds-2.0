@@ -1,10 +1,10 @@
-import { DayProps } from '../Day/types';
+import { IDayProps } from '../Day/types';
 
 export type TValue = {
     value: number;
     label: string;
 };
-export interface InfiniteContainerProps extends DayProps {
+export interface IInfiniteContainerProps extends IDayProps {
     values: Array<TValue>;
     selectedTime?: Date;
     handleMinuteClick: (value: number) => void;

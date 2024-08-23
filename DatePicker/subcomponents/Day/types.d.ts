@@ -1,7 +1,7 @@
 import { MouseEvent } from '../../../../../node_modules/react';
 import { TLevel } from '../../types';
 
-export interface DayProps {
+export interface IDayProps {
     id?: string;
     selected?: boolean;
     disabled?: boolean;

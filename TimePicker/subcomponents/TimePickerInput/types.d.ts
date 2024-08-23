@@ -22,9 +22,12 @@ export interface ITimePickerInputProps {
     enabledMinuteFrom?: (date: Date | undefined) => number | undefined;
     enabledMinuteTo?: (date: Date | undefined) => number | undefined;
     label?: string;
+    colored?: boolean;
     isOpenOnFocus?: boolean;
     withIcon?: boolean;
     withPicker?: boolean;
+    reset?: boolean;
+    onReset?: () => void;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

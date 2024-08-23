@@ -1,4 +1,4 @@
-import { useIsTodayQuarterParams } from '../types';
+import { IUseIsTodayQuarterParams } from '../types';
 
-export declare const useIsTodayQuarter: ({ panelValue }: useIsTodayQuarterParams) => (quarterNumber: number) => boolean;
+export declare const useIsTodayQuarter: ({ panelValue }: IUseIsTodayQuarterParams) => (quarterNumber: number) => boolean;
 //# sourceMappingURL=useIsTodayQuarter.d.ts.map

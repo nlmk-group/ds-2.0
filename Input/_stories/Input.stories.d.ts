@@ -2,7 +2,6 @@ import { default as React } from '../../../../node_modules/react';
 import { customInputColors, sizesMappingInput } from '../../declaration';
 import { TInputProps } from '../types';
 
-import * as test from '@storybook/test';
 declare const _default: {
     title: string;
     component: React.FC<TInputProps>;
@@ -36,6 +35,11 @@ declare const _default: {
             control: {
                 type: string;
             };
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
         };
         helperText: {
             description: string;
@@ -43,16 +47,24 @@ declare const _default: {
                 type: string;
             };
         };
-        label: {
+        icon: {
             description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: string[];
             control: {
                 type: string;
             };
-        };
-        icon: {
-            description: string;
-            control: {
-                type: string;
+            mapping: {
+                IconArticleOutlined32: React.JSX.Element;
+                IconArticleOutlined24: React.JSX.Element;
+                IconArticleOutlined16: React.JSX.Element;
             };
         };
         size: {
@@ -127,7 +139,7 @@ declare const _default: {
                 type: string;
             };
         };
-        pseudo: {
+        colored: {
             description: string;
             table: {
                 defaultValue: {
@@ -141,7 +153,33 @@ declare const _default: {
                 type: string;
             };
         };
-        colored: {
+        inputRef: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        name: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        label: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        className: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        pseudo: {
             description: string;
             table: {
                 defaultValue: {
@@ -254,8 +292,9 @@ export declare const InputMultilineSuccess: {
 export declare const InputPseudoDefaultChecking: {
     (argTypes: TInputProps): JSX.Element;
     args: {
-        onChange: test.Mock<any, any>;
+        onChange: import('@vitest/spy').Mock<any, any>;
     };
+    storyName: string;
     play({ args, canvasElement }: {
         args: any;
         canvasElement: any;

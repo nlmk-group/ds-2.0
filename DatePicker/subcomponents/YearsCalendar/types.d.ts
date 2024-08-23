@@ -1,4 +1,4 @@
-export interface YearsCalendarProps {
+export interface IYearsCalendarProps {
     innerValue?: Date;
     selectedDate?: Date;
     onSelect?: (date: Date) => void;
@@ -10,25 +10,25 @@ export interface YearsCalendarProps {
     withPeriod?: boolean;
     panelValue?: Date;
 }
-export interface useIsSelectedYearParams {
+export interface IUseIsSelectedYearParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;
     dateTo?: Date | null;
     selectedDate?: Date | null;
 }
-export interface useIsStartYearParams {
+export interface IUseIsStartYearParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;
 }
-export interface useIsMidYearParams {
+export interface IUseIsMidYearParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;
     dateTo?: Date | null;
 }
-export interface useIsEndYearParams {
+export interface IUseIsEndYearParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;

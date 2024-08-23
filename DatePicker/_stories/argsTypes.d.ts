@@ -223,5 +223,20 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    onReset: {
+        description: string;
+        action: string;
+    };
+    reset: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: boolean;
+            };
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

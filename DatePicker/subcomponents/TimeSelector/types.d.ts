@@ -2,7 +2,7 @@ import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '../../../dec
 
 type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
-export interface TimeSelectorProps {
+export interface ITimeSelectorProps {
     selectedTime?: Date;
     withSeconds?: boolean;
     onChange?: (date: Date) => void;

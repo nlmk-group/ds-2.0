@@ -25,6 +25,9 @@ export interface TTimePickerType {
     pseudo?: boolean;
     withIcon?: boolean;
     withPicker?: boolean;
+    colored?: boolean;
+    reset?: boolean;
+    onReset?: () => void;
 }
 export type TDateValues = {
     valueFrom: Date | undefined;

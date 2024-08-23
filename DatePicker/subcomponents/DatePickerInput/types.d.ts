@@ -4,7 +4,7 @@ import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES, sizesMappingInput }
 type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 type TSize = `${sizesMappingInput}`;
-export interface DatePickerInputProps {
+export interface IDatePickerInputProps {
     value?: Date;
     valueFrom?: Date;
     valueTo?: Date;
@@ -34,6 +34,8 @@ export interface DatePickerInputProps {
     isOpenOnFocus?: boolean;
     isHideYear?: boolean;
     size?: TSize;
+    reset?: boolean;
+    onReset?: () => void;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

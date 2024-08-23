@@ -1,4 +1,4 @@
-export interface CalendarProps {
+export interface ICalendarProps {
     selectedDate?: Date;
     panelValue?: Date;
     onSelect?: (date: Date) => void;
@@ -11,7 +11,7 @@ export interface CalendarProps {
     withTime?: boolean;
     withoutWeekdays: boolean;
 }
-export interface useIsDaySelectedParams {
+export interface IUseIsDaySelectedParams {
     selectedDate?: Date | null;
     dateCurrentHover?: Date | null;
     withTime?: boolean;
@@ -19,18 +19,18 @@ export interface useIsDaySelectedParams {
     dateFrom?: Date | null;
     dateTo?: Date | null;
 }
-export interface useIsStartDayParams {
+export interface IUseIsStartDayParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;
 }
-export interface useIsMidDayParams {
+export interface IUseIsMidDayParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;
     dateTo?: Date | null;
 }
-export interface useIsEndDayParams {
+export interface IUseIsEndDayParams {
     dateCurrentHover?: Date | null;
     withPeriod?: boolean;
     dateFrom?: Date | null;

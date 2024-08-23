@@ -1,6 +1,6 @@
 import { FC } from '../../../../../node_modules/react';
-import { QuartersCalendarProps } from './types';
+import { IQuartersCalendarProps } from './types';
 
-export declare const QuartersCalendar: FC<QuartersCalendarProps>;
+export declare const QuartersCalendar: FC<IQuartersCalendarProps>;
 export default QuartersCalendar;
 //# sourceMappingURL=index.d.ts.map

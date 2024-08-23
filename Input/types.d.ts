@@ -1,7 +1,6 @@
 import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from '../../../node_modules/react';
 import { customInputColors, sizesMappingInput } from '../declaration';
 
-type TSize = `${sizesMappingInput}`;
 export interface IInputAdditionalProps {
     id?: string;
     value?: string;
@@ -11,18 +10,17 @@ export interface IInputAdditionalProps {
     multiline?: boolean;
     pseudo?: boolean;
     icon?: ReactNode;
-    helperText?: string | ReactNode;
+    helperText?: ReactNode;
     resize?: boolean;
     reset?: boolean;
-    onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onReset?: () => void;
+    onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     onBlur?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    size?: TSize;
+    size?: `${sizesMappingInput}`;
     color?: customInputColors;
     colored?: boolean;
 }
 export type TInputProps = IInputAdditionalProps & Omit<ComponentPropsWithoutRef<'input'>, 'size'> & Omit<ComponentPropsWithoutRef<'textarea'>, 'size'> & {
     inputRef?: Ref<HTMLInputElement | HTMLTextAreaElement>;
 };
-export {};
 //# sourceMappingURL=types.d.ts.map

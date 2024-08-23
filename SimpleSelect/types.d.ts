@@ -24,6 +24,9 @@ export interface ISelectProps {
     onEnterPress?: (item: string | number) => void;
     style?: CSSProperties;
     className?: string;
+    colored?: boolean;
+    reset?: boolean;
+    onReset?: () => void;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

@@ -69,10 +69,12 @@ declare const _default: {
 };
 export default _default;
 export declare const RadioDefault: {
-    (argTypes: IRadioProps): JSX.Element;
+    ({ checked: initialChecked, ...args }: IRadioProps): JSX.Element;
     storyName: string;
     args: {
         value: string;
+        label: string;
+        checked: boolean;
     };
 };
 //# sourceMappingURL=Radio.stories.d.ts.map

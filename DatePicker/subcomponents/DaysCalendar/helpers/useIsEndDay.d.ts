@@ -1,4 +1,4 @@
-import { useIsEndDayParams } from '../types';
+import { IUseIsEndDayParams } from '../types';
 
-export declare const useIsEndDay: ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsEndDayParams) => (dayAsDate: Date) => boolean;
+export declare const useIsEndDay: ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsEndDayParams) => (dayAsDate: Date) => boolean;
 //# sourceMappingURL=useIsEndDay.d.ts.map

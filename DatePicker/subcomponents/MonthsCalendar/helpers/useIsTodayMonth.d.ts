@@ -1,4 +1,4 @@
-import { useIsTodayMonthParams } from '../types';
+import { IUseIsTodayMonthParams } from '../types';
 
-export declare const useIsTodayMonth: ({ panelValue }: useIsTodayMonthParams) => (monthNumber: number) => boolean;
+export declare const useIsTodayMonth: ({ panelValue }: IUseIsTodayMonthParams) => (monthNumber: number) => boolean;
 //# sourceMappingURL=useIsTodayMonth.d.ts.map

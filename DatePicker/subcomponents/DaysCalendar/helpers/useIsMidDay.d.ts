@@ -1,4 +1,4 @@
-import { useIsMidDayParams } from '../types';
+import { IUseIsMidDayParams } from '../types';
 
-export declare const useIsMidDay: ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidDayParams) => (dayAsDate: Date) => boolean;
+export declare const useIsMidDay: ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsMidDayParams) => (dayAsDate: Date) => boolean;
 //# sourceMappingURL=useIsMidDay.d.ts.map

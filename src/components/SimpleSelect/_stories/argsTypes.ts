@@ -96,5 +96,30 @@ export const argsTypes = {
   className: {
     description: 'Добавление самостоятельного CSS класса',
     control: { type: 'text' }
+  },
+  colored: {
+    description: 'Условие применения стилей подсветки',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  onReset: {
+    description: 'Callback, который будет вызван при клике по иконке сброса',
+    action: 'изменено value'
+  },
+  reset: {
+    description: 'Булевое значение для показа иконки сброса',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: false
+      }
+    }
   }
 };

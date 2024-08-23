@@ -36,3 +36,9 @@
   grid-template-columns: 1fr repeat(6, 1fr);
   padding: 10px 0 0 0;
 }
+
+.flex-height {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+}

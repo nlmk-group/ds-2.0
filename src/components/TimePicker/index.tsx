@@ -2,11 +2,8 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import { generateUUID, useUpdatedValues } from '@components/declaration';
-import { TWO_DIGIT_FORMAT } from '@components/declaration';
+import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
-import TimePickerInput from '@components/TimePicker/subcomponents/TimePickerInput';
-import TimeSelector from '@components/TimePicker/subcomponents/TimeSelector';
 import clsx from 'clsx';
 import { isEqual, set } from 'date-fns';
 
@@ -14,6 +11,38 @@ import { TDateValues, TTimePickerType } from './types';
 
 import styles from './TimePicker.module.scss';
 
+import TimePickerInput from './subcomponents/TimePickerInput';
+import TimeSelector from './subcomponents/TimeSelector';
+
+/**
+ * Компонент TimePicker для выбора времени в различных форматах.
+ * @component
+ * @param {Object} props - Свойства компонента TimePicker.
+ * @param {number|string} [props.id] - Уникальный идентификатор компонента.
+ * @param {'time'|'timeWithSeconds'|'period'|'periodWithSeconds'} [props.type='time'] - Тип пикера времени.
+ * @param {string} [props.name] - Имя поля для использования в формах.
+ * @param {function} [props.enabledHourFrom] - Функция для определения начального доступного часа.
+ * @param {function} [props.enabledHourTo] - Функция для определения конечного доступного часа.
+ * @param {function} [props.enabledMinuteFrom] - Функция для определения начальной доступной минуты.
+ * @param {function} [props.enabledMinuteTo] - Функция для определения конечной доступной минуты.
+ * @param {Date} [props.value] - Выбранное значение времени.
+ * @param {function} [props.onChange] - Обработчик изменения выбранного времени.
+ * @param {Date} [props.valueFrom] - Начальное значение времени для периода.
+ * @param {Date} [props.valueTo] - Конечное значение времени для периода.
+ * @param {function} [props.onPeriodChange] - Обработчик изменения периода времени.
+ * @param {string} [props.className] - Дополнительный CSS класс.
+ * @param {boolean} [props.disabledPanel=false] - Флаг блокировки панели выбора.
+ * @param {boolean} [props.withPortal=false] - Флаг использования портала для рендеринга.
+ * @param {boolean} [props.colored=false] - Флаг применения цветовых стилей.
+ * @param {boolean} [props.pseudo=false] - Флаг использования псевдо-инпута.
+ * @param {boolean} [props.isOpenOnFocus=false] - Флаг открытия пикера при фокусе.
+ * @param {boolean} [props.withIcon=true] - Флаг отображения иконки.
+ * @param {boolean} [props.withPicker=true] - Флаг использования всплывающего пикера.
+ * @param {string} [props.label=''] - Текст метки (label) для инпута.
+ * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса.
+ * @param {function} [props.onReset] - Обработчик сброса значения.
+ * @returns {JSX.Element} Компонент TimePicker.
+ */
 const TimePicker: FC<TTimePickerType> = ({
   id,
   type = 'time',
@@ -30,13 +59,14 @@ const TimePicker: FC<TTimePickerType> = ({
   className,
   disabledPanel = false,
   withPortal = false,
-  // todo добавить colored после добавления в Input
-  // colored = false,
+  colored = false,
   pseudo = false,
   isOpenOnFocus = false,
   withIcon = true,
   withPicker = true,
   label = '',
+  reset,
+  onReset,
   ...restInputProps
 }) => {
   const isTimeType = useMemo(() => type === 'time', [type]);
@@ -192,7 +222,6 @@ const TimePicker: FC<TTimePickerType> = ({
       {name && ['time', 'timeWithSeconds'].includes(type) && (
         <input type="hidden" name={name} value={value?.toISOString()} />
       )}
-      {/*todo добавить colored после добавления в Input*/}
       <TimePickerInput
         ref={setInputRef}
         value={outerValue}
@@ -212,10 +241,12 @@ const TimePicker: FC<TTimePickerType> = ({
         onTabKeyDown={handleSetValues(false)}
         onBlur={handleSetValues(true)}
         onFocus={handleFocus}
-        // colored={colored}
+        colored={colored}
         withIcon={withIcon}
         withPicker={effectiveWithPicker}
         label={label}
+        reset={reset}
+        onReset={onReset}
         {...restInputProps}
       />
       {isOpen &&
@@ -228,19 +259,19 @@ const TimePicker: FC<TTimePickerType> = ({
     </div>
   );
 
-  if (pseudo) return <PseudoInput label={label}>{pseudoTime}</PseudoInput>
+  if (pseudo) return <PseudoInput label={label}>{pseudoTime}</PseudoInput>;
 
-  if (isOpenOnInputFocus) return (
-    <ClickAwayListener
-      onClickAway={() => {
-        handleAccept();
-      }}
-    >
-      {renderTimepicker()}
-    </ClickAwayListener>
-  )
-
-  else return <>{renderTimepicker()}</>
+  if (isOpenOnInputFocus)
+    return (
+      <ClickAwayListener
+        onClickAway={() => {
+          handleAccept();
+        }}
+      >
+        {renderTimepicker()}
+      </ClickAwayListener>
+    );
+  else return <>{renderTimepicker()}</>;
 };
 
 export default TimePicker;

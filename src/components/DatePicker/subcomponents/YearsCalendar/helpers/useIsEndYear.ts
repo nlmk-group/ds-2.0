@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
 import { numberedDateByLevel } from '@components/DatePicker/helpers/numberedDateByLevel';
-import { useIsEndYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
+import {IUseIsEndYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
 
-export const useIsEndYear = ({ withPeriod, dateTo, dateFrom, dateCurrentHover }: useIsEndYearParams) =>
+export const useIsEndYear = ({ withPeriod, dateTo, dateFrom, dateCurrentHover }: IUseIsEndYearParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod) {

@@ -1,16 +1,15 @@
 .root {
-  padding: var(--8-space) var(--4-space);
+  padding: 8px 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--ac-calendar-general-bg);
-  width: var(--280-size);
+  background-color: var(--steel-10);
+  width: 280px;
 }
 
 .disableContent {
   & .content {
     &:hover {
-      background-color: var(--ac-calendar-general-bg);
       cursor: default;
     }
   }
@@ -21,17 +20,17 @@
   align-items: center;
   border-radius: var(--circle-radius);
   cursor: pointer;
-  padding: var(--4-space) var(--12-space) var(--4-space) var(--12-space);
+  padding: 4px 12px;
   transition: 0.3s;
 
   &:hover {
-    background-color: var(--ac-calendar-state-hover-bg);
+    background-color: var(--steel-30);
   }
 }
 
 .contentText {
-  margin-right: var(--4-space);
-  color: var(--ac-calendar-general-text);
+  margin-right: 4px;
+  color: var(--steel-90);
   white-space: nowrap;
 }
 
@@ -45,16 +44,26 @@
   }
 
   &:hover {
-    background-color: var(--ac-calendar-state-hover-bg);
+    background-color: var(--steel-30);
   }
 }
 
 .btn-icon-arrow {
   border-radius: var(--circle-radius);
-  height: var(--32-size);
-  min-width: var(--32-size);
+  height: 32px;
+  min-width: 32px;
 
   &:hover {
-    background-color: var(--ac-calendar-state-hover-bg)!important;
+    background-color: var(--steel-30) !important;
+  }
+}
+
+.btn-icon-middle {
+  border-radius: var(--circle-radius);
+  height: 32px;
+  min-width: 32px;
+
+  &:hover {
+    background: transparent !important;
   }
 }

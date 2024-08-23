@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { normalizeDateToDay } from '@components/DatePicker/subcomponents/DaysCalendar/helpers/normalizeDateToDay';
-import { useIsDaySelectedParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
+import { IUseIsDaySelectedParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
 import { isAfter, isBefore, isEqual } from 'date-fns';
 
 export const useIsDaySelected = ({
@@ -11,7 +11,7 @@ export const useIsDaySelected = ({
   withTime,
   selectedDate,
   dateCurrentHover
-}: useIsDaySelectedParams) =>
+}: IUseIsDaySelectedParams) =>
   useCallback(
     (dayAsDate: Date) => {
       const normalizedDayAsDate = normalizeDateToDay(dayAsDate);

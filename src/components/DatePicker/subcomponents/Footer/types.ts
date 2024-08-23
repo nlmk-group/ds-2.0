@@ -1,4 +1,4 @@
-export interface FooterProps {
+export interface IFooterProps {
   onAccept?: () => void;
   onDecline?: () => void;
   className?: string;

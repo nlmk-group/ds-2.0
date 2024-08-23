@@ -5,22 +5,22 @@
 }
 
 .day {
-  width: var(--40-size);
-  height: var(--40-size);
+  width: 40px;
+  height: 40px;
 }
 
 .month {
-  height: var(--40-size);
-  width: var(--90-size);
+  height: 40px;
+  width: 90px;
 }
 
 .quarter {
-  height: var(--40-size);
+  height: 40px;
   width: 140px;
 }
 
 .year {
-  height: var(--40-size);
+  height: 40px;
   width: 90px;
 }
 
@@ -31,8 +31,8 @@
 
 .wrapper {
   cursor: pointer;
-  color: var(--ac-calendar-general-text);
-  background-color: var(--ac-calendar-general-bg);
+  color: var(--steel-90);
+  background-color: var(--steel-10);
   border-radius: var(--circle-radius);
   border: 1px solid transparent;
   width: 100%;
@@ -44,25 +44,24 @@
   transition: 0.3s;
 
   &:hover {
-    background-color: var(--ac-calendar-state-hover-bg);
+    background-color: var(--steel-30);
   }
 }
 
 .selected {
   & .wrapper {
-    background-color: var(--ac-calendar-state-selected-bg);
-    color: var(--ac-calendar-state-selected-text);
+    background-color: var(--brand-sapphire-50);
+    color: var(--unique-white);
 
     &:hover {
-      opacity: var(--50-opacity);
+      opacity: 0.6;
     }
   }
 }
 
 .disableTimeChange {
   & .wrapper {
-    opacity: var(--50-opacity);
-    background-color: var(--ac-calendar-general-bg);
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
@@ -73,7 +72,7 @@
 
 .today {
   & .wrapper {
-    border: var(--1-border) solid var(--ac-calendar-state-today-stroke);
+    border: 1px solid var(--steel-90);
   }
 }
 
@@ -82,7 +81,7 @@
   pointer-events: none;
 
   & .wrapper {
-    opacity: var(--50-opacity);
+    opacity: 0.5;
   }
 }
 
@@ -98,17 +97,16 @@
   position: relative;
 
   &:hover .wrapper {
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--95-opacity));
+    @include background-helper(var(--steel-30), 95%);
   }
 
   &::after {
     content: "";
     position: absolute;
-    right: -2px;
     top: 0;
     bottom: 0;
     width: 100%;
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    @include background-helper(var(--steel-30), 50%);
     z-index: -1;
     border-top-left-radius: var(--circle-radius);
     border-bottom-left-radius: var(--circle-radius);
@@ -116,22 +114,23 @@
 
   &.selected {
     background: unset;
+    color: var(--unique-white);
 
     &.hoverState {
       background-color: unset;
 
       &::before {
-        background-color: var(--ac-calendar-state-hover-extra);
+        background-color: var(--steel-30);
       }
 
       &::after {
-        @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+        @include background-helper(var(--steel-30), 50%);
         width: 100%;
       }
     }
 
     &::after {
-      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      @include background-helper(var(--brand-sapphire-50), 15%);
       width: 100%;
       border-top-left-radius: var(--circle-radius);
       border-bottom-left-radius: var(--circle-radius);
@@ -139,15 +138,15 @@
     }
 
     &::before {
-      background-color: var(--primary-blue-100);
+      background-color: var(--brand-sapphire-30);
     }
 
     & .wrapper {
-      background-color: var(--ac-calendar-state-selected-bg);
+      background-color: var(--brand-sapphire-50);
     }
 
     &:hover .wrapper {
-      opacity: var(--50-opacity);
+      opacity: 0.5;
     }
   }
 }
@@ -157,7 +156,7 @@
 
   & .wrapper {
     background-color: transparent;
-    color: var(--ac-calendar-general-text);
+    color: var(--steel-90);
   }
 
   position: relative;
@@ -165,11 +164,9 @@
   &::before {
     content: "";
     position: absolute;
-    left: -2px;
     top: 0;
     bottom: 0;
-    width: 2px;
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    @include background-helper(var(--steel-30), 50%);
     width: 100%;
     z-index: -1;
   }
@@ -177,11 +174,10 @@
   &::after {
     content: "";
     position: absolute;
-    right: -2px;
     top: 0;
     bottom: 0;
-    width: var(--4-size);
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    width: 4px;
+    @include background-helper(var(--steel-30), 50%);
     z-index: -1;
   }
 
@@ -196,17 +192,17 @@
     background: unset;
 
     &:hover {
-      background-color: var(--ac-calendar-state-hover-bg);
+      background-color: var(--steel-30);
     }
 
     &::before {
-      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      @include background-helper(var(--brand-sapphire-50), 15%);
       width: 100%;
       height: 100%;
     }
 
     &::after {
-      @include background-helper(transparent, var(--15-opacity));
+      @include background-helper(transparent, 15%);
       height: 100%;
     }
   }
@@ -220,17 +216,16 @@
   }
 
   &:hover .wrapper {
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--95-opacity));
+    @include background-helper(var(--steel-30), 95%);
   }
 
   &::before {
     content: "";
     position: absolute;
-    left: -2px;
     top: 0;
     bottom: 0;
     width: 100%;
-    @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+    @include background-helper(var(--steel-30), 50%);
     border-top-right-radius: var(--circle-radius);
     border-bottom-right-radius: var(--circle-radius);
     z-index: -1;
@@ -253,11 +248,12 @@
 
     &.hoverState {
       background-color: unset;
+      color: var(--unique-white);
 
       &::before {
-        background-color: var(--ac-calendar-state-hover-extra);
+        background-color: var(--steel-30);
         width: 100%;
-        @include background-helper(var(--ac-calendar-state-hover-extra), var(--50-opacity));
+        @include background-helper(var(--steel-30), 50%);
         border-top-right-radius: var(--circle-radius);
         border-bottom-right-radius: var(--circle-radius);
         z-index: -1;
@@ -265,7 +261,7 @@
     }
 
     &::before {
-      @include background-helper(var(--ac-calendar-state-selected-bg), var(--15-opacity));
+      @include background-helper(var(--brand-sapphire-50), 15%);
       width: 100%;
       border-top-right-radius: var(--circle-radius);
       border-bottom-right-radius: var(--circle-radius);
@@ -273,11 +269,11 @@
     }
 
     & .wrapper {
-      background-color: var(--ac-calendar-state-selected-bg);
+      background-color: var(--brand-sapphire-50);
     }
 
     &:hover .wrapper {
-      opacity: var(--50-opacity);
+      opacity: 0.5;
     }
   }
 }

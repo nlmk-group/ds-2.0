@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { numberedDateByLevel } from '../../../helpers/numberedDateByLevel';
-import { useIsMidQuarterParams } from '../types';
+import { numberedDateByLevel } from '@components/DatePicker/helpers';
+import { IUseIsMidQuarterParams } from '../types';
 
-export const useIsMidQuarter = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidQuarterParams) =>
+export const useIsMidQuarter = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsMidQuarterParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {

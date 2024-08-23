@@ -1,13 +1,13 @@
 import React, { FC, MouseEventHandler, PropsWithChildren } from 'react';
 
 import { Typography } from '@components/.';
-import { DayProps } from '@components/DatePicker/subcomponents/Day/types';
+import { IDayProps } from '@components/DatePicker/subcomponents/Day/types';
 import clsx from 'clsx';
 import { format } from 'date-fns';
 
 import styles from './Day.module.scss';
 
-export const Day: FC<DayProps & PropsWithChildren> = ({
+export const Day: FC<IDayProps & PropsWithChildren> = ({
   id,
   isHoverState,
   onHover,

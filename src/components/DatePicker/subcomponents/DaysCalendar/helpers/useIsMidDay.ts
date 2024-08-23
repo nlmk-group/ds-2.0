@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useIsMidDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
+import { IUseIsMidDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidDay = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidDayParams) =>
+export const useIsMidDay = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsMidDayParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {

@@ -1,6 +1,11 @@
 import React, { FC, useMemo, useState } from 'react';
 
 import { Day } from '@components/DatePicker/subcomponents';
+
+import { IYearsCalendarProps } from './types';
+
+import styles from './YearsCalendar.module.scss';
+
 import {
   normalizeDateToYear,
   useIsDisabledYear,
@@ -8,12 +13,9 @@ import {
   useIsMidYear,
   useIsSelectedYear,
   useIsStartYear
-} from '@components/DatePicker/subcomponents/YearsCalendar/helpers';
-import { YearsCalendarProps } from '@components/DatePicker/subcomponents/YearsCalendar/types';
+} from './helpers';
 
-import styles from './YearsCalendar.module.scss';
-
-export const YearsCalendar: FC<YearsCalendarProps> = ({
+export const YearsCalendar: FC<IYearsCalendarProps> = ({
   panelValue,
   disableChange,
   withPeriod,

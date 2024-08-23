@@ -5,7 +5,6 @@ import { argsTypes } from '@components/DatePicker/_stories/argsTypes';
 import { TDatePickerProps, TEnabledHourFrom, TEnabledHourTo } from '@components/DatePicker/types';
 import { sizesMappingInput } from '@components/declaration';
 import { Button } from '@components/index';
-import { Meta } from '@storybook/react';
 import { format } from 'date-fns';
 
 import styles from '@components/DatePicker/_stories/DatePicker.module.scss';
@@ -17,7 +16,7 @@ export default {
   component: DatePicker,
   decorators: [withWrapper],
   argTypes: argsTypes
-} as Meta<typeof DatePicker>;
+};
 
 export const Default = (argTypes: TDatePickerProps): JSX.Element => {
   const [value, onChange] = useState(new Date());

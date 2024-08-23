@@ -1,10 +1,10 @@
 import { numberedDateByLevel } from '@components/DatePicker/helpers/numberedDateByLevel';
 import { quarterQuarterKeys } from '@components/DatePicker/helpers/quarters';
-import { quarterParams, useIsSelectedQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
+import { IQuarterParams, IUseIsSelectedQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
 
 export const useIsSelectedQuarter =
-  ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: useIsSelectedQuarterParams) =>
-    (dayAsDate: Date, quarter: quarterParams) => {
+  ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: IUseIsSelectedQuarterParams) =>
+    (dayAsDate: Date, quarter: IQuarterParams) => {
       const numberedDateFrom =
       dateFrom &&
       numberedDateByLevel(
@@ -33,7 +33,7 @@ export const useIsSelectedQuarter =
       const withoutPeriodCondition = selectedDate && !!selectedDate?.getMonth()
         ? selectedDate?.getFullYear() === panelValue?.getFullYear() && quarter.values.includes(selectedDate?.getMonth())
         : selectedDate?.getFullYear() === panelValue?.getFullYear() && selectedDate?.getMonth() === dayAsDate.getMonth();
-      
+
       return Boolean(
         withPeriod
           ? withPeriodCondition

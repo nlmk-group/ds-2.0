@@ -1,9 +1,9 @@
 .root {
-  background-color: var(--ac-calendar-general-bg);
+  background-color: var(--steel-10);
 }
 
 .btn-collection {
   display: flex;
-  gap: var(--8-space);
-  padding: var(--16-space) var(--16-space) 0;
+  gap: 8px;
+  padding: 16px 16px 0;
 }

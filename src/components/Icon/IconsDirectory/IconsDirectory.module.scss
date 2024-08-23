@@ -15,18 +15,18 @@
 }
 
 .error {
-  color: var(--ac-icon-error);
+  color: var(--spectrum-red-60);
 
   path {
-    fill: var(--ac-icon-error);
+    fill: var(--spectrum-red-60);
   }
 }
 
 .primary {
-  color: var(--primary-blue-600);
+  color: var(--brand-sapphire-60);
 
   path {
-    fill: var(--primary-blue-600);
+    fill: var(--brand-sapphire-60);
   }
 }
 
@@ -43,18 +43,18 @@
 }
 
 .success {
-  color: var(--success-green-500);
+  color: var(--spectrum-green-60);
 
   path {
-    fill: var(--success-green-500);
+    fill: var(--spectrum-green-60);
   }
 }
 
 .warning {
-  color: var(--warning-orange-600);
+  color: var(--spectrum-yellow-60);
 
   path {
-    fill: var(--warning-orange-600);
+    fill: var(--spectrum-yellow-60);
   }
 }
 

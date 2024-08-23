@@ -31,6 +31,57 @@ export const SelectSharedProperties = createContext<ISelectSharedProperties>({
   withPortal: false
 });
 
+/**
+ * Компонент Select представляет собой настраиваемый выпадающий список с возможностью
+ * одиночного или множественного выбора, поиска, и различными визуальными настройками.
+ *
+ * @component
+ * @example
+ * <Select
+ *   options={[
+ *     { value: '1', label: 'Option 1' },
+ *     { value: '2', label: 'Option 2' }
+ *   ]}
+ *   label="Select an option"
+ *   onSelectionChange={(selected) => console.log(selected)}
+ * />
+ *
+ * @param {Object} props - Свойства компонента Select
+ * @param {ReactNode} [props.children] - Элемент, представляющий собой селект
+ * @param {number} [props.listMinWidth] - Минимальная ширина меню опций
+ * @param {string} [props.id] - Идентификатор компонента
+ * @param {ISelectOption[] | null} props.options - Опции для выбора
+ * @param {string} [props.label] - Метка для компонента
+ * @param {boolean} [props.multiple=false] - Множественный выбор
+ * @param {TSize} [props.size=sizesMappingInput.m] - Размер компонента
+ * @param {number} [props.scrollingItems=6] - Количество элементов после которого включается прокрутка
+ * @param {boolean} [props.disabled=false] - Отключен ли компонент
+ * @param {customInputColors} [props.color=customInputColors.default] - Цвет компонента
+ * @param {string} [props.allSelectText='Выбрать все'] - Текст для выбора всех опций
+ * @param {boolean} [props.isAllSelectView=true] - Показывать ли выбор всех опций
+ * @param {boolean} [props.isSearchable=false] - Поиск по опциям
+ * @param {boolean} [props.autoSelectSingleOnEnter=false] - Выбор значения по Enter при найденной опции по isSearchable
+ * @param {TSelected} props.selected - Выбранные значения
+ * @param {function} props.onSelectionChange - Обработчик изменения выбора
+ * @param {boolean} [props.withPortal=false] - Использовать ли портал для отображения
+ * @param {function} [props.onEnterPress] - Обработчик нажатия Enter
+ * @param {function} [props.onBlur] - Обработчик закрытия меню options
+ * @param {function} [props.onFocus] - Обработчик открытия меню options
+ * @param {boolean} [props.isClearSearchOnBlur=false] - Удалять ли поисковый запрос при отработке onBlur на Input
+ * @param {string} [props.className] - Дополнительный CSS класс
+ * @param {boolean} [props.stealthy=false] - Условие для незаметного инпута
+ * @param {boolean} [props.highlightSelected=false] - Отображать выбранные элементы иконкой
+ * @param {boolean} [props.withoutCheckbox=false] - Отображать без чекбоксов
+ * @param {number} [props.badgeAmount] - Отображать badge с количеством выбранных опций
+ * @param {boolean} [props.activeSelectedValue=false] - Выделять значение синим цветом, доступно в stealthy
+ * @param {boolean} [props.enableScrollToActiveOption=false] - Условие фокуса на опциях компонента при раскрытии списка
+ * @param {string} [props.portalContainerId='root'] - id рутового контейнера для создания портала
+ * @param {string} [props.name] - name определяет имя элемента, используется для ссылки на элемент
+ * @param {CSSProperties} [props.style] - Кастомные стили для компонента
+ *
+ * @returns {JSX.Element} Компонент Select
+ */
+
 const Select: FC<ISelectProps> = ({
   id,
   name,

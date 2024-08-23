@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
+// import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -9,7 +9,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { argsTypes } from './argsTypes';
+import argsTypes from './argsTypes';
 
 const InputStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -169,9 +169,9 @@ export default App;
         </>
       )}
 
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20850&mode=design&t=awyt3Fzj1XS6th7v-1" />
-      )}
+      {/*{Number(activeTab) === 1 && (*/}
+      {/*  <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1036%3A20850&mode=design&t=awyt3Fzj1XS6th7v-1" />*/}
+      {/*)}*/}
       {Number(activeTab) === 2 && <Tests componentName="Input" />}
     </div>
   );

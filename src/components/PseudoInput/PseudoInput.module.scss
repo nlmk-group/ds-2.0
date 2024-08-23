@@ -1,28 +1,40 @@
 .root {
-  height: var(--40-size);
+  height: 40px;
   position: relative;
   width: 100%;
+
+  &.compact {
+    height: 32px;
+  }
 }
 
 .label {
   position: absolute;
   top: -8px;
-  color: var(--text-grey-700);
+  color: var(--steel-70);
+
+  .compact & {
+    top: -9px;
+  }
 
   &.error {
-    color: var(--error-red-500);
+    color: var(--spectrum-red-60);
   }
 
   &.warning {
-    color: var(--warning-orange-600);
+    color: var(--spectrum-yellow-60);
   }
 
   &.success {
-    color: var(--success-green-700);
+    color: var(--spectrum-green-60);
   }
 }
 
 .text {
   position: absolute;
-  top: 8px;
+  top: 9px;
+
+  .compact & {
+    top: 5px;
+  }
 }

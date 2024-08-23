@@ -1,11 +1,9 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import Typography from '@components/Typography';
+import { Box, Radio, Typography } from '@components/index';
 
-import './Radio.stories.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import Radio from '..';
 import { IRadioProps } from '../types';
 import { argsTypes } from './argsTypes';
 
@@ -18,28 +16,31 @@ export default {
   argTypes: argsTypes
 };
 
-export const RadioDefault = (argTypes: IRadioProps): JSX.Element => {
-  const [checked, setChecked] = useState('');
+export const RadioDefault = ({ checked: initialChecked, ...args }: IRadioProps): JSX.Element => {
+  const [checked, setChecked] = useState(initialChecked ? args.value : '');
+
+  useEffect(() => {
+    setChecked(initialChecked ? args.value : '');
+  }, [initialChecked, args.value]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.value);
   };
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px'
-      }}
-    >
-      <Radio {...argTypes} checked={checked === argTypes.value} onChange={handleChange} />
+    <Box flexDirection="column" gap="8px">
+      <Radio {...args} checked={checked === args.value} onChange={handleChange} />
       <Radio checked={checked === 'option 2'} onChange={handleChange} value="option 2" label="Привет мир!" />
-      <div style={{ color: 'var(--text-grey-900)' }}>
-        <Typography variant="Body1-Bold">Выбранная опция: {checked}</Typography>
-      </div>
-    </div>
+      <Typography variant="Body1-Bold" color="var(--steel-90)">
+        Выбранная опция: {checked}
+      </Typography>
+    </Box>
   );
 };
+
 RadioDefault.storyName = 'Дефолтное переключение Radio';
 RadioDefault.args = {
-  value: 'option 1'
+  value: 'option 1',
+  label: 'Вариант 1',
+  checked: false
 };

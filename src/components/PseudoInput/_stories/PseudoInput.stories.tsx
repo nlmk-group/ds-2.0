@@ -1,25 +1,25 @@
 import React from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Meta } from '@storybook/react';
+import { PseudoInput } from '@components/index';
+import clsx from 'clsx';
 
-import styles from './PseudoInput.module.scss';
+import styles from '@components/_storybook/styles.module.scss';
 
-import PseudoInput from '..';
 import { IPseudoInputProps } from '../types';
 import { argsTypes } from './argsTypes';
 
 const labelText = 'Label';
 const value = 'PseudoInput';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={clsx(styles.wrapper, styles['flex-height'])}>{Story()}</div>;
 
 export default {
   title: 'Components/PseudoInput/Stories',
   component: PseudoInput,
   argTypes: argsTypes,
   decorators: [withWrapper]
-} as Meta<typeof PseudoInput>;
+};
 
 export const PseudoInputDefault = (argTypes: IPseudoInputProps): JSX.Element => (
   <PseudoInput {...argTypes} label={labelText}>

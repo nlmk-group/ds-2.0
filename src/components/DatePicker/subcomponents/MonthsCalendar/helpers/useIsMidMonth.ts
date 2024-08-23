@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 
 import { normalizeDateToMonth } from '@components/DatePicker/subcomponents/MonthsCalendar/helpers/normalizeDateToMonth';
-import { useIsMidMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
+import { IUseIsMidMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidMonth = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidMonthParams) =>
+export const useIsMidMonth = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsMidMonthParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {

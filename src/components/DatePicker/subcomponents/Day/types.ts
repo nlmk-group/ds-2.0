@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 
 import { TLevel } from '@components/DatePicker/types';
 
-export interface DayProps {
+export interface IDayProps {
   id?: string;
   selected?: boolean;
   disabled?: boolean;

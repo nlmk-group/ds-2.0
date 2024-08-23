@@ -1,19 +1,16 @@
 import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
-import Button from '@components/Button';
 import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { Meta } from '@storybook/react';
-import { expect } from '@storybook/test';
-import * as test from '@storybook/test';
+import { Button, IconArticleOutlined24 } from '@components/index';
+import { expect, fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/test';
 
 import styles from './Input.module.scss';
 
 import Input from '..';
-import { DefaultHelper, ErrorHelper, SuccessHelper, WarningHelper } from '../mock/HelperText';
-import { IconMock } from '../mock/IconMock';
+import { DefaultHelper, ErrorHelper, SuccessHelper, WarningHelper } from '../mock/helpers';
 import { TInputProps } from '../types';
-import { argsTypes } from './argsTypes';
+import argsTypes from './argsTypes';
 
 const labelText = 'Label';
 const helperText = 'Helper text';
@@ -89,7 +86,7 @@ export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => {
       onReset={handleReset}
       label={labelText}
       helperText={helperText}
-      icon={<IconMock weight="кг" />}
+      icon={<IconArticleOutlined24 />}
     />
   );
 };
@@ -253,8 +250,9 @@ export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element =
 };
 
 InputPseudoDefaultChecking.args = {
-  onChange: test.fn()
+  onChange: fn()
 };
+InputPseudoDefaultChecking.storyName = 'Переключение между Input и PseudoInput';
 
 // @ts-ignore
 InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {

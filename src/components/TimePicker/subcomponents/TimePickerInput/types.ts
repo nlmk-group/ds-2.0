@@ -23,9 +23,12 @@ export interface ITimePickerInputProps {
   enabledMinuteFrom?: (date: Date | undefined) => number | undefined;
   enabledMinuteTo?: (date: Date | undefined) => number | undefined;
   label?: string;
-  // todo добавить после добавления в Input
-  // colored?: boolean
+  colored?: boolean
   isOpenOnFocus?: boolean;
   withIcon?: boolean;
   withPicker?: boolean;
+  /** Флаг наличия кнопки сброса */
+  reset?: boolean;
+  /** Обработчик сброса значения */
+  onReset?: () => void;
 }

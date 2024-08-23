@@ -2,6 +2,12 @@ import React, { FC, useMemo, useState } from 'react';
 
 import { locale } from '@components/DatePicker/helpers';
 import { Day } from '@components/DatePicker/subcomponents';
+import { useLocale } from '@components/DatePicker/utils';
+
+import { IQuartersCalendarProps } from './types';
+
+import styles from './QuarterCalendar.module.scss';
+
 import {
   useIsDisabledQuarter,
   useIsEndQuarter,
@@ -9,13 +15,9 @@ import {
   useIsSelectedQuarter,
   useIsStartQuarter,
   useIsTodayQuarter
-} from '@components/DatePicker/subcomponents/QuartersCalendar/helpers';
-import { QuartersCalendarProps } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
-import { useLocale } from '@components/DatePicker/utils';
+} from './helpers';
 
-import styles from './QuarterCalendar.module.scss';
-
-export const QuartersCalendar: FC<QuartersCalendarProps> = ({
+export const QuartersCalendar: FC<IQuartersCalendarProps> = ({
   panelValue,
   disableChange,
   withPeriod,

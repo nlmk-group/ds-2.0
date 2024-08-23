@@ -24,6 +24,50 @@ import { SelectContext } from './context';
 import { ArrowButton, OptionItem, Options } from './subcomponents';
 import { IOptionItemProps } from './subcomponents/OptionItem/types';
 
+/**
+ * Компонент SimpleSelect представляет собой кастомизируемый выпадающий список с возможностью поиска.
+ *
+ * @component
+ * @example
+ * <SimpleSelect
+ *   value="option1"
+ *   onChange={(value) => console.log(value)}
+ *   label="Select an option"
+ *   placeholder="Choose..."
+ * >
+ *   <OptionItem value="option1" label="Option 1" />
+ *   <OptionItem value="option2" label="Option 2" />
+ * </SimpleSelect>
+ *
+ * @param {Object} props - Свойства компонента SimpleSelect
+ * @param {string|number} [props.value] - Значение селекта
+ * @param {function} [props.onChange] - Обработчик изменения значения селекта
+ * @param {string} [props.id] - Идентификатор компонента
+ * @param {string} [props.portalContainerId='root'] - id рутового контейнера для создания портала
+ * @param {ReactNode} props.children - Дочерние элементы селекта (опции меню)
+ * @param {string} [props.menuWidth] - Ширина меню селекта
+ * @param {string} [props.placeholder] - Плейсхолдер для инпута селекта
+ * @param {string} [props.label] - Лейбл инпута в селекте
+ * @param {boolean} [props.withPortal=false] - Флаг, указывающий, должно ли меню рендериться в портале
+ * @param {boolean} [props.disabled=false] - Флаг доступности селекта
+ * @param {function} [props.onBlur] - Обработчик закрытия меню options
+ * @param {function} [props.onFocus] - Обработчик открытия меню options
+ * @param {customInputColors} [props.color=customInputColors.default] - Цвет компонента
+ * @param {TSize} [props.size=sizesMappingInput.m] - Размер компонента
+ * @param {number} [props.scrollingItems=ScrollingItemsDefault] - Количество элементов после которого включается прокрутка
+ * @param {string} [props.noOptionsText='Ничего не найдено'] - Текст, отображаемый когда нет доступных опций
+ * @param {boolean} [props.searchable=false] - Флаг, указывающий, доступен ли поиск
+ * @param {string} [props.name] - name определяет имя элемента, используется для ссылки на элемент
+ * @param {function} [props.onEnterPress] - Обработчик нажатия клавиши Enter
+ * @param {CSSProperties} [props.style] - Кастомные стили для компонента
+ * @param {string} [props.className] - Добавление самостоятельного CSS класса
+ * @param {boolean} [props.colored=false] - Флаг применения цветовых стилей
+ * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса
+ * @param {function} [props.onReset] - Обработчик сброса значения
+ *
+ * @returns {JSX.Element} Компонент SimpleSelect
+ */
+
 const SimpleSelect: FC<ISelectProps> = ({
   value,
   onChange,
@@ -43,7 +87,10 @@ const SimpleSelect: FC<ISelectProps> = ({
   scrollingItems = ScrollingItemsDefault,
   noOptionsText = 'Ничего не найдено',
   searchable = false,
+  colored = false,
   onEnterPress,
+  reset,
+  onReset,
   className,
   style
 }) => {
@@ -191,8 +238,11 @@ const SimpleSelect: FC<ISelectProps> = ({
           color={color}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          colored={colored}
           icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
           className={clsx(styles.select__input, styles['input-helper'])}
+          reset={reset}
+          onReset={onReset}
           data-testid="select-input"
         />
         <Options menuStyle={{ maxWidth: selectRef.current?.offsetWidth }}>

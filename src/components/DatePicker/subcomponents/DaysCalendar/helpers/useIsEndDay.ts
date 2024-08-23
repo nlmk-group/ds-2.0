@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useIsEndDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
+import { IUseIsEndDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
 import { isBefore, isEqual } from 'date-fns';
 
-export const useIsEndDay = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsEndDayParams) =>
+export const useIsEndDay = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsEndDayParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod) {

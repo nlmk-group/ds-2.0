@@ -1,8 +1,8 @@
-import { useIsSelectedMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
+import { IUseIsSelectedMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
 import { isAfter, isBefore, isEqual } from 'date-fns';
 
 export const useIsSelectedMonth =
-  ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: useIsSelectedMonthParams) =>
+  ({ withPeriod, dateFrom, dateTo, selectedDate, panelValue }: IUseIsSelectedMonthParams) =>
     (dayAsDate: Date) => {
       return Boolean(
         withPeriod

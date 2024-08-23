@@ -2,9 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import ClickAwayListener from '@components/ClickAwayListener';
 import { useUpdatedValues } from '@components/declaration';
-import { PseudoInput } from '@components/index';
+import { ClickAwayListener, PseudoInput } from '@components/index';
 import clsx from 'clsx';
 import { isEqual } from 'date-fns';
 
@@ -15,6 +14,48 @@ import styles from './Datepicker.module.scss';
 import { defaultShiftLength } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
+
+/**
+ * Компонент DatePicker для выбора даты и времени в различных форматах.
+ * @component
+ * @param {Object} props - Свойства компонента DatePicker.
+ * @param {number|string} [props.id] - Уникальный идентификатор компонента.
+ * @param {string} [props.locale='ru'] - Локаль для форматирования дат.
+ * @param {TLevel} [props.level='day'] - Уровень детализации выбора даты.
+ * @param {'date'|'time'|'seconds'|'period'|'shift'} [props.type='date'] - Тип пикера.
+ * @param {string} [props.name] - Имя поля для использования в формах.
+ * @param {string} [props.portalContainerId='root'] - ID контейнера для портала.
+ * @param {Date} [props.valueFrom] - Начальная дата для периода.
+ * @param {Date} [props.valueTo] - Конечная дата для периода.
+ * @param {Date} [props.enabledFrom=new Date(1900, 0, 1)] - Минимальная доступная дата.
+ * @param {Date} [props.enabledTo=new Date(2100, 11, 31)] - Максимальная доступная дата.
+ * @param {function} [props.enabledHourFrom] - Функция для определения минимального доступного часа.
+ * @param {function} [props.enabledHourTo] - Функция для определения максимального доступного часа.
+ * @param {function} [props.enabledMinuteFrom] - Функция для определения минимальной доступной минуты.
+ * @param {function} [props.enabledMinuteTo] - Функция для определения максимальной доступной минуты.
+ * @param {Date} [props.value] - Выбранное значение даты.
+ * @param {function} [props.onPeriodChange] - Обработчик изменения периода.
+ * @param {function} [props.onChange] - Обработчик изменения даты.
+ * @param {string} [props.className] - Дополнительный CSS класс.
+ * @param {number} [props.shiftFrom] - Начальное значение смены для типа 'shift'.
+ * @param {number} [props.shiftTo] - Конечное значение смены для типа 'shift'.
+ * @param {2|3} [props.shiftLength=defaultShiftLength] - Длина смены.
+ * @param {boolean} [props.disableChange] - Флаг для отключения возможности изменения.
+ * @param {boolean} [props.withPortal] - Флаг для рендеринга в портале.
+ * @param {boolean} [props.colored] - Флаг для применения цветовых стилей.
+ * @param {boolean} [props.pseudo] - Флаг для отображения псевдо-инпута.
+ * @param {ReactNode} [props.pseudoChildren] - Содержимое для псевдо-инпута.
+ * @param {boolean} [props.disableChangesOnBlur=false] - Флаг для отключения изменений при потере фокуса.
+ * @param {boolean} [props.isOpenOnFocus=false] - Флаг для открытия пикера при фокусе.
+ * @param {boolean} [props.isHideYear=false] - Флаг для скрытия года.
+ * @param {boolean} [props.withoutWeekdays=false] - Флаг для отображения без дней недели.
+ * @param {function} [props.onPanelChange] - Обработчик изменения панели.
+ * @param {function} [props.onSelect] - Обработчик выбора даты.
+ * @param {boolean} [props.infiniteTimeScroll] - Флаг для бесконечной прокрутки времени.
+ * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса.
+ * @param {function} [props.onReset] - Обработчик сброса значения.
+ * @returns {JSX.Element} Компонент DatePicker.
+ */
 
 export const DatePicker: TDatePickerProps = ({
   id,
@@ -50,6 +91,8 @@ export const DatePicker: TDatePickerProps = ({
   onPanelChange,
   onSelect,
   infiniteTimeScroll,
+  reset,
+  onReset,
   ...restInputProps
 }) => {
   const withPeriod = useMemo(() => ['period', 'shift'].includes(type), [type]);
@@ -253,6 +296,8 @@ export const DatePicker: TDatePickerProps = ({
         onTabKeyDown={handleSetValues(false)}
         onBlur={handleSetValues(true)}
         colored={colored}
+        reset={reset}
+        onReset={onReset}
         isHideYear={isHideYear}
         {...restInputProps}
       />

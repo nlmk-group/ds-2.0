@@ -1,4 +1,4 @@
-import React, { ChangeEvent, DragEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, DragEvent, FC, useId, useRef, useState } from 'react';
 
 import { sizesMapping } from '@components/declaration';
 import { clsx } from 'clsx';
@@ -34,6 +34,7 @@ const DragAndDrop: FC<IDragAndDrop> = ({
   onUpload,
   cancelUpload = null
 }) => {
+  const inputId = useId();
   // drag state
   const [dragActive, setDragActive] = useState<boolean>(false);
   // ref
@@ -87,7 +88,7 @@ const DragAndDrop: FC<IDragAndDrop> = ({
       <input
         ref={inputRef}
         type="file"
-        id="input-file-upload"
+        id={`input-file-upload-${inputId}`}
         className={styles['input-file-upload']}
         multiple={multiple}
         accept={accept || fileTypes[fileType]}
@@ -102,7 +103,7 @@ const DragAndDrop: FC<IDragAndDrop> = ({
           smallText ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`],
           smallIcon && styles['label-file-upload-small-icon']
         )}
-        htmlFor="input-file-upload"
+        htmlFor={`input-file-upload-${inputId}`}
       >
         {children !== null && children}
         {children === null && smallText && !smallIcon && (

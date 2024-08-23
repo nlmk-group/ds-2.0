@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useIsStartDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
+import { IUseIsStartDayParams } from '@components/DatePicker/subcomponents/DaysCalendar/types';
 import { isBefore, isEqual } from 'date-fns';
 
-export const useIsStartDay = ({ withPeriod, dateFrom, dateCurrentHover }: useIsStartDayParams) =>
+export const useIsStartDay = ({ withPeriod, dateFrom, dateCurrentHover }: IUseIsStartDayParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (dateCurrentHover) {

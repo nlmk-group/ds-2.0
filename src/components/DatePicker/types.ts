@@ -8,7 +8,7 @@ export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 export type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 export type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 
-export interface BaseProps {
+export interface IBaseProps {
   id?: number | string;
   portalContainerId?: string;
   locale?: string;
@@ -36,9 +36,11 @@ export interface BaseProps {
   onPanelChange?: (date: Date) => void;
   onSelect?: (date: Date) => void;
   infiniteTimeScroll?: boolean;
+  reset?: boolean;
+  onReset?: () => void;
 }
 
-export interface BaseRegularProps extends BaseProps {
+export interface IBaseRegularProps extends IBaseProps {
   value?: Date;
   shiftFrom?: undefined;
   shiftTo?: undefined;
@@ -50,19 +52,19 @@ export interface BaseRegularProps extends BaseProps {
   level?: TLevel;
 }
 
-export interface DatePickerRegularProps extends BaseRegularProps {
+export interface IDatePickerRegularProps extends IBaseRegularProps {
   type?: 'date';
 }
 
-export interface DateTimePickerRegularProps extends BaseRegularProps {
+export interface IDateTimePickerRegularProps extends IBaseRegularProps {
   type?: 'time';
 }
 
-export interface DateTimeSecondsPickerRegularProps extends BaseRegularProps {
+export interface IDateTimeSecondsPickerRegularProps extends IBaseRegularProps {
   type?: 'seconds';
 }
 
-export interface BasePeriodProps extends BaseProps {
+export interface IBasePeriodProps extends IBaseProps {
   valueFrom?: Date;
   valueTo?: Date;
   onChange?: undefined;
@@ -70,7 +72,7 @@ export interface BasePeriodProps extends BaseProps {
   level?: undefined;
 }
 
-export interface DatePickerPeriodProps extends BasePeriodProps {
+export interface IDatePickerPeriodProps extends IBasePeriodProps {
   shiftFrom?: undefined;
   shiftTo?: undefined;
   shiftLength?: 2 | 3;
@@ -78,7 +80,7 @@ export interface DatePickerPeriodProps extends BasePeriodProps {
   type?: 'period';
 }
 
-export interface DatePickerUnFullPeriodProps extends BaseProps {
+export interface IDatePickerUnFullPeriodProps extends IBaseProps {
   valueFrom?: Date;
   valueTo?: Date;
   onChange?: undefined;
@@ -91,7 +93,7 @@ export interface DatePickerUnFullPeriodProps extends BaseProps {
   level?: TLevel;
 }
 
-export interface DatePickerPeriodShiftProps extends BasePeriodProps {
+export interface IDatePickerPeriodShiftProps extends IBasePeriodProps {
   shiftFrom?: number;
   shiftTo?: number;
   shiftLength?: 2 | 3;
@@ -100,12 +102,12 @@ export interface DatePickerPeriodShiftProps extends BasePeriodProps {
 }
 
 export type TDatePickerProps = FC<
-  | DatePickerRegularProps
-  | DateTimePickerRegularProps
-  | DateTimeSecondsPickerRegularProps
-  | DatePickerPeriodProps
-  | DatePickerUnFullPeriodProps
-  | DatePickerPeriodShiftProps
+  | IDatePickerRegularProps
+  | IDateTimePickerRegularProps
+  | IDateTimeSecondsPickerRegularProps
+  | IDatePickerPeriodProps
+  | IDatePickerUnFullPeriodProps
+  | IDatePickerPeriodShiftProps
 >;
 
 export type TDateValues = {

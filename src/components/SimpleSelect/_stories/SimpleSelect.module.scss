@@ -7,10 +7,10 @@
 }
 
 .customOption {
-  height: var(--90-size);
+  height: 90px;
 
   &:last-child,
   &:first-child,{
-    height: var(--90-size);
+    height: 90px;
   }
 }

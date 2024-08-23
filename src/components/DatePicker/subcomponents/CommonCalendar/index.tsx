@@ -1,14 +1,16 @@
 import React, { forwardRef } from 'react';
-import clsx from 'clsx';
 
 import { locale } from '@components/DatePicker/helpers';
 import { Footer, PeriodPicker, ShiftSelector } from '@components/DatePicker/subcomponents';
-import { CommonCalendarProps } from '@components/DatePicker/subcomponents/CommonCalendar/types';
 import { useLocale } from '@components/DatePicker/utils';
-import { Divider, Typography } from '@components/.'
+import { Divider, Typography } from '@components/index';
+import clsx from 'clsx';
+
+import { ICommonCalendarProps } from './types';
+
 import styles from './CommonCalendar.module.scss';
 
-export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
+export const CommonCalendar = forwardRef<HTMLDivElement, ICommonCalendarProps>(
   (
     {
       disableContentOfPeriodPicker,
@@ -62,9 +64,7 @@ export const CommonCalendar = forwardRef<HTMLDivElement, CommonCalendarProps>(
             <Divider />
             <div className={styles.period}>
               <div className={styles.periodTitle}>
-                <Typography variant='Caption'>
-                  {locale[language].shiftDescription}
-                </Typography>
+                <Typography variant="Caption">{locale[language].shiftDescription}</Typography>
               </div>
               <div className={styles.periodSelectors}>
                 <ShiftSelector

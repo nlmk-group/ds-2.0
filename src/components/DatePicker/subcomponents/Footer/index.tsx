@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
 
 import { locale } from '@components/DatePicker/helpers';
-import { FooterProps } from '@components/DatePicker/subcomponents/Footer/types';
 import { useLocale } from '@components/DatePicker/utils';
 import { Button, Divider } from '@components/index';
 import clsx from 'clsx';
 
+import { IFooterProps } from './types';
+
 import styles from './Footer.module.scss';
 
-export const Footer: FC<FooterProps> = ({ className, onAccept, onDecline, disable }) => {
+export const Footer: FC<IFooterProps> = ({ className, onAccept, onDecline, disable }) => {
   const language = useLocale();
 
   return (

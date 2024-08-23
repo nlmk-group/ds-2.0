@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
 import { numberedDateByLevel } from '@components/DatePicker/helpers/numberedDateByLevel';
-import { useIsEndMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
+import { IUseIsEndMonthParams } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
 
-export const useIsEndMonth = ({ dateCurrentHover, withPeriod, dateTo, dateFrom }: useIsEndMonthParams) =>
+export const useIsEndMonth = ({ dateCurrentHover, withPeriod, dateTo, dateFrom }: IUseIsEndMonthParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod) {

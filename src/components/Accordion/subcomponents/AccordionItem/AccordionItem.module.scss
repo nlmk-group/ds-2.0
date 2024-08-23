@@ -51,49 +51,49 @@
     pointer-events: none;
   }
 
-  &.default {
+  &.default .header {
     @include contentColorHelper(
-      var(--ac-accordion-default-default-bg-head),
-      var(--ac-accordion-default-default-text),
-      var(--ac-accordion-default-default-icon)
+        var(--ac-accordion-default-default-bg-head),
+        var(--ac-accordion-default-default-text),
+        var(--ac-accordion-default-default-icon)
     );
 
     &.hovered {
       @include contentColorHelper(
-        var(--ac-accordion-default-hover-bg-head),
-        var(--ac-accordion-default-hover-heading),
-        var(--ac-accordion-default-hover-icon)
+          var(--ac-accordion-default-hover-bg-head),
+          var(--ac-accordion-default-hover-heading),
+          var(--ac-accordion-default-hover-icon)
       );
     }
     &.disabled {
       @include contentColorHelper(
-        var(--ac-accordion-default-disabled-bg-head),
-        var(--ac-accordion-default-disabled-heading),
-        var(--ac-accordion-default-disabled-icon)
+          var(--ac-accordion-default-disabled-bg-head),
+          var(--ac-accordion-default-disabled-heading),
+          var(--ac-accordion-default-disabled-icon)
       );
     }
   }
 
-  &.paper {
+  &.paper .header {
     @include contentColorHelper(
-      var(--ac-accordion-paper-default-bg-head),
-      var(--ac-accordion-paper-default-heading),
-      var(--ac-accordion-paper-default-icon)
+        var(--ac-accordion-paper-default-bg-head),
+        var(--ac-accordion-paper-default-heading),
+        var(--ac-accordion-paper-default-icon)
     );
 
     &.hovered {
       @include contentColorHelper(
-        var(--ac-accordion-paper-hover-bg-head),
-        var(--ac-accordion-paper-hover-heading),
-        var(--ac-accordion-paper-hover-icon)
+          var(--ac-accordion-paper-hover-bg-head),
+          var(--ac-accordion-paper-hover-heading),
+          var(--ac-accordion-paper-hover-icon)
       );
     }
 
     &.disabled {
       @include contentColorHelper(
-        var(--ac-accordion-paper-disabled-bg-head),
-        var(--ac-accordion-default-disabled-heading),
-        var(--ac-accordion-paper-disabled-icon)
+          var(--ac-accordion-paper-disabled-bg-head),
+          var(--ac-accordion-default-disabled-heading),
+          var(--ac-accordion-paper-disabled-icon)
       );
     }
   }

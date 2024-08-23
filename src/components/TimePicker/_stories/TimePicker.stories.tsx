@@ -4,7 +4,6 @@ import { Button, TimePicker } from '@components/index';
 import { argsTypes } from '@components/TimePicker/_stories/argsTypes';
 import { TTimePickerType } from '@components/TimePicker/types';
 import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
 import { addMinutes } from 'date-fns';
 
 import styles from './TimePicker.module.scss';
@@ -17,7 +16,7 @@ export default {
   decorators: [withWrapper],
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: argsTypes
-} as Meta<typeof TimePicker>;
+};
 
 export const TimePickerDefault = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -70,32 +69,6 @@ export const TimePickerWithDisabledPanel = (argTypes: TTimePickerType): JSX.Elem
 
   return <TimePicker value={value} disabledPanel={true} {...argTypes} onChange={handleValueChange} />;
 };
-
-// todo вернуть когда в Input появится пропс colored
-// export const TimePickerWithColored = (): JSX.Element => {
-//     const [colored, setColored] = useState(false)
-//     const [value, onChange] = useState(new Date())
-//     const handleChange = (e) => {
-//         onChange(e)
-//         if (e.getHours() !== new Date(Date.now()).getHours() || e.getMinutes() !== new Date(Date.now()).getMinutes()) {
-//             setColored(true)
-//         } else {
-//             setColored(false)
-//         }
-//     }
-//     return (
-//         <Grid>
-//             <Grid style={{ marginBottom: '10px' }}>
-//                 <TimePicker value={value} colored={colored} onChange={handleChange} />
-//             </Grid>
-//             <Grid>
-//                 <Button style={{ marginLeft: '10px' }} onClick={() => setColored(false)}>
-//                     Сохранить
-//                 </Button>
-//             </Grid>
-//         </Grid>
-//     )
-// }
 
 export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());

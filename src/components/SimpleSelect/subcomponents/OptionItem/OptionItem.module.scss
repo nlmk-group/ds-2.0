@@ -1,17 +1,16 @@
 .item {
   position: relative;
-  color: var(--ac-select-item-default-label);
+  color: var(--steel-90);
   white-space: normal;
   word-wrap: break-word;
   text-wrap: balance;
 
   &:hover {
-    color: var(--ac-select-item-hover-label);
-    background-color: var(--ac-select-item-hover-bg);
+    background-color: var(--steel-30);
   }
 
   &.disabled {
-    opacity: var(--45-opacity);
+    opacity: 0.45;
 
     div {
       cursor: default;
@@ -20,17 +19,14 @@
   }
 
   &.focused {
-    color: var(--ac-select-item-hover-label);
-    background-color: var(--ac-select-item-hover-bg);
+    background-color: var(--steel-30);
   }
 
   &.selected {
-    background: var(--ac-select-item-selected-bg);
-    color: var(--ac-select-item-selected-label);
+    background: var(--brand-sapphire-10);
 
     &:hover {
-      background-color: var(--ac-select-item-activehover-bg);
-      color: var(--ac-select-item-activehover-label);
+      background-color: var(--brand-sapphire-20);
     }
   }
 }

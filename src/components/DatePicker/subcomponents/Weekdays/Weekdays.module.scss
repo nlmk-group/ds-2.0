@@ -1,14 +1,12 @@
 .root {
-  color: var(--ac-calendar-general-title);
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: var(--ac-calendar-general-bg);
+  background: var(--steel-10);
 }
 
 .weekday {
-  width: var(--40-size);
-  min-width: var(--40-size);
-  height: var(--40-size);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

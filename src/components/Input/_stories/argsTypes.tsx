@@ -1,6 +1,14 @@
 import { customInputColors, sizesMappingInput } from '@components/declaration';
+import { IconArticleOutlined16, IconArticleOutlined24, IconArticleOutlined32 } from '@root/src/components';
+import React from 'react';
 
-export const argsTypes = {
+const iconOptions = {
+  IconArticleOutlined32: <IconArticleOutlined32 />,
+  IconArticleOutlined24: <IconArticleOutlined24 />,
+  IconArticleOutlined16: <IconArticleOutlined16 />
+};
+
+const argsTypes = {
   onBlur: {
     description:
       'Callback, который будет вызван при изменении значения внутри input, используйте для логики валидации или других действий при потере фокуса',
@@ -25,19 +33,30 @@ export const argsTypes = {
   },
   value: {
     description: 'Значение поля input',
-    control: { type: 'text' }
+    control: { type: 'text' },
+    table: {
+      type: {
+        summary: 'string'
+      }
+    }
   },
   helperText: {
     description: 'Строка для вспомогательно текста под инпутом. Может быть как текстом, так и элементом ReactNode',
     control: { type: 'text' }
   },
-  label: {
-    description: 'Строка для вспомогательно текста над инпутом',
-    control: { type: 'text' }
-  },
   icon: {
-    description: 'Элемент с иконкой, который располагается с правой стороны инпута',
-    control: { type: 'boolean' }
+    description: 'Элемент с иконкой, который располагается с правой стороны инпута.',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    options: Object.keys(iconOptions),
+    control: { type: 'select' },
+    mapping: iconOptions
   },
   size: {
     description: 'Свойство, позволяющее регулировать высоту инпута',
@@ -100,18 +119,6 @@ export const argsTypes = {
     description: 'Идентификатор компонента',
     control: { type: 'text' }
   },
-  pseudo: {
-    description: 'Свойство, позволяющее переключать компонент с default на PseudoInput',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      },
-      type: {
-        summary: 'boolean'
-      }
-    },
-    control: { type: 'boolean' }
-  },
   colored: {
     description: 'Свойство, позволяющее изменить цвет фона инпута на светло-желтый',
     table: {
@@ -123,5 +130,39 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  inputRef: {
+    description: 'Ref для доступа к DOM-элементу инпута',
+    table: {
+      type: {
+        summary: 'Ref<HTMLInputElement | HTMLTextAreaElement>'
+      }
+    }
+  },
+  name: {
+    description: 'Имя инпута, используется для идентификации в формах',
+    control: { type: 'text' }
+  },
+  label: {
+    description: 'Текст метки (label) инпута',
+    control: { type: 'text' }
+  },
+  className: {
+    description: 'Дополнительный CSS класс для обертки инпута',
+    control: { type: 'text' }
+  },
+  pseudo: {
+    description: 'Свойство, позволяющее отображать компонент как PseudoInput (не редактируемое поле)',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
   }
 };
+
+export default argsTypes;

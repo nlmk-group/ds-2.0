@@ -10,12 +10,12 @@ import {
   yearsBeforeCurrent
 } from '@components/DatePicker/helpers';
 import { CommonCalendar, TimeSelector } from '@components/DatePicker/subcomponents';
-import { CalendarPanelProps } from '@components/DatePicker/subcomponents/CalendarPanel/types';
+import { ICalendarPanelProps } from '@components/DatePicker/subcomponents/CalendarPanel/types';
 import { TLevel } from '@components/DatePicker/types';
 import { useLocale } from '@components/DatePicker/utils';
 import { set } from 'date-fns';
 
-export const CalendarPanel = forwardRef<HTMLDivElement, CalendarPanelProps>(
+export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
   (
     {
       level,

@@ -1,8 +1,8 @@
 @mixin common-wrapper-styles {
   display: flex;
-  height: var(--24-size);
+  height: 24px;
   align-items: center;
-  gap: var(--8-space);
+  gap: 8px;
 }
 
 @mixin set-height-and-line-height($size) {
@@ -95,7 +95,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    height: var(--24-size);
+    height: 24px;
     width: 100%;
   }
 }
@@ -108,7 +108,7 @@
 }
 
 .left-wrapper {
-  margin: 0 var(--8-space) auto 0;
+  margin: 0 8px auto 0;
 }
 
 .inconspicuous-right-wrapper {
@@ -170,8 +170,8 @@
 }
 
 .icon-wrapper {
-  height: var(--24-size);
-  width: var(--24-size);
+  height: 24px;
+  width: 24px;
   svg {
     color: var(--ac-select-item-default-label);
   }
@@ -209,7 +209,7 @@
 }
 
 .text-container-item {
-  width: 70%;
+  width: 90%;
 }
 
 .text-container-item-full-width {
@@ -252,8 +252,8 @@
 }
 
 .toggle-list-btn {
-  height: var(--24-size);
-  width: var(--24-size);
+  height: 24px;
+  width: 24px;
   transition: 0.3s ease-out;
 }
 

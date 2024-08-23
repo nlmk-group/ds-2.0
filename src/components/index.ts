@@ -41,6 +41,7 @@ export { default as Header } from './Header';
 export { default as Switch } from './Switch';
 export { default as TimePicker } from './TimePicker';
 export { default as ToggleButtonGroup } from './ToggleButtonGroup';
+export { default as SegmentButtonGroup } from './SegmentButtonGroup';
 export { default as ImagePicture } from './ImagePicture';
 export { default as Modal } from './Modal';
 export { default as Sidebar } from './Sidebar';

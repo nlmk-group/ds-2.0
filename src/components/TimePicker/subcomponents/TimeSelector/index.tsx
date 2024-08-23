@@ -1,14 +1,16 @@
 import React, { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { TimeType } from '@components/declaration/enums';
-import MeasureUnit from '@components/TimePicker/subcomponents/MeasureUnit';
+import { Typography } from '@components/index';
+import { TimeUnits } from '@components/TimePicker/helpers';
 import clsx from 'clsx';
 import { set } from 'date-fns';
-import { Typography } from '@components/.'
 
 import { ITimeSelectorProps } from './types';
 
 import styles from './TimeSelector.module.scss';
+
+import MeasureUnit from '../MeasureUnit';
 
 const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
   (
@@ -69,8 +71,8 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
       >
         <div className={styles['selector-column']} ref={setHoursContainerRef}>
           <div className={styles['selector-column-title']}>
-            <Typography variant='Body1-Medium'>
-              чч
+            <Typography variant="Body1-Medium" color="var(--steel-70)">
+              {TimeUnits.hh}
             </Typography>
           </div>
           {enabledHours.map(hour => (
@@ -86,8 +88,8 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
         </div>
         <div className={styles['selector-column']} ref={setMinutesContainerRef}>
           <div className={styles['selector-column-title']}>
-            <Typography variant='Body1-Medium'>
-              мм
+            <Typography variant="Body1-Medium" color="var(--steel-70)">
+              {TimeUnits.mm}
             </Typography>
           </div>
           {enabledMinutes.map(minute => (
@@ -103,7 +105,9 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
         </div>
         {isTimeWithSecondsType && (
           <div className={styles['selector-column']} ref={setSecondsContainerRef}>
-            <div className={styles['selector-column-title']}>сс</div>
+            <Typography variant="Body1-Medium" className={styles['selector-column-title']}>
+              {TimeUnits.ss}
+            </Typography>
             {Array.from({ length: 60 }, (_, i) => i).map(second => (
               <MeasureUnit
                 key={second}

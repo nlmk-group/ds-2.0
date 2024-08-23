@@ -1,4 +1,4 @@
-export interface ShiftSelectorProps {
+export interface IShiftSelectorProps {
   value?: number;
   disabled?: boolean;
   shiftLength?: 2 | 3;

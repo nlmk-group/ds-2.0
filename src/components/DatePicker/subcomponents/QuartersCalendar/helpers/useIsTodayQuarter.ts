@@ -1,7 +1,7 @@
-import { useIsTodayQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
+import { IUseIsTodayQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
 
 export const useIsTodayQuarter =
-  ({ panelValue }: useIsTodayQuarterParams) =>
+  ({ panelValue }: IUseIsTodayQuarterParams) =>
     (quarterNumber: number) => {
       return Boolean(
         Math.floor((new Date().getMonth() + 3) / 3) === quarterNumber + 1 &&

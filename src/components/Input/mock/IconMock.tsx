@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-export interface IIconMock {
+export interface IIconMockProps {
   weight?: string;
 }
 
-export const IconMock: FC<IIconMock> = ({ weight }) => {
+export const IconMock: FC<IIconMockProps> = ({ weight }) => {
   return (
     <div
       style={{
@@ -14,7 +14,8 @@ export const IconMock: FC<IIconMock> = ({ weight }) => {
         width: '32px',
         minWidth: '32px',
         height: '32px',
-        zIndex: 5
+        zIndex: 5,
+        backgroundColor: 'transparent'
       }}
     >
       {weight}

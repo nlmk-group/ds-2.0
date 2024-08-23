@@ -1,7 +1,7 @@
 .root {
   display: grid;
-  grid-template-columns: repeat(3, var(--40-size));
-  border-left: var(--1-border) solid var(--divider-divider);
+  grid-template-columns: repeat(3, 40px);
+  border-left: 1px solid var(--unique-divider);
   padding-top: 20px;
   padding-left: 18px;
   padding-bottom: 20px;
@@ -30,12 +30,12 @@
 .columnTitle {
   position: sticky;
   top: 0;
-  color: var(--ac-calendar-general-title);
-  background: var(--ac-calendar-general-bg);
+  color: var(--steel-70);
+  background: var(--steel-10);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--40-size);
-  height: var(--48-size);
-  z-index: 99;
+  width: 40px;
+  height: 48px;
+  z-index: 100;
 }

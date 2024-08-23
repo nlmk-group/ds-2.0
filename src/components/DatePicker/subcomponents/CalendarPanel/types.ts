@@ -5,7 +5,7 @@ import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '@components/
 type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
 type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
 
-export interface CalendarPanelProps {
+export interface ICalendarPanelProps {
   type: `${CALENDAR_FORMAT_ENUM}`;
   withTime?: boolean;
   value?: Date;

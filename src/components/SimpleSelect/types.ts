@@ -109,4 +109,19 @@ export interface ISelectProps {
    * Добавление самостоятельного CSS класса
    */
   className?: string;
+
+  /**
+   * Флаг применения цветовых стилей
+   */
+  colored?: boolean;
+
+  /**
+   * Флаг наличия кнопки сброса
+   */
+  reset?: boolean;
+
+  /**
+   * Обработчик сброса значения
+   */
+  onReset?: () => void;
 }

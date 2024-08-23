@@ -5,13 +5,15 @@
   width: 100%;
   position: relative;
 }
+
 .disabled {
   pointer-events: none;
 
   path {
-    fill: var(--ac-icon-grey);
+    fill: var(--steel-70);
   }
 }
+
 .isOpen {
-  z-index: 99999;
+  z-index: 100000;
 }

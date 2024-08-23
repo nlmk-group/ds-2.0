@@ -1,19 +1,20 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 import { LEVEL_MAPPING_ENUM } from '@components/DatePicker/helpers';
-import { PeriodPickerProps } from '@components/DatePicker/subcomponents/PeriodPicker/types';
-import clsx from 'clsx';
 import {
   Button,
+  IconChevronArrowDownOutlined24,
   IconChevronArrowLeftOutlined24,
   IconChevronArrowRightOutlined24,
-  IconChevronArrowDownOutlined24,
   Typography
-} from '@components/.'
+} from '@components/index';
+import clsx from 'clsx';
+
+import { IPeriodPickerProps } from './types';
 
 import styles from './PeriodPicker.module.scss';
 
-export const PeriodPicker: FC<PeriodPickerProps & PropsWithChildren> = ({
+export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
   disableContent,
   onContentClick,
   onLeftClick,
@@ -37,32 +38,30 @@ export const PeriodPicker: FC<PeriodPickerProps & PropsWithChildren> = ({
     <div className={clsx(styles.root, disableContent && styles.disableContent)}>
       <Button
         className={styles['btn-icon-arrow']}
-        onClick={onLeftClick} 
-        fill='clear'
-        variant='grey'
-        iconButton={<IconChevronArrowLeftOutlined24 data-testid="left-panel-icon"/>}
+        onClick={onLeftClick}
+        fill="clear"
+        variant="grey"
+        iconButton={<IconChevronArrowLeftOutlined24 data-testid="left-panel-icon" />}
       />
       <div data-testid="level-switcher" className={styles.content} onClick={handleClick}>
         <div className={styles.contentText}>
-          <Typography variant='Body1-Medium'>
-            {children}
-          </Typography>
+          <Typography variant="Body1-Medium" color="var(--steel-90)">{children}</Typography>
         </div>
         {shouldShowIcon && (
           <Button
-            className={styles['btn-icon-arrow']}
-            onClick={onLeftClick} 
-            fill='clear'
-            iconButton={<IconChevronArrowDownOutlined24 data-testid="left-panel-icon"/>}
+            className={styles['btn-icon-middle']}
+            onClick={onLeftClick}
+            fill="clear"
+            iconButton={<IconChevronArrowDownOutlined24 data-testid="middle-panel-icon" />}
           />
         )}
       </div>
       <Button
         className={styles['btn-icon-arrow']}
-        onClick={onRightClick} 
-        fill='clear'
-        variant='grey'
-        iconButton={<IconChevronArrowRightOutlined24 data-testid="left-panel-icon"/>}
+        onClick={onRightClick}
+        fill="clear"
+        variant="grey"
+        iconButton={<IconChevronArrowRightOutlined24 data-testid="right-panel-icon" />}
       />
     </div>
   );

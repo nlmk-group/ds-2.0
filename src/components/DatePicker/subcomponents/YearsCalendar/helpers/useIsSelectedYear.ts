@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { normalizeDateToYear } from '@components/DatePicker/subcomponents/YearsCalendar/helpers/normalizeDateToYear';
-import { useIsSelectedYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
+import { IUseIsSelectedYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
 import { isAfter, isBefore, isEqual } from 'date-fns';
 
 export const useIsSelectedYear = ({
@@ -10,7 +10,7 @@ export const useIsSelectedYear = ({
   dateTo,
   selectedDate,
   dateCurrentHover
-}: useIsSelectedYearParams) =>
+}: IUseIsSelectedYearParams) =>
   useCallback(
     (dayAsDate: Date) => {
       const normalizedToDate = dateTo && normalizeDateToYear(dateTo);

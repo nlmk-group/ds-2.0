@@ -72,7 +72,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     if (iconButton) {
       return (
-        <button className={clsx(classes, className)} {...props}>
+        <button ref={ref} className={clsx(classes, className)} {...props}>
           {iconButton}
         </button>
       );

@@ -1,135 +1,110 @@
-.root {
+.radio {
   display: flex;
-  gap: var(--12-space);
+  gap: 12px;
 
-  @mixin size-list {
-    appearance: none;
-    height: var(--16-size);
-    width: var(--16-size);
+  // Миксин для установки размеров круга радио-кнопки
+  @mixin radio-circle($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
   }
 
-  @mixin small-size-list {
-    appearance: none;
-    height: calc(var(--20-size) / 2);
-    width: calc(var(--20-size) / 2);
-  }
-
-  @mixin padding-list {
+  // Миксин для центрирования содержимого
+  @mixin center-content {
+    position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 50%;
     transform: translate(-50%, -50%);
   }
 
+  // Базовые стили для input[type="radio"]
   input[type="radio"] {
-    height: var(--20-size);
-    width: var(--20-size);
+    @include radio-circle(20px);
     appearance: none;
     position: relative;
     margin: 0;
-  }
+    cursor: pointer;
 
-  input[type="radio"] {
+    // Внешний круг радио-кнопки
     &:before {
-      @include size-list;
-      @include padding-list;
       content: "";
-      cursor: pointer;
-      position: absolute;
-      border: var(--2-border) solid var(--ac-radiobutton-unselected-normal-stroke);
-      background: var(--ac-radiobutton-selected-normal-bg);
+      @include center-content;
+      @include radio-circle(16px);
+      border: 2px solid var(--steel-60);
+      background: var(--steel-10);
     }
-  }
 
-  input[type="radio"] {
-    &:not(:disabled) {
-      &:not(:checked) {
-        &:hover {
-          &:before {
-            border-color: var(--ac-radiobutton-unselected-focused-stroke);
-            box-shadow: 0 0 0 6px var(--ac-radiobutton-unselected-focused-focus);
-          }
-        }
-      }
+    // Внутренний круг радио-кнопки (появляется при выборе)
+    &:after {
+      content: "";
+      @include center-content;
+      @include radio-circle(10px);
+      background-color: var(--brand-sapphire-60);
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
     }
-  }
 
-  input[type="radio"] {
-    &:hover {
-      &:checked {
-        &:not(:disabled) {
-          &:before {
-            border-color: var(--ac-radiobutton-selected-focused);
-            box-shadow: 0 0 0 var(--1-space) var(--default-second), 0 0 0 var(--6-size) var(--ac-radiobutton-selected-focused-focus);
-          }
-        }
-      }
-    }
-  }
-
-  input[type="radio"] {
-    &:disabled {
-      &:before {
-        background-color: var(--ac-radiobutton-unselected-disabled-fill);
-        border-color: var(--ac-radiobutton-unselected-disabled-stroke);
-        cursor: default;
-      }
-    }
-  }
-
-  input[type="radio"] {
+    // Стили для выбранной радио-кнопки
     &:checked {
+      &:before {
+        border-color: var(--brand-sapphire-60);
+      }
+
       &:after {
-        @include small-size-list;
-        @include padding-list;
-        content: "";
-        position: absolute;
-        background-color: var(--ac-radiobutton-selected-normal);
-        visibility: visible;
+        opacity: 1;
       }
     }
-  }
 
-  input[type="radio"] {
-    &:checked {
-      &:disabled {
-        &:after {
-          cursor: default;
-          opacity: var(--50-opacity);
-        }
-      }
-    }
-  }
-
-  input[type="radio"] {
-    &:checked {
-      &:before {
-        border-color: var(--ac-radiobutton-selected-normal);
-      }
-    }
-  }
-
-  input[type="radio"] {
-    &:checked {
-      &:disabled {
+    // Стили при наведении
+    &:not(:disabled) {
+      &:hover {
         &:before {
-          cursor: default;
-          opacity: var(--50-opacity);
+          border-color: var(--steel-60);
+          box-shadow: 0 0 0 6px rgb(from var(--steel-60) r g b / 12%);
+        }
+      }
+
+      &:checked:hover {
+        &:before {
+          border-color: var(--brand-sapphire-60);
+          box-shadow: 0 0 0 6px rgb(from var(--brand-sapphire-60) r g b / 12%);
+        }
+
+        &:after {
+          box-shadow: 0 0 0 3px rgb(from var(--brand-sapphire-60) r g b / 12%);
+        }
+      }
+    }
+
+    // Стили для отключенной радио-кнопки
+    &:disabled {
+      cursor: default;
+
+      &:before {
+        background-color: var(--steel-30);
+        border-color: var(--steel-50);
+      }
+
+      &:checked {
+        &:before, &:after {
+          opacity: 0.5;
+        }
+
+        &:after {
+          background-color: var(--steel-50);
         }
       }
     }
   }
 }
 
+// Стили для лейбла радио-кнопки
 .label {
-  display: flex;
-  align-items: center;
   cursor: pointer;
-  color: var(--text-grey-900);
-}
 
-.label-disabled {
-  color: var(--text-grey-500);
-  pointer-events: none;
-  cursor: default;
+  &-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+  }
 }

@@ -1,4 +1,4 @@
-export interface QuartersCalendarProps {
+export interface IQuartersCalendarProps {
   panelValue?: Date;
   enabledFrom?: Date;
   enabledTo?: Date;
@@ -11,11 +11,11 @@ export interface QuartersCalendarProps {
   withPeriod?: boolean;
 }
 
-export interface useIsTodayQuarterParams {
+export interface IUseIsTodayQuarterParams {
   panelValue?: Date | null;
 }
 
-export interface useIsSelectedQuarterParams {
+export interface IUseIsSelectedQuarterParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateFrom?: Date | null;
@@ -24,27 +24,27 @@ export interface useIsSelectedQuarterParams {
   panelValue?: Date | null;
 }
 
-export interface useIsStartQuarterParams {
+export interface IUseIsStartQuarterParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateFrom?: Date | null;
 }
 
-export interface useIsMidQuarterParams {
-  dateCurrentHover?: Date | null;
-  withPeriod?: boolean;
-  dateFrom?: Date | null;
-  dateTo?: Date | null;
-}
-
-export interface useIsEndQuarterParams {
+export interface IUseIsMidQuarterParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateFrom?: Date | null;
   dateTo?: Date | null;
 }
 
-export interface quarterParams {
+export interface IUseIsEndQuarterParams {
+  dateCurrentHover?: Date | null;
+  withPeriod?: boolean;
+  dateFrom?: Date | null;
+  dateTo?: Date | null;
+}
+
+export interface IQuarterParams {
   month: number;
   name: string;
   values: number[];

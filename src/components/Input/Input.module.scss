@@ -1,67 +1,54 @@
-@mixin padding-mixin($pt, $pr, $pb, $pl) {
-  padding: $pt $pr $pb $pl;
-}
-
 @mixin input-color-states {
   &.error {
-    color: var(--ac-label-input-error);
+    color: var(--spectrum-red-60);
   }
 
   &.warning {
-    color: var(--ac-label-input-warning);
+    color: var(--spectrum-yellow-60);
   }
 
   &.success {
-    color: var(--ac-label-input-success);
-  }
-}
-
-@mixin description-color-states {
-  &.error {
-    color: var(--ac-description-input-error);
-  }
-
-  &.warning {
-    color: var(--ac-description-input-warning);
-  }
-
-  &.success {
-    color: var(--ac-description-input-success);
+    color: var(--spectrum-green-60);
   }
 }
 
 @mixin input-border-color-states {
   &.error {
-    border-color: var(--ac-input-error-stroke);
-    background-color: var(--ac-input-error-bg);
-    color: var(--ac-description-input-error);
+    border-color: var(--spectrum-red-60);
+    background-color: var(--steel-10);
   }
 
   &.warning {
-    border-color: var(--ac-input-warning-stroke);
-    background-color: var(--ac-input-warning-bg);
-    color: var(--ac-description-input-warning);
+    border-color: var(--spectrum-yellow-60);
+    background-color: var(--steel-10);
   }
 
   &.success {
-    border-color: var(--ac-input-success-stroke);
-    background-color: var(--ac-input-success-bg);
-    color: var(--ac-description-input-success);
+    border-color: var(--spectrum-green-60);
+    background-color: var(--steel-10);
   }
 }
 
 @mixin font-styles {
-  font-size: var(--body1-medium-font-size);
-  font-weight: var(--body1-medium-font-weight);
-  line-height: var(--body1-medium-line-height);
-  letter-spacing: var(--body1-medium-letter-spacing);
-  text-decoration: var(--body1-medium-text-decoration);
+  font-size: var(--body1-medium-16-fontSize);
+  font-weight: var(--body1-medium-16-fontWeight);
+  line-height: var(--body1-medium-16-lineHeight);
+  letter-spacing: var(--body1-medium-16-letterSpacing);
+  text-decoration: var(--body1-medium-16-textDecoration);
 }
 
 .input-wrapper {
   font-family: var(--font-families-pt-root-ui);
   position: relative;
 
+  &:hover {
+    .text-field:not(:disabled):not(:focus) {
+      border-color: var(--steel-80);
+      @include input-border-color-states;
+    }
+  }
+
+  // Стили для "плавающего" лейбла
   input:focus ~ label,
   textarea:focus ~ label,
   input:not(:placeholder-shown):not(:focus) ~ label,
@@ -69,23 +56,35 @@
     top: -6px;
     left: 12px;
     line-height: 11px;
-    background: linear-gradient(to top, var(--default-second) 50%, transparent 50%);
-
-    @include padding-mixin(var(--0-space), var(--4-space), var(--0-space), var(--4-space));
+    padding: 0 4px;
+    // Создаем эффект "разрыва" границы инпута для лейбла
+    background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
   }
 
+  // Стили для лейбла при colored=true
+  &.colored {
+    input:focus ~ label,
+    textarea:focus ~ label,
+    input:not(:placeholder-shown):not(:focus) ~ label,
+    textarea:not(:placeholder-shown):not(:focus) ~ label {
+      background: linear-gradient(to top, var(--spectrum-yellow-10) 50%, transparent 50%);
+    }
+  }
+
+  // Стили для лейбла в фокусе
   input:focus ~ label,
   textarea:focus ~ label {
-    color: var(--ac-label-input-focused);
-
+    color: var(--brand-sapphire-60);
     @include input-color-states;
   }
 
+  // Стили для лейбла при отключенном инпуте
   input:not(:placeholder-shown):not(:focus):disabled ~ label,
   textarea:not(:placeholder-shown):not(:focus):disabled ~ label {
-    background: linear-gradient(to top, var(--text-grey-50) 50%, transparent 50%);
+    background: linear-gradient(to top, var(--steel-30) 50%, transparent 50%);
   }
 
+  // Скрываем плейсхолдер, когда инпут не пустой
   input:not(:placeholder-shown),
   textarea:not(:placeholder-shown),
   input:not(:focus),
@@ -98,23 +97,23 @@
 
 .text-field {
   width: 100%;
-  height: var(--40-size);
-  color: var(--ac-input-default-text);
+  height: 40px;
+  color: var(--steel-90);
   box-sizing: border-box;
   font-family: inherit;
   @include font-styles;
-  border-radius: var(--4-radius);
+  border-radius: 4px;
   z-index: 2;
-  border: var(--1-border) solid var(--ac-input-default-stroke);
+  border: 1px solid var(--steel-50);
   outline: none;
-  background: var(--ac-input-default-bg);
+  background: var(--steel-10);
   font-variant-numeric: tabular-nums lining-nums;
-  padding: 0 var(--16-space);
+  padding: 0 16px;
   @include input-border-color-states;
 
   &::placeholder {
     @include font-styles;
-    color: var(--ac-label-input-default);
+    color: var(--steel-70);
   }
 
   &.input-with-icon {
@@ -122,58 +121,50 @@
   }
 
   &.compact {
-    height: var(--32-size);
+    height: 32px;
 
     ~ label {
-      @include padding-mixin(5px, var(--16-space), 5px, var(--16-space));
+      padding: 5px 16px;
     }
 
     ~ .icon {
-      height: var(--24-size);
+      height: 24px;
     }
   }
 
   &.extra-compact {
-    height: var(--28-size);
+    height: 28px;
 
     ~ label {
-      @include padding-mixin(4px, var(--16-space), 4px, var(--16-space));
+      padding: 4px 16px;
     }
 
     ~ .icon {
-      height: var(--16-size);
+      height: 16px;
       padding-top: 2px;
     }
   }
 
-  &:hover {
-    border-color: var(--ac-input-hover-stroke);
-    background-color: var(--ac-input-hover-bg);
-    color: var(--ac-input-hover-text);
-
-    @include input-border-color-states;
-  }
-
   &:disabled {
-    border-color: var(--ac-input-disabled-stroke);
-    background-color: var(--ac-input-disabled-bg);
-    -webkit-text-fill-color: var(--ac-input-disabled-text);
-    color: var(--ac-input-disabled-text);
+    border-color: var(--steel-50);
+    background-color: var(--steel-30);
+    -webkit-text-fill-color: var(--steel-70);
+    color: var(--steel-70);
   }
 
   &:focus {
-    border-color: var(--ac-input-focused-stroke);
+    border-color: var(--brand-sapphire-60);
 
     @include input-border-color-states;
   }
 }
 
 .textarea {
-  min-height: var(--80-size);
+  min-height: 80px;
   display: inline-block;
   overflow: auto;
   resize: none;
-  padding: var(--8-space) var(--16-space);
+  padding: 8px 16px;
 
   &.resize {
     resize: both;
@@ -182,15 +173,13 @@
   ::-webkit-resizer {
     display: none;
   }
-
 }
 
 .label {
   position: absolute;
-  padding: 10px var(--16-space);
+  padding: 10px 16px;
   left: 0;
-  color: var(--ac-label-input-default);
-
+  color: var(--steel-70);
   cursor: text;
   transition: 100ms ease-out;
 
@@ -204,42 +193,42 @@
 
 .icon {
   position: absolute;
-  inset-block-start: var(--4-space);
-  height: var(--32-size);
+  top: 4px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ac-input-default-text);
-  cursor: pointer;
-  background: var(--steel-20);
+  color: var(--brand-sapphire-60);
+  background: transparent;
   @include input-color-states;
 }
 
-.close-icon-with-text {
-  inset-inline-end: var(--48-space);
-}
+.reset {
+  cursor: pointer;
+  pointer-events: auto;
+  right: 8px;
 
-.close-icon-without-text {
-  inset-inline-end: var(--8-space);
+  &-with-icon {
+    right: 48px;
+  }
 }
 
 .icon-text {
-  inset-inline-end: var(--1-space);
+  right: 8px;
 }
 
 .helper-text {
   display: flex;
   margin: 0;
-  padding-top: var(--4-space);
-  padding-left: var(--16-space);
-  color: var(--ac-description-input-default);
-
-  @include description-color-states;
+  padding-top: 4px;
+  padding-left: 16px;
+  color: var(--steel-70);
+  @include input-color-states;
 }
 
 .disabled {
-  color: var(--text-grey-500);
-  background-color: var(--text-grey-50);
+  color: var(--steel-70);
+  background-color: var(--steel-30);
   cursor: default;
 
   &-input {
@@ -248,5 +237,8 @@
 }
 
 .colored {
-  background-color: var(--ac-input-renew-bg) !important;
+  &.text-field,
+  &.textarea {
+    background-color: var(--spectrum-yellow-10) !important;
+  }
 }

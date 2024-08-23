@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Box, IconSelectionContains24, OptionItem, SimpleSelect, Typography } from '@components/index';
-import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -29,7 +28,7 @@ export default {
   argTypes: argsTypes,
   decorators: [withWrapper],
   parameters: { actions: { argTypesRegex: '^on.*' } }
-} as Meta<typeof SimpleSelect>;
+};
 
 export const SelectDefault = (args: ISelectProps): JSX.Element => {
   const [value, setValue] = useState(args.value || '');

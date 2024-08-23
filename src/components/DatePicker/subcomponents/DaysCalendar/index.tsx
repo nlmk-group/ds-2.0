@@ -2,19 +2,14 @@ import React, { FC, useMemo, useState } from 'react';
 
 import { getCalendar } from '@components/DatePicker/helpers';
 import { Day, Weekdays } from '@components/DatePicker/subcomponents';
-import {
-  useIsDaySelected,
-  useIsDisabled,
-  useIsEndDay,
-  useIsMidDay,
-  useIsStartDay,
-  useIsToday
-} from '@components/DatePicker/subcomponents/DaysCalendar/helpers';
-import { CalendarProps } from '@components/DatePicker/subcomponents/DaysCalendar/types';
+
+import { ICalendarProps } from './types';
 
 import styles from './DaysCalendar.module.scss';
 
-export const DaysCalendar: FC<CalendarProps> = ({
+import { useIsDaySelected, useIsDisabled, useIsEndDay, useIsMidDay, useIsStartDay, useIsToday } from './helpers';
+
+export const DaysCalendar: FC<ICalendarProps> = ({
   withTime,
   disableChange,
   valueFrom,

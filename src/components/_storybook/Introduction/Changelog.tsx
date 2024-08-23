@@ -23,6 +23,128 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.5.1 - <span className={styles.date}>23.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Изменен цвет обводки кнопок</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.0 - <span className={styles.date}>22.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.4.1 - <span className={styles.date}>19.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pseudoinput-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                PseudoInput
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-radio-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Radio
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.4.0 - <span className={styles.date}>16.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Timepicker
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Datepicker
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.3.3 - <span className={styles.date}>14.08.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -35,7 +157,10 @@ export const Changelog = () => {
               >
                 Select
               </Link>
-              .<li className={styles['left-padding']}>- Добавлен флаг autoSelectSingleOnEnter для автоматического выбора по Enter, если найдена 1 опция</li>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен флаг autoSelectSingleOnEnter для автоматического выбора по Enter, если найдена 1 опция
+              </li>
             </li>
           </ul>
         </div>
@@ -161,7 +286,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Добавлены свойства: startBadge, endBadge</li>
               <li className={styles['left-padding']}>- Удалено свойство: badge</li>
               <li className={styles['left-padding']}>- Изменены варианты свойства variant</li>
-              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Обновлен компонент{' '}
@@ -170,7 +295,7 @@ export const Changelog = () => {
               </Link>
               . Добавлены новые пропсы и изменена структура компонента.
               <li className={styles['left-padding']}>- Изменено свойство color по умолчанию</li>
-              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Модифицирован компонент{' '}
@@ -183,7 +308,7 @@ export const Changelog = () => {
               </Link>
               . Обновлены типы и добавлены новые варианты отображения.
               <li className={styles['left-padding']}>- Изменены варианты свойства color</li>
-              <li className={styles['left-padding']}>- Изменено цвета и размеры шрифтов</li>
+              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Улучшен компонент{' '}

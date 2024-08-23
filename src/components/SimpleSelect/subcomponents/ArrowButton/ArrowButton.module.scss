@@ -1,6 +1,6 @@
 .arrow {
-  height: var(--24-size);
-  width: var(--24-size);
+  height: 24px;
+  width: 24px;
   transition: 0.3s ease-out;
 
   &.open {
@@ -9,23 +9,17 @@
 }
 
 .button {
-  height: var(--24-size);
-  padding: 0 var(--4-size) 0 0;
+  height: 24px;
 
   &:hover {
-    background-color: var(--ac-input-default-bg-hover) !important;
+    background: transparent !important;
   }
 
   &.disabled {
-    background-color: var(--ac-input-disabled-bg);
     cursor: not-allowed;
 
     path {
-      fill: var(--ac-icon-disabled);
-    }
-
-    &:hover {
-      background-color: var(--ac-input-disabled-bg);
+      fill: var(--steel-70);
     }
   }
 }

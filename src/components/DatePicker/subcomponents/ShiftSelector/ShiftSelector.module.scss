@@ -1,23 +1,23 @@
 .root {
-  border: var(--1-border) solid var(--ac-calendar-shift-stroke);
-  border-radius: var(--4-radius);
+  border: 1px solid var(--steel-50);
+  border-radius: 4px;
   display: flex;
-  color: var(--default-main);
+  color: var(--steel-90);
 
   div:first-child {
-    border-top-left-radius: var(--4-radius);
-    border-bottom-left-radius: var(--4-radius);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
 
   div:last-child {
-    border-top-right-radius: var(--4-radius);
-    border-bottom-right-radius: var(--4-radius);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 }
 
 .shift {
-  width: var(--30-size);
-  height: var(--30-size);
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,16 +25,16 @@
   transition: 0.3s;
 
   &:not(:last-child) {
-    border-right: var(--1-border) solid var(--ac-calendar-shift-stroke);
+    border-right: 1px solid var(--steel-50);
   }
 
   &:hover {
-    background-color: var(--ac-calendar-shift-hover);
+    background-color: var(--steel-50);
   }
 }
 
 .selected {
-  background-color: var(--ac-calendar-shift-selected);
+  background-color: var(--spectrum-sky-30);
 }
 
 .disabled {
@@ -44,9 +44,9 @@
 }
 
 .selectedDisabled {
-  background-color: var(--divider-divider);
+  background-color: var(--unique-divider);
 
   &:hover {
-    background-color: var(--divider-divider);
+    background-color: var(--unique-divider);
   }
 }

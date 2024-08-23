@@ -5,14 +5,17 @@
   justify-content: center;
   cursor: pointer;
 }
+
 .input {
   width: 100%;
 }
+
 .icon-xs {
-  height: var(--24-size);
-  width: var(--24-size);
+  height: 24px;
+  width: 24px;
+
   svg {
-    height: var(--24-size);
-    width: var(--24-size);
+    height: 24px;
+    width: 24px;
   }
 }

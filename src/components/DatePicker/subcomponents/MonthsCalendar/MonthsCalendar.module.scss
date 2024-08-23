@@ -1,6 +1,6 @@
 .root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: var(--4-space);
-  padding-bottom: var(--8-space);
+  grid-row-gap: 4px;
+  padding-bottom: 8px;
 }

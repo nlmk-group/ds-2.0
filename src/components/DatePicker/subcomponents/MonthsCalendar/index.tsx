@@ -2,6 +2,12 @@ import React, { FC, useMemo, useState } from 'react';
 
 import { locale } from '@components/DatePicker/helpers';
 import { Day } from '@components/DatePicker/subcomponents';
+import { useLocale } from '@components/DatePicker/utils';
+
+import { IMonthsCalendarProps } from './types';
+
+import styles from './MonthsCalendar.module.scss';
+
 import {
   useIsDisabledMonth,
   useIsEndMonth,
@@ -9,13 +15,9 @@ import {
   useIsSelectedMonth,
   useIsStartMonth,
   useIsTodayMonth
-} from '@components/DatePicker/subcomponents/MonthsCalendar/helpers';
-import { MonthsCalendarProps } from '@components/DatePicker/subcomponents/MonthsCalendar/types';
-import { useLocale } from '@components/DatePicker/utils';
+} from './helpers';
 
-import styles from './MonthsCalendar.module.scss';
-
-export const MonthsCalendar: FC<MonthsCalendarProps> = ({
+export const MonthsCalendar: FC<IMonthsCalendarProps> = ({
   panelValue,
   disableChange,
   withPeriod,

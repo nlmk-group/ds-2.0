@@ -112,19 +112,18 @@ export const argsTypes = {
     },
     control: { type: 'boolean' }
   },
-  // todo вернуть после добавления в Input
-  // colored: {
-  //   description: 'Условие применения стилей подсветки',
-  //   table: {
-  //     defaultValue: {
-  //       summary: 'false'
-  //     },
-  //     type: {
-  //       summary: 'boolean'
-  //     }
-  //   },
-  //   control: { type: 'boolean' }
-  // },
+  colored: {
+    description: 'Условие применения стилей подсветки',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
   pseudo: {
     description: 'Свойство, позволяющее переключать элемент с default на PseudoInput',
     table: {
@@ -136,5 +135,18 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  onReset: {
+    description: 'Callback, который будет вызван при клике по иконке сброса',
+    action: 'изменено value'
+  },
+  reset: {
+    description: 'Булевое значение для показа иконки сброса',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: false
+      }
+    }
   }
 };

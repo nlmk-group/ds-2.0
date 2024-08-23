@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 
 import { normalizeDateToYear } from '@components/DatePicker/subcomponents/YearsCalendar/helpers/normalizeDateToYear';
-import { useIsMidYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
+import { IUseIsMidYearParams } from '@components/DatePicker/subcomponents/YearsCalendar/types';
 import { isAfter, isBefore } from 'date-fns';
 
-export const useIsMidYear = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: useIsMidYearParams) =>
+export const useIsMidYear = ({ dateCurrentHover, withPeriod, dateFrom, dateTo }: IUseIsMidYearParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod || !dateFrom) {

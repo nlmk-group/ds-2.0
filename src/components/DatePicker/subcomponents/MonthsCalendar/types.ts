@@ -1,4 +1,4 @@
-export interface MonthsCalendarProps {
+export interface IMonthsCalendarProps {
   panelValue?: Date;
   enabledFrom?: Date;
   enabledTo?: Date;
@@ -11,11 +11,11 @@ export interface MonthsCalendarProps {
   withPeriod?: boolean;
 }
 
-export interface useIsTodayMonthParams {
+export interface IUseIsTodayMonthParams {
   panelValue?: Date | null;
 }
 
-export interface useIsSelectedMonthParams {
+export interface IUseIsSelectedMonthParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateFrom?: Date | null;
@@ -24,20 +24,20 @@ export interface useIsSelectedMonthParams {
   panelValue?: Date | null;
 }
 
-export interface useIsStartMonthParams {
+export interface IUseIsStartMonthParams {
   withPeriod?: boolean;
   dateFrom?: Date | null;
   dateCurrentHover?: Date | null;
 }
 
-export interface useIsMidMonthParams {
+export interface IUseIsMidMonthParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateFrom?: Date | null;
   dateTo?: Date | null;
 }
 
-export interface useIsEndMonthParams {
+export interface IUseIsEndMonthParams {
   dateCurrentHover?: Date | null;
   withPeriod?: boolean;
   dateTo?: Date | null;

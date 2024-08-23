@@ -1,22 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useId } from 'react';
 
-import { IRadioProps } from '@components/Radio/types';
+import { Typography } from '@components/index';
 import clsx from 'clsx';
-import { Typography } from '@components/.'
-import styles from './Radio.module.scss';
-import { generateUUID } from '@components/declaration';
 
-export const Radio: FC<IRadioProps> = ({
-  checked,
-  disabled,
-  value,
-  onChange,
-  className,
-  label = ''
-}) => {
-  const radioID = generateUUID();
+import { IRadioProps } from './types';
+
+import styles from './Radio.module.scss';
+
+/**
+ * Компонент Radio для создания радио-кнопки.
+ * @component
+ * @param {Object} props - Свойства компонента Radio.
+ * @param {string} [props.value] - Значение радио-кнопки.
+ * @param {boolean} [props.checked] - Флаг, указывающий, выбрана ли радио-кнопка.
+ * @param {boolean} [props.disabled] - Флаг, указывающий, отключена ли радио-кнопка.
+ * @param {function} [props.onChange] - Функция обработки изменения состояния радио-кнопки.
+ * @param {string} [props.className] - Дополнительный CSS класс.
+ * @param {string} [props.label=''] - Текст метки радио-кнопки.
+ * @returns {JSX.Element} Компонент Radio.
+ */
+
+export const Radio: FC<IRadioProps> = ({ checked, disabled, value, onChange, className, label = '' }) => {
+  const radioID = useId();
   return (
-    <div className={clsx(styles.root, className)}>
+    <div className={clsx(styles.radio, className)}>
       <input
         type="radio"
         disabled={disabled}
@@ -29,14 +36,11 @@ export const Radio: FC<IRadioProps> = ({
       />
       {label.length > 0 && (
         <label
-          data-testid='radio-label'
-          className={clsx(
-            styles.label,
-            disabled && styles['label-disabled']
-          )}
+          data-testid="radio-label"
+          className={clsx(styles.label, disabled && styles['label-disabled'])}
           htmlFor={radioID}
         >
-          <Typography variant='Body1-Medium'>
+          <Typography variant="Body1-Medium" color="var(--steel-90)">
             {label}
           </Typography>
         </label>

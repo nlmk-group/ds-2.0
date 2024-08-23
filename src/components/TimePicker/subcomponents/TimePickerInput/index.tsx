@@ -7,7 +7,7 @@ import {
   timeMask,
   timeWithSecondsFormat,
   timeWithSecondsMask
-} from '@components/TimePicker/helpers/timeFormat';
+} from '@components/TimePicker/helpers';
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import { range } from 'lodash';
@@ -36,14 +36,15 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       isTimeWithSecondsType,
       isTimePeriodType,
       isTimePeriodWithSecondsType,
-      // todo вернуть после добавления пропса в Input
-      // colored,
+      colored,
       isOpenOnFocus,
       withIcon,
       withPicker,
       valueFrom,
       valueTo,
       label = '',
+      reset,
+      onReset,
       ...props
     },
     ref
@@ -225,7 +226,6 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         disabled={disabled}
         formatChars={{ 9: '[0-9]' }}
       >
-        {/* todo  add colored={colored} */}
         {() => (
           <Input
             inputRef={ref}
@@ -234,6 +234,9 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
             disabled={disabled}
             label={label}
             icon={icon}
+            colored={colored}
+            reset={reset}
+            onReset={onReset}
             {...props}
           />
         )}

@@ -2,14 +2,15 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { hours, minutes, seconds } from '@components/DatePicker/helpers';
 import { Day, InfiniteContainer } from '@components/DatePicker/subcomponents';
-import { TimeSelectorProps } from '@components/DatePicker/subcomponents/TimeSelector/types';
+import { Typography } from '@components/index';
 import { set } from 'date-fns';
 import { isInteger } from 'lodash';
-import { Typography } from '@components/.'
+
+import { ITimeSelectorProps } from './types';
 
 import styles from './TimeSelector.module.scss';
 
-export const TimeSelector: FC<TimeSelectorProps> = ({
+export const TimeSelector: FC<ITimeSelectorProps> = ({
   withSeconds,
   enabledHourFrom,
   enabledHourTo,
@@ -99,8 +100,8 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
     }
   }, [secondsContainerRef, hoursContainerRef, minutesContainerRef, value]);
 
-  const checkSelectedTime = (unit: 'Hours' | 'Minutes' | 'Seconds') => 
-    (value: number, selectedTime?: Date) => selectedTime?.[`get${unit}`]() === value;
+  const checkSelectedTime = (unit: 'Hours' | 'Minutes' | 'Seconds') => (value: number, selectedTime?: Date) =>
+    selectedTime?.[`get${unit}`]() === value;
 
   const getSelectedHour = checkSelectedTime('Hours');
   const getSelectedMinutes = checkSelectedTime('Minutes');
@@ -110,40 +111,37 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
     <div className={styles.root}>
       <div className={styles.column} ref={setHoursContainerRef}>
         <div className={styles.columnTitle}>
-          <Typography variant='Body1-Medium'>
-            чч
-          </Typography>
+          <Typography variant="Body1-Medium">чч</Typography>
         </div>
-        {!infiniteTimeScroll && enabledHours.map(hour => (
-          <Day
-            key={hour.value}
-            disabled={disabled}
-            selected={getSelectedHour(hour.value, selectedTime)}
-            onClick={() => handleHourClick(hour.value)}
-          >
-            {hour.label}
-          </Day>
-        ))}
+        {!infiniteTimeScroll &&
+          enabledHours.map(hour => (
+            <Day
+              key={hour.value}
+              disabled={disabled}
+              selected={getSelectedHour(hour.value, selectedTime)}
+              onClick={() => handleHourClick(hour.value)}
+            >
+              {hour.label}
+            </Day>
+          ))}
         {infiniteTimeScroll && (
-          <InfiniteContainer 
-            values={enabledHours} 
+          <InfiniteContainer
+            values={enabledHours}
             disabled={disabled}
             selectedTime={selectedTime}
             handleMinuteClick={handleHourClick}
             container={hoursContainerRef}
             getSelected={getSelectedHour}
-          />          
-        )}        
+          />
+        )}
       </div>
       <div className={styles.column} ref={setMinutesContainerRef}>
         <div className={styles.columnTitle}>
-          <Typography variant='Body1-Medium'>
-            мм
-          </Typography>
+          <Typography variant="Body1-Medium">мм</Typography>
         </div>
         {infiniteTimeScroll && (
-          <InfiniteContainer 
-            values={enabledMinutes} 
+          <InfiniteContainer
+            values={enabledMinutes}
             disabled={disabled}
             selectedTime={selectedTime}
             handleMinuteClick={handleMinuteClick}
@@ -151,44 +149,43 @@ export const TimeSelector: FC<TimeSelectorProps> = ({
             getSelected={getSelectedMinutes}
           />
         )}
-        {!infiniteTimeScroll && enabledMinutes.map(minute => (
-          <Day
-            key={minute.value}
-            disabled={disabled}
-            selected={getSelectedMinutes(minute.value, selectedTime)}
-            onClick={() => handleMinuteClick(minute.value)}
-          >
-            {minute.label}
-          </Day>
-        ))}
+        {!infiniteTimeScroll &&
+          enabledMinutes.map(minute => (
+            <Day
+              key={minute.value}
+              disabled={disabled}
+              selected={getSelectedMinutes(minute.value, selectedTime)}
+              onClick={() => handleMinuteClick(minute.value)}
+            >
+              {minute.label}
+            </Day>
+          ))}
       </div>
       {withSeconds && (
         <div className={styles.column} ref={setSecondsContainerRef}>
           <div className={styles.columnTitle}>
-            <Typography variant='Body1-Medium'>
-              сс
-            </Typography>
+            <Typography variant="Body1-Medium">сс</Typography>
           </div>
-          {!infiniteTimeScroll && seconds.map(second => (
-            <Day
-              key={second.value}
-              disabled={disabled}
-              selected={getSelectedSeconds(second.value, selectedTime)}
-              onClick={() => handleSecondClick(second.value)}
-            >
-              {second.label}
-            </Day>
-          ))}
+          {!infiniteTimeScroll &&
+            seconds.map(second => (
+              <Day
+                key={second.value}
+                disabled={disabled}
+                selected={getSelectedSeconds(second.value, selectedTime)}
+                onClick={() => handleSecondClick(second.value)}
+              >
+                {second.label}
+              </Day>
+            ))}
           {infiniteTimeScroll && (
-            <InfiniteContainer 
-              values={seconds} 
+            <InfiniteContainer
+              values={seconds}
               disabled={disabled}
               selectedTime={selectedTime}
               handleMinuteClick={handleSecondClick}
               container={secondsContainerRef}
               getSelected={getSelectedSeconds}
-            />            
-
+            />
           )}
         </div>
       )}

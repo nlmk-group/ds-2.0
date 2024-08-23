@@ -33,8 +33,8 @@ import {
   quarterFormatInput,
   quarterMonthKeys
 } from '@components/DatePicker/helpers';
-import { DatePickerInputProps } from '@components/DatePicker/subcomponents/DatePickerInput/types';
 import { useLocale } from '@components/DatePicker/utils';
+import { sizesMappingInput } from '@components/declaration';
 import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
@@ -42,10 +42,11 @@ import clsx from 'clsx';
 import { format, isValid, parse, set } from 'date-fns';
 import { isInteger, range } from 'lodash';
 
-import styles from './DatePickerInput.module.scss';
-import { sizesMappingInput } from '@components/declaration';
+import { IDatePickerInputProps } from './types';
 
-export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInputProps>(
+import styles from './DatePickerInput.module.scss';
+
+export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerInputProps>(
   (
     {
       withPeriod,
@@ -75,6 +76,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInp
       level,
       isOpenOnFocus,
       isHideYear,
+      reset,
+      onReset,
       ...props
     },
     ref
@@ -111,15 +114,11 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInp
             const dateFormatMask = isHideYear ? dateFormatWithoutYear : dateFormat;
             const dateTimeFormatMask = isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat;
             const dateTimeSecondsFormatMask = isHideYear ? dateTimeSecondsFormatWithoutYear : dateTimeSecondsFormat;
-            const withSecondsCondition  = () => {
-              return withSeconds
-                ? dateTimeSecondsFormatMask
-                : dateTimeFormatMask;
-            }
+            const withSecondsCondition = () => {
+              return withSeconds ? dateTimeSecondsFormatMask : dateTimeFormatMask;
+            };
 
-            const defaultFormat = showTime
-              ? withSecondsCondition()
-              : dateFormatMask;
+            const defaultFormat = showTime ? withSecondsCondition() : dateFormatMask;
 
             setInnerMaskedValue(format(value, defaultFormat));
           }
@@ -577,6 +576,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, DatePickerInp
                 />
               </div>
             }
+            reset={reset}
+            onReset={onReset}
             {...props}
           />
         )}

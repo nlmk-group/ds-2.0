@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
 import { numberedDateByLevel } from '@components/DatePicker/helpers/numberedDateByLevel';
-import { useIsStartQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
+import { IUseIsStartQuarterParams } from '@components/DatePicker/subcomponents/QuartersCalendar/types';
 
-export const useIsStartQuarter = ({ withPeriod, dateFrom, dateCurrentHover }: useIsStartQuarterParams) =>
+export const useIsStartQuarter = ({ withPeriod, dateFrom, dateCurrentHover }: IUseIsStartQuarterParams) =>
   useCallback(
     (dayAsDate: Date) => {
       if (!withPeriod) {

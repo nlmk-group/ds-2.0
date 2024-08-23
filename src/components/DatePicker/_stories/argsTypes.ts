@@ -201,6 +201,19 @@ export const argsTypes = {
         summary: 'false'
       }
     },
-    control: { type: 'boolean' }    
+    control: { type: 'boolean' }
+  },
+  onReset: {
+    description: 'Callback, который будет вызван при клике по иконке сброса',
+    action: 'изменено value'
+  },
+  reset: {
+    description: 'Булевое значение для показа иконки сброса',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: false
+      }
+    }
   }
 };

@@ -3,7 +3,7 @@ import React, { SyntheticEvent, useContext } from 'react';
 import { Typography } from '@components/index';
 import { clsx } from 'clsx';
 
-import styles from '../SegmentButton.module.scss';
+import styles from '../SegmentButtonGroup.module.scss';
 
 import { SegmentButtonProperties } from '../index';
 import type { ISegmentButtonProperties, ISegmentButtonProps } from '../types';

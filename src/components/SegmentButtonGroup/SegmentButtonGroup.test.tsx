@@ -3,7 +3,7 @@ import React from 'react';
 import { SegmentButtonGroup } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import styles from './segmentButtonGroup.module.scss';
+import styles from './SegmentButtonGroup.module.scss';
 
 import { buttonColor } from './enums';
 

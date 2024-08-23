@@ -12,10 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 import {
-  DEFAULT_SEGMENT_BUTTON,
-  SEGMENT_BUTTON_COLOR_OPTIONS,
-  SEGMENT_BUTTON_COLOR_OPTIONS_VARIABLE,
-  SEGMENT_BUTTON_COMPACT
+  DEFAULT_SEGMENT_BUTTON
 } from './constants';
 
 enum TabIds {
@@ -56,23 +53,22 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={400}
+            height={600}
             description={DEFAULT_SEGMENT_BUTTON}
             code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
-import { useState } from 'react';
 
 const { Button } = SegmentButtonGroup;
 
 export default App = () => {
   return (
     <SegmentButtonGroup>
-      <Button onClick={action('onClick')}>
+      <Button onClick={() => console.log(new Date())}>
         Печенье
       </Button>
-      <Button onClick={action('onClick')}>
+      <Button onClick={() => console.log(new Date())}>
         Торты
       </Button>
-      <Button onClick={action('onClick')}>
+      <Button onClick={() => console.log(new Date())}>
         Конфеты
       </Button>
     </SegmentButtonGroup>
@@ -80,90 +76,6 @@ export default App = () => {
 }
 `}
           />
-
-          <Editor
-            height={400}
-            description={SEGMENT_BUTTON_COMPACT}
-            code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
-
-const { Button } = SegmentButtonGroup;
-
-export default App = () => {
-  return (
-    <SegmentButtonGroup compact>
-      <Button onClick={action('onClick')}>
-        Печенье
-      </Button>
-      <Button onClick={action('onClick')}>
-        Торты
-      </Button>
-      <Button onClick={action('onClick')}>
-        Конфеты
-      </Button>
-    </SegmentButtonGroup>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={SEGMENT_BUTTON_COLOR_OPTIONS}
-            code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
-import { buttonColor } from '../enums'
-const { Button } = SegmentButtonGroup;
-
-export default App = () => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
-      }}
-    >
-      {Object.values(buttonColor).map((color: buttonColor, index: number) => (
-        <SegmentButtonGroup color={color} key={index}>
-          <Button onClick={action('onClick')}>
-            Печенье
-          </Button>
-          <Button onClick={action('onClick')}>
-            Торты
-          </Button>
-          <Button onClick={action('onClick')}>
-            Конфеты
-          </Button>
-        </SegmentButtonGroup>
-      ))}
-    </div>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={SEGMENT_BUTTON_COLOR_OPTIONS_VARIABLE}
-            code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
-import { useState } from 'react';
-import { buttonColor } from '../enums'
-
-const { Button } = SegmentButtonGroup;
-
-export default App = () => {
-  return (
-    <SegmentButtonGroup>
-      {Object.values(buttonColor).map((color: buttonColor, index: number) => (
-        <Button color={color} key={index} onClick={action('onClick')}>
-          { index }
-        </Button>
-      ))}
-    </SegmentButtonGroup>
-  )
-}
-`}
-          />
-
           <Properties argsTypes={argsTypes} />
         </>
       )}

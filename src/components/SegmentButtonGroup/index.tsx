@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import type { ISegmentButtonGroup, ISegmentButtonProperties, ISegmentButtonProps } from './types';
 
-import styles from './SegmentButton.module.scss';
+import styles from './SegmentButtonGroup.module.scss';
 
 import { buttonColor } from './enums';
 import SegmentButton from './SegmentButton';

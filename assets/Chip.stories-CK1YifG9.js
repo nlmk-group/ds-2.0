@@ -1,0 +1,7 @@
+import{j as s}from"./jsx-runtime-DFnSfiB4.js";import{Z as a,C as m}from"./index-DlGLur7j.js";import{a as n}from"./argsTypes-yEHBhdWm.js";import"./index-DQ2WTIsS.js";import"./index-B8KuQLf-.js";import"./clsx-B-dksMZM.js";import"./generateUUID-CY9Prqwy.js";import"./32-CCQbJusC.js";import"./index-DJXOh8UI.js";import"./index-BenQYTIH.js";import"./index-Dvm_EBHX.js";import"./index-B_c816qF.js";import"./index-BgyuaCKK.js";import"./index-B_snx1v7.js";import"./types-CpBSVUgC.js";import"./index-wNTT8eSr.js";import"./index-0sbKER3h.js";import"./index-S3KjbRnp.js";import"./index-CWVO2cHI.js";import"./get-CxO0u_T9.js";import"./isObjectLike-C1d_7M67.js";const c="_wrapper_yzaoo_1",d="_row_yzaoo_8",e={wrapper:c,row:d},l=o=>s.jsx("div",{style:{minHeight:80},children:o()}),J={title:"Components/Chip/Stories",component:a,decorators:[l],argTypes:n},r=o=>s.jsx("div",{className:e.wrapper,children:s.jsx("div",{className:e.row,children:s.jsx(m,{...o,children:o.children})})});r.storyName="Chip по умолчанию";r.args={children:"1234"};var t,i,p;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`(argsTypes: IChipProps): JSX.Element => {
+  return <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <Chip {...argsTypes} children={argsTypes.children} />
+      </div>
+    </div>;
+}`,...(p=(i=r.parameters)==null?void 0:i.docs)==null?void 0:p.source}}};const O=["ChipDefault"];export{r as ChipDefault,O as __namedExportsOrder,J as default};

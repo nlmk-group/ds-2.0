@@ -22,6 +22,10 @@
   pointer-events: none;
 }
 
+.modalInner {
+  position: relative;
+}
+
 .modal {
   border-radius: 4px;
   background: var(--steel-10);
@@ -57,12 +61,16 @@
 
 .modalClose {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 4px;
+  right: -53px;
   cursor: pointer;
   pointer-events: auto;
 
   &:hover {
     background: none !important;
   }
+}
+
+.no-scroll {
+  overflow: hidden;
 }

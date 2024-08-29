@@ -23,6 +23,39 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.5.3 - <span className={styles.date}>29.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены баги внутри компонентов.
+              <li className={styles['left-padding']}>- Modal</li>
+              <li className={styles['left-padding']}>- Tooltip</li>
+              <li className={styles['left-padding']}>- Button</li>
+              <li className={styles['left-padding']}>- Tabs</li>
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.2 - <span className={styles.date}>28.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Avatar
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен размер 3xl для Avatar</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.5.1 - <span className={styles.date}>23.08.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -35,8 +68,7 @@ export const Changelog = () => {
               >
                 SegmentButtonGroup
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменен цвет обводки кнопок</li>
+              .<li className={styles['left-padding']}>- Изменен цвет обводки кнопок</li>
             </li>
           </ul>
         </div>
@@ -72,8 +104,7 @@ export const Changelog = () => {
               >
                 PseudoInput
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Обновлен компонент{' '}
@@ -84,8 +115,7 @@ export const Changelog = () => {
               >
                 Radio
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
           </ul>
         </div>

@@ -4,7 +4,7 @@ $blackOpacity12: rgba(0, 0, 0, 0.12);
 $white: var(--never-changes-white);
 
 @mixin rounded {
-  border-radius: var(--circle-radius);
+  border-radius: 50%;
 }
 
 @mixin flex-center {
@@ -15,13 +15,12 @@ $white: var(--never-changes-white);
 
 .avatar {
   position: relative;
-  background-color: var(--ac-avatar-icon-default-bg);
-  color: var(--ac-avatar-placeholder-default-initials);
+  background-color: var(--steel-50);
+  color: var(--unique-white);
 
   &:hover {
-    background-color: var(--ac-avatar-icon-hover-bg);
-    box-shadow: 0 1px 1px 0 $blackOpacity12, 0 0 0 2px $greyOpacity24, 0 2px 5px 0 $greyOpacity9;
-    color: var(--ac-avatar-placeholder-hover-initials);
+    color: var(--unique-white);
+    cursor: pointer;
   }
 
   &.circle {
@@ -38,15 +37,24 @@ $white: var(--never-changes-white);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 }
 
-.online-indicator,
-.number-indicator {
+.online-indicator {
   @include rounded;
   position: absolute;
   right: 0;
   bottom: 0;
   box-shadow: 0 2px 5px rgba(103, 110, 118, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+}
+.number-indicator {
+  @include rounded;
+  position: absolute;
+  left: 60%;
+  top: 60%;
+  box-shadow: 0 2px 5px rgba(103, 110, 118, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
 }
 
 .online-indicator {
@@ -54,28 +62,53 @@ $white: var(--never-changes-white);
   height: 16px;
 
   &.online {
-    background-color: var(--ac-avatar-online-indicators-bg-online-true);
-    border: var(--1-border) solid var(--ac-avatar-online-indicators-stroke-online-true)
+    background-color: var(--spectrum-green-50);
+    border: 1px solid var(--unique-white);
   }
   &.offline {
-    background-color: var(--ac-avatar-online-indicators-bg-online-false);
-    border: var(--1-border) solid var(--ac-avatar-online-indicators-stroke-online-false);
+    background-color: var(--steel-60);
+    border: 1px solid var(--unique-white);
   }
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: scale-down;
+  object-fit: cover;
+  border-radius: 8px;
 }
+.overlay {
+  @include rounded;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-sapphire-60);
+  opacity: 0;
+  color: var(--unique-white);
+  cursor: pointer;
+  z-index: 1000;
 
+  &:hover {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--brand-sapphire-60) 70%, transparent);
+  }
+  width: 220px;
+  height: 220px;
+}
+.avatar.xxxl:hover .letters {
+  display: none;
+}
 .number-indicator {
   @include flex-center;
   cursor: default;
-  background-color: var(--ac-avatar-number-indicator-bg);
-  color: var(--ac-avatar-number-indicator-number);
+  box-sizing: border-box;
+  border-radius: 100px;
+  background-color: var(--brand-sapphire-50);
+  color: var(--unique-white);
   text-align: center;
-  border: var(--1-border) solid var(--ac-avatar-number-indicator-stroke);
+  border: 1px solid var(--unique-white);
+  padding: 4px 8px;
 }
 
 .letters {
@@ -89,4 +122,5 @@ $white: var(--never-changes-white);
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1001;
 }

@@ -8,22 +8,26 @@ import styles from './IconBadge.module.scss';
 
 import BadgeSpecialOverlay from '../BadgeSpecialOverlay';
 
-export const IconBadge: React.FC<IIconBadgeProps> = ({
+interface IIconBadgePropsWithSize extends IIconBadgeProps {
+  isXxxlWithBirthdayIcon?: boolean;
+}
+
+export const IconBadge: React.FC<IIconBadgePropsWithSize> = ({
   className,
   iconName,
-  badgeSpecialIcon
+  badgeSpecialIcon,
+  isXxxlWithBirthdayIcon
 }) => {
   if (badgeSpecialIcon) {
     return (
       <div className={clsx(styles['icon-badge'], styles['with-overlay'], className)} data-testid="AVATAR_BADGE_SPECIAL">
         <BadgeSpecialOverlay className={styles.overlay} />
-        <div className={styles['special-icon']}>
+        <div className={clsx(styles['special-icon'], isXxxlWithBirthdayIcon && styles['special-icon-xxxl'])}>
           {iconName}
         </div>
       </div>
     );
   }
-
   return (
     <div className={clsx(styles['icon-badge'], styles.default, className)} data-testid="AVATAR_BADGE_DEFAULT">
       {iconName}

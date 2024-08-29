@@ -3,11 +3,10 @@ import { CSSProperties, FC, ReactNode } from 'react';
 import { TIconProps } from '@components/Icon/types';
 import { ITypographyProps } from '@components/Typography/types';
 
-import { AvatarShape, AvatarSize } from './enums';
+import { EAvatarSize } from './enums';
 
 export interface IAvatarProps {
-  size?: `${AvatarSize}`;
-  shape?: `${AvatarShape}`;
+  size?: `${EAvatarSize}`;
   imageSrc?: string;
   userName?: string;
   userSurname?: string;
@@ -20,10 +19,10 @@ export interface IAvatarProps {
 
 export type TAvatarSizeParameter = {
   avatarSize: number;
-  squareRadius: number;
   numberIndicatorSize: number;
   lettersSize: number;
   badgeNumbersSize: number;
+  onlineIndicatorSize: number;
   badgeSize: number;
   specialBadgeSize: number;
   iconSize: TIconProps['containerSize'];
@@ -41,7 +40,6 @@ export type TSizingStyles = {
 
 export type TGetSizingStylesArgs = {
   sizeParameters: TAvatarSizeParameter;
-  isSquare: boolean;
   isSpecialBadge: boolean;
   sizeVariant: IAvatarProps['size'];
 };

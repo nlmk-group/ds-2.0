@@ -25,7 +25,7 @@ const UserControl: FC<IUserControlProps> = ({
     <>
       {isLoggedIn && (
         <div className={styles.user} onClick={onOpenUser}>
-          <div className={styles.avatar}>{children ?? <Avatar size="s" shape="circle" />}</div>
+          <div className={styles.avatar}>{children ?? <Avatar size="s" />}</div>
           {isExpanded && isVertical && (
             <Typography variant="Body1-Medium" className={styles['user-text']} title={fullName}>
               {fullName}

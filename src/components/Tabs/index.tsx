@@ -15,8 +15,15 @@ import styles from './Tabs.module.scss';
 const Tabs: FC<ITabs> &
   Record<'Tab', FC<ITab>> &
   Record<'Tooltip', FC<ITooltipProps>> &
-  Record<'Icon', FC<TIconProps>> = ({ children, className }) => {
-    return <div className={clsx(styles['tabs-wrapper'], className)}>{children}</div>;
+  Record<'Icon', FC<TIconProps>> = ({ children, className, scrollable }) => {
+    return (
+      <div className={clsx({[styles.scrollable]: scrollable})}>
+        <div
+          className={clsx(styles['tabs-wrapper'], { [styles['tabs-wrapper__scrollable']]: scrollable }, className)}>
+          {children}
+        </div>
+      </div>
+    )
   };
 
 Tabs.Tab = Tab;

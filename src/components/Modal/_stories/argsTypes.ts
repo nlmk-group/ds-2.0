@@ -27,6 +27,10 @@ export const argsTypes = {
     control: { type: 'boolean' },
     defaultValue: false
   },
+  disablePageScroll: {
+    description: 'Блокирует скролл на странице при открытом модальном окне',
+    control: { type: 'boolean' }
+  },
   onEscapeDown: {
     description: 'Функция, вызываемая при нажатии клавиши Escape',
     action: 'escapePressed'

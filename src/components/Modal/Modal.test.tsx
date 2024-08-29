@@ -59,7 +59,7 @@ describe('src/components/Modal', () => {
         <div>Content</div>
       </Modal>
     );
-    expect(container.querySelector('.modalWrapper > div')).toHaveClass('custom-class');
+    expect(container.querySelector('.modalInner > div')).toHaveClass('custom-class');
   });
 
   it('It should close on backdrop click', () => {

@@ -1,7 +1,24 @@
+.scrollable,  {
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .tabs-wrapper {
   border-bottom: var(--1-border) solid var(--divider-divider);
   display: flex;
   align-items: center;
   gap: var(--24-space);
   width: fit-content;
+
+  &__scrollable {
+    width: max-content;
+  }
 }
+
+

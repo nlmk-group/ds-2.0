@@ -1,30 +1,17 @@
-import { AvatarShape, AvatarSize } from '../enums';
+import { EAvatarSize } from '../enums';
 
 export const argsTypes = {
   size: {
     description: 'Размер аватара',
     table: {
       defaultValue: {
-        summary: AvatarSize.m
+        summary: EAvatarSize.m
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(AvatarSize),
-    control: { type: 'select' }
-  },
-  shape: {
-    description: 'Форма аватара',
-    table: {
-      defaultValue: {
-        summary: AvatarShape.circle
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(AvatarShape),
+    options: Object.values(EAvatarSize),
     control: { type: 'select' }
   },
   imageSrc: {
@@ -97,7 +84,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    control: { type: 'string' }
+    control: { type: 'boolean' }
   },
   badgeSpecialIcon: {
     description: 'Опциональный флаг, для отображения специальных иконок',

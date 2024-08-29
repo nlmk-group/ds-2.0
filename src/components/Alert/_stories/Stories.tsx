@@ -66,24 +66,40 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Компонент Alert может быть добавлен с кнопками, которые выполняют различные действия."
+            description="Компонент Alert может быть добавлен с встроенной кнопкой закрытия"
             code={`
-import { Alert, Button, IconCloseOutlined24 } from '@nlmk/ds-2.0';
+import { Alert } from '@nlmk/ds-2.0';
 
-const App = () =>(
+const App = () => (
   <Alert severity="info"
-    action={
-      <Button fill="clear" onClick={() => alert('Я нажал!')}>
-        <IconCloseOutlined24
-          htmlColor='var(--ac-alert-info-text)'
-        />
-      </Button>
-    }
-    title="Оповещение с кнопкой"/>
+    close={ () => alert('Я закрыл!') }
+    title="Оповещение с кнопкой закрытия"/>
 )
 export default App
 `}
           />
+
+          <Editor
+            description="Компонент Alert может быть добавлен с другими кнопками"
+            code={`
+import { Alert, Button, IconDeleteBinOutlined24 } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Alert severity="info"
+    action={
+      <Button fill="clear"
+        iconButton={
+          <IconDeleteBinOutlined24
+            htmlColor='var(--ac-alert-info-text)' />
+        }
+        onClick={() => confirm('Подтвердите удаление!')} />
+    }
+    title="Оповещение с кнопкой удаления" />
+)
+export default App
+`}
+          />
+
           <Properties argsTypes={argsTypes} />
         </>
       )}

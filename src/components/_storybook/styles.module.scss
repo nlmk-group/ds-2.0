@@ -9,6 +9,10 @@
   padding: 30px;
   border-radius: 10px;
   width: 900px;
+
+  &--small {
+    width: 400px;
+  }
 }
 
 .wrapper-fit-content {

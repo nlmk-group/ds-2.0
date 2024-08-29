@@ -7,11 +7,11 @@
 }
 
 .default {
-  background-color: var(--ac-avatar-badges-bg-default-green);
-  border-radius: var(--circle-radius);
+  background-color: var(--spectrum-green-50);
+  border-radius: 50%;
   box-shadow: 0px 2px 5px 0px rgba(103, 110, 118, 0.08), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
   path {
-    fill: var(--ac-avatar-badges-icon-default-green);
+    fill: var(--unique-white);
   }
 }
 
@@ -30,5 +30,9 @@
 }
 
 .special-icon {
+  transform: translateY(-1px);
+}
+
+.special-icon-xxxl {
   transform: translateY(-2px);
 }

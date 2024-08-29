@@ -2,10 +2,7 @@ import React, { FC, ReactElement, ReactNode } from 'react';
 
 import {
   Button,
-  IconAttentionWarningAlertErrorOutlined24,
   IconCloseOutlined16,
-  IconInfoOutlined24,
-  IconSuccessOutlined24,
   Typography
 } from '@components/index';
 import { clsx } from 'clsx';
@@ -15,6 +12,7 @@ import { IAlertProps, IIconSeverityColor } from './types';
 import styles from './Alert.module.scss';
 
 import { EAlertSeverity } from './enums';
+import { Icon } from '@components/Icon';
 
 /**
  * Компонент Alert для отображения информационных сообщений различных типов.
@@ -54,15 +52,15 @@ const Alert: FC<IAlertProps> = ({
 
     switch (severity) {
       case EAlertSeverity.success:
-        return <IconSuccessOutlined24 htmlColor={severityStyles[severity]} />;
+        return <Icon name="IconSuccessOutlined24" htmlColor={severityStyles[severity]} />;
       case EAlertSeverity.error:
-        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={severityStyles[severity]} />;
+        return <Icon name="IconAttentionWarningAlertErrorOutlined24" htmlColor={severityStyles[severity]} />;
       case EAlertSeverity.warning:
-        return <IconAttentionWarningAlertErrorOutlined24 htmlColor={severityStyles[severity]} />;
+        return <Icon name="IconAttentionWarningAlertErrorOutlined24" htmlColor={severityStyles[severity]} />;
       case EAlertSeverity.info:
-        return <IconInfoOutlined24 htmlColor={severityStyles[severity]} />;
+        return <Icon name="IconInfoOutlined24" htmlColor={severityStyles[severity]} />;
       default:
-        return <IconSuccessOutlined24 htmlColor={severityStyles[severity] || 'var(--spectrum-green-60)'} />;
+        return <Icon name="IconSuccessOutlined24" htmlColor={severityStyles[severity] || 'var(--spectrum-green-60)'} />;
     }
   };
 

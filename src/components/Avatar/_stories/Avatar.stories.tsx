@@ -6,7 +6,7 @@ import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDir
 
 import styles from './Avatar.module.scss';
 
-import { AvatarShape, AvatarSize } from '../enums';
+import { EAvatarSize } from '../enums';
 import { getAvatarImageSrc } from '../utils';
 import { argsTypes } from './argsTypes';
 
@@ -25,42 +25,40 @@ const SetOfAvatars = (argsTypes: IAvatarProps) => {
   return (
     <>
       <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
+        {Object.values(EAvatarSize).map((size, i) => {
           return <Avatar key={i} {...argsTypes} size={size} imageSrc={AvatarImageMock} />;
         })}
       </div>
       <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
-          return <Avatar key={i} {...argsTypes} size={size} shape={AvatarShape.square} imageSrc={AvatarImageMock} />;
-        })}
-      </div>
-      <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
+        {Object.values(EAvatarSize).map((size, i) => {
           return <Avatar key={i} {...argsTypes} size={size} userName="Антон" userSurname="Валуев" />;
         })}
       </div>
       <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
-          return (
-            <Avatar
-              key={i}
-              {...argsTypes}
-              size={size}
-              userName="Антон"
-              userSurname="Валуев"
-              shape={AvatarShape.square}
-            />
-          );
-        })}
-      </div>
-      <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
+        {Object.values(EAvatarSize).map((size, i) => {
           return <Avatar key={i} {...argsTypes} size={size} />;
         })}
       </div>
+    </>
+  );
+};
+const SetOfAvatarsSmall = (argsTypes: IAvatarProps) => {
+  const avatarSizes = Object.values(EAvatarSize).filter(size => size !== EAvatarSize.xxxl);
+  return (
+    <>
       <div className={styles.row}>
-        {Object.values(AvatarSize).map((size, i) => {
-          return <Avatar key={i} {...argsTypes} size={size} shape={AvatarShape.square} />;
+        {avatarSizes.map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} imageSrc={AvatarImageMock} />;
+        })}
+      </div>
+      <div className={styles.row}>
+        {avatarSizes.map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} userName="Антон" userSurname="Валуев" />;
+        })}
+      </div>
+      <div className={styles.row}>
+        {avatarSizes.map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} />;
         })}
       </div>
     </>
@@ -112,7 +110,7 @@ AvatarOffline.args = {
 export const AvatarWithNumber = (argsTypes: IAvatarProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <SetOfAvatars {...argsTypes} />
+      <SetOfAvatarsSmall {...argsTypes} />
     </div>
   );
 };
@@ -124,13 +122,27 @@ AvatarWithNumber.args = {
 export const AvatarWithDefaultBadge = (argsTypes: IAvatarProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <SetOfAvatars {...argsTypes} />
+      <div className={styles.row}>
+        {Object.values(EAvatarSize).map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} imageSrc={AvatarImageMock} />;
+        })}
+      </div>
+      <div className={styles.row}>
+        {Object.values(EAvatarSize).map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} userName="Антон" userSurname="Валуев" />;
+        })}
+      </div>
+      <div className={styles.row}>
+        {Object.values(EAvatarSize).map((size, i) => {
+          return <Avatar key={i} {...argsTypes} size={size} />;
+        })}
+      </div>
     </div>
   );
 };
 AvatarWithDefaultBadge.storyName = 'Аватар c дефолтным бейджем';
 AvatarWithDefaultBadge.args = {
-  badgeIconName: <IconDoneCheckFilled16 htmlColor="white" />
+  badgeIconName: <IconDoneCheckFilled16 htmlColor="var(--unique-white)" />
 };
 
 export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => {
@@ -142,6 +154,6 @@ export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => 
 };
 AvatarWithSpecialBadge.storyName = 'Аватар cо специальным бейджем';
 AvatarWithSpecialBadge.args = {
-  badgeIconName: <IconBirthday16 htmlColor="var(--ac-avatar-badges-icon-birthdays-violet)" />,
+  badgeIconName: <IconBirthday16 htmlColor="var(--unique-white)" />,
   badgeSpecialIcon: true
 };

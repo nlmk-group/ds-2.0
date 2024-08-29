@@ -80,7 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     return (
       <button ref={ref} className={clsx(classes, className)} {...props}>
-        {startBadge && (
+        {startBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.left)}>
             <ButtonBadge
               {...{
@@ -97,7 +97,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
           {children}
         </Typography>
         {endIcon && <span className={getIconClass(EButtonNodesPosition.right)}>{endIcon}</span>}
-        {endBadge && (
+        {endBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.right)}>
             <ButtonBadge
               {...{

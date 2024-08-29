@@ -3,12 +3,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import Avatar from '.';
-import { AvatarShape, AvatarSize } from './enums';
 import { IconDoneCheckFilled24 } from '..';
+import { EAvatarSize } from './enums';
 
 const defaultProps = {
-  shape: AvatarShape.circle,
-  size: AvatarSize.m
+  size: EAvatarSize.m
 };
 
 describe('src/components/Avatar', () => {
@@ -40,27 +39,12 @@ describe('src/components/Avatar', () => {
   });
 
   test('Avatar renders default badge', () => {
-    render(
-      <Avatar
-        {...defaultProps}
-        badgeIconName={(
-          <IconDoneCheckFilled24 />
-        )}
-      />
-    );
+    render(<Avatar {...defaultProps} badgeIconName={<IconDoneCheckFilled24 />} />);
     expect(screen.getByTestId('AVATAR_BADGE_DEFAULT')).toBeInTheDocument();
   });
 
   test('Avatar renders special badge', () => {
-    render(
-      <Avatar
-        {...defaultProps}
-        badgeIconName={(
-          <IconDoneCheckFilled24 />
-        )}
-        badgeSpecialIcon
-      />
-    );
+    render(<Avatar {...defaultProps} badgeIconName={<IconDoneCheckFilled24 />} badgeSpecialIcon />);
     expect(screen.getByTestId('AVATAR_BADGE_SPECIAL')).toBeInTheDocument();
   });
 });

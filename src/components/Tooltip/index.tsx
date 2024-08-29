@@ -10,6 +10,16 @@ import styles from './Tooltip.module.scss';
 
 import { Typography } from '..';
 import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
+import ReactDOM from 'react-dom';
+
+export const TooltipPortal: FC<ITooltipProps> = ({ children, ...props }) => {
+  return ReactDOM.createPortal(
+    <div{...props}>
+      {children}
+    </div>,
+    document.body
+  );
+};
 
 const Tooltip: FC<ITooltipProps> = ({
   title,
@@ -31,6 +41,12 @@ const Tooltip: FC<ITooltipProps> = ({
   const handleBlur = () => {
     behavior === ETooltipBehaviorType.focus && tooltipRef.current?.close();
   };
+
+  const handleClick = () => {
+    if (behavior === ETooltipBehaviorType.click && tooltipRef?.current?.isOpen) {
+      tooltipRef.current?.close();
+    }
+  }
 
   const renderTitle = (title: string): JSX.Element => {
     return (
@@ -58,22 +74,30 @@ const Tooltip: FC<ITooltipProps> = ({
 
   return (
     <div className={clsx(styles.tooltip, className)}>
-      <div className={styles['tooltip-target']} onFocus={handleFocus} onBlur={handleBlur} data-tooltip-id={tooltipId}>
+      <div
+        className={styles['tooltip-target']}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onClick={handleClick}
+        data-tooltip-id={tooltipId}
+      >
         {children}
       </div>
-      <ReactTooltip
-        ref={tooltipRef}
-        id={tooltipId}
-        openOnClick={behavior === ETooltipBehaviorType.click}
-        place={placement}
-        className={clsx(styles['tooltip-wrapper'], popupClassName)}
-        classNameArrow={styles['arrow-styling']}
-        clickable={clickable}
-      >
-        {title && renderTitle(title)}
-        {description && renderDescription(description)}
-        {render && <>{render}</>}
-      </ReactTooltip>
+      <TooltipPortal>
+        <ReactTooltip
+          ref={tooltipRef}
+          id={tooltipId}
+          openOnClick={behavior === ETooltipBehaviorType.click}
+          place={placement}
+          className={clsx(styles['tooltip-wrapper'], popupClassName)}
+          classNameArrow={styles['arrow-styling']}
+          clickable={clickable}
+        >
+          {title && renderTitle(title)}
+          {description && renderDescription(description)}
+          {render && <>{render}</>}
+        </ReactTooltip>
+      </TooltipPortal>
     </div>
   );
 };

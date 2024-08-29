@@ -56,19 +56,6 @@ const argsTypes = {
     options: [16, 24, 32],
     control: { type: 'select' }
   },
-  size: {
-    description: 'Физический размер иконки',
-    table: {
-      defaultValue: {
-        summary: '24'
-      },
-      type: {
-        summary: 'number'
-      }
-    },
-    options: [16, 24, 32],
-    control: { type: 'select' }
-  },
   badge: {
     description: 'JSX код компонента Badge',
     table: {

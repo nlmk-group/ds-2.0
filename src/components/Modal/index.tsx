@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { EButtonSizes } from '@components/Button/enums';
 import { Button, IconCloseOutlined24 } from '@components/index';
@@ -31,6 +31,7 @@ const Modal: FC<IModalProps> = ({
   isDraggable = false,
   isResizable = false,
   disableBackdropClick = false,
+  disablePageScroll = false,
   className
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -66,11 +67,23 @@ const Modal: FC<IModalProps> = ({
     [isDraggable]
   );
 
-  const handleBackdropClick = () => {
+  const handleBackdropClick = (e: SyntheticEvent) => {
     if (!disableBackdropClick) {
-      onClose();
+      onClose(e);
     }
   };
+
+  useEffect(() => {
+    if (isOpen && disablePageScroll) {
+      document.body.classList.add(styles['no-scroll']);
+    } else {
+      document.body.classList.remove(styles['no-scroll']);
+    }
+
+    return () => {
+      document.body.classList.remove(styles['no-scroll']);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isDraggable) {
@@ -113,19 +126,21 @@ const Modal: FC<IModalProps> = ({
     <>
       <div className={styles.backdrop} onClick={handleBackdropClick} />
       <div className={styles.modalWrapper}>
-        <div className={modalClasses} ref={modalRef} onMouseDown={handleMouseDown}>
-          {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
-          {children}
+        <div className={styles.modalInner} ref={modalRef} onMouseDown={handleMouseDown}>
+          <div className={modalClasses}>
+            {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
+            {children}
+          </div>
+          <Button
+            iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
+            variant="primary"
+            fill="clear"
+            className={styles.modalClose}
+            aria-label="Close"
+            onClick={(e) => onClose(e)}
+            size={EButtonSizes.s}
+          />
         </div>
-        <Button
-          iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
-          variant="primary"
-          fill="clear"
-          className={styles.modalClose}
-          onClick={onClose}
-          aria-label="Close"
-          size={EButtonSizes.s}
-        />
       </div>
     </>
   );

@@ -7,6 +7,13 @@ export declare const ModalDefault: {
     (argsTypes: IModalProps): ReactNode;
     storyName: string;
 };
+export declare const ModalScroll: {
+    (argsTypes: IModalProps): ReactNode;
+    storyName: string;
+    args: {
+        disablePageScroll: boolean;
+    };
+};
 export declare const DraggableModal: {
     (argsTypes: IModalProps): ReactNode;
     storyName: string;

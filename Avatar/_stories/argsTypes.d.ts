@@ -1,32 +1,17 @@
-import { AvatarShape, AvatarSize } from '../enums';
+import { EAvatarSize } from '../enums';
 
 export declare const argsTypes: {
     size: {
         description: string;
         table: {
             defaultValue: {
-                summary: AvatarSize;
+                summary: EAvatarSize;
             };
             type: {
                 summary: string;
             };
         };
-        options: AvatarSize[];
-        control: {
-            type: string;
-        };
-    };
-    shape: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: AvatarShape;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: AvatarShape[];
+        options: EAvatarSize[];
         control: {
             type: string;
         };

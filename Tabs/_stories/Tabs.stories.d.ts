@@ -11,4 +11,8 @@ export declare const TabsDefault: {
     (): JSX.Element;
     storyName: string;
 };
+export declare const TabsScrollable: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Tabs.stories.d.ts.map

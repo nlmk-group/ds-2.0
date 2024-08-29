@@ -37,6 +37,12 @@ export declare const argsTypes: {
         };
         defaultValue: boolean;
     };
+    disablePageScroll: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     onEscapeDown: {
         description: string;
         action: string;

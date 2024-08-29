@@ -1,5 +1,5 @@
 import { TAvatarSizeParameter } from './types';
-import { AvatarSize } from './enums';
+import { EAvatarSize } from './enums';
 
-export declare const AVATAR_SIZE_PARAMETERS: Record<AvatarSize, TAvatarSizeParameter>;
+export declare const AVATAR_SIZE_PARAMETERS: Record<EAvatarSize, TAvatarSizeParameter>;
 //# sourceMappingURL=constants.d.ts.map

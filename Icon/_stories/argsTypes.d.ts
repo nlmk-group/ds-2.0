@@ -60,21 +60,6 @@ declare const argsTypes: {
             type: string;
         };
     };
-    size: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: number[];
-        control: {
-            type: string;
-        };
-    };
     badge: {
         description: string;
         table: {

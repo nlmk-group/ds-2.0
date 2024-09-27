@@ -1,9 +1,9 @@
 import { FC, PropsWithChildren } from '../../../../../node_modules/react';
-import { TooltipPlacementType } from '../../../Tooltip/types';
+import { ETooltipPlacementType } from '../../../Tooltip/enums';
 
 interface ICopyWrapper extends PropsWithChildren {
     copy: string;
-    placement?: TooltipPlacementType;
+    placement?: `${ETooltipPlacementType}`;
 }
 export declare const CopyWrapper: FC<ICopyWrapper>;
 export {};

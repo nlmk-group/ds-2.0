@@ -3,6 +3,14 @@ export declare enum ETooltipBehaviorType {
     click = "click",
     focus = "focus"
 }
+export declare enum ETooltipType {
+    default = "default",
+    inverse = "inverse"
+}
+export declare enum ETooltipSizes {
+    normal = "normal",
+    compact = "compact"
+}
 export declare enum ETooltipPlacementType {
     top = "top",
     'top-start' = "top-start",

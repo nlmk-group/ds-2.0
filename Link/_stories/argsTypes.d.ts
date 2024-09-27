@@ -73,5 +73,9 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    onClick: {
+        description: string;
+        action: string;
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

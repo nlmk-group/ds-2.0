@@ -1,7 +1,6 @@
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '../declaration';
+import { ENABLED_HOURS_VALUES } from '../declaration';
 
-type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number] | undefined;
-type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number] | undefined;
+type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
 export interface TTimePickerType {
     id?: number | string;
     type?: 'time' | 'timeWithSeconds' | 'period' | 'periodWithSeconds';
@@ -11,8 +10,8 @@ export interface TTimePickerType {
     valueTo?: Date;
     onPeriodChange?: (valueFrom?: Date, valueTo?: Date) => void;
     className?: string;
-    enabledHourFrom?: (date: Date | undefined) => TEnabledHourFrom;
-    enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
+    enabledHourFrom?: (date: Date | undefined) => TEnabledHour;
+    enabledHourTo?: (date: Date | undefined) => TEnabledHour;
     enabledMinuteFrom?: (date: Date | undefined) => number;
     enabledMinuteTo?: (date: Date | undefined) => number;
     disabled?: boolean;

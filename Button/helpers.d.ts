@@ -5,6 +5,6 @@ export interface ICombinedOption {
     fill: EButtonFill;
     size?: EButtonSizes;
 }
+export declare const unsupportedButtonVariants: Record<string, Record<string, EButtonFill>>;
 export declare const combinedOptions: (flag?: boolean) => ICombinedOption[];
-export declare const variantsWithOneFill: Set<EButtonVariant>;
 //# sourceMappingURL=helpers.d.ts.map

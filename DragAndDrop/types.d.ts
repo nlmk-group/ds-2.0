@@ -1,8 +1,8 @@
-import { ChangeEvent, PropsWithChildren, ReactNode } from '../../../node_modules/react';
+import { ChangeEvent, MouseEvent, PropsWithChildren, ReactNode } from '../../../node_modules/react';
 import { sizesMapping } from '../declaration';
-import { fileTypeMapping, statusColorMapping } from './enums';
+import { EFileTypeDnD, EStatusColorDnD } from './enums';
 
-export interface IFile extends PropsWithChildren<any> {
+export interface IFileProps extends PropsWithChildren<any> {
     children?: JSX.Element;
     title?: string;
     label?: string;
@@ -23,21 +23,18 @@ export interface IFile extends PropsWithChildren<any> {
     longTitle?: boolean;
     tick?: boolean;
 }
-export type TFileType = `${fileTypeMapping}`;
-export type TStatusColorType = `${statusColorMapping}`;
-export type TSizeType = `${sizesMapping}`;
-export interface IDragAndDrop extends PropsWithChildren<{
+export interface IDragAndDropProps extends PropsWithChildren<{
     children?: ReactNode;
 }> {
     className?: string;
     title?: string | ReactNode;
     description?: string | ReactNode;
     btnLabel?: string;
-    fileType?: TFileType;
-    statusColor?: TStatusColorType;
+    fileType?: `${EFileTypeDnD}`;
+    statusColor?: `${EStatusColorDnD}`;
     withIcon?: boolean;
     customIcon?: JSX.Element;
-    size?: TSizeType;
+    size?: `${sizesMapping}`;
     multiple?: boolean;
     loading?: boolean;
     percentUpload?: number;
@@ -48,38 +45,39 @@ export interface IDragAndDrop extends PropsWithChildren<{
     onUpload: (a: FileList) => void;
     cancelUpload?: () => void;
 }
-export interface IUploadHelper {
+export interface IUploadHelperProps {
     smallText?: boolean;
     smallIcon?: boolean;
     showSpinner?: boolean;
-    size: TSizeType;
-    percentUpload: number;
+    size: `${sizesMapping}`;
+    percentUpload?: number | undefined;
 }
-export interface ISmallText {
+export interface ISmallTextProps {
     title: string | ReactNode;
     loading: boolean;
     percentUpload: number;
-    statusColor: TStatusColorType;
+    statusColor: `${EStatusColorDnD}`;
     disabled: boolean;
     cancelUpload?: () => void;
 }
-export interface IDefaultDnD {
+export interface IDefaultDnDProps {
     disabled: boolean;
     loading: boolean;
-    size: TSizeType;
+    size: `${sizesMapping}`;
     percentUpload: number;
     withIcon: boolean;
     customIcon: JSX.Element | null;
-    fileType: TFileType;
+    fileType: `${EFileTypeDnD}`;
     title: string | ReactNode;
-    statusColor: TStatusColorType;
+    statusColor: `${EStatusColorDnD}`;
     description: string | ReactNode;
     btnLabel: string;
+    onButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
-export interface ISmallIcon {
+export interface ISmallIconProps {
     loading: boolean;
     percentUpload: number;
-    statusColor: TStatusColorType;
+    statusColor: `${EStatusColorDnD}`;
     customIcon: JSX.Element | null;
 }
 //# sourceMappingURL=types.d.ts.map

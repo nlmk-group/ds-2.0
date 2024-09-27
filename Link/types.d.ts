@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from '../../../node_modules/react';
+import { MouseEventHandler, PropsWithChildren, ReactNode } from '../../../node_modules/react';
 
 type TLinkOutput = string | ReactNode;
 export interface ILink extends PropsWithChildren<{
@@ -12,6 +12,7 @@ export interface ILink extends PropsWithChildren<{
     disabled?: boolean;
     leftIcon?: JSX.Element | ReactNode;
     rightIcon?: JSX.Element | ReactNode;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

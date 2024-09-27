@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { BreadcrumbsProps } from './types';
+import { IBreadcrumbsProps } from './types';
 
-declare const Breadcrumbs: FC<BreadcrumbsProps>;
+declare const Breadcrumbs: FC<IBreadcrumbsProps>;
 export default Breadcrumbs;
 //# sourceMappingURL=index.d.ts.map

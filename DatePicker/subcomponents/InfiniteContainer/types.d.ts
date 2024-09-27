@@ -7,7 +7,7 @@ export type TValue = {
 export interface IInfiniteContainerProps extends IDayProps {
     values: Array<TValue>;
     selectedTime?: Date;
-    handleMinuteClick: (value: number) => void;
+    handleTimeClick: (value: number) => void;
     container?: null | HTMLDivElement;
     getSelected?: (value: number, selectedTime?: Date) => boolean;
 }

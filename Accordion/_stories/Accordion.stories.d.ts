@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 import { IAccordionProps } from '../types';
 
 declare const _default: {
@@ -11,13 +11,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: sizesMapping;
+                    summary: ESizesAccordion;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: sizesMapping[];
+            options: ESizesAccordion[];
             control: {
                 type: string;
             };
@@ -26,13 +26,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: variantsMapping;
+                    summary: EVariantsAccordion;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: variantsMapping[];
+            options: EVariantsAccordion[];
             control: {
                 type: string;
             };
@@ -55,13 +55,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: iconsMapping;
+                    summary: EIconsAccordion;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: iconsMapping[];
+            options: EIconsAccordion[];
             control: {
                 type: string;
             };
@@ -76,7 +76,7 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: iconsMapping[];
+            options: EIconsAccordion[];
             control: {
                 type: string;
             };

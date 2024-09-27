@@ -30,6 +30,30 @@ declare const _default: {
                 type: string;
             };
         };
+        size: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: import('../enums').ETooltipSizes;
+                };
+            };
+            options: import('../enums').ETooltipSizes[];
+            control: {
+                type: string;
+            };
+        };
+        type: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: import('../enums').ETooltipType;
+                };
+            };
+            options: import('../enums').ETooltipType[];
+            control: {
+                type: string;
+            };
+        };
         placement: {
             description: string;
             table: {
@@ -84,6 +108,10 @@ export declare const TooltipBehaviors: {
 };
 export declare const TooltipWithCustom: {
     (argsTypes: Args): JSX.Element;
+    storyName: string;
+};
+export declare const TooltipWithManualOpen: {
+    (): React.JSX.Element;
     storyName: string;
 };
 //# sourceMappingURL=Tooltip.stories.d.ts.map

@@ -6,6 +6,13 @@ export declare const SelectDefault: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;
 };
+export declare const SelectMultilineOption: {
+    (argTypes: ISelectProps): JSX.Element;
+    storyName: string;
+    args: {
+        multilineOption: boolean;
+    };
+};
 export declare const SelectSingle: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;

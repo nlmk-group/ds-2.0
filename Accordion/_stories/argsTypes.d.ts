@@ -1,17 +1,17 @@
-import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 
 export declare const argsTypes: {
     size: {
         description: string;
         table: {
             defaultValue: {
-                summary: sizesMapping;
+                summary: ESizesAccordion;
             };
             type: {
                 summary: string;
             };
         };
-        options: sizesMapping[];
+        options: ESizesAccordion[];
         control: {
             type: string;
         };
@@ -20,13 +20,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: variantsMapping;
+                summary: EVariantsAccordion;
             };
             type: {
                 summary: string;
             };
         };
-        options: variantsMapping[];
+        options: EVariantsAccordion[];
         control: {
             type: string;
         };
@@ -49,13 +49,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: iconsMapping;
+                summary: EIconsAccordion;
             };
             type: {
                 summary: string;
             };
         };
-        options: iconsMapping[];
+        options: EIconsAccordion[];
         control: {
             type: string;
         };
@@ -70,7 +70,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: iconsMapping[];
+        options: EIconsAccordion[];
         control: {
             type: string;
         };

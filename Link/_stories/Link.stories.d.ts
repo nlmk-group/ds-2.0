@@ -1,4 +1,4 @@
-import { default as React, ReactNode } from '../../../../node_modules/react';
+import { default as React, MouseEvent, ReactNode } from '../../../../node_modules/react';
 import { sizeMapping } from '../enums';
 import { ILink } from '../types';
 
@@ -46,6 +46,15 @@ export declare const LinkSizes: {
     args: {
         href: string;
         disabled: boolean;
+    };
+};
+export declare const LinkCallback: {
+    (argTypes: ILink): ReactNode;
+    storyName: string;
+    args: {
+        children: string;
+        href: string;
+        onClick: (e: MouseEvent<HTMLAnchorElement>) => void;
     };
 };
 //# sourceMappingURL=Link.stories.d.ts.map

@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { IDragAndDrop } from './types';
+import { IDragAndDropProps } from './types';
 
-declare const DragAndDrop: FC<IDragAndDrop>;
+declare const DragAndDrop: FC<IDragAndDropProps>;
 export default DragAndDrop;
 //# sourceMappingURL=index.d.ts.map

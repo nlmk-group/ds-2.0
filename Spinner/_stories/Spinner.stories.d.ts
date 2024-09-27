@@ -1,19 +1,21 @@
 import { default as React } from '../../../../node_modules/react';
+import { ESizesSpinner } from '../enums';
+import { ISpinnerProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<import('../types').ISpinner>;
-    decorators: ((Story: () => any) => React.JSX.Element)[];
+    component: React.FC<ISpinnerProps>;
+    decorators: ((Story: any) => React.JSX.Element)[];
     argTypes: {
         size: {
             description: string;
             control: {
                 type: string;
-                options: string[];
+                options: ESizesSpinner[];
             };
             table: {
                 defaultValue: {
-                    summary: string;
+                    summary: ESizesSpinner;
                 };
             };
         };
@@ -45,27 +47,39 @@ declare const _default: {
                 type: string;
             };
         };
+        percent: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        progressPercentage: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
     };
 };
 export default _default;
 export declare const SpinnerDefault: {
-    (): JSX.Element;
+    (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
 export declare const SpinnerMSize: {
-    (): JSX.Element;
+    (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
 export declare const SpinnerChangeColor: {
-    (): JSX.Element;
+    (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
 export declare const SpinnerWithIcon: {
-    (): JSX.Element;
+    (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
 export declare const SpinnerWithPercent: {
-    (): JSX.Element;
+    (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
 //# sourceMappingURL=Spinner.stories.d.ts.map

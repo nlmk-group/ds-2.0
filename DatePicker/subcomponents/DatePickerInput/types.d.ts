@@ -1,8 +1,7 @@
 import { TLevel } from '../../types';
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES, sizesMappingInput } from '../../../declaration';
+import { ENABLED_HOURS_VALUES, sizesMappingInput } from '../../../declaration';
 
-type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
-type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
+type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
 type TSize = `${sizesMappingInput}`;
 export interface IDatePickerInputProps {
     value?: Date;
@@ -19,8 +18,8 @@ export interface IDatePickerInputProps {
     withPeriod?: boolean;
     enabledFrom?: Date;
     enabledTo?: Date;
-    enabledHourFrom?: (date: Date) => TEnabledHourFrom;
-    enabledHourTo?: (date: Date) => TEnabledHourTo;
+    enabledHourFrom?: (date: Date) => TEnabledHour;
+    enabledHourTo?: (date: Date) => TEnabledHour;
     enabledMinuteFrom?: (date: Date) => number;
     enabledMinuteTo?: (date: Date) => number;
     shiftFrom?: number;

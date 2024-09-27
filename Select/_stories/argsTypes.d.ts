@@ -51,6 +51,20 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    multilineOption: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
     size: {
         description: string;
         table: {
@@ -174,6 +188,12 @@ export declare const argsTypes: {
     onFocus: {
         description: string;
         action: string;
+    };
+    isClearInputOnSelect: {
+        description: string;
+        control: {
+            type: string;
+        };
     };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

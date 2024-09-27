@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { Breadcrumb } from './types';
+import { ILinkComponentProps } from './types';
 
-declare const LinkComponent: FC<Breadcrumb>;
+declare const LinkComponent: FC<ILinkComponentProps>;
 export default LinkComponent;
 //# sourceMappingURL=LinkComponent.d.ts.map

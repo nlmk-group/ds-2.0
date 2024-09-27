@@ -1,15 +1,11 @@
-/// <reference types="react" />
-export declare enum sizes {
-    EXTRA_EXTRA_LARGE = "xxl",
-    EXTRA_LARGE = "xl",
-    LARGE = "l",
-    MEDIUM = "m"
-}
-export interface ISpinner {
-    size?: `${sizes}`;
+import { ESizesSpinner } from './enums';
+
+export interface ISpinnerProps {
+    size?: `${ESizesSpinner}`;
     color?: string;
     bgColor?: string;
-    percent?: number;
+    percent?: number | null;
     children?: JSX.Element;
+    progressPercentage?: number;
 }
 //# sourceMappingURL=types.d.ts.map

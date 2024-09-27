@@ -80,10 +80,38 @@ declare const _default: {
                 type: string;
             };
         };
+        withPortal: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        portalContainerId: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
     };
 };
 export default _default;
-export declare const DropdownDefault: {
+export declare const DefaultDropdown: {
     (args: IDropdownProps): ReactNode;
     args: {
         buttonChildren: string;
@@ -91,6 +119,18 @@ export declare const DropdownDefault: {
         menuStyle: {
             width: string;
         };
+    };
+    storyName: string;
+};
+export declare const PortalDropdown: {
+    (args: IDropdownProps): ReactNode;
+    args: {
+        buttonChildren: string;
+        size: EButtonSizes;
+        menuStyle: {
+            width: string;
+        };
+        withPortal: boolean;
     };
     storyName: string;
 };

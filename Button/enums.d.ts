@@ -12,14 +12,14 @@ export declare enum EButtonVariant {
     secondary = "secondary",
     grey = "grey",
     black = "black",
-    success = "success",
-    warning = "warning",
-    error = "error",
     info = "info"
 }
 export declare enum EButtonFill {
     solid = "solid",
     outline = "outline",
-    clear = "clear"
+    clear = "clear",
+    success = "success",
+    warning = "warning",
+    error = "error"
 }
 //# sourceMappingURL=enums.d.ts.map

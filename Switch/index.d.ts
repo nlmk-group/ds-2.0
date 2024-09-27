@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { ISwitch } from './types';
+import { ISwitchProps } from './types';
 
-declare const Switch: FC<ISwitch>;
+declare const Switch: FC<ISwitchProps>;
 export default Switch;
 //# sourceMappingURL=index.d.ts.map

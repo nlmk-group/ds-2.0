@@ -1,5 +1,5 @@
 import { sizesMapping } from '../../declaration';
-import { indicatorStatusMapping, orientationMapping } from '../enums';
+import { EIndicatorStatusMapping, EOrientationMapping } from '../enums';
 
 declare const argsTypes: {
     children: {
@@ -18,13 +18,13 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: orientationMapping;
+                summary: EOrientationMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: orientationMapping[];
+        options: EOrientationMapping[];
         control: {
             type: string;
         };
@@ -48,13 +48,13 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: indicatorStatusMapping;
+                summary: EIndicatorStatusMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: indicatorStatusMapping[];
+        options: EIndicatorStatusMapping[];
         control: {
             type: string;
         };

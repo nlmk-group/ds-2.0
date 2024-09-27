@@ -1,17 +1,16 @@
 import { CALENDAR_FORMAT_ENUM } from '../../helpers';
 import { TLevel } from '../../types';
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '../../../declaration';
+import { ENABLED_HOURS_VALUES } from '../../../declaration';
 
-type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
-type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
+type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
 export interface ICalendarPanelProps {
     type: `${CALENDAR_FORMAT_ENUM}`;
     withTime?: boolean;
     value?: Date;
     enabledFrom?: Date;
     enabledTo?: Date;
-    enabledHourFrom?: (date: Date | undefined) => TEnabledHourFrom;
-    enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
+    enabledHourFrom?: (date: Date | undefined) => TEnabledHour;
+    enabledHourTo?: (date: Date | undefined) => TEnabledHour;
     onClose: () => void;
     onChange?: (date: Date) => void;
     onPeriodChange?: (valueFrom?: Date, valueTo?: Date, shiftFrom?: number, shiftTo?: number) => void;

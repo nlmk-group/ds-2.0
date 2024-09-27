@@ -1,13 +1,15 @@
-export interface Breadcrumb {
+export interface IBreadcrumbProps {
     label: string;
     href: string;
     active?: boolean;
     target?: string;
     isLast?: boolean;
 }
-export interface BreadcrumbsProps {
+export interface ILinkComponentProps extends IBreadcrumbProps {
+}
+export interface IBreadcrumbsProps {
     className?: string;
-    crumbs: Breadcrumb[];
+    crumbs: IBreadcrumbProps[];
     width?: number;
 }
 export type TNodeWidth = Pick<HTMLElement, 'offsetWidth' | 'scrollWidth'>;

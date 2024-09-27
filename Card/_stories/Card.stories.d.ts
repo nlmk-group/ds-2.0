@@ -1,5 +1,5 @@
 import { ReactNode } from '../../../../node_modules/react';
-import { orientationMapping } from '../enums';
+import { EOrientationMapping } from '../enums';
 import { ICard } from '../types';
 
 declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ICard>;
@@ -8,14 +8,14 @@ export declare const CardDefault: {
     (argTypes: ICard): ReactNode;
     storyName: string;
     arg: {
-        orientation: orientationMapping;
+        orientation: EOrientationMapping;
     };
 };
 export declare const CardVariant: {
     (argTypes: ICard): ReactNode;
     storyName: string;
     arg: {
-        orientation: orientationMapping;
+        orientation: EOrientationMapping;
     };
 };
 export declare const CardOrientation: {

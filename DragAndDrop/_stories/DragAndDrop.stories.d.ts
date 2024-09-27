@@ -1,11 +1,11 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
 import { sizesMapping } from '../../declaration';
-import { fileTypeMapping, statusColorMapping } from '../enums';
-import { IDragAndDrop } from '../types';
+import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { IDragAndDropProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<IDragAndDrop>;
+    component: React.FC<IDragAndDropProps>;
     decorators: ((Story: any) => React.JSX.Element)[];
     argTypes: {
         className: {
@@ -66,13 +66,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: fileTypeMapping;
+                    summary: EFileTypeDnD;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: fileTypeMapping[];
+            options: EFileTypeDnD[];
             control: {
                 type: string;
             };
@@ -81,13 +81,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: statusColorMapping;
+                    summary: EStatusColorDnD;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: statusColorMapping[];
+            options: EStatusColorDnD[];
             control: {
                 type: string;
             };
@@ -227,36 +227,36 @@ declare const _default: {
 };
 export default _default;
 export declare const dndDefault: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
 };
 export declare const dndSizes: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndFileTypes: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const dndCustomAccept: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
         accept: string;
         description: string;
-        fileType: fileTypeMapping;
+        fileType: EFileTypeDnD;
         title: string;
     };
 };
 export declare const dndStatuses: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
@@ -264,24 +264,15 @@ export declare const dndStatuses: {
     };
 };
 export declare const dndStatuses2: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
         cancelUpload: import('@storybook/addon-actions').HandlerFunction;
-    };
-};
-export declare const dndSmallText: {
-    (argTypes: IDragAndDrop): ReactNode;
-    storyName: string;
-    args: {
-        onUpload: import('@storybook/addon-actions').HandlerFunction;
-        cancelUpload: import('@storybook/addon-actions').HandlerFunction;
-        smallText: boolean;
     };
 };
 export declare const dndSmallIcon: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
@@ -289,11 +280,11 @@ export declare const dndSmallIcon: {
     };
 };
 export declare const dndCustomIcon: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
 };
 export declare const dndCustom: {
-    (argTypes: IDragAndDrop): ReactNode;
+    (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
 };
 //# sourceMappingURL=DragAndDrop.stories.d.ts.map

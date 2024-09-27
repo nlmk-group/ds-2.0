@@ -8,5 +8,4 @@ export interface IAlertProps extends PropsWithChildren {
     action?: ReactNode;
     close?: () => void;
 }
-export type IIconSeverityColor = Record<EAlertSeverity, string>;
 //# sourceMappingURL=types.d.ts.map

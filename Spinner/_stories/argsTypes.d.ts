@@ -1,13 +1,15 @@
+import { ESizesSpinner } from '../enums';
+
 declare const argsTypes: {
     size: {
         description: string;
         control: {
             type: string;
-            options: string[];
+            options: ESizesSpinner[];
         };
         table: {
             defaultValue: {
-                summary: string;
+                summary: ESizesSpinner;
             };
         };
     };
@@ -34,6 +36,18 @@ declare const argsTypes: {
         };
     };
     children: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    percent: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    progressPercentage: {
         description: string;
         control: {
             type: string;

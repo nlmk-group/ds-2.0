@@ -1,10 +1,10 @@
 import { ReactNode } from '../../../../node_modules/react';
-import { ISwitch } from '../types';
+import { ISwitchProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISwitch>;
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISwitchProps>;
 export default _default;
 export declare const DefaultSwitch: {
-    (argTypes: ISwitch): ReactNode;
+    (argTypes: ISwitchProps): ReactNode;
     storyName: string;
     args: {
         checked: boolean;
@@ -12,7 +12,7 @@ export declare const DefaultSwitch: {
     };
 };
 export declare const DisabledSwitch: {
-    (argTypes: ISwitch): ReactNode;
+    (argTypes: ISwitchProps): ReactNode;
     storyName: string;
     args: {
         checked: boolean;
@@ -21,14 +21,14 @@ export declare const DisabledSwitch: {
     };
 };
 export declare const SwitchWithLabel: {
-    (argTypes: ISwitch): ReactNode;
+    (argTypes: ISwitchProps): ReactNode;
     storyName: string;
     args: {
         onChange: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const IconsSwitch: {
-    (argTypes: ISwitch): ReactNode;
+    (argTypes: ISwitchProps): ReactNode;
     storyName: string;
     args: {
         checked: boolean;

@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, ReactElement, CSSProperties } from '../../../node_modules/react';
+import { CSSProperties, MouseEvent, ReactElement, ReactNode } from '../../../node_modules/react';
 import { customInputColors, sizesMappingInput } from '../declaration';
 
 export type ISelectOption = {
@@ -45,6 +45,8 @@ export interface ISelectProps {
     portalContainerId?: string;
     name?: string;
     style?: CSSProperties;
+    multilineOption?: boolean;
+    isClearInputOnSelect?: boolean;
 }
 export interface IStealthyItem {
     option?: ISelectOption;
@@ -57,6 +59,7 @@ export interface IStealthyItem {
 export interface IMenu {
     availableOptionsCount: number;
     filteredOptions: ISelectOption[];
+    multilineOption?: boolean;
 }
 export interface ISelectSharedProperties {
     multiple: boolean;
@@ -73,6 +76,7 @@ export interface ISelectSharedProperties {
     withPortal?: boolean;
 }
 export interface IMenuItem extends ISelectOption {
+    multilineOption?: boolean;
 }
 export interface IBadgeAmount {
     children: number;

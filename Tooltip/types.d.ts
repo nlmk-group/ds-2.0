@@ -1,17 +1,18 @@
 import { ReactNode } from '../../../node_modules/react';
-import { ETooltipBehaviorType, ETooltipPlacementType } from './enums';
+import { ETooltipBehaviorType, ETooltipPlacementType, ETooltipSizes, ETooltipType } from './enums';
 
-export type TooltipBehaviorType = `${ETooltipBehaviorType}`;
-export type TooltipPlacementType = `${ETooltipPlacementType}`;
 export interface ITooltipProps {
     className?: string;
+    size?: `${ETooltipSizes}`;
+    type?: `${ETooltipType}`;
     popupClassName?: string;
-    behavior?: TooltipBehaviorType;
-    placement?: TooltipPlacementType;
+    behavior?: `${ETooltipBehaviorType}`;
+    placement?: `${ETooltipPlacementType}`;
     children: ReactNode;
     render?: ReactNode;
     title?: string;
     description?: string;
     clickable?: boolean;
+    isOpen?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

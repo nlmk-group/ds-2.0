@@ -8,5 +8,7 @@ export interface IDropdownProps {
     size?: `${EButtonSizes}`;
     buttonChildren?: ReactNode;
     menuStyle?: CSSProperties;
+    withPortal?: boolean;
+    portalContainerId?: string;
 }
 //# sourceMappingURL=types.d.ts.map

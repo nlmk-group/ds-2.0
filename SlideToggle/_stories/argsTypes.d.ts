@@ -1,14 +1,6 @@
 import { ESizeMapping } from '../enum';
 
 declare const argsTypes: {
-    isShow: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-        };
-    };
     onToggle: {
         description: string;
     };
@@ -24,14 +16,6 @@ declare const argsTypes: {
             type: string;
         };
     };
-    toggleContainerShadow: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-        };
-    };
     children: {
         description: string;
         control: {
@@ -40,6 +24,11 @@ declare const argsTypes: {
     };
     title: {
         description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
         control: {
             type: string;
         };

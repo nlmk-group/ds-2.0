@@ -1,12 +1,12 @@
-import { MouseEvent } from '../../../node_modules/react';
+import { ReactNode } from '../../../node_modules/react';
 
-export interface ISwitch {
+export interface ISwitchProps {
     className?: string;
     checked: boolean;
-    onChange: (event: MouseEvent<Element>, checked: boolean) => void;
+    onChange: (checked: boolean) => void;
     disabled?: boolean;
     label?: string;
-    activeIcon?: JSX.Element;
-    inactiveIcon?: JSX.Element;
+    activeIcon?: ReactNode;
+    inactiveIcon?: ReactNode;
 }
 //# sourceMappingURL=types.d.ts.map

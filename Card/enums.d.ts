@@ -1,8 +1,8 @@
-export declare enum orientationMapping {
+export declare enum EOrientationMapping {
     vertical = "vertical",
     horizontal = "horizontal"
 }
-export declare enum indicatorStatusMapping {
+export declare enum EIndicatorStatusMapping {
     default = "default",
     success = "success",
     error = "error",

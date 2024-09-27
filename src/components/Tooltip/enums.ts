@@ -9,6 +9,16 @@ export enum ETooltipBehaviorType {
   focus = 'focus'
 }
 
+export enum ETooltipType {
+  default = 'default',
+  inverse = 'inverse'
+}
+
+export enum ETooltipSizes {
+  normal = 'normal',
+  compact = 'compact'
+}
+
 export enum ETooltipPlacementType {
   top = 'top',
   'top-start' = 'top-start',
@@ -21,5 +31,5 @@ export enum ETooltipPlacementType {
   'left-end' = 'left-end',
   right = 'right',
   'right-start' = 'right-start',
-  'right-end' = 'right-end',
+  'right-end' = 'right-end'
 }

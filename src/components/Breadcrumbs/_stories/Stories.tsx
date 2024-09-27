@@ -10,7 +10,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { breadcrumbsSimple, breadcrumbsTarget, breadcrumbsThreeOptions } from '../constants';
+import { breadcrumbsSimple, breadcrumbsTarget, breadcrumbsThreeOptions } from './constants';
 import argsTypes from './argsTypes';
 
 const Stories = (): JSX.Element => {

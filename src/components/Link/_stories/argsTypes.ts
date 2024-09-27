@@ -57,5 +57,9 @@ export const argsTypes = {
   iconRight: {
     description: 'Необязательное свойство. Иконка или элемент, который будет отображаться справа от текста ссылки.',
     control: { type: 'boolean' }
+  },
+  onClick: {
+    description: 'Callback при клике на ссылку',
+    action: 'клик по ссылке'
   }
 };

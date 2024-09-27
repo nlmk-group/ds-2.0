@@ -20,7 +20,9 @@ const ImageHelper: FC<IImageHelper> = ({ imageURL, badges }) => {
       {badges.length !== 0 && (
         <div data-testid="BADGES_WRAPPER" className={styles['badges-wrapper']}>
           {badges.map((badge: string, index: number) => (
-            <Badge key={index}>{badge}</Badge>
+            <Badge key={index} className={styles['badges-bg-color']}>
+              {badge}
+            </Badge>
           ))}
         </div>
       )}

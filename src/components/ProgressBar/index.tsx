@@ -6,6 +6,15 @@ import clsx from 'clsx';
 
 import styles from './ProgressBar.module.scss';
 
+/**
+ * Компонент ProgressBar отображает прогресс в виде заполненной полосы.
+ *
+ * @param {object} props - Свойства компонента.
+ * @param {number} props.percentage - Процент заполнения полосы прогресса.
+ * @param {string} [props.label] - Метка, отображаемая внутри полосы прогресса.
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @returns {JSX.Element} - Компонент ProgressBar.
+ */
 const ProgressBar: FC<IProgressBarProps> = ({ percentage = 0, label, className }) => {
   const validPercentage = Math.min(Math.max(percentage, 0), 100);
 
@@ -13,7 +22,13 @@ const ProgressBar: FC<IProgressBarProps> = ({ percentage = 0, label, className }
 
   return (
     <div className={clsx(styles.root, className)}>
-      <div className={styles['progress']} role="progressBar">
+      <div
+        aria-valuenow={validPercentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        className={styles['progress']}
+        role="progressBar"
+      >
         <div className={styles['progress-fill']} style={{ width: `${validPercentage}%` }} />
         {label && (
           <Typography className={styles['progress-label']} variant="Body1-Medium">

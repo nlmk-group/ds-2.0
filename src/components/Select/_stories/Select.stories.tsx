@@ -37,6 +37,25 @@ export const SelectDefault = (argTypes: ISelectProps): JSX.Element => {
 };
 SelectDefault.storyName = 'Select по умолчанию';
 
+export const SelectMultilineOption = (argTypes: ISelectProps): JSX.Element => {
+  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const [selected, setSelected] = useState<TSelected>([]);
+
+  console.log(otherArgs)
+  return (
+    <div style={{ padding: '50px' }}>
+      <Select
+        options={options}
+        {...otherArgs}
+        selected={selected}
+        onSelectionChange={setSelected}
+      />
+    </div>
+  );
+};
+SelectMultilineOption.storyName = 'Select с переносом текста опции на следующую строку';
+SelectMultilineOption.args = { multilineOption: true }
+
 export const SelectSingle = (argTypes: ISelectProps): JSX.Element => {
   const { options: ignoredOptions, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);
@@ -514,7 +533,7 @@ export const NativeMenu = (argTypes: ISelectProps): JSX.Element => {
           Сформировать отчет
         </Button>
       </Select>
-      {format && <Typography>Вы выбрали файл в формате .{format}.</Typography>}
+      {format && <Typography color='var(--steel-90)'>Вы выбрали файл в формате .{format}.</Typography>}
     </div>
   );
 };

@@ -45,8 +45,8 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
   .hover-overlay {
     width: 100%;
     height: 100%;
-    background-color: var(--ac-image-picture-hover-bg);
-    opacity: var(--65-opacity);
+    background-color: var(--unique-black);
+    opacity: 0.6;
     position: absolute;
     top: 0;
     left: 0;
@@ -58,14 +58,14 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--never-changes-white);
+    color: var(--unique-white);
     z-index: 1;
     cursor: pointer;
   }
 
   // No Content State
   &.no-content {
-    background-color: var(--ac-image-picture-no-content-bg);
+    background-color: var(--steel-30);
     display: flex;
     align-items: center;
     justify-content: center;

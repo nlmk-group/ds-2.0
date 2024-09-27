@@ -1,4 +1,4 @@
-$accordion-border: solid var(--1-size) var(--ac-accordion-paper-divider);
+$accordion-border: solid 1px var(--unique-divider);
 
 .wrapper {
   width: 100%;
@@ -6,7 +6,7 @@ $accordion-border: solid var(--1-size) var(--ac-accordion-paper-divider);
   flex-flow: column nowrap;
   gap: 0;
   border: $accordion-border;
-  border-radius: var(--8-size);
+  border-radius: 8px;
   overflow: hidden;
 
   & > div:not(:first-child) {

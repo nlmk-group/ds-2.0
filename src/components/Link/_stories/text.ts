@@ -3,3 +3,4 @@ export const LINK_TARGET = 'Link с разными параметрами target
 export const LINK_SIZES = 'Link с разными размерами';
 export const LINK_DISABLE = 'Не активный Link';
 export const LINK_ICON = 'Link с иконками';
+export const LINK_ONCLICK = 'Link с коллбеком';

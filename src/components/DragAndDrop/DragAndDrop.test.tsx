@@ -6,14 +6,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './DragAndDrop.module.scss';
 
-import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import {
-  fileTypeMapping,
-  iconTypeMapping,
-  spinnerWidthHelperMapping,
-  statusColorMapping
-} from './enums';
-import UploadIcon from './UploadIcon';
+import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
+import { EFileTypeDnD, EIconTypeDnD, ESpinnerWidthHelperDnD, EStatusColorDnD } from './enums';
+import UploadIcon from './subcomponents/UploadIcon';
 
 describe('src/components/DragAndDrop', () => {
   const onUploadMockCallBack = jest.fn();
@@ -98,7 +93,7 @@ describe('src/components/DragAndDrop', () => {
   });
 
   describe('while having different types to upload', () => {
-    Object.values(fileTypeMapping).forEach((key: fileTypeMapping) => {
+    Object.values(EFileTypeDnD).forEach((key: EFileTypeDnD) => {
       const ComponentHelper = () => <DragAndDrop fileType={key} onUpload={onUploadMockCallBack} />;
 
       test(`It should render component that accept ${key}`, () => {
@@ -109,16 +104,16 @@ describe('src/components/DragAndDrop', () => {
 
       test(`It should render icon of type ${key}`, () => {
         render(<ComponentHelper />);
-        expect(screen.getByTestId(`ICON_TYPE_${iconTypeMapping[key]}`)).toBeInTheDocument();
+        expect(screen.getByTestId(`ICON_TYPE_${EIconTypeDnD[key]}`)).toBeInTheDocument();
       });
     });
   });
 
   describe('While rendering with different statuses', () => {
-    Object.values(statusColorMapping).forEach((status: statusColorMapping) => {
+    Object.values(EStatusColorDnD).forEach((status: EStatusColorDnD) => {
       test(`It should render component with ${status} status`, () => {
         const { container } = render(
-          <DragAndDrop statusColor={statusColorMapping[status]} onUpload={onUploadMockCallBack} />
+          <DragAndDrop statusColor={EStatusColorDnD[status]} onUpload={onUploadMockCallBack} />
         );
         const dndComponent = container.getElementsByTagName('label')[0];
         expect(dndComponent.classList.contains(`label-${status}`)).toBe(true);
@@ -140,7 +135,7 @@ describe('src/components/DragAndDrop', () => {
       test(`It should render component's icon with ${size} size`, () => {
         render(<ComponentHelper />);
 
-        expect(screen.getByTestId(`ICON_TYPE_${iconTypeMapping.image}`).classList.contains(`icon-${size}`)).toBe(true);
+        expect(screen.getByTestId(`ICON_TYPE_${EIconTypeDnD.image}`).classList.contains(`icon-${size}`)).toBe(true);
       });
     });
   });
@@ -150,26 +145,24 @@ describe('src/components/DragAndDrop', () => {
     const ComponentHelper = () => (
       <DragAndDrop loading onUpload={onUploadMockCallBack} cancelUpload={cancelUploadCallBack} />
     );
-
+    test('It should call function cancelUpload onClick', () => {
+      render(<ComponentHelper />);
+      const btn = screen.getByText(cancelUploadLabel);
+      fireEvent.click(btn);
+      expect(cancelUploadCallBack).toHaveBeenCalledTimes(1);
+    });
     test('It should render Dnd that cannot be clicked', () => {
       const { container } = render(<ComponentHelper />);
 
       const dndComponent = container.getElementsByTagName('form')[0];
       expect(dndComponent).toHaveStyle(`pointer-events: none`);
     });
-
-    test('It should call function cancelUpload onClick', () => {
-      render(<ComponentHelper />);
-      const btn = screen.getByText(dragNDropBtnLabel);
-      fireEvent.click(btn);
-      expect(cancelUploadCallBack).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe('While rendering SmallText', () => {
     test('It should render default DnD with SmallText', () => {
       render(<DragAndDrop smallText onUpload={onUploadMockCallBack} />);
-      expect(screen.getByTestId(`SMALL_TEXT_${statusColorMapping.default}`)).toBeInTheDocument();
+      expect(screen.getByTestId(`SMALL_TEXT_${EStatusColorDnD.default}`)).toBeInTheDocument();
     });
 
     test('It should render DnD with title', () => {
@@ -179,7 +172,7 @@ describe('src/components/DragAndDrop', () => {
     });
 
     describe('While rendering with different statuses', () => {
-      Object.values(statusColorMapping).forEach((status: statusColorMapping) => {
+      Object.values(EStatusColorDnD).forEach((status: EStatusColorDnD) => {
         const ComponentHelper = () => <DragAndDrop smallText statusColor={status} onUpload={onUploadMockCallBack} />;
 
         test(`It should render SmallIcon with ${status} status`, () => {
@@ -210,8 +203,8 @@ describe('src/components/DragAndDrop', () => {
         test(`It should render UploadIcon with ${size} size`, () => {
           const { container } = render(<ComponentHelper />);
           const uploadIcon = container.getElementsByTagName('div')[0];
-          expect(uploadIcon).toHaveStyle(`height: ${spinnerWidthHelperMapping[size]}`);
-          expect(uploadIcon).toHaveStyle(`width: ${spinnerWidthHelperMapping[size]}`);
+          expect(uploadIcon).toHaveStyle(`height: ${ESpinnerWidthHelperDnD[size]}`);
+          expect(uploadIcon).toHaveStyle(`width: ${ESpinnerWidthHelperDnD[size]}`);
         });
       });
     });

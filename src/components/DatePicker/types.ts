@@ -1,12 +1,12 @@
 import { FC, ReactNode } from 'react';
 
 import { LEVEL_MAPPING_ENUM } from '@components/DatePicker/helpers/levelMappingEnum';
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES, sizesMappingInput } from '@components/declaration';
+import { sizesMappingInput } from '@components/declaration';
+import { ENABLED_HOURS_VALUES } from '@components/declaration/constants/enabledHours';
 
 export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 
-export type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
-export type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
+export type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
 
 export interface IBaseProps {
   id?: number | string;
@@ -15,8 +15,8 @@ export interface IBaseProps {
   className?: string;
   enabledFrom?: Date;
   enabledTo?: Date;
-  enabledHourFrom?: (date: Date) => TEnabledHourFrom;
-  enabledHourTo?: (date: Date) => TEnabledHourTo;
+  enabledHourFrom?: (date: Date) => TEnabledHour;
+  enabledHourTo?: (date: Date) => TEnabledHour;
   enabledMinuteFrom?: (date: Date) => number;
   enabledMinuteTo?: (date: Date) => number;
   disabled?: boolean;

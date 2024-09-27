@@ -3,13 +3,24 @@ import React, { FC } from 'react';
 import { sizesMapping } from '@components/declaration';
 import { Button, IconCloseOutlined24, Typography } from '@components/index';
 
-import { ISmallText } from './types';
+import styles from '../DragAndDrop.module.scss';
 
-import styles from './DragAndDrop.module.scss';
-
+import { ISmallTextProps } from '../types';
 import UploadIcon from './UploadIcon';
 
-const SmallText: FC<ISmallText> = ({
+/**
+ * Компонент SmallText отображает маленький текст для области перетаскивания и загрузки файлов.
+ *
+ * @param {object} props - Свойства компонента SmallText.
+ * @param {string | React.ReactNode} props.title - Заголовок компонента.
+ * @param {boolean} props.loading - Показать индикатор загрузки.
+ * @param {number} props.percentUpload - Процент выполнения загрузки.
+ * @param {`${EStatusColorDnD}`} props.statusColor - Цвет статуса.
+ * @param {boolean} props.disabled - Отключен ли компонент.
+ * @param {() => void} [props.cancelUpload] - Функция для отмены загрузки.
+ * @returns {JSX.Element} - Компонент SmallText.
+ */
+const SmallText: FC<ISmallTextProps> = ({
   title,
   loading,
   percentUpload,
@@ -28,9 +39,9 @@ const SmallText: FC<ISmallText> = ({
           {cancelUpload !== null && (
             <div style={{ pointerEvents: disabled ? 'none' : 'all' }}>
               <Button
-                variant='primary'
-                fill='clear'
-                size='s'
+                variant="primary"
+                fill="clear"
+                size="s"
                 iconButton={<IconCloseOutlined24 />}
                 onClick={cancelUpload}
               />

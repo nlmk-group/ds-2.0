@@ -3,12 +3,12 @@
  * @type {indicatorStatusMapping} indicatorStatusMapping
  */
 
-export enum orientationMapping {
+export enum EOrientationMapping {
   vertical = 'vertical',
   horizontal = 'horizontal'
 }
 
-export enum indicatorStatusMapping {
+export enum EIndicatorStatusMapping {
   default = 'default',
   success = 'success',
   error = 'error',

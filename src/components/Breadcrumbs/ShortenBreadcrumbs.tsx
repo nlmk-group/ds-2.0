@@ -1,38 +1,44 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState, useCallback } from 'react';
 
 import { clsx } from 'clsx';
 
-import { Breadcrumb } from './types';
+import { IBreadcrumbProps } from './types';
 
 import styles from './Breadcrumbs.module.scss';
 
-import { ClickAwayListener, Icon, List, ListItem } from '..';
+import { ClickAwayListener, Icon, List, ListItem } from '@components/index';
 import { targetMapping } from './enums';
 import LinkComponent from './LinkComponent';
 
-const ShortenBreadcrumbs: FC<{ crumbs: Breadcrumb[] }> = ({ crumbs }): JSX.Element => {
+const ShortenBreadcrumbs: FC<{ crumbs: IBreadcrumbProps[] }> = ({ crumbs }): JSX.Element => {
   const [showItems, setShowItems] = useState<boolean>(false);
-  const firstElement = crumbs.at(0) as Breadcrumb;
-  const lastElement = crumbs.at(crumbs.length - 1) as Breadcrumb;
-  const otherElementsArray = crumbs.slice(1, crumbs.length - 1);
+
+  const toggleShowItems = useCallback(() => setShowItems(prev => !prev), []);
+
+  const { firstElement, lastElement, otherElementsArray } = useMemo(() => ({
+    firstElement: crumbs[0],
+    lastElement: crumbs[crumbs.length - 1],
+    otherElementsArray: crumbs.slice(1, -1)
+  }), [crumbs]);
 
   return (
     <>
       <LinkComponent {...firstElement} />
       <div
         data-testid="HIDDEN_OPTIONS_BUTTON"
-        className={clsx(styles['hidden-options-wrapper'], showItems && styles['active-option-list'])}
-        onClick={() => setShowItems(!showItems)}
+        className={clsx(styles.options, showItems && styles.show)}
+        onClick={toggleShowItems}
       >
-        ...
-        <div className={clsx(styles['link-separator'], styles['custom-link'])}>
-          <Icon name="IconChevronArrowRightOutlined24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
+        <span>...</span>
+        <div className={styles.separator}>
+          <Icon name="IconChevronArrowRightOutlined24" containerSize={16} />
         </div>
         {showItems && (
-          <ClickAwayListener onClickAway={() => setShowItems(!showItems)}>
-            <List data-testid="HIDDEN_OPTIONS_LIST" className={styles['option-list']}>
-              {otherElementsArray.map((item: Breadcrumb, index) => (
-                <ListItem key={index} onClick={() => window.open(item.href, item.target || targetMapping._parent)}>
+          <ClickAwayListener onClickAway={toggleShowItems}>
+            <List data-testid="HIDDEN_OPTIONS_LIST" className={styles.list}>
+              {otherElementsArray.map((item: IBreadcrumbProps, index: number) => (
+                <ListItem key={index} onClick={() => window.open(item.href, item.target || targetMapping._parent)}
+                  className={clsx(styles.option)}>
                   <LinkComponent {...item} />
                 </ListItem>
               ))}
@@ -40,7 +46,7 @@ const ShortenBreadcrumbs: FC<{ crumbs: Breadcrumb[] }> = ({ crumbs }): JSX.Eleme
           </ClickAwayListener>
         )}
       </div>
-      <LinkComponent {...lastElement} />
+      <LinkComponent {...lastElement} isLast />
     </>
   );
 };

@@ -23,7 +23,7 @@ const Checkbox: FC<ICheckboxProps> = ({
   const colorClassName = styles[color as keyof typeof styles];
 
   return (
-    <label className={clsx(styles.label, className)} htmlFor={id} data-testid="checkbox">
+    <label className={clsx(styles.label, className)} data-testid="checkbox">
       <input
         type="checkbox"
         id={id}

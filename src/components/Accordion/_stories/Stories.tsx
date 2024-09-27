@@ -10,7 +10,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 import { argsTypes } from './argsTypes';
 
 enum TabIds {
@@ -82,7 +82,7 @@ export default App = () => (
           />
 
           <Editor
-            description={`Варианты размеров аккордеона: ${Object.values(sizesMapping).join(' | ')}`}
+            description={`Варианты размеров аккордеона: ${Object.values(ESizesAccordion).join(' | ')}`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
@@ -114,7 +114,7 @@ export default App = () => (
               `}
           />
           <Editor
-            description={`Варианты иконок аккордеона: ${Object.values(iconsMapping).join(' | ')}`}
+            description={`Варианты иконок аккордеона: ${Object.values(EIconsAccordion).join(' | ')}`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
@@ -148,7 +148,7 @@ export default App = () => (
           />
 
           <Editor
-            description={`Цветовые варианты аккордеона: ${Object.values(variantsMapping).join(' | ')}`}
+            description={`Цветовые варианты аккордеона: ${Object.values(EVariantsAccordion).join(' | ')}`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [

@@ -8,7 +8,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import { IDropdownProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => {
+const WrapperDecorator = (Story: any) => {
   return (
     <Box
       alignItems="flex-start"
@@ -24,11 +24,11 @@ const withWrapper = (Story: any) => {
 export default {
   title: 'Components/Dropdown/Stories',
   component: Dropdown,
-  decorators: [withWrapper],
+  decorators: [WrapperDecorator],
   argTypes: argsTypes
 };
 
-const positions = [
+const dropdownOptions = [
   { value: 'Сталь' },
   { value: 'Железо' },
   { value: 'Чугун', disabled: true },
@@ -38,30 +38,55 @@ const positions = [
   { value: 'Хром' }
 ];
 
-export const DropdownDefault = (args: IDropdownProps): ReactNode => {
+export const DefaultDropdown = (args: IDropdownProps): ReactNode => {
   return (
-    <div style={{ position: 'relative' }}>
-      <Dropdown {...args}>
-        {positions.map(({ value, disabled }) => (
-          <DropdownMenuItem
-            key={value}
-            value={value}
-            disabled={disabled}
-            onClick={() => {
-              console.log(value);
-            }}
-          >
-            <Typography variant="Body1-Medium">{value}</Typography>
-          </DropdownMenuItem>
-        ))}
-      </Dropdown>
-    </div>
+    <Dropdown {...args}>
+      {dropdownOptions.map(({ value, disabled }) => (
+        <DropdownMenuItem
+          key={value}
+          value={value}
+          disabled={disabled}
+          onClick={() => {
+            console.log(value);
+          }}
+        >
+          <Typography variant="Body1-Medium">{value}</Typography>
+        </DropdownMenuItem>
+      ))}
+    </Dropdown>
   );
 };
-DropdownDefault.args = {
+DefaultDropdown.args = {
   buttonChildren: 'Dropdown Button',
   size: EButtonSizes.m,
-  menuStyle: { width: '200px' }
+  menuStyle: { width: '200px' },
 };
 
-DropdownDefault.storyName = 'Dropdown по умолчанию';
+DefaultDropdown.storyName = 'Dropdown по умолчанию';
+
+export const PortalDropdown = (args: IDropdownProps): ReactNode => {
+  return (
+    <Dropdown {...args}>
+      {dropdownOptions.map(({ value, disabled }) => (
+        <DropdownMenuItem
+          key={value}
+          value={value}
+          disabled={disabled}
+          onClick={() => {
+            console.log(value);
+          }}
+        >
+          <Typography variant="Body1-Medium">{value}</Typography>
+        </DropdownMenuItem>
+      ))}
+    </Dropdown>
+  );
+};
+PortalDropdown.args = {
+  buttonChildren: 'Dropdown Button',
+  size: EButtonSizes.m,
+  menuStyle: { width: '200px' },
+  withPortal: true
+};
+
+PortalDropdown.storyName = 'Dropdown с порталом';

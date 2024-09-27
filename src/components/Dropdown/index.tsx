@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useRef, useState } from 'react';
+import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useMemo, useRef, useState } from 'react';
 
 import { EButtonSizes } from '@components/Button/enums';
 import { Button, IconChevronArrowDownOutlined16, IconChevronArrowDownOutlined24 } from '@components/index';
@@ -10,6 +10,7 @@ import styles from './Dropdown.module.scss';
 
 import { DropdownContext } from './context';
 import { DropdownMenu } from './subcomponents';
+import ReactDOM from 'react-dom';
 
 /**
  * Компонент Dropdown предоставляет интерактивное выпадающее меню с настраиваемыми кнопками и элементами меню.
@@ -29,7 +30,9 @@ const Dropdown: FC<IDropdownProps> = ({
   buttonChildren,
   className,
   size = EButtonSizes.m,
-  menuStyle
+  menuStyle,
+  withPortal = false,
+  portalContainerId = 'root'
 }: {
   children: ReactNode;
   disabled?: boolean;
@@ -37,9 +40,12 @@ const Dropdown: FC<IDropdownProps> = ({
   className?: string;
   size?: `${EButtonSizes}`;
   menuStyle?: CSSProperties;
+  withPortal?: boolean;
+  portalContainerId?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
   /**
    * Переключает состояние открытия/закрытия выпадающего меню.
    * @param {React.MouseEvent<HTMLButtonElement>} e - Событие клика мыши.
@@ -58,21 +64,31 @@ const Dropdown: FC<IDropdownProps> = ({
     </div>
   );
 
+  const getDropdownMenu = () => {
+    const menu = withPortal ? (
+      ReactDOM.createPortal(<DropdownMenu withPortal >{children}</DropdownMenu>, portalContainer)
+    ) : <DropdownMenu>{children}</DropdownMenu>
+
+    return isOpen ? menu : null;
+  }
+
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonChildren, buttonRef, size, menuStyle }}>
-      <Button
-        ref={buttonRef}
-        className={clsx(styles.button, className)}
-        variant="secondary"
-        onClick={toggleDropdown}
-        disabled={disabled}
-        size={size}
-        iconButton={!buttonChildren ? Chevron : undefined}
-        endIcon={buttonChildren ? Chevron : undefined}
-      >
-        {buttonChildren}
-      </Button>
-      {isOpen && <DropdownMenu>{children}</DropdownMenu>}
+      <div className={styles.wrapper}>
+        <Button
+          ref={buttonRef}
+          className={clsx(styles.button, className)}
+          variant="secondary"
+          onClick={toggleDropdown}
+          disabled={disabled}
+          size={size}
+          iconButton={!buttonChildren ? Chevron : undefined}
+          endIcon={buttonChildren ? Chevron : undefined}
+        >
+          {buttonChildren}
+        </Button>
+        {getDropdownMenu()}
+      </div>
     </DropdownContext.Provider>
   );
 };

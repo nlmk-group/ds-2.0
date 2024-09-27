@@ -2,83 +2,74 @@ import React from 'react';
 
 import { IconAutoRenewReloadOutlined24, Spinner } from '@components/index';
 
+import style from './Spinner.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { sizes } from '../types';
+import { ESizesSpinner } from '../enums';
+import { ISpinnerProps } from '../types';
 import argsTypes from './argsTypes';
 import { COLORS, DEFAULT_TEXT, ICON, ICON_PERCENT, TEXT_M_SIZE } from './text';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={style.wrapper}>{Story()}</div>;
 
 export default {
   title: 'Components/Spinner/Stories',
   component: Spinner,
-  decorators: [withPadding],
+  decorators: [withWrapper],
   argTypes: argsTypes
 };
 
-export const SpinnerDefault = (): JSX.Element => {
+export const SpinnerDefault = (args: ISpinnerProps): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{ width: 40 }}>
-      <div className={styles.row}>
-        <Spinner />
-      </div>
+    <div>
+      <Spinner {...args} />
     </div>
   );
 };
 SpinnerDefault.storyName = DEFAULT_TEXT;
 
-export const SpinnerMSize = (): JSX.Element => {
+export const SpinnerMSize = (args: ISpinnerProps): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{ width: 32 }}>
-      <div className={styles.row}>
-        <Spinner size="m" />
-      </div>
+    <div>
+      <Spinner size="m" />
     </div>
   );
 };
 SpinnerMSize.storyName = TEXT_M_SIZE;
 
-export const SpinnerChangeColor = (): JSX.Element => {
+export const SpinnerChangeColor = (args: ISpinnerProps): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{ width: 40 }}>
-      <div className={styles.row}>
-        <Spinner bgColor="#ff6e40" color="#1e3d59" />
-      </div>
+    <div>
+      <Spinner bgColor="#ff6e40" color="#1e3d59" />
     </div>
   );
 };
 SpinnerChangeColor.storyName = COLORS;
 
-export const SpinnerWithIcon = (): JSX.Element => {
+export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{ width: 30 }}>
-      <div className={styles.row}>
-        <Spinner>
-          <IconAutoRenewReloadOutlined24 htmlColor="var(--ac-loader-stroke-progress)" />
-        </Spinner>
-      </div>
+    <div>
+      <Spinner>
+        <IconAutoRenewReloadOutlined24 htmlColor="var(--ac-loader-stroke-progress)" />
+      </Spinner>
     </div>
   );
 };
 SpinnerWithIcon.storyName = ICON;
 
-export const SpinnerWithPercent = (): JSX.Element => {
+export const SpinnerWithPercent = (args: ISpinnerProps): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
-      <div
-        className={styles.row}
-        style={{
-          width: 500,
-          display: 'flex',
-          gap: 20
-        }}
-      >
-        <Spinner size={sizes.EXTRA_EXTRA_LARGE} percent={96} />
-        <Spinner size={sizes.EXTRA_LARGE} percent={56} />
-        <Spinner size={sizes.LARGE} percent={40} />
-        <Spinner size={sizes.MEDIUM} percent={32} />
-      </div>
+    <div
+      className={styles.row}
+      style={{
+        display: 'flex',
+        gap: 20
+      }}
+    >
+      <Spinner size={ESizesSpinner.xxl} percent={96} />
+      <Spinner size={ESizesSpinner.xl} percent={56} />
+      <Spinner size={ESizesSpinner.l} percent={40} />
+      <Spinner size={ESizesSpinner.m} percent={32} />
     </div>
   );
 };

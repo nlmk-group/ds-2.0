@@ -96,7 +96,7 @@ export const WelcomePage = () => {
       <div className={styles.main}>
         <div className={styles.description}>
           <Typography variant="Heading1" className={styles['description-header']}>
-            Дизайн-система 2.0 НЛМК
+            Дизайн-система НЛМК
           </Typography>
           <Typography variant="Subheading3-Medium" className={styles['description-subheader']}>
             Набор компонентов, инструментов и правил, которые упрощают создание, а также визуальное и техническое

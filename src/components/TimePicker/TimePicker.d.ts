@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
-export type TEnabledHourFrom = number | undefined;
-export type TEnabledHourTo = number | undefined;
+export type TEnabledHour = number | undefined;
 
 export enum ETimePickerTypes {
   time = 'time',
@@ -19,8 +18,8 @@ export interface ITimePickerProps {
   valueTo?: Date;
   onPeriodChange?: (valueFrom?: Date, valueTo?: Date) => void;
   className?: string;
-  enabledHourFrom?: (date: Date | undefined) => TEnabledHourFrom;
-  enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
+  enabledHourFrom?: (date: Date | undefined) => TEnabledHour;
+  enabledHourTo?: (date: Date | undefined) => TEnabledHour;
   enabledMinuteFrom?: (date: Date | undefined) => number;
   enabledMinuteTo?: (date: Date | undefined) => number;
   disabled?: boolean;

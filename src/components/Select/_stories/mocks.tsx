@@ -229,3 +229,13 @@ export const optionWithColorfulIcons: ISelectOption[] = [
     iconRight: <IconFinishingContains24 color="success" />
   }
 ];
+
+export const positions = [
+  { value: 'Сталь' },
+  { value: 'Железо' },
+  { value: 'Чугун', disabled: true },
+  { value: 'Медь' },
+  { value: 'Цинк' },
+  { value: 'Титан' },
+  { value: 'Хром' }
+];

@@ -1,6 +1,6 @@
 @mixin icon-size {
-  height: calc(var(--32-size) * 3);
-  width: calc(var(--32-size) * 3);
+  height: 96px;
+  width: 96px;
 }
 
 @mixin ellipse {
@@ -13,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: var(--4-radius);
+  border-radius: 4px;
   background: var(--dark-primary-navyblue-50);
 }
 
@@ -25,7 +25,7 @@
 .image-content {
   width: 100%;
   height: 100%;
-  border-radius: var(--4-radius);
+  border-radius: 4px;
   object-fit: cover;
 }
 
@@ -43,16 +43,18 @@
   position: absolute;
   top: 0;
   display: flex;
-  gap: var(--4-space);
+  gap: 4px;
   width: -webkit-fill-available;
   flex-wrap: wrap;
-  padding: var(--12-space) var(--12-space) 0 var(--12-space);
+  padding: 12px 12px 0 12px;
 }
-
+.badges-bg-color {
+  background-color: var(--brand-sapphire-50);
+}
 .info-block {
   display: flex;
   flex-direction: column;
-  gap: var(--16-space);
+  gap: 16px;
 }
 
 .info-block-vertical {
@@ -60,13 +62,13 @@
 }
 
 .info-block-horizontal {
-  width: calc((var(--90-size) * 4));
-  gap: 21.5px;
+  width: 360px;
+  gap: 21px;
 }
 
 .title-wrapper {
   display: flex;
-  gap: var(--4-space);
+  gap: 4px;
 }
 
 .title-typography-helper {

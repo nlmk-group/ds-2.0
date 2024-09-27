@@ -12,14 +12,10 @@
     fill: $ic;
   }
 }
-
-@mixin title-helper($cl, $hv) {
+@mixin title-helper($cl) {
   color: $cl;
-  transition: 0.5s;
+  transition: 0.3s;
   cursor: pointer;
-  &:hover {
-    color: $hv;
-  }
 }
 
 @mixin position-center {
@@ -40,91 +36,60 @@
 
 .label-file-upload {
   cursor: pointer;
-  padding: var(--16-space) var(--24-space);
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--4-radius);
   border-style: dashed;
-  transition: 0.5s;
+  border-radius: 4px;
 }
 
 .label-file-upload-l {
-  padding: var(--32-space) var(--48-space);
+  padding: 48px 64px;
 }
 
 .label-file-upload-m {
-  padding: var(--16-space) var(--24-space);
+  padding: 16px 24px;
 }
 
 .label-file-upload-s {
-  padding: var(--16-space);
-
+  padding: 16px;
 }
 
 .label-file-upload-small-icon {
-  padding: var(--8-space);
-  height: var(--56-size);
-  width: var(--64-size);
+  padding: 8px;
+  height: 56px;
+  width: 64px;
 }
 
-.label-loading {
-  border-color: var(--ac-drag-drop-uploading-stroke)!important;
-  background-color: var(--ac-drag-drop-uploading-bg)!important;
+.label-loading.label-loading {
+  border-color: var(--steel-60);
+  background-color: var(--steel-10);
+  border-width: 1px;
 }
 
 .label-s-default {
-  @include bg-border-icon-helper(
-    var(--1-border),
-    var(--ac-drag-drop-default-stroke),
-    auto,
-    auto
-  );
+  @include bg-border-icon-helper(1px, var(--steel-60), auto, auto);
 }
 
 .label-default {
-  @include bg-border-icon-helper(
-    var(--1-border),
-    var(--ac-drag-drop-default-stroke),
-    transparent,
-    var(--ac-drag-drop-default-icon)
-  );
+  @include bg-border-icon-helper(1px, var(--steel-60), var(--steel-10), var(--steel-50));
 
   &:hover {
-    @include bg-border-icon-helper(
-      var(--1-border),
-      var(--ac-drag-drop-hover-stroke),
-      var(--ac-drag-drop-hover-bg),
-      var(--ac-drag-drop-hover-icon)
-    );
+    @include bg-border-icon-helper(1px, var(--steel-60), var(--steel-20), var(--steel-50));
   }
 }
 
 .label-info {
-  @include bg-border-icon-helper(
-    var(--2-border),
-    var(--ac-drag-drop-dragging-stroke),
-    var(--ac-drag-drop-dragging-bg),
-    var(--ac-drag-drop-dragging-icon)
-  );
+  @include bg-border-icon-helper(2px, var(--brand-sapphire-60), var(--brand-sapphire-10), var(--brand-sapphire-50));
 }
 
 .label-error {
-  @include bg-border-icon-helper(
-    var(--2-border),
-    var(--ac-drag-drop-error-stroke),
-    var(--ac-drag-drop-error-bg),
-    var(--ac-drag-drop-error-icon)
-  );
+  @include bg-border-icon-helper(2px, var(--spectrum-red-60), var(--spectrum-red-10), var(--spectrum-red-50));
 }
 
 .label-warning {
-  @include bg-border-icon-helper(
-    var(--2-border),
-    var(--ac-drag-drop-warning-stroke),
-    var(--ac-drag-drop-warning-bg),
-    var(--ac-drag-drop-warning-icon)
-  );
+  @include bg-border-icon-helper(2px, var(--spectrum-yellow-60), var(--spectrum-yellow-10), var(--spectrum-yellow-50));
 }
 
 .drag-file-element {
@@ -144,147 +109,136 @@
   justify-content: center;
 
   path {
-    transition: 0.5s;
+    transition: 0.3s;
   }
 }
 
 .icon-l {
-  height: calc(var(--32-size) * 3);
-  margin-bottom: var(--24-space);
+  height: 96px;
+  margin-top: 10px;
+  margin-bottom: 24px;
   & > div {
-    @include height-width-helper(calc(var(--32-size) * 3));
+    @include height-width-helper(96px);
     & > svg {
-      @include height-width-helper(calc(var(--32-size) * 3));
+      @include height-width-helper(96px);
     }
   }
 }
 
 .icon-m {
-  height: var(--56-size);
-  margin-bottom: var(--16-space);
+  height: 56px;
+  margin-top: 10px;
+  margin-bottom: 16px;
   & > div {
-    @include height-width-helper(var(--56-size));
+    @include height-width-helper(56px);
     & > svg {
-      @include height-width-helper(var(--56-size));
+      @include height-width-helper(56px);
     }
   }
 }
 
 .icon-s {
-  height: var(--40-size);
-  margin-bottom: var(--8-space);
+  height: 40px;
+  margin-bottom: 8px;
 }
 
 .text-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: var(--8-space);
+  gap: 4px;
 }
 
 .title-loading {
-  @include title-helper(var(--ac-drag-drop-uploading-text-title), var(--ac-drag-drop-hover-text-title));
+  @include title-helper(var(--steel-90));
 }
-
+.title-default.title-loading,
+.title-info.title-loading,
+.title-error.title-loading,
+.title-warning.title-loading {
+  @include title-helper(var(--steel-90));
+}
 .title-default {
-  @include title-helper(var(--ac-drag-drop-default-text-title), var(--ac-drag-drop-hover-text-title));
+  @include title-helper(var(--steel-90));
 }
 
 .title-info {
-  @include title-helper(var(--ac-drag-drop-dragging-text-title), var(--ac-drag-drop-hover-text-title));
+  @include title-helper(var(--steel-90));
 }
 
 .title-error {
-  @include title-helper(var(--ac-drag-drop-error-text-title), var(--ac-drag-drop-hover-text-title));
+  @include title-helper(var(--spectrum-red-60));
 }
 
 .title-warning {
-  @include title-helper(var(--ac-drag-drop-warning-text-title), var(--ac-drag-drop-hover-text-title));
+  @include title-helper(var(--spectrum-yellow-60));
 }
 
 .small-title-default {
-  @include title-helper(var(--ac-drag-drop-default-text-only), var(--ac-drag-drop-hover-text-only));
+  @include title-helper(var(--steel-90));
 }
 
 .small-title-info {
-  @include title-helper(var(--ac-drag-drop-dragging-text-only), var(--ac-drag-drop-dragging-text-only));
+  @include title-helper(var(--unique-bluewhite));
 }
 
 .small-title-error {
-  @include title-helper(var(--ac-drag-drop-error-text-only), var(--ac-drag-drop-error-text-only));
+  @include title-helper(var(--spectrum-red-60));
 }
 
 .small-title-warning {
-  @include title-helper(var(--ac-drag-drop-warning-text-only), var(--ac-drag-drop-warning-text-only));
+  @include title-helper(var(--spectrum-yellow-60));
 }
 
-.text-default {
-  color: var(--ac-drag-drop-default-text-details);
-  &:hover {
-    color: var(--ac-drag-drop-hover-text-details);
-  }
-}
-
-.text-waring {
-  color: var(--ac-drag-drop-warning-text-details);
-  &:hover {
-    color: var();
-  }
-}
-
-.text-error {
-  color: var(--ac-drag-drop-error-text-details);
-  &:hover {
-    color: var();
-  }
-}
-
-.text-info {
-  color: var(--ac-drag-drop-dragging-text-details);
-  &:hover {
-    color: var();
-  }
-}
-
-.text-loading{
-  color: var(--ac-drag-drop-uploading-text-details);
-  &:hover {
-    color: var();
-  }
+.text-color {
+  color: var(--steel-70);
 }
 
 .btn-wrapper {
   display: flex;
   justify-content: center;
+  padding: 14px;
+}
+
+.btn-wrapper-medium {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .loader-wrapper {
   width: fit-content;
   margin: 0 auto;
   position: relative;
-  margin-bottom: var(--24-space);
+  margin-bottom: 24px;
 }
 
 .loader-wrapper-small-text {
   width: fit-content;
   margin: 0 auto;
   position: relative;
-  color: var(--ac-drag-drop-uploading-number);
+  color: var(--steel-90);
 }
 
 .percent-wrapper {
   @include position-center;
-  color: var(--ac-drag-drop-uploading-number);
+  margin-top: 0px;
+  color: var(--steel-90);
 }
-
+.percent-wrapper-l {
+  @include position-center;
+  color: var(--steel-90);
+  margin-top: 10px;
+}
 .small-title-helper {
   display: flex;
   align-items: center;
-  color: var(--ac-drag-drop-uploading-text-title);
+  color: var(--steel-90);
 }
 
 .spinner-position-helper {
   @include position-center;
+  margin-top: 10px;
 }
 
 .disabled {
@@ -309,6 +263,16 @@
 
 .small-warning-icon {
   path {
-    fill: var(--ac-drag-drop-warning-small-icon);
+    fill: var(--spectrum-yellow-60);
+  }
+}
+.small-default-icon {
+  path {
+    fill: var(--brand-sapphire-60);
+  }
+}
+.small-default-icon:hover {
+  path {
+    fill: var(--brand-sapphire-60);
   }
 }

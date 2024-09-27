@@ -1,27 +1,27 @@
 .wrapper {
   display: flex;
-  border-radius: var(--4-radius);
+  border-radius: 4px;
   background: var(--steel-20);
   box-sizing: border-box;
 }
 
 .wrapper-vertical {
-  padding: var(--32-space) var(--16-space);
+  padding: 32px 16px;
   flex-direction: column;
 }
 
 .wrapper-horizontal {
-  padding: var(--16-space) var(--32-space);
+  padding: 16px 32px;
   flex-direction: row;
 }
 
 .card-vertical {
-  gap: var(--24-space);
+  gap: 24px;
   width: 385px;
 }
 
 .card-horizontal {
-  gap: var(--24-space);
+  gap: 24px;
 }
 
 .indicator-vertical {
@@ -33,33 +33,33 @@
 }
 
 .indicator-s {
-  border-width: var(--2-border);
+  border-width: 2px;
 }
 
 .indicator-m {
-  border-width: var(--4-border);
+  border-width: 4px;
 }
 
 .indicator-l {
-  border-width: calc(var(--4-border) * 2);
+  border-width: 8px;
 }
 
 .indicator-default {
-  border-color: var(--background-paper);
+  border-color: var(--unique-white);
 }
 
 .indicator-success {
-  border-color: var(--success-green-600);
+  border-color: var(--spectrum-green-60);
 }
 
 .indicator-error {
-  border-color: var(--error-red-600);
+  border-color: var(--spectrum-red-60);
 }
 
 .indicator-warning {
-  border-color: var(--warning-orange-600);
+  border-color: var(--spectrum-yellow-60);
 }
 
 .indicator-info {
-  border-color: var(--primary-blue-600);
+  border-color: var(--brand-sapphire-60);
 }

@@ -1,14 +1,6 @@
 import { ESizeMapping } from '../enum';
 
 const argsTypes = {
-  isShow: {
-    description: 'Флаг-условие отображение текстового окна',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      }
-    }
-  },
   onToggle: {
     description: 'Функция раскрытия / закрытия текстового окна'
   },
@@ -22,25 +14,22 @@ const argsTypes = {
     options: Object.values(ESizeMapping),
     control: { type: 'select' }
   },
-  toggleContainerShadow: {
-    description: 'Необязательное свойство. Флаг-условие отображение тени текстового окна',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      }
-    }
-  },
   children: {
     description: 'Компонент отображаемый при раскрытии компонента',
     control: { type: 'object' }
   },
   title: {
     description: 'Заголовок компонента, может быть строкой или JSX элементом',
+    table: {
+      defaultValue: {
+        summary: 'Заголовок'
+      }
+    },
     control: { type: 'text' }
   },
   after: {
     description: 'Дополнительный блок справа от заголовка, может быть любым ReactNode',
-    control: { type: 'object' }
+    control: { type: 'array' }
   },
   iconWrapperId: {
     description: 'ID для элемента обёртки иконки',

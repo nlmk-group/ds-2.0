@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { iconsMapping, sizesMapping, variantsMapping } from '@components/Accordion/enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '@components/Accordion/enums';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import AccordionItem from '.';
@@ -9,9 +9,9 @@ const defaultProps = {
   id: '1',
   title: 'Item 1',
   content: 'Content 1',
-  size: sizesMapping.m,
-  variant: variantsMapping.default,
-  startIcon: iconsMapping.arrow,
+  size: ESizesAccordion.m,
+  variant: EVariantsAccordion.default,
+  startIcon: EIconsAccordion.arrow,
   endIcon: null,
   isExpanded: false,
   onExpand: jest.fn(),
@@ -34,7 +34,7 @@ test('AccordionItem expands/collapses on click', () => {
 test('AccordionItem renders left icon when startIcon is set', () => {
   const { content, ...restProps } = defaultProps;
   render(
-    <AccordionItem {...restProps} startIcon={iconsMapping.plus}>
+    <AccordionItem {...restProps} startIcon={EIconsAccordion.plus}>
       {content}
     </AccordionItem>
   );
@@ -46,7 +46,7 @@ test('AccordionItem renders left icon when startIcon is set', () => {
 test('AccordionItem renders right icon when endIcon is set', () => {
   const { content, ...restProps } = defaultProps;
   render(
-    <AccordionItem {...restProps} startIcon={null} endIcon={iconsMapping.plus}>
+    <AccordionItem {...restProps} startIcon={null} endIcon={EIconsAccordion.plus}>
       {content}
     </AccordionItem>
   );

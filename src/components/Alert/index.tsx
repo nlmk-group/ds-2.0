@@ -7,12 +7,12 @@ import {
 } from '@components/index';
 import { clsx } from 'clsx';
 
-import { IAlertProps, IIconSeverityColor } from './types';
+import { IAlertProps } from './types';
 
 import styles from './Alert.module.scss';
 
 import { EAlertSeverity } from './enums';
-import { Icon } from '@components/Icon';
+import AlertIcon from '@components/Alert/subcomponents/AlertIcon';
 
 /**
  * Компонент Alert для отображения информационных сообщений различных типов.
@@ -42,32 +42,10 @@ const Alert: FC<IAlertProps> = ({
   action?: ReactNode;
   className?: string;
 }): ReactElement => {
-  const AlertIcon = () => {
-    const severityStyles: IIconSeverityColor = {
-      [EAlertSeverity.success]: 'var(--spectrum-green-60)',
-      [EAlertSeverity.error]: 'var(--spectrum-red-60)',
-      [EAlertSeverity.warning]: 'var(--spectrum-orange-60)',
-      [EAlertSeverity.info]: 'var(--spectrum-sky-60)'
-    };
-
-    switch (severity) {
-      case EAlertSeverity.success:
-        return <Icon name="IconSuccessOutlined24" htmlColor={severityStyles[severity]} />;
-      case EAlertSeverity.error:
-        return <Icon name="IconAttentionWarningAlertErrorOutlined24" htmlColor={severityStyles[severity]} />;
-      case EAlertSeverity.warning:
-        return <Icon name="IconAttentionWarningAlertErrorOutlined24" htmlColor={severityStyles[severity]} />;
-      case EAlertSeverity.info:
-        return <Icon name="IconInfoOutlined24" htmlColor={severityStyles[severity]} />;
-      default:
-        return <Icon name="IconSuccessOutlined24" htmlColor={severityStyles[severity] || 'var(--spectrum-green-60)'} />;
-    }
-  };
-
   return (
     <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`wrapper-${severity}`], className)}>
       <div data-testid="ALERT_TITLE" className={styles.content}>
-        <AlertIcon />
+        <AlertIcon severity={severity}/>
         <Typography variant="Body2-Bold">{title}</Typography>
         <div className={styles['action-wrapper']}>
           {action && action}

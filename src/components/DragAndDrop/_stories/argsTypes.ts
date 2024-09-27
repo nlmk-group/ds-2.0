@@ -1,7 +1,7 @@
 import { sizesMapping } from '@components/declaration';
 
 import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle } from '../constants';
-import { fileTypeMapping, statusColorMapping } from '../enums';
+import { EFileTypeDnD, EStatusColorDnD } from '../enums';
 
 export const argsTypes = {
   className: {
@@ -39,8 +39,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   btnLabel: {
-    description:
-      'Название кнопки. Если пустая строка, то кнопка отображаться не будет.',
+    description: 'Название кнопки. Если пустая строка, то кнопка отображаться не будет.',
     table: {
       defaultValue: {
         summary: dragNDropBtnLabel
@@ -55,26 +54,26 @@ export const argsTypes = {
     description: 'Необязательное свойство. Тип расширения загружаемого файла.',
     table: {
       defaultValue: {
-        summary: fileTypeMapping.image
+        summary: EFileTypeDnD.image
       },
       type: {
-        summary: Object.values(fileTypeMapping).join(' | ')
+        summary: Object.values(EFileTypeDnD).join(' | ')
       }
     },
-    options: Object.values(fileTypeMapping),
+    options: Object.values(EFileTypeDnD),
     control: { type: 'select' }
   },
   statusColor: {
     description: 'Необязательное свойство. Цвета заливки компонента.',
     table: {
       defaultValue: {
-        summary: statusColorMapping.default
+        summary: EStatusColorDnD.default
       },
       type: {
-        summary: Object.values(statusColorMapping).join(' | ')
+        summary: Object.values(EStatusColorDnD).join(' | ')
       }
     },
-    options: Object.values(statusColorMapping),
+    options: Object.values(EStatusColorDnD),
     control: { type: 'select' }
   },
   size: {

@@ -21,7 +21,8 @@ test('Accordion expands/collapses items on click', () => {
   fireEvent.click(screen.getByText('Item 1'));
   expect(screen.getByText('Content 1').classList.contains('content')).toBe(true);
   fireEvent.click(screen.getByText('Item 1'));
-  expect(screen.getByText('Content 1').classList.contains('content')).toBe(false);});
+  expect(screen.getByText('Content 1').classList.contains('content')).toBe(false);
+});
 
 test('Accordion opens multiple items when multipleExpanded is true', () => {
   render(<Accordion items={items} multipleExpanded={true} />);

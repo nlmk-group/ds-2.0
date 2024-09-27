@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { iconsMapping } from '@components/Accordion/enums';
-import { TIcon } from '@components/Accordion/types';
+import { EIconsAccordion, EVariantsAccordion } from '@components/Accordion/enums';
 import { IconChevronArrowUpOutlined24, IconCloseOutlined16 } from '@components/Icon/IconsDirectory';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
@@ -12,6 +11,23 @@ import styles from './AccordionItem.module.scss';
 
 import { TYPOGRAPHY_CONTENT_VARIANTS, TYPOGRAPHY_TITLE_VARIANTS } from './constants';
 
+/**
+ * Компонент AccordionItem представляет собой отдельный элемент аккордеона.
+ *
+ * @param {object} props - Свойства компонента AccordionItem.
+ * @param {TAccordionItem['id']} props.id - Идентификатор элемента аккордеона.
+ * @param {string} props.title - Заголовок элемента аккордеона.
+ * @param {ESizesAccordion} props.size - Размер элемента аккордеона.
+ * @param {EVariantsAccordion} props.variant - Вариант внешнего вида элемента аккордеона.
+ * @param {EIconsAccordion} props.startIcon - Иконка в начале заголовка элемента аккордеона.
+ * @param {EIconsAccordion} props.endIcon - Иконка в конце заголовка элемента аккордеона.
+ * @param {boolean} props.isExpanded - Определяет, развернут ли элемент аккордеона.
+ * @param {function} props.onExpand - Функция, вызываемая при развертывании элемента.
+ * @param {boolean} props.disabled - Определяет, отключен ли элемент.
+ * @param {ReactNode} props.children - Содержимое элемента аккордеона.
+ * @param {string} props.className - Дополнительный CSS-класс.
+ * @returns {JSX.Element} - Компонент AccordionItem.
+ */
 const AccordionItem: React.FC<IAccordionItemProps> = ({
   id,
   title,
@@ -26,39 +42,29 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   className,
   ...props
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   const iconProps = {
-    htmlColor: 'var(--ac-accordion-default-default-icon)'
+    htmlColor: 'var(--steel-90)'
   };
 
-  const getExpandIcon = (icon: TIcon, testid: string) => {
+  const getExpandIcon = (icon: `${EIconsAccordion}`, testid: string) => {
     const iconsStyles = {
-      plus: ['icon-cross', 'icon-plus'],
-      arrow: ['icon-down', 'icon-up']
+      plus: ['icon_cross', 'icon_plus'],
+      arrow: ['icon_down', 'icon_up']
     };
 
-    const Icon = icon === iconsMapping.plus ? IconCloseOutlined16 : IconChevronArrowUpOutlined24;
+    const Icon = icon === EIconsAccordion.plus ? IconCloseOutlined16 : IconChevronArrowUpOutlined24;
 
     return (
       <div
         data-testid={testid}
         className={clsx(
-          styles['icon-helper'],
+          styles['icon_helper'],
           isExpanded ? styles[iconsStyles[icon][0]] : styles[iconsStyles[icon][1]]
         )}
       >
         <Icon {...iconProps} />
       </div>
     );
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
   };
 
   const handleClick = (id: TAccordionItem['id']): void => {
@@ -71,28 +77,29 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
   return (
     <div
       className={clsx(
-        styles.accordionItem,
+        styles.item,
         styles[size],
         styles[variant],
-        {
-          [styles.disabled]: disabled,
-          [styles.hovered]: isHovered
-        },
+        { [styles.disabled]: disabled },
         className
       )}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       {...props}
     >
       <div className={styles.header} onClick={() => handleClick(id)}>
-        {startIcon && getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}
-        {endIcon && getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}
-        <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
+        {startIcon ? <div className={styles.icon}>{getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}</div> : null}
+        <div style={{ flexGrow: 1 }}>
+          <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
+        </div>
+        {endIcon ? <div className={styles.icon}>{getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}</div> : null}
       </div>
       <div className={clsx(styles.expandable, isExpanded && styles.expanded)}>
         <Typography
           variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
-          className={clsx(styles['content-basic'], isExpanded && styles.content)}
+          className={clsx(
+            styles['content_basic'],
+            isExpanded && styles.content,
+            variant === EVariantsAccordion.paper && styles['content_paper']
+          )}
         >
           {children}
         </Typography>

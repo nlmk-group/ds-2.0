@@ -2,11 +2,11 @@ import { PropsWithChildren } from 'react';
 
 import { sizesMapping } from '@components/declaration';
 
-import { indicatorStatusMapping, orientationMapping } from './enums';
+import { EIndicatorStatusMapping, EOrientationMapping } from './enums';
 
-export type OrientationType = `${orientationMapping}`;
+export type OrientationType = `${EOrientationMapping}`;
 export type IndicatorSizeType = `${sizesMapping}`;
-export type IndicatorStatusType = `${indicatorStatusMapping}`;
+export type IndicatorStatusType = `${EIndicatorStatusMapping}`;
 
 export interface ICard extends PropsWithChildren<any> {
   orientation?: OrientationType;

@@ -1,5 +1,6 @@
-import React, { FC, useId } from 'react';
+import React, { FC } from 'react';
 
+import { generateUUID } from '@components/declaration';
 import { Typography } from '@components/index';
 import clsx from 'clsx';
 
@@ -21,7 +22,7 @@ import styles from './Radio.module.scss';
  */
 
 export const Radio: FC<IRadioProps> = ({ checked, disabled, value, onChange, className, label = '' }) => {
-  const radioID = useId();
+  const radioID = generateUUID();
   return (
     <div className={clsx(styles.radio, className)}>
       <input

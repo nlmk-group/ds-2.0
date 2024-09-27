@@ -7,7 +7,7 @@ import styles from '@components/_storybook/styles.module.scss';
 
 import ContentExample from '../ContentExample';
 import { imageURL } from '../ContentExample/constants';
-import { orientationMapping } from '../enums';
+import { EOrientationMapping } from '../enums';
 import { ICard } from '../types';
 import argTypes from './argsTypes';
 import { CARD_ORIENTATION, CARD_VARIANT, DEFAULT_CARD } from './text';
@@ -33,7 +33,7 @@ export default {
 
 export const CardDefault = (argTypes: ICard): ReactNode => {
   const [checked, setChecked] = useState<boolean>(false);
-  const isVertical = argTypes.orientation === orientationMapping.vertical || !argTypes.orientation;
+  const isVertical = argTypes.orientation === EOrientationMapping.vertical || !argTypes.orientation;
 
   return (
     <div style={{ display: 'flex', gap: '12px' }}>
@@ -49,7 +49,7 @@ export const CardDefault = (argTypes: ICard): ReactNode => {
 
 CardDefault.storyName = DEFAULT_CARD;
 CardDefault.arg = {
-  orientation: orientationMapping.vertical
+  orientation: EOrientationMapping.vertical
 };
 
 export const CardVariant = (argTypes: ICard): ReactNode => {
@@ -67,13 +67,13 @@ export const CardVariant = (argTypes: ICard): ReactNode => {
 
 CardVariant.storyName = CARD_VARIANT;
 CardVariant.arg = {
-  orientation: orientationMapping.vertical
+  orientation: EOrientationMapping.vertical
 };
 
 export const CardOrientation = (argTypes: ICard): ReactNode => {
   return (
     <div style={{ display: 'inline-grid', gap: 'var(--24-size)' }}>
-      {Object.values(orientationMapping).map((orientation: orientationMapping, index: number) => (
+      {Object.values(EOrientationMapping).map((orientation: EOrientationMapping, index: number) => (
         <Card key={index} {...argTypes} orientation={orientation}>
           <ContentExample orientation={orientation} />
         </Card>

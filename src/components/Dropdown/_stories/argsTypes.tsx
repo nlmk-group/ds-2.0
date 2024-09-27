@@ -61,5 +61,29 @@ export const argsTypes = {
       }
     },
     control: { type: 'object' }
+  },
+  withPortal: {
+    description: 'Открывает выпадающий список в портале',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  portalContainerId: {
+    description: 'Элемент для открытия портала',
+    table: {
+      defaultValue: {
+        summary: 'root'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
   }
 };

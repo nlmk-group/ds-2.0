@@ -18,4 +18,8 @@ export interface IDropdownProps {
   buttonChildren?: ReactNode;
   /** Кастомные стили меню */
   menuStyle?: CSSProperties;
+  /** открытие выпадающего списка в портале */
+  withPortal?: boolean;
+  /** контейнер для портала */
+  portalContainerId?: string;
 }

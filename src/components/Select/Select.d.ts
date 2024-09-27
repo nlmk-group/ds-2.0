@@ -49,6 +49,8 @@ export interface ISelectProps {
   portalContainerId?: string;
   name?: string;
   style?: CSSProperties;
+  multilineOption?: boolean;
+  isClearInputOnSelect?: boolean;
 }
 
 export interface IStealthyItem {

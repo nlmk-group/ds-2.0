@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import { Breadcrumb } from './types';
+import { IBreadcrumbProps } from './types';
 
 import LinkComponent from './LinkComponent';
 
-const BasicBreadcrumbs: FC<{ crumbs: Breadcrumb[] }> = ({ crumbs }): JSX.Element => (
+const BasicBreadcrumbs: FC<{ crumbs: IBreadcrumbProps[] }> = ({ crumbs }): JSX.Element => (
   <>
-    {crumbs.map((item: Breadcrumb, index) => (
+    {crumbs.map((item: IBreadcrumbProps, index) => (
       <LinkComponent key={index} {...item} isLast={crumbs.length === index+1} />
     ))}
   </>

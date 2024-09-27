@@ -3,10 +3,10 @@ import React from 'react';
 import { Breadcrumbs } from '@components/index';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 
-import { Breadcrumb } from './types';
+import { IBreadcrumbProps } from './types';
 
 import BasicBreadcrumbs from './BasicBreadcrumbs';
-import { breadcrumbs } from './constants';
+import { breadcrumbs } from './_stories/constants';
 import { targetMapping } from './enums';
 import LinkComponent from './LinkComponent';
 import ShortenBreadcrumbs from './ShortenBreadcrumbs';
@@ -20,7 +20,7 @@ describe('src/components/Breadcrumbs', () => {
 
   // LinkComponent
   describe('While rendering LinkComponent', () => {
-    const crumb = breadcrumbs.at(0) as Breadcrumb;
+    const crumb = breadcrumbs.at(0) as IBreadcrumbProps;
 
     test('It should render the LinkComponent', () => {
       const { container } = render(<LinkComponent {...crumb} />);
@@ -51,7 +51,7 @@ describe('src/components/Breadcrumbs', () => {
     test('It should render the active LinkComponent', () => {
       render(<LinkComponent {...crumb} active={true} />);
       const breadcrumbsComponent = screen.getByTestId('LINK_HREF');
-      expect(breadcrumbsComponent.classList.contains('active-link')).toBe(true);
+      expect(breadcrumbsComponent.classList.contains('link-active')).toBe(true);
     });
   });
 

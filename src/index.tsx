@@ -1,6 +1,9 @@
 import React, { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import Dropdown from './components/Dropdown';
+import MenuItem from './components/Dropdown/subcomponents/DropdownMenuItem';
+
 import {
   Box,
   Button,
@@ -18,8 +21,6 @@ import {
   Typography,
   useThemeSwitcher
 } from './components';
-import Dropdown from './components/Dropdown';
-import MenuItem from './components/Dropdown/subcomponents/DropdownMenuItem';
 
 // const { Button } = ToggleButtonGroup;
 
@@ -40,7 +41,13 @@ const StepperRender = () => {
     <>
       <Box flexDirection="row" width="100%" gap={16}>
         {mockSteps.map((step, i) => (
-          <Stepper key={i} state={step.state} index={i} showStep={i !== mockSteps.length - 1} stepName={step.stepName} />
+          <Stepper
+            key={i}
+            state={step.state}
+            index={i}
+            showStep={i !== mockSteps.length - 1}
+            stepName={step.stepName}
+          />
         ))}
       </Box>
     </>
@@ -78,82 +85,38 @@ const Theme = () => {
     </div>
   );
 };
+export const TestDatePicker = (): JSX.Element => {
+  const MIN_LEAD_TIME = 60_000 * 60 * 6;
+  const MAX_LEAD_TIME = 60_000 * 60 * 24;
 
+  const enabledFromDate = new Date(Date.now() + MIN_LEAD_TIME);
+  const enabledToDate = new Date(Date.now() + MAX_LEAD_TIME);
+
+  const [currentDate, setCurrentDate] = useState(enabledFromDate);
+  return (
+    <div style={{ height: '330px' }}>
+      <DatePicker
+        type="time"
+        label="Целевое время доставки"
+        value={currentDate}
+        enabledFrom={enabledFromDate}
+        enabledTo={enabledToDate}
+        enabledMinuteFrom={() => enabledFromDate.getMinutes() - 10}
+        enabledMinuteTo={() => enabledToDate.getMinutes()}
+        enabledHourFrom={() => enabledFromDate.getHours()}
+        enabledHourTo={() => enabledToDate.getHours()}
+        onChange={date => setCurrentDate(date)}
+      />
+    </div>
+  );
+};
 root.render(
   <StrictMode>
     <div className="development-block">
-      <h3>Theme Switch</h3>
-      {/* <InputRender /> */}
-      {/* <StepperRender /> */}
-      <Theme/>
-      {/* <h3>Icon with badge</h3>
-      <Icon color="primary" containerSize={16} name="IconStarOutlined16" badge={<Badge size="xs" color='error'>1</Badge>} />
-      <Icon color="primary" containerSize={24} name="IconPlaylistMenuSettingOutlined24" badge={<Badge size="s" color='error'>1</Badge>} />
-      <Icon color="primary" containerSize={32} name="IconStarOutlined32" badge={<Badge size="s" color='error'>1</Badge>} />
-
-      <Icon color="primary" containerSize={16} name="IconTuneControlOutlined24" badge={<Badge size="xs" color='success'>1</Badge>} />
-      <Icon color="primary" containerSize={24} name="IconTuneControlOutlined24" badge={<Badge size="s" color='success'>1</Badge>} />
-      <Icon color="primary" containerSize={32} name="IconTuneControlOutlined32" badge={<Badge size="m" color='success'>1</Badge>} />
-
-      <Icon color="primary" containerSize={16} name="IconTuneControlOutlined24" badge={<Badge size="xs" color="grey">1</Badge>} />
-      <Icon color="primary" containerSize={24} name="IconStarOutlined24" badge={<Badge size="s" color="grey">1</Badge>} />
-      <Icon color="primary" containerSize={32} name="IconStarOutlined32" badge={<Badge size="s" color="grey">1</Badge>} />
-
-
-      <h3>XS</h3>
-      <Box>
-        <Badge size="xs">1</Badge>
-      </Box>
-      <br />
-      <Box width={12}>
-      <Badge size="xs" variant="outline">
-        1
-      </Badge>
-      </Box>
-      <br />
-      <Box width={12}>
-        <Badge size="xs" variant="outline" color="error">1</Badge>
-      </Box>
-      <Badge size="xs" variant="outline" color="error">
-        1
-      </Badge>
-      <br />
-      <Badge size="xs" variant="outline" color="success">
-        1
-      </Badge>
-      <hr />
-      <h3>S</h3>
-      <Badge size="s">1</Badge>
-      <br />
-      <Badge size="s" variant="outline">
-        1
-      </Badge>
-      <hr />
-      <h3>M</h3>
-      <Badge size="m">1</Badge>
-      <br />
-      <Badge size="m" variant="outline">
-        1
-      </Badge>
-      <hr />
-      <h3>L</h3>
-      <Badge size="l" className='large'>1</Badge>
-      <br />
-      <Badge size="l" variant="outline" className='large'>
-        1
-      </Badge> */}
-      {/* <App />
-      <br />
-      <ThemeSwitcher /> */}
-      {/* <SomeTabs /> */}
-      {/* <Select options={options} label="Одиночный выбор" multiple={false} /> */}
-      {/* <ThemeSwitcher />
-      <Button variant="primary">Great day!</Button>
-      <DatePicker /> */}
+      <TestDatePicker />
     </div>
   </StrictMode>
 );
-
 
 // Only for development preview options
 if (import.meta.hot) {

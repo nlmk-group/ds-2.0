@@ -78,6 +78,7 @@ export const SelectSharedProperties = createContext<ISelectSharedProperties>({
  * @param {string} [props.portalContainerId='root'] - id рутового контейнера для создания портала
  * @param {string} [props.name] - name определяет имя элемента, используется для ссылки на элемент
  * @param {CSSProperties} [props.style] - Кастомные стили для компонента
+ * @param {boolean} [props.isClearInputOnSelect=false] - Удалить содержимое Input после выбора 
  *
  * @returns {JSX.Element} Компонент Select
  */
@@ -106,14 +107,16 @@ const Select: FC<ISelectProps> = ({
   badgeAmount = null,
   activeSelectedValue = false,
   enableScrollToActiveOption = false,
+  multilineOption = false,
   className,
   children,
   listMinWidth,
-  onSelectionChange,
+  onSelectionChange: onSelectionChangeSource,
   onEnterPress,
   onBlur,
   onFocus,
-  style
+  style,
+  isClearInputOnSelect = false
 }) => {
   const generateDisplayValue = (): string => {
     if (multiple) {
@@ -136,6 +139,13 @@ const Select: FC<ISelectProps> = ({
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+
+  const onSelectionChange = (props: Parameters<typeof onSelectionChangeSource>[0]) => {
+    if (isClearInputOnSelect) {
+      setSearchTerm('')
+    }
+    onSelectionChangeSource?.(props)
+  }  
 
   const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
     placement: 'bottom-start'
@@ -282,7 +292,7 @@ const Select: FC<ISelectProps> = ({
         {isOpen && (
           <SelectSharedProperties.Provider value={sharedProps}>
             <div ref={listRef}>
-              <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} />
+              <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} multilineOption={multilineOption} />
             </div>
           </SelectSharedProperties.Provider>
         )}

@@ -1,9 +1,8 @@
 import { CALENDAR_FORMAT_ENUM } from '@components/DatePicker/helpers';
 import { TLevel } from '@components/DatePicker/types';
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '@components/declaration';
+import { ENABLED_HOURS_VALUES } from '@components/declaration';
 
-type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number];
-type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number];
+type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
 
 export interface ICalendarPanelProps {
   type: `${CALENDAR_FORMAT_ENUM}`;
@@ -11,8 +10,8 @@ export interface ICalendarPanelProps {
   value?: Date;
   enabledFrom?: Date;
   enabledTo?: Date;
-  enabledHourFrom?: (date: Date | undefined) => TEnabledHourFrom;
-  enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
+  enabledHourFrom?: (date: Date | undefined) => TEnabledHour;
+  enabledHourTo?: (date: Date | undefined) => TEnabledHour;
   onClose: () => void;
   onChange?: (date: Date) => void;
   onPeriodChange?: (valueFrom?: Date, valueTo?: Date, shiftFrom?: number, shiftTo?: number) => void;
@@ -33,5 +32,5 @@ export interface ICalendarPanelProps {
   onPanelChange?: (date: Date) => void;
   onSelect?: (date: Date) => void;
   [key: string]: any;
-  infiniteTimeScroll?: boolean
+  infiniteTimeScroll?: boolean;
 }

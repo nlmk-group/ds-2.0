@@ -62,8 +62,9 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Всего представлено для кнопки семь различных стилей – primary (отображается по умолчанию), secondary,
-          grey, outline, greyOutline, text."
+            description="Всего представлено для кнопки пять вариантов стиля –
+            primary (отображается по умолчанию), secondary, grey, black, info.
+            Для каждого варианта до шести варинтов заливки: solid, outline, clear, success, warning, error"
             code={`import { Button } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -75,6 +76,15 @@ export default  App = () =>(
       Button
     </Button>
     <Button fill="${EButtonFill.clear}">
+      Button
+    </Button>
+     <Button fill="${EButtonFill.success}">
+      Button
+    </Button>
+    <Button fill="${EButtonFill.warning}">
+      Button
+    </Button>
+    <Button fill="${EButtonFill.error}">
       Button
     </Button>
     <Button variant="${EButtonVariant.secondary}">

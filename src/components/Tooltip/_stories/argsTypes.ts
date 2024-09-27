@@ -1,4 +1,4 @@
-import { ETooltipBehaviorType, ETooltipPlacementType } from '../enums';
+import { ETooltipBehaviorType, ETooltipPlacementType, ETooltipSizes, ETooltipType } from '../enums';
 
 export const argsTypes = {
   title: {
@@ -17,6 +17,26 @@ export const argsTypes = {
       }
     },
     options: Object.values(ETooltipBehaviorType),
+    control: { type: 'select' }
+  },
+  size: {
+    description: 'Размер тултипа',
+    table: {
+      defaultValue: {
+        summary: ETooltipSizes.normal
+      }
+    },
+    options: Object.values(ETooltipSizes),
+    control: { type: 'select' }
+  },
+  type: {
+    description: 'Размер тултипа',
+    table: {
+      defaultValue: {
+        summary: ETooltipType.default
+      }
+    },
+    options: Object.values(ETooltipType),
     control: { type: 'select' }
   },
   placement: {

@@ -6,13 +6,13 @@
 .progress {
   width: 100%;
   height: 4px;
-  background-color: var(--info-lightblue-200);
+  background-color: var(--brand-sapphire-20);
   border-radius: 27px;
   box-sizing: border-box;
 
   &-fill {
     height: 100%;
-    background-color: var(--primary-blue-600);
+    background-color: var(--brand-sapphire-60);
     border-radius: 27px;
     transition: width 0.3s ease;
   }
@@ -20,11 +20,11 @@
   &-label {
     margin-top: 12px;
     margin-bottom: 0;
-    color: var(--text-grey-500);
+    color: var(--steel-70);
   }
 
   &-percentage {
-    color: var(--primary-blue-600);
+    color: var(--brand-sapphire-60);
     text-align: right;
     min-width: 4ch;
     padding-left: 12px;

@@ -65,7 +65,7 @@ export default  App = () => {
         >
           <Tabs.Tooltip description="Сюда вы можете добавить текстподсказу для компонента">
             <Tabs.Icon
-              name="IconInfo16"
+              name="IconInfoOutlined16"
               containerSize={16}
               htmlColor="var(--text-grey-500)"
             />

@@ -1,7 +1,6 @@
-import { ENABLED_HOURS_FROM_VALUES, ENABLED_HOURS_TO_VALUES } from '@components/declaration';
+import { ENABLED_HOURS_VALUES } from '@components/declaration';
 
-type TEnabledHourFrom = typeof ENABLED_HOURS_FROM_VALUES[number] | undefined;
-type TEnabledHourTo = typeof ENABLED_HOURS_TO_VALUES[number] | undefined;
+type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
 
 export interface TTimePickerType {
   /** Уникальный идентификатор компонента */
@@ -21,9 +20,9 @@ export interface TTimePickerType {
   /** Дополнительный CSS класс */
   className?: string;
   /** Функция для определения начального доступного часа */
-  enabledHourFrom?: (date: Date | undefined) => TEnabledHourFrom;
+  enabledHourFrom?: (date: Date | undefined) => TEnabledHour;
   /** Функция для определения конечного доступного часа */
-  enabledHourTo?: (date: Date | undefined) => TEnabledHourTo;
+  enabledHourTo?: (date: Date | undefined) => TEnabledHour;
   /** Функция для определения начальной доступной минуты */
   enabledMinuteFrom?: (date: Date | undefined) => number;
   /** Функция для определения конечной доступной минуты */

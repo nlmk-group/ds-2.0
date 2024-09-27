@@ -103,6 +103,11 @@ const SimpleSelect: FC<ISelectProps> = ({
   const menuRef = useRef<HTMLDivElement>(null);
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
+  if (scrollingItems < 1) {
+    scrollingItems = 1;
+    console.error('Scrollig items option shoud be at least 1, to show options dropdown correctly');
+  }
+
   const options = Children.toArray(children).filter((child): child is ReactElement<IOptionItemProps> =>
     isValidElement(child)
   );

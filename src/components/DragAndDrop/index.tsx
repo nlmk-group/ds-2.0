@@ -1,26 +1,51 @@
-import React, { ChangeEvent, DragEvent, FC, useId, useRef, useState } from 'react';
+import React, { ChangeEvent, DragEvent, FC, useRef, useState } from 'react';
 
-import { sizesMapping } from '@components/declaration';
+import { generateUUID, sizesMapping } from '@components/declaration';
 import { clsx } from 'clsx';
 
-import { IDragAndDrop } from './types';
+import { IDragAndDropProps } from './types';
 
 import styles from './DragAndDrop.module.scss';
 
-import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import DefaultDragAndDrop from './DefaultDragAndDrop';
-import { fileTypeMapping, statusColorMapping } from './enums';
-import SmallIcon from './SmallIcon';
-import SmallText from './SmallText';
+import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
+import { EFileTypeDnD, EStatusColorDnD } from './enums';
+import DefaultDragAndDrop from './subcomponents/DefaultDragAndDrop';
+import SmallIcon from './subcomponents/SmallIcon';
+import SmallText from './subcomponents/SmallText';
 
-const DragAndDrop: FC<IDragAndDrop> = ({
+/**
+ * Компонент Drag and Drop предоставляет функциональность перетаскивания и загрузки файлов с возможностью настройки и отмены.
+ *
+ * @param {object} props - Свойства компонента Drag and Drop.
+ * @param {React.ReactNode} [props.children=null] - Кастомный контент внутри области перетаскивания.
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @param {string | React.ReactNode} [props.title=dragNDropTitle] - Заголовок для области перетаскивания.
+ * @param {string | React.ReactNode} [props.description=dragNDropDescription] - Описание для области перетаскивания.
+ * @param {string} [props.btnLabel=dragNDropBtnLabel] - Текст кнопки для выбора файлов.
+ * @param {`${EFileTypeDnD}`} [props.fileType=EFileTypeDnD.image] - Тип загружаемых файлов.
+ * @param {`${EStatusColorDnD}`} [props.statusColor=EStatusColorDnD.default] - Цвет статуса.
+ * @param {sizesMapping} [props.size=sizesMapping.l] - Размер области перетаскивания.
+ * @param {boolean} [props.withIcon=true] - Показывать ли иконку в области перетаскивания.
+ * @param {JSX.Element} [props.customIcon=null] - Пользовательская иконка.
+ * @param {boolean} [props.multiple=true] - Разрешить множество файлов.
+ * @param {boolean} [props.loading=false] - Показать индикатор загрузки.
+ * @param {number} [props.percentUpload=0] - Процент выполнения загрузки.
+ * @param {boolean} [props.smallText=false] - Использовать маленький текст.
+ * @param {boolean} [props.smallIcon=false] - Использовать маленькую иконку.
+ * @param {boolean} [props.disabled=false] - Отключить область перетаскивания.
+ * @param {string} [props.accept] - Допустимые MIME-типы файлов.
+ * @param {(files: FileList) => void} props.onUpload - Функция для обработки загруженных файлов.
+ * @param {() => void} [props.cancelUpload] - Функция для отмены загрузки.
+ * @returns {JSX.Element} - Компонент Drag and Drop.
+ */
+const DragAndDrop: FC<IDragAndDropProps> = ({
   children = null,
   className,
   title = dragNDropTitle,
   description = dragNDropDescription,
   btnLabel = dragNDropBtnLabel,
-  fileType = fileTypeMapping.image,
-  statusColor = statusColorMapping.default,
+  fileType = EFileTypeDnD.image,
+  statusColor = EStatusColorDnD.default,
   size = sizesMapping.l,
   withIcon = true,
   customIcon = null,
@@ -34,7 +59,11 @@ const DragAndDrop: FC<IDragAndDrop> = ({
   onUpload,
   cancelUpload = null
 }) => {
-  const inputId = useId();
+  let actualBtnLabel = btnLabel;
+  if (loading) {
+    actualBtnLabel = cancelUploadLabel;
+  }
+  const inputId = generateUUID();
   // drag state
   const [dragActive, setDragActive] = useState<boolean>(false);
   // ref
@@ -69,7 +98,8 @@ const DragAndDrop: FC<IDragAndDrop> = ({
   };
 
   // triggers the input when the button is clicked
-  const onButtonClick = () => {
+  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     if (loading && cancelUpload !== null) {
       cancelUpload();
     } else {
@@ -83,7 +113,6 @@ const DragAndDrop: FC<IDragAndDrop> = ({
       className={clsx(styles['form-file-upload'], disabled && styles.disabled, className)}
       onDragEnter={handleDrag}
       onSubmit={e => e.preventDefault()}
-      onClick={onButtonClick}
     >
       <input
         ref={inputRef}
@@ -98,8 +127,8 @@ const DragAndDrop: FC<IDragAndDrop> = ({
         className={clsx(
           styles['label-file-upload'],
           loading ? styles['label-loading'] : styles[`label-${statusColor}`],
-          smallIcon && statusColorMapping.default && styles['label-s-default'],
-          dragActive && styles[`label-${statusColorMapping.info}`],
+          smallIcon && EStatusColorDnD.default && styles['label-s-default'],
+          dragActive && styles[`label-${EStatusColorDnD.info}`],
           smallText ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`],
           smallIcon && styles['label-file-upload-small-icon']
         )}
@@ -136,7 +165,8 @@ const DragAndDrop: FC<IDragAndDrop> = ({
             title={title}
             statusColor={statusColor}
             description={description}
-            btnLabel={btnLabel}
+            btnLabel={actualBtnLabel}
+            onButtonClick={onButtonClick}
           />
         )}
       </label>

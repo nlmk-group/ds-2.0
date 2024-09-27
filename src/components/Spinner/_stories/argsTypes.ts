@@ -1,10 +1,12 @@
+import { ESizesSpinner } from '../enums';
+
 const argsTypes = {
   size: {
-    description: 'Размер спиннера <b>m | l | xl | xxl</b>',
-    control: { type: 'select', options: ['m', 'l', 'xl', 'xxl'] },
+    description: 'Размер спиннера',
+    control: { type: 'select', options: Object.values(ESizesSpinner) },
     table: {
       defaultValue: {
-        summary: 'l'
+        summary: ESizesSpinner.l
       }
     }
   },
@@ -13,7 +15,7 @@ const argsTypes = {
     control: { type: 'text' },
     table: {
       defaultValue: {
-        summary: 'var(--primary-blue-600)'
+        summary: 'var(--brand-sapphire-60)'
       }
     }
   },
@@ -22,13 +24,25 @@ const argsTypes = {
     control: { type: 'text' },
     table: {
       defaultValue: {
-        summary: 'var(--text-grey-100)'
+        summary: 'var(--steel-40)'
       }
     }
   },
   children: {
     description: 'React children элемент, может быть только компонентом Icon',
     control: { type: 'object' }
+  },
+  percent: {
+    description: 'Показывает процент загрузки Icon',
+    control: {
+      type: 'number'
+    }
+  },
+  progressPercentage: {
+    description: 'Процент заполнения круга спиннера. Значение от 0 до 0.9',
+    control: {
+      type: 'number'
+    }
   }
 };
 

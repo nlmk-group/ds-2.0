@@ -1,110 +1,113 @@
-.wrapper {
+// Стили основного компонента
+.breadcrumbs {
   display: flex;
-  gap: var(--8-space);
+  gap: 8px;
   width: inherit;
-  padding: var(--8-space) 0;
+  padding: 8px 0;
 }
 
-.custom-link {
-  color: var(--text-grey-600);
+// Стили для LinkComponent
+.link {
+  color: var(--steel-70);
   text-decoration: none;
-  transition: 0.5s;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   cursor: pointer;
-
-  path {
-    transition: 0.5s;
-  }
+  transition: color 0.3s ease;
 
   &:hover,
   &:focus {
-    color: var(--text-grey-700);
+    color: var(--brand-sapphire-60);
 
-    path {
-      fill: var(--text-grey-700);
+    .separator svg {
+      fill: var(--brand-sapphire-60);
     }
   }
 
-  &:active {
-    color: var(--text-grey-900);
-
-    path {
-      fill: var(--text-grey-900);
-    }
-  }
-}
-
-.active-link {
-  color: var(--text-grey-900);
-  cursor: default;
-
-  &:hover {
-    color: var(--text-grey-900);
-  }
-  &:active {
+  &-active {
+    color: var(--steel-90);
+    cursor: default;
     pointer-events: none;
-  }
 
-  path {
-    fill: var(--text-grey-900);
+    .separator svg {
+      fill: var(--steel-90);
+    }
   }
 }
 
-.link-separator {
-  margin-left: var(--8-space);
-}
-
-.hidden-options-wrapper {
-  width: var(--40-size);
-  position: relative;
+.separator {
   display: flex;
-  justify-content: center;
-  color: var(--text-grey-600);
-  font-size: var(--body1-medium-font-size);
-  transition: 0.5s;
-  cursor: pointer;
+  align-items: center;
+  margin-left: 8px;
 
-  &:hover,
-  &:focus {
-    color: var(--text-grey-700);
+  svg {
+    fill: var(--steel-70);
   }
 }
 
-.active-option-list {
-  color: var(--text-grey-900);
-}
-
-.option-list {
-  max-height: var(--192-size);
-  width: var(--179-size);
-}
-
-.test-wrapper-width {
-  div:first-child {
-    width: 500px;
-  }
-}
-
-.link-text {
+.text {
   white-space: nowrap;
-  max-width: var(--108-size);
+  max-width: 108px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.properties-helper {
-  position: fixed;
-  bottom: 10px;
-  z-index: 9;
+// Стили для ShortenBreadcrumbs
+.options {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: center;
+  color: var(--steel-70);
+  font-size: var(--body1-medium-font-size);
+  cursor: pointer;
+  transition: color 0.3s ease;
 
-  div {
-    position: unset;
-    transform: unset;
+  &:hover {
+    color: var(--brand-sapphire-60);
+
+    .separator svg {
+      fill: var(--brand-sapphire-60);
+    }
   }
 }
+
+.list {
+  max-height: 192px;
+  right: initial;
+}
+
+.show {
+  color: var(--steel-90);
+
+  .separator svg {
+    fill: var(--steel-90);
+  }
+}
+
+.option {
+  padding: 12px;
+
+  &:first-child {
+    padding-top: 12px;
+    padding-bottom: 0;
+  }
+
+  &:last-child {
+    padding-top: 0;
+    padding-bottom: 12px;
+  }
+
+  &:hover,
+  &:focus {
+    .link:not(.link-active) {
+      color: var(--brand-sapphire-60);
+
+      .separator svg {
+        fill: var(--brand-sapphire-60);
+      }
+    }
+  }
+}
+

@@ -52,6 +52,7 @@ import { Select } from '@nlmk/ds-2.0';
 | portalContainerId          | string                  | 'root'                    | id рутового контейнера для создания портала                      |
 | name                       | string                  | -                         | name определяет имя элемента, используется для ссылки на элемент |
 | style                      | CSSProperties           | -                         | Кастомные стили для компонента                                   |
+| isClearInputOnSelect       | boolean                 | false                     | Удалить содержимое Input после выбора                            |
 
 ## Примечания
 

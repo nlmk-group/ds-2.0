@@ -224,8 +224,8 @@ export const AttachFilesWithCheckboxes = (): JSX.Element => {
           <File
             label={FILE_NAME}
             checked
-            checkedValue={checked[0] && checked[1]}
-            indeterminate={true}
+            checkedValue={checked.some(ch => ch)}
+            indeterminate={checked.some(ch => !ch)}
             onCheckedChange={handleChange1}
             addFile
             addFileOnClick={() => console.log('Добавить файл!')}

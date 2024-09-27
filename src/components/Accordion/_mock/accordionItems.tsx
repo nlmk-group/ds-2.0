@@ -1,9 +1,10 @@
 import React from 'react';
 
-import Accordion from '..';
-import { iconsMapping, sizesMapping } from '../enums';
-import { TAccordionItem } from '../subcomponents/AccordionItem/types';
 import { generateUUID } from '@components/declaration';
+
+import Accordion from '..';
+import { EIconsAccordion, ESizesAccordion } from '../enums';
+import { TAccordionItem } from '../subcomponents/AccordionItem/types';
 
 export const ACCORDION_ITEMS_MOCK: TAccordionItem[] = [
   {
@@ -82,8 +83,8 @@ export const ACCORDION_ITEMS_MOCK_FOURTH: TAccordionItem[] = [
 ];
 
 const defaultProps = {
-  startIcon: iconsMapping.plus,
-  size: sizesMapping.xs
+  startIcon: EIconsAccordion.plus,
+  size: ESizesAccordion.xs
 };
 export const FOLDED_ACCORDION_ITEMS_MOCK: TAccordionItem[] = [
   {

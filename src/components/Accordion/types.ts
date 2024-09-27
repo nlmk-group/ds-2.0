@@ -1,14 +1,12 @@
-import { iconsMapping, sizesMapping, variantsMapping } from './enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from './enums';
 import { TAccordionItem } from './subcomponents/AccordionItem/types';
-
-export type TIcon = `${iconsMapping}`
 
 export interface IAccordionProps {
   items: TAccordionItem[];
-  startIcon?: TIcon | null;
-  endIcon?: TIcon | null;
-  size?: sizesMapping;
-  variant?: variantsMapping;
+  startIcon?: `${EIconsAccordion}`;
+  endIcon?: `${EIconsAccordion}`;
+  size?: `${ESizesAccordion}`;
+  variant?: `${EVariantsAccordion}`;
   className?: string;
   multipleExpanded?: boolean;
   disabled?: boolean;

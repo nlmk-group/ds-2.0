@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+
+import { combinedOptions, ICombinedOption } from './helpers';
 import { Button } from './index';
-import { EButtonVariant } from './enums'
-import { ICombinedOption, combinedOptions, variantsWithOneFill } from './helpers';
 
 describe('src/components/Button', () => {
   const text = 'Some example text';
@@ -44,21 +44,14 @@ describe('src/components/Button', () => {
     expect(button).toHaveAttribute('disabled');
   });
 
-
   // check button options
   combinedOptions().forEach((option: ICombinedOption) => {
-    const { variant, fill } = option
+    const { variant, fill } = option;
     test(`Кнопка должна быть отрендерена со стилем ${variant}-${fill}`, () => {
-      const { container } = render(
-        <Button variant={variant} fill={fill}/>
-      );
+      const { container } = render(<Button variant={variant} fill={fill} />);
       const button = container.getElementsByTagName('button')[0];
-      if (variantsWithOneFill.has(EButtonVariant[variant])) {
-        expect(button.classList.contains(variant)).toBeTruthy();
-      } else {
-        expect(button.classList.contains(`${variant}-${fill}`)).toBeTruthy();
-      }
-    })
+      expect(button.classList.contains(`${variant}-${fill}`)).toBeTruthy();
+    });
   });
 
   // Check icon render
@@ -74,7 +67,7 @@ describe('src/components/Button', () => {
     const badgeContent = 1;
     render(<Button endBadge={badgeContent}>ok</Button>);
     expect(screen.getByTestId('BADGE_WRAPPER')).toBeInTheDocument();
-    expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeContent.toString())
+    expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeContent.toString());
   });
 
   // Check compact button prop

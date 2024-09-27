@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
 import DatePicker from '@components/DatePicker';
-import { Box, Button, Input, Select, Typography } from '@components/index';
-import { options } from '@components/Select/_stories/mocks';
+import {Box, Button, Dropdown, DropdownMenuItem, Input, Select, Typography} from '@components/index';
+import {options, positions} from '@components/Select/_stories/mocks';
 import { TSelected } from '@components/Select/types';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
@@ -148,9 +148,26 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
           style={{ marginTop: '10px' }}
         />
         <Input style={{ marginTop: '10px' }} />
+        <div style={{ position: 'relative', marginTop: '10px' }}>
+          <Dropdown buttonChildren="Dropdown Button" size="m" menuStyle={{ width: '200px' }} withPortal>
+            {positions.map(({ value, disabled }) => (
+              <DropdownMenuItem
+                key={value}
+                value={value}
+                disabled={disabled}
+                onClick={() => {
+                  console.log(value);
+                }}
+              >
+                <Typography variant="Body1-Medium">{value}</Typography>
+              </DropdownMenuItem>
+            ))}
+          </Dropdown>
+        </div>
       </Modal>
     </div>
   );
 };
 ResizableModal.storyName = 'Модальное окно изменяемого размера';
 ResizableModal.args = { isResizable: true };
+

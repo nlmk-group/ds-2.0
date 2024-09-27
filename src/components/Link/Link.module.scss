@@ -4,24 +4,26 @@
 
 @mixin icon-size($size) {
   > div {
-    height: var(--#{$size}-size);
-    width: var(--#{$size}-size);
+    height: $size;
+    width: $size;
+
     > svg {
-      height: var(--#{$size}-size);
-      width: var(--#{$size}-size);
+      height: $size;
+      width: $size;
     }
   }
 }
 
 .wrapper {
   display: flex;
-  gap: var(--4-space);
+  gap: 4px;
   cursor: pointer;
   width: fit-content;
+
   > a,
   path {
     @include transition-effect;
-    color: var(--ac-link-default);
+    color: var(--brand-sapphire-60);
     text-decoration: none;
   }
 
@@ -30,9 +32,9 @@
   &:active {
     > a,
     path {
-      color: var(--ac-link-hover);
+      color: var(--brand-sapphire-60);
       text-decoration: underline;
-      fill: var(--ac-link-hover);
+      fill: var(--brand-sapphire-60);
     }
   }
 
@@ -42,29 +44,30 @@
 
   &:hover > a,
   &:hover path {
-    color: var(--ac-link-hover);
-    fill: var(--ac-link-hover);
+    color: var(--brand-sapphire-60);
+    fill: var(--brand-sapphire-60);
   }
 
   &:visited > a,
   &:visited path {
-    color: var(--ac-link-active);
-    fill: var(--ac-link-active);
+    color: var(--brand-sapphire-60);
+    fill: var(--brand-sapphire-60);
   }
 
   &:active > a,
   &:active path {
-    color: var(--ac-link-click);
-    fill: var(--ac-link-click);
+    color: var(--brand-sapphire-60);
+    fill: var(--brand-sapphire-60);
   }
 }
 
 .disabled {
   pointer-events: none;
+
   > a,
   path {
-    color: var(--ac-link-disabled);
-    fill: var(--ac-link-disabled);
+    color: var(--steel-60);
+    fill: var(--steel-60);
     text-decoration: underline;
   }
 }
@@ -78,12 +81,12 @@
 .icon-h1,
 .icon-h2,
 .icon-sub1 {
-  @include icon-size(32);
+  @include icon-size(32px);
 }
 
 .icon-h3,
 .icon-sub2 {
-  @include icon-size(24);
+  @include icon-size(24px);
 }
 
 .icon-h4,
@@ -92,7 +95,7 @@
 .icon-body1,
 .icon-body2,
 .icon-caption {
-  @include icon-size(16);
+  @include icon-size(16px);
 }
 
 .test-style {

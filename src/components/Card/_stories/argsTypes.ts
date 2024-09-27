@@ -1,6 +1,6 @@
 import { sizesMapping } from '@components/declaration';
 
-import { indicatorStatusMapping, orientationMapping } from '../enums';
+import { EIndicatorStatusMapping, EOrientationMapping } from '../enums';
 
 const argsTypes = {
   children: {
@@ -16,13 +16,13 @@ const argsTypes = {
     description: 'Определяет позиции элементов для компонента Card. По умолчанию vertical',
     table: {
       defaultValue: {
-        summary: orientationMapping.vertical
+        summary: EOrientationMapping.vertical
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(orientationMapping),
+    options: Object.values(EOrientationMapping),
     control: { type: 'select' }
   },
   indicatorSize: {
@@ -42,13 +42,13 @@ const argsTypes = {
     description: 'Необязательный атрибут. Цвет индикатора.',
     table: {
       defaultValue: {
-        summary: indicatorStatusMapping.success
+        summary: EIndicatorStatusMapping.success
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(indicatorStatusMapping),
+    options: Object.values(EIndicatorStatusMapping),
     control: { type: 'select' }
   }
 };

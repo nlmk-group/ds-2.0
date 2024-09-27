@@ -15,12 +15,19 @@
   grid-template-areas: "top top" "top-left top-right" "left-start right-start" "left right" "left-end right-end" "bottom-left bottom-right" "bottom bottom";
   gap: 100px;
   justify-items: center;
-  padding: var(--24-space) var(--32-space);
+  padding: 24px 32px;
 }
 
 .behaviors {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
+  gap: 60px;
+  justify-items: center;
+}
+
+.manual-wrapper {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
   gap: 60px;
   justify-items: center;
 }
@@ -79,7 +86,7 @@
   }
 
   &-right-start {
-    grid-area: right  start;
+    grid-area: right start;
   }
 
   &-left-end {
@@ -94,14 +101,14 @@
 .traffic-wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--12-space);
+  gap: 12px;
 }
 
 .traffic-item {
   display: flex;
   align-items: center;
-  height: var(--24-size);
-  gap: var(--8-space)
+  height: 24px;
+  gap: 8px;
 }
 
 .card-helper {
@@ -111,26 +118,25 @@
 
 .card-wrapper {
   display: flex;
-  gap: var(--8-space);
+  gap: 8px;
 }
 
 .text-card {
   width: 232px;
-  color: var(--ac-toggletip-text);
-  margin: var(--4-space) 0;
+  margin: 4px 0;
 }
 
 .line-wrapper {
-  width: var(--24-size);
+  width: 24px;
   display: flex;
   align-items: start;
-  margin-top: var(--8-space);
+  margin-top: 8px;
 }
 
 .line {
-  width: var(--6-size);
-  height: var(--24-size);
-  border-radius: var(--2-border);
+  width: 6px;
+  height: 24px;
+  border-radius: 2px;
   padding: 0 auto;
 }
 
@@ -151,6 +157,6 @@
 }
 
 .popup {
-  background-color: var(--error-red-900) !important;
-  color: var(--white) !important;
+  background-color: var(--spectrum-red-10) !important;
+  color: var(--spectrum-red-60) !important;
 }

@@ -7,13 +7,24 @@ import { ICard } from './types';
 
 import styles from './Card.module.scss';
 
-import { indicatorStatusMapping, orientationMapping } from './enums';
+import { EIndicatorStatusMapping, EOrientationMapping } from './enums';
 
+/**
+ * Компонент Card предоставляет настраиваемый макет карточки с различными вариантами ориентации и статусами индикатора.
+ *
+ * @param {object} props - Свойства компонента Card.
+ * @param {OrientationType} [props.orientation=EOrientationMapping.vertical] - Ориентация карточки.
+ * @param {IndicatorSizeType} [props.indicatorSize=sizesMapping.s] - Размер индикатора.
+ * @param {IndicatorStatusType} [props.indicatorStatus=EIndicatorStatusMapping.default] - Статус индикатора.
+ * @param {string} [props.className] - Дополнительный CSS-класс для карточки.
+ * @param {ReactNode} props.children - Контент, который будет отображаться внутри карточки.
+ * @returns {JSX.Element} - Компонент Card.
+ */
 const Card: FC<ICard> = ({
   children,
-  orientation = orientationMapping.vertical,
+  orientation = EOrientationMapping.vertical,
   indicatorSize = sizesMapping.s,
-  indicatorStatus = indicatorStatusMapping.default,
+  indicatorStatus = EIndicatorStatusMapping.default,
   className
 }) => {
   return (
@@ -23,7 +34,7 @@ const Card: FC<ICard> = ({
         styles.wrapper,
         styles[`wrapper-${orientation}`],
         styles[`indicator-${orientation}`],
-        indicatorStatus !== indicatorStatusMapping.default && styles[`indicator-${indicatorSize}`],
+        indicatorStatus !== EIndicatorStatusMapping.default && styles[`indicator-${indicatorSize}`],
         styles[`indicator-${indicatorStatus}`],
         styles[`card-${orientation}`],
         className

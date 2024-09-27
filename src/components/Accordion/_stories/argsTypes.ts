@@ -1,30 +1,30 @@
-import { iconsMapping, sizesMapping, variantsMapping } from '../enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 
 export const argsTypes = {
   size: {
     description: 'Размер',
     table: {
       defaultValue: {
-        summary: sizesMapping.m
+        summary: ESizesAccordion.m
       },
       type: {
-        summary: Object.values(sizesMapping).join(' | ')
+        summary: Object.values(ESizesAccordion).join(' | ')
       }
     },
-    options: Object.values(sizesMapping),
+    options: Object.values(ESizesAccordion),
     control: { type: 'select' }
   },
   variant: {
     description: 'Тип аккордеона',
     table: {
       defaultValue: {
-        summary: variantsMapping.default
+        summary: EVariantsAccordion.default
       },
       type: {
-        summary: Object.values(variantsMapping).join(' | ')
+        summary: Object.values(EVariantsAccordion).join(' | ')
       }
     },
-    options: Object.values(variantsMapping),
+    options: Object.values(EVariantsAccordion),
     control: { type: 'select' }
   },
   multipleExpanded: {
@@ -43,13 +43,13 @@ export const argsTypes = {
     description: 'Иконка слева от заголовка',
     table: {
       defaultValue: {
-        summary: iconsMapping.arrow
+        summary: EIconsAccordion.arrow
       },
       type: {
-        summary: Object.values(iconsMapping).join(' | ')
+        summary: Object.values(EIconsAccordion).join(' | ')
       }
     },
-    options: Object.values(iconsMapping),
+    options: Object.values(EIconsAccordion),
     control: { type: 'select' }
   },
   endIcon: {
@@ -59,10 +59,10 @@ export const argsTypes = {
         summary: 'null'
       },
       type: {
-        summary: Object.values(iconsMapping).join(' | ')
+        summary: Object.values(EIconsAccordion).join(' | ')
       }
     },
-    options: Object.values(iconsMapping),
+    options: Object.values(EIconsAccordion),
     control: { type: 'select' }
   },
   disabled: {

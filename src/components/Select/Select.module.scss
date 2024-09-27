@@ -56,6 +56,11 @@
       }
     }
 
+    &.multiline:last-child,
+    &.multiline:first-child {
+      height: auto;
+    }
+
     &.selected {
       background: var(--ac-select-item-selected-bg);
       color: var(--ac-select-item-selected-label);
@@ -82,6 +87,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
+    &__multiline {
+      white-space: unset;
+      overflow: unset;
+      text-overflow: unset;
+    }
+
     &__disabled {
 
       &:hover {
@@ -97,6 +108,10 @@
     gap: 8px;
     height: 24px;
     width: 100%;
+
+    &__multiline {
+      height: auto;
+    }
   }
 }
 

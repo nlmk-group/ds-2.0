@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import DatePicker from '@components/DatePicker';
 import { argsTypes } from '@components/DatePicker/_stories/argsTypes';
-import { TDatePickerProps, TEnabledHourFrom, TEnabledHourTo } from '@components/DatePicker/types';
+import { TDatePickerProps, TEnabledHour } from '@components/DatePicker/types';
 import { sizesMappingInput } from '@components/declaration';
 import { Button } from '@components/index';
 import { format } from 'date-fns';
@@ -110,7 +110,7 @@ export const EnglishDatepicker = (): JSX.Element => {
 
 export const EnabledHoursFromTo = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
-  const func = (date: Date): TEnabledHourFrom => {
+  const func = (date: Date): TEnabledHour => {
     if (date.getDay() === 4) {
       return 7;
     }
@@ -120,7 +120,7 @@ export const EnabledHoursFromTo = (): JSX.Element => {
       return 2;
     }
   };
-  const funcOne = (_date: Date): TEnabledHourTo => {
+  const funcOne = (_date: Date): TEnabledHour => {
     return 9;
   };
   return (

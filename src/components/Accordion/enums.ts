@@ -1,15 +1,15 @@
-export enum iconsMapping {
+export enum EIconsAccordion {
   plus = 'plus',
   arrow = 'arrow'
 }
 
-export enum sizesMapping {
+export enum ESizesAccordion {
   xs = 'xs',
   s = 's',
   m = 'm'
 }
 
-export enum variantsMapping {
+export enum EVariantsAccordion {
   default = 'default',
   paper = 'paper'
 }

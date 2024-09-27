@@ -9,7 +9,7 @@ import { SelectSharedProperties } from '..';
 import { IMenu, ISelectOption, ISelectSharedProperties } from '../types';
 import MenuItem from './MenuItem';
 
-const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filteredOptions }, ref) => {
+const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filteredOptions, multilineOption = false }, ref) => {
   const {
     multiple,
     allSelectText,
@@ -35,7 +35,8 @@ const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filtere
       {multiple && isAllSelectView && (
         <ListItem
           className={clsx(styles.item, {
-            [styles.selected]: selectedValues?.length === availableOptionsCount
+            [styles.selected]: selectedValues?.length === availableOptionsCount,
+            [styles.multiline]: multilineOption
           })}
           title={allSelectText}
         >
@@ -49,7 +50,7 @@ const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filtere
               />
             </div>
           )}
-          <div onClick={handleSelectAllClick} className={styles.label}>
+          <div onClick={handleSelectAllClick} className={clsx(styles.label, { [styles.label__multiline]: multilineOption })}>
             <Typography variant="Body1-Medium">{allSelectText}</Typography>
           </div>
           <div className={styles['right-wrapper']}>
@@ -60,7 +61,7 @@ const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filtere
         </ListItem>
       )}
       {filteredOptions && filteredOptions.length > 0 ? (
-        filteredOptions.map((option: ISelectOption) => <MenuItem key={option.value} {...option} />)
+        filteredOptions.map((option: ISelectOption) => <MenuItem key={option.value} {...option} multilineOption={multilineOption} />)
       ) : (
         <ListItem className={styles.disabled}>
           <Typography variant="Body1-Medium">Ничего не найдено</Typography>

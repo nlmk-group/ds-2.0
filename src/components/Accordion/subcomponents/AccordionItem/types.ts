@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { iconsMapping, sizesMapping, variantsMapping } from '@components/Accordion/enums';
+import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '@components/Accordion/enums';
 
 export type TAccordionItem = {
   id: string | number;
@@ -13,10 +13,10 @@ export type TAccordionItem = {
 export interface IAccordionItemProps extends Omit<TAccordionItem, 'content'> {
   isExpanded: boolean;
   onExpand: (id: TAccordionItem['id']) => void;
-  startIcon?: `${iconsMapping}` | null;
-  endIcon?: `${iconsMapping}` | null;
-  size: `${sizesMapping}`;
-  variant: `${variantsMapping}`;
+  startIcon?: `${EIconsAccordion}` | null;
+  endIcon?: `${EIconsAccordion}` | null;
+  size: `${ESizesAccordion}`;
+  variant: `${EVariantsAccordion}`;
   children: ReactNode;
   className?: string;
 }

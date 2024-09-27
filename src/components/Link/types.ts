@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { MouseEventHandler, PropsWithChildren, ReactNode } from 'react';
 
 type TLinkOutput = string | ReactNode;
 
@@ -14,4 +14,5 @@ export interface ILink
   disabled?: boolean;
   leftIcon?: JSX.Element | ReactNode;
   rightIcon?: JSX.Element | ReactNode;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }

@@ -21,7 +21,7 @@ describe('src/components/Switch', () => {
 
     test('It should render inactive touch', () => {
       render(<InactiveSwitch />);
-      expect(screen.getByTestId('TOUCH').classList.contains('inactive')).toBe(true);
+      expect(screen.getByTestId('TOUCH').classList.contains('touch-inactive')).toBe(true);
     });
 
     test('It should render inactive focus', () => {
@@ -40,7 +40,7 @@ describe('src/components/Switch', () => {
 
     test('It should render active touch', () => {
       render(<ActiveSwitch />);
-      expect(screen.getByTestId('TOUCH').classList.contains('active')).toBe(true);
+      expect(screen.getByTestId('TOUCH').classList.contains('touch-active')).toBe(true);
     });
 
     test('It should render active focus', () => {
@@ -66,7 +66,7 @@ describe('src/components/Switch', () => {
 
   test('It should render disabled Switch', () => {
     render(<Switch disabled checked={false} onChange={mockCallBack} />);
-    expect(screen.getByTestId('SWITCH_WRAPPER').classList.contains('disabled')).toBe(true);
+    expect(screen.getByTestId('SWITCH').classList.contains('disabled')).toBe(true);
   });
 
   describe('While Switch has icons', () => {

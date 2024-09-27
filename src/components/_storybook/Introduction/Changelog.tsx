@@ -23,6 +23,234 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.5.12 - <span className={styles.date}>26.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+              <li className={styles['left-padding']}>- Удалены !important в стилях и настроена специфичность</li>
+              <li className={styles['left-padding']}>- Стили теперь так же применены к дополнительному render'у</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.11 - <span className={styles.date}>25.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-draganddrop-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DragnAndDrop
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.10 - <span className={styles.date}>17.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена логика работы с часами в компоненте DatePicker. Теперь корректно обрабатываются случаи,
+                когда enabledHourFrom меньше, чем enabledHourTo (такое может быть, если enabledFrom и enabledTo
+                находятся в разных днях).
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.9 - <span className={styles.date}>14.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-switch-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Switch
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.8 - <span className={styles.date}>12.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              . Обновлены типы, добавлены новые пропсы и изменена структура компонента.
+              <li className={styles['left-padding']}>- Изменены варианты свойства variant и fill</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-spinner-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Spinner
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+              <li className={styles['left-padding']}>- Добавлен новое свойство: progressPercentage</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.7 - <span className={styles.date}>11.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен флаг isClearInputOnSelect для уаления содержимого Input после выбора
+              </li>
+            </li>
+            <li>
+              • Обновлён компонент{' '}
+              <Link
+                href="./?path=/docs/components-accordion-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Accordion
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Добавлен эффект hover и disabled</li>
+              <li className={styles['left-padding']}>- Фикс расположения иконок и текста</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.6 - <span className={styles.date}>08.09.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлён компонент{' '}
+              <Link
+                href="./?path=/docs/components-progressbar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ProgressBar
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+            </li>
+            <li>
+              • Обновлён компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepicture-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePicture
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+            </li>
+            <li>
+              • Обновлён компонент{' '}
+              <Link href="./?path=/docs/components-card-info--docs" target="blank" className={styles['link-changelog']}>
+                Card
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
+            </li>
+            <li>
+              • Обновлён компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              <li className={styles['left-padding']}>- Изменен цвет иконок по умолчанию</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.5 - <span className={styles.date}>30.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлён компонент{' '}
+              <Link
+                href="./?path=/docs/components-slidetoggle-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SlideToggle
+              </Link>
+              .<li className={styles['left-padding']}>- Изменены отступы</li>
+              <li className={styles['left-padding']}>- Добавлена новая story</li>
+              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.4 - <span className={styles.date}>30.08.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-link-info--docs" target="blank" className={styles['link-changelog']}>
+                Link
+              </Link>
+              .<li className={styles['left-padding']}>- Изменены цвета компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.5.3 - <span className={styles.date}>29.08.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -35,7 +263,6 @@ export const Changelog = () => {
             </li>
           </ul>
         </div>
-
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.5.2 - <span className={styles.date}>28.08.24</span>
@@ -44,7 +271,7 @@ export const Changelog = () => {
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-select-info--docs"
+                href="./?path=/docs/components-avatar-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >

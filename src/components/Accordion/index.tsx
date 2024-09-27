@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -6,16 +6,30 @@ import { IAccordionProps } from './types';
 
 import styles from './Accordion.module.scss';
 
-import { iconsMapping, sizesMapping, variantsMapping } from './enums';
+import { ESizesAccordion, EVariantsAccordion } from './enums';
 import AccordionItem from './subcomponents/AccordionItem';
 import { TAccordionItem } from './subcomponents/AccordionItem/types';
 
+/**
+ * Компонент Accordion предоставляет интерфейс аккордеона с возможностью управления состоянием открытия/закрытия его элементов.
+ *
+ * @param {object} props - Свойства компонента Accordion.
+ * @param {TAccordionItem[]} props.items - Массив элементов аккордеона.
+ * @param {EVariantsAccordion} [props.variant=EVariantsAccordion.default] - Вариант внешнего вида аккордеона.
+ * @param {import('./enums').EIconsAccordion} props.startIcon - Иконка в начале заголовка аккордеона.
+ * @param {import('./enums').EIconsAccordion} props.endIcon - Иконка в конце заголовка аккордеона.
+ * @param {ESizesAccordion} [props.size=ESizesAccordion.m] - Размер аккордеона.
+ * @param {boolean} [props.multipleExpanded=false] - Разрешает одновременное разворачивание нескольких элементов.
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @param {boolean} [props.disabled=false] - Отключает взаимодействие с аккордеоном.
+ * @returns {JSX.Element} - Компонент Accordion.
+ */
 export const Accordion: React.FC<IAccordionProps> = ({
   items,
-  variant = variantsMapping.default,
-  startIcon = iconsMapping.arrow,
-  endIcon = null,
-  size = sizesMapping.m,
+  variant = EVariantsAccordion.default,
+  startIcon ,
+  endIcon ,
+  size = ESizesAccordion.m,
   multipleExpanded = false,
   className,
   disabled = false,

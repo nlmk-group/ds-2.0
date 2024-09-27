@@ -6,6 +6,7 @@
 .badge {
   box-sizing: border-box;
   min-width: 24px;
+  width: fit-content;
   height: 24px;
   border-radius: var(--circle-radius);
   display: flex;

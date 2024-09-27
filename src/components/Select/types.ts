@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent, ReactElement, CSSProperties } from 'react';
+import { CSSProperties, MouseEvent, ReactElement, ReactNode } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
@@ -29,13 +29,13 @@ export type ISelectOption = {
 
   /**
    * Иконки для опции.
-  */
+   */
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
 
   /**
-    * Отключена ли опция.
-    */
+   * Отключена ли опция.
+   */
   options?: ISelectOption[];
 
   /**
@@ -46,7 +46,6 @@ export type ISelectOption = {
 
 type TSize = `${sizesMappingInput}`;
 export type TSelected = string | string[];
-
 
 /**
  * @interface {ISelectProps}
@@ -166,28 +165,28 @@ export interface ISelectProps {
   stealthy?: boolean;
 
   /**
-  * Отображать выбранные элементы иконкой
-  */
+   * Отображать выбранные элементы иконкой
+   */
   highlightSelected?: boolean;
 
   /**
-  * Отображать без чекбоксов
-  */
+   * Отображать без чекбоксов
+   */
   withoutCheckbox?: boolean;
 
   /**
-  * Отображать badge с количеством выбранных опций
-  */
+   * Отображать badge с количеством выбранных опций
+   */
   badgeAmount?: number;
 
   /**
-  * Выделять значение синим цветом, доступно в stealthy
-  */
+   * Выделять значение синим цветом, доступно в stealthy
+   */
   activeSelectedValue?: boolean;
 
   /**
- * Условие фокуса на опциях компонента при раскрытии списка
-  */
+   * Условие фокуса на опциях компонента при раскрытии списка
+   */
   enableScrollToActiveOption?: boolean;
 
   /**
@@ -204,6 +203,16 @@ export interface ISelectProps {
    * Кастомные стили для компонента.
    */
   style?: CSSProperties;
+
+  /**
+   * Перенос текста опции на следующую строку
+   */
+  multilineOption?: boolean;
+
+  /**
+   * Удалить содержимое Input после выбора
+   */
+  isClearInputOnSelect?: boolean;
 }
 
 export interface IStealthyItem {
@@ -218,6 +227,7 @@ export interface IStealthyItem {
 export interface IMenu {
   availableOptionsCount: number;
   filteredOptions: ISelectOption[];
+  multilineOption?: boolean;
 }
 
 export interface ISelectSharedProperties {
@@ -236,16 +246,16 @@ export interface ISelectSharedProperties {
 }
 
 export interface IMenuItem extends ISelectOption {
+  multilineOption?: boolean;
 }
 
-
 export interface IBadgeAmount {
-  children: number
+  children: number;
 }
 
 export interface ISelectButton {
   isOpen: boolean;
   disabled: boolean;
   color: `${customInputColors}`;
-  toggleDropdown: React.MouseEventHandler
+  toggleDropdown: React.MouseEventHandler;
 }

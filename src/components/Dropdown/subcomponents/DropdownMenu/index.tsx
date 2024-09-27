@@ -15,8 +15,11 @@ import styles from './DropdownMenu.module.scss';
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @returns {ReactNode|null} Возвращает JSX элемент или null, если меню закрыто.
  */
-const DropdownMenu: FC<IDropdownMenuProps> = ({ children }) => {
+const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
+  const rect = buttonRef?.current?.getBoundingClientRect();
+  const listStyle = withPortal ? { ...menuStyle, minWidth: rect?.width, top: rect?.bottom || 0, left: rect?.left || 0 } : menuStyle;
+
   /**
    * Обработчик клика вне меню, закрывающий его.
    */
@@ -28,7 +31,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children }) => {
 
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={buttonRef || undefined}>
-      <List className={styles.menu} style={menuStyle}>
+      <List className={styles.menu} style={listStyle}>
         {children}
       </List>
     </ClickAwayListener>

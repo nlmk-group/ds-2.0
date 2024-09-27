@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 const handleGetLabel = (lbl: string | ReactElement): string | undefined => {
   if (typeof lbl === 'string') {
-    return lbl
+    return lbl.replace(/\n/g, ' ').replace(/\s\s+/g, ' ');
   } else {
     const children = lbl?.props?.children || undefined
     if (children === undefined) {

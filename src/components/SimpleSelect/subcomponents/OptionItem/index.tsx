@@ -18,7 +18,7 @@ const OptionItem: FC<IOptionItemProps> = ({
   style,
   isFocused
 }) => {
-  const { setSelectedOption, setSelectedLabel, setIsOpen, selectedOption, onChange } = useContext(SelectContext);
+  const { setSelectedOption, setSelectedLabel, setIsOpen, selectedOption } = useContext(SelectContext);
   const itemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,7 +34,6 @@ const OptionItem: FC<IOptionItemProps> = ({
     setSelectedOption(value);
     setSelectedLabel(label || (typeof children === 'string' ? children : ''));
     setIsOpen(false);
-    onChange?.(value);
   };
 
   const itemStyles = {

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 
 import { Box, Icon, Link } from '@components/index';
 import { Meta } from '@storybook/react';
@@ -8,7 +8,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import { sizeMapping, targetMapping } from '../enums';
 import { ILink } from '../types';
 import { argsTypes } from './argsTypes';
-import { DEFAULT_LINK, LINK_DISABLE, LINK_ICON, LINK_SIZES, LINK_TARGET } from './text';
+import {DEFAULT_LINK, LINK_DISABLE, LINK_ICON, LINK_ONCLICK, LINK_SIZES, LINK_TARGET} from './text';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
@@ -54,7 +54,7 @@ export const LinkTargets = (argTypes: ILink): ReactNode => {
       }}
     >
       {Object.values(targetMapping).map((target: targetMapping) => (
-        <Link target={target} {...argTypes}>
+        <Link target={target} {...argTypes} key={target}>
           {target}
         </Link>
       ))}
@@ -91,7 +91,7 @@ export const LinkSizes = (argTypes: ILink): ReactNode => {
       }}
     >
       {Object.values(sizeMapping).map((size: sizeMapping) => (
-        <Link size={size} {...argTypes}>
+        <Link size={size} {...argTypes} key={size}>
           {size}
         </Link>
       ))}
@@ -103,4 +103,22 @@ LinkSizes.storyName = LINK_SIZES;
 LinkSizes.args = {
   href: 'https://www.lipsum.com/',
   disabled: false
+};
+
+export const LinkCallback = (argTypes: ILink): ReactNode => {
+  return (
+    <Box width="200px">
+      <Link {...argTypes} children={argTypes.children} />
+    </Box>
+  );
+};
+
+LinkCallback.storyName = LINK_ONCLICK;
+LinkCallback.args = {
+  children: 'W3Schools',
+  href: 'https://www.w3schools.com/',
+  onClick: (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    alert('Обработка клика по ссылке')
+  }
 };

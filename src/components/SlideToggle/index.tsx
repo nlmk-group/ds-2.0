@@ -10,6 +10,23 @@ import styles from './SlideToggle.module.scss';
 
 import { IconStackCollapsed16, IconStackCollapsed24, Typography } from '..';
 
+/**
+ * Компонент SlideToggle используется для отображения развертывающегося контента с заголовком и дополнительными элементами.
+ *
+ * @param {object} props - Свойства компонента.
+ * @param {string | JSX.Element} props.title - Заголовок свайдера.
+ * @param {ReactNode} [props.after] - Элемент после заголовка.
+ * @param {boolean} props.isShow - Показан ли контент.
+ * @param {() => void} [props.onToggle] - Функция, вызываемая при переключении.
+ * @param {string} [props.className] - Дополнительные CSS классы.
+ * @param {TSize} [props.size=ESizeMapping.default] - Размер свайдера.
+ * @param {string} [props.iconWrapperId] - ID обертки для иконки.
+ * @param {string} [props.titleWrapperId] - ID обертки для заголовка.
+ * @param {string} [props.afterWrapperId] - ID обертки для элемента после заголовка.
+ * @param {string} [props.contentWrapperId] - ID обертки для контента.
+ * @returns {JSX.Element} - Компонент SlideToggle.
+ */
+
 const SlideToggle: FC<ISlideToggleProps> = ({
   title,
   children,
@@ -18,7 +35,6 @@ const SlideToggle: FC<ISlideToggleProps> = ({
   isShow,
   size = ESizeMapping.default,
   after,
-  toggleContainerShadow = false,
   iconWrapperId,
   titleWrapperId,
   afterWrapperId,
@@ -26,9 +42,9 @@ const SlideToggle: FC<ISlideToggleProps> = ({
 }) => {
   const renderIcon = () => {
     return size === ESizeMapping.default ? (
-      <IconStackCollapsed24 htmlColor="var(--ac-subtitle-default)" />
+      <IconStackCollapsed24 htmlColor="var(--steel-90)" />
     ) : (
-      <IconStackCollapsed16 htmlColor="var(--ac-subtitle-default)" />
+      <IconStackCollapsed16 htmlColor="var(--steel-90)" />
     );
   };
 
@@ -42,7 +58,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
           <Typography
             className={styles['label-wrapper']}
             variant={size === ESizeMapping.default ? 'Heading3' : 'Body1-Bold'}
-            color="primary"
+            color="var(--steel-90)"
           >
             {title}
           </Typography>
@@ -79,7 +95,10 @@ const SlideToggle: FC<ISlideToggleProps> = ({
       {isShow && (
         <div
           id={contentId}
-          className={clsx(styles['content-wrapper'], toggleContainerShadow && styles['content-wrapper-shadow'])}
+          className={clsx(
+            styles['content-wrapper'],
+            size === ESizeMapping.compact && styles['content-wrapper-compact']
+          )}
         >
           {children}
         </div>

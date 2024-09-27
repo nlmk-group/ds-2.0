@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import { breadcrumbs } from '@components/Breadcrumbs/constants';
 import { Breadcrumbs, Header } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
@@ -20,6 +19,7 @@ import {
   HEADER_NOTIFICATION,
   HEADERS_DIFFERENT_SPACING
 } from './text';
+import { breadcrumbs } from '@components/Breadcrumbs/_stories/constants';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 

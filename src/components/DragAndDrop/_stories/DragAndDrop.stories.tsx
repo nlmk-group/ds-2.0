@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
-import { IFile } from '@components/AttachFiles/subcomponents/File/types';
 import { sizesMapping } from '@components/declaration';
 import { DragAndDrop, Icon } from '@components/index';
 import { action } from '@storybook/addon-actions';
@@ -9,8 +8,8 @@ import customStyle from '../DragAndDrop.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { cancelUploadLabel, smallTextUploadText } from '../constants';
-import { fileTypeMapping, statusColorMapping } from '../enums';
-import { IDragAndDrop } from '../types';
+import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { IDragAndDropProps } from '../types';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_DND,
@@ -20,7 +19,6 @@ import {
   DND_FILE_TYPES,
   DND_SIZES,
   DND_SMALL_ICON,
-  DND_SMALL_TEXT,
   DND_STATUSES
 } from './text';
 
@@ -33,7 +31,7 @@ export default {
   argTypes: argsTypes
 };
 
-export const dndDefault = (argTypes: IDragAndDrop): ReactNode => {
+export const dndDefault = (argTypes: IDragAndDropProps): ReactNode => {
   const [files, setFiles] = useState<FileList[0] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [uploadingFile, setUploadingFile] = useState<string>('');
@@ -78,7 +76,7 @@ export const dndDefault = (argTypes: IDragAndDrop): ReactNode => {
 
 dndDefault.storyName = DEFAULT_DND;
 
-export const dndSizes = (argTypes: IDragAndDrop): ReactNode => {
+export const dndSizes = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
       {Object.values(sizesMapping).map((size: sizesMapping) => {
@@ -93,10 +91,10 @@ dndSizes.args = {
   onUpload: action('OnUpload')
 };
 
-export const dndFileTypes = (argTypes: IDragAndDrop): ReactNode => {
+export const dndFileTypes = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(fileTypeMapping).map((fileType: fileTypeMapping) => (
+      {Object.values(EFileTypeDnD).map((fileType: EFileTypeDnD) => (
         <DragAndDrop key={fileType} fileType={fileType} {...argTypes} />
       ))}
     </div>
@@ -108,7 +106,7 @@ dndFileTypes.args = {
   onUpload: action('OnUpload')
 };
 
-export const dndCustomAccept = (argTypes: IDragAndDrop): ReactNode => {
+export const dndCustomAccept = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
       <DragAndDrop {...argTypes} />
@@ -121,16 +119,16 @@ dndCustomAccept.args = {
   onUpload: action('OnUpload'),
   accept: '.pdf',
   description: 'По умолчанию только файлы формата PDF',
-  fileType: fileTypeMapping.file,
+  fileType: EFileTypeDnD.file,
   title: 'PDF Drag&Drop'
 };
 
-export const dndStatuses = (argTypes: IDragAndDrop): ReactNode => {
+export const dndStatuses = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(statusColorMapping)
+      {Object.values(EStatusColorDnD)
         .slice(0, 3)
-        .map((status: statusColorMapping) => (
+        .map((status: EStatusColorDnD) => (
           <DragAndDrop key={status} statusColor={status} {...argTypes} />
         ))}
     </div>
@@ -143,12 +141,12 @@ dndStatuses.args = {
   cancelUpload: action('onCancelUpload')
 };
 
-export const dndStatuses2 = (argTypes: IDragAndDrop): ReactNode => {
+export const dndStatuses2 = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(statusColorMapping)
+      {Object.values(EStatusColorDnD)
         .slice(3)
-        .map((status: statusColorMapping) => (
+        .map((status: EStatusColorDnD) => (
           <DragAndDrop key={status} statusColor={status} {...argTypes} />
         ))}
       <DragAndDrop
@@ -168,36 +166,10 @@ dndStatuses2.args = {
   cancelUpload: action('onCancelUpload')
 };
 
-export const dndSmallText = (argTypes: IDragAndDrop): ReactNode => {
+export const dndSmallIcon = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(statusColorMapping).map((status: statusColorMapping) => (
-        <DragAndDrop key={status} statusColor={status} {...argTypes} />
-      ))}
-      <div style={{ color: 'var(--ac-drag-drop-default-text-title)' }}>
-        <DragAndDrop
-          loading
-          title={smallTextUploadText}
-          percentUpload={99}
-          cancelUpload={action('onCancelUpload')}
-          {...argTypes}
-        />
-      </div>
-    </div>
-  );
-};
-
-dndSmallText.storyName = DND_SMALL_TEXT;
-dndSmallText.args = {
-  onUpload: action('OnUpload'),
-  cancelUpload: action('onCancelUpload'),
-  smallText: true
-};
-
-export const dndSmallIcon = (argTypes: IDragAndDrop): ReactNode => {
-  return (
-    <div className={styles['wrapper-row']}>
-      {Object.values(statusColorMapping).map((status: statusColorMapping) => (
+      {Object.values(EStatusColorDnD).map((status: EStatusColorDnD) => (
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
       <DragAndDrop title={smallTextUploadText} loading percentUpload={99} {...argTypes} />
@@ -211,18 +183,18 @@ dndSmallIcon.args = {
   smallIcon: true
 };
 
-export const dndCustomIcon = (argTypes: IDragAndDrop): ReactNode => {
+export const dndCustomIcon = (argTypes: IDragAndDropProps): ReactNode => {
   return <DragAndDrop customIcon={<Icon name="IconUploadOutlined24" />} {...argTypes} />;
 };
 
 dndCustomIcon.storyName = DND_CUSTOM_ICON;
 
-export const dndCustom = (argTypes: IDragAndDrop): ReactNode => {
+export const dndCustom = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <DragAndDrop {...argTypes}>
       <div className={customStyle['custom-component-style']}>
         <Icon name="IconUploadOutlined24" />
-        <div style={{ color: 'var(--text-grey-900)' }}>Just throw something here!</div>
+        <div style={{ color: 'var(--steel-90)' }}>Just throw something here!</div>
       </div>
     </DragAndDrop>
   );

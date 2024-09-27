@@ -5,6 +5,7 @@ import { PseudoInput } from '@components/index';
 import clsx from 'clsx';
 
 import styles from '@components/_storybook/styles.module.scss';
+import css from '../PseudoInput.module.scss';
 
 import { IPseudoInputProps } from '../types';
 import { argsTypes } from './argsTypes';
@@ -29,7 +30,7 @@ export const PseudoInputDefault = (argTypes: IPseudoInputProps): JSX.Element => 
 PseudoInputDefault.storyName = 'PseudoInput по умолчанию';
 
 export const PseudoInputSizeL = (): JSX.Element => (
-  <div className={styles.row}>
+  <div className={css.row}>
     <PseudoInput label={labelText} size="m">
       {value}
     </PseudoInput>

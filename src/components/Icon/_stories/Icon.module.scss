@@ -5,7 +5,7 @@
 }
 
 @mixin cardStyle {
-  background-color: var(--background-default);
+  background-color: var(--steel-30);
 }
 
 @mixin iconStyle {
@@ -23,7 +23,7 @@
 
 .wrapper-info {
   border-radius: 4px;
-  border: 1px solid var(--divider-divider);
+  border: 1px solid var(--unique-divider);
   overflow: hidden;
 }
 
@@ -48,7 +48,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: var(--24-size);
+  gap: 24px;
   width: 96% !important;
   margin: 0em 1em;
 }
@@ -77,7 +77,7 @@
 
 .colorControlTitle {
   white-space: nowrap;
-  color: var(--text-grey-900);
+  color: var(--steel-90);
 }
 
 .colorControl {
@@ -115,17 +115,18 @@
 .icon {
   @include iconStyle;
   background-color: var(--steel-20);
-}
-
-.iconFill path {
-  fill: var(--icon-color, #167ffb);
+  color: var(--brand-sapphire-60);
 }
 
 .strokeIcon path {
-  stroke: var(--icon-color, #167ffb);
+  stroke: var(--brand-sapphire-60, #1952b6);
 }
 
 .fillAndStrokeIcon path {
-  fill: var(--icon-color, #167ffb);
-  stroke: var(--icon-color, #167ffb);
+  fill: var(--brand-sapphire-60, #1952b6);
+  stroke: var(--brand-sapphire-60, #1952b6);
+}
+
+.iconFill path {
+  fill: var(--brand-sapphire-60, #1952b6);
 }

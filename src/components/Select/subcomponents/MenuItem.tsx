@@ -9,7 +9,7 @@ import { SelectSharedProperties } from '..';
 import { getLabel } from '../helpers';
 import { IMenuItem, ISelectSharedProperties } from '../types';
 
-const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, subLabel }) => {
+const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, subLabel, multilineOption = false }) => {
   const { multiple, highlightSelected, withoutCheckbox, selectedValues, handleSelect, handleTypographyClick } =
     useContext<ISelectSharedProperties>(SelectSharedProperties);
 
@@ -30,7 +30,8 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
       className={clsx(styles.item, {
         [styles['item-with-sub-label']]: subLabel,
         [styles.selected]: selectedCondition(),
-        [styles.disabled]: disabled
+        [styles.disabled]: disabled,
+        [styles.multiline]: multilineOption
       })}
       key={value}
       onClick={() => {
@@ -63,12 +64,13 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
         </div>
       )}
       <div className={isFullWidthLabel ?  styles['text-container-item-full-width'] : styles['text-container-item']}>
-        <div className={styles.content}>
+        <div className={clsx(styles.content, { [styles.content__multiline]: multilineOption })}>
           <Typography
             variant="Body1-Medium"
             onClick={event => handleTypographyClick(value, event)}
             className={clsx(styles.label, {
-              [styles['label__disabled']]: disabled
+              [styles['label__disabled']]: disabled,
+              [styles.label__multiline]: multilineOption
             })}
           >
             {label}

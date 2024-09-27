@@ -1,14 +1,21 @@
-export enum sizes {
-  EXTRA_EXTRA_LARGE = 'xxl',
-  EXTRA_LARGE = 'xl',
-  LARGE = 'l',
-  MEDIUM = 'm'
-}
+import { ESizesSpinner } from './enums';
 
-export interface ISpinner {
-  size?: `${sizes}`;
+export interface ISpinnerProps {
+  /** Размер спиннера. По умолчанию ESizesSpinner.l */
+  size?: `${ESizesSpinner}`;
+
+  /** Цвет заполнения спиннера */
   color?: string;
+
+  /** Цвет фона спиннера */
   bgColor?: string;
-  percent?: number;
+
+  /** Процент выполнения для отображения в центре спиннера. Если null, процент не отображается */
+  percent?: number | null;
+
+  /** Содержимое спиннера (например, иконка) */
   children?: JSX.Element;
+
+  /** Процент заполнения круга спиннера. Значение от 0 до 0.9 */
+  progressPercentage?: number;
 }

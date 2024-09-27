@@ -10,34 +10,24 @@ const variantMapping = Object.values(EButtonVariant);
 const fillMapping = Object.values(EButtonFill);
 const sizeMapping = Object.values(EButtonSizes);
 
+const { warning, success, error, clear, outline, solid } = EButtonFill;
+
+export const unsupportedButtonVariants: Record<string, Record<string, EButtonFill>> = {
+  [EButtonVariant.secondary]: { outline, clear },
+  [EButtonVariant.grey]: { success, warning, error },
+  [EButtonVariant.black]: { success, warning, error },
+  [EButtonVariant.info]: { solid, outline }
+};
+
 export const combinedOptions = (flag?: boolean) => {
   const arr: ICombinedOption[] = [];
+
   variantMapping.forEach((variant: EButtonVariant) => {
     fillMapping.forEach((fill: EButtonFill) => {
-      if (flag) {
-        sizeMapping.forEach((size: EButtonSizes) => {
-          arr.push({
-            variant,
-            fill,
-            size
-          });
-        });
-      } else {
-        arr.push({
-          variant,
-          fill
-        });
-      }
+      if (unsupportedButtonVariants[variant]?.[fill]) return;
+      (flag ? sizeMapping : [undefined]).forEach(size => arr.push({ variant, fill, size }));
     });
   });
 
   return arr;
 };
-
-export const variantsWithOneFill = new Set<EButtonVariant>([
-  EButtonVariant.secondary,
-  EButtonVariant.success,
-  EButtonVariant.warning,
-  EButtonVariant.error,
-  EButtonVariant.info
-]);

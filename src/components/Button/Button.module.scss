@@ -41,6 +41,52 @@
   transition: 0.1s ease-in-out;
 }
 
+.icon {
+  display: flex;
+
+  &-button {
+    @include buttonBase;
+    @include iconButtonSize(48px);
+  }
+
+  &-button-compact {
+    @include iconButtonSize(32px);
+    width: 32px;
+  }
+
+  &-button-extra-compact {
+    @include iconButtonSize(28px);
+  }
+
+  &--left {
+    &--size {
+      &-m {
+        margin: unset;
+        padding-right: 4px;
+      }
+
+      &-s,
+      &-xs {
+        padding-right: 2px;
+      }
+    }
+  }
+
+  &--right {
+    &--size {
+      &-m {
+        margin: unset;
+        padding-left: 4px;
+      }
+
+      &-s,
+      &-xs {
+        padding-left: 2px;
+      }
+    }
+  }
+}
+
 @mixin solid-btn($bg, $tx, $hbg, $abg, $icon, $badge-bg, $badge-hbg, $badge-abg, $badge-tx) {
   background-color: $bg;
   color: $tx;
@@ -122,9 +168,57 @@
   )
 }
 
+/* success variant */
+
+.primary-success {
+  @include solid-btn(
+      var(--spectrum-green-50),
+      var(--unique-white),
+      var(--spectrum-green-40),
+      var(--spectrum-green-60),
+      var(--unique-white),
+      var(--spectrum-green-40),
+      var(--spectrum-green-50),
+      var(--spectrum-green-40),
+      var(--unique-white)
+  )
+}
+
+/* warning variant */
+
+.primary-warning {
+  @include solid-btn(
+      var(--spectrum-yellow-50),
+      var(--unique-white),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-60),
+      var(--unique-white),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-50),
+      var(--spectrum-yellow-40),
+      var(--unique-white)
+  )
+}
+
+/* error variant */
+
+.primary-error {
+  @include solid-btn(
+      var(--spectrum-red-50),
+      var(--unique-white),
+      var(--spectrum-red-40),
+      var(--spectrum-red-60),
+      var(--unique-white),
+      var(--spectrum-red-40),
+      var(--spectrum-red-50),
+      var(--spectrum-red-40),
+      var(--unique-white)
+  )
+}
+
 /* secondary variant */
 
-.secondary {
+.secondary-solid {
   @include solid-btn(
       var(--brand-sapphire-20),
       var(--unique-bluewhite),
@@ -134,6 +228,53 @@
       var(--brand-sapphire-30),
       var(--brand-sapphire-30),
       var(--brand-sapphire-20),
+      var(--steel-90)
+  )
+}
+/* success variant */
+
+.secondary-success {
+  @include solid-btn(
+      var(--spectrum-green-20),
+      var(--spectrum-green-60),
+      var(--spectrum-green-10),
+      var(--spectrum-green-30),
+      var(--spectrum-green-60),
+      var(--spectrum-green-40),
+      var(--spectrum-green-40),
+      var(--spectrum-green-20),
+      var(--steel-90)
+  )
+}
+
+/* warning variant */
+
+.secondary-warning {
+  @include solid-btn(
+      var(--spectrum-yellow-20),
+      var(--spectrum-yellow-60),
+      var(--spectrum-yellow-10),
+      var(--spectrum-yellow-30),
+      var(--spectrum-yellow-60),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-20),
+      var(--steel-90)
+  )
+}
+
+/* error variant */
+
+.secondary-error {
+  @include solid-btn(
+      var(--spectrum-red-20),
+      var(--spectrum-red-60),
+      var(--spectrum-red-10),
+      var(--spectrum-red-30),
+      var(--spectrum-red-60),
+      var(--spectrum-red-40),
+      var(--spectrum-red-40),
+      var(--spectrum-red-20),
       var(--steel-90)
   )
 }
@@ -168,7 +309,11 @@
       transparent,
       transparent,
       var(--steel-90)
-  )
+  );
+
+  .badge {
+    outline-color: var(--steel-70);
+  }
 }
 
 /* grey clear variant */
@@ -217,7 +362,11 @@
       transparent,
       transparent,
       var(--steel-90)
-  )
+  );
+
+  .badge {
+    outline-color: var(--steel-70);
+  }
 }
 
 /* black clear variant */
@@ -238,7 +387,7 @@
 
 /* info variant */
 
-.info {
+.info-clear {
   @include solid-btn(
       transparent,
       var(--steel-90),
@@ -252,53 +401,54 @@
   )
 }
 
-/* error variant */
-
-.error {
-  @include solid-btn(
-      transparent,
-      var(--spectrum-red-60),
-      var(--spectrum-red-10),
-      var(--spectrum-red-20),
-      var(--spectrum-red-60),
-      var(--spectrum-red-40),
-      var(--spectrum-red-40),
-      var(--spectrum-red-40),
-      var(--unique-white)
-  )
-}
-
-/* warning variant */
-
-.warning {
-  @include solid-btn(
-      transparent,
-      var(--spectrum-yellow-60),
-      var(--spectrum-yellow-10),
-      var(--spectrum-yellow-20),
-      var(--spectrum-yellow-60),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-40),
-      var(--unique-white)
-  )
-}
-
 /* success variant */
 
-.success {
+.info-success {
   @include solid-btn(
       transparent,
-      var(--spectrum-green-60),
+      var(--steel-90),
       var(--spectrum-green-10),
       var(--spectrum-green-20),
       var(--spectrum-green-60),
       var(--spectrum-green-40),
       var(--spectrum-green-40),
       var(--spectrum-green-40),
-      var(--unique-white)
+      var(--steel-90)
   )
 }
+
+/* warning variant */
+
+.info-warning {
+  @include solid-btn(
+      transparent,
+      var(--steel-90),
+      var(--spectrum-yellow-10),
+      var(--spectrum-yellow-20),
+      var(--spectrum-yellow-60),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-40),
+      var(--spectrum-yellow-40),
+      var(--steel-90)
+  )
+}
+
+/* error variant */
+
+.info-error {
+  @include solid-btn(
+      transparent,
+      var(--steel-90),
+      var(--spectrum-red-10),
+      var(--spectrum-red-20),
+      var(--spectrum-red-60),
+      var(--spectrum-red-40),
+      var(--spectrum-red-40),
+      var(--spectrum-red-40),
+      var(--steel-90)
+  )
+}
+
 
 .label-wrapper {
   padding: 0 4px;
@@ -319,51 +469,5 @@
   &.outline {
     outline-width: 1px;
     outline-offset: -1px;
-  }
-}
-
-.icon {
-  display: flex;
-
-  &-button {
-    @include buttonBase;
-    @include iconButtonSize(48px);
-  }
-
-  &-button-compact {
-    @include iconButtonSize(32px);
-    width: 32px;
-  }
-
-  &-button-extra-compact {
-    @include iconButtonSize(28px);
-  }
-
-  &--left {
-    &--size {
-      &-m {
-        margin: unset;
-        padding-right: 4px;
-      }
-
-      &-s,
-      &-xs {
-        padding-right: 2px;
-      }
-    }
-  }
-
-  &--right {
-    &--size {
-      &-m {
-        margin: unset;
-        padding-left: 4px;
-      }
-
-      &-s,
-      &-xs {
-        padding-left: 2px;
-      }
-    }
   }
 }

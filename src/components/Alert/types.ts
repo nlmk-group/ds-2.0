@@ -19,10 +19,3 @@ export interface IAlertProps extends PropsWithChildren {
   /** Функция обратного вызова для закрытия Alert. */
   close?: () => void;
 }
-
-
-/**
- * Тип для определения цветов иконок в зависимости от типа сообщения.
- * @typedef {Object.<EAlertSeverity, string>} IIconSeverityColor
- */
-export type IIconSeverityColor = Record<EAlertSeverity, string>;

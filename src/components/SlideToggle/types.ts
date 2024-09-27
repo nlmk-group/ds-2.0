@@ -1,5 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react';
 
+import { EBadgeColors } from '@components/Badge/enums';
+
 import { ESizeMapping } from './enum';
 
 export type TSize = `${ESizeMapping}`;
@@ -9,11 +11,14 @@ export interface ISlideToggleProps extends PropsWithChildren {
   after?: ReactNode;
   isShow: boolean;
   onToggle?: () => void;
-  toggleContainerShadow?: boolean;
   className?: string;
   size?: TSize;
   iconWrapperId?: string;
   titleWrapperId?: string;
   afterWrapperId?: string;
   contentWrapperId?: string;
+}
+export interface ISlideToggleWithButtonProps extends ISlideToggleProps {
+  badgeChildren?: string;
+  badgeColor?: EBadgeColors;
 }

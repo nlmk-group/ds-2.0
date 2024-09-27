@@ -7,14 +7,14 @@ import { IContentExample } from './types';
 
 import styles from './ContentExample.module.scss';
 
-import { orientationMapping } from '../enums';
+import { EOrientationMapping } from '../enums';
 import BtnGroup from './BtnGroup';
 import { badges, descriptionExample, primaryButton, secondaryButton, selector } from './constants';
 import ImageHelper from './ImageHelper';
 import TitleHelper from './TitleHelper';
 
 const ContentExample: FC<IContentExample> = ({
-  orientation = orientationMapping.vertical,
+  orientation = EOrientationMapping.vertical,
   imageURL = '',
   checkAction,
   checked,

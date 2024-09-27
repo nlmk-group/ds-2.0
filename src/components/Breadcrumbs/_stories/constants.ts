@@ -1,8 +1,12 @@
-import { Breadcrumb } from './types';
+import { IBreadcrumbProps } from '../types';
 
-import { targetMapping } from './enums';
+import { targetMapping } from '../enums';
 
-export const breadcrumbsSimple: Breadcrumb[] = [
+export const BASIC_COMPONENT_USE = 'Обычное использование компонента';
+export const CUSTOM_WIDTH = 'Компонент с заданной шириной';
+export const DIFFERENT_TARGET = 'Компонент содержащий ссылки с разными target';
+
+export const breadcrumbsSimple: IBreadcrumbProps[] = [
   {
     href: 'https://developer.mozilla.org/en-US/',
     label: 'MDN'
@@ -14,14 +18,15 @@ export const breadcrumbsSimple: Breadcrumb[] = [
   }
 ];
 
-export const breadcrumbs: Breadcrumb[] = [
+export const breadcrumbs: IBreadcrumbProps[] = [
   {
     href: 'https://developer.mozilla.org/en-US/',
     label: 'MDN'
   },
   {
     href: 'https://www.lipsum.com/',
-    label: 'Lorem Ipsum'
+    label: 'Lorem Ipsum',
+    active: true
   },
   {
     href: 'https://www.w3schools.com/',
@@ -38,7 +43,7 @@ export const breadcrumbs: Breadcrumb[] = [
   }
 ];
 
-export const breadcrumbsThreeOptions: Breadcrumb[] = [
+export const breadcrumbsThreeOptions: IBreadcrumbProps[] = [
   {
     href: 'https://developer.mozilla.org/en-US/',
     label: 'MDN'
@@ -53,7 +58,7 @@ export const breadcrumbsThreeOptions: Breadcrumb[] = [
   }
 ];
 
-export const breadcrumbsTarget: Breadcrumb[] = [
+export const breadcrumbsTarget: IBreadcrumbProps[] = [
   {
     href: 'https://www.lipsum.com/',
     label: `${targetMapping._blank}`,

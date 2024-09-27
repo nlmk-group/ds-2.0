@@ -43,7 +43,6 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -61,7 +60,7 @@ export default App = () => {
   return (
     <Switch
       checked={isChecked}
-      onChange={() => setIsChecked(!isChecked)}
+      onChange={setIsChecked}
     />
   )
 }
@@ -96,23 +95,17 @@ export default App = () => {
     <>
       <Switch
         checked={isChecked}
-        onChange={() => {
-          setIsChecked(!isChecked);
-        }}
+        onChange={setIsChecked}
         label={'Не активный Switch'}
       />
       <Switch
         checked={isSecondChecked}
-        onChange={() => {
-          setIsSecondChecked(!isSecondChecked);
-        }}
+        onChange={setIsSecondChecked}
         label={'Активный Switch'}
       />
       <Switch
         checked={isThirdChecked}
-        onChange={() => {
-          setIsThirdChecked(!isThirdChecked);
-        }}
+        onChange={setIsThirdChecked}
         label={'Заблокированный Switch'}
         disabled
       />
@@ -132,21 +125,19 @@ export default App = () => {
   return (
     <Switch
       checked={isChecked}
-      onChange={() => {
-        setIsChecked(!isChecked);
-      }}
+      onChange={setIsChecked}
       activeIcon={(
         <Icon
-          name='IconMetallalomScrapFilled16'
+          name='IconStarOutlined16'
           containerSize={16}
-          htmlColor={'var(--text-grey-100)'}
+          htmlColor={'var(--unique-white)'}
         />
       )}
       inactiveIcon={(
         <Icon
-          name='IconMetallalomScrap16'
+          name='IconStarOutlined16'
           containerSize={16}
-          htmlColor={'var(--primary-blue-600)'}
+          htmlColor={'var(--steel-60)'}
         />
       )}
     />

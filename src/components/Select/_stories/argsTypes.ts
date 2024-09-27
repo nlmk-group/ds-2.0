@@ -37,6 +37,18 @@ export const argsTypes = {
     },
     control: { type: 'boolean' }
   },
+  multilineOption: {
+    description: 'Условие, позволяющее тексту опции переноситься на следующую строку',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
   size: {
     description: 'Размер компонента',
     table: {
@@ -128,5 +140,9 @@ export const argsTypes = {
   onFocus: {
     description: 'Callback при открытии меню options',
     action: 'меню options открылось'
+  },
+  isClearInputOnSelect: {
+    description: 'Удалить содержимое Input после выбора',
+    control: { type: 'boolean' }
   }
 };

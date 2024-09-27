@@ -5,12 +5,12 @@ export const fileTypes = {
   video: 'video/*'
 };
 
-export const dragNDropTitle = 'Drag&Drop files here';
+export const dragNDropTitle = 'Загрузка файлов';
 
-export const dragNDropDescription = 'File requirements or';
+export const dragNDropDescription = 'Перетащите или выберите:';
 
-export const dragNDropBtnLabel = 'Click to Upload';
+export const dragNDropBtnLabel = 'Загрузить файл';
 
-export const smallTextUploadText = 'Uploading...';
+export const smallTextUploadText = 'загрузка...';
 
-export const cancelUploadLabel = 'Cancel Uploading';
+export const cancelUploadLabel = 'Отменить загрузку';

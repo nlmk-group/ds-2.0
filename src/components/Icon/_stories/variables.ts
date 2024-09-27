@@ -41,6 +41,7 @@ export const iconsUseFillAndStroke = [
   'IconWeightTypeFilled24',
   'IconWeightTypeFilled32'
 ];
+
 // Иконки которые задуманы для использования только в одном цвете
 export const iconsAlwaysDefaultColor = ['IconBorder16', 'IconBorder24', 'IconBorder32'];
 

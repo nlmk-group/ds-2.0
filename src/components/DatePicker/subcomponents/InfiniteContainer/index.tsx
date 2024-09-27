@@ -8,7 +8,7 @@ import { generateUUID } from '@components/declaration';
 export const InfiniteContainer: FC<IInfiniteContainerProps> = ({
   values,
   selectedTime,
-  handleMinuteClick,
+  handleTimeClick,
   container,
   getSelected,
   ...otherProps
@@ -73,7 +73,7 @@ export const InfiniteContainer: FC<IInfiniteContainerProps> = ({
             id={value.id}
             key={value.value}
             selected={selected}
-            onClick={() => handleMinuteClick(value.value)}
+            onClick={() => handleTimeClick(value.value)}
             infiniteTimeScroll
           >
             {value.label}

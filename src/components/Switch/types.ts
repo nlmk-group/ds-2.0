@@ -1,11 +1,18 @@
-import { MouseEvent } from 'react';
+import { ReactNode } from 'react';
 
-export interface ISwitch {
+export interface ISwitchProps {
+  /** Дополнительный CSS-класс */
   className?: string;
+  /** Состояние переключателя */
   checked: boolean;
-  onChange: (event: MouseEvent<Element>, checked: boolean) => void;
+  /** Функция обработки изменения состояния */
+  onChange: (checked: boolean) => void;
+  /** Отключает переключатель */
   disabled?: boolean;
+  /** Метка для переключателя */
   label?: string;
-  activeIcon?: JSX.Element;
-  inactiveIcon?: JSX.Element;
+  /** Иконка для активного состояния */
+  activeIcon?: ReactNode;
+  /** Иконка для неактивного состояния */
+  inactiveIcon?: ReactNode;
 }

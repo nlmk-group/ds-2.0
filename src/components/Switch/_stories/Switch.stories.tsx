@@ -1,12 +1,12 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { IconDarkModeOutlined16, IconLightModeOutlined16, Switch } from '@components/index';
+import { IconStarOutlined16, Switch } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { ISwitch } from '../types';
+import { ISwitchProps } from '../types';
 import argsTypes from './argsTypes';
 import { DEFAULT_SWITCH, DISABLED_SWITCH, SWITCH_WITH_ICONS, SWITCH_WITH_LABEL } from './constants';
 
@@ -19,11 +19,9 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Switch>;
 
-const handleOnChange = () => {
-  return action('onChange');
-};
+const handleOnChange = action('onChange');
 
-export const DefaultSwitch = (argTypes: ISwitch): ReactNode => {
+export const DefaultSwitch = (argTypes: ISwitchProps): ReactNode => {
   const [isChecked, setIsChecked] = useState<boolean>(argTypes.checked || false);
 
   useEffect(() => {
@@ -36,10 +34,10 @@ export const DefaultSwitch = (argTypes: ISwitch): ReactNode => {
     <Switch
       {...argTypes}
       checked={isChecked}
-      onChange={(e: any) => {
-        setIsChecked(!isChecked);
+      onChange={(newChecked: boolean) => {
+        setIsChecked(newChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e, isChecked);
+          argTypes.onChange(newChecked);
         }
       }}
     />
@@ -49,10 +47,10 @@ export const DefaultSwitch = (argTypes: ISwitch): ReactNode => {
 DefaultSwitch.storyName = DEFAULT_SWITCH;
 DefaultSwitch.args = {
   checked: false,
-  onChange: handleOnChange()
+  onChange: handleOnChange
 };
 
-export const DisabledSwitch = (argTypes: ISwitch): ReactNode => {
+export const DisabledSwitch = (argTypes: ISwitchProps): ReactNode => {
   const [isChecked, setIsChecked] = useState<boolean>(argTypes.checked || false);
 
   useEffect(() => {
@@ -65,10 +63,10 @@ export const DisabledSwitch = (argTypes: ISwitch): ReactNode => {
     <Switch
       {...argTypes}
       checked={isChecked}
-      onChange={(e: any) => {
-        setIsChecked(!isChecked);
+      onChange={(newChecked: boolean) => {
+        setIsChecked(newChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e, isChecked);
+          argTypes.onChange(newChecked);
         }
       }}
     />
@@ -78,11 +76,11 @@ export const DisabledSwitch = (argTypes: ISwitch): ReactNode => {
 DisabledSwitch.storyName = DISABLED_SWITCH;
 DisabledSwitch.args = {
   checked: false,
-  onChange: action('onChange'),
+  onChange: handleOnChange,
   disabled: true
 };
 
-export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
+export const SwitchWithLabel = (argTypes: ISwitchProps): ReactNode => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isSecondChecked, setIsSecondChecked] = useState<boolean>(true);
   const [isThirdChecked, setIsThirdChecked] = useState<boolean>(false);
@@ -92,10 +90,10 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
       <Switch
         {...argTypes}
         checked={isChecked}
-        onChange={(e: any) => {
-          setIsChecked(!isChecked);
+        onChange={(newChecked: boolean) => {
+          setIsChecked(newChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e, isChecked);
+            argTypes.onChange(newChecked);
           }
         }}
         label={'Не активный Switch'}
@@ -103,10 +101,10 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
       <Switch
         {...argTypes}
         checked={isSecondChecked}
-        onChange={(e: any) => {
-          setIsSecondChecked(!isSecondChecked);
+        onChange={(newChecked: boolean) => {
+          setIsSecondChecked(newChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e, isSecondChecked);
+            argTypes.onChange(newChecked);
           }
         }}
         label={'Активный Switch'}
@@ -114,10 +112,10 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
       <Switch
         {...argTypes}
         checked={isThirdChecked}
-        onChange={(e: any) => {
-          setIsThirdChecked(!isThirdChecked);
+        onChange={(newChecked: boolean) => {
+          setIsThirdChecked(newChecked);
           if (typeof argTypes.onChange === 'function') {
-            argTypes.onChange(e, isThirdChecked);
+            argTypes.onChange(newChecked);
           }
         }}
         label={'Заблокированный Switch'}
@@ -129,10 +127,10 @@ export const SwitchWithLabel = (argTypes: ISwitch): ReactNode => {
 
 SwitchWithLabel.storyName = SWITCH_WITH_LABEL;
 SwitchWithLabel.args = {
-  onChange: handleOnChange()
+  onChange: handleOnChange
 };
 
-export const IconsSwitch = (argTypes: ISwitch): ReactNode => {
+export const IconsSwitch = (argTypes: ISwitchProps): ReactNode => {
   const [isChecked, setIsChecked] = useState<boolean>(argTypes.checked || false);
 
   useEffect(() => {
@@ -145,14 +143,14 @@ export const IconsSwitch = (argTypes: ISwitch): ReactNode => {
     <Switch
       {...argTypes}
       checked={isChecked}
-      onChange={(e: any) => {
-        setIsChecked(!isChecked);
+      onChange={(newChecked: boolean) => {
+        setIsChecked(newChecked);
         if (typeof argTypes.onChange === 'function') {
-          argTypes.onChange(e, isChecked);
+          argTypes.onChange(newChecked);
         }
       }}
-      activeIcon={<IconDarkModeOutlined16 htmlColor={'var(--ac-icon-white)'} />}
-      inactiveIcon={<IconLightModeOutlined16 htmlColor={'var(--ac-icon-blue)'} />}
+      activeIcon={<IconStarOutlined16 htmlColor={'var(--unique-white)'} />}
+      inactiveIcon={<IconStarOutlined16 htmlColor={'var(--steel-60)'} />}
     />
   );
 };
@@ -160,5 +158,5 @@ export const IconsSwitch = (argTypes: ISwitch): ReactNode => {
 IconsSwitch.storyName = SWITCH_WITH_ICONS;
 IconsSwitch.args = {
   checked: false,
-  onChange: handleOnChange()
+  onChange: handleOnChange
 };

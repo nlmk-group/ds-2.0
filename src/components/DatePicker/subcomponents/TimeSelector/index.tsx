@@ -4,7 +4,6 @@ import { hours, minutes, seconds } from '@components/DatePicker/helpers';
 import { Day, InfiniteContainer } from '@components/DatePicker/subcomponents';
 import { Typography } from '@components/index';
 import { set } from 'date-fns';
-import { isInteger } from 'lodash';
 
 import { ITimeSelectorProps } from './types';
 
@@ -23,89 +22,66 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
   innerValue,
   infiniteTimeScroll
 }) => {
-  let hoursFrom = 0,
-    hoursTo = 0,
-    minutesFrom = 0,
-    minutesTo = 0;
-  if (enabledHourFrom) {
-    hoursFrom = enabledHourFrom(innerValue);
-  }
-  if (enabledHourTo) {
-    hoursTo = enabledHourTo(innerValue);
-  }
-  if (enabledMinuteFrom) {
-    minutesFrom = enabledMinuteFrom(innerValue);
-  }
-  if (enabledMinuteTo) {
-    minutesTo = enabledMinuteTo(innerValue);
-  }
+  const hoursFrom: number = enabledHourFrom ? enabledHourFrom(innerValue) : 0;
+  const hoursTo: number = enabledHourTo ? enabledHourTo(innerValue) : 23;
+  const minutesFrom: number = enabledMinuteFrom ? enabledMinuteFrom(innerValue) : 0;
+  const minutesTo: number = enabledMinuteTo ? enabledMinuteTo(innerValue) : 59;
 
   const enabledHours = useMemo(() => {
-    if ((hoursFrom || hoursFrom === 0) && !hoursTo) {
-      return hours.slice(hoursFrom);
-    } else if (hoursTo && !hoursFrom && hoursFrom !== 0) {
-      return hours.slice(0, hoursTo + 1);
-    } else if ((hoursFrom || hoursFrom === 0) && hoursTo) {
-      return hours.slice(hoursFrom, hoursTo + 1);
-    } else {
-      return hours;
-    }
+    return hoursFrom <= hoursTo
+      ? hours.slice(hoursFrom, hoursTo + 1)
+      : hours.filter(hour => hour.value >= hoursFrom || hour.value <= hoursTo);
   }, [hoursFrom, hoursTo]);
 
   const enabledMinutes = useMemo(() => {
-    const minutesFromEnabled = minutesFrom && isInteger(minutesFrom) && minutesFrom > 0 ? minutesFrom : 0;
-    const minutesToEnabled = minutesTo && isInteger(minutesTo) && minutesTo < 60 ? minutesTo : 59;
-    return minutes.slice(minutesFromEnabled, minutesToEnabled + 1);
+    return minutesFrom <= minutesTo
+      ? minutes.slice(minutesFrom, minutesTo + 1)
+      : minutes.filter(minute => minute.value >= minutesFrom || minute.value <= minutesTo);
   }, [minutesFrom, minutesTo]);
-  const handleHourClick = useCallback(
-    (hours: number) => {
+
+  const handleTimeChange = useCallback(
+    (unit: 'hours' | 'minutes' | 'seconds') => (value: number) => {
       if (selectedTime && onChange) {
-        onChange(set(selectedTime, { hours }));
-      }
-    },
-    [onChange, selectedTime]
-  );
-  const handleMinuteClick = useCallback(
-    (minutes: number) => {
-      if (selectedTime && onChange) {
-        onChange(set(selectedTime, { minutes }));
+        onChange(set(selectedTime, { [unit]: value }));
       }
     },
     [onChange, selectedTime]
   );
 
-  const handleSecondClick = useCallback(
-    (seconds: number) => {
-      if (selectedTime && onChange) {
-        onChange(set(selectedTime, { seconds }));
-      }
-    },
-    [onChange, selectedTime]
-  );
-  const [minutesContainerRef, setMinutesContainerRef] = useState<null | HTMLDivElement>(null);
-  const [hoursContainerRef, setHoursContainerRef] = useState<null | HTMLDivElement>(null);
-  const [secondsContainerRef, setSecondsContainerRef] = useState<null | HTMLDivElement>(null);
-
+  const useContainerRef = () => {
+    const [ref, setRef] = useState<HTMLDivElement | null>(null);
+    return [ref, setRef] as const;
+  };
+  
+  const [hoursContainerRef, setHoursContainerRef] = useContainerRef();
+  const [minutesContainerRef, setMinutesContainerRef] = useContainerRef();
+  const [secondsContainerRef, setSecondsContainerRef] = useContainerRef();
+  
   useEffect(() => {
-    if (value) {
-      if (hoursContainerRef) {
-        hoursContainerRef.scrollTop = value.getHours() * 40;
+    if (!value) return;
+  
+    const scrollContainers = [
+      { ref: hoursContainerRef, getValue: () => value.getHours() },
+      { ref: minutesContainerRef, getValue: () => value.getMinutes() },
+      { ref: secondsContainerRef, getValue: () => value.getSeconds() }
+    ];
+  
+    scrollContainers.forEach(({ ref, getValue }) => {
+      if (ref) {
+        ref.scrollTop = getValue() * 40;
       }
-      if (minutesContainerRef) {
-        minutesContainerRef.scrollTop = value.getMinutes() * 40;
-      }
-      if (secondsContainerRef) {
-        secondsContainerRef.scrollTop = value.getSeconds() * 40;
-      }
-    }
-  }, [secondsContainerRef, hoursContainerRef, minutesContainerRef, value]);
-
-  const checkSelectedTime = (unit: 'Hours' | 'Minutes' | 'Seconds') => (value: number, selectedTime?: Date) =>
-    selectedTime?.[`get${unit}`]() === value;
-
-  const getSelectedHour = checkSelectedTime('Hours');
-  const getSelectedMinutes = checkSelectedTime('Minutes');
-  const getSelectedSeconds = checkSelectedTime('Seconds');
+    });
+  }, [value, hoursContainerRef, minutesContainerRef, secondsContainerRef]);
+  
+  const checkSelectedTime = useCallback(
+    (unit: 'Hours' | 'Minutes' | 'Seconds') => (value: number, selectedTime?: Date) =>
+      selectedTime?.[`get${unit}`]() === value,
+    []
+  );
+  
+  const getSelectedHour = useMemo(() => checkSelectedTime('Hours'), [checkSelectedTime]);
+  const getSelectedMinutes = useMemo(() => checkSelectedTime('Minutes'), [checkSelectedTime]);
+  const getSelectedSeconds = useMemo(() => checkSelectedTime('Seconds'), [checkSelectedTime]);
 
   return (
     <div className={styles.root}>
@@ -119,7 +95,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
               key={hour.value}
               disabled={disabled}
               selected={getSelectedHour(hour.value, selectedTime)}
-              onClick={() => handleHourClick(hour.value)}
+              onClick={() => handleTimeChange('hours')(hour.value)}
             >
               {hour.label}
             </Day>
@@ -129,7 +105,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
             values={enabledHours}
             disabled={disabled}
             selectedTime={selectedTime}
-            handleMinuteClick={handleHourClick}
+            handleTimeClick={handleTimeChange('hours')}
             container={hoursContainerRef}
             getSelected={getSelectedHour}
           />
@@ -144,7 +120,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
             values={enabledMinutes}
             disabled={disabled}
             selectedTime={selectedTime}
-            handleMinuteClick={handleMinuteClick}
+            handleTimeClick={handleTimeChange('minutes')}
             container={minutesContainerRef}
             getSelected={getSelectedMinutes}
           />
@@ -155,7 +131,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
               key={minute.value}
               disabled={disabled}
               selected={getSelectedMinutes(minute.value, selectedTime)}
-              onClick={() => handleMinuteClick(minute.value)}
+              onClick={() => handleTimeChange('minutes')(minute.value)}
             >
               {minute.label}
             </Day>
@@ -172,7 +148,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
                 key={second.value}
                 disabled={disabled}
                 selected={getSelectedSeconds(second.value, selectedTime)}
-                onClick={() => handleSecondClick(second.value)}
+                onClick={() => handleTimeChange('seconds')(second.value)}
               >
                 {second.label}
               </Day>
@@ -182,7 +158,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
               values={seconds}
               disabled={disabled}
               selectedTime={selectedTime}
-              handleMinuteClick={handleSecondClick}
+              handleTimeClick={handleTimeChange('seconds')}
               container={secondsContainerRef}
               getSelected={getSelectedSeconds}
             />

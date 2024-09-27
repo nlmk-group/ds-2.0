@@ -83,7 +83,7 @@ export const AllIcons = (): JSX.Element => {
         if (iconComponent) {
           const iconProps: Record<string, any> = {
             style: {
-              ...(useStroke && { stroke: 'var(--icon-color)' })
+              ...(useStroke && { stroke: 'var(--brand-sapphire-60)' })
             }
           };
           result[formattedIconName][size.toString()] = createElement(iconComponent, iconProps);
@@ -95,7 +95,7 @@ export const AllIcons = (): JSX.Element => {
 
   const handleChangeColor = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const newColor = e.target.value;
-    document.documentElement.style.setProperty('--icon-color', newColor);
+    document.documentElement.style.setProperty('--brand-sapphire-60', newColor);
   }, []);
 
   const handleSearchChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = useCallback(e => {
@@ -111,7 +111,7 @@ export const AllIcons = (): JSX.Element => {
 
   useEffect(() => {
     const initialColor =
-      getComputedStyle(document.documentElement).getPropertyValue('--icon-color').trim() || '#167ffb';
+      getComputedStyle(document.documentElement).getPropertyValue('var(--brand-sapphire-60)').trim() || '#1952b6';
     if (colorInputRef.current) {
       colorInputRef.current.value = initialColor;
     }
@@ -148,6 +148,7 @@ export const AllIcons = (): JSX.Element => {
                   const useStroke = iconsUseStroke.includes(`Icon${icon.title}${size}`);
                   const useFillAndStroke = iconsUseFillAndStroke.includes(`Icon${icon.title}${size}`);
                   const isAlwaysDefaultColorIcon = iconsAlwaysDefaultColor.includes(`Icon${icon.title}${size}`);
+
                   return (
                     <CopyWrapper key={`Icon${icon.title}${size}`} copy={`Icon${icon.title}${size}`} placement="bottom">
                       <div

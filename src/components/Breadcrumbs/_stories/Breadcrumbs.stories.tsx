@@ -4,11 +4,10 @@ import { Breadcrumbs } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { breadcrumbs } from '../constants';
 import { targetMapping } from '../enums';
-import { BreadcrumbsProps } from '../types';
+import { IBreadcrumbsProps } from '../types';
 import { breadcrumbsArgsTypes } from './argsTypes';
-import { BASIC_COMPONENT_USE, CUSTOM_WIDTH, DIFFERENT_TARGET } from './text';
+import { breadcrumbs, BASIC_COMPONENT_USE, CUSTOM_WIDTH, DIFFERENT_TARGET } from './constants';
 
 export default {
   title: 'Components/Breadcrumbs/Stories',
@@ -16,7 +15,7 @@ export default {
   argTypes: breadcrumbsArgsTypes
 };
 
-export const BreadcrumbsDefault = (argTypes: BreadcrumbsProps): ReactNode => {
+export const BreadcrumbsDefault = (argTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Breadcrumbs {...argTypes} />
@@ -30,7 +29,7 @@ BreadcrumbsDefault.args = {
   width: 100
 };
 
-export const BreadcrumbsWidth = (argTypes: BreadcrumbsProps): ReactNode => {
+export const BreadcrumbsWidth = (argTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Breadcrumbs {...argTypes} />
@@ -44,7 +43,7 @@ BreadcrumbsWidth.args = {
   crumbs: breadcrumbs
 };
 
-export const BreadcrumbsTarget = (argTypes: BreadcrumbsProps): ReactNode => {
+export const BreadcrumbsTarget = (argTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Breadcrumbs {...argTypes} />

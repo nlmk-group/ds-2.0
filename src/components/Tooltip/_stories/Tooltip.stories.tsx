@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Badge,
@@ -6,6 +6,7 @@ import {
   IconCloseOutlined24,
   IconDoneCheckOutlined24,
   IconQuestionMarkOutlined24,
+  Link,
   Tooltip
 } from '@components/index';
 import Typography from '@components/Typography';
@@ -27,7 +28,9 @@ export const TooltipDefault = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Tooltip title="Тултип по умолчанию" {...argsTypes}>
-        <Button variant="secondary">Наведи на меня курсор!</Button>
+        <Link preventRedirect={true} href="">
+          Наведи на меня курсор
+        </Link>
       </Tooltip>
     </div>
   );
@@ -39,7 +42,9 @@ export const TooltipWithOpacity = (argsTypes: Args): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Tooltip title="Тултип c кастомным стилем" {...argsTypes} popupClassName={styles.popup}>
-        <Button variant="secondary">Наведи на меня курсор!</Button>
+        <Link preventRedirect={true} href="">
+          Наведи на меня курсор
+        </Link>
       </Tooltip>
     </div>
   );
@@ -51,9 +56,9 @@ export const TooltipWrappedDisabled = (argsTypes: Args): JSX.Element => {
     <div className={styles.wrapper}>
       <Tooltip description="Сюда вы можете добавить текст/подсказу для компонента" {...argsTypes}>
         <span>
-          <Button variant="secondary" disabled>
-            Наведи на меня курсор!
-          </Button>
+          <Link preventRedirect={true} href="">
+            Наведи на меня курсор
+          </Link>
         </span>
       </Tooltip>
     </div>
@@ -67,52 +72,72 @@ export const TooltipPlacements = (argsTypes: Args): JSX.Element => {
       <div className={styles.placements}>
         <div className={styles['tooltip-top']}>
           <Tooltip placement={ETooltipPlacementType.top} description="Tooltip on top" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет сверху!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи на меня курсор, тултип будет сверху
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-top-left']}>
           <Tooltip placement={ETooltipPlacementType['top-start']} description="Tooltip on top start" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет сверху слева!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи на меня курсор, тултип будет сверх слева
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-top-right']}>
           <Tooltip placement={ETooltipPlacementType['top-end']} description="Tooltip on top end" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет сверху справа!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи на меня курсор, тултип будет сверху
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-left-start']}>
           <Tooltip placement={ETooltipPlacementType['left-start']} description="Tooltip on left start" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет слева!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет слева!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-right-start']}>
           <Tooltip placement={ETooltipPlacementType['right-start']} description="Tooltip on right start" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет справа!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет справа!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-left']}>
           <Tooltip placement={ETooltipPlacementType['left']} description="Tooltip on left" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет слева!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет слева!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-right']}>
           <Tooltip placement={ETooltipPlacementType['right']} description="Tooltip on right" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет справа!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет справа!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-left-end']}>
           <Tooltip placement={ETooltipPlacementType['left-end']} description="Tooltip on left end" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет слева!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет слева!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-right-end']}>
           <Tooltip placement={ETooltipPlacementType['right-end']} description="Tooltip on right end" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет справа!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет справа!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-bottom']}>
           <Tooltip placement={ETooltipPlacementType.bottom} description="Tooltip on bottom" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет снизу!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет снизу!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-bottom-left']}>
@@ -121,12 +146,16 @@ export const TooltipPlacements = (argsTypes: Args): JSX.Element => {
             description="Tooltip on bottom start"
             {...argsTypes}
           >
-            <Button variant="secondary">Наведи, тултип будет снизу слева!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет снизу слева!
+            </Link>
           </Tooltip>
         </div>
         <div className={styles['tooltip-bottom-right']}>
           <Tooltip placement={ETooltipPlacementType['bottom-end']} description="Tooltip on bottom end" {...argsTypes}>
-            <Button variant="secondary">Наведи, тултип будет снизу справа!</Button>
+            <Link preventRedirect={true} href="">
+              Наведи, тултип будет снизу справа!
+            </Link>
           </Tooltip>
         </div>
       </div>
@@ -140,13 +169,19 @@ export const TooltipBehaviors = (argsTypes: Args): JSX.Element => {
     <div className={styles.wrapper}>
       <div className={styles.behaviors}>
         <Tooltip placement="top" behavior="hover" description="Tooltip on hover" {...argsTypes}>
-          <Button variant="secondary">Тултип появится при наведении!</Button>
+          <Link preventRedirect={true} href="">
+            Тултип появится при наведении!
+          </Link>
         </Tooltip>
         <Tooltip placement="top" behavior="click" description="Tooltip on click" {...argsTypes}>
-          <Button variant="secondary">Тултип появится при клике!</Button>
+          <Link preventRedirect={true} href="">
+            Тултип появится при клике!
+          </Link>
         </Tooltip>
         <Tooltip placement="top" behavior="focus" description="Tooltip on focus" {...argsTypes}>
-          <Button variant="secondary">Тултип появится при фокусе!</Button>
+          <Link preventRedirect={true} href="">
+            Тултип появится при фокусе!
+          </Link>
         </Tooltip>
       </div>
     </div>
@@ -236,7 +271,9 @@ export const TooltipWithCustom = (argsTypes: Args): JSX.Element => {
         </div>
       </div>
       <div>
-        <Button>Настройки</Button>
+        <Link preventRedirect={true} href="">
+          Настройки
+        </Link>
       </div>
     </div>
   );
@@ -271,15 +308,39 @@ export const TooltipWithCustom = (argsTypes: Args): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, styles['wrapper-height'])}>
       <Tooltip behavior="click" render={renderCustom()} {...argsTypes}>
-        <Button variant="secondary">Нажми на меня для появления тултипа!</Button>
+        <Link preventRedirect={true} href="">
+          Нажми на меня для появления тултипа!
+        </Link>
       </Tooltip>
       <Tooltip behavior="click" render={trafficLights()} {...argsTypes} placement="right" clickable>
-        <Button variant="secondary">Нажми на меня для появления тултипа!</Button>
+        <Link preventRedirect={true} href="">
+          Нажми на меня для появления тултипа!
+        </Link>
       </Tooltip>
       <Tooltip behavior="click" render={speciality()} {...argsTypes} placement="top-end">
-        <Button variant="secondary">Нажми на меня для появления тултипа!</Button>
+        <Link preventRedirect={true} href="">
+          Нажми на меня для появления тултипа!
+        </Link>
       </Tooltip>
     </div>
   );
 };
 TooltipWithCustom.storyName = 'Тултип с кастомным элементом внутри';
+
+export const TooltipWithManualOpen = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles['manual-wrapper']}>
+        <Tooltip title="Заголовок тултипа" isOpen={isOpen}>
+          <Button variant="secondary">Кнопка с тултипом</Button>
+        </Tooltip>
+        <Button variant="secondary" onClick={() => setOpen(!isOpen)}>
+          Нажми на меня для переключения тултипа!
+        </Button>
+      </div>
+    </div>
+  );
+};
+TooltipWithManualOpen.storyName = 'Тултип с ручным открытием';

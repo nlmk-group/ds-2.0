@@ -1,16 +1,15 @@
 import React, { FC } from 'react';
 
-import { Typography } from '@components/index';
+import { Icon, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
-import { Breadcrumb } from './types';
+import { ILinkComponentProps } from './types';
 
 import styles from './Breadcrumbs.module.scss';
 
-import { Icon } from '..';
 import { targetMapping } from './enums';
 
-const LinkComponent: FC<Breadcrumb> = ({
+const LinkComponent: FC<ILinkComponentProps> = ({
   label,
   href,
   active,
@@ -22,18 +21,18 @@ const LinkComponent: FC<Breadcrumb> = ({
     href={href}
     target={target as targetMapping}
     rel="noreferrer"
-    className={clsx(styles['custom-link'], active && styles['active-link'])}
+    className={clsx(styles.link, active && styles['link-active'])}
     id="linkWidth"
     title={label}
   >
     <div id="linkText">
-      <Typography variant="Body1-Medium" className={styles['link-text']}>
+      <Typography variant="Body1-Medium" className={styles.text}>
         {label}
       </Typography>
     </div>
     {!isLast && (
-      <div className={styles['link-separator']}>
-        <Icon name="IconChevronArrowRightOutlined24" containerSize={16} htmlColor={'var(--text-grey-600)'} />
+      <div className={styles.separator}>
+        <Icon name="IconChevronArrowRightOutlined24" containerSize={16} />
       </div>
     )}
   </a>

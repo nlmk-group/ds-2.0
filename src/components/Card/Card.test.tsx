@@ -4,7 +4,7 @@ import { sizesMapping } from '@components/declaration';
 import { Card } from '@components/index';
 import { render, screen } from '@testing-library/react';
 
-import { indicatorStatusMapping, orientationMapping } from './enums';
+import { EIndicatorStatusMapping, EOrientationMapping } from './enums';
 
 describe('src/components/Card', () => {
   test('It should render a Card', () => {
@@ -13,7 +13,7 @@ describe('src/components/Card', () => {
     expect(cardComponent).toBeInTheDocument();
   });
 
-  Object.values(orientationMapping).forEach((orientation: orientationMapping) => {
+  Object.values(EOrientationMapping).forEach((orientation: EOrientationMapping) => {
     test(`It should render a Card with ${orientation} orientation`, () => {
       render(<Card orientation={orientation}>hello</Card>);
       expect(screen.getByTestId('CARD_WRAPPER').classList.contains(`wrapper-${orientation}`)).toBe(true);
@@ -22,12 +22,16 @@ describe('src/components/Card', () => {
 
   Object.values(sizesMapping).forEach((indicatorSize: sizesMapping) => {
     test(`It should render a Card's indicator with ${indicatorSize} size`, () => {
-      render(<Card indicatorStatus={indicatorStatusMapping.success} indicatorSize={indicatorSize}>hello</Card>);
+      render(
+        <Card indicatorStatus={EIndicatorStatusMapping.success} indicatorSize={indicatorSize}>
+          hello
+        </Card>
+      );
       expect(screen.getByTestId('CARD_WRAPPER').classList.contains(`indicator-${indicatorSize}`)).toBe(true);
     });
   });
 
-  Object.values(indicatorStatusMapping).forEach((indicatorStatus: indicatorStatusMapping) => {
+  Object.values(EIndicatorStatusMapping).forEach((indicatorStatus: EIndicatorStatusMapping) => {
     test(`It should render a Card's indicator with ${indicatorStatus} status`, () => {
       render(<Card indicatorStatus={indicatorStatus}>hello</Card>);
       expect(screen.getByTestId('CARD_WRAPPER').classList.contains(`indicator-${indicatorStatus}`)).toBe(true);

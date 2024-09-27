@@ -1,11 +1,10 @@
 import React, { forwardRef } from 'react';
 
 import { EBadgeSizes } from '@components/Badge/enums';
-import { variantsWithOneFill } from '@components/Button/helpers';
 import { ButtonBadge } from '@components/Button/subcomponents';
 import Typography from '@components/Typography';
 import { ETypographyVariants } from '@components/Typography/enums';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { IButtonProps } from './types';
 
@@ -34,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     {
       children,
       variant = EButtonVariant.primary,
-      fill = EButtonFill.solid,
+      fill = variant === EButtonVariant.info ? EButtonFill.clear : EButtonFill.solid,
       startIcon,
       endIcon,
       startBadge,
@@ -62,7 +61,8 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     };
 
     const classes = clsx(
-      variantsWithOneFill.has(EButtonVariant[variant]) ? styles[variant] : styles[`${variant}-${fill}`],
+      className,
+      styles[`${variant}-${fill}`],
       styles.button,
       fill === EButtonFill.outline && styles.outline,
       iconButton && styles['icon-button'],
@@ -72,24 +72,17 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     if (iconButton) {
       return (
-        <button ref={ref} className={clsx(classes, className)} {...props}>
+        <button ref={ref} className={classes} {...props}>
           {iconButton}
         </button>
       );
     }
 
     return (
-      <button ref={ref} className={clsx(classes, className)} {...props}>
+      <button ref={ref} className={classes} {...props}>
         {startBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.left)}>
-            <ButtonBadge
-              {...{
-                badge: startBadge,
-                variant,
-                fill,
-                size
-              }}
-            />
+            <ButtonBadge {...{ badge: startBadge, variant, fill, size }} />
           </span>
         )}
         {startIcon && <span className={getIconClass(EButtonNodesPosition.left)}>{startIcon}</span>}
@@ -99,14 +92,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         {endIcon && <span className={getIconClass(EButtonNodesPosition.right)}>{endIcon}</span>}
         {endBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.right)}>
-            <ButtonBadge
-              {...{
-                badge: endBadge,
-                variant,
-                fill,
-                size
-              }}
-            />
+            <ButtonBadge {...{ badge: endBadge, variant, fill, size }} />
           </span>
         )}
       </button>

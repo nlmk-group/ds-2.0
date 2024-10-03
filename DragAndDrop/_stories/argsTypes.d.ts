@@ -1,5 +1,5 @@
 import { sizesMapping } from '../../declaration';
-import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { EDnDFileType, EDnDStatusColor } from '../enums';
 
 export declare const argsTypes: {
     className: {
@@ -60,13 +60,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: EFileTypeDnD;
+                summary: EDnDFileType;
             };
             type: {
                 summary: string;
             };
         };
-        options: EFileTypeDnD[];
+        options: EDnDFileType[];
         control: {
             type: string;
         };
@@ -75,13 +75,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: EStatusColorDnD;
+                summary: EDnDStatusColor;
             };
             type: {
                 summary: string;
             };
         };
-        options: EStatusColorDnD[];
+        options: EDnDStatusColor[];
         control: {
             type: string;
         };

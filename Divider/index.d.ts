@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { IDivider } from './types';
+import { IDividerProps } from './types';
 
-declare const Divider: FC<IDivider>;
+declare const Divider: FC<IDividerProps>;
 export default Divider;
 //# sourceMappingURL=index.d.ts.map

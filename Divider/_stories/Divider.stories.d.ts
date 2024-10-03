@@ -1,10 +1,10 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
-import { orientationMapping, typeMapping } from '../enums';
-import { IDivider } from '../types';
+import { EDividerOrientation, EDividerType } from '../enums';
+import { IDividerProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<IDivider>;
+    component: React.FC<IDividerProps>;
     argTypes: {
         children: {
             description: string;
@@ -33,13 +33,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: orientationMapping;
+                    summary: EDividerOrientation;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: orientationMapping[];
+            options: EDividerOrientation[];
             control: {
                 type: string;
             };
@@ -54,13 +54,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: typeMapping;
+                    summary: EDividerType;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: typeMapping[];
+            options: EDividerType[];
             control: {
                 type: string;
             };
@@ -69,14 +69,14 @@ declare const _default: {
 };
 export default _default;
 export declare const DefaultDivider: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {
         children: React.JSX.Element;
     };
 };
 export declare const DashedDivider: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {
         children: React.JSX.Element;
@@ -84,33 +84,33 @@ export declare const DashedDivider: {
     };
 };
 export declare const DividerOrientation: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {
         children: React.JSX.Element;
     };
 };
 export declare const DividerOrientationWithCustomSpace: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {
         children: React.JSX.Element;
     };
 };
 export declare const DividerVertical: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {};
 };
 export declare const DividerCustomClassName: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {
         children: string;
     };
 };
 export declare const DividerType: {
-    (argTypes: IDivider): ReactNode;
+    (argTypes: IDividerProps): ReactNode;
     storyName: string;
     args: {};
 };

@@ -1,6 +1,6 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
 import { sizesMapping } from '../../declaration';
-import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { EDnDFileType, EDnDStatusColor } from '../enums';
 import { IDragAndDropProps } from '../types';
 
 declare const _default: {
@@ -66,13 +66,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: EFileTypeDnD;
+                    summary: EDnDFileType;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: EFileTypeDnD[];
+            options: EDnDFileType[];
             control: {
                 type: string;
             };
@@ -81,13 +81,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: EStatusColorDnD;
+                    summary: EDnDStatusColor;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: EStatusColorDnD[];
+            options: EDnDStatusColor[];
             control: {
                 type: string;
             };
@@ -251,7 +251,7 @@ export declare const dndCustomAccept: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
         accept: string;
         description: string;
-        fileType: EFileTypeDnD;
+        fileType: EDnDFileType;
         title: string;
     };
 };

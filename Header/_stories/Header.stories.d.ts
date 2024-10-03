@@ -86,4 +86,17 @@ export declare const HeaderBreadcrumbs: {
         notificationAmount: number;
     };
 };
+export declare const HeaderBreadcrumbsHasChildren: {
+    (argTypes: IHeader): ReactNode;
+    storyName: string;
+    args: {
+        title: string;
+        type: typeMapping;
+        back: import('@storybook/addon-actions').HandlerFunction;
+        date: boolean;
+        favorite: import('@storybook/addon-actions').HandlerFunction;
+        notification: import('@storybook/addon-actions').HandlerFunction;
+        notificationAmount: number;
+    };
+};
 //# sourceMappingURL=Header.stories.d.ts.map

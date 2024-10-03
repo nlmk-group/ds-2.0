@@ -94,6 +94,12 @@ declare const argsTypes: {
             type: string;
         };
     };
+    children: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
 };
 export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

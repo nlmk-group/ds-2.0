@@ -1,4 +1,4 @@
-import { orientationMapping, typeMapping } from '../enums';
+import { EDividerOrientation, EDividerType } from '../enums';
 
 declare const argsTypes: {
     children: {
@@ -28,13 +28,13 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: orientationMapping;
+                summary: EDividerOrientation;
             };
             type: {
                 summary: string;
             };
         };
-        options: orientationMapping[];
+        options: EDividerOrientation[];
         control: {
             type: string;
         };
@@ -49,13 +49,13 @@ declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: typeMapping;
+                summary: EDividerType;
             };
             type: {
                 summary: string;
             };
         };
-        options: typeMapping[];
+        options: EDividerType[];
         control: {
             type: string;
         };

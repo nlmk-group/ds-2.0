@@ -8,7 +8,7 @@ import { IDragAndDropProps } from './types';
 import styles from './DragAndDrop.module.scss';
 
 import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import { EFileTypeDnD, EStatusColorDnD } from './enums';
+import { EDnDFileType, EDnDStatusColor } from './enums';
 import DefaultDragAndDrop from './subcomponents/DefaultDragAndDrop';
 import SmallIcon from './subcomponents/SmallIcon';
 import SmallText from './subcomponents/SmallText';
@@ -22,8 +22,8 @@ import SmallText from './subcomponents/SmallText';
  * @param {string | React.ReactNode} [props.title=dragNDropTitle] - Заголовок для области перетаскивания.
  * @param {string | React.ReactNode} [props.description=dragNDropDescription] - Описание для области перетаскивания.
  * @param {string} [props.btnLabel=dragNDropBtnLabel] - Текст кнопки для выбора файлов.
- * @param {`${EFileTypeDnD}`} [props.fileType=EFileTypeDnD.image] - Тип загружаемых файлов.
- * @param {`${EStatusColorDnD}`} [props.statusColor=EStatusColorDnD.default] - Цвет статуса.
+ * @param {`${EDnDFileType}`} [props.fileType=EDnDFileType.image] - Тип загружаемых файлов.
+ * @param {`${EDnDStatusColor}`} [props.statusColor=EDnDStatusColor.default] - Цвет статуса.
  * @param {sizesMapping} [props.size=sizesMapping.l] - Размер области перетаскивания.
  * @param {boolean} [props.withIcon=true] - Показывать ли иконку в области перетаскивания.
  * @param {JSX.Element} [props.customIcon=null] - Пользовательская иконка.
@@ -44,8 +44,8 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
   title = dragNDropTitle,
   description = dragNDropDescription,
   btnLabel = dragNDropBtnLabel,
-  fileType = EFileTypeDnD.image,
-  statusColor = EStatusColorDnD.default,
+  fileType = EDnDFileType.image,
+  statusColor = EDnDStatusColor.default,
   size = sizesMapping.l,
   withIcon = true,
   customIcon = null,
@@ -127,8 +127,8 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
         className={clsx(
           styles['label-file-upload'],
           loading ? styles['label-loading'] : styles[`label-${statusColor}`],
-          smallIcon && EStatusColorDnD.default && styles['label-s-default'],
-          dragActive && styles[`label-${EStatusColorDnD.info}`],
+          smallIcon && EDnDStatusColor.default && styles['label-s-default'],
+          dragActive && styles[`label-${EDnDStatusColor.info}`],
           smallText ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`],
           smallIcon && styles['label-file-upload-small-icon']
         )}

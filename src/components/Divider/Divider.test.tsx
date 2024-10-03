@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 
 import styles from './Divider.module.scss';
 
-import { orientationMapping, typeMapping } from './enums';
+import { EDividerOrientation, EDividerType } from './enums';
 
 describe('src/components/Divider', () => {
   const testTitle = 'Hello world!';
@@ -43,13 +43,13 @@ describe('src/components/Divider', () => {
   });
 
   test('It should render a Divider with left orientation', () => {
-    render(<Divider orientation={orientationMapping.left}>{testTitle}</Divider>);
+    render(<Divider orientation={EDividerOrientation.left}>{testTitle}</Divider>);
     const borders = screen.getAllByTestId('BORDER_WRAPPER');
     expect(borders[0].classList.contains('border-horizontal-small')).toBe(true);
   });
 
   test('It should render a Divider with right orientation', () => {
-    render(<Divider orientation={orientationMapping.right}>{testTitle}</Divider>);
+    render(<Divider orientation={EDividerOrientation.right}>{testTitle}</Divider>);
     const borders = screen.getAllByTestId('BORDER_WRAPPER');
     expect(borders[1].classList.contains('border-horizontal-small')).toBe(true);
   });
@@ -57,7 +57,7 @@ describe('src/components/Divider', () => {
   test('It should render a Divider with left orientation and custom spacing', () => {
     const customSpace = 52;
     render(
-      <Divider orientation={orientationMapping.left} orientationSpace={customSpace}>
+      <Divider orientation={EDividerOrientation.left} orientationSpace={customSpace}>
         {testTitle}
       </Divider>
     );
@@ -66,12 +66,12 @@ describe('src/components/Divider', () => {
   });
 
   test('It should render a vertical Divider', () => {
-    render(<Divider type={typeMapping.vertical} />);
+    render(<Divider type={EDividerType.vertical} />);
     expect(screen.getByTestId('VERTICAL_DIVIDER')).toBeInTheDocument();
   });
 
   test('It should render a vertical dashed Divider', () => {
-    render(<Divider dashed type={typeMapping.vertical} />);
+    render(<Divider dashed type={EDividerType.vertical} />);
     expect(screen.getByTestId('VERTICAL_DIVIDER_BORDER').classList.contains('border-vertical-dashed')).toBe(true);
   });
 
@@ -83,7 +83,7 @@ describe('src/components/Divider', () => {
     });
 
     test('It should render a vertical divider with custom class', () => {
-      render(<Divider className={styles[className]} type={typeMapping.vertical} />);
+      render(<Divider className={styles[className]} type={EDividerType.vertical} />);
       expect(screen.getByTestId('VERTICAL_DIVIDER').classList.contains(className)).toBe(true);
     });
   });

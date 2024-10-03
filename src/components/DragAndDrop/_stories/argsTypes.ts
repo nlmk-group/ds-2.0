@@ -1,7 +1,7 @@
 import { sizesMapping } from '@components/declaration';
 
 import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle } from '../constants';
-import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { EDnDFileType, EDnDStatusColor } from '../enums';
 
 export const argsTypes = {
   className: {
@@ -54,26 +54,26 @@ export const argsTypes = {
     description: 'Необязательное свойство. Тип расширения загружаемого файла.',
     table: {
       defaultValue: {
-        summary: EFileTypeDnD.image
+        summary: EDnDFileType.image
       },
       type: {
-        summary: Object.values(EFileTypeDnD).join(' | ')
+        summary: Object.values(EDnDFileType).join(' | ')
       }
     },
-    options: Object.values(EFileTypeDnD),
+    options: Object.values(EDnDFileType),
     control: { type: 'select' }
   },
   statusColor: {
     description: 'Необязательное свойство. Цвета заливки компонента.',
     table: {
       defaultValue: {
-        summary: EStatusColorDnD.default
+        summary: EDnDStatusColor.default
       },
       type: {
-        summary: Object.values(EStatusColorDnD).join(' | ')
+        summary: Object.values(EDnDStatusColor).join(' | ')
       }
     },
-    options: Object.values(EStatusColorDnD),
+    options: Object.values(EDnDStatusColor),
     control: { type: 'select' }
   },
   size: {

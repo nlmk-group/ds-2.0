@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-export interface IDivider extends PropsWithChildren<any> {
+export interface IDividerProps extends PropsWithChildren<any> {
   className?: string;
   dashed?: boolean;
   orientation?: string;
@@ -15,7 +15,7 @@ export interface IHorizontalBorder {
   orientationSpace?: number;
 }
 
-export interface IVertical {
+export interface IVerticalBorder {
   className?: string;
   dashed?: boolean;
 }

@@ -8,7 +8,7 @@ import customStyle from '../DragAndDrop.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { cancelUploadLabel, smallTextUploadText } from '../constants';
-import { EFileTypeDnD, EStatusColorDnD } from '../enums';
+import { EDnDFileType, EDnDStatusColor } from '../enums';
 import { IDragAndDropProps } from '../types';
 import argsTypes from './argsTypes';
 import {
@@ -94,7 +94,7 @@ dndSizes.args = {
 export const dndFileTypes = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(EFileTypeDnD).map((fileType: EFileTypeDnD) => (
+      {Object.values(EDnDFileType).map((fileType: EDnDFileType) => (
         <DragAndDrop key={fileType} fileType={fileType} {...argTypes} />
       ))}
     </div>
@@ -119,16 +119,16 @@ dndCustomAccept.args = {
   onUpload: action('OnUpload'),
   accept: '.pdf',
   description: 'По умолчанию только файлы формата PDF',
-  fileType: EFileTypeDnD.file,
+  fileType: EDnDFileType.file,
   title: 'PDF Drag&Drop'
 };
 
 export const dndStatuses = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(EStatusColorDnD)
+      {Object.values(EDnDStatusColor)
         .slice(0, 3)
-        .map((status: EStatusColorDnD) => (
+        .map((status: EDnDStatusColor) => (
           <DragAndDrop key={status} statusColor={status} {...argTypes} />
         ))}
     </div>
@@ -144,9 +144,9 @@ dndStatuses.args = {
 export const dndStatuses2 = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(EStatusColorDnD)
+      {Object.values(EDnDStatusColor)
         .slice(3)
-        .map((status: EStatusColorDnD) => (
+        .map((status: EDnDStatusColor) => (
           <DragAndDrop key={status} statusColor={status} {...argTypes} />
         ))}
       <DragAndDrop
@@ -169,7 +169,7 @@ dndStatuses2.args = {
 export const dndSmallIcon = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(EStatusColorDnD).map((status: EStatusColorDnD) => (
+      {Object.values(EDnDStatusColor).map((status: EDnDStatusColor) => (
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
       <DragAndDrop title={smallTextUploadText} loading percentUpload={99} {...argTypes} />

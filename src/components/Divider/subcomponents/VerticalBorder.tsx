@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import { clsx } from 'clsx';
 
-import { IVertical } from './types';
+import styles from '../Divider.module.scss';
 
-import styles from './Divider.module.scss';
+import { IVerticalBorder } from '../types';
 
-const Vertical: FC<IVertical> = ({ className, dashed = false }) => {
+const VerticalBorder: FC<IVerticalBorder> = ({ className, dashed = false }) => {
   return (
     <div data-testid="VERTICAL_DIVIDER" className={clsx(className, styles['vertical-wrapper'])}>
       <div
@@ -20,4 +20,4 @@ const Vertical: FC<IVertical> = ({ className, dashed = false }) => {
   );
 };
 
-export default Vertical;
+export default VerticalBorder;

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import styles from '../DragAndDrop.module.scss';
 
-import { EPercentageSizeHelperDnD, ESpinnerSizeHelperDnD, ESpinnerWidthHelperDnD } from '../enums';
+import { EDnDPercentageSizeHelper, EDnDSpinnerSizeHelper, EDnDSpinnerWidthHelper } from '../enums';
 import { IUploadHelperProps } from '../types';
 
 /**
@@ -27,8 +27,8 @@ const UploadIcon: FC<IUploadHelperProps> = ({
   percentUpload
 }) => {
   const handleBoxSize = (): string[] => {
-    let height: string = ESpinnerWidthHelperDnD[size];
-    let width: string = ESpinnerWidthHelperDnD[size];
+    let height: string = EDnDSpinnerWidthHelper[size];
+    let width: string = EDnDSpinnerWidthHelper[size];
 
     if (smallText) {
       height = 'unset';
@@ -58,7 +58,7 @@ const UploadIcon: FC<IUploadHelperProps> = ({
     >
       {showSpinner && (
         <div className={styles['spinner-position-helper']}>
-          <Spinner size={ESpinnerSizeHelperDnD[size]} />
+          <Spinner size={EDnDSpinnerSizeHelper[size]} />
         </div>
       )}
       {typeof percentUpload === 'number' && percentUpload > 0 && (
@@ -69,7 +69,7 @@ const UploadIcon: FC<IUploadHelperProps> = ({
           })}
           data-testid="PERCENT"
         >
-          <Typography variant={smallIcon ? 'Heading4' : EPercentageSizeHelperDnD[size]}>
+          <Typography variant={smallIcon ? 'Heading4' : EDnDPercentageSizeHelper[size]}>
             {Math.min(Math.floor(percentUpload), 100)}%
           </Typography>
         </div>

@@ -9,8 +9,9 @@ export interface IHeader {
   notification?: MouseEventHandler<HTMLButtonElement>;
   date?: boolean;
   notificationAmount?: number;
-  breadcrumbs?: JSX.Element | ReactNode;
+  breadcrumbs?: ReactNode;
   className?: string;
+  children?: ReactNode;
 }
 
 export interface INotification {

@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import { clsx } from 'clsx';
 
-import { IHorizontalBorder } from './types';
+import styles from '../Divider.module.scss';
 
-import styles from './Divider.module.scss';
+import { IHorizontalBorder } from '../types';
 
 const HorizontalBorder: FC<IHorizontalBorder> = ({ isSmall, dashed = false, orientationSpace = 0 }): JSX.Element => (
   <div

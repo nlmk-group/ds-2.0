@@ -15,6 +15,7 @@ import {
   HEADER_BACK,
   HEADER_BACKGROUND,
   HEADER_BREADCRUMBS,
+  HEADER_CHILDREN,
   HEADER_DATE,
   HEADER_FAVORITE,
   HEADER_NOTIFICATION,
@@ -154,6 +155,19 @@ export default  App = () => (
         active: true
       }
     ]} />)} />
+)
+              `}
+          />
+          <Editor
+            description={HEADER_CHILDREN}
+            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <Header title="${HEADER_CHILDREN}"} >
+          <Button style={{ marginRight: '25px' }} variant="grey" fill="outline" startIcon={<IconSettingsAltOutlined24 />}>
+          Настройки
+        </Button>
+  </Header>
 )
               `}
           />

@@ -76,6 +76,10 @@ const argsTypes = {
     description:
       'Свойство, в которое можно добавить отдельный компонент Breadcrumbs, при этом он будет отображаться как часть Header',
     control: { type: 'string' }
+  },
+  children: {
+    description: 'Компонент, который будет вложен после title',
+    control: { type: 'ReactNode' }
   }
 };
 

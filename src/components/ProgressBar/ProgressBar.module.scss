@@ -24,6 +24,7 @@
   }
 
   &-percentage {
+    white-space: nowrap;
     color: var(--brand-sapphire-60);
     text-align: right;
     min-width: 4ch;

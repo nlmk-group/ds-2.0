@@ -6,8 +6,8 @@ import { clsx } from 'clsx';
 import style from './Divider.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { orientationMapping, typeMapping } from '../enums';
-import { IDivider } from '../types';
+import { EDividerOrientation, EDividerType } from '../enums';
+import { IDividerProps } from '../types';
 import argsTypes from './argsTypes';
 import {
   DASHED_DIVIDER,
@@ -25,7 +25,7 @@ export default {
   argTypes: argsTypes
 };
 
-export const DefaultDivider = (argTypes: IDivider): ReactNode => {
+export const DefaultDivider = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Divider {...argTypes} />
@@ -38,7 +38,7 @@ DefaultDivider.args = {
   children: <Typography>{DEFAULT_DIVIDER}</Typography>
 };
 
-export const DashedDivider = (argTypes: IDivider): ReactNode => {
+export const DashedDivider = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Divider {...argTypes} />
@@ -52,10 +52,10 @@ DashedDivider.args = {
   dashed: true
 };
 
-export const DividerOrientation = (argTypes: IDivider): ReactNode => {
+export const DividerOrientation = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      {Object.values(orientationMapping).map((orientation: orientationMapping) => (
+      {Object.values(EDividerOrientation).map((orientation: EDividerOrientation) => (
         <Divider {...argTypes} orientation={orientation} key={orientation} />
       ))}
     </div>
@@ -67,11 +67,11 @@ DividerOrientation.args = {
   children: <Typography className={style['divider-content']}>{DIVIDER_ORIENTATION}</Typography>
 };
 
-export const DividerOrientationWithCustomSpace = (argTypes: IDivider): ReactNode => {
+export const DividerOrientationWithCustomSpace = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Divider {...argTypes} orientation={orientationMapping.left} orientationSpace={68} />
-      <Divider {...argTypes} orientation={orientationMapping.right} orientationSpace={72} />
+      <Divider {...argTypes} orientation={EDividerOrientation.left} orientationSpace={68} />
+      <Divider {...argTypes} orientation={EDividerOrientation.right} orientationSpace={72} />
     </div>
   );
 };
@@ -81,14 +81,14 @@ DividerOrientationWithCustomSpace.args = {
   children: <Typography className={style['divider-content']}>{DIVIDER_ORIENTATION_CUSTOM_SPACE}</Typography>
 };
 
-export const DividerVertical = (argTypes: IDivider): ReactNode => {
+export const DividerVertical = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <div style={{ display: 'flex' }}>
         <Typography className={style['divider-content']}>Текст №1</Typography>
-        <Divider {...argTypes} type={typeMapping.vertical} className={style.space} />
+        <Divider {...argTypes} type={EDividerType.vertical} className={style.space} />
         <Typography className={style['divider-content']}>Текст №2</Typography>
-        <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
+        <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
         <Typography className={style['divider-content']}>Текст №3</Typography>
       </div>
     </div>
@@ -98,18 +98,18 @@ export const DividerVertical = (argTypes: IDivider): ReactNode => {
 DividerVertical.storyName = VERTICAL_DIVIDER;
 DividerVertical.args = {};
 
-export const DividerCustomClassName = (argTypes: IDivider): ReactNode => {
+export const DividerCustomClassName = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Divider {...argTypes} orientation={orientationMapping.left} className={style['test-classname']}>
+      <Divider {...argTypes} orientation={EDividerOrientation.left} className={style['test-classname']}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
             variant="primary"
-            fill="clear"
-            size="xs"
+            fill="solid"
+            size="m"
             className={style['btn-divider-handler']}
-            iconButton={<Icon name="IconChemical24" containerSize={16} htmlColor="var(--ac-icon-blue)" />}
+            iconButton={<Icon name="IconChemical24" containerSize={16} htmlColor="var(--unique-white)" />}
           />
         </div>
       </Divider>
@@ -122,16 +122,16 @@ DividerCustomClassName.args = {
   children: DIVIDER_CUSTOM_CLASSNAME
 };
 
-export const DividerType = (argTypes: IDivider): ReactNode => {
+export const DividerType = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={clsx(styles.wrapper, style['show-divider-group'])}>
       <Divider {...argTypes} dashed />
 
-      <div style={{ display: 'flex', gap: 'var(--16-size)' }}>
+      <div style={{ display: 'flex', gap: '16px' }}>
         <Typography className={style['divider-content']}>Текст №1</Typography>
-        <Divider {...argTypes} type={typeMapping.vertical} />
+        <Divider {...argTypes} type={EDividerType.vertical} />
         <Typography className={style['divider-content']}>Текст №2</Typography>
-        <Divider {...argTypes} type={typeMapping.vertical} dashed />
+        <Divider {...argTypes} type={EDividerType.vertical} dashed />
         <Typography className={style['divider-content']}>Текст №3</Typography>
       </div>
 
@@ -141,33 +141,33 @@ export const DividerType = (argTypes: IDivider): ReactNode => {
         </Button>
       </Divider>
 
-      <div style={{ display: 'flex', gap: 'var(--16-size)' }}>
+      <div style={{ display: 'flex', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Текст №1</Typography>
         </div>
-        <Divider {...argTypes} type={typeMapping.vertical} className={style.space} />
+        <Divider {...argTypes} type={EDividerType.vertical} className={style.space} />
         <Button variant="secondary">
           <span>Нажать</span>
         </Button>
-        <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
+        <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
         <Button
           variant="primary"
           fill="clear"
-          iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--ac-icon-blue)" />}
+          iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}
         />
-        <Divider {...argTypes} type={typeMapping.vertical} dashed className={style.space} />
+        <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="#">Ссылка</Link>
         </span>
       </div>
 
-      <Divider {...argTypes} orientation={orientationMapping.left}>
+      <Divider {...argTypes} orientation={EDividerOrientation.left}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
             variant="primary"
             fill="clear"
-            iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--ac-icon-blue)" />}
+            iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}
           />
         </div>
       </Divider>

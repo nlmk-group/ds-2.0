@@ -22,38 +22,31 @@ const Header: FC<IHeader> = ({
   notification = null,
   notificationAmount = 0,
   breadcrumbs = null,
-  className
+  className,
+  children
 }): JSX.Element => {
   return (
     <div
-      data-testid='HEADER_WRAPPER'
+      data-testid="HEADER_WRAPPER"
       className={clsx(
         styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'],
         bg && styles['alternative-background'],
         className
       )}
     >
-      {breadcrumbs !== null && (
-        <div className={styles['breadcrumbs-wrapper']}>
-          {breadcrumbs}
-        </div>
-      )}
+      {breadcrumbs !== null && <div className={styles['breadcrumbs-wrapper']}>{breadcrumbs}</div>}
 
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
           <div className={styles['title-btn-wrapper']}>
             {back !== null && <BtnBack back={back} />}
-            <div
-              data-testid='HEADER_TITLE'
-              className={styles.title}
-              title={title}
-            >
-              <Typography variant='Heading2'>
-                {title}
-              </Typography>
+            <div data-testid="HEADER_TITLE" className={styles.title} title={title}>
+              <Typography variant="Heading2">{title}</Typography>
             </div>
           </div>
         </div>
+
+        {!!children && children}
 
         <div className={styles.right}>
           {Boolean(date) && <DateTime />}

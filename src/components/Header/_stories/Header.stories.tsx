@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
-import { Breadcrumbs, Header } from '@components/index';
+import { breadcrumbs } from '@components/Breadcrumbs/_stories/constants';
+import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -14,12 +15,12 @@ import {
   HEADER_BACK,
   HEADER_BACKGROUND,
   HEADER_BREADCRUMBS,
+  HEADER_CHILDREN,
   HEADER_DATE,
   HEADER_FAVORITE,
   HEADER_NOTIFICATION,
   HEADERS_DIFFERENT_SPACING
 } from './text';
-import { breadcrumbs } from '@components/Breadcrumbs/_stories/constants';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
 
@@ -203,6 +204,36 @@ export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
 HeaderBreadcrumbs.storyName = HEADER_BREADCRUMBS;
 HeaderBreadcrumbs.args = {
   title: HEADER_BREADCRUMBS,
+  type: typeMapping.compact,
+  back: action('goBack'),
+  date: true,
+  favorite: action('addToFavorite'),
+  notification: action('addToNotification'),
+  notificationAmount: 9
+};
+
+export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
+  return (
+    <>
+      <Header
+        {...argTypes}
+        back={argTypes.back || undefined}
+        type="compact"
+        date
+        favorite={argTypes.favorite || undefined}
+        notification={argTypes.notification || undefined}
+      >
+        <Button style={{ marginRight: '25px' }} variant="grey" fill="outline" startIcon={<IconSettingsAltOutlined24 />}>
+          Настройки
+        </Button>
+      </Header>
+    </>
+  );
+};
+
+HeaderBreadcrumbsHasChildren.storyName = HEADER_CHILDREN;
+HeaderBreadcrumbsHasChildren.args = {
+  title: HEADER_CHILDREN,
   type: typeMapping.compact,
   back: action('goBack'),
   date: true,

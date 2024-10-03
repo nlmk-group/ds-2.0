@@ -1,25 +1,25 @@
 .space {
-  margin: 0 var(--16-space);
+  margin: 0 16px;
 }
 
 .divider-content {
-  color: var(--text-grey-900);
+  color: var(--steel-90);
 }
 
 .test-classname {
-  color: var(--text-grey-900);
+  color: var(--steel-90);
   & * {
-    border-bottom-width: var(--1-size);
-    border-bottom-color: var(--text-grey-900);
+    border-bottom-width: 1px;
+    border-bottom-color: var(--steel-90);
   }
 }
 
 .btn-divider-handler {
-  margin: 0 var(--8-space);
+  margin: 0 8px;
 }
 
 .show-divider-group {
   display: flex;
   flex-direction: column;
-  gap: var(--24-space);
+  gap: 24px;
 }

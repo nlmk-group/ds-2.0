@@ -7,7 +7,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import styles from './DragAndDrop.module.scss';
 
 import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import { EFileTypeDnD, EIconTypeDnD, ESpinnerWidthHelperDnD, EStatusColorDnD } from './enums';
+import { EDnDFileType, EDnDIconType, EDnDSpinnerWidthHelper, EDnDStatusColor } from './enums';
 import UploadIcon from './subcomponents/UploadIcon';
 
 describe('src/components/DragAndDrop', () => {
@@ -93,7 +93,7 @@ describe('src/components/DragAndDrop', () => {
   });
 
   describe('while having different types to upload', () => {
-    Object.values(EFileTypeDnD).forEach((key: EFileTypeDnD) => {
+    Object.values(EDnDFileType).forEach((key: EDnDFileType) => {
       const ComponentHelper = () => <DragAndDrop fileType={key} onUpload={onUploadMockCallBack} />;
 
       test(`It should render component that accept ${key}`, () => {
@@ -104,16 +104,16 @@ describe('src/components/DragAndDrop', () => {
 
       test(`It should render icon of type ${key}`, () => {
         render(<ComponentHelper />);
-        expect(screen.getByTestId(`ICON_TYPE_${EIconTypeDnD[key]}`)).toBeInTheDocument();
+        expect(screen.getByTestId(`ICON_TYPE_${EDnDIconType[key]}`)).toBeInTheDocument();
       });
     });
   });
 
   describe('While rendering with different statuses', () => {
-    Object.values(EStatusColorDnD).forEach((status: EStatusColorDnD) => {
+    Object.values(EDnDStatusColor).forEach((status: EDnDStatusColor) => {
       test(`It should render component with ${status} status`, () => {
         const { container } = render(
-          <DragAndDrop statusColor={EStatusColorDnD[status]} onUpload={onUploadMockCallBack} />
+          <DragAndDrop statusColor={EDnDStatusColor[status]} onUpload={onUploadMockCallBack} />
         );
         const dndComponent = container.getElementsByTagName('label')[0];
         expect(dndComponent.classList.contains(`label-${status}`)).toBe(true);
@@ -135,7 +135,7 @@ describe('src/components/DragAndDrop', () => {
       test(`It should render component's icon with ${size} size`, () => {
         render(<ComponentHelper />);
 
-        expect(screen.getByTestId(`ICON_TYPE_${EIconTypeDnD.image}`).classList.contains(`icon-${size}`)).toBe(true);
+        expect(screen.getByTestId(`ICON_TYPE_${EDnDIconType.image}`).classList.contains(`icon-${size}`)).toBe(true);
       });
     });
   });
@@ -162,7 +162,7 @@ describe('src/components/DragAndDrop', () => {
   describe('While rendering SmallText', () => {
     test('It should render default DnD with SmallText', () => {
       render(<DragAndDrop smallText onUpload={onUploadMockCallBack} />);
-      expect(screen.getByTestId(`SMALL_TEXT_${EStatusColorDnD.default}`)).toBeInTheDocument();
+      expect(screen.getByTestId(`SMALL_TEXT_${EDnDStatusColor.default}`)).toBeInTheDocument();
     });
 
     test('It should render DnD with title', () => {
@@ -172,7 +172,7 @@ describe('src/components/DragAndDrop', () => {
     });
 
     describe('While rendering with different statuses', () => {
-      Object.values(EStatusColorDnD).forEach((status: EStatusColorDnD) => {
+      Object.values(EDnDStatusColor).forEach((status: EDnDStatusColor) => {
         const ComponentHelper = () => <DragAndDrop smallText statusColor={status} onUpload={onUploadMockCallBack} />;
 
         test(`It should render SmallIcon with ${status} status`, () => {
@@ -203,8 +203,8 @@ describe('src/components/DragAndDrop', () => {
         test(`It should render UploadIcon with ${size} size`, () => {
           const { container } = render(<ComponentHelper />);
           const uploadIcon = container.getElementsByTagName('div')[0];
-          expect(uploadIcon).toHaveStyle(`height: ${ESpinnerWidthHelperDnD[size]}`);
-          expect(uploadIcon).toHaveStyle(`width: ${ESpinnerWidthHelperDnD[size]}`);
+          expect(uploadIcon).toHaveStyle(`height: ${EDnDSpinnerWidthHelper[size]}`);
+          expect(uploadIcon).toHaveStyle(`width: ${EDnDSpinnerWidthHelper[size]}`);
         });
       });
     });

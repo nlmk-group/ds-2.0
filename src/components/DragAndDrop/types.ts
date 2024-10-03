@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEvent, PropsWithChildren, ReactNode } from 'react';
 
 import { sizesMapping } from '@components/declaration';
 
-import { EFileTypeDnD, EStatusColorDnD } from './enums';
+import { EDnDFileType, EDnDStatusColor } from './enums';
 
 export interface IFileProps extends PropsWithChildren<any> {
   children?: JSX.Element;
@@ -34,8 +34,8 @@ export interface IDragAndDropProps
   title?: string | ReactNode;
   description?: string | ReactNode;
   btnLabel?: string;
-  fileType?: `${EFileTypeDnD}`;
-  statusColor?: `${EStatusColorDnD}`;
+  fileType?: `${EDnDFileType}`;
+  statusColor?: `${EDnDStatusColor}`;
   withIcon?: boolean;
   customIcon?: JSX.Element;
   size?: `${sizesMapping}`;
@@ -62,7 +62,7 @@ export interface ISmallTextProps {
   title: string | ReactNode;
   loading: boolean;
   percentUpload: number;
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   disabled: boolean;
   cancelUpload?: () => void;
 }
@@ -74,9 +74,9 @@ export interface IDefaultDnDProps {
   percentUpload: number;
   withIcon: boolean;
   customIcon: JSX.Element | null;
-  fileType: `${EFileTypeDnD}`;
+  fileType: `${EDnDFileType}`;
   title: string | ReactNode;
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   description: string | ReactNode;
   btnLabel: string;
   onButtonClick?: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -85,6 +85,6 @@ export interface IDefaultDnDProps {
 export interface ISmallIconProps {
   loading: boolean;
   percentUpload: number;
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   customIcon: JSX.Element | null;
 }

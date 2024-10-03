@@ -11,7 +11,7 @@ import { clsx } from 'clsx';
 
 import styles from '../DragAndDrop.module.scss';
 
-import { EStatusColorDnD } from '../enums';
+import { EDnDStatusColor } from '../enums';
 import UploadIcon from '../subcomponents/UploadIcon';
 import { ISmallIconProps } from '../types';
 
@@ -21,7 +21,7 @@ import { ISmallIconProps } from '../types';
  * @param {object} props - Свойства компонента SmallIcon.
  * @param {boolean} props.loading - Показать индикатор загрузки.
  * @param {number} props.percentUpload - Процент выполнения загрузки.
- * @param {`${EStatusColorDnD}`} props.statusColor - Цвет статуса.
+ * @param {`${EDnDStatusColor}`} props.statusColor - Цвет статуса.
  * @param {JSX.Element} [props.customIcon] - Пользовательская иконка.
  * @returns {JSX.Element} - Компонент SmallIcon.
  */
@@ -29,13 +29,13 @@ import { ISmallIconProps } from '../types';
 const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, customIcon }) => {
   const iconHelper = () => {
     switch (statusColor) {
-      case EStatusColorDnD.error:
+      case EDnDStatusColor.error:
         return (
           <Button variant="info" size="m" fill="error" iconButton={<IconAttentionWarningAlertErrorOutlined24 />} />
         );
-      case EStatusColorDnD.info:
+      case EDnDStatusColor.info:
         return <Button variant="primary" size="m" fill="clear" iconButton={<IconAddPlusOutlined24 />} />;
-      case EStatusColorDnD.warning:
+      case EDnDStatusColor.warning:
         return (
           <Button
             variant="info"

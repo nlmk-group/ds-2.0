@@ -2,30 +2,43 @@ import React, { FC } from 'react';
 
 import { clsx } from 'clsx';
 
-import { IDivider } from './types';
+import { IDividerProps } from './types';
 
 import styles from './Divider.module.scss';
 
-import { orientationMapping, typeMapping } from './enums';
-import HorizontalBorder from './HorizontalBorder';
-import Vertical from './Vertical';
+import { EDividerOrientation, EDividerType } from './enums';
+import HorizontalBorder from './subcomponents/HorizontalBorder';
+import VerticalBorder from './subcomponents/VerticalBorder';
 
-const Divider: FC<IDivider> = ({
+/**
+ * Компонент Divider отображает разделитель с возможностью настройки типа, ориентации и стиля.
+ *
+ * @param {object} props - Свойства компонента Divider.
+ * @param {ReactNode} [props.children] - Дополнительный контент, который будет отображаться между разделителями (только для горизонтальных разделителей).
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @param {boolean} [props.dashed=false] - Определяет, является ли линия пунктирной.
+ * @param {`${EDividerOrientation}`} [props.orientation=EDividerOrientation.center] - Ориентация разделителя.
+ * @param {number} [props.orientationSpace=0] - Пространство для ориентации.
+ * @param {`${EDividerType}`} [props.type] - Тип разделителя.
+ * @returns {JSX.Element} - Компонент Divider.
+ */
+
+const Divider: FC<IDividerProps> = ({
   children,
   className,
   dashed = false,
-  orientation = orientationMapping.center,
+  orientation = EDividerOrientation.center,
   orientationSpace = 0,
   type
 }) => {
-  if (type === typeMapping.vertical) {
-    return <Vertical className={className} dashed={dashed} />;
+  if (type === EDividerType.vertical) {
+    return <VerticalBorder className={className} dashed={dashed} />;
   }
 
   if (!children) {
     return (
       <div data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
-        <HorizontalBorder isSmall={orientation === orientationMapping.left} dashed={dashed} />
+        <HorizontalBorder isSmall={orientation === EDividerOrientation.left} dashed={dashed} />
       </div>
     );
   }
@@ -33,13 +46,13 @@ const Divider: FC<IDivider> = ({
   return (
     <div data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
       <HorizontalBorder
-        isSmall={orientation === orientationMapping.left}
+        isSmall={orientation === EDividerOrientation.left}
         dashed={dashed}
         orientationSpace={orientationSpace}
       />
       <div className={styles['child-wrapper']}>{children}</div>
       <HorizontalBorder
-        isSmall={orientation === orientationMapping.right}
+        isSmall={orientation === EDividerOrientation.right}
         dashed={dashed}
         orientationSpace={orientationSpace}
       />

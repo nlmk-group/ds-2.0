@@ -7,18 +7,18 @@ import { clsx } from 'clsx';
 
 import styles from '../DragAndDrop.module.scss';
 
-import { EDescriptionSizeHelperDnD, EIconTypeDnD, EStatusColorDnD, ETitleSizeHelperDnD } from '../enums';
+import { EDnDDescriptionSizeHelper, EDnDIconType, EDnDStatusColor, EDnDTitleSizeHelper } from '../enums';
 import { IDefaultDnDProps } from '../types';
 import UploadIcon from './UploadIcon';
 
-const getButtonFill = (loading: boolean, statusColor: `${EStatusColorDnD}`) => {
+const getButtonFill = (loading: boolean, statusColor: `${EDnDStatusColor}`) => {
   if (loading) {
     return 'solid';
   }
   switch (statusColor) {
-    case EStatusColorDnD.error:
+    case EDnDStatusColor.error:
       return 'error';
-    case EStatusColorDnD.warning:
+    case EDnDStatusColor.warning:
       return 'warning';
     default:
       return 'solid';
@@ -45,10 +45,10 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
       {loading && size === sizesMapping.m && <UploadIcon size={size} />}
       {!loading && withIcon && (
         <div
-          data-testid={`ICON_TYPE_${EIconTypeDnD[fileType]}`}
+          data-testid={`ICON_TYPE_${EDnDIconType[fileType]}`}
           className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}
         >
-          {customIcon || <Icon name={EIconTypeDnD[fileType]} />}
+          {customIcon || <Icon name={EDnDIconType[fileType]} />}
         </div>
       )}
 
@@ -57,7 +57,7 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
           <>{title}</>
         ) : (
           <Typography
-            variant={ETitleSizeHelperDnD[size]}
+            variant={EDnDTitleSizeHelper[size]}
             className={clsx(styles[`title-${statusColor}`], loading && styles['title-loading'])}
           >
             {title}
@@ -67,7 +67,7 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
           <>{description}</>
         ) : (
           <Typography
-            variant={EDescriptionSizeHelperDnD[size]}
+            variant={EDnDDescriptionSizeHelper[size]}
             className={clsx(styles[`text-color`], loading && styles['text-loading'])}
           >
             {description}
@@ -75,24 +75,14 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
         )}
         {btnLabel.length > 0 && size === sizesMapping.l && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button
-              size="m"
-              variant="secondary"
-              fill={getButtonFill(loading, statusColor)}
-              onClick={onButtonClick}
-            >
+            <Button size="m" variant="secondary" fill={getButtonFill(loading, statusColor)} onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>
         )}
         {btnLabel.length > 0 && size === sizesMapping.m && (
           <div className={styles['btn-wrapper-medium']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button
-              size="s"
-              variant="secondary"
-              fill={getButtonFill(loading, statusColor)}
-              onClick={onButtonClick}
-            >
+            <Button size="s" variant="secondary" fill={getButtonFill(loading, statusColor)} onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>

@@ -1,15 +1,15 @@
 /**
- * @type {enum} orientationMapping
- * @type {enum} typeMapping
+ * @type {enum} EOrientationDivider
+ * @type {enum} ETypeDivider
  */
 
-export enum orientationMapping {
+export enum EDividerOrientation {
   left = 'left',
   right = 'right',
   center = 'center'
 }
 
-export enum typeMapping {
+export enum EDividerType {
   horizontal = 'horizontal',
   vertical = 'vertical'
 }

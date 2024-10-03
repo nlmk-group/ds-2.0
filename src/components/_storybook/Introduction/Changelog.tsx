@@ -23,6 +23,48 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.5.14 - <span className={styles.date}>02.10.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-header-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Header
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен props children, расположенный после title</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.5.13 - <span className={styles.date}>01.10.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов для Divider</li>
+              <li className={styles['left-padding']}>
+                - Исправлены баги в Spinner и ProgressBar, когда проценты переносились на следующую строку
+              </li>
+              <li className={styles['left-padding']}>
+                - Актуализированы компоненты Spinner, Divider и ProgressBar согласно макетам
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.5.12 - <span className={styles.date}>26.09.24</span>
           </Typography>
           <ul className={styles.list}>

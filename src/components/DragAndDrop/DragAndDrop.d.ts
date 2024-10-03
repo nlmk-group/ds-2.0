@@ -1,14 +1,14 @@
 import { ChangeEvent, PropsWithChildren, ReactNode } from 'react';
+
 import { sizesDnD } from '@components/declaration';
-import { EFileTypeDnD, EStatusColorDnD } from './enums';
 
-
+import { EDnDFileType, EDnDStatusColor } from './enums';
 
 /**
  * Свойства компонента File.
  * Интерфейс, описывающий свойства, принимаемые компонентом File.
  */
-export interface IFileProps extends PropsWithChildren<{any}> {
+export interface IFileProps extends PropsWithChildren<{ any }> {
   /** Дочерний элемент */
   children?: JSX.Element;
   /** Заголовок файла */
@@ -53,7 +53,7 @@ export interface IFileProps extends PropsWithChildren<{any}> {
  * Свойства компонента Drag and Drop.
  * Интерфейс, описывающий свойства, принимаемые компонентом Drag and Drop.
  */
-export interface IDragAndDropProps extends PropsWithChildren<{children?: ReactNode;}> {
+export interface IDragAndDropProps extends PropsWithChildren<{ children?: ReactNode }> {
   /** Дополнительный CSS-класс */
   className?: string;
   /** Заголовок для области перетаскивания */
@@ -63,9 +63,9 @@ export interface IDragAndDropProps extends PropsWithChildren<{children?: ReactNo
   /** Текст кнопки для выбора файлов */
   btnLabel?: string;
   /** Тип загружаемых файлов */
-  fileType?: `${EFileTypeDnD}`;
+  fileType?: `${EDnDFileType}`;
   /** Цвет статуса */
-  statusColor?: `${EStatusColorDnD}`;
+  statusColor?: `${EDnDStatusColor}`;
   /** Показывать ли иконку в области перетаскивания */
   withIcon?: boolean;
   /** Пользовательская иконка */
@@ -121,7 +121,7 @@ export interface ISmallTextProps {
   /** Процент выполнения загрузки */
   percentUpload: number;
   /** Цвет статуса */
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   /** Отключен ли компонент */
   disabled: boolean;
   /** Функция для отмены загрузки */
@@ -146,11 +146,11 @@ export interface IDefaultDnDProps {
   /** Пользовательская иконка */
   customIcon: JSX.Element | null;
   /** Тип загружаемых файлов */
-  fileType: `${EFileTypeDnD}`;
+  fileType: `${EDnDFileType}`;
   /** Заголовок для области перетаскивания */
   title: string | ReactNode;
   /** Цвет статуса */
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   /** Описание для области перетаскивания */
   description: string | ReactNode;
   /** Текст кнопки для выбора файлов */
@@ -169,7 +169,7 @@ export interface ISmallIconProps {
   /** Процент выполнения загрузки */
   percentUpload: number;
   /** Цвет статуса */
-  statusColor: `${EStatusColorDnD}`;
+  statusColor: `${EDnDStatusColor}`;
   /** Пользовательская иконка */
   customIcon: JSX.Element | null;
 }
@@ -178,7 +178,7 @@ export interface ISmallIconProps {
  * Перечисление типов файлов.
  * Описывает возможные значения типов файлов для компонента Drag and Drop.
  */
-export enum EFileTypeDnD {
+export enum EDnDFileType {
   /** Файл */
   file = 'file',
   /** Изображение */
@@ -191,7 +191,7 @@ export enum EFileTypeDnD {
  * Перечисление цветов статусов.
  * Описывает возможные значения цветов статусов для компонента Drag and Drop.
  */
-export enum EStatusColorDnD {
+export enum EDnDStatusColor {
   /** Стандартный */
   default = 'default',
   /** Информационный */
@@ -206,7 +206,7 @@ export enum EStatusColorDnD {
  * Перечисление типов иконок.
  * Описывает возможные значения типов иконок для компонента Drag and Drop.
  */
-export enum EIconTypeDnD {
+export enum EDnDIconType {
   /** Иконка файла */
   file = 'IconUploadFile32',
   /** Иконка изображения */
@@ -219,7 +219,7 @@ export enum EIconTypeDnD {
  * Перечисление размеров заголовков.
  * Описывает возможные значения размеров заголовков для компонента Drag and Drop.
  */
-export enum ETitleSizeHelperDnD {
+export enum EDnDTitleSizeHelper {
   /** Заголовок уровня Heading3 */
   l = 'Heading3',
   /** Заголовок уровня Heading4 */
@@ -232,7 +232,7 @@ export enum ETitleSizeHelperDnD {
  * Перечисление размеров описаний.
  * Описывает возможные значения размеров описаний для компонента Drag and Drop.
  */
-export enum EDescriptionSizeHelperDnD {
+export enum EDnDDescriptionSizeHelper {
   /** Описание уровня Body1-Medium */
   l = 'Body1-Medium',
   /** Описание уровня Body2-Medium */
@@ -245,7 +245,7 @@ export enum EDescriptionSizeHelperDnD {
  * Перечисление размеров спиннеров.
  * Описывает возможные значения размеров спиннеров для компонента Drag and Drop.
  */
-export enum ESpinnerSizeHelperDnD {
+export enum EDnDSpinnerSizeHelper {
   /** Размер 2xl для спиннера */
   l = '2xl',
   /** Размер xl для спиннера */
@@ -258,7 +258,7 @@ export enum ESpinnerSizeHelperDnD {
  * Перечисление размеров процентов.
  * Описывает возможные значения размеров процентов для компонента Drag and Drop.
  */
-export enum EPercentageSizeHelperDnD {
+export enum EDnDPercentageSizeHelper {
   /** Размер процентов Heading3 */
   l = 'Heading3',
   /** Размер процентов Body1-Medium */
@@ -271,7 +271,7 @@ export enum EPercentageSizeHelperDnD {
  * Перечисление ширины спиннеров.
  * Описывает возможные значения ширины спиннеров для компонента Drag and Drop.
  */
-export enum ESpinnerWidthHelperDnD {
+export enum EDnDSpinnerWidthHelper {
   /** Ширина спиннера 96px */
   l = '96px',
   /** Ширина спиннера 56px */

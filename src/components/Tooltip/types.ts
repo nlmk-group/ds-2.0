@@ -27,5 +27,11 @@ export interface ITooltipProps {
   clickable?: boolean;
   /** Флаг отображения тултипа */
   isOpen?: boolean;
+  /** Задержка появления тултипа **/
+  delayShow?: number;
+  /** Задержка исчезания тултипа **/
+  delayHide?: number;
+  /** Определяет следование за позицией курсора **/
+  float?: boolean;
 }
 

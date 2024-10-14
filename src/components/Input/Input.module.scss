@@ -182,12 +182,19 @@
   color: var(--steel-70);
   cursor: text;
   transition: 100ms ease-out;
+  max-width: calc(100% - 32px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include input-color-states;
 
   .typography {
     line-height: inherit;
     margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

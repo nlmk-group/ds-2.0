@@ -1,4 +1,11 @@
-.scrollable,  {
+.tabs-container {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  z-index: 10000;
+}
+
+.scrollable {
   width: 100%;
   overflow-x: auto;
   -ms-overflow-style: none;
@@ -9,15 +16,31 @@
   }
 }
 
-.tabs-wrapper {
-  border-bottom: var(--1-border) solid var(--divider-divider);
+.tabs-container .scroll-arrow-left,
+.tabs-container .scroll-arrow-right {
   display: flex;
   align-items: center;
-  gap: var(--24-space);
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scroll-arrow-left {
+  left: -40px;
+}
+
+.scroll-arrow-right {
+  right: -40px;
+}
+
+.tabs-wrapper {
+  border-bottom: 1px solid var(--steel-50);
+  display: flex;
+  align-items: center;
+  gap: 24px;
 
   &__scrollable {
     width: max-content;
   }
 }
-
-

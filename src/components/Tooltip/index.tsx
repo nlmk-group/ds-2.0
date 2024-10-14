@@ -45,7 +45,10 @@ const Tooltip: FC<ITooltipProps> = ({
   render,
   clickable = false,
   popupClassName,
-  isOpen
+  isOpen,
+  delayShow = 150,
+  delayHide = 150,
+  float = false
 }) => {
   const tooltipRef = React.useRef<TooltipRefProps>(null);
 
@@ -119,6 +122,9 @@ const Tooltip: FC<ITooltipProps> = ({
           classNameArrow={styles['arrow-styling']}
           clickable={clickable}
           isOpen={isOpen}
+          delayShow={delayShow}
+          delayHide={delayHide}
+          float={float}
         >
           {title && renderTitle(title)}
           {description && renderDescription(description)}

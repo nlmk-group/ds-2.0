@@ -43,13 +43,13 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
 
   return (
     <Input
-      {...argTypes}
       value={value}
       reset={argTypes.reset}
+      label={labelText}
+      {...argTypes}
       onBlur={handleBlur}
       onChange={handleChange}
       onReset={handleReset}
-      label={labelText}
     />
   );
 };

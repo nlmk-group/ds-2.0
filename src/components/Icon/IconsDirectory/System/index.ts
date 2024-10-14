@@ -564,7 +564,7 @@ export {
   IconPeopleCheckDoneOutlined24,
   IconPeopleCheckDoneOutlined32
 } from './PeopleCheckDoneOutlined';
-export { IconPersonFilled16, IconPersonFilled24, IconPersonFilled32 } from './PersonFilled';
+export { IconPersonFilled16, IconPersonFilled24, IconPersonFilled32, IconPersonFilled110 } from './PersonFilled';
 export { IconPersonOutlined16, IconPersonOutlined24, IconPersonOutlined32 } from './PersonOutlined';
 export { IconPhoneCallContact16, IconPhoneCallContact24, IconPhoneCallContact32 } from './PhoneCallContact';
 export { IconPhotoCameraOutlined16, IconPhotoCameraOutlined24, IconPhotoCameraOutlined32 } from './PhotoCameraOutlined';

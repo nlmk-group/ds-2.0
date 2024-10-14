@@ -30,19 +30,23 @@ export default App;
 
 ## Props
 
-| Prop           | Type                       | Default | Description                                   |
-| -------------- | -------------------------- | ------- | --------------------------------------------- |
-| title          | string                     | -       | Заголовок tooltip                             |
-| description    | string                     | -       | Описание tooltip                              |
-| size           | `${ETooltipSizes}`         | default | Размер tooltip                                |
-| type           | `${ETooltipType}`          | default | Тип tooltip                                   |
-| behavior       | `${ETooltipBehaviorType}`  | hover   | Поведение tooltip                             |
-| placement      | `${ETooltipPlacementType}` | top     | Размещение tooltip относительно элемента      |
-| className      | string                     | -       | Дополнительный CSS-класс для tooltip          |
-| children       | React.ReactNode            | -       | Контент, вокруг которого отображается tooltip |
-| render         | () => React.ReactNode      | -       | Рендер функции для содержимого tooltip        |
-| clickable      | boolean                    | false   | Определяет, является ли tooltip кликабельным  |
-| popupClassName | string                     | -       | Дополнительный CSS-класс для tooltip          |
+| Prop           | Type                       | Default | Description                                            |
+| -------------- | -------------------------- | ------- | ------------------------------------------------------ |
+| title          | string                     | -       | Заголовок tooltip                                      |
+| description    | string                     | -       | Описание tooltip                                       |
+| size           | `${ETooltipSizes}`         | default | Размер tooltip                                         |
+| type           | `${ETooltipType}`          | default | Тип tooltip                                            |
+| behavior       | `${ETooltipBehaviorType}`  | hover   | Поведение tooltip                                      |
+| placement      | `${ETooltipPlacementType}` | top     | Размещение tooltip относительно элемента               |
+| className      | string                     | -       | Дополнительный CSS-класс для tooltip                   |
+| children       | React.ReactNode            | -       | Контент, вокруг которого отображается tooltip          |
+| render         | ReactNode                  | -       | Кастомный рендер для содержимого tooltip               |
+| clickable      | boolean                    | false   | Определяет, является ли tooltip кликабельным           |
+| popupClassName | string                     | -       | Дополнительный CSS-класс для всплывающего окна tooltip |
+| isOpen         | boolean                    | -       | Флаг отображения tooltip                               |
+| delayShow      | number                     | -       | Задержка появления tooltip (в миллисекундах)           |
+| delayHide      | number                     | -       | Задержка исчезновения tooltip (в миллисекундах)        |
+| float          | boolean                    | false   | Определяет следование за позицией курсора              |
 
 ## Поведение tooltip
 

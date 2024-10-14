@@ -1,0 +1,2 @@
+export { default as IconKindness24 } from './24';
+//# sourceMappingURL=index.d.ts.map

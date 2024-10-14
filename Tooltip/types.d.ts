@@ -14,5 +14,8 @@ export interface ITooltipProps {
     description?: string;
     clickable?: boolean;
     isOpen?: boolean;
+    delayShow?: number;
+    delayHide?: number;
+    float?: boolean;
 }
 //# sourceMappingURL=types.d.ts.map

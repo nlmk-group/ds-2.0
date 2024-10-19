@@ -1,6 +1,6 @@
 import { FC } from '../../../../../node_modules/react';
-import { IFile } from './types';
+import { IFileProps } from './types';
 
-declare const File: FC<IFile>;
+declare const File: FC<IFileProps>;
 export default File;
 //# sourceMappingURL=index.d.ts.map

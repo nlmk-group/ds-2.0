@@ -1,9 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
-import { IFile } from '../subcomponents/File/types';
+import { IFileProps } from '../subcomponents/File/types';
 
 declare const _default: {
     title: string;
-    component: React.FC<import('../types').IAttachFiles>;
+    component: React.FC<import('../types').IAttachFilesProps>;
     decorators: ((Story: () => any) => React.JSX.Element)[];
     parameters: {
         actions: {
@@ -108,14 +108,14 @@ declare const _default: {
 };
 export default _default;
 export declare const AttachFilesDefault: {
-    (argTypes: IFile): JSX.Element;
+    (argTypes: IFileProps): JSX.Element;
     storyName: string;
     args: {
         label: string;
     };
 };
 export declare const AttachFilesDescription: {
-    (argTypes: IFile): JSX.Element;
+    (argTypes: IFileProps): JSX.Element;
     storyName: string;
     args: {
         description: string;
@@ -127,7 +127,7 @@ export declare const AttachFilesLeftIcon: {
     storyName: string;
 };
 export declare const AttachFilesControl: {
-    (argTypes: IFile): JSX.Element;
+    (argTypes: IFileProps): JSX.Element;
     storyName: string;
     args: {
         removedOnClick: import('@storybook/addon-actions').HandlerFunction;

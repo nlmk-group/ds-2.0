@@ -1,9 +1,9 @@
 import { ReactElement, ReactNode } from '../../../node_modules/react';
-import { IFile } from './subcomponents/File/types';
+import { IFileProps } from './subcomponents/File/types';
 
-export interface IAttachFiles {
+export interface IAttachFilesProps {
     className?: string;
-    title?: ReactElement<IFile, any>;
+    title?: ReactElement<IFileProps, any>;
     children?: ReactNode[] | ReactNode;
 }
 //# sourceMappingURL=types.d.ts.map

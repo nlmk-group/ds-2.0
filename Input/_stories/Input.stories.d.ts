@@ -292,7 +292,7 @@ export declare const InputMultilineSuccess: {
 export declare const InputPseudoDefaultChecking: {
     (argTypes: TInputProps): JSX.Element;
     args: {
-        onChange: import('@vitest/spy').Mock<any, any>;
+        onChange: import('@vitest/spy').Mock<(...args: any[]) => any>;
     };
     storyName: string;
     play({ args, canvasElement }: {

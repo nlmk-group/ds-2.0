@@ -1,0 +1,142 @@
+import{j as e}from"./jsx-runtime-DFnSfiB4.js";import{useMDXComponents as c}from"./index-CpguRmgc.js";import{ag as p,ah as n,ai as F}from"./chunk-NUUEMKO5-BfWh-sLJ.js";import{a0 as s,a as b}from"./index-CZcUCixh.js";import{DecoratorDefault as h}from"./Decorator.stories-BP3ijO2B.js";import{r as x}from"./index-DQ2WTIsS.js";import{s as a,H as f,E as l}from"./Header-D2gbLVua.js";import{F as A}from"./FigmaEmbed-DjqPO1nf.js";import{P as u}from"./Properties-C9DnMm3G.js";import{T as v}from"./Tests-CzPE_ao-.js";/* empty css               */import"./generateUUID-DDiDEiZj.js";import"./index-BUicYAu_.js";import"./index-CSbymPMC.js";import"./index-c1a7ry8u.js";import"./index-rzy6QoZO.js";import"./index-ehXB0alm.js";import"./index-BKAatnfy.js";import"./index-D_J9Vxng.js";import"./index-D5U3DYwn.js";import"./index-CLzAcar6.js";import"./32-sVrGXRAZ.js";import{F as k,c as j,b as t,g as $,i as T,j as r,a as g}from"./text-BlM6NsIu.js";import"./iframe-BUM6csBU.js";import"../sb-preview/runtime.js";import"./index-B_snx1v7.js";import"./index-D-8MO0q_.js";import"./get-oHtgdQEu.js";import"./assertThisInitialized-B9jnkVVz.js";import"./index-DsjOqT4x.js";import"./index-DrFu-skq.js";import"./client-Du4Z4Qeu.js";import"./clsx-B-dksMZM.js";import"./types-CpBSVUgC.js";import"./.jest-test-results-R5jBLDn_.js";import"./index-BKbm6zW0.js";const m="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319&t=HhCDuaOuzHu5rgyf-1",E=()=>{const[i,o]=x.useState(0);return e.jsxs("div",{className:a.wrapper,children:[e.jsx(f,{title:"AttachFiles",description:`Компонент, используемый для прикрепления файла. Компонент AttachFiles
+          собирается из необходимого количества компонентов File.`,isStable:!0,codeLink:"https://github.com/nlmk-group/ds-2.0/tree/master/tree/src/components/AttachFiles",figmaLink:m}),e.jsx("div",{className:a.tabs,children:e.jsxs(s,{children:[e.jsx(s.Tab,{label:"Разработчику",active:Number(i)===0,onClick:()=>o(0)}),e.jsx(s.Tab,{label:"Дизайнеру",active:Number(i)===1,onClick:()=>o(1)}),e.jsx(s.Tab,{label:"Тестирование",active:Number(i)===2,onClick:()=>o(2)})]})}),Number(i)==0&&e.jsxs(e.Fragment,{children:[e.jsx(l,{description:"Компонент файла, представляет собой иконку с названием файла.",code:`import { File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <>
+    <File label="${k}" />
+  </>
+)
+            `}),e.jsx(l,{description:"Компонент файл может содержать дополнительное описание. Дополнительное описание передается при помощи параметра description.",code:`import { File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <>
+    <File
+      description="${j}"
+      label="${t}"
+    />
+  </>
+)
+            `}),e.jsx(l,{description:"В компоненте файла слева может быть использована иконка файла (по умолчанию), чекбокс (свойство: checked), иконка IconTick24 (свойство: tick) или же не быть ничего.",code:`import { File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <>
+    <File label="${t}" />
+    <File label="${t}" checked />
+    <File label="${t}" tick />
+    <File label="${t}" empty />
+  </>
+)
+            `}),e.jsx(l,{description:"В компоненте файла справа находится блок управления: до трех кнопок (удалить, загрузить, комментировать) или одна кнопка добавления файла. Добавление кнопок осуществляется при помощи свойств: removed - кнопка удаления, saved - кнопка загрузки, commented - комментировать, addFile - добавить файлы. Для каждой кнопки существует соответствующий ей обработчик события onClick: removedOnClick, savedOnClick, commentedOnClick, addFileOnClick.",code:`import { File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '600px' }}>
+    <File
+      label="${t}"
+      removed
+    />
+    <File
+      commented
+      label="${t}"
+    />
+    <File
+      label="${t}"
+      saved
+    />
+    <File
+      commented
+      label="${t}"
+      removed
+    />
+    <File
+      commented
+      label="${t}"
+      saved
+    />
+    <File
+      label="${t}"
+      removed
+      saved
+    />
+    <File
+      commented
+      label="${t}"
+      removed
+      saved
+    />
+    <File
+      addFile
+      label="${t}"
+    />
+  </div>
+)
+            `}),e.jsx(l,{description:"Компонент AttachFiles может быть без заголовка: несколько файлов, объединенных в один контейнер.",code:`import { AttachFiles, File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '600px' }}>
+    <AttachFiles>
+      <File
+        commented
+        label="${t}"
+        removed
+        saved
+      />
+      <File
+        addFile
+        label="${t}"
+      />
+    </AttachFiles>
+  </div>
+)
+            `}),e.jsx(l,{description:"Компонент AttachFiles может быть с заголовком. Для передачи заголовка используется свойство - title. В качестве заголовка используется компонент File в любой из возможных вариаций.",code:`import { AttachFiles, File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <>
+    <AttachFiles title={<File label="${$}" checked />}>
+      <File label="${t}" />
+      <File label="${t}" checked />
+      <File label="${t}" tick />
+      <File label="${t}" empty />
+    </AttachFiles>
+  </>
+)
+            `}),e.jsx(l,{description:T,code:`import { AttachFiles, File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '600px' }}>
+    <AttachFiles title={<File label="${t}" addFile />}>
+      <File label="${t}" />
+      <File label="${t}" checked />
+      <File label="${t}" tick />
+      <File label="${t}" empty />
+    </AttachFiles>
+  </div>
+)
+            `}),e.jsx(l,{description:r,code:`import { AttachFiles, File } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '600px' }}>
+    <AttachFiles
+      title={
+        <File
+          label="${r}"
+          checked
+          indeterminate={true}
+        />
+      }
+    >
+      <File
+        label="${t}"
+        checked
+        removed
+      />
+      <File
+        label="${t}"
+        checked
+        removed
+      />
+    </AttachFiles>
+  </div>
+)
+            `}),e.jsx(u,{argsTypes:g})]}),Number(i)==1&&e.jsx(A,{url:m}),Number(i)==2&&e.jsx(v,{componentName:"AttachFiles"})]})};function d(i){return e.jsxs(e.Fragment,{children:[e.jsx(p,{title:"Components/AttachFiles/Info",component:b,parameters:{design:{type:"figma",url:"https://www.figma.com/file/QsL7u2PBZMnMhvOvj9MZzd/DS2.0-Attach-Files?node-id=101%3A8416&mode=dev"},actions:{argTypesRegex:"^on.*"},jest:["AttachFiles.test.tsx"]}}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(F,{children:e.jsx(E,{})})]})}function de(i={}){const{wrapper:o}={...c(),...i.components};return o?e.jsx(o,{...i,children:e.jsx(d,{...i})}):d()}export{de as default};

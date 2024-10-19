@@ -7,7 +7,7 @@ import { clsx } from 'clsx';
 import style from '../AttachFiles.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { IFile } from '../subcomponents/File/types';
+import { IFileProps } from '../subcomponents/File/types';
 import argsTypes from './argsTypes';
 import {
   FILE_NAME,
@@ -41,7 +41,7 @@ const FileCollection: JSX.Element[] = [
   <File label={FILE_NAME} empty />
 ];
 
-export const AttachFilesDefault = (argTypes: IFile): JSX.Element => {
+export const AttachFilesDefault = (argTypes: IFileProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <File {...argTypes} />
@@ -54,7 +54,7 @@ AttachFilesDefault.args = {
   label: FILE_NAME
 };
 
-export const AttachFilesDescription = (argTypes: IFile): JSX.Element => {
+export const AttachFilesDescription = (argTypes: IFileProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <File {...argTypes} />
@@ -80,7 +80,7 @@ export const AttachFilesLeftIcon = (): JSX.Element => {
 
 AttachFilesLeftIcon.storyName = FILES_LEFT_ICON;
 
-export const AttachFilesControl = (argTypes: IFile): JSX.Element => {
+export const AttachFilesControl = (argTypes: IFileProps): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, style['vertical-wrapper'])}>
       <File
@@ -157,7 +157,7 @@ export const AttachFilesWithTitle = (): JSX.Element => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--16-space)'
+        gap: '16px'
       }}
     >
       <AttachFiles title={<File label={FILE_NAME} checked />}>

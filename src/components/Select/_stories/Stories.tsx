@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -195,14 +194,12 @@ export default App = () => {
         description="Select позволяет пользователям выбирать один или несколько элементов из списка. Он поддерживает поиск, множественный выбор и другие функции."
         isDeprecated
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Select"
-        figmaLink="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A29073&mode=design&t=awyt3Fzj1XS6th7v-1"
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
-          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Тестирование" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
         </Tabs>
       </div>
 
@@ -219,10 +216,7 @@ export default App = () => {
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A29073&mode=design&t=awyt3Fzj1XS6th7v-1" />
-      )}
-      {Number(activeTab) === 2 && <Tests componentName="Select" />}
+      {Number(activeTab) === 1 && <Tests componentName="Select" />}
     </div>
   );
 };

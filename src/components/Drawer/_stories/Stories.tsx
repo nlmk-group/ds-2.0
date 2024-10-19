@@ -66,7 +66,6 @@ export default  App = () => {
         description="Компонент Drawer обеспечивает отображение выдвижной панели с возможностью настройки позиции и обработки закрытия."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Drawer"
-        figmaLink="https://www.figma.com/file/0BGHYt5CjO71I4KhygQJD5/DS2.0-Filtering-%26-Sorting?node-id=534-67220&mode=dev"
       />
 
       <div className={styles.tabs}>

@@ -29,8 +29,8 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Snackbar';
-const FIGMA_URL =
-  'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1039%3A29074&mode=design&t=awyt3Fzj1XS6th7v-1';
+const FIGMA_LINK =
+  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=280-8187&t=EnvIMGos3m33avAX-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -46,13 +46,13 @@ const Stories = (): JSX.Element => {
         description="Snackbar - это компонент, который предоставляет краткое уведомление или сообщение о событии."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_URL}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -175,7 +175,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

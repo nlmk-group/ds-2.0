@@ -13,8 +13,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import { argsTypes } from './argsTypes';
 
 const COMPONENT_NAME = 'ErrorPage';
-const FIGMA_URL =
-  'https://www.figma.com/file/ocBJCN1akiFe5oQljRKNi0/DS2.0-Error?type=design&node-id=2-10&mode=design&t=RSFbkTXfvL8sjP7n-0';
+const FIGMA_LINK =
+  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=287-80936';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -26,13 +26,13 @@ const Stories = (): JSX.Element => {
         description="Компонент ErrorPage предназначен для информирования пользователя о различных ошибках веб-приложения и предложения возможных действий для их решения с помощью настраиваемых сообщений и изображений."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_URL}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -54,7 +54,7 @@ export default  App = () => (
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/ocBJCN1akiFe5oQljRKNi0/DS2.0-Error?type=design&node-id=2-10&mode=design&t=RSFbkTXfvL8sjP7n-0" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && <Tests componentName="ErrorPage" />}
     </div>

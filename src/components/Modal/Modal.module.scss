@@ -24,6 +24,9 @@
 
 .modalInner {
   position: relative;
+  display: inline-block; 
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .modal {
@@ -32,10 +35,9 @@
   padding: 0 32px 32px;
   position: relative;
   overflow: hidden;
-  max-width: 90%;
-  max-height: 90%;
   pointer-events: auto;
-
+  max-width: 100%; 
+  max-height: 100%;
   &.resizable {
     resize: both;
     overflow: auto;
@@ -61,8 +63,8 @@
 
 .modalClose {
   position: absolute;
-  top: 4px;
-  right: -53px;
+  top: -10px;
+  right: -40px;
   cursor: pointer;
   pointer-events: auto;
 

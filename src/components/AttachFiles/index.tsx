@@ -1,9 +1,19 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import { IAttachFiles } from './types';
+import { IAttachFilesProps } from './types';
 import styles from './AttachFiles.module.scss';
 
-const AttachFiles: FC<IAttachFiles> = ({
+/**
+ * Компонент AttachFiles предоставляет форматированный список прикреплённых файлов.
+ *
+ * @param {object} props - Свойства компонента AttachFiles.
+ * @param {ReactElement<IFile, any>} [props.title] - Заголовок для секции прикреплённых файлов.
+ * @param {ReactNode[] | ReactNode} [props.children] - Дочерние элементы (список файлов).
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @returns {JSX.Element} - Компонент AttachFiles.
+ */
+
+const AttachFiles: FC<IAttachFilesProps> = ({
   title,
   children,
   className

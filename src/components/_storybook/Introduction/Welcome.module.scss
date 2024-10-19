@@ -108,7 +108,7 @@
 
 .links {
   text-wrap: nowrap !important;
-  &:hover {
+  > a, a:hover {
     text-decoration: none !important;
   }
   svg {

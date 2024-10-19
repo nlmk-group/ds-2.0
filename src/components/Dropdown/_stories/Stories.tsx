@@ -11,6 +11,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-11112&t=HhCDuaOuzHu5rgyf-1';
+
 const DropdownStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
   const positionsExample = `const positions = [
@@ -69,13 +71,13 @@ export default App;
         description="Dropdown позволяет пользователям выбирать одно действие из выпадающего меню"
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Dropdown"
-        // figmaLink="https://www.figma.com/design/2bgeOS0URFNqFO1m1bnyvg/Button-DS-3.0?node-id=6070-93163&t=nJ2tmRpMpk8P3SWk-0"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -88,7 +90,7 @@ export default App;
         </>
       )}
       {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/design/2bgeOS0URFNqFO1m1bnyvg/Button-DS-3.0?node-id=6070-93163&t=nJ2tmRpMpk8P3SWk-0" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) === 2 && <Tests componentName="Dropdown" />}
     </div>

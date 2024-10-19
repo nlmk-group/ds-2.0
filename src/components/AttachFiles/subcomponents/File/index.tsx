@@ -11,10 +11,34 @@ import {
 } from '@components/index';
 import { clsx } from 'clsx';
 import { Typography } from '@components/index';
-import { IFile } from './types';
+import { IFileProps } from './types';
 import styles from './File.module.scss';
 
-const File: FC<IFile> = ({
+/**
+ * Компонент File предоставляет интерфейс для работы с файлами, отображая информацию и различные контролы.
+ *
+ * @param {object} props - Свойства компонента File.
+ * @param {string} [props.label] - Метка файла.
+ * @param {string} [props.description=''] - Описание файла.
+ * @param {boolean} [props.checked=false] - Флаг, показывающий, отмечен ли файл.
+ * @param {boolean} [props.checkedValue] - Значение состояния checkbox-а.
+ * @param {() => void} [props.onCheckedChange] - Функция, вызываемая при изменении состояния checkbox-а.
+ * @param {boolean} [props.tick=false] - Флаг, показывающий, нужно ли отображать галочку.
+ * @param {boolean} [props.empty=false] - Флаг, показывающий, пуст ли файл.
+ * @param {boolean} [props.removed=false] - Флаг, показывающий, был ли файл удален.
+ * @param {() => void} [props.removedOnClick] - Функция, вызываемая при клике на удаление файла.
+ * @param {boolean} [props.commented=false] - Флаг, показывающий, был ли файл прокомментирован.
+ * @param {() => void} [props.commentedOnClick] - Функция, вызываемая при клике на добавление комментария.
+ * @param {boolean} [props.saved=false] - Флаг, показывающий, был ли файл сохранен.
+ * @param {() => void} [props.savedOnClick] - Функция, вызываемая при клике на сохранение файла.
+ * @param {boolean} [props.addFile=false] - Флаг, показывающий, должна ли кнопка добавления файла быть активной.
+ * @param {() => void} [props.addFileOnClick] - Функция, вызываемая при клике на добавление файла.
+ * @param {boolean} [props.indeterminate=false] - Флаг, показывающий, является ли состояние checkbox-а неопределенным.
+ * @param {string} [props.className] - Дополнительный CSS-класс.
+ * @returns {JSX.Element} - Компонент File.
+ */
+
+const File: FC<IFileProps> = ({
   label,
   description = '',
   checked,
@@ -35,7 +59,7 @@ const File: FC<IFile> = ({
 }) => {
   const TickIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="TICK_ICON">
-      <IconTaskOutlined24 htmlColor={'var(--ac-icon-blue)'} />
+      <IconTaskOutlined24 htmlColor={'var(--brand-sapphire-60)'} />
     </div>
   );
 
@@ -51,7 +75,7 @@ const File: FC<IFile> = ({
 
   const DefaultIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="DEFAULT_ICON">
-      <IconInsertDriveFileOutlined24 htmlColor={'var(--ac-icon-blue)'} />
+      <IconInsertDriveFileOutlined24 htmlColor={'var(--brand-sapphire-60)'} />
     </div>
   );
 

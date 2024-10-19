@@ -11,6 +11,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=286-1924&t=HhCDuaOuzHu5rgyf-1';
+
 const ModalStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -88,13 +90,13 @@ export default  App = () => {
         description="Компонент Modal обеспечивает отображение модальных окон с возможностями перетаскивания, изменения размера и обработки закрытия."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Modal"
-        figmaLink="https://www.figma.com/file/BU6Pd9uO1AIVa1yDqhr0hw/Drawer%2FModal-window?type=design&node-id=1-17&mode=dev"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -119,7 +121,7 @@ export default  App = () => {
         </>
       )}
       {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/BU6Pd9uO1AIVa1yDqhr0hw/Drawer%2FModal-window?type=design&node-id=1-17&mode=dev" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) === 2 && <Tests componentName="Modal" />}
     </div>

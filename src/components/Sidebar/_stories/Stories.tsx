@@ -19,8 +19,8 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Sidebar';
-const FIGMA_URL =
-  'https://www.figma.com/file/NVWvbpDg0KxYpZOlCMFXdy/DS2.0-Sidebar?type=design&node-id=0-1&mode=design&t=Qh3zxP2KDdKIeZpx-0';
+const FIGMA_LINK =
+  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=287-2084&t=EnvIMGos3m33avAX-1';
 
 const sidebarDefault = `import { useState } from 'react';
 import { Sidebar } from '@nlmk/ds-2.0';
@@ -139,13 +139,13 @@ const SidebarStories = (): JSX.Element => {
         description={`Компонент для навигации и организации контента в интерфейсе.`}
         isBeta
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_URL}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -156,7 +156,7 @@ const SidebarStories = (): JSX.Element => {
         </>
       )}
 
-      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
+// import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -20,8 +20,10 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'PseudoInput';
-const FIGMA_URL =
-  'https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/Input-%CE%B2?node-id=207%3A40297&t=l4wSBLji2Mz59Nd6-0';
+
+// TODO:FIND LINK FROM UI KIT FOR THIS COMPONENT
+// const FIGMA_LINK =
+//   'https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/Input-%CE%B2?node-id=207%3A40297&t=l4wSBLji2Mz59Nd6-0';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -37,7 +39,6 @@ const Stories = (): JSX.Element => {
         description="PseudoInput - элемент, который позволяет отображать информацию."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_URL}
       />
 
       <div className={styles.tabs}>
@@ -103,7 +104,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
+      {/* {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />} */}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

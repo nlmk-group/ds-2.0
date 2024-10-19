@@ -19,8 +19,8 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Typography';
-const FIGMA_URL =
-  'https://www.figma.com/file/MSMqfqJrQNaqbLe4Ctkq7n/Design-System-2.0-NLMK-(beta)-(Community)?type=design&node-id=1027%3A18324&mode=design&t=awyt3Fzj1XS6th7v-1';
+const FIGMA_LINK =
+  'https://www.figma.com/design/7GI4zrw0ZKhFKb6oMWvAK9/NLMK-Typo?node-id=5635-99311&t=GnmwsdqmCXZcM99O-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -36,13 +36,13 @@ const Stories = (): JSX.Element => {
         description={`Компонент для стандартизации текста и относящимся к нему свойствам стилизации.`}
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_URL}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -304,7 +304,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_URL} />}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

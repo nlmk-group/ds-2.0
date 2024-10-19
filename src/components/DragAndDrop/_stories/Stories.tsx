@@ -12,6 +12,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=450-136040&t=HhCDuaOuzHu5rgyf-1';
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -22,13 +24,13 @@ const Stories = (): JSX.Element => {
         description="Компонент DragAndDrop представляет собой компонент ..."
         isBeta
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/DragAndDrop"
-        figmaLink="https://www.figma.com/file/6TeplhuWEqaYbru1WEvbcA/Treelist?node-id=228%3A38735&mode=dev"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -52,7 +54,7 @@ export default  App = () => (
         </>
       )}
       {Number(activeTab) == 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/6TeplhuWEqaYbru1WEvbcA/Treelist?type=design&node-id=228-38735&mode=design&t=PWYYXZVAWIcENpPX-0" />
+        <FigmaEmbed url={FIGMA_LINK} />
       )}
       {Number(activeTab) == 2 && <Tests componentName="DragAndDrop" />}
     </div>

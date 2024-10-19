@@ -21,6 +21,7 @@ import {
   HEADER_NOTIFICATION,
   HEADERS_DIFFERENT_SPACING
 } from './text';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 
 enum TabIds {
   dev,
@@ -29,6 +30,8 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Header';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434&t=HhCDuaOuzHu5rgyf-1';
+
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -44,11 +47,13 @@ const Stories = (): JSX.Element => {
         description="Header - это компонент, который отображает настраиваемый верхний колонтитул (шапку) веб-страницы или приложения."
         isBeta
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -174,6 +179,7 @@ export default  App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

@@ -1,33 +1,33 @@
 @mixin icon-center {
-  width: var(--24-size);
+  width: 24px;
   display: flex;
   justify-content: center;
 }
 
 .wrapper {
-  padding: var(--16-space);
-  gap: var(--4-size);
-  border-radius: var(--4-radius);
-  background: var(--steel-20);
+  padding: 16px;
+  gap: 4px;
+  border-radius: 4px;
+  background: var(--steel-10);
   transition: 0.5s;
   position: relative;
   &:hover {
-    background: var(--text-grey-50);
+    background: var(--steel-30);
   }
 }
 
 .container-info {
   display: flex;
-  min-height: var(--40-size);
-  gap: var(--8-space);
+  min-height: 40px;
+  gap: 8px;
   align-items: center;
 }
 
 .title {
   flex: 1;
-  color: var(--text-grey-900);
-  margin-right: var(--16-space);
-  padding: 0 var(--4-space);
+  color: var(--steel-90);
+  margin-right: 16px;
+  padding: 0 4px;
 }
 
 .long-title-wrapper {
@@ -43,18 +43,18 @@
 .controllers-wrapper {
   display: flex;
   flex-direction: row;
-  gap: var(--16-space);
+  gap: 16px;
   margin: auto 0 auto auto;
 }
 
 .description {
-  color: var(--text-grey-500);
-  margin-top: var(--4-space);
-  margin-left: var(--4-space);
+  color: var(--steel-70);
+  margin-top: 4px;
+  margin-left: 4px;
 }
 
 .description-space-helper {
-  margin-left: var(--38-size);
+  margin-left: 38px;
 }
 
 .icon-wrapper {
@@ -63,19 +63,19 @@
 
 .icon-wrapper-checked {
   @include icon-center;
-  padding: var(--8-space) 0;
+  padding: 8px 0;
 }
 
 .control-btn {
   button {
-    height: var(--32-size);
-    min-width: var(--32-size);
+    height: 32px;
+    min-width: 32px;
   }
 }
 
 .add-file-btn {
   position: absolute;
-  top: var(--16-space);
-  right: var(--16-space);
+  top: 16px;
+  right: 16px;
 }
 

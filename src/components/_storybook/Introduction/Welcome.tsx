@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
-import { GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
+import { FigmaLogoSvgIcon, GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, Link, Typography } from '@components/index';
 // Add TS disable error comment for import file from under the root direction
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -57,14 +57,6 @@ export const Footer: FC = () => {
                 </code>
               </CopyWrapper>
             </li>
-            <li>
-              <CopyWrapper copy={'pnpm install @nlmk/ds-2.0'} placement="bottom">
-                <code className={styles.code}>
-                  <div>pnpm install @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
-                </code>
-              </CopyWrapper>
-            </li>
           </ul>
         }
       />
@@ -84,7 +76,7 @@ export const Footer: FC = () => {
       />
       <FooterSection
         title="Контрибьютинг"
-        description="Приносите свои изменения, мы с радостью их расмотрим и примем внутрь дизайн-системы 2.0 😊."
+        description="Приносите свои изменения, мы с радостью их расмотрим и примем внутрь дизайн-системы 😊."
       />
     </div>
   );
@@ -120,7 +112,16 @@ export const WelcomePage = () => {
               </Button>
             </Link>
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
-              <Button startIcon={<WebSvgIcon />}>ДС 2.0</Button>
+              <Button startIcon={<WebSvgIcon />}>ДС</Button>
+            </Link>
+            <Link
+              href="https://www.figma.com/@nlmk"
+              target="_blank"
+              className={styles.links}
+            >
+              <Button startIcon={<FigmaLogoSvgIcon />} variant="primary">
+                UI-Kit
+              </Button>
             </Link>
           </div>
         </div>

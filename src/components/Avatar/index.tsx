@@ -3,7 +3,7 @@ import React, { SyntheticEvent, useCallback, useMemo, useState } from 'react';
 import Icon from '@components/Icon';
 import { IconBirthday16, IconDoneCheckFilled16, IconDoneCheckFilled32 } from '@components/Icon/IconsDirectory';
 import IconBirthday32 from '@components/Icon/IconsDirectory/NLMKONE/Birthday/32';
-import { IconPersonFilled110 } from '@components/Icon/IconsDirectory/System/PersonFilled';
+import IconPersonFilled110 from './subcomponents/IconPersonFilled110/110';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 

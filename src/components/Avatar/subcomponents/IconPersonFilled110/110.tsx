@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import clsx from 'clsx';
 
-import styles from '../../IconsDirectory.module.scss';
+import styles from '../../../Icon/IconsDirectory/IconsDirectory.module.scss';
 
-import { IIconsProps } from '../../../types';
+import { IIconsProps } from '../../../Icon/types';
 
 const IconPersonFilled110: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) => {
   const classes = clsx(styles[color as keyof typeof styles]);

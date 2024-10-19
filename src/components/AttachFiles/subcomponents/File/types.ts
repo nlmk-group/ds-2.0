@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-export interface IFile {
+export interface IFileProps {
   title?: string;
   label?: string;
   checked?: boolean;

@@ -5,6 +5,7 @@ import { ETooltipPlacementType } from '../enums';
 declare const _default: {
     title: string;
     component: React.FC<import('../types').ITooltipProps>;
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         title: {
             description: string;

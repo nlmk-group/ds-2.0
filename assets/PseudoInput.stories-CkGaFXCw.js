@@ -1,0 +1,16 @@
+import{j as e}from"./jsx-runtime-DFnSfiB4.js";import{P as s,x as E,r as c}from"./index-LmI_Dv35.js";import"./index-DQ2WTIsS.js";import"./generateUUID-DDiDEiZj.js";import"./index-BUicYAu_.js";import"./index-CSbymPMC.js";import"./index-c1a7ry8u.js";import"./index-rzy6QoZO.js";import"./index-ehXB0alm.js";import"./index-BKAatnfy.js";import"./index-D_J9Vxng.js";import"./index-D5U3DYwn.js";import"./index-CLzAcar6.js";import"./32-sVrGXRAZ.js";import{c as N}from"./clsx-B-dksMZM.js";import{g as m}from"./styles.module-DyNiVTaI.js";import{a as w}from"./argsTypes-B2mcD4ic.js";import"./index-B_snx1v7.js";import"./types-CpBSVUgC.js";import"./get-oHtgdQEu.js";import"./index-BKbm6zW0.js";const o="Label",r="PseudoInput",z=p=>e.jsx("div",{className:N(m.wrapper,m["flex-height"]),children:e.jsx(p,{})}),Z={title:"Components/PseudoInput/Stories",component:s,argTypes:w,decorators:[z]},t=p=>e.jsx(s,{...p,label:o,children:r});t.storyName="PseudoInput по умолчанию";const a=()=>e.jsxs("div",{className:E.row,children:[e.jsx(s,{label:o,size:"m",children:r}),e.jsx(s,{label:o,size:"s",children:r})]});a.storyName="PseudoInput разных размеров";const u=()=>e.jsx(s,{label:o,labelColor:c.error,children:r});u.storyName="PseudoInput в состоянии error";const l=()=>e.jsx(s,{label:o,labelColor:c.warning,children:r});l.storyName="PseudoInput в состоянии warning";const n=()=>e.jsx(s,{label:o,labelColor:c.success,children:r});n.storyName="PseudoInput в состоянии success";var d,i,I;t.parameters={...t.parameters,docs:{...(d=t.parameters)==null?void 0:d.docs,source:{originalSource:`(argTypes: IPseudoInputProps): JSX.Element => <PseudoInput {...argTypes} label={labelText}>
+    {value}
+  </PseudoInput>`,...(I=(i=t.parameters)==null?void 0:i.docs)==null?void 0:I.source}}};var P,b,x;a.parameters={...a.parameters,docs:{...(P=a.parameters)==null?void 0:P.docs,source:{originalSource:`(): JSX.Element => <div className={css.row}>
+    <PseudoInput label={labelText} size="m">
+      {value}
+    </PseudoInput>
+    <PseudoInput label={labelText} size="s">
+      {value}
+    </PseudoInput>
+  </div>`,...(x=(b=a.parameters)==null?void 0:b.docs)==null?void 0:x.source}}};var g,S,h;u.parameters={...u.parameters,docs:{...(g=u.parameters)==null?void 0:g.docs,source:{originalSource:`(): JSX.Element => <PseudoInput label={labelText} labelColor={customInputColors.error}>
+    {value}
+  </PseudoInput>`,...(h=(S=u.parameters)==null?void 0:S.docs)==null?void 0:h.source}}};var j,v,C;l.parameters={...l.parameters,docs:{...(j=l.parameters)==null?void 0:j.docs,source:{originalSource:`(): JSX.Element => <PseudoInput label={labelText} labelColor={customInputColors.warning}>
+    {value}
+  </PseudoInput>`,...(C=(v=l.parameters)==null?void 0:v.docs)==null?void 0:C.source}}};var T,y,f;n.parameters={...n.parameters,docs:{...(T=n.parameters)==null?void 0:T.docs,source:{originalSource:`(): JSX.Element => <PseudoInput label={labelText} labelColor={customInputColors.success}>
+    {value}
+  </PseudoInput>`,...(f=(y=n.parameters)==null?void 0:y.docs)==null?void 0:f.source}}};const $=["PseudoInputDefault","PseudoInputSizeL","PseudoInputError","PseudoInputWarning","PseudoInputSuccess"];export{t as PseudoInputDefault,u as PseudoInputError,a as PseudoInputSizeL,n as PseudoInputSuccess,l as PseudoInputWarning,$ as __namedExportsOrder,Z as default};

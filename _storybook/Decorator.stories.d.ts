@@ -2,7 +2,7 @@ import { default as React } from '../../../node_modules/react';
 
 declare const _default: {
     component: () => null;
-    decorators: ((Story: () => any) => any)[];
+    decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {};
     tags: string[];
 };

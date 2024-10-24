@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 
 import styles from '@components/DatePicker/_stories/DatePicker.module.scss';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/DatePicker/Stories',

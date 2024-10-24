@@ -8,7 +8,7 @@ import styles from './Progressar.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/ProgressBar/Stories',

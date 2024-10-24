@@ -7,7 +7,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import argsTypes from './argsTypes';
 import { Box } from '@components/index';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/SkeletonLoader/Stories',

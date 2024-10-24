@@ -10,7 +10,7 @@ import { EAvatarSize } from '../enums';
 import { getAvatarImageSrc } from '../utils';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 const AvatarImageMock = getAvatarImageSrc();
 

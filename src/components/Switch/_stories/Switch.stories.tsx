@@ -10,7 +10,7 @@ import { ISwitchProps } from '../types';
 import argsTypes from './argsTypes';
 import { DEFAULT_SWITCH, DISABLED_SWITCH, SWITCH_WITH_ICONS, SWITCH_WITH_LABEL } from './constants';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Switch/Stories',

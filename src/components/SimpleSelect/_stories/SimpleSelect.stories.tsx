@@ -10,7 +10,7 @@ import styles from './SimpleSelect.module.scss';
 import { ISelectProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 const options = [
   { value: 'steel', label: 'High-Strength Low-Alloy Steel' },

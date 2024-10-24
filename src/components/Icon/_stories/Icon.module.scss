@@ -27,6 +27,20 @@
   overflow: hidden;
 }
 
+.icon-block {
+  display: block;
+  position: relative;
+  flex-wrap: wrap;
+  overflow: auto;
+  flex-direction: column;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+}
+
 .wrapper {
   background-color: var(--steel-20);
   margin: 0;

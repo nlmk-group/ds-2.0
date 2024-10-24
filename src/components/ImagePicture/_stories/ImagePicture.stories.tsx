@@ -10,7 +10,7 @@ import { argsTypes } from './argsTypes';
 
 const IMAGE_MOCK_SRC = 'assets/image_picture_mock.jpg';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/ImagePicture/Stories',

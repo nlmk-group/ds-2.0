@@ -20,7 +20,7 @@ const withWrapper = (Story: any) => (
       width: 'fit-content'
     }}
   >
-    {Story()}
+    {<Story/>}
   </div>
 );
 

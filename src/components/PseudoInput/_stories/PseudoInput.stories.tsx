@@ -13,7 +13,7 @@ import { argsTypes } from './argsTypes';
 const labelText = 'Label';
 const value = 'PseudoInput';
 
-const withWrapper = (Story: any) => <div className={clsx(styles.wrapper, styles['flex-height'])}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={clsx(styles.wrapper, styles['flex-height'])}>{<Story/>}</div>;
 
 export default {
   title: 'Components/PseudoInput/Stories',

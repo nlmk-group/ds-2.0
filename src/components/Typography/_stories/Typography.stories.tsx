@@ -7,7 +7,7 @@ import styles from './Typography.stories.module.scss';
 import Typography from '../index';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Typography/Stories',

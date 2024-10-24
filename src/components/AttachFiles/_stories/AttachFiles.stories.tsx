@@ -24,7 +24,7 @@ import {
   LONG_LABEL
 } from './text';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/AttachFiles/Stories',

@@ -7,7 +7,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import { IRadioProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div className={styles.wrapper}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Radio/Stories',

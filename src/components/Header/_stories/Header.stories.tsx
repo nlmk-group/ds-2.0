@@ -22,7 +22,7 @@ import {
   HEADERS_DIFFERENT_SPACING
 } from './text';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Header/Stories',

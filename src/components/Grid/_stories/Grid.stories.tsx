@@ -10,7 +10,7 @@ import { argsTypes } from './argsTypes';
 
 const withPadding = (Story: () => any) => (
   <div className={styles.wrapper} style={{ minHeight: 80 }}>
-    {Story()}
+    {<Story/>}
   </div>
 );
 

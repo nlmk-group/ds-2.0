@@ -17,19 +17,29 @@ import argsTypes from '@components/Icon/_stories/argsTypes';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Card, Icon, Input, Typography } from '@components/index';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { clsx } from 'clsx';
 import { startCase } from 'lodash';
 
 import styles from './Icon.module.scss';
+import globalStyles from '@components/_storybook/styles.module.scss';
 
 import icons from '../IconsDirectory';
 import { iconsAlwaysDefaultColor, iconsUseFillAndStroke, iconsUseStroke, rowCount } from './variables';
+
+const withWrapper = (Story: () => any) => (
+  <div className={styles['icon-block']}>
+    <div className={globalStyles.wrapper} style={{ width: '96%', marginLeft: '15px' }}>
+      <Story />
+    </div>
+  </div>
+);
 
 export default {
   title: 'Components/Icon/Stories',
   component: Icon,
   argTypes: argsTypes,
+  decorators: [withWrapper],
   parameters: {
     layout: 'fullscreen'
   }
@@ -43,7 +53,12 @@ interface IconsWithSizesAndColors {
 
 export const IconComponent = (argsTypes: TIconProps): JSX.Element => {
   return (
-    <div className={clsx(styles.wrapper, styles.sized, styles['wrapper-border-radius'])}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: ' center'
+      }}
+    >
       <Icon {...argsTypes} />
     </div>
   );
@@ -55,13 +70,6 @@ IconComponent.args = {
   color: 'primary',
   containerSize: 24
 };
-IconComponent.decorators = [
-  (Story: StoryFn) => (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-      <Story />
-    </div>
-  )
-];
 
 export const AllIcons = (): JSX.Element => {
   const [searchText, setSearchText] = useState('');
@@ -195,7 +203,7 @@ export const AllIcons = (): JSX.Element => {
             {Row}
           </List>
         ) : (
-          <Typography variant="Heading2" color="primary" className={styles.noResults}>
+          <Typography variant="Heading2" color="var(--text-grey-900)" className={styles.noResults}>
             Ничего не найдено
           </Typography>
         )}

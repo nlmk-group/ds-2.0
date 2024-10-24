@@ -23,6 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.5.21 - <span className={styles.date}>24.10.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.5.20 - <span className={styles.date}>18.10.24</span>
           </Typography>
           <ul className={styles.list}>

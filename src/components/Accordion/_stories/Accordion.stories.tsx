@@ -16,7 +16,7 @@ import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 import { IAccordionProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Accordion/Stories',

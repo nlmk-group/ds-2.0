@@ -9,7 +9,7 @@ import argsTypes from './argsTypes';
 
 const withWrapper = (Story: any) => (
   <Box justifyContent="center" alignItems="center" className={styles.wrapper}>
-    {Story()}
+    {<Story/>}
   </Box>
 );
 

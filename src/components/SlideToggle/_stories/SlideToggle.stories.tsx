@@ -20,7 +20,7 @@ import { ESizeMapping } from '../enum';
 import { ISlideToggleProps, ISlideToggleWithButtonProps } from '../types';
 import argsTypes from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/SlideToggle/Stories',

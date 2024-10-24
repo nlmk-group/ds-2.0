@@ -22,7 +22,7 @@ import {
   DND_STATUSES
 } from './text';
 
-const withWrapper = (Story: any) => <div className={styles['wrapper-fit-content']}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles['wrapper-fit-content']}>{<Story/>}</div>;
 
 export default {
   title: 'Components/DragAndDrop/Stories',

@@ -14,13 +14,16 @@ import { Args } from '@storybook/react';
 import clsx from 'clsx';
 
 import styles from './Tooltip.stories.module.scss';
+import globalStyles from '@components/_storybook/styles.module.scss';
 
 import { ETooltipPlacementType } from '../enums';
 import { argsTypes } from './argsTypes';
 
+const withWrapper = (Story: () => any) => <div className={globalStyles.wrapper}><Story/></div>;
 export default {
   title: 'Components/Tooltip/Stories',
   component: Tooltip,
+  decorators: [withWrapper],
   argTypes: argsTypes
 };
 

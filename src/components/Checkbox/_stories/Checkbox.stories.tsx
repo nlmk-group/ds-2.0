@@ -8,7 +8,7 @@ import styles from './Checkbox.module.scss';
 import { ICheckboxProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withThemeProvider = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withThemeProvider = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Checkbox/Stories',

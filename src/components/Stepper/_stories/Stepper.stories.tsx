@@ -8,7 +8,7 @@ import { EStepState, StepperColors } from '../subcomponents/Step/types';
 import { IStepperProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Stepper/Stories',

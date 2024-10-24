@@ -15,7 +15,7 @@ import argsTypes from './argsTypes';
 const labelText = 'Label';
 const helperText = 'Helper text';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Input/Stories',

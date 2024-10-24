@@ -1,6 +1,6 @@
 import React from 'react';
 
-const withPadding = (Story: () => any) => Story();
+const withPadding = (Story: () => any) => <Story/>;
 
 export default {
   component: () => null,

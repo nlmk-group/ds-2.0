@@ -8,7 +8,7 @@ import { addMinutes } from 'date-fns';
 
 import styles from './TimePicker.module.scss';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/TimePicker/Stories',

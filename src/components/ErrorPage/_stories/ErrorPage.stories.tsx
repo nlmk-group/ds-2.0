@@ -5,7 +5,7 @@ import { ErrorPageProps } from '@components/ErrorPage/types';
 import ErrorPage from '../index';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ padding: 40 }}>{Story()}</div>;
+const withPadding = (Story: () => any) => <div style={{ padding: 40 }}>{<Story/>}</div>;
 
 export default {
   title: 'Components/ErrorPage/Stories',

@@ -16,7 +16,7 @@ import {
 } from './constants';
 import { sizeMapping, statusMapping } from '../enums';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/ToggleButtonGroup/Stories',

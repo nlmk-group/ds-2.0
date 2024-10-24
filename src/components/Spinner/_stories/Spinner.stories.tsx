@@ -10,7 +10,7 @@ import { ISpinnerProps } from '../types';
 import argsTypes from './argsTypes';
 import { COLORS, DEFAULT_TEXT, ICON, ICON_PERCENT, TEXT_M_SIZE } from './text';
 
-const withWrapper = (Story: any) => <div className={style.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={style.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/Spinner/Stories',

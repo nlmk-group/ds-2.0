@@ -16,7 +16,7 @@ import {
   SEGMENT_BUTTON_COMPACT
 } from './constants';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
 
 export default {
   title: 'Components/SegmentButtonGroup/Stories',

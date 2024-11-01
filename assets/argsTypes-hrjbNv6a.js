@@ -1,1 +1,0 @@
-const t={width:{description:"Ширина компонента",control:{type:"text"}},className:{description:"Дополнительный CSS-класс для компонента хлебных крошек",table:{defaultValue:{summary:"-"}},control:{type:"text"}}},e=t;export{e as a};

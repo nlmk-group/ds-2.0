@@ -98,13 +98,21 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
       if (!panelValue) {
         return '';
       }
-      if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
-        return `${locale[language].months[panelValue.getMonth()]}, ${panelValue.getFullYear()}`;
+
+      const months = locale[language]?.months;
+      const month = panelValue.getMonth();
+      const year = panelValue.getFullYear();
+
+      if (months && typeof month === 'number' && typeof year === 'number') {
+        if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
+          return `${months[month]}, ${year}`;
+        }
       }
+
       if (selectedPanel === LEVEL_MAPPING_ENUM.month || selectedPanel === LEVEL_MAPPING_ENUM.quarter) {
         return panelValue.getFullYear();
       }
-      const currentYear = panelValue.getFullYear();
+      const currentYear: number = panelValue.getFullYear();
       return `${currentYear - yearsBeforeCurrent} — ${currentYear + yearsAfterCurrent}`;
     }, [panelValue, selectedPanel]);
 
@@ -228,7 +236,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
     };
 
     const onLeftArrowClick = useCallback(() => {
-      setPanelValue((prevPanel) => {
+      setPanelValue((prevPanel: Date) => {
         if (!prevPanel) return prevPanel;
 
         const adjustDate = dateAdjustments[selectedPanel];
@@ -240,7 +248,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
     }, [selectedPanel, onPanelChange]);
 
     const onRightArrowClick = useCallback(() => {
-      setPanelValue((prevPanel) => {
+      setPanelValue((prevPanel: Date) => {
         if (!prevPanel) return prevPanel;
 
         const adjustDate = {

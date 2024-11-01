@@ -5,4 +5,5 @@ export interface IDropdownMenuItemProps {
   value: string;
   disabled?: boolean;
   children?: ReactNode;
+  className?: string;
 }

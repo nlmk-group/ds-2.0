@@ -2,49 +2,41 @@
 
 ## Версия компонента v3.0
 
-Breadcrumbs компонент используется для создания навигационных "хлебных крошек". Он поддерживает базовый и сокращенный режимы отображения в зависимости от доступного пространства.
+Компонент Breadcrumbs используется для создания навигационных "хлебных крошек". Он поддерживает базовый и сокращенный режимы отображения в зависимости от доступного пространства и использует паттерн Compound Components для гибкости использования.
 
 ## Использование
 
 ```tsx
-import { Breadcrumbs, IBreadcrumbProps } from '@nlmk/ds-2.0';
+import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-const crumbs: IBreadcrumbProps[] = [
-  {
-    href: 'https://developer.mozilla.org/en-US/',
-    label: 'MDN'
-  },
-  {
-    href: 'https://www.geeksforgeeks.org/',
-    label: 'Geeks For Geeks',
-    active: true
-  }
-];
-<Breadcrumbs crumbs={crumbs} width={100} />
+<Breadcrumbs width={100}>
+  <Breadcrumbs.Crumb>
+    <a href="https://developer.mozilla.org/en-US/">MDN</a>
+  </Breadcrumbs.Crumb>
+  <Breadcrumbs.Crumb>
+    <a href="https://www.geeksforgeeks.org/">Geeks For Geeks</a>
+  </Breadcrumbs.Crumb>
+</Breadcrumbs>;
 ```
 
 ## Props
 
-| Prop      | Type               | Default | Description                     |
-|-----------|--------------------|---------|---------------------------------|
-| crumbs    | IBreadcrumbProps[] | -       | Массив элементов хлебных крошек |
-| width     | number             | 100     | Ширина компонента в процентах   |
-| className | string             | -       | Дополнительный CSS класс        |
+| Prop      | Type                   | Default | Описание                  |
+| --------- | ---------------------- | ------- | ------------------------- |
+| width     | CSSProperties['width'] | 100%    | Ширина компонента         |
+| className | string                 | -       | Дополнительный CSS класс  |
+| children  | ReactNode              | -       | Дочерние элементы (Crumb) |
 
-## IBreadcrumbProps
+## Breadcrumbs.Crumb Props
 
-| Prop   | Type    | Default | Description                                      |
-|--------|---------|---------|--------------------------------------------------|
-| label  | string  | -       | Текст, отображаемый для элемента хлебных крошек  |
-| href   | string  | -       | URL-адрес, на который ведет элемент              |
-| active | boolean | false   | Флаг, указывающий, является ли элемент активным  |
-| target | string  | -       | Атрибут target для ссылки                        |
-| isLast | boolean | false   | Флаг, указывающий, является ли элемент последним |
+| Prop     | Type         | Default | Описание                        |
+| -------- | ------------ | ------- | ------------------------------- |
+| children | ReactElement | -       | Дочерний элемент, обычно ссылка |
 
 ## Режимы отображения
 
 - **Базовый режим**: Отображает все элементы хлебных крошек, если достаточно места.
-- **Сокращенный режим**: Отображает первый, последний и промежуточный элементы, если недостаточно места для всех.
+- **Сокращенный режим**: Отображает первый, последний и промежуточные элементы, если недостаточно места для всех.
 
 ## Стилизация
 
@@ -61,3 +53,7 @@ const crumbs: IBreadcrumbProps[] = [
 ## Примечание
 
 Компонент Breadcrumbs автоматически вычисляет доступное пространство и выбирает подходящий режим отображения. Это обеспечивает оптимальное использование пространства на различных устройствах и размерах экрана.
+
+## Паттерн Compound Components
+
+Breadcrumbs использует паттерн Compound Components, что позволяет более гибко настраивать структуру и содержимое хлебных крошек. Каждый элемент хлебных крошек представлен как `Breadcrumbs.Crumb`.

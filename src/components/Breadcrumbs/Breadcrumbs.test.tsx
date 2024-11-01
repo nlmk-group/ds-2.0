@@ -1,112 +1,96 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import { Breadcrumbs } from '@components/index';
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import { IBreadcrumbProps } from './types';
-
-import BasicBreadcrumbs from './BasicBreadcrumbs';
-import { breadcrumbs } from './_stories/constants';
-import { targetMapping } from './enums';
-import LinkComponent from './LinkComponent';
-import ShortenBreadcrumbs from './ShortenBreadcrumbs';
+import Breadcrumbs from './index';
 
 describe('src/components/Breadcrumbs', () => {
-  test('It should render an Breadcrumbs', () => {
-    const { container } = render(<Breadcrumbs crumbs={breadcrumbs} />);
-    const breadcrumbsComponent = container.getElementsByTagName('div')[0];
-    expect(breadcrumbsComponent).toBeInTheDocument();
+  const mockLink = ({ children }: { children: ReactNode }) => <a href="#">{children}</a>;
+
+  it('renders correctly with basic usage', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('...')).toBeInTheDocument();
+    expect(screen.getByText('Product')).toBeInTheDocument();
   });
 
-  // LinkComponent
-  describe('While rendering LinkComponent', () => {
-    const crumb = breadcrumbs.at(0) as IBreadcrumbProps;
+  it('applies custom width', () => {
+    render(
+      <Breadcrumbs width={50}>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
 
-    test('It should render the LinkComponent', () => {
-      const { container } = render(<LinkComponent {...crumb} />);
-      const breadcrumbsComponent = container.getElementsByTagName('div')[0];
-      expect(breadcrumbsComponent).toBeInTheDocument();
-    });
-
-    test('It should render the LinkComponent with correct title', () => {
-      render(<LinkComponent {...crumb} />);
-      const breadcrumbsComponent = within(screen.getByTestId('LINK_HREF'));
-      expect(breadcrumbsComponent.getByText(crumb.label)).toBeInTheDocument();
-    });
-
-    test('It should render the LinkComponent with correct url', () => {
-      render(<LinkComponent {...crumb} />);
-      const breadcrumbsComponent = screen.getByTestId('LINK_HREF');
-      expect(breadcrumbsComponent).toHaveAttribute('href', crumb.href);
-    });
-
-    Object.values(targetMapping).forEach((target: targetMapping) => {
-      test(`It should render the LinkComponent with correct target value ${target}`, () => {
-        render(<LinkComponent {...crumb} target={target} />);
-        const breadcrumbsComponent = screen.getByTestId('LINK_HREF');
-        expect(breadcrumbsComponent).toHaveAttribute('target', target);
-      });
-    });
-
-    test('It should render the active LinkComponent', () => {
-      render(<LinkComponent {...crumb} active={true} />);
-      const breadcrumbsComponent = screen.getByTestId('LINK_HREF');
-      expect(breadcrumbsComponent.classList.contains('link-active')).toBe(true);
-    });
+    const wrapper = screen.getByTestId('BREADCRUMBS_WRAPPER');
+    expect(wrapper).toHaveStyle('width: 50px');
   });
 
-  // BasicBreadcrumbs
-  describe('while rendering BasicBreadcrumbs', () => {
-    test('It should render the BasicBreadcrumbs', () => {
-      const { container } = render(<BasicBreadcrumbs crumbs={breadcrumbs} />);
-      const breadcrumbsComponent = container.getElementsByTagName('div')[0];
-      expect(breadcrumbsComponent).toBeInTheDocument();
-    });
+  it('applies custom className', () => {
+    render(
+      <Breadcrumbs className="custom-class">
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
 
-    test('It should render the BasicBreadcrumbs with correct amount of LinkComponent', () => {
-      render(<BasicBreadcrumbs crumbs={breadcrumbs} />);
-      const breadcrumbsComponents = screen.getAllByTestId('LINK_HREF');
-      expect(breadcrumbsComponents.length).toBe(breadcrumbs.length);
-    });
+    const wrapper = screen.getByTestId('BREADCRUMBS_WRAPPER');
+    expect(wrapper).toHaveClass('custom-class');
   });
 
-  // ShortenBreadcrumbs
-  describe('while rendering ShortenBreadcrumbs', () => {
-    test('It should render the ShortenBreadcrumbs', () => {
-      const { container } = render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
-      const breadcrumbsComponent = container.getElementsByTagName('div')[0];
-      expect(breadcrumbsComponent).toBeInTheDocument();
-    });
-    // Let's assume:
-    // We know that we are rendering more than 2 instances of LinkComponent
-    test('It should render the ShortenBreadcrumbs with correct amount of LinkComponent', () => {
-      render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
-      const breadcrumbsComponents = screen.getAllByTestId('LINK_HREF');
-      expect(breadcrumbsComponents.length).toBe(2);
-    });
+  it('renders BasicBreadcrumbs when there are 2 or fewer crumbs', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
 
-    test('It should render the button to show list of LinkComponent', () => {
-      render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
-      const showListBtn = screen.getByTestId('HIDDEN_OPTIONS_BUTTON');
-      expect(showListBtn).toBeInTheDocument();
-    });
+    expect(screen.queryByTestId('HIDDEN_OPTIONS_BUTTON')).not.toBeInTheDocument();
+  });
 
-    describe('While clicking the button to show list of LinkComponent', () => {
-      test('It should render the list of LinkComponent', () => {
-        render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
-        const showListBtn = screen.getByTestId('HIDDEN_OPTIONS_BUTTON');
-        fireEvent.click(showListBtn);
-        expect(screen.getByTestId('HIDDEN_OPTIONS_LIST')).toBeInTheDocument();
-      });
+  it('renders ShortenBreadcrumbs when there are more than 2 crumbs', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Subcategory' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
 
-      // Again, we know that there are more than 2 instances of LinkComponent
-      test('It should render the list of LinkComponent', () => {
-        render(<ShortenBreadcrumbs crumbs={breadcrumbs} />);
-        const showListBtn = screen.getByTestId('HIDDEN_OPTIONS_BUTTON');
-        fireEvent.click(showListBtn);
-        const optionList = within(screen.getByTestId('HIDDEN_OPTIONS_LIST'));
-        expect(optionList.getAllByTestId('LINK_HREF').length).toBe(breadcrumbs.length - 2);
-      });
-    });
+    expect(screen.getByTestId('HIDDEN_OPTIONS_BUTTON')).toBeInTheDocument();
+  });
+
+  it('shows hidden options when clicking on the ellipsis', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Subcategory' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    fireEvent.click(screen.getByTestId('HIDDEN_OPTIONS_BUTTON'));
+    expect(screen.getByTestId('HIDDEN_OPTIONS_LIST')).toBeInTheDocument();
+  });
+
+  it('does not render separators for the last crumb', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    const separators = screen.getAllByTestId('CRUMB_SEPARATOR');
+    expect(separators).toHaveLength(1);
   });
 });

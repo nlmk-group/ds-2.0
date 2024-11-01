@@ -1,8 +1,13 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { TIconProps } from '@components/Icon/types';
-import { Icon, Tooltip } from '@components/index';
-import { Button, IconChevronArrowLeftOutlined24, IconChevronArrowRightOutlined24 } from '@components/index';
+import {
+  Button,
+  Icon,
+  IconChevronArrowLeftOutlined24,
+  IconChevronArrowRightOutlined24,
+  Tooltip
+} from '@components/index';
 import { ITooltipProps } from '@components/Tooltip/types';
 import clsx from 'clsx';
 
@@ -32,7 +37,7 @@ const Tabs: FC<ITabsProps> &
     const [isScrolledLeft, setIsScrolledLeft] = useState(true);
     const [isScrolledRight, setIsScrolledRight] = useState(false);
 
-    const scrollAmount = 200
+    const scrollAmount = 200;
     // TODO: обсудить решение
     // const scrollAmount = tabsContainerRef.current?.clientWidth || 200;
 

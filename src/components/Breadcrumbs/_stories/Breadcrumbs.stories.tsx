@@ -1,79 +1,56 @@
 import React, { ReactNode } from 'react';
+import { Link, MemoryRouter } from 'react-router-dom';
 
-import { Breadcrumbs } from '@components/index';
+import Breadcrumbs from '@components/Breadcrumbs';
+import { IBreadcrumbsProps } from '@components/Breadcrumbs/types';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { targetMapping } from '../enums';
-import { IBreadcrumbsProps } from '../types';
-import { breadcrumbsArgsTypes } from './argsTypes';
-import { breadcrumbs, BASIC_COMPONENT_USE, CUSTOM_WIDTH, DIFFERENT_TARGET } from './constants';
+import argsTypes from './argsTypes';
+import { BASIC_COMPONENT_USE, breadcrumbsLinks, DIFFERENT_TARGET, targetLinks } from './constants';
 
 export default {
   title: 'Components/Breadcrumbs/Stories',
   component: Breadcrumbs,
-  argTypes: breadcrumbsArgsTypes
+  argTypes: argsTypes
 };
 
-export const BreadcrumbsDefault = (argTypes: IBreadcrumbsProps): ReactNode => {
+export const BreadcrumbsDefault = (argsTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Breadcrumbs {...argTypes} />
+      <MemoryRouter>
+        <Breadcrumbs {...argsTypes}>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      </MemoryRouter>
     </div>
   );
 };
-
 BreadcrumbsDefault.storyName = BASIC_COMPONENT_USE;
 BreadcrumbsDefault.args = {
-  crumbs: breadcrumbs,
-  width: 100
+  width: '100%'
 };
 
-export const BreadcrumbsWidth = (argTypes: IBreadcrumbsProps): ReactNode => {
+export const BreadcrumbsTarget = (argsTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <Breadcrumbs {...argTypes} />
+      <Breadcrumbs {...argsTypes}>
+        {targetLinks.map((link, index) => (
+          <Breadcrumbs.Crumb key={index}>
+            <a href={link.href} target={link.target}>
+              {link.label}
+            </a>
+          </Breadcrumbs.Crumb>
+        ))}
+      </Breadcrumbs>
     </div>
   );
 };
-
-BreadcrumbsWidth.storyName = CUSTOM_WIDTH;
-BreadcrumbsWidth.args = {
-  width: 70,
-  crumbs: breadcrumbs
-};
-
-export const BreadcrumbsTarget = (argTypes: IBreadcrumbsProps): ReactNode => {
-  return (
-    <div className={styles.wrapper}>
-      <Breadcrumbs {...argTypes} />
-    </div>
-  );
-};
-
 BreadcrumbsTarget.storyName = DIFFERENT_TARGET;
-BreadcrumbsTarget.args = {
-  width: 100,
-  crumbs: [
-    {
-      href: 'https://www.lipsum.com/',
-      label: `${targetMapping._blank}`,
-      target: targetMapping._blank
-    },
-    {
-      href: 'https://www.lipsum.com/',
-      label: `${targetMapping._parent}`,
-      target: targetMapping._parent
-    },
-    {
-      href: 'https://www.lipsum.com/',
-      label: `${targetMapping._self}`,
-      target: targetMapping._self
-    },
-    {
-      href: 'https://www.lipsum.com/',
-      label: `${targetMapping._top}`,
-      target: targetMapping._top
-    }
-  ]
+BreadcrumbsDefault.args = {
+  width: '100%'
 };

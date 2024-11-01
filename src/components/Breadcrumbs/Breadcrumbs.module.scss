@@ -1,3 +1,9 @@
+@mixin body1-medium {
+  font-size: var(--body1-medium-font-size);
+  line-height: var(--body1-medium-line-height);
+  font-weight: var(--body1-medium-font-weight);
+}
+
 // Стили основного компонента
 .breadcrumbs {
   display: flex;
@@ -6,52 +12,51 @@
   padding: 8px 0;
 }
 
-// Стили для LinkComponent
+// Стили для Crumb
+.crumb {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover,
+  &:focus-within {
+    .link {
+      color: var(--brand-sapphire-60);
+    }
+
+    .separator svg {
+      color: var(--brand-sapphire-60);
+    }
+  }
+
+  &:last-child {
+    .link {
+      color: var(--steel-90);
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+}
+
 .link {
   color: var(--steel-70);
   text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
   cursor: pointer;
   transition: color 0.3s ease;
-
-  &:hover,
-  &:focus {
-    color: var(--brand-sapphire-60);
-
-    .separator svg {
-      fill: var(--brand-sapphire-60);
-    }
-  }
-
-  &-active {
-    color: var(--steel-90);
-    cursor: default;
-    pointer-events: none;
-
-    .separator svg {
-      fill: var(--steel-90);
-    }
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include body1-medium;
 }
 
 .separator {
   display: flex;
   align-items: center;
   margin-left: 8px;
-
-  svg {
-    fill: var(--steel-70);
-  }
-}
-
-.text {
-  white-space: nowrap;
-  max-width: 108px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--steel-70);
+  transition: color 0.3s ease;
 }
 
 // Стили для ShortenBreadcrumbs
@@ -59,55 +64,53 @@
   position: relative;
   display: flex;
   justify-content: center;
-  color: var(--steel-70);
-  font-size: var(--body1-medium-font-size);
+  align-items: center;
   cursor: pointer;
-  transition: color 0.3s ease;
+  color: var(--steel-70);
+  @include body1-medium;
 
   &:hover {
     color: var(--brand-sapphire-60);
 
     .separator svg {
-      fill: var(--brand-sapphire-60);
+      color: var(--brand-sapphire-60);
     }
+  }
+}
+
+.show {
+  color: var(--brand-sapphire-60);
+
+  .separator svg {
+    color: var(--brand-sapphire-60);
   }
 }
 
 .list {
-  max-height: 192px;
-  right: initial;
-}
-
-.show {
   color: var(--steel-90);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  right: initial;
+  width: fit-content;
+  overflow-y: auto;
 
-  .separator svg {
-    fill: var(--steel-90);
+  &:focus {
+    color: var(--brand-sapphire-60);
   }
 }
 
 .option {
-  padding: 12px;
+  padding: 8px 8px 8px 12px !important;
+  min-width: 200px;
 
   &:first-child {
     padding-top: 12px;
-    padding-bottom: 0;
   }
 
   &:last-child {
-    padding-top: 0;
     padding-bottom: 12px;
   }
-
-  &:hover,
-  &:focus {
-    .link:not(.link-active) {
-      color: var(--brand-sapphire-60);
-
-      .separator svg {
-        fill: var(--brand-sapphire-60);
-      }
-    }
-  }
 }
-

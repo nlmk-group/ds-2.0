@@ -6,17 +6,22 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
+import { TabIds } from '@components/declaration';
 import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { breadcrumbsSimple, breadcrumbsTarget, breadcrumbsThreeOptions } from './constants';
 import argsTypes from './argsTypes';
+import { breadcrumbsLinks, targetLinks } from './constants';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-37818&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
+
+  const isActive = (tab: TabIds) => {
+    return activeTab === tab;
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -30,36 +35,33 @@ const Stories = (): JSX.Element => {
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
 
-      {Number(activeTab) == 0 && (
+      {activeTab === 0 && (
         <>
           <Editor
             description="Обычное использование компонента."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
+import { Link, MemoryRouter } from 'react-router-dom';
 
-export default  App = () => (
-  <>
-    <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsSimple, null, 4)}} />
-  </>
-)
-            `}
-          />
-
-          <Editor
-            description="Компоненту можно задать значение ширины в процентах. Процент будет считываться отширины родителя."
-            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <>
-    <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsThreeOptions, null, 4)}} />
-    <Breadcrumbs width="50" crumbs={${JSON.stringify(breadcrumbsThreeOptions, null, 4)}} />
-  </>
-)
+export default App = () => (
+<MemoryRouter>
+  <Breadcrumbs>
+    ${breadcrumbsLinks
+          .map(
+            link => `
+    <Breadcrumbs.Crumb>
+      <Link to="${link.href}">${link.label}</Link>
+    </Breadcrumbs.Crumb>`
+          )
+          .join('')}
+  </Breadcrumbs>
+  </MemoryRouter>
+);
             `}
           />
 
@@ -67,21 +69,25 @@ export default  App = () => (
             description="Компонент может содержать ссылки с разными target."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <>
-    <Breadcrumbs crumbs={${JSON.stringify(breadcrumbsTarget, null, 4)}} />
-  </>
-)
-            `}
+export default App = () => (
+  <Breadcrumbs>
+    ${targetLinks
+          .map(
+            link => `
+    <Breadcrumbs.Crumb>
+      <a href="${link.href}" target="${link.target}">${link.label}</a>
+    </Breadcrumbs.Crumb>`
+          )
+          .join('')}
+  </Breadcrumbs>
+);`}
           />
 
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
-      {Number(activeTab) == 2 && <Tests componentName="Breadcrumbs" />}
+      {activeTab === 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {activeTab === 2 && <Tests componentName="Breadcrumbs" />}
     </div>
   );
 };

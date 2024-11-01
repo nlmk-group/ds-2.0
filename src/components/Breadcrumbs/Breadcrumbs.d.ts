@@ -1,32 +1,23 @@
-export interface IBreadcrumbProps {
-  /** Текст, отображаемый для элемента хлебных крошек */
-  label: string;
-  /** URL-адрес, на который ведет элемент хлебных крошек */
-  href: string;
-  /** Флаг, указывающий, является ли элемент активным */
-  active?: boolean;
-  /** Атрибут target для ссылки (например, "_blank" для открытия в новой вкладке) */
-  target?: string;
-  /** Флаг, указывающий, является ли элемент последним в цепочке хлебных крошек */
-  isLast?: boolean;
-}
-
-export interface ILinkComponentProps extends IBreadcrumbProps {}
+import { CSSProperties, FC, ReactElement, ReactNode } from 'react';
 
 export interface IBreadcrumbsProps {
-  /** Дополнительный CSS-класс для компонента */
+  /** Ширина компонента */
+  width?: CSSProperties['width'];
+  /** Дополнительный CSS-класс для компонента хлебных крошек */
   className?: string;
-  /** Массив элементов хлебных крошек */
-  crumbs: IBreadcrumbProps[];
-  /** Ширина компонента хлебных крошек в процентах */
-  width?: number;
+  /** Дочерние элементы, обычно Crumb */
+  children: ReactNode;
 }
 
-/**
- * Тип для представления ширины DOM-узла
- */
-export type TNodeWidth = Pick<HTMLElement, 'offsetWidth' | 'scrollWidth'>;
+export interface ICrumbProps {
+  /** Дочерний элемент, обычно ссылка */
+  children: ReactElement;
+}
 
-declare const Breadcrumbs: React.FC<IBreadcrumbsProps>;
+interface IBreadcrumbsComponent extends FC<IBreadcrumbsProps> {
+  Crumb: FC<ICrumbProps>;
+}
+
+declare const Breadcrumbs: IBreadcrumbsComponent;
 
 export default Breadcrumbs;

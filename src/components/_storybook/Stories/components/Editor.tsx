@@ -41,7 +41,8 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
         template="react"
         customSetup={{
           dependencies: {
-            '@nlmk/ds-2.0': VERSION
+            '@nlmk/ds-2.0': VERSION,
+            'react-router-dom': '^6.27.0'
           }
         }}
         theme={{

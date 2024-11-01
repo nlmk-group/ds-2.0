@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
+import { Link, MemoryRouter } from 'react-router-dom';
 
-import { breadcrumbs } from '@components/Breadcrumbs/_stories/constants';
+import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
 import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
@@ -22,7 +23,7 @@ import {
   HEADERS_DIFFERENT_SPACING
 } from './text';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Header/Stories',
@@ -189,15 +190,23 @@ HeaderSpacing.args = {
 
 export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
   return (
-    <>
+    <MemoryRouter>
       <Header
         {...argTypes}
         back={argTypes.back || undefined}
         favorite={argTypes.favorite || undefined}
         notification={argTypes.notification || undefined}
-        breadcrumbs={<Breadcrumbs crumbs={breadcrumbs} />}
+        breadcrumbs={
+          <Breadcrumbs>
+            {breadcrumbsLinks.map((link, index) => (
+              <Breadcrumbs.Crumb key={index}>
+                <Link to={link.href}>{link.label}</Link>
+              </Breadcrumbs.Crumb>
+            ))}
+          </Breadcrumbs>
+        }
       />
-    </>
+    </MemoryRouter>
   );
 };
 
@@ -214,7 +223,7 @@ HeaderBreadcrumbs.args = {
 
 export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
   return (
-    <>
+    <MemoryRouter>
       <Header
         {...argTypes}
         back={argTypes.back || undefined}
@@ -222,12 +231,21 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
         date
         favorite={argTypes.favorite || undefined}
         notification={argTypes.notification || undefined}
+        breadcrumbs={
+          <Breadcrumbs>
+            {breadcrumbsLinks.map((link, index) => (
+              <Breadcrumbs.Crumb key={index}>
+                <Link to={link.href}>{link.label}</Link>
+              </Breadcrumbs.Crumb>
+            ))}
+          </Breadcrumbs>
+        }
       >
         <Button style={{ marginRight: '25px' }} variant="grey" fill="outline" startIcon={<IconSettingsAltOutlined24 />}>
           Настройки
         </Button>
       </Header>
-    </>
+    </MemoryRouter>
   );
 };
 

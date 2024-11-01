@@ -1,61 +1,17 @@
-import { targetMapping } from '../enums';
-
-export const breadcrumbsArgsTypes = {
-  crumbs: {
-    description: 'Массив, содержащий Breadcrumb объекты',
-    table: {
-      defaultValue: {
-        summary: 'Type<Breadcrumbs[]>, required'
-      }
-    },
-    control: {
-      type: 'object'
-    }
-  },
+export const argsTypes = {
   width: {
-    description: 'Максимальная ширина элемента в процентах',
+    description: 'Ширина компонента',
+    control: { type: 'text' }
+  },
+  className: {
+    description: 'Дополнительный CSS-класс для компонента хлебных крошек',
     table: {
       defaultValue: {
-        summary: 100
+        summary: '-'
       }
     },
-    control: { type: 'number' }
+    control: { type: 'text' }
   }
 };
 
-export const breadcrumbsItemsArgsTypes = {
-  label: {
-    description: 'Название',
-    table: {
-      defaultValue: {
-        summary: 'Type<string>, required'
-      }
-    }
-  },
-  href: {
-    description: 'Ссылка',
-    table: {
-      defaultValue: {
-        summary: 'Type<string>, required'
-      }
-    }
-  },
-  target: {
-    description: 'Атрибут определяет где открывать документ, на который ведет ссылка',
-    table: {
-      defaultValue: {
-        summary: targetMapping._parent
-      }
-    }
-  },
-  active: {
-    description: 'Опциональное свойство. С этим свойством компонент демонстрирует текущую страницу',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      }
-    }
-  }
-};
-
-export default { ...breadcrumbsArgsTypes, ...breadcrumbsItemsArgsTypes };
+export default argsTypes;

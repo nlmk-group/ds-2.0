@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { Children, FC, isValidElement, ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -6,63 +6,68 @@ import { IBreadcrumbsProps } from './types';
 
 import styles from './Breadcrumbs.module.scss';
 
-import BasicBreadcrumbs from './BasicBreadcrumbs';
-import ShortenBreadcrumbs from './ShortenBreadcrumbs';
+import { BasicBreadcrumbs, Crumb, ShortenBreadcrumbs } from './subcomponents';
+
+const CRUMB_MARGIN = 8;
+const SEPARATOR_WIDTH = 16;
 
 /**
  * Компонент Breadcrumbs для отображения навигационной цепочки (хлебных крошек).
- * @component
- * @param {Object} props - Свойства компонента Breadcrumbs.
- * @param {IBreadcrumbsProps['crumbs']} props.crumbs - Массив элементов хлебных крошек.
- * @param {number} [props.width=100] - Ширина компонента в процентах.
- * @param {string} [props.className] - Дополнительный CSS класс.
+ * Использует паттерн Compound Components для гибкости использования.
+ *
+ * @param {object} props - Свойства компонента Breadcrumbs.
+ * @param {CSSProperties['width']} [props.width=100] - Ширина компонента. По умолчанию 100.
+ * @param {string} [props.className] - Дополнительный CSS-класс для компонента.
+ * @param {ReactNode} props.children - Дочерние элементы, обычно компоненты Crumb.
  * @returns {JSX.Element} Компонент Breadcrumbs.
+ *
  */
-const Breadcrumbs: FC<IBreadcrumbsProps> = ({ crumbs, width = 100, className }) => {
+const Breadcrumbs: FC<IBreadcrumbsProps> & {
+  Crumb: typeof Crumb;
+} = ({ width = '100%', className, children }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState<number>(0);
   const [linkSumWidth, setLinkSumWidth] = useState<number>(0);
 
-  const charsOverflow = (): number => {
-    let result = 0;
-    const nodeArray: NodeListOf<HTMLElement> = document.querySelectorAll('a#linkWidth');
-    nodeArray.forEach(({ clientWidth }) => {
-      result += clientWidth + 8 + 16;
-    });
-    return result;
-  };
-
-  useEffect(() => {
-    handleSetElementWidth();
-  }, [width]);
-
-  useEffect(() => {
-    if (linkSumWidth === 0) {
-      setLinkSumWidth(charsOverflow());
-    }
-  }, [elementWidth, width]);
-
   const handleSetElementWidth = (): void => {
-    if (!!ref && !!ref.current && elementWidth !== ref.current.offsetWidth) {
+    if (ref.current && elementWidth !== ref.current.offsetWidth) {
       setElementWidth(ref.current.offsetWidth);
     }
   };
 
   useLayoutEffect(() => {
     handleSetElementWidth();
-  }, []);
+  }, [width, children]);
 
   useEffect(() => {
-    function handleWindowResize() {
+    const handleWindowResize = () => {
       handleSetElementWidth();
-    }
+    };
 
     window.addEventListener('resize', handleWindowResize);
 
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, [ref?.current?.offsetWidth]);
+  }, []);
+
+  useEffect(() => {
+    setLinkSumWidth(charsOverflow());
+  }, [elementWidth, width, children]);
+
+  const charsOverflow = (): number => {
+    let result = 0;
+    const nodeArray: NodeListOf<HTMLElement> | [] = ref.current?.querySelectorAll('[data-link-width]') || [];
+    nodeArray.forEach(({ clientWidth }) => {
+      result += clientWidth + CRUMB_MARGIN + SEPARATOR_WIDTH;
+    });
+    return result;
+  };
+
+  const crumbs = Children.toArray(children).filter(
+    (child): child is ReactElement =>
+      isValidElement(child) && (child.type as unknown as { displayName?: string }).displayName === 'Crumb'
+  );
 
   const condition = elementWidth > linkSumWidth || crumbs.length <= 2;
 
@@ -71,11 +76,13 @@ const Breadcrumbs: FC<IBreadcrumbsProps> = ({ crumbs, width = 100, className }) 
       data-testid="BREADCRUMBS_WRAPPER"
       ref={ref}
       className={clsx(styles.breadcrumbs, className)}
-      style={{ width: `${width}%` }}
+      style={{ width: width }}
     >
       {condition ? <BasicBreadcrumbs crumbs={crumbs} /> : <ShortenBreadcrumbs crumbs={crumbs} />}
     </div>
   );
 };
+
+Breadcrumbs.Crumb = Crumb;
 
 export default Breadcrumbs;

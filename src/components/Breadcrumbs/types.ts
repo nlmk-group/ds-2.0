@@ -1,28 +1,45 @@
-export interface IBreadcrumbProps {
-  /** Текст, отображаемый для элемента хлебных крошек */
-  label: string;
-  /** URL-адрес, на который ведет элемент хлебных крошек */
-  href: string;
-  /** Флаг, указывающий, является ли элемент активным */
-  active?: boolean;
-  /** Атрибут target для ссылки (например, "_blank" для открытия в новой вкладке) */
-  target?: string;
-  /** Флаг, указывающий, является ли элемент последним в цепочке хлебных крошек */
-  isLast?: boolean;
-}
+import { CSSProperties, ReactElement, ReactNode } from 'react';
 
-export interface ILinkComponentProps extends IBreadcrumbProps {}
-
+/**
+ * Интерфейс для компонента Breadcrumbs.
+ */
 export interface IBreadcrumbsProps {
-  /** Дополнительный CSS-класс для компонента */
+  /** Ширина компонента в процентах */
+  width?: CSSProperties['width'];
+  /** Дополнительный CSS-класс */
   className?: string;
-  /** Массив элементов хлебных крошек */
-  crumbs: IBreadcrumbProps[];
-  /** Ширина компонента хлебных крошек в процентах */
-  width?: number;
+  /** Дочерние элементы, обычно Crumb */
+  children: ReactNode;
 }
 
 /**
- * Тип для представления ширины DOM-узла
+ * Интерфейс для компонента BasicBreadcrumbs.
  */
-export type TNodeWidth = Pick<HTMLElement, 'offsetWidth' | 'scrollWidth'>;
+export interface IBasicBreadcrumbsProps {
+  crumbs: ReactElement[];
+}
+
+/**
+ * Интерфейс для внутреннего использования компонента Crumb.
+ */
+export interface IInternalCrumbProps {
+  /** Флаг, указывающий, является ли элемент последним */
+  isLast?: boolean;
+  /** Дочерний элемент, обычно ссылка */
+  children: ReactElement;
+}
+
+/**
+ * Интерфейс для публичного API компонента Crumb.
+ */
+export interface ICrumbProps {
+  /** Дочерний элемент, обычно ссылка */
+  children: ReactElement;
+}
+
+/**
+ * Интерфейс для компонента ShortenBreadcrumbs.
+ */
+export interface IShortenBreadcrumbsProps {
+  crumbs: ReactElement[];
+}

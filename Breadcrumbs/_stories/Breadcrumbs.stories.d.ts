@@ -1,12 +1,19 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
-import { targetMapping } from '../enums';
 import { IBreadcrumbsProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<IBreadcrumbsProps>;
+    component: React.FC<IBreadcrumbsProps> & {
+        Crumb: React.FC<import('../types').ICrumbProps>;
+    };
     argTypes: {
-        crumbs: {
+        width: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        className: {
             description: string;
             table: {
                 defaultValue: {
@@ -17,46 +24,20 @@ declare const _default: {
                 type: string;
             };
         };
-        width: {
-            description: string;
-            table: {
-                defaultValue: {
-                    summary: number;
-                };
-            };
-            control: {
-                type: string;
-            };
-        };
     };
 };
 export default _default;
 export declare const BreadcrumbsDefault: {
-    (argTypes: IBreadcrumbsProps): ReactNode;
+    (argsTypes: IBreadcrumbsProps): ReactNode;
     storyName: string;
     args: {
-        crumbs: import('../types').IBreadcrumbProps[];
-        width: number;
-    };
-};
-export declare const BreadcrumbsWidth: {
-    (argTypes: IBreadcrumbsProps): ReactNode;
-    storyName: string;
-    args: {
-        width: number;
-        crumbs: import('../types').IBreadcrumbProps[];
+        width: string;
+    } | {
+        width: string;
     };
 };
 export declare const BreadcrumbsTarget: {
-    (argTypes: IBreadcrumbsProps): ReactNode;
+    (argsTypes: IBreadcrumbsProps): ReactNode;
     storyName: string;
-    args: {
-        width: number;
-        crumbs: {
-            href: string;
-            label: string;
-            target: targetMapping;
-        }[];
-    };
 };
 //# sourceMappingURL=Breadcrumbs.stories.d.ts.map

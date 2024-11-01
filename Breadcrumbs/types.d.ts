@@ -1,16 +1,21 @@
-export interface IBreadcrumbProps {
-    label: string;
-    href: string;
-    active?: boolean;
-    target?: string;
-    isLast?: boolean;
-}
-export interface ILinkComponentProps extends IBreadcrumbProps {
-}
+import { CSSProperties, ReactElement, ReactNode } from '../../../node_modules/react';
+
 export interface IBreadcrumbsProps {
+    width?: CSSProperties['width'];
     className?: string;
-    crumbs: IBreadcrumbProps[];
-    width?: number;
+    children: ReactNode;
 }
-export type TNodeWidth = Pick<HTMLElement, 'offsetWidth' | 'scrollWidth'>;
+export interface IBasicBreadcrumbsProps {
+    crumbs: ReactElement[];
+}
+export interface IInternalCrumbProps {
+    isLast?: boolean;
+    children: ReactElement;
+}
+export interface ICrumbProps {
+    children: ReactElement;
+}
+export interface IShortenBreadcrumbsProps {
+    crumbs: ReactElement[];
+}
 //# sourceMappingURL=types.d.ts.map

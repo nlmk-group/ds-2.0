@@ -1,0 +1,7 @@
+import{j as e}from"./jsx-runtime-DoxjgJx5.js";import{a0 as p}from"./index-ZojCmbpv.js";import{a as m}from"./argsTypes-C-3bnbhX.js";import"./index-Cu9bd8lq.js";import"./index-ED8ccfsJ.js";import"./clsx-B-dksMZM.js";import"./generateUUID-CG7VmJJw.js";import"./32-Bjhqu_Pf.js";import"./index-BHxe-dnq.js";import"./index-XsxLq1mj.js";import"./index-iWHyAWYR.js";import"./index-CWQ0GGcJ.js";import"./index-AXtJih2E.js";import"./index-Ckls47V4.js";import"./types-CpBSVUgC.js";import"./index-BztLnIMF.js";import"./index-7KVZVlDS.js";import"./index-Udc0C2Qz.js";import"./index-CPdpS9Jm.js";import"./get-CeVb1zXw.js";const n="_wrapper_7wsw2_1",d="_row_7wsw2_8",o={wrapper:n,row:d},c=s=>e.jsx("div",{style:{minHeight:80},children:e.jsx(s,{})}),I={title:"Components/Badge/Stories",component:p,decorators:[c],argTypes:m},r=s=>e.jsx("div",{className:o.wrapper,children:e.jsx("div",{className:o.row,children:e.jsx(p,{...s,children:s.children})})});r.storyName="Бэйдж по умолчанию";r.args={children:"1"};var t,a,i;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`(argsTypes: IBadgeProps): JSX.Element => {
+  return <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <Badge {...argsTypes}>{argsTypes.children}</Badge>
+      </div>
+    </div>;
+}`,...(i=(a=r.parameters)==null?void 0:a.docs)==null?void 0:i.source}}};const J=["BadgeDefault"];export{r as BadgeDefault,J as __namedExportsOrder,I as default};

@@ -5,5 +5,6 @@ export interface IDropdownMenuItemProps {
     value: string;
     disabled?: boolean;
     children?: ReactNode;
+    className?: string;
 }
 //# sourceMappingURL=types.d.ts.map

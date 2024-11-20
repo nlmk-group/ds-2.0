@@ -22,7 +22,7 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    close: {
+    className: {
         description: string;
         control: {
             type: string;
@@ -31,22 +31,14 @@ export declare const argsTypes: {
     action: {
         description: string;
         control: {
-            type: string;
+            type: null;
         };
     };
-    className: {
+    close: {
         description: string;
+        action: string;
         control: {
-            type: string;
-        };
-    };
-    props: {
-        description: string;
-    };
-    showChildren: {
-        description: string;
-        control: {
-            type: string;
+            type: null;
         };
     };
 };

@@ -1,6 +1,5 @@
 import { ChangeEvent, MouseEvent, PropsWithChildren, ReactNode } from '../../../node_modules/react';
-import { sizesMapping } from '../declaration';
-import { EDnDFileType, EDnDStatusColor } from './enums';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from './enums';
 
 export interface IFileProps extends PropsWithChildren<any> {
     children?: JSX.Element;
@@ -34,7 +33,7 @@ export interface IDragAndDropProps extends PropsWithChildren<{
     statusColor?: `${EDnDStatusColor}`;
     withIcon?: boolean;
     customIcon?: JSX.Element;
-    size?: `${sizesMapping}`;
+    size?: `${EDnDSizes}`;
     multiple?: boolean;
     loading?: boolean;
     percentUpload?: number;
@@ -49,7 +48,7 @@ export interface IUploadHelperProps {
     smallText?: boolean;
     smallIcon?: boolean;
     showSpinner?: boolean;
-    size: `${sizesMapping}`;
+    size: `${EDnDSizes}`;
     percentUpload?: number | undefined;
 }
 export interface ISmallTextProps {
@@ -63,7 +62,7 @@ export interface ISmallTextProps {
 export interface IDefaultDnDProps {
     disabled: boolean;
     loading: boolean;
-    size: `${sizesMapping}`;
+    size: `${EDnDSizes}`;
     percentUpload: number;
     withIcon: boolean;
     customIcon: JSX.Element | null;

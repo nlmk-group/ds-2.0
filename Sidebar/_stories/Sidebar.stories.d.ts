@@ -10,13 +10,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').orientationMapping;
+                    summary: import('../enums').ESidebarOrientationMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').orientationMapping[];
+            options: import('../enums').ESidebarOrientationMapping[];
             control: {
                 type: string;
             };
@@ -25,13 +25,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').variantMapping;
+                    summary: import('../enums').ESidebarVariantMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').variantMapping[];
+            options: import('../enums').ESidebarVariantMapping[];
             control: {
                 type: string;
             };

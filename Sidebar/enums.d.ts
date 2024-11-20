@@ -1,12 +1,12 @@
-export declare enum orientationMapping {
+export declare enum ESidebarOrientationMapping {
     vertical = "vertical",
     horizontal = "horizontal"
 }
-export declare enum variantMapping {
+export declare enum ESidebarVariantMapping {
     default = "default",
     burger = "burger"
 }
-export declare enum positionMapping {
+export declare enum ESidebarPositionMapping {
     top = "top",
     bottom = "bottom"
 }

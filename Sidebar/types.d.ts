@@ -1,10 +1,10 @@
 import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from '../../../node_modules/react';
 import { TIconName } from '../Icon/IconsDirectory/unionType';
-import { orientationMapping, positionMapping, variantMapping } from './enums';
+import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 
 export interface ISidebarProps extends PropsWithChildren {
-    orientation?: `${orientationMapping}`;
-    variant?: `${variantMapping}`;
+    orientation?: `${ESidebarOrientationMapping}`;
+    variant?: `${ESidebarVariantMapping}`;
     allowFavorites?: boolean;
     isLoggedIn?: boolean;
     systemName?: string;
@@ -32,7 +32,7 @@ export interface IUserControlProps extends PropsWithChildren {
     onLogout?: () => void;
 }
 export interface IMenuItemProps extends PropsWithChildren {
-    position?: `${positionMapping}`;
+    position?: `${ESidebarPositionMapping}`;
     label: string;
     icon: TIconName;
     onClick?: () => void;
@@ -43,7 +43,7 @@ export interface ISidebarProperties {
     isExpanded: boolean;
     activeItem: string | null;
     allowFavorites: boolean;
-    orientation: `${orientationMapping}`;
+    orientation: `${ESidebarOrientationMapping}`;
     setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
     setActiveItem: Dispatch<SetStateAction<string | null>>;
     isScrollingDueToClick: boolean;
@@ -60,7 +60,7 @@ export interface ISubmenuProperties {
     setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
 }
 export interface ISubmenuProps extends PropsWithChildren {
-    orientation: `${orientationMapping}`;
+    orientation: `${ESidebarOrientationMapping}`;
     isOpen: boolean;
     title: string;
 }

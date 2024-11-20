@@ -1,32 +1,23 @@
 import { CSSProperties, ReactNode } from '../../../node_modules/react';
-import { customInputColors, sizesMappingInput } from '../declaration';
+import { TInputProps } from '../Input/types';
 
-type TSize = `${sizesMappingInput}`;
-export interface ISelectProps {
+type TOverrideInputProps = {
     value?: string | number;
     onChange?: (value: string | number) => void;
-    id?: string;
+    onBlur?: () => void;
+    onFocus?: () => void;
+};
+interface ISelectSpecificProps {
     portalContainerId?: string;
     children: ReactNode;
     menuWidth?: string;
-    placeholder?: string;
-    label?: string;
     withPortal?: boolean;
-    disabled?: boolean;
-    onBlur?: () => void;
-    onFocus?: () => void;
-    color?: customInputColors;
-    size?: TSize;
+    onEnterPress?: (item: string | number) => void;
     scrollingItems?: number;
     noOptionsText?: string;
     searchable?: boolean;
-    name?: string;
-    onEnterPress?: (item: string | number) => void;
     style?: CSSProperties;
-    className?: string;
-    colored?: boolean;
-    reset?: boolean;
-    onReset?: () => void;
 }
+export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;
 export {};
 //# sourceMappingURL=types.d.ts.map

@@ -1,17 +1,17 @@
-import { orientationMapping, variantMapping, positionMapping } from '../enums';
+import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from '../enums';
 
 export declare const argsTypes: {
     orientation: {
         description: string;
         table: {
             defaultValue: {
-                summary: orientationMapping;
+                summary: ESidebarOrientationMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: orientationMapping[];
+        options: ESidebarOrientationMapping[];
         control: {
             type: string;
         };
@@ -20,13 +20,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: variantMapping;
+                summary: ESidebarVariantMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: variantMapping[];
+        options: ESidebarVariantMapping[];
         control: {
             type: string;
         };
@@ -92,7 +92,7 @@ export declare const menuItemArgsTypes: {
                 summary: string;
             };
         };
-        options: positionMapping[];
+        options: ESidebarPositionMapping[];
         control: {
             type: string;
         };

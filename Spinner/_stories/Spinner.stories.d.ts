@@ -82,4 +82,8 @@ export declare const SpinnerWithPercent: {
     (args: ISpinnerProps): JSX.Element;
     storyName: string;
 };
+export declare const SpinnerStretchedContainer: {
+    (args: ISpinnerProps): JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Spinner.stories.d.ts.map

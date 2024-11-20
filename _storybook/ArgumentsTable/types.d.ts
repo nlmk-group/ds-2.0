@@ -11,7 +11,7 @@ export interface IArgType {
     };
     options?: Array<string | number>;
     control?: {
-        type: string;
+        type?: string | boolean | null | undefined;
     };
 }
 export type TArgsType = {

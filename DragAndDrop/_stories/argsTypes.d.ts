@@ -1,5 +1,4 @@
-import { sizesMapping } from '../../declaration';
-import { EDnDFileType, EDnDStatusColor } from '../enums';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from '../enums';
 
 export declare const argsTypes: {
     className: {
@@ -90,13 +89,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: sizesMapping;
+                summary: EDnDSizes;
             };
             type: {
                 summary: string;
             };
         };
-        options: sizesMapping[];
+        options: EDnDSizes[];
         control: {
             type: string;
         };

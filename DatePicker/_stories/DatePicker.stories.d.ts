@@ -251,6 +251,7 @@ export declare const Default: {
     (argTypes: TDatePickerProps): JSX.Element;
     args: {};
 };
+export declare const DefaultWithError: (argTypes: TDatePickerProps) => JSX.Element;
 export declare const WithColored: () => JSX.Element;
 export declare const LevelMonth: () => JSX.Element;
 export declare const LevelQuarter: () => JSX.Element;

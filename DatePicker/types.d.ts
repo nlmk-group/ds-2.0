@@ -1,41 +1,39 @@
 import { FC, ReactNode } from '../../../node_modules/react';
 import { LEVEL_MAPPING_ENUM } from './helpers/levelMappingEnum';
-import { sizesMappingInput } from '../declaration';
 import { ENABLED_HOURS_VALUES } from '../declaration/constants/enabledHours';
+import { TInputProps } from '../Input/types';
 
 export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 export type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
-export interface IBaseProps {
-    id?: number | string;
+type TOverrideInputProps = {
+    value?: Date;
+    onChange?: (date: Date) => void;
+    onBlur?: () => void;
+    onFocus?: () => void;
+};
+interface IDatePickerSpecificProps {
     portalContainerId?: string;
     locale?: string;
-    className?: string;
     enabledFrom?: Date;
     enabledTo?: Date;
     enabledHourFrom?: (date: Date) => TEnabledHour;
     enabledHourTo?: (date: Date) => TEnabledHour;
     enabledMinuteFrom?: (date: Date) => number;
     enabledMinuteTo?: (date: Date) => number;
-    disabled?: boolean;
-    label?: string;
     disableChange?: boolean;
-    name?: string;
     withPortal?: boolean;
-    error?: boolean;
-    colored?: boolean;
     disableChangesOnBlur?: boolean;
     isOpenOnFocus?: boolean;
     pseudo?: boolean;
     pseudoChildren?: ReactNode;
     isHideYear?: boolean;
-    size?: sizesMappingInput;
     withoutWeekdays?: boolean;
     onPanelChange?: (date: Date) => void;
     onSelect?: (date: Date) => void;
     infiniteTimeScroll?: boolean;
-    reset?: boolean;
-    onReset?: () => void;
+    error?: boolean;
 }
+export type IBaseProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & IDatePickerSpecificProps;
 export interface IBaseRegularProps extends IBaseProps {
     value?: Date;
     shiftFrom?: undefined;
@@ -98,4 +96,5 @@ export type TShiftValues = {
     shiftFrom: number | undefined;
     shiftTo: number | undefined;
 };
+export {};
 //# sourceMappingURL=types.d.ts.map

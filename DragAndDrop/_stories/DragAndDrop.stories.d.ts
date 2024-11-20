@@ -1,6 +1,5 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
-import { sizesMapping } from '../../declaration';
-import { EDnDFileType, EDnDStatusColor } from '../enums';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from '../enums';
 import { IDragAndDropProps } from '../types';
 
 declare const _default: {
@@ -96,13 +95,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: sizesMapping;
+                    summary: EDnDSizes;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: sizesMapping[];
+            options: EDnDSizes[];
             control: {
                 type: string;
             };
@@ -263,7 +262,7 @@ export declare const dndStatuses: {
         cancelUpload: import('@storybook/addon-actions').HandlerFunction;
     };
 };
-export declare const dndStatuses2: {
+export declare const dndLoading: {
     (argTypes: IDragAndDropProps): ReactNode;
     storyName: string;
     args: {
@@ -277,6 +276,14 @@ export declare const dndSmallIcon: {
     args: {
         onUpload: import('@storybook/addon-actions').HandlerFunction;
         smallIcon: boolean;
+    };
+};
+export declare const dndSmallText: {
+    (argTypes: IDragAndDropProps): ReactNode;
+    storyName: string;
+    args: {
+        onUpload: import('@storybook/addon-actions').HandlerFunction;
+        smallText: boolean;
     };
 };
 export declare const dndCustomIcon: {

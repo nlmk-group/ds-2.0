@@ -4,9 +4,9 @@ import { IBox } from '../../Box/types';
 declare const _default: {
     title: string;
     component: {
-        ({ children, ...props }: import('../types').IGrid): React.JSX.Element;
-        Column: ({ children, ...props }: import('../types').IGrid) => React.JSX.Element;
-        Row: ({ children, ...props }: import('../types').IGrid) => React.JSX.Element;
+        ({ children, ...props }: IBox): React.JSX.Element;
+        Column: ({ children, ...props }: IBox) => React.JSX.Element;
+        Row: ({ children, ...props }: IBox) => React.JSX.Element;
     };
     decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {

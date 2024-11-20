@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { sizesMapping } from '@components/declaration';
 import { DragAndDrop } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './DragAndDrop.module.scss';
 
 import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import { EDnDFileType, EDnDIconType, EDnDSpinnerWidthHelper, EDnDStatusColor } from './enums';
+import { EDnDFileType, EDnDIconType, EDnDSizes, EDnDSpinnerWidthHelper, EDnDStatusColor } from './enums';
 import UploadIcon from './subcomponents/UploadIcon';
 
 describe('src/components/DragAndDrop', () => {
@@ -122,7 +121,7 @@ describe('src/components/DragAndDrop', () => {
   });
 
   describe('While rendering with different sizes', () => {
-    Object.values(sizesMapping).forEach((size: sizesMapping) => {
+    Object.values(EDnDSizes).forEach((size: EDnDSizes) => {
       const ComponentHelper = () => <DragAndDrop size={size} onUpload={onUploadMockCallBack} />;
 
       test(`It should render component with ${size} size`, () => {
@@ -185,19 +184,19 @@ describe('src/components/DragAndDrop', () => {
 
   describe('src/components/DragAndDrop/UploadIcon', () => {
     test('It should render a UploadIcon', () => {
-      const { container } = render(<UploadIcon size={sizesMapping.l} percentUpload={0} />);
+      const { container } = render(<UploadIcon size={EDnDSizes.l} percentUpload={0} />);
       const uploadIcon = container.getElementsByTagName('div')[0];
       expect(uploadIcon).toBeInTheDocument();
     });
 
     test('It should render a UploadIcon', () => {
       const percent = 15;
-      render(<UploadIcon size={sizesMapping.l} percentUpload={percent} />);
+      render(<UploadIcon size={EDnDSizes.l} percentUpload={percent} />);
       expect(screen.getByTestId('PERCENT')).toHaveTextContent(`${percent}%`);
     });
 
     describe('While rendering UploadIcon with different sizes', () => {
-      Object.values(sizesMapping).forEach((size: sizesMapping) => {
+      Object.values(EDnDSizes).forEach((size: EDnDSizes) => {
         const ComponentHelper = () => <UploadIcon size={size} percentUpload={0} />;
 
         test(`It should render UploadIcon with ${size} size`, () => {

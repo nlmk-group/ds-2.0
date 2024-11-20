@@ -1,0 +1,57 @@
+.status {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  color: var(--steel-90);
+  width: fit-content;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.size-s.fill-solid {
+  padding: 4px 12px 4px 8px;
+  border-radius: 13px;
+}
+
+.size-m.fill-solid {
+  padding: 7px 16px 7px 12px;
+  border-radius: 24px;
+}
+
+.size-l.fill-solid {
+  padding: 8px 16px 8px 12px;
+  border-radius: 22px;
+}
+
+$colors: default, error, success, warning, grey;
+
+$bg-colors: (
+  default: var(--brand-sapphire-30),
+  error: var(--spectrum-red-20),
+  success: var(--spectrum-green-20),
+  warning: var(--spectrum-yellow-20),
+  grey: var(--steel-40)
+);
+
+$icon-colors: (
+  default: var(--brand-sapphire-60),
+  error: var(--spectrum-red-60),
+  success: var(--spectrum-green-60),
+  warning: var(--spectrum-yellow-60),
+  grey: var(--steel-70)
+);
+
+@each $color in $colors {
+  .color-#{"" + $color} {
+    &.fill-solid {
+      background-color: map-get($bg-colors, $color);
+    }
+  }
+}

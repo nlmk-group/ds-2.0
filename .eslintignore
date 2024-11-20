@@ -1,5 +1,0 @@
-vite.config.ts
-src/index.tsx
-src/**/*.stories.tsx
-lib
-dist

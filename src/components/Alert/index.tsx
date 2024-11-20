@@ -1,10 +1,6 @@
 import React, { FC, ReactElement, ReactNode } from 'react';
 
-import {
-  Button,
-  IconCloseOutlined16,
-  Typography
-} from '@components/index';
+import { Button, IconCloseOutlined24, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import { IAlertProps } from './types';
@@ -12,7 +8,7 @@ import { IAlertProps } from './types';
 import styles from './Alert.module.scss';
 
 import { EAlertSeverity } from './enums';
-import AlertIcon from '@components/Alert/subcomponents/AlertIcon';
+import AlertIcon from './subcomponents/AlertIcon';
 
 /**
  * Компонент Alert для отображения информационных сообщений различных типов.
@@ -45,8 +41,8 @@ const Alert: FC<IAlertProps> = ({
   return (
     <div data-testid="ALERT_WRAPPER" className={clsx(styles.wrapper, styles[`wrapper-${severity}`], className)}>
       <div data-testid="ALERT_TITLE" className={styles.content}>
-        <AlertIcon severity={severity}/>
-        <Typography variant="Body2-Bold">{title}</Typography>
+        <AlertIcon severity={severity} />
+        <Typography variant="Body1Mono-Bold">{title}</Typography>
         <div className={styles['action-wrapper']}>
           {action && action}
           {close && (
@@ -55,15 +51,15 @@ const Alert: FC<IAlertProps> = ({
               fill="clear"
               onClick={close}
               className={styles.close}
-              size="xs"
-              iconButton={<IconCloseOutlined16 htmlColor="var(--steel-80)" />}
+              size="m"
+              iconButton={<IconCloseOutlined24 htmlColor="var(--steel-70)" />}
             />
           )}
         </div>
       </div>
       {children && (
         <div className={styles['content-description']}>
-          <Typography variant="Body2-Medium">{children}</Typography>
+          <Typography variant="Body1Mono-Medium">{children}</Typography>
         </div>
       )}
     </div>

@@ -1,28 +1,17 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
-import { sizesMapping } from '@components/declaration';
 import { DragAndDrop, Icon } from '@components/index';
 import { action } from '@storybook/addon-actions';
 
 import customStyle from '../DragAndDrop.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { cancelUploadLabel, smallTextUploadText } from '../constants';
-import { EDnDFileType, EDnDStatusColor } from '../enums';
+import { cancelUploadLabel, dragNDropTitle, smallTextUploadText } from '../constants';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from '../enums';
 import { IDragAndDropProps } from '../types';
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_DND,
-  DND_CUSTOM,
-  DND_CUSTOM_ACCEPT,
-  DND_CUSTOM_ICON,
-  DND_FILE_TYPES,
-  DND_SIZES,
-  DND_SMALL_ICON,
-  DND_STATUSES
-} from './text';
 
-const withWrapper = (Story: any) => <div className={styles['wrapper-fit-content']}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles['wrapper-fit-content']}>{<Story />}</div>;
 
 export default {
   title: 'Components/DragAndDrop/Stories',
@@ -73,20 +62,18 @@ export const dndDefault = (argTypes: IDragAndDropProps): ReactNode => {
     />
   );
 };
-
-dndDefault.storyName = DEFAULT_DND;
+dndDefault.storyName = 'DragNDrop по умолчанию';
 
 export const dndSizes = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
-      {Object.values(sizesMapping).map((size: sizesMapping) => {
-        if (size !== sizesMapping.s) return <DragAndDrop key={size} size={size} {...argTypes} />;
+      {Object.values(EDnDSizes).map((size: EDnDSizes) => {
+        return <DragAndDrop key={size} size={size} {...argTypes} />;
       })}
     </div>
   );
 };
-
-dndSizes.storyName = DND_SIZES;
+dndSizes.storyName = 'Размеры DragNDrop';
 dndSizes.args = {
   onUpload: action('OnUpload')
 };
@@ -100,8 +87,7 @@ export const dndFileTypes = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-
-dndFileTypes.storyName = DND_FILE_TYPES;
+dndFileTypes.storyName = 'DragNDrop с различными типами файлов';
 dndFileTypes.args = {
   onUpload: action('OnUpload')
 };
@@ -113,8 +99,7 @@ export const dndCustomAccept = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-
-dndCustomAccept.storyName = DND_CUSTOM_ACCEPT;
+dndCustomAccept.storyName = 'DragNDrop, принимающий определенный тип файлов';
 dndCustomAccept.args = {
   onUpload: action('OnUpload'),
   accept: '.pdf',
@@ -134,14 +119,13 @@ export const dndStatuses = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-
-dndStatuses.storyName = DND_STATUSES;
+dndStatuses.storyName = 'DragNDrop различные статусы';
 dndStatuses.args = {
   onUpload: action('OnUpload'),
   cancelUpload: action('onCancelUpload')
 };
 
-export const dndStatuses2 = (argTypes: IDragAndDropProps): ReactNode => {
+export const dndLoading = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <div className={styles['wrapper-row']}>
       {Object.values(EDnDStatusColor)
@@ -152,16 +136,15 @@ export const dndStatuses2 = (argTypes: IDragAndDropProps): ReactNode => {
       <DragAndDrop
         loading={true}
         percentUpload={75}
-        title={smallTextUploadText}
+        title={dragNDropTitle}
         btnLabel={cancelUploadLabel}
         {...argTypes}
       />
     </div>
   );
 };
-
-dndStatuses2.storyName = DND_STATUSES;
-dndStatuses2.args = {
+dndLoading.storyName = 'DragNDrop в состоянии Loading';
+dndLoading.args = {
   onUpload: action('OnUpload'),
   cancelUpload: action('onCancelUpload')
 };
@@ -173,31 +156,46 @@ export const dndSmallIcon = (argTypes: IDragAndDropProps): ReactNode => {
         <DragAndDrop key={status} statusColor={status} {...argTypes} />
       ))}
       <DragAndDrop title={smallTextUploadText} loading percentUpload={99} {...argTypes} />
+      <DragAndDrop title={dragNDropTitle} disabled {...argTypes} />
     </div>
   );
 };
-
-dndSmallIcon.storyName = DND_SMALL_ICON;
+dndSmallIcon.storyName = 'DragNDrop в состоянии SmallIcon';
 dndSmallIcon.args = {
   onUpload: action('OnUpload'),
   smallIcon: true
 };
 
+export const dndSmallText = (argTypes: IDragAndDropProps): ReactNode => {
+  return (
+    <div className={styles['wrapper-row']}>
+      {Object.values(EDnDStatusColor).map((status: EDnDStatusColor) => (
+        <DragAndDrop key={status} statusColor={status} {...argTypes} />
+      ))}
+      <DragAndDrop title={smallTextUploadText} loading percentUpload={99} {...argTypes} />
+      <DragAndDrop title={dragNDropTitle} disabled {...argTypes} />
+    </div>
+  );
+};
+dndSmallText.storyName = 'DragNDrop в состоянии SmallText';
+dndSmallText.args = {
+  onUpload: action('OnUpload'),
+  smallText: true
+};
+
 export const dndCustomIcon = (argTypes: IDragAndDropProps): ReactNode => {
   return <DragAndDrop customIcon={<Icon name="IconUploadOutlined24" />} {...argTypes} />;
 };
-
-dndCustomIcon.storyName = DND_CUSTOM_ICON;
+dndCustomIcon.storyName = 'DragNDrop с кастомной иконкой';
 
 export const dndCustom = (argTypes: IDragAndDropProps): ReactNode => {
   return (
     <DragAndDrop {...argTypes}>
       <div className={customStyle['custom-component-style']}>
         <Icon name="IconUploadOutlined24" />
-        <div style={{ color: 'var(--steel-90)' }}>Just throw something here!</div>
+        <div style={{ color: 'var(--steel-90)' }}>Перетащите сюда что-нибудь!</div>
       </div>
     </DragAndDrop>
   );
 };
-
-dndCustom.storyName = DND_CUSTOM;
+dndCustom.storyName = 'DragNDrop кастомный';

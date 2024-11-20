@@ -103,7 +103,7 @@ export const AllIcons = (): JSX.Element => {
 
   const handleChangeColor = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const newColor = e.target.value;
-    document.documentElement.style.setProperty('--brand-sapphire-60', newColor);
+    document.documentElement.style.setProperty('--icon-search', newColor);
   }, []);
 
   const handleSearchChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = useCallback(e => {
@@ -118,8 +118,10 @@ export const AllIcons = (): JSX.Element => {
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    document.documentElement.style.removeProperty('--icon-search')
+
     const initialColor =
-      getComputedStyle(document.documentElement).getPropertyValue('var(--brand-sapphire-60)').trim() || '#1952b6';
+      getComputedStyle(document.documentElement).getPropertyValue('var(--icon-search)').trim() || '#1952b6';
     if (colorInputRef.current) {
       colorInputRef.current.value = initialColor;
     }
@@ -135,7 +137,6 @@ export const AllIcons = (): JSX.Element => {
   }, [iconsByNames, searchText]);
 
   const Row = ({ index, style }: { index: number; style: CSSProperties }) => {
-    const icon = filteredIconsMemo[index];
     return (
       <div style={style} className={styles.row}>
         {new Array(rowCount).fill(null).map((_, colIndex) => {

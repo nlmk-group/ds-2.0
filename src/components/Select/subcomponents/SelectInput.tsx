@@ -6,3 +6,5 @@ import { TInputProps } from '@components/Input/types';
 export const InputWithRef = forwardRef<HTMLInputElement, TInputProps>((props, ref) => (
   <Input {...props} inputRef={ref} />
 ));
+
+InputWithRef.displayName = 'InputWithRef';

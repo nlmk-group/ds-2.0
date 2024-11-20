@@ -1,14 +1,21 @@
 import React, { ChangeEvent, DragEvent, FC, useRef, useState } from 'react';
 
-import { generateUUID, sizesMapping } from '@components/declaration';
+import { generateUUID } from '@components/declaration';
 import { clsx } from 'clsx';
 
 import { IDragAndDropProps } from './types';
 
 import styles from './DragAndDrop.module.scss';
 
-import { cancelUploadLabel, dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, fileTypes } from './constants';
-import { EDnDFileType, EDnDStatusColor } from './enums';
+import {
+  cancelUploadLabel,
+  dragNDropBtnLabel,
+  dragNDropDescription,
+  dragNDropTitle,
+  dragNDropTitleError,
+  fileTypes
+} from './constants';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from './enums';
 import DefaultDragAndDrop from './subcomponents/DefaultDragAndDrop';
 import SmallIcon from './subcomponents/SmallIcon';
 import SmallText from './subcomponents/SmallText';
@@ -41,12 +48,12 @@ import SmallText from './subcomponents/SmallText';
 const DragAndDrop: FC<IDragAndDropProps> = ({
   children = null,
   className,
-  title = dragNDropTitle,
+  statusColor = EDnDStatusColor.default,
+  title = statusColor === EDnDStatusColor.error ? dragNDropTitleError : dragNDropTitle,
   description = dragNDropDescription,
   btnLabel = dragNDropBtnLabel,
   fileType = EDnDFileType.image,
-  statusColor = EDnDStatusColor.default,
-  size = sizesMapping.l,
+  size = EDnDSizes.l,
   withIcon = true,
   customIcon = null,
   multiple = true,
@@ -129,7 +136,7 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
           loading ? styles['label-loading'] : styles[`label-${statusColor}`],
           smallIcon && EDnDStatusColor.default && styles['label-s-default'],
           dragActive && styles[`label-${EDnDStatusColor.info}`],
-          smallText ? styles[`label-file-upload-${sizesMapping.s}`] : styles[`label-file-upload-${size}`],
+          smallText ? styles[`label-file-upload-s`] : styles[`label-file-upload-${size}`],
           smallIcon && styles['label-file-upload-small-icon']
         )}
         htmlFor={`input-file-upload-${inputId}`}

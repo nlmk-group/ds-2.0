@@ -12,12 +12,15 @@ import {
   DragAndDrop,
   Icon,
   Input,
+  Link,
   Select,
+  Spinner,
   Stepper,
   Switch,
   Tabs,
   ThemeSwitcher,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
   useThemeSwitcher
 } from './components';
@@ -110,10 +113,19 @@ export const TestDatePicker = (): JSX.Element => {
     </div>
   );
 };
+
+const SpinnerTest = (): JSX.Element => {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Spinner></Spinner>
+    </div>
+  );
+};
+
 root.render(
   <StrictMode>
     <div className="development-block">
-      <TestDatePicker />
+      <SpinnerTest />
     </div>
   </StrictMode>
 );

@@ -28,6 +28,7 @@ import { EButtonFill, EButtonNodesPosition, EButtonSizes, EButtonVariant } from 
  * @param {string} [props.className] - Дополнительный CSS класс.
  * @returns {JSX.Element} Компонент Button.
  */
+
 export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {
@@ -99,5 +100,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     );
   }
 );
+
+Button.displayName = 'Button';
 
 export default Button;

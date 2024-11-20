@@ -13,8 +13,9 @@ export enum EInputColors {
   success = 'success'
 }
 
-export interface IInputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'size'>,
-  Omit<ComponentPropsWithoutRef<'textarea'>, 'size'> {
+export interface IInputProps
+  extends Omit<ComponentPropsWithoutRef<'input'>, 'size'>,
+    Omit<ComponentPropsWithoutRef<'textarea'>, 'size'> {
   id?: string;
   value?: string;
   disabled?: boolean;

@@ -82,7 +82,7 @@ export interface ISelectSharedProperties {
   withPortal?: boolean;
 }
 
-export interface IMenuItem extends ISelectOption {}
+export type IMenuItem = ISelectOption
 
 export interface IBadgeAmount {
   children: number;

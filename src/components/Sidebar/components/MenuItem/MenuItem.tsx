@@ -12,7 +12,7 @@ import React, {
 
 import { Icon, Typography } from '@components/index';
 import { SidebarProperties } from '@components/Sidebar/context';
-import { orientationMapping } from '@components/Sidebar/enums';
+import { ESidebarOrientationMapping } from '@components/Sidebar/enums';
 import { IMenuItemProps, ISidebarProperties, ISubmenuItemProps } from '@components/Sidebar/types';
 import clsx from 'clsx';
 
@@ -61,7 +61,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
     if (disabled) {
       return;
     }
-    if (orientation === orientationMapping.horizontal) {
+    if (orientation === ESidebarOrientationMapping.horizontal) {
       setIsScrollingDueToClick(true);
       targetRef.current?.scrollIntoView();
       setTimeout(() => setIsScrollingDueToClick(false), 300);
@@ -78,19 +78,22 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
 
   return (
     <div
-      className={clsx(styles.root, { [styles['root-active']]: isActivePath, [styles['root-disabled']]: disabled })}
+      className={clsx(styles.menu, { [styles['root-active']]: isActivePath, [styles['root-disabled']]: disabled })}
       onClick={handleClick}
       ref={targetRef}
       title={label}
     >
-      <Icon
-        name={icon}
-        containerSize={32}
-        htmlColor={!disabled ? 'var(--ac-icon-white)' : 'var(--ac-sidebar-section-icon-disabled)'}
-      />
+      <Icon name={icon} containerSize={32} htmlColor={!disabled ? 'var(--unique-white)' : 'var(--steel-60)'} />
       {isExpanded && (
         <div className={styles.expanded}>
-          <Typography variant="Body1-Medium" className={clsx(styles.text, { [styles['text-disabled']]: disabled })}>
+          <Typography
+            variant="Body1-Medium"
+            className={clsx(
+              orientation === ESidebarOrientationMapping.horizontal && styles['text-horizontal'],
+              styles.text,
+              { [styles['text-disabled']]: disabled }
+            )}
+          >
             {label}
           </Typography>
           {submenu && (
@@ -99,7 +102,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
                 [styles[`icon-${orientation}-rotated`]]: isActive
               })}
             >
-              <Icon name={'IconChevronArrowRightOutlined24'} containerSize={24} htmlColor="var(--ac-icon-grey)" />
+              <Icon name={'IconChevronArrowRightOutlined24'} containerSize={24} htmlColor="var(--unique-white)" />
             </div>
           )}
         </div>

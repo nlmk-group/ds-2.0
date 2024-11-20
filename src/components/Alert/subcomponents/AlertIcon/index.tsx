@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
+
+import { TIconName } from '@components/Icon/IconsDirectory/unionType';
+import { Icon } from '@components/index';
+
 import { IAlertIconProps } from './types';
-import { EAlertSeverity } from '@components/Alert/enums';
-import { Icon } from '@root/src/components';
-import {TIconName} from '@components/Icon/IconsDirectory/unionType';
+
+import { EAlertSeverity } from '../../enums';
 
 const severityStyles: Record<EAlertSeverity, string> = {
   [EAlertSeverity.success]: 'var(--spectrum-green-60)',
@@ -18,7 +21,7 @@ const iconNames: Record<EAlertSeverity, TIconName> = {
   [EAlertSeverity.info]: 'IconInfoOutlined24'
 };
 
-const AlertIcon: FC<IAlertIconProps> = ({ severity= EAlertSeverity.success }) => {
+const AlertIcon: FC<IAlertIconProps> = ({ severity = EAlertSeverity.success }) => {
   const htmlColor = severityStyles[severity];
   const iconName = iconNames[severity];
   return <Icon name={iconName} htmlColor={htmlColor} />;

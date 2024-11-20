@@ -1,21 +1,21 @@
 import { TLevel } from '@components/DatePicker/types';
-import { ENABLED_HOURS_VALUES, sizesMappingInput } from '@components/declaration';
+import { ENABLED_HOURS_VALUES } from '@components/declaration';
+import { TInputProps } from '@components/Input/types';
 
 type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
 
-type TSize = `${sizesMappingInput}`;
-
-export interface IDatePickerInputProps {
+export type TOverrideInputProps = {
   value?: Date;
+  onChange?: (date: Date) => void;
+  onBlur?: (date: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => void;
+};
+
+export interface IDatePickerInputSpecificProps {
   valueFrom?: Date;
   valueTo?: Date;
-  onChange?: (date: Date) => void;
   onFocus?: () => void;
-  onBlur?: (date: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => void;
   onEnterKeyDown?: (date: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => void;
   onTabKeyDown?: (date: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => void;
-  disabled?: boolean;
-  className?: string;
   showTime?: boolean;
   withPeriod?: boolean;
   enabledFrom?: Date;
@@ -30,11 +30,11 @@ export interface IDatePickerInputProps {
   withShift?: boolean;
   withSeconds?: boolean;
   level: TLevel;
-  label?: string;
-  colored?: boolean;
   isOpenOnFocus?: boolean;
   isHideYear?: boolean;
-  size?: TSize;
-  reset?: boolean;
-  onReset?: () => void;
+  error?: boolean;
 }
+
+export type IDatePickerInputProps = Omit<TInputProps, keyof TOverrideInputProps> &
+  TOverrideInputProps &
+  IDatePickerInputSpecificProps;

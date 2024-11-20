@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 
 import styles from '@components/DatePicker/_stories/DatePicker.module.scss';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/DatePicker/Stories',
@@ -26,7 +26,18 @@ export const Default = (argTypes: TDatePickerProps): JSX.Element => {
     </div>
   );
 };
+
 Default.args = {};
+
+export const DefaultWithError = (argTypes: TDatePickerProps): JSX.Element => {
+  const [value, onChange] = useState(new Date());
+  const helperText = 'Helper text';
+  return (
+    <div style={{ height: '330px' }}>
+      <DatePicker helperText={helperText} error {...argTypes} value={value} onChange={onChange} />
+    </div>
+  );
+};
 
 export const WithColored = (): JSX.Element => {
   const [colored, setColored] = useState(false);

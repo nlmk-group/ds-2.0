@@ -152,10 +152,10 @@ describe('src/components/AttachFiles', () => {
 
     test('It should render an AttachFile component with correct amount of Files components', () => {
       const FileList = [
-        <File label={FILE_NAME} removed />,
-        <File label={FILE_NAME} removed />,
-        <File label={FILE_NAME} removed />,
-        <File label={FILE_NAME} removed />
+        <File key={1} label={FILE_NAME} removed />,
+        <File key={2} label={FILE_NAME} removed />,
+        <File key={3} label={FILE_NAME} removed />,
+        <File key={4} label={FILE_NAME} removed />
       ];
       render(
         <AttachFiles>

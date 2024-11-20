@@ -36,7 +36,7 @@ const UploadIcon: FC<IUploadHelperProps> = ({
     }
 
     if (smallIcon) {
-      height = 'var(--40-size)';
+      height = '40px';
       width = '42px';
     }
 

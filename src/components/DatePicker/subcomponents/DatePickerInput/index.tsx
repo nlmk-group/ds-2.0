@@ -34,7 +34,7 @@ import {
   quarterMonthKeys
 } from '@components/DatePicker/helpers';
 import { useLocale } from '@components/DatePicker/utils';
-import { sizesMappingInput } from '@components/declaration';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
@@ -78,6 +78,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       isHideYear,
       reset,
       onReset,
+      error,
+      helperText,
       ...props
     },
     ref
@@ -529,7 +531,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       const newValue = e.target.value;
       setInnerMaskedValue(newValue);
     }, []);
-
     return (
       <InputMaskCorrect
         mask={mask}
@@ -578,6 +579,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             }
             reset={reset}
             onReset={onReset}
+            helperText={helperText}
+            color={error ? customInputColors.error : customInputColors.default}
             {...props}
           />
         )}
@@ -585,5 +588,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     );
   }
 );
+
+DatePickerInput.displayName = 'DatePickerInput';
 
 export default DatePickerInput;

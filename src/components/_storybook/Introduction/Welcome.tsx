@@ -21,9 +21,7 @@ const FooterSection: FC<{
       <Typography className={styles['footer-header']} variant="Subheading3-Medium">
         {title}
       </Typography>
-      <Typography variant="Body1">
-        {description}
-      </Typography>
+      <Typography variant="Body1">{description}</Typography>
       {buttonText && (
         <>
           <br />
@@ -65,7 +63,7 @@ export const Footer: FC = () => {
         description={
           <>
             <Typography variant="Body1">
-              Добавлен основной набор компонентов, который поможет, как конструктор в строительстве вашего проекта.
+              Добавлен базовый набор компонентов, как конструктор для вашего проекта.
             </Typography>
             <br />
             <Link href="./?path=/docs/introduction-changelog--docs" target="_blank">
@@ -76,7 +74,17 @@ export const Footer: FC = () => {
       />
       <FooterSection
         title="Контрибьютинг"
-        description="Приносите свои изменения, мы с радостью их расмотрим и примем внутрь дизайн-системы 😊."
+        description={
+          <>
+            <Typography variant="Body1">
+              Приносите свои изменения, мы с радостью их расмотрим и примем внутрь дизайн-системы 😊.
+            </Typography>
+            <br />
+            <Link href="./?path=/docs/introduction-contributing--docs" target="_blank">
+              Руководство
+            </Link>
+          </>
+        }
       />
     </div>
   );
@@ -114,11 +122,7 @@ export const WelcomePage = () => {
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
               <Button startIcon={<WebSvgIcon />}>ДС</Button>
             </Link>
-            <Link
-              href="https://www.figma.com/@nlmk"
-              target="_blank"
-              className={styles.links}
-            >
+            <Link href="https://www.figma.com/@nlmk" target="_blank" className={styles.links}>
               <Button startIcon={<FigmaLogoSvgIcon />} variant="primary">
                 UI-Kit
               </Button>

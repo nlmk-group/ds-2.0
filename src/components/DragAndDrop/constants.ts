@@ -5,7 +5,9 @@ export const fileTypes = {
   video: 'video/*'
 };
 
-export const dragNDropTitle = 'Загрузка файлов';
+export const dragNDropTitle = 'Перетащите файл';
+
+export const dragNDropTitleError = 'Упс, ошибка!';
 
 export const dragNDropDescription = 'Перетащите или выберите:';
 

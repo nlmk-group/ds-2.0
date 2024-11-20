@@ -1,30 +1,26 @@
-$width: 256px;
-
-.root {
-  height: var(--64-size);
+.menu {
+  min-height: 64px;
   width: 100%;
-  max-width: $width;
+  max-width: 256px;
   display: flex;
   align-items: center;
-  padding: 0 var(--16-space);
+  padding: 0 16px;
   box-sizing: border-box;
-  flex-shrink: 0;
   cursor: pointer;
 
   &:hover {
-    background: var(--ac-sidebar-section-hover-bg);
+    background: var(--brand-jeans-10);
   }
 
   &-active {
-    background: var(--ac-sidebar-section-selected-bg);
+    background: var(--brand-jeans-10);
   }
 
   &-disabled {
-    background: var(--ac-sidebar-section-default-bg);
+    background: var(--brand-jeans-20);
     cursor: default;
-
     &:hover {
-      background: var(--ac-sidebar-section-default-bg);
+      background-color: var(--brand-jeans-20);
     }
   }
 }
@@ -34,17 +30,25 @@ $width: 256px;
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
-  flex-shrink: 0;
-  width: calc($width - var(--32-size) - var(--24-size) - var(--16-space));
+  width: 184px;
   text-wrap: balance;
+  min-width: 0;
 }
 
 .text {
-  color: var(--ac-sidebar-section-text);
-  margin-left: var(--16-space);
+  color: var(--unique-white);
+  margin-left: 16px;
+  flex-shrink: 1;
+  max-width: 190px;
+
+  &-horizontal {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &-disabled {
-    color: var(--ac-sidebar-section-text-disabled);
+    color: var(--steel-60);
   }
 }
 

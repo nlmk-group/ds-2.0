@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { Typography } from '@components/index';
+import { Link, Typography } from '@components/index';
 
 import styles from './Welcome.module.scss';
 
 const License = () => (
-  <div style={{ textAlign: 'center' }}>
+  <div className={styles['license-wrapper']}>
     <Typography variant="Body1" color="textSecondary">
       Лицензия:{' '}
-      <a href="https://opensource.org/license/mit/" target="_blank" className={styles.license}>
+      <Link href="https://opensource.org/license/mit/" target="blank">
         MIT
-      </a>
+      </Link>
       .
     </Typography>
   </div>

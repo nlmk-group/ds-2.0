@@ -140,7 +140,7 @@ export const getSizingStyles = ({
 };
 
 export const getAvatarImageSrc = () => {
-  const avatarImageMock = '/assets/avatar_mock.png';
+  const avatarImageMock = '/img/avatar_mock.png';
   const { origin, pathname } = window.parent.location;
   const path = pathname === '/' ? '' : pathname;
   return `${origin}${path}${avatarImageMock}`;

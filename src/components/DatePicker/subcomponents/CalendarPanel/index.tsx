@@ -98,21 +98,13 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
       if (!panelValue) {
         return '';
       }
-
-      const months = locale[language]?.months;
-      const month = panelValue.getMonth();
-      const year = panelValue.getFullYear();
-
-      if (months && typeof month === 'number' && typeof year === 'number') {
-        if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
-          return `${months[month]}, ${year}`;
-        }
+      if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
+        return `${locale[language].months[panelValue.getMonth()]}, ${panelValue.getFullYear()}`;
       }
-
       if (selectedPanel === LEVEL_MAPPING_ENUM.month || selectedPanel === LEVEL_MAPPING_ENUM.quarter) {
         return panelValue.getFullYear();
       }
-      const currentYear: number = panelValue.getFullYear();
+      const currentYear = panelValue.getFullYear();
       return `${currentYear - yearsBeforeCurrent} — ${currentYear + yearsAfterCurrent}`;
     }, [panelValue, selectedPanel]);
 
@@ -350,5 +342,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
     );
   }
 );
+
+CalendarPanel.displayName = 'CalendarPanel';
 
 export default CalendarPanel;

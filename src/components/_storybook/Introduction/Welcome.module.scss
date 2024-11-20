@@ -16,11 +16,17 @@
 }
 
 .intro,
-.footer {
+.footer,
+.contributing {
   display: grid;
   grid-gap: 40px;
   grid-template-rows: auto auto;
 }
+
+.contributing {
+  grid-gap: 20px;
+}
+
 
 .main {
   display: grid;
@@ -108,7 +114,8 @@
 
 .links {
   text-wrap: nowrap !important;
-  > a, a:hover {
+  > a,
+  a:hover {
     text-decoration: none !important;
   }
   svg {
@@ -132,10 +139,14 @@
   }
 }
 
-.license {
-  color: var(--assigned-colors-button-main-main-bg-default);
-  &:hover {
-    text-decoration: none;
+.license-wrapper {
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      margin-left: 4px;
+    }
   }
 }
 

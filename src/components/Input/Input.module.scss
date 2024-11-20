@@ -90,7 +90,7 @@
   input:not(:focus),
   textarea:not(:focus) {
     &::placeholder {
-      visibility: hidden;
+      opacity: 0;
     }
   }
 }

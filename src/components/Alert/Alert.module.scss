@@ -6,8 +6,9 @@
 .wrapper {
   display: flex;
   border-radius: 4px;
-  padding: 16px;
-  min-height: 58px;
+  padding: 12px;
+  min-height: 48px;
+  min-width: 340px;
   max-width: 100%;
   gap: 8px;
   box-sizing: border-box;
@@ -15,37 +16,24 @@
   justify-content: center;
 
   &-success {
-    @include standard-helper(
-        var(--spectrum-green-10),
-        var(--spectrum-green-60)
-    );
+    @include standard-helper(var(--spectrum-green-10), var(--spectrum-green-60));
   }
 
   &-error {
-    @include standard-helper(
-        var(--spectrum-red-10),
-        var(--spectrum-red-60)
-    );
+    @include standard-helper(var(--spectrum-red-10), var(--spectrum-red-60));
   }
 
   &-warning {
-    @include standard-helper(
-        var(--spectrum-yellow-10),
-        var(--spectrum-orange-60)
-    );
+    @include standard-helper(var(--spectrum-yellow-10), var(--spectrum-orange-60));
   }
 
   &-info {
-    @include standard-helper(
-        var(--spectrum-sky-10),
-        var(--spectrum-sky-60)
-    );
+    @include standard-helper(var(--spectrum-sky-10), var(--spectrum-sky-60));
   }
 }
 
 .content {
   display: flex;
-  align-items: center;
   gap: 8px;
   max-width: 100%;
   word-wrap: break-word;
@@ -54,15 +42,19 @@
 
   &-description {
     margin-left: 32px;
+    width: calc(100% - 32px);
   }
 
   .action-wrapper {
     display: flex;
     gap: 8px;
+    margin-left: auto;
 
     .close {
       height: 24px;
       width: 24px;
+      padding: 2px;
+      min-width: 24px;
 
       &:hover {
         background-color: unset;
@@ -70,5 +62,3 @@
     }
   }
 }
-
-

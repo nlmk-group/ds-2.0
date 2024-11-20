@@ -125,4 +125,6 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
   }
 );
 
+TimeSelector.displayName = 'TimeSelector';
+
 export default TimeSelector;

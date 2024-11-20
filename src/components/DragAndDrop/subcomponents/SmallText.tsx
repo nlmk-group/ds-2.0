@@ -20,14 +20,7 @@ import UploadIcon from './UploadIcon';
  * @param {() => void} [props.cancelUpload] - Функция для отмены загрузки.
  * @returns {JSX.Element} - Компонент SmallText.
  */
-const SmallText: FC<ISmallTextProps> = ({
-  title,
-  loading,
-  percentUpload,
-  statusColor,
-  disabled,
-  cancelUpload = null
-}) => {
+const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusColor, disabled, cancelUpload }) => {
   return (
     <div data-testid={`SMALL_TEXT_${statusColor}`}>
       {loading ? (
@@ -40,6 +33,7 @@ const SmallText: FC<ISmallTextProps> = ({
             <div style={{ pointerEvents: disabled ? 'none' : 'all' }}>
               <Button
                 variant="primary"
+                className={styles['small-text-button']}
                 fill="clear"
                 size="s"
                 iconButton={<IconCloseOutlined24 />}

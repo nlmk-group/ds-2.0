@@ -1,17 +1,12 @@
 import React, { FC } from 'react';
 
 import Button from '@components/Button';
-import { sizesMapping } from '@components/declaration';
-import {
-  IconAddPlusOutlined24,
-  IconAttentionWarningAlertErrorOutlined24,
-  IconAttentionWarningAlertOutlined24
-} from '@components/Icon/IconsDirectory';
+import { IconAddPlusOutlined24, IconAttentionWarningAlertErrorOutlined24 } from '@components/Icon/IconsDirectory';
 import { clsx } from 'clsx';
 
 import styles from '../DragAndDrop.module.scss';
 
-import { EDnDStatusColor } from '../enums';
+import { EDnDSizes, EDnDStatusColor } from '../enums';
 import UploadIcon from '../subcomponents/UploadIcon';
 import { ISmallIconProps } from '../types';
 
@@ -35,16 +30,6 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
         );
       case EDnDStatusColor.info:
         return <Button variant="primary" size="m" fill="clear" iconButton={<IconAddPlusOutlined24 />} />;
-      case EDnDStatusColor.warning:
-        return (
-          <Button
-            variant="info"
-            size="m"
-            fill="warning"
-            className={styles['small-warning-icon']}
-            iconButton={<IconAttentionWarningAlertOutlined24 />}
-          />
-        );
       default:
         return (
           <Button
@@ -61,10 +46,10 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
   return (
     <div
       className={clsx(styles['icon-s'], styles['small-icon-margin'])}
-      style={{ height: 'var(--24-size)', display: 'flex', alignItems: 'center' }}
+      style={{ height: '24px', display: 'flex', alignItems: 'center' }}
     >
       {loading ? (
-        <UploadIcon smallIcon showSpinner={false} size={sizesMapping.m} percentUpload={percentUpload} />
+        <UploadIcon smallIcon showSpinner={false} size={EDnDSizes.m} percentUpload={percentUpload} />
       ) : (
         customIcon || iconHelper()
       )}

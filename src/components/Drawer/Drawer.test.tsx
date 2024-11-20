@@ -7,18 +7,30 @@ import { Drawer } from '..';
 
 describe('Drawer Component', () => {
   it('renders when isOpen is true', () => {
-    const { getByTestId } = render(<Drawer isOpen onClose={() => {}} children={<div>Content</div>} />);
+    const { getByTestId } = render(
+      <Drawer isOpen onClose={() => {}}>
+        <div>Content</div>
+      </Drawer>
+    );
     expect(getByTestId('DRAWER')).toBeInTheDocument();
   });
 
   it('does not render when isOpen is false', () => {
-    const { queryByTestId } = render(<Drawer isOpen={false} onClose={() => {}} children={<div>Content</div>} />);
+    const { queryByTestId } = render(
+      <Drawer isOpen={false} onClose={() => {}}>
+        <div>Content</div>
+      </Drawer>
+    );
     expect(queryByTestId('DRAWER')).not.toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', async () => {
     const onClose = jest.fn();
-    render(<Drawer isOpen onClose={onClose} children={<div>Content</div>} />);
+    render(
+      <Drawer isOpen onClose={onClose}>
+        <div>Content</div>
+      </Drawer>
+    );
     fireEvent.click(screen.getByLabelText('Close'));
     await waitFor(() => {
       expect(onClose).toHaveBeenCalled();
@@ -27,7 +39,11 @@ describe('Drawer Component', () => {
 
   it('calls onClose when escape key is pressed', async () => {
     const onClose = jest.fn();
-    render(<Drawer isOpen onClose={onClose} children={<div>Content</div>} />);
+    render(
+      <Drawer isOpen onClose={onClose}>
+        <div>Content</div>
+      </Drawer>
+    );
     fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
     await waitFor(() => {
       expect(onClose).toHaveBeenCalled();
@@ -36,7 +52,11 @@ describe('Drawer Component', () => {
 
   it('does not close when clicked away if disableBackdropClick is true', () => {
     const onClose = jest.fn();
-    render(<Drawer isOpen onClose={onClose} disableBackdropClick children={<div>Content</div>} />);
+    render(
+      <Drawer isOpen onClose={onClose} disableBackdropClick>
+        <div>Content</div>
+      </Drawer>
+    );
     fireEvent.mouseDown(document);
     expect(onClose).not.toHaveBeenCalled();
   });

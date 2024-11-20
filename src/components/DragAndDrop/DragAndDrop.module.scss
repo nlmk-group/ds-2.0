@@ -45,7 +45,7 @@
 }
 
 .label-file-upload-l {
-  padding: 48px 64px;
+  padding: 32px 48px;
 }
 
 .label-file-upload-m {
@@ -57,7 +57,7 @@
 }
 
 .label-file-upload-small-icon {
-  padding: 8px;
+  padding: 0;
   height: 56px;
   width: 64px;
 }
@@ -73,7 +73,7 @@
 }
 
 .label-default {
-  @include bg-border-icon-helper(1px, var(--steel-60), var(--steel-10), var(--steel-50));
+  @include bg-border-icon-helper(1px, var(--steel-60), transparent, var(--steel-50));
 
   &:hover {
     @include bg-border-icon-helper(1px, var(--steel-60), var(--steel-20), var(--steel-50));
@@ -85,11 +85,10 @@
 }
 
 .label-error {
-  @include bg-border-icon-helper(2px, var(--spectrum-red-60), var(--spectrum-red-10), var(--spectrum-red-50));
-}
-
-.label-warning {
-  @include bg-border-icon-helper(2px, var(--spectrum-yellow-60), var(--spectrum-yellow-10), var(--spectrum-yellow-50));
+  @include bg-border-icon-helper(1px, var(--spectrum-red-60), transparent, var(--spectrum-red-50));
+  &:hover {
+    @include bg-border-icon-helper(1px, var(--spectrum-red-60), var(--steel-20), var(--spectrum-red-50));
+  }
 }
 
 .drag-file-element {
@@ -135,11 +134,6 @@
       @include height-width-helper(56px);
     }
   }
-}
-
-.icon-s {
-  height: 40px;
-  margin-bottom: 8px;
 }
 
 .text-wrapper {
@@ -261,18 +255,19 @@
   gap: 8px;
 }
 
-.small-warning-icon {
-  path {
-    fill: var(--spectrum-yellow-60);
-  }
-}
-.small-default-icon {
+.small-default-icon.small-default-icon {
   path {
     fill: var(--brand-sapphire-60);
   }
+  &:hover {
+    path {
+      fill: var(--brand-sapphire-60);
+    }
+    background-color: transparent;
+  }
 }
-.small-default-icon:hover {
-  path {
-    fill: var(--brand-sapphire-60);
+.small-text-button.small-text-button {
+  &:hover {
+    background-color: transparent;
   }
 }

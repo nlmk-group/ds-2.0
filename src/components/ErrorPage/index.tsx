@@ -30,4 +30,6 @@ const ErrorPage: FC<ErrorPageProps> = memo(
   }
 );
 
+ErrorPage.displayName = 'ErrorPage';
+
 export default ErrorPage;

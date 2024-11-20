@@ -1,3 +1,7 @@
+:root {
+  --icon-search: var(--brand-sapphire-60);
+}
+
 @mixin flexCenter {
   display: flex;
   align-items: center;
@@ -42,7 +46,7 @@
 }
 
 .wrapper {
-  background-color: var(--steel-20);
+  background-color: var(--unique-background);
   margin: 0;
   padding: 24px;
   width: 98%;
@@ -128,19 +132,20 @@
 
 .icon {
   @include iconStyle;
-  background-color: var(--steel-20);
-  color: var(--brand-sapphire-60);
+  background-color: var(--unique-background);
+  color: var(--icon-search, --brand-sapphire-60);
 }
 
 .strokeIcon path {
-  stroke: var(--brand-sapphire-60, #1952b6);
+  stroke: var(--icon-search, --brand-sapphire-60, #1952b6);
 }
 
+
 .fillAndStrokeIcon path {
-  fill: var(--brand-sapphire-60, #1952b6);
-  stroke: var(--brand-sapphire-60, #1952b6);
+  fill: var(--icon-search, --brand-sapphire-60, #1952b6);
+  stroke: var(--icon-search, --brand-sapphire-60, #1952b6);
 }
 
 .iconFill path {
-  fill: var(--brand-sapphire-60, #1952b6);
+  fill: var(--icon-search, --brand-sapphire-60, #1952b6);
 }

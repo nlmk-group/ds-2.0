@@ -8,7 +8,7 @@ import { ImagePictureRadius, ImagePictureRatios } from '../enums';
 import { IImagePicture } from '../types';
 import { argsTypes } from './argsTypes';
 
-const IMAGE_MOCK_SRC = 'assets/image_picture_mock.jpg';
+const IMAGE_MOCK_SRC = 'img/image_picture_mock.jpg';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 

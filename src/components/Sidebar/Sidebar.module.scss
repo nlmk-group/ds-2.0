@@ -5,7 +5,7 @@
 
 @mixin cell {
   display: flex;
-  height: var(--64-size);
+  height: 64px;
   box-sizing: border-box;
   flex-shrink: 0;
   align-items: center;
@@ -17,7 +17,7 @@
   position: sticky;
   flex-shrink: 0;
   top: 0;
-  width: var(--64-size);
+  width: 64px;
   transition: width 0.3s;
 
   &-vertical {
@@ -29,7 +29,7 @@
   }
 
   &-horizontal {
-    height: var(--64-size);
+    height: 64px;
 
     &-expanded {
       width: 100%;
@@ -40,7 +40,7 @@
 .menu {
   position: relative;
   z-index: 100;
-  background: var(--ac-sidebar-section-default-bg);
+  background: var(--brand-jeans-20);
   flex-shrink: 0;
   justify-content: space-between;
 
@@ -57,16 +57,16 @@
 
 .burger {
   @include cell;
-  width: var(--64-size);
+  width: 64px;
   justify-content: center;
-  background: var(--ac-sidebar-section-default-bg);
+  background: var(--brand-jeans-20);
 
   &:hover {
-    background: var(--ac-sidebar-section-hover-bg);
+    background: var(--brand-jeans-10);
   }
 
   &-expanded {
-    background: var(--ac-sidebar-section-selected-bg);
+    background: var(--brand-jeans-20);
   }
 }
 
@@ -75,6 +75,14 @@
   flex-grow: 0;
   flex-shrink: 0;
   overflow: hidden;
+
+  &.auth {
+    margin: 0 8px;
+
+    &:hover {
+      background-color: var(--brand-jeans-10);
+    }
+  }
 }
 
 .top {
@@ -82,8 +90,8 @@
   cursor: initial;
   justify-content: space-between;
   align-items: center;
-  background: var(--ac-sidebar-section-top-section-bg);
-  transition: padding-left 0.3s ease;
+  background: var(--brand-jeans-30);
+  transition: padding-left 0.3s ease-in-out;
 
   &-left {
     display: flex;
@@ -92,7 +100,7 @@
   }
 
   &-expanded {
-    padding: 0 var(--8-space);
+    padding: 0 8px;
   }
 }
 
@@ -100,23 +108,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--64-size);
-  height: var(--64-size);
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
 }
 
 .company {
-  color: var(--ac-sidebar-section-text);
-  margin: 0 var(--4-space);
-  opacity: var(--50-opacity);
-}
-
-.auth {
-  margin: 0 var(--8-space);
-
-  &:hover {
-    background: var(--ac-button-primary-clear-hover-bg);
-  }
+  color: var(--unique-white);
+  margin: 0 4px;
+  opacity: 0.5;
 }
 
 .body {
@@ -148,9 +148,9 @@
 .search {
   @include cell;
   justify-content: center;
-  width: var(--64-size);
+  width: 64px;
 
   &:hover {
-    background: var(--ac-sidebar-section-hover-bg);
+    background: var(--brand-jeans-10);
   }
 }

@@ -93,6 +93,8 @@ export const DatePicker: TDatePickerProps = ({
   infiniteTimeScroll,
   reset,
   onReset,
+  error,
+  helperText,
   ...restInputProps
 }) => {
   const withPeriod = useMemo(() => ['period', 'shift'].includes(type), [type]);
@@ -299,6 +301,8 @@ export const DatePicker: TDatePickerProps = ({
         reset={reset}
         onReset={onReset}
         isHideYear={isHideYear}
+        error={error}
+        helperText={helperText}
         {...restInputProps}
       />
       {isOpen &&

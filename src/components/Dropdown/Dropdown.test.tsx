@@ -1,22 +1,28 @@
 import React, { ButtonHTMLAttributes, ClassAttributes, ReactNode } from 'react';
-
 import { act, fireEvent, render, screen } from '@testing-library/react';
-
 import Dropdown from './index';
 
 jest.mock(
   '@components/Button',
-  () =>
-    (props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>) =>
-      <button {...props} />
+  () => {
+    const MockButton = (props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>) =>
+      <button {...props} />;
+    MockButton.displayName = 'MockButton';
+    return MockButton;
+  }
 );
-jest.mock('@components/ClickAwayListener', () => (props: { onClickAway: () => void; children: ReactNode }) => {
-  const { onClickAway, children } = props;
-  return (
-    <div onClick={onClickAway} data-testid="click-away">
-      {children}
-    </div>
-  );
+
+jest.mock('@components/ClickAwayListener', () => {
+  const MockClickAwayListener = (props: { onClickAway: () => void; children: ReactNode }) => {
+    const { onClickAway, children } = props;
+    return (
+      <div onClick={onClickAway} data-testid="click-away">
+        {children}
+      </div>
+    );
+  };
+  MockClickAwayListener.displayName = 'MockClickAwayListener';
+  return MockClickAwayListener;
 });
 
 describe('src/components/Dropdown', () => {

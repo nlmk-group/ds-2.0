@@ -1,0 +1,97 @@
+.pagination {
+  width: 100%;
+  border-top: 1px solid var(--steel-50);
+}
+
+.panel {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 12px 12px 12px 24px ;
+  z-index: 1;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.select {
+  max-width: 164px;
+}
+
+.controls {
+  display: flex;
+  margin-left: auto;
+}
+
+.btn {
+  user-select: none;
+  display: flex;
+  cursor: pointer;
+  margin: 0 2px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    background-color: var(--steel-30);
+  }
+}
+
+.btnTitle {
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.zoomOut {
+  font-size: 12px;
+}
+
+.selected {
+  &::before {
+    opacity: 1;
+    background-color: var(--steel-50);
+  }
+}
+
+.show {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.showTitle {
+  margin-right: 12px;
+  color: var(--steel-90);
+  font-weight: 500;
+}
+
+.chevronWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.chevron {
+  &.left, &.right {
+    padding: 0;
+  }
+  &.left>span:nth-child(2),
+  &.right>span:nth-child(1) {
+    display: none !important;
+  }
+}

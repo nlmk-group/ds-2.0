@@ -71,4 +71,6 @@ const Menu = forwardRef<HTMLDivElement, IMenu>(({ availableOptionsCount, filtere
   );
 });
 
+Menu.displayName = 'Menu';
+
 export default Menu;

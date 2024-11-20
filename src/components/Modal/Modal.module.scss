@@ -6,7 +6,7 @@
   height: 100%;
   background-color: var(--unique-black);
   opacity: 60%;
-  z-index: 1000;
+  z-index: 10001;
 }
 
 .modalWrapper {
@@ -18,13 +18,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001;
+  z-index: 10000;
   pointer-events: none;
 }
 
 .modalInner {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   max-width: 90%;
   max-height: 90%;
 }
@@ -36,7 +36,7 @@
   position: relative;
   overflow: hidden;
   pointer-events: auto;
-  max-width: 100%; 
+  max-width: 100%;
   max-height: 100%;
   &.resizable {
     resize: both;

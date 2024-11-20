@@ -197,7 +197,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         ) {
           return value || null;
         }
-      } catch (e) {
+      } catch {
         return null;
       }
       return null;
@@ -244,5 +244,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     );
   }
 );
+
+TimePickerInput.displayName = 'TimePickerInput';
 
 export default TimePickerInput;

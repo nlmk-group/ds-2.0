@@ -1,6 +1,6 @@
 # Компонент DragAndDrop
 
-## Версия компонента 3.0
+## Версия компонента 3.1
 
 Компонент Drag&Drop предоставляет функциональность перетаскивания и загрузки файлов с возможностью настройки и выгрузки.
 
@@ -9,13 +9,14 @@
 ```jsx
 import React from 'react';
 import DragAndDrop from '@nlmk/ds-2.0';
+
 const App = () => {
   const handleUpload = files => {
-    бработка загруженных файлов
+    //Обработка загруженных файлов
     console.log(files);
   };
   const handleCancelUpload = () => {
-    бработка отмены загрузки
+    // Обработка отмены загрузки
     console.log('Upload cancelled');
   };
   return (
@@ -40,7 +41,7 @@ export default App;
 ## Props
 
 | Prop          | Type                 | Default   | Description                              |
-| ------------- | -------------------- | --------- | ---------------------------------------- |
+|---------------|----------------------|-----------|------------------------------------------|
 | className     | string               | -         | Дополнительный CSS-класс                 |
 | title         | string               | ReactNode | Заголовок                                |
 | description   | string               | ReactNode | Описание для dragNDrop                   |
@@ -49,7 +50,7 @@ export default App;
 | statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                             |
 | withIcon      | boolean              | true      | Показывать иконку в dragNDrop            |
 | customIcon    | JSX.Element          | null      | Пользовательская иконка                  |
-| size          | `${sizesDnD}`        | l         | Размер dragNDrop                         |
+| size          | `${EDnDSizes}`       | l         | Размер dragNDrop                         |
 | multiple      | boolean              | true      | Разрешить множество файлов               |
 | loading       | boolean              | false     | Показать индикатор загрузки              |
 | percentUpload | number               | 0         | Процент выполнения загрузки              |
@@ -72,7 +73,6 @@ export default App;
 - ` EDnDStatusColor.default`
 - ` EDnDStatusColor.info`
 - ` EDnDStatusColor.error`
-- ` EDnDStatusColor.warning`
 
 ## Размеры Title
 
@@ -97,6 +97,5 @@ export default App;
 - `.label-default`: Стили для стандартного статуса.
 - `.label-info`: Стили для информационного статуса.
 - `.label-error`: Стили для статуса ошибки.
-- `.label-warning`: Стили для статуса предупреждения.
 - `.drag-file-element`: Элемент для управления состоянием перетаскивания.
 - `.disabled`: Стили для отключенного состояния. Чтобы применить пользовательские стили, вы можете передать свой className и переопределить необходимые стили.

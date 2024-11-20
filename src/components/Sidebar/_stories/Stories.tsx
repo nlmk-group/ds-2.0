@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div style={{
-      backgroundColor: "var(--steel-20)",
+      backgroundColor: "var(--unique-background)",
       width: "110%",
       margin: "-20px"
     }}>

@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import Tooltip from './index';
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 global.ResizeObserver = require('resize-observer-polyfill');
 
 describe('Tooltip Component', () => {

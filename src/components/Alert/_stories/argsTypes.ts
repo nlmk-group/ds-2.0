@@ -18,24 +18,18 @@ export const argsTypes = {
     options: Object.values(EAlertSeverity),
     control: { type: 'select' }
   },
-  close: {
-    description: 'Свойство добавления действия для закрытия компонента',
-    control: { type: 'boolean' }
-  },
-  action: {
-    description: 'Свойство добавления компонента альтернативного действия',
-    control: { type: 'text' }
-  },
   className: {
-    description: 'В компонент можно передать альтернативные стили',
+    description: 'Дополнительные CSS классы',
     control: { type: 'string' }
   },
-  props: {
-    description: 'В компонент можно передавать event handling onClick, onMouseEnter, onMouseLeave и т.д.'
+  action: {
+    description: 'Дополнительный элемент действия',
+    control: { type: null }
   },
-  showChildren: {
-    description: 'Показать дополнительный контент в виде списка',
-    control: { type: 'boolean' }
+  close: {
+    description: 'Функция обратного вызова для закрытия Alert',
+    action: 'close',
+    control: { type: null }
   }
 };
 

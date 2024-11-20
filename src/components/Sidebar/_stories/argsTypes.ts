@@ -1,31 +1,30 @@
-import { orientationMapping, variantMapping } from '../enums';
-import { positionMapping } from '../enums';
+import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from '../enums';
 
 export const argsTypes = {
   orientation: {
-    description: `Расположение сайдбара – <b>${Object.values(orientationMapping).join(' | ')}</b>.`,
+    description: `Расположение сайдбара – <b>${Object.values(ESidebarOrientationMapping).join(' | ')}</b>.`,
     table: {
       defaultValue: {
-        summary: orientationMapping.vertical
+        summary: ESidebarOrientationMapping.vertical
       },
       type: {
         summary: 'string'
       }
     },
-    options: [orientationMapping.vertical, orientationMapping.horizontal],
+    options: [ESidebarOrientationMapping.vertical, ESidebarOrientationMapping.horizontal],
     control: { type: 'select' }
   },
   variant: {
-    description: `Тип сайдбара – <b>${Object.values(variantMapping).join(' | ')}</b>.`,
+    description: `Тип сайдбара – <b>${Object.values(ESidebarVariantMapping).join(' | ')}</b>.`,
     table: {
       defaultValue: {
-        summary: variantMapping.default
+        summary: ESidebarVariantMapping.default
       },
       type: {
         summary: 'string'
       }
     },
-    options: [variantMapping.default, variantMapping.burger],
+    options: [ESidebarVariantMapping.default, ESidebarVariantMapping.burger],
     control: { type: 'select' }
   },
   allowFavorites: {
@@ -72,13 +71,13 @@ export const argsTypes = {
 
 export const menuItemArgsTypes = {
   position: {
-    description: `Расположение элемента меню – <b>${Object.values(positionMapping).join(' | ')}</b>.`,
+    description: `Расположение элемента меню – <b>${Object.values(ESidebarPositionMapping).join(' | ')}</b>.`,
     table: {
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(positionMapping),
+    options: Object.values(ESidebarPositionMapping),
     control: { type: 'select' }
   },
   label: {

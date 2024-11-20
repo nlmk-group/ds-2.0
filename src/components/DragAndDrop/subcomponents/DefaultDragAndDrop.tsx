@@ -1,28 +1,20 @@
 import React, { FC } from 'react';
 import * as ReactIs from 'react-is';
 
-import { sizesMapping } from '@components/declaration';
 import { Button, Icon, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import styles from '../DragAndDrop.module.scss';
 
-import { EDnDDescriptionSizeHelper, EDnDIconType, EDnDStatusColor, EDnDTitleSizeHelper } from '../enums';
+import { EDnDDescriptionSizeHelper, EDnDIconType, EDnDSizes, EDnDTitleSizeHelper } from '../enums';
 import { IDefaultDnDProps } from '../types';
 import UploadIcon from './UploadIcon';
 
-const getButtonFill = (loading: boolean, statusColor: `${EDnDStatusColor}`) => {
+const getButtonVariant = (loading: boolean) => {
   if (loading) {
-    return 'solid';
+    return 'secondary';
   }
-  switch (statusColor) {
-    case EDnDStatusColor.error:
-      return 'error';
-    case EDnDStatusColor.warning:
-      return 'warning';
-    default:
-      return 'solid';
-  }
+  return 'primary';
 };
 
 const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
@@ -42,7 +34,6 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
   return (
     <div>
       {loading && <UploadIcon size={size} percentUpload={percentUpload} />}
-      {loading && size === sizesMapping.m && <UploadIcon size={size} />}
       {!loading && withIcon && (
         <div
           data-testid={`ICON_TYPE_${EDnDIconType[fileType]}`}
@@ -73,16 +64,16 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
             {description}
           </Typography>
         )}
-        {btnLabel.length > 0 && size === sizesMapping.l && (
+        {btnLabel.length > 0 && size === EDnDSizes.l && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="m" variant="secondary" fill={getButtonFill(loading, statusColor)} onClick={onButtonClick}>
+            <Button size="m" variant={getButtonVariant(loading)} fill="solid" onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>
         )}
-        {btnLabel.length > 0 && size === sizesMapping.m && (
+        {btnLabel.length > 0 && size === EDnDSizes.m && (
           <div className={styles['btn-wrapper-medium']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="s" variant="secondary" fill={getButtonFill(loading, statusColor)} onClick={onButtonClick}>
+            <Button size="s" variant={getButtonVariant(loading)} fill="solid" onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>

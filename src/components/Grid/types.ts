@@ -1,6 +1,6 @@
 import { IBox } from '@components/Box/types';
 
-export interface IGrid extends IBox {}
+export type IGrid = IBox
 
 /**
  * В дальнейшем можно/нужно добавить пропсы для адаптива

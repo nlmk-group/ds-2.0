@@ -23,6 +23,254 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.8.2- <span className={styles.date}>13.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен баг в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-spinner-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Spinner
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                Исправлено отображение компонента в растянутом контейнере, когда фон и иконка разъезжались
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.8.1 - <span className={styles.date}>15.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-alert-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Alert
+              </Link>
+              .<li className={styles['left-padding']}>- Актуализированы стили в соответствии макету</li>
+              <li className={styles['left-padding']}>- Обновлены истории для Storybook</li>
+              <li className={styles['left-padding']}>- Заменена иконка закрытия Alert</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-draganddrop-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DragAndDrop
+              </Link>
+              .<li className={styles['left-padding']}>- Актуализированы стили в соответствии макету</li>
+            </li>
+            <li>
+              • Исправлен баг в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено поведение полосы прокрутки в TimeSelector для браузеров Mozilla
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.8.0 - <span className={styles.date}>13.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-status-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Status
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.7.3 - <span className={styles.date}>11.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменены компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен props error в DatePicker</li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index для компонента</li>
+            </li>
+            <li>
+              • Изменены компоненты List и ListItem.
+              <li className={styles['left-padding']}>- Актуализированы внешние отступы для ListItem</li>
+              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.7.2 - <span className={styles.date}>11.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Исправлена типизация в компонентах DatePicker и SimpleSelect</li>
+            <li>
+              • Исправлен баг в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено наложение placeholder и label в браузере Firefox</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.7.1 - <span className={styles.date}>08.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pagination-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .<li className={styles['left-padding']}>- Испралвлен цвет троеточия между выбором страниц</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.7.0 - <span className={styles.date}>07.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pagination-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.6.3 - <span className={styles.date}>07.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Изменены стили Sidebar</li>
+              <li className={styles['left-padding']}>- Добавлены новые токены цветов для Sidebar</li>
+              <li className={styles['left-padding']}>- Изменена логика для SubmenuItem в Sidebar</li>
+              <li className={styles['left-padding']}>- Добавлен отдельный hover для иконок в Sidebar</li>
+              <li className={styles['left-padding']}>
+                - Изменена логика для MenuItem в горизонтальном и вертикальном Sidebar
+              </li>
+              <li className={styles['left-padding']}>- Актуализированы истории для Sidebar</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.6.2 - <span className={styles.date}>05.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен баг в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Splitter
+              </Link>
+              <li className={styles['left-padding']}>- Исправлены отступы между компонентом и его пропсами</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.6.1 - <span className={styles.date}>05.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен баг в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-alert-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Alert
+              </Link>
+              <li className={styles['left-padding']}>- Исправлено отображение кнопки закрытия в компоненте</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.6.0 - <span className={styles.date}>02.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Splitter
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.5.22 - <span className={styles.date}>30.10.24</span>
             <Chip variant="outline" color="warning">
               Breaking Changes
@@ -38,8 +286,7 @@ export const Changelog = () => {
               >
                 Breadcrumbs
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменена архитектура компонента Breadcrumbs</li>
+              .<li className={styles['left-padding']}>- Изменена архитектура компонента Breadcrumbs</li>
               <li className={styles['left-padding']}>- Добавлены новые токены цветов для Breadcrumbs</li>
               <li className={styles['left-padding']}>- Добавлен новый компонент Crumb</li>
               <li className={styles['left-padding']}>
@@ -63,8 +310,7 @@ export const Changelog = () => {
               >
                 SkeletonLoader
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
             </li>
           </ul>
         </div>
@@ -82,8 +328,7 @@ export const Changelog = () => {
               >
                 AttachFiles
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Актуализированы стили компонента в соответствии с Figma</li>
             </li>
           </ul>
@@ -128,8 +373,7 @@ export const Changelog = () => {
               >
                 Input
               </Link>
-              .
-              <li className={styles['left-padding']}>- Исправлена проблема с отображением длинного label в Input</li>
+              .<li className={styles['left-padding']}>- Исправлена проблема с отображением длинного label в Input</li>
             </li>
           </ul>
         </div>
@@ -143,8 +387,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые иконки NLMK One и MES</li>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки NLMK One и MES</li>
             </li>
           </ul>
         </div>
@@ -158,8 +401,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
                 Tabs
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов для Tabs</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов для Tabs</li>
               <li className={styles['left-padding']}>
                 - Добавлен новый props: scrollable (позволяет прокручивать вкладки)
               </li>
@@ -180,8 +422,7 @@ export const Changelog = () => {
               >
                 Header
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлен props children, расположенный после title</li>
+              .<li className={styles['left-padding']}>- Добавлен props children, расположенный после title</li>
             </li>
           </ul>
         </div>
@@ -199,8 +440,7 @@ export const Changelog = () => {
               >
                 Divider
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов для Divider</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов для Divider</li>
               <li className={styles['left-padding']}>
                 - Исправлены баги в Spinner и ProgressBar, когда проценты переносились на следующую строку
               </li>
@@ -224,11 +464,10 @@ export const Changelog = () => {
               >
                 Tooltip
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
               <li className={styles['left-padding']}>- Удалены !important в стилях и настроена специфичность</li>
-              <li className={styles['left-padding']}>- Стили теперь так же применены к дополнительному render'у</li>
+              <li className={styles['left-padding']}>- Стили теперь так же применены к дополнительному render&apos;у</li>
             </li>
           </ul>
         </div>
@@ -246,8 +485,7 @@ export const Changelog = () => {
               >
                 DragnAndDrop
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
             </li>
           </ul>
@@ -289,8 +527,7 @@ export const Changelog = () => {
               >
                 Switch
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
             </li>
           </ul>
@@ -324,8 +561,7 @@ export const Changelog = () => {
               >
                 Spinner
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
               <li className={styles['left-padding']}>- Добавлен новое свойство: progressPercentage</li>
             </li>
@@ -359,8 +595,7 @@ export const Changelog = () => {
               >
                 Accordion
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Добавлен эффект hover и disabled</li>
               <li className={styles['left-padding']}>- Фикс расположения иконок и текста</li>
             </li>
@@ -380,8 +615,7 @@ export const Changelog = () => {
               >
                 ProgressBar
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
             </li>
             <li>
               • Обновлён компонент{' '}
@@ -392,8 +626,7 @@ export const Changelog = () => {
               >
                 ImagePicture
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
             </li>
             <li>
@@ -401,8 +634,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-card-info--docs" target="blank" className={styles['link-changelog']}>
                 Card
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
             </li>
             <li>
@@ -410,8 +642,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
+              .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен цвет иконок по умолчанию</li>
             </li>
           </ul>
@@ -430,8 +661,7 @@ export const Changelog = () => {
               >
                 SlideToggle
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены отступы</li>
+              .<li className={styles['left-padding']}>- Изменены отступы</li>
               <li className={styles['left-padding']}>- Добавлена новая story</li>
               <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
             </li>
@@ -447,8 +677,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-link-info--docs" target="blank" className={styles['link-changelog']}>
                 Link
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета компонента</li>
+              .<li className={styles['left-padding']}>- Изменены цвета компонента</li>
             </li>
           </ul>
         </div>
@@ -480,8 +709,7 @@ export const Changelog = () => {
               >
                 Avatar
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлен размер 3xl для Avatar</li>
+              .<li className={styles['left-padding']}>- Добавлен размер 3xl для Avatar</li>
             </li>
           </ul>
         </div>
@@ -499,8 +727,7 @@ export const Changelog = () => {
               >
                 SegmentButtonGroup
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменен цвет обводки кнопок</li>
+              .<li className={styles['left-padding']}>- Изменен цвет обводки кнопок</li>
             </li>
           </ul>
         </div>
@@ -536,8 +763,7 @@ export const Changelog = () => {
               >
                 PseudoInput
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Обновлен компонент{' '}
@@ -548,8 +774,7 @@ export const Changelog = () => {
               >
                 Radio
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
           </ul>
         </div>
@@ -567,8 +792,7 @@ export const Changelog = () => {
               >
                 Input
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
+              .<li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
               • Обновлен компонент{' '}
@@ -579,8 +803,7 @@ export const Changelog = () => {
               >
                 Timepicker
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
               <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
@@ -592,8 +815,7 @@ export const Changelog = () => {
               >
                 Datepicker
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
               <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
@@ -605,8 +827,7 @@ export const Changelog = () => {
               >
                 SimpleSelect
               </Link>
-              .
-              <li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
+              .<li className={styles['left-padding']}>- Добавлены свойства: reset, onReset</li>
               <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
           </ul>
@@ -646,8 +867,7 @@ export const Changelog = () => {
               >
                 Drawer
               </Link>
-              .
-              <li className={styles['left-padding']}>- Обновлены токены цветов</li>
+              .<li className={styles['left-padding']}>- Обновлены токены цветов</li>
               <li className={styles['left-padding']}>- Добавлена документация для компонента</li>
             </li>
             <li>
@@ -659,8 +879,7 @@ export const Changelog = () => {
               >
                 Modal
               </Link>
-              .
-              <li className={styles['left-padding']}>- Обновлены токены цветов</li>
+              .<li className={styles['left-padding']}>- Обновлены токены цветов</li>
               <li className={styles['left-padding']}>- Обновлен стиль overlay</li>
               <li className={styles['left-padding']}>- Добавлена документация для компонента</li>
             </li>
@@ -680,8 +899,7 @@ export const Changelog = () => {
               >
                 Dropdown
               </Link>
-              .
-              <li className={styles['left-padding']}>- Удалены свойства: startIcon, buttonText</li>
+              .<li className={styles['left-padding']}>- Удалены свойства: startIcon, buttonText</li>
               <li className={styles['left-padding']}>
                 - Добавлено свойство: buttonChildren для контента внутри кнопки компнента
               </li>
@@ -1034,8 +1252,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри
-              компонента{' '}
+              • Добавлен callback, вызываемый при изменении панели дней, месяца, квартала или года внутри компонента{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
@@ -1482,8 +1699,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined
-              в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
@@ -1724,7 +1940,7 @@ export const Changelog = () => {
             <li className={styles['left-padding']}>- Улучшенное выделение всех элементов</li>
             <li className={styles['left-padding']}>- Поддержка множественного выбора</li>
             <li className={styles['left-padding']}>- Визуальные подсказки: подсветка и бейджи</li>
-            <li className={styles['left-padding']}>- Дизайн "Незаметный" (stealthy)</li>
+            <li className={styles['left-padding']}>- Дизайн &quot;Незаметный&quot; (stealthy)</li>
           </ul>
         </div>
         <div className={styles.history}>

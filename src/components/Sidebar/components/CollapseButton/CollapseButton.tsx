@@ -2,24 +2,27 @@ import React, { forwardRef } from 'react';
 
 import { Icon, Typography } from '@components/index';
 import { ICollapseButtonProps } from '@components/Sidebar/types';
-import { clsx } from 'clsx';
 
 import styles from './CollapseButton.module.scss';
 
-// Оборачиваем компонент в forwardRef
-const CollapseButton = forwardRef<HTMLDivElement, ICollapseButtonProps>(({ isExpanded, onClick }, ref) => {
+const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(({ isExpanded, onClick }, ref) => {
+  const buttonText = isExpanded ? 'Свернуть' : 'Развернуть';
+
   return (
-    <div ref={ref} className={styles.root} onClick={onClick} title={isExpanded ? 'Свернуть' : 'Развернуть'}>
-      <div className={clsx(styles.arrow, { [styles['arrow-expanded']]: isExpanded })}>
-        <Icon name={'IconChevronArrowRightOutlined32'} containerSize={32} htmlColor="var(--ac-icon-white)" />
+    <button ref={ref} type="button" className={styles.collapse} onClick={onClick} title={buttonText}>
+      <div className={styles.arrow} data-expanded={isExpanded}>
+        <Icon name="IconChevronArrowRightOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
       </div>
+
       {isExpanded && (
-        <Typography variant="Body1-Medium" className={styles.text}>
-          Свернуть
+        <Typography variant="Body1-Medium" className={styles['collapse-text']}>
+          {buttonText}
         </Typography>
       )}
-    </div>
+    </button>
   );
 });
+
+CollapseButton.displayName = 'CollapseButton';
 
 export default CollapseButton;

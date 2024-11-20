@@ -1,27 +1,19 @@
-$paddingChild: 18px;
-
 .item {
   display: flex;
   align-items: center;
-  padding: var(--8-space) var(--24-space) var(--8-space) var(--12-space);
-  min-height: var(--40-size);
+  padding: 8px 24px 8px 12px;
+  min-height: 40px;
   box-sizing: border-box;
-  color: var(--text-grey-900);
-
-  &:last-child,
-  &:first-child {
-    height: var(--48-size);
-  }
+  color: var(--steel-90);
 
   &:first-child {
-    padding-top: $paddingChild;
+    margin-top: 8px;
   }
 
   &:last-child {
-    padding-bottom: $paddingChild;
+    margin-bottom: 8px;
   }
-
   &:hover {
-    background-color: var(--text-grey-100);
+    background-color: var(--steel-30);
   }
 }

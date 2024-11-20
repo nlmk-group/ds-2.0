@@ -92,4 +92,7 @@ export const CommonCalendar = forwardRef<HTMLDivElement, ICommonCalendarProps>(
   }
 );
 
+
+CommonCalendar.displayName = 'CommonCalendar'
+
 export default CommonCalendar;

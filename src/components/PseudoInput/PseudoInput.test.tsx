@@ -20,7 +20,7 @@ const children = <div>Sample text</div>;
 describe('src/components/PseudoInput', () => {
   test('renders different label color states', () => {
     labelColorClassNames.map(color => {
-      const { container } = render(<PseudoInput label={label} children={children} labelColor={color} />);
+      const { container } = render(<PseudoInput label={label} labelColor={color}>{children}</PseudoInput>);
       const pseudoInput = container.getElementsByClassName(color as string)[0];
       expect(pseudoInput).toBeInTheDocument();
     });

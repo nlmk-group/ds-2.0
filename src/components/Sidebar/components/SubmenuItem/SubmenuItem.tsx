@@ -13,25 +13,17 @@ import React, {
 import { CSSTransition } from 'react-transition-group';
 
 import { EButtonSizes } from '@components/Button/enums';
-import { StarSvgIcon } from '@components/Icon/IconsInternal';
-import { Button, Icon, ImagePicture, Typography } from '@components/index';
+import { Button, Icon, IconStarFilled32, IconStarOutlined32, ImagePicture, Typography } from '@components/index';
 import { SidebarProperties, SubmenuProperties } from '@components/Sidebar/context';
-import { orientationMapping } from '@components/Sidebar/enums';
+import { ESidebarOrientationMapping } from '@components/Sidebar/enums';
 import { ISidebarProperties, ISubmenuItemProps, ISubmenuProperties } from '@components/Sidebar/types';
 import clsx from 'clsx';
 
 import styles from './SubmenuItem.module.scss';
 
-const SubmenuItem: FC<ISubmenuItemProps> = ({
-  id,
-  label,
-  path,
-  image,
-  children,
-  depth = 1,
-  onClick,
-  disabled = false
-}) => {
+const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, depth = 1, onClick, disabled }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
   const { allowFavorites, currentPath, orientation } = useContext<ISidebarProperties>(SidebarProperties);
   const {
@@ -63,7 +55,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   );
 
   const isActive = label === activeItem;
-  const isVertical = orientation === orientationMapping.vertical;
+  const isVertical = orientation === ESidebarOrientationMapping.vertical;
   const hasChildren = Children.count(children) > 0;
 
   const childrenIds = Children.toArray(submenu)
@@ -75,12 +67,13 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const isChildFavorite = checkChildIsFavorite(id!);
 
   const hasActiveSubMenuItem = (item: ReactNode): boolean => {
-    if (!isValidElement(item)) return false;
+    if (!isValidElement<ISubmenuItemProps>(item)) return false;
 
     if (item.props.path === currentPath) return true;
 
-    if (item.props.children) {
-      return Children.toArray(item.props.children).some(hasActiveSubMenuItem);
+    const { children } = item.props;
+    if (children) {
+      return Children.toArray(children).some(hasActiveSubMenuItem);
     }
 
     return false;
@@ -109,22 +102,41 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   }, [isActivePath]);
 
   return (
-    <div className={styles.root}>
+    <div className={styles['submenu-item']}>
       <div
         className={clsx(styles.wrapper, {
           [styles['wrapper-active']]: isActivePath,
           [styles['wrapper-disabled']]: disabled
         })}
       >
-        <div className={clsx(styles.head, styles[`head-offset-${depth}`])}>
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className={clsx(styles.head, styles[`head-offset-${depth}`])}
+        >
           {allowFavorites && id && (
             <Button
-              variant="primary"
+              onMouseEnter={() => {
+                setIsHoveredIcon(true);
+              }}
+              onMouseLeave={() => {
+                setIsHoveredIcon(false);
+              }}
+              className={clsx(styles['favorite-button'], {
+                [styles['favorite-button--visible']]: (isHovered || (isFavorite && isChildFavorite)) && !disabled
+              })}
+              variant="secondary"
               fill="clear"
               size={EButtonSizes.s}
               onClick={() => handleFavorites(id, childrenIds)}
               disabled={disabled}
-              iconButton={<StarSvgIcon active={Boolean(isFavorite && isChildFavorite)} className={styles.favorite} />}
+              iconButton={
+                isHoveredIcon || (isFavorite && isChildFavorite) ? (
+                  <IconStarFilled32 htmlColor="var(--spectrum-yellow-60)" />
+                ) : (
+                  <IconStarOutlined32 htmlColor="var(--brand-sapphire-60)" />
+                )
+              }
             />
           )}
           <div className={styles.title} onClick={handleClick}>
@@ -136,11 +148,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
             </Typography>
             {submenu && isVertical && (
               <div className={clsx(styles.icon, { [styles[`icon-rotated`]]: isSubmenuVisible })}>
-                <Icon
-                  htmlColor={isActivePath && !disabled ? 'var(--ac-icon-blue)' : 'var(--ac-icon-grey)'}
-                  containerSize={24}
-                  name="IconChevronArrowDownOutlined24"
-                />
+                <Icon htmlColor={'var(--brand-sapphire-60)'} containerSize={24} name="IconChevronArrowDownOutlined24" />
               </div>
             )}
           </div>

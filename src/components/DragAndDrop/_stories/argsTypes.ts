@@ -1,7 +1,5 @@
-import { sizesMapping } from '@components/declaration';
-
 import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle } from '../constants';
-import { EDnDFileType, EDnDStatusColor } from '../enums';
+import { EDnDFileType, EDnDSizes, EDnDStatusColor } from '../enums';
 
 export const argsTypes = {
   className: {
@@ -80,13 +78,13 @@ export const argsTypes = {
     description: 'Необязательное свойство. Размер компонента.',
     table: {
       defaultValue: {
-        summary: sizesMapping.l
+        summary: EDnDSizes.l
       },
       type: {
-        summary: Object.values(sizesMapping).join(' | ')
+        summary: Object.values(EDnDSizes).join(' | ')
       }
     },
-    options: Object.values(sizesMapping),
+    options: Object.values(EDnDSizes),
     control: { type: 'select' }
   },
   withIcon: {

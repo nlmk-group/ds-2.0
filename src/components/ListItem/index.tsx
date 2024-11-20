@@ -16,4 +16,6 @@ const ListItem = forwardRef<HTMLDivElement, IListItemProps>(({ children, classNa
   </div>
 ));
 
+ListItem.displayName = 'ListItem';
+
 export default ListItem;

@@ -52,33 +52,33 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
     const [ref, setRef] = useState<HTMLDivElement | null>(null);
     return [ref, setRef] as const;
   };
-  
+
   const [hoursContainerRef, setHoursContainerRef] = useContainerRef();
   const [minutesContainerRef, setMinutesContainerRef] = useContainerRef();
   const [secondsContainerRef, setSecondsContainerRef] = useContainerRef();
-  
+
   useEffect(() => {
     if (!value) return;
-  
+
     const scrollContainers = [
       { ref: hoursContainerRef, getValue: () => value.getHours() },
       { ref: minutesContainerRef, getValue: () => value.getMinutes() },
       { ref: secondsContainerRef, getValue: () => value.getSeconds() }
     ];
-  
+
     scrollContainers.forEach(({ ref, getValue }) => {
       if (ref) {
         ref.scrollTop = getValue() * 40;
       }
     });
   }, [value, hoursContainerRef, minutesContainerRef, secondsContainerRef]);
-  
+
   const checkSelectedTime = useCallback(
     (unit: 'Hours' | 'Minutes' | 'Seconds') => (value: number, selectedTime?: Date) =>
       selectedTime?.[`get${unit}`]() === value,
     []
   );
-  
+
   const getSelectedHour = useMemo(() => checkSelectedTime('Hours'), [checkSelectedTime]);
   const getSelectedMinutes = useMemo(() => checkSelectedTime('Minutes'), [checkSelectedTime]);
   const getSelectedSeconds = useMemo(() => checkSelectedTime('Seconds'), [checkSelectedTime]);
@@ -168,5 +168,7 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
     </div>
   );
 };
+
+TimeSelector.displayName = 'TimeSelector';
 
 export default TimeSelector;

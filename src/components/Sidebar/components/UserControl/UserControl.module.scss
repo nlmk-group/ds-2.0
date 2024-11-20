@@ -1,41 +1,76 @@
-@mixin cell {
-  display: flex;
-  height: var(--64-size);
-  box-sizing: border-box;
-  flex-shrink: 0;
-  align-items: center;
+:root {
+  --user-control-height: 64px;
+  --user-control-transition: 0.3s ease;
+}
+
+@mixin interactive {
   cursor: pointer;
-}
-
-.user{
-  @include cell;
-
-  &-text {
-    color: var(--ac-sidebar-section-text);
-  }
+  transition: background-color var(--user-control-transition);
 
   &:hover {
-    background: var(--ac-sidebar-section-hover-bg);
+    background-color: var(--brand-jeans-10) !important;
   }
 }
 
-.auth {
-  @include cell;
-  justify-content: center;
-  width: var(--64-size);
-
-  &:hover {
-    button {
-      background: var(--ac-button-black-clear-hover-bg);
-    }
-  }
-}
-
-.avatar {
+@mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--64-size);
-  height: var(--64-size);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+
+  &[data-vertical="true"] {
+    flex-direction: column;
+  }
+
+  &[data-vertical="false"] {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.user-button {
+  @include flex-center;
+  @include interactive;
+
+  width: 100%;
+  height: var(--user-control-height);
+  border: none;
+  background: none;
+  padding: 0;
+
+  [data-expanded="true"] & {
+    justify-content: flex-start;
+  }
+}
+
+.avatar-wrapper {
+  @include flex-center;
+  width: var(--user-control-height);
+  height: var(--user-control-height);
   flex-shrink: 0;
+}
+
+.user-name {
+  color: var(--unique-white);
+  margin-left: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.action-button {
+  @include interactive;
+  width: var(--user-control-height);
+  height: var(--user-control-height);
+  border-radius: 0;
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-jeans-10);
+    outline-offset: -2px;
+  }
 }

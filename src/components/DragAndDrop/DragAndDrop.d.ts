@@ -187,6 +187,12 @@ export enum EDnDFileType {
   video = 'video'
 }
 
+export enum EDnDSizes {
+  /** Размер l */
+  l = 'l',
+  /** Размер m */
+  m = 'm'
+}
 /**
  * Перечисление цветов статусов.
  * Описывает возможные значения цветов статусов для компонента Drag and Drop.
@@ -198,8 +204,6 @@ export enum EDnDStatusColor {
   info = 'info',
   /** Ошибочный */
   error = 'error',
-  /** Предупреждающий */
-  warning = 'warning'
 }
 
 /**
@@ -224,8 +228,7 @@ export enum EDnDTitleSizeHelper {
   l = 'Heading3',
   /** Заголовок уровня Heading4 */
   m = 'Heading4',
-  /** Заголовок уровня Heading4 */
-  s = 'Heading4'
+
 }
 
 /**
@@ -237,8 +240,7 @@ export enum EDnDDescriptionSizeHelper {
   l = 'Body1-Medium',
   /** Описание уровня Body2-Medium */
   m = 'Body2-Medium',
-  /** Описание уровня Caption */
-  s = 'Caption'
+
 }
 
 /**
@@ -250,8 +252,7 @@ export enum EDnDSpinnerSizeHelper {
   l = '2xl',
   /** Размер xl для спиннера */
   m = 'xl',
-  /** Размер l для спиннера */
-  s = 'l'
+
 }
 
 /**
@@ -263,8 +264,7 @@ export enum EDnDPercentageSizeHelper {
   l = 'Heading3',
   /** Размер процентов Body1-Medium */
   m = 'Body1-Medium',
-  /** Размер процентов Caption-Bold */
-  s = 'Caption-Bold'
+
 }
 
 /**
@@ -276,6 +276,5 @@ export enum EDnDSpinnerWidthHelper {
   l = '96px',
   /** Ширина спиннера 56px */
   m = '56px',
-  /** Ширина спиннера 40px */
-  s = '40px'
+
 }

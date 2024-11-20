@@ -8,9 +8,8 @@ import styles from '@components/_storybook/styles.module.scss';
 import { ESizesSpinner } from '../enums';
 import { ISpinnerProps } from '../types';
 import argsTypes from './argsTypes';
-import { COLORS, DEFAULT_TEXT, ICON, ICON_PERCENT, TEXT_M_SIZE } from './text';
 
-const withWrapper = (Story: any) => <div className={style.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={style.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Spinner/Stories',
@@ -26,7 +25,7 @@ export const SpinnerDefault = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerDefault.storyName = DEFAULT_TEXT;
+SpinnerDefault.storyName = 'Spinner по умолчанию';
 
 export const SpinnerMSize = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -35,7 +34,7 @@ export const SpinnerMSize = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerMSize.storyName = TEXT_M_SIZE;
+SpinnerMSize.storyName = 'Spinner размера medium';
 
 export const SpinnerChangeColor = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -44,7 +43,7 @@ export const SpinnerChangeColor = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerChangeColor.storyName = COLORS;
+SpinnerChangeColor.storyName = 'Spinner с разными цветами';
 
 export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -55,7 +54,7 @@ export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerWithIcon.storyName = ICON;
+SpinnerWithIcon.storyName = 'Spinner где Icon, как children (JSX.Element)';
 
 export const SpinnerWithPercent = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -73,4 +72,22 @@ export const SpinnerWithPercent = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerWithPercent.storyName = ICON_PERCENT;
+SpinnerWithPercent.storyName = 'Spinner c процентом';
+
+export const SpinnerStretchedContainer = (args: ISpinnerProps): JSX.Element => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        width: '300px',
+        backgroundColor: '#fff',
+        border: '1px solid var(--ac-border-primary)'
+      }}
+    >
+      <Spinner {...args} />
+    </div>
+  );
+};
+SpinnerStretchedContainer.storyName = 'Spinner в растянутом контейнере';

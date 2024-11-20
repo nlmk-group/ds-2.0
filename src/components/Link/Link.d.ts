@@ -21,7 +21,7 @@ export enum sizeMapping {
   caption = 'caption'
 }
 
-export interface ILink extends PropsWithChildren<{
+export type ILink = PropsWithChildren<{
   children: ReactNode;
   href: string;
   preventRedirect?: boolean;
@@ -31,7 +31,7 @@ export interface ILink extends PropsWithChildren<{
   disabled?: boolean;
   leftIcon?: JSX.Element | ReactNode;
   rightIcon?: JSX.Element | ReactNode;
-}> {}
+}>
 
 declare const Link: FC<ILink>;
 

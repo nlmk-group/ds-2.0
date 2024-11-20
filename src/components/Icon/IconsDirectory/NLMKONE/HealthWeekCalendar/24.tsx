@@ -10,7 +10,7 @@ const IconHealthWeekCalendar24: FC<IIconsProps> = ({ color = 'inherit', htmlColo
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path
           fillRule="evenodd"
           clipPath="evenodd"

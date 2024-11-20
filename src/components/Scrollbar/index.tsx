@@ -37,4 +37,6 @@ const Scrollbar = forwardRef<HTMLDivElement, IScrollbarProps>(
   }
 );
 
+Scrollbar.displayName = 'Scrollbar';
+
 export default Scrollbar;

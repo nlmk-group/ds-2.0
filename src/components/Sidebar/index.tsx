@@ -21,14 +21,35 @@ import styles from './Sidebar.module.scss';
 
 import { CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
 import { SidebarProperties } from './context';
-import { orientationMapping, positionMapping, variantMapping } from './enums';
+import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
+
+/**
+ * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
+ *
+ * @param {object} props - Свойства компонента Sidebar.
+ * @param {`${ESidebarVariantMapping}`} [props.variant=ESidebarVariantMapping.default] - Вариант бокового меню.
+ * @param {`${ESidebarOrientationMapping}`} [props.orientation=ESidebarOrientationMapping.vertical] - Ориентация бокового меню.
+ * @param {boolean} [props.allowFavorites=false] - Разрешает ли боковое меню избранное.
+ * @param {boolean} [props.isLoggedIn] - Флаг, показывающий, вошел ли пользователь в систему.
+ * @param {string} [props.systemName] - Системное имя для отображения в меню.
+ * @param {string} [props.userName] - Имя пользователя.
+ * @param {string} [props.userSurname] - Фамилия пользователя.
+ * @param {ReactNode} props.children - Дочерние элементы, такие как аватар пользователя или элементы меню.
+ * @param {() => void} props.onOpenUser - Функция, вызываемая при открытии профиля пользователя.
+ * @param {() => void} [props.onLogout] - Функция, вызываемая при выходе из аккаунта.
+ * @param {() => void} [props.onLogin] - Функция, вызываемая при входе в аккаунт.
+ * @param {() => void} [props.onSearch] - Функция, вызываемая при поиске.
+ * @param {() => void} [props.onClickLogo] - Функция, вызываемая при клике на логотип.
+ * @param {string} props.currentPath - Текущий путь (URL) для определения активного элемента.
+ * @returns {JSX.Element} - Компонент Sidebar.
+ */
 
 const Sidebar: FC<ISidebarProps> &
   Record<'Avatar', FC<IAvatarProps>> &
   Record<'MenuItem', FC<IMenuItemProps>> &
   Record<'SubmenuItem', FC<ISubmenuItemProps>> = ({
-    variant = variantMapping.default,
-    orientation = orientationMapping.vertical,
+    variant = ESidebarVariantMapping.default,
+    orientation = ESidebarOrientationMapping.vertical,
     allowFavorites = false,
     isLoggedIn,
     systemName,
@@ -42,8 +63,8 @@ const Sidebar: FC<ISidebarProps> &
     onClickLogo,
     currentPath
   }) => {
-    const isBurger = variant === variantMapping.burger;
-    const isVertical = orientation === orientationMapping.vertical;
+    const isBurger = variant === ESidebarVariantMapping.burger;
+    const isVertical = orientation === ESidebarOrientationMapping.vertical;
 
     const [isExpanded, setExpanded] = useState(!isVertical && !isBurger);
     const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -51,7 +72,7 @@ const Sidebar: FC<ISidebarProps> &
     const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
     const positionRef = useRef<HTMLDivElement>(null);
-    const collapseButtonRef = useRef<HTMLDivElement>(null);
+    const collapseButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
       const handleWheel = (event: WheelEvent) => {
@@ -61,15 +82,18 @@ const Sidebar: FC<ISidebarProps> &
         }
       };
 
-      if (orientation !== orientationMapping.vertical) {
+      if (orientation !== ESidebarOrientationMapping.vertical) {
         scrollRef.current?.addEventListener('wheel', handleWheel);
-        return () => scrollRef.current?.removeEventListener('wheel', handleWheel);
       }
+
+      return () => {
+        scrollRef.current?.removeEventListener('wheel', handleWheel);
+      };
     }, [orientation]);
 
     useEffect(() => {
       const handleScroll = () => {
-        if (orientation === orientationMapping.horizontal && activeItem !== null && !isScrollingDueToClick) {
+        if (orientation === ESidebarOrientationMapping.horizontal && activeItem !== null && !isScrollingDueToClick) {
           setActiveItem(null);
         }
       };
@@ -108,7 +132,12 @@ const Sidebar: FC<ISidebarProps> &
       () =>
         menuItems.filter(
           child =>
-            isValidElement(child) && (child.props as { position: `${positionMapping}` }).position === positionMapping.top
+            isValidElement(child) &&
+          (
+            child.props as {
+              position: `${ESidebarPositionMapping}`;
+            }
+          ).position === ESidebarPositionMapping.top
         ),
       [menuItems]
     );
@@ -118,7 +147,7 @@ const Sidebar: FC<ISidebarProps> &
         menuItems.filter(
           child =>
             isValidElement(child) &&
-          (child.props as { position: `${positionMapping}` }).position === positionMapping.bottom
+          (child.props as { position: `${ESidebarPositionMapping}` }).position === ESidebarPositionMapping.bottom
         ),
       [menuItems]
     );
@@ -145,7 +174,7 @@ const Sidebar: FC<ISidebarProps> &
     if (isBurger && !isExpanded)
       return (
         <div className={styles.burger} onClick={() => setExpanded(true)}>
-          <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
+          <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
         </div>
       );
 
@@ -173,7 +202,7 @@ const Sidebar: FC<ISidebarProps> &
           <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
             {isBurger && !isVertical && (
               <div className={clsx(styles.burger, styles['burger-expanded'])} onClick={expandSidebar}>
-                <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
+                <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
               </div>
             )}
             <div className={styles.head}>
@@ -192,21 +221,19 @@ const Sidebar: FC<ISidebarProps> &
                 </div>
                 {isExpanded && isVertical && handleAction && (
                   <Button
+                    size="s"
                     variant="primary"
                     fill="clear"
-                    className={styles.auth}
+                    className={clsx(styles.head, styles.auth)}
                     onClick={handleAction}
-                    iconButton={<Icon name={actionIconName} />}
+                    iconButton={<Icon name={actionIconName} htmlColor="var(--unique-white)" />}
                     title={actionTitle}
                   />
                 )}
               </div>
             </div>
 
-            <Scrollbar
-              className={clsx(styles.body, styles[`body-${orientation}`], styles.scrollbar)}
-              ref={scrollRef}
-            >
+            <Scrollbar className={clsx(styles.body, styles[`body-${orientation}`], styles.scrollbar)} ref={scrollRef}>
               {isVertical ? (
                 <>
                   <div className={styles.topSection}>
@@ -232,7 +259,7 @@ const Sidebar: FC<ISidebarProps> &
               <div className={styles.rightSection}>
                 {onSearch && (
                   <div className={styles.search}>
-                    <Icon name={'IconSearchOutlined32'} containerSize={32} htmlColor="var(--ac-icon-white)" />
+                    <Icon name={'IconSearchOutlined32'} containerSize={32} htmlColor="var(--unique-white)" />
                   </div>
                 )}
                 {renderUserControl()}

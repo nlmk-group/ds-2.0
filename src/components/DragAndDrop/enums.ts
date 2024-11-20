@@ -8,6 +8,10 @@
  * @type {EDnDPercentageSizeHelper} percentageSizeHelperDnD
  * @type {EDnDSpinnerWidthHelper} spinnerWidthHelperDnD
  */
+export enum EDnDSizes {
+  l = 'l',
+  m = 'm'
+}
 
 export enum EDnDFileType {
   file = 'file',
@@ -18,8 +22,7 @@ export enum EDnDFileType {
 export enum EDnDStatusColor {
   default = 'default',
   info = 'info',
-  error = 'error',
-  warning = 'warning'
+  error = 'error'
 }
 
 export enum EDnDIconType {
@@ -30,30 +33,25 @@ export enum EDnDIconType {
 
 export enum EDnDTitleSizeHelper {
   l = 'Heading3',
-  m = 'Heading4',
-  s = 'Heading4'
+  m = 'Heading4'
 }
 
 export enum EDnDDescriptionSizeHelper {
   l = 'Body1-Medium',
-  m = 'Body2-Medium',
-  s = 'Caption'
+  m = 'Body2-Medium'
 }
 
 export enum EDnDSpinnerSizeHelper {
   l = '2xl',
-  m = 'xl',
-  s = 'l'
+  m = 'xl'
 }
 
 export enum EDnDPercentageSizeHelper {
   l = 'Heading3',
-  m = 'Body1-Medium',
-  s = 'Caption-Bold'
+  m = 'Body1-Medium'
 }
 
 export enum EDnDSpinnerWidthHelper {
   l = '96px',
-  m = '56px',
-  s = '40px'
+  m = '56px'
 }

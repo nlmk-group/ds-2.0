@@ -5,7 +5,7 @@ import { TInputMaskCorrect } from '@components/InputMaskCorrect/types';
 
 export const InputMaskCorrect: FC<TInputMaskCorrect> = ({ children, ...props }) => {
   const child = children as ReactNode;
-  return <InputMask children={child} {...props} />;
+  return <InputMask {...props}>{child}</InputMask>;
 };
 
 export default InputMaskCorrect;

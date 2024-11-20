@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 
 import { Avatar, Button, Icon, Typography } from '@components/index';
-import { IUserControlProps } from '@components/Sidebar/types';
 
 import styles from './UserControl.module.scss';
+
+import { IUserControlProps } from '../../types';
 
 const UserControl: FC<IUserControlProps> = ({
   isExpanded,
@@ -16,36 +17,40 @@ const UserControl: FC<IUserControlProps> = ({
   onLogin,
   onLogout
 }) => {
-  const fullName = `${userName ?? ''} ${userSurname ?? ''}`;
-  const actionIconName = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
-  const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
-  const handleAction = isLoggedIn && onLogout ? onLogout : onLogin;
+  const fullName = [userName, userSurname].filter(Boolean).join(' ');
+  const icon = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
+  const title = isLoggedIn ? 'Выйти' : 'Войти';
+  const handler = isLoggedIn ? onLogout : onLogin;
 
   return (
-    <>
+    <div className={styles.control} data-vertical={isVertical} data-expanded={isExpanded}>
       {isLoggedIn && (
-        <div className={styles.user} onClick={onOpenUser}>
-          <div className={styles.avatar}>{children ?? <Avatar size="s" />}</div>
+        <button type="button" className={styles['user-button']} onClick={onOpenUser} title={fullName}>
+          <div className={styles['avatar-wrapper']}>{children ?? <Avatar size="s" />}</div>
+
           {isExpanded && isVertical && (
-            <Typography variant="Body1-Medium" className={styles['user-text']} title={fullName}>
+            <Typography variant="Body1-Medium" className={styles['user-name']} title={fullName}>
               {fullName}
             </Typography>
           )}
-        </div>
+        </button>
       )}
-      {!isVertical && Boolean(handleAction) && (
-        <div className={styles.auth}>
-          <Button
-            variant="primary"
-            fill="clear"
-            onClick={handleAction}
-            iconButton={<Icon name={actionIconName} />}
-            title={actionTitle}
-          />
-        </div>
+
+      {!isVertical && handler && (
+        <Button
+          size="s"
+          variant="primary"
+          fill="clear"
+          onClick={handler}
+          className={styles['action-button']}
+          iconButton={<Icon name={icon} htmlColor="var(--unique-white)" />}
+          title={title}
+        />
       )}
-    </>
+    </div>
   );
 };
+
+UserControl.displayName = 'UserControl';
 
 export default UserControl;

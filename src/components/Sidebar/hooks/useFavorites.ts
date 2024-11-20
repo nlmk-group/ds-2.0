@@ -1,10 +1,26 @@
 import { useEffect, useState } from 'react';
 
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useState<string[]>(() => JSON.parse(localStorage.getItem('favorites') ?? '[]'));
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        return JSON.parse(localStorage.getItem('favorites') ?? '[]');
+      } catch (error) {
+        console.error('Ошибка при парсинге favorites из localStorage:', error);
+        return [];
+      }
+    }
+    return [];
+  });
 
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+      } catch (error) {
+        console.error('Ошибка при записи favorites в localStorage:', error);
+      }
+    }
   }, [favorites]);
 
   const addToFavorites = (id: string) => {

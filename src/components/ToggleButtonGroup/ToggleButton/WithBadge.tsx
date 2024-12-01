@@ -22,7 +22,7 @@ const WithBadge: FC<IBadgeProps> = (props) => {
   const defaultProps = useContext<IButtonGroupProperties>(ButtonGroupProperties);
   // const btnProps = useContext<IButtonProperties>(ButtonProperties);
   // const badgeType = btnProps.status || defaultProps.status;
-  
+
   // const badgeColorHelper = () => {
   //   // if (btnProps.active) return colorsMapping.grey;
   //   if (badgeType === statusMapping.default) return colorsMapping.primary
@@ -35,7 +35,7 @@ const WithBadge: FC<IBadgeProps> = (props) => {
       ? 'solid'
       : props.variant,
     color: props.color === undefined
-      ? 'secondary'
+      ? 'brand'
       : props.color
     // color: badgeColorHelper()
   };

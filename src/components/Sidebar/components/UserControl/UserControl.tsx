@@ -29,7 +29,7 @@ const UserControl: FC<IUserControlProps> = ({
           <div className={styles['avatar-wrapper']}>{children ?? <Avatar size="s" />}</div>
 
           {isExpanded && isVertical && (
-            <Typography variant="Body1-Medium" className={styles['user-name']} title={fullName}>
+            <Typography variant="Body1-Medium" color="var(--unique-white)" className={styles.username} title={fullName}>
               {fullName}
             </Typography>
           )}

@@ -190,3 +190,15 @@ HorizontalBurgerSidebar.args = {
   userSurname: 'Иванов',
   systemName: 'НЛМК'
 };
+
+export const SidebarWithOverlayAndDefaultMenuOpen = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} />;
+};
+SidebarWithOverlayAndDefaultMenuOpen.storyName = 'Sidebar с оверлеем и открытым меню по умолчанию';
+SidebarWithOverlayAndDefaultMenuOpen.args = {
+  overlay: true,
+  defaultMenuOpen: true,
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};

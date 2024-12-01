@@ -1,4 +1,6 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
+
+import { ESwitchColors } from './enums';
 
 export interface ISwitchProps {
   /** Дополнительный CSS-класс */
@@ -15,4 +17,8 @@ export interface ISwitchProps {
   activeIcon?: ReactNode;
   /** Иконка для неактивного состояния */
   inactiveIcon?: ReactNode;
+  /** Цвет switch */
+  color?: `${ESwitchColors}`;
+  /** Inline стили для кастомизации компонента */
+  style?: CSSProperties;
 }

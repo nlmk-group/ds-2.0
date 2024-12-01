@@ -19,6 +19,7 @@
   top: 0;
   width: 64px;
   transition: width 0.3s;
+  z-index: 10;
 
   &-vertical {
     height: 100vh;
@@ -113,8 +114,11 @@
   flex-shrink: 0;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .company {
-  color: var(--unique-white);
   margin: 0 4px;
   opacity: 0.5;
 }
@@ -153,4 +157,30 @@
   &:hover {
     background: var(--brand-jeans-10);
   }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-jeans-30);
+  opacity: 0;
+  animation: fadeIn 0.3s linear forwards;
+  will-change: opacity;
 }

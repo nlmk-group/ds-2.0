@@ -4,7 +4,7 @@ import { EChipColors } from '@components/Chip/enums';
 import { sizesMapping } from '@components/declaration';
 import { render } from '@testing-library/react';
 
-import { ChipSize } from './types';
+import { TChipSize } from './types';
 
 import { argsTypes } from './_stories/argsTypes';
 import { Chip } from './index';
@@ -54,7 +54,7 @@ describe('src/components/Chip', () => {
     sizes.map(size => {
       colors.map(color => {
         const { container } = render(
-          <Chip suffix="кг" size={size as ChipSize} color={color as EChipColors}>
+          <Chip suffix="кг" size={size as TChipSize} color={color as EChipColors}>
             {text}
           </Chip>
         );

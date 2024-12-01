@@ -1,3 +1,5 @@
+import { ERadioColors } from '../enums';
+
 export const argsTypes = {
   disabled: {
     description: 'Условие блокировки доступа к компоненту',
@@ -46,6 +48,21 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  color: {
+    description: 'Цветовой вариант компонента',
+    table: {
+      defaultValue: {
+        summary: 'brand'
+      },
+      type: {
+        summary: 'ERadioColors'
+      }
+    },
+    options: Object.values(ERadioColors),
+    control: {
+      type: 'select'
+    }
   },
   onChange: {
     description: 'Callback для обработчки события изменения состояния Radio'

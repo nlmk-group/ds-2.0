@@ -1,121 +1,149 @@
+$checkbox-size: 18px;
+$checkbox-icon-size: 14px;
+$checkbox-focus-size: var(--32-size);
+
+$checkbox-colors: (
+  brand: (
+    border: var(--steel-60),
+    border-checked: var(--brand-sapphire-60),
+    background: var(--brand-sapphire-60),
+  ),
+  error: (
+    border: var(--spectrum-red-50),
+    border-checked: var(--spectrum-red-50),
+    background: var(--spectrum-red-50),
+  ),
+  warning: (
+    border: var(--spectrum-yellow-50),
+    border-checked: var(--spectrum-yellow-50),
+    background: var(--spectrum-yellow-50),
+  ),
+  success: (
+    border: var(--spectrum-green-50),
+    border-checked: var(--spectrum-green-50),
+    background: var(--spectrum-green-50),
+  )
+);
+
 .label {
   display: flex;
   align-items: center;
-  column-gap: 12px;
   cursor: pointer;
   position: relative;
   width: fit-content;
   z-index: 1;
+  border-radius: 4px;
 
-  &:has(.checkbox:disabled) {
+  // Подсветка для измененных значений
+  &.colored {
+    background-color: var(--spectrum-yellow-10);
+  }
+  // disabled состояние
+  &:has(input:disabled) {
     cursor: default;
+    opacity: 0.5;
   }
 
-  &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error))::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 9px;
-    transform: translate(-50%, -50%);
-    width: var(--32-size);
-    height: var(--32-size);
-    border-radius: 50%;
-    background-color: var(--ac-checkbox-checked-focused-focus);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-    z-index: -1;
-  }
+  // Круг при ховере
+  &:not(:has(input:disabled)) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translate(-50%, -50%);
+      width: $checkbox-focus-size;
+      height: $checkbox-focus-size;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+      pointer-events: none;
+      z-index: -1;
+      background-color: var(--steel-90);
+    }
 
-  &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error)):hover::after {
-    opacity: var(--8-opacity);
-  }
-
-  &:has(.checkbox:checked) {
-    &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error))::after {
-      background-color: var(--ac-checkbox-checked-focused-focus);
+    // Круг при ховере
+    &:hover::after {
+      opacity: 0.06;
     }
   }
+}
 
-  &:not(:has(.checkbox:disabled)):has(.checkbox:not(.error))::after {
-    background-color: var(--ac-checkbox-unchecked-focused-focus);
-  }
-
-  &:not(.checkbox:disabled).checkbox:not(.error):hover {
-    input.checkbox {
-      border-color: var(--ac-checkbox-unchecked-focused-stroke);
-      background-color: var(--ac-checkbox-unchecked-focused-fill);
-    }
-  }
-
+.wrapper {
+  width: $checkbox-focus-size;
+  height: $checkbox-focus-size;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .checkbox {
   appearance: none;
   -webkit-appearance: none;
   margin: 0;
-  width: 18px;
-  height: 18px;
-  border: var(--2-border) solid var(--ac-checkbox-unchecked-normal-stroke);
-  border-radius: var(--2-radius);
-  background-color: var(--ac-checkbox-unchecked-normal-fill);
+  width: $checkbox-size;
+  height: $checkbox-size;
+  border: 2px solid;
+  border-radius: 2px;
   cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease-in-out;
 
-  &:checked {
-    background-color: var(--ac-checkbox-checked-normal);
-    border-color: var(--ac-checkbox-checked-normal);
+  // Генерация стилей для разных цветовых вариантов
+  @each $color, $values in $checkbox-colors {
+    &[data-color="#{$color}"] {
+      border-color: map-get($values, border);
+      background-color: var(--steel-10);
 
-    ~ .checkmark {
-      opacity: 1;
-    }
-  }
+      // Отмеченное состояние
+      &:checked {
+        background-color: map-get($values, background);
+        border-color: map-get($values, border-checked);
 
-  &.error {
-    border-color: var(--ac-checkbox-unchecked-error-stroke);
-    background-color: var(--ac-checkbox-unchecked-error--fill);
+        ~ .checkmark {
+          opacity: 1;
+        }
+      }
 
-    ~ .checkmark {
-      background-color: var(--ac-checkbox-unchecked-error-stroke);
-    }
-  }
+      // Состояние disabled
+      &:disabled {
+        cursor: default;
+        border-color: map-get($values, border);
 
-  &:checked:disabled {
-    cursor: default;
-    border: unset;
-    background-color: var(--ac-checkbox-unchecked-disabled-fill);
-
-    ~ .checkmark {
-      opacity: var(--50-opacity);
-      background-color: var(--ac-checkbox-checked-disabled);
-    }
-  }
-
-  &:disabled {
-    opacity: var(--50-opacity);
-    cursor: default;
-    border-color: var(--ac-checkbox-unchecked-disabled-stroke);
-    background-color: var(--ac-checkbox-unchecked-disabled-fill);
-
-    ~ .checkmark {
-      background-color: var(--ac-checkbox-checked-disabled);
+        &:checked {
+          background-color: map-get($values, background);
+          border: none;
+        }
+      }
     }
   }
 }
 
 .checkmark {
   position: absolute;
-  left: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: var(--2-radius);
+  left: 7px;
+  top: 7px;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in-out;
 
   svg {
-    width: 14px;
-    height: 14px;
+    width: $checkbox-icon-size;
+    height: $checkbox-icon-size;
+    color: var(--unique-white);
   }
+}
+
+.text {
+  padding: 5px;
 }

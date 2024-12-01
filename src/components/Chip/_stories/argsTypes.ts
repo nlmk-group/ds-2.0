@@ -25,7 +25,7 @@ export const argsTypes = {
     description: `Тип чипа – <b>${Object.values(EChipColors).join(' | ')}</b>`,
     table: {
       defaultValue: {
-        summary: EChipColors.primary
+        summary: EChipColors.brand
       },
       type: {
         summary: 'string'

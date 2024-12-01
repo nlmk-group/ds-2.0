@@ -19,7 +19,6 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
   const [showFavorites, setShowFavorites] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
-
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
 
   const favoritesChildren = useMemo(
@@ -73,7 +72,7 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
         ref={nodeRef}
       >
         <div className={styles.top}>
-          <Typography variant="Body-Bold" className={styles.title}>
+          <Typography variant="Body-Bold" color="var(--steel-90)" className={styles.title}>
             {title}
           </Typography>
           {allowFavorites && (

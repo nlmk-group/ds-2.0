@@ -14,8 +14,8 @@ type StepperColorsType = {
 
 export const StepperColors: StepperColorsType = {
   [EStepState.filled]: EBadgeColors.success,
-  [EStepState.focused]: EBadgeColors.primary,
-  [EStepState.inProgress]: EBadgeColors.secondary,
+  [EStepState.focused]: EBadgeColors.brand,
+  [EStepState.inProgress]: EBadgeColors.grey,
   [EStepState.notFilled]: EBadgeColors.grey,
   [EStepState.disabled]: EBadgeColors.grey
 };

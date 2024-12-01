@@ -51,4 +51,23 @@ describe('src/components/Badge', () => {
     const badge = container.getElementsByTagName('div')[0];
     expect(badge).toHaveClass('compact');
   });
+
+  // Check data attributes
+  test('Проверка наличия data-атрибутов', () => {
+    const { container } = render(<Badge>1</Badge>);
+    const badge = container.getElementsByTagName('div')[0];
+    const content = container.getElementsByTagName('span')[0];
+    
+    expect(badge).toHaveAttribute('data-ui-badge');
+    expect(content).toHaveAttribute('data-ui-badge-content');
+  });
+
+  // Check custom styles
+  test('Проверка применения кастомных стилей', () => {
+    const customStyle = { backgroundColor: 'red' };
+    const { container } = render(<Badge style={customStyle}>1</Badge>);
+    const badge = container.getElementsByTagName('div')[0];
+    
+    expect(badge).toHaveStyle(customStyle);
+  });
 });

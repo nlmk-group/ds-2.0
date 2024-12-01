@@ -118,7 +118,7 @@ export const AllIcons = (): JSX.Element => {
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    document.documentElement.style.removeProperty('--icon-search')
+    document.documentElement.style.removeProperty('--icon-search');
 
     const initialColor =
       getComputedStyle(document.documentElement).getPropertyValue('var(--icon-search)').trim() || '#1952b6';

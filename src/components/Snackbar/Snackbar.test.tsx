@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { variantsMapping } from '@components/declaration';
 import { Snackbar } from '@components/index';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
-import { ESnackbarColors } from './enums';
+import { ESnackbarColors, ESnackbarTypes } from './enums';
 
-describe('Snackbar component', () => {
+describe('src/components/Checkbox', () => {
   const testMessage = 'Test message';
 
-  test('src/components/Snackbar', () => {
+  test('renders Snackbar with basic props', () => {
     render(<Snackbar>{testMessage}</Snackbar>);
     expect(screen.getByText(testMessage)).toBeInTheDocument();
   });
@@ -19,9 +18,9 @@ describe('Snackbar component', () => {
     expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(`snackbar-${color}`);
   });
 
-  test.each(Object.values(variantsMapping))('renders Snackbar with %s variant', variant => {
-    render(<Snackbar variant={variant}>{testMessage}</Snackbar>);
-    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(`snackbar-${variant}`);
+  test.each(Object.values(ESnackbarTypes))('renders Snackbar with %s type', type => {
+    render(<Snackbar type={type}>{testMessage}</Snackbar>);
+    expect(screen.getByTestId('SNACKBAR_WRAPPER')).toHaveClass(`snackbar-${type}`);
   });
 
   test('renders action button with default text', () => {
@@ -53,13 +52,13 @@ describe('Snackbar component', () => {
 
   test('renders close button when close function is provided', () => {
     const closeMock = jest.fn();
-    render(<Snackbar close={closeMock}>{testMessage}</Snackbar>);
+    render(<Snackbar onClose={closeMock}>{testMessage}</Snackbar>);
     expect(screen.getByTestId('SNACKBAR_CLOSE')).toBeInTheDocument();
   });
 
   test('calls close function when close button is clicked', () => {
     const closeMock = jest.fn();
-    render(<Snackbar close={closeMock}>{testMessage}</Snackbar>);
+    render(<Snackbar onClose={closeMock}>{testMessage}</Snackbar>);
     fireEvent.click(screen.getByTestId('SNACKBAR_CLOSE'));
     expect(closeMock).toHaveBeenCalledTimes(1);
   });
@@ -68,7 +67,7 @@ describe('Snackbar component', () => {
     jest.useFakeTimers();
     const closeMock = jest.fn();
     render(
-      <Snackbar close={closeMock} autoHideDuration={1000}>
+      <Snackbar onClose={closeMock} autoHideDuration={1000}>
         {testMessage}
       </Snackbar>
     );

@@ -19,7 +19,7 @@ describe('src/components/Tab', () => {
     const badgeContent = '90';
 
     const { container } = render(
-      <Tab label="Hello World!" hasBadge={true} badgeChildren={badgeContent} badgeColor={EBadgeColors.secondary} />
+      <Tab label="Hello World!" hasBadge={true} badgeChildren={badgeContent} badgeColor={EBadgeColors.brand} />
     );
 
     const badgeElement = container.getElementsByClassName('badge')[0];

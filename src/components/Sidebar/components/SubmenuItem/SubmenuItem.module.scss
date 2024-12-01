@@ -4,6 +4,7 @@
   width: 363px;
   flex-shrink: 0;
 }
+
 .submenu-item:first-child {
   margin-top: 8px;
 }
@@ -62,14 +63,9 @@
 }
 
 .text {
-  color: var(--steel-90);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &-active {
-    color: var(--unique-bluewhite);
-  }
 }
 
 .icon {

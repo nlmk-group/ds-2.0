@@ -4,19 +4,20 @@
 }
 
 .snackbar {
+  box-sizing: border-box;
   position: relative;
   display: flex;
-  min-height: 56px;
-  box-sizing: border-box;
-  max-width: 100%;
-  padding: 8px 8px 8px 16px;
+  justify-content: space-between;
   align-items: center;
+  min-height: 48px;
+  min-width: 340px;
+  padding: 12px;
   gap: 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
-  &-outline:before {
-    content: '';
+  &-indication:before {
+    content: "";
     display: block;
     position: absolute;
     top: 0;
@@ -25,17 +26,27 @@
     height: 100%;
     border-radius: 4px 0 0 4px;
   }
+
+  &-indication {
+    background-color: var(--steel-10);
+    color: var(--brand-sapphire-60);
+    padding-left: 18px;
+  }
 }
 
-.snackbar-outline {
-  background: var(--steel-10);
-}
-
-.snackbar-dark {
+.snackbar-sky {
   @include content-helper(var(--spectrum-sky-50), var(--unique-white));
 }
 
+.indicator-sky:before {
+  @include content-helper(var(--spectrum-sky-50), var(--steel-90));
+}
+
 .snackbar-green {
+  @include content-helper(var(--spectrum-green-50), var(--unique-white));
+}
+
+.indicator-green:before {
   @include content-helper(var(--spectrum-green-50), var(--unique-white));
 }
 
@@ -43,15 +54,31 @@
   @include content-helper(var(--spectrum-red-50), var(--unique-white));
 }
 
-.snackbar-orange {
+.indicator-red:before {
+  @include content-helper(var(--spectrum-red-50), var(--unique-white));
+}
+
+.snackbar-yellow {
   @include content-helper(var(--spectrum-yellow-50), var(--unique-white));
 }
 
-.snackbar-white {
+.indicator-yellow:before {
+  @include content-helper(var(--spectrum-yellow-50), var(--unique-white));
+}
+
+.snackbar-light-sky {
   @include content-helper(var(--spectrum-sky-10), var(--steel-90));
 }
 
-.snackbar-grey {
+.indicator-light-sky:before {
+  @include content-helper(var(--spectrum-sky-10), var(--steel-90));
+}
+
+.snackbar-light-grey {
+  @include content-helper(var(--steel-30), var(--steel-90));
+}
+
+.indicator-light-grey:before {
   @include content-helper(var(--steel-30), var(--steel-90));
 }
 
@@ -59,46 +86,22 @@
   @include content-helper(var(--spectrum-green-10), var(--steel-90));
 }
 
-.snackbar-pink {
-  @include content-helper(var(--spectrum-red-10), var(--steel-90));
-}
-
-.indicator-white:before {
-  @include content-helper(var(--spectrum-sky-10), var(--steel-90));
-}
-
-.indicator-green:before {
-  @include content-helper(var(--spectrum-green-50), var(--steel-90));
-}
-
-.indicator-red:before {
-  @include content-helper(var(--spectrum-red-50), var(--steel-90));
-}
-
-.indicator-grey:before {
-  @include content-helper(var(--steel-30), var(--steel-90));
-}
-
-.indicator-dark:before {
-  @include content-helper(var(--spectrum-sky-50), var(--steel-90));
-}
-
 .indicator-light-green:before {
   @include content-helper(var(--spectrum-green-10), var(--steel-90));
 }
 
-.indicator-pink:before {
+.snackbar-light-red {
   @include content-helper(var(--spectrum-red-10), var(--steel-90));
 }
 
-.indicator-orange:before {
-  @include content-helper(var(--spectrum-yellow-50), var(--steel-90));
+.indicator-light-red:before {
+  @include content-helper(var(--spectrum-red-10), var(--steel-90));
 }
 
 .actions {
   display: flex;
+  align-items: center;
   gap: 8px;
-
   .close {
     &:hover {
       background-color: unset;
@@ -116,24 +119,29 @@
       }
     }
 
-    &-outline {
+    &-indication {
       path {
-        fill: var(--steel-90);
+        fill: var(--steel-70);
       }
     }
   }
 
   .action {
+    padding: 0;
     &:hover {
       background-color: unset;
     }
 
     &-light {
-      color: var(--unique-white);
+      color: var(--unique-bluewhite);
     }
 
     &-dark {
-      color: var(--unique-bluewhite);
+      color: var(--unique-white);
+    }
+
+    &-indication {
+      color: var(--brand-sapphire-60);
     }
   }
 }
@@ -145,5 +153,45 @@
 
   &-dark {
     color: var(--steel-90);
+  }
+  &-block {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+  }
+}
+.timer {
+  opacity: 0.8;
+}
+.icon {
+  position: relative;
+  top: 3px;
+
+  &-dark {
+    path {
+      fill: var(--steel-70);
+    }
+  }
+
+  &-light {
+    path {
+      fill: var(--unique-white);
+    }
+  }
+  &-red {
+    path {
+      fill: var(--spectrum-red-60);
+    }
+  }
+  &-green {
+    path {
+      fill: var(--spectrum-green-60);
+    }
+  }
+  &-yellow {
+    path {
+      fill: var(--spectrum-yellow-60);
+    }
   }
 }

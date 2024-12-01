@@ -1,6 +1,6 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, CSSProperties, FC } from 'react';
 
-export interface IRadioProps {
+export type IRadioProps = {
   /**
    * Значение радио-кнопки
    */
@@ -22,15 +22,26 @@ export interface IRadioProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 
   /**
+   * Текст метки радио-кнопки
+   */
+  label?: string;
+
+  /**
+   * Цвет радио-кнопки
+   * @default ERadioColors.brand
+   */
+  color?: `${ERadioColors}`;
+
+  /**
    * Дополнительный CSS класс
    */
   className?: string;
 
   /**
-   * Текст метки радио-кнопки
+   * Inline стили для кастомизации компонента
    */
-  label?: string;
-}
+  style?: CSSProperties;
+};
 
 declare const Radio: FC<IRadioProps>;
 

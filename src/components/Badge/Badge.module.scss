@@ -7,7 +7,6 @@
   box-sizing: border-box;
   min-width: 24px;
   width: fit-content;
-  height: 24px;
   border-radius: var(--circle-radius);
   display: flex;
   align-items: center;
@@ -15,17 +14,16 @@
   outline-width: 2px;
   outline-offset: -2px;
   cursor: default;
-  padding: 0 8px;
+  padding: 4px 8px;
 }
 
 .large {
   min-width: 26px;
-  height: 26px;
+  padding: 2px 8px;
 }
 
 .compact {
   min-width: 16px;
-  height: 16px;
   // ширина бордера для варианта outline
   outline-width: 1px;
   outline-offset: -1px;
@@ -34,54 +32,36 @@
 
 .xs {
   min-width: 12px;
-  height: 12px;
   padding: 0 3px;
   outline-width: 1px;
   outline-offset: -1px;
 }
 
 // Список цветовых вариантов
-$variants: primary, secondary, error, warning, success, grey, light-grey, light-green;
+$variants: brand, grey, error, warning, success;
 
 // Соответствующие цвета для каждого варианта
 $bg-colors: (
-  primary: var(--brand-sapphire-40),
-  secondary: var(--brand-sapphire-30),
+  brand: var(--brand-sapphire-30),
+  grey: var(--steel-50),
   error: var(--spectrum-red-40),
   warning: var(--spectrum-yellow-40),
-  success: var(--spectrum-green-40),
-  grey: var(--steel-70),
-  light-grey: var(--steel-50),
-  light-green: var(--spectrum-green-20)
-);
-
-$text-colors: (
-  primary: var(--unique-white),
-  secondary: var(--steel-90),
-  error: var(--steel-90),
-  warning: var(--steel-90),
-  success: var(--steel-90),
-  grey: var(--steel-10),
-  light-grey: var(--steel-90),
-  light-green: var(--steel-90)
+  success: var(--spectrum-green-40)
 );
 
 $outline-colors: (
-  primary: var(--brand-sapphire-40),
-  secondary: var(--brand-sapphire-30),
+  brand: var(--brand-sapphire-40),
+  grey: var(--steel-60),
   error: var(--spectrum-red-40),
   warning: var(--spectrum-yellow-40),
-  success: var(--spectrum-green-40),
-  grey: var(--steel-70),
-  light-grey: var(--steel-50),
-  light-green: var(--spectrum-green-20)
+  success: var(--spectrum-green-40)
 );
 
 // Цикл для генерации стилей для каждого варианта
 @each $variant in $variants {
   .#{"" + $variant} {
     background-color: map-get($bg-colors, $variant);
-    color: map-get($text-colors, $variant);
+    color: var(--steel-90);
   }
 
   .outline-#{"" + $variant} {

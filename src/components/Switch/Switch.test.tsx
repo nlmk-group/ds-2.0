@@ -3,8 +3,11 @@ import React, { FC } from 'react';
 import { Icon, Switch } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
+import { ESwitchColors } from './enums';
+
 describe('src/components/Switch', () => {
   const mockCallBack = jest.fn();
+  const defaultColor = ESwitchColors.brand;
   test('It should render a Switch', () => {
     const { container } = render(<Switch checked={false} onChange={mockCallBack} />);
     const headerComponent = container.getElementsByTagName('div')[0];
@@ -12,16 +15,16 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch is inactive', () => {
-    const InactiveSwitch = (): JSX.Element => <Switch checked={false} onChange={mockCallBack} />;
+    const InactiveSwitch = (): JSX.Element => <Switch checked={false} color={defaultColor} onChange={mockCallBack} />;
 
     test('It should render inactive track', () => {
       render(<InactiveSwitch />);
-      expect(screen.getByTestId('TRACK').classList.contains('track-inactive')).toBe(true);
+      expect(screen.getByTestId('TRACK').classList.contains(`track-inactive-${defaultColor}`)).toBe(true);
     });
 
     test('It should render inactive touch', () => {
       render(<InactiveSwitch />);
-      expect(screen.getByTestId('TOUCH').classList.contains('touch-inactive')).toBe(true);
+      expect(screen.getByTestId('TOUCH').classList.contains(`touch-inactive-${defaultColor}`)).toBe(true);
     });
 
     test('It should render inactive focus', () => {
@@ -31,16 +34,16 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch is active', () => {
-    const ActiveSwitch = (): JSX.Element => <Switch checked={true} onChange={mockCallBack} />;
+    const ActiveSwitch = (): JSX.Element => <Switch checked={true} color={defaultColor} onChange={mockCallBack} />;
 
     test('It should render active track', () => {
       render(<ActiveSwitch />);
-      expect(screen.getByTestId('TRACK').classList.contains('track-active')).toBe(true);
+      expect(screen.getByTestId('TRACK').classList.contains(`track-active-${defaultColor}`)).toBe(true);
     });
 
     test('It should render active touch', () => {
       render(<ActiveSwitch />);
-      expect(screen.getByTestId('TOUCH').classList.contains('touch-active')).toBe(true);
+      expect(screen.getByTestId('TOUCH').classList.contains(`touch-active-${defaultColor}`)).toBe(true);
     });
 
     test('It should render active focus', () => {

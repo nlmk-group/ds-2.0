@@ -1,4 +1,4 @@
-import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import { IAvatarProps } from '@components/Avatar/types';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
@@ -42,41 +42,99 @@ export enum ESidebarPositionMapping {
  * Интерфейс, описывающий свойства, принимаемые компонентом Sidebar.
  */
 export interface ISidebarProps extends PropsWithChildren {
-  /** Ориентация бокового меню */
+  /**
+   * Ориентация бокового меню.
+   * @default ${ESidebarOrientationMapping.vertical}
+   */
   orientation?: `${ESidebarOrientationMapping}`;
-  /** Вариант бокового меню */
+
+  /**
+   * Вариант бокового меню.
+   * @default ${ESidebarVariantMapping.default}
+   */
   variant?: `${ESidebarVariantMapping}`;
-  /** Разрешает ли меню избранное */
+
+  /**
+   * Разрешает ли боковое меню избранное.
+   * @default false
+   */
   allowFavorites?: boolean;
-  /** Вошел ли пользователь в систему */
+
+  /**
+   * Флаг, показывающий, вошел ли пользователь в систему.
+   */
   isLoggedIn?: boolean;
-  /** Системное имя */
+
+  /**
+   * Системное имя для отображения в меню.
+   */
   systemName?: string;
-  /** Имя пользователя */
+
+  /**
+   * Имя пользователя.
+   */
   userName?: string;
-  /** Фамилия пользователя */
+
+  /**
+   * Фамилия пользователя.
+   */
   userSurname?: string;
-  /** Функция, вызываемая при открытии профиля пользователя */
-  onOpenUser: () => void;
-  /** Функция, вызываемая при выходе из аккаунта */
+
+  /**
+   * Функция, вызываемая при открытии профиля пользователя.
+   */
+  onOpenUser?: () => void;
+
+  /**
+   * Функция, вызываемая при выходе из аккаунта.
+   */
   onLogout?: () => void;
-  /** Функция, вызываемая при входе в аккаунт */
+
+  /**
+   * Функция, вызываемая при входе в аккаунт.
+   */
   onLogin?: () => void;
-  /** Функция, вызываемая при поиске */
+
+  /**
+   * Функция, вызываемая при поиске.
+   */
   onSearch?: () => void;
-  /** Функция, вызываемая при клике на логотип */
+
+  /**
+   * Функция, вызываемая при клике на логотип.
+   */
   onClickLogo?: () => void;
-  /** Текущий путь (URL) для определения активного элемента */
+
+  /**
+   * Текущий путь (URL) для определения активного элемента.
+   */
   currentPath: string;
+
+  /**
+   * Флаг, указывающий, должно ли боковое меню быть развернуто по умолчанию.
+   * @default false
+   */
+  defaultMenuOpen?: boolean;
+
+  /**
+   * Флаг, для показа оверлея при открытом submenu.
+   * @default false
+   */
+  overlay?: boolean;
 }
 
 /**
  * Свойства кнопки сворачивания.
  */
 export interface ICollapseButtonProps {
-  /** Раскрито ли меню */
+  /**
+   * Флаг, указывающий, развернуто ли меню.
+   */
   isExpanded?: boolean;
-  /** Функция нажатия на кнопку */
+
+  /**
+   * Функция обработки клика по кнопке сворачивания.
+   */
   onClick: () => void;
 }
 
@@ -84,21 +142,44 @@ export interface ICollapseButtonProps {
  * Свойства управления пользователем в боковом меню.
  */
 export interface IUserControlProps extends PropsWithChildren {
-  /** Расширено ли боковое меню */
+  /**
+   * Флаг, указывающий, развернуто ли меню.
+   */
   isExpanded: boolean;
-  /** В вертикальной ли ориентации */
+
+  /**
+   * Флаг, указывающий вертикальную ориентацию меню.
+   */
   isVertical: boolean;
-  /** Логин */
+
+  /**
+   * Флаг, показывающий, вошел ли пользователь в систему.
+   */
   isLoggedIn?: boolean;
-  /** Имя пользователя */
+
+  /**
+   * Имя пользователя.
+   */
   userName?: string;
-  /** Фамилия пользователя */
+
+  /**
+   * Фамилия пользователя.
+   */
   userSurname?: string;
-  /** Функция, вызываемая при открытии профиля пользователя */
-  onOpenUser: () => void;
-  /** Функция, вызываемая при входе в аккаунт */
+
+  /**
+   * Функция, вызываемая при открытии профиля пользователя.
+   */
+  onOpenUser?: () => void;
+
+  /**
+   * Функция, вызываемая при входе в аккаунт.
+   */
   onLogin?: () => void;
-  /** Функция, вызываемая при выходе из аккаунта */
+
+  /**
+   * Функция, вызываемая при выходе из аккаунта.
+   */
   onLogout?: () => void;
 }
 
@@ -106,53 +187,54 @@ export interface IUserControlProps extends PropsWithChildren {
  * Свойства элемента меню.
  */
 export interface IMenuItemProps extends PropsWithChildren {
-  /** Позиция элемента в меню */
+  /**
+   * Позиция элемента меню.
+   */
   position?: `${ESidebarPositionMapping}`;
-  /** Метка элемента меню */
-  label: string;
-  /** Иконка элемента меню */
-  icon: TIconName;
-  /** Обработчик клика на элемент меню */
-  onClick?: () => void;
-  /** Путь (URL) к элементу меню */
-  path: string;
-  /** Отключен ли элемент меню */
-  disabled?: boolean;
-}
 
-/**
- * Свойства бокового меню.
- */
-export interface ISidebarProperties {
-  /** Расширено ли боковое меню */
-  isExpanded: boolean;
-  /** Активный элемент меню */
-  activeItem: string | null;
-  /** Разрешает ли меню избранное */
-  allowFavorites: boolean;
-  /** Ориентация бокового меню */
-  orientation: `${ESidebarOrientationMapping}`;
-  /** Функция нажатия на элемент подменю */
-  setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
-  /** Функция активации элемента меню */
-  setActiveItem: Dispatch<SetStateAction<string | null>>;
-  /** Находится ли меню в состоянии прокрутки */
-  isScrollingDueToClick: boolean;
-  /** Функция нажатия для изменения состояния прокрутки */
-  setIsScrollingDueToClick: Dispatch<SetStateAction<boolean>>;
-  /** Текущий путь (URL) для определения активного элемента */
-  currentPath: string;
+  /**
+   * Текстовая метка элемента меню.
+   */
+  label: string;
+
+  /**
+   * Иконка элемента меню.
+   */
+  icon: TIconName;
+
+  /**
+   * Функция обработки клика по элементу меню.
+   */
+  onClick?: () => void;
+
+  /**
+   * Путь для навигации.
+   */
+  path: string;
+
+  /**
+   * Флаг, указывающий, что элемент меню отключен.
+   */
+  disabled?: boolean;
 }
 
 /**
  * Свойства подменю.
  */
 export interface ISubmenuProps extends PropsWithChildren {
-  /** Ориентация подменю */
+  /**
+   * Ориентация подменю.
+   */
   orientation: `${ESidebarOrientationMapping}`;
-  /** Открыто ли подменю */
+
+  /**
+   * Флаг, указывающий, открыто ли подменю.
+   */
   isOpen: boolean;
-  /** Заголовок подменю */
+
+  /**
+   * Заголовок подменю.
+   */
   title: string;
 }
 
@@ -160,19 +242,39 @@ export interface ISubmenuProps extends PropsWithChildren {
  * Свойства элемента подменю.
  */
 export interface ISubmenuItemProps extends PropsWithChildren {
-  /** ID элемента подменю */
+  /**
+   * Уникальный идентификатор элемента подменю.
+   */
   id?: string;
-  /** Метка элемента подменю */
+
+  /**
+   * Текстовая метка элемента подменю.
+   */
   label: string;
-  /** Изображение элемента подменю */
+
+  /**
+   * URL изображения элемента подменю.
+   */
   image?: string;
-  /** Глубина вложенности элемента подменю */
+
+  /**
+   * Уровень вложенности элемента подменю.
+   */
   depth?: number;
-  /** Обработчик кликов по элементу подменю */
+
+  /**
+   * Функция обработки клика по элементу подменю.
+   */
   onClick?: () => void;
-  /** Путь (URL) к элементу подменю */
+
+  /**
+   * Путь для навигации.
+   */
   path: string;
-  /** Отключен ли элемент подменю */
+
+  /**
+   * Флаг, указывающий, что элемент подменю отключен.
+   */
   disabled?: boolean;
 }
 
@@ -180,7 +282,9 @@ export interface ISubmenuItemProps extends PropsWithChildren {
  * Интерфейс обозначающий функциональный компонент с поддержкой `componentType`.
  */
 export interface IComponentWithType extends FC<ISidebarProps> {
-  /** Тип компонента */
+  /**
+   * Тип компонента.
+   */
   componentType?: string;
 }
 

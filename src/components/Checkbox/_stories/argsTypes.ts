@@ -1,23 +1,47 @@
-import { ECheckboxColors } from '../types';
+import { ECheckboxColors } from '../enums';
 
 export const argsTypes = {
   id: {
-    description: 'Идентификатор компонента',
+    description: 'Уникальный идентификатор чекбокса',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
     control: { type: 'text' }
   },
   label: {
-    description: 'Строка для вспомогательно текста справа от чекбокса',
+    description: 'Текст метки чекбокса',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'string'
+      }
+    },
     control: { type: 'text' }
   },
   onChange: {
-    description: 'Callback, который будет вызван при изменении состояния чекбокса',
+    description: 'Функция обработки изменения состояния чекбокса',
+    table: {
+      type: {
+        summary: '(event: ChangeEvent<HTMLInputElement>) => void'
+      }
+    },
     action: 'изменено состояние чекбокса'
   },
   value: {
-    description: 'Текущее значение чекбокса'
+    description: 'Значение чекбокса',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
   },
   checked: {
-    description: 'Условие отображения чекбокса',
+    description: 'Флаг, указывающий, выбран ли чекбокс',
     table: {
       defaultValue: {
         summary: 'false'
@@ -29,7 +53,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   disabled: {
-    description: 'Пропc, позволяющий заблокировать чекбокс',
+    description: 'Флаг, указывающий, отключен ли чекбокс',
     table: {
       defaultValue: {
         summary: 'false'
@@ -41,7 +65,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   multiple: {
-    description: 'Пропc, позволяющий отобразить промежуточное состояние чекбокса в списке чекбоксов',
+    description: 'Флаг множественного выбора (показывает минус вместо галочки)',
     table: {
       defaultValue: {
         summary: 'false'
@@ -53,18 +77,46 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   color: {
-    description: `Цвет компонента, отображающий разные состояния – <b>${Object.values(ECheckboxColors).join(
-      ' | '
-    )}</b>`,
+    description: 'Цветовой вариант компонента',
     table: {
       defaultValue: {
-        summary: ECheckboxColors.default
+        summary: ECheckboxColors.brand
       },
       type: {
-        summary: 'string'
+        summary: 'ECheckboxColors'
       }
     },
     options: Object.values(ECheckboxColors),
     control: { type: 'select' }
+  },
+  className: {
+    description: 'Дополнительный CSS класс',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+  style: {
+    description: 'Inline стили для кастомизации компонента',
+    table: {
+      type: {
+        summary: 'CSSProperties'
+      }
+    },
+    control: { type: 'object' }
+  },
+  colored: {
+    description: 'Флаг для цветовой индикации (например, показать изменилось ли значение)',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
   }
 };

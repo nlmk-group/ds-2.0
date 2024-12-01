@@ -6,12 +6,9 @@ export enum EBadgeSizes {
 }
 
 export enum EBadgeColors {
-  primary = 'primary',
-  secondary = 'secondary',
+  brand = 'brand',
+  grey = 'grey',
   error = 'error',
   success = 'success',
-  warning = 'warning',
-  grey = 'grey',
-  'light-grey' = 'light-grey',
-  'light-green' = 'light-green'
+  warning = 'warning'
 }

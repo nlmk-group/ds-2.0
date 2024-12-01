@@ -25,7 +25,8 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
-  const { allowFavorites, currentPath, orientation } = useContext<ISidebarProperties>(SidebarProperties);
+  const { allowFavorites, currentPath, orientation, collapseSidebar } =
+    useContext<ISidebarProperties>(SidebarProperties);
   const {
     showFavorites,
     activeItem,
@@ -87,20 +88,27 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
     }
     if (submenu && isVertical) {
       setSubmenuItems(submenu);
-    }
-    setActiveItem(isActive ? null : label);
-    setIsSubmenuVisible(prev => !prev);
-    if (!hasChildren && onClick && typeof onClick === 'function') {
-      onClick();
+      setIsSubmenuVisible(prev => !prev);
+    } else {
+      setActiveItem(isActive ? null : label);
+      if (!hasChildren && onClick && typeof onClick === 'function') {
+        onClick();
+      }
+      if (!hasChildren) {
+        collapseSidebar();
+      }
     }
   };
 
+  /**
+   * Этот useEffect для раскрытия автоматически
+   * внутренних элементов subMenuItem если его path активен
+   */
   useEffect(() => {
     if (isActivePath) {
       setIsSubmenuVisible(true);
     }
   }, [isActivePath]);
-
   return (
     <div className={styles['submenu-item']}>
       <div
@@ -142,7 +150,8 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
           <div className={styles.title} onClick={handleClick}>
             <Typography
               variant="Body1-Medium"
-              className={clsx(styles.text, { [styles['text-active']]: isActivePath && !disabled })}
+              color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
+              className={styles.text}
             >
               {label}
             </Typography>

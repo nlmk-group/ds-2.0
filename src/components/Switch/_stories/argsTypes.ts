@@ -1,7 +1,22 @@
+import { ESwitchColors } from '../enums';
+
 const argsTypes = {
   className: {
     description: 'Пользовательский класс для настройки стилей Switch.',
     control: { type: 'string' }
+  },
+  color: {
+    description: 'Цвет компонента Switch',
+    table: {
+      defaultValue: {
+        summary: ESwitchColors.brand
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(ESwitchColors),
+    control: { type: 'select' }
   },
   checked: {
     description: 'Отвечает за состояние переключателя (включен/выключен).',

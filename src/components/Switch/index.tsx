@@ -7,6 +7,8 @@ import { ISwitchProps } from './types';
 
 import styles from './Switch.module.scss';
 
+import { ESwitchColors } from './enums';
+
 /**
  * Компонент Switch предоставляет переключатель с возможностью настройки состояния, иконок и метки.
  *
@@ -18,6 +20,8 @@ import styles from './Switch.module.scss';
  * @param {string} [props.label] - Метка для переключателя.
  * @param {ReactNode} [props.activeIcon] - Иконка для активного состояния.
  * @param {ReactNode} [props.inactiveIcon] - Иконка для неактивного состояния.
+ * @param {ESwitchColors} [props.color=ESwitchColors.brand] - Цвет бейджа.
+ * @param {CSSProperties} [props.style] - Inline стили для кастомизации компонента.
  * @returns {JSX.Element} Компонент Switch.
  */
 
@@ -28,7 +32,9 @@ const Switch: FC<ISwitchProps> = ({
   disabled = false,
   label = '',
   activeIcon = null,
-  inactiveIcon = null
+  inactiveIcon = null,
+  color = ESwitchColors.brand,
+  style
 }) => {
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     if (disabled) {
@@ -47,21 +53,29 @@ const Switch: FC<ISwitchProps> = ({
   };
 
   return (
-    <div className={clsx(styles.switch, className, { [styles.disabled]: disabled })} role="switch" data-testid="SWITCH">
-      <div data-testid="CONTROLLER" className={styles.controller} onClick={handleClick}>
+    <div
+      className={clsx(styles.switch, className, { [styles.disabled]: disabled })}
+      style={style}
+      role="switch"
+      data-testid="SWITCH"
+      data-ui-switch
+    >
+      <div data-ui-switch-controller data-testid="CONTROLLER" className={styles.controller} onClick={handleClick}>
         <div
           data-testid="TRACK"
-          className={clsx(styles.track, {
-            [styles['track-active']]: checked && !disabled,
-            [styles['track-inactive']]: !checked && !disabled,
+          data-ui-switch-track
+          className={clsx(styles.track, styles[`track-${color}`], {
+            [styles[`track-active-${color}`]]: checked,
+            [styles[`track-inactive-${color}`]]: !checked,
             [styles['track-disabled']]: disabled
           })}
         >
           <div
             data-testid="TOUCH"
+            data-ui-swtich-touch
             className={clsx(styles.touch, {
-              [styles['touch-active']]: checked,
-              [styles['touch-inactive']]: !checked,
+              [styles[`touch-active-${color}`]]: checked,
+              [styles[`touch-inactive-${color}`]]: !checked,
               [styles['touch-disabled']]: disabled
             })}
           >
@@ -71,6 +85,7 @@ const Switch: FC<ISwitchProps> = ({
         {!disabled && (
           <div
             data-testid="FOCUS"
+            data-ui-switch-focus
             className={clsx(styles.focus, {
               [styles['focus-active']]: checked,
               [styles['focus-inactive']]: !checked
@@ -79,8 +94,18 @@ const Switch: FC<ISwitchProps> = ({
         )}
       </div>
       {label && (
-        <label className={clsx(styles.label, { [styles['label-disabled']]: disabled })} data-testid="LABEL">
-          <input type="checkbox" checked={checked} onChange={handleInputChange} className={styles.checkbox} />
+        <label
+          data-ui-switch-label
+          className={clsx(styles.label, { [styles['label-disabled']]: disabled })}
+          data-testid="LABEL"
+        >
+          <input
+            data-ui-switch-checkbox
+            type="checkbox"
+            checked={checked}
+            onChange={handleInputChange}
+            className={styles.checkbox}
+          />
           <Typography variant="Body1-Medium">{label}</Typography>
         </label>
       )}

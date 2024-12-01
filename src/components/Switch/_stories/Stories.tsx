@@ -11,7 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import { DEFAULT_SWITCH, DISABLED_SWITCH, SWITCH_WITH_ICONS, SWITCH_WITH_LABEL } from './constants';
 
 enum TabIds {
   dev,
@@ -20,8 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Switch';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-42988&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-42988&t=EnvIMGos3m33avAX-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -51,7 +49,7 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            description={DEFAULT_SWITCH}
+            description="Switch по умолчанию"
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
@@ -68,7 +66,7 @@ export default App = () => {
               `}
           />
           <Editor
-            description={DISABLED_SWITCH}
+            description="Switch в состоянии disabled"
             code={`import { Switch } from '@nlmk/ds-2.0';
 
 export default App = () => {
@@ -83,7 +81,7 @@ export default App = () => {
               `}
           />
           <Editor
-            description={SWITCH_WITH_LABEL}
+            description="Switch с текстом"
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
@@ -116,7 +114,7 @@ export default App = () => {
               `}
           />
           <Editor
-            description={SWITCH_WITH_ICONS}
+            description="Switch с иконкой"
             code={`import { useState } from 'react'
 import { Switch, Icon } from '@nlmk/ds-2.0';
 

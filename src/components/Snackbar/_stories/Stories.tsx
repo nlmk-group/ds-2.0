@@ -12,15 +12,6 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { ESnackbarColors } from '../enums';
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_SNACKBAR,
-  SNACKBAR_ACTION,
-  SNACKBAR_CLOSE,
-  SNACKBAR_COLOR,
-  SNACKBAR_CUSTOM_ICON,
-  SNACKBAR_ICON,
-  SNACKBAR_OPACITY
-} from './constants';
 
 enum TabIds {
   dev,
@@ -30,7 +21,7 @@ enum TabIds {
 
 const COMPONENT_NAME = 'Snackbar';
 const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=280-8187&t=EnvIMGos3m33avAX-1';
+  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=280-8187';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -60,37 +51,18 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            description={DEFAULT_SNACKBAR}
+            description='Snackbar по умолчанию'
             height={150}
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <Snackbar> ${DEFAULT_SNACKBAR} </Snackbar>
+  <Snackbar>Snackbar по умолчанию</Snackbar>
 )
               `}
           />
-          <Editor
-            height={150}
-            description={SNACKBAR_CLOSE}
-            code={`import { Snackbar } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <Snackbar close={() => {}}> ${SNACKBAR_CLOSE} </Snackbar>
-)
-              `}
-          />
           <Editor
-            height={200}
-            description={SNACKBAR_ACTION}
-            code={`import { Snackbar } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Snackbar actionButton={() => {}}> ${SNACKBAR_ACTION} </Snackbar>
-)
-              `}
-          />
-          <Editor
-            description={SNACKBAR_COLOR}
+            description='Варианты цвета Snackbar'
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 
 const colors = [${Object.values(ESnackbarColors)
@@ -99,75 +71,9 @@ const colors = [${Object.values(ESnackbarColors)
 export default App = () => (
   <>
     {colors.map(color => {
-      return <Snackbar key={color} color={color}> ${SNACKBAR_COLOR} </Snackbar>
+      return <Snackbar key={color} color={color}>Варианты цвета Snackbar</Snackbar>
     })}
   </>
-)
-              `}
-          />
-          <Editor
-            description={SNACKBAR_ICON}
-            code={`import { Snackbar } from '@nlmk/ds-2.0';
-
-const colors = [${Object.values(ESnackbarColors)
-          .map(c => `"${c}"`)
-          .join(', ')}];
-
-export default App = () => (
-  <>
-    {colors.map(color => {
-      return <Snackbar key={color} color={color} withIcon> ${SNACKBAR_ICON} </Snackbar>
-    })}
-  </>
-)
-              `}
-          />
-          <Editor
-            description={SNACKBAR_CUSTOM_ICON}
-            code={`import { Snackbar, Icon } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Snackbar
-    withIcon
-    color="dark"
-    customIcon={(
-      <Icon
-        name='IconEducationOutlined24'
-        containerSize={24}
-        htmlColor="red"
-      />
-    )}
-  > ${SNACKBAR_CUSTOM_ICON} </Snackbar>
-)
-              `}
-          />
-          <Editor
-            description={SNACKBAR_OPACITY}
-            code={`import { Snackbar } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <>
-  <Snackbar
-    bgOpacity={100}
-  >
-    ${SNACKBAR_OPACITY}
-  </Snackbar>
-  <Snackbar
-    bgOpacity={70}
-    >
-    ${SNACKBAR_OPACITY}
-  </Snackbar>
-  <Snackbar
-    bgOpacity={50}
-  >
-    ${SNACKBAR_OPACITY}
-  </Snackbar>
-  <Snackbar
-    bgOpacity={20}
-  >
-    ${SNACKBAR_OPACITY}
-  </Snackbar>
-</>
 )
               `}
           />

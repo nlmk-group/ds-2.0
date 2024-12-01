@@ -48,7 +48,7 @@ TabDefault.args = {
   hasBadge: true,
   hasIcon: true,
   badgeChildren: '11',
-  badgeColor: EBadgeColors.secondary
+  badgeColor: EBadgeColors.brand
 };
 export const TabsDefault = (args: ITabProps): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -64,7 +64,7 @@ export const TabsDefault = (args: ITabProps): JSX.Element => {
           hasBadge={true}
           onClick={() => setActiveTab(2)}
           badgeChildren={10}
-          badgeColor={EBadgeColors.secondary}
+          badgeColor={EBadgeColors.brand}
         >
           <Tabs.Tooltip
             render={

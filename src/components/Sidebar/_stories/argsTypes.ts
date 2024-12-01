@@ -66,6 +66,31 @@ export const argsTypes = {
   currentPath: {
     description: 'Текущий путь',
     control: { type: 'text' }
+  },
+  defaultMenuOpen: {
+    description: 'Флаг начального состояния меню (развернуто/свернуто)',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+
+  overlay: {
+    description: 'Флаг отображения оверлея при открытом подменю',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
   }
 };
 

@@ -1,20 +1,63 @@
-import { ChangeEventHandler, InputHTMLAttributes } from 'react';
+import { ChangeEventHandler, CSSProperties, InputHTMLAttributes } from 'react';
 
-export enum ECheckboxColors {
-  default = 'default',
-  error = 'error'
-}
-
-type TCheckboxColors = `${ECheckboxColors}`;
+import { ECheckboxColors } from './enums';
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Текст метки чекбокса
+   */
   label?: string;
-  color?: TCheckboxColors;
+
+  /**
+   * Цветовой вариант компонента
+   * @default ECheckboxColors.brand
+   */
+  color?: `${ECheckboxColors}`;
+
+  /**
+   * Флаг, указывающий, отключен ли чекбокс
+   */
   disabled?: boolean;
+
+  /**
+   * Флаг, указывающий, выбран ли чекбокс
+   */
   checked?: boolean;
+
+  /**
+   * Уникальный идентификатор
+   */
   id?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+
+  /**
+   * Функция обработки изменения состояния
+   */
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+
+  /**
+   * Значение чекбокса
+   */
   value?: string;
+
+  /**
+   * Флаг множественного выбора (показывает минус вместо галочки)
+   * @default false
+   */
   multiple?: boolean;
+
+  /**
+   * Флаг для цветовой индикации (например, показать изменилось ли значение)
+   * @default false
+   */
+  colored?: boolean;
+
+  /**
+   * Дополнительный CSS класс
+   */
   className?: string;
+
+  /**
+   * Inline стили для кастомизации компонента
+   */
+  style?: CSSProperties;
 }

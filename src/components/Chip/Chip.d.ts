@@ -9,26 +9,29 @@ export enum EChipColors {
   warning = 'warning'
 }
 
-export type ChipSize = Exclude<`${sizesMapping}`, 'l'>;
+export type TChipSize = Exclude<`${sizesMapping}`, 'l'>;
 
 export interface IChipProps {
   /**
    * Цвет чипа
+   * @default EChipColors.brand
    */
-  color?: EChipColors;
+  color?: `${EChipColors}`;
 
   /**
    * Размер чипа
+   * @default sizesMapping.m
    */
-  size?: ChipSize;
+  size?: TChipSize;
 
   /**
    * Вариант отображения чипа
+   * @default variantsMapping.solid
    */
-  variant?: variantsMapping;
+  variant?: `${variantsMapping}`;
 
   /**
-   * Метка чипа
+   * Метка чипа (отображается над основным контентом)
    */
   label?: string;
 
@@ -38,7 +41,7 @@ export interface IChipProps {
   children: string | number;
 
   /**
-   * Суффикс чипа
+   * Суффикс чипа (отображается справа от основного контента)
    */
   suffix?: string;
 
@@ -46,6 +49,11 @@ export interface IChipProps {
    * Дополнительный CSS класс
    */
   className?: string;
+
+  /**
+   * Inline стили для кастомизации компонента
+   */
+  style?: CSSProperties;
 }
 
 declare const Chip: FC<IChipProps>;

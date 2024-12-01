@@ -1,4 +1,6 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, CSSProperties } from 'react';
+
+import { ERadioColors } from './enums';
 
 export type IRadioProps = {
   /**
@@ -22,12 +24,23 @@ export type IRadioProps = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 
   /**
+   * Текст метки радио-кнопки
+   */
+  label?: string;
+
+  /**
+   * Цвет радио-кнопки
+   * @default ERadioColors.brand
+   */
+  color?: `${ERadioColors}`;
+
+  /**
    * Дополнительный CSS класс
    */
   className?: string;
 
   /**
-   * Текст метки радио-кнопки
+   * Inline стили для кастомизации компонента
    */
-  label?: string;
+  style?: CSSProperties;
 };

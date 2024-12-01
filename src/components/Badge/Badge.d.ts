@@ -10,31 +10,31 @@ export enum EBadgeSizes {
 }
 
 export enum EBadgeColors {
-  primary = 'primary',
-  secondary = 'secondary',
+  brand = 'brand',
+  grey = 'grey',
   error = 'error',
   success = 'success',
-  warning = 'warning',
-  grey = 'grey',
-  'light-grey' = 'light-grey',
-  'light-green' = 'light-green'
+  warning = 'warning'
 }
 
 export interface IBadgeProps {
   /**
    * Цвет бейджа
+   * @default EBadgeColors.brand
    */
-  color?: EBadgeColors;
+  color?: `${EBadgeColors}`;
 
   /**
    * Размер бейджа
+   * @default EBadgeSizes.m
    */
-  size?: EBadgeSizes;
+  size?: `${EBadgeSizes}`;
 
   /**
    * Вариант отображения бейджа
+   * @default variantsMapping.solid
    */
-  variant?: variantsMapping;
+  variant?: `${variantsMapping}`;
 
   /**
    * Контент бейджа
@@ -45,6 +45,11 @@ export interface IBadgeProps {
    * Дополнительный CSS класс
    */
   className?: string;
+
+  /**
+   * Inline стили для кастомизации компонента
+   */
+  style?: CSSProperties;
 }
 
 declare const Badge: FC<IBadgeProps>;

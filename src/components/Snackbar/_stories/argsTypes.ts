@@ -1,6 +1,4 @@
-import { variantsMapping } from '@components/declaration';
-
-import { ESnackbarColors } from '../enums';
+import { ESnackbarColors, ESnackbarTypes } from '../enums';
 
 const argsTypes = {
   children: {
@@ -8,10 +6,10 @@ const argsTypes = {
     control: { type: 'text' }
   },
   color: {
-    description: 'Необязательное свойство. Цвет фона Snackbar. Значение по умолчанию - серый.',
+    description: 'Необязательное свойство. Цвет фона Snackbar. Значение по умолчанию - небесный.',
     table: {
       defaultValue: {
-        summary: ESnackbarColors.dark
+        summary: ESnackbarColors.sky
       },
       type: {
         summary: Object.values(ESnackbarColors).join(' | ')
@@ -20,22 +18,30 @@ const argsTypes = {
     options: Object.values(ESnackbarColors),
     control: { type: 'select' }
   },
-  variant: {
-    description: 'Вариант Snackbar',
+  type: {
+    description: 'Тип Snackbar',
     table: {
       defaultValue: {
-        summary: variantsMapping.solid
+        summary: ESnackbarTypes.fill
       },
       type: {
-        summary: Object.values(variantsMapping).join(' | ')
+        summary: Object.values(ESnackbarTypes).join(' | ')
       }
     },
-    options: Object.values(variantsMapping),
+    options: Object.values(ESnackbarTypes),
     control: { type: 'select' }
   },
-  close: {
+  onClose: {
     description:
       'Необязательное свойство. Функция, которая будет вызываться при клике на кнопку закрытия. Если не предоставлено, кнопка закрытия не будет отображаться.',
+    control: { type: 'boolean' }
+  },
+  showCountdown: {
+    description: 'Необязательное свойство. Показывает таймер с момента появления Snackbar',
+    control: { type: 'boolean' }
+  },
+  startIcon: {
+    description: 'Необязательное свойство. Включает и отключает иконку в начале',
     control: { type: 'boolean' }
   },
   actionButton: {

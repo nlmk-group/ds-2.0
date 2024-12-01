@@ -6,11 +6,11 @@ import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
+import { ESwitchColors } from '../enums';
 import { ISwitchProps } from '../types';
 import argsTypes from './argsTypes';
-import { DEFAULT_SWITCH, DISABLED_SWITCH, SWITCH_WITH_ICONS, SWITCH_WITH_LABEL } from './constants';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Switch/Stories',
@@ -44,12 +44,46 @@ export const DefaultSwitch = (argTypes: ISwitchProps): ReactNode => {
   );
 };
 
-DefaultSwitch.storyName = DEFAULT_SWITCH;
+DefaultSwitch.storyName = 'Switch по умолчанию';
 DefaultSwitch.args = {
   checked: false,
   onChange: handleOnChange
 };
 
+export const SwitchShowcase = (argTypes: ISwitchProps): ReactNode => {
+  const [isChecked, setIsChecked] = useState<boolean>(argTypes.checked || false);
+
+  useEffect(() => {
+    if (argTypes.checked !== isChecked) {
+      setIsChecked(argTypes.checked || false);
+    }
+  }, [argTypes.checked]);
+
+  const colors = Object.values(ESwitchColors);
+  return (
+    <div>
+      {colors.map(color => (
+        <Switch
+          {...argTypes}
+          checked={isChecked}
+          onChange={(newChecked: boolean) => {
+            setIsChecked(newChecked);
+            if (typeof argTypes.onChange === 'function') {
+              argTypes.onChange(newChecked);
+            }
+          }}
+          color={color}
+          key={color}
+        />
+      ))}
+    </div>
+  );
+};
+SwitchShowcase.storyName = 'Варианты Switch с различными цветами';
+SwitchShowcase.args = {
+  checked: false,
+  onChange: handleOnChange
+};
 export const DisabledSwitch = (argTypes: ISwitchProps): ReactNode => {
   const [isChecked, setIsChecked] = useState<boolean>(argTypes.checked || false);
 
@@ -73,7 +107,7 @@ export const DisabledSwitch = (argTypes: ISwitchProps): ReactNode => {
   );
 };
 
-DisabledSwitch.storyName = DISABLED_SWITCH;
+DisabledSwitch.storyName = 'Switch в состоянии disabled';
 DisabledSwitch.args = {
   checked: false,
   onChange: handleOnChange,
@@ -125,7 +159,7 @@ export const SwitchWithLabel = (argTypes: ISwitchProps): ReactNode => {
   );
 };
 
-SwitchWithLabel.storyName = SWITCH_WITH_LABEL;
+SwitchWithLabel.storyName = 'Switch с лейблом и текстом';
 SwitchWithLabel.args = {
   onChange: handleOnChange
 };
@@ -155,7 +189,7 @@ export const IconsSwitch = (argTypes: ISwitchProps): ReactNode => {
   );
 };
 
-IconsSwitch.storyName = SWITCH_WITH_ICONS;
+IconsSwitch.storyName = 'Switch с иконкой';
 IconsSwitch.args = {
   checked: false,
   onChange: handleOnChange

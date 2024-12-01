@@ -128,18 +128,19 @@
     z-index: 15;
     flex-grow: 1;
   }
+
   &-fluid {
     overflow-x: auto;
     flex-direction: row;
   }
 }
+
 .switch-position {
   position: relative;
   top: 4px;
 }
 
 .title {
-  color: var(--steel-90);
   padding-top: 8px;
   white-space: nowrap;
   overflow: hidden;

@@ -23,8 +23,16 @@ interface IMenuItemComponent extends FC<IMenuItemProps> {
 }
 
 const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, disabled = false }) => {
-  const { isExpanded, currentPath, orientation, activeItem, setSubmenuItems, setActiveItem, setIsScrollingDueToClick } =
-    useContext<ISidebarProperties>(SidebarProperties);
+  const {
+    isExpanded,
+    currentPath,
+    orientation,
+    activeItem,
+    setSubmenuItems,
+    setActiveItem,
+    setIsScrollingDueToClick,
+    collapseSidebar
+  } = useContext<ISidebarProperties>(SidebarProperties);
   const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
   const hasChildren = Children.count(children) > 0;
@@ -72,13 +80,14 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
       setSubmenuItems(submenu);
     } else {
       setActiveItem(null);
+      collapseSidebar();
     }
     if (!hasChildren && onClick && typeof onClick === 'function') onClick();
   };
 
   return (
     <div
-      className={clsx(styles.menu, { [styles['root-active']]: isActivePath, [styles['root-disabled']]: disabled })}
+      className={clsx(styles.menu, { [styles['menu-active']]: isActivePath, [styles['menu-disabled']]: disabled })}
       onClick={handleClick}
       ref={targetRef}
       title={label}
@@ -88,10 +97,10 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
         <div className={styles.expanded}>
           <Typography
             variant="Body1-Medium"
+            color={disabled ? 'var(--steel-60)' : 'var(--unique-white)'}
             className={clsx(
               orientation === ESidebarOrientationMapping.horizontal && styles['text-horizontal'],
-              styles.text,
-              { [styles['text-disabled']]: disabled }
+              styles.text
             )}
           >
             {label}

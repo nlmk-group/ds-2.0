@@ -3,6 +3,9 @@ import { createContext } from 'react';
 import { ESidebarOrientationMapping } from '../enums';
 import { ISidebarProperties, ISubmenuProperties } from '../types';
 
+/**
+ * Контекст для управления состоянием Sidebar.
+ */
 export const SidebarProperties = createContext<ISidebarProperties>({
   isExpanded: false,
   activeItem: null,
@@ -12,9 +15,13 @@ export const SidebarProperties = createContext<ISidebarProperties>({
   setActiveItem: () => {},
   isScrollingDueToClick: false,
   setIsScrollingDueToClick: () => {},
-  currentPath: ''
+  currentPath: '',
+  collapseSidebar: () => {}
 });
 
+/**
+ * Контекст для управления состоянием Submenu.
+ */
 export const SubmenuProperties = createContext<ISubmenuProperties>({
   showFavorites: false,
   activeItem: null,

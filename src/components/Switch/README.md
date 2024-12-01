@@ -1,6 +1,6 @@
 # Компонент Switch
 
-## Версия компонента 3.0
+## Версия компонента 3.1
 
 Компонент Switch предоставляет переключатель с возможностью настройки состояния, иконок и метки.
 
@@ -15,6 +15,7 @@ const App = () => {
   };
   return (
     <Switch
+      color={ESwitchColors.brand}
       checked={checked}
       onChange={handleChange}
       label="Включить уведомления"
@@ -27,15 +28,24 @@ const App = () => {
 
 ## Props
 
-| Prop         | Type       | Default | Description                           |
-|--------------|------------|---------|---------------------------------------|
-| className    | string     | ''      | Дополнительный CSS-класс              |
-| checked      | boolean    | false   | Состояние переключателя               |
-| onChange     | () => void | -       | Функция обработки изменения состояния |
-| disabled     | boolean    | false   | Отключает переключатель               |
-| label        | string     | ''      | Метка для переключателя               |
-| activeIcon   | ReactNode  | null    | Иконка для активного состояния        |
-| inactiveIcon | ReactNode  | null    | Иконка для неактивного состояния      |
+| Prop         | Type          | Default             | Description                           |
+|--------------|---------------|---------------------|---------------------------------------|
+| className    | string        | ''                  | Дополнительный CSS-класс              |
+| checked      | boolean       | false               | Состояние переключателя               |
+| color        | ESwitchColors | ESwitchColors.brand | Цвет переключателя                    |
+| onChange     | () => void    | -                   | Функция обработки изменения состояния |
+| disabled     | boolean       | false               | Отключает переключатель               |
+| label        | string        | ''                  | Метка для переключателя               |
+| activeIcon   | ReactNode     | null                | Иконка для активного состояния        |
+| inactiveIcon | ReactNode     | null                | Иконка для неактивного состояния      |
+| style        | CSSProperties | -                   | Inline стили                          |
+
+## Цвет переключателя
+
+- `ESwitchColors.brand`
+- `ESwitchColors.error`
+- `ESwitchColors.warning`
+- `ESwitchColors.success`
 
 ## Стилизация
 
@@ -60,6 +70,6 @@ const App = () => {
 - `.focus-inactive`: Стили для неактивного состояния фокуса.
 - `.label`: Стили для метки переключателя.
 - `.label-disabled`: Стили для отключенного состояния метки.
-- `.checkbox`: Стили для скрытого чекбокса
+- `.checkbox`: Стили для скрытого чекбокса.
 
 Чтобы применить пользовательские стили, вы можете передать свой className и переопределить необходимые стили.

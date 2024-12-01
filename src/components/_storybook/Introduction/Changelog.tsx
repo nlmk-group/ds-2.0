@@ -23,6 +23,151 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.10.0 - <span className={styles.date}>01.12.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-snackbar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Snackbar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Переименован prop close в onClose для соответствия общим правилам именования
+              </li>
+              <li className={styles['left-padding']}>
+                - Удален prop variant в пользу нового prop type для унификации с другими компонентами
+              </li>
+              <li className={styles['left-padding']}>- Изменен prop color для поддержки новых вариантов отображения</li>
+              <li className={styles['left-padding']}>
+                - Добавлен prop showCountdown для отображения таймера автоматического закрытия
+              </li>
+              <li className={styles['left-padding']}>- Добавлен prop style для кастомизации стилей компонента</li>
+              <li className={styles['left-padding']}>- Добавлен prop startIcon для отображения иконки статуса</li>
+              <li className={styles['left-padding']}>- Добавлены data-атрибуты для упрощения кастомизации стилей</li>
+              <li className={styles['left-padding']}>- Актуализированы стили в соответствии с новым дизайном</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.9.3 - <span className={styles.date}>27.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.9.2 - <span className={styles.date}>26.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена возможность включить оверлей при открытии подменю</li>
+              <li className={styles['left-padding']}>
+                - Добавлены возможность задать значение по умолчанию для раскрытия меню
+              </li>
+              <li className={styles['left-padding']}>- Обновлены истории компонента в Storybook</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-switch-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Switch
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые токены цветов, актуализированы и изменены стили
+              </li>
+              <li className={styles['left-padding']}>- Добавлены props style и color</li>
+              <li className={styles['left-padding']}>- Обновлена документация</li>
+              <li className={styles['left-padding']}>- Обновлены тесты для новых цветов</li>
+              <li className={styles['left-padding']}>- Добавлена история для просмотра новых цветов Switch</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.9.1 - <span className={styles.date}>25.11.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.9.0 - <span className={styles.date}>22.11.24</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменены компоненты{' '}
+              <Link
+                href="./?path=/docs/components-badge-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Badge
+              </Link>
+              ,{' '}
+              <Link href="./?path=/docs/components-chip-info--docs" target="blank" className={styles['link-changelog']}>
+                Chip
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-radio-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Radio
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен пропс style для кастомизации стилей компонентов.</li>
+              <li className={styles['left-padding']}>- Изменён пропс color в соответствии с новыми требованиями.</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.8.2- <span className={styles.date}>13.11.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -467,7 +612,9 @@ export const Changelog = () => {
               .<li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Изменен стиль компонента согласно макетам</li>
               <li className={styles['left-padding']}>- Удалены !important в стилях и настроена специфичность</li>
-              <li className={styles['left-padding']}>- Стили теперь так же применены к дополнительному render&apos;у</li>
+              <li className={styles['left-padding']}>
+                - Стили теперь так же применены к дополнительному render&apos;у
+              </li>
             </li>
           </ul>
         </div>

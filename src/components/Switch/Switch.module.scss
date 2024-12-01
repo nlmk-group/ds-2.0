@@ -1,10 +1,55 @@
+$variants: brand, error, warning, success;
+$track-colors: (
+  brand: var(--brand-sapphire-20),
+  error: var(--spectrum-red-20),
+  warning: var(--spectrum-yellow-20),
+  success: var(--spectrum-green-20)
+);
+
+$touch-bg-colors-on: (
+  brand: var(--brand-sapphire-60),
+  error: var(--spectrum-red-50),
+  warning: var(--spectrum-yellow-50),
+  success: var(--spectrum-green-50)
+);
+
+$track-bg-colors-off: (
+  brand: var(--steel-60),
+  error: var(--spectrum-red-40),
+  warning: var(--spectrum-yellow-40),
+  success: var(--spectrum-green-40)
+);
+
+@each $variant in $variants {
+  .track-active-#{"" + $variant} {
+    background-color: map-get($track-colors, $variant);
+  }
+  .track-inactive-#{"" + $variant} {
+    background-color: map-get($track-bg-colors-off, $variant);
+  }
+  .touch-active-#{"" + $variant} {
+    transform: translateX(17px);
+    background-color: map-get($touch-bg-colors-on, $variant);
+  }
+  .touch-inactive-#{"" + $variant} {
+    background-color: var(--steel-10);
+    border-width: 1px;
+    border-style: solid;
+    height: 18px;
+    width: 18px;
+    transform: translateX(0);
+    border-color: map-get($track-bg-colors-off, $variant);
+  }
+}
 .switch {
   display: flex;
   gap: 5px;
   position: relative;
+  align-items: center;
 
   &.disabled {
     pointer-events: none;
+    opacity: 0.5;
   }
 }
 
@@ -29,19 +74,6 @@
   width: 34px;
   border-radius: 7px;
   z-index: 1;
-  background-color: var(--steel-30);
-
-  &-active {
-    background-color: var(--brand-sapphire-20);
-  }
-
-  &-inactive {
-    background-color: var(--steel-60);
-  }
-
-  &-disabled {
-    background-color: var(--steel-30);
-  }
 }
 
 .touch {
@@ -52,24 +84,6 @@
   border-radius: var(--circle-radius);
   transition: background 0.3s, transform 0.3s;
   z-index: 1;
-
-  &-active {
-    background-color: var(--brand-sapphire-60);
-    transform: translateX(17px);
-  }
-
-  &-inactive {
-    background-color: var(--steel-10);
-    border: 1px solid var(--steel-60);
-    height: 18px;
-    width: 18px;
-    transform: translateX(0);
-  }
-
-  &-disabled {
-    background-color: var(--steel-50);
-    border: none;
-  }
 }
 
 .focus {
@@ -84,18 +98,18 @@
 
   &.focus-active {
     transform: translateX(15px);
-    background: var(--brand-sapphire-60);
+    background: var(--steel-90);
     left: 1px;
   }
 
   &.focus-inactive {
     transform: translateX(0);
-    background: var(--steel-60);
+    background: var(--steel-90);
     left: -1px;
   }
 
   .controller:hover & {
-    opacity: 0.12;
+    opacity: 0.08;
   }
 }
 

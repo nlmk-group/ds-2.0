@@ -10,7 +10,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    control: { type: 'number' }
+    control: { type: 'text' }
   },
   size: {
     description: 'Размер бэйджа',
@@ -29,7 +29,7 @@ export const argsTypes = {
     description: 'Цвет бэйджа',
     table: {
       defaultValue: {
-        summary: EBadgeColors.primary
+        summary: EBadgeColors.brand
       },
       type: {
         summary: Object.values(EBadgeColors).join(' | ')

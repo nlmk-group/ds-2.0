@@ -9,7 +9,7 @@
 }
 
 @mixin cardStyle {
-  background-color: var(--steel-30);
+  background-color: var(--steel-20);
 }
 
 @mixin iconStyle {
@@ -32,7 +32,6 @@
 }
 
 .icon-block {
-  display: block;
   position: relative;
   flex-wrap: wrap;
   overflow: auto;
@@ -68,7 +67,7 @@
   flex-wrap: wrap;
   gap: 24px;
   width: 96% !important;
-  margin: 0em 1em;
+  margin: 0 1em;
 }
 
 .table {
@@ -111,7 +110,6 @@
 .card {
   margin: 6px 0;
   width: 320px;
-  height: 180px;
   height: fit-content;
   @include cardStyle;
 }
@@ -139,7 +137,6 @@
 .strokeIcon path {
   stroke: var(--icon-search, --brand-sapphire-60, #1952b6);
 }
-
 
 .fillAndStrokeIcon path {
   fill: var(--icon-search, --brand-sapphire-60, #1952b6);

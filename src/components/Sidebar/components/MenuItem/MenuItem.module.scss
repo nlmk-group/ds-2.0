@@ -19,6 +19,7 @@
   &-disabled {
     background: var(--brand-jeans-20);
     cursor: default;
+
     &:hover {
       background-color: var(--brand-jeans-20);
     }
@@ -36,7 +37,6 @@
 }
 
 .text {
-  color: var(--unique-white);
   margin-left: 16px;
   flex-shrink: 1;
   max-width: 190px;
@@ -45,10 +45,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  &-disabled {
-    color: var(--steel-60);
   }
 }
 

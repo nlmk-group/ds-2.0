@@ -85,13 +85,7 @@ export default [
           asyncArrow: 'always'
         }
       ],
-      'indent': [
-        'error',
-        2,
-        {
-          SwitchCase: 1
-        }
-      ],
+      'indent': 'off',
       'no-nested-ternary': 'error',
       'no-empty': 'off',
       'valid-jsdoc': 'off',

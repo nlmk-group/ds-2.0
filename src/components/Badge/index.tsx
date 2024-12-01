@@ -15,52 +15,57 @@ import { EBadgeColors, EBadgeSizes } from './enums';
  * Компонент Badge используется для отображения меток (badges), таких как лейблы, тэги, статусы и т.д. Обычно Badge используют внутри или в непосредственной близости от другого более крупного компонента интерфейса.
  * @component
  * @param {Object} props - Свойства компонента Badge.
- * @param {EBadgeColors} [props.color=EBadgeColors.primary] - Цвет бейджа.
+ * @param {EBadgeColors} [props.color=EBadgeColors.brand] - Цвет бейджа.
  * @param {EBadgeSizes} [props.size=EBadgeSizes.m] - Размер бейджа.
  * @param {variantsMapping} [props.variant=variantsMapping.solid] - Вариант отображения бейджа.
  * @param {string|number} [props.children] - Контент бейджа.
  * @param {string} [props.className] - Дополнительный CSS класс.
+ * @param {CSSProperties} [props.style] - Inline стили для кастомизации компонента.
  * @returns {JSX.Element} Компонент Badge.
  */
 
 export const Badge: FC<IBadgeProps> = ({
-  color = EBadgeColors.primary,
+  color = EBadgeColors.brand,
   size = EBadgeSizes.m,
   variant = variantsMapping.solid,
   children,
-  className
-}: {
-  color?: `${EBadgeColors}`;
-  size?: `${EBadgeSizes}`;
-  variant?: `${variantsMapping}`;
-  children?: string | number;
-  className?: string;
-}): JSX.Element => {
-  const sizeClassesMapping: { [K in keyof typeof EBadgeSizes]?: string } = {
-    s: styles.compact,
-    l: styles.large,
-    xs: styles.xs,
-    m: undefined
-  };
+  className,
+  style
+}) => {
+  if (!children && children !== 0) return null;
 
-  const typographyVariants: Record<EBadgeSizes, ETypographyVariants> = {
-    [EBadgeSizes.l]: ETypographyVariants['Body1-Bold'],
-    [EBadgeSizes.m]: ETypographyVariants['Caption-Bold'],
-    [EBadgeSizes.s]: ETypographyVariants['Caption-Bold'],
-    [EBadgeSizes.xs]: ETypographyVariants['Additional-Bold']
+  const sizeConfig = {
+    [EBadgeSizes.l]: {
+      typographyVariant: ETypographyVariants['Body1-Bold'],
+      className: styles.large
+    },
+    [EBadgeSizes.m]: {
+      typographyVariant: ETypographyVariants['Caption-Bold'],
+      className: undefined
+    },
+    [EBadgeSizes.s]: {
+      typographyVariant: ETypographyVariants['Caption-Bold'],
+      className: styles.compact
+    },
+    [EBadgeSizes.xs]: {
+      typographyVariant: ETypographyVariants['Additional-Bold'],
+      className: styles.xs
+    }
   };
 
   const badgeClasses = clsx(
     styles.badge,
     styles[color],
-    sizeClassesMapping[size],
+    sizeConfig[size].className,
     variant === 'outline' && styles[`outline-${color}`],
     className
   );
 
   return (
-    <div className={badgeClasses} data-testid="BADGE_WRAPPER">
-      <Typography variant={typographyVariants[size]}>{children}</Typography>
+    <div className={badgeClasses} data-testid="BADGE_WRAPPER" data-ui-badge style={style}>
+      <Typography variant={sizeConfig[size].typographyVariant} data-ui-badge-content>
+        {children}
+      </Typography>
     </div>
   );
 };

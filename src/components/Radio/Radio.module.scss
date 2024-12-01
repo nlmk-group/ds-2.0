@@ -1,106 +1,154 @@
+$radio-wrapper-size: 32px;
+$radio-circle-size: 20px;
+$radio-dot-size: 10px;
+
+$radio-colors: (
+  brand: (
+    border: var(--steel-60),
+    border-checked: var(--brand-sapphire-60),
+    hover-checked: var(--brand-sapphire-60),
+    dot: var(--brand-sapphire-60)
+  ),
+  error: (
+    border: var(--spectrum-red-50),
+    border-checked: var(--spectrum-red-50),
+    hover-checked: var(--spectrum-red-50),
+    dot: var(--spectrum-red-50)
+  ),
+  warning: (
+    border: var(--spectrum-yellow-50),
+    border-checked: var(--spectrum-yellow-50),
+    hover-checked: var(--spectrum-yellow-50),
+    dot: var(--spectrum-yellow-50)
+  ),
+  success: (
+    border: var(--spectrum-green-50),
+    border-checked: var(--spectrum-green-50),
+    hover-checked: var(--spectrum-green-50),
+    dot: var(--spectrum-green-50)
+  )
+);
+
 .radio {
   display: flex;
-  gap: 12px;
 
   // Миксин для установки размеров круга радио-кнопки
   @mixin radio-circle($size) {
     width: $size;
     height: $size;
     border-radius: 50%;
-  }
-
-  // Миксин для центрирования содержимого
-  @mixin center-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-sizing: border-box;
   }
 
   // Базовые стили для input[type="radio"]
   input[type="radio"] {
-    @include radio-circle(20px);
+    @include radio-circle($radio-wrapper-size);
     appearance: none;
-    position: relative;
+    padding: 4px;
     margin: 0;
     cursor: pointer;
+    background: transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    // Внешний круг радио-кнопки
+    // Внешний круг радио-кнопки (граница)
     &:before {
       content: "";
-      @include center-content;
-      @include radio-circle(16px);
+      @include radio-circle($radio-circle-size);
       border: 2px solid var(--steel-60);
       background: var(--steel-10);
     }
 
-    // Внутренний круг радио-кнопки (появляется при выборе)
+    // Внутренний круг радио-кнопки (точка)
     &:after {
       content: "";
-      @include center-content;
-      @include radio-circle(10px);
-      background-color: var(--brand-sapphire-60);
+      position: absolute;
+      @include radio-circle($radio-dot-size);
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
     }
 
-    // Стили для выбранной радио-кнопки
-    &:checked {
-      &:before {
-        border-color: var(--brand-sapphire-60);
-      }
-
-      &:after {
-        opacity: 1;
-      }
-    }
-
-    // Стили при наведении
-    &:not(:disabled) {
-      &:hover {
+    @each $color, $values in $radio-colors {
+      &[data-color="#{$color}"] {
+        // Базовое состояние (неотмеченное)
         &:before {
-          border-color: var(--steel-60);
-          box-shadow: 0 0 0 6px rgb(from var(--steel-60) r g b / 12%);
-        }
-      }
-
-      &:checked:hover {
-        &:before {
-          border-color: var(--brand-sapphire-60);
-          box-shadow: 0 0 0 6px rgb(from var(--brand-sapphire-60) r g b / 12%);
+          border-color: map-get($values, border);
         }
 
-        &:after {
-          box-shadow: 0 0 0 3px rgb(from var(--brand-sapphire-60) r g b / 12%);
-        }
-      }
-    }
+        // Отмеченное состояние
+        &:checked {
+          &:before {
+            border-color: map-get($values, border-checked);
+          }
 
-    // Стили для отключенной радио-кнопки
-    &:disabled {
-      cursor: default;
-
-      &:before {
-        background-color: var(--steel-30);
-        border-color: var(--steel-50);
-      }
-
-      &:checked {
-        &:before, &:after {
-          opacity: 0.5;
+          &:after {
+            background-color: map-get($values, dot);
+            opacity: 1;
+          }
         }
 
-        &:after {
-          background-color: var(--steel-50);
+        // Стили при наведении для активной радио-кнопки
+        &:not(:disabled) {
+          &:hover {
+            background: rgb(from var(--steel-90) r g b / 6%);
+          }
+        }
+
+        // Стили для отключенной радио-кнопки с учетом цвета
+        &:disabled {
+          cursor: default;
+
+          @if $color == "brand" {
+            &:before {
+              background-color: var(--steel-30);
+              border-color: var(--steel-50);
+            }
+
+            &:checked {
+              &:before {
+                border-color: var(--brand-sapphire-60);
+              }
+
+              &:before,
+              &:after {
+                opacity: 0.5;
+              }
+
+              &:after {
+                background-color: var(--brand-sapphire-60);
+              }
+            }
+          } @else {
+            &:before {
+              background-color: var(--steel-30);
+              border-color: map-get($values, border);
+              opacity: 0.5;
+            }
+
+            &:checked {
+              &:before {
+                border-color: map-get($values, border);
+              }
+
+              &:after {
+                background-color: map-get($values, dot);
+                opacity: 0.5;
+              }
+            }
+          }
         }
       }
     }
   }
 }
 
-// Стили для лейбла радио-кнопки
 .label {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 
   &-disabled {
     opacity: 0.5;

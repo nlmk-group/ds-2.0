@@ -1,18 +1,19 @@
 import { CSSProperties, ReactNode } from 'react';
 
-import { variantsMapping } from '@components/declaration';
-
-import { ESnackbarColors } from './enums';
+import { ESnackbarColors, ESnackbarTypes } from './enums';
 
 export interface ISnackbarProps {
   /** Цвет фона Snackbar */
-  color?: ESnackbarColors;
+  color?: `${ESnackbarColors}`;
 
   /** Вариант отображения Snackbar */
-  variant?: keyof typeof variantsMapping;
+  type?: `${ESnackbarTypes}`;
 
   /** Функция, вызываемая при закрытии Snackbar */
-  close?: () => void;
+  onClose?: () => void;
+
+  /** Наличие иконки в начале Snackbar */
+  startIcon?: boolean;
 
   /** Функция, вызываемая при нажатии на кнопку действия */
   actionButton?: () => void;
@@ -25,6 +26,9 @@ export interface ISnackbarProps {
 
   /** Время в миллисекундах, через которое Snackbar автоматически скроется */
   autoHideDuration?: number;
+
+  /** Отображение таймера с момента появления Snackbar */
+  showCountdown?: boolean;
 
   /** Дополнительный CSS класс */
   className?: string;

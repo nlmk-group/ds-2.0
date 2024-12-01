@@ -1,4 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
+import { variantsMapping } from '../../declaration';
+import { EBadgeColors, EBadgeSizes } from '../enums';
 import { IBadgeProps } from '../types';
 
 declare const _default: {
@@ -21,13 +23,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').EBadgeSizes;
+                    summary: EBadgeSizes;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').EBadgeSizes[];
+            options: EBadgeSizes[];
             control: {
                 type: string;
             };
@@ -36,13 +38,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').EBadgeColors;
+                    summary: EBadgeColors;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').EBadgeColors[];
+            options: EBadgeColors[];
             control: {
                 type: string;
             };
@@ -51,13 +53,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../../declaration').variantsMapping;
+                    summary: variantsMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../../declaration').variantsMapping[];
+            options: variantsMapping[];
             control: {
                 type: string;
             };
@@ -70,6 +72,15 @@ export declare const BadgeDefault: {
     storyName: string;
     args: {
         children: string;
+    };
+};
+export declare const BadgeShowcase: {
+    (): JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
     };
 };
 //# sourceMappingURL=Badge.stories.d.ts.map

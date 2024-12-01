@@ -1,3 +1,5 @@
+import { ERadioColors } from '../enums';
+
 export declare const argsTypes: {
     disabled: {
         description: string;
@@ -51,6 +53,21 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
+        control: {
+            type: string;
+        };
+    };
+    color: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: ERadioColors[];
         control: {
             type: string;
         };

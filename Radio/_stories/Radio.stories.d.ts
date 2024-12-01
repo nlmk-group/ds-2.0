@@ -1,4 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
+import { ERadioColors } from '../enums';
 import { IRadioProps } from '../types';
 
 declare const _default: {
@@ -62,6 +63,21 @@ declare const _default: {
                 type: string;
             };
         };
+        color: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: ERadioColors[];
+            control: {
+                type: string;
+            };
+        };
         onChange: {
             description: string;
         };
@@ -75,6 +91,15 @@ export declare const RadioDefault: {
         value: string;
         label: string;
         checked: boolean;
+    };
+};
+export declare const RadioColors: {
+    (): JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
     };
 };
 //# sourceMappingURL=Radio.stories.d.ts.map

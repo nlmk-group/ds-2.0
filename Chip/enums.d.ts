@@ -1,5 +1,5 @@
 export declare enum EChipColors {
-    primary = "primary",
+    brand = "brand",
     error = "error",
     success = "success",
     warning = "warning"

@@ -83,6 +83,34 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    defaultMenuOpen: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    overlay: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
 };
 export declare const menuItemArgsTypes: {
     position: {

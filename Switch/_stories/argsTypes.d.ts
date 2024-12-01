@@ -1,6 +1,23 @@
+import { ESwitchColors } from '../enums';
+
 declare const argsTypes: {
     className: {
         description: string;
+        control: {
+            type: string;
+        };
+    };
+    color: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: ESwitchColors;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: ESwitchColors[];
         control: {
             type: string;
         };

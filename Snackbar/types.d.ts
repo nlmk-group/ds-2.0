@@ -1,15 +1,16 @@
 import { CSSProperties, ReactNode } from '../../../node_modules/react';
-import { variantsMapping } from '../declaration';
-import { ESnackbarColors } from './enums';
+import { ESnackbarColors, ESnackbarTypes } from './enums';
 
 export interface ISnackbarProps {
-    color?: ESnackbarColors;
-    variant?: keyof typeof variantsMapping;
-    close?: () => void;
+    color?: `${ESnackbarColors}`;
+    type?: `${ESnackbarTypes}`;
+    onClose?: () => void;
+    startIcon?: boolean;
     actionButton?: () => void;
     actionText?: string;
     children: ReactNode;
     autoHideDuration?: number;
+    showCountdown?: boolean;
     className?: string;
     style?: CSSProperties;
 }

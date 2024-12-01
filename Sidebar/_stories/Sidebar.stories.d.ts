@@ -88,6 +88,34 @@ declare const _default: {
                 type: string;
             };
         };
+        defaultMenuOpen: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        overlay: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
     };
     parameters: {
         layout: string;
@@ -125,6 +153,17 @@ export declare const HorizontalBurgerSidebar: {
     (argTypes: ISidebarProps): ReactNode;
     storyName: string;
     args: {
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
+};
+export declare const SidebarWithOverlayAndDefaultMenuOpen: {
+    (argTypes: ISidebarProps): ReactNode;
+    storyName: string;
+    args: {
+        overlay: boolean;
+        defaultMenuOpen: boolean;
         userName: string;
         userSurname: string;
         systemName: string;

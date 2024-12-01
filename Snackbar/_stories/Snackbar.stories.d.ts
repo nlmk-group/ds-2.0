@@ -1,4 +1,5 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
+import { ESnackbarColors, ESnackbarTypes } from '../enums';
 import { ISnackbarProps } from '../types';
 
 declare const _default: {
@@ -16,33 +17,45 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').ESnackbarColors;
+                    summary: ESnackbarColors;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').ESnackbarColors[];
+            options: ESnackbarColors[];
             control: {
                 type: string;
             };
         };
-        variant: {
+        type: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../../declaration').variantsMapping;
+                    summary: ESnackbarTypes;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../../declaration').variantsMapping[];
+            options: ESnackbarTypes[];
             control: {
                 type: string;
             };
         };
-        close: {
+        onClose: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        showCountdown: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
+        startIcon: {
             description: string;
             control: {
                 type: string;
@@ -88,8 +101,40 @@ export default _default;
 export declare const DefaultSnackbar: {
     (argTypes: ISnackbarProps): ReactNode;
     storyName: string;
+};
+export declare const SnackbarColors: {
+    (argTypes: ISnackbarProps): ReactNode;
+    storyName: string;
     args: {
-        children: string;
+        startIcon: boolean;
+        actionButton: boolean;
+    };
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
+};
+export declare const SnackbarIndicationColors: {
+    (argTypes: ISnackbarProps): ReactNode;
+    storyName: string;
+    args: {
+        startIcon: boolean;
+        actionButton: boolean;
+    };
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
+};
+export declare const SnackbarTimer: {
+    (argTypes: ISnackbarProps): ReactNode;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
     };
 };
 //# sourceMappingURL=Snackbar.stories.d.ts.map

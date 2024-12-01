@@ -1,20 +1,17 @@
-import { ChangeEventHandler, InputHTMLAttributes } from '../../../node_modules/react';
+import { ChangeEventHandler, CSSProperties, InputHTMLAttributes } from '../../../node_modules/react';
+import { ECheckboxColors } from './enums';
 
-export declare enum ECheckboxColors {
-    default = "default",
-    error = "error"
-}
-type TCheckboxColors = `${ECheckboxColors}`;
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
-    color?: TCheckboxColors;
+    color?: `${ECheckboxColors}`;
     disabled?: boolean;
     checked?: boolean;
     id?: string;
-    onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
     value?: string;
     multiple?: boolean;
+    colored?: boolean;
     className?: string;
+    style?: CSSProperties;
 }
-export {};
 //# sourceMappingURL=types.d.ts.map

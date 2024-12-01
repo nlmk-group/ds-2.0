@@ -1,11 +1,15 @@
 export declare enum ESnackbarColors {
-    dark = "dark",
+    sky = "sky",
     green = "green",
     red = "red",
-    orange = "orange",
-    grey = "grey",
-    white = "white",
+    yellow = "yellow",
+    'light-sky' = "light-sky",
+    'light-grey' = "light-grey",
     'light-green' = "light-green",
-    pink = "pink"
+    'light-red' = "light-red"
+}
+export declare enum ESnackbarTypes {
+    fill = "fill",
+    indication = "indication"
 }
 //# sourceMappingURL=enums.d.ts.map

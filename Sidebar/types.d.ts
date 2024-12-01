@@ -10,12 +10,14 @@ export interface ISidebarProps extends PropsWithChildren {
     systemName?: string;
     userName?: string;
     userSurname?: string;
-    onOpenUser: () => void;
+    onOpenUser?: () => void;
     onLogout?: () => void;
     onLogin?: () => void;
     onSearch?: () => void;
     onClickLogo?: () => void;
     currentPath: string;
+    defaultMenuOpen?: boolean;
+    overlay?: boolean;
 }
 export interface ICollapseButtonProps {
     isExpanded?: boolean;
@@ -27,7 +29,7 @@ export interface IUserControlProps extends PropsWithChildren {
     isLoggedIn?: boolean;
     userName?: string;
     userSurname?: string;
-    onOpenUser: () => void;
+    onOpenUser?: () => void;
     onLogin?: () => void;
     onLogout?: () => void;
 }
@@ -49,6 +51,7 @@ export interface ISidebarProperties {
     isScrollingDueToClick: boolean;
     setIsScrollingDueToClick: Dispatch<SetStateAction<boolean>>;
     currentPath: string;
+    collapseSidebar: () => void;
 }
 export interface ISubmenuProperties {
     showFavorites: boolean;

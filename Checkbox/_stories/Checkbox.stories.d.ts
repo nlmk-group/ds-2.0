@@ -6,4 +6,13 @@ export declare const CheckboxDefault: {
     (argTypes: ICheckboxProps): JSX.Element;
     storyName: string;
 };
+export declare const CheckboxColors: {
+    (): JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
+};
 //# sourceMappingURL=Checkbox.stories.d.ts.map

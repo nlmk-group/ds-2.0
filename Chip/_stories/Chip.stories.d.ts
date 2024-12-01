@@ -1,4 +1,6 @@
 import { default as React } from '../../../../node_modules/react';
+import { sizesMapping, variantsMapping } from '../../declaration';
+import { EChipColors } from '../enums';
 import { IChipProps } from '../types';
 
 declare const _default: {
@@ -16,13 +18,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../../declaration').sizesMapping;
+                    summary: sizesMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../../declaration').sizesMapping[];
+            options: sizesMapping[];
             control: {
                 type: string;
             };
@@ -31,13 +33,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../enums').EChipColors;
+                    summary: EChipColors;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../enums').EChipColors[];
+            options: EChipColors[];
             control: {
                 type: string;
             };
@@ -58,13 +60,13 @@ declare const _default: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: import('../../declaration').variantsMapping;
+                    summary: variantsMapping;
                 };
                 type: {
                     summary: string;
                 };
             };
-            options: import('../../declaration').variantsMapping[];
+            options: variantsMapping[];
             control: {
                 type: string;
             };
@@ -77,6 +79,15 @@ export declare const ChipDefault: {
     storyName: string;
     args: {
         children: string;
+    };
+};
+export declare const ChipShowcase: {
+    (): JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
     };
 };
 //# sourceMappingURL=Chip.stories.d.ts.map

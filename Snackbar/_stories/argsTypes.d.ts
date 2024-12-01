@@ -1,5 +1,4 @@
-import { variantsMapping } from '../../declaration';
-import { ESnackbarColors } from '../enums';
+import { ESnackbarColors, ESnackbarTypes } from '../enums';
 
 declare const argsTypes: {
     children: {
@@ -23,22 +22,34 @@ declare const argsTypes: {
             type: string;
         };
     };
-    variant: {
+    type: {
         description: string;
         table: {
             defaultValue: {
-                summary: variantsMapping;
+                summary: ESnackbarTypes;
             };
             type: {
                 summary: string;
             };
         };
-        options: variantsMapping[];
+        options: ESnackbarTypes[];
         control: {
             type: string;
         };
     };
-    close: {
+    onClose: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    showCountdown: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
+    startIcon: {
         description: string;
         control: {
             type: string;

@@ -11,6 +11,14 @@ export declare const DefaultSwitch: {
         onChange: import('@storybook/addon-actions').HandlerFunction;
     };
 };
+export declare const SwitchShowcase: {
+    (argTypes: ISwitchProps): ReactNode;
+    storyName: string;
+    args: {
+        checked: boolean;
+        onChange: import('@storybook/addon-actions').HandlerFunction;
+    };
+};
 export declare const DisabledSwitch: {
     (argTypes: ISwitchProps): ReactNode;
     storyName: string;

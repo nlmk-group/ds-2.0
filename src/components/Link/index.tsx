@@ -40,13 +40,18 @@ const Link: FC<ILink> = ({
   onClick
 }) => {
   return (
-    <div data-testid="WRAPPER" className={clsx(styles.wrapper, disabled && styles.disabled, className)}>
+    <div
+      data-ui-link-left-icon
+      data-testid="WRAPPER"
+      className={clsx(styles.wrapper, disabled && styles.disabled, className)}
+    >
       {leftIcon !== null && (
         <div data-testid="LEFT_ICON" className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}>
           {leftIcon}
         </div>
       )}
       <a
+        data-ui-link
         data-testid="LINK"
         href={preventRedirect ? 'javascript:void(0);' : href}
         target={target as targetMapping}
@@ -57,7 +62,11 @@ const Link: FC<ILink> = ({
         <Typography variant={getTypography(size as sizeMapping) as ETypographyVariants}>{children}</Typography>
       </a>
       {rightIcon !== null && (
-        <div data-testid="RIGHT_ICON" className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}>
+        <div
+          data-ui-link-right-icon
+          data-testid="RIGHT_ICON"
+          className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}
+        >
           {rightIcon}
         </div>
       )}

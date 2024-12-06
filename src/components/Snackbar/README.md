@@ -75,32 +75,42 @@ import Snackbar from './Snackbar';
 
 ```css
 /* Стилизация корневого элемента */
-[data-snackbar-type][data-snackbar-color] {
+[data-ui-snackbar-color] {
   /* стили */
 }
 
-/* Стилизация контента */
-[data-snackbar-content] {
+/* Стилизация блока с действиями */
+[data-ui-snackbar-actions] {
+  /* стили */
+}
+
+/* Стилизация кнопки закрытия */
+[data-ui-snackbar-close] {
   /* стили */
 }
 
 /* Стилизация иконки */
-[data-snackbar-icon] {
+[data-ui-snackbar-icon] {
   /* стили */
 }
 
 /* Стилизация текста */
-[data-snackbar-text] {
+[data-ui-snackbar-text] {
   /* стили */
 }
 
-/* Стилизация действий */
-[data-snackbar-actions] {
+/* Стилизация кнопки действия */
+[data-ui-snackbar-action] {
   /* стили */
 }
 
 /* Стилизация таймера */
-[data-snackbar-timer] {
+[data-ui-snackbar-timer] {
+  /* стили */
+}
+
+/* Стилизация дочернего текста в снекбаре */
+[data-ui-snackbar-children] {
   /* стили */
 }
 ```

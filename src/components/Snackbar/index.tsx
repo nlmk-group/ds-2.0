@@ -102,7 +102,7 @@ const Snackbar: FC<ISnackbarProps> = ({
         className
       )}
       style={style}
-      data-ui-snackbar
+      data-ui-snackbar-color
     >
       <div className={styles['text-block']} data-ui-snackbar-text>
         {icon && (

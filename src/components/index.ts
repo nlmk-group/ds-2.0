@@ -57,6 +57,7 @@ export { default as OptionItem } from './SimpleSelect/subcomponents/OptionItem';
 export { default as Stepper } from './Stepper';
 export { default as Splitter } from './Splitter';
 export { default as Status } from './Status';
+export { default as Illustration } from './Illustrations';
 export { default as Pagination } from './Pagination';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';

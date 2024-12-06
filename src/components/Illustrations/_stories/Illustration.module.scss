@@ -1,0 +1,18 @@
+.wrapper {
+  padding: 30px;
+  width: 70vw;
+  max-width: 1000px;
+  min-width: 150px;
+  border-radius: 10px;
+  background-color: var(--steel-30);
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}

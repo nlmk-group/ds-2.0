@@ -7,7 +7,8 @@ module.exports = {
   moduleNameMapper: {
     '\\.(sa|sc|le|c)ss$': 'identity-obj-proxy',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
-    '^@root/(.*)$': '<rootDir>/$1'
+    '^@root/(.*)$': '<rootDir>/$1',
+    '\\.svg': '<rootDir>/src/components/declaration/mocks/svgMock.tsx'
   },
   transform: {
     '.test.[jt]sx?$': 'babel-jest',

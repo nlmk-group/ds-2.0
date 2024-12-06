@@ -1,0 +1,22 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import Illustration from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Illustration/Info"
+  component={Illustration}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=527-204395&t=DwOLU5X1oNWU7h8f-1'
+    },
+    jest: ['Illustration.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

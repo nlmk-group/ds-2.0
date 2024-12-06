@@ -23,6 +23,63 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.11.0 - <span className={styles.date}>06.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-illustration-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Illustration
+              </Link>
+              .
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-errorpage-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ErrorPage
+              </Link>
+              .<li className={styles['left-padding']}>Заменены токены на статические значения</li>
+              <li className={styles['left-padding']}>Добавлена документация</li>
+            </li>
+            <li>
+              • Исправлен баг c z-index и отображением контента в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}></div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.10.1 - <span className={styles.date}>02.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-link-info--docs" target="blank" className={styles['link-changelog']}>
+                Link
+              </Link>
+              .<li className={styles['left-padding']}>- Обновлены отступы между иконками и текстом</li>
+              <li className={styles['left-padding']}>- Добавлены data-атрибуты для упрощения кастомизации стилей</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.10.0 - <span className={styles.date}>01.12.24</span>
             <Chip variant="outline" color="warning">
               Breaking Changes

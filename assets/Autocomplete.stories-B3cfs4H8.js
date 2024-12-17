@@ -1,0 +1,11 @@
+import{j as o}from"./jsx-runtime-BRNY0I4F.js";import{r}from"./index-Bnop-kX6.js";import{b as m}from"./index-ByAgZyky.js";import"./generateUUID-B22BSTI4.js";import"./index-DJJ0U8Tt.js";import"./index-CGzvFf0p.js";import"./index-wMnNF9Um.js";import"./index-C7kuRPht.js";import"./index-qC5wYQgy.js";import"./index-BuA7rasS.js";import"./index-CocscvOf.js";import"./index-XJ5PfNkm.js";import"./index-BAfSYk8P.js";import"./index-Br4tp0-d.js";import"./32-DCTol8-9.js";import{g as c}from"./styles.module-ox-emdf8.js";import{a as d}from"./argsTypes-uwvZam_4.js";import"./clsx-B-dksMZM.js";import"./index-D0sJu8id.js";import"./types-CpBSVUgC.js";import"./index-CT8gBKwQ.js";const a=[{id:1,value:"blast_furnace",label:"Доменная печь"},{id:2,value:"converter",label:"Конвертер"},{id:3,value:"rolling_mill",label:"Прокатный стан"},{id:4,value:"sinter_plant",label:"Агломерационная фабрика"},{id:5,value:"coke_plant",label:"Коксовая батарея"},{id:6,value:"steel_ladle",label:"Сталеразливочный ковш"},{id:7,value:"continuous_casting",label:"Машина непрерывного литья"},{id:8,value:"electric_furnace",label:"Электродуговая печь"},{id:9,value:"oxygen_plant",label:"Кислородная станция"},{id:10,value:"heat_treatment",label:"Термическая обработка"}],f=e=>o.jsx("div",{className:c.wrapper,children:e()}),J={title:"Components/Autocomplete/Stories",component:m,argTypes:d,decorators:[f],parameters:{actions:{argTypesRegex:"^on.*"}}},t=e=>{const[p,n]=r.useState(e.items??a);return r.useEffect(()=>{n(e.items??a)},[e.items]),o.jsx("div",{style:{padding:"50px"},children:o.jsx(m,{...e,items:p,nameGetter:u=>u.label||""})})};t.storyName="Autocomplete по умолчанию";var s,l,i;t.parameters={...t.parameters,docs:{...(s=t.parameters)==null?void 0:s.docs,source:{originalSource:`(args: IAutocompleteProps): JSX.Element => {
+  const [items, setItems] = useState<IAutocompleteValue[]>(args.items ?? defaultOptions);
+  useEffect(() => {
+    setItems(args.items ?? defaultOptions);
+  }, [args.items]);
+  return <div style={{
+    padding: '50px'
+  }}>
+      <Autocomplete {...args} items={items} nameGetter={item => item.label || ''} />
+    </div>;
+}`,...(i=(l=t.parameters)==null?void 0:l.docs)==null?void 0:i.source}}};const P=["AutocompleteDefault"];export{t as AutocompleteDefault,P as __namedExportsOrder,J as default};

@@ -23,6 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.13.0 - <span className={styles.date}>14.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-autocomplete-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Autocomplete
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.12.0 - <span className={styles.date}>12.12.24</span>
             <Chip variant="outline" color="warning">
               Breaking Changes
@@ -46,24 +64,6 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Обновлена документация компонента</li>
               <li className={styles['left-padding']}>- Актуализированы тесты</li>
               <li className={styles['left-padding']}>- Обновлены stories в Storybook</li>
-            </li>
-          </ul>
-        </div>
-        <div className={styles.history}>
-          <Typography variant="Subheading3-Medium">
-            v2.12.1 - <span className={styles.date}>13.12.24</span>
-          </Typography>
-          <ul className={styles.list}>
-            <li>
-              • Добавлен компонент{' '}
-              <Link
-                href="./?path=/docs/components-autocomplete-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Autocomplete
-              </Link>
-              .
             </li>
           </ul>
         </div>

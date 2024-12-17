@@ -169,7 +169,7 @@ export default  App = () => (
 
 export default  App = () => (
   <Header title="${HEADER_CHILDREN}"} >
-          <Button style={{ marginRight: '25px' }} variant="grey" fill="outline" startIcon={<IconSettingsAltOutlined24 />}>
+          <Button style={{ marginRight: '25px' }} color="grey" variant="secondary" startIcon={<IconSettingsAltOutlined24 />}>
           Настройки
         </Button>
   </Header>

@@ -16,7 +16,7 @@ export const Footer: FC<IFooterProps> = ({ className, onAccept, onDecline, disab
     <div className={clsx(styles.root, className)}>
       <Divider />
       <div className={styles['btn-collection']}>
-        <Button onClick={onAccept} variant="primary" disabled={disable}>
+        <Button onClick={onAccept} disabled={disable}>
           {locale[language].buttons.accept}
         </Button>
         <Button onClick={onDecline} variant="secondary">

@@ -233,8 +233,8 @@ const Sidebar: FC<ISidebarProps> &
               {isExpanded && isVertical && handleAction && (
                 <Button
                   size="s"
-                  variant="primary"
-                  fill="clear"
+                  color="ghost"
+                  variant="secondary"
                   className={clsx(styles.head, styles.auth)}
                   onClick={handleAction}
                   iconButton={<Icon name={actionIconName} htmlColor="var(--unique-white)" />}

@@ -1,6 +1,6 @@
 import React, { FC, SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 import { Button, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -133,12 +133,12 @@ const Modal: FC<IModalProps> = ({
           </div>
           <Button
             iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
-            variant="primary"
-            fill="clear"
+            color="ghost"
+            variant="secondary"
             className={styles.modalClose}
             aria-label="Close"
-            onClick={(e) => onClose(e)}
-            size={EButtonSizes.s}
+            onClick={e => onClose(e)}
+            size={EButtonSize.s}
           />
         </div>
       </div>

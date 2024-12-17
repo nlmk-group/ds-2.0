@@ -32,9 +32,9 @@ const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusC
           {cancelUpload !== null && (
             <div style={{ pointerEvents: disabled ? 'none' : 'all' }}>
               <Button
-                variant="primary"
                 className={styles['small-text-button']}
-                fill="clear"
+                color="ghost"
+                variant="secondary"
                 size="s"
                 iconButton={<IconCloseOutlined24 />}
                 onClick={cancelUpload}

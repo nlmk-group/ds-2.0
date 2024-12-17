@@ -1,20 +1,10 @@
-import { TButtonFill, TButtonSize, TButtonVariant } from '@components/Button/types';
+import { EButtonSize } from '@components/Button/enums';
 
-export interface IButtonBadge {
+export interface IButtonBadgeProps {
   /**
    * Размер бейджа
    */
-  size: TButtonSize;
-
-  /**
-   * Вариант стиля бейджа
-   */
-  variant: TButtonVariant;
-
-  /**
-   * Тип заливки бейджа
-   */
-  fill: TButtonFill;
+  size: `${EButtonSize}`;
 
   /**
    * Контент для отображения в бейдже

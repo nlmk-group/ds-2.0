@@ -47,8 +47,8 @@ const Alert: FC<IAlertProps> = ({
           {action && action}
           {close && (
             <Button
-              variant="grey"
-              fill="clear"
+              color="ghost"
+              variant="secondary"
               onClick={close}
               className={styles.close}
               size="m"

@@ -20,7 +20,7 @@ import { ESizeMapping } from '../enum';
 import { ISlideToggleProps, ISlideToggleWithButtonProps } from '../types';
 import argsTypes from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/SlideToggle/Stories',
@@ -96,11 +96,11 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
           handleClick(e);
           setShowCompact(!showCompact);
         }}
-        variant="primary"
         size="s"
         style={{ padding: '4px' }}
         startIcon={<IconStarOutlined16 />}
-        fill="clear"
+        color="ghost"
+        variant="secondary"
       />
       <Badge size="s" color={args.badgeColor}>
         {args.badgeChildren}
@@ -115,11 +115,11 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
           handleClick(e);
           setShowDefault(!showDefault);
         }}
-        variant="primary"
+        color="ghost"
+        variant="secondary"
         size="m"
         style={{ padding: '4px' }}
         startIcon={<IconStarOutlined24 />}
-        fill="clear"
       />
       <Badge size="l" color={args.badgeColor}>
         {args.badgeChildren}

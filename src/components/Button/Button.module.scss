@@ -6,8 +6,9 @@
   border: unset;
   outline: none;
   cursor: pointer;
-  transition: 0.08s;
+  transition: 0.1s ease-in-out;
   width: max-content;
+  height: 40px;
   box-sizing: border-box;
 
   &:disabled {
@@ -17,8 +18,8 @@
 }
 
 @mixin iconButtonSize($size) {
+  height: $size;
   min-width: $size;
-  padding: 0;
 }
 
 @mixin compactStyles($size, $padding) {
@@ -26,7 +27,7 @@
   padding: $padding;
 }
 
-@mixin badge-styles($bg, $tx) {
+@mixin badgeStyles($bg, $tx) {
   .badge {
     background-color: $bg;
     color: $tx;
@@ -35,10 +36,8 @@
 
 .button {
   @include buttonBase;
-  height: 40px;
   border-radius: 4px;
-  padding: 8px 12px;
-  transition: 0.1s ease-in-out;
+  padding: 8px;
 }
 
 .icon {
@@ -46,12 +45,12 @@
 
   &-button {
     @include buttonBase;
-    @include iconButtonSize(48px);
+    @include iconButtonSize(40px);
+    padding: 4px;
   }
 
   &-button-compact {
     @include iconButtonSize(32px);
-    width: 32px;
   }
 
   &-button-extra-compact {
@@ -87,375 +86,13 @@
   }
 }
 
-@mixin solid-btn($bg, $tx, $hbg, $abg, $icon, $badge-bg, $badge-hbg, $badge-abg, $badge-tx) {
-  background-color: $bg;
-  color: $tx;
-  @include badge-styles($badge-bg, $badge-tx);
-
-  &:not(:disabled) {
-    &:hover {
-      background: $hbg;
-      @include badge-styles($badge-hbg, $badge-tx);
-    }
-
-    &:active {
-      background: $abg;
-      @include badge-styles($badge-abg, $badge-tx);
-    }
-  }
-
-  svg {
-    color: $icon;
-  }
-}
-
-@mixin outline-btn($bg, $tx, $hbg, $abg, $icon, $br, $badge-bg, $badge-hbg, $badge-abg, $badge-tx) {
-  @include solid-btn($bg, $tx, $hbg, $abg, $icon, $badge-bg, $badge-hbg, $badge-abg, $badge-tx);
-  outline: 2px solid $br;
-  outline-offset: -2px;
-}
-
-/* primary solid variant */
-
-.primary-solid {
-  @include solid-btn(
-      var(--brand-sapphire-50),
-      var(--unique-white),
-      var(--brand-sapphire-40),
-      var(--brand-sapphire-60),
-      var(--unique-white),
-      var(--brand-sapphire-40),
-      var(--brand-sapphire-50),
-      var(--brand-sapphire-40),
-      var(--unique-white)
-  )
-}
-
-/* primary outline variant */
-
-.primary-outline {
-  @include outline-btn(
-      transparent,
-      var(--unique-bluewhite),
-      var(--brand-sapphire-10),
-      var(--brand-sapphire-20),
-      var(--brand-sapphire-60),
-      var(--brand-sapphire-60),
-      transparent,
-      transparent,
-      transparent,
-      var(--steel-90)
-  );
-
-  .badge {
-    outline-color: var(--brand-sapphire-60);
-  }
-}
-
-/* primary clear variant */
-
-.primary-clear {
-  @include solid-btn(
-      transparent,
-      var(--unique-bluewhite),
-      var(--brand-sapphire-10),
-      var(--brand-sapphire-20),
-      var(--brand-sapphire-60),
-      var(--brand-sapphire-40),
-      var(--brand-sapphire-40),
-      var(--brand-sapphire-40),
-      var(--unique-white)
-  )
-}
-
-/* success variant */
-
-.primary-success {
-  @include solid-btn(
-      var(--spectrum-green-50),
-      var(--unique-white),
-      var(--spectrum-green-40),
-      var(--spectrum-green-60),
-      var(--unique-white),
-      var(--spectrum-green-40),
-      var(--spectrum-green-50),
-      var(--spectrum-green-40),
-      var(--unique-white)
-  )
-}
-
-/* warning variant */
-
-.primary-warning {
-  @include solid-btn(
-      var(--spectrum-yellow-50),
-      var(--unique-white),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-60),
-      var(--unique-white),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-50),
-      var(--spectrum-yellow-40),
-      var(--unique-white)
-  )
-}
-
-/* error variant */
-
-.primary-error {
-  @include solid-btn(
-      var(--spectrum-red-50),
-      var(--unique-white),
-      var(--spectrum-red-40),
-      var(--spectrum-red-60),
-      var(--unique-white),
-      var(--spectrum-red-40),
-      var(--spectrum-red-50),
-      var(--spectrum-red-40),
-      var(--unique-white)
-  )
-}
-
-/* secondary variant */
-
-.secondary-solid {
-  @include solid-btn(
-      var(--brand-sapphire-20),
-      var(--unique-bluewhite),
-      var(--brand-sapphire-10),
-      var(--brand-sapphire-30),
-      var(--unique-bluewhite),
-      var(--brand-sapphire-30),
-      var(--brand-sapphire-30),
-      var(--brand-sapphire-20),
-      var(--steel-90)
-  )
-}
-/* success variant */
-
-.secondary-success {
-  @include solid-btn(
-      var(--spectrum-green-20),
-      var(--spectrum-green-60),
-      var(--spectrum-green-10),
-      var(--spectrum-green-30),
-      var(--spectrum-green-60),
-      var(--spectrum-green-40),
-      var(--spectrum-green-40),
-      var(--spectrum-green-20),
-      var(--steel-90)
-  )
-}
-
-/* warning variant */
-
-.secondary-warning {
-  @include solid-btn(
-      var(--spectrum-yellow-20),
-      var(--spectrum-yellow-60),
-      var(--spectrum-yellow-10),
-      var(--spectrum-yellow-30),
-      var(--spectrum-yellow-60),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-20),
-      var(--steel-90)
-  )
-}
-
-/* error variant */
-
-.secondary-error {
-  @include solid-btn(
-      var(--spectrum-red-20),
-      var(--spectrum-red-60),
-      var(--spectrum-red-10),
-      var(--spectrum-red-30),
-      var(--spectrum-red-60),
-      var(--spectrum-red-40),
-      var(--spectrum-red-40),
-      var(--spectrum-red-20),
-      var(--steel-90)
-  )
-}
-
-/* grey solid variant */
-
-.grey-solid {
-  @include solid-btn(
-      var(--steel-30),
-      var(--unique-bluewhite),
-      var(--steel-40),
-      var(--steel-50),
-      var(--unique-bluewhite),
-      var(--brand-sapphire-60),
-      var(--brand-sapphire-60),
-      var(--brand-sapphire-60),
-      var(--unique-white)
-  )
-}
-
-/* grey outline variant */
-
-.grey-outline {
-  @include outline-btn(
-      transparent,
-      var(--steel-70),
-      var(--steel-30),
-      var(--steel-40),
-      var(--steel-70),
-      var(--steel-70),
-      transparent,
-      transparent,
-      transparent,
-      var(--steel-90)
-  );
-
-  .badge {
-    outline-color: var(--steel-70);
-  }
-}
-
-/* grey clear variant */
-
-.grey-clear {
-  @include solid-btn(
-      transparent,
-      var(--steel-70),
-      var(--steel-30),
-      var(--steel-40),
-      var(--steel-70),
-      var(--steel-70),
-      var(--steel-70),
-      var(--steel-70),
-      var(--steel-10)
-  )
-}
-
-/* black solid variant */
-
-.black-solid {
-  @include solid-btn(
-      var(--steel-80),
-      var(--steel-10),
-      var(--steel-70),
-      var(--steel-90),
-      var(--steel-10),
-      var(--steel-70),
-      var(--steel-80),
-      var(--steel-70),
-      var(--steel-10)
-  )
-}
-
-/* black outline variant */
-
-.black-outline {
-  @include outline-btn(
-      transparent,
-      var(--steel-90),
-      var(--steel-30),
-      var(--steel-40),
-      var(--steel-90),
-      var(--steel-90),
-      transparent,
-      transparent,
-      transparent,
-      var(--steel-90)
-  );
-
-  .badge {
-    outline-color: var(--steel-70);
-  }
-}
-
-/* black clear variant */
-
-.black-clear {
-  @include solid-btn(
-      transparent,
-      var(--steel-90),
-      var(--steel-30),
-      var(--steel-40),
-      var(--steel-90),
-      var(--steel-70),
-      var(--steel-70),
-      var(--steel-70),
-      var(--steel-10)
-  )
-}
-
-/* info variant */
-
-.info-clear {
-  @include solid-btn(
-      transparent,
-      var(--steel-90),
-      var(--steel-30),
-      var(--steel-40),
-      var(--brand-sapphire-60),
-      var(--brand-sapphire-30),
-      var(--brand-sapphire-30),
-      var(--brand-sapphire-30),
-      var(--steel-90)
-  )
-}
-
-/* success variant */
-
-.info-success {
-  @include solid-btn(
-      transparent,
-      var(--steel-90),
-      var(--spectrum-green-10),
-      var(--spectrum-green-20),
-      var(--spectrum-green-60),
-      var(--spectrum-green-40),
-      var(--spectrum-green-40),
-      var(--spectrum-green-40),
-      var(--steel-90)
-  )
-}
-
-/* warning variant */
-
-.info-warning {
-  @include solid-btn(
-      transparent,
-      var(--steel-90),
-      var(--spectrum-yellow-10),
-      var(--spectrum-yellow-20),
-      var(--spectrum-yellow-60),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-40),
-      var(--spectrum-yellow-40),
-      var(--steel-90)
-  )
-}
-
-/* error variant */
-
-.info-error {
-  @include solid-btn(
-      transparent,
-      var(--steel-90),
-      var(--spectrum-red-10),
-      var(--spectrum-red-20),
-      var(--spectrum-red-60),
-      var(--spectrum-red-40),
-      var(--spectrum-red-40),
-      var(--spectrum-red-40),
-      var(--steel-90)
-  )
-}
-
-
-.label-wrapper {
+.typography {
   padding: 0 4px;
 }
 
 .compact {
-  @include compactStyles(32px, 4px 4px);
+  padding: 4px;
+  height: 32px;
 
   &.outline {
     outline-width: 1px;
@@ -464,10 +101,252 @@
 }
 
 .extra-compact {
-  @include compactStyles(28px, 4px 4px);
+  padding: 4px;
+  height: 28px;
 
   &.outline {
     outline-width: 1px;
     outline-offset: -1px;
+  }
+}
+
+/* BRAND */
+.brand-primary {
+  background: var(--brand-sapphire-50);
+  color: var(--unique-white);
+  @include badgeStyles(var(--brand-sapphire-40), var(--unique-white));
+
+  &:hover:not(:disabled) {
+    background: var(--brand-sapphire-40);
+    @include badgeStyles(var(--brand-sapphire-50), var(--unique-white));
+  }
+
+  &:active:not(:disabled) {
+    background: var(--brand-sapphire-60);
+    @include badgeStyles(var(--brand-sapphire-40), var(--unique-white));
+  }
+
+  svg {
+    color: var(--unique-white);
+  }
+}
+
+.brand-secondary {
+  background: var(--brand-sapphire-20);
+  color: var(--unique-bluewhite);
+  @include badgeStyles(var(--brand-sapphire-30), var(--steel-90));
+
+  &:hover:not(:disabled) {
+    background: var(--brand-sapphire-10);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--brand-sapphire-30);
+    @include badgeStyles(var(--brand-sapphire-10), var(--steel-90));
+  }
+
+  svg {
+    color: var(--unique-bluewhite);
+  }
+}
+
+/* GREY */
+.grey-primary {
+  background: var(--steel-80);
+  color: var(--steel-10);
+  @include badgeStyles(var(--steel-70), var(--steel-10));
+
+  &:hover:not(:disabled) {
+    background: var(--steel-70);
+    @include badgeStyles(var(--steel-80), var(--steel-10));
+  }
+
+  &:active:not(:disabled) {
+    background: var(--steel-90);
+    @include badgeStyles(var(--steel-70), var(--steel-10));
+  }
+
+  svg {
+    color: var(--steel-10);
+  }
+}
+
+.grey-secondary {
+  background: var(--steel-40);
+  color: var(--steel-90);
+  @include badgeStyles(var(--steel-50), var(--steel-90));
+
+  &:hover:not(:disabled) {
+    background: var(--steel-30);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--steel-50);
+    @include badgeStyles(var(--steel-30), var(--steel-90));
+  }
+
+  svg {
+    color: var(--steel-80);
+  }
+}
+
+/* GHOST */
+.ghost-primary {
+  background: transparent;
+  color: var(--unique-bluewhite);
+  outline: 2px solid var(--brand-sapphire-60);
+  outline-offset: -2px;
+
+  &:hover:not(:disabled) {
+    background: var(--brand-sapphire-10);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--brand-sapphire-20);
+  }
+
+  svg {
+    color: var(--brand-sapphire-60);
+  }
+}
+
+.ghost-secondary {
+  background: transparent;
+  color: var(--brand-sapphire-60);
+
+  &:hover:not(:disabled) {
+    color: var(--steel-90);
+    svg {
+      color: var(--steel-90);
+    }
+  }
+
+  &:active:not(:disabled) {
+    color: var(--brand-sapphire-60);
+    @include badgeStyles(var(--brand-sapphire-10), var(--steel-90));
+  }
+
+  svg {
+    color: var(--brand-sapphire-60);
+  }
+}
+
+/* ERROR */
+.error-primary {
+  background: var(--spectrum-red-50);
+  color: var(--unique-white);
+  @include badgeStyles(var(--spectrum-red-40), var(--unique-white));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-red-40);
+    @include badgeStyles(var(--spectrum-red-50), var(--unique-white));
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-red-60);
+    @include badgeStyles(var(--spectrum-red-40), var(--unique-white));
+  }
+
+  svg {
+    color: var(--unique-white);
+  }
+}
+
+.error-secondary {
+  background: var(--spectrum-red-20);
+  color: var(--steel-90);
+  @include badgeStyles(var(--spectrum-red-40), var(--steel-90));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-red-10);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-red-30);
+    @include badgeStyles(var(--spectrum-red-10), var(--steel-90));
+  }
+
+  svg {
+    color: var(--spectrum-red-60);
+  }
+}
+
+/* WARNING */
+.warning-primary {
+  background: var(--spectrum-yellow-50);
+  color: var(--unique-white);
+  @include badgeStyles(var(--spectrum-yellow-40), var(--unique-white));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-yellow-40);
+    @include badgeStyles(var(--spectrum-yellow-50), var(--unique-white));
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-yellow-60);
+    @include badgeStyles(var(--spectrum-yellow-40), var(--unique-white));
+  }
+
+  svg {
+    color: var(--unique-white);
+  }
+}
+
+.warning-secondary {
+  background: var(--spectrum-yellow-20);
+  color: var(--steel-90);
+  @include badgeStyles(var(--spectrum-yellow-40), var(--steel-90));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-yellow-10);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-yellow-30);
+    @include badgeStyles(var(--spectrum-yellow-10), var(--steel-90));
+  }
+
+  svg {
+    color: var(--spectrum-yellow-60);
+  }
+}
+
+/* SUCCESS */
+.success-primary {
+  background: var(--spectrum-green-50);
+  color: var(--unique-white);
+  @include badgeStyles(var(--spectrum-green-40), var(--unique-white));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-green-40);
+    @include badgeStyles(var(--spectrum-green-50), var(--unique-white));
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-green-60);
+    @include badgeStyles(var(--spectrum-green-40), var(--unique-white));
+  }
+
+  svg {
+    color: var(--unique-white);
+  }
+}
+
+.success-secondary {
+  background: var(--spectrum-green-20);
+  color: var(--steel-90);
+  @include badgeStyles(var(--spectrum-green-40), var(--steel-90));
+
+  &:hover:not(:disabled) {
+    background: var(--spectrum-green-10);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--spectrum-green-30);
+    @include badgeStyles(var(--spectrum-green-10), var(--steel-90));
+  }
+
+  svg {
+    color: var(--spectrum-green-60);
   }
 }

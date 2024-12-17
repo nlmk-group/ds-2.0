@@ -1,6 +1,6 @@
 import { createContext, CSSProperties, ReactNode, RefObject } from 'react';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 
 interface DropdownContextProps {
   /** Флаг, указывающий, открыто ли меню */
@@ -14,7 +14,7 @@ interface DropdownContextProps {
   /** Ссылка на DOM-элемент кнопки */
   buttonRef: RefObject<HTMLButtonElement> | null;
   /** Размер компонента */
-  size?: `${EButtonSizes}`;
+  size?: `${EButtonSize}`;
   /** Кастомные стили меню */
   menuStyle?: CSSProperties;
 }
@@ -26,5 +26,5 @@ export const DropdownContext = createContext<DropdownContextProps>({
   buttonChildren: undefined,
   menuStyle: undefined,
   buttonRef: null,
-  size: EButtonSizes.m
+  size: EButtonSize.m
 });

@@ -66,14 +66,14 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
         )}
         {btnLabel.length > 0 && size === EDnDSizes.l && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="m" variant={getButtonVariant(loading)} fill="solid" onClick={onButtonClick}>
+            <Button size="m" variant={getButtonVariant(loading)} onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>
         )}
         {btnLabel.length > 0 && size === EDnDSizes.m && (
           <div className={styles['btn-wrapper-medium']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="s" variant={getButtonVariant(loading)} fill="solid" onClick={onButtonClick}>
+            <Button size="s" variant={getButtonVariant(loading)} onClick={onButtonClick}>
               {btnLabel}
             </Button>
           </div>

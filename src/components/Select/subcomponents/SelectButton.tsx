@@ -28,8 +28,8 @@ const SelectButton: FC<ISelectButton> = ({ disabled, color, isOpen, toggleDropdo
           <IconChevronArrowDownOutlined24 color={colorIconHelper()} />
         </div>
       }
-      variant="primary"
-      fill="clear"
+      color="ghost"
+      variant="secondary"
       size="s"
       onClick={toggleDropdown}
       className={clsx(styles.select__arrow, {

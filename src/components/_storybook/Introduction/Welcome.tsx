@@ -110,22 +110,16 @@ export const WelcomePage = () => {
           </Typography>
           <div className={clsx(styles['description-buttons'], styles['description-buttons--primary'])}>
             <Link href="https://www.npmjs.com/package/@nlmk/ds-2.0" target="_blank" className={styles.links}>
-              <Button startIcon={<StarSvgIcon />} variant="primary">
-                NPM
-              </Button>
+              <Button startIcon={<StarSvgIcon />}>NPM</Button>
             </Link>
             <Link href="https://github.com/nlmk-group/ds-2.0" target="_blank" className={styles.links}>
-              <Button startIcon={<GitHubSvgIcon />} variant="primary">
-                Github
-              </Button>
+              <Button startIcon={<GitHubSvgIcon />}>Github</Button>
             </Link>
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
               <Button startIcon={<WebSvgIcon />}>ДС</Button>
             </Link>
             <Link href="https://www.figma.com/@nlmk" target="_blank" className={styles.links}>
-              <Button startIcon={<FigmaLogoSvgIcon />} variant="primary">
-                UI-Kit
-              </Button>
+              <Button startIcon={<FigmaLogoSvgIcon />}>UI-Kit</Button>
             </Link>
           </div>
         </div>

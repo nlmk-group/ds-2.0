@@ -1,10 +1,6 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 
-import { EButtonFill, EButtonSizes, EButtonVariant } from './enums';
-
-export type TButtonSize = `${EButtonSizes}`;
-export type TButtonVariant = `${EButtonVariant}`;
-export type TButtonFill = `${EButtonFill}`;
+import { EButtonColor, EButtonSize, EButtonVariant } from './enums';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -35,7 +31,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Размер кнопки
    */
-  size?: `${EButtonSizes}`;
+  size?: `${EButtonSize}`;
 
   /**
    * Вариант стиля кнопки
@@ -45,7 +41,12 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Тип заливки кнопки
    */
-  fill?: `${EButtonFill}`;
+  color?: `${EButtonColor}`;
+
+  /**
+   * Контент кнопки
+   */
+  children?: ReactNode;
 
   /**
    * Дополнительный CSS класс для кнопки
@@ -53,7 +54,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 
   /**
-   * Контент кнопки
+   * Inline стили для кастомизации компонента
    */
-  children?: ReactNode;
+  style?: CSSProperties;
 }

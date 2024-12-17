@@ -33,76 +33,76 @@ const Tabs: FC<ITabsProps> &
   Record<'Tab', FC<ITabProps>> &
   Record<'Tooltip', FC<ITooltipProps>> &
   Record<'Icon', FC<TIconProps>> = ({ children, className, scrollable }) => {
-    const tabsContainerRef = useRef<HTMLDivElement>(null);
-    const [isScrolledLeft, setIsScrolledLeft] = useState(true);
-    const [isScrolledRight, setIsScrolledRight] = useState(false);
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const [isScrolledLeft, setIsScrolledLeft] = useState(true);
+  const [isScrolledRight, setIsScrolledRight] = useState(false);
 
-    const scrollAmount = 200;
-    // TODO: обсудить решение
-    // const scrollAmount = tabsContainerRef.current?.clientWidth || 200;
+  const scrollAmount = 200;
+  // TODO: обсудить решение
+  // const scrollAmount = tabsContainerRef.current?.clientWidth || 200;
 
-    const scrollLeft = () => {
-      if (tabsContainerRef.current) {
-        tabsContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      }
-    };
-
-    const scrollRight = () => {
-      if (tabsContainerRef.current) {
-        tabsContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
-    };
-
-    const handleScroll = () => {
-      if (tabsContainerRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = tabsContainerRef.current;
-        const maxScrollLeft = scrollWidth - clientWidth;
-
-        setIsScrolledLeft(scrollLeft <= 0);
-        setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
-      }
-    };
-
-    useEffect(() => {
-      handleScroll();
-
-      window.addEventListener('resize', handleScroll);
-
-      return () => {
-        window.removeEventListener('resize', handleScroll);
-      };
-    }, []);
-
-    return (
-      <div className={clsx(styles['tabs-container'], className)}>
-        {scrollable && !isScrolledLeft && (
-          <Button
-            variant="primary"
-            fill="clear"
-            size="s"
-            className={styles['scroll-arrow-left']}
-            onClick={scrollLeft}
-            iconButton={<IconChevronArrowLeftOutlined24 />}
-          />
-        )}
-        <div className={clsx({ [styles.scrollable]: scrollable })} onScroll={handleScroll} ref={tabsContainerRef}>
-          <div className={clsx(styles['tabs-wrapper'], { [styles['tabs-wrapper__scrollable']]: scrollable })}>
-            {children}
-          </div>
-        </div>
-        {scrollable && !isScrolledRight && (
-          <Button
-            variant="primary"
-            fill="clear"
-            size="s"
-            className={styles['scroll-arrow-right']}
-            onClick={scrollRight}
-            iconButton={<IconChevronArrowRightOutlined24 />}
-          />
-        )}
-      </div>
-    );
+  const scrollLeft = () => {
+    if (tabsContainerRef.current) {
+      tabsContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
   };
+
+  const scrollRight = () => {
+    if (tabsContainerRef.current) {
+      tabsContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const handleScroll = () => {
+    if (tabsContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = tabsContainerRef.current;
+      const maxScrollLeft = scrollWidth - clientWidth;
+
+      setIsScrolledLeft(scrollLeft <= 0);
+      setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  return (
+    <div className={clsx(styles['tabs-container'], className)}>
+      {scrollable && !isScrolledLeft && (
+        <Button
+          color="ghost"
+          variant="secondary"
+          size="s"
+          className={styles['scroll-arrow-left']}
+          onClick={scrollLeft}
+          iconButton={<IconChevronArrowLeftOutlined24 />}
+        />
+      )}
+      <div className={clsx({ [styles.scrollable]: scrollable })} onScroll={handleScroll} ref={tabsContainerRef}>
+        <div className={clsx(styles['tabs-wrapper'], { [styles['tabs-wrapper__scrollable']]: scrollable })}>
+          {children}
+        </div>
+      </div>
+      {scrollable && !isScrolledRight && (
+        <Button
+          color="ghost"
+          variant="secondary"
+          size="s"
+          className={styles['scroll-arrow-right']}
+          onClick={scrollRight}
+          iconButton={<IconChevronArrowRightOutlined24 />}
+        />
+      )}
+    </div>
+  );
+};
 
 Tabs.Tab = Tab;
 Tabs.Tooltip = Tooltip;

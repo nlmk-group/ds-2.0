@@ -26,7 +26,7 @@ import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
 | disabled       | boolean       | false          | Отключает кнопку и возможность открытия меню |
 | className      | string        | -              | Дополнительный класс для кнопки              |
 | buttonChildren | ReactNode     | -              | Содержимое кнопки                            |
-| size           | EButtonSizes  | EButtonSizes.m | Размер кнопки и меню                         |
+| size           | EButtonSize  | EButtonSize.m | Размер кнопки и меню                         |
 | menuStyle      | CSSProperties | -              | Кастомные стили кнопки.                      |
 
 ### Стили для компонента `Dropdown`

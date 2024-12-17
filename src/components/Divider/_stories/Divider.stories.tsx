@@ -105,8 +105,6 @@ export const DividerCustomClassName = (argTypes: IDividerProps): ReactNode => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
-            variant="primary"
-            fill="solid"
             size="m"
             className={style['btn-divider-handler']}
             iconButton={<Icon name="IconChemical24" containerSize={16} htmlColor="var(--unique-white)" />}
@@ -152,7 +150,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
         <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
         <Button
           variant="primary"
-          fill="clear"
+          color="ghost"
           iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}
         />
         <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
@@ -166,7 +164,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
             variant="primary"
-            fill="clear"
+            color="ghost"
             iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}
           />
         </div>

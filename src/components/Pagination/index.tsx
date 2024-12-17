@@ -104,7 +104,12 @@ const Pagination: FC<IPaginationProps> = ({
         {withSelect && (
           <div className={styles.show}>
             <div className={styles.showTitle}>Отображать</div>
-            <SimpleSelect value={elementsPerPage?.toString()} onChange={handlePageSizeChange} withPortal className={styles.select}>
+            <SimpleSelect
+              value={elementsPerPage?.toString()}
+              onChange={handlePageSizeChange}
+              withPortal
+              className={styles.select}
+            >
               {pageSizes.map(pageSize => (
                 <OptionItem key={pageSize} value={pageSize.toString()} label={pageSize.toString()}>
                   <Typography variant="Body1-Medium">{pageSize} записей</Typography>
@@ -118,8 +123,8 @@ const Pagination: FC<IPaginationProps> = ({
             <Button
               className={clsx(styles.chevron, styles.left)}
               startIcon={<IconChevronArrowLeftOutlined24 />}
-              variant="grey"
-              fill="clear"
+              color="ghost"
+              variant="secondary"
               size="xs"
               onClick={handlePrevPage}
               disabled={currentPage <= 1}
@@ -139,8 +144,8 @@ const Pagination: FC<IPaginationProps> = ({
             <Button
               className={clsx(styles.chevron, styles.right)}
               endIcon={<IconChevronArrowRightOutlined24 />}
-              variant="grey"
-              fill="clear"
+              color="ghost"
+              variant="secondary"
               size="xs"
               onClick={handleNextPage}
               disabled={currentPage >= maxPageCount}

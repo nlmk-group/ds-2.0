@@ -39,8 +39,8 @@ const UserControl: FC<IUserControlProps> = ({
       {!isVertical && handler && (
         <Button
           size="s"
-          variant="primary"
-          fill="clear"
+          color="ghost"
+          variant="secondary"
           onClick={handler}
           className={styles['action-button']}
           iconButton={<Icon name={icon} htmlColor="var(--unique-white)" />}

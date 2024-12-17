@@ -1,10 +1,14 @@
-import React, { StrictMode, useState } from 'react';
+import React, { StrictMode, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { previousDay } from 'date-fns';
+
+import { IAutocompleteValue } from './components/Autocomplete/types';
 import Dropdown from './components/Dropdown';
 import MenuItem from './components/Dropdown/subcomponents/DropdownMenuItem';
 
 import {
+  Autocomplete,
   Box,
   Button,
   DatePicker,
@@ -114,6 +118,50 @@ export const TestDatePicker = (): JSX.Element => {
   );
 };
 
+export const TestAutocomplete = (): JSX.Element => {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  const CustomAutocompleteItem = (item: IAutocompleteValue) => {
+    return (
+      <Box key={item.id} gap={8} alignItems="center" pl={8} pt={8}>
+        <Icon name="IconPlaylistAddMenuOutlined24" />
+        <Typography variant="Subheading3">Option {item.label}</Typography>
+      </Box>
+    );
+  };
+
+  const options = useMemo<IAutocompleteValue[]>(
+    () => [
+      ...Array.from({ length: 8 }).map((_, index) => ({
+        id: index,
+        label: `Заголовок_${index}`,
+        value: `value_${index}`
+      })),
+      { id: 8, label: 'Disabled заголовок', value: 'value_8', disabled: true }
+    ],
+    []
+  );
+
+  return (
+    <Box gap={8} flexDirection="column">
+      <Typography>Выбранное значение: {selected}</Typography>
+      <Autocomplete
+        selected={options[0]}
+        items={options}
+        renderLabel={item => <CustomAutocompleteItem {...item} />}
+        nameGetter={({ label }) => label}
+        onChange={item => setSelected(item?.value ?? null)}
+        label="Селект с поиском"
+        showTooltip={true}
+        size="s"
+        onFocus={e => console.log(`onFocus event, input value: ${e.target.value}`)}
+        onBlur={e => console.log(`onBlur event, input value: ${e.target.value}`)}
+        onInputEnd={value => console.log(`show value with delay 500ms: ${value}`)}
+      />
+    </Box>
+  );
+};
+
 const SpinnerTest = (): JSX.Element => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -125,7 +173,8 @@ const SpinnerTest = (): JSX.Element => {
 root.render(
   <StrictMode>
     <div className="development-block">
-      <SpinnerTest />
+      {/* <SpinnerTest /> */}
+      <TestAutocomplete />
     </div>
   </StrictMode>
 );

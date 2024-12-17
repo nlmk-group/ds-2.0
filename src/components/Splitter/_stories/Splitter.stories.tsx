@@ -1,19 +1,22 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
-
-
 import IconLogotype from '@components/Icon/IconsInternal/Logotype';
-import { Box, Button, IconAddPlusOutlined24, IconDoneCheckOutlined24, IconEyeOutlined24, ImagePicture, OptionItem, SimpleSelect, Typography } from '@components/index';
-
-
+import {
+  Box,
+  Button,
+  IconAddPlusOutlined24,
+  IconDoneCheckOutlined24,
+  IconEyeOutlined24,
+  ImagePicture,
+  OptionItem,
+  SimpleSelect,
+  Typography
+} from '@components/index';
 
 import style from './Splitter.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-
-
 import Splitter from '..';
-
 
 const IMAGE_MOCK_SRC_MNEMO = 'img/mnemo_image_picture_mock.jpg';
 
@@ -92,8 +95,6 @@ export const SplitterDefault = (): ReactNode => {
         <Button
           style={{ pointerEvents: 'none' }}
           size="s"
-          variant="info"
-          fill="clear"
           iconButton={<IconEyeOutlined24 htmlColor="var(--brand-sapphire-60)" />}
         />
       </Box>
@@ -102,27 +103,17 @@ export const SplitterDefault = (): ReactNode => {
           Отображать строк
         </Typography>
         <SimpleSelect value={10} style={{ width: '80px' }}>
-          {options.map((i) => (
+          {options.map(i => (
             <OptionItem key={i} value={i} label={String(i)}>
               {i}
             </OptionItem>
           ))}
         </SimpleSelect>
         <Box justifyContent="center" alignItems="center" gap="16px">
-          <Button
-            startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />}
-            variant="secondary"
-            fill="solid"
-          >
+          <Button startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />} variant="secondary">
             Добавить
           </Button>
-          <Button
-            startIcon={<IconDoneCheckOutlined24 />}
-            variant="primary"
-            fill="solid"
-          >
-            Разрешить
-          </Button>
+          <Button startIcon={<IconDoneCheckOutlined24 />}>Разрешить</Button>
         </Box>
       </Box>
     </div>

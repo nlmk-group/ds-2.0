@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconArticleOutlined16, IconArticleOutlined24, IconArticleOutlined32 } from '@components/index';
 
-import { EButtonFill, EButtonSizes, EButtonVariant } from '../enums';
+import { EButtonColor, EButtonSize, EButtonVariant } from '../enums';
 
 const iconOptions = {
   IconArticleOutlined32: <IconArticleOutlined32 />,
@@ -12,98 +12,69 @@ const iconOptions = {
 
 const argsTypes = {
   children: {
-    description: 'Текст лейбла кнопки.',
-    control: { type: 'text' }
+    description: 'Текстовое содержимое кнопки',
+    control: { type: 'text' },
+    defaultValue: 'Button'
+  },
+  color: {
+    description: `Цветовая схема кнопки – <b>${Object.values(EButtonColor).join(' | ')}</b>`,
+    table: {
+      defaultValue: { summary: 'brand' },
+      type: { summary: 'string' }
+    },
+    options: Object.values(EButtonColor),
+    control: { type: 'select' }
   },
   size: {
-    description: `Размер кнопки – <b>${Object.values(EButtonSizes).join(' | ')}</b>.`,
+    description: `Размер кнопки – <b>${Object.values(EButtonSize).join(' | ')}</b>`,
     table: {
-      defaultValue: {
-        summary: 'm'
-      },
-      type: {
-        summary: 'string'
-      }
+      defaultValue: { summary: 'm' },
+      type: { summary: 'string' }
     },
-    options: Object.values(EButtonSizes),
+    options: Object.values(EButtonSize),
     control: { type: 'select' }
   },
   variant: {
-    description: `Тип кнопки – <b>${Object.values(EButtonVariant).join(' | ')}</b>.`,
+    description: `Вариант отображения – <b>${Object.values(EButtonVariant).join(' | ')}</b>`,
     table: {
-      defaultValue: {
-        summary: 'primary'
-      },
-      type: {
-        summary: 'string'
-      }
+      defaultValue: { summary: 'primary' },
+      type: { summary: 'string' }
     },
     options: Object.values(EButtonVariant),
     control: { type: 'select' }
   },
-  fill: {
-    description: `Тип кнопки заливки – <b>${Object.values(EButtonFill).join(' | ')}</b>.`,
-    table: {
-      defaultValue: {
-        summary: 'primary'
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(EButtonFill),
-    control: { type: 'select' }
-  },
   disabled: {
-    description: 'Условие блокировки доступа к копке и применению стилей.',
+    description: 'Делает кнопку неактивной',
     table: {
-      defaultValue: {
-        summary: 'false'
-      },
-      type: {
-        summary: 'boolean'
-      }
+      defaultValue: { summary: false },
+      type: { summary: 'boolean' }
     },
     control: { type: 'boolean' }
   },
   startIcon: {
-    description: 'Элемент с иконкой, который располагается с левой стороны кнопки.',
+    description: 'Иконка в начале кнопки',
     table: {
-      defaultValue: {
-        summary: ''
-      },
-      type: {
-        summary: 'ReactNode'
-      }
+      type: { summary: 'ReactNode' }
     },
     options: Object.keys(iconOptions),
     control: { type: 'select' },
     mapping: iconOptions
   },
   endIcon: {
-    description: 'Элемент с иконкой, который располагается с правой стороны кнопки.',
+    description: 'Иконка в конце кнопки',
     table: {
-      defaultValue: {
-        summary: ''
-      },
-      type: {
-        summary: 'ReactNode'
-      }
+      type: { summary: 'ReactNode' }
     },
     options: Object.keys(iconOptions),
     control: { type: 'select' },
     mapping: iconOptions
   },
-  iconButton: {
-    description: 'Свойство, позволяющее использовать кнопку-иконку без лейбла.',
-    control: { type: 'string' }
-  },
   startBadge: {
-    description: 'Свойство, позволяющее разместить бейдж слева.',
+    description: 'Бейдж в начале кнопки',
     control: { type: 'text' }
   },
   endBadge: {
-    description: 'Свойство, позволяющее разместить бейдж справа.',
+    description: 'Бейдж в конце кнопки',
     control: { type: 'text' }
   }
 };

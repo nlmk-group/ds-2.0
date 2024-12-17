@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 import { Button, Icon, IconStarFilled32, IconStarOutlined32, ImagePicture, Typography } from '@components/index';
 import { SidebarProperties, SubmenuProperties } from '@components/Sidebar/context';
 import { ESidebarOrientationMapping } from '@components/Sidebar/enums';
@@ -133,9 +133,9 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
               className={clsx(styles['favorite-button'], {
                 [styles['favorite-button--visible']]: (isHovered || (isFavorite && isChildFavorite)) && !disabled
               })}
+              color="ghost"
               variant="secondary"
-              fill="clear"
-              size={EButtonSizes.s}
+              size={EButtonSize.s}
               onClick={() => handleFavorites(id, childrenIds)}
               disabled={disabled}
               iconButton={

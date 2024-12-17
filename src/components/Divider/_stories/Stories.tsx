@@ -204,9 +204,7 @@ export default  App = () =>(
     </div>
     <Divider dashed>
       <Button>
-        <span>
           Нажать
-        </span>
       </Button>
     </Divider>
     <div
@@ -234,7 +232,7 @@ export default  App = () =>(
         dashed
         type="vertical"
       />
-      <Button fill="clear">
+      <Button color="ghost" variant="secondary">
         <IconChemical24 />
       </Button>
     </div>
@@ -249,7 +247,7 @@ export default  App = () =>(
         <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
           Экспертиза
         </span>
-        <Button fill="clear">
+        <Button color="ghost" variant="secondary">
           <IconChemical24 />
         </Button>
       </div>

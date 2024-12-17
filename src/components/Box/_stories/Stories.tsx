@@ -45,7 +45,7 @@ export default App = () => (
       p="var(--8-space)"
     >
       <Button>Заполнить</Button>
-      <Button variant="grey">Посмотреть</Button>
+      <Button color="grey">Посмотреть</Button>
     </Box>
     <br />
     <Divider dashed />

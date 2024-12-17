@@ -1,17 +1,18 @@
 # Button Component
-## Версия компонента v3.1
+
+## Версия компонента v3.3
 
 Button компонент используется для создания кнопок различных стилей и размеров. Он поддерживает различные варианты отображения, включая иконки и бейджи.
 
 ## Использование
 
 ```jsx
-import { Button, EButtonVariant, EButtonFill, EButtonSizes } from '@nlmk/ds-2.0';
+import { Button, EButtonVariant, EButtonColor, EButtonSize } from '@nlmk/ds-2.0';
 
 <Button
   variant={EButtonVariant.primary}
-  fill={EButtonFill.solid}
-  size={EButtonSizes.m}
+  color={EButtonColor.brand}
+  size={EButtonSize.m}
   startIcon={<Icon />}
   endBadge="New"
 >
@@ -21,45 +22,88 @@ import { Button, EButtonVariant, EButtonFill, EButtonSizes } from '@nlmk/ds-2.0'
 
 ## Props
 
-| Prop       | Type             | Default     | Description              |
-|------------|------------------|-------------|--------------------------|
-| children   | ReactNode        | 'undefined' | Содержимое кнопки        |
-| variant    | EButtonVariant   | 'primary'   | Вариант стиля кнопки     |
-| fill       | EButtonFill      | 'solid'     | Тип заливки кнопки       |
-| startIcon  | ReactNode        | -           | Иконка в начале кнопки   |
-| endIcon    | ReactNode        | -           | Иконка в конце кнопки    |
-| startBadge | string \| number | -           | Бейдж в начале кнопки    |
-| endBadge   | string \| number | -           | Бейдж в конце кнопки     |
-| size       | EButtonSizes     | 'm'         | Размер кнопки            |
-| iconButton | ReactNode        | -           | Иконка для кнопки-иконки |
-| className  | string           | -           | Дополнительный CSS класс |
+| Prop       | Type             | Default                | Description              |
+|------------|------------------|------------------------|--------------------------|
+| children   | ReactNode        | -                      | Содержимое кнопки        |
+| variant    | EButtonVariant   | EButtonVariant.primary | Вариант стиля кнопки     |
+| color      | EButtonColor     | EButtonColor.brand     | Цветовая схема кнопки    |
+| size       | EButtonSize      | EButtonSize.m          | Размер кнопки            |
+| startIcon  | ReactNode        | -                      | Иконка в начале кнопки   |
+| endIcon    | ReactNode        | -                      | Иконка в конце кнопки    |
+| startBadge | string \| number | -                      | Бейдж в начале кнопки    |
+| endBadge   | string \| number | -                      | Бейдж в конце кнопки     |
+| iconButton | ReactNode        | -                      | Иконка для кнопки-иконки |
+| className  | string           | -                      | Дополнительный CSS класс |
 
 ## Варианты (EButtonVariant)
 
-- `primary`, `secondary`, `grey`, `black`, `success`, `warning`, `error`, `info`
+- `primary`
+- `secondary`
 
-## Типы заливки (EButtonFill)
+## Цвета (EButtonColor)
 
-- `solid`, `outline`, `clear`
+- `brand` (по умолчанию)
+- `grey`
+- `ghost`
+- `error`
+- `warning`
+- `success`
 
-## Размеры (EButtonSizes)
+## Размеры (EButtonSize)
 
-- `m` - средний (по умолчанию)
-- `s` - маленький
-- `xs` - очень маленький
+- `m` (по умолчанию)
+- `s`
+- `xs`
 
 ## Стилизация
 
+Компонент можно кастомизировать несколькими способами:
+
+### 1. CSS классы
+
 Компонент использует CSS модули для стилизации. Основные классы:
 
-- `.button`: Базовый класс для всех кнопок
-- `.{variant}-{fill}`: Классы для различных комбинаций вариантов и заливок
+- `.button`: Основной класс кнопки
+- `.icon-button`: Класс для кнопки-иконки
+- `.typography`: Стили для текста кнопки
+- `.icon`: Стили для иконок
 - `.compact`, `.extra-compact`: Классы для разных размеров
-- `.icon-button`: Класс для кнопок-иконок
-- `.label-wrapper`: Класс для обертки текста кнопки
 
-Вы можете переопределить эти стили, передав собственный `className`.
+### 2. Data-атрибуты
 
-## Примечание
+Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
 
-Компонент Button расширяет стандартные атрибуты HTML-кнопки, поэтому вы можете использовать любые дополнительные атрибуты, такие как `disabled`, `type`, `onClick` и т.д.
+```css
+/* Стилизация кнопки */
+[data-ui-button] {
+  /* стили */
+}
+
+/* Стилизация текста кнопки */
+[data-ui-button-text] {
+  /* стили */
+}
+
+/* Стилизация иконки */
+[data-ui-button-icon] {
+  /* стили */
+}
+```
+
+### 3. Inline стили
+
+Можно передать объект стилей через проп `style`:
+
+```jsx
+<Button style={{ marginBottom: '16px' }}>Styled button</Button>
+```
+
+## Состояния
+
+- **Обычное**: Базовое состояние кнопки
+- **Наведение**: При наведении меняется цвет фона
+- **Активное**: При нажатии меняется цвет фона
+- **Отключенное**: Кнопка становится неактивной (opacity: 0.5)
+- **С иконкой**: Может содержать иконку в начале или конце
+- **С бейджем**: Может содержать бейдж в начале или конце
+- **Кнопка-иконка**: Отображается только иконка без текста

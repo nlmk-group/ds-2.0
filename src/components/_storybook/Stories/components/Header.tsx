@@ -35,14 +35,14 @@ const Header: FC<HeaderProps> = ({ title, description, isBeta, isStable, figmaLi
       <div className={styles.description}>
         {figmaLink &&
           <Link href={figmaLink} target="_blank" className={styles.link}>
-            <Button variant="grey" fill="outline">
+            <Button color="grey" variant="secondary">
               Figma
             </Button>
           </Link>
         }
         {codeLink && (
           <Link href={codeLink} target="_blank" className={styles.link}>
-            <Button variant="grey" fill="outline">
+            <Button color="grey" variant="secondary">
               Код компонента
             </Button>
           </Link>

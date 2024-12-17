@@ -9,9 +9,11 @@ import {
   IconInsertDriveFileOutlined24,
   IconTaskOutlined24
 } from '@components/index';
-import { clsx } from 'clsx';
 import { Typography } from '@components/index';
+import { clsx } from 'clsx';
+
 import { IFileProps } from './types';
+
 import styles from './File.module.scss';
 
 /**
@@ -65,11 +67,7 @@ const File: FC<IFileProps> = ({
 
   const CheckedIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper-checked']} data-testid="CHECKED_ICON">
-      <Checkbox
-        checked={checkedValue}
-        onChange={onCheckedChange}
-        multiple={indeterminate}
-      />
+      <Checkbox checked={checkedValue} onChange={onCheckedChange} multiple={indeterminate} />
     </div>
   );
 
@@ -90,72 +88,40 @@ const File: FC<IFileProps> = ({
     <div className={clsx(styles.wrapper, className)}>
       <div className={styles['container-info']}>
         <IconHelper />
-        <div
-          className={clsx(
-            styles.title,
-            styles['long-title-wrapper']
-          )}
-          data-testid='FILE_TITLE'
-        >
-          <Typography variant='Body1-Medium' className={styles['long-title']}>
+        <div className={clsx(styles.title, styles['long-title-wrapper'])} data-testid="FILE_TITLE">
+          <Typography variant="Body1-Medium" className={styles['long-title']}>
             {label}
           </Typography>
         </div>
         <div className={styles['controllers-wrapper']}>
           {!addFile && commented && (
-            <div
-              data-testid='COMMENTED_CONTROL'
-              className={styles['control-btn']}
-            >
+            <div data-testid="COMMENTED_CONTROL" className={styles['control-btn']}>
               <Button
-                variant="grey"
-                fill="clear"
+                color="ghost"
+                variant="secondary"
                 onClick={commentedOnClick}
-                iconButton={
-                  <IconCommentChatBubbleFullOutlined24 />
-                }
+                iconButton={<IconCommentChatBubbleFullOutlined24 />}
               />
             </div>
           )}
           {!addFile && saved && (
-            <div
-              data-testid='SAVED_CONTROL'
-              className={styles['control-btn']}
-            >
+            <div data-testid="SAVED_CONTROL" className={styles['control-btn']}>
               <Button
-                variant="primary"
-                fill="clear"
+                color="ghost"
+                variant="secondary"
                 onClick={savedOnClick}
-                iconButton={
-                  <IconDownloadOutlined24 />
-                }
+                iconButton={<IconDownloadOutlined24 />}
               />
             </div>
           )}
           {!addFile && removed && (
-            <div
-              data-testid='REMOVED_CONTROL'
-              className={styles['control-btn']}
-            >
-              <Button
-                variant="grey"
-                fill="clear"
-                onClick={removedOnClick}
-                iconButton={
-                  <IconCloseOutlined24 />
-                }
-              />
+            <div data-testid="REMOVED_CONTROL" className={styles['control-btn']}>
+              <Button color="ghost" variant="secondary" onClick={removedOnClick} iconButton={<IconCloseOutlined24 />} />
             </div>
           )}
           {addFile && (
-            <div
-              className={styles['add-file-btn']}
-              data-testid='ADD_FILE_CONTROL'
-            >
-              <Button
-                variant='secondary'
-                onClick={addFileOnClick}
-              >
+            <div className={styles['add-file-btn']} data-testid="ADD_FILE_CONTROL">
+              <Button variant="secondary" onClick={addFileOnClick}>
                 Добавить файл
               </Button>
             </div>
@@ -164,15 +130,10 @@ const File: FC<IFileProps> = ({
       </div>
       {description.length !== 0 && (
         <div
-          data-testid='FILE_DESCRIPTION'
-          className={clsx(
-            styles.description,
-            !empty && styles['description-space-helper']
-          )}
+          data-testid="FILE_DESCRIPTION"
+          className={clsx(styles.description, !empty && styles['description-space-helper'])}
         >
-          <Typography variant='Body2-Medium'>
-            {description}
-          </Typography>
+          <Typography variant="Body2-Medium">{description}</Typography>
         </div>
       )}
     </div>

@@ -2,85 +2,97 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import { combinedOptions, ICombinedOption } from './helpers';
+import { EButtonColor, EButtonSize, EButtonVariant } from './enums';
 import { Button } from './index';
 
 describe('src/components/Button', () => {
-  const text = 'Some example text';
-  function testFunc(callback: (x: string) => void, flavour: string) {
-    callback(flavour);
-  }
-  const mockCallBack = jest.fn();
-  const { container } = render(<Button onClick={mockCallBack}>{text}</Button>);
-  const button = container.getElementsByTagName('button')[0];
+  const defaultText = 'Button Text';
 
-  // Check render button at DOM
-  test('Кнопка должна корректно отображаться в DOM', () => {
+  test('рендерит кнопку с базовыми пропсами', () => {
+    render(<Button>{defaultText}</Button>);
+    const button = screen.getByRole('button');
+
     expect(button).toBeInTheDocument();
-  });
-
-  // Check enable (default) state for button
-  test('Кнопка по умолчанию должна быть активной (недисабленной)', () => {
+    expect(button).toHaveAttribute('data-ui-button');
+    expect(button).toHaveTextContent(defaultText);
     expect(button).toBeEnabled();
   });
 
-  // Check button label
-  test('Текст внутри кнопки должен соответствовать заданному', () => {
-    expect(button).toHaveTextContent(text);
+  test('поддерживает disabled состояние', () => {
+    render(<Button disabled>{defaultText}</Button>);
+    expect(screen.getByRole('button')).toBeDisabled();
   });
 
-  // Check onCLick event
-  test('При клике на кнопку должен срабатывать колбэк', () => {
-    button.click();
-    testFunc(mockCallBack, 'lemon');
-    expect(mockCallBack).toHaveBeenCalled();
+  test('корректно обрабатывает клики', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>{defaultText}</Button>);
+
+    screen.getByRole('button').click();
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  // Check disabled (default) state for button
-  test('Кнопка может быть отрендерена как деактивированная (с атрибутом disabled)', () => {
-    const { container } = render(<Button disabled />);
-    const button = container.getElementsByTagName('button')[0];
-    expect(button).toBeDisabled();
-    expect(button).toHaveAttribute('disabled');
+  test('рендерит кнопку-иконку', () => {
+    const iconElement = <span data-testid="icon">icon</span>;
+    render(<Button iconButton={iconElement} />);
+
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveClass('icon-button');
   });
 
-  // check button options
-  combinedOptions().forEach((option: ICombinedOption) => {
-    const { variant, fill } = option;
-    test(`Кнопка должна быть отрендерена со стилем ${variant}-${fill}`, () => {
-      const { container } = render(<Button variant={variant} fill={fill} />);
-      const button = container.getElementsByTagName('button')[0];
-      expect(button.classList.contains(`${variant}-${fill}`)).toBeTruthy();
+  test('поддерживает различные размеры', () => {
+    const { rerender } = render(<Button size={EButtonSize.m}>{defaultText}</Button>);
+    expect(screen.getByRole('button')).not.toHaveClass('compact', 'extra-compact');
+
+    rerender(<Button size={EButtonSize.s}>{defaultText}</Button>);
+    expect(screen.getByRole('button')).toHaveClass('compact');
+
+    rerender(<Button size={EButtonSize.xs}>{defaultText}</Button>);
+    expect(screen.getByRole('button')).toHaveClass('extra-compact');
+  });
+
+  test('корректно отображает бейджи', () => {
+    render(
+      <Button startBadge="1" endBadge="2">
+        {defaultText}
+      </Button>
+    );
+
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('2')).toBeInTheDocument();
+  });
+
+  test('поддерживает все цвета и варианты', () => {
+    Object.values(EButtonColor).forEach(color => {
+      Object.values(EButtonVariant).forEach(variant => {
+        const { container } = render(
+          <Button color={color} variant={variant}>
+            {defaultText}
+          </Button>
+        );
+
+        expect(container.firstChild).toHaveClass(`${color}-${variant}`);
+      });
     });
   });
 
-  // Check icon render
-  test('Кнопка должна корректно отображать иконку', () => {
-    const { container } = render(<Button iconButton={<span className="material-icons-outlined">ok</span>}>ok</Button>);
-    const button = container.getElementsByTagName('button')[0];
-    const span = container.getElementsByTagName('span')[0];
-    expect(button).toContainElement(span);
+  test('корректно отображает иконки в начале и конце', () => {
+    const startIcon = <span data-testid="start-icon">start</span>;
+    const endIcon = <span data-testid="end-icon">end</span>;
+
+    render(
+      <Button startIcon={startIcon} endIcon={endIcon}>
+        {defaultText}
+      </Button>
+    );
+
+    expect(screen.getByTestId('start-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('end-icon')).toBeInTheDocument();
   });
 
-  // Check badge render
-  test('Кнопка должна корректно отображать бейдж в конце кнопки', () => {
-    const badgeContent = 1;
-    render(<Button endBadge={badgeContent}>ok</Button>);
-    expect(screen.getByTestId('BADGE_WRAPPER')).toBeInTheDocument();
-    expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeContent.toString());
-  });
+  test('поддерживает дополнительные классы', () => {
+    const customClass = 'custom-class';
+    render(<Button className={customClass}>{defaultText}</Button>);
 
-  // Check compact button prop
-  test('Кнопка должна поддерживать отображение в компактном размере', () => {
-    const { container } = render(<Button size="s" />);
-    const button = container.getElementsByTagName('button')[0];
-    expect(button).toHaveClass('compact');
-  });
-
-  // Check extra compact button prop
-  test('Кнопка должна поддерживать отображение в экстра компактном размере', () => {
-    const { container } = render(<Button size="xs" />);
-    const button = container.getElementsByTagName('button')[0];
-    expect(button).toHaveClass('extra-compact');
+    expect(screen.getByRole('button')).toHaveClass(customClass);
   });
 });

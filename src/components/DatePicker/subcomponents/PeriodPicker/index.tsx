@@ -39,19 +39,22 @@ export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
       <Button
         className={styles['btn-icon-arrow']}
         onClick={onLeftClick}
-        fill="clear"
-        variant="grey"
+        color="ghost"
+        variant="secondary"
         iconButton={<IconChevronArrowLeftOutlined24 data-testid="left-panel-icon" />}
       />
       <div data-testid="level-switcher" className={styles.content} onClick={handleClick}>
         <div className={styles.contentText}>
-          <Typography variant="Body1-Medium" color="var(--steel-90)">{children}</Typography>
+          <Typography variant="Body1-Medium" color="var(--steel-90)">
+            {children}
+          </Typography>
         </div>
         {shouldShowIcon && (
           <Button
             className={styles['btn-icon-middle']}
             onClick={onLeftClick}
-            fill="clear"
+            color="ghost"
+            variant="secondary"
             iconButton={<IconChevronArrowDownOutlined24 data-testid="middle-panel-icon" />}
           />
         )}
@@ -59,8 +62,8 @@ export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
       <Button
         className={styles['btn-icon-arrow']}
         onClick={onRightClick}
-        fill="clear"
-        variant="grey"
+        color="ghost"
+        variant="secondary"
         iconButton={<IconChevronArrowRightOutlined24 data-testid="right-panel-icon" />}
       />
     </div>

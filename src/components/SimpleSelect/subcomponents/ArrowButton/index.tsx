@@ -32,8 +32,8 @@ const ArrowButton: FC<IArrowButtonProps> = ({
           <IconChevronArrowDownOutlined24 color={getIconColor()} />
         </div>
       }
-      variant="primary"
-      fill="clear"
+      color="ghost"
+      variant="secondary"
       size="s"
       onClick={toggleDropdown}
       className={clsx(styles.button, {

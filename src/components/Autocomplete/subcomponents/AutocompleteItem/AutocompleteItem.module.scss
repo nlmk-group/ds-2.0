@@ -1,0 +1,36 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  width: 100%;
+  height: var(--40-size);
+
+  &:last-child,
+  &:first-child {
+    padding-bottom: 0px;
+    height: var(--40-size);
+  }
+
+  &-position {
+    position: relative;
+    bottom: 2px;
+  }
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+
+  &:active {
+    background-color: var(--brand-sapphire-10);
+  }
+
+  &.disabled {
+    opacity: 50%;
+    cursor: default;
+  }
+
+  &.highlighted {
+    background-color: var(--steel-30);
+  }
+}

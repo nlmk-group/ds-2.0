@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 import { Box, Dropdown, DropdownMenuItem, Typography } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
@@ -58,7 +58,7 @@ export const DefaultDropdown = (args: IDropdownProps): ReactNode => {
 };
 DefaultDropdown.args = {
   buttonChildren: 'Dropdown Button',
-  size: EButtonSizes.m,
+  size: EButtonSize.m,
   menuStyle: { width: '200px' },
 };
 
@@ -84,7 +84,7 @@ export const PortalDropdown = (args: IDropdownProps): ReactNode => {
 };
 PortalDropdown.args = {
   buttonChildren: 'Dropdown Button',
-  size: EButtonSizes.m,
+  size: EButtonSize.m,
   menuStyle: { width: '200px' },
   withPortal: true
 };

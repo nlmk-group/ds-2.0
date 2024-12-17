@@ -137,8 +137,8 @@ const Snackbar: FC<ISnackbarProps> = ({
         {actionButton && (
           <Button
             data-testid="SNACKBAR_ACTION"
-            variant="primary"
-            fill="clear"
+            color="ghost"
+            variant="secondary"
             size="xs"
             onClick={actionButton}
             className={clsx(
@@ -167,8 +167,8 @@ const Snackbar: FC<ISnackbarProps> = ({
           <Button
             style={{ padding: '0' }}
             data-testid="SNACKBAR_CLOSE"
-            variant="primary"
-            fill="clear"
+            color="ghost"
+            variant="secondary"
             size="xs"
             onClick={onClose}
             className={clsx(

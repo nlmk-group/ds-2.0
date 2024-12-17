@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -109,12 +109,12 @@ const Drawer: FC<IDrawerProps> = ({
                   htmlColor={overlay ? 'var(--ac-overlay-button)' : 'var(--ac-button-black-outline-default-text)'}
                 />
               }
-              variant="primary"
-              fill="clear"
+              color="ghost"
+              variant="secondary"
               className={clsx(styles.drawerClose, styles[position])}
               onClick={handleClose}
               aria-label="Close"
-              size={EButtonSizes.s}
+              size={EButtonSize.s}
               style={dynamicStyleForCloseButton}
             />
           </div>

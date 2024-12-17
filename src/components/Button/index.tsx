@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import { EBadgeSizes } from '@components/Badge/enums';
-import { ButtonBadge } from '@components/Button/subcomponents';
-import Typography from '@components/Typography';
+import { Typography } from '@components/index';
 import { ETypographyVariants } from '@components/Typography/enums';
 import { clsx } from 'clsx';
 
@@ -10,22 +8,24 @@ import { IButtonProps } from './types';
 
 import styles from './Button.module.scss';
 
-import { EButtonFill, EButtonNodesPosition, EButtonSizes, EButtonVariant } from './enums';
+import { EButtonColor, EButtonNodesPosition, EButtonSize, EButtonVariant } from './enums';
+import { ButtonBadge } from './subcomponents';
 
 /**
  * Компонент Button для создания кнопок различных стилей и размеров.
  * @component
  * @param {Object} props - Свойства компонента Button.
- * @param {ReactNode} props.children - Содержимое кнопки.
+ * @param {ReactNode} [props.children] - Содержимое кнопки.
  * @param {EButtonVariant} [props.variant=EButtonVariant.primary] - Вариант стиля кнопки.
- * @param {EButtonFill} [props.fill=EButtonFill.solid] - Тип заливки кнопки.
+ * @param {EButtonColor} [props.color=EButtonColor.brand] - Цветовая схема кнопки.
  * @param {ReactNode} [props.startIcon] - Иконка в начале кнопки.
  * @param {ReactNode} [props.endIcon] - Иконка в конце кнопки.
  * @param {string|number} [props.startBadge] - Бейдж в начале кнопки.
  * @param {string|number} [props.endBadge] - Бейдж в конце кнопки.
- * @param {EButtonSizes} [props.size=EButtonSizes.m] - Размер кнопки.
+ * @param {EButtonSize} [props.size=EButtonSize.m] - Размер кнопки.
  * @param {ReactNode} [props.iconButton] - Иконка для кнопки-иконки.
  * @param {string} [props.className] - Дополнительный CSS класс.
+ * @param {CSSProperties} [props.style] - Inline стили для кастомизации компонента.
  * @returns {JSX.Element} Компонент Button.
  */
 
@@ -34,66 +34,78 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     {
       children,
       variant = EButtonVariant.primary,
-      fill = variant === EButtonVariant.info ? EButtonFill.clear : EButtonFill.solid,
+      color = EButtonColor.brand,
       startIcon,
       endIcon,
-      startBadge,
-      endBadge,
-      size = EButtonSizes.m,
+      startBadge = null,
+      endBadge = null,
+      size = EButtonSize.m,
       iconButton,
       className,
+      style,
       ...props
     },
     ref
   ): JSX.Element => {
-    const sizeClasses = {
-      s: { default: styles.compact, icon: styles['icon-button-compact'] },
-      xs: { default: styles['extra-compact'], icon: styles['icon-button-extra-compact'] },
-      m: { default: null, icon: null }
-    };
+    const config = {
+      size: {
+        [EButtonSize.m]: {
+          typographyVariant: ETypographyVariants['Body1-Bold'],
+          buttonClass: null,
+          iconButtonClass: null
+        },
+        [EButtonSize.s]: {
+          typographyVariant: ETypographyVariants['Body1-Bold'],
+          buttonClass: styles.compact,
+          iconButtonClass: styles['icon-button-compact']
+        },
+        [EButtonSize.xs]: {
+          typographyVariant: ETypographyVariants['Body2-Bold'],
+          buttonClass: styles['extra-compact'],
+          iconButtonClass: styles['icon-button-extra-compact']
+        }
+      }
+    } as const;
 
     const getIconClass = (position: EButtonNodesPosition) =>
       clsx(styles.icon, styles[`icon--${position}--size-${size}`]);
 
-    const typographyVariants: Record<EButtonSizes, ETypographyVariants> = {
-      [EBadgeSizes.m]: ETypographyVariants['Body1-Bold'],
-      [EBadgeSizes.s]: ETypographyVariants['Body1-Bold'],
-      [EBadgeSizes.xs]: ETypographyVariants['Caption-Bold']
-    };
-
     const classes = clsx(
       className,
-      styles[`${variant}-${fill}`],
       styles.button,
-      fill === EButtonFill.outline && styles.outline,
+      styles[`${color}-${variant}`],
       iconButton && styles['icon-button'],
-      sizeClasses[size].default,
-      iconButton && sizeClasses[size].icon
+      config.size[size].buttonClass,
+      iconButton && config.size[size].iconButtonClass
     );
 
     if (iconButton) {
       return (
-        <button ref={ref} className={classes} {...props}>
+        <button ref={ref} className={classes} data-ui-icon-button {...props}>
           {iconButton}
         </button>
       );
     }
 
     return (
-      <button ref={ref} className={classes} {...props}>
+      <button ref={ref} className={classes} data-ui-button style={style} {...props}>
         {startBadge != null && (
-          <span className={getIconClass(EButtonNodesPosition.left)}>
-            <ButtonBadge {...{ badge: startBadge, variant, fill, size }} />
+          <span className={getIconClass(EButtonNodesPosition.left)} data-ui-button-badge-left>
+            <ButtonBadge badge={startBadge} size={size} />
           </span>
         )}
         {startIcon && <span className={getIconClass(EButtonNodesPosition.left)}>{startIcon}</span>}
-        <Typography className={styles['label-wrapper']} variant={typographyVariants[size]}>
+        <Typography
+          className={styles.typography}
+          variant={config.size[size].typographyVariant}
+          data-ui-button-text
+        >
           {children}
         </Typography>
         {endIcon && <span className={getIconClass(EButtonNodesPosition.right)}>{endIcon}</span>}
         {endBadge != null && (
-          <span className={getIconClass(EButtonNodesPosition.right)}>
-            <ButtonBadge {...{ badge: endBadge, variant, fill, size }} />
+          <span className={getIconClass(EButtonNodesPosition.right)} data-ui-button-badge-right>
+            <ButtonBadge badge={endBadge} size={size} />
           </span>
         )}
       </button>

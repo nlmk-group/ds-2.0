@@ -12,8 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=41-2&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=41-2&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -90,7 +89,9 @@ import { Alert, Button, IconDeleteBinOutlined24 } from '@nlmk/ds-2.0';
 const App = () => (
   <Alert severity="info"
     action={
-      <Button fill="clear"
+      <Button 
+        color="ghost"
+        variant="secondary"
         iconButton={
           <IconDeleteBinOutlined24
             htmlColor='var(--ac-alert-info-text)' />

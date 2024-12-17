@@ -1,10 +1,11 @@
 /**
- * @type {enum} EButtonSizes
+ * @type {enum} EButtonSize
  * @type {enum} EButtonVariant
- * @type {enum} EButtonFill
+ * @type {enum} EButtonColor
+ * @type {enum} EButtonNodesPosition
  */
 
-export enum EButtonSizes {
+export enum EButtonSize {
   m = 'm',
   s = 's',
   xs = 'xs'
@@ -15,19 +16,16 @@ export enum EButtonNodesPosition {
   right = 'right'
 }
 
-export enum EButtonVariant {
-  primary = 'primary',
-  secondary = 'secondary',
+export enum EButtonColor {
+  brand = 'brand',
   grey = 'grey',
-  black = 'black',
-  info = 'info'
+  ghost = 'ghost',
+  error = 'error',
+  warning = 'warning',
+  success = 'success'
 }
 
-export enum EButtonFill {
-  solid = 'solid',
-  outline = 'outline',
-  clear = 'clear',
-  success = 'success',
-  warning = 'warning',
-  error = 'error'
+export enum EButtonVariant {
+  primary = 'primary',
+  secondary = 'secondary'
 }

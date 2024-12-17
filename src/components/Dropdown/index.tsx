@@ -1,6 +1,6 @@
 import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useMemo, useRef, useState } from 'react';
 
-import { EButtonSizes } from '@components/Button/enums';
+import { EButtonSize } from '@components/Button/enums';
 import { Button, IconChevronArrowDownOutlined16, IconChevronArrowDownOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -20,7 +20,7 @@ import ReactDOM from 'react-dom';
  * @param {boolean} [props.disabled=false] - Отключает кнопку и возможность открытия меню.
  * @param {ReactNode} props.buttonChildren - Содержимое кнопки.
  * @param {string} [props.className] - Дополнительный класс для кнопки.
- * @param {EButtonSizes} [props.size=EButtonSizes.m] - Размер кнопки и меню.
+ * @param {EButtonSize} [props.size=EButtonSize.m] - Размер кнопки и меню.
  * @param {CSSProperties} [props.menuStyle] - Размер кнопки и меню.
  */
 
@@ -29,7 +29,7 @@ const Dropdown: FC<IDropdownProps> = ({
   disabled = false,
   buttonChildren,
   className,
-  size = EButtonSizes.m,
+  size = EButtonSize.m,
   menuStyle,
   withPortal = false,
   portalContainerId = 'root'
@@ -38,7 +38,7 @@ const Dropdown: FC<IDropdownProps> = ({
   disabled?: boolean;
   buttonChildren?: ReactNode;
   className?: string;
-  size?: `${EButtonSizes}`;
+  size?: `${EButtonSize}`;
   menuStyle?: CSSProperties;
   withPortal?: boolean;
   portalContainerId?: string;
@@ -57,7 +57,7 @@ const Dropdown: FC<IDropdownProps> = ({
       setIsOpen(prev => !prev);
     }
   };
-  const ChevronIcon = size === EButtonSizes.xs ? IconChevronArrowDownOutlined16 : IconChevronArrowDownOutlined24;
+  const ChevronIcon = size === EButtonSize.xs ? IconChevronArrowDownOutlined16 : IconChevronArrowDownOutlined24;
   const Chevron = (
     <div className={clsx(styles['icon-rotate'], { [styles['icon-rotate-open']]: isOpen })}>
       <ChevronIcon />

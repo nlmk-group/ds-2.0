@@ -1,5 +1,5 @@
 import { default as React, ReactNode } from '../../../../node_modules/react';
-import { EButtonSizes } from '../../Button/enums';
+import { EButtonSize } from '../../Button/enums';
 import { IDropdownProps } from '../types';
 
 declare const _default: {
@@ -28,7 +28,7 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: EButtonSizes[];
+            options: EButtonSize[];
             control: {
                 type: string;
             };
@@ -115,7 +115,7 @@ export declare const DefaultDropdown: {
     (args: IDropdownProps): ReactNode;
     args: {
         buttonChildren: string;
-        size: EButtonSizes;
+        size: EButtonSize;
         menuStyle: {
             width: string;
         };
@@ -126,7 +126,7 @@ export declare const PortalDropdown: {
     (args: IDropdownProps): ReactNode;
     args: {
         buttonChildren: string;
-        size: EButtonSizes;
+        size: EButtonSize;
         menuStyle: {
             width: string;
         };

@@ -1,9 +1,7 @@
-import { TButtonFill, TButtonSize, TButtonVariant } from '../../types';
+import { EButtonSize } from '../../enums';
 
-export interface IButtonBadge {
-    size: TButtonSize;
-    variant: TButtonVariant;
-    fill: TButtonFill;
+export interface IButtonBadgeProps {
+    size: `${EButtonSize}`;
     badge: string | number;
 }
 //# sourceMappingURL=types.d.ts.map

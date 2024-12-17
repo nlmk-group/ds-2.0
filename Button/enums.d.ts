@@ -1,4 +1,4 @@
-export declare enum EButtonSizes {
+export declare enum EButtonSize {
     m = "m",
     s = "s",
     xs = "xs"
@@ -7,19 +7,16 @@ export declare enum EButtonNodesPosition {
     left = "left",
     right = "right"
 }
+export declare enum EButtonColor {
+    brand = "brand",
+    grey = "grey",
+    ghost = "ghost",
+    error = "error",
+    warning = "warning",
+    success = "success"
+}
 export declare enum EButtonVariant {
     primary = "primary",
-    secondary = "secondary",
-    grey = "grey",
-    black = "black",
-    info = "info"
-}
-export declare enum EButtonFill {
-    solid = "solid",
-    outline = "outline",
-    clear = "clear",
-    success = "success",
-    warning = "warning",
-    error = "error"
+    secondary = "secondary"
 }
 //# sourceMappingURL=enums.d.ts.map

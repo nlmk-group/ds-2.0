@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode, RefObject } from '../../../node_modules/react';
-import { EButtonSizes } from '../Button/enums';
+import { EButtonSize } from '../Button/enums';
 
 interface DropdownContextProps {
     isOpen: boolean;
@@ -7,7 +7,7 @@ interface DropdownContextProps {
     disabled: boolean;
     buttonChildren?: ReactNode;
     buttonRef: RefObject<HTMLButtonElement> | null;
-    size?: `${EButtonSizes}`;
+    size?: `${EButtonSize}`;
     menuStyle?: CSSProperties;
 }
 export declare const DropdownContext: import('../../../node_modules/react').Context<DropdownContextProps>;

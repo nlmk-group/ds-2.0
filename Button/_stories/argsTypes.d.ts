@@ -1,9 +1,25 @@
 import { default as React } from '../../../../node_modules/react';
-import { EButtonFill, EButtonSizes, EButtonVariant } from '../enums';
+import { EButtonColor, EButtonSize, EButtonVariant } from '../enums';
 
 declare const argsTypes: {
     children: {
         description: string;
+        control: {
+            type: string;
+        };
+        defaultValue: string;
+    };
+    color: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: EButtonColor[];
         control: {
             type: string;
         };
@@ -18,7 +34,7 @@ declare const argsTypes: {
                 summary: string;
             };
         };
-        options: EButtonSizes[];
+        options: EButtonSize[];
         control: {
             type: string;
         };
@@ -38,26 +54,11 @@ declare const argsTypes: {
             type: string;
         };
     };
-    fill: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: EButtonFill[];
-        control: {
-            type: string;
-        };
-    };
     disabled: {
         description: string;
         table: {
             defaultValue: {
-                summary: string;
+                summary: boolean;
             };
             type: {
                 summary: string;
@@ -70,9 +71,6 @@ declare const argsTypes: {
     startIcon: {
         description: string;
         table: {
-            defaultValue: {
-                summary: string;
-            };
             type: {
                 summary: string;
             };
@@ -90,9 +88,6 @@ declare const argsTypes: {
     endIcon: {
         description: string;
         table: {
-            defaultValue: {
-                summary: string;
-            };
             type: {
                 summary: string;
             };
@@ -105,12 +100,6 @@ declare const argsTypes: {
             IconArticleOutlined32: React.JSX.Element;
             IconArticleOutlined24: React.JSX.Element;
             IconArticleOutlined16: React.JSX.Element;
-        };
-    };
-    iconButton: {
-        description: string;
-        control: {
-            type: string;
         };
     };
     startBadge: {

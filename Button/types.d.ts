@@ -1,19 +1,17 @@
-import { ButtonHTMLAttributes, ReactNode } from '../../../node_modules/react';
-import { EButtonFill, EButtonSizes, EButtonVariant } from './enums';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode } from '../../../node_modules/react';
+import { EButtonColor, EButtonSize, EButtonVariant } from './enums';
 
-export type TButtonSize = `${EButtonSizes}`;
-export type TButtonVariant = `${EButtonVariant}`;
-export type TButtonFill = `${EButtonFill}`;
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     startBadge?: string | number;
     endBadge?: string | number;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     iconButton?: ReactNode;
-    size?: `${EButtonSizes}`;
+    size?: `${EButtonSize}`;
     variant?: `${EButtonVariant}`;
-    fill?: `${EButtonFill}`;
-    className?: string;
+    color?: `${EButtonColor}`;
     children?: ReactNode;
+    className?: string;
+    style?: CSSProperties;
 }
 //# sourceMappingURL=types.d.ts.map

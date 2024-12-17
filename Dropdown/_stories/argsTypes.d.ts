@@ -1,4 +1,4 @@
-import { EButtonSizes } from '../../Button/enums';
+import { EButtonSize } from '../../Button/enums';
 
 export declare const argsTypes: {
     children: {
@@ -22,7 +22,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: EButtonSizes[];
+        options: EButtonSize[];
         control: {
             type: string;
         };

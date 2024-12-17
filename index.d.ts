@@ -54,6 +54,8 @@ export { default as DropdownMenuItem } from './Dropdown/subcomponents/DropdownMe
 export { default as SimpleSelect } from './SimpleSelect';
 export { default as OptionItem } from './SimpleSelect/subcomponents/OptionItem';
 export { default as Stepper } from './Stepper';
+export { default as Autocomplete } from './Autocomplete';
+export { default as Portal } from './Portal';
 export { default as Splitter } from './Splitter';
 export { default as Status } from './Status';
 export { default as Illustration } from './Illustrations';

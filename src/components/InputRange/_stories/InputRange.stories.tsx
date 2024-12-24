@@ -4,39 +4,48 @@ import InputRange from '@components/InputRange';
 
 import styles from './InputRange.module.scss';
 
+import { IInputRangeProps } from '../types';
+import argsTypes from './argsTypes';
+
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
+
 export default {
   title: 'Components/InputRange/Stories',
-  component: InputRange
+  component: InputRange,
+  decorators: [withWrapper],
+  argTypes: argsTypes
 };
 
-export const InputRangeDefault = (): JSX.Element => {
+export const InputRangeDefault = (argsTypes: IInputRangeProps): JSX.Element => {
   const [value, setInputRangeValue] = useState({ min: 20, max: 80 });
 
   const handleValuesChange = (newValues: { min: number; max: number }) => {
     setInputRangeValue(newValues);
   };
 
-  return (
-    <div className={styles.wrapper}>
-      <InputRange min={0} max={100} step={1} value={value} onChange={handleValuesChange} />
-    </div>
-  );
+  return <InputRange {...argsTypes} value={value} onChange={handleValuesChange} />;
 };
 
-InputRangeDefault.storyName = 'Слайдер по умолчанию';
+InputRangeDefault.storyName = 'InputRange по умолчанию';
+InputRangeDefault.args = {
+  min: 20,
+  max: 80,
+  step: 1
+};
 
-export const InputRangeDisabled = (): JSX.Element => {
-  const [value, setInputRangeValue] = useState({ min: 500, max: 800 });
+export const InputRangeDisabled = (argsTypes: IInputRangeProps): JSX.Element => {
+  const [value, setInputRangeValue] = useState({ min: 0, max: 80 });
 
   const handleValuesChange = (newValues: { min: number; max: number }) => {
     setInputRangeValue(newValues);
   };
 
-  return (
-    <div className={styles.wrapper}>
-      <InputRange min={100} max={1000} step={10} value={value} onChange={handleValuesChange} disabled />
-    </div>
-  );
+  return <InputRange {...argsTypes} value={value} onChange={handleValuesChange} disabled />;
+};
+InputRangeDisabled.args = {
+  min: 0,
+  max: 80,
+  step: 1
 };
 
-InputRangeDisabled.storyName = 'Неактивный слайдер';
+InputRangeDisabled.storyName = 'InputRange в состоянии disabled';

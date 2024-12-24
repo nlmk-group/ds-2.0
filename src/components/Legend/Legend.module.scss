@@ -1,0 +1,57 @@
+@mixin colorContainerDefault($width) {
+  width: $width;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 430px;
+  min-height: 24px;
+  align-items: center;
+
+  & > span {
+    color: var(--steel-90);
+    max-width: 335px;
+    height: 22px;
+  }
+}
+
+.color-container-view {
+  @include colorContainerDefault(40px);
+  box-sizing: border-box;
+
+  &--active {
+    position: relative;
+    border: 1px solid var(--steel-90);
+  }
+
+  &--selectable {
+    cursor: pointer;
+  }
+}
+
+.color-container-edit {
+  @include colorContainerDefault(80px);
+  position: relative;
+  cursor: pointer;
+
+  &--open {
+    & > div > svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--disabled {
+    cursor: initial;
+  }
+}
+
+.color-transition {
+  transition: background-color 0.1s linear;
+}

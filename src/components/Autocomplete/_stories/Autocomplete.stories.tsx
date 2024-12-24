@@ -39,7 +39,12 @@ export const AutocompleteDefault = (args: IAutocompleteProps): JSX.Element => {
 
   return (
     <div style={{ padding: '50px' }}>
-      <Autocomplete {...args} items={items} nameGetter={item => item.label || ''} />
+      <Autocomplete
+        {...args}
+        items={items}
+        nameGetter={item => item.label || ''}
+        onCreateItem={undefined}
+      />
     </div>
   );
 };

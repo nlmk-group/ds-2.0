@@ -2,23 +2,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 12px;
+  width: 24px;
+  height: 14px;
   border-radius: 2px;
   position: absolute;
   top: 50%;
-  margin-left: calc(32px / -2);
   transform: translate3d(0, -50%, 0);
   z-index: 2;
-  background-color: var(--ac-input-slider-none-default-point);
+  cursor: pointer;
+  background-color: var(--brand-sapphire-60);
 
   &-disabled {
-    background-color: var(--ac-input-slider-none-disabled-point);
+    background-color: var(--steel-60);
   }
 
   .hover-wrapper {
     position: relative;
-    background-color: var(--ac-input-slider-none-hover-point);
+    background-color: var(--brand-sapphire-60);
   }
 
   .point-hover {
@@ -26,12 +26,12 @@
     z-index: -1;
     bottom: 50%;
     right: 50%;
-    transform: translate(44%, 50%);
-    width: 48px;
-    height: 48px;
-    opacity: var(--15-opacity);
-    border-radius: var(--circle-radius);
-    background-color: var(--ac-input-slider-none-hover-point);
+    transform: translate(42%, 50%);
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+    border-radius: 100px;
+    background-color: var(--brand-sapphire-60);
   }
 
   .control-tooltip {
@@ -46,11 +46,13 @@
     padding: 0 8px;
     min-width: 11px;
     height: 32px;
-    color: var(--background-white);
+    color: var(--steel-90);
     border-radius: 2px;
-    background-color: var(--text-grey-600);
-    opacity: 85%;
+    background-color: transparent;
 
+    &-none {
+      display: none;
+    }
     &:before {
       content: "";
       position: absolute;
@@ -61,11 +63,26 @@
       border-left: 6px solid transparent;
       border-bottom: none;
       margin-left: -6px;
-      border-top-color: var(--text-grey-600);
+    }
 
-      &-disabled {
-        opacity: 50%;
-      }
+    &-disabled {
+      color: var(--steel-70);
+    }
+    &-bottom {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 19px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      padding: 0 8px;
+      min-width: 11px;
+      height: 32px;
+      color: var(--steel-90);
+      border-radius: 2px;
+      background-color: transparent;
     }
   }
 
@@ -73,7 +90,7 @@
     height: 4px;
     width: 4px;
     background-color: inherit;
-    border-right: 1px solid var(--default-second);
-    border-left: 1px solid var(--default-second);
+    border-right: 1px solid var(--unique-white);
+    border-left: 1px solid var(--unique-white);
   }
 }

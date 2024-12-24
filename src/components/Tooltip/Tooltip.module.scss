@@ -8,8 +8,7 @@
   position: relative;
   display: inline-block;
   width: auto;
-  transition: opacity 0.3s ease-out;
-  
+
   &-target {
     display: inline-block;
     border: none;
@@ -46,7 +45,6 @@
     z-index: 10000;
     background-color: var(--unique-black);
     color: var(--unique-white);
-    opacity: 1;
     border-radius: 4px;
     padding: 8px 12px;
 
@@ -54,13 +52,11 @@
       background-color: var(--steel-10);
       color: var(--steel-90);
       border: 1px var(--steel-40) solid;
-      opacity: 1;
     }
 
     &.tooltip-render-inverse {
       background-color: var(--steel-10);
       color: var(--steel-90);
-      opacity: 1;
     }
   }
 

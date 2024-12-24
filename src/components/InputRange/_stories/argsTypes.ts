@@ -1,3 +1,5 @@
+import { ESliderThumbValuePosition } from '@components/Slider/subcomponents/Control/enums';
+
 export const argsTypes = {
   onChange: {
     description: 'Callback, который будет вызван при изменении значения внутри компонента InputRange',
@@ -37,6 +39,19 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  thumbValuePosition: {
+    description: 'Отображение процентного значения у кнопки Thumb',
+    table: {
+      defaultValue: {
+        summary: 'none'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(ESliderThumbValuePosition),
+    control: { type: 'select' }
   }
 };
 

@@ -83,13 +83,13 @@ describe('src/components/Autocomplete', () => {
 
   it('handles keyboard navigation', async () => {
     window.HTMLElement.prototype.scrollIntoView = jest.fn();
-    
+
     setup();
     const input = screen.getByTestId('AUTOCOMPLETE_INPUT');
     await userEvent.click(input);
-    
+
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    
+
     await waitFor(() => {
       const options = screen.getAllByRole('option');
       expect(options[0]).toHaveClass('highlighted');
@@ -141,17 +141,6 @@ describe('src/components/Autocomplete', () => {
     await waitFor(() => {
       expect(screen.getByText('Ничего не найдено')).toBeInTheDocument();
     });
-  });
-
-  it('clears input value', async () => {
-    setup();
-    const input = screen.getByTestId('AUTOCOMPLETE_INPUT');
-    await userEvent.type(input, 'test');
-
-    const clearButton = screen.getByTestId('AUTOCOMPLETE_CLEAR');
-    await userEvent.click(clearButton);
-
-    expect(input).toHaveValue('');
   });
 
   it('handles load more functionality', async () => {

@@ -25,12 +25,12 @@
   position: relative;
   display: flex;
   align-items: center;
+  left: -12px;
 }
 
 .input-wrapper {
-  width: calc(100% + 32px);
+  width: calc(100%);
   position: absolute;
-  margin: 0 calc(16px / -2);
   height: 12px;
 }
 
@@ -42,10 +42,13 @@
 
 .input {
   position: absolute;
-  width: 100%;
+  width: calc(100% + 24px);
   pointer-events: none;
   appearance: none;
   height: 100%;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(52%, 55%);
   opacity: 0;
   z-index: 3;
   padding: 0;
@@ -90,5 +93,3 @@
     @include cursor-mixin;
   }
 }
-
-

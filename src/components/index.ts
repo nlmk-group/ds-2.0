@@ -59,8 +59,10 @@ export { default as Autocomplete } from './Autocomplete';
 export { default as Portal } from './Portal';
 export { default as Splitter } from './Splitter';
 export { default as Status } from './Status';
+export { default as FilterTip } from './FilterTip';
 export { default as Illustration } from './Illustrations';
 export { default as Pagination } from './Pagination';
+export { default as Legend } from './Legend';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';
 

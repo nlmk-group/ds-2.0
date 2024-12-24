@@ -55,9 +55,19 @@ export default function WithCreateItemExample() {
   const [items, setItems] = useState(defaultOptions);
   const [selectedItem, setSelectedItem] = useState();
 
-  const handleCreateItem = (value) => {
+  const handleCreateItem = (rawValue) => {
+    const value = rawValue.trim();
+
+    const existing = items.find(
+      (item) => item.label?.trim().toLowerCase() === value.toLowerCase()
+    );
+    if (existing) {
+      setSelectedItem(existing);
+      return;
+    }
+
     const newItem = { id: items.length + 1, label: value, value };
-    setItems(prev => [...prev, newItem]);
+    setItems((prev) => [...prev, newItem]);
     setSelectedItem(newItem);
   };
 
@@ -65,14 +75,15 @@ export default function WithCreateItemExample() {
     <Autocomplete
       items={items}
       selected={selectedItem}
-      nameGetter={item => item.label || ''}
-      onChange={val => setSelectedItem(val)}
+      nameGetter={(item) => item.label?.trim() || ''}
+      onChange={(val) => setSelectedItem(val)}
       onCreateItem={handleCreateItem}
+      placeholder="Начните ввод..."
       noResultsText="Нет результатов"
-      createItemText={val => \`Добавить: \${val}\`}
+      size="m"
     />
   );
-};
+}
 `;
 
 const withLoadMoreCode = `
@@ -118,6 +129,7 @@ const AutocompleteStories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Autocomplete"
+        isStable
         description="Компонент Autocomplete используется для предоставления функции автозаполнения на основе введенного текста, позволяя пользователю выбирать из предложенных вариантов."
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Autocomplete"
         figmaLink={FIGMA_LINK}

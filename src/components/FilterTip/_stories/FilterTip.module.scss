@@ -1,0 +1,29 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+
+  &--small {
+    width: 400px;
+  }
+}
+
+.variants-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.variants-element {
+  color: var(--steel-90);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  & > * {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}

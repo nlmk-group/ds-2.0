@@ -1,3 +1,5 @@
+import { EInputSliderValuePosition } from '../enums';
+
 export const argsTypes = {
   onChange: {
     description: 'Callback, который будет вызван при изменении значения внутри компонента InputSlider',
@@ -37,5 +39,30 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  showValue: {
+    description: 'Условие показывания процентов справа или сверху от Slider',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  valuePosition: {
+    description: 'Позиция Value для InputSlider при влкюченном showValue',
+    table: {
+      defaultValue: {
+        summary: 'top'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(EInputSliderValuePosition),
+    control: { type: 'select' }
   }
 };

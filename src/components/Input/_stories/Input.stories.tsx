@@ -1,7 +1,7 @@
 import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
-import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { Button, IconArticleOutlined24 } from '@components/index';
+import { customInputColors } from '@components/declaration';
+import { Button } from '@components/index';
 import { expect, fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/test';
 
@@ -15,7 +15,7 @@ import argsTypes from './argsTypes';
 const labelText = 'Label';
 const helperText = 'Helper text';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Input/Stories',
@@ -33,6 +33,7 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
 
   const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // какая-нибудь логика после прекращения ввода в input
+    console.log('event blur: ', e);
   };
 
   const handleReset = () => {
@@ -56,45 +57,7 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
 InputDefault.storyName = 'Input по умолчанию';
 InputDefault.args = {};
 
-export const InputWithLabel = (argTypes: TInputProps): JSX.Element => <Input {...argTypes} label={labelText} />;
-InputWithLabel.storyName = 'Input с лейблом';
-InputWithLabel.args = {};
-
-export const InputWithLabelAndHelperText = (argTypes: TInputProps) => (
-  <Input {...argTypes} label={labelText} helperText={helperText} />
-);
-InputWithLabelAndHelperText.storyName = 'Input с лейблом и вспомогательным текстом';
-InputWithLabelAndHelperText.args = {};
-
-export const InputWithLabelHelperTextAndTextIcon = (argTypes: TInputProps) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setValue(e.target.value);
-  };
-
-  const handleReset = () => {
-    setValue('');
-  };
-
-  return (
-    <Input
-      {...argTypes}
-      value={value}
-      reset
-      onChange={handleChange}
-      onReset={handleReset}
-      label={labelText}
-      helperText={helperText}
-      icon={<IconArticleOutlined24 />}
-    />
-  );
-};
-InputWithLabelHelperTextAndTextIcon.storyName =
-  'Input с лейблом, вспомогательным текстом и текстовой иконкой и кнопкой сброса';
-InputWithLabelHelperTextAndTextIcon.args = {};
-
-export const InputWithLabelHelperTextElement = (argTypes: TInputProps) => {
+export const InputWithLabelHelperTextElement = () => {
   const messageHelper = {
     [customInputColors.default]: <DefaultHelper />,
     [customInputColors.error]: <ErrorHelper />,
@@ -110,72 +73,52 @@ export const InputWithLabelHelperTextElement = (argTypes: TInputProps) => {
       }}
     >
       {Object.values(customInputColors).map((color: customInputColors) => (
-        <Input key={color} {...argTypes} label={labelText} helperText={messageHelper[color]} color={color} />
+        <Input key={color} label={labelText} helperText={messageHelper[color]} color={color} />
       ))}
     </div>
   );
 };
-InputWithLabelHelperTextElement.storyName = 'Input с лейблом, вспомогательным текстом в виде элемента';
-InputWithLabelHelperTextElement.args = {};
-
-export const InputDisabled = (argTypes: TInputProps) => (
-  <Input {...argTypes} label={labelText} helperText={helperText} disabled value="value" />
-);
-InputDisabled.storyName = 'Input в состоянии disabled';
-InputDisabled.args = {};
-
-export const InputError = (argTypes: TInputProps) => (
-  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.error} id="InputNLMK" />
-);
-InputError.storyName = 'Input в состоянии error';
-InputError.args = {};
-
-export const InputWarning = (argTypes: TInputProps) => (
-  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.warning} />
-);
-InputWarning.storyName = 'Input в состоянии warning';
-InputWarning.args = {};
-
-export const InputSuccess = (argTypes: TInputProps) => (
-  <Input {...argTypes} helperText={helperText} label={labelText} color={customInputColors.success} />
-);
-InputSuccess.storyName = 'Input в состоянии success';
-InputSuccess.args = {};
-
-export const InputCompact = (argTypes: TInputProps) => <Input {...argTypes} size={sizesMappingInput.s} label="Label" />;
-InputCompact.storyName = 'Input компактный';
-InputCompact.args = {};
+InputWithLabelHelperTextElement.storyName = 'Input с лейблом, разным color и вспомогательным текстом в виде элемента';
+InputWithLabelHelperTextElement.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 // Textarea
-export const InputMultilineDefault = (argTypes: TInputProps): JSX.Element => <Input {...argTypes} multiline />;
+export const InputMultilineDefault = (): JSX.Element => <Input multiline />;
 InputMultilineDefault.storyName = 'Textarea по умолчанию';
-InputMultilineDefault.args = {};
+InputMultilineDefault.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
-export const InputMultilineWithLabel = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} />
-);
-InputMultilineWithLabel.storyName = 'Textarea с лейблом';
-InputMultilineWithLabel.args = {};
-
-export const InputMultilineWithLabelAndHelperText = (argTypes: TInputProps): JSX.Element => (
+export const InputMultilineWithLabelAndHelperText = (): JSX.Element => (
   <div className={styles['column-wrapper']}>
-    <Input {...argTypes} multiline label={labelText} helperText={helperText} />
-    <Input {...argTypes} multiline label={labelText} helperText={<DefaultHelper />} />
+    <Input multiline label={labelText} helperText={helperText} />
+    <Input multiline label={labelText} helperText={<DefaultHelper />} />
   </div>
 );
 InputMultilineWithLabelAndHelperText.storyName = 'Textarea с лейблом и вспомогательным текстом';
-InputMultilineWithLabelAndHelperText.args = {};
+InputMultilineWithLabelAndHelperText.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
-export const InputMultilineResize = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} resize />
-);
+export const InputMultilineResize = (): JSX.Element => <Input multiline label={labelText} resize />;
 InputMultilineResize.storyName = 'Textarea со свойством ресайз';
-InputMultilineResize.args = {};
+InputMultilineResize.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
-export const InputMultilineDisabled = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} helperText={helperText} disabled />
+export const InputMultilineDisabled = (): JSX.Element => (
+  <Input multiline label={labelText} helperText={helperText} disabled />
 );
 InputMultilineDisabled.storyName = 'Textarea в состоянии disabled';
+InputMultilineDisabled.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const InputWithColored = (): JSX.Element => {
   const [colored, setColored] = useState(false);
@@ -201,27 +144,13 @@ export const InputWithColored = (): JSX.Element => {
   );
 };
 InputWithColored.storyName = 'Input с подсветкой';
-
-export const InputMultilineError = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.error} />
-);
-InputMultilineError.storyName = 'Textarea в состоянии error';
-InputMultilineError.args = {};
-
-export const InputMultilineWarning = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.warning} />
-);
-InputMultilineWarning.storyName = 'Textarea в состоянии warning';
-InputMultilineWarning.args = {};
-
-export const InputMultilineSuccess = (argTypes: TInputProps): JSX.Element => (
-  <Input {...argTypes} multiline label={labelText} helperText={helperText} color={customInputColors.success} />
-);
-InputMultilineSuccess.storyName = 'Textarea в состоянии success';
-InputMultilineSuccess.args = {};
+InputWithColored.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 // Переключатель на PseudoInput
-export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element => {
+export const InputPseudoDefaultChecking = (): JSX.Element => {
   const [isPseudo, setIsPseudo] = useState(false);
   const [innerValue, setInnerValue] = useState('value');
 
@@ -234,7 +163,6 @@ export const InputPseudoDefaultChecking = (argTypes: TInputProps): JSX.Element =
   return (
     <>
       <Input
-        {...argTypes}
         pseudo={isPseudo}
         value={innerValue}
         label={labelText}
@@ -253,6 +181,10 @@ InputPseudoDefaultChecking.args = {
   onChange: fn()
 };
 InputPseudoDefaultChecking.storyName = 'Переключение между Input и PseudoInput';
+InputPseudoDefaultChecking.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 // @ts-ignore
 InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {

@@ -1,0 +1,60 @@
+@mixin hoverBG($bg-color) {
+  &:not(&--disabled) {
+    &:hover {
+      background-color: $bg-color;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--steel-50);
+  background-color: var(--steel-10);
+  border-radius: 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  width: fit-content;
+  @include hoverBG(var(--steel-30));
+
+  &--medium {
+    padding: 9px 8px 9px 12px;
+    height: 40px;
+  }
+
+  &--small {
+    padding: 5px 4px 5px 12px;
+    height: 32px;
+  }
+
+  &--without-cancel {
+    padding-right: 12px;
+  }
+
+  &--active {
+    border: 2px solid var(--brand-sapphire-60);
+    background-color: var(--spectrum-sky-20);
+    @include hoverBG(var(--spectrum-sky-10));
+  }
+
+  &--disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+.cancel-button {
+  &[id="cancel-button"] {
+    width: 24px;
+    min-width: initial;
+    height: 24px;
+    transition: initial;
+    background: initial;
+    background-color: inherit;
+    &:hover:not(:disabled) {
+      background: initial;
+    }
+  }
+}

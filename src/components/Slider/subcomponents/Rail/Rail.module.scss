@@ -1,23 +1,20 @@
 .rail {
   position: absolute;
-  width: 100%;
+  width: calc(100% + 24px);
   top: 50%;
   transform: translateY(-50%);
   height: 6px;
-  border-radius: 2px;
-  background-color: var(--ac-input-slider-none-default-bg);
-
-  &-disabled {
-    background-color: var(--ac-input-slider-none-disabled-bg);
-  }
+  border-radius: 4px;
+  background-color: var(--steel-50);
 }
 
 .inner-rail {
   position: absolute;
   height: 100%;
-  background-color: var(--ac-input-slider-none-default-line);
+  background-color: var(--brand-sapphire-60);
+  border-radius: 4px;
 
   &-disabled {
-    background-color: var(--ac-input-slider-none-disabled-line);
+    background-color: var(--steel-60);
   }
 }

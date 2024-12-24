@@ -121,7 +121,7 @@ describe('src/components/Input', () => {
     fireEvent.change(inputElement, { target: { value: 'Testing' } });
     expect(inputElement).toHaveValue('Testing');
 
-    const resetIcon = getByTestId('CLOSE_ICON');
+    const resetIcon = getByTestId('RESET_ICON');
     fireEvent.click(resetIcon);
     expect(inputElement).toHaveValue('');
   });

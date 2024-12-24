@@ -1,11 +1,12 @@
-import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { IconArticleOutlined16, IconArticleOutlined24, IconArticleOutlined32 } from '@root/src/components';
 import React from 'react';
 
+import { customInputColors, sizesMappingInput } from '@components/declaration';
+import { IconSearchOutlined16, IconSearchOutlined24, IconSearchOutlined32 } from '@root/src/components';
+
 const iconOptions = {
-  IconArticleOutlined32: <IconArticleOutlined32 />,
-  IconArticleOutlined24: <IconArticleOutlined24 />,
-  IconArticleOutlined16: <IconArticleOutlined16 />
+  IconSearchOutlined32: <IconSearchOutlined32 />,
+  IconSearchOutlined24: <IconSearchOutlined24 />,
+  IconSearchOutlined16: <IconSearchOutlined16 />
 };
 
 const argsTypes = {

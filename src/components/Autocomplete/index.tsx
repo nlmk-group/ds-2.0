@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useMemo, use
 import { createPortal } from 'react-dom';
 
 import { customInputColors } from '@components/declaration';
-import { Box, Button, ClickAwayListener, Icon, Input, Spinner, Typography } from '@components/index';
+import { Box, ClickAwayListener, Icon, Input, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
 import clsx from 'clsx';
 
@@ -90,6 +90,7 @@ const Autocomplete = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
+  const inputElementRef = useRef<HTMLInputElement>(null);
 
   const debouncedOnInputEnd = useDebounce(500, (value: string) => {
     onDebouncedInputChange?.(value);
@@ -145,16 +146,27 @@ const Autocomplete = ({
     searchValue: string,
     getter: (i: IAutocompleteValue) => string
   ) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
     return optionsType
-      .filter(option => (option.label || getter(option))?.toLowerCase()?.includes(searchValue.toLowerCase()))
-      .map((option: IAutocompleteValue) => ({
+      .filter(option => {
+        const rawLabel = option.label || getter(option) || '';
+        const normalizedLabel = rawLabel.trim().toLowerCase();
+        return normalizedLabel.includes(normalizedSearchValue);
+      })
+      .map(option => ({
         ...option,
-        label: getter(option)
+        label: getter(option).trim()
       }));
   };
 
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
+    if (value) {
+      setOpen(true);
+    } else {
+      clearSelect();
+    }
     setInputValue(value);
     debouncedOnInputEnd(value);
     if (!value) {
@@ -177,6 +189,7 @@ const Autocomplete = ({
     setSelectedItems([item]);
     setInputValue(name);
     onChange(item);
+    inputElementRef.current?.focus();
     setOpen(false);
   };
 
@@ -186,6 +199,8 @@ const Autocomplete = ({
     const nextValue = noSelectionItem ?? undefined;
     onChange(nextValue);
     onFullItemSelect?.(undefined);
+    inputElementRef.current?.focus();
+    setOpen(false);
   };
 
   const handleClickAway = () => {
@@ -265,7 +280,9 @@ const Autocomplete = ({
   });
 
   const hasItems = currentItems && currentItems.length > 0;
-  const hasExactMatch = currentItems?.some(item => item.label?.toLowerCase() === inputValue.toLowerCase());
+  const hasExactMatch = currentItems?.some(
+    item => item.label?.trim().toLowerCase() === inputValue.trim().toLowerCase()
+  );
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
@@ -325,9 +342,10 @@ const Autocomplete = ({
                 const name = nameGetterInside(item);
                 if (!name) return null;
 
+                const trimmedSubstr = inputValue.trim();
                 const label = renderLabel
-                  ? boldReactElement(renderLabel(item), inputValue)
-                  : boldString(item.label || '', inputValue);
+                  ? boldReactElement(renderLabel(item), trimmedSubstr)
+                  : boldString(item.label || '', trimmedSubstr);
 
                 return (
                   <AutocompleteItem
@@ -383,39 +401,29 @@ const Autocomplete = ({
       >
         <Input
           {...inputProps}
+          inputRef={inputElementRef}
           value={inputValue}
           data-testid="AUTOCOMPLETE_INPUT"
           data-ui-autocomplete-input
           onKeyDown={handleKeyDown}
           icon={
-            <Box flexDirection="row" gap={4} data-ui-autocomplete-icons>
-              {!disabled && (selectedItems.length > 0 || inputValue !== '') && (
-                <Button
-                  data-testid="AUTOCOMPLETE_CLEAR"
-                  className={styles.button}
-                  iconButton={<Icon name="IconCloseOutlined24" />}
-                  variant="secondary"
-                  color="ghost"
-                  onClick={clearSelect}
-                  size="xs"
-                  data-ui-autocomplete-clear
-                />
-              )}
-              {selectedItems.length === 0 && inputValue === '' && (
-                <Icon
-                  name="IconSearchOutlined24"
-                  className={disabled ? styles['icon-disabled'] : undefined}
-                  color={(disabled && 'disabled') || (helperText && 'error') || 'primary'}
-                  data-ui-autocomplete-search
-                />
-              )}
-            </Box>
+            <Icon
+              name="IconSearchOutlined24"
+              color={(disabled && 'disabled') || (error && 'error') || 'primary'}
+              data-ui-autocomplete-search
+            />
           }
+          reset={true}
+          onReset={clearSelect}
           size={size}
           disabled={disabled}
           color={error ? customInputColors.error : undefined}
           helperText={helperText}
-          onClick={() => !readOnly && !disabled && setOpen(true)}
+          onFocus={() => {
+            if (!disabled && !readOnly) {
+              setOpen(true);
+            }
+          }}
           onChange={onChangeInput}
         />
         {open &&

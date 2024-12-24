@@ -37,12 +37,14 @@
   text-decoration: var(--body1-medium-16-textDecoration);
 }
 
-.input-wrapper {
+.input {
   font-family: var(--font-families-pt-root-ui);
+  // Стиль для textarea чтобы убрать пробелы снизу для helperText
+  font-size: 0;
   position: relative;
 
   &:hover {
-    .text-field:not(:disabled):not(:focus) {
+    .textfield:not(:disabled):not(:focus) {
       border-color: var(--steel-80);
       @include input-border-color-states;
     }
@@ -53,9 +55,8 @@
   textarea:focus ~ label,
   input:not(:placeholder-shown):not(:focus) ~ label,
   textarea:not(:placeholder-shown):not(:focus) ~ label {
-    top: -6px;
+    top: -9px;
     left: 12px;
-    line-height: 11px;
     padding: 0 4px;
     // Создаем эффект "разрыва" границы инпута для лейбла
     background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
@@ -95,7 +96,7 @@
   }
 }
 
-.text-field {
+.textfield {
   width: 100%;
   height: 40px;
   color: var(--steel-90);
@@ -108,7 +109,7 @@
   outline: none;
   background: var(--steel-10);
   font-variant-numeric: tabular-nums lining-nums;
-  padding: 0 16px;
+  padding: 0 8px 0 16px;
   @include input-border-color-states;
 
   &::placeholder {
@@ -116,8 +117,16 @@
     color: var(--steel-70);
   }
 
-  &.input-with-icon {
-    padding-right: 36px;
+  &--with-icon {
+    padding-right: 32px; // 24px + 8px
+  }
+
+  &--with-reset {
+    padding-right: 32px; // 24px + 8px
+  }
+
+  &--with-icons {
+    padding-right: 60px; // 24px + 8px + 24px + 4px
   }
 
   &.compact {
@@ -150,6 +159,8 @@
     background-color: var(--steel-30);
     -webkit-text-fill-color: var(--steel-70);
     color: var(--steel-70);
+    pointer-events: none;
+    cursor: default;
   }
 
   &:focus {
@@ -164,7 +175,12 @@
   display: inline-block;
   overflow: auto;
   resize: none;
-  padding: 8px 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  &--with-reset {
+    padding-right: 32px;
+  }
 
   &.resize {
     resize: both;
@@ -173,24 +189,28 @@
   ::-webkit-resizer {
     display: none;
   }
+
+  &-reset {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
 }
 
 .label {
   position: absolute;
-  padding: 10px 16px;
-  left: 0;
+  padding: 10px 0;
+  left: 16px;
+  top: 0;
   color: var(--steel-70);
   cursor: text;
-  transition: 100ms ease-out;
+  transition: 150ms ease-out;
   max-width: calc(100% - 32px);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   @include input-color-states;
 
   .typography {
-    line-height: inherit;
     margin: 0;
     max-width: 100%;
     overflow: hidden;
@@ -207,7 +227,15 @@
   justify-content: center;
   color: var(--brand-sapphire-60);
   background: transparent;
+  right: 8px;
+  cursor: text;
   @include input-color-states;
+
+  input:disabled ~ &,
+  textarea:disabled ~ & {
+    color: var(--steel-70);
+    pointer-events: none;
+  }
 }
 
 .reset {
@@ -215,16 +243,12 @@
   pointer-events: auto;
   right: 8px;
 
-  &-with-icon {
-    right: 48px;
+  &--with-icon {
+    right: 36px;
   }
 }
 
-.icon-text {
-  right: 8px;
-}
-
-.helper-text {
+.helper {
   display: flex;
   margin: 0;
   padding-top: 4px;
@@ -233,18 +257,8 @@
   @include input-color-states;
 }
 
-.disabled {
-  color: var(--steel-70);
-  background-color: var(--steel-30);
-  cursor: default;
-
-  &-input {
-    pointer-events: none !important;
-  }
-}
-
 .colored {
-  &.text-field,
+  &.textfield,
   &.textarea {
     background-color: var(--spectrum-yellow-10) !important;
   }

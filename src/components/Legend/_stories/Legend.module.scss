@@ -1,0 +1,35 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  height: 300px;
+  width: 900px;
+}
+
+.card {
+  display: flex;
+  background-color: var(--steel-10);
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 #00000040;
+  padding: 16px;
+  gap: 16px;
+  width: 320px;
+  box-sizing: border-box;
+}
+
+.card-list {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+.card-list-icon {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+
+  & > div {
+    gap: 6px;
+  }
+}

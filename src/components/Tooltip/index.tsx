@@ -125,6 +125,7 @@ const Tooltip: FC<ITooltipProps> = ({
           delayShow={delayShow}
           delayHide={delayHide}
           float={float}
+          opacity={1.0}
         >
           {title && renderTitle(title)}
           {description && renderDescription(description)}

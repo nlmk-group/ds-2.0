@@ -57,9 +57,9 @@ const Input: FC<TInputProps> = ({
   id = useMemo(() => `Input-${(id && id.toString()) || generateUUID()}`, [id]);
 
   const sizeStyles = {
-    [sizesMappingInput.m]: styles['text-field'],
-    [sizesMappingInput.s]: clsx(styles['text-field'], styles.compact),
-    [sizesMappingInput.xs]: clsx(styles['text-field'], styles['extra-compact'])
+    [sizesMappingInput.m]: undefined,
+    [sizesMappingInput.s]: styles.compact,
+    [sizesMappingInput.xs]: styles['extra-compact']
   };
 
   if (pseudo) {
@@ -75,68 +75,81 @@ const Input: FC<TInputProps> = ({
   }
 
   const colorClassName = styles[color];
-  const isResetIconVisible = reset && onReset && value && value.length > 0 && !disabled && !multiline;
+  const isResetIconVisible = reset && onReset && value && value.length > 0 && !disabled && !resize;
   const isCustomIconVisible = icon && !multiline;
 
+  const hasBothIcons = isResetIconVisible && isCustomIconVisible;
+  const hasIcon = isCustomIconVisible;
+  const hasReset = isResetIconVisible;
+
   return (
-    <div className={clsx(styles['input-wrapper'], colored && styles.colored, className)}>
+    <div className={clsx(styles.input, colored && styles.colored, className)} data-ui-input>
       {multiline ? (
         <textarea
           ref={ref as Ref<HTMLTextAreaElement>}
           id={id}
           className={clsx(
-            styles['text-field'],
+            styles.textfield,
             styles.textarea,
             resize && styles.resize,
+            {
+              [styles['textarea--with-reset']]: hasReset
+            },
             colorClassName,
-            disabled && styles['disabled-input'],
             colored && styles.colored
           )}
+          data-ui-textfield
           disabled={disabled}
-          placeholder=" "
           value={value}
           onChange={onChange}
           onBlur={onBlur}
           {...props}
+          placeholder=" "
         />
       ) : (
         <input
           ref={ref as Ref<HTMLInputElement>}
           id={id}
           className={clsx(
+            styles.textfield,
             sizeStyles[size],
-            icon && styles['input-with-icon'],
+            {
+              [styles['textfield--with-icon']]: hasIcon,
+              [styles['textfield--with-reset']]: hasReset,
+              [styles['textfield--with-icons']]: hasBothIcons
+            },
             colorClassName,
-            colored && styles.colored,
-            disabled && styles['disabled-input']
+            colored && styles.colored
           )}
+          data-ui-textfield
           disabled={disabled}
           type="text"
-          placeholder=" "
           value={value}
           onChange={onChange}
           onBlur={onBlur}
           {...props}
+          placeholder=" "
         />
       )}
       {label && (
-        <label className={clsx(styles.label, colorClassName)} htmlFor={id}>
-          <Typography variant="Body1-Medium" className={styles.typography}>
+        <label className={clsx(styles.label, colorClassName)} htmlFor={id} data-ui-input-label>
+          <Typography variant="Body2-Medium" className={styles.typography}>
             {label}
           </Typography>
         </label>
       )}
       {isResetIconVisible && (
         <div
-          className={clsx(styles.icon, styles.reset, icon && styles['reset-with-icon'], colorClassName)}
-          data-testid="CLOSE_ICON"
+          className={clsx(styles.icon, styles.reset, hasIcon && styles['reset--with-icon'], colorClassName)}
+          data-ui-input-reset-icon
+          data-testid="RESET_ICON"
           onClick={onReset}
         >
           {<Icon htmlColor="var(--steel-70)" containerSize={24} name="IconCloseOutlined24" />}
         </div>
       )}
       {isCustomIconVisible && (
-        <div className={clsx(styles.icon, styles['icon-text'], disabled && styles.disabled, colorClassName)}>
+        <div className={clsx(styles.icon, colorClassName)} data-ui-input-custom-icon>
           {icon}
         </div>
       )}
@@ -144,7 +157,8 @@ const Input: FC<TInputProps> = ({
         <Typography
           variant="Caption-Medium"
           id={`${id}-helper-text`}
-          className={clsx(styles['helper-text'], colorClassName)}
+          className={clsx(styles.helper, colorClassName)}
+          data-ui-input-helper-text
         >
           {helperText}
         </Typography>

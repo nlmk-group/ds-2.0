@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/Legend/subcomponents/LegendEditColor/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAK5D,MAAM,WAAW,SAAS;IAIxB,MAAM,EAAE,SAAS,CAAC,cAAc,CAAC,GAAG,IAAI,CAAC;IAIzC,SAAS,EAAE,QAAQ,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC,CAAC;CAC9C"}

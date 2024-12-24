@@ -1,3 +1,5 @@
+import { ESliderThumbValuePosition } from '../../Slider/subcomponents/Control/enums';
+
 export declare const argsTypes: {
     onChange: {
         description: string;
@@ -42,6 +44,21 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
+        control: {
+            type: string;
+        };
+    };
+    thumbValuePosition: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: ESliderThumbValuePosition[];
         control: {
             type: string;
         };

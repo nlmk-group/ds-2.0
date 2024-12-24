@@ -1,3 +1,5 @@
+import { EInputSliderValuePosition } from '../enums';
+
 export declare const argsTypes: {
     onChange: {
         description: string;
@@ -42,6 +44,35 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
+        control: {
+            type: string;
+        };
+    };
+    showValue: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    valuePosition: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: EInputSliderValuePosition[];
         control: {
             type: string;
         };

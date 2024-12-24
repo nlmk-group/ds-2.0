@@ -1,5 +1,5 @@
-import { customInputColors, sizesMappingInput } from '../../declaration';
 import { default as React } from '../../../../node_modules/react';
+import { customInputColors, sizesMappingInput } from '../../declaration';
 
 declare const argsTypes: {
     onBlur: {
@@ -57,9 +57,9 @@ declare const argsTypes: {
             type: string;
         };
         mapping: {
-            IconArticleOutlined32: React.JSX.Element;
-            IconArticleOutlined24: React.JSX.Element;
-            IconArticleOutlined16: React.JSX.Element;
+            IconSearchOutlined32: React.JSX.Element;
+            IconSearchOutlined24: React.JSX.Element;
+            IconSearchOutlined16: React.JSX.Element;
         };
     };
     size: {

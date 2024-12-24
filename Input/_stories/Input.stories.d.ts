@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { customInputColors, sizesMappingInput } from '../../declaration';
+import { customInputColors } from '../../declaration';
 import { TInputProps } from '../types';
 
 declare const _default: {
@@ -62,19 +62,19 @@ declare const _default: {
                 type: string;
             };
             mapping: {
-                IconArticleOutlined32: React.JSX.Element;
-                IconArticleOutlined24: React.JSX.Element;
-                IconArticleOutlined16: React.JSX.Element;
+                IconSearchOutlined32: React.JSX.Element;
+                IconSearchOutlined24: React.JSX.Element;
+                IconSearchOutlined16: React.JSX.Element;
             };
         };
         size: {
             description: string;
             table: {
                 defaultValue: {
-                    summary: sizesMappingInput;
+                    summary: import('../../declaration').sizesMappingInput;
                 };
             };
-            options: sizesMappingInput[];
+            options: import('../../declaration').sizesMappingInput[];
             control: {
                 type: string;
             };
@@ -201,100 +201,106 @@ export declare const InputDefault: {
     storyName: string;
     args: {};
 };
-export declare const InputWithLabel: {
-    (argTypes: TInputProps): JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputWithLabelAndHelperText: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputWithLabelHelperTextAndTextIcon: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
 export declare const InputWithLabelHelperTextElement: {
-    (argTypes: TInputProps): React.JSX.Element;
+    (): React.JSX.Element;
     storyName: string;
-    args: {};
-};
-export declare const InputDisabled: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputError: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputWarning: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputSuccess: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputCompact: {
-    (argTypes: TInputProps): React.JSX.Element;
-    storyName: string;
-    args: {};
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputMultilineDefault: {
-    (argTypes: TInputProps): JSX.Element;
+    (): JSX.Element;
     storyName: string;
-    args: {};
-};
-export declare const InputMultilineWithLabel: {
-    (argTypes: TInputProps): JSX.Element;
-    storyName: string;
-    args: {};
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputMultilineWithLabelAndHelperText: {
-    (argTypes: TInputProps): JSX.Element;
+    (): JSX.Element;
     storyName: string;
-    args: {};
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputMultilineResize: {
-    (argTypes: TInputProps): JSX.Element;
+    (): JSX.Element;
     storyName: string;
-    args: {};
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputMultilineDisabled: {
-    (argTypes: TInputProps): JSX.Element;
+    (): JSX.Element;
     storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputWithColored: {
     (): JSX.Element;
     storyName: string;
-};
-export declare const InputMultilineError: {
-    (argTypes: TInputProps): JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputMultilineWarning: {
-    (argTypes: TInputProps): JSX.Element;
-    storyName: string;
-    args: {};
-};
-export declare const InputMultilineSuccess: {
-    (argTypes: TInputProps): JSX.Element;
-    storyName: string;
-    args: {};
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
 };
 export declare const InputPseudoDefaultChecking: {
-    (argTypes: TInputProps): JSX.Element;
+    (): JSX.Element;
     args: {
         onChange: import('@vitest/spy').Mock<(...args: any[]) => any>;
     };
     storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
     play({ args, canvasElement }: {
         args: any;
         canvasElement: any;

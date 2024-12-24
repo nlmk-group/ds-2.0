@@ -1,3 +1,5 @@
+import { ESliderThumbValuePosition } from '../Slider/subcomponents/Control/enums';
+
 export interface IInputRangeProps {
     min: number;
     max: number;
@@ -11,5 +13,6 @@ export interface IInputRangeProps {
         max: number;
     }) => void;
     disabled?: boolean;
+    thumbValuePosition?: `${ESliderThumbValuePosition}`;
 }
 //# sourceMappingURL=types.d.ts.map

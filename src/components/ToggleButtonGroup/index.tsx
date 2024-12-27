@@ -2,26 +2,37 @@ import React, { Children, cloneElement, createContext, isValidElement, ReactNode
 
 import { clsx } from 'clsx';
 
-import { IButtonGroupProperties, IToggleButtonGroup, IToggleButtonGroupItemWithProps } from './types';
+import { IButtonGroupPropertiesProps, IToggleButtonGroupItemWithProps, IToggleButtonGroupProps } from './types';
 
 import styles from './ToggleButtonGroup.module.scss';
 
-import { sizeMapping, statusMapping } from './enums';
+import { EToggleButtonGroupSizeMapping } from './enums';
 import ToggleButton from './ToggleButton';
 
-export const ButtonGroupProperties = createContext<IButtonGroupProperties>({
-  size: sizeMapping.default,
-  status: statusMapping.default,
+/**
+ * Компонент ToggleButtonGroup представляет собой группу переключаемых кнопок.
+ * @component
+ * @param {Object} props - Свойства компонента ToggleButtonGroup
+ * @param {string} [props.className=''] - Дополнительный CSS класс для группы кнопок
+ * @param {('s'|'m')} [props.size='m'] - Размер кнопок в группе.
+ * @param {boolean} [props.disabled=false] - Флаг, определяющий, отключена ли вся группа кнопок
+ * @param {ReactNode} props.children - Дочерние элементы, которые должны быть компонентами ToggleButton
+ * @param {CSSProperties} [props.style] - Inline стили для кастомизации компонента.
+ * @returns {JSX.Element} Группа переключаемых кнопок
+ */
+
+export const ButtonGroupProperties = createContext<IButtonGroupPropertiesProps>({
+  size: EToggleButtonGroupSizeMapping.m,
   disabled: false
 });
 
 const ToggleButtonGroup = ({
   className = '',
-  size = sizeMapping.default,
-  status = statusMapping.default,
+  size = EToggleButtonGroupSizeMapping.m,
   disabled = false,
-  children
-}: IToggleButtonGroup) => {
+  children,
+  style
+}: IToggleButtonGroupProps) => {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [childrenWithProps, setChildrenWithProps] = useState<ReactNode | ReactNode[]>(null);
 
@@ -34,12 +45,12 @@ const ToggleButtonGroup = ({
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
           if (child.props.active) {
-            setActiveId(index)
+            setActiveId(index);
           }
           return cloneElement(child, {
             active: activeId === index,
             isLast: index === Children.toArray(children).length - 1,
-            toggleButton: () => handleToggle(index)
+            onToggle: () => handleToggle(index)
           } as IToggleButtonGroupItemWithProps);
         }
         return child;
@@ -49,13 +60,17 @@ const ToggleButtonGroup = ({
 
   const defaultProperties = {
     size,
-    status,
     disabled
   };
 
   return (
     <ButtonGroupProperties.Provider value={defaultProperties}>
-      <div className={clsx(styles.wrapper, className)} data-testid="TOGGLE_BUTTON_WRAPPER">
+      <div
+        data-ui-toggle-button-group
+        style={style}
+        className={clsx(styles['toggle-button-group'], className)}
+        data-testid="TOGGLE_BUTTON_WRAPPER"
+      >
         {childrenWithProps}
       </div>
     </ButtonGroupProperties.Provider>

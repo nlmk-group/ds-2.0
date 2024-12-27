@@ -2,12 +2,7 @@ import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, 
 
 import { IconScheduleTimeWatchOutlined24, Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
-import {
-  timeFormat,
-  timeMask,
-  timeWithSecondsFormat,
-  timeWithSecondsMask
-} from '@components/TimePicker/helpers';
+import { timeFormat, timeMask, timeWithSecondsFormat, timeWithSecondsMask } from '@components/TimePicker/helpers';
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import { range } from 'lodash';
@@ -23,6 +18,10 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       disabled,
       onFocus,
       onBlur,
+      selectedTimeFirst,
+      selectedTimeSecond,
+      onChangeFirst,
+      onChangeSecond,
       onEnterKeyDown,
       onTabKeyDown,
       value,
@@ -30,7 +29,6 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       enabledHourTo,
       enabledMinuteFrom,
       enabledMinuteTo,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onChange,
       isTimeType,
       isTimeWithSecondsType,
@@ -71,6 +69,9 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
           onBlur(newDate[0], newDate[1]);
         } else {
           onBlur(newDate);
+          if (newDate) {
+            onChange?.(newDate);
+          }
         }
       }
     };
@@ -108,18 +109,32 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         setInnerMaskedValue(format(value, isTimeWithSecondsType ? timeWithSecondsFormat : timeFormat));
         return;
       }
-      if (withPeriod) {
-        if (!valueFrom && !valueTo) {
-          setInnerMaskedValue('');
-          return;
+      if (withPeriod && !selectedTimeFirst && !selectedTimeSecond) {
+        setInnerMaskedValue('');
+        return;
+      }
+      if (withPeriod && selectedTimeFirst && selectedTimeSecond) {
+        if (isAfter(selectedTimeFirst, selectedTimeSecond)) {
+          onChangeFirst?.(selectedTimeFirst);
+          onChangeSecond?.(selectedTimeSecond);
+
+          const formattedValueFrom = format(
+            selectedTimeFirst,
+            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+          );
+
+          setInnerMaskedValue(`${formattedValueFrom} — ${undefined}`);
+        } else {
+          const formattedValueFrom = format(
+            selectedTimeFirst,
+            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+          );
+          const formattedValueTo = format(
+            selectedTimeSecond,
+            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+          );
+          setInnerMaskedValue(`${formattedValueFrom} — ${formattedValueTo}`);
         }
-        const formattedValueFrom = valueFrom
-          ? format(valueFrom, isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat)
-          : '';
-        const formattedValueTo = valueTo
-          ? format(valueTo, isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat)
-          : '';
-        setInnerMaskedValue(`${formattedValueFrom} — ${formattedValueTo}`);
       }
     }, [isTimeType, value, isTimeWithSecondsType, valueFrom, valueTo, isTimePeriodType]);
 
@@ -133,7 +148,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     }, [focused, isTimeType, isTimeWithSecondsType]);
 
     const icon = useMemo(() => {
-      return withIcon ? (
+      return withIcon && withPicker ? (
         <div
           onClick={() => {
             if (withPicker) {
@@ -148,6 +163,9 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     }, [onFocus, withIcon, withPicker]);
 
     const isValueMatchesTheMask = (mask: string, value: string) => mask.replace(/9/gi, '_') === value;
+    const handleResetInput = useCallback(() => {
+      setInnerMaskedValue('');
+    }, [onReset]);
 
     const computeNewDate = useCallback((): Date | null | (Date | null)[] => {
       const currentDate = new Date();
@@ -175,8 +193,16 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
             time ? parse(time, isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat, currentDate) : null
           );
           const enabledTimes = times.map(time => (time ? makeEnabledTimeRangeDate(time) : null));
+          if (times.some(time => !time || !isValid(time))) {
+            setInnerMaskedValue('');
+            return null;
+          }
           if (enabledTimes.some(isValid)) {
             if (enabledTimes[0] && enabledTimes[1] && isAfter(enabledTimes[0], enabledTimes[1])) {
+              if (onChangeFirst && onChangeSecond) {
+                onChangeFirst(enabledTimes[1]);
+                onChangeSecond(enabledTimes[0]);
+              }
               return [enabledTimes[1], enabledTimes[0]];
             }
             return enabledTimes;
@@ -213,7 +239,9 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       isTimePeriodWithSecondsType,
       isTimePeriodType,
       valueTo,
-      valueFrom
+      valueFrom,
+      onChangeFirst,
+      onChangeSecond
     ]);
 
     return (
@@ -236,7 +264,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
             icon={icon}
             colored={colored}
             reset={reset}
-            onReset={onReset}
+            onReset={handleResetInput}
             {...props}
           />
         )}

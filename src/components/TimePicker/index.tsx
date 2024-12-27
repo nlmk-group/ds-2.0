@@ -5,7 +5,7 @@ import { usePopper } from 'react-popper';
 import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import clsx from 'clsx';
-import { isEqual, set } from 'date-fns';
+import { isAfter, isEqual, set } from 'date-fns';
 
 import { TDateValues, TTimePickerType } from './types';
 
@@ -79,12 +79,11 @@ const TimePicker: FC<TTimePickerType> = ({
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [calendarRef, setCalendarRef] = useState<null | HTMLDivElement>(null);
   id = useMemo(() => `TimePicker-${(id && id.toString()) || generateUUID()}`, [id]);
-  const effectiveWithPicker = isTimePeriodType || isTimePeriodWithSecondsType ? false : withPicker;
 
-  const {
-    value: { valueFrom, valueTo },
-    onChange: innerOnPeriodChange
-  } = useUpdatedValues<TDateValues>(
+  const [selectedTimeFirst, setSelectedTimeFirst] = useState<Date | undefined>(outerValueFrom);
+  const [selectedTimeSecond, setSelectedTimeSecond] = useState<Date | undefined>(outerValueTo);
+
+  const { onChange: innerOnPeriodChange } = useUpdatedValues<TDateValues>(
     useMemo(() => ({ valueFrom: outerValueFrom, valueTo: outerValueTo }), [outerValueFrom, outerValueTo]),
     useCallback((a: TDateValues, b: TDateValues) => {
       if (!a.valueFrom || !b.valueFrom) {
@@ -102,10 +101,14 @@ const TimePicker: FC<TTimePickerType> = ({
   const [innerValue, setInnerOnChange] = useState(value);
   const [selectedTime, setSelectedTime] = useState(new Date());
 
+  const isResetIconVisible = !(reset && onReset && !disabledPanel && value);
+
   useEffect(() => {
     if (value) {
       setInnerOnChange(value);
       setSelectedTime(value);
+      setSelectedTimeFirst(value);
+      setSelectedTimeSecond(value);
     }
   }, [value]);
 
@@ -125,12 +128,8 @@ const TimePicker: FC<TTimePickerType> = ({
 
   const onPeriodChange = useCallback(
     (valueFrom?: Date, valueTo?: Date) => {
-      if (outerOnPeriodChange) {
-        outerOnPeriodChange(valueFrom, valueTo);
-      }
-      if (valueFrom || valueTo) {
-        innerOnPeriodChange({ valueFrom, valueTo });
-      }
+      outerOnPeriodChange?.(valueFrom, valueTo);
+      innerOnPeriodChange({ valueFrom, valueTo });
     },
     [innerOnPeriodChange, outerOnPeriodChange]
   );
@@ -163,32 +162,64 @@ const TimePicker: FC<TTimePickerType> = ({
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any) => {
-      if (isOpen && isBlur) {
-        return;
+      if (!isBlur) {
+        inputRef?.blur();
+        if ((isTimePeriodType || isTimePeriodWithSecondsType) && onPeriodChange) {
+          if (date && date2 && isAfter(date, date2)) {
+            onPeriodChange(date2, date);
+          } else {
+            onPeriodChange(date || undefined, date2 || undefined);
+          }
+        } else if (onChange) {
+          onChange(date);
+        }
+        setOpen(false);
       }
-      inputRef?.blur();
-      if ((isTimePeriodType || isTimePeriodWithSecondsType) && onPeriodChange) {
-        onPeriodChange(date || undefined, date2 || undefined);
-      } else if (onChange) {
-        onChange(date);
-      }
-      setOpen(false);
     },
-    [inputRef, isOpen, onChange, onPeriodChange, isTimePeriodType]
+    [inputRef, onChange, onPeriodChange, isTimePeriodType, isTimePeriodWithSecondsType]
   );
 
   const handleAccept = useCallback(() => {
-    if (onChange && innerValue) {
-      const newDate = set(innerValue, {
-        hours: selectedTime.getHours(),
-        minutes: selectedTime.getMinutes(),
-        ...(isTimeWithSecondsType && { seconds: selectedTime.getSeconds() })
-      });
-      onChange(newDate);
+    const isPeriodType = isTimePeriodType || isTimePeriodWithSecondsType;
+
+    const updatePeriod = () => {
+      if (selectedTimeFirst && selectedTimeSecond) {
+        onPeriodChange(
+          isAfter(selectedTimeFirst, selectedTimeSecond) ? selectedTimeSecond : selectedTimeFirst,
+          isAfter(selectedTimeFirst, selectedTimeSecond) ? selectedTimeFirst : selectedTimeSecond
+        );
+      }
+    };
+
+    const updateTime = () => {
+      if (onChange && innerValue) {
+        const newDate = set(innerValue, {
+          hours: selectedTime.getHours(),
+          minutes: selectedTime.getMinutes(),
+          ...(isTimeWithSecondsType && { seconds: selectedTime.getSeconds() })
+        });
+        onChange(newDate);
+        setInnerOnChange(newDate);
+      }
+    };
+
+    if (isPeriodType) {
+      updatePeriod();
+    } else {
+      updateTime();
     }
+
     handleClose();
-    return;
-  }, [onChange, innerValue, selectedTime, isTimeWithSecondsType]);
+  }, [
+    onChange,
+    selectedTime,
+    isTimeWithSecondsType,
+    selectedTimeFirst,
+    selectedTimeSecond,
+    isTimePeriodType,
+    isTimePeriodWithSecondsType,
+    onPeriodChange
+  ]);
 
   const renderTimePickerPanel = () => (
     <ClickAwayListener
@@ -200,15 +231,22 @@ const TimePicker: FC<TTimePickerType> = ({
     >
       <div className={styles.opened} ref={setCalendarRef} style={popperStyles.popper} {...attributes.popper}>
         <TimeSelector
+          initialSelectedTimeFirst={selectedTimeFirst}
+          initialSelectedTimeSecond={selectedTimeSecond}
+          onChangeFirst={setSelectedTimeFirst}
+          onChangeSecond={setSelectedTimeSecond}
+          selectedTime={selectedTime}
+          onChange={setSelectedTime}
           isTimeWithSecondsType={isTimeWithSecondsType}
+          isTimePeriodType={isTimePeriodType}
+          isTimePeriodWithSecondsType={isTimePeriodWithSecondsType}
           disabled={disabledPanel}
           enabledHourFrom={enabledHourFrom}
           enabledHourTo={enabledHourTo}
           enabledMinuteFrom={enabledMinuteFrom}
           enabledMinuteTo={enabledMinuteTo}
           value={value}
-          selectedTime={selectedTime}
-          onChange={setSelectedTime}
+          data-ui-time-selector
         />
       </div>
     </ClickAwayListener>
@@ -218,6 +256,7 @@ const TimePicker: FC<TTimePickerType> = ({
     <div
       className={clsx(styles.root, className, restInputProps.disabled && styles.disabled, isOpen && styles.opened)}
       id={id as string}
+      data-ui-time-picker
     >
       {name && ['time', 'timeWithSeconds'].includes(type) && (
         <input type="hidden" name={name} value={value?.toISOString()} />
@@ -225,8 +264,12 @@ const TimePicker: FC<TTimePickerType> = ({
       <TimePickerInput
         ref={setInputRef}
         value={outerValue}
-        valueFrom={valueFrom}
-        valueTo={valueTo}
+        valueFrom={selectedTimeFirst}
+        valueTo={selectedTimeSecond}
+        onChangeFirst={setSelectedTimeFirst}
+        onChangeSecond={setSelectedTimeSecond}
+        selectedTimeFirst={selectedTimeFirst}
+        selectedTimeSecond={selectedTimeSecond}
         isTimeType={isTimeType}
         isTimeWithSecondsType={isTimeWithSecondsType}
         isTimePeriodType={isTimePeriodType}
@@ -243,14 +286,14 @@ const TimePicker: FC<TTimePickerType> = ({
         onFocus={handleFocus}
         colored={colored}
         withIcon={withIcon}
-        withPicker={effectiveWithPicker}
+        withPicker={withPicker}
         label={label}
-        reset={reset}
+        reset={isResetIconVisible}
         onReset={onReset}
         {...restInputProps}
+        data-ui-time-picker-input
       />
       {isOpen &&
-        effectiveWithPicker &&
         (!withPortal ? (
           <>{renderTimePickerPanel()}</>
         ) : (

@@ -5,23 +5,23 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './ToggleButtonGroup.module.scss';
 
-import { sizeMapping, statusMapping } from './enums';
+import { EToggleButtonGroupSizeMapping } from './enums';
 
 describe('src/components/ToggleButtonGroup', () => {
   const mockCallBack = jest.fn();
-  const btnTitle = 'Hello world';
+  const buttonTitle = 'Hello world';
   const TBGHelper = () => (
     <ToggleButtonGroup>
       <ToggleButtonGroup.Button onClick={mockCallBack}>
-        <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+        <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
       </ToggleButtonGroup.Button>
     </ToggleButtonGroup>
   );
 
   test('It should render a ToggleButtonGroup', () => {
     const { container } = render(<TBGHelper />);
-    const btnGroup = container.getElementsByTagName('div')[0];
-    expect(btnGroup).toBeInTheDocument();
+    const buttonGroup = container.getElementsByTagName('div')[0];
+    expect(buttonGroup).toBeInTheDocument();
   });
 
   test('It should render a ToggleButtonGroup with custom className', () => {
@@ -29,7 +29,7 @@ describe('src/components/ToggleButtonGroup', () => {
     render(
       <ToggleButtonGroup className={styles[className]}>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
@@ -39,63 +39,63 @@ describe('src/components/ToggleButtonGroup', () => {
 
   test('It should render ToggleButtonGroup with ToggleButton', () => {
     render(<TBGHelper />);
-    const btn = screen.getByTestId('TOGGLE_BUTTON');
-    expect(btn).toHaveTextContent(btnTitle);
+    const button = screen.getByTestId('TOGGLE_BUTTON');
+    expect(button).toHaveTextContent(buttonTitle);
   });
 
   test('It should render ToggleButtonGroup with disabled ToggleButton', () => {
     render(
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack} disabled>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
-    const btn = screen.getByTestId('TOGGLE_BUTTON');
-    expect(btn.classList.contains('btn-disabled')).toBe(true);
+    const button = screen.getByTestId('TOGGLE_BUTTON');
+    expect(button.classList.contains('button-disabled')).toBe(true);
   });
 
   test('It should render ToggleButtonGroup with ToggleButton with custom className', () => {
-    const className = 'test-class-btn';
+    const className = 'test-class-button';
     render(
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack} className={styles[className]}>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
-    const btn = screen.getByTestId('TOGGLE_BUTTON');
-    expect(btn.classList.contains(className)).toBe(true);
+    const button = screen.getByTestId('TOGGLE_BUTTON');
+    expect(button.classList.contains(className)).toBe(true);
   });
 
   test('It should call a function while click', () => {
     render(<TBGHelper />);
-    const btn = screen.getByTestId('TOGGLE_BUTTON');
-    fireEvent.click(btn);
+    const button = screen.getByTestId('TOGGLE_BUTTON');
+    fireEvent.click(button);
     expect(mockCallBack).toHaveBeenCalledTimes(1);
   });
 
   test('It should render default active button when it was clicked', () => {
     render(<TBGHelper />);
-    const btn = screen.getByTestId('TOGGLE_BUTTON');
-    fireEvent.click(btn);
-    expect(btn.classList.contains(`btn-active-${statusMapping.default}`)).toBe(true);
+    const button = screen.getByTestId('TOGGLE_BUTTON');
+    fireEvent.click(button);
+    expect(button.classList.contains(`button-active-default`)).toBe(true);
   });
 
-  Object.values(sizeMapping).forEach((size: sizeMapping) => {
+  Object.values(EToggleButtonGroupSizeMapping).forEach((size: EToggleButtonGroupSizeMapping) => {
     describe(`While rendering with ${size} size`, () => {
       const TestToggleButtonGroup = ({ size }: { size: string }) => (
-        <ToggleButtonGroup size={size as sizeMapping}>
+        <ToggleButtonGroup size={size as EToggleButtonGroupSizeMapping}>
           <ToggleButtonGroup.Button onClick={mockCallBack}>
-            <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+            <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button>
         </ToggleButtonGroup>
       );
 
       test(`It should render wrapper with ${size} size`, () => {
         render(<TestToggleButtonGroup size={size} />);
-        const toggleBtn = screen.getByTestId('TOGGLE_BUTTON');
-        expect(toggleBtn.classList.contains(`btn-size-${size}`)).toBe(true);
+        const togglebutton = screen.getByTestId('TOGGLE_BUTTON');
+        expect(togglebutton.classList.contains(`button-size-${size}`)).toBe(true);
       });
     });
   });
@@ -104,8 +104,8 @@ describe('src/components/ToggleButtonGroup', () => {
     const { container } = render(
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
-          <ToggleButtonGroup.Button.Tooltip render={btnTitle}>
-            <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Tooltip render={buttonTitle}>
+            <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
           </ToggleButtonGroup.Button.Tooltip>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
@@ -119,7 +119,7 @@ describe('src/components/ToggleButtonGroup', () => {
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
           <ToggleButtonGroup.Button.Icon />
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
@@ -133,7 +133,7 @@ describe('src/components/ToggleButtonGroup', () => {
           <ToggleButtonGroup.Button.Icon>
             <IconStarOutlined24 />
           </ToggleButtonGroup.Button.Icon>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
@@ -146,26 +146,10 @@ describe('src/components/ToggleButtonGroup', () => {
       <ToggleButtonGroup>
         <ToggleButtonGroup.Button onClick={mockCallBack}>
           <ToggleButtonGroup.Button.Badge>{badgeAmount}</ToggleButtonGroup.Button.Badge>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
+          <ToggleButtonGroup.Button.Label>{buttonTitle}</ToggleButtonGroup.Button.Label>
         </ToggleButtonGroup.Button>
       </ToggleButtonGroup>
     );
-    expect(screen.getByTestId('BADGE')).toHaveTextContent(badgeAmount);
-  });
-
-  Object.values(statusMapping).forEach((status: statusMapping) => {
-    const RenderHelper = () => (
-      <ToggleButtonGroup status={status}>
-        <ToggleButtonGroup.Button onClick={mockCallBack}>
-          <ToggleButtonGroup.Button.Label>{btnTitle}</ToggleButtonGroup.Button.Label>
-        </ToggleButtonGroup.Button>
-      </ToggleButtonGroup>
-    );
-
-    test(`It should render ToggleButton with ${status} status`, () => {
-      render(<RenderHelper />);
-      const btn = screen.getByTestId('TOGGLE_BUTTON');
-      expect(btn.classList.contains(`btn-${status}`)).toBe(true);
-    });
+    expect(screen.getByTestId('BADGE_WRAPPER')).toHaveTextContent(badgeAmount);
   });
 });

@@ -1,0 +1,12 @@
+.pdf-viewer {
+  width: 100%;
+  height: 80vh;
+
+  &--loading,
+  &--error,
+  &--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

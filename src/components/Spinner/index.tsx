@@ -62,7 +62,7 @@ const Spinner: FC<ISpinnerProps> = ({
   const dashOffset = circumference * (1 - fillPercentage);
 
   return (
-    <div className={styles.spinner}>
+    <div className={styles.spinner} data-testid="SPINNER">
       {percent !== null && (
         <div className={styles.percent} style={{ color }}>
           <Typography variant={typographyOptionHelper()}>{percent < 100 ? percent : 99}%</Typography>

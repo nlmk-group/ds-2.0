@@ -1,0 +1,133 @@
+@mixin icon-size($size) {
+  svg {
+    width: var(--#{$size}-size);
+    height: var(--#{$size}-size);
+  }
+}
+
+@mixin button-helper($color, $bg) {
+  color: $color;
+  background: $bg;
+
+  path {
+    fill: $color;
+  }
+}
+
+@mixin divider-helper($b-color) {
+  padding-left: 8px;
+
+  & > div {
+    border-right-color: $b-color;
+  }
+}
+.button-wrapper {
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  border-radius: 3px;
+  transition: all 0.03s ease-out;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon-m {
+  @include icon-size(24);
+}
+
+.icon-s {
+  @include icon-size(16);
+}
+
+.badge-wrapper,
+.label-wrapper {
+  margin: auto 0;
+}
+
+.divider-wrapper {
+  height: 24px;
+  margin: auto -1px;
+}
+.divider-hidden {
+  visibility: hidden;
+}
+.button-disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-size-m {
+  padding: 8px;
+}
+
+.button-size-s {
+  padding: 3px 8px;
+}
+
+.button-default {
+  @include button-helper(var(--brand-sapphire-60), transparent);
+
+  path {
+    fill: var(--brand-sapphire-60);
+  }
+
+  &:hover {
+    @include button-helper(var(--brand-sapphire-60), var(--brand-sapphire-10));
+  }
+
+  &:active {
+    @include button-helper(var(--brand-sapphire-60), var(--brand-sapphire-20));
+  }
+}
+
+.button-active-default {
+  @include button-helper(var(--brand-sapphire-60), var(--brand-sapphire-20));
+
+  &:hover {
+    @include button-helper(var(--brand-sapphire-60), var(--brand-sapphire-20));
+  }
+}
+
+.test-class-wrapper {
+  border-color: var(--primary-blue-900);
+}
+
+.test-class-button {
+  background-color: var(--primary-blue-500);
+}
+
+.tooltip-side-helper {
+  div:nth-child(2) {
+    bottom: unset;
+    transform: translateY(-30%);
+  }
+}
+
+.tooltip-s {
+  div:nth-child(2) {
+    padding: 6px 8px;
+  }
+}
+
+.tooltip-side-helper-s {
+  div:nth-child(2) {
+    bottom: unset;
+    transform: translateY(-25%);
+  }
+}
+
+.tooltip-top-helper-s {
+  div:nth-child(2) {
+    bottom: 26px !important;
+  }
+}
+
+.tooltip-bottom-helper-s {
+  div:nth-child(2) {
+    top: 26px !important;
+  }
+}

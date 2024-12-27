@@ -1,4 +1,4 @@
-import { sizeMapping, statusMapping } from '../enums';
+import { EToggleButtonGroupSizeMapping } from '../enums';
 
 export const buttonGroupItemsArgsTypes = {
   label: {
@@ -25,20 +25,6 @@ export const buttonGroupItemsArgsTypes = {
         summary: 'boolean'
       }
     }
-  },
-  status: {
-    description:
-      'Строка, указывающая статус кнопки-переключателя. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из statusMapping.',
-    table: {
-      defaultValue: {
-        summary: statusMapping.default
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(statusMapping),
-    control: { type: 'select' }
   },
   withIcon: {
     description:
@@ -70,16 +56,16 @@ export const argsTypes = {
   },
   status: {
     description:
-      'Необязательный атрибут. Строка, указывающая статус кнопкок-переключателей. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из statusMapping. В btnGroup могут быть переданы кнопки с собственными значениями status.',
+      'Необязательный атрибут. Строка, указывающая статус кнопкок-переключателей. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из EToggleButtonGroupSizeMapping. В btnGroup могут быть переданы кнопки с собственными значениями status.',
     table: {
       defaultValue: {
-        summary: statusMapping.default
+        summary: EToggleButtonGroupSizeMapping.m
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(statusMapping),
+    options: Object.values(EToggleButtonGroupSizeMapping),
     control: { type: 'select' }
   },
   size: {
@@ -87,13 +73,13 @@ export const argsTypes = {
       'Необязательный атрибут. Cтрока, указывающая размер кнопок-переключателей в группе. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из sizeMapping.',
     table: {
       defaultValue: {
-        summary: sizeMapping.default
+        summary: EToggleButtonGroupSizeMapping.m
       },
       type: {
         summary: 'string'
       }
     },
-    options: Object.values(sizeMapping),
+    options: Object.values(EToggleButtonGroupSizeMapping),
     control: { type: 'select' }
   },
   disabled: {

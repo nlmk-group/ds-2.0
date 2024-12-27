@@ -23,6 +23,71 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.16.2 - <span className={styles.date}>28.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-togglebuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ToggleButtonGroup
+              </Link>
+              .<li className={styles['left-padding']}>- Стили актуализированы в соответствии с макетом</li>
+              <li className={styles['left-padding']}>- Удалено свойство status</li>
+              <li className={styles['left-padding']}>- Обновлены истории для Storybook</li>
+              <li className={styles['left-padding']}>- Изменена логика работы разделителя</li>
+              <li className={styles['left-padding']}>- Изменены нейминги подкомпонентов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.1 - <span className={styles.date}>27.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TimePicker
+              </Link>.
+              <li className={styles['left-padding']}>- Добавлена панель выбора времени при выборе периода</li>
+              <li className={styles['left-padding']}>- Обновлены дочерние компоненты</li>
+              <li className={styles['left-padding']}>- Добавлена реализация кнопки сброса onReset</li>
+              <li className={styles['left-padding']}>- Добавлены data-атрибуты для удобной стилизации</li>
+              <li className={styles['left-padding']}>
+                - Исправлен баг, при котором при введении невалидного времени в периоде вызывалась ошибка
+              </li>
+              <li className={styles['left-padding']}>- Улучшена логика валидации значений при ручном вводе периода</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.0 - <span className={styles.date}>26.12.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pdfpreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                PdfPreview
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.15.1 - <span className={styles.date}>24.12.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -35,8 +100,7 @@ export const Changelog = () => {
               >
                 FilterTip
               </Link>
-              .
-              <li className={styles['left-padding']}>- Изменен padding у основного компонента</li>
+              .<li className={styles['left-padding']}>- Изменен padding у основного компонента</li>
               <li className={styles['left-padding']}>- Изменен цвет текста в активном состоянии</li>
             </li>
             <li>
@@ -48,8 +112,7 @@ export const Changelog = () => {
               >
                 Autocomplete
               </Link>
-              .
-              <li className={styles['left-padding']}>- Исправлен баг с trim при точном совпадении</li>
+              .<li className={styles['left-padding']}>- Исправлен баг с trim при точном совпадении</li>
               <li className={styles['left-padding']}>- Исправлена подсветка при наличии лишних пробелов</li>
               <li className={styles['left-padding']}>- Исправлена работа истории Autocomplete</li>
             </li>

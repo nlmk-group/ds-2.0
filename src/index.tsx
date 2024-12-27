@@ -149,7 +149,7 @@ export const TestAutocomplete = (): JSX.Element => {
         selected={options[0]}
         items={options}
         renderLabel={item => <CustomAutocompleteItem {...item} />}
-        nameGetter={({ label }) => label}
+        nameGetter={({ label }) => label ?? ''}
         onChange={item => setSelected(item?.value ?? null)}
         label="Селект с поиском"
         showTooltip={true}

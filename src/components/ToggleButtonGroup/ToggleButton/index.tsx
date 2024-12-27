@@ -1,65 +1,63 @@
-import React, { createContext, MouseEvent, useContext } from 'react';
+import React, { createContext, MouseEvent, useContext, useState } from 'react';
 
 import { Divider } from '@components/index';
 import { clsx } from 'clsx';
 
-import styles from '../ToggleButtonGroup.module.scss';
+import styles from './ToggleButton.module.scss';
 
-import { statusMapping } from '../enums';
 import { ButtonGroupProperties } from '../index';
-import { IButtonGroupProperties, IButtonProperties, IToggleButtonGroupItemWithProps } from '../types';
-import WithBadge from './WithBadge';
-import WithIcon from './WithIcon';
-import WithLabel from './WithLabel';
-import WithTooltip from './WithTooltip';
+import { IButtonGroupPropertiesProps, IButtonPropertiesProps, IToggleButtonGroupItemWithProps } from '../types';
+import { ToggleButtonBadge, ToggleButtonIcon, ToggleButtonLabel, ToggleButtonTooltip } from './subcomponents';
 
-export const ButtonProperties = createContext<IButtonProperties>({
-  status: statusMapping.default,
+export const ButtonProperties = createContext<IButtonPropertiesProps>({
   active: false
 });
 
 const ToggleButton = ({
   className,
   onClick = () => void 0,
-  status,
   disabled = false,
   active = false,
   children,
   isLast = false,
-  toggleButton = () => void 0
+  onToggle = () => void 0
 }: IToggleButtonGroupItemWithProps) => {
-  // cannot use FC for props type
-  // because Compound Pattern does not work with it
-  const defaultProps = useContext<IButtonGroupProperties>(ButtonGroupProperties);
+  const [isHovered, setIsHovered] = useState(false);
+  const defaultProps = useContext<IButtonGroupPropertiesProps>(ButtonGroupProperties);
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    toggleButton();
-    if (onClick !== null) onClick(e);
+    onToggle?.();
+    onClick?.(e);
   };
 
-  const btnProps = {
-    status: status || defaultProps.status,
+  const buttonProps = {
     active
   };
 
   return (
-    <ButtonProperties.Provider value={btnProps}>
+    <ButtonProperties.Provider value={buttonProps}>
       <div
+        data-ui-toggle-button
         onClick={handleClick}
         data-testid="TOGGLE_BUTTON"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         className={clsx(
-          styles['btn-wrapper'],
-          styles[`btn-size-${defaultProps.size}`],
-          styles[`btn-${status || defaultProps.status}`],
-          active && styles[`btn-active-${status || defaultProps.status}`],
-          (defaultProps.disabled || disabled) && styles['btn-disabled'],
+          styles['button-wrapper'],
+          styles['button-default'],
+          styles[`button-size-${defaultProps.size}`],
+          active && styles['button-active-default'],
+          (defaultProps.disabled || disabled) && styles['button-disabled'],
           className
         )}
       >
         {children}
       </div>
       {!isLast && (
-        <div className={styles['divider-wrapper']}>
-          <Divider type="vertical" className={styles[`divider-color-${status || defaultProps.status}`]} />
+        <div
+          data-ui-toggle-button-divider
+          className={clsx(styles['divider-wrapper'], (isHovered || active) && styles['divider-hidden'])}
+        >
+          <Divider type="vertical" />
         </div>
       )}
     </ButtonProperties.Provider>
@@ -68,7 +66,7 @@ const ToggleButton = ({
 
 export default ToggleButton;
 
-ToggleButton.Label = WithLabel;
-ToggleButton.Tooltip = WithTooltip;
-ToggleButton.Icon = WithIcon;
-ToggleButton.Badge = WithBadge;
+ToggleButton.Label = ToggleButtonLabel;
+ToggleButton.Tooltip = ToggleButtonTooltip;
+ToggleButton.Icon = ToggleButtonIcon;
+ToggleButton.Badge = ToggleButtonBadge;

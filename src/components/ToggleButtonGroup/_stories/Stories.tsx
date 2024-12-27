@@ -10,17 +10,8 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { sizeMapping, statusMapping } from '../enums';
+import { EToggleButtonGroupSizeMapping } from '../enums';
 import { argsTypes } from './argsTypes';
-import {
-  DEFAULT_TOGGLE_BUTTON,
-  TOGGLE_BUTTON_BADGE,
-  TOGGLE_BUTTON_COLOR_OPTIONS,
-  TOGGLE_BUTTON_ICON,
-  TOGGLE_BUTTON_OPTIONS,
-  TOGGLE_BUTTON_SIZES,
-  TOGGLE_BUTTON_TOOLTIP
-} from './constants';
 
 enum TabIds {
   dev,
@@ -29,8 +20,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'ToggleButtonGroup';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-27629&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-27629&t=EnvIMGos3m33avAX-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -61,7 +51,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={400}
-            description={DEFAULT_TOGGLE_BUTTON}
+            description={'Toggle Button по умолчанию'}
             code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
@@ -95,7 +85,7 @@ export default App = () => {
 
           <Editor
             height={400}
-            description={TOGGLE_BUTTON_TOOLTIP}
+            description={'Toggle Button с тултипами'}
             code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
 
 const { Button } = ToggleButtonGroup;
@@ -134,7 +124,7 @@ export default App = () => {
 
           <Editor
             height={400}
-            description={TOGGLE_BUTTON_SIZES}
+            description={'Toggle Button с разными размерами'}
             code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
 
 const { Button } = ToggleButtonGroup;
@@ -148,7 +138,7 @@ export default App = () => {
         gap: '12px'
       }}
     >
-      <ToggleButtonGroup size="${sizeMapping.default}">
+      <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.m}">
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -159,7 +149,7 @@ export default App = () => {
 
       <Divider dashed />
 
-      <ToggleButtonGroup size="${sizeMapping.compact}">
+      <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.s}">
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -175,7 +165,7 @@ export default App = () => {
 
           <Editor
             height={400}
-            description={TOGGLE_BUTTON_ICON}
+            description={'Toggle Button с иконками'}
             code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
@@ -215,7 +205,7 @@ export default App = () => {
 
           <Editor
             height={400}
-            description={TOGGLE_BUTTON_BADGE}
+            description={'Toggle Button с бейджами'}
             code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
@@ -264,7 +254,7 @@ export default App = () => {
 
           <Editor
             height={400}
-            description={TOGGLE_BUTTON_OPTIONS}
+            description={'Toggle Button с разными кнопками и иконками'}
             code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
 
 const { Button } = ToggleButtonGroup;
@@ -278,7 +268,7 @@ export default App = () => {
         gap: '12px'
       }}
     >
-      <ToggleButtonGroup status="${statusMapping.default}">
+      <ToggleButtonGroup>
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -289,7 +279,7 @@ export default App = () => {
 
       <Divider dashed />
 
-      <ToggleButtonGroup status="${statusMapping.error}">
+      <ToggleButtonGroup >
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -300,7 +290,7 @@ export default App = () => {
 
       <Divider dashed />
 
-      <ToggleButtonGroup status="${statusMapping.warning}">
+      <ToggleButtonGroup >
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -311,7 +301,7 @@ export default App = () => {
 
       <Divider dashed />
 
-      <ToggleButtonGroup status="${statusMapping.success}">
+      <ToggleButtonGroup >
         <Button onClick={() => alert('First option')}>
           <Button.Icon/>
         </Button>
@@ -320,55 +310,6 @@ export default App = () => {
         </Button>
       </ToggleButtonGroup>
     </div>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={TOGGLE_BUTTON_COLOR_OPTIONS}
-            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
-import { useState } from 'react';
-
-const { Button } = ToggleButtonGroup;
-
-export default App = () => {
-  const [count, setCount] = useState(0)
-  return (
-    <ToggleButtonGroup status="default">
-      <Button onClick={() => setCount(count+1)} status="success">
-        <Button.Icon>
-          <IconAddPlusCircleOutlined24 />
-        </Button.Icon>
-        <Button.Label>
-          Plus
-        </Button.Label>
-        <Button.Badge>
-          {(count + 1).toString()}
-        </Button.Badge>
-      </Button>
-      <Button onClick={() => alert('Count is '+ count)}>
-        <Button.Icon/>
-        <Button.Label>
-          Check result
-        </Button.Label>
-        <Button.Badge>
-          {count.toString()}
-        </Button.Badge>
-      </Button>
-      <Button onClick={() => setCount(count-1)} status="error">
-        <Button.Icon>
-          <IconDeleteMinusOutlined24 />
-        </Button.Icon>
-        <Button.Label>
-          Minus
-        </Button.Label>
-        <Button.Badge>
-          {(count - 1).toString()}
-        </Button.Badge>
-      </Button>
-    </ToggleButtonGroup>
   )
 }
 `}

@@ -120,7 +120,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
           <SandpackPreview
             style={{ height }}
             actionsChildren={
-              <ToggleButtonGroup size="compact" className={styles['toggle-btn-group']}>
+              <ToggleButtonGroup size="s" className={styles['toggle-btn-group']}>
                 <ToggleButtonGroup.Button
                   className={clsx(styles['toggle-btn'], theme === Themes.DARK && styles['toggle-btn-active'])}
                   active={theme === Themes.DARK}

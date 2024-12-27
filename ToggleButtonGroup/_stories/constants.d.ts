@@ -1,8 +1,0 @@
-export declare const DEFAULT_TOGGLE_BUTTON = "Toggle Button \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E";
-export declare const TOGGLE_BUTTON_TOOLTIP = "Toggle Button \u0441 \u0442\u0443\u043B\u0442\u0438\u043F\u0430\u043C\u0438";
-export declare const TOGGLE_BUTTON_ICON = "Toggle Button \u0441 \u0438\u043A\u043E\u043D\u043A\u0430\u043C\u0438";
-export declare const TOGGLE_BUTTON_BADGE = "Toggle Button \u0441 \u0431\u0435\u0439\u0434\u0436\u0430\u043C\u0438";
-export declare const TOGGLE_BUTTON_SIZES = "Toggle Button \u0441 \u0440\u0430\u0437\u043D\u044B\u043C\u0438 \u0440\u0430\u0437\u043C\u0435\u0440\u0430\u043C\u0438";
-export declare const TOGGLE_BUTTON_COLOR_OPTIONS = "Toggle Button \u0441 \u0440\u0430\u0437\u043D\u044B\u043C\u0438 \u0446\u0432\u0435\u0442\u0430\u043C\u0438 \u0437\u0430\u043B\u0438\u0432\u043A\u0438";
-export declare const TOGGLE_BUTTON_OPTIONS = "Toggle Button \u0441 \u0440\u0430\u0437\u043D\u044B\u043C\u0438 \u043A\u043D\u043E\u043F\u043A\u0430\u043C\u0438 \u0438 \u0438\u043A\u043E\u043D\u043A\u0430\u043C\u0438";
-//# sourceMappingURL=constants.d.ts.map

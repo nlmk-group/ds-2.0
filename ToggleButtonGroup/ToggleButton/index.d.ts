@@ -1,14 +1,14 @@
 import { default as React } from '../../../../node_modules/react';
-import { IButtonProperties, IToggleButtonGroupItemWithProps } from '../types';
+import { IButtonPropertiesProps, IToggleButtonGroupItemWithProps } from '../types';
 
-export declare const ButtonProperties: React.Context<IButtonProperties>;
+export declare const ButtonProperties: React.Context<IButtonPropertiesProps>;
 declare const ToggleButton: {
-    ({ className, onClick, status, disabled, active, children, isLast, toggleButton }: IToggleButtonGroupItemWithProps): React.JSX.Element;
+    ({ className, onClick, disabled, active, children, isLast, onToggle }: IToggleButtonGroupItemWithProps): React.JSX.Element;
     Label: React.FC<{
-        children: string | React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+        children: React.ReactNode;
     }>;
     Tooltip: React.FC<import('../../Tooltip/types').ITooltipProps>;
-    Icon: React.FC<import('../types').IWithIcon>;
+    Icon: React.FC<import('../types').IToggleButtonIconProps>;
     Badge: React.FC<import('../../Badge/types').IBadgeProps>;
 };
 export default ToggleButton;

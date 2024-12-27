@@ -1,16 +1,16 @@
 import { default as React } from '../../../node_modules/react';
-import { IButtonGroupProperties, IToggleButtonGroup, IToggleButtonGroupItemWithProps } from './types';
+import { IButtonGroupPropertiesProps, IToggleButtonGroupItemWithProps, IToggleButtonGroupProps } from './types';
 
-export declare const ButtonGroupProperties: React.Context<IButtonGroupProperties>;
+export declare const ButtonGroupProperties: React.Context<IButtonGroupPropertiesProps>;
 declare const ToggleButtonGroup: {
-    ({ className, size, status, disabled, children }: IToggleButtonGroup): React.JSX.Element;
+    ({ className, size, disabled, children, style }: IToggleButtonGroupProps): React.JSX.Element;
     Button: {
-        ({ className, onClick, status, disabled, active, children, isLast, toggleButton }: IToggleButtonGroupItemWithProps): React.JSX.Element;
+        ({ className, onClick, disabled, active, children, isLast, onToggle }: IToggleButtonGroupItemWithProps): React.JSX.Element;
         Label: React.FC<{
-            children: string | React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+            children: React.ReactNode;
         }>;
         Tooltip: React.FC<import('../Tooltip/types').ITooltipProps>;
-        Icon: React.FC<import('./types').IWithIcon>;
+        Icon: React.FC<import('./types').IToggleButtonIconProps>;
         Badge: React.FC<import('../Badge/types').IBadgeProps>;
     };
 };

@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../src/components/PdfPreview/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AAEtC,MAAM,MAAM,gBAAgB,GAAG;IAI7B,IAAI,EAAE,QAAQ,GAAG,IAAI,CAAC;IAKtB,OAAO,CAAC,EAAE,OAAO,CAAC;IAKlB,KAAK,CAAC,EAAE,aAAa,CAAC;IAKtB,YAAY,CAAC,EAAE,MAAM,CAAC;IAMtB,YAAY,CAAC,EAAE,MAAM,CAAC;CACvB,CAAC"}

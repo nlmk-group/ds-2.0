@@ -5,6 +5,10 @@ export interface ITimePickerInputProps {
     value?: Date;
     valueFrom?: Date;
     valueTo?: Date;
+    selectedTimeFirst?: Date;
+    selectedTimeSecond?: Date;
+    onChangeFirst?: (date: Date) => void;
+    onChangeSecond?: (date: Date | undefined) => void;
     onChange?: (date: Date) => void;
     onFocus?: () => void;
     onBlur?: (date: Date | null, date2?: Date | null) => void;

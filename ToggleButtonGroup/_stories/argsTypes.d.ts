@@ -1,4 +1,4 @@
-import { sizeMapping, statusMapping } from '../enums';
+import { EToggleButtonGroupSizeMapping } from '../enums';
 
 export declare const buttonGroupItemsArgsTypes: {
     label: {
@@ -23,21 +23,6 @@ export declare const buttonGroupItemsArgsTypes: {
             defaultValue: {
                 summary: string;
             };
-        };
-    };
-    status: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: statusMapping;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: statusMapping[];
-        control: {
-            type: string;
         };
     };
     withIcon: {
@@ -78,13 +63,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: statusMapping;
+                summary: EToggleButtonGroupSizeMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: statusMapping[];
+        options: EToggleButtonGroupSizeMapping[];
         control: {
             type: string;
         };
@@ -93,13 +78,13 @@ export declare const argsTypes: {
         description: string;
         table: {
             defaultValue: {
-                summary: sizeMapping;
+                summary: EToggleButtonGroupSizeMapping;
             };
             type: {
                 summary: string;
             };
         };
-        options: sizeMapping[];
+        options: EToggleButtonGroupSizeMapping[];
         control: {
             type: string;
         };

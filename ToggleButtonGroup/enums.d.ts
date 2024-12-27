@@ -1,11 +1,5 @@
-export declare enum sizeMapping {
-    compact = "compact",
-    default = "default"
-}
-export declare enum statusMapping {
-    default = "default",
-    success = "success",
-    warning = "warning",
-    error = "error"
+export declare enum EToggleButtonGroupSizeMapping {
+    m = "m",
+    s = "s"
 }
 //# sourceMappingURL=enums.d.ts.map

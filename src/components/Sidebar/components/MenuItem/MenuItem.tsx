@@ -3,7 +3,7 @@ import React, {
   cloneElement,
   FC,
   isValidElement,
-  MouseEvent,
+  MouseEventHandler,
   ReactElement,
   ReactNode,
   useContext,
@@ -33,7 +33,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
     setIsScrollingDueToClick,
     collapseSidebar
   } = useContext<ISidebarProperties>(SidebarProperties);
-  const targetRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLAnchorElement>(null);
   const isActive = activeItem === label;
   const hasChildren = Children.count(children) > 0;
 
@@ -64,7 +64,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
 
   const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveChild);
 
-  const handleClick = (event: MouseEvent) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
     event.preventDefault();
     if (disabled) {
       return;
@@ -82,13 +82,16 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
       setActiveItem(null);
       collapseSidebar();
     }
-    if (!hasChildren && onClick && typeof onClick === 'function') onClick();
+    if (!hasChildren && onClick && typeof onClick === 'function') {
+      onClick();
+    }
   };
 
   return (
-    <div
+    <a
       className={clsx(styles.menu, { [styles['menu-active']]: isActivePath, [styles['menu-disabled']]: disabled })}
       onClick={handleClick}
+      href={submenu ? undefined : path}
       ref={targetRef}
       title={label}
     >
@@ -116,7 +119,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
           )}
         </div>
       )}
-    </div>
+    </a>
   );
 };
 

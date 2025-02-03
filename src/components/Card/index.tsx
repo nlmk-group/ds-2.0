@@ -29,7 +29,6 @@ const Card: FC<ICard> = ({
 }) => {
   return (
     <div
-      data-testid="CARD_WRAPPER"
       className={clsx(
         styles.wrapper,
         styles[`wrapper-${orientation}`],
@@ -39,6 +38,8 @@ const Card: FC<ICard> = ({
         styles[`card-${orientation}`],
         className
       )}
+      data-ui-card
+      data-testid="CARD_WRAPPER"
     >
       {children}
     </div>

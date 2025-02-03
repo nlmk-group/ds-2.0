@@ -53,7 +53,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
     const actionId = useMemo(() => `titleId-${afterWrapperId || generateUUID()}`, [afterWrapperId]);
 
     return (
-      <div className={styles['title-container']} id={titleId}>
+      <div className={styles['title-container']} id={titleId} data-ui-slide-toggle-title>
         {typeof title === 'string' ? (
           <Typography
             className={styles['label-wrapper']}
@@ -66,7 +66,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
           <div className={styles['label-wrapper']}>{title}</div>
         )}
         {after && (
-          <div className={styles['action-block']} id={actionId}>
+          <div className={styles['action-block']} id={actionId} data-ui-slide-toggle-action-block>
             {after}
           </div>
         )}
@@ -87,6 +87,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
             isShow && styles['icon-wrapper-show']
           )}
           id={iconId}
+          data-ui-slide-toggle-show-icon
         >
           {renderIcon()}
         </div>
@@ -99,6 +100,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
             styles['content-wrapper'],
             size === ESizeMapping.compact && styles['content-wrapper-compact']
           )}
+          data-ui-slide-toggle-content
         >
           {children}
         </div>

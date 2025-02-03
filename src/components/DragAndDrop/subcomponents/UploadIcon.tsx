@@ -55,9 +55,10 @@ const UploadIcon: FC<IUploadHelperProps> = ({
         height: wrapperSize[0],
         width: wrapperSize[1]
       }}
+      data-ui-dnd-upload-icon
     >
       {showSpinner && (
-        <div className={styles['spinner-position-helper']}>
+        <div className={styles['spinner-position-helper']} data-ui-dnd-upload-icon-spinner>
           <Spinner size={EDnDSpinnerSizeHelper[size]} />
         </div>
       )}
@@ -69,7 +70,7 @@ const UploadIcon: FC<IUploadHelperProps> = ({
           })}
           data-testid="PERCENT"
         >
-          <Typography variant={smallIcon ? 'Heading4' : EDnDPercentageSizeHelper[size]}>
+          <Typography variant={smallIcon ? 'Heading4' : EDnDPercentageSizeHelper[size]} data-ui-dnd-upload-icon-percent>
             {Math.min(Math.floor(percentUpload), 100)}%
           </Typography>
         </div>

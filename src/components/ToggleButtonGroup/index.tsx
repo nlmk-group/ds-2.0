@@ -66,9 +66,9 @@ const ToggleButtonGroup = ({
   return (
     <ButtonGroupProperties.Provider value={defaultProperties}>
       <div
-        data-ui-toggle-button-group
         style={style}
         className={clsx(styles['toggle-button-group'], className)}
+        data-ui-toggle-button-group
         data-testid="TOGGLE_BUTTON_WRAPPER"
       >
         {childrenWithProps}

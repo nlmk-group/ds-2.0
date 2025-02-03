@@ -63,6 +63,7 @@ const Sidebar: FC<ISidebarProps> &
   onLogin,
   onSearch,
   onClickLogo,
+  onChangeFavorites = () => {},
   currentPath,
   defaultMenuOpen = false,
   overlay = false
@@ -172,6 +173,7 @@ const Sidebar: FC<ISidebarProps> &
       onOpenUser={onOpenUser}
       onLogin={onLogin}
       onLogout={onLogout}
+      data-ui-sidebar-user-control
     >
       {avatar}
     </UserControl>
@@ -180,7 +182,12 @@ const Sidebar: FC<ISidebarProps> &
   if (isBurger && !isExpanded)
     return (
       <div className={styles.burger} onClick={() => setExpanded(true)}>
-        <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
+        <Icon
+          name="IconMenuBurgerOutlined32"
+          containerSize={32}
+          htmlColor="var(--unique-white)"
+          data-ui-sidebar-burger
+        />
       </div>
     );
 
@@ -196,7 +203,8 @@ const Sidebar: FC<ISidebarProps> &
         isScrollingDueToClick,
         setIsScrollingDueToClick,
         currentPath,
-        collapseSidebar
+        collapseSidebar,
+        onChangeFavorites
       }}
     >
       <ClickAwayListener
@@ -209,11 +217,18 @@ const Sidebar: FC<ISidebarProps> &
         <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
           {isBurger && !isVertical && (
             <div className={clsx(styles.burger, styles['burger-expanded'])} onClick={collapseSidebar}>
-              <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
+              <Icon
+                name="IconMenuBurgerOutlined32"
+                containerSize={32}
+                htmlColor="var(--unique-white)"
+                data-ui-sidebar-burger
+              />
             </div>
           )}
           <div className={styles.head}>
-            {isVertical && isBurger && <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} />}
+            {isVertical && isBurger && (
+              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} data-ui-siddebar-collapse-button />
+            )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
                 <div
@@ -221,6 +236,7 @@ const Sidebar: FC<ISidebarProps> &
                     [styles.clickable]: onClickLogo
                   })}
                   onClick={onClickLogo}
+                  data-ui-sidebar-logo
                 >
                   <LogoSvgIcon />
                 </div>
@@ -239,6 +255,7 @@ const Sidebar: FC<ISidebarProps> &
                   onClick={handleAction}
                   iconButton={<Icon name={actionIconName} htmlColor="var(--unique-white)" />}
                   title={actionTitle}
+                  data-ui-sidebar-action-button
                 />
               )}
             </div>
@@ -247,11 +264,13 @@ const Sidebar: FC<ISidebarProps> &
           <Scrollbar className={clsx(styles.body, styles[`body-${orientation}`], styles.scrollbar)} ref={scrollRef}>
             {isVertical ? (
               <>
-                <div className={styles.topSection}>
+                <div className={styles.topSection} data-ui-sidebar-top-section>
                   {renderUserControl()}
                   {topSectionItems}
                 </div>
-                <div className={styles.bottomSection}>{bottomSectionItems}</div>
+                <div className={styles.bottomSection} data-ui-sidebar-bottom-section>
+                  {bottomSectionItems}
+                </div>
               </>
             ) : (
               menuItems
@@ -264,13 +283,19 @@ const Sidebar: FC<ISidebarProps> &
                 ref={collapseButtonRef}
                 isExpanded={isExpanded}
                 onClick={() => setExpanded(val => !val)}
+                data-ui-sidebar-collapse-button
               />
             )
           ) : (
-            <div className={styles.rightSection}>
+            <div className={styles.rightSection} data-ui-sidebar-right-section>
               {onSearch && (
                 <div className={styles.search}>
-                  <Icon name={'IconSearchOutlined32'} containerSize={32} htmlColor="var(--unique-white)" />
+                  <Icon
+                    name={'IconSearchOutlined32'}
+                    containerSize={32}
+                    htmlColor="var(--unique-white)"
+                    data-ui-sidebar-search-icon
+                  />
                 </div>
               )}
               {renderUserControl()}
@@ -278,9 +303,16 @@ const Sidebar: FC<ISidebarProps> &
           )}
         </div>
 
-        {overlay && Boolean(activeItem) && <div className={styles.overlay} onClick={() => setActiveItem(null)} />}
+        {overlay && Boolean(activeItem) && (
+          <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+        )}
 
-        <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>
+        <Submenu
+          title={activeItem ?? ''}
+          isOpen={Boolean(activeItem)}
+          orientation={orientation}
+          data-ui-sidebar-submenu
+        >
           {submenuItems}
         </Submenu>
       </ClickAwayListener>

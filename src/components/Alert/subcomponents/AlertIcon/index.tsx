@@ -24,7 +24,7 @@ const iconNames: Record<EAlertSeverity, TIconName> = {
 const AlertIcon: FC<IAlertIconProps> = ({ severity = EAlertSeverity.success }) => {
   const htmlColor = severityStyles[severity];
   const iconName = iconNames[severity];
-  return <Icon name={iconName} htmlColor={htmlColor} />;
+  return <Icon name={iconName} htmlColor={htmlColor} data-ui-alert-icon />;
 };
 
 export default AlertIcon;

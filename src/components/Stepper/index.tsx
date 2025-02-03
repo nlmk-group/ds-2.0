@@ -4,11 +4,11 @@ import Box from '@components/Box';
 import { Divider } from '@components/index';
 import clsx from 'clsx';
 
-import { Step } from './subcomponents/Step';
-
 import { IStepperProps } from './types';
 
 import styles from './Stepper.module.scss';
+
+import { Step } from './subcomponents/Step';
 
 /**
  * Компонент Stepper для отображения последовательности шагов.
@@ -31,9 +31,10 @@ const Stepper: FC<IStepperProps> = ({ state, stepName, showStep, className, inde
       width={showStep ? '100%' : 'auto'}
       onClick={() => onClick && onClick({ state: state, index: index })}
       key={index}
+      data-ui-stepper
     >
-      <Step stepName={stepName} index={index} state={state} />
-      {showStep && <Divider className={styles['divider-line']} />}
+      <Step stepName={stepName} index={index} state={state} data-ui-step />
+      {showStep && <Divider className={styles['divider-line']} data-ui-stepper-divider />}
     </Box>
   );
 };

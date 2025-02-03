@@ -51,6 +51,7 @@ export const LegendEditColor: FC = () => {
         style={{ backgroundColor }}
       >
         <Icon
+          data-ui-legend-edit-icon
           htmlColor="var(--steel-90)"
           style={isDisabled ? { opacity: '0.3' } : undefined}
           name="IconChevronArrowDownOutlined24"

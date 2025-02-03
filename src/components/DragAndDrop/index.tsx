@@ -174,6 +174,7 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
             description={description}
             btnLabel={actualBtnLabel}
             onButtonClick={onButtonClick}
+            data-ui-dnd-default
           />
         )}
       </label>
@@ -184,6 +185,7 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
+          data-ui-dnd-drag-file-element
         />
       )}
     </form>

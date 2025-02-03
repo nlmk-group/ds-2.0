@@ -83,9 +83,15 @@ const Tabs: FC<ITabsProps> &
           className={styles['scroll-arrow-left']}
           onClick={scrollLeft}
           iconButton={<IconChevronArrowLeftOutlined24 />}
+          data-ui-tabs-button-scroll-left
         />
       )}
-      <div className={clsx({ [styles.scrollable]: scrollable })} onScroll={handleScroll} ref={tabsContainerRef}>
+      <div
+        className={clsx({ [styles.scrollable]: scrollable })}
+        onScroll={handleScroll}
+        ref={tabsContainerRef}
+        data-ui-tabs
+      >
         <div className={clsx(styles['tabs-wrapper'], { [styles['tabs-wrapper__scrollable']]: scrollable })}>
           {children}
         </div>
@@ -98,6 +104,7 @@ const Tabs: FC<ITabsProps> &
           className={styles['scroll-arrow-right']}
           onClick={scrollRight}
           iconButton={<IconChevronArrowRightOutlined24 />}
+          data-ui-tabs-button-scroll-right
         />
       )}
     </div>

@@ -27,9 +27,10 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
     <>
       {React.cloneElement(firstElement as ReactElement)}
       <div
-        data-testid="HIDDEN_OPTIONS_BUTTON"
         className={clsx(styles.options, showItems && styles.show)}
         onClick={toggleShowItems}
+        data-ui-crumbs-hidden-options-button
+        data-testid="HIDDEN_OPTIONS_BUTTON"
       >
         <span>...</span>
         <div className={styles.separator}>
@@ -37,9 +38,9 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
         </div>
         {showItems && (
           <ClickAwayListener onClickAway={toggleShowItems}>
-            <List data-testid="HIDDEN_OPTIONS_LIST" className={styles.list}>
+            <List className={styles.list} data-ui-crumbs-list data-testid="HIDDEN_OPTIONS_LIST">
               {otherElementsArray.map((item: ReactElement, index: number) => (
-                <ListItem key={index} className={clsx(styles.option)}>
+                <ListItem key={index} className={clsx(styles.option)} data-ui-crumbs-list-item>
                   {React.cloneElement(item, {
                     children: React.cloneElement(item.props.children, {
                       className: clsx(styles.link, item.props.children.props.className)

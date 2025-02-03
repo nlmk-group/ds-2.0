@@ -22,11 +22,11 @@ import UploadIcon from './UploadIcon';
  */
 const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusColor, disabled, cancelUpload }) => {
   return (
-    <div data-testid={`SMALL_TEXT_${statusColor}`}>
+    <div data-ui-dnd-small-text data-testid={`SMALL_TEXT_${statusColor}`}>
       {loading ? (
         <div style={{ display: 'flex', gap: '8px' }}>
           <UploadIcon smallText showSpinner={false} size={sizesMapping.l} percentUpload={percentUpload} />
-          <Typography className={styles['small-title-helper']} variant="Heading3">
+          <Typography className={styles['small-title-helper']} variant="Heading3" data-ui-dnd-small-text-title>
             {title}
           </Typography>
           {cancelUpload !== null && (
@@ -38,12 +38,13 @@ const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusC
                 size="s"
                 iconButton={<IconCloseOutlined24 />}
                 onClick={cancelUpload}
+                data-ui-dnd-small-text-button
               />
             </div>
           )}
         </div>
       ) : (
-        <Typography variant="Heading3" className={styles[`small-title-${statusColor}`]}>
+        <Typography variant="Heading3" className={styles[`small-title-${statusColor}`]} data-ui-dnd-small-text-title>
           {title}
         </Typography>
       )}

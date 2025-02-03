@@ -26,18 +26,33 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
     switch (statusColor) {
       case EDnDStatusColor.error:
         return (
-          <Button variant="primary" size="m" color="error" iconButton={<IconAttentionWarningAlertErrorOutlined24 />} />
+          <Button
+            variant="primary"
+            size="m"
+            color="error"
+            iconButton={<IconAttentionWarningAlertErrorOutlined24 />}
+            data-ui-dnd-small-icon
+          />
         );
       case EDnDStatusColor.info:
-        return <Button size="m" color="ghost" variant="secondary" iconButton={<IconAddPlusOutlined24 />} />;
+        return (
+          <Button
+            size="m"
+            color="ghost"
+            variant="secondary"
+            iconButton={<IconAddPlusOutlined24 />}
+            data-ui-dnd-small-icon
+          />
+        );
       default:
         return (
           <Button
             className={styles['small-default-icon']}
             size="m"
-            color="ghost" 
+            color="ghost"
             variant="secondary"
             iconButton={<IconAddPlusOutlined24 />}
+            data-ui-dnd-small-icon
           />
         );
     }

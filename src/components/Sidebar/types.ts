@@ -4,6 +4,8 @@ import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 
+type ChangeFavoritesHandler = (v: string[]) => void;
+
 export interface ISidebarProps extends PropsWithChildren {
   /**
    * Ориентация бокового меню.
@@ -22,6 +24,11 @@ export interface ISidebarProps extends PropsWithChildren {
    * @default false
    */
   allowFavorites?: boolean;
+
+  /**
+   * Обработчик, позволяющий отслеживать изменения в списке избранного
+   */
+  onChangeFavorites?: ChangeFavoritesHandler;
 
   /**
    * Флаг, показывающий, вошел ли пользователь в систему.
@@ -187,6 +194,11 @@ export interface ISidebarProperties {
    * Флаг, разрешающий использование избранного.
    */
   allowFavorites: boolean;
+
+  /**
+   * Обработчик, позволяющий отслеживать изменения в списке избранного
+   */
+  onChangeFavorites: ChangeFavoritesHandler;
 
   /**
    * Ориентация бокового меню.

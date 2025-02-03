@@ -60,14 +60,19 @@ export const Status: FC<IStatusProps> = ({
   );
 
   return (
-    <div className={classes}>
+    <div className={classes} data-ui-status>
       {typeof icon === 'string' ? (
-        <Icon name={icon} containerSize={iconContainerSizes[fill][size]} htmlColor={iconColors[color]} />
+        <Icon
+          name={icon}
+          containerSize={iconContainerSizes[fill][size]}
+          htmlColor={iconColors[color]}
+          data-ui-status-icon
+        />
       ) : (
         icon
       )}
       {children && (
-        <Typography variant={childrenVariants[size]} className={styles.content}>
+        <Typography variant={childrenVariants[size]} className={styles.content} data-ui-status-content>
           {children}
         </Typography>
       )}

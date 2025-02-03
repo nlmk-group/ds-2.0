@@ -1,7 +1,8 @@
 import React, { FC, MouseEvent, useContext } from 'react';
 
+import { EButtonSize } from '@components/Button/enums';
 import { DropdownContext } from '@components/Dropdown/context';
-import { Box, IconStarOutlined24, ListItem } from '@components/index';
+import { ListItem, Typography } from '@components/index';
 import clsx from 'clsx';
 
 import { IDropdownMenuItemProps } from './types';
@@ -21,7 +22,7 @@ import styles from './DropdownMenuItem.module.scss';
  */
 
 const DropdownMenuItem: FC<IDropdownMenuItemProps> = ({ children, onClick, value, disabled = false }) => {
-  const { setIsOpen } = useContext(DropdownContext);
+  const { setIsOpen, size } = useContext(DropdownContext);
   /**
    * Обработчик клика на элемент меню, закрывающий меню и вызывающий обработчик клика.
    *
@@ -36,13 +37,14 @@ const DropdownMenuItem: FC<IDropdownMenuItemProps> = ({ children, onClick, value
   };
 
   return (
-    <ListItem className={clsx(styles.item, { [styles.disabled]: disabled })} onClick={handleClick}>
-      <Box display="flex" alignItems="center" gap="12px">
-        <div>
-          <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />
-        </div>
-        <div className={styles['item-position']}>{children}</div>
-      </Box>
+    <ListItem
+      className={clsx(styles.item, { [styles.disabled]: disabled })}
+      onClick={handleClick}
+      data-ui-dropdown-menu-item
+    >
+      <Typography variant={size === EButtonSize.xs ? 'Body2-Medium' : 'Body1-Medium'}>
+        <div>{children}</div>
+      </Typography>
     </ListItem>
   );
 };

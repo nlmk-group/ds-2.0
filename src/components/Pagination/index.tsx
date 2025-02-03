@@ -103,15 +103,23 @@ const Pagination: FC<IPaginationProps> = ({
       <div className={styles.panel}>
         {withSelect && (
           <div className={styles.show}>
-            <div className={styles.showTitle}>Отображать</div>
+            <div className={styles.showTitle} data-ui-pagination-select-title>
+              Отображать
+            </div>
             <SimpleSelect
               value={elementsPerPage?.toString()}
               onChange={handlePageSizeChange}
               withPortal
               className={styles.select}
+              data-ui-pagination-select
             >
               {pageSizes.map(pageSize => (
-                <OptionItem key={pageSize} value={pageSize.toString()} label={pageSize.toString()}>
+                <OptionItem
+                  key={pageSize}
+                  value={pageSize.toString()}
+                  label={pageSize.toString()}
+                  data-ui-pagination-select-item
+                >
                   <Typography variant="Body1-Medium">{pageSize} записей</Typography>
                 </OptionItem>
               ))}
@@ -128,6 +136,7 @@ const Pagination: FC<IPaginationProps> = ({
               size="xs"
               onClick={handlePrevPage}
               disabled={currentPage <= 1}
+              data-ui-pagination-button-chevron-left
             />
           </div>
           {isPlainButtons ? (
@@ -136,9 +145,15 @@ const Pagination: FC<IPaginationProps> = ({
               currentPage={currentPage}
               setCurrentPage={setPageWrapper}
               start={0}
+              data-ui-pagination-buttons-plain
             />
           ) : (
-            <ComplexButtons maxPageCount={maxPageCount} currentPage={currentPage} setCurrentPage={setPageWrapper} />
+            <ComplexButtons
+              maxPageCount={maxPageCount}
+              currentPage={currentPage}
+              setCurrentPage={setPageWrapper}
+              data-ui-pagination-buttons-complex
+            />
           )}
           <div className={styles.chevronWrapper}>
             <Button
@@ -149,6 +164,7 @@ const Pagination: FC<IPaginationProps> = ({
               size="xs"
               onClick={handleNextPage}
               disabled={currentPage >= maxPageCount}
+              data-ui-pagination-button-chevron-right
             />
           </div>
         </div>

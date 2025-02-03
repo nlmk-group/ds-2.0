@@ -93,6 +93,8 @@ export const SplitterDefault = (): ReactNode => {
           Информация по рассмотрению
         </Typography>
         <Button
+          variant="secondary"
+          color="ghost"
           style={{ pointerEvents: 'none' }}
           size="s"
           iconButton={<IconEyeOutlined24 htmlColor="var(--brand-sapphire-60)" />}

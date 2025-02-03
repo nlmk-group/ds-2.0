@@ -1,12 +1,14 @@
-.icon-rotate {
+.icon {
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease-in-out;
   height: 24px;
   max-width: 24px;
+  transition: transform 0.3s ease-in-out;
 
-  &-open {
-    transform: rotate(180deg);
+  &-rotate {
+    &-open {
+      transform: rotate(180deg);
+    }
   }
 }
 
@@ -20,4 +22,3 @@
     color: var(--unique-bluewhite) !important;
   }
 }
-

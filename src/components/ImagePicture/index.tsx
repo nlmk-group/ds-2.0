@@ -53,14 +53,15 @@ const ImagePicture: FC<IImagePicture> = ({
       )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      data-ui-image-picture
       data-testid="IMAGE_PICTURE"
     >
       {shouldShowZoomOverlay && (
         <>
           <div className={styles['hover-icon']}>
-            <Icon name="IconZoomInOutlined24" containerSize={32} />
+            <Icon name="IconZoomInOutlined24" containerSize={32} data-ui-image-picture-overlay-zoom-icon />
           </div>
-          <div className={styles['hover-overlay']} />
+          <div className={styles['hover-overlay']} data-ui-image-picture-overlay />
         </>
       )}
       {src && <img src={src} className={styles.image} alt={restImgProps.alt} {...restImgProps} />}

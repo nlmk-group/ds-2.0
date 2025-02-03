@@ -3,6 +3,11 @@
   display: flex;
   align-items: center;
   max-width: fit-content;
+
+  &.small-content {
+    min-width: 200px;
+  }
+
   min-width: 100%;
   max-height: 248px;
   z-index: 1100;

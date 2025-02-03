@@ -22,20 +22,20 @@ const Splitter: FC<ISplitterProps> = ({ topComponent, bottomComponent }) => {
   const { splitterRef } = useSplitter(containerRef, setTopHeight);
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      <div className={styles.topPane} style={{ height: `${topHeight}%` }}>
+    <div className={styles.container} ref={containerRef} data-ui-splitter>
+      <div className={styles.topPane} style={{ height: `${topHeight}%` }} data-ui-splitter-top-pane>
         {topComponent}
       </div>
       <div className={styles.splitter} ref={splitterRef}>
         <Divider>
-          <div className={styles.handle}>
+          <div className={styles.handle} data-ui-splitter-handle>
             {[...Array(5)].map((_, index) => (
               <div key={index} className={styles.dot} />
             ))}
           </div>
         </Divider>
       </div>
-      <div className={styles.bottomPane} style={{ height: `${100 - topHeight}%` }}>
+      <div className={styles.bottomPane} style={{ height: `${100 - topHeight}%` }} data-ui-splitter-bottom-pane>
         {bottomComponent}
       </div>
     </div>

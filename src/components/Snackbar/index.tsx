@@ -93,7 +93,6 @@ const Snackbar: FC<ISnackbarProps> = ({
 
   return (
     <div
-      data-testid="SNACKBAR_WRAPPER"
       className={clsx(
         styles.snackbar,
         type === ESnackbarTypes.indication ? styles['snackbar-outline'] : styles[`snackbar-${color}`],
@@ -103,6 +102,7 @@ const Snackbar: FC<ISnackbarProps> = ({
       )}
       style={style}
       data-ui-snackbar-color
+      data-testid="SNACKBAR_WRAPPER"
     >
       <div className={styles['text-block']} data-ui-snackbar-text>
         {icon && (

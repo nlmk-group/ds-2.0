@@ -124,8 +124,8 @@ const Modal: FC<IModalProps> = ({
 
   return (
     <>
-      <div className={styles.backdrop} onClick={handleBackdropClick} />
-      <div className={styles.modalWrapper}>
+      <div className={styles.backdrop} onClick={handleBackdropClick} data-ui-modal-backdrop />
+      <div className={styles.modalWrapper} data-ui-modal>
         <div className={styles.modalInner} ref={modalRef} onMouseDown={handleMouseDown}>
           <div className={modalClasses}>
             {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
@@ -139,6 +139,7 @@ const Modal: FC<IModalProps> = ({
             aria-label="Close"
             onClick={e => onClose(e)}
             size={EButtonSize.s}
+            data-ui-modal-button
           />
         </div>
       </div>

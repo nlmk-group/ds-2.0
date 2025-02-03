@@ -3,7 +3,6 @@ import React, { SyntheticEvent, useCallback, useMemo, useState } from 'react';
 import Icon from '@components/Icon';
 import { IconBirthday16, IconDoneCheckFilled16, IconDoneCheckFilled32 } from '@components/Icon/IconsDirectory';
 import IconBirthday32 from '@components/Icon/IconsDirectory/NLMKONE/Birthday/32';
-import IconPersonFilled110 from './subcomponents/IconPersonFilled110/110';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 
@@ -15,6 +14,7 @@ import { AVATAR_SIZE_PARAMETERS } from './constants';
 import { EAvatarSize } from './enums';
 import { IconBadge } from './subcomponents/IconBadge';
 import IconCameraAvatar from './subcomponents/IconCameraAvatar/IconCameraAvatar';
+import IconPersonFilled110 from './subcomponents/IconPersonFilled110/110';
 import { getSizingStyles } from './utils';
 
 /**
@@ -112,10 +112,11 @@ const Avatar: IAvatarComponent = ({
         [styles.xxxl]: size === EAvatarSize.xxxl
       })}
       style={avatarStyles}
+      data-ui-avatar
       data-testid="AVATAR"
     >
       {size === EAvatarSize.xxxl && (
-        <div className={styles.overlay}>
+        <div className={styles.overlay} data-ui-avatar-xxxl-overlay>
           <div style={{ opacity: '100%' }}>
             <IconCameraAvatar htmlColor="var(--unique-white)" />
           </div>
@@ -125,14 +126,15 @@ const Avatar: IAvatarComponent = ({
         <img
           src={imageSrc}
           className={styles.image}
-          data-testid="AVATAR_IMAGE"
           alt="avatar image"
           onError={onLoadImageError}
+          data-ui-avatar-image
+          data-testid="AVATAR_IMAGE"
         />
       )}
 
       {shouldShowLetters && (
-        <div className={styles.letters} style={lettersStyles}>
+        <div className={styles.letters} style={lettersStyles} data-ui-avatar-letters>
           <Typography variant={lettersVariant} data-testid="AVATAR_LETTERS">
             {firstLetter}
             {secondLetter}
@@ -143,9 +145,14 @@ const Avatar: IAvatarComponent = ({
       {shouldShowIcon && (
         <div className={styles['user-icon']} data-testid="AVATAR_ICON">
           {size === EAvatarSize.xxxl ? (
-            <IconPersonFilled110 htmlColor="var(--unique-white)" />
+            <IconPersonFilled110 htmlColor="var(--unique-white)" data-ui-avatar-icon-xxxl />
           ) : (
-            <Icon name="IconPersonFilled32" containerSize={iconSize} htmlColor="var(--unique-white)" />
+            <Icon
+              name="IconPersonFilled32"
+              containerSize={iconSize}
+              htmlColor="var(--unique-white)"
+              data-ui-avatar-icon-default
+            />
           )}
         </div>
       )}
@@ -154,12 +161,18 @@ const Avatar: IAvatarComponent = ({
         <div
           className={clsx(styles['online-indicator'], styles[online ? 'online' : 'offline'])}
           style={onlineIndicatorStyles}
+          data-ui-avatar-indicator-online
           data-testid="AVATAR_INDICATOR_ONLINE"
         />
       )}
 
       {hasNumberIndicator && (
-        <div className={styles['number-indicator']} style={numberIndicatorStyles} data-testid="AVATAR_INDICATOR_NUMBER">
+        <div
+          className={styles['number-indicator']}
+          style={numberIndicatorStyles}
+          data-ui-avatar-indicator-number
+          data-testid="AVATAR_INDICATOR_NUMBER"
+        >
           <Typography variant={size === EAvatarSize.xxxl ? 'Body-Bold' : 'Caption-Bold'}>{numberIndicator}</Typography>
         </div>
       )}

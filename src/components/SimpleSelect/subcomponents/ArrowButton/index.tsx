@@ -40,6 +40,7 @@ const ArrowButton: FC<IArrowButtonProps> = ({
         [styles.disabled]: disabled
       })}
       disabled={disabled}
+      data-ui-select-arrow-button
     />
   );
 };

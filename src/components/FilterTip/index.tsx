@@ -88,16 +88,15 @@ const FilterTip: FC<IFilterTipProps> = ({
   return (
     <div
       className={className}
+      onClick={isDisabled ? undefined : onClickHandler}
       data-ui-filter-tip
       data-testid={`${id}_filter_tip`}
-      onClick={isDisabled ? undefined : onClickHandler}
     >
       <Typography color={typographyColor} variant="Body1-Bold" className="filter-tip-text">
         {text ?? ''}
       </Typography>
       {isWithoutCancelIcon ? null : (
         <Button
-          data-ui-filter-tip-cancel
           id="cancel-button"
           className={clsx(styles['cancel-button'], 'filter-tip-cancel-button')}
           color="grey"
@@ -106,6 +105,7 @@ const FilterTip: FC<IFilterTipProps> = ({
           disabled={isDisabled}
           onClick={isDisabled ? undefined : onClickCancel}
           iconButton={<Icon name="IconCancelFilled24" htmlColor={htmlColorIcon} />}
+          data-ui-filter-tip-cancel
         />
       )}
     </div>

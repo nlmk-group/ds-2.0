@@ -8,13 +8,15 @@ import { IHorizontalBorder } from '../types';
 
 const HorizontalBorder: FC<IHorizontalBorder> = ({ isSmall, dashed = false, orientationSpace = 0 }): JSX.Element => (
   <div
-    data-testid="BORDER_WRAPPER"
     style={isSmall && orientationSpace !== 0 ? { width: `${orientationSpace}px` } : {}}
     className={clsx(styles['border-horizontal-wrapper'], isSmall && styles['border-horizontal-small'])}
+    data-ui-horizontal-divider
+    data-testid="BORDER_WRAPPER"
   >
     <div
-      data-testid="BORDER"
       className={clsx(styles['border-horizontal'], dashed ? styles['border-dashed'] : styles['border-solid'])}
+      data-ui-horizontal-divider-border
+      data-testid="BORDER"
     />
   </div>
 );

@@ -35,7 +35,13 @@ const LegendView: FC<ILegendViewProps> = ({
 
   return (
     <div data-testid={COMPONENT_NAME} className={clsx(styles.container, COMPONENT_NAME)}>
-      <Element onColorChange={onColorChange} color={color} isActive={isActive} isSelectable={isSelectable} />
+      <Element
+        onColorChange={onColorChange}
+        color={color}
+        isActive={isActive}
+        isSelectable={isSelectable}
+        data-ui-legend-view
+      />
       {isWithoutLabel ? null : <Typography variant="Body1-Medium">{label ?? NO_VIEW_LABEL}</Typography>}
     </div>
   );

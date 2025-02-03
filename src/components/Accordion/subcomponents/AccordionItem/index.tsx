@@ -76,23 +76,26 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
 
   return (
     <div
-      className={clsx(
-        styles.item,
-        styles[size],
-        styles[variant],
-        { [styles.disabled]: disabled },
-        className
-      )}
+      className={clsx(styles.item, styles[size], styles[variant], { [styles.disabled]: disabled }, className)}
       {...props}
+      data-ui-accordion-item
     >
-      <div className={styles.header} onClick={() => handleClick(id)}>
-        {startIcon ? <div className={styles.icon}>{getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}</div> : null}
-        <div style={{ flexGrow: 1 }}>
+      <div className={styles.header} onClick={() => handleClick(id)} data-ui-accordion-header>
+        {startIcon ? (
+          <div className={styles.icon} data-ui-accordion-start-icon>
+            {getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}
+          </div>
+        ) : null}
+        <div style={{ flexGrow: 1 }} data-ui-accordion-title>
           <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
         </div>
-        {endIcon ? <div className={styles.icon}>{getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}</div> : null}
+        {endIcon ? (
+          <div className={styles.icon} data-ui-accordion-end-icon>
+            {getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}
+          </div>
+        ) : null}
       </div>
-      <div className={clsx(styles.expandable, isExpanded && styles.expanded)}>
+      <div className={clsx(styles.expandable, isExpanded && styles.expanded)} data-ui-accordion-content-container>
         <Typography
           variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
           className={clsx(
@@ -100,6 +103,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
             isExpanded && styles.content,
             variant === EVariantsAccordion.paper && styles['content_paper']
           )}
+          data-ui-accordion-content
         >
           {children}
         </Typography>

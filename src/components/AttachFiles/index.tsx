@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
+
 import clsx from 'clsx';
+
 import { IAttachFilesProps } from './types';
+
 import styles from './AttachFiles.module.scss';
 
 /**
@@ -13,17 +16,21 @@ import styles from './AttachFiles.module.scss';
  * @returns {JSX.Element} - Компонент AttachFiles.
  */
 
-const AttachFiles: FC<IAttachFilesProps> = ({
-  title,
-  children,
-  className
-}) => {
+const AttachFiles: FC<IAttachFilesProps> = ({ title, children, className }) => {
   return (
-    <div className={clsx(styles['list-center'], className)} data-testid="ATTACHFILES_WRAPPER">
-      <div data-testid="ATTACHFILES_TITLE">
+    <div
+      data-ui-attach-files-container
+      className={clsx(styles['list-center'], className)}
+      data-testid="ATTACHFILES_WRAPPER"
+    >
+      <div data-ui-attach-files-title data-testid="ATTACHFILES_TITLE">
         {title}
       </div>
-      <div className={clsx(title && styles['list-with-title'])} data-testid="ATTACHFILES_LIST">
+      <div
+        data-ui-attach-files-list
+        className={clsx(title && styles['list-with-title'])}
+        data-testid="ATTACHFILES_LIST"
+      >
         {children}
       </div>
     </div>

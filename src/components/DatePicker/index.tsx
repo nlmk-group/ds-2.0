@@ -247,6 +247,7 @@ export const DatePicker: TDatePickerProps = ({
       onSelect={onSelect}
       infiniteTimeScroll={infiniteTimeScroll}
       {...attributes.popper}
+      data-ui-datepicker-calendar-panel
     />
   );
 
@@ -304,6 +305,7 @@ export const DatePicker: TDatePickerProps = ({
         error={error}
         helperText={helperText}
         {...restInputProps}
+        data-ui-datepicker-input
       />
       {isOpen &&
         (!withPortal ? (

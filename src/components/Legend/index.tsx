@@ -30,8 +30,8 @@ const Legend: FC<ILegendProps> = ({ type = ELegendType.VIEW, label, tooltipText 
   return (
     <LegendContext.Provider value={rest}>
       <Tooltip title={tooltipText}>
-        {type === ELegendType.VIEW ? <LegendView label={label} /> : null}
-        {type === ELegendType.EDIT ? <LegendEdit label={label} /> : null}
+        {type === ELegendType.VIEW ? <LegendView data-ui-legend-view-container label={label} /> : null}
+        {type === ELegendType.EDIT ? <LegendEdit data-ui-legend-edit-container label={label} /> : null}
       </Tooltip>
     </LegendContext.Provider>
   );

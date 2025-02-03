@@ -41,8 +41,14 @@
   position: relative;
   cursor: pointer;
 
+  & > div > svg {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(0deg);
+  }
+
   &--open {
     & > div > svg {
+      transition: transform 0.3s ease-in-out;
       transform: rotate(180deg);
     }
   }

@@ -256,7 +256,7 @@ const TimePicker: FC<TTimePickerType> = ({
     <div
       className={clsx(styles.root, className, restInputProps.disabled && styles.disabled, isOpen && styles.opened)}
       id={id as string}
-      data-ui-time-picker
+      data-ui-timepicker
     >
       {name && ['time', 'timeWithSeconds'].includes(type) && (
         <input type="hidden" name={name} value={value?.toISOString()} />

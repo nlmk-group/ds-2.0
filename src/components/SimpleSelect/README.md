@@ -7,24 +7,19 @@ SimpleSelect компонент используется для создания
 ## Использование
 
 ```jsx
-import { SimpleSelect, OptionItem } from '@nlmk/ds-2.0';
+import { OptionItem, SimpleSelect } from '@nlmk/ds-2.0';
 
-<SimpleSelect
-  value={selectedValue}
-  onChange={handleChange}
-  label="Выберите опцию"
-  searchable
->
+<SimpleSelect value={selectedValue} onChange={handleChange} label="Выберите опцию" searchable>
   <OptionItem value="option1">Option 1</OptionItem>
   <OptionItem value="option2">Option 2</OptionItem>
   <OptionItem value="option3">Option 3</OptionItem>
-</SimpleSelect>
+</SimpleSelect>;
 ```
 
 ## Props
 
 | Prop              | Type              | Default                   | Description                                 |
-|-------------------|-------------------|---------------------------|---------------------------------------------|
+| ----------------- | ----------------- | ------------------------- | ------------------------------------------- |
 | value             | string \| number  | -                         | Значение селекта                            |
 | onChange          | function          | -                         | Обработчик изменения значения селекта       |
 | id                | string            | -                         | Идентификатор компонента                    |
@@ -58,10 +53,41 @@ import { SimpleSelect, OptionItem } from '@nlmk/ds-2.0';
 
 ## Стилизация
 
+### 1. CSS-классы
+
 Компонент использует CSS модули для стилизации. Основные классы:
 
 - `.select`: Базовый класс для корневого элемента
 - `.select__input`: Класс для инпута селекта
 - `.input-helper`: Вспомогательный класс для стилизации инпута
 
-Вы можете переопределить эти стили, передав собственный `className` или используя `style` проп.
+Вы можете переопределить эти стили, передав собственный `className`.
+
+### 2. Data-атрибуты
+
+Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
+
+```css
+/* Основной контейнер SimpleSelect */
+[data-ui-select] {
+  /* Ваши стили */
+}
+
+/* Поле ввода внутри SimpleSelect */
+[data-ui-select-input] {
+  /* Ваши стили */
+}
+/* Кнопка-стрелочка внутрия поля SimpleSelect */
+[data-ui-select-arrow-button] {
+  /* Ваши стили */
+}
+/* Контейнер для выпадающего списка */
+[data-ui-select-options] {
+  /* Ваши стили */
+}
+
+/* Отдельный элемент внутри выпадающего списка */
+[data-ui-select-option] {
+  /* Ваши стили */
+}
+```

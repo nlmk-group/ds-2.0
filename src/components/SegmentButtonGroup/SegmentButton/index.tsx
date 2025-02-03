@@ -31,7 +31,6 @@ export const SegmentButton = ({
 
   return (
     <button
-      data-testid="SEGMENT_BUTTON"
       onClick={handleClick}
       disabled={isDisabled}
       className={clsx(
@@ -41,8 +40,16 @@ export const SegmentButton = ({
         active ? styles._active : '',
         className
       )}
+      data-ui-segment-button
+      data-testid="SEGMENT_BUTTON"
     >
-      {isPrimitiveChildren ? <Typography variant="Body1-Bold" color='var(--steel-90)'>{children}</Typography> : children}
+      {isPrimitiveChildren ? (
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          {children}
+        </Typography>
+      ) : (
+        children
+      )}
     </button>
   );
 };

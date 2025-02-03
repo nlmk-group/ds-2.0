@@ -1,7 +1,15 @@
 import React, { ReactNode } from 'react';
 
 import { EButtonSize } from '@components/Button/enums';
-import { Box, Dropdown, DropdownMenuItem, Typography } from '@components/index';
+import { Box, Dropdown, DropdownMenuItem } from '@components/index';
+import {
+  IconCancelOutlined16,
+  IconCancelOutlined24,
+  IconChevronArrowRightOutlined16,
+  IconChevronArrowRightOutlined24,
+  IconStarOutlined16,
+  IconStarOutlined24
+} from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -37,29 +45,71 @@ const dropdownOptions = [
   { value: 'Титан' },
   { value: 'Хром' }
 ];
+const dropdownOptionsSmall = [
+  { value: 'Ag' },
+  { value: 'N' },
+  { value: 'Cu', disabled: true },
+  { value: 'Au' },
+  { value: 'Fe' },
+  { value: 'Ti' },
+  { value: 'C' }
+];
+const dropdownOptionsForCustom = [
+  { value: 'Металлургический комбинат' },
+  { value: 'Железо' },
+  { value: 'Чугун', disabled: true },
+  { value: 'Медь' },
+  { value: 'Цинк' },
+  { value: 'Титан' },
+  { value: 'Хром' }
+];
+const sizeToIconStar = {
+  [EButtonSize.m]: <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />,
+  [EButtonSize.s]: <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />,
+  [EButtonSize.xs]: <IconStarOutlined16 htmlColor="var(--brand-sapphire-60)" />
+};
+const sizeToIconCancel = {
+  [EButtonSize.m]: <IconCancelOutlined24 htmlColor="var(--spectrum-red-60)" />,
+  [EButtonSize.s]: <IconCancelOutlined24 htmlColor="var(--spectrum-red-60)" />,
+  [EButtonSize.xs]: <IconCancelOutlined16 htmlColor="var(--spectrum-red-60)" />
+};
+const sizeToIconChevronRight = {
+  [EButtonSize.m]: <IconChevronArrowRightOutlined24 htmlColor="var(--brand-sapphire-60)" />,
+  [EButtonSize.s]: <IconChevronArrowRightOutlined24 htmlColor="var(--brand-sapphire-60)" />,
+  [EButtonSize.xs]: <IconChevronArrowRightOutlined16 htmlColor="var(--brand-sapphire-60)" />
+};
 
 export const DefaultDropdown = (args: IDropdownProps): ReactNode => {
   return (
     <Dropdown {...args}>
-      {dropdownOptions.map(({ value, disabled }) => (
-        <DropdownMenuItem
-          key={value}
-          value={value}
-          disabled={disabled}
-          onClick={() => {
-            console.log(value);
-          }}
-        >
-          <Typography variant="Body1-Medium">{value}</Typography>
-        </DropdownMenuItem>
-      ))}
+      {dropdownOptions.map(({ value, disabled }) => {
+        const hasSpace = value.includes(' ');
+        const finalAlign = hasSpace ? 'top' : 'center';
+        return (
+          <DropdownMenuItem
+            key={value}
+            value={value}
+            disabled={disabled}
+            onClick={() => {
+              console.log(value);
+            }}
+          >
+            <Box key={value} display="flex" alignItems={finalAlign} gap="8px">
+              <div style={{ position: 'relative', top: '2px' }}>
+                {sizeToIconStar[args.size as keyof typeof sizeToIconStar]}
+              </div>
+              {value}
+            </Box>
+          </DropdownMenuItem>
+        );
+      })}
     </Dropdown>
   );
 };
 DefaultDropdown.args = {
   buttonChildren: 'Dropdown Button',
   size: EButtonSize.m,
-  menuStyle: { width: '200px' },
+  menuStyle: { minWidth: '200px' }
 };
 
 DefaultDropdown.storyName = 'Dropdown по умолчанию';
@@ -67,26 +117,114 @@ DefaultDropdown.storyName = 'Dropdown по умолчанию';
 export const PortalDropdown = (args: IDropdownProps): ReactNode => {
   return (
     <Dropdown {...args}>
-      {dropdownOptions.map(({ value, disabled }) => (
-        <DropdownMenuItem
-          key={value}
-          value={value}
-          disabled={disabled}
-          onClick={() => {
-            console.log(value);
-          }}
-        >
-          <Typography variant="Body1-Medium">{value}</Typography>
-        </DropdownMenuItem>
-      ))}
+      {dropdownOptions.map(({ value, disabled }) => {
+        const hasSpace = value.includes(' ');
+        const finalAlign = hasSpace ? 'top' : 'center';
+        return (
+          <DropdownMenuItem
+            key={value}
+            value={value}
+            disabled={disabled}
+            onClick={() => {
+              console.log(value);
+            }}
+          >
+            <Box key={value} display="flex" alignItems={finalAlign} gap="8px">
+              <div style={{ position: 'relative', top: '2px' }}>
+                {sizeToIconStar[args.size as keyof typeof sizeToIconStar]}
+              </div>
+              {value}
+            </Box>
+          </DropdownMenuItem>
+        );
+      })}
     </Dropdown>
   );
 };
 PortalDropdown.args = {
   buttonChildren: 'Dropdown Button',
   size: EButtonSize.m,
-  menuStyle: { width: '200px' },
+  menuStyle: { minWidth: '200px' },
   withPortal: true
 };
 
 PortalDropdown.storyName = 'Dropdown с порталом';
+
+export const DropdownWithCustomElements = (args: IDropdownProps): ReactNode => {
+  return (
+    <Dropdown {...args}>
+      {dropdownOptionsForCustom.map(({ value, disabled }) => {
+        const hasSpace = value.includes(' ');
+        const finalAlign = hasSpace ? 'top' : 'center';
+        return (
+          <DropdownMenuItem
+            key={value}
+            value={value}
+            disabled={disabled}
+            onClick={() => {
+              console.log(value);
+            }}
+          >
+            <Box key={value} display="flex" alignItems={finalAlign} gap="8px">
+              <div style={{ position: 'relative', top: '4px' }}>
+                {sizeToIconCancel[args.size as keyof typeof sizeToIconCancel]}
+              </div>
+              <div
+                style={{
+                  flexGrow: 1,
+                  width: '150px'
+                }}
+              >
+                {value}
+              </div>
+              <div style={{ position: 'relative', top: '2px', marginLeft: 'auto' }}>
+                {sizeToIconChevronRight[args.size as keyof typeof sizeToIconChevronRight]}
+              </div>
+            </Box>
+          </DropdownMenuItem>
+        );
+      })}
+    </Dropdown>
+  );
+};
+DropdownWithCustomElements.storyName = 'Dropdown с кастомизированными элементами списка';
+DropdownWithCustomElements.args = {
+  buttonChildren: 'Dropdown Button',
+  size: EButtonSize.m,
+  menuStyle: { minWidth: '200px' }
+};
+
+export const SmallDropdown = (args: IDropdownProps): ReactNode => {
+  return (
+    <Dropdown {...args}>
+      {dropdownOptionsSmall.map(({ value, disabled }) => {
+        const hasSpace = value.includes(' ');
+        const finalAlign = hasSpace ? 'top' : 'center';
+        return (
+          <DropdownMenuItem
+            key={value}
+            value={value}
+            disabled={disabled}
+            onClick={() => {
+              console.log(value);
+            }}
+          >
+            <Box key={value} display="flex" alignItems={finalAlign} gap="8px">
+              <div style={{ position: 'relative', top: '2px' }}>
+                {sizeToIconStar[args.size as keyof typeof sizeToIconStar]}
+              </div>
+              {value}
+            </Box>
+          </DropdownMenuItem>
+        );
+      })}
+    </Dropdown>
+  );
+};
+SmallDropdown.args = {
+  buttonChildren: 'Ед.',
+  size: EButtonSize.m,
+  menuStyle: { minWidth: '100px' }
+};
+
+SmallDropdown.storyName = 'Dropdown с короткими значениями';

@@ -86,42 +86,50 @@ const File: FC<IFileProps> = ({
 
   return (
     <div className={clsx(styles.wrapper, className)}>
-      <div className={styles['container-info']}>
-        <IconHelper />
-        <div className={clsx(styles.title, styles['long-title-wrapper'])} data-testid="FILE_TITLE">
+      <div className={styles['container-info']} data-ui-file-container>
+        <IconHelper data-ui-file-icon />
+        <div className={clsx(styles.title, styles['long-title-wrapper'])} data-ui-file-title data-testid="FILE_TITLE">
           <Typography variant="Body1-Medium" className={styles['long-title']}>
             {label}
           </Typography>
         </div>
-        <div className={styles['controllers-wrapper']}>
+        <div className={styles['controllers-wrapper']} data-ui-file-controllers>
           {!addFile && commented && (
-            <div data-testid="COMMENTED_CONTROL" className={styles['control-btn']}>
+            <div className={styles['control-btn']} data-testid="COMMENTED_CONTROL">
               <Button
                 color="ghost"
                 variant="secondary"
                 onClick={commentedOnClick}
                 iconButton={<IconCommentChatBubbleFullOutlined24 />}
+                data-ui-file-comment-button
               />
             </div>
           )}
           {!addFile && saved && (
-            <div data-testid="SAVED_CONTROL" className={styles['control-btn']}>
+            <div className={styles['control-btn']} data-testid="SAVED_CONTROL">
               <Button
                 color="ghost"
                 variant="secondary"
                 onClick={savedOnClick}
                 iconButton={<IconDownloadOutlined24 />}
+                data-ui-file-download-button
               />
             </div>
           )}
           {!addFile && removed && (
             <div data-testid="REMOVED_CONTROL" className={styles['control-btn']}>
-              <Button color="ghost" variant="secondary" onClick={removedOnClick} iconButton={<IconCloseOutlined24 />} />
+              <Button
+                color="ghost"
+                variant="secondary"
+                onClick={removedOnClick}
+                iconButton={<IconCloseOutlined24 />}
+                data-ui-file-close-button
+              />
             </div>
           )}
           {addFile && (
             <div className={styles['add-file-btn']} data-testid="ADD_FILE_CONTROL">
-              <Button variant="secondary" onClick={addFileOnClick}>
+              <Button variant="secondary" onClick={addFileOnClick} data-ui-file-add-button>
                 Добавить файл
               </Button>
             </div>
@@ -130,8 +138,9 @@ const File: FC<IFileProps> = ({
       </div>
       {description.length !== 0 && (
         <div
-          data-testid="FILE_DESCRIPTION"
           className={clsx(styles.description, !empty && styles['description-space-helper'])}
+          data-ui-file-description
+          data-testid="FILE_DESCRIPTION"
         >
           <Typography variant="Body2-Medium">{description}</Typography>
         </div>

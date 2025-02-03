@@ -17,9 +17,9 @@ import { Chip, EChipColors } from '@nlmk/ds-2.0';
 ## Props
 
 | Prop      | Type             | Default             | Description              |
-|-----------|------------------|---------------------|--------------------------|
+| --------- | ---------------- | ------------------- | ------------------------ |
 | color     | EChipColors      | EChipColors.primary | Цвет чипа                |
-| size      | TChipSize         | 'm'                 | Размер чипа              |
+| size      | TChipSize        | 'm'                 | Размер чипа              |
 | variant   | variantsMapping  | 'solid'             | Вариант отображения чипа |
 | label     | string           | -                   | Метка чипа               |
 | children  | string \| number | -                   | Основной контент чипа    |
@@ -67,22 +67,22 @@ import { Chip, EChipColors } from '@nlmk/ds-2.0';
 ```css
 /* Стилизация корневого элемента */
 [data-ui-chip] {
-  background-color: #EE9852;
+  /* Ваши стили */
 }
 
 /* Стилизация метки */
 [data-ui-chip-label] {
-  color: #000000;
+  /* Ваши стили */
 }
 
 /* Стилизация контейнера контента */
 [data-ui-chip-content] {
-  gap: 8px;
+  /* Ваши стили */
 }
 
 /* Стилизация суффикса */
 [data-ui-chip-suffix] {
-  font-weight: 700;
+  /* Ваши стили */
 }
 ```
 

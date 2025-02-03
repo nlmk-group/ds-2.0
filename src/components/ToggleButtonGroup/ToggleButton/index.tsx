@@ -36,7 +36,6 @@ const ToggleButton = ({
   return (
     <ButtonProperties.Provider value={buttonProps}>
       <div
-        data-ui-toggle-button
         onClick={handleClick}
         data-testid="TOGGLE_BUTTON"
         onMouseEnter={() => setIsHovered(true)}
@@ -49,13 +48,14 @@ const ToggleButton = ({
           (defaultProps.disabled || disabled) && styles['button-disabled'],
           className
         )}
+        data-ui-toggle-button
       >
         {children}
       </div>
       {!isLast && (
         <div
-          data-ui-toggle-button-divider
           className={clsx(styles['divider-wrapper'], (isHovered || active) && styles['divider-hidden'])}
+          data-ui-toggle-button-divider
         >
           <Divider type="vertical" />
         </div>

@@ -14,8 +14,8 @@ import { ISidebarProperties, ISubmenuProps } from '../../types';
 const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
-  const { allowFavorites } = useContext<ISidebarProperties>(SidebarProperties);
-  const { handleFavorites, checkIsFavorite, checkChildIsFavorite } = useFavorites();
+  const { allowFavorites, onChangeFavorites } = useContext<ISidebarProperties>(SidebarProperties);
+  const { handleFavorites, checkIsFavorite, checkChildIsFavorite, favorites } = useFavorites();
   const [showFavorites, setShowFavorites] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
@@ -41,6 +41,11 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
   useEffect(() => {
     setActiveItem(null);
   }, [title]);
+
+  useEffect(() => {
+    onChangeFavorites(favorites);
+  }, [favorites]);
+
   let favoritesContent;
 
   if (showFavorites && favoritesChildren.length > 0) {

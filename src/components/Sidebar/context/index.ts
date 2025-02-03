@@ -13,6 +13,7 @@ export const SidebarProperties = createContext<ISidebarProperties>({
   orientation: ESidebarOrientationMapping.vertical,
   setSubmenuItems: () => {},
   setActiveItem: () => {},
+  onChangeFavorites: () => {},
   isScrollingDueToClick: false,
   setIsScrollingDueToClick: () => {},
   currentPath: '',

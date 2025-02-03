@@ -21,7 +21,7 @@ const Illustration: FC<IIllustrationProps> = ({ name, size = EPictureSizes.Small
     ILLUSTRATION_PICTURES[size as `${EPictureSizes}`][EPictureNames.NoImage];
 
   return (
-    <div className={className} style={style} data-testid="ILLUSTRATION" data-ui-illustration>
+    <div className={className} style={style} data-ui-illustration data-testid="ILLUSTRATION">
       {Picture && <Picture />}
     </div>
   );

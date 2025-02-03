@@ -39,7 +39,7 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
           data-testid={`ICON_TYPE_${EDnDIconType[fileType]}`}
           className={clsx(styles['icon-wrapper'], styles[`icon-${size}`])}
         >
-          {customIcon || <Icon name={EDnDIconType[fileType]} />}
+          {customIcon || <Icon name={EDnDIconType[fileType]} data-ui-dnd-icon />}
         </div>
       )}
 
@@ -50,6 +50,7 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
           <Typography
             variant={EDnDTitleSizeHelper[size]}
             className={clsx(styles[`title-${statusColor}`], loading && styles['title-loading'])}
+            data-ui-dnd-title
           >
             {title}
           </Typography>
@@ -60,20 +61,21 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
           <Typography
             variant={EDnDDescriptionSizeHelper[size]}
             className={clsx(styles[`text-color`], loading && styles['text-loading'])}
+            data-ui-dnd-description
           >
             {description}
           </Typography>
         )}
         {btnLabel.length > 0 && size === EDnDSizes.l && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="m" variant={getButtonVariant(loading)} onClick={onButtonClick}>
+            <Button size="m" variant={getButtonVariant(loading)} onClick={onButtonClick} data-ui-dnd-button>
               {btnLabel}
             </Button>
           </div>
         )}
         {btnLabel.length > 0 && size === EDnDSizes.m && (
           <div className={styles['btn-wrapper-medium']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button size="s" variant={getButtonVariant(loading)} onClick={onButtonClick}>
+            <Button size="s" variant={getButtonVariant(loading)} onClick={onButtonClick} data-ui-dnd-button>
               {btnLabel}
             </Button>
           </div>

@@ -61,6 +61,11 @@ export interface ISidebarProps extends PropsWithChildren {
   allowFavorites?: boolean;
 
   /**
+   * Обработчик, позволяющий отслеживать изменения в списке избранного
+   */
+  onChangeFavorites?: ChangeFavoritesHandler;
+
+  /**
    * Флаг, показывающий, вошел ли пользователь в систему.
    */
   isLoggedIn?: boolean;

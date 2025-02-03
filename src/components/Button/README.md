@@ -7,7 +7,7 @@ Button компонент используется для создания кн�
 ## Использование
 
 ```jsx
-import { Button, EButtonVariant, EButtonColor, EButtonSize } from '@nlmk/ds-2.0';
+import { Button, EButtonColor, EButtonSize, EButtonVariant } from '@nlmk/ds-2.0';
 
 <Button
   variant={EButtonVariant.primary}
@@ -17,13 +17,13 @@ import { Button, EButtonVariant, EButtonColor, EButtonSize } from '@nlmk/ds-2.0'
   endBadge="New"
 >
   Click me
-</Button>
+</Button>;
 ```
 
 ## Props
 
 | Prop       | Type             | Default                | Description              |
-|------------|------------------|------------------------|--------------------------|
+| ---------- | ---------------- | ---------------------- | ------------------------ |
 | children   | ReactNode        | -                      | Содержимое кнопки        |
 | variant    | EButtonVariant   | EButtonVariant.primary | Вариант стиля кнопки     |
 | color      | EButtonColor     | EButtonColor.brand     | Цветовая схема кнопки    |
@@ -68,6 +68,8 @@ import { Button, EButtonVariant, EButtonColor, EButtonSize } from '@nlmk/ds-2.0'
 - `.typography`: Стили для текста кнопки
 - `.icon`: Стили для иконок
 - `.compact`, `.extra-compact`: Классы для разных размеров
+
+Вы можете переопределить эти стили, передав собственный `className`.
 
 ### 2. Data-атрибуты
 

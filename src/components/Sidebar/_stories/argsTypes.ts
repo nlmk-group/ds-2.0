@@ -91,6 +91,11 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+
+  onChangeFavorites: {
+    description: 'Обработчик, позволяющий отслеживать изменения в списке избранного',
+    action: 'onChangeFavorites'
   }
 };
 

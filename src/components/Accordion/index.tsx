@@ -27,8 +27,8 @@ import { TAccordionItem } from './subcomponents/AccordionItem/types';
 export const Accordion: React.FC<IAccordionProps> = ({
   items,
   variant = EVariantsAccordion.default,
-  startIcon ,
-  endIcon ,
+  startIcon,
+  endIcon,
   size = ESizesAccordion.m,
   multipleExpanded = false,
   className,
@@ -53,7 +53,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
   }, [items]);
 
   return (
-    <div className={clsx(styles.wrapper, className)} {...props}>
+    <div className={clsx(styles.wrapper, className)} {...props} data-ui-accordion>
       {items.map((item: TAccordionItem) => {
         return (
           <Fragment key={item.id}>

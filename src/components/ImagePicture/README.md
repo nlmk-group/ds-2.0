@@ -25,14 +25,14 @@ const App = () => {
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| src | string | - | URL изображения для отображения. |
-| aspectRatio | `${ImagePictureRatios}` | `ImagePictureRatios['ratio-1x1']` | Разрешение изображения |
-| radius | `${ImagePictureRadius}` | `ImagePictureRadius['radius-none']` | Радиус закругления углов |
-| className | string | - | Дополнительный CSS-класс |
-| zoom | boolean | true | Включает эффект зумирования при наведении |
-| ...restImgProps | React.ImgHTMLAttributes<HTMLImageElement> | - | Props элемента <img> |
+| Prop            | Type                                      | Default                             | Description                               |
+| --------------- | ----------------------------------------- | ----------------------------------- | ----------------------------------------- |
+| src             | string                                    | -                                   | URL изображения для отображения.          |
+| aspectRatio     | `${ImagePictureRatios}`                   | `ImagePictureRatios['ratio-1x1']`   | Разрешение изображения                    |
+| radius          | `${ImagePictureRadius}`                   | `ImagePictureRadius['radius-none']` | Радиус закругления углов                  |
+| className       | string                                    | -                                   | Дополнительный CSS-класс                  |
+| zoom            | boolean                                   | true                                | Включает эффект зумирования при наведении |
+| ...restImgProps | React.ImgHTMLAttributes<HTMLImageElement> | -                                   | Props элемента <img>                      |
 
 ## Варианты разрешения изображения
 
@@ -49,7 +49,11 @@ const App = () => {
 
 ## Стилизация
 
-Компонент использует CSS-модули для стилизации. Вот основные классы, которые используются:
+Компонент можно кастомизировать несколькими способами:
+
+### 1. CSS-классы
+
+Компонент использует CSS-модули для стилизации. Основные классы:
 
 - `.image-wrapper`: Основной контейнер для изображения.
 - `.ratio-1x1`, `.ratio-4x3`, `.ratio-3x4`, `.ratio-16x9`: Классы для различных аспектных отношений.
@@ -60,4 +64,25 @@ const App = () => {
 - `.hover-overlay`: Стили для наложения при наведении.
 - `.empty-icon`: Стили для иконки по умолчанию, когда изображение отсутствует.
 
-Чтобы применить пользовательские стили, вы можете передать свой className и переопределить необходимые стили.
+Вы можете переопределить эти стили, передав собственный `className`.
+
+### 2. Data-атрибуты
+
+Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
+
+```css
+/* Контейнер для изображения */
+[data-ui-image-picture] {
+  /* Ваши стили */
+}
+
+/* Оверлей, накладываемый на изображение */
+[data-ui-image-picture-overlay] {
+  /* Ваши стили */
+}
+
+/* Иконка увеличения на оверлее */
+[data-ui-image-picture-overlay-zoom-icon] {
+  /* Ваши стили */
+}
+```

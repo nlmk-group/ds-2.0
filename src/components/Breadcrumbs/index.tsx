@@ -73,10 +73,11 @@ const Breadcrumbs: FC<IBreadcrumbsProps> & {
 
   return (
     <div
-      data-testid="BREADCRUMBS_WRAPPER"
       ref={ref}
       className={clsx(styles.breadcrumbs, className)}
       style={{ width: width }}
+      data-ui-breadcrumbs
+      data-testid="BREADCRUMBS_WRAPPER"
     >
       {condition ? <BasicBreadcrumbs crumbs={crumbs} /> : <ShortenBreadcrumbs crumbs={crumbs} />}
     </div>

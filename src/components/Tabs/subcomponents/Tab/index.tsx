@@ -22,20 +22,24 @@ const Tab: FC<ITabProps> = ({
   const { name: toolTipName } = _get(children, 'type') ?? {};
   const { name: iconName } = _get(children, 'props.children.props') ?? {};
   return (
-    <div className={clsx(styles['tab-wrapper'], active && styles['tab-active'], className)} {...props}>
+    <div className={clsx(styles['tab-wrapper'], active && styles['tab-active'], className)} {...props} data-ui-tab>
       <span className={clsx(styles.text, active && styles['text-active'])}>
-        <Typography variant={active ? 'Body1-Bold' : 'Body1-Medium'}>{label}</Typography>
+        <Typography variant={active ? 'Body1-Bold' : 'Body1-Medium'} data-ui-tab-label>
+          {label}
+        </Typography>
       </span>
       {toolTipName === 'Tooltip' && iconName === 'IconInfoOutlined16' && (
-        <div className={styles.tooltip}>{children}</div>
+        <div className={styles.tooltip} data-ui-tab-tooltip>
+          {children}
+        </div>
       )}
       {hasIcon && (
-        <div className={styles.icon}>
+        <div className={styles.icon} data-ui-tab-icon>
           <IconStarOutlined16 htmlColor="var(--brand-sapphire-60)"></IconStarOutlined16>
         </div>
       )}
       {hasBadge && (
-        <div className={styles.badge}>
+        <div className={styles.badge} data-ui-tab-badge>
           <Badge color={badgeColor}>{badgeChildren}</Badge>
         </div>
       )}

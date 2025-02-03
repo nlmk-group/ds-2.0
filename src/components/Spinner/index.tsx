@@ -62,9 +62,9 @@ const Spinner: FC<ISpinnerProps> = ({
   const dashOffset = circumference * (1 - fillPercentage);
 
   return (
-    <div className={styles.spinner} data-testid="SPINNER">
+    <div className={styles.spinner} data-ui-spinner data-testid="SPINNER">
       {percent !== null && (
-        <div className={styles.percent} style={{ color }}>
+        <div className={styles.percent} style={{ color }} data-ui-spinner-percent>
           <Typography variant={typographyOptionHelper()}>{percent < 100 ? percent : 99}%</Typography>
         </div>
       )}
@@ -78,12 +78,18 @@ const Spinner: FC<ISpinnerProps> = ({
               color: bgColor
             }}
             role="progressbar"
+            data-ui-spinner-overlay
           >
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
               <circle cx={center} cy={center} r={radius} fill="none" strokeWidth={strokeWidth}></circle>
             </svg>
           </span>
-          <span className={styles.loader} style={{ width: spinnerSize, height: spinnerSize, color }} role="progressbar">
+          <span
+            className={styles.loader}
+            style={{ width: spinnerSize, height: spinnerSize, color }}
+            role="progressbar"
+            data-ui-spinner-loader
+          >
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
               <circle
                 cx={center}
@@ -98,7 +104,9 @@ const Spinner: FC<ISpinnerProps> = ({
           </span>
         </>
       ) : (
-        <div className={styles.icon}>{children}</div>
+        <div className={styles.icon} data-ui-spinner-icon>
+          {children}
+        </div>
       )}
     </div>
   );

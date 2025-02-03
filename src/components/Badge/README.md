@@ -17,7 +17,7 @@ import { Badge, EBadgeColors, EBadgeSizes } from '@nlmk/ds-2.0';
 ## Props
 
 | Prop      | Type             | Default              | Description                              |
-|-----------|------------------|----------------------|------------------------------------------|
+| --------- | ---------------- | -------------------- | ---------------------------------------- |
 | color     | EBadgeColors     | EBadgeColors.primary | Цвет бейджа                              |
 | size      | EBadgeSizes      | EBadgeSizes.m        | Размер бейджа                            |
 | variant   | variantsMapping  | 'solid'              | Вариант отображения бейджа               |
@@ -69,7 +69,7 @@ import { Badge, EBadgeColors, EBadgeSizes } from '@nlmk/ds-2.0';
 ```css
 /* Стилизация корневого элемента */
 [data-ui-badge] {
-  background-color: #EE9852;
+  background-color: #ee9852;
 }
 
 /* Стилизация текстового содержимого */

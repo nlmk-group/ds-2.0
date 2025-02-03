@@ -21,15 +21,16 @@ const ProgressBar: FC<IProgressBarProps> = ({ percentage = 0, label, className }
   if (percentage < 0) console.error(`Percentage must be a number more or equal 0`);
 
   return (
-    <div className={clsx(styles.root, className)}>
+    <div className={clsx(styles.root, className)} data-ui-progress-bar>
       <div
+        className={styles['progress']}
         aria-valuenow={validPercentage}
         aria-valuemin={0}
         aria-valuemax={100}
-        className={styles['progress']}
         role="progressBar"
+        data-ui-progress
       >
-        <div className={styles['progress-fill']} style={{ width: `${validPercentage}%` }} />
+        <div className={styles['progress-fill']} style={{ width: `${validPercentage}%` }} data-ui-progress-bar-fill />
         {label && (
           <Typography className={styles['progress-label']} variant="Body1-Medium">
             {label}

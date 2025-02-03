@@ -23,6 +23,110 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.16.8 - <span className={styles.date}>03.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Переделаны div-элементы навигации на a-ссылки</li>
+              <li className={styles['left-padding']}>- Обновлены стили</li>
+              <li className={styles['left-padding']}>
+                - Добавлена возможность открывать контекстное меню правой кнопкой и ссылки в новом окне средней кнопкой
+                мыши
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.7 - <span className={styles.date}>27.01.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена новая иконка MES (IconSpectatTelega)</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.6 - <span className={styles.date}>20.01.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .<li className={styles['left-padding']}>- Удалены иконки по умолчанию слева от элементов меню</li>
+              <li className={styles['left-padding']}>- Обновлена логика работы DropdownMenuItem</li>
+              <li className={styles['left-padding']}>- Актуализированы стили</li>
+              <li className={styles['left-padding']}>- Добавлена типография по умолчанию</li>
+              <li className={styles['left-padding']}>
+                - Актуализированы истории в сторибуке для лучшего понимания работы компонента
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.5 - <span className={styles.date}>14.01.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен обработчик onChangeFavorites, позволяющий отслеживать изменения в списке избранного
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.4 - <span className={styles.date}>14.01.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Добавлены data-атрибуты в компоненты</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.3 - <span className={styles.date}>13.01.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES и System</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.16.2 - <span className={styles.date}>28.12.24</span>
           </Typography>
           <ul className={styles.list}>
@@ -56,8 +160,8 @@ export const Changelog = () => {
                 className={styles['link-changelog']}
               >
                 TimePicker
-              </Link>.
-              <li className={styles['left-padding']}>- Добавлена панель выбора времени при выборе периода</li>
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена панель выбора времени при выборе периода</li>
               <li className={styles['left-padding']}>- Обновлены дочерние компоненты</li>
               <li className={styles['left-padding']}>- Добавлена реализация кнопки сброса onReset</li>
               <li className={styles['left-padding']}>- Добавлены data-атрибуты для удобной стилизации</li>
@@ -152,8 +256,7 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Добавлено отображение иконки для сброса значения в многострочном поле ввода (Input multiline)
-                multiline
+                - Добавлено отображение иконки для сброса значения в многострочном поле ввода multiline
               </li>
               <li className={styles['left-padding']}>
                 - Исправлена логика работы с placeholder, подробности добавлены в README
@@ -762,8 +865,8 @@ export const Changelog = () => {
               >
                 Breadcrumbs
               </Link>
-              .<li className={styles['left-padding']}>- Изменена архитектура компонента Breadcrumbs</li>
-              <li className={styles['left-padding']}>- Добавлены новые токены цветов для Breadcrumbs</li>
+              .<li className={styles['left-padding']}>- Изменена архитектура компонента</li>
+              <li className={styles['left-padding']}>- Добавлены новые токены цветов</li>
               <li className={styles['left-padding']}>- Добавлен новый компонент Crumb</li>
               <li className={styles['left-padding']}>
                 - Исправлена ситуация, когда при наведении на элементы списка, ховер-эффект неправильно обрабатывался в
@@ -1027,7 +1130,7 @@ export const Changelog = () => {
               >
                 Button
               </Link>
-              . Обновлены типы, добавлены новые пропсы и изменена структура компонента.
+              . <li className={styles['left-padding']}>- Обновлены типы, добавлены новые пропсы и изменена структура компонента</li>
               <li className={styles['left-padding']}>- Изменены варианты свойства variant и fill</li>
             </li>
             <li>
@@ -2177,7 +2280,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
+              •
+              Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
@@ -2488,7 +2592,7 @@ export const Changelog = () => {
               • Добавлена иконка Player Stop для компонента{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
-              </Link>
+              </Link>{' '}
               и исправлен{' '}
               <Link
                 href="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Icon"

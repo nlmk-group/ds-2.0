@@ -71,6 +71,7 @@ const Tooltip: FC<ITooltipProps> = ({
       <Typography
         className={styles['tooltip-title']}
         variant={size === ETooltipSizes.normal ? 'Body2-Medium' : 'Caption-Medium'}
+        data-ui-tooltip-title
       >
         {title}
       </Typography>
@@ -82,6 +83,7 @@ const Tooltip: FC<ITooltipProps> = ({
       <Typography
         className={styles['tooltip-description']}
         variant={size === ETooltipSizes.normal ? 'Body2-Medium' : 'Caption-Medium'}
+        data-ui-tooltip-description
       >
         {description}
       </Typography>
@@ -103,6 +105,7 @@ const Tooltip: FC<ITooltipProps> = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={handleClick}
+        data-ui-tooltip
         data-tooltip-id={tooltipId}
       >
         {children}

@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useMemo, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import { EButtonSize } from '@components/Button/enums';
 import { Button, IconChevronArrowDownOutlined16, IconChevronArrowDownOutlined24 } from '@components/index';
@@ -10,7 +11,6 @@ import styles from './Dropdown.module.scss';
 
 import { DropdownContext } from './context';
 import { DropdownMenu } from './subcomponents';
-import ReactDOM from 'react-dom';
 
 /**
  * Компонент Dropdown предоставляет интерактивное выпадающее меню с настраиваемыми кнопками и элементами меню.
@@ -57,20 +57,31 @@ const Dropdown: FC<IDropdownProps> = ({
       setIsOpen(prev => !prev);
     }
   };
+
   const ChevronIcon = size === EButtonSize.xs ? IconChevronArrowDownOutlined16 : IconChevronArrowDownOutlined24;
   const Chevron = (
-    <div className={clsx(styles['icon-rotate'], { [styles['icon-rotate-open']]: isOpen })}>
+    <div
+      className={clsx(styles.icon, styles['icon-rotate'], { [styles['icon-rotate-open']]: isOpen })}
+      data-ui-dropdown-chevron-icon
+    >
       <ChevronIcon />
     </div>
   );
 
   const getDropdownMenu = () => {
     const menu = withPortal ? (
-      ReactDOM.createPortal(<DropdownMenu withPortal >{children}</DropdownMenu>, portalContainer)
-    ) : <DropdownMenu>{children}</DropdownMenu>
+      ReactDOM.createPortal(
+        <DropdownMenu withPortal data-ui-dropdown-menu>
+          {children}
+        </DropdownMenu>,
+        portalContainer
+      )
+    ) : (
+      <DropdownMenu data-ui-dropdown-menu>{children}</DropdownMenu>
+    );
 
     return isOpen ? menu : null;
-  }
+  };
 
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonChildren, buttonRef, size, menuStyle }}>
@@ -84,6 +95,7 @@ const Dropdown: FC<IDropdownProps> = ({
           size={size}
           iconButton={!buttonChildren ? Chevron : undefined}
           endIcon={buttonChildren ? Chevron : undefined}
+          data-ui-dropdown-button
         >
           {buttonChildren}
         </Button>

@@ -31,11 +31,11 @@ const PseudoInput: FC<IPseudoInputProps> = ({
   const colorClassName = styles[labelColor as keyof typeof styles];
 
   return (
-    <div className={clsx(styles.root, compact && styles.compact, className)}>
-      <Typography variant="Body2-Medium" className={clsx(styles.label, colorClassName)}>
+    <div className={clsx(styles.root, compact && styles.compact, className)} data-ui-pseudo-input>
+      <Typography variant="Body2-Medium" className={clsx(styles.label, colorClassName)} data-ui-pseudo-input-label>
         {label}
       </Typography>
-      <Typography variant="Body1-Medium" color="var(--steel-90)" className={styles.text}>
+      <Typography variant="Body1-Medium" color="var(--steel-90)" className={styles.text} data-ui-pseudo-input-children>
         {children}
       </Typography>
     </div>

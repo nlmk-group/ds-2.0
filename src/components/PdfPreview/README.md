@@ -7,14 +7,12 @@ PdfPreview — это функциональный компонент в React, 
 ## Использование
 
 ```jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PdfPreview } from './PdfPreview';
-
 export const Example = () => {
   const [pdfData, setPdfData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
   useEffect(() => {
     // Получите или создайте ваши PDF-данные здесь
     fetch('/path/to/your/pdf')
@@ -28,25 +26,18 @@ export const Example = () => {
         setLoading(false);
       });
   }, []);
-
   return (
     <div>
-      <PdfPreview
-        data={pdfData}
-        loading={loading}
-        errorMessage={error}
-        previewStyle={{ border: '1px solid #ccc' }}
-      />
+      <PdfPreview data={pdfData} loading={loading} errorMessage={error} previewStyle={{ border: '1px solid #ccc' }} />
     </div>
   );
 };
-
 ```
 
 ## Props
 
 | Prop         | Type             | Default                           | Description                                |
-|--------------|------------------|-----------------------------------|--------------------------------------------|
+| ------------ | ---------------- | --------------------------------- | ------------------------------------------ |
 | data         | BlobPart \| null | -                                 | Данные PDF файла в формате blob            |
 | loading      | boolean          | false                             | Флаг состояния загрузки                    |
 | style        | CSSProperties    | -                                 | Дополнительные CSS стили                   |
@@ -54,6 +45,8 @@ export const Example = () => {
 | emptyMessage | string           | 'Выберите PDF файл для просмотра' | Текст при отсутствии выбранного файла      |
 
 ## Стилизация
+
+Компонент можно кастомизировать несколькими способами:
 
 ### 1. CSS классы
 
@@ -63,6 +56,8 @@ export const Example = () => {
 - `.pdf-viewer--loading`: Состояние загрузки
 - `.pdf-viewer--error`: Состояние ошибки
 - `.pdf-viewer--empty`: Состояние отсутствия файла
+
+Вы можете переопределить эти стили, передав собственный `className`.
 
 ### 2. Data-атрибуты
 
@@ -80,10 +75,7 @@ export const Example = () => {
 Можно передать объект стилей через проп `style`:
 
 ```jsx
-<PdfPreview
-  data={pdfData}
-  style={{ border: '1px solid #ccc', height: '500px' }}
-/>
+<PdfPreview data={pdfData} style={{ border: '1px solid #ccc', height: '500px' }} />
 ```
 
 ## Состояния

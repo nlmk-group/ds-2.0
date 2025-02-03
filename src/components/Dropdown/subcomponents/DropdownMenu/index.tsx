@@ -2,6 +2,7 @@ import React, { FC, useContext } from 'react';
 
 import { DropdownContext } from '@components/Dropdown/context';
 import { ClickAwayListener, List } from '@components/index';
+import clsx from 'clsx';
 
 import { IDropdownMenuProps } from './types';
 
@@ -18,7 +19,14 @@ import styles from './DropdownMenu.module.scss';
 const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
   const rect = buttonRef?.current?.getBoundingClientRect();
-  const listStyle = withPortal ? { ...menuStyle, minWidth: rect?.width, top: rect?.bottom || 0, left: rect?.left || 0 } : menuStyle;
+  const listStyle = withPortal
+    ? { ...menuStyle, minWidth: rect?.width, top: rect?.bottom || 0, left: rect?.left || 0 }
+    : menuStyle;
+
+  /**
+   * Примерное значение ширины кнопки, при которой нужно задавать минимальную ширину в абсолютных значениях
+   */
+  const isSmallContent = (rect?.width || 48) < 130;
 
   /**
    * Обработчик клика вне меню, закрывающий его.
@@ -31,7 +39,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) 
 
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={buttonRef || undefined}>
-      <List className={styles.menu} style={listStyle}>
+      <List className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })} style={listStyle}>
         {children}
       </List>
     </ClickAwayListener>

@@ -403,8 +403,6 @@ const Autocomplete = ({
           {...inputProps}
           inputRef={inputElementRef}
           value={inputValue}
-          data-testid="AUTOCOMPLETE_INPUT"
-          data-ui-autocomplete-input
           onKeyDown={handleKeyDown}
           icon={
             <Icon
@@ -425,6 +423,8 @@ const Autocomplete = ({
             }
           }}
           onChange={onChangeInput}
+          data-ui-autocomplete-input
+          data-testid="AUTOCOMPLETE_INPUT"
         />
         {open &&
           !disabled &&

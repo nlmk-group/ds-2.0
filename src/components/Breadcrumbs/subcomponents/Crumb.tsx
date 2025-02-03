@@ -9,7 +9,7 @@ import { ICrumbProps, IInternalCrumbProps } from '../types';
 
 const Crumb: FC<IInternalCrumbProps> = ({ isLast = false, children }) => {
   return (
-    <div className={clsx(styles.crumb, children.props.className)}>
+    <div className={clsx(styles.crumb, children.props.className)} data-ui-crumb>
       {React.cloneElement(children, {
         'data-testid': 'LINK_HREF',
         'className': clsx(styles.link, children.props.className),
@@ -17,7 +17,7 @@ const Crumb: FC<IInternalCrumbProps> = ({ isLast = false, children }) => {
         'title': children.props.children
       })}
       {!isLast && (
-        <div className={styles.separator} data-testid="CRUMB_SEPARATOR">
+        <div className={styles.separator} data-ui-crumb-separator data-testid="CRUMB_SEPARATOR">
           <Icon name="IconChevronArrowRightOutlined24" containerSize={16} />
         </div>
       )}

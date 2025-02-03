@@ -147,7 +147,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
               }
             />
           )}
-          <div className={styles.title} onClick={handleClick}>
+          <a className={styles.title} onClick={handleClick} href={submenu ? undefined : path}>
             <Typography
               variant="Body1-Medium"
               color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
@@ -160,7 +160,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
                 <Icon htmlColor={'var(--brand-sapphire-60)'} containerSize={24} name="IconChevronArrowDownOutlined24" />
               </div>
             )}
-          </div>
+          </a>
         </div>
         {image && !isVertical && depth === 1 && (
           <div className={styles.image}>

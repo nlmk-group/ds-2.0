@@ -79,11 +79,12 @@ const Drawer: FC<IDrawerProps> = ({
 
   return (
     <div
-      data-testid="DRAWER"
       className={clsx(styles.drawerOverlay, styles[position], overlayClassName, {
         [styles.fadeOut]: isClosing,
         [styles.drawerOverlayBackdrop]: !overlay
       })}
+      data-ui-drawer
+      data-testid="DRAWER"
     >
       <ClickAwayListener
         className={clsx(styles.wrapper, styles[position], {
@@ -99,7 +100,9 @@ const Drawer: FC<IDrawerProps> = ({
           className={clsx(styles.drawer, styles[position], className)}
           style={isHorizontal ? { width } : { height }}
         >
-          <div className={styles.drawerContent}>{children}</div>
+          <div className={styles.drawerContent} data-ui-drawer-content>
+            {children}
+          </div>
         </div>
         {!isClosing && isViewCloseButton && (
           <div className={clsx(styles.close, styles[position])}>
@@ -116,6 +119,7 @@ const Drawer: FC<IDrawerProps> = ({
               aria-label="Close"
               size={EButtonSize.s}
               style={dynamicStyleForCloseButton}
+              data-ui-drawer-close-button
             />
           </div>
         )}

@@ -71,6 +71,7 @@ export const SegmentButtonGroup = ({
         borderRadius={4}
         width="fitContent"
         className={clsx(styles.segmentButtonGroup, className)}
+        data-ui-segment-button-group
         data-testid="SEGMENT_BUTTON_WRAPPER"
       >
         {childrenWithProps}

@@ -5,6 +5,7 @@
 export { IconAreaChart16, IconAreaChart24, IconAreaChart32 } from './AreaChart';
 export { IconAttach16, IconAttach24, IconAttach32 } from './Attach';
 export { IconBarChartHorizontal16, IconBarChartHorizontal24, IconBarChartHorizontal32 } from './BarChartHorizontal';
+export { IconBox16, IconBox24, IconBox32 } from './Box';
 export { IconCalculator16, IconCalculator24, IconCalculator32 } from './Calculator';
 export { IconChannel16, IconChannel24, IconChannel32 } from './Channel';
 export { IconChartBubble16, IconChartBubble24, IconChartBubble32 } from './ChartBubble';
@@ -35,6 +36,7 @@ export { IconInServiceOutlined16, IconInServiceOutlined24, IconInServiceOutlined
 export { IconInstruction16, IconInstruction24, IconInstruction32 } from './Instruction';
 export { IconIsReady16, IconIsReady24, IconIsReady32 } from './IsReady';
 export { IconJoin16, IconJoin24, IconJoin32 } from './Join';
+export { IconKey16, IconKey24, IconKey32 } from './Key';
 export { IconKovshDomen16, IconKovshDomen24, IconKovshDomen32 } from './KovshDomen';
 export { IconLevelFifty16, IconLevelFifty24, IconLevelFifty32 } from './LevelFifty';
 export { IconLevelHundred16, IconLevelHundred24, IconLevelHundred32 } from './LevelHundred';
@@ -53,7 +55,6 @@ export {
   IconPovtornayaObrabotkaPachek24,
   IconPovtornayaObrabotkaPachek32
 } from './PovtornayaObrabotkaPachek';
-export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export {
   IconRCMParallelOperation16,
   IconRCMParallelOperation24,
@@ -64,6 +65,7 @@ export {
   IconRCMSequentialOperation24,
   IconRCMSequentialOperation32
 } from './RCMSequentialOperation';
+export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export { IconRemovedFilled16, IconRemovedFilled24, IconRemovedFilled32 } from './RemovedFilled';
 export { IconRemovedOutlined16, IconRemovedOutlined24, IconRemovedOutlined32 } from './RemovedOutlined';
 export {
@@ -109,6 +111,12 @@ export { IconSignal16, IconSignal24, IconSignal32 } from './Signal';
 export { IconSlabTrack16, IconSlabTrack24, IconSlabTrack32 } from './SlabTrack';
 export { IconSmenniyRaport16, IconSmenniyRaport24, IconSmenniyRaport32 } from './SmenniyRaport';
 export { IconSmennoeZadanie16, IconSmennoeZadanie24, IconSmennoeZadanie32 } from './SmennoeZadanie';
+export { IconSpectatTelega16, IconSpectatTelega24, IconSpectatTelega32 } from './SpectatTelega';
+export {
+  IconSplittingAnOperation16,
+  IconSplittingAnOperation24,
+  IconSplittingAnOperation32
+} from './SplittingAnOperation';
 export {
   IconStackedBarChartHorizontal16,
   IconStackedBarChartHorizontal24,

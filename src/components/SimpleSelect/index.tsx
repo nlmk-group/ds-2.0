@@ -227,7 +227,7 @@ const SimpleSelect: FC<ISelectProps> = ({
         onChange
       }}
     >
-      <div className={clsx(styles.select, className)} ref={selectRef} style={style}>
+      <div className={clsx(styles.select, className)} ref={selectRef} style={style} data-ui-select>
         <Input
           id={id}
           name={name}
@@ -248,11 +248,12 @@ const SimpleSelect: FC<ISelectProps> = ({
           className={clsx(styles.select__input, styles['input-helper'])}
           reset={reset}
           onReset={onReset}
+          data-ui-select-input
           data-testid="select-input"
         />
-        <Options menuStyle={{ maxWidth: selectRef.current?.offsetWidth }}>
+        <Options menuStyle={{ maxWidth: selectRef.current?.offsetWidth }} data-ui-select-options>
           {noOptions ? (
-            <OptionItem value="" label={noOptionsText} disabled>
+            <OptionItem value="" label={noOptionsText} disabled data-ui-select-option>
               {noOptionsText}
             </OptionItem>
           ) : (

@@ -55,7 +55,7 @@ export const Chip: FC<IChipProps> = ({
           {label}
         </Typography>
       )}
-      <Box alignItems="center" justifyContent="flex-start" gap="0" data-ui-chip-content width="fit-content">
+      <Box alignItems="center" justifyContent="flex-start" gap="0" width="fit-content" data-ui-chip-content>
         <Badge color={color} variant={variant} size={size}>
           {children}
         </Badge>

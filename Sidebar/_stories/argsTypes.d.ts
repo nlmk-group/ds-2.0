@@ -111,6 +111,10 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    onChangeFavorites: {
+        description: string;
+        action: string;
+    };
 };
 export declare const menuItemArgsTypes: {
     position: {

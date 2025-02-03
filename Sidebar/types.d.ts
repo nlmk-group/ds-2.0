@@ -2,10 +2,12 @@ import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from '../.
 import { TIconName } from '../Icon/IconsDirectory/unionType';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 
+type ChangeFavoritesHandler = (v: string[]) => void;
 export interface ISidebarProps extends PropsWithChildren {
     orientation?: `${ESidebarOrientationMapping}`;
     variant?: `${ESidebarVariantMapping}`;
     allowFavorites?: boolean;
+    onChangeFavorites?: ChangeFavoritesHandler;
     isLoggedIn?: boolean;
     systemName?: string;
     userName?: string;
@@ -45,6 +47,7 @@ export interface ISidebarProperties {
     isExpanded: boolean;
     activeItem: string | null;
     allowFavorites: boolean;
+    onChangeFavorites: ChangeFavoritesHandler;
     orientation: `${ESidebarOrientationMapping}`;
     setSubmenuItems: Dispatch<SetStateAction<ReactNode | ReactNode[]>>;
     setActiveItem: Dispatch<SetStateAction<string | null>>;
@@ -79,4 +82,5 @@ export interface ISubmenuItemProps extends PropsWithChildren {
 export interface IComponentWithType extends FC<ISidebarProps> {
     componentType?: string;
 }
+export {};
 //# sourceMappingURL=types.d.ts.map

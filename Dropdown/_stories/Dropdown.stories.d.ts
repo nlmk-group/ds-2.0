@@ -117,7 +117,7 @@ export declare const DefaultDropdown: {
         buttonChildren: string;
         size: EButtonSize;
         menuStyle: {
-            width: string;
+            minWidth: string;
         };
     };
     storyName: string;
@@ -128,9 +128,31 @@ export declare const PortalDropdown: {
         buttonChildren: string;
         size: EButtonSize;
         menuStyle: {
-            width: string;
+            minWidth: string;
         };
         withPortal: boolean;
+    };
+    storyName: string;
+};
+export declare const DropdownWithCustomElements: {
+    (args: IDropdownProps): ReactNode;
+    storyName: string;
+    args: {
+        buttonChildren: string;
+        size: EButtonSize;
+        menuStyle: {
+            minWidth: string;
+        };
+    };
+};
+export declare const SmallDropdown: {
+    (args: IDropdownProps): ReactNode;
+    args: {
+        buttonChildren: string;
+        size: EButtonSize;
+        menuStyle: {
+            minWidth: string;
+        };
     };
     storyName: string;
 };

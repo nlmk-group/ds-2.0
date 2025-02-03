@@ -116,6 +116,10 @@ declare const _default: {
                 type: string;
             };
         };
+        onChangeFavorites: {
+            description: string;
+            action: string;
+        };
     };
     parameters: {
         layout: string;

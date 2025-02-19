@@ -1,0 +1,36 @@
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  // border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  // table-layout: fixed;
+}
+
+.horizontal-borders {
+  tbody tr {
+    border-bottom: 1px solid var(--unique-divider);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  td {
+    border-bottom: 1px solid var(--unique-divider);
+  }
+}
+
+.vertical-borders {
+  td,
+  th {
+    border-right: 1px solid var(--unique-divider);
+  }
+
+  tr {
+    td:last-child,
+    th:last-child {
+      border-right: none;
+    }
+  }
+}

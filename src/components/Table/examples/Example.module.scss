@@ -1,0 +1,51 @@
+.tableContainer {
+  width: 800px;
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid var(--unique-divider);
+}
+
+.tableContainer thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.notSortable {
+  cursor: default;
+  pointer-events: none;
+}
+
+.tableGrouping thead tr:nth-child(1) th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.tableGrouping thead tr:nth-child(2) th {
+  position: sticky;
+  top: 56px;
+  z-index: 2;
+}
+
+.tableGrouping thead tr:nth-child(3) th {
+  position: sticky;
+  top: 112px;
+  z-index: 2;
+}
+
+.checkboxColumn {
+  pointer-events: none;
+
+  > div {
+    pointer-events: auto;
+  }
+}
+
+.tableContainerExpandable {
+  th.expanderColumn,
+  td.expanderColumn {
+    border-right: none;
+  }
+}

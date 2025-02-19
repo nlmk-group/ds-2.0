@@ -3,7 +3,8 @@
   "include": [
     "src/components/**/*",
     "src/components/**/**/*",
-    "src/components/**/**/**/*"
+    "src/components/**/**/**/*",
+    "src/components/tanstack-table.d.ts"
   ],
 
   "compilerOptions": {

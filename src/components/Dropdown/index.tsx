@@ -97,7 +97,7 @@ const Dropdown: FC<IDropdownProps> = ({
           endIcon={buttonChildren ? Chevron : undefined}
           data-ui-dropdown-button
         >
-          {buttonChildren}
+          <div data-ui-dropdown-button-children>{buttonChildren}</div>
         </Button>
         {getDropdownMenu()}
       </div>

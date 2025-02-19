@@ -148,6 +148,10 @@ const argsTypes = {
     description: 'Текст метки (label) инпута',
     control: { type: 'text' }
   },
+  placeholder: {
+    description: 'Текст плейсхолдера. Отображается при фокусе, если есть label, или всегда, если label отсутствует',
+    control: { type: 'text' }
+  },
   className: {
     description: 'Дополнительный CSS класс для обертки инпута',
     control: { type: 'text' }

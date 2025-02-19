@@ -58,7 +58,13 @@ export const parameters = {
     isFullscreen: false,
     isToolshown: true,
     storySort: {
-      order: ['Introduction', ['Welcome', 'Changelog', '*'], 'Components', ['*', ['Info', 'Overview', 'Stories']]]
+      order: [
+        'Introduction',
+        ['Welcome', 'Changelog', '*'],
+        'Table',
+        'Components',
+        ['*', ['Info', 'Overview', 'Stories']]
+      ]
     }
   },
   // Disables Chromatic's snapshotting on a global level

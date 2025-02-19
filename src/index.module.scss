@@ -1,0 +1,32 @@
+.tableContainer {
+  width: 800px;
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid var(--unique-divider);
+}
+
+.tableContainer thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+[data-ui-dropdown-button] {
+  background-color: transparent;
+}
+.select [data-ui-select-arrow-button] {
+  display: none;
+}
+
+.dropdown {
+  [data-ui-button-end-icon] {
+    display: none;
+  }
+
+  [data-ui-dropdown-button-children] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

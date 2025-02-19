@@ -1,0 +1,120 @@
+$default-padding: 4px 8px;
+
+.top {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--steel-10);
+  cursor: pointer;
+
+  border-bottom: 1px solid var(--unique-divider);
+  border-right: 1px solid var(--unique-divider);
+
+  // Добавляем индикатор активного фильтра
+  &.filtered::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid var(--brand-sapphire-60);
+    margin-bottom: 1px;
+  }
+
+  &.disabled {
+    // вот почему все через opactity в фигме? Если заголовок закреплен
+    // и неактивен то все просвечивается, а надо всего
+    // то текст изменить и/или другой background
+    // opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &.numberCol {
+    text-align: right;
+  }
+}
+
+.m {
+  height: 56px;
+  padding: $default-padding;
+}
+
+.s {
+  height: 40px;
+  padding: $default-padding;
+}
+
+.xs {
+  height: 32px;
+  padding: 2px 6px;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.arrow > div > svg {
+  color: var(--steel-70);
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  &.right {
+    justify-content: end;
+  }
+
+  &.number {
+    justify-content: center;
+  }
+
+  &.sort-with-number {
+    justify-content: end;
+    gap: 2px;
+  }
+
+  &.sort:hover {
+    .label {
+      color: var(--brand-sapphire-60);
+    }
+
+    .arrow > div > svg {
+      color: var(--brand-sapphire-60);
+    }
+  }
+}
+
+.label {
+  color: var(--steel-70);
+  word-wrap: break-word;
+}
+
+/* Drag-хендлер для изменения ширины */
+.drag {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1;
+  will-change: background-color;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--unique-divider);
+  }
+  &:active {
+    background-color: var(--brand-sapphire-60);
+  }
+}

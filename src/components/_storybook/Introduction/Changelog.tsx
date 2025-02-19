@@ -23,6 +23,121 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.1 - <span className={styles.date}>19.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено отображение выпадающего списка с использованием Popper.js
+              </li>
+            </li>
+            <li>
+              • Обновлены компоненты{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Top, Cell
+              </Link>
+              .<li className={styles['left-padding']}>- Изменена логика работы стилей компонентов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.0 - <span className={styles.date}>дата выпуска</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Реализован древовидный список на основе библиотеки rc-tree с поддержкой чекбоксов (включая каскадное
+                выделение)
+              </li>
+              <li className={styles['left-padding']}>- Поддержка drag-n-drop функциональности</li>
+              <li className={styles['left-padding']}>
+                - Кастомизация стилей узлов и поддержка правых контролов для узлов
+              </li>
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.17.0 - <span className={styles.date}>11.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Table, Top, Cell, Row, Theader, Tfooter, Tbody
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Реализованы базовые компоненты таблицы: Table, Top, Cell, Row, Theader, Tfooter, Tbody
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования с библиотекой @tanstack/react-table. Примеры сортировки, фильтрации,
+                пагинации, изменения размеров колонок и выбора строк
+              </li>
+              <li className={styles['left-padding']}>
+                - Реализован headless ui подход к построению табличного компонента
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена логика работы placeholder и label. Теперь можно использовать одновременно placeholder и
+                label. Подробнее в README к компоненту.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.16.9 - <span className={styles.date}>04.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Оптимизирован компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена мемоизация для генерации уникального идентификатора тултипа
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.16.8 - <span className={styles.date}>03.02.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -1130,7 +1245,10 @@ export const Changelog = () => {
               >
                 Button
               </Link>
-              . <li className={styles['left-padding']}>- Обновлены типы, добавлены новые пропсы и изменена структура компонента</li>
+              .{' '}
+              <li className={styles['left-padding']}>
+                - Обновлены типы, добавлены новые пропсы и изменена структура компонента
+              </li>
               <li className={styles['left-padding']}>- Изменены варианты свойства variant и fill</li>
             </li>
             <li>
@@ -2280,8 +2398,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              •
-              Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
+              • Добавлены иконки FilterSortAscendedFilled, FilterSortAscendedOutlined, HeartFilled, ResizingOutlined в{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>

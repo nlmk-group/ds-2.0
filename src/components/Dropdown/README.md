@@ -56,14 +56,14 @@ import {
 
 ## Props
 
-| Prop           | Type          | Default       | Description                                  |
-| -------------- | ------------- | ------------- | -------------------------------------------- |
-| children       | ReactNode     | -             | Элементы, которые будут отображаться в меню  |
-| disabled       | boolean       | false         | Отключает кнопку и возможность открытия меню |
-| className      | string        | -             | Дополнительный класс для кнопки              |
-| buttonChildren | ReactNode     | -             | Содержимое кнопки                            |
-| size           | EButtonSize   | EButtonSize.m | Размер кнопки и меню                         |
-| menuStyle      | CSSProperties | -             | Кастомные стили кнопки.                      |
+Компонент предоставляет интерфейс [IDropdownProps](types.ts), основанный на интерфейсе [IButtonProps](../Button/types.ts), и наследует соответствующие props от [Button](../Button/README.md).
+
+| Prop           | Type          | Default | Description                                 |
+| -------------- | ------------- | ------- | ------------------------------------------- |
+| className      | string        | -       | Дополнительный класс для кнопки             |
+| children       | ReactNode     | -       | Элементы, которые будут отображаться в меню |
+| buttonChildren | ReactNode     | -       | Содержимое кнопки                           |
+| menuStyle      | CSSProperties | -       | Кастомные стили кнопки.                     |
 
 ## Стилизация
 
@@ -103,6 +103,10 @@ import {
 
 /* Иконка стрелки */
 [data-ui-dropdown-chevron-icon] {
+  /* Ваши стили */
+}
+/* Кастомный контент внутри кнопки дропдауна */
+[data-ui-dropdown-button-children] {
   /* Ваши стили */
 }
 ```

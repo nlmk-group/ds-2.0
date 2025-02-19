@@ -30,6 +30,9 @@ import styles from './Input.module.scss';
  * @param {string} [props.className] - Дополнительный CSS класс.
  * @param {Ref<HTMLInputElement | HTMLTextAreaElement>} [props.inputRef] - Реф для доступа к DOM-элементу инпута.
  * @param {boolean} [props.colored=false] - Флаг цветного фона.
+ * @param {string} [props.placeholder=''] - Текст плейсхолдера. Скрывается при наличии label и отсутствии фокуса.
+ * @extends {InputHTMLAttributes<HTMLInputElement>} Наследует все стандартные атрибуты input элемента
+ * @extends {TextareaHTMLAttributes<HTMLTextAreaElement>} Наследует все стандартные атрибуты textarea элемента
  * @returns {JSX.Element} Компонент Input.
  */
 const Input: FC<TInputProps> = ({
@@ -51,6 +54,7 @@ const Input: FC<TInputProps> = ({
   className,
   inputRef,
   colored = false,
+  placeholder = '',
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -103,8 +107,8 @@ const Input: FC<TInputProps> = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          placeholder={placeholder}
           {...props}
-          placeholder=" "
         />
       ) : (
         <input
@@ -127,8 +131,8 @@ const Input: FC<TInputProps> = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          placeholder={placeholder}
           {...props}
-          placeholder=" "
         />
       )}
       {label && (

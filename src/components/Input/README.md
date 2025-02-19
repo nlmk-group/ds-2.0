@@ -7,7 +7,7 @@ Input компонент используется для создания тек
 ## Использование
 
 ```jsx
-import { Input, customInputColors, sizesMappingInput } from '@nlmk/ds-2.0';
+import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 
 <Input
   label="Username"
@@ -16,31 +16,32 @@ import { Input, customInputColors, sizesMappingInput } from '@nlmk/ds-2.0';
   size={sizesMappingInput.m}
   color={customInputColors.default}
   helperText="Enter your username"
-/>
+/>;
 ```
 
 ## Props
 
-| Prop       | Type                                                        | Default             | Description                                       |
-|------------|-------------------------------------------------------------|---------------------|---------------------------------------------------|
-| id         | string                                                      | -                   | Уникальный идентификатор инпута                   |
-| value      | string                                                      | -                   | Значение инпута                                   |
-| disabled   | boolean                                                     | false               | Флаг отключения инпута                            |
-| label      | string                                                      | -                   | Текст метки (label) инпута                        |
-| pseudo     | boolean                                                     | false               | Флаг псевдо-инпута                                |
-| icon       | ReactNode                                                   | -                   | Иконка инпута                                     |
-| multiline  | boolean                                                     | false               | Флаг многострочного режима                        |
-| resize     | boolean                                                     | false               | Флаг возможности изменения размера (для textarea) |
-| helperText | ReactNode                                                   | -                   | Вспомогательный текст                             |
-| size       | \`${sizesMappingInput}\`                                    | sizesMappingInput.m | Размер инпута                                     |
-| reset      | boolean                                                     | false               | Флаг наличия кнопки сброса                        |
-| onChange   | ChangeEventHandler<HTMLInputElement \| HTMLTextAreaElement> | -                   | Обработчик изменения значения                     |
-| onReset    | () => void                                                  | -                   | Обработчик сброса значения                        |
-| onBlur     | ChangeEventHandler<HTMLInputElement \| HTMLTextAreaElement> | -                   | Обработчик потери фокуса                          |
-| color      | customInputColors                                           | 'default'           | Цвет инпута                                       |
-| className  | string                                                      | -                   | Дополнительный CSS класс                          |
-| inputRef   | Ref<HTMLInputElement \| HTMLTextAreaElement>                | -                   | Реф для доступа к DOM-элементу инпута             |
-| colored    | boolean                                                     | false               | Флаг цветного фона                                |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| id | string | - | Уникальный идентификатор инпута |
+| value | string | - | Значение инпута |
+| disabled | boolean | false | Флаг отключения инпута |
+| label | string | - | Текст метки (label) инпута |
+| placeholder | string | - | Текст плейсхолдера |
+| pseudo | boolean | false | Флаг псевдо-инпута |
+| icon | ReactNode | - | Иконка инпута |
+| multiline | boolean | false | Флаг многострочного режима |
+| resize | boolean | false | Флаг возможности изменения размера (для textarea) |
+| helperText | ReactNode | - | Вспомогательный текст |
+| size | \`${sizesMappingInput}\` | sizesMappingInput.m | Размер инпута |
+| reset | boolean | false | Флаг наличия кнопки сброса |
+| onChange | ChangeEventHandler<HTMLInputElement \| HTMLTextAreaElement> | - | Обработчик изменения значения |
+| onReset | () => void | - | Обработчик сброса значения |
+| onBlur | ChangeEventHandler<HTMLInputElement \| HTMLTextAreaElement> | - | Обработчик потери фокуса |
+| color | customInputColors | 'default' | Цвет инпута |
+| className | string | - | Дополнительный CSS класс |
+| inputRef | Ref<HTMLInputElement \| HTMLTextAreaElement> | - | Реф для доступа к DOM-элементу инпута |
+| colored | boolean | false | Флаг цветного фона |
 
 ## Размеры (sizesMappingInput)
 
@@ -57,13 +58,14 @@ import { Input, customInputColors, sizesMappingInput } from '@nlmk/ds-2.0';
 
 ## Особенности работы placeholder
 
-Компонент использует "плавающий" label, который работает следующим образом:
+Плейсхолдер в компоненте работает следующим образом:
 
-1. По умолчанию placeholder установлен как пустой символ (" "), это необходимо для корректной работы анимации label
-2. Label изначально находится внутри поля ввода
-3. При фокусе или вводе текста label "всплывает" вверх и становится над полем ввода
-4. При потере фокуса, если поле пустое, label возвращается внутрь поля
-5. Если в поле есть значение, label остается в поднятом состоянии
+1. Если нет label:
+   - Плейсхолдер всегда видим, пока поле пустое
+2. Если есть label:
+   - Плейсхолдер скрыт, когда нет фокуса
+   - Плейсхолдер появляется при фокусе, если поле пустое
+3. Плейсхолдер автоматически скрывается при наличии значения в поле
 
 ## Стилизация
 

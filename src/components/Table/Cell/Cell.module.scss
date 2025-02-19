@@ -1,0 +1,187 @@
+.cell {
+  position: relative;
+  transition: background-color 0.2s ease;
+  border: none;
+  box-sizing: border-box;
+
+  // Размеры
+  &.m {
+    height: 56px;
+  }
+
+  &.s {
+    height: 40px;
+  }
+
+  &.xs {
+    height: 32px;
+  }
+
+  // Состояния
+  &.active {
+    outline: 2px solid var(--brand-sapphire-60);
+    outline-offset: -2px;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.disableHover {
+    &.default:hover {
+      background-color: var(--steel-10);
+    }
+    &.error:hover {
+      background-color: var(--spectrum-red-20);
+    }
+    &.warning:hover {
+      background-color: var(--spectrum-yellow-20);
+    }
+    &.success:hover {
+      background-color: var(--spectrum-green-20);
+    }
+  }
+
+  // Статусы
+  &.default {
+    background-color: var(--steel-10);
+    &:hover {
+      background-color: var(--steel-30);
+    }
+
+    &.selected {
+      background-color: var(--brand-sapphire-10);
+      &:hover {
+        background-color: var(--brand-sapphire-20);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &.error {
+    background-color: var(--spectrum-red-20);
+
+    &:hover {
+      background-color: var(--spectrum-red-10);
+    }
+
+    &.selected {
+      background-color: var(--spectrum-red-30);
+      &:hover {
+        background-color: var(--spectrum-red-40);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &.success {
+    background-color: var(--spectrum-green-20);
+
+    &:hover {
+      background-color: var(--spectrum-green-10);
+    }
+
+    &.selected {
+      background-color: var(--spectrum-green-30);
+      &:hover {
+        background-color: var(--spectrum-green-40);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &.warning {
+    background-color: var(--spectrum-yellow-20);
+
+    &:hover {
+      background-color: var(--spectrum-yellow-10);
+    }
+
+    &.selected {
+      background-color: var(--spectrum-yellow-30);
+      &:hover {
+        background-color: var(--spectrum-yellow-40);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  // Структура
+  .content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 8px;
+  }
+
+  .number,
+  .text {
+    width: 100%;
+
+    &.align-left {
+      text-align: left;
+    }
+
+    &.align-center {
+      text-align: center;
+    }
+
+    &.align-right {
+      text-align: right;
+    }
+  }
+
+  .main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  // Input
+  [data-ui-input] {
+    font-size: inherit;
+  }
+
+  [data-ui-textfield] {
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  [data-ui-input-label] {
+    display: none;
+  }
+
+  &:hover [data-ui-textfield]:not(:disabled):not(:focus) {
+    border-color: transparent;
+  }
+}

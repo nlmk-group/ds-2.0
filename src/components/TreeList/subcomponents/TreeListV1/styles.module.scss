@@ -1,0 +1,121 @@
+@mixin nodeHoverEvent {
+  background-color: var(--steel-30);
+  cursor: pointer;
+}
+
+@mixin selectedRow {
+  background-color: var(--brand-sapphire-10);
+}
+
+.custom-rc-tree {
+  height: 100%;
+  width: 100%;
+
+  :global(.rc-tree-node-content-wrapper) {
+    width: 100%;
+    // черта при перетаскивании
+    & > div {
+      background-color: var(--brand-sapphire-50) !important;
+    }
+  }
+
+  :global(.rc-tree-treenode span.rc-tree-switcher) {
+    background-image: none;
+    display: none;
+  }
+
+  :global :global(.rc-tree .rc-tree-treenode .rc-tree-iconEle) {
+    display: none;
+  }
+
+  :global(.rc-tree-treenode) {
+    height: var(--row-height);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  :global(.rc-tree-treenode-selected) {
+    background: var(--brand-sapphire-10);
+  }
+
+  :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
+    height: unset;
+  }
+
+  :global(.rc-tree-title) {
+    width: 100%;
+  }
+
+  :global(.rc-tree-indent-unit) {
+    width: 48px;
+  }
+
+  :global(.rc-tree-treenode.drop-target) {
+    background-color: var(--brand-sapphire-20);
+    color: var(--steel-40);
+  }
+
+  :global(.rc-tree .rc-tree-treenode.drop-container) {
+    background-color: var(--brand-sapphire-30);
+    color: var(--steel-30);
+  }
+
+  // убираем границу слева при перетаскивании
+  :global(.rc-tree-treenode.drop-container ~ .rc-tree-treenode) {
+    border-left: none;
+  }
+
+}
+
+.not-selectable {
+  :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
+    cursor: unset;
+  }
+}
+
+.dragging {
+  border: 3px solid var(--brand-sapphire-60)!important; /* Синяя рамка */
+  background-color: var(--steel-30);
+  transition: all 0.2s ease-in-out;
+}
+
+.nodeTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.switcher {
+  display: inline-block;
+  color: var(--steel-90);
+  background: transparent;
+}
+
+.switcherOpen {
+  transform: rotate(90deg);
+  padding-left: 0;
+}
+
+:global(.rc-tree-treenode:has([data-checked="true"])) {
+  @include selectedRow;
+}
+
+[role='treeitem']:hover {@include nodeHoverEvent;}
+
+[role='treeitem']:hover .nodeContent {@include nodeHoverEvent;}
+
+.nodeContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  height: var(--row-height);
+  padding: 0 10px;
+  box-sizing: border-box;
+  &[data-checked="true"] {
+    @include selectedRow;
+  }
+}

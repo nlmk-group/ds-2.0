@@ -1,0 +1,66 @@
+.filter {
+  width: 100%;
+  // Input
+  [data-ui-textfield] {
+    border: none !important;
+    background: transparent;
+    width: 100%;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  [data-ui-input-label] {
+    display: none;
+  }
+
+  &:hover [data-ui-textfield]:not(:disabled):not(:focus) {
+    border-color: transparent;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  max-height: 248px;
+  overflow-y: auto;
+  z-index: 1100;
+}
+
+[data-ui-list-item] {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+
+  &.disabled {
+    opacity: 50%;
+    cursor: default;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.menuItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.noMatches {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}

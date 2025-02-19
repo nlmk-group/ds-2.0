@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC, useMemo} from 'react';
 import ReactDOM from 'react-dom';
 import { Tooltip as ReactTooltip, TooltipRefProps } from 'react-tooltip';
 
@@ -90,7 +90,7 @@ const Tooltip: FC<ITooltipProps> = ({
     );
   };
 
-  const tooltipId = generateUUID();
+  const tooltipId = useMemo(() => generateUUID(), []);
 
   const hasContent = title || description || render;
 

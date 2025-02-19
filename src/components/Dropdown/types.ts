@@ -1,11 +1,12 @@
 import { CSSProperties, ReactNode } from 'react';
 
 import { EButtonSize } from '@components/Button/enums';
+import { IButtonProps } from '@components/Button/types';
 
 /**
  * Интерфейс пропсов для компонента Dropdown
  */
-export interface IDropdownProps {
+export interface IDropdownProps extends IButtonProps {
   /** Элементы, которые будут отображаться в меню */
   children: ReactNode;
   /** Отключает кнопку и возможность открытия меню */

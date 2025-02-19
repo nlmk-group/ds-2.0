@@ -1,0 +1,104 @@
+@mixin font-styles {
+  font-size: var(--body1-medium-16-fontSize);
+  font-weight: var(--body1-medium-16-fontWeight);
+  line-height: var(--body1-medium-16-lineHeight);
+  letter-spacing: var(--body1-medium-16-letterSpacing);
+  text-decoration: var(--body1-medium-16-textDecoration);
+}
+
+.filterInput {
+  font-family: var(--font-families-pt-root-ui);
+  position: relative;
+  width: 100%;
+
+  input:focus ~ label,
+  input:not(:placeholder-shown):not(:focus) ~ label {
+    top: -9px;
+    left: 12px;
+    padding: 0 4px;
+    background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
+  }
+
+  input::placeholder {
+    color: var(--steel-70);
+    opacity: 1;
+  }
+
+  // Скрываем плейсхолдер когда:
+  // 1. Есть label (:has(label))
+  // 2. Есть input который:
+  //    - не в фокусе (not(:focus))
+  //    - показывает плейсхолдер (placeholder-shown)
+  &:has(label):has(input:not(:focus):placeholder-shown) input::placeholder {
+    opacity: 0;
+  }
+}
+
+.textfield {
+  width: 100%;
+  height: 40px;
+  color: var(--steel-90);
+  box-sizing: border-box;
+  font-family: inherit;
+  @include font-styles;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-variant-numeric: tabular-nums lining-nums;
+  padding: 0 32px;
+
+  &::placeholder {
+    @include font-styles;
+    color: var(--steel-70);
+  }
+
+  &:disabled {
+    -webkit-text-fill-color: var(--steel-70);
+    color: var(--steel-70);
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.label {
+  position: absolute;
+  padding: 10px 0;
+  left: 16px;
+  top: 0;
+  color: var(--steel-70);
+  cursor: text;
+  transition: 0.3 ease-out;
+  max-width: calc(100% - 32px);
+  white-space: nowrap;
+
+  .typography {
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+%input-icon-base {
+  position: absolute;
+  height: 40px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.icon {
+  @extend %input-icon-base;
+  left: 0;
+  color: var(--brand-sapphire-60);
+  background: transparent;
+}
+
+.reset {
+  @extend %input-icon-base;
+  right: 0;
+}

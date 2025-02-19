@@ -90,6 +90,10 @@ import { Button, EButtonColor, EButtonSize, EButtonVariant } from '@nlmk/ds-2.0'
 [data-ui-button-icon] {
   /* стили */
 }
+/* Стилизация иконки в конце кнопки */
+[data-ui-button-end-icon] {
+  /* стили */
+}
 ```
 
 ### 3. Inline стили

@@ -1,16 +1,6 @@
-import React, {
-  Children,
-  cloneElement,
-  CSSProperties,
-  FC,
-  isValidElement,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { usePopper } from 'react-popper';
 
 import { ClickAwayListener, List } from '@components/index';
 
@@ -18,7 +8,6 @@ import { IOptionsProps } from './types';
 
 import styles from './Options.module.scss';
 
-import { MenuMarginBottom } from '../../constants';
 import { SelectContext } from '../../context';
 import { IOptionItemProps } from '../OptionItem/types';
 
@@ -35,42 +24,35 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     setFocusedIndex,
     focusedIndex
   } = useContext(SelectContext);
-  const [menuStyle, setMenuStyle] = useState<CSSProperties>({});
+
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+
+  const { styles: popperStyles, attributes } = usePopper(selectRef.current, popperElement, {
+    placement: 'bottom-start', // Позиционируем список под инпутом, выравнивая по левому краю
+    modifiers: [
+      {
+        name: 'flip', // Автоматически переворачивает меню наверх, если внизу нет места
+        options: {
+          fallbackPlacements: ['top-start']
+        }
+      },
+      {
+        name: 'preventOverflow', // Предотвращает выход за пределы viewport
+        options: {
+          boundary: 'clippingParents',
+          padding: 8
+        }
+      },
+      {
+        name: 'offset', // Добавляет отступ от инпута
+        options: {
+          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
+        }
+      }
+    ]
+  });
+
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
-
-  const updateMenuPosition = useCallback(() => {
-    if (!isOpen || !withPortal) return;
-
-    const inputRect = selectRef.current?.getBoundingClientRect();
-    const menuHeight = menuRef.current?.offsetHeight || 0;
-    const windowHeight = window.innerHeight;
-
-    if (!inputRect) return;
-
-    const isMenuOverflowing = inputRect.bottom + menuHeight > windowHeight;
-    const newMenuStyle: CSSProperties = {
-      width: menuWidth || selectRef.current?.offsetWidth || 0,
-      left: inputRect.left || 0,
-      top: isMenuOverflowing ? 'auto' : inputRect.bottom,
-      bottom: isMenuOverflowing ? windowHeight - inputRect.top + MenuMarginBottom : 'auto'
-    };
-
-    setMenuStyle(newMenuStyle);
-  }, [isOpen, withPortal, selectRef, menuRef, menuWidth]);
-
-  useEffect(() => {
-    updateMenuPosition();
-
-    const handleResize = () => {
-      updateMenuPosition();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [updateMenuPosition]);
 
   if (!isOpen) return null;
 
@@ -90,15 +72,45 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     return child;
   });
 
+  const getMenuStyles = () => {
+    const baseStyles = {
+      width: withPortal ? menuWidth || selectRef.current?.offsetWidth : '100%',
+      maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`
+    };
+
+    if (withPortal) {
+      return {
+        ...baseStyles,
+        ...popperStyles.popper,
+        marginTop: '0px'
+      };
+    }
+
+    return {
+      ...baseStyles,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      zIndex: 1000
+    };
+  };
+
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={selectRef}>
       <List
-        ref={menuRef}
-        style={{
-          ...menuStyle,
-          maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`
+        ref={el => {
+          if (el) {
+            if (menuRef && typeof menuRef === 'object') {
+              (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            }
+            if (withPortal) {
+              setPopperElement(el);
+            }
+          }
         }}
+        style={getMenuStyles() as CSSProperties}
         className={styles.options}
+        {...(withPortal ? attributes.popper : {})}
       >
         {childrenWithProps}
       </List>

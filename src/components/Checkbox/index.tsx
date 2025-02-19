@@ -62,10 +62,12 @@ const Checkbox: FC<ICheckboxProps> = ({
           data-color={color}
         />
         <span className={styles.checkmark} data-ui-checkbox-checkmark>
-          {multiple ? (
-            <IconDeleteMinusFilled16 htmlColor="var(--ac-checkbox-checked-bg)" data-ui-checkbox-icon />
-          ) : (
-            <IconDoneCheckFilled16 htmlColor="var(--ac-checkbox-checked-bg)" data-ui-checkbox-icon />
+          {checked && (
+            multiple ? (
+              <IconDeleteMinusFilled16 htmlColor="var(--ac-checkbox-checked-bg)" data-ui-checkbox-icon />
+            ) : (
+              <IconDoneCheckFilled16 htmlColor="var(--ac-checkbox-checked-bg)" data-ui-checkbox-icon />
+            )
           )}
         </span>
       </div>

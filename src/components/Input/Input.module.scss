@@ -62,6 +62,23 @@
     background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
   }
 
+  input,
+  textarea {
+    &::placeholder {
+      color: var(--steel-70);
+      opacity: 1;
+    }
+  }
+
+  // Скрываем плейсхолдер когда:
+  // 1. Есть label (:has(label))
+  // 2. Есть input который:
+  //    - не в фокусе (not(:focus))
+  //    - показывает плейсхолдер (placeholder-shown)
+  &:has(label):has(input:not(:focus):placeholder-shown) input::placeholder {
+    opacity: 0;
+  }
+
   // Стили для лейбла при colored=true
   &.colored {
     input:focus ~ label,
@@ -83,16 +100,6 @@
   input:not(:placeholder-shown):not(:focus):disabled ~ label,
   textarea:not(:placeholder-shown):not(:focus):disabled ~ label {
     background: linear-gradient(to top, var(--steel-30) 50%, transparent 50%);
-  }
-
-  // Скрываем плейсхолдер, когда инпут не пустой
-  input:not(:placeholder-shown),
-  textarea:not(:placeholder-shown),
-  input:not(:focus),
-  textarea:not(:focus) {
-    &::placeholder {
-      opacity: 0;
-    }
   }
 }
 

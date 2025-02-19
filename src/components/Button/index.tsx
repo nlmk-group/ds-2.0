@@ -98,7 +98,11 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         <Typography className={styles.typography} variant={config.size[size].typographyVariant} data-ui-button-text>
           {children}
         </Typography>
-        {endIcon && <span className={getIconClass(EButtonNodesPosition.right)}>{endIcon}</span>}
+        {endIcon && (
+          <span className={getIconClass(EButtonNodesPosition.right)} data-ui-button-end-icon>
+            {endIcon}
+          </span>
+        )}
         {endBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.right)} data-ui-button-badge-right>
             <ButtonBadge badge={endBadge} size={size} />

@@ -63,7 +63,10 @@ export { default as Illustration } from './Illustrations';
 export { default as Pagination } from './Pagination';
 export { default as Legend } from './Legend';
 export { default as PdfPreview } from './PdfPreview';
+export { default as Filter } from './Filter';
+export * from './Table';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';
+export * from './TreeList';
 export * from './Theme/hooks';
 //# sourceMappingURL=index.d.ts.map

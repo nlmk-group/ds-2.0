@@ -173,6 +173,12 @@ declare const _default: {
                 type: string;
             };
         };
+        placeholder: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
         className: {
             description: string;
             control: {

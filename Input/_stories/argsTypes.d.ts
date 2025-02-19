@@ -168,6 +168,12 @@ declare const argsTypes: {
             type: string;
         };
     };
+    placeholder: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
     className: {
         description: string;
         control: {

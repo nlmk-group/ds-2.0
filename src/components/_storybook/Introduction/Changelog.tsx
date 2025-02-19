@@ -51,7 +51,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.0 - <span className={styles.date}>дата выпуска</span>
+            v2.18.0 - <span className={styles.date}>17.02.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

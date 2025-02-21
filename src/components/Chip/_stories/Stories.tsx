@@ -22,7 +22,7 @@ const Stories = (): JSX.Element => {
       <Header
         title="Chip"
         description="Компонент Chip обычно используется для отображения небольших интерактивных элементов пользовательского интерфейса, таких как теги, метки, категории или выборы в фильтрах, а также для представления небольших блоков информации."
-        isStable
+        isDeprecated
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Chip"
         figmaLink={FIGMA_LINK}
       />

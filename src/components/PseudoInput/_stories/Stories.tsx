@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
-// import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -21,9 +21,7 @@ enum TabIds {
 
 const COMPONENT_NAME = 'PseudoInput';
 
-// TODO:FIND LINK FROM UI KIT FOR THIS COMPONENT
-// const FIGMA_LINK =
-//   'https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/Input-%CE%B2?node-id=207%3A40297&t=l4wSBLji2Mz59Nd6-0';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=569-321721';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -44,7 +42,7 @@ const Stories = (): JSX.Element => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
@@ -104,7 +102,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {/* {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />} */}
+      {activeTab == TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

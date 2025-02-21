@@ -2,8 +2,8 @@ import React, { FC, useCallback } from 'react';
 
 import {
   Button,
-  IconChevronArrowLeftOutlined24,
-  IconChevronArrowRightOutlined24,
+  IconChevronArrowLeftOutlined16,
+  IconChevronArrowRightOutlined16,
   OptionItem,
   SimpleSelect,
   Typography
@@ -130,8 +130,8 @@ const Pagination: FC<IPaginationProps> = ({
           <div className={styles.chevronWrapper}>
             <Button
               className={clsx(styles.chevron, styles.left)}
-              startIcon={<IconChevronArrowLeftOutlined24 />}
-              color="ghost"
+              iconButton={<IconChevronArrowLeftOutlined16 />}
+              color="grey"
               variant="secondary"
               size="xs"
               onClick={handlePrevPage}
@@ -158,8 +158,8 @@ const Pagination: FC<IPaginationProps> = ({
           <div className={styles.chevronWrapper}>
             <Button
               className={clsx(styles.chevron, styles.right)}
-              endIcon={<IconChevronArrowRightOutlined24 />}
-              color="ghost"
+              iconButton={<IconChevronArrowRightOutlined16 />}
+              color="grey"
               variant="secondary"
               size="xs"
               onClick={handleNextPage}

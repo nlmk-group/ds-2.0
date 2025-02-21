@@ -1,19 +1,26 @@
-.root {
+.pseudo {
   height: 40px;
   position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
 
-  &.compact {
+  &.s {
     height: 32px;
+  }
+  &.xs {
+    height: 28px;
   }
 }
 
 .label {
   position: absolute;
-  top: -8px;
   color: var(--steel-70);
+  top: -9px;
 
-  .compact & {
+  .s & {
+    top: -10px;
+  }
+  .xs & {
     top: -9px;
   }
 
@@ -30,18 +37,7 @@
   }
 }
 
-.text {
-  position: absolute;
-  top: 9px;
-
-  .compact & {
-    top: 5px;
-  }
-}
-
-.row {
+.suffix {
   display: flex;
-  flex-direction: column;
   gap: 8px;
-  padding-top: 10px;
 }

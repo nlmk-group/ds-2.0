@@ -1,8 +1,13 @@
 import { ReactNode } from 'react';
 
+import { IBadgeProps } from '@components/Badge/types';
 import { customInputColors } from '@components/declaration';
 
-export interface IPseudoInputProps {
+import { EPseudoInputSizes } from './enums';
+
+type TBadgeProps = Pick<IBadgeProps, 'color' | 'variant'>;
+
+export interface IPseudoInputProps extends TBadgeProps {
   /**
    * Текст или элемент для лейбла PseudoInput
    */
@@ -16,7 +21,7 @@ export interface IPseudoInputProps {
   /**
    * Размер компонента PseudoInput
    */
-  size?: 'm' | 's';
+  size?: `${EPseudoInputSizes}`;
 
   /**
    * Цвет метки PseudoInput
@@ -27,4 +32,19 @@ export interface IPseudoInputProps {
    * Дополнительный CSS класс
    */
   className?: string;
+
+  /**
+   * Дополнительный текст справа от псевдо-ввода
+   */
+  suffix?: ReactNode;
+
+  /**
+   * Содержимое бейджа
+   */
+  badgeChildren?: string | number;
+
+  /**
+   * Флаг, добавляющий ширину в 100%
+   */
+  fullWidth?: boolean;
 }

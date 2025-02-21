@@ -6,7 +6,9 @@ import {
   GroupHeaderTableWithResizeExample,
   GroupingHeaderTableExample,
   SelectableTableExample,
+  SelectableTableWithGroupingHeaderExample,
   SelectableTableWithPaginationExample,
+  SelectableTableWithVirtualizationExample,
   SortableTableExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
@@ -54,3 +56,9 @@ SelectableTable.storyName = 'Таблица с выбором строк';
 
 export const SelectableTableWithPagination = () => <SelectableTableWithPaginationExample />;
 SelectableTableWithPagination.storyName = 'Таблица с выбором строк и пагинацией';
+
+export const SelectableTableWithGroupingHeader = () => <SelectableTableWithGroupingHeaderExample />;
+SelectableTableWithGroupingHeader.storyName = 'Таблица с выбором строк и многоуровневой шапкой';
+
+export const SelectableTableWithVirtualization = () => <SelectableTableWithVirtualizationExample />;
+SelectableTableWithVirtualization.storyName = 'Таблица с выбором строк и виртуализацией';

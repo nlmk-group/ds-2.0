@@ -32,6 +32,10 @@ $default-padding: 4px 8px;
   &.numberCol {
     text-align: right;
   }
+
+  &.last-in-group {
+    border-right: 1px solid var(--unique-divider) !important;
+  }
 }
 
 .m {

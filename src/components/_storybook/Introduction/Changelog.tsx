@@ -23,6 +23,69 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.4 - <span className={styles.date}>20.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Top
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен флаг lastInGroup для компонента Top. Флаг для отображения границы справа в последней колонке
+                группы в таблице с группировкой в шапке таблицы
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.3 - <span className={styles.date}>19.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                PseudoInput
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлены свойства fullWidth, suffix, badgeChildren и пропсы от компонента Badge (color, variant)
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили в соответствии с макетом</li>
+              <li className={styles['left-padding']}>- Добавлен размер xs</li>
+              <li className={styles['left-padding']}>- Актуализированы истории и документация</li>
+            </li>
+            <li className={styles['left-padding']}>- Компонент Chip отмечен как deprecated!</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.0 - <span className={styles.date}>17.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменены цвета кнопок-стрелочек для переключения между страницами
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.1 - <span className={styles.date}>19.02.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -51,7 +114,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.0 - <span className={styles.date}>17.02.25</span>
+            v2.18.0 - <span className={styles.date}>дата выпуска</span>
           </Typography>
           <ul className={styles.list}>
             <li>

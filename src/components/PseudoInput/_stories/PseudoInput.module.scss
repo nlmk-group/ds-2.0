@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.suffix {
+  display: flex;
+  margin-top: unset;
+  margin-bottom: unset;
+  align-items: end;
+  gap: 8px;
+}

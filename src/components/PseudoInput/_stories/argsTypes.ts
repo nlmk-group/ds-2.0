@@ -1,5 +1,7 @@
 import { customInputColors } from '@components/declaration';
 
+import { EPseudoInputSizes } from '../enums';
+
 export const argsTypes = {
   label: {
     description: 'Строка вспомогательного текста над компонентом',
@@ -19,7 +21,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: ['s', 'm'],
+    options: Object.values(EPseudoInputSizes),
     control: { type: 'select' }
   },
   labelColor: {
@@ -31,5 +33,29 @@ export const argsTypes = {
     },
     options: Object.values(customInputColors),
     control: { type: 'select' }
+  },
+  variant: {
+    description: 'Вариант бейджа',
+    table: { type: { summary: 'string' } }
+  },
+  color: {
+    description: 'Цвет бейджа',
+    table: { type: { summary: 'string' } }
+  },
+  className: {
+    description: 'Классы для бейджа',
+    table: { type: { summary: 'string' } }
+  },
+  suffix: {
+    description: 'Суффикс компонента',
+    table: { type: { summary: 'ReactNode' } }
+  },
+  style: {
+    description: 'Стили бейджа',
+    table: { type: { summary: 'CSSProperties' } }
+  },
+  badgeChildren: {
+    description: 'Содержимое бейджа',
+    table: { type: { summary: 'ReactNode' } }
   }
 };

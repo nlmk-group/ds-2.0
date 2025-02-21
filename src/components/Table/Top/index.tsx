@@ -17,6 +17,7 @@ const Top = forwardRef<HTMLTableCellElement, ITopProps>(
       sort = false,
       right = false,
       number = false,
+      lastInGroup = false,
       drag = false,
       onClick,
       sortDirection = false,
@@ -53,6 +54,7 @@ const Top = forwardRef<HTMLTableCellElement, ITopProps>(
           disable && styles.disabled,
           number && styles.numberCol,
           filtered && styles.filtered,
+          lastInGroup && styles['last-in-group'],
           className
         )}
         style={style}

@@ -7,7 +7,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 12px 12px 12px 24px ;
+  padding: 12px 12px 12px 24px;
   z-index: 1;
   position: relative;
   box-sizing: border-box;
@@ -35,7 +35,7 @@
   transition: background-color 0.2s ease;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 36px;
     height: 36px;
@@ -87,11 +87,5 @@
 }
 
 .chevron {
-  &.left, &.right {
-    padding: 0;
-  }
-  &.left>span:nth-child(2),
-  &.right>span:nth-child(1) {
-    display: none !important;
-  }
+  background: none;
 }

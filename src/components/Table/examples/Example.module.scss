@@ -4,6 +4,10 @@
   overflow-y: auto;
   overflow-x: auto;
   border: 1px solid var(--unique-divider);
+
+  &_autoWidth {
+    width: auto;
+  }
 }
 
 .tableContainer thead th {

@@ -23,6 +23,8 @@ export interface ITopProps extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElem
   right?: boolean;
   /** Флаг числовой колонки */
   number?: boolean;
+  /** Флаг наличия границы справа */
+  lastInGroup?: boolean;
   /** Обработчик клика */
   onClick?: () => void;
   /** Флаг возможности изменения размера */

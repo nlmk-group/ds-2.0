@@ -20,32 +20,52 @@ const children = <div>Sample text</div>;
 describe('src/components/PseudoInput', () => {
   test('renders different label color states', () => {
     labelColorClassNames.map(color => {
-      const { container } = render(<PseudoInput label={label} labelColor={color}>{children}</PseudoInput>);
+      const { container } = render(
+        <PseudoInput label={label} labelColor={color}>
+          {children}
+        </PseudoInput>
+      );
       const pseudoInput = container.getElementsByClassName(color as string)[0];
       expect(pseudoInput).toBeInTheDocument();
     });
   });
 
   test('renders in compact size', () => {
-    const { container } = render(<PseudoInput label={label} size="s">{children}</PseudoInput>);
-    expect(container.firstChild).toHaveClass('compact');
+    const { container } = render(
+      <PseudoInput label={label} size="s">
+        {children}
+      </PseudoInput>
+    );
+    expect(container.firstChild).toHaveClass('s');
   });
 
   test('renders in default size', () => {
-    const { container } = render(<PseudoInput label={label} size="m">{children}</PseudoInput>);
-    expect(container.firstChild).not.toHaveClass('compact');
+    const { container } = render(
+      <PseudoInput label={label} size="m">
+        {children}
+      </PseudoInput>
+    );
+    expect(container.firstChild).not.toHaveClass('s');
   });
 
   test('applies custom className', () => {
     const customClass = 'custom-class';
-    const { container } = render(<PseudoInput label={label} className={customClass}>{children}</PseudoInput>);
+    const { container } = render(
+      <PseudoInput label={label} className={customClass}>
+        {children}
+      </PseudoInput>
+    );
     expect(container.firstChild).toHaveClass(customClass);
   });
 
   test('combines custom className with default classes', () => {
     const customClass = 'custom-class';
-    const { container } = render(<PseudoInput label={label} className={customClass} size="s">{children}</PseudoInput>);
+    const { container } = render(
+      <PseudoInput label={label} className={customClass} size="s">
+        {children}
+      </PseudoInput>
+    );
     expect(container.firstChild).toHaveClass('custom-class');
-    expect(container.firstChild).toHaveClass('compact');
+    expect(container.firstChild).toHaveClass('s');
   });
 });

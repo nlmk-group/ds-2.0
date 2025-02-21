@@ -1,4 +1,5 @@
 import { customInputColors } from '../../declaration';
+import { EPseudoInputSizes } from '../enums';
 
 export declare const argsTypes: {
     label: {
@@ -23,7 +24,7 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
-        options: string[];
+        options: EPseudoInputSizes[];
         control: {
             type: string;
         };
@@ -38,6 +39,54 @@ export declare const argsTypes: {
         options: customInputColors[];
         control: {
             type: string;
+        };
+    };
+    variant: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    color: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    className: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    suffix: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    style: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    badgeChildren: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
         };
     };
 };

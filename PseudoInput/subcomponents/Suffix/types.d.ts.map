@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/PseudoInput/subcomponents/Suffix/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKjD,MAAM,WAAW,YAAY;IAE3B,SAAS,CAAC,EAAE,MAAM,CAAC;IAEnB,QAAQ,EAAE,SAAS,CAAC;IAEpB,KAAK,CAAC,EAAE,aAAa,CAAC;CACvB"}

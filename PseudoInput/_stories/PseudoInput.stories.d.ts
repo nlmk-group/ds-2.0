@@ -1,10 +1,11 @@
 import { default as React } from '../../../../node_modules/react';
 import { customInputColors } from '../../declaration';
+import { EPseudoInputSizes } from '../enums';
 import { IPseudoInputProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<IPseudoInputProps>;
+    component: React.ForwardRefExoticComponent<IPseudoInputProps & React.RefAttributes<HTMLDivElement>>;
     argTypes: {
         label: {
             description: string;
@@ -28,7 +29,7 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: string[];
+            options: EPseudoInputSizes[];
             control: {
                 type: string;
             };
@@ -45,28 +46,110 @@ declare const _default: {
                 type: string;
             };
         };
+        variant: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        color: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        className: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        suffix: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        style: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        badgeChildren: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+    };
+    parameters: {
+        controls: {
+            exclude: string[];
+        };
     };
     decorators: ((Story: any) => React.JSX.Element)[];
 };
 export default _default;
 export declare const PseudoInputDefault: {
     (argTypes: IPseudoInputProps): JSX.Element;
+    args: {
+        label: string;
+    };
     storyName: string;
 };
-export declare const PseudoInputSizeL: {
+export declare const PseudoInputSizes: {
     (): JSX.Element;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
     storyName: string;
 };
-export declare const PseudoInputError: {
+export declare const PseudoInputColors: {
     (): JSX.Element;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
     storyName: string;
 };
-export declare const PseudoInputWarning: {
+export declare const PseudoInputWithSuffixAndBadge: {
     (): JSX.Element;
-    storyName: string;
-};
-export declare const PseudoInputSuccess: {
-    (): JSX.Element;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
     storyName: string;
 };
 //# sourceMappingURL=PseudoInput.stories.d.ts.map

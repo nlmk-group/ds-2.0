@@ -14,6 +14,7 @@ export interface ITopProps extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElem
     sortDirection?: TSortDirection;
     right?: boolean;
     number?: boolean;
+    lastInGroup?: boolean;
     onClick?: () => void;
     drag?: boolean;
     filtered?: boolean;

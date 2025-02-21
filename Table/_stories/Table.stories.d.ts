@@ -46,4 +46,12 @@ export declare const SelectableTableWithPagination: {
     (): React.JSX.Element;
     storyName: string;
 };
+export declare const SelectableTableWithGroupingHeader: {
+    (): React.JSX.Element;
+    storyName: string;
+};
+export declare const SelectableTableWithVirtualization: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Table.stories.d.ts.map

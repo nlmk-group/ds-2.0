@@ -22,6 +22,26 @@ export const Changelog = () => {
           </Link>
         </div>
         <div className={styles.history}>
+        <Typography variant="Subheading3-Medium">
+          v2.18.5 - <span className={styles.date}>25.02.25</span>
+        </Typography>
+        <ul className={styles.list}>
+          <li>
+            • Обновлен компонент{' '}
+            <Link
+              href="./?path=/docs/components-pseudoinput-info--docs"
+              target="blank"
+              className={styles['link-changelog']}
+            >
+              PseudoInput
+            </Link>
+            .
+            <li className={styles['left-padding']}>- Улучшено выравнивание элементов для разных размеров компонента</li>
+            <li className={styles['left-padding']}>- Добавлен Pick&lt;IBadgeProps&gt; для типизации пропсов бейджа внутри компонента</li>
+          </li>
+        </ul>
+      </div>
+        <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.18.4 - <span className={styles.date}>20.02.25</span>
           </Typography>

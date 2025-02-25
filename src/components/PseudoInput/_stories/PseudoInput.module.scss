@@ -1,8 +1,18 @@
 .row {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   padding-top: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.description {
+  font-family: monospace;
 }
 
 .suffix {

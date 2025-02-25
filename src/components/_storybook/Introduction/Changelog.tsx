@@ -23,6 +23,26 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.6 - <span className={styles.date}>26.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              <li className={styles['left-padding']}>
+                Исправлен баг, при котором autofill использовал браузерные стили
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.4 - <span className={styles.date}>20.02.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -47,7 +67,7 @@ export const Changelog = () => {
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-treelist-info--docs"
+                href="./?path=/docs/components-pseudoinput-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
@@ -71,7 +91,7 @@ export const Changelog = () => {
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-tooltip-info--docs"
+                href="./?path=/docs/components-pagination-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >

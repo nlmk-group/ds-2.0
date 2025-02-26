@@ -1,3 +1,5 @@
+$children-offset: 2px;
+
 .pseudo {
   height: 40px;
   position: relative;
@@ -18,7 +20,7 @@
   top: -3px;
 
   .s & {
-    top: -2px;
+    top: -$children-offset;
   }
   .xs & {
     top: -3px;
@@ -43,14 +45,14 @@
 
   [data-ui-pseudo-input-children] {
     position: relative;
-    top: -2px;
+    top: -$children-offset;
   }
 
   .s & [data-ui-pseudo-input-children] {
-    top: 2px;
+    top: $children-offset;
   }
 
   .xs & [data-ui-pseudo-input-children] {
-    top: 2px;
+    top: $children-offset;
   }
 }

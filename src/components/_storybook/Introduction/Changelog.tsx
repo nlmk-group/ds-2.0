@@ -21,29 +21,7 @@ export const Changelog = () => {
             </Button>
           </Link>
         </div>
-        <div className={styles.history}>
-          <Typography variant="Subheading3-Medium">
-            v2.18.5 - <span className={styles.date}>24.02.25</span>
-          </Typography>
-          <ul className={styles.list}>
-            <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-stepper-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Stepper
-              </Link>
-              .<li className={styles['left-padding']}>- Добавлены состояния hover и active</li>. .
-              <li className={styles['left-padding']}>- Обновлены стили компонента, включая кнопки и бейджи</li>..
-              <li className={styles['left-padding']}>- Удалены неактуальные состояния</li>.
-              <li className={styles['left-padding']}>- Адаптированы новые истории для сторибука</li>.
-              <li className={styles['left-padding']}>- Добавлены новые свойства для состояния active</li>.
-              <li className={styles['left-padding']}>- Обновлены тесты</li>.
-            </li>
-          </ul>
-        </div>
+
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.18.4 - <span className={styles.date}>20.02.25</span>

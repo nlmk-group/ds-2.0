@@ -2,6 +2,7 @@ export { default as TableWithTanStackExample } from './TableDefault';
 export { default as TableWithStickyHeader } from './TableWithStickyHeader';
 export { default as SortableTableExample } from './SortingTable';
 export { default as VirtualizedTableWithDynamicRowHeightExample } from './VirtualizedTableWithDynamicRowHeight';
+export { default as VirtualizedTableWithHorizontalVirtualizationExample } from './VirtualizedTableColumns';
 export { default as FilterableTableExample } from './FilteringTable';
 export { default as ExpandableTableExample } from './ExpandableTable';
 export { default as GroupingHeaderTableExample } from './GroupingHeaderTable';

@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Sidebar from '@components/Sidebar';
 import { ISidebarProps } from '@components/Sidebar/types';
@@ -123,6 +124,29 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
         disabled
         onClick={() => setCurrentPath('Отключенный раздел')}
       />
+      <Sidebar.MenuItem
+        path="Производственные отчеты-ссылка"
+        label="Производственные отчеты-ссылка"
+        content={
+          <Link to="/custom-menu" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Производственные отчеты-ссылка
+          </Link>
+        }
+        position="top"
+        icon="IconLink24"
+        onClick={() => setCurrentPath('Кастомный раздел-ссылка')}
+      >
+        <Sidebar.SubmenuItem
+          path="Анализ-качества-сплавов-ссылка"
+          label="Анализ-качества-сплавов-ссылка"
+          content={
+            <Link to="/custom-submenu" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Анализ-качества-сплавов-ссылка
+            </Link>
+          }
+          onClick={() => setCurrentPath('Кастомный подраздел-ссылка')}
+        />
+      </Sidebar.MenuItem>
       <Sidebar.MenuItem
         path="Ресурсы"
         label="Ресурсы"

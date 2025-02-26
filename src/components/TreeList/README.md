@@ -14,15 +14,17 @@ import { TreeList } from '@nlmk/ds-2.0';
 
 ## Props
 
-| Prop            | Type                           | Default     | Description                             |
-| --------------- | ------------------------------ | ----------- | --------------------------------------- |
-| data            | TNodeItem[]                     | -           | Данные для дерева в виде массива узлов  |
-| onSelectedNode  | (e: TSelectedNodeEvent) => void | -           | Обработчик события выбора узла          |
-| onDataAfterDrag | (e: TNodeItem[]) => void        | -           | Обработчик события после перетаскивания |
-| checkable       | boolean                        | false       | Флаг отображения чекбоксов              |
-| draggable       | boolean                        | false       | Флаг возможности перетаскивания узлов   |
-| checkableSimple | boolean                        | false       | Флаг упрощённого выбора чекбоксов       |
-| rowHeight       | \`${ERowHeight}\`               | ERowHeight.s | Высота строки узла                      |
+| Prop                | Type                            | Default      | Description                                                                        |
+|---------------------|---------------------------------|--------------|------------------------------------------------------------------------------------|
+| data                | TNodeItem[]                     | -            | Данные для дерева в виде массива узлов                                             |
+| onSelectedNode      | (e: TSelectedNodeEvent) => void | -            | Обработчик события выбора узла                                                     |
+| onDataAfterDrag     | (e: TNodeItem[]) => void        | -            | Обработчик события после перетаскивания                                            |
+| checkable           | boolean                         | false        | Флаг отображения чекбоксов                                                         |
+| draggable           | boolean                         | false        | Флаг возможности перетаскивания узлов                                              |
+| checkableSimple     | boolean                         | false        | Флаг упрощённого выбора чекбоксов                                                  |
+| rowHeight           | \`${ERowHeight}\`               | ERowHeight.s | Высота строки узла                                                                 |
+| initialCheckedKeys  | Key[]                           | []           | Массив ключей элементов, которые должны быть отмечены (выбраны) при первом рендере |
+| initialExpandedKeys | Key[]                           | []           | Массив ключей элементов, которые должны быть развернуты при первом рендере         |
 
 ## Размеры (ERowHeight)
 

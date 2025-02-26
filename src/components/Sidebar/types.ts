@@ -6,6 +6,8 @@ import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMap
 
 type ChangeFavoritesHandler = (v: string[]) => void;
 
+type TContentLabel = ReactNode | string
+
 export interface ISidebarProps extends PropsWithChildren {
   /**
    * Ориентация бокового меню.
@@ -159,6 +161,11 @@ export interface IMenuItemProps extends PropsWithChildren {
   label: string;
 
   /**
+   * Текстовая или кастомная метка для отображения элемента подменю (используется label по умолчанию)
+   */
+  content?: TContentLabel;
+
+  /**
    * Иконка элемента меню.
    */
   icon: TIconName;
@@ -300,6 +307,11 @@ export interface ISubmenuItemProps extends PropsWithChildren {
    * Текстовая метка элемента подменю.
    */
   label: string;
+
+  /**
+   * Текстовая или кастомная метка для отображения элемента подменю (используется label по умолчанию)
+   */
+  content?: TContentLabel;
 
   /**
    * URL изображения элемента подменю.

@@ -12,7 +12,8 @@ import {
   SortableTableExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
-  VirtualizedTableWithDynamicRowHeightExample
+  VirtualizedTableWithDynamicRowHeightExample,
+  VirtualizedTableWithHorizontalVirtualizationExample
 } from '../examples';
 import Table from '../Table';
 
@@ -32,6 +33,11 @@ StickyHeader.storyName = 'Таблица с закрепленным загол�
 
 export const VirtualizedTableWithDynamicRowHeight = () => <VirtualizedTableWithDynamicRowHeightExample />;
 VirtualizedTableWithDynamicRowHeight.storyName = 'Виртуализированная таблица с динамической высотой строк';
+
+export const VirtualizedTableWithHorizontalVirtualization = () => (
+  <VirtualizedTableWithHorizontalVirtualizationExample />
+);
+VirtualizedTableWithHorizontalVirtualization.storyName = 'Таблица с горизонтальной виртуализацией';
 
 export const FilterableTable = () => <FilterableTableExample />;
 FilterableTable.storyName = 'Таблица с фильтрами, сортировкой и возможностью изменения ширины столбцов';

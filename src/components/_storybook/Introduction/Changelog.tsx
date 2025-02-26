@@ -23,6 +23,54 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.6 - <span className={styles.date}>26.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена проблема в компоненте{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлены теги &lt;a&gt; на &lt;div&gt; в компонентах MenuItem и SubmenuItem для корректной работы с
+                react-router и предотвращения нежелательных перенаправлений.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.5 - <span className={styles.date}>25.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство компонента initialCheckedKeys, которое используется для установки начального
+                состояния выбранных элементов.
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство компонента initialExpandedKeys - используется для установки начального состояния
+                раскрытых элементов.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.4 - <span className={styles.date}>20.02.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -65,7 +113,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.0 - <span className={styles.date}>17.02.25</span>
+            v2.18.2 - <span className={styles.date}>17.02.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

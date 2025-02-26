@@ -1,5 +1,7 @@
 import React, { Key, useState } from 'react';
 
+
+
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
@@ -10,7 +12,7 @@ import 'rc-tree/assets/index.css';
 import styles from './styles.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
-import { ERowHeight, TChekedKeys, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
+import { ERowHeight, TCheckedKeys, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
 import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
@@ -20,14 +22,16 @@ export const TreeListV1 = ({
   checkableSimple,
   onSelectedNode,
   onDataAfterDrag,
-  rowHeight = ERowHeight.s
+  rowHeight = ERowHeight.s,
+  initialCheckedKeys = [],
+  initialExpandedKeys = []
 }: TTreeListProps) => {
   const [treeData, setTreeData] = useState(data);
   const selectable = false;
-  const [checkedKeys, setCheckedKeys] = useState<TChekedKeys>([]);
+  const [checkedKeys, setCheckedKeys] = useState<TCheckedKeys>(initialCheckedKeys);
   const keys = isArray(checkedKeys) ? checkedKeys : checkedKeys.checked;
   const [dragging, setDragging] = useState<string | null>(null);
-  const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
+  const [expandedKeys, setExpandedKeys] = useState<Key[]>(initialExpandedKeys);
 
   const handleExpand = (key: Key) => {
     setExpandedKeys(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]));
@@ -49,7 +53,7 @@ export const TreeListV1 = ({
     if (onDataAfterDrag) onDataAfterDrag(data);
   };
 
-  const handleCheck = (_: TChekedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
+  const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
     let updatedKeys = [];
     if (checkableSimple) {
@@ -71,7 +75,7 @@ export const TreeListV1 = ({
       onSelectedNode({
         currentKey: nodeKey,
         allSelectedKeys: updatedKeys,
-        isCheked: Boolean(updatedKeys.includes(nodeKey))
+        isChecked: Boolean(updatedKeys.includes(nodeKey))
       });
     }
   };

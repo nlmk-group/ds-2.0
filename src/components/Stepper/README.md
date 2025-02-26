@@ -1,15 +1,17 @@
 # Stepper Component
 
-## Версия компонента v3.0
+## Версия компонента v3.1
 
 Компонент Stepper используется для отображения последовательности шагов, например, в форме или процессе регистрации. Он поддерживает различные состояния шагов и позволяет пользователям легко ориентироваться между ними.
 
 ## Использование
 
 ```jsx
+import React, { useState } from 'react';
 import { EStepState, Stepper } from '@nlmk/ds-2.0';
-
+const [currentStep, setCurrentStep] = React.useState(1);
 <Stepper
+  currentStep={currentStep}
   state={EStepState.filled}
   stepName="Step 1"
   showStep={true}
@@ -20,14 +22,15 @@ import { EStepState, Stepper } from '@nlmk/ds-2.0';
 
 ## Props
 
-| Prop      | Type                                                | Default     | Description              |
-| --------- | --------------------------------------------------- | ----------- | ------------------------ |
-| state     | `${EStepState}`                                     | 'notFilled' | Состояние шага           |
-| stepName  | string                                              | 'undefined' | Название шага            |
-| className | string                                              | -           | Дополнительный CSS класс |
-| index     | number                                              | '0'         | Индекс шага              |
-| showStep  | boolean                                             | false       | Показывать ли шаг        |
-| onClick   | ({ state: `${EStepState}`, index: number }) => void | -           | Обработчик клика по шагу |
+| Prop        | Type                                                | Default     | Description              |
+| ----------- | --------------------------------------------------- | ----------- | ------------------------ |
+| currentStep | number                                              | ---         | Текущий шаг              |
+| state       | `${EStepState}`                                     | 'notFilled' | Состояние шага           |
+| stepName    | string                                              | 'undefined' | Название шага            |
+| className   | string                                              | -           | Дополнительный CSS класс |
+| index       | number                                              | '0'         | Индекс шага              |
+| showStep    | boolean                                             | false       | Показывать ли шаг        |
+| onClick     | ({ state: `${EStepState}`, index: number }) => void | -           | Обработчик клика по шагу |
 
 ## Состояния шагов (EStepState)
 

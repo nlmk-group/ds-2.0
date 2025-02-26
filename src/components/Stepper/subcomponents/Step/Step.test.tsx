@@ -2,8 +2,7 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import { EStepState } from './types';
-
+import { EStepState } from './enums';
 import { Step } from './index';
 
 describe('Step Component', () => {

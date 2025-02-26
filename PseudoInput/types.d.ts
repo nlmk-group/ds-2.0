@@ -3,7 +3,7 @@ import { IBadgeProps } from '../Badge/types';
 import { customInputColors } from '../declaration';
 import { EPseudoInputSizes } from './enums';
 
-type TBadgeProps = Pick<IBadgeProps, 'color' | 'variant'>;
+type TBadgeProps = Partial<Pick<IBadgeProps, 'color' | 'variant'>>;
 export interface IPseudoInputProps extends TBadgeProps {
     label: JSX.Element | string;
     children: ReactNode;

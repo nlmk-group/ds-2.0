@@ -42,6 +42,19 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Добавлены новые свойства для состояния active</li>
               <li className={styles['left-padding']}>- Обновлены тесты</li>
             </li>
+            <li>
+            • Обновлен компонент{' '}
+            <Link
+              href="./?path=/docs/components-pseudoinput-info--docs"
+              target="blank"
+              className={styles['link-changelog']}
+            >
+              PseudoInput
+            </Link>
+            .
+            <li className={styles['left-padding']}>- Улучшено выравнивание элементов для разных размеров компонента</li>
+            <li className={styles['left-padding']}>- Добавлен Pick&lt;IBadgeProps&gt; для типизации пропсов бейджа внутри компонента</li>
+          </li>
           </ul>
         </div>
         <div className={styles.history}>

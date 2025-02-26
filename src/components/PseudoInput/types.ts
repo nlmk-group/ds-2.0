@@ -5,7 +5,7 @@ import { customInputColors } from '@components/declaration';
 
 import { EPseudoInputSizes } from './enums';
 
-type TBadgeProps = Pick<IBadgeProps, 'color' | 'variant'>;
+type TBadgeProps = Partial<Pick<IBadgeProps, 'color' | 'variant'>>;
 
 export interface IPseudoInputProps extends TBadgeProps {
   /**

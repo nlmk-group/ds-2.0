@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Cell, Filter, Row, Table, Tbody, Thead, Top } from '@components/index';
+import { Cell, Filter, Row, Table, tableFilterOperations, Tbody, Thead, Top } from '@components/index';
 import {
   ColumnFiltersState,
   ColumnResizeMode,
@@ -17,7 +17,7 @@ import { TData } from './types';
 import styles from '../Example.module.scss';
 
 import { getCellProps } from '../utils';
-import { columns, data, dropdownOptions } from './constants';
+import { columns, data } from './constants';
 
 const FilterableTableExample = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -101,7 +101,7 @@ const FilterableTableExample = () => {
                       <Filter
                         defaultValue=""
                         defaultFilterType="contains"
-                        filterTypeOptions={dropdownOptions}
+                        filterTypeOptions={tableFilterOperations}
                         filterValueOptions={getSelectOptionsForColumn(header.column.id)}
                         placeholder="Поиск ..."
                         withPortal

@@ -3,7 +3,7 @@ import React, {
   cloneElement,
   FC,
   isValidElement,
-  MouseEventHandler,
+  MouseEvent,
   ReactElement,
   ReactNode,
   useContext,
@@ -22,7 +22,7 @@ interface IMenuItemComponent extends FC<IMenuItemProps> {
   componentType?: string;
 }
 
-const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, disabled = false }) => {
+const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, onClick, disabled = false }) => {
   const {
     isExpanded,
     currentPath,
@@ -33,7 +33,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
     setIsScrollingDueToClick,
     collapseSidebar
   } = useContext<ISidebarProperties>(SidebarProperties);
-  const targetRef = useRef<HTMLAnchorElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
   const hasChildren = Children.count(children) > 0;
 
@@ -64,7 +64,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
 
   const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveChild);
 
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+  const handleClick = (event: MouseEvent) => {
     event.preventDefault();
     if (disabled) {
       return;
@@ -88,10 +88,9 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
   };
 
   return (
-    <a
+    <div
       className={clsx(styles.menu, { [styles['menu-active']]: isActivePath, [styles['menu-disabled']]: disabled })}
       onClick={handleClick}
-      href={submenu ? undefined : path}
       ref={targetRef}
       title={label}
     >
@@ -106,7 +105,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
               styles.text
             )}
           >
-            {label}
+            {content || label}
           </Typography>
           {submenu && (
             <div
@@ -119,7 +118,7 @@ const MenuItem: IMenuItemComponent = ({ label, children, path, icon, onClick, di
           )}
         </div>
       )}
-    </a>
+    </div>
   );
 };
 

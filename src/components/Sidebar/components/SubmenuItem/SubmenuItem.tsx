@@ -21,7 +21,17 @@ import clsx from 'clsx';
 
 import styles from './SubmenuItem.module.scss';
 
-const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, depth = 1, onClick, disabled }) => {
+const SubmenuItem: FC<ISubmenuItemProps> = ({
+  id,
+  label,
+  content,
+  path,
+  image,
+  children,
+  depth = 1,
+  onClick,
+  disabled
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
@@ -36,6 +46,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
     setActiveItem,
     setSubmenuItems
   } = useContext<ISubmenuProperties>(SubmenuProperties);
+
   const nodeRef = useRef(null);
 
   const submenu = Children.map(
@@ -147,20 +158,20 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({ id, label, path, image, children, 
               }
             />
           )}
-          <a className={styles.title} onClick={handleClick} href={submenu ? undefined : path}>
+          <div className={styles.title} onClick={handleClick}>
             <Typography
               variant="Body1-Medium"
               color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
               className={styles.text}
             >
-              {label}
+              {content || label}
             </Typography>
             {submenu && isVertical && (
               <div className={clsx(styles.icon, { [styles[`icon-rotated`]]: isSubmenuVisible })}>
                 <Icon htmlColor={'var(--brand-sapphire-60)'} containerSize={24} name="IconChevronArrowDownOutlined24" />
               </div>
             )}
-          </a>
+          </div>
         </div>
         {image && !isVertical && depth === 1 && (
           <div className={styles.image}>

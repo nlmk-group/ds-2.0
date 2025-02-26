@@ -73,6 +73,22 @@ const argsTypes = {
     },
     options: ['m', 's', 'xs'],
     control: { type: 'select' }
+  },
+  initialCheckedKeys: {
+    description: 'Массив ключей элементов, которые должны быть отмечены (выбраны) при первом рендере',
+    table: {
+      type: {
+        summary: 'Key[]'
+      }
+    }
+  },
+  initialExpandedKeys: {
+    description: 'Массив ключей элементов, которые должны быть развернуты при первом рендере',
+    table: {
+      type: {
+        summary: 'Key[]'
+      }
+    }
   }
 };
 

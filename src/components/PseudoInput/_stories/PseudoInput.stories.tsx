@@ -91,8 +91,8 @@ export const PseudoInputWithSuffixAndBadge = (): JSX.Element => {
       <div style={{ display: 'flex', alignSelf: 'center' }}>
         <IconInfoOutlined16 />
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '2px' }}>
+      <div style={{ display: 'flex', height: '22px', alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', paddingTop: '2px' }}>
           <IconStackExpandedTriangleUp16 htmlColor="var(--spectrum-green-60)" />
         </div>
         <Typography variant="Body2Mono-Medium">2</Typography>
@@ -101,7 +101,7 @@ export const PseudoInputWithSuffixAndBadge = (): JSX.Element => {
   );
 
   return (
-    <PseudoInput label={labelText} badgeChildren={1234} suffix={suffix}>
+    <PseudoInput label={labelText} badgeChildren={1234} suffix={suffix} className={classNames.custom}>
       {value}
     </PseudoInput>
   );

@@ -22,3 +22,14 @@
   align-items: end;
   gap: 8px;
 }
+
+.custom {
+  [data-ui-pseudo-input-suffix-container] {
+    align-items: center !important;
+  }
+
+  [data-ui-pseudo-input-children] {
+    position: relative;
+    top: 0 !important;
+  }
+}

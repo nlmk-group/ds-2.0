@@ -1,2 +1,2 @@
-export * from './TreeList'
-export * from './types'
+export { default as TreeList } from './TreeList';
+export * from './types';

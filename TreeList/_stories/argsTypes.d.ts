@@ -82,6 +82,22 @@ declare const argsTypes: {
             type: string;
         };
     };
+    initialCheckedKeys: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    initialExpandedKeys: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
 };
 export default argsTypes;
 //# sourceMappingURL=argsTypes.d.ts.map

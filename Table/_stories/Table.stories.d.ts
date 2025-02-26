@@ -18,6 +18,10 @@ export declare const VirtualizedTableWithDynamicRowHeight: {
     (): React.JSX.Element;
     storyName: string;
 };
+export declare const VirtualizedTableWithHorizontalVirtualization: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 export declare const FilterableTable: {
     (): React.JSX.Element;
     storyName: string;

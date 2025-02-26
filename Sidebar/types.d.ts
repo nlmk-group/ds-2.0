@@ -3,6 +3,7 @@ import { TIconName } from '../Icon/IconsDirectory/unionType';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 
 type ChangeFavoritesHandler = (v: string[]) => void;
+type TContentLabel = ReactNode | string;
 export interface ISidebarProps extends PropsWithChildren {
     orientation?: `${ESidebarOrientationMapping}`;
     variant?: `${ESidebarVariantMapping}`;
@@ -38,6 +39,7 @@ export interface IUserControlProps extends PropsWithChildren {
 export interface IMenuItemProps extends PropsWithChildren {
     position?: `${ESidebarPositionMapping}`;
     label: string;
+    content?: TContentLabel;
     icon: TIconName;
     onClick?: () => void;
     path: string;
@@ -73,6 +75,7 @@ export interface ISubmenuProps extends PropsWithChildren {
 export interface ISubmenuItemProps extends PropsWithChildren {
     id?: string;
     label: string;
+    content?: TContentLabel;
     image?: string;
     depth?: number;
     onClick?: () => void;

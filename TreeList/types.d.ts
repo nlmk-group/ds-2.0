@@ -17,7 +17,7 @@ export type TСhildrenProps = {
     };
 };
 export type TNodeItem = TTreeItem<TСhildrenProps>;
-export type TChekedKeys = Key[] | {
+export type TCheckedKeys = Key[] | {
     checked: Key[];
     halfChecked: Key[];
 };
@@ -29,8 +29,8 @@ export type TDropEvent = NodeDragEventParams<TNodeItem> & {
 };
 export type TSelectedNodeEvent = {
     currentKey?: Key;
-    allSelectedKeys?: TChekedKeys;
-    isCheked?: boolean;
+    allSelectedKeys?: TCheckedKeys;
+    isChecked?: boolean;
 };
 export declare const enum ERowHeight {
     m = "m",
@@ -45,5 +45,7 @@ export type TTreeListProps = {
     draggable?: boolean;
     checkableSimple?: boolean;
     rowHeight?: `${ERowHeight}`;
+    initialCheckedKeys?: Key[];
+    initialExpandedKeys?: Key[];
 };
 //# sourceMappingURL=types.d.ts.map

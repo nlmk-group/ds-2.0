@@ -1,6 +1,7 @@
-import { EStepState } from './subcomponents/Step/types';
+import { EStepState } from './subcomponents/Step/enums';
 
 export interface IStepperProps {
+    currentStep: number;
     state: `${EStepState}`;
     stepName: string;
     className?: string;

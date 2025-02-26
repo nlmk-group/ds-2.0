@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/components/Stepper/subcomponents/Step/index.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAI1B,OAAO,EAAE,UAAU,EAAE,MAAM,SAAS,CAAC;AAcrC,eAAO,MAAM,IAAI,+BAAgC,UAAU,sBAS1D,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/components/Stepper/subcomponents/Step/index.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAK1B,OAAO,EAAE,UAAU,EAAE,MAAM,SAAS,CAAC;AAcrC,eAAO,MAAM,IAAI,uCAAwC,UAAU,sBAWlE,CAAC"}

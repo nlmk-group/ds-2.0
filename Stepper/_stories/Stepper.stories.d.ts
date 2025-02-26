@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { EStepState } from '../subcomponents/Step/types';
+import { EStepState } from '../subcomponents/Step/enums';
 import { IStepperProps } from '../types';
 
 declare const _default: {

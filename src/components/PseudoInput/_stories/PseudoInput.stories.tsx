@@ -4,7 +4,7 @@ import { customInputColors } from '@components/declaration';
 import { IconInfoOutlined16, IconStackExpandedTriangleUp16, PseudoInput, Typography } from '@components/index';
 import clsx from 'clsx';
 
-import classNames from '../PseudoInput.module.scss';
+import classNames from './PseudoInput.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { EPseudoInputSizes } from '../enums';
@@ -42,9 +42,14 @@ export const PseudoInputSizes = (): JSX.Element => {
   return (
     <div className={classNames.row}>
       {sizes.map(size => (
-        <PseudoInput key={size} label={labelText} size={size}>
-          {value}
-        </PseudoInput>
+        <div key={size} className={classNames.item}>
+          <Typography variant="Body2" color="var(--steel-70)" className={classNames.description}>
+            size="{size}"
+          </Typography>
+          <PseudoInput label={labelText} size={size}>
+            {value}
+          </PseudoInput>
+        </div>
       ))}
     </div>
   );
@@ -61,9 +66,14 @@ export const PseudoInputColors = (): JSX.Element => {
   return (
     <div className={classNames.row}>
       {colors.map(color => (
-        <PseudoInput key={color} label={labelText} labelColor={color}>
-          {value}
-        </PseudoInput>
+        <div key={color} className={classNames.item}>
+          <Typography variant="Body2" color="var(--steel-70)" className={classNames.description}>
+            labelColor="{color}"
+          </Typography>
+          <PseudoInput label={labelText} labelColor={color}>
+            {value}
+          </PseudoInput>
+        </div>
       ))}
     </div>
   );
@@ -81,8 +91,8 @@ export const PseudoInputWithSuffixAndBadge = (): JSX.Element => {
       <div style={{ display: 'flex', alignSelf: 'center' }}>
         <IconInfoOutlined16 />
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '2px' }}>
+      <div style={{ display: 'flex', height: '22px', alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', paddingTop: '2px' }}>
           <IconStackExpandedTriangleUp16 htmlColor="var(--spectrum-green-60)" />
         </div>
         <Typography variant="Body2Mono-Medium">2</Typography>
@@ -91,7 +101,7 @@ export const PseudoInputWithSuffixAndBadge = (): JSX.Element => {
   );
 
   return (
-    <PseudoInput label={labelText} badgeChildren={1234} suffix={suffix}>
+    <PseudoInput label={labelText} badgeChildren={1234} suffix={suffix} className={classNames.custom}>
       {value}
     </PseudoInput>
   );

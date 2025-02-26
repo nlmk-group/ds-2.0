@@ -1,0 +1,21 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import { ComboBox } from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/ComboBox/Info"
+  component={ComboBox}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=557-223626'
+    }
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

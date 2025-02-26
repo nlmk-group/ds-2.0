@@ -1,0 +1,9 @@
+.search {
+  padding: 16px 12px 8px 12px;
+}
+
+.search-field {
+  & > div {
+    background: transparent;
+  }
+}

@@ -1,0 +1,11 @@
+.resizable {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    cursor: se-resize;
+    user-select: none;
+    z-index: 2;
+    color: var(--steel-70);
+  }

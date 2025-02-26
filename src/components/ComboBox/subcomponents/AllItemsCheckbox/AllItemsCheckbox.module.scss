@@ -1,0 +1,10 @@
+.wrapper {
+    padding: 8px 12px;
+  }
+
+  .checkbox {
+    & > label {
+      padding: 0;
+      padding-left: 8px;
+    }
+  }

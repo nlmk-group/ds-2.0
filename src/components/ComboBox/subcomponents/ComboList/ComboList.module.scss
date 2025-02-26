@@ -1,0 +1,64 @@
+.listContainer {
+  overflow-y: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  z-index: 1;
+  height: 100%;
+}
+
+.listItem {
+  padding: 8px;
+  padding-left: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+}
+
+.listItemActive {
+  background-color: var(--brand-sapphire-10);
+
+  &:hover {
+    background-color: var(--brand-sapphire-20);
+  }
+}
+
+.listItemLabel {
+  margin: 0;
+}
+
+// .listItemTextDisabled {
+//   color: var(--grey-500);
+// }
+
+.listItemLabelWrapper {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItemDone {
+  // color: var(--primary-main);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.listItemCheckbox {
+  & > label {
+    padding: 0;
+    text-wrap: nowrap;
+    padding-left: 4px;
+  }
+
+  & > input[type="checkbox"] {
+    min-width: 18px;
+  }
+}
+
+.labelBreak {
+  white-space: pre-line;
+  max-width: calc(100% - 65px);
+}

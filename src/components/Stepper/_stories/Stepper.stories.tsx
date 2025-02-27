@@ -4,11 +4,11 @@ import { Box, Stepper } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { EStepState, StepperColors } from '../subcomponents/Step/types';
+import { EStepState } from '../subcomponents/Step/enums';
 import { IStepperProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
 
 export default {
   title: 'Components/Stepper/Stories',
@@ -31,26 +31,39 @@ StepperDefault.args = {
   index: 0,
   showStep: true
 };
-
 export const StepperWithSteps = () => {
-  const mockSteps: Array<{ state: EStepState; stepName: string }> = [
-    { state: EStepState.filled, stepName: 'Filled' },
-    { state: EStepState.focused, stepName: 'Focused' },
-    { state: EStepState.inProgress, stepName: 'In Progress' },
-    { state: EStepState.notFilled, stepName: 'Not Filled' },
-    { state: EStepState.disabled, stepName: 'Disabled' }
+  const [currentStep, setCurrentStep] = React.useState(1);
+
+  const baseSteps = [
+    { stepName: 'Step 1', index: 0 },
+    { stepName: 'Step 2', index: 1 },
+    { stepName: 'Step 3', index: 2 },
+    { stepName: 'Step 4', index: 3 },
+    { stepName: 'Step 5', index: 4, state: EStepState.disabled }
   ];
+
+  const steps = baseSteps.map(step => ({
+    ...step,
+    state:
+      step.state === EStepState.disabled
+        ? EStepState.disabled
+        : step.index <= currentStep
+        ? EStepState.filled
+        : EStepState.notFilled
+  }));
 
   return (
     <div className={styles.wrapper}>
       <Box flexDirection="row" width="100%" gap={16}>
-        {mockSteps.map((step, i) => (
+        {steps.map((step, i) => (
           <Stepper
+            currentStep={currentStep}
             key={i}
             state={step.state}
             index={i}
-            showStep={i !== mockSteps.length - 1}
+            showStep={i !== steps.length - 1}
             stepName={step.stepName}
+            onClick={() => setCurrentStep(i)}
           />
         ))}
       </Box>

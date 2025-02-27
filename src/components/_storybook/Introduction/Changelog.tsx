@@ -23,6 +23,65 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.8 - <span className={styles.date}>27.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Устранена циклическая зависимость между компонентами Table и Icon.</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.7 - <span className={styles.date}>26.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-stepper-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Stepper
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены состояния hover и active</li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента, включая кнопки и бейджи</li>
+              <li className={styles['left-padding']}>- Удалены неактуальные состояния</li>
+              <li className={styles['left-padding']}>- Адаптированы новые истории для сторибука</li>
+              <li className={styles['left-padding']}>- Добавлены новые свойства для состояния active</li>
+              <li className={styles['left-padding']}>- Обновлены тесты</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pseudoinput-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                PseudoInput
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшено выравнивание элементов для разных размеров компонента
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен Pick&lt;IBadgeProps&gt; для типизации пропсов бейджа внутри компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен экспорт компонента{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.6 - <span className={styles.date}>26.02.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -89,13 +148,13 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.3 - <span className={styles.date}>19.02.25</span>
+            v2.18.3 - <span className={styles.date}>20.02.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-treelist-info--docs"
+                href="./?path=/docs/components-pseudoinput-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
@@ -113,13 +172,13 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.2 - <span className={styles.date}>17.02.25</span>
+            v2.18.2 - <span className={styles.date}>19.02.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-tooltip-info--docs"
+                href="./?path=/docs/components-pagination-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
@@ -162,7 +221,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.0 - <span className={styles.date}>дата выпуска</span>
+            v2.18.0 - <span className={styles.date}>14.02.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

@@ -11,7 +11,7 @@ import {
   IconNotEqualSign24,
   IconSelectionContains24,
   IconStartingContains24
-} from '@components/index';
+} from '@components/Icon/IconsDirectory';
 import { FilterFn, Row } from '@tanstack/react-table';
 
 import { IFilterValue, TData } from './examples/FilteringTable/types';

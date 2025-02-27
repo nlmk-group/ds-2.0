@@ -23,6 +23,14 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.8 - <span className={styles.date}>27.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Устранена циклическая зависимость между компонентами Table и Icon.</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.7 - <span className={styles.date}>26.02.25</span>
           </Typography>
           <ul className={styles.list}>

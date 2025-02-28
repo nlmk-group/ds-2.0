@@ -8,13 +8,15 @@ import styles from '../Breadcrumbs.module.scss';
 import { ICrumbProps, IInternalCrumbProps } from '../types';
 
 const Crumb: FC<IInternalCrumbProps> = ({ isLast = false, children }) => {
+  const title = children.props.children;
+  const isTitleString = typeof title === 'string';
   return (
     <div className={clsx(styles.crumb, children.props.className)} data-ui-crumb>
       {React.cloneElement(children, {
         'data-testid': 'LINK_HREF',
         'className': clsx(styles.link, children.props.className),
         'data-link-width': true,
-        'title': children.props.children
+        ...(isTitleString && { title: title })
       })}
       {!isLast && (
         <div className={styles.separator} data-ui-crumb-separator data-testid="CRUMB_SEPARATOR">

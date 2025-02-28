@@ -1,4 +1,5 @@
-import React, { FC, useContext } from 'react';
+import React, { CSSProperties, FC, useContext, useState } from 'react';
+import { usePopper } from 'react-popper';
 
 import { DropdownContext } from '@components/Dropdown/context';
 import { ClickAwayListener, List } from '@components/index';
@@ -18,10 +19,42 @@ import styles from './DropdownMenu.module.scss';
  */
 const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+
   const rect = buttonRef?.current?.getBoundingClientRect();
-  const listStyle = withPortal
-    ? { ...menuStyle, minWidth: rect?.width, top: rect?.bottom || 0, left: rect?.left || 0 }
-    : menuStyle;
+
+  const { styles: popperStyles, attributes } = usePopper(buttonRef?.current, popperElement, {
+    placement: 'bottom-start',
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['top-start']
+        }
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary: 'clippingParents',
+          padding: 8
+        }
+      }
+    ]
+  });
+
+  const MIN_WIDTH = 130;
+
+  const getMenuStyles = () => {
+    const rect = buttonRef?.current?.getBoundingClientRect();
+    const isSmallContent = (rect?.width || 48) < MIN_WIDTH;
+
+    const baseStyles = {
+      minWidth: isSmallContent ? `${MIN_WIDTH}px` : rect?.width,
+      ...menuStyle
+    };
+
+    return withPortal ? { ...baseStyles, ...popperStyles.popper } : baseStyles;
+  };
 
   /**
    * Примерное значение ширины кнопки, при которой нужно задавать минимальную ширину в абсолютных значениях
@@ -39,7 +72,16 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) 
 
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={buttonRef || undefined}>
-      <List className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })} style={listStyle}>
+      <List
+        ref={el => {
+          if (withPortal) {
+            setPopperElement(el);
+          }
+        }}
+        className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })}
+        style={getMenuStyles() as CSSProperties}
+        {...(withPortal ? attributes.popper : {})}
+      >
         {children}
       </List>
     </ClickAwayListener>

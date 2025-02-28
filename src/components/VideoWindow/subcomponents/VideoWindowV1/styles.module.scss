@@ -1,0 +1,63 @@
+.videoWindow {
+  overflow: hidden;
+  width: 300px;
+  height: 230px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: width height 0.3s ease-in-out;
+}
+
+// Полноэкранный контейнер
+.fullscreen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: var(--steel-90);
+  display: flex;
+  flex-direction: column;
+}
+
+.minimized {
+  width: 300px;
+  height: 48px;
+
+  .videoContent {
+    display: none;
+  }
+}
+
+.videoWindowHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 8px;
+  height: 48px;
+  box-sizing: border-box;
+  background: var(--unique-black);
+}
+
+.videoTitle {
+  font-weight: bold;
+}
+
+.videoControls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.videoContent {
+  width: 100%;
+  height: calc(100% - 48px);
+  video {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+  }
+}

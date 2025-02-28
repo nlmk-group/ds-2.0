@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+  min-height: 350px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  justify-content: center;
+  height: 100vh;
+  background: var(--steel-90);
+}

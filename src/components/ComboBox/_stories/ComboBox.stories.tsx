@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import styles from './ComboBox.module.scss';
 
@@ -152,9 +152,21 @@ MultipleSelectWithSearchAndCheckAll.storyName = 'Множественный вы
 
 export const DraggableListExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  const [options, setOptions] = useState<IComboBoxOption[]>(simpleOptions);
+  
+  const handleReorder = useCallback((reorderedItems: IComboBoxOption[]) => {
+    setOptions(reorderedItems);
+  }, []);
+  
   return (
     <ComboBox label="Перетаскиваемый список">
-      <ComboDraggableList items={simpleOptions} onChange={setSelected} isMultiple={true} droppableId="draggable-list" />
+      <ComboDraggableList 
+        items={options} 
+        onChange={setSelected} 
+        onReorder={handleReorder}
+        isMultiple={true} 
+        droppableId="draggable-list" 
+      />
     </ComboBox>
   );
 };

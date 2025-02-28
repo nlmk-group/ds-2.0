@@ -130,9 +130,9 @@ const ComboTreeList = <T extends IComboBoxTree>({
             }}
           >
             {isExpanded ? (
-              <Icon color="primary" name="IconStackExpandedTriangleDown24" />
+              <Icon htmlColor="var(--steel-90)" name="IconStackExpandedTriangleDown24" />
             ) : (
-              <Icon color="primary" name="IconStackCollapsed24" />
+              <Icon htmlColor="var(--steel-90)" name="IconStackCollapsed24" />
             )}
           </div>
         )}

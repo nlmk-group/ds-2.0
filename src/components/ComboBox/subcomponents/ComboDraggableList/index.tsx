@@ -100,7 +100,7 @@ const ComboDraggableList = <T extends IComboBoxOption>({
             {...provided.draggableProps}
           >
             <span {...provided.dragHandleProps} className={styles['drag-indicator']}>
-              <Icon name="IconDragIndicatorDotsOutlined16" />
+              <Icon name="IconDragIndicatorDotsOutlined24" />
             </span>
             {isMultiple && (
               <Checkbox

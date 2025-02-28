@@ -27,7 +27,7 @@ const Search = () => {
     <div className={styles.search}>
       <Input
         className={styles['search-field']}
-        icon={<Icon name="IconSearchOutlined16" />}
+        icon={<Icon name="IconSearchOutlined24" />}
         value={value}
         placeholder="Поиск"
         onChange={handleSearch}

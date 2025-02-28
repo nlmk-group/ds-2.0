@@ -57,6 +57,8 @@ export interface IComboBoxProps {
   dropdownStyle?: CSSProperties;
   inputClassName?: string;
   inputStyle?: CSSProperties;
+  withPortal?: boolean;
+  portalContainerId?: string;
 }
 
 export interface IComboBoxInputProps {

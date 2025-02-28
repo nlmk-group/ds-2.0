@@ -122,10 +122,10 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
                   })}
                 >
                   <span {...provided.dragHandleProps} className={styles['drag-indicator']}>
-                    <Icon name="IconDragIndicatorDotsOutlined16" />
+                    <Icon name="IconDragIndicatorDotsOutlined24" />
                   </span>
                   {isGroupLabel && (
-                    <Typography className={styles['list-item__label']} variant="Caption">
+                    <Typography className={styles['list-item__label']} variant="Caption-Medium">
                       {item.label}
                     </Typography>
                   )}
@@ -173,14 +173,16 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
         .map(item => {
           return {
             ...item,
-            items: item.items?.filter(option => option.label.toLowerCase().includes(searchValue.trim().toLowerCase()))
+            items: item.items?.filter(option => 
+              option.label.toLowerCase().includes(searchValue.trim().toLowerCase())
+            )
           };
         })
         .filter(item => (item.items?.length ?? 0) > 0);
-
+  
       return filteredItems;
     }
-
+  
     return items;
   }, [searchValue, items]);
 

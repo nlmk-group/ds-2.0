@@ -11,16 +11,6 @@
   // }
 }
 
-.listItem {
-  padding: 8px;
-  padding-left: 12px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--steel-30);
-  }
-}
-
 .listItemActive {
   background-color: var(--brand-sapphire-10);
 
@@ -33,7 +23,6 @@
   display: flex;
   align-items: center;
   padding: 8px;
-  padding-left: 12px;
   cursor: pointer;
 
   &:hover {

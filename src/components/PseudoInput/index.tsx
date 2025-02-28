@@ -10,6 +10,7 @@ import styles from './PseudoInput.module.scss';
 
 import { EPseudoInputSizes } from './enums';
 import { Suffix } from './subcomponents/Suffix';
+import { EBadgeSizes } from '@components/Badge/enums';
 
 /**
  * Компонент PseudoInput для отображения текста с меткой в стиле input.
@@ -47,6 +48,7 @@ export const PseudoInput = forwardRef<HTMLDivElement, IPseudoInputProps>(
   ) => {
     const compact = size === 's';
     const small = size === 'xs';
+    const badgeSize = size === EPseudoInputSizes.m ? EBadgeSizes.l : EBadgeSizes.s;
     const colorClassName = styles[labelColor as keyof typeof styles];
 
     return (
@@ -63,12 +65,12 @@ export const PseudoInput = forwardRef<HTMLDivElement, IPseudoInputProps>(
         >
           {label}
         </Typography>
-        <div className={clsx(styles.suffix)}>
+        <div className={clsx(styles.suffix)} data-ui-pseudo-input-suffix-container>
           <Typography variant="Body1-Medium" color="var(--steel-90)" data-ui-pseudo-input-children>
             {children}
           </Typography>
           {badgeChildren && (
-            <Badge color={color} variant={variant} {...badgeProps} data-ui-pseudo-input-badge>
+            <Badge color={color} variant={variant} {...badgeProps} size={badgeSize} data-ui-pseudo-input-badge>
               {badgeChildren}
             </Badge>
           )}

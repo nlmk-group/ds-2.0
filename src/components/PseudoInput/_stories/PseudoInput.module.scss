@@ -1,8 +1,18 @@
 .row {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   padding-top: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.description {
+  font-family: monospace;
 }
 
 .suffix {
@@ -11,4 +21,15 @@
   margin-bottom: unset;
   align-items: end;
   gap: 8px;
+}
+
+.custom {
+  [data-ui-pseudo-input-suffix-container] {
+    align-items: center !important;
+  }
+
+  [data-ui-pseudo-input-children] {
+    position: relative;
+    top: 0 !important;
+  }
 }

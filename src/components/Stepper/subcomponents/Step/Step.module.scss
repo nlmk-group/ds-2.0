@@ -5,7 +5,27 @@
     flex-shrink: 0;
     gap: 2px;
   }
+  &:hover {
+    .badge {
+      background-color: var(--brand-sapphire-60);
+      color: var(--unique-white);
+      cursor: pointer;
+    }
+    .step-name {
+      color: var(--brand-sapphire-60);
+    }
+  }
+
   .step-name {
     padding: 0 4px;
+    color: var(--steel-90);
+    &:hover {
+      color: var(--brand-sapphire-60);
+    }
   }
+}
+
+.active {
+  background-color: var(--brand-sapphire-60);
+  color: var(--unique-white);
 }

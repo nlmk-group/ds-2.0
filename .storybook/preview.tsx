@@ -1,3 +1,5 @@
+import { BrowserRouter } from 'react-router-dom';
+
 import { withTests } from '@storybook/addon-jest';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
@@ -81,6 +83,11 @@ export const decorators = [
   }),
   withTests({
     results
-  })
+  }),
+  Story => (
+    <BrowserRouter>
+      <Story />
+    </BrowserRouter>
+  )
 ];
 export const tags = ['autodocs'];

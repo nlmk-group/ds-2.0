@@ -1,4 +1,4 @@
-import { EStepState } from '../subcomponents/Step/types';
+import { EStepState } from '../subcomponents/Step/enums';
 
 export const argsTypes = {
   className: {

@@ -1,8 +1,10 @@
+$children-offset: 2px;
+
 .pseudo {
   height: 40px;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   &.s {
     height: 32px;
@@ -15,13 +17,13 @@
 .label {
   position: absolute;
   color: var(--steel-70);
-  top: -9px;
+  top: -3px;
 
   .s & {
-    top: -10px;
+    top: -$children-offset;
   }
   .xs & {
-    top: -9px;
+    top: -3px;
   }
 
   &.error {
@@ -40,4 +42,17 @@
 .suffix {
   display: flex;
   gap: 8px;
+
+  [data-ui-pseudo-input-children] {
+    position: relative;
+    top: -$children-offset;
+  }
+
+  .s & [data-ui-pseudo-input-children] {
+    top: $children-offset;
+  }
+
+  .xs & [data-ui-pseudo-input-children] {
+    top: $children-offset;
+  }
 }

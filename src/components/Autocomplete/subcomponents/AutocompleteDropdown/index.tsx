@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { Box, Icon, Spinner, Typography } from '@components/index';
+import MenuItem from '@components/Select/subcomponents/MenuItem';
 
 import { IAutocompleteDropdownProps } from './types';
 
@@ -67,11 +68,15 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
       )}
 
       {isLoading && (
-        <AutocompleteItem value="" disabled>
-          <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
-            <Spinner />
-          </Box>
-        </AutocompleteItem>
+        <MenuItem
+          label={
+            <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
+              <Spinner />
+            </Box>
+          }
+          value=""
+          disabled
+        />
       )}
     </div>
   );

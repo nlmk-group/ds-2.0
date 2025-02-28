@@ -7,8 +7,10 @@
 }
 
 .listItem {
+  min-height: 40px;
   padding: 8px;
   padding-left: 12px;
+  box-sizing: border-box;
   cursor: pointer;
 
   &:hover {
@@ -25,12 +27,9 @@
 }
 
 .listItemLabel {
+  line-height: 24px;
   margin: 0;
 }
-
-// .listItemTextDisabled {
-//   color: var(--grey-500);
-// }
 
 .listItemLabelWrapper {
   align-items: center;
@@ -38,8 +37,6 @@
 }
 
 .listItemDone {
-  // color: var(--primary-main);
-
   svg {
     width: 16px;
     height: 16px;

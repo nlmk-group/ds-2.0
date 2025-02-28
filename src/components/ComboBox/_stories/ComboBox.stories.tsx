@@ -173,7 +173,7 @@ GroupedOptionsExample.storyName = 'Группировка опций';
 export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
-    <ComboBox label="Древовидный список">
+    <ComboBox label="Древовидный список" countOnlyLevel={2}>
       <ComboTreeList
         items={treeOptions}
         onChange={setSelected}

@@ -4,11 +4,6 @@
   padding-bottom: 8px;
   z-index: 1;
   height: 100%;
-
-  // & > div {
-  //   width: max-content;
-  //   min-width: 100%;
-  // }
 }
 
 .listItemActive {
@@ -43,6 +38,7 @@
 }
 
 .listItemLabel {
+  line-height: 24px;
   margin: 0;
 }
 

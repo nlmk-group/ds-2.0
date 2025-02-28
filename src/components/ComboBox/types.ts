@@ -85,6 +85,7 @@ export interface IListItem {
   name?: string;
   shortName?: string;
   isGroupLabel: boolean;
+  _key: string;
 }
 
 export interface IContextProviderProps {

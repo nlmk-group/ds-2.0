@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { Checkbox, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -11,6 +11,10 @@ import { useComboBoxValue, useSearchValue, useSetComboBoxValue } from '../../con
 import { useOptimalHeight, useOptimalWidth } from '../../hooks';
 import { AllItemsCheckbox, InfiniteScrollTrigger, Search, VirtualizedResizableGrip } from '../../subcomponents';
 import type { IComboBoxGroupOption, IListItem } from '../../types';
+
+const createStableKey = (id: string, isGroup: boolean, searchValue: string) => {
+  return `${isGroup ? 'group' : 'item'}-${id}-${searchValue || 'no-search'}`;
+};
 
 const ComboGroupList = <T extends IComboBoxGroupOption>({
   items,
@@ -30,163 +34,206 @@ const ComboGroupList = <T extends IComboBoxGroupOption>({
   useOptimalWidth(items, isMultiple);
   useOptimalHeight(items, isSearch, isCheckAll);
 
-  const options = useMemo(() => {
-    const groups = items.reduce<
+  const processedData = useMemo(() => {
+    const groupsMap = new Map<
+      string,
       {
         id: string;
         label: string;
-        items: { id: string; label: string; areaId?: string; idMdm?: string; name?: string; shortName?: string }[];
-      }[]
-    >((result, item) => {
-      const group = result.find(groupItem => groupItem.id === item.groupId);
-      if (group) {
-        group.items.push({
-          id: item.id,
-          idMdm: item.idMdm || item.id,
-          label: item.label || item.name || item.shortName || '',
-          areaId: item.areaId
-        });
-      } else {
-        result.push({
-          id: item.groupId ?? '',
-          label: item.groupLabel ?? '',
-          items: [{ ...item, id: item.id, label: item.label || item.name || item.shortName, idMdm: item.idMdm }]
+        items: T[];
+        filteredItems: T[];
+        shouldShow: boolean;
+      }
+    >();
+
+    items.forEach(item => {
+      const groupId = item.groupId || '';
+      const groupLabel = item.groupLabel || '';
+
+      if (!groupsMap.has(groupId)) {
+        groupsMap.set(groupId, {
+          id: groupId,
+          label: groupLabel,
+          items: [],
+          filteredItems: [],
+          shouldShow: true
         });
       }
-      return result;
-    }, []);
-    const options = groups.reduce<IListItem[]>((result, item) => {
-      result.push({ id: item.id, label: item.label, isGroupLabel: true });
-      item.items.forEach(item => {
-        result.push({
-          ...item,
-          id: item.id,
-          idMdm: item.idMdm || item.id,
-          label: item.label || item.name || item.shortName || '',
-          isGroupLabel: false
+
+      groupsMap.get(groupId)?.items.push(item);
+    });
+
+    if (searchValue && searchValue.trim()) {
+      const searchLower = searchValue.trim().toLowerCase();
+
+      groupsMap.forEach(group => {
+        group.filteredItems = group.items.filter(item => {
+          const itemLabel = (item.label || item.name || item.shortName || '').toLowerCase();
+          return itemLabel.includes(searchLower);
         });
+
+        group.shouldShow = group.filteredItems.length > 0;
       });
-      return result;
-    }, []);
-    return options;
-  }, [items]);
+    } else {
+      groupsMap.forEach(group => {
+        group.filteredItems = [...group.items];
+        group.shouldShow = true;
+      });
+    }
+
+    const flatList: IListItem[] = [];
+
+    groupsMap.forEach(group => {
+      if (group.shouldShow) {
+        flatList.push({
+          id: group.id,
+          label: group.label,
+          isGroupLabel: true,
+          _key: createStableKey(group.id, true, searchValue || '')
+        });
+
+        group.filteredItems.forEach(item => {
+          flatList.push({
+            ...item,
+            id: item.id,
+            idMdm: item.idMdm || item.id,
+            label: item.label || item.name || item.shortName || '',
+            isGroupLabel: false,
+            _key: createStableKey(item.id, false, searchValue || '')
+          });
+        });
+      }
+    });
+
+    return flatList;
+  }, [items, searchValue]);
 
   const offsetItemLoadingId = infinityLoadingOptions?.offset
-    ? options[options.length - infinityLoadingOptions.offset]?.id
+    ? processedData[processedData.length - infinityLoadingOptions.offset]?.id
     : null;
 
-  const handleChange = (item: { id: string; label: string; isGroupLabel: boolean }) => {
-    const option = items.find(option => option.id === item.id);
-    if (setComboValue && option) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck) {
-          onChange?.([]);
-          return [];
-        }
-        onChange?.([option]);
-        return [option];
-      });
-    }
-  };
-  const handleMultiChange = (item: { id: string; label: string; isGroupLabel: boolean }) => {
-    const option = items.find(option => option.id === item.id);
-    if (setComboValue && option) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck && previousValue) {
-          const filteredValue = previousValue.filter(value => value.id !== item.id);
-          onChange?.(filteredValue);
-          return filteredValue;
-        }
+  const handleChange = useCallback(
+    (item: IListItem) => {
+      if (item.isGroupLabel) return;
 
-        const newValue = [...(previousValue ?? []), option];
-        onChange?.(newValue);
-        return newValue;
-      });
-    }
-  };
-
-  const renderItem = (item: { id: string; label: string; isGroupLabel: boolean }) => {
-    const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
-    const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
-    const isGroupLabel = item.isGroupLabel;
-
-    return (
-      <div
-        key={item.id}
-        className={clsx(styles['list-item'], {
-          [styles['list-item--active']]: isChecked,
-          [styles['list-item--group']]: isGroupLabel
-        })}
-      >
-        {isGroupLabel && (
-          <Typography className={styles['list-item__label']} variant="Caption">
-            {item.label}
-          </Typography>
-        )}
-        {!isGroupLabel && isMultiple && (
-          <Checkbox
-            checked={isChecked}
-            label={item.label}
-            onChange={() => handleMultiChange(item)}
-            className={styles['list-item__checkbox']}
-          />
-        )}
-        {!isGroupLabel && !isMultiple && (
-          <Typography variant="Body1-Medium" className={styles['list-item__label']} onClick={() => handleChange(item)}>
-            {item.label}
-          </Typography>
-        )}
-        {isRenderInfinityLoadingAnchor && (
-          <InfiniteScrollTrigger
-            isVirtualize={isVirtualize}
-            isLoading={isLoading}
-            infinityLoadingOptions={infinityLoadingOptions}
-          />
-        )}
-      </div>
-    );
-  };
-
-  const filteredSearchItems = useMemo(() => {
-    if (searchValue) {
-      const filteredOptions = options.filter(option =>
-        option.label.toLowerCase().includes(searchValue.trim().toLowerCase())
-      );
-      const groupIds = filteredOptions.filter(option => option.isGroupLabel).map(option => option.id);
-      const groupsChildrenIds = filteredOptions.filter(option => !option.isGroupLabel).map(option => option.id);
-      const groupsChildren = items.filter(item => groupIds.includes(item.groupId ?? '')).map(item => item.id);
-      const groupsIds = items.filter(item => groupsChildrenIds.includes(item.id)).map(item => item.groupId ?? '');
-      const filteredOptionsIds = filteredOptions.map(option => option.id);
-      const uniqueIds = Array.from(new Set([...groupsIds, ...filteredOptionsIds, ...groupsChildren]));
-
-      return options.filter(option => uniqueIds.includes(option.id));
-    }
-
-    return options;
-  }, [searchValue, options, items]);
-
-  const onlyCheckableItems = useMemo(
-    () => filteredSearchItems.filter(item => !item.isGroupLabel),
-    [filteredSearchItems]
+      const option = items.find(option => option.id === item.id);
+      if (setComboValue && option) {
+        setComboValue(previousValue => {
+          const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+          if (isCheck) {
+            onChange?.([]);
+            return [];
+          }
+          onChange?.([option]);
+          return [option];
+        });
+      }
+    },
+    [items, onChange, setComboValue]
   );
+
+  const handleMultiChange = useCallback(
+    (item: IListItem) => {
+      if (item.isGroupLabel) return;
+
+      const option = items.find(option => option.id === item.id);
+      if (setComboValue && option) {
+        setComboValue(previousValue => {
+          const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+          if (isCheck && previousValue) {
+            const filteredValue = previousValue.filter(value => value.id !== item.id);
+            onChange?.(filteredValue);
+            return filteredValue;
+          }
+
+          const newValue = [...(previousValue ?? []), option];
+          onChange?.(newValue);
+          return newValue;
+        });
+      }
+    },
+    [items, onChange, setComboValue]
+  );
+
+  const renderItem = useCallback(
+    (item: IListItem) => {
+      const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
+      const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
+
+      return (
+        <div
+          key={item._key || item.id}
+          className={clsx(styles['list-item'], {
+            [styles['list-item--active']]: isChecked,
+            [styles['list-item--group']]: item.isGroupLabel
+          })}
+        >
+          {item.isGroupLabel && (
+            <Typography className={styles['list-item__label']} variant="Caption">
+              {item.label}
+            </Typography>
+          )}
+
+          {!item.isGroupLabel && isMultiple && (
+            <Checkbox
+              checked={isChecked}
+              label={item.label}
+              onChange={() => handleMultiChange(item)}
+              className={styles['list-item__checkbox']}
+            />
+          )}
+
+          {!item.isGroupLabel && !isMultiple && (
+            <Typography
+              variant="Body1-Medium"
+              className={styles['list-item__label']}
+              onClick={() => handleChange(item)}
+            >
+              {item.label}
+            </Typography>
+          )}
+
+          {isRenderInfinityLoadingAnchor && (
+            <InfiniteScrollTrigger
+              isVirtualize={isVirtualize}
+              isLoading={isLoading}
+              infinityLoadingOptions={infinityLoadingOptions}
+            />
+          )}
+        </div>
+      );
+    },
+    [
+      comboBoxValue,
+      handleChange,
+      handleMultiChange,
+      infinityLoadingOptions,
+      isInfinityLoading,
+      isLoading,
+      isMultiple,
+      isVirtualize,
+      offsetItemLoadingId
+    ]
+  );
+
+  const onlyCheckableItems = useMemo(() => processedData.filter(item => !item.isGroupLabel), [processedData]);
 
   return (
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
       {isCheckAll && <AllItemsCheckbox items={onlyCheckableItems} onChange={onChange} />}
+
       {isVirtualize ? (
         <VirtualizedResizableGrip
-          items={filteredSearchItems}
+          items={processedData}
           renderItem={renderItem}
           classNameContainer={styles.listContainer}
           isCheckAll={isCheckAll}
           isSearch={isSearch}
         />
       ) : (
-        <div className={styles['list-container']}>{filteredSearchItems.map(renderItem)}</div>
+        <div className={styles['list-container']}>{processedData.map(renderItem)}</div>
       )}
     </>
   );

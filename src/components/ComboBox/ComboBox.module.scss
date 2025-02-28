@@ -37,11 +37,6 @@
   padding-bottom: 8px;
   z-index: 1;
   height: 100%;
-
-  // & > div {
-  //   width: max-content;
-  //   min-width: 100%;
-  // }
 }
 
 .draggableGroupsListContainer {
@@ -129,12 +124,9 @@
 }
 
 .listItemLabel {
+  line-height: 24px;
   margin: 0;
 }
-
-// .listItemTextDisabled {
-//   color: var(--grey-500);
-// }
 
 .listItemLabelWrapper {
   align-items: center;
@@ -142,8 +134,6 @@
 }
 
 .listItemDone {
-  // color: var(--primary-main);
-
   svg {
     width: 16px;
     height: 16px;
@@ -166,16 +156,6 @@
   white-space: pre-line;
   max-width: calc(100% - 65px);
 }
-
-// .loadingSpinner {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: absolute;
-//   inset: 0;
-//   background-color: rgba(255, 255, 255, 0.5);
-//   z-index: 2;
-// }
 
 .tooltipWrapper {
   width: 100% !important;

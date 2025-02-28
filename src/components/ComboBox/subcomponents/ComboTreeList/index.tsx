@@ -48,7 +48,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
 
   const handleChangeChecked = (item: IComboBoxTreeOption) => {
     if (!isMultiple) {
-      if (item.level === 2) {
+      if (item.level === maxLevel) {
         const newValue = [item];
         setComboValue?.(newValue);
         onChange?.(newValue);
@@ -58,6 +58,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
         const childIds = findChildIds(item.id, treeOptions).filter(element => element !== item.id);
         const parentsIds = findParentsIds(item.parentId, treeOptions);
         const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
         if (isCheck && previousValue) {
           const filteredValue = previousValue.filter(value => {
             return !childIds.includes(value.id) && value.id !== item.id && !parentsIds.includes(value.id);
@@ -69,6 +70,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
         const isLastCheckedChild = treeOptions
           .filter(option => option.parentId === item.parentId && option.id !== item.id)
           .every(option => Boolean(previousValue?.find(value => value.id === option.id)));
+
         const parentOptions = treeOptions.filter(option => parentsIds.includes(option.id));
         const options = treeOptions.filter(option => childIds.includes(option.id) || item.id === option.id);
         const newValue = [...(previousValue ?? [])];
@@ -99,11 +101,11 @@ const ComboTreeList = <T extends IComboBoxTree>({
     const isIndeterminate = parentCheckedIds.includes(item.id);
     const isLastChildren = item.level === maxLevel;
 
-    // базовый паддинг для всех уровней
+    // Базовый паддинг для всех уровней
     const basePadding = 8;
-    // дополнительный паддинг для уровней > 1
+    // Дополнительный паддинг для каждого уровня
     const levelPadding = ((item.level ?? 1) - 1) * 32;
-    // дополнительный паддинг для последнего уровня
+    // Дополнительный паддинг для последнего уровня
     const lastChildrenPadding = isLastChildren ? 16 : 0;
     const optionPadding = basePadding + levelPadding + lastChildrenPadding;
 
@@ -195,11 +197,15 @@ const ComboTreeList = <T extends IComboBoxTree>({
     [filteredSearchItems, expandIds]
   );
 
+  const leafItems = useMemo(() => {
+    return treeOptions.filter(option => option.level === maxLevel);
+  }, [treeOptions, maxLevel]);
+
   return (
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
-      {isCheckAll && <AllItemsCheckbox items={treeOptions} onChange={onChange} />}
+      {isCheckAll && <AllItemsCheckbox items={leafItems} onChange={onChange} />}
       {isVirtualize ? (
         <VirtualizedResizableGrip
           items={expandedFilterOptions}

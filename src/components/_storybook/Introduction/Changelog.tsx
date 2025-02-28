@@ -21,7 +21,6 @@ export const Changelog = () => {
             </Button>
           </Link>
         </div>
-
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.18.9 - <span className={styles.date}>28.02.25</span>
@@ -51,6 +50,19 @@ export const Changelog = () => {
               </Link>
               <li className={styles['left-padding']}>
                 Исправлен баг, при котором появлялся двойной тултип при использовании компонента Tooltip для обертки
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              <li className={styles['left-padding']}>
+                - Изменено отображение выпадающего списка с использованием Popper.js
               </li>
             </li>
           </ul>

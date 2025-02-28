@@ -42,22 +42,18 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) 
     ]
   });
 
+  const MIN_WIDTH = 130;
+
   const getMenuStyles = () => {
     const rect = buttonRef?.current?.getBoundingClientRect();
-    const isSmallContent = (rect?.width || 48) < 130;
+    const isSmallContent = (rect?.width || 48) < MIN_WIDTH;
+
     const baseStyles = {
-      minWidth: isSmallContent ? '130px' : rect?.width,
+      minWidth: isSmallContent ? `${MIN_WIDTH}px` : rect?.width,
       ...menuStyle
     };
 
-    if (withPortal) {
-      return {
-        ...baseStyles,
-        ...popperStyles.popper
-      };
-    }
-
-    return baseStyles;
+    return withPortal ? { ...baseStyles, ...popperStyles.popper } : baseStyles;
   };
 
   /**

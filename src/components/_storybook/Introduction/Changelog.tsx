@@ -35,8 +35,9 @@ export const Changelog = () => {
               >
                 Input
               </Link>
+              .
               <li className={styles['left-padding']}>
-                Исправлен баг, при котором autofill использовал браузерные стили
+                - Исправлен баг, при котором autofill использовал браузерные стили
               </li>
             </li>
             <li>
@@ -48,8 +49,9 @@ export const Changelog = () => {
               >
                 Breadcrumbs
               </Link>
+              .
               <li className={styles['left-padding']}>
-                Исправлен баг, при котором появлялся двойной тултип при использовании компонента Tooltip для обертки
+                - Исправлен баг, при котором появлялся двойной тултип при использовании компонента Tooltip для обертки
               </li>
             </li>
             <li>
@@ -61,6 +63,7 @@ export const Changelog = () => {
               >
                 Dropdown
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Изменено отображение выпадающего списка с использованием Popper.js
               </li>
@@ -143,7 +146,7 @@ export const Changelog = () => {
               .
               <li className={styles['left-padding']}>
                 - Исправлены теги &lt;a&gt; на &lt;div&gt; в компонентах MenuItem и SubmenuItem для корректной работы с
-                react-router и предотвращения нежелательных перенаправлений.
+                react-router и предотвращения нежелательных перенаправлений
               </li>
             </li>
           </ul>
@@ -165,11 +168,11 @@ export const Changelog = () => {
               .
               <li className={styles['left-padding']}>
                 - Добавлено свойство компонента initialCheckedKeys, которое используется для установки начального
-                состояния выбранных элементов.
+                состояния выбранных элементов
               </li>
               <li className={styles['left-padding']}>
                 - Добавлено свойство компонента initialExpandedKeys - используется для установки начального состояния
-                раскрытых элементов.
+                раскрытых элементов
               </li>
             </li>
           </ul>

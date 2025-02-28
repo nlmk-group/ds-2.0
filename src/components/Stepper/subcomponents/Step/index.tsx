@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Badge, Button, Typography } from '@components/index';
+import clsx from 'clsx';
 
 import { IStepProps } from './types';
 
@@ -16,10 +17,12 @@ import { StepStateToBadgeColor } from './helpers';
  * @param {number} props.index - Индекс шага.
  * @param {`${EStepState}`} props.state - Состояние шага.
  */
-export const Step = ({ stepName, index, state }: IStepProps) => {
+export const Step = ({ stepName, index, active, state }: IStepProps) => {
   return (
-    <Button color="grey" variant="primary" className={styles['step-button']} size="s">
-      <Badge color={StepStateToBadgeColor[state]}>{index + 1}</Badge>
+    <Button color="ghost" variant="secondary" className={styles['step-button']} size="s">
+      <Badge className={clsx(active && styles.active, styles.badge)} color={StepStateToBadgeColor[state]}>
+        {index + 1}
+      </Badge>
       <Typography variant="Body1-Bold" className={styles['step-name']}>
         {stepName}
       </Typography>

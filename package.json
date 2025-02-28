@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.18.6",
+  "version": "2.18.9",
   "author": "NLMK IT",
   "public": false,
   "main": "lib/index.js",

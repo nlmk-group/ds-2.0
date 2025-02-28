@@ -1,6 +1,11 @@
-import { EStepState } from './subcomponents/Step/types';
+import { EStepState } from './subcomponents/Step/enums';
 
 export interface IStepperProps {
+  /**
+   * Текущий активный шаг.
+   */
+  currentStep: number;
+
   /**
    * Состояние шага.
    */

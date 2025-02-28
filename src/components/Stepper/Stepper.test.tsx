@@ -3,7 +3,7 @@ import React from 'react';
 import { Stepper } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { EStepState } from './subcomponents/Step/types';
+import { EStepState } from './subcomponents/Step/enums';
 
 describe('Stepper Component', () => {
   const defaultProps = {
@@ -11,6 +11,7 @@ describe('Stepper Component', () => {
     stepName: 'Step 1',
     showStep: true,
     index: 0,
+    currentStep: 0,
     onClick: jest.fn()
   };
 
@@ -44,5 +45,13 @@ describe('Stepper Component', () => {
     render(<Stepper {...defaultProps} showStep={false} />);
     const dividerElement = screen.queryByTestId('divider-line');
     expect(dividerElement).toBeNull();
+  });
+
+  it('renders filled state when index is less than or equal to currentStep', () => {
+    const { rerender } = render(<Stepper {...defaultProps} currentStep={2} index={1} />);
+    expect(screen.getByText('2')).toBeInTheDocument();
+
+    rerender(<Stepper {...defaultProps} currentStep={1} index={2} />);
+    expect(screen.getByText('3')).toBeInTheDocument();
   });
 });

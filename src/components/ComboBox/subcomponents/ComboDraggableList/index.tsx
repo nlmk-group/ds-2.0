@@ -14,9 +14,6 @@ import { AllItemsCheckbox, InfiniteScrollTrigger, Search } from '../../subcompon
 import type { IComboBoxOption } from '../../types';
 import { reorderList } from '../../utils';
 
-/* TODO: расширить базовый компонент CombolList до возможности перетаскивания элементов
- * добавить совместимость с виртуальными списками
- */
 const ComboDraggableList = <T extends IComboBoxOption>({
   items,
   onChange,
@@ -79,10 +76,28 @@ const ComboDraggableList = <T extends IComboBoxOption>({
     }
     const sourceItem = filteredSearchItems[result.source.index];
     const destinationItem = filteredSearchItems[result.destination.index];
-    const primarySourceIndex = items.findIndex(item => item.id === sourceItem?.id);
-    const primaryDestinationIndex = items.findIndex(item => item.id === destinationItem?.id);
+
+    if (!sourceItem || !destinationItem) {
+      return;
+    }
+
+    const primarySourceIndex = items.findIndex(item => item.id === sourceItem.id);
+    const primaryDestinationIndex = items.findIndex(item => item.id === destinationItem.id);
+
+    if (primarySourceIndex === -1 || primaryDestinationIndex === -1) {
+      return;
+    }
+
     onReorder?.(reorderList(items, primarySourceIndex, primaryDestinationIndex));
   };
+
+  const filteredSearchItems = useMemo(() => {
+    if (searchValue) {
+      return items.filter(item => item.label.toLowerCase().includes(searchValue.trim().toLowerCase()));
+    }
+
+    return items;
+  }, [searchValue, items]);
 
   const renderItem = (item: T, index: number) => {
     const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
@@ -90,14 +105,15 @@ const ComboDraggableList = <T extends IComboBoxOption>({
 
     return (
       <Draggable key={item.id} draggableId={`${droppableId}-${item.id}`} index={index}>
-        {(provided, { isDragging }) => (
+        {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
             className={clsx(styles['list-item'], styles['list-item--draggable'], {
               [styles['list-item--active']]: isChecked,
-              [styles['list-item--dragging']]: isDragging
+              [styles['list-item--dragging']]: snapshot.isDragging
             })}
             {...provided.draggableProps}
+            style={provided.draggableProps.style}
           >
             <span {...provided.dragHandleProps} className={styles['drag-indicator']}>
               <Icon name="IconDragIndicatorDotsOutlined24" />
@@ -132,24 +148,17 @@ const ComboDraggableList = <T extends IComboBoxOption>({
     );
   };
 
-  const filteredSearchItems = useMemo(() => {
-    if (searchValue) {
-      return items.filter(item => item.label.toLowerCase().includes(searchValue.trim().toLowerCase()));
-    }
-
-    return items;
-  }, [searchValue, items]);
-
   return (
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
       {isCheckAll && <AllItemsCheckbox items={filteredSearchItems} onChange={onChange} />}
-      <DragDropContext onDragEnd={handleDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd} enableDefaultSensors>
         <Droppable droppableId={droppableId}>
           {provided => (
             <div {...provided.droppableProps} ref={provided.innerRef} className={styles['list-container']}>
               {filteredSearchItems.map((item, index) => renderItem(item, index))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>

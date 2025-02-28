@@ -10,7 +10,7 @@ import styles from './ComboDraggableGroupList.module.scss';
 
 import { useComboBoxValue, useSearchValue, useSetComboBoxValue } from '../../context';
 import { useOptimalHeight, useOptimalWidth } from '../../hooks';
-import { AllItemsCheckbox, InfiniteScrollTrigger, Search } from '../../subcomponents';
+import { InfiniteScrollTrigger, Search } from '../../subcomponents';
 import type { IGroupDraggableOption } from '../../types';
 import { reorderList } from '../../utils';
 
@@ -63,6 +63,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
       });
     }
   };
+
   const handleMultiChange = (item: T) => {
     const option = flatOptions.find(option => option.id === item.id);
     if (setComboValue && option) {
@@ -168,22 +169,22 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
   };
 
   const filteredSearchItems = useMemo(() => {
-    if (searchValue) {
-      const filteredItems = items
-        .map(item => {
-          return {
-            ...item,
-            items: item.items?.filter(option => 
-              option.label.toLowerCase().includes(searchValue.trim().toLowerCase())
-            )
-          };
-        })
-        .filter(item => (item.items?.length ?? 0) > 0);
-  
-      return filteredItems;
-    }
-  
-    return items;
+    if (!searchValue) return items;
+
+    const searchLower = searchValue.trim().toLowerCase();
+
+    const filteredItems = items
+      .map(item => {
+        const filteredGroupItems = item.items?.filter(option => option.label.toLowerCase().includes(searchLower)) || [];
+
+        return {
+          ...item,
+          items: filteredGroupItems
+        };
+      })
+      .filter(item => (item.items?.length ?? 0) > 0);
+
+    return filteredItems;
   }, [searchValue, items]);
 
   const onlyCheckableItems = useMemo(
@@ -197,6 +198,46 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
     [filteredSearchItems]
   );
 
+  const GroupAllItemsCheckbox = ({ items, onChange }: { items: T[]; onChange?: (value: T[]) => void }) => {
+    const comboBoxValue = useComboBoxValue();
+    const setComboValue = useSetComboBoxValue();
+
+    const safeComboBoxValue = comboBoxValue || [];
+
+    const allItemsSelected =
+      items.length > 0 && items.every(item => safeComboBoxValue.some(value => value.id === item.id));
+
+    const someItemsSelected = safeComboBoxValue.length > 0 && !allItemsSelected;
+
+    const handleCheckAll = () => {
+      if (setComboValue) {
+        if (allItemsSelected) {
+          const itemsToKeep = safeComboBoxValue.filter(value => !items.some(item => item.id === value.id));
+          setComboValue(itemsToKeep);
+          onChange?.(itemsToKeep as T[]);
+        } else {
+          const existingIds = safeComboBoxValue.map(item => item.id);
+          const newItems = items.filter(item => !existingIds.includes(item.id));
+          const newValue = [...safeComboBoxValue, ...newItems];
+          setComboValue(newValue);
+          onChange?.(newValue as T[]);
+        }
+      }
+    };
+
+    return (
+      <div className={styles.wrapper}>
+        <Checkbox
+          checked={allItemsSelected}
+          multiple={someItemsSelected}
+          label="Выбрать все"
+          onChange={handleCheckAll}
+          className={styles.checkbox}
+        />
+      </div>
+    );
+  };
+
   const DroppableList = ({ items, droppableId }: { items: T[]; droppableId: string }) => (
     <DragDropContext onDragEnd={result => handleDragEnd(result, items)}>
       <Droppable droppableId={droppableId}>
@@ -207,6 +248,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
             className={clsx(styles['list-container'], styles['list-container--draggable-groups'])}
           >
             {items.map((item, index) => renderItem(item, index))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
@@ -217,7 +259,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
-      {isCheckAll && <AllItemsCheckbox items={onlyCheckableItems} onChange={onChange} />}
+      {isCheckAll && <GroupAllItemsCheckbox items={onlyCheckableItems} onChange={onChange} />}
       <DroppableList items={filteredSearchItems} droppableId={droppableId} />
     </>
   );

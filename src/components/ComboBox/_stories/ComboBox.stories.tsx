@@ -5,7 +5,6 @@ import styles from './ComboBox.module.scss';
 import { Provider } from '../context';
 import {
   ComboBox,
-  ComboDraggableGroupList,
   ComboDraggableList,
   ComboGroupList,
   ComboList,
@@ -171,23 +170,6 @@ export const GroupedOptionsExample = () => {
 };
 GroupedOptionsExample.storyName = 'Группировка опций';
 
-export const DraggableGroupListExample = () => {
-  const [selected, setSelected] = useState<IComboBoxGroupOption[]>([]);
-  return (
-    <ComboBox label="Перетаскиваемая группировка">
-      <ComboDraggableGroupList
-        items={groupOptions}
-        onChange={setSelected}
-        isMultiple={true}
-        isSearch={true}
-        isCheckAll={true}
-        droppableId="draggable-group-list"
-      />
-    </ComboBox>
-  );
-};
-DraggableGroupListExample.storyName = 'Перетаскиваемая группировка';
-
 export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
@@ -221,20 +203,3 @@ export const ResizableDropdownExample = () => {
   );
 };
 ResizableDropdownExample.storyName = 'Изменяемый размер выпадающего списка';
-
-export const ComplexExample = () => {
-  const [selected, setSelected] = useState<IComboBoxGroupOption[]>([]);
-  return (
-    <ComboBox label="Комплексный пример" tooltipDescription="Демонстрация всех возможностей компонента">
-      <ComboDraggableGroupList
-        items={groupOptions}
-        onChange={setSelected}
-        isMultiple={true}
-        isSearch={true}
-        isCheckAll={true}
-        droppableId="complex-draggable-group-list"
-      />
-    </ComboBox>
-  );
-};
-ComplexExample.storyName = 'Комплексный пример';

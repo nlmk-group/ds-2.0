@@ -98,7 +98,14 @@ const ComboTreeList = <T extends IComboBoxTree>({
     const isChecked = checkedIds.includes(item.id);
     const isIndeterminate = parentCheckedIds.includes(item.id);
     const isLastChildren = item.level === maxLevel;
-    const optionPadding = 4 * ((item.level ?? 0) - 1) + (item.level === maxLevel ? 2 : 0);
+
+    // базовый паддинг для всех уровней
+    const basePadding = 8;
+    // дополнительный паддинг для уровней > 1
+    const levelPadding = ((item.level ?? 1) - 1) * 32;
+    // дополнительный паддинг для последнего уровня
+    const lastChildrenPadding = isLastChildren ? 16 : 0;
+    const optionPadding = basePadding + levelPadding + lastChildrenPadding;
 
     const handleItemClick = (item: IComboBoxTreeOption, isMultiple: boolean, isLastChildren: boolean) => {
       if (!isMultiple) {
@@ -116,9 +123,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
         className={clsx(styles.listItemExpanded, {
           [styles.listItemActive]: isChecked || isIndeterminate
         })}
-        style={{
-          paddingLeft: optionPadding * 8
-        }}
+        style={{ paddingLeft: optionPadding }}
         onClick={() => handleItemClick(item, isMultiple, isLastChildren)}
       >
         {!isLastChildren && (

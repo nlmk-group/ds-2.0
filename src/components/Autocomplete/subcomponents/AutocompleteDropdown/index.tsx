@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import { boldString } from '@components/Autocomplete/helpers';
 import { Box, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
 
@@ -31,7 +32,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
               key="__create_item__"
               className={styles['menu-item']}
               onClick={() => {
-                onCreateItem(inputValue);
+                onCreateItem!(inputValue);
               }}
               value={inputValue}
               highlighted={highlightedIndex === 0}
@@ -42,18 +43,35 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
           )}
 
           {hasItems ? (
-            currentItems.map((item, index) => (
-              <AutocompleteItem
-                key={item.id}
-                className={styles['menu-item']}
-                onClick={() => onSelectMenuItem(item)}
-                value={item.name || ''}
-                highlighted={index === highlightedIndex}
-                data-ui-autocomplete-item
+            <>
+              <Typography
+                className={styles.total}
+                variant="Caption-Medium"
+                color="var(--steel-90)"
+                data-ui-autocomplete-total
               >
-                {item.label}
-              </AutocompleteItem>
-            ))
+                Total: {currentItems.length}
+              </Typography>
+              {currentItems.map((item, index) => {
+                const name = item.label;
+                if (!name) return null;
+
+                const trimmedSubstr = inputValue.trim();
+                const label = boldString(name, trimmedSubstr);
+                return (
+                  <AutocompleteItem
+                    key={item.id}
+                    className={styles['menu-item']}
+                    onClick={() => onSelectMenuItem(item)}
+                    value={item.name || ''}
+                    highlighted={index === highlightedIndex}
+                    data-ui-autocomplete-item
+                  >
+                    {label}
+                  </AutocompleteItem>
+                );
+              })}
+            </>
           ) : (
             <Box flexDirection="column" data-ui-autocomplete-empty>
               <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>

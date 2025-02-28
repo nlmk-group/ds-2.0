@@ -4,12 +4,12 @@
   padding: 8px 12px;
   cursor: pointer;
   width: 100%;
-  height: var(--40-size);
+  height: 40px;
 
   &:last-child,
   &:first-child {
     padding-bottom: 0px;
-    height: var(--40-size);
+    height: 40px;
   }
 
   &-position {

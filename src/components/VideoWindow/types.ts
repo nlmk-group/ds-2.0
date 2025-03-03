@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 
+
 export type VideoWindowStyles = {
   videoTitleClassName?: string;
   videoTitleStyle?: CSSProperties;
@@ -11,4 +12,5 @@ export type VideoWindowProps = {
   autoPlay?: boolean;
   onClose: () => void;
   styles?: VideoWindowStyles;
+  resizable?: boolean;
 };

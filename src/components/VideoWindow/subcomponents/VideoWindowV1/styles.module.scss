@@ -3,7 +3,8 @@
   width: 300px;
   height: 230px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: width height 0.3s ease-in-out;
+  position: absolute;
+  resize: both;
 }
 
 // Полноэкранный контейнер
@@ -54,10 +55,22 @@
 .videoContent {
   width: 100%;
   height: calc(100% - 48px);
+  position: relative;
+
   video {
     width: 100%;
     display: block;
     height: 100%;
     object-fit: cover;
   }
+}
+
+// элемент для изменения размера
+.resizer {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
 }

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 
 import { customInputColors } from '@components/declaration';
 import { ClickAwayListener, Icon, Input } from '@components/index';
+import clsx from 'clsx';
 
 import { IAutocompleteProps, IAutocompleteValue } from './types';
 
@@ -54,14 +55,14 @@ const Autocomplete = ({
   items = [],
   isLoading = false,
   nameGetter,
-  // renderLabel,
+  renderLabel,
   disabled = false,
   onChange,
   onFullItemSelect,
   noSelectionItem,
   onDebouncedInputChange,
   size,
-  // showTooltip = false,
+  showTooltip = false,
   readOnly = false,
   helperText = '',
   error = false,
@@ -72,15 +73,15 @@ const Autocomplete = ({
   canLoadMore = false,
   onLoadMore,
   onCreateItem,
-  // noResultsText = 'No results for your request',
-  // createItemText = (value: string) => `Добавить: ${value}`,
-  // className,
-  // style,
+  noResultsText = 'No results for your request',
+  createItemText = (value: string) => `Добавить: ${value}`,
+  className,
+  style,
   ...inputProps
 }: IAutocompleteProps): JSX.Element => {
   const [selectedItems, setSelectedItems] = useState<IAutocompleteValue[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue> | null>(items);
+  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue>>(items ?? []);
   const [realData, setRealData] = useState<Array<IAutocompleteValue> | null>(items);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
@@ -281,7 +282,7 @@ const Autocomplete = ({
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
-  const dropdownContent = <AutocompleteDropdown withPortal={withPortal} />;
+  const dropdownContent = <AutocompleteDropdown />;
 
   return (
     <AutocompleteContext.Provider
@@ -289,20 +290,27 @@ const Autocomplete = ({
         isOpen,
         disabled,
         wrapperRef,
+        targetRef,
         isLoading,
         showCreateItem,
         onCreateItem,
         currentItems,
         inputValue,
         highlightedIndex,
-        selectedItems
+        selectedItems,
+        createItemText,
+        onSelectMenuItem,
+        noResultsText,
+        size,
+        showTooltip,
+        renderLabel
       }}
     >
       <ClickAwayListener onClickAway={handleClickAway}>
         <div
-          className={styles.autocomplete}
+          className={clsx(styles.autocomplete, className)}
           ref={inputRef}
-          style={{ width: isFullWidth ? '100%' : 'auto' }}
+          style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
           data-ui-autocomplete
         >
           <Input

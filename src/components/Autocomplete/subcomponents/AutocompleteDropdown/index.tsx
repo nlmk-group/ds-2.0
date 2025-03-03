@@ -1,9 +1,11 @@
 import React, { FC, useContext } from 'react';
 
 import { AutocompleteContext } from '@components/Autocomplete/context';
-import { boldString } from '@components/Autocomplete/helpers';
+import { boldReactElement, boldString } from '@components/Autocomplete/helpers';
+import { EAutocompleteSize } from '@components/Autocomplete/types';
 import { Box, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
+import clsx from 'clsx';
 
 import { IAutocompleteDropdownProps } from './types';
 
@@ -11,7 +13,7 @@ import styles from './AutocompleteDropdown.module.scss';
 
 import AutocompleteItem from '../AutocompleteItem';
 
-const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
+const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
   const {
     isOpen,
     isLoading,
@@ -23,13 +25,30 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
     selectedItems = [],
     createItemText,
     onSelectMenuItem,
-    noResultsText
+    noResultsText,
+    wrapperRef,
+    targetRef,
+    size,
+    showTooltip,
+    renderLabel
   } = useContext(AutocompleteContext);
 
   const hasItems = (currentItems ?? []).length > 0;
 
   const menu = (
-    <div className={styles['card']} data-ui-autocomplete-dropdown>
+    <div
+      ref={wrapperRef}
+      className={clsx(
+        styles['card'],
+        {
+          [styles['card-small']]: size === EAutocompleteSize.s,
+          [styles['card-extra-small']]: size === EAutocompleteSize.xs
+        },
+        className
+      )}
+      style={style}
+      data-ui-autocomplete-dropdown
+    >
       {!isLoading && (
         <Box flexDirection="column" gap={0} data-ui-autocomplete-content>
           {showCreateItem && inputValue && (
@@ -58,7 +77,10 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
 
               {currentItems?.map((item, index) => {
                 if (!item.label) return null;
-
+                const trimmedSubstr = inputValue.trim();
+                const label = renderLabel
+                  ? boldReactElement(renderLabel(item), trimmedSubstr)
+                  : boldString(item.label || '', trimmedSubstr);
                 return (
                   <AutocompleteItem
                     key={item.id}
@@ -68,8 +90,9 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
                     value={item.name || ''}
                     highlighted={index === highlightedIndex}
                     data-ui-autocomplete-item
+                    hint={showTooltip ? item.label : ''}
                   >
-                    {boldString(item.label, inputValue ?? '')}
+                    {label}
                   </AutocompleteItem>
                 );
               })}
@@ -98,6 +121,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
           disabled
         />
       )}
+      <div ref={targetRef} />
     </div>
   );
   return isOpen ? menu : null;

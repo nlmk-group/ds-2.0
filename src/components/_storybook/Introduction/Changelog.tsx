@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.18.10 - <span className={styles.date}>03.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен вызов onSelectedNode в компоненте TreeList при использовании checkableSimple
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.18.9 - <span className={styles.date}>28.02.25</span>
           </Typography>
           <ul className={styles.list}>

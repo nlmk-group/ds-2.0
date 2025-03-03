@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
+import { AutocompleteContext } from '@components/Autocomplete/context';
 import { boldString } from '@components/Autocomplete/helpers';
 import { Box, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
@@ -10,35 +11,37 @@ import styles from './AutocompleteDropdown.module.scss';
 
 import AutocompleteItem from '../AutocompleteItem';
 
-const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
-  isLoading,
-  currentItems,
-  inputValue,
-  highlightedIndex,
-  onSelectMenuItem,
-  showCreateItem,
-  createItemText,
-  onCreateItem,
-  noResultsText
-}) => {
-  const hasItems = currentItems && currentItems.length > 0;
+const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = () => {
+  const {
+    isOpen,
+    isLoading,
+    showCreateItem,
+    onCreateItem,
+    currentItems,
+    inputValue,
+    highlightedIndex,
+    selectedItems = [],
+    createItemText,
+    onSelectMenuItem,
+    noResultsText
+  } = useContext(AutocompleteContext);
 
-  return (
+  const hasItems = (currentItems ?? []).length > 0;
+
+  const menu = (
     <div className={styles['card']} data-ui-autocomplete-dropdown>
       {!isLoading && (
         <Box flexDirection="column" gap={0} data-ui-autocomplete-content>
-          {showCreateItem && (
+          {showCreateItem && inputValue && (
             <AutocompleteItem
               key="__create_item__"
               className={styles['menu-item']}
-              onClick={() => {
-                onCreateItem!(inputValue);
-              }}
+              onClick={() => onCreateItem?.(inputValue)}
               value={inputValue}
               highlighted={highlightedIndex === 0}
               data-ui-autocomplete-create-item
             >
-              {createItemText(inputValue)}
+              {createItemText?.(inputValue) ?? `Добавить: ${inputValue}`}
             </AutocompleteItem>
           )}
 
@@ -50,24 +53,23 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
                 color="var(--steel-90)"
                 data-ui-autocomplete-total
               >
-                Total: {currentItems.length}
+                Total: {currentItems?.length}
               </Typography>
-              {currentItems.map((item, index) => {
-                const name = item.label;
-                if (!name) return null;
 
-                const trimmedSubstr = inputValue.trim();
-                const label = boldString(name, trimmedSubstr);
+              {currentItems?.map((item, index) => {
+                if (!item.label) return null;
+
                 return (
                   <AutocompleteItem
                     key={item.id}
+                    disabled={item.disabled || selectedItems?.some(selectedItem => selectedItem.value === item.value)}
                     className={styles['menu-item']}
-                    onClick={() => onSelectMenuItem(item)}
+                    onClick={() => onSelectMenuItem?.(item)}
                     value={item.name || ''}
                     highlighted={index === highlightedIndex}
                     data-ui-autocomplete-item
                   >
-                    {label}
+                    {boldString(item.label, inputValue ?? '')}
                   </AutocompleteItem>
                 );
               })}
@@ -77,7 +79,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
               <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
                 <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
                 <Typography variant="Caption-Medium" color="var(--steel-90)">
-                  {noResultsText}
+                  {noResultsText ?? 'Нет результатов'}
                 </Typography>
               </Box>
             </Box>
@@ -98,6 +100,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({
       )}
     </div>
   );
+  return isOpen ? menu : null;
 };
 
 export default AutocompleteDropdown;

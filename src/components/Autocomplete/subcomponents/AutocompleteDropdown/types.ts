@@ -1,13 +1,8 @@
-import { IAutocompleteValue } from '../../types';
+import { ReactNode } from 'react';
 
 export interface IAutocompleteDropdownProps {
-  isLoading: boolean;
-  currentItems: IAutocompleteValue[] | null;
-  inputValue: string;
-  highlightedIndex: number;
-  onSelectMenuItem: (item: IAutocompleteValue) => void;
-  showCreateItem: boolean;
-  createItemText: (value: string) => string;
-  onCreateItem: (value: string) => void;
-  noResultsText: string;
+  /** Элементы, которые будут отображаться в меню */
+  children?: ReactNode;
+  /** Определяет, будет ли меню рендериться через портал */
+  withPortal?: boolean;
 }

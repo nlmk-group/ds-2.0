@@ -53,28 +53,29 @@ export const TreeListV1 = ({
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
-    let updatedKeys = [];
-    if (checkableSimple) {
+    let updatedKeys: Key[] = [];
+
+    const updateSimpleKeys = (key: Key, isChecked: boolean): Key[] => {
       const allKeys = new Set(keys);
-      if (checked) {
-        allKeys.add(nodeKey);
+      if (isChecked) {
+        allKeys.add(key);
       } else {
-        allKeys.delete(nodeKey);
+        allKeys.delete(key);
       }
-      updatedKeys = Array.from(allKeys);
-    } else {
-      updatedKeys = updateParentKeys(nodeKey, keys, treeData, checked);
-    }
+      return Array.from(allKeys);
+    };
+
+    updatedKeys = checkableSimple
+      ? updateSimpleKeys(nodeKey, checked)
+      : updateParentKeys(nodeKey, keys, treeData, checked);
 
     setCheckedKeys(updatedKeys);
 
-    if (onSelectedNode) {
-      onSelectedNode({
-        currentKey: nodeKey,
-        allSelectedKeys: updatedKeys,
-        isChecked: Boolean(updatedKeys.includes(nodeKey))
-      });
-    }
+    onSelectedNode?.({
+      currentKey: nodeKey,
+      allSelectedKeys: updatedKeys,
+      isChecked: Boolean(updatedKeys.includes(nodeKey))
+    });
   };
 
   const renderSwitcherIcon = (node: TNodeItem) => {

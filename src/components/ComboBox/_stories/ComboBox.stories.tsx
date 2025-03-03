@@ -153,19 +153,19 @@ MultipleSelectWithSearchAndCheckAll.storyName = 'Множественный вы
 export const DraggableListExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   const [options, setOptions] = useState<IComboBoxOption[]>(simpleOptions);
-  
+
   const handleReorder = useCallback((reorderedItems: IComboBoxOption[]) => {
     setOptions(reorderedItems);
   }, []);
-  
+
   return (
-    <ComboBox label="Перетаскиваемый список">
-      <ComboDraggableList 
-        items={options} 
-        onChange={setSelected} 
+    <ComboBox label="Перетаскиваемый список" withPortal={false}>
+      <ComboDraggableList
+        items={options}
+        onChange={setSelected}
         onReorder={handleReorder}
-        isMultiple={true} 
-        droppableId="draggable-list" 
+        isMultiple={true}
+        droppableId="draggable-list"
       />
     </ComboBox>
   );

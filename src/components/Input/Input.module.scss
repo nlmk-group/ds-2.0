@@ -1,3 +1,27 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--steel-10) inset !important;
+  -webkit-text-fill-color: var(--steel-90) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus {
+  background-color: var(--steel-10) !important;
+  color: var(--steel-90) !important;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus {
+  background-color: var(--steel-10) !important;
+  -webkit-text-fill-color: var(--steel-90) !important;
+  box-shadow: 0 0 0 30px var(--steel-10) inset !important;
+}
+
 @mixin input-color-states {
   &.error {
     color: var(--spectrum-red-60);
@@ -140,7 +164,7 @@
     height: 32px;
 
     ~ label {
-      padding: 5px 16px;
+      padding: 5px 0;
     }
 
     ~ .icon {
@@ -152,7 +176,7 @@
     height: 28px;
 
     ~ label {
-      padding: 4px 16px;
+      padding: 4px 0;
     }
 
     ~ .icon {

@@ -1,7 +1,5 @@
 import React, { Key, useState } from 'react';
 
-
-
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
@@ -64,11 +62,10 @@ export const TreeListV1 = ({
         allKeys.delete(nodeKey);
       }
       updatedKeys = Array.from(allKeys);
-      setCheckedKeys(updatedKeys);
-      return;
+    } else {
+      updatedKeys = updateParentKeys(nodeKey, keys, treeData, checked);
     }
 
-    updatedKeys = updateParentKeys(nodeKey, keys, treeData, checked);
     setCheckedKeys(updatedKeys);
 
     if (onSelectedNode) {

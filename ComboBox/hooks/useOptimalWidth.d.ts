@@ -1,0 +1,2 @@
+export declare const useOptimalWidth: (items: import('../types').IComboBoxOption[], isMultiple: boolean, isDraggable?: boolean | undefined, maxLevel?: number | undefined) => void;
+//# sourceMappingURL=useOptimalWidth.d.ts.map

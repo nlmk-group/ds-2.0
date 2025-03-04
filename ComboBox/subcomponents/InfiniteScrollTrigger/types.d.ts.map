@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/ComboBox/subcomponents/InfiniteScrollTrigger/types.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,2BAA2B;IAC1C,YAAY,EAAE,OAAO,CAAC;IACtB,SAAS,EAAE,OAAO,CAAC;IACnB,sBAAsB,CAAC,EAAE;QACvB,aAAa,EAAE,OAAO,CAAC;QACvB,QAAQ,EAAE,MAAM,IAAI,CAAC;QACrB,MAAM,EAAE,MAAM,CAAC;KAChB,CAAC;CACH"}

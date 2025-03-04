@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+
 import Button from '@components/Button';
 
 import styles from './VideoWindow.module.scss';
@@ -38,7 +40,7 @@ export const VideoWindowDefault = (argTypes: VideoWindowProps): JSX.Element => {
 };
 
 VideoWindowDefault.args = {
-  videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
+  videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
   title: 'Демо-видео'
 };
 VideoWindowDefault.storyName = 'VideoWindow по умолчанию';
@@ -65,7 +67,7 @@ export const VideoWindowWithAutoPlay = (argTypes: VideoWindowProps): JSX.Element
 };
 VideoWindowWithAutoPlay.storyName = 'VideoWindow c запуском видео при открытии';
 VideoWindowWithAutoPlay.parameters = {
-  videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
+  videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
   title: 'Демо-видео c автозапуском',
   autoPlay: true
 };

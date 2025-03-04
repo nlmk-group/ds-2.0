@@ -1,30 +1,40 @@
 .videoWindow {
   overflow: hidden;
+  min-width: 300px;
+  min-height: 230px;
   width: 300px;
   height: 230px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.resizable {
   position: absolute;
   resize: both;
 }
 
-// Полноэкранный контейнер
+// полноэкранный контейнер
 .fullscreen {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw !important;
+  height: 100vh !important;
   z-index: 9999;
   background: var(--steel-90);
   display: flex;
   flex-direction: column;
+  border-radius: 0;
 }
 
 .minimized {
-  width: 300px;
-  height: 48px;
+  width: 300px !important;
+  height: 48px !important;
+  min-height: unset;
+  position: absolute;
+  resize: none;
 
   .videoContent {
     display: none;
@@ -40,6 +50,12 @@
   height: 48px;
   box-sizing: border-box;
   background: var(--unique-black);
+}
+
+.draggable {
+  &:hover {
+    cursor: move;
+  }
 }
 
 .videoTitle {
@@ -70,7 +86,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
+  cursor: nwse-resize;
   bottom: 0;
   right: 0;
-  cursor: nwse-resize;
 }

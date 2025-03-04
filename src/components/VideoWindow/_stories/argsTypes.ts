@@ -10,6 +10,17 @@ const argsTypes = {
       }
     }
   },
+  id: {
+    description: 'Id элемента',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'string'
+      }
+    }
+  },
   title: {
     description: 'Заголовок видео',
     table: {
@@ -32,7 +43,28 @@ const argsTypes = {
       }
     }
   },
-
+  resizable: {
+    description: 'Включает возможность изменения размера окна',
+    table: {
+      defaultValue: {
+        summary: false
+      },
+      type: {
+        summary: 'boolean'
+      }
+    }
+  },
+  draggable: {
+    description: 'Включает возможность перетаскивания окна',
+    table: {
+      defaultValue: {
+        summary: false
+      },
+      type: {
+        summary: 'boolean'
+      }
+    }
+  },
   onClose: {
     description: 'Callback, вызываемый для закрытия окна с видео',
     action: 'окно закрыто',

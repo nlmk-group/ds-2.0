@@ -1,4 +1,5 @@
-import React, { FC, useContext } from 'react';
+import React, { CSSProperties, FC, useContext, useState } from 'react';
+import { usePopper } from 'react-popper';
 
 import { AutocompleteContext } from '@components/Autocomplete/context';
 import { boldReactElement, boldString } from '@components/Autocomplete/helpers';
@@ -13,9 +14,10 @@ import styles from './AutocompleteDropdown.module.scss';
 
 import AutocompleteItem from '../AutocompleteItem';
 
-const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
+const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style, withPortal = false }) => {
   const {
     isOpen,
+    wrapperRef,
     isLoading,
     showCreateItem,
     onCreateItem,
@@ -26,18 +28,56 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     createItemText,
     onSelectMenuItem,
     noResultsText,
-    wrapperRef,
     targetRef,
     size,
     showTooltip,
     renderLabel
   } = useContext(AutocompleteContext);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+
+  const { styles: popperStyles, attributes } = usePopper(wrapperRef.current, popperElement, {
+    placement: 'bottom-start',
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['top-start']
+        }
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          boundary: 'clippingParents',
+          padding: 8
+        }
+      }
+    ]
+  });
 
   const hasItems = (currentItems ?? []).length > 0;
+  const cardBoundingRect = withPortal ? wrapperRef.current?.getBoundingClientRect() : undefined;
+
+  const getMenuStyles = (
+    popperStyles: CSSProperties,
+    withPortal: boolean,
+    cardBoundingRect?: DOMRect,
+    customStyles?: CSSProperties
+  ): CSSProperties => {
+    if (withPortal && cardBoundingRect) {
+      return {
+        width: cardBoundingRect.width,
+        left: cardBoundingRect.left,
+        top: cardBoundingRect.top + cardBoundingRect.height,
+        position: 'absolute',
+        ...customStyles
+      };
+    }
+    return popperStyles;
+  };
 
   const menu = (
     <div
-      ref={wrapperRef}
+      ref={withPortal ? setPopperElement : wrapperRef}
       className={clsx(
         styles['card'],
         {
@@ -46,7 +86,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         },
         className
       )}
-      style={style}
+      style={withPortal ? getMenuStyles(popperStyles.popper, withPortal, cardBoundingRect, style) : popperStyles}
+      {...(withPortal ? attributes.popper : {})}
       data-ui-autocomplete-dropdown
     >
       {!isLoading && (

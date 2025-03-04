@@ -5,8 +5,9 @@ import { EAutocompleteSize, IAutocompleteValue } from './types';
 interface AutocompleteContextProps {
   isOpen: boolean;
   disabled: boolean;
-  wrapperRef: RefObject<HTMLDivElement> | null;
-  targetRef: RefObject<HTMLDivElement> | null;
+  wrapperRef: RefObject<HTMLDivElement>;
+  targetRef: RefObject<HTMLDivElement>;
+  inputRef: RefObject<HTMLInputElement>;
   isLoading: boolean;
   showCreateItem?: boolean;
   onCreateItem?: (value: string) => void;
@@ -24,8 +25,9 @@ interface AutocompleteContextProps {
 export const AutocompleteContext = createContext<AutocompleteContextProps>({
   isOpen: false,
   disabled: false,
-  wrapperRef: null,
-  targetRef: null,
+  wrapperRef: { current: null },
+  targetRef: { current: null },
+  inputRef: { current: null },
   isLoading: false,
   showCreateItem: false,
   onCreateItem: () => {},

@@ -86,9 +86,9 @@ const Autocomplete = ({
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
   const inputElementRef = useRef<HTMLInputElement>(null);
 
   const debouncedOnInputEnd = useDebounce(500, (value: string) => {
@@ -289,6 +289,7 @@ const Autocomplete = ({
       value={{
         isOpen,
         disabled,
+        inputRef,
         wrapperRef,
         targetRef,
         isLoading,

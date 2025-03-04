@@ -1,7 +1,5 @@
 import React, { Key, useState } from 'react';
 
-
-
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
@@ -55,29 +53,29 @@ export const TreeListV1 = ({
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
-    let updatedKeys = [];
-    if (checkableSimple) {
-      const allKeys = new Set(keys);
-      if (checked) {
-        allKeys.add(nodeKey);
-      } else {
-        allKeys.delete(nodeKey);
-      }
-      updatedKeys = Array.from(allKeys);
-      setCheckedKeys(updatedKeys);
-      return;
-    }
+    let updatedKeys: Key[] = [];
 
-    updatedKeys = updateParentKeys(nodeKey, keys, treeData, checked);
+    const updateSimpleKeys = (key: Key, isChecked: boolean): Key[] => {
+      const allKeys = new Set(keys);
+      if (isChecked) {
+        allKeys.add(key);
+      } else {
+        allKeys.delete(key);
+      }
+      return Array.from(allKeys);
+    };
+
+    updatedKeys = checkableSimple
+      ? updateSimpleKeys(nodeKey, checked)
+      : updateParentKeys(nodeKey, keys, treeData, checked);
+
     setCheckedKeys(updatedKeys);
 
-    if (onSelectedNode) {
-      onSelectedNode({
-        currentKey: nodeKey,
-        allSelectedKeys: updatedKeys,
-        isChecked: Boolean(updatedKeys.includes(nodeKey))
-      });
-    }
+    onSelectedNode?.({
+      currentKey: nodeKey,
+      allSelectedKeys: updatedKeys,
+      isChecked: Boolean(updatedKeys.includes(nodeKey))
+    });
   };
 
   const renderSwitcherIcon = (node: TNodeItem) => {

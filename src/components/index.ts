@@ -65,6 +65,7 @@ export { default as Pagination } from './Pagination';
 export { default as Legend } from './Legend';
 export { default as PdfPreview } from './PdfPreview';
 export { default as Filter } from './Filter';
+export * from './ComboBox';
 export * from './Table';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';

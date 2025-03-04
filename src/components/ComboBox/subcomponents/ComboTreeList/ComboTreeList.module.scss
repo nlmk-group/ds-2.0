@@ -1,0 +1,67 @@
+.listContainer {
+  overflow-y: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  z-index: 1;
+  height: 100%;
+}
+
+.listItemActive {
+  background-color: var(--brand-sapphire-10);
+
+  &:hover {
+    background-color: var(--brand-sapphire-20);
+  }
+}
+
+.listItemExpanded {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+}
+
+.listItemExpandedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 32px;
+
+  & > svg {
+    width: 24px;
+    cursor: pointer;
+  }
+}
+
+.listItemLabel {
+  line-height: 24px;
+  margin: 0;
+}
+
+.listItemLabelWrapper {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItemDone {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.listItemCheckbox {
+  & > label {
+    padding: 0;
+    text-wrap: nowrap;
+    padding-left: 4px;
+  }
+
+  & > input[type="checkbox"] {
+    min-width: 18px;
+  }
+}

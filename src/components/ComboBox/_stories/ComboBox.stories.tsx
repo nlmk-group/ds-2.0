@@ -159,7 +159,7 @@ export const DraggableListExample = () => {
   }, []);
 
   return (
-    <ComboBox label="Перетаскиваемый список" withPortal={false}>
+    <ComboBox label="Перетаскиваемый список">
       <ComboDraggableList
         items={options}
         onChange={setSelected}

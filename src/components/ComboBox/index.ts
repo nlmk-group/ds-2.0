@@ -1,5 +1,5 @@
-export { ComboBox } from './ComboBox';
+export { default as ComboBox } from './ComboBox';
 export * from './subcomponents';
-export * from './types';
 export * from './utils';
 export * from './hooks/useOrdering';
+

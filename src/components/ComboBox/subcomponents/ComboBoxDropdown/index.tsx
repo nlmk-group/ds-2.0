@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -33,7 +33,7 @@ const ComboBoxDropdown = ({
   dropdownStyle,
   inputClassName,
   inputStyle,
-  withPortal = true,
+  withPortal = false,
   portalContainerId = 'root'
 }: IComboBoxProps) => {
   const dropdownOptimalWidth = useDropdownWidth() ?? 150;
@@ -73,7 +73,7 @@ const ComboBoxDropdown = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 8]
+          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
         }
       }
     ]
@@ -92,7 +92,33 @@ const ComboBoxDropdown = ({
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  }, [handleOutsideClick]);
+  }, []);
+
+  const getDropdownStyles = () => {
+    const baseStyles = {
+      height: dropdownHeight ? dropdownHeight : calculateDropdownMinHeight,
+      width: dropdownWidth ? dropdownWidth : calculateDropdownMinWidth,
+      minWidth: inputRef.current?.offsetWidth ?? calculateDropdownMinWidth
+    };
+
+    if (withPortal) {
+      return {
+        ...baseStyles,
+        ...popperStyles.popper, 
+        ...dropdownStyle
+      };
+    }
+    
+    return {
+      ...baseStyles,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      marginTop: '8px',
+      ...dropdownStyle
+    };
+  };
 
   const inputContent = (
     <InputComboBox
@@ -121,19 +147,7 @@ const ComboBoxDropdown = ({
         }
       }}
       className={clsx(styles.dropdown, dropdownClassName)}
-      style={{
-        ...(withPortal ? popperStyles.popper : {}),
-        height: dropdownHeight ? dropdownHeight : calculateDropdownMinHeight,
-        width: dropdownWidth ? dropdownWidth : calculateDropdownMinWidth,
-        minWidth: inputRef.current?.offsetWidth ?? calculateDropdownMinWidth,
-        ...(!withPortal && {
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          zIndex: 1000
-        }),
-        ...dropdownStyle
-      }}
+      style={getDropdownStyles() as CSSProperties}
       {...(withPortal ? attributes.popper : {})}
     >
       {isResize && (

@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useContext, useState } from 'react';
+import React, { CSSProperties, FC, useContext, useEffect, useState } from 'react';
 import { usePopper } from 'react-popper';
 
 import { AutocompleteContext } from '@components/Autocomplete/context';
@@ -34,7 +34,15 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     renderLabel
   } = useContext(AutocompleteContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    if (highlightedIndex < 0) return;
 
+    const menuItems = wrapperRef.current?.querySelectorAll(`.${styles['menu-item']}`);
+
+    if (menuItems && menuItems[highlightedIndex]) {
+      menuItems[highlightedIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }, [highlightedIndex]);
   const { styles: popperStyles, attributes } = usePopper(wrapperRef.current, popperElement, {
     placement: 'bottom-start',
     modifiers: [
@@ -130,8 +138,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
                     onClick={() => onSelectMenuItem?.(item)}
                     value={item.name || ''}
                     highlighted={index === highlightedIndex}
-                    data-ui-autocomplete-item
                     hint={showTooltip ? item.label : ''}
+                    data-ui-autocomplete-item
                   >
                     {label}
                   </AutocompleteItem>
@@ -162,7 +170,15 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
           disabled
         />
       )}
-      <div ref={targetRef} />
+      <div
+        ref={el => {
+          if (el) {
+            if (targetRef && typeof targetRef === 'object') {
+              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            }
+          }
+        }}
+      />
     </div>
   );
   return isOpen ? menu : null;

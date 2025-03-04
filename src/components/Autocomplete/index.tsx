@@ -239,12 +239,6 @@ const Autocomplete = ({
 
         setHighlightedIndex(nextIndex);
 
-        if (hasItems) {
-          const menuItems = wrapperRef.current?.querySelectorAll(`.${styles['menu-item']}`);
-          if (menuItems && menuItems[nextIndex]) {
-            menuItems[nextIndex].scrollIntoView({ block: 'nearest' });
-          }
-        }
         break;
       }
       case 'Enter':

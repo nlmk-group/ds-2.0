@@ -3,13 +3,7 @@ import React, { useCallback, useState } from 'react';
 import styles from './ComboBox.module.scss';
 
 import { Provider } from '../context';
-import {
-  ComboBox,
-  ComboDraggableList,
-  ComboGroupList,
-  ComboList,
-  ComboTreeList
-} from '../index';
+import { ComboBox, ComboDraggableList, ComboGroupList, ComboList, ComboTreeList } from '../index';
 import { IComboBoxGroupOption, IComboBoxOption } from '../types';
 import argsTypes from './argsTypes';
 
@@ -130,6 +124,12 @@ const treeOptions = [
   }
 ];
 
+const tooltipItems: IComboBoxOption[] = [
+  { id: 't1', label: 'Подсказка 1: Важная информация' },
+  { id: 't2', label: 'Подсказка 2: Дополнительные сведения' },
+  { id: 't3', label: 'Подсказка 3: Примечание' }
+];
+
 export const BasicSingleSelect = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
@@ -215,3 +215,28 @@ export const ResizableDropdownExample = () => {
   );
 };
 ResizableDropdownExample.storyName = 'Изменяемый размер выпадающего списка';
+
+export const TooltipDescriptionExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+
+  return (
+    <ComboBox label="Комбобокс с подсказкой" tooltipDescription={tooltipItems}>
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
+    </ComboBox>
+  );
+};
+TooltipDescriptionExample.storyName = 'ComboBox с подсказкой (массив)';
+
+export const TooltipDescriptionStringExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+
+  return (
+    <ComboBox
+      label="Комбобокс с текстовой подсказкой"
+      tooltipDescription="Это подробное описание компонента ComboBox с текстовой подсказкой, которая отображается при наведении на компонент"
+    >
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
+    </ComboBox>
+  );
+};
+TooltipDescriptionStringExample.storyName = 'ComboBox с текстовой подсказкой (строка)';

@@ -4,7 +4,7 @@ import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
-// import Tests from '@components/_storybook/Stories/components/Tests';
+import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
 import { Tabs } from '@components/index';
 
@@ -32,7 +32,7 @@ const Stories = (): JSX.Element => {
         <Tabs>
           <Tabs.Tab label="Разработчику" active={activeTab === 0} onClick={() => setActiveTab(0)} />
           <Tabs.Tab label="Дизайнеру" active={activeTab === 1} onClick={() => setActiveTab(1)} />
-          {/* <Tabs.Tab label="Тестирование" active={activeTab === 2} onClick={() => setActiveTab(2)} /> */}
+          <Tabs.Tab label="Тестирование" active={activeTab === 2} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -62,7 +62,7 @@ export default App = () => (
         </>
       )}
       {activeTab === 1 && <FigmaEmbed url={FIGMA_LINK} />}
-      {/* {activeTab === 2 && <Tests componentName="ComboBox" />} */}
+      {activeTab === 2 && <Tests componentName="ComboBox" />}
     </div>
   );
 };

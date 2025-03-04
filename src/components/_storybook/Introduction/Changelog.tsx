@@ -23,9 +23,20 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.18.10 - <span className={styles.date}>03.03.25</span>
+            v2.19.0 - <span className={styles.date}>04.03.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+            </li>
             <li>
               • Исправлен компонент{' '}
               <Link
@@ -315,7 +326,6 @@ export const Changelog = () => {
             </li>
           </ul>
         </div>
-
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.17.0 - <span className={styles.date}>11.02.25</span>

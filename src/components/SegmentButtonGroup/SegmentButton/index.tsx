@@ -1,49 +1,34 @@
-import React, { SyntheticEvent, useContext } from 'react';
+import React, { FC, SyntheticEvent, useContext } from 'react';
 
 import { Typography } from '@components/index';
-import { clsx } from 'clsx';
+import clsx from 'clsx';
 
 import styles from '../SegmentButtonGroup.module.scss';
 
-import { SegmentButtonProperties } from '../index';
-import type { ISegmentButtonProperties, ISegmentButtonProps } from '../types';
+import { SegmentButtonGroupContext } from '../context';
+import type { ISegmentButtonProps } from '../types';
 
-export const SegmentButton = ({
-  className,
-  disabled = false,
-  active = false,
-  color,
-  children,
-  onClick = () => void 0,
-  toggleButton = () => void 0
-}: ISegmentButtonProps) => {
-  const defaultProps = useContext<ISegmentButtonProperties>(SegmentButtonProperties);
-  const isDisabled = defaultProps.disabled || disabled;
-  const isPrimitiveChildren = typeof children === 'string' || typeof children === 'number';
-  const currentColor = `_${color || defaultProps.color}`;
+const SegmentButton: FC<ISegmentButtonProps> = ({ active, children, className, onClick, toggleButton }) => {
+  const { disabled /* size */ } = useContext(SegmentButtonGroupContext);
 
+  // Обработчик клика
   const handleClick = (e: SyntheticEvent) => {
-    toggleButton();
-    if (!onClick) return;
+    if (disabled) return;
 
-    onClick(e);
+    toggleButton?.();
+    onClick?.(e);
   };
 
   return (
     <button
       onClick={handleClick}
-      disabled={isDisabled}
-      className={clsx(
-        styles.segmentButton,
-        styles[currentColor],
-        defaultProps.compact ? styles._compact : '',
-        active ? styles._active : '',
-        className
-      )}
+      disabled={disabled}
+      className={clsx(styles.segmentButton, active && styles._active, className)}
       data-ui-segment-button
       data-testid="SEGMENT_BUTTON"
     >
-      {isPrimitiveChildren ? (
+      {/* Если `children` - примитив (строка/число), то оборачиваем в `Typography` */}
+      {typeof children === 'string' || typeof children === 'number' ? (
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           {children}
         </Typography>

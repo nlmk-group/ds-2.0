@@ -1,5 +1,3 @@
-import { buttonColor } from '../enums';
-
 export const buttonGroupItemsArgsTypes = {
   className: {
     description: 'В компонент можно передать альтернативные стили',
@@ -13,19 +11,6 @@ export const buttonGroupItemsArgsTypes = {
         summary: 'boolean'
       }
     }
-  },
-  color: {
-    description: 'Необязательный атрибут который задает цвет кнопке.',
-    table: {
-      defaultValue: {
-        summary: buttonColor.default
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(buttonColor),
-    control: { type: 'select' }
   },
   disabled: {
     description: 'Необязательный свойство. добавление кнопке атрибута disabled',
@@ -50,20 +35,6 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
-  },
-  color: {
-    description:
-      'Необязательный атрибут который задает цвет кнопок (можно задавать индидуально каждой дочерней кнопке).',
-    table: {
-      defaultValue: {
-        summary: buttonColor.default
-      },
-      type: {
-        summary: Object.values(buttonColor).join(' | ')
-      }
-    },
-    options: Object.values(buttonColor),
-    control: { type: 'select' }
   },
   disabled: {
     description:

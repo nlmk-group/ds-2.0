@@ -1,5 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
 import { ClickAwayListener, Icon, Input } from '@components/index';
@@ -274,7 +273,6 @@ const Autocomplete = ({
     item => item.label?.trim().toLowerCase() === inputValue.trim().toLowerCase()
   );
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
   const dropdownContent = <AutocompleteDropdown />;
 
@@ -283,7 +281,9 @@ const Autocomplete = ({
       value={{
         isOpen,
         disabled,
-        inputElementRef,
+        portalContainerId,
+        withPortal,
+        inputRef,
         wrapperRef,
         targetRef,
         isLoading,
@@ -335,10 +335,7 @@ const Autocomplete = ({
             data-ui-autocomplete-input
             data-testid="AUTOCOMPLETE_INPUT"
           />
-          {isOpen &&
-            !disabled &&
-            !readOnly &&
-            (withPortal && portalContainer ? createPortal(dropdownContent, portalContainer) : dropdownContent)}
+          {isOpen && !disabled && !readOnly && dropdownContent}
         </div>
       </ClickAwayListener>
     </AutocompleteContext.Provider>

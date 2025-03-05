@@ -1,4 +1,5 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, FC, useContext, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
 import { AutocompleteContext } from '@components/Autocomplete/context';
@@ -14,10 +15,12 @@ import styles from './AutocompleteDropdown.module.scss';
 
 import AutocompleteItem from '../AutocompleteItem';
 
-const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style, withPortal = false }) => {
+const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
   const {
+    portalContainerId,
     isOpen,
-    inputElementRef,
+    withPortal,
+    inputRef,
     wrapperRef,
     isLoading,
     showCreateItem,
@@ -35,6 +38,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     renderLabel
   } = useContext(AutocompleteContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
   useEffect(() => {
     if (highlightedIndex < 0) return;
 
@@ -45,7 +49,9 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     }
   }, [highlightedIndex]);
 
-  const { styles: popperStyles, attributes } = usePopper(inputElementRef.current, popperElement, {
+  if (!isOpen) return null;
+
+  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
     placement: 'bottom-start',
     modifiers: [
       {
@@ -58,16 +64,52 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'flip',
         options: {
-          fallbackPlacements: ['top-start', 'bottom-end']
+          fallbackPlacements: ['top-start']
+        }
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 8]
         }
       }
     ]
   });
+  const rect = inputRef?.current?.getBoundingClientRect();
+  const getMenuStyles = () => {
+    const baseStyles = {
+      width: rect?.width,
+      left: rect?.left,
+      top: rect ? rect.top + rect.height : undefined
+    };
 
+    if (withPortal) {
+      return {
+        ...baseStyles,
+        ...popperStyles.popper
+      };
+    }
+
+    return {
+      ...baseStyles,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      zIndex: 1000
+    };
+  };
   const hasItems = (currentItems ?? []).length > 0;
   const menu = (
     <div
-      ref={withPortal ? setPopperElement : wrapperRef}
+      ref={el => {
+        if (!el) return;
+
+        if (withPortal) {
+          setPopperElement(el);
+        } else {
+          (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
+        }
+      }}
       className={clsx(
         styles['card'],
         {
@@ -76,10 +118,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         },
         className
       )}
-      style={{
-        ...(withPortal ? popperStyles.popper : {}),
-        ...style
-      }}
+      style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}
       {...(withPortal ? attributes.popper : {})}
       data-ui-autocomplete-dropdown
     >
@@ -166,7 +205,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       />
     </div>
   );
-  return isOpen ? menu : null;
+  return withPortal ? createPortal(menu, portalContainer) : menu;
 };
 
 export default AutocompleteDropdown;

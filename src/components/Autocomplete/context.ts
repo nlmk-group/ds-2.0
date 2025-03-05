@@ -5,9 +5,10 @@ import { EAutocompleteSize, IAutocompleteValue } from './types';
 interface AutocompleteContextProps {
   isOpen: boolean;
   disabled: boolean;
+  withPortal?: boolean;
   wrapperRef: RefObject<HTMLDivElement>;
   targetRef: RefObject<HTMLDivElement>;
-  inputElementRef: RefObject<HTMLInputElement>;
+  inputRef: RefObject<HTMLDivElement>;
   isLoading: boolean;
   showCreateItem?: boolean;
   onCreateItem?: (value: string) => void;
@@ -21,13 +22,15 @@ interface AutocompleteContextProps {
   size?: `${EAutocompleteSize}`;
   showTooltip: boolean;
   renderLabel?: (item: IAutocompleteValue) => ReactNode;
+  portalContainerId: string;
 }
 export const AutocompleteContext = createContext<AutocompleteContextProps>({
   isOpen: false,
   disabled: false,
+  withPortal: false,
   wrapperRef: { current: null },
   targetRef: { current: null },
-  inputElementRef: { current: null },
+  inputRef: { current: null },
   isLoading: false,
   showCreateItem: false,
   onCreateItem: () => {},
@@ -40,5 +43,6 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   noResultsText: '',
   size: EAutocompleteSize.m,
   showTooltip: false,
-  renderLabel: undefined
+  renderLabel: undefined,
+  portalContainerId: 'root'
 });

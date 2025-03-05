@@ -1,0 +1,211 @@
+import React, { CSSProperties, FC, useContext, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { usePopper } from 'react-popper';
+
+import { AutocompleteContext } from '@components/Autocomplete/context';
+import { boldReactElement, boldString } from '@components/Autocomplete/helpers';
+import { EAutocompleteSize } from '@components/Autocomplete/types';
+import { Box, Icon, Spinner, Typography } from '@components/index';
+import MenuItem from '@components/Select/subcomponents/MenuItem';
+import clsx from 'clsx';
+
+import { IAutocompleteDropdownProps } from './types';
+
+import styles from './AutocompleteDropdown.module.scss';
+
+import AutocompleteItem from '../AutocompleteItem';
+
+const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
+  const {
+    portalContainerId,
+    isOpen,
+    withPortal,
+    inputRef,
+    wrapperRef,
+    isLoading,
+    showCreateItem,
+    onCreateItem,
+    currentItems,
+    inputValue,
+    highlightedIndex,
+    selectedItems = [],
+    createItemText,
+    onSelectMenuItem,
+    noResultsText,
+    targetRef,
+    size,
+    showTooltip,
+    renderLabel
+  } = useContext(AutocompleteContext);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  useEffect(() => {
+    if (highlightedIndex < 0) return;
+
+    const menuItems = wrapperRef.current?.querySelectorAll(`.${styles['menu-item']}`);
+
+    if (menuItems && menuItems[highlightedIndex]) {
+      menuItems[highlightedIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }, [highlightedIndex]);
+
+  if (!isOpen) return null;
+
+  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
+    placement: 'bottom-start',
+    modifiers: [
+      {
+        name: 'preventOverflow',
+        options: {
+          padding: 8,
+          boundary: 'clippingParents'
+        }
+      },
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['top-start']
+        }
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 8]
+        }
+      }
+    ]
+  });
+  const rect = inputRef?.current?.getBoundingClientRect();
+  const getMenuStyles = () => {
+    const baseStyles = {
+      width: rect?.width,
+      left: rect?.left,
+      top: rect ? rect.top + rect.height : undefined
+    };
+
+    if (withPortal) {
+      return {
+        ...baseStyles,
+        ...popperStyles.popper
+      };
+    }
+
+    return {
+      ...baseStyles,
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      zIndex: 1000
+    };
+  };
+  const hasItems = (currentItems ?? []).length > 0;
+  const menu = (
+    <div
+      ref={el => {
+        if (!el) return;
+
+        if (withPortal) {
+          setPopperElement(el);
+        } else {
+          (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
+        }
+      }}
+      className={clsx(
+        styles['card'],
+        {
+          [styles['card-small']]: size === EAutocompleteSize.s,
+          [styles['card-extra-small']]: size === EAutocompleteSize.xs
+        },
+        className
+      )}
+      style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}
+      {...(withPortal ? attributes.popper : {})}
+      data-ui-autocomplete-dropdown
+    >
+      {!isLoading && (
+        <Box flexDirection="column" gap={0} data-ui-autocomplete-content>
+          {showCreateItem && inputValue && (
+            <AutocompleteItem
+              key="__create_item__"
+              className={styles['menu-item']}
+              onClick={() => onCreateItem?.(inputValue)}
+              value={inputValue}
+              highlighted={highlightedIndex === 0}
+              data-ui-autocomplete-create-item
+            >
+              {createItemText?.(inputValue) ?? `Добавить: ${inputValue}`}
+            </AutocompleteItem>
+          )}
+
+          {hasItems ? (
+            <>
+              <Typography
+                className={styles.total}
+                variant="Caption-Medium"
+                color="var(--steel-90)"
+                data-ui-autocomplete-total
+              >
+                Total: {currentItems?.length}
+              </Typography>
+
+              {currentItems?.map((item, index) => {
+                if (!item.label) return null;
+                const trimmedSubstr = inputValue.trim();
+                const label = renderLabel
+                  ? boldReactElement(renderLabel(item), trimmedSubstr)
+                  : boldString(item.label || '', trimmedSubstr);
+                return (
+                  <AutocompleteItem
+                    key={item.id}
+                    disabled={item.disabled || selectedItems?.some(selectedItem => selectedItem.value === item.value)}
+                    className={styles['menu-item']}
+                    onClick={() => onSelectMenuItem?.(item)}
+                    value={item.name || ''}
+                    highlighted={index === highlightedIndex}
+                    hint={showTooltip ? item.label : ''}
+                    data-ui-autocomplete-item
+                  >
+                    {label}
+                  </AutocompleteItem>
+                );
+              })}
+            </>
+          ) : (
+            <Box flexDirection="column" data-ui-autocomplete-empty>
+              <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
+                <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
+                <Typography variant="Caption-Medium" color="var(--steel-90)">
+                  {noResultsText ?? 'Нет результатов'}
+                </Typography>
+              </Box>
+            </Box>
+          )}
+        </Box>
+      )}
+
+      {isLoading && (
+        <MenuItem
+          label={
+            <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
+              <Spinner />
+            </Box>
+          }
+          value=""
+          disabled
+        />
+      )}
+      <div
+        ref={el => {
+          if (el) {
+            if (targetRef && typeof targetRef === 'object') {
+              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            }
+          }
+        }}
+      />
+    </div>
+  );
+  return withPortal ? createPortal(menu, portalContainer) : menu;
+};
+
+export default AutocompleteDropdown;

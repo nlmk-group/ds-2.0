@@ -1,18 +1,16 @@
-import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Box, ClickAwayListener, Icon, Input, Spinner, Typography } from '@components/index';
-import MenuItem from '@components/Select/subcomponents/MenuItem';
+import { ClickAwayListener, Icon, Input } from '@components/index';
 import clsx from 'clsx';
 
-import { EAutocompleteSize, IAutocompleteProps, IAutocompleteValue } from './types';
+import { IAutocompleteProps, IAutocompleteValue } from './types';
 
 import styles from './Autocomplete.module.scss';
 
-import { boldReactElement, boldString } from './helpers';
+import { AutocompleteContext } from './context';
 import { useDebounce, useScrollPagination } from './hooks';
-import { AutocompleteItem } from './subcomponents';
+import AutocompleteDropdown from './subcomponents/AutocompleteDropdown';
 
 /**
  * Компонент Autocomplete предоставляет пользователю возможность ввода текста с поддержкой автозаполнения на основе предложенных элементов.
@@ -82,14 +80,14 @@ const Autocomplete = ({
 }: IAutocompleteProps): JSX.Element => {
   const [selectedItems, setSelectedItems] = useState<IAutocompleteValue[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue> | null>(items);
+  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue>>(items ?? []);
   const [realData, setRealData] = useState<Array<IAutocompleteValue> | null>(items);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
+  const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
   const inputElementRef = useRef<HTMLInputElement>(null);
 
   const debouncedOnInputEnd = useDebounce(500, (value: string) => {
@@ -163,7 +161,7 @@ const Autocomplete = ({
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
     if (value) {
-      setOpen(true);
+      setIsOpen(true);
     } else {
       clearSelect();
     }
@@ -190,7 +188,7 @@ const Autocomplete = ({
     setInputValue(name);
     onChange(item);
     inputElementRef.current?.focus();
-    setOpen(false);
+    setIsOpen(false);
   };
 
   const clearSelect = () => {
@@ -200,11 +198,11 @@ const Autocomplete = ({
     onChange(nextValue);
     onFullItemSelect?.(undefined);
     inputElementRef.current?.focus();
-    setOpen(false);
+    setIsOpen(false);
   };
 
   const handleClickAway = () => {
-    setOpen(false);
+    setIsOpen(false);
     if (selectedItems.length === 0) {
       setInputValue('');
     } else {
@@ -213,7 +211,7 @@ const Autocomplete = ({
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (!open) return;
+    if (!isOpen) return;
 
     const hasItems = currentItems && currentItems.length > 0;
     const showCreateItem = onCreateItem && inputValue.trim() !== '';
@@ -240,12 +238,6 @@ const Autocomplete = ({
 
         setHighlightedIndex(nextIndex);
 
-        if (hasItems) {
-          const menuItems = wrapperRef.current?.querySelectorAll(`.${styles['menu-item']}`);
-          if (menuItems && menuItems[nextIndex]) {
-            menuItems[nextIndex].scrollIntoView({ block: 'nearest' });
-          }
-        }
         break;
       }
       case 'Enter':
@@ -254,18 +246,16 @@ const Autocomplete = ({
           onSelectMenuItem(currentItems![highlightedIndex]);
         } else if (showCreateItem && highlightedIndex === 0) {
           onCreateItem!(inputValue);
-          setOpen(false);
+          setIsOpen(false);
         }
         break;
       case 'Escape':
-        setOpen(false);
+        setIsOpen(false);
         break;
       default:
         break;
     }
   };
-
-  const cardBoundingRect = withPortal ? inputRef.current?.getBoundingClientRect() : undefined;
 
   useScrollPagination({
     wrapperRef,
@@ -279,159 +269,76 @@ const Autocomplete = ({
     isPortalMounted: withPortal
   });
 
-  const hasItems = currentItems && currentItems.length > 0;
   const hasExactMatch = currentItems?.some(
     item => item.label?.trim().toLowerCase() === inputValue.trim().toLowerCase()
   );
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
-  const dropdownContent = (
-    <div
-      ref={wrapperRef}
-      className={clsx(
-        styles['card'],
-        {
-          [styles['card-small']]: size === EAutocompleteSize.s,
-          [styles['card-extra-small']]: size === EAutocompleteSize.xs
-        },
-        className
-      )}
-      style={
-        withPortal
-          ? {
-              width: cardBoundingRect?.width,
-              left: cardBoundingRect?.left,
-              top: cardBoundingRect ? cardBoundingRect.top + cardBoundingRect.height : undefined,
-              position: 'absolute',
-              ...style
-            }
-          : style
-      }
-      data-ui-autocomplete-dropdown
-    >
-      {!isLoading && (
-        <Box flexDirection="column" gap={0} data-ui-autocomplete-content>
-          {showCreateItem && (
-            <AutocompleteItem
-              key="__create_item__"
-              className={styles['menu-item']}
-              onClick={() => {
-                onCreateItem!(inputValue);
-                setOpen(false);
-              }}
-              value={inputValue}
-              highlighted={highlightedIndex === 0}
-              data-ui-autocomplete-create-item
-            >
-              {createItemText(inputValue)}
-            </AutocompleteItem>
-          )}
-
-          {hasItems ? (
-            <>
-              <Typography
-                className={styles.total}
-                variant="Caption-Medium"
-                color="var(--steel-90)"
-                data-ui-autocomplete-total
-              >
-                Total: {currentItems!.length}
-              </Typography>
-              {currentItems?.map((item, index) => {
-                const name = nameGetterInside(item);
-                if (!name) return null;
-
-                const trimmedSubstr = inputValue.trim();
-                const label = renderLabel
-                  ? boldReactElement(renderLabel(item), trimmedSubstr)
-                  : boldString(item.label || '', trimmedSubstr);
-
-                return (
-                  <AutocompleteItem
-                    key={item.id}
-                    disabled={item.disabled || selectedItems.some(selectedItem => selectedItem.value === item.value)}
-                    className={styles['menu-item']}
-                    onClick={() => onSelectMenuItem(item)}
-                    value={item.name || ''}
-                    hint={showTooltip ? item.label : ''}
-                    highlighted={index === highlightedIndex}
-                    data-ui-autocomplete-item
-                  >
-                    {label}
-                  </AutocompleteItem>
-                );
-              })}
-            </>
-          ) : (
-            <Box flexDirection="column" data-ui-autocomplete-empty>
-              <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
-                <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
-                <Typography variant="Caption-Medium" color="var(--steel-90)">
-                  {noResultsText}
-                </Typography>
-              </Box>
-            </Box>
-          )}
-        </Box>
-      )}
-
-      {isLoading && (
-        <MenuItem
-          label={
-            <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
-              <Spinner />
-            </Box>
-          }
-          value=""
-          disabled
-        />
-      )}
-      <div ref={targetRef} />
-    </div>
-  );
+  const dropdownContent = <AutocompleteDropdown />;
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <div
-        className={styles.autocomplete}
-        ref={inputRef}
-        style={{ width: isFullWidth ? '100%' : 'auto' }}
-        data-ui-autocomplete
-      >
-        <Input
-          {...inputProps}
-          inputRef={inputElementRef}
-          value={inputValue}
-          onKeyDown={handleKeyDown}
-          icon={
-            <Icon
-              name="IconSearchOutlined24"
-              color={(disabled && 'disabled') || (error && 'error') || 'primary'}
-              data-ui-autocomplete-search
-            />
-          }
-          reset={true}
-          onReset={clearSelect}
-          size={size}
-          disabled={disabled}
-          color={error ? customInputColors.error : undefined}
-          helperText={helperText}
-          onFocus={() => {
-            if (!disabled && !readOnly) {
-              setOpen(true);
+    <AutocompleteContext.Provider
+      value={{
+        isOpen,
+        disabled,
+        portalContainerId,
+        withPortal,
+        inputRef,
+        wrapperRef,
+        targetRef,
+        isLoading,
+        showCreateItem,
+        onCreateItem,
+        currentItems,
+        inputValue,
+        highlightedIndex,
+        selectedItems,
+        createItemText,
+        onSelectMenuItem,
+        noResultsText,
+        size,
+        showTooltip,
+        renderLabel
+      }}
+    >
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <div
+          className={clsx(styles.autocomplete, className)}
+          ref={inputRef}
+          style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
+          data-ui-autocomplete
+        >
+          <Input
+            {...inputProps}
+            inputRef={inputElementRef}
+            value={inputValue}
+            onKeyDown={handleKeyDown}
+            icon={
+              <Icon
+                name="IconSearchOutlined24"
+                color={(disabled && 'disabled') || (error && 'error') || 'primary'}
+                data-ui-autocomplete-search
+              />
             }
-          }}
-          onChange={onChangeInput}
-          data-ui-autocomplete-input
-          data-testid="AUTOCOMPLETE_INPUT"
-        />
-        {open &&
-          !disabled &&
-          !readOnly &&
-          (withPortal && portalContainer ? createPortal(dropdownContent, portalContainer) : dropdownContent)}
-      </div>
-    </ClickAwayListener>
+            reset={true}
+            onReset={clearSelect}
+            size={size}
+            disabled={disabled}
+            color={error ? customInputColors.error : undefined}
+            helperText={helperText}
+            onFocus={() => {
+              if (!disabled && !readOnly) {
+                setIsOpen(true);
+              }
+            }}
+            onChange={onChangeInput}
+            data-ui-autocomplete-input
+            data-testid="AUTOCOMPLETE_INPUT"
+          />
+          {isOpen && !disabled && !readOnly && dropdownContent}
+        </div>
+      </ClickAwayListener>
+    </AutocompleteContext.Provider>
   );
 };
 

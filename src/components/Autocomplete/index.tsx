@@ -86,7 +86,7 @@ const Autocomplete = ({
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
   const inputElementRef = useRef<HTMLInputElement>(null);
@@ -283,7 +283,7 @@ const Autocomplete = ({
       value={{
         isOpen,
         disabled,
-        inputRef,
+        inputElementRef,
         wrapperRef,
         targetRef,
         isLoading,

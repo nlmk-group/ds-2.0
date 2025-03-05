@@ -7,7 +7,7 @@ interface AutocompleteContextProps {
   disabled: boolean;
   wrapperRef: RefObject<HTMLDivElement>;
   targetRef: RefObject<HTMLDivElement>;
-  inputRef: RefObject<HTMLInputElement>;
+  inputElementRef: RefObject<HTMLInputElement>;
   isLoading: boolean;
   showCreateItem?: boolean;
   onCreateItem?: (value: string) => void;
@@ -27,7 +27,7 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   disabled: false,
   wrapperRef: { current: null },
   targetRef: { current: null },
-  inputRef: { current: null },
+  inputElementRef: { current: null },
   isLoading: false,
   showCreateItem: false,
   onCreateItem: () => {},

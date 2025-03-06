@@ -23,9 +23,21 @@ export default {
 export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Сталь
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Цинк
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Чугун
+        </Typography>
+      </SegmentButton>
     </SegmentButtonGroup>
   );
 };
@@ -43,9 +55,21 @@ export const SegmentButtonGroupSizes = (argTypes: ISegmentButtonGroupProps): Rea
     >
       {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
         <SegmentButtonGroup key={index} size={size} {...argTypes}>
-          <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
-          <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
-          <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
+          <SegmentButton onClick={action('onClick')}>
+            <Typography variant="Body1-Bold" color="var(--steel-90)">
+              Сталь
+            </Typography>
+          </SegmentButton>
+          <SegmentButton onClick={action('onClick')}>
+            <Typography variant="Body1-Bold" color="var(--steel-90)">
+              Цинк
+            </Typography>
+          </SegmentButton>
+          <SegmentButton onClick={action('onClick')}>
+            <Typography variant="Body1-Bold" color="var(--steel-90)">
+              Чугун
+            </Typography>
+          </SegmentButton>
         </SegmentButtonGroup>
       ))}
     </div>
@@ -71,17 +95,17 @@ export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupPr
           <SegmentButtonGroup size={size} {...argTypes}>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
-                Печенье
+                Сталь
               </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
-                Торты
+                Цинк
               </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
-                Конфеты
+                Чугун
               </Typography>
             </SegmentButton>
           </SegmentButtonGroup>
@@ -89,17 +113,17 @@ export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupPr
           <SegmentButtonGroup size={size} {...argTypes}>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
-                Печенье
+                Сталь
               </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
-                Торты
+                Цинк
               </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
-                Конфеты
+                Чугун
               </Typography>
             </SegmentButton>
           </SegmentButtonGroup>

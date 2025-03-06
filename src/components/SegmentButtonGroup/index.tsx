@@ -10,6 +10,25 @@ import styles from './SegmentButtonGroup.module.scss';
 import { SegmentButtonGroupContext } from './context';
 import { ESegmentButtonGroupSizes } from './enums';
 
+/**
+ * Компонент `SegmentButtonGroup` представляет собой группу сегментированных кнопок.
+ * Позволяет пользователям управлять активной кнопкой и переключать её состояние.
+ *
+ * @component
+ * @example
+ * <SegmentButtonGroup>
+ *   <SegmentButton onClick={() => console.log('Clicked')}>Кнопка 1</SegmentButton>
+ *   <SegmentButton onClick={() => console.log('Clicked')}>Кнопка 2</SegmentButton>
+ * </SegmentButtonGroup>
+ *
+ * @param {ISegmentButtonGroupProps} props - Свойства компонента `SegmentButtonGroup`.
+ * @param {string} [props.className] - Дополнительный CSS класс для стилизации группы кнопок.
+ * @param {boolean} [props.disabled=false] - Флаг, отключающий всю группу кнопок.
+ * @param {ESegmentButtonGroupSizes} [props.size="m"] - Размер группы кнопок (`s`, `m`, `l`).
+ * @param {ReactNode} props.children - Дочерние элементы, представляющие кнопки внутри группы.
+ *
+ * @returns {JSX.Element} Компонент `SegmentButtonGroup`, оборачивающий `SegmentButton`.
+ */
 const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
   className,
   disabled,

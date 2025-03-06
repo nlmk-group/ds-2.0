@@ -6,6 +6,7 @@ import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
+import { ESegmentButtonGroupSizes } from '../enums';
 import SegmentButton from '../SegmentButton';
 import { ISegmentButtonGroupProps } from '../types';
 import { argsTypes } from './argsTypes';
@@ -19,38 +20,36 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof SegmentButtonGroup>;
 
-export const DefaultBtnGroup = (argTypes: ISegmentButtonGroupProps): ReactNode => {
+export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Печенье
-      </SegmentButton>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Торты
-      </SegmentButton>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Конфеты
-      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
+      <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
+      <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
     </SegmentButtonGroup>
   );
 };
 
-DefaultBtnGroup.storyName = 'SegmentButtonGroup по умолчанию';
+SegmentButtonGroupDefault.storyName = 'SegmentButtonGroup по умолчанию';
 
-export const BtnGroupCompact = (argTypes: ISegmentButtonGroupProps): ReactNode => {
+export const SegmentButtonGroupSizes = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
-    <SegmentButtonGroup {...argTypes}>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Печенье
-      </SegmentButton>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Торты
-      </SegmentButton>
-      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
-        Конфеты
-      </SegmentButton>
-    </SegmentButtonGroup>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px'
+      }}
+    >
+      {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
+        <SegmentButtonGroup key={index} size={size} {...argTypes}>
+          <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
+          <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
+          <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
+        </SegmentButtonGroup>
+      ))}
+    </div>
   );
 };
 
-BtnGroupCompact.storyName = 'SegmentButtonGroup в разных размерах';
+SegmentButtonGroupSizes.storyName = 'SegmentButtonGroup в разных размерах';

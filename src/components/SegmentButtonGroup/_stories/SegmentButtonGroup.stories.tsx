@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { SegmentButtonGroup } from '@components/index';
+import { SegmentButtonGroup, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -53,3 +53,43 @@ export const SegmentButtonGroupSizes = (argTypes: ISegmentButtonGroupProps): Rea
 };
 
 SegmentButtonGroupSizes.storyName = 'SegmentButtonGroup в разных размерах';
+export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupProps): ReactNode => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px'
+      }}
+    >
+      {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <SegmentButtonGroup size={size} {...argTypes}>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold">Печенье</Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold">Торты</Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold">Конфеты</Typography>
+            </SegmentButton>
+          </SegmentButtonGroup>
+
+          <SegmentButtonGroup size={size} {...argTypes}>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium">Печенье</Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium">Торты</Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium">Конфеты</Typography>
+            </SegmentButton>
+          </SegmentButtonGroup>
+        </div>
+      ))}
+    </div>
+  );
+};
+SegmentButtonGroupWithTypography.storyName = 'SegmentButtonGroup с разными обертками для текста';

@@ -1,6 +1,5 @@
 import React, { FC, SyntheticEvent, useContext } from 'react';
 
-import { Typography } from '@components/index';
 import clsx from 'clsx';
 
 import styles from '../SegmentButtonGroup.module.scss';
@@ -52,14 +51,7 @@ const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, 
       data-ui-segment-button
       data-testid="SEGMENT_BUTTON"
     >
-      {/* Если `children` - примитив (строка/число), то оборачиваем в `Typography` */}
-      {typeof children === 'string' || typeof children === 'number' ? (
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          {children}
-        </Typography>
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 };

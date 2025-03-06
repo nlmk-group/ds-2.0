@@ -4,7 +4,7 @@ import { ESegmentButtonGroupSizes } from './enums';
 
 export interface ISegmentButtonGroupProps {
   className?: string;
-  size: `${ESegmentButtonGroupSizes}`;
+  size?: `${ESegmentButtonGroupSizes}`;
   disabled?: boolean;
   children: ReactNode;
 }

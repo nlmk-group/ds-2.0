@@ -64,27 +64,43 @@ export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupPr
     >
       {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
         <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">
+            {`Размер ${size} `}
+          </Typography>
+
           <SegmentButtonGroup size={size} {...argTypes}>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Bold">Печенье</Typography>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Печенье
+              </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Bold">Торты</Typography>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Торты
+              </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Bold">Конфеты</Typography>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Конфеты
+              </Typography>
             </SegmentButton>
           </SegmentButtonGroup>
 
           <SegmentButtonGroup size={size} {...argTypes}>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Medium">Печенье</Typography>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Печенье
+              </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Medium">Торты</Typography>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Торты
+              </Typography>
             </SegmentButton>
             <SegmentButton onClick={action('onClick')}>
-              <Typography variant="Body1-Medium">Конфеты</Typography>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Конфеты
+              </Typography>
             </SegmentButton>
           </SegmentButtonGroup>
         </div>

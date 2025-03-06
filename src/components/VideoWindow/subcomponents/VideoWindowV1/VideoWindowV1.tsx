@@ -71,6 +71,7 @@ export const VideoWindowV1 = ({
             color="grey"
             variant="secondary"
             size="s"
+            title={isFullscreen ? 'Выйти из полноэкранного режима' : 'Перейти в полноэкранный режим'}
           />
           <Button
             onClick={toggleMinimize}
@@ -78,8 +79,9 @@ export const VideoWindowV1 = ({
             color="grey"
             variant="secondary"
             size="s"
+            title={isMinimized ? 'Развернуть' : 'Свернуть'}
           />
-          <Button onClick={onClose} iconButton={<IconCloseOutlined24 />} color="grey" variant="secondary" size="s" />
+          <Button onClick={onClose} iconButton={<IconCloseOutlined24 />} color="grey" variant="secondary" size="s" title="Закрыть"/>
         </div>
       </div>
       {!isMinimized && (

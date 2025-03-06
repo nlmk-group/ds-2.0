@@ -11,7 +11,7 @@ export interface ISegmentButtonGroupProps {
 
 export interface ISegmentButtonProps {
   className?: string;
-  active?: boolean;
+  buttonIndex: number;
   children: ReactNode;
   onClick?: (e: SyntheticEvent) => void;
   toggleButton?: () => void;

@@ -22,9 +22,15 @@ export default {
 export const DefaultBtnGroup = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Печенье
+      </SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Торты
+      </SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Конфеты
+      </SegmentButton>
     </SegmentButtonGroup>
   );
 };
@@ -34,9 +40,15 @@ DefaultBtnGroup.storyName = 'SegmentButtonGroup по умолчанию';
 export const BtnGroupCompact = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButton onClick={action('onClick')}>Печенье</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Торты</SegmentButton>
-      <SegmentButton onClick={action('onClick')}>Конфеты</SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Печенье
+      </SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Торты
+      </SegmentButton>
+      <SegmentButton buttonIndex={0} onClick={action('onClick')}>
+        Конфеты
+      </SegmentButton>
     </SegmentButtonGroup>
   );
 };

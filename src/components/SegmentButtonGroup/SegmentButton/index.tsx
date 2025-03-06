@@ -6,11 +6,12 @@ import clsx from 'clsx';
 import styles from '../SegmentButtonGroup.module.scss';
 
 import { SegmentButtonGroupContext } from '../context';
+import { ESegmentButtonGroupSizes } from '../enums';
 import type { ISegmentButtonProps } from '../types';
 
-const SegmentButton: FC<ISegmentButtonProps> = ({ active, children, className, onClick, toggleButton }) => {
-  const { disabled /* size */ } = useContext(SegmentButtonGroupContext);
-
+const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, toggleButton, buttonIndex }) => {
+  const { disabled, size, activeId } = useContext(SegmentButtonGroupContext);
+  const active = activeId === buttonIndex;
   // Обработчик клика
   const handleClick = (e: SyntheticEvent) => {
     if (disabled) return;
@@ -23,7 +24,12 @@ const SegmentButton: FC<ISegmentButtonProps> = ({ active, children, className, o
     <button
       onClick={handleClick}
       disabled={disabled}
-      className={clsx(styles.segmentButton, active && styles._active, className)}
+      className={clsx(
+        styles.segmentButton,
+        active && styles._active,
+        size === ESegmentButtonGroupSizes.s && styles['segmentButton-s'],
+        className
+      )}
       data-ui-segment-button
       data-testid="SEGMENT_BUTTON"
     >

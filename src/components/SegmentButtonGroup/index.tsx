@@ -10,7 +10,7 @@ import styles from './SegmentButtonGroup.module.scss';
 import { SegmentButtonGroupContext } from './context';
 import { ESegmentButtonGroupSizes } from './enums';
 
-export const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
+const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
   className,
   disabled,
   children,
@@ -37,8 +37,8 @@ export const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
           }
 
           const childrenProps: ISegmentButtonProps = {
-            active: activeId === index,
             children: child.props.children,
+            buttonIndex: index,
             toggleButton: () => handleToggle(index)
           };
 
@@ -51,7 +51,7 @@ export const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
   }, [activeId]);
 
   return (
-    <SegmentButtonGroupContext.Provider value={{ disabled, size }}>
+    <SegmentButtonGroupContext.Provider value={{ disabled, size, activeId }}>
       <Box
         gap={0}
         borderRadius={4}

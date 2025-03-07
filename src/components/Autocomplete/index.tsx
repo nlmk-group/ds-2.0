@@ -252,14 +252,11 @@ const Autocomplete = ({
   const handleClickAway = () => {
     setIsOpen(false);
 
-    // Проверяем, находится ли компонент в режиме редактирования
-    // Если да, и значение пустое, то не восстанавливаем значение из selectedItems
     if (isEditing && !inputValue.trim()) {
       setSelectedItems([]);
       setInputValue('');
       setUserInput('');
       setLastSearchValue('');
-      // Сбрасываем флаг редактирования
       setIsEditing(false);
       return;
     }

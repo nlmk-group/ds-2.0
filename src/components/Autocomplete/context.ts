@@ -1,6 +1,8 @@
 import { createContext, ReactNode, RefObject } from 'react';
 
-import { EAutocompleteSize, IAutocompleteValue } from './types';
+import { IAutocompleteValue } from './types';
+
+import { EAutocompleteSize } from './enums';
 
 interface AutocompleteContextProps {
   isOpen: boolean;
@@ -23,6 +25,7 @@ interface AutocompleteContextProps {
   showTooltip: boolean;
   renderLabel?: (item: IAutocompleteValue) => ReactNode;
   portalContainerId: string;
+  totalText: string;
 }
 export const AutocompleteContext = createContext<AutocompleteContextProps>({
   isOpen: false,
@@ -44,5 +47,6 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   size: EAutocompleteSize.m,
   showTooltip: false,
   renderLabel: undefined,
-  portalContainerId: 'root'
+  portalContainerId: 'root',
+  totalText: 'Всего:'
 });

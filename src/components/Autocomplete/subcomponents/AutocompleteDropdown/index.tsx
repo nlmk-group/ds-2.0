@@ -2,9 +2,6 @@ import React, { CSSProperties, FC, useContext, useEffect, useMemo, useState } fr
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import { AutocompleteContext } from '@components/Autocomplete/context';
-import { boldReactElement, boldString } from '@components/Autocomplete/helpers';
-import { EAutocompleteSize } from '@components/Autocomplete/types';
 import { Box, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
 import clsx from 'clsx';
@@ -13,6 +10,9 @@ import { IAutocompleteDropdownProps } from './types';
 
 import styles from './AutocompleteDropdown.module.scss';
 
+import { AutocompleteContext } from '../../context';
+import { EAutocompleteSize } from '../../enums';
+import { boldReactElement, boldString } from '../../helpers';
 import AutocompleteItem from '../AutocompleteItem';
 
 const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
@@ -35,7 +35,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     targetRef,
     size,
     showTooltip,
-    renderLabel
+    renderLabel,
+    totalText
   } = useContext(AutocompleteContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
@@ -145,7 +146,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
                 color="var(--steel-90)"
                 data-ui-autocomplete-total
               >
-                Total: {currentItems?.length}
+                {totalText} {currentItems?.length}
               </Typography>
 
               {currentItems?.map((item, index) => {

@@ -43,6 +43,8 @@ import AutocompleteDropdown from './subcomponents/AutocompleteDropdown';
  * Если задан, при отсутствии результатов и непустом вводе отображается опция для создания.
  * @prop {string} [props.noResultsText='No results for your request'] - Текст при отсутствии результатов.
  * @prop {(value: string) => string} [props.createItemText=(value) => `Create: ${value}`] - Функция для текста кнопки создания.
+ * @prop {string} [props.totalText='Всего:'] - Текст для отображения общего количества элементов.
+ * @prop {number} [props.debounceDelay=500] - Задержка в миллисекундах для debounce при вводе.
  *
  * Также принимаются любые пропсы для Input через `...inputProps`.
  *
@@ -74,6 +76,8 @@ const Autocomplete = ({
   onCreateItem,
   noResultsText = 'No results for your request',
   createItemText = (value: string) => `Добавить: ${value}`,
+  totalText = 'Всего:',
+  debounceDelay = 500,
   className,
   style,
   ...inputProps
@@ -90,7 +94,7 @@ const Autocomplete = ({
   const targetRef = useRef<HTMLDivElement>(null);
   const inputElementRef = useRef<HTMLInputElement>(null);
 
-  const debouncedOnInputEnd = useDebounce(500, (value: string) => {
+  const debouncedOnInputEnd = useDebounce(debounceDelay, (value: string) => {
     onDebouncedInputChange?.(value);
     onLoadOptions?.(value);
   });
@@ -167,12 +171,14 @@ const Autocomplete = ({
     }
     setInputValue(value);
     debouncedOnInputEnd(value);
-    if (!value) {
+    
+    if (!value.trim()) {
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
     }
   };
+  
 
   const onSelectMenuItem = (item: IAutocompleteValue) => {
     const name = nameGetterInside(item);
@@ -298,7 +304,8 @@ const Autocomplete = ({
         noResultsText,
         size,
         showTooltip,
-        renderLabel
+        renderLabel,
+        totalText
       }}
     >
       <ClickAwayListener onClickAway={handleClickAway}>

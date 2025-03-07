@@ -2,18 +2,14 @@ import { CSSProperties, MutableRefObject, ReactNode } from 'react';
 
 import { TInputProps } from '@components/Input/types';
 
+import { EAutocompleteSize } from './enums';
+
 export interface IAutocompleteValue {
   id?: number;
   name?: string;
   label?: string;
   value?: any;
   disabled?: boolean;
-}
-
-export enum EAutocompleteSize {
-  s = 's',
-  m = 'm',
-  xs = 'xs'
 }
 
 export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
@@ -120,6 +116,16 @@ export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
    * @default (value) => `Добавить: ${value}`
    */
   createItemText?: (value: string) => string;
+
+  /** Текст для отображения общего количества элементов
+   * @default 'Всего:'
+   */
+  totalText?: string;
+
+  /** Задержка в миллисекундах для debounce при вводе
+   * @default 500
+   */
+  debounceDelay?: number;
 
   /**
    * Дополнительный CSS класс

@@ -46,7 +46,7 @@ export default function App() {
 
 const withCreateItemCode = `
 import { Autocomplete } from '@nlmk/ds-2.0';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const defaultOptions = [
   { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
@@ -57,19 +57,14 @@ export default function WithCreateItemExample() {
   const [items, setItems] = useState(defaultOptions);
   const [selectedItem, setSelectedItem] = useState();
 
-  const handleCreateItem = (rawValue) => {
-    const value = rawValue.trim();
-
-    const existing = items.find(
-      (item) => item.label?.trim().toLowerCase() === value.toLowerCase()
-    );
-    if (existing) {
-      setSelectedItem(existing);
-      return;
-    }
-
-    const newItem = { id: items.length + 1, label: value, value };
-    setItems((prev) => [...prev, newItem]);
+  const handleCreateItem = (value) => {
+    const newItem = { 
+      id: items.length + 1, 
+      value: value.toLowerCase().replace(/\\s+/g, '_'), 
+      label: value 
+    };
+    
+    setItems(prev => [...prev, newItem]);
     setSelectedItem(newItem);
   };
 
@@ -77,58 +72,15 @@ export default function WithCreateItemExample() {
     <Autocomplete
       items={items}
       selected={selectedItem}
-      nameGetter={(item) => item.label?.trim() || ''}
-      onChange={(val) => setSelectedItem(val)}
+      nameGetter={(item) => item.label || ''}
+      onChange={setSelectedItem}
       onCreateItem={handleCreateItem}
-      placeholder="Начните ввод..."
-      noResultsText="Нет результатов"
       createItemText={(value) => \`Создать новый элемент: \${value}\`}
       label="Autocomplete с созданием нового элемента"
-      size="m"
+      placeholder="Введите название или создайте новый элемент"
     />
   );
 }
-`;
-
-const withLoadMoreCode = `
-import { Autocomplete } from '@nlmk/ds-2.0';
-import { useState, useEffect } from 'react';
-
-export default function WithLoadMoreExample() {
-  const [items, setItems] = useState(
-    Array.from({ length: 20 }, (_, i) => ({ id: i, label: \`Option \${i}\`, value: i }))
-  );
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleLoadMore = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setItems(prev => [
-        ...prev,
-        ...Array.from({ length: 10 }, (_, i) => ({
-          id: prev.length + i,
-          label: \`New Option \${prev.length + i}\`,
-          value: prev.length + i
-        }))
-      ]);
-      setIsLoading(false);
-    }, 1000);
-  };
-
-  return (
-    <div style={{ height: '300px', overflow: 'auto' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={(val) => console.log('onChange', val)}
-        canLoadMore={true}
-        onLoadMore={handleLoadMore}
-        isLoading={isLoading}
-        label="Autocomplete с догрузкой при скролле"
-      />
-    </div>
-  );
-};
 `;
 
 const withCustomTotalTextCode = `
@@ -158,50 +110,6 @@ export default function CustomTotalTextExample() {
       totalText="Найдено:"
       label="Autocomplete с кастомным текстом 'Total'"
     />
-  );
-};
-`;
-
-const withCustomDebounceCode = `
-import { Autocomplete } from '@nlmk/ds-2.0';
-import { useState } from 'react';
-
-const options = [
-  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
-  { id: 2, value: 'converter', label: 'Конвертер' },
-  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' },
-  { id: 4, value: 'sinter_plant', label: 'Агломерационная фабрика' },
-  { id: 5, value: 'coke_plant', label: 'Коксовая батарея' },
-  { id: 6, value: 'steel_ladle', label: 'Сталеразливочный ковш' },
-  { id: 7, value: 'continuous_casting', label: 'Машина непрерывного литья' },
-  { id: 8, value: 'electric_furnace', label: 'Электродуговая печь' },
-  { id: 9, value: 'oxygen_plant', label: 'Кислородная станция' },
-  { id: 10, value: 'heat_treatment', label: 'Термическая обработка' }
-];
-
-export default function CustomDebounceExample() {
-  const [selected, setSelected] = useState();
-  const [inputValue, setInputValue] = useState('');
-  
-  const handleDebouncedInputChange = (value) => {
-    console.log('Debounced input change after 1000ms:', value);
-    setInputValue(value);
-  };
-  
-  return (
-    <div>
-      <Autocomplete
-        items={options}
-        onChange={setSelected}
-        nameGetter={item => item.label || ''}
-        debounceDelay={1000}
-        onDebouncedInputChange={handleDebouncedInputChange}
-        label="Autocomplete с увеличенной задержкой debounce (1000мс)"
-      />
-      <div style={{ marginTop: '10px' }}>
-        Последнее значение после debounce: {inputValue}
-      </div>
-    </div>
   );
 };
 `;
@@ -257,7 +165,7 @@ export default function AsyncLoadingExample() {
 `;
 
 const withCustomRenderingCode = `
-import { Autocomplete } from '@nlmk/ds-2.0';
+import { Autocomplete, Typography } from '@nlmk/ds-2.0';
 import { useState, useCallback } from 'react';
 
 const options = [
@@ -278,10 +186,14 @@ export default function CustomRenderingExample() {
 
   const renderCustomLabel = (item) => {
     return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <span style={{ marginRight: '8px', color: '#666' }}>ID: {item.id}</span>
-        <strong>{item.label}</strong>
-        <span style={{ marginLeft: '8px', fontSize: '12px', color: '#999' }}>({item.value})</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Typography variant="Body-Medium" color="var(--spectrum-red-50)">
+          ID: {item.id}
+        </Typography>
+        <Typography color="var(--steel-90)">{item.label}</Typography>
+        <Typography variant="Caption-Medium" color="var(--steel-70)">
+          ({item.value})
+        </Typography>
       </div>
     );
   };
@@ -379,6 +291,44 @@ export default function PortalExample() {
 };
 `;
 
+const withEmptyDropdownCode = `
+import { Autocomplete } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const options = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' },
+  { id: 4, value: 'sinter_plant', label: 'Агломерационная фабрика' },
+  { id: 5, value: 'coke_plant', label: 'Коксовая батарея' }
+];
+
+export default function EmptyDropdownExample() {
+  const [selected, setSelected] = useState();
+  
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <Autocomplete 
+        items={options} 
+        nameGetter={item => item.label || ''} 
+        onChange={setSelected}
+        showEmptyDropdown={true}
+        label="С отображением пустого дропдауна (по умолчанию)"
+        noResultsText="Ничего не найдено"
+      />
+      
+      <Autocomplete 
+        items={options} 
+        nameGetter={item => item.label || ''} 
+        onChange={setSelected}
+        showEmptyDropdown={false}
+        label="Без отображения пустого дропдауна"
+      />
+    </div>
+  );
+};
+`;
+
 const AutocompleteStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -404,11 +354,6 @@ const AutocompleteStories = (): JSX.Element => {
         <>
           <Editor height={200} description="Autocomplete по умолчанию" code={autocompleteDefaultCode} />
           <Editor height={200} description="Autocomplete с кастомным текстом 'Total'" code={withCustomTotalTextCode} />
-          <Editor
-            height={200}
-            description="Autocomplete с кастомной задержкой debounce"
-            code={withCustomDebounceCode}
-          />
           <Editor height={200} description="Autocomplete с асинхронной загрузкой данных" code={withAsyncLoadingCode} />
           <Editor height={200} description="Autocomplete с созданием нового элемента" code={withCreateItemCode} />
           <Editor
@@ -416,9 +361,9 @@ const AutocompleteStories = (): JSX.Element => {
             description="Autocomplete с кастомным рендерингом опций"
             code={withCustomRenderingCode}
           />
-          <Editor height={200} description="Autocomplete с догрузкой при скролле" code={withLoadMoreCode} />
           <Editor height={200} description="Autocomplete с разными размерами" code={withSizesCode} />
           <Editor height={200} description="Autocomplete с рендерингом через портал" code={withPortalCode} />
+          <Editor height={200} description="Autocomplete с настройкой пустого дропдауна" code={withEmptyDropdownCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

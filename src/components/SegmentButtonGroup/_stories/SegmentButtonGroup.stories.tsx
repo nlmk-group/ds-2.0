@@ -44,39 +44,6 @@ export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): R
 
 SegmentButtonGroupDefault.storyName = 'SegmentButtonGroup по умолчанию';
 
-export const SegmentButtonGroupSizes = (argTypes: ISegmentButtonGroupProps): ReactNode => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
-      }}
-    >
-      {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
-        <SegmentButtonGroup key={index} size={size} {...argTypes}>
-          <SegmentButton onClick={action('onClick')}>
-            <Typography variant="Body1-Bold" color="var(--steel-90)">
-              Сталь
-            </Typography>
-          </SegmentButton>
-          <SegmentButton onClick={action('onClick')}>
-            <Typography variant="Body1-Bold" color="var(--steel-90)">
-              Цинк
-            </Typography>
-          </SegmentButton>
-          <SegmentButton onClick={action('onClick')}>
-            <Typography variant="Body1-Bold" color="var(--steel-90)">
-              Чугун
-            </Typography>
-          </SegmentButton>
-        </SegmentButtonGroup>
-      ))}
-    </div>
-  );
-};
-
-SegmentButtonGroupSizes.storyName = 'SegmentButtonGroup в разных размерах';
 export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <div

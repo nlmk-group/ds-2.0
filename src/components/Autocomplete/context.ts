@@ -26,6 +26,8 @@ interface AutocompleteContextProps {
   renderLabel?: (item: IAutocompleteValue) => ReactNode;
   portalContainerId: string;
   totalText: string;
+  showTotalCount: boolean;
+  showEmptyDropdown: boolean;
 }
 export const AutocompleteContext = createContext<AutocompleteContextProps>({
   isOpen: false,
@@ -48,5 +50,7 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   showTooltip: false,
   renderLabel: undefined,
   portalContainerId: 'root',
-  totalText: 'Всего:'
+  totalText: 'Всего:',
+  showTotalCount: true,
+  showEmptyDropdown: true
 });

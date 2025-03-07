@@ -41,10 +41,12 @@ import AutocompleteDropdown from './subcomponents/AutocompleteDropdown';
  * @prop {() => void} [props.onLoadOptions] Колбэк для запроса новых данных при вводе.
  * @prop {(value: string) => void} [props.onCreateItem] Колбэк для создания нового элемента.
  * Если задан, при отсутствии результатов и непустом вводе отображается опция для создания.
- * @prop {string} [props.noResultsText='No results for your request'] - Текст при отсутствии результатов.
- * @prop {(value: string) => string} [props.createItemText=(value) => `Create: ${value}`] - Функция для текста кнопки создания.
+ * @prop {string} [props.noResultsText='Ничего не найдено'] - Текст при отсутствии результатов.
+ * @prop {(value: string) => string} [props.createItemText=(value) => `Добавить: ${value}`] - Функция для текста кнопки создания.
  * @prop {string} [props.totalText='Всего:'] - Текст для отображения общего количества элементов.
+ * @prop {boolean} [props.showTotalCount=true] - Показывать ли общее количество элементов.
  * @prop {number} [props.debounceDelay=500] - Задержка в миллисекундах для debounce при вводе.
+ * @prop {boolean} [props.showEmptyDropdown=true] - Показывать ли дропдаун при отсутствии результатов.
  *
  * Также принимаются любые пропсы для Input через `...inputProps`.
  *
@@ -74,10 +76,12 @@ const Autocomplete = ({
   canLoadMore = false,
   onLoadMore,
   onCreateItem,
-  noResultsText = 'No results for your request',
+  noResultsText = 'Ничего не найдено',
   createItemText = (value: string) => `Добавить: ${value}`,
   totalText = 'Всего:',
+  showTotalCount = true,
   debounceDelay = 500,
+  showEmptyDropdown = true,
   className,
   style,
   ...inputProps
@@ -88,6 +92,9 @@ const Autocomplete = ({
   const [realData, setRealData] = useState<Array<IAutocompleteValue> | null>(items);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+  const [userInput, setUserInput] = useState('');
+  const [lastSearchValue, setLastSearchValue] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -96,34 +103,43 @@ const Autocomplete = ({
 
   const debouncedOnInputEnd = useDebounce(debounceDelay, (value: string) => {
     onDebouncedInputChange?.(value);
-    onLoadOptions?.(value);
+    if (onLoadOptions) {
+      setLastSearchValue(value);
+      onLoadOptions(value);
+    }
   });
 
   useEffect(() => {
     if (selected) {
       setSelectedItems([selected]);
       setInputValue(nameGetter(selected));
+      setUserInput(nameGetter(selected));
+      setLastSearchValue(nameGetter(selected));
+      setIsEditing(false);
     } else {
       setSelectedItems([]);
-      setInputValue('');
     }
   }, [selected, nameGetter]);
 
-  /**
-   * При изменении списка элементов или ввода (inputValue), пересчитываем currentItems.
-   * Это значит, что при каждом вводе текста фильтр обновляется.
-   */
   useEffect(() => {
     if (items && !isLoading) {
       const dataValues = items.filter(
         item => (item.id !== undefined && Number(item.id) >= 0) || Number.isNaN(Number(item.id))
       );
       setRealData(dataValues);
-      setCurrentItems(getFieldOptions(dataValues, inputValue, nameGetter));
-      // Сброс highlightedIndex при обновлении списка
+
+      setCurrentItems(getFieldOptions(dataValues, userInput, nameGetter));
+
       setHighlightedIndex(-1);
     }
-  }, [items, isLoading, inputValue, nameGetter]);
+  }, [items, isLoading, userInput, nameGetter]);
+
+  useEffect(() => {
+    if (isLoading) {
+      setInputValue(lastSearchValue);
+      setUserInput(lastSearchValue);
+    }
+  }, [isLoading, lastSearchValue]);
 
   /**
    * Функция, которая при выборе элемента пытается найти полный объект в realData и передать его в nameGetter.
@@ -164,23 +180,32 @@ const Autocomplete = ({
 
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
-    if (value) {
-      setIsOpen(true);
-    } else {
-      clearSelect();
-    }
+
+    setIsEditing(true);
+
+    setUserInput(value);
     setInputValue(value);
-    debouncedOnInputEnd(value);
-    
+    setLastSearchValue(value);
+
+    setIsOpen(true);
+
+    if (!value) {
+      clearSelectButKeepDropdown();
+    } else {
+      debouncedOnInputEnd(value);
+    }
+
     if (!value.trim()) {
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
+      setSelectedItems([]);
     }
   };
-  
 
   const onSelectMenuItem = (item: IAutocompleteValue) => {
+    setIsEditing(false);
+
     const name = nameGetterInside(item);
     onChangeSingleSelect(item, name);
     if (onFullItemSelect) {
@@ -192,28 +217,62 @@ const Autocomplete = ({
   const onChangeSingleSelect = (item: IAutocompleteValue, name: string) => {
     setSelectedItems([item]);
     setInputValue(name);
+    setUserInput(name);
+    setLastSearchValue(name);
     onChange(item);
     inputElementRef.current?.focus();
     setIsOpen(false);
   };
 
   const clearSelect = () => {
+    setIsEditing(false);
+
     setInputValue('');
+    setUserInput('');
+    setLastSearchValue('');
     setSelectedItems([]);
     const nextValue = noSelectionItem ?? undefined;
     onChange(nextValue);
     onFullItemSelect?.(undefined);
-    inputElementRef.current?.focus();
     setIsOpen(false);
+  };
+
+  const clearSelectButKeepDropdown = () => {
+    setIsEditing(false);
+
+    setInputValue('');
+    setUserInput('');
+    setLastSearchValue('');
+    setSelectedItems([]);
+    const nextValue = noSelectionItem ?? undefined;
+    onChange(nextValue);
+    onFullItemSelect?.(undefined);
   };
 
   const handleClickAway = () => {
     setIsOpen(false);
-    if (selectedItems.length === 0) {
+
+    // Проверяем, находится ли компонент в режиме редактирования
+    // Если да, и значение пустое, то не восстанавливаем значение из selectedItems
+    if (isEditing && !inputValue.trim()) {
+      setSelectedItems([]);
       setInputValue('');
-    } else {
-      setInputValue(selectedItems.map(selectedItem => selectedItem.label).join(', '));
+      setUserInput('');
+      setLastSearchValue('');
+      // Сбрасываем флаг редактирования
+      setIsEditing(false);
+      return;
     }
+
+    if (selectedItems.length === 0) {
+    } else {
+      const label = selectedItems.map(selectedItem => selectedItem.label).join(', ');
+      setInputValue(label);
+      setUserInput(label);
+      setLastSearchValue(label);
+    }
+
+    setIsEditing(false);
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -253,10 +312,12 @@ const Autocomplete = ({
         } else if (showCreateItem && highlightedIndex === 0) {
           onCreateItem!(inputValue);
           setIsOpen(false);
+          setIsEditing(false);
         }
         break;
       case 'Escape':
         setIsOpen(false);
+        setIsEditing(false);
         break;
       default:
         break;
@@ -280,6 +341,11 @@ const Autocomplete = ({
   );
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
 
+  const hasItems = (currentItems ?? []).length > 0;
+
+  const shouldShowDropdown =
+    isOpen && !disabled && !readOnly && (showEmptyDropdown || hasItems || showCreateItem || isLoading);
+
   const dropdownContent = <AutocompleteDropdown />;
 
   return (
@@ -296,7 +362,7 @@ const Autocomplete = ({
         showCreateItem,
         onCreateItem,
         currentItems,
-        inputValue,
+        inputValue: lastSearchValue || inputValue,
         highlightedIndex,
         selectedItems,
         createItemText,
@@ -305,7 +371,9 @@ const Autocomplete = ({
         size,
         showTooltip,
         renderLabel,
-        totalText
+        totalText,
+        showTotalCount,
+        showEmptyDropdown
       }}
     >
       <ClickAwayListener onClickAway={handleClickAway}>
@@ -318,7 +386,7 @@ const Autocomplete = ({
           <Input
             {...inputProps}
             inputRef={inputElementRef}
-            value={inputValue}
+            value={lastSearchValue || inputValue}
             onKeyDown={handleKeyDown}
             icon={
               <Icon
@@ -342,7 +410,7 @@ const Autocomplete = ({
             data-ui-autocomplete-input
             data-testid="AUTOCOMPLETE_INPUT"
           />
-          {isOpen && !disabled && !readOnly && dropdownContent}
+          {shouldShowDropdown && dropdownContent}
         </div>
       </ClickAwayListener>
     </AutocompleteContext.Provider>

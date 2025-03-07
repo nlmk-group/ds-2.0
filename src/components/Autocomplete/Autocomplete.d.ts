@@ -129,6 +129,36 @@ export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
    * @default (value) => `Добавить: ${value}`
    */
   createItemText?: (value: string) => string;
+
+  /** Текст для отображения общего количества элементов
+   * @default 'Всего:'
+   */
+  totalText?: string;
+
+  /** Задержка в миллисекундах для debounce при вводе
+   * @default 500
+   */
+  debounceDelay?: number;
+
+  /** Показывать ли общее количество элементов
+   * @default true
+   */
+  showTotalCount?: boolean;
+
+  /** Показывать ли дропдаун при отсутствии результатов
+   * @default true
+   */
+  showEmptyDropdown?: boolean;
+
+  /**
+   * Дополнительный CSS класс
+   */
+  className?: string;
+
+  /**
+   * Inline стили для кастомизации компонента
+   */
+  style?: CSSProperties;
 }
 
 declare const Autocomplete: (props: IAutocompleteProps) => JSX.Element;

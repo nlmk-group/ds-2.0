@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { createContext, ReactNode } from 'react';
 
-import { Autocomplete } from '@components/index';
+import { Autocomplete, Typography } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -90,25 +90,6 @@ export const AutocompleteWithCustomTotalText = (): JSX.Element => {
 };
 AutocompleteWithCustomTotalText.storyName = 'Autocomplete с кастомным текстом "Total"';
 
-export const AutocompleteWithCustomDebounce = (): JSX.Element => {
-  const [items] = useState<IAutocompleteValue[]>(defaultOptions);
-  const [selected, setSelected] = useState<IAutocompleteValue | undefined>(undefined);
-
-  return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        debounceDelay={1000}
-        label="Autocomplete с увеличенной задержкой debounce (1000мс)"
-      />
-    </div>
-  );
-};
-AutocompleteWithCustomDebounce.storyName = 'Autocomplete с кастомной задержкой debounce';
-
 export const AutocompleteWithAsyncLoading = (): JSX.Element => {
   const [items, setItems] = useState<IAutocompleteValue[]>([]);
   const [selected, setSelected] = useState<IAutocompleteValue | undefined>(undefined);
@@ -182,10 +163,14 @@ export const AutocompleteWithCustomRendering = (): JSX.Element => {
 
   const renderCustomLabel = useCallback((item: IAutocompleteValue) => {
     return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <span style={{ marginRight: '8px', color: '#666' }}>ID: {item.id}</span>
-        <strong>{item.label}</strong>
-        <span style={{ marginLeft: '8px', fontSize: '12px', color: '#999' }}>({item.value})</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Typography variant="Body-Medium" color="var(--spectrum-red-50)">
+          ID: {item.id}
+        </Typography>
+        <Typography color="var(--steel-90)">{item.label}</Typography>
+        <Typography variant="Caption-Medium" color="var(--steel-70)">
+          ({item.value})
+        </Typography>
       </div>
     );
   }, []);
@@ -205,52 +190,6 @@ export const AutocompleteWithCustomRendering = (): JSX.Element => {
   );
 };
 AutocompleteWithCustomRendering.storyName = 'Autocomplete с кастомным рендерингом опций';
-
-export const AutocompleteWithInfiniteScroll = (): JSX.Element => {
-  const [items, setItems] = useState<IAutocompleteValue[]>(defaultOptions.slice(0, 3));
-  const [selected, setSelected] = useState<IAutocompleteValue | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState(false);
-  const [canLoadMore, setCanLoadMore] = useState(true);
-  const [page, setPage] = useState(1);
-
-  const handleLoadMore = useCallback(() => {
-    if (isLoading) return;
-
-    setIsLoading(true);
-
-    setTimeout(() => {
-      const nextPage = page + 1;
-      const startIndex = page * 3;
-      const endIndex = startIndex + 3;
-      const newItems = defaultOptions.slice(startIndex, endIndex);
-
-      setItems(prevItems => [...prevItems, ...newItems]);
-      setPage(nextPage);
-      setIsLoading(false);
-
-      if (endIndex >= defaultOptions.length) {
-        setCanLoadMore(false);
-      }
-    }, 1000);
-  }, [isLoading, page]);
-
-  return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        isLoading={isLoading}
-        canLoadMore={canLoadMore}
-        onLoadMore={handleLoadMore}
-        label="Autocomplete с бесконечной прокруткой"
-        placeholder="Прокрутите вниз для загрузки дополнительных элементов"
-      />
-    </div>
-  );
-};
-AutocompleteWithInfiniteScroll.storyName = 'Autocomplete с бесконечной прокруткой';
 
 export const AutocompleteWithPortal = (): JSX.Element => {
   const [items] = useState<IAutocompleteValue[]>(defaultOptions);

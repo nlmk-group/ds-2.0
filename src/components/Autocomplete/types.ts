@@ -127,6 +127,16 @@ export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
    */
   debounceDelay?: number;
 
+  /** Показывать ли общее количество элементов
+   * @default true
+   */
+  showTotalCount?: boolean;
+
+  /** Показывать ли дропдаун при отсутствии результатов
+   * @default true
+   */
+  showEmptyDropdown?: boolean;
+
   /**
    * Дополнительный CSS класс
    */

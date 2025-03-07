@@ -176,6 +176,24 @@ export const argsTypes = {
     },
     control: { type: 'number' }
   },
+  showTotalCount: {
+    description: 'Показывать ли общее количество элементов',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  showEmptyDropdown: {
+    description: 'Показывать ли дропдаун при отсутствии результатов',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      }
+    },
+    control: { type: 'boolean' }
+  },
   className: {
     description: 'Дополнительный CSS-класс для контейнера',
     control: { type: 'text' }

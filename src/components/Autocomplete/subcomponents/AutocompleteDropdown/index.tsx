@@ -36,7 +36,9 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     size,
     showTooltip,
     renderLabel,
-    totalText
+    totalText,
+    showTotalCount,
+    showEmptyDropdown
   } = useContext(AutocompleteContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
@@ -71,7 +73,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'offset',
         options: {
-          offset: [0, 8]
+          offset: [0, 0]
         }
       }
     ]
@@ -140,14 +142,16 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
 
           {hasItems ? (
             <>
-              <Typography
-                className={styles.total}
-                variant="Caption-Medium"
-                color="var(--steel-90)"
-                data-ui-autocomplete-total
-              >
-                {totalText} {currentItems?.length}
-              </Typography>
+              {showTotalCount && (
+                <Typography
+                  className={styles.total}
+                  variant="Caption-Medium"
+                  color="var(--steel-90)"
+                  data-ui-autocomplete-total
+                >
+                  {totalText} {currentItems?.length}
+                </Typography>
+              )}
 
               {currentItems?.map((item, index) => {
                 if (!item.label) return null;
@@ -172,14 +176,16 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
               })}
             </>
           ) : (
-            <Box flexDirection="column" data-ui-autocomplete-empty>
-              <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
-                <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
-                <Typography variant="Caption-Medium" color="var(--steel-90)">
-                  {noResultsText ?? 'Нет результатов'}
-                </Typography>
+            showEmptyDropdown && (
+              <Box flexDirection="column" data-ui-autocomplete-empty>
+                <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
+                  <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
+                  <Typography variant="Caption-Medium" color="var(--steel-90)">
+                    {noResultsText ?? 'Ничего не найдено'}
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
+            )
           )}
         </Box>
       )}

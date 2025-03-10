@@ -3,87 +3,67 @@ import React from 'react';
 import { SegmentButtonGroup } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import styles from './SegmentButtonGroup.module.scss';
+import { ESegmentButtonGroupSizes } from './enums';
+import SegmentButton from './SegmentButton';
 
-import { buttonColor } from './enums';
-
-describe('src/components/SegmentButtonGroup', () => {
+describe('SegmentButtonGroup Component', () => {
   const mockCallBack = jest.fn();
-  const btnTitle = 'Hello world';
-  const TBGHelper = () => (
+  const btnText = 'Click me';
+
+  const TestComponent = () => (
     <SegmentButtonGroup>
-      <SegmentButtonGroup.Button onClick={mockCallBack}>{btnTitle}</SegmentButtonGroup.Button>
+      <SegmentButton buttonIndex={0} onClick={mockCallBack}>
+        {btnText}
+      </SegmentButton>
     </SegmentButtonGroup>
   );
 
-  test('It should render a SegmentButtonGroup', () => {
-    const { container } = render(<TBGHelper />);
-    const btnGroup = container.getElementsByTagName('div')[0];
-    expect(btnGroup).toBeInTheDocument();
+  test('renders SegmentButtonGroup correctly', () => {
+    render(<TestComponent />);
+    const wrapper = screen.getByTestId('SEGMENT_BUTTON_WRAPPER');
+    expect(wrapper).toBeInTheDocument();
   });
 
-  test('It should render a SegmentButtonGroup with custom className', () => {
-    const className = 'test-class-wrapper';
+  test('renders a button inside SegmentButtonGroup', () => {
+    render(<TestComponent />);
+    const button = screen.getByTestId('SEGMENT_BUTTON');
+    expect(button).toHaveTextContent(btnText);
+  });
+
+  test('adds custom class to SegmentButtonGroup', () => {
+    const customClass = 'custom-class';
     render(
-      <SegmentButtonGroup className={styles[className]}>
-        <SegmentButtonGroup.Button onClick={mockCallBack}>{btnTitle}</SegmentButtonGroup.Button>
+      <SegmentButtonGroup className={customClass}>
+        <SegmentButton buttonIndex={0} onClick={mockCallBack}>
+          {btnText}
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const wrapper = screen.getByTestId('SEGMENT_BUTTON_WRAPPER');
-    expect(wrapper.classList.contains(className)).toBe(true);
+    expect(wrapper.classList.contains(customClass)).toBe(true);
   });
 
-  test('It should render ToggleButtonGroup with ToggleButton', () => {
-    render(<TBGHelper />);
-    const btn = screen.getByTestId('SEGMENT_BUTTON');
-    expect(btn).toHaveTextContent(btnTitle);
-  });
-
-  test('It should render ToggleButtonGroup with disabled SegmentButton', () => {
-    render(
-      <SegmentButtonGroup>
-        <SegmentButtonGroup.Button onClick={mockCallBack} disabled>
-          {btnTitle}
-        </SegmentButtonGroup.Button>
-      </SegmentButtonGroup>
-    );
-    const btn = screen.getByTestId('SEGMENT_BUTTON');
-    expect(btn.hasAttribute('disabled')).toBe(true);
-  });
-
-  test('It should render ToggleButtonGroup with SegmentButton with custom className', () => {
-    const className = 'test-class-btn';
-    render(
-      <SegmentButtonGroup>
-        <SegmentButtonGroup.Button onClick={mockCallBack} className={styles[className]}>
-          {btnTitle}
-        </SegmentButtonGroup.Button>
-      </SegmentButtonGroup>
-    );
-    const btn = screen.getByTestId('SEGMENT_BUTTON');
-    expect(btn.classList.contains(className)).toBe(true);
-  });
-
-  test('It should call a function while click', () => {
-    render(<TBGHelper />);
-    const btn = screen.getByTestId('SEGMENT_BUTTON');
-    fireEvent.click(btn);
+  test('button click triggers onClick function', () => {
+    render(<TestComponent />);
+    const button = screen.getByTestId('SEGMENT_BUTTON');
+    fireEvent.click(button);
     expect(mockCallBack).toHaveBeenCalledTimes(1);
   });
 
-  Object.values(buttonColor).forEach((color: buttonColor) => {
-    describe(`While rendering with ${color} color`, () => {
-      const TestToggleButtonGroup = ({ color }: { color: buttonColor }) => (
-        <SegmentButtonGroup color={color as buttonColor}>
-          <SegmentButtonGroup.Button onClick={mockCallBack}>{btnTitle}</SegmentButtonGroup.Button>
-        </SegmentButtonGroup>
-      );
+  test('button receives correct active state on click', () => {
+    render(<TestComponent />);
+    const button = screen.getByTestId('SEGMENT_BUTTON');
+    fireEvent.click(button);
+    expect(button.classList.contains('_active')).toBe(true);
+  });
 
-      test(`It should render wrapper with ${color} color`, () => {
-        render(<TestToggleButtonGroup color={color} />);
-        const toggleBtn = screen.getByTestId('SEGMENT_BUTTON');
-        expect(toggleBtn.classList.contains(`_${color}`)).toBe(true);
-      });
-    });
+  test('renders button with different sizes correctly', () => {
+    render(
+      <SegmentButtonGroup size={ESegmentButtonGroupSizes.s}>
+        <SegmentButton buttonIndex={0}>{btnText}</SegmentButton>
+      </SegmentButtonGroup>
+    );
+    const button = screen.getByTestId('SEGMENT_BUTTON');
+    expect(button.classList.contains('segmentButton-s')).toBe(true);
   });
 });

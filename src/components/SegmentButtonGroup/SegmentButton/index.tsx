@@ -1,55 +1,53 @@
-import React, { SyntheticEvent, useContext } from 'react';
+import React, { FC, SyntheticEvent, useContext } from 'react';
 
-import { Typography } from '@components/index';
-import { clsx } from 'clsx';
+import clsx from 'clsx';
 
 import styles from '../SegmentButtonGroup.module.scss';
 
-import { SegmentButtonProperties } from '../index';
-import type { ISegmentButtonProperties, ISegmentButtonProps } from '../types';
+import { SegmentButtonGroupContext } from '../context';
+import { ESegmentButtonGroupSizes } from '../enums';
+import type { ISegmentButtonProps } from '../types';
 
-export const SegmentButton = ({
-  className,
-  disabled = false,
-  active = false,
-  color,
-  children,
-  onClick = () => void 0,
-  toggleButton = () => void 0
-}: ISegmentButtonProps) => {
-  const defaultProps = useContext<ISegmentButtonProperties>(SegmentButtonProperties);
-  const isDisabled = defaultProps.disabled || disabled;
-  const isPrimitiveChildren = typeof children === 'string' || typeof children === 'number';
-  const currentColor = `_${color || defaultProps.color}`;
-
+/**
+ * Компонент `SegmentButton` представляет собой одну кнопку внутри `SegmentButtonGroup`.
+ * Поддерживает состояние `active`, переключение состояний и обработку кликов.
+ *
+ * @component
+ *
+ * @param {ISegmentButtonProps} props - Свойства компонента `SegmentButton`.
+ * @param {string} [props.className] - Дополнительный CSS класс для стилизации кнопки.
+ * @param {ReactNode} props.children - Контент кнопки (текст, иконки и пр.).
+ * @param {Function} [props.onClick] - Коллбэк, вызываемый при клике по кнопке.
+ * @param {Function} [props.toggleButton] - Функция переключения `active` состояния кнопки.
+ * @param {number} props.buttonIndex - Индекс кнопки в группе для определения её `active` состояния.
+ *
+ * @returns {JSX.Element} Компонент кнопки `SegmentButton`, работающий внутри `SegmentButtonGroup`.
+ */
+const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, toggleButton, buttonIndex }) => {
+  const { disabled, size, activeId } = useContext(SegmentButtonGroupContext);
+  const active = activeId === buttonIndex;
+  // Обработчик клика
   const handleClick = (e: SyntheticEvent) => {
-    toggleButton();
-    if (!onClick) return;
+    if (disabled) return;
 
-    onClick(e);
+    toggleButton?.();
+    onClick?.(e);
   };
 
   return (
     <button
       onClick={handleClick}
-      disabled={isDisabled}
+      disabled={disabled}
       className={clsx(
         styles.segmentButton,
-        styles[currentColor],
-        defaultProps.compact ? styles._compact : '',
-        active ? styles._active : '',
+        active && styles.active,
+        size === ESegmentButtonGroupSizes.s && styles['segmentButton-s'],
         className
       )}
       data-ui-segment-button
       data-testid="SEGMENT_BUTTON"
     >
-      {isPrimitiveChildren ? (
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          {children}
-        </Typography>
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 };

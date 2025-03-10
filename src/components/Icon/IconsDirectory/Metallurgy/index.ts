@@ -7,12 +7,6 @@ export {
   IconACACriticalityAnalysis24,
   IconACACriticalityAnalysis32
 } from './ACACriticalityAnalysis';
-export {
-  IconASIImplementationOutlined16,
-  IconASIImplementationOutlined24,
-  IconASIImplementationOutlined32
-} from './ASIImplementationOutlined';
-export { IconASM16, IconASM24, IconASM32 } from './ASM';
 export { IconAnalysisnpFilled16, IconAnalysisnpFilled24, IconAnalysisnpFilled32 } from './AnalysisnpFilled';
 export { IconAnalysisnpOutlined16, IconAnalysisnpOutlined24, IconAnalysisnpOutlined32 } from './AnalysisnpOutlined';
 export { IconAnalyticalUIFilled16, IconAnalyticalUIFilled24, IconAnalyticalUIFilled32 } from './AnalyticalUIFilled';
@@ -23,6 +17,12 @@ export {
 } from './AnalyticalUIOutlined';
 export { IconArmatura16, IconArmatura24, IconArmatura32 } from './Armatura';
 export { IconArmaturaFilled16, IconArmaturaFilled24, IconArmaturaFilled32 } from './ArmaturaFilled';
+export {
+  IconASIImplementationOutlined16,
+  IconASIImplementationOutlined24,
+  IconASIImplementationOutlined32
+} from './ASIImplementationOutlined';
+export { IconASM16, IconASM24, IconASM32 } from './ASM';
 export { IconBalanceFilled16, IconBalanceFilled24, IconBalanceFilled32 } from './BalanceFilled';
 export { IconBalanceOutlined16, IconBalanceOutlined24, IconBalanceOutlined32 } from './BalanceOutlined';
 export { IconBunkerFilled16, IconBunkerFilled24, IconBunkerFilled32 } from './BunkerFilled';
@@ -64,25 +64,25 @@ export {
   IconIdentificationOutlined24,
   IconIdentificationOutlined32
 } from './IdentificationOutlined';
-export { IconKPEFilled16, IconKPEFilled24, IconKPEFilled32 } from './KPEFilled';
-export { IconKPEOutlined16, IconKPEOutlined24, IconKPEOutlined32 } from './KPEOutlined';
 export { IconKolpak16, IconKolpak24, IconKolpak32 } from './Kolpak';
 export { IconKovsh16, IconKovsh24, IconKovsh32 } from './Kovsh';
 export { IconKovshFilled16, IconKovshFilled24, IconKovshFilled32 } from './KovshFilled';
 export { IconKovshInProgress16, IconKovshInProgress24, IconKovshInProgress32 } from './KovshInProgress';
+export { IconKPEFilled16, IconKPEFilled24, IconKPEFilled32 } from './KPEFilled';
+export { IconKPEOutlined16, IconKPEOutlined24, IconKPEOutlined32 } from './KPEOutlined';
 export { IconListSheets16, IconListSheets24, IconListSheets32 } from './ListSheets';
 export { IconListSheetsFilled16, IconListSheetsFilled24, IconListSheetsFilled32 } from './ListSheetsFilled';
 export { IconLotok16, IconLotok24, IconLotok32 } from './Lotok';
 export { IconLotokFilled16, IconLotokFilled24, IconLotokFilled32 } from './LotokFilled';
 export { IconMatrixOutlined16, IconMatrixOutlined24, IconMatrixOutlined32 } from './MatrixOutlined';
 export { IconMetalFilled16, IconMetalFilled24, IconMetalFilled32 } from './MetalFilled';
-export { IconMetalOutlined16, IconMetalOutlined24, IconMetalOutlined32 } from './MetalOutlined';
 export { IconMetallalomScrap16, IconMetallalomScrap24, IconMetallalomScrap32 } from './MetallalomScrap';
 export {
   IconMetallalomScrapFilled16,
   IconMetallalomScrapFilled24,
   IconMetallalomScrapFilled32
 } from './MetallalomScrapFilled';
+export { IconMetalOutlined16, IconMetalOutlined24, IconMetalOutlined32 } from './MetalOutlined';
 export { IconMixer16, IconMixer24, IconMixer32 } from './Mixer';
 export { IconMixerFilled16, IconMixerFilled24, IconMixerFilled32 } from './MixerFilled';
 export { IconMnemoFilled16, IconMnemoFilled24, IconMnemoFilled32 } from './MnemoFilled';
@@ -103,6 +103,7 @@ export { IconSlabFilled16, IconSlabFilled24, IconSlabFilled32 } from './SlabFill
 export { IconSlabOutlined16, IconSlabOutlined24, IconSlabOutlined32 } from './SlabOutlined';
 export { IconTackleCrane16, IconTackleCrane24, IconTackleCrane32 } from './TackleCrane';
 export { IconTackleCraneFilled16, IconTackleCraneFilled24, IconTackleCraneFilled32 } from './TackleCraneFilled';
+export { IconTemperatureFilled16, IconTemperatureFilled24, IconTemperatureFilled32 } from './TemperatureFilled';
 export { IconTemperatureStroke16, IconTemperatureStroke24, IconTemperatureStroke32 } from './TemperatureStroke';
 export { IconTrolleyFilled16, IconTrolleyFilled24, IconTrolleyFilled32 } from './TrolleyFilled';
 export { IconTrolleyOutlined16, IconTrolleyOutlined24, IconTrolleyOutlined32 } from './TrolleyOutlined';

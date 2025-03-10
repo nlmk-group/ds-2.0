@@ -35,11 +35,11 @@
   &-s {
     padding: 6px 3px;
   }
-  &._active,
+  &.active,
   &:disabled {
     pointer-events: none;
   }
-  &._active {
+  &.active {
     background: var(--spectrum-sky-30);
   }
   &:hover {

@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={600}
-            description={'SegmentButtonGroup по умолчанию'}
+            description="SegmentButtonGroup по умолчанию"
             code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
 
 const { Button } = SegmentButtonGroup;

@@ -13,10 +13,6 @@ import type { ISegmentButtonProps } from '../types';
  * Поддерживает состояние `active`, переключение состояний и обработку кликов.
  *
  * @component
- * @example
- * <SegmentButton onClick={() => console.log('Clicked')}>
- *   Кнопка 1
- * </SegmentButton>
  *
  * @param {ISegmentButtonProps} props - Свойства компонента `SegmentButton`.
  * @param {string} [props.className] - Дополнительный CSS класс для стилизации кнопки.
@@ -44,7 +40,7 @@ const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, 
       disabled={disabled}
       className={clsx(
         styles.segmentButton,
-        active && styles._active,
+        active && styles.active,
         size === ESegmentButtonGroupSizes.s && styles['segmentButton-s'],
         className
       )}

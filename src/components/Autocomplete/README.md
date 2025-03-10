@@ -37,6 +37,15 @@ import { Autocomplete } from '@nlmk/ds-2.0';
   onLoadMore={handleLoadMore}
   canLoadMore={hasMoreItems}
 />;
+
+// С кастомным текстом "Total" и задержкой debounce
+<Autocomplete
+  items={items}
+  nameGetter={({ label }) => label}
+  onChange={onChange}
+  totalText="Найдено:"
+  debounceDelay={1000}
+/>;
 ```
 
 ## Props
@@ -62,8 +71,12 @@ import { Autocomplete } from '@nlmk/ds-2.0';
 | canLoadMore            | boolean                           | false                         | Можно ли загрузить больше данных          |
 | onLoadMore             | function                          | -                             | Колбэк для догрузки данных                |
 | onCreateItem           | function                          | -                             | Колбэк для создания нового элемента       |
-| noResultsText          | string                            | 'No results for your request' | Текст при отсутствии результатов          |
-| createItemText         | function                          | (value) => `Create: ${value}` | Текст кнопки создания элемента            |
+| noResultsText          | string                            | 'Ничего не найдено'           | Текст при отсутствии результатов          |
+| createItemText         | function                          | (value) => `Добавить: ${value}` | Текст кнопки создания элемента          |
+| totalText              | string                            | 'Всего:'                      | Текст для отображения общего количества   |
+| showTotalCount         | boolean                           | true                          | Показывать ли общее количество элементов  |
+| debounceDelay          | number                            | 500                           | Задержка в мс для debounce при вводе      |
+| showEmptyDropdown      | boolean                           | true                          | Показывать ли дропдаун при отсутствии результатов |
 | className              | string                            | -                             | Дополнительный CSS класс                  |
 | style                  | CSSProperties                     | -                             | Inline стили                              |
 

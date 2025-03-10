@@ -8,7 +8,9 @@ import React, { Children, cloneElement, isValidElement, ReactNode } from 'react'
  * @returns {ReactNode} React элемент с выделенными частями текста
  */
 export const boldString = (value: string, substr: string) => {
-  const regExp = new RegExp(`(${substr})`, 'gi');
+  if (!substr || !value) return value;
+  
+  const regExp = new RegExp(`(${substr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
   const textArray = value.split(regExp);
   return textArray.map((part, index) =>
     part.toLowerCase() === substr.toLowerCase() ? <b key={index}>{part}</b> : part
@@ -24,8 +26,10 @@ export const boldString = (value: string, substr: string) => {
  * @returns {ReactNode} Обработанный React элемент с выделенным текстом
  */
 export const boldReactElement = (element: ReactNode | string, substr: string): ReactNode => {
+  if (!substr) return element;
+  
   if (Array.isArray(element)) {
-    return element.map((child, index) => <span key={index}>{boldReactElement(child, substr)}</span>);
+    return element.map((child, index) => <React.Fragment key={index}>{boldReactElement(child, substr)}</React.Fragment>);
   }
 
   if (typeof element === 'string') {
@@ -35,17 +39,9 @@ export const boldReactElement = (element: ReactNode | string, substr: string): R
   if (isValidElement(element)) {
     const newProps = { ...element.props };
 
-    for (const key in newProps) {
-      if (typeof newProps[key] === 'string') {
-        newProps[key] = boldString(newProps[key], substr);
-      } else if (Array.isArray(newProps[key])) {
-        newProps[key] = newProps[key].map((child: any) => boldReactElement(child, substr));
-      }
-    }
+    const newChildren = Children.map(element.props.children, child => boldReactElement(child, substr));
 
-    newProps.children = Children.map(newProps.children, child => boldReactElement(child, substr));
-
-    return cloneElement(element, newProps);
+    return cloneElement(element, { ...newProps, children: newChildren });
   }
 
   return element;

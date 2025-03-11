@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { ClickAwayListener, Icon, Input } from '@components/index';
+import { Icon, Input } from '@components/index';
 import clsx from 'clsx';
 
 import { IAutocompleteProps, IAutocompleteValue } from './types';
@@ -183,23 +183,22 @@ const Autocomplete = ({
 
     setIsEditing(true);
 
+    // Устанавливаем значения сразу
     setUserInput(value);
     setInputValue(value);
     setLastSearchValue(value);
 
     setIsOpen(true);
 
-    if (!value) {
-      clearSelectButKeepDropdown();
-    } else {
-      debouncedOnInputEnd(value);
-    }
-
+    // Если значение пустое, сразу очищаем выбор
     if (!value.trim()) {
+      // Важно: очищаем выбор и вызываем onChange только один раз
+      setSelectedItems([]);
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
-      setSelectedItems([]);
+    } else {
+      debouncedOnInputEnd(value);
     }
   };
 
@@ -237,18 +236,6 @@ const Autocomplete = ({
     setIsOpen(false);
   };
 
-  const clearSelectButKeepDropdown = () => {
-    setIsEditing(false);
-
-    setInputValue('');
-    setUserInput('');
-    setLastSearchValue('');
-    setSelectedItems([]);
-    const nextValue = noSelectionItem ?? undefined;
-    onChange(nextValue);
-    onFullItemSelect?.(undefined);
-  };
-
   const handleClickAway = () => {
     setIsOpen(false);
 
@@ -270,6 +257,12 @@ const Autocomplete = ({
     }
 
     setIsEditing(false);
+  };
+
+  const handleInputClick = () => {
+    if (!disabled && !readOnly) {
+      setIsOpen(true);
+    }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -370,46 +363,46 @@ const Autocomplete = ({
         renderLabel,
         totalText,
         showTotalCount,
-        showEmptyDropdown
+        showEmptyDropdown,
+        handleClickAway
       }}
     >
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <div
-          className={clsx(styles.autocomplete, className)}
-          ref={inputRef}
-          style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
-          data-ui-autocomplete
-        >
-          <Input
-            {...inputProps}
-            inputRef={inputElementRef}
-            value={lastSearchValue || inputValue}
-            onKeyDown={handleKeyDown}
-            icon={
-              <Icon
-                name="IconSearchOutlined24"
-                color={(disabled && 'disabled') || (error && 'error') || 'primary'}
-                data-ui-autocomplete-search
-              />
+      <div
+        className={clsx(styles.autocomplete, className)}
+        ref={inputRef}
+        style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
+        data-ui-autocomplete
+      >
+        <Input
+          {...inputProps}
+          inputRef={inputElementRef}
+          value={lastSearchValue || inputValue}
+          onKeyDown={handleKeyDown}
+          icon={
+            <Icon
+              name="IconSearchOutlined24"
+              color={(disabled && 'disabled') || (error && 'error') || 'primary'}
+              data-ui-autocomplete-search
+            />
+          }
+          reset={true}
+          onReset={clearSelect}
+          size={size}
+          disabled={disabled}
+          color={error ? customInputColors.error : undefined}
+          helperText={helperText}
+          onFocus={() => {
+            if (!disabled && !readOnly) {
+              setIsOpen(true);
             }
-            reset={true}
-            onReset={clearSelect}
-            size={size}
-            disabled={disabled}
-            color={error ? customInputColors.error : undefined}
-            helperText={helperText}
-            onFocus={() => {
-              if (!disabled && !readOnly) {
-                setIsOpen(true);
-              }
-            }}
-            onChange={onChangeInput}
-            data-ui-autocomplete-input
-            data-testid="AUTOCOMPLETE_INPUT"
-          />
-          {shouldShowDropdown && dropdownContent}
-        </div>
-      </ClickAwayListener>
+          }}
+          onClick={handleInputClick}
+          onChange={onChangeInput}
+          data-ui-autocomplete-input
+          data-testid="AUTOCOMPLETE_INPUT"
+        />
+        {shouldShowDropdown && dropdownContent}
+      </div>
     </AutocompleteContext.Provider>
   );
 };

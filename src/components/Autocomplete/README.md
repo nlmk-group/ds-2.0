@@ -9,26 +9,24 @@
 ```jsx
 import { Autocomplete } from '@nlmk/ds-2.0';
 
-// Базовое использование
+/ Базовое использование
 <Autocomplete
   items={[
     { id: 1, label: 'Первый', value: 'value_1' },
     { id: 2, label: 'Второй', value: 'value_2' }
   ]}
   nameGetter={({ label }) => label}
-  onChange={(item) => console.log(item)}
+  onChange={item => console.log(item)}
 />;
-
-// С созданием нового элемента
+/ С созданием нового элемента
 <Autocomplete
   items={items}
   nameGetter={({ label }) => label}
   onChange={onChange}
-  onCreateItem={(value) => console.log('Creating:', value)}
-  createItemText={(value) => `Создать: ${value}`}
+  onCreateItem={value => console.log('Creating:', value)}
+  createItemText={value => `Создать: ${value}`}
 />;
-
-// С подгрузкой данных
+/ С подгрузкой данных
 <Autocomplete
   items={items}
   nameGetter={({ label }) => label}
@@ -37,8 +35,7 @@ import { Autocomplete } from '@nlmk/ds-2.0';
   onLoadMore={handleLoadMore}
   canLoadMore={hasMoreItems}
 />;
-
-// С кастомным текстом "Total" и задержкой debounce
+/ С кастомным текстом "Total" и задержкой debounce
 <Autocomplete
   items={items}
   nameGetter={({ label }) => label}
@@ -50,35 +47,35 @@ import { Autocomplete } from '@nlmk/ds-2.0';
 
 ## Props
 
-| Prop                   | Type                              | Default                       | Description                               |
-|------------------------|-----------------------------------|-------------------------------|-------------------------------------------|
-| selected               | IAutocompleteValue                | -                             | Изначально выбранный элемент              |
-| items                  | Array<IAutocompleteValue> \| null | []                            | Массив элементов для автозаполнения       |
-| isLoading              | boolean                           | false                         | Состояние загрузки данных                 |
-| nameGetter             | function                          | -                             | Функция для получения отображаемой строки |
-| renderLabel            | function                          | -                             | Кастомный рендер label для опций          |
-| onChange               | function                          | -                             | Колбэк при выборе/очистке элемента        |
-| onFullItemSelect       | function                          | -                             | Колбэк для получения полного объекта      |
-| onDebouncedInputChange | function                          | -                             | Колбэк после завершения ввода             |
-| disabled               | boolean                           | false                         | Отключить ввод и выбор                    |
-| helperText             | string                            | ''                            | Сообщение об ошибке                       |
-| error                  | boolean                           | false                         | Флаг состояния ошибки                     |
-| showTooltip            | boolean                           | false                         | Показывать tooltip при наведении          |
-| readOnly               | boolean                           | false                         | Только для чтения                         |
-| isFullWidth            | boolean                           | false                         | Занимать полную ширину                    |
-| withPortal             | boolean                           | false                         | Рендерить через портал                    |
-| size                   | EAutocompleteSize                 | 'm'                           | Размер компонента                         |
-| canLoadMore            | boolean                           | false                         | Можно ли загрузить больше данных          |
-| onLoadMore             | function                          | -                             | Колбэк для догрузки данных                |
-| onCreateItem           | function                          | -                             | Колбэк для создания нового элемента       |
-| noResultsText          | string                            | 'Ничего не найдено'           | Текст при отсутствии результатов          |
-| createItemText         | function                          | (value) => `Добавить: ${value}` | Текст кнопки создания элемента          |
-| totalText              | string                            | 'Всего:'                      | Текст для отображения общего количества   |
-| showTotalCount         | boolean                           | true                          | Показывать ли общее количество элементов  |
-| debounceDelay          | number                            | 500                           | Задержка в мс для debounce при вводе      |
-| showEmptyDropdown      | boolean                           | true                          | Показывать ли дропдаун при отсутствии результатов |
-| className              | string                            | -                             | Дополнительный CSS класс                  |
-| style                  | CSSProperties                     | -                             | Inline стили                              |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| selected | IAutocompleteValue | - | Изначально выбранный элемент |
+| items | Array<IAutocompleteValue> \| null | [] | Массив элементов для автозаполнения |
+| isLoading | boolean | false | Состояние загрузки данных |
+| nameGetter | function | - | Функция для получения отображаемой строки |
+| renderLabel | function | - | Кастомный рендер label для опций |
+| onChange | function | - | Колбэк при выборе/очистке элемента |
+| onFullItemSelect | function | - | Колбэк для получения полного объекта |
+| onDebouncedInputChange | function | - | Колбэк после завершения ввода |
+| disabled | boolean | false | Отключить ввод и выбор |
+| helperText | string | '' | Сообщение об ошибке |
+| error | boolean | false | Флаг состояния ошибки |
+| showTooltip | boolean | false | Показывать tooltip при наведении |
+| readOnly | boolean | false | Только для чтения |
+| isFullWidth | boolean | false | Занимать полную ширину |
+| withPortal | boolean | false | Рендерить через портал |
+| size | EAutocompleteSize | 'm' | Размер компонента |
+| canLoadMore | boolean | false | Можно ли загрузить больше данных |
+| onLoadMore | function | - | Колбэк для догрузки данных |
+| onCreateItem | function | - | Колбэк для создания нового элемента |
+| noResultsText | string | 'Ничего не найдено' | Текст при отсутствии результатов |
+| createItemText | function | (value) => `Добавить: ${value}` | Текст кнопки создания элемента |
+| totalText | string | 'Всего:' | Текст для отображения общего количества |
+| showTotalCount | boolean | true | Показывать ли общее количество элементов |
+| debounceDelay | number | 500 | Задержка в мс для debounce при вводе |
+| showEmptyDropdown | boolean | true | Показывать ли дропдаун при отсутствии результатов |
+| className | string | - | Дополнительный CSS класс |
+| style | CSSProperties | - | Inline стили |
 
 ## Размеры (EAutocompleteSize)
 
@@ -126,6 +123,7 @@ import { Autocomplete } from '@nlmk/ds-2.0';
   // Стили для отключенной иконки
 }
 ```
+
 Вы можете переопределить эти стили, передав собственный `className`.
 
 ### 2. Data-атрибуты
@@ -230,3 +228,51 @@ import { Autocomplete } from '@nlmk/ds-2.0';
 - **↑** (Стрелка вверх): Переход к предыдущему элементу списка
 - **Enter**: Выбор текущего элемента
 - **Escape**: Закрытие выпадающего списка
+
+## Подробное описание поведения
+
+Компонент Autocomplete имеет два основных режима работы:
+
+### 1. Режим отображения (display mode)
+
+- Активен, когда элемент выбран и пользователь не редактирует текст
+- В инпуте отображается метка выбранного элемента
+- При клике на инпут открывается выпадающий список со всеми доступными элементами
+- При нажатии Backspace происходит переход в режим поиска с пустым значением
+- При нажатии буквы/цифры происходит переход в режим поиска, начиная с этого символа
+
+### 2. Режим поиска (search mode)
+
+- Активен, когда пользователь вводит текст для поиска
+- В инпуте отображается текущий поисковый запрос
+- Элементы в выпадающем списке фильтруются по поисковому запросу
+- При выборе элемента из списка происходит переход в режим отображения
+- При нажатии Escape или клике вне компонента:
+  - Если был выбран элемент, восстанавливается его отображение
+  - Если элемент не был выбран, инпут очищается
+
+### Клавиатурная навигация
+
+- **↓** (Стрелка вниз): Переход к следующему элементу списка
+- **↑** (Стрелка вверх): Переход к предыдущему элементу списка
+- **Enter**: Выбор текущего выделенного элемента
+- **Escape**: Закрытие выпадающего списка и восстановление выбранного значения
+- **Backspace** (в режиме отображения): Очистка инпута и переход в режим поиска
+- **Любая буква/цифра** (в режиме отображения): Начало поиска с этого символа
+
+### Асинхронная загрузка данных
+
+- При вводе текста с задержкой (debounce) вызывается `onLoadOptions`
+- Во время загрузки отображается спиннер
+- Текущее значение инпута сохраняется во время загрузки
+- После загрузки список элементов обновляется с сохранением поискового запроса
+
+### Создание новых элементов
+
+- Если задан `onCreateItem` и введенный текст не соответствует ни одному элементу, показывается опция для создания нового элемента
+- При выборе этой опции вызывается `onCreateItem` с текущим значением инпута
+- Текст опции создания настраивается через `createItemText`
+
+### Бесконечная прокрутка
+
+- Если задан `canLoadMore` и `onLoadMore`, при прокрутке до конца списка автоматически вызывается `onLoadMore` для подгрузки дополнительных данных

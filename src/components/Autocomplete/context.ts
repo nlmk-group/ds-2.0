@@ -28,7 +28,9 @@ interface AutocompleteContextProps {
   totalText: string;
   showTotalCount: boolean;
   showEmptyDropdown: boolean;
+  handleClickAway: () => void;
 }
+
 export const AutocompleteContext = createContext<AutocompleteContextProps>({
   isOpen: false,
   disabled: false,
@@ -52,5 +54,6 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   portalContainerId: 'root',
   totalText: 'Всего:',
   showTotalCount: true,
-  showEmptyDropdown: true
+  showEmptyDropdown: true,
+  handleClickAway: () => {}
 });

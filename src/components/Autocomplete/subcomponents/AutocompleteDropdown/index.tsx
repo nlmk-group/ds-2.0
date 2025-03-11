@@ -121,11 +121,9 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
           }
         }}
         className={clsx(
-          styles['card'],
-          {
-            [styles['card-small']]: size === EAutocompleteSize.s,
-            [styles['card-extra-small']]: size === EAutocompleteSize.xs
-          },
+          styles.card,
+          size === EAutocompleteSize.s && styles['card-small'],
+          size === EAutocompleteSize.xs && styles['card-extra-small'],
           className
         )}
         style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}

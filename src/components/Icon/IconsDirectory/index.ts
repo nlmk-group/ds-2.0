@@ -2,6 +2,29 @@
  * Этот файл сгенерирован автоматически.
  */
 import { TIconsObject } from '../types';
+import {
+  IconOrderIsNotSecured16,
+  IconOrderIsNotSecured24,
+  IconOrderIsNotSecured32,
+  IconOrderIsOverlySecured16,
+  IconOrderIsOverlySecured24,
+  IconOrderIsOverlySecured32,
+  IconOrderIsOverlySecuredLater16,
+  IconOrderIsOverlySecuredLater24,
+  IconOrderIsOverlySecuredLater32,
+  IconOrderIsPartiallySecured16,
+  IconOrderIsPartiallySecured24,
+  IconOrderIsPartiallySecured32,
+  IconOrderIsPartiallySecuredLater16,
+  IconOrderIsPartiallySecuredLater24,
+  IconOrderIsPartiallySecuredLater32,
+  IconOrderIsSecured16,
+  IconOrderIsSecured24,
+  IconOrderIsSecured32,
+  IconOrderIsSecuredLater16,
+  IconOrderIsSecuredLater24,
+  IconOrderIsSecuredLater32
+} from './CRS';
 import { IconUploadFile32, IconUploadImage32, IconUploadVideo32 } from './Custom';
 import {
   IconCalendarClearToday16,
@@ -3464,6 +3487,30 @@ export {
   IconProductPerformanceManagement32
 };
 
+export {
+  IconOrderIsNotSecured16,
+  IconOrderIsNotSecured24,
+  IconOrderIsNotSecured32,
+  IconOrderIsOverlySecured16,
+  IconOrderIsOverlySecured24,
+  IconOrderIsOverlySecured32,
+  IconOrderIsOverlySecuredLater16,
+  IconOrderIsOverlySecuredLater24,
+  IconOrderIsOverlySecuredLater32,
+  IconOrderIsPartiallySecured16,
+  IconOrderIsPartiallySecured24,
+  IconOrderIsPartiallySecured32,
+  IconOrderIsPartiallySecuredLater16,
+  IconOrderIsPartiallySecuredLater24,
+  IconOrderIsPartiallySecuredLater32,
+  IconOrderIsSecured16,
+  IconOrderIsSecured24,
+  IconOrderIsSecured32,
+  IconOrderIsSecuredLater16,
+  IconOrderIsSecuredLater24,
+  IconOrderIsSecuredLater32
+};
+
 const icons: TIconsObject = {
   16: {
     IconAddCommentFilled16,
@@ -3975,7 +4022,14 @@ const icons: TIconsObject = {
     IconOperationalPerformanceManagement16,
     IconOperationalPerformanceManagementTimeWatch16,
     IconProductAnalysis16,
-    IconProductPerformanceManagement16
+    IconProductPerformanceManagement16,
+    IconOrderIsNotSecured16,
+    IconOrderIsOverlySecured16,
+    IconOrderIsOverlySecuredLater16,
+    IconOrderIsPartiallySecured16,
+    IconOrderIsPartiallySecuredLater16,
+    IconOrderIsSecured16,
+    IconOrderIsSecuredLater16
   },
   24: {
     IconAddCommentFilled24,
@@ -4671,7 +4725,14 @@ const icons: TIconsObject = {
     IconOperationalPerformanceManagement24,
     IconOperationalPerformanceManagementTimeWatch24,
     IconProductAnalysis24,
-    IconProductPerformanceManagement24
+    IconProductPerformanceManagement24,
+    IconOrderIsNotSecured24,
+    IconOrderIsOverlySecured24,
+    IconOrderIsOverlySecuredLater24,
+    IconOrderIsPartiallySecured24,
+    IconOrderIsPartiallySecuredLater24,
+    IconOrderIsSecured24,
+    IconOrderIsSecuredLater24
   },
   32: {
     IconAddCommentFilled32,
@@ -5185,7 +5246,14 @@ const icons: TIconsObject = {
     IconOperationalPerformanceManagement32,
     IconOperationalPerformanceManagementTimeWatch32,
     IconProductAnalysis32,
-    IconProductPerformanceManagement32
+    IconProductPerformanceManagement32,
+    IconOrderIsNotSecured32,
+    IconOrderIsOverlySecured32,
+    IconOrderIsOverlySecuredLater32,
+    IconOrderIsPartiallySecured32,
+    IconOrderIsPartiallySecuredLater32,
+    IconOrderIsSecured32,
+    IconOrderIsSecuredLater32
   },
   44: {
     IconFormula44

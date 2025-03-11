@@ -32,6 +32,8 @@ export const Changelog = () => {
                 Icon
               </Link>
               .<li className={styles['left-padding']}>- Добавлены новые иконки MES, Metallurgy и System</li>
+              <li className={styles['left-padding']}>- Добавлена новая директория иконок CRS</li>
+              <li className={styles['left-padding']}>- Обновлен скрипт для генерации импортов иконок</li>
             </li>
           </ul>
         </div>

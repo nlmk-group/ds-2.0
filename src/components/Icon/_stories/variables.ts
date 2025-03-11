@@ -43,6 +43,31 @@ export const iconsUseFillAndStroke = [
 ];
 
 // Иконки которые задуманы для использования только в одном цвете
-export const iconsAlwaysDefaultColor = ['IconBorder16', 'IconBorder24', 'IconBorder32'];
+export const iconsAlwaysDefaultColor = [
+  'IconBorder16',
+  'IconBorder24',
+  'IconBorder32',
+  'IconOrderIsNotSecured16',
+  'IconOrderIsNotSecured24',
+  'IconOrderIsNotSecured32',
+  'IconOrderIsOverlySecured16',
+  'IconOrderIsOverlySecured24',
+  'IconOrderIsOverlySecured32',
+  'IconOrderIsOverlySecuredLater16',
+  'IconOrderIsOverlySecuredLater24',
+  'IconOrderIsOverlySecuredLater32',
+  'IconOrderIsSecured16',
+  'IconOrderIsSecured24',
+  'IconOrderIsSecured32',
+  'IconOrderIsSecuredLater16',
+  'IconOrderIsSecuredLater24',
+  'IconOrderIsSecuredLater32',
+  'IconOrderIsPartiallySecured16',
+  'IconOrderIsPartiallySecured24',
+  'IconOrderIsPartiallySecured32',
+  'IconOrderIsPartiallySecuredLater16',
+  'IconOrderIsPartiallySecuredLater24',
+  'IconOrderIsPartiallySecuredLater32'
+];
 
 export const rowCount = 3;

@@ -4,7 +4,7 @@ import path from 'path';
 // Корневая директория
 const rootDir = path.resolve(__dirname, '..');
 // Папки, которые нужно обработать
-const foldersToProcess: string[] = ['System', 'Metallurgy', 'Custom', 'MES', 'NLMKONE', 'Filters', 'SPEP'];
+const foldersToProcess: string[] = ['System', 'Metallurgy', 'Custom', 'MES', 'NLMKONE', 'Filters', 'SPEP', 'CRS'];
 // Размеры иконок
 enum EIconSize {
   Small = 16,

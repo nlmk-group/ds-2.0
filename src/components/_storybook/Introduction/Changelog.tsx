@@ -23,23 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.20.1 - <span className={styles.date}>11.03.25</span>
-          </Typography>
-          <ul className={styles.list}>
-            <li>
-              • Изменен компонент{' '}
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
-                Icon
-              </Link>
-              .<li className={styles['left-padding']}>- Добавлены новые иконки MES, Metallurgy и System</li>
-              <li className={styles['left-padding']}>- Добавлена новая директория иконок CRS</li>
-              <li className={styles['left-padding']}>- Обновлен скрипт для генерации импортов иконок</li>
-            </li>
-          </ul>
-        </div>
-        <div className={styles.history}>
-          <Typography variant="Subheading3-Medium">
-            v2.20.0 - <span className={styles.date}>10.03.25</span>
+            v2.20.0 - <span className={styles.date}>12.03.25</span>
             <Chip variant="outline" color="warning">
               Breaking Changes
             </Chip>
@@ -64,6 +48,15 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Актуализированы тесты</li>
               <li className={styles['left-padding']}>- Удалено свойство color</li>
               <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES, Metallurgy и System</li>
+              <li className={styles['left-padding']}>- Добавлена новая директория иконок CRS</li>
+              <li className={styles['left-padding']}>- Обновлен скрипт для генерации импортов иконок</li>
             </li>
           </ul>
         </div>

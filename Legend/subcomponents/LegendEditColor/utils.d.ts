@@ -4,5 +4,5 @@ export declare const getBackgroundColor: (color: ILegendColor, { isDisabled, isO
     isDisabled: boolean;
     isOpen: boolean;
     isHover: boolean;
-}) => import("csstype").Property.Color | "var(--steel-80)" | undefined;
+}) => "var(--steel-80)" | import("csstype").Property.Color | undefined;
 //# sourceMappingURL=utils.d.ts.map

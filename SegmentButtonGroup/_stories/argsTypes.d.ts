@@ -1,4 +1,4 @@
-import { buttonColor } from '../enums';
+import { ESegmentButtonGroupSizes } from '../enums';
 
 export declare const buttonGroupItemsArgsTypes: {
     className: {
@@ -13,21 +13,6 @@ export declare const buttonGroupItemsArgsTypes: {
             defaultValue: {
                 summary: string;
             };
-        };
-    };
-    color: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: buttonColor;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: buttonColor[];
-        control: {
-            type: string;
         };
     };
     disabled: {
@@ -46,32 +31,6 @@ export declare const argsTypes: {
             type: string;
         };
     };
-    compact: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: string;
-            };
-        };
-        control: {
-            type: string;
-        };
-    };
-    color: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: buttonColor;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: buttonColor[];
-        control: {
-            type: string;
-        };
-    };
     disabled: {
         description: string;
         table: {
@@ -79,6 +38,21 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
+        control: {
+            type: string;
+        };
+    };
+    size: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: ESegmentButtonGroupSizes[];
         control: {
             type: string;
         };

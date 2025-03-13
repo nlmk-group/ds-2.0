@@ -1,0 +1,1 @@
+{"version":3,"file":"context.d.ts","sourceRoot":"","sources":["../../src/components/SegmentButtonGroup/context.ts"],"names":[],"mappings":";AAEA,OAAO,EAAE,wBAAwB,EAAE,MAAM,SAAS,CAAC;AAKnD,UAAU,+BAA+B;IAIvC,QAAQ,CAAC,EAAE,OAAO,CAAC;IAKnB,IAAI,CAAC,EAAE,GAAG,wBAAwB,EAAE,CAAC;IAKrC,QAAQ,CAAC,EAAE,MAAM,GAAG,IAAI,CAAC;CAC1B;AAKD,eAAO,MAAM,yBAAyB,0DAepC,CAAC"}

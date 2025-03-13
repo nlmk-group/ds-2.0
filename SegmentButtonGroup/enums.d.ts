@@ -1,9 +1,5 @@
-export declare enum buttonColor {
-    default = "default",
-    steel = "steel",
-    sky = "sky",
-    red = "red",
-    yellow = "yellow",
-    green = "green"
+export declare enum ESegmentButtonGroupSizes {
+    m = "m",
+    s = "s"
 }
 //# sourceMappingURL=enums.d.ts.map

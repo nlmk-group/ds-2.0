@@ -1,3 +1,3 @@
-declare const VERSION = "2.19.1";
+declare const VERSION = "2.20.1";
 export default VERSION;
 //# sourceMappingURL=version.d.ts.map

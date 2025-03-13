@@ -1,10 +1,6 @@
-import { default as React } from '../../../node_modules/react';
-import { ISegmentButtonGroup, ISegmentButtonProperties, ISegmentButtonProps } from './types';
+import { FC } from '../../../node_modules/react';
+import { ISegmentButtonGroupProps } from './types';
 
-export declare const SegmentButtonProperties: React.Context<ISegmentButtonProperties>;
-export declare const SegmentButtonGroup: {
-    ({ className, compact, color, disabled, children }: ISegmentButtonGroup): React.JSX.Element;
-    Button: ({ className, disabled, active, color, children, onClick, toggleButton }: ISegmentButtonProps) => React.JSX.Element;
-};
+declare const SegmentButtonGroup: FC<ISegmentButtonGroupProps>;
 export default SegmentButtonGroup;
 //# sourceMappingURL=index.d.ts.map

@@ -23,6 +23,45 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.20.0 - <span className={styles.date}>12.03.25</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              . Обновлены типы, добавлены новые пропсы и изменена структура компонента.
+              <li className={styles['left-padding']}>- Изменены свойства компонента SegmentButton</li>
+              <li className={styles['left-padding']}>- Добавлен контекст для передачи свойств</li>
+              <li className={styles['left-padding']}>
+                - Изменена реализация использования компонента SegmentButtonGroup
+              </li>
+              <li className={styles['left-padding']}>- Обновлены stories в Storybook</li>
+              <li className={styles['left-padding']}>- Актуализированы тесты</li>
+              <li className={styles['left-padding']}>- Удалено свойство color</li>
+              <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES, Metallurgy и System</li>
+              <li className={styles['left-padding']}>- Добавлена новая директория иконок CRS</li>
+              <li className={styles['left-padding']}>- Обновлен скрипт для генерации импортов иконок</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.19.1 - <span className={styles.date}>05.03.25</span>
           </Typography>
           <ul className={styles.list}>

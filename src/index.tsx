@@ -48,6 +48,9 @@ import {
   IconLess24,
   IconLessOrEqual24,
   IconNotEqualSign24,
+  IconOrderIsNotSecured32,
+  IconOrderIsOverlySecured32,
+  IconOrderIsOverlySecuredLater32,
   IconSelectionContains24,
   IconStartingContains24,
   Input,
@@ -124,6 +127,7 @@ const InputExample = () => {
         onBlur={handleBlur}
         onChange={handleChange}
         onReset={handleReset}
+        icon={<IconOrderIsOverlySecuredLater32 />}
       />
     </form>
   );

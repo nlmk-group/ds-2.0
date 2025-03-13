@@ -1,28 +1,40 @@
-import React, { Children, cloneElement, createContext, isValidElement, ReactNode, useEffect, useState } from 'react';
+import React, { Children, cloneElement, FC, isValidElement, ReactNode, useEffect, useState } from 'react';
 
 import { Box } from '@components/index';
 import clsx from 'clsx';
 
-import type { ISegmentButtonGroup, ISegmentButtonProperties, ISegmentButtonProps } from './types';
+import type { ISegmentButtonGroupProps, ISegmentButtonProps } from './types';
 
 import styles from './SegmentButtonGroup.module.scss';
 
-import { buttonColor } from './enums';
-import SegmentButton from './SegmentButton';
+import { SegmentButtonGroupContext } from './context';
+import { ESegmentButtonGroupSizes } from './enums';
 
-export const SegmentButtonProperties = createContext<ISegmentButtonProperties>({
-  compact: false,
-  color: buttonColor.default,
-  disabled: false
-});
-
-export const SegmentButtonGroup = ({
-  className = '',
-  compact = false,
-  color = buttonColor.default,
-  disabled = false,
-  children
-}: ISegmentButtonGroup) => {
+/**
+ * Компонент `SegmentButtonGroup` представляет собой группу сегментированных кнопок.
+ * Позволяет пользователям управлять активной кнопкой и переключать её состояние.
+ *
+ * @component
+ * @example
+ * <SegmentButtonGroup>
+ *   <SegmentButton onClick={() => console.log('Clicked')}>Кнопка 1</SegmentButton>
+ *   <SegmentButton onClick={() => console.log('Clicked')}>Кнопка 2</SegmentButton>
+ * </SegmentButtonGroup>
+ *
+ * @param {ISegmentButtonGroupProps} props - Свойства компонента `SegmentButtonGroup`.
+ * @param {string} [props.className] - Дополнительный CSS класс для стилизации группы кнопок.
+ * @param {boolean} [props.disabled=false] - Флаг, отключающий всю группу кнопок.
+ * @param {ESegmentButtonGroupSizes} [props.size="m"] - Размер группы кнопок (`s`, `m`, `l`).
+ * @param {ReactNode} props.children - Дочерние элементы, представляющие кнопки внутри группы.
+ *
+ * @returns {JSX.Element} Компонент `SegmentButtonGroup`, оборачивающий `SegmentButton`.
+ */
+const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
+  className,
+  disabled,
+  children,
+  size = ESegmentButtonGroupSizes.m
+}) => {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [childrenWithProps, setChildrenWithProps] = useState<ReactNode | ReactNode[]>(null);
 
@@ -44,9 +56,8 @@ export const SegmentButtonGroup = ({
           }
 
           const childrenProps: ISegmentButtonProps = {
-            active: activeId === index,
-            disabled: child.props.disabled || disabled,
             children: child.props.children,
+            buttonIndex: index,
             toggleButton: () => handleToggle(index)
           };
 
@@ -58,14 +69,8 @@ export const SegmentButtonGroup = ({
     );
   }, [activeId]);
 
-  const defaultProperties = {
-    compact,
-    color,
-    disabled
-  };
-
   return (
-    <SegmentButtonProperties.Provider value={defaultProperties}>
+    <SegmentButtonGroupContext.Provider value={{ disabled, size, activeId }}>
       <Box
         gap={0}
         borderRadius={4}
@@ -76,10 +81,8 @@ export const SegmentButtonGroup = ({
       >
         {childrenWithProps}
       </Box>
-    </SegmentButtonProperties.Provider>
+    </SegmentButtonGroupContext.Provider>
   );
 };
-
-SegmentButtonGroup.Button = SegmentButton;
 
 export default SegmentButtonGroup;

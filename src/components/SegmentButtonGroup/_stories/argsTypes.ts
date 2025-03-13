@@ -1,4 +1,4 @@
-import { buttonColor } from '../enums';
+import { ESegmentButtonGroupSizes } from '../enums';
 
 export const buttonGroupItemsArgsTypes = {
   className: {
@@ -13,19 +13,6 @@ export const buttonGroupItemsArgsTypes = {
         summary: 'boolean'
       }
     }
-  },
-  color: {
-    description: 'Необязательный атрибут который задает цвет кнопке.',
-    table: {
-      defaultValue: {
-        summary: buttonColor.default
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(buttonColor),
-    control: { type: 'select' }
   },
   disabled: {
     description: 'Необязательный свойство. добавление кнопке атрибута disabled',
@@ -42,29 +29,6 @@ export const argsTypes = {
     description: 'В компонент можно передать альтернативные стили',
     control: { type: 'string' }
   },
-  compact: {
-    description: 'Необязательное свойство которое задает компактную высоту компоненту.',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      }
-    },
-    control: { type: 'boolean' }
-  },
-  color: {
-    description:
-      'Необязательный атрибут который задает цвет кнопок (можно задавать индидуально каждой дочерней кнопке).',
-    table: {
-      defaultValue: {
-        summary: buttonColor.default
-      },
-      type: {
-        summary: Object.values(buttonColor).join(' | ')
-      }
-    },
-    options: Object.values(buttonColor),
-    control: { type: 'select' }
-  },
   disabled: {
     description:
       'Необязательный свойство. Флаг-условие добавление атрибута disabled всем кнопкам компонента (можно блокировать выборочно внутри дочернего компонента)',
@@ -74,5 +38,18 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  size: {
+    description: 'Размеры SegmentButton. Необязательное свойство, по умолчанию - m',
+    table: {
+      defaultValue: {
+        summary: 'm'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: Object.values(ESegmentButtonGroupSizes),
+    control: { type: 'select' }
   }
 };

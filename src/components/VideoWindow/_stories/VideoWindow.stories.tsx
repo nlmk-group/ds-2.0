@@ -4,10 +4,15 @@ import React, { useState } from 'react';
 
 import Button from '@components/Button';
 
+
+
 import styles from './VideoWindow.module.scss';
+
+
 
 import { VideoWindowProps } from '../types';
 import VideoWindow from '../VideoWindow';
+
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 

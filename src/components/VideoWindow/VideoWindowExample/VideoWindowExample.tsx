@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+
 import Button from '@components/Button';
 
 import styles from './styles.module.scss';
@@ -20,7 +22,7 @@ export const VideoWindowExample = () => {
           title="Демо-видео c автозапуском"
           resizable
           draggable
-          draggableStartPosition={{x: 12, y: 300}}
+          draggableStartPosition={{ x: 12, y: 300 }}
           autoPlay
           onClose={() => setIsVideoOpen(false)}
         />

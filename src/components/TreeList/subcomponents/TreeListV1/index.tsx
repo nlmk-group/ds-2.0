@@ -1,4 +1,4 @@
-import React, { Key, useState } from 'react';
+import React, { Key, useEffect, useState } from 'react';
 
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
@@ -34,6 +34,10 @@ export const TreeListV1 = ({
   const handleExpand = (key: Key) => {
     setExpandedKeys(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]));
   };
+
+  useEffect(() => {
+    setTreeData(data);
+  }, [data]);
 
   // Обработчик перетаскивания узлов
   const onDrop = (info: TDropEvent) => {

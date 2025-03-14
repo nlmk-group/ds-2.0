@@ -1,4 +1,4 @@
-import { EAutocompleteSize } from '../types';
+import { EAutocompleteSize } from '../enums';
 
 export const argsTypes = {
   selected: {
@@ -157,6 +157,42 @@ export const argsTypes = {
   createItemText: {
     description: 'Функция, возвращающая текст для опции создания нового элемента',
     control: { type: 'function' }
+  },
+  totalText: {
+    description: 'Текст для отображения общего количества элементов',
+    table: {
+      defaultValue: {
+        summary: 'Всего:'
+      }
+    },
+    control: { type: 'text' }
+  },
+  debounceDelay: {
+    description: 'Задержка в миллисекундах для debounce при вводе',
+    table: {
+      defaultValue: {
+        summary: '500'
+      }
+    },
+    control: { type: 'number' }
+  },
+  showTotalCount: {
+    description: 'Показывать ли общее количество элементов',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  showEmptyDropdown: {
+    description: 'Показывать ли дропдаун при отсутствии результатов',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      }
+    },
+    control: { type: 'boolean' }
   },
   className: {
     description: 'Дополнительный CSS-класс для контейнера',

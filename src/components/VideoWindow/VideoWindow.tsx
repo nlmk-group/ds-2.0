@@ -28,6 +28,7 @@ const VideoWindow = ({
 }: VideoWindowProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const noTitle = !title;
 
   const toggleMinimize = () => {
     setIsMinimized(prev => !prev);
@@ -51,18 +52,25 @@ const VideoWindow = ({
       style={draggable ? draggableData?.draggableStyle : undefined}
     >
       <div
-        className={clsx(videoStyles.videoWindowHeader, { [videoStyles.draggable]: draggable && !isFullscreen })}
+        className={clsx(videoStyles.videoWindowHeader, { [videoStyles.draggable]: draggable && !isFullscreen, 
+        [videoStyles.headerWithoutTitle]: noTitle && !isMinimized})}
         onMouseDown={draggable ? draggableData?.handleMouseDown : undefined}
       >
-        {title && (
-          <Typography
-            color="var(--steel-10)"
-            variant="Body1-Medium"
-            className={styles?.videoTitleClassName}
-            style={styles?.videoTitleStyle}
-          >
-            {title}
-          </Typography>
+         {title && (
+          <>
+            {React.isValidElement(title) ? (
+              title
+            ) : (
+              <Typography
+                color="var(--unique-white)"
+                variant="Body1-Medium"
+                className={styles?.videoTitleClassName}
+                style={styles?.videoTitleStyle}
+              >
+                {title}
+              </Typography>
+            )}
+          </>
         )}
         <div className={videoStyles.videoControls}>
           <Button
@@ -92,7 +100,7 @@ const VideoWindow = ({
         </div>
       </div>
       {!isMinimized && (
-        <div className={videoStyles.videoContent}>
+        <div className={clsx(videoStyles.videoContent, {[videoStyles.videoWithoutTitle]: noTitle})}>
           <video id={id} controls src={videoUrl} controlsList="nodownload" autoPlay={autoPlay} />
         </div>
       )}

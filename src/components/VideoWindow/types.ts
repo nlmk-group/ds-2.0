@@ -1,5 +1,4 @@
-import { CSSProperties } from 'react';
-
+import { CSSProperties, ReactNode } from 'react';
 
 export type VideoWindowStyles = {
   videoTitleClassName?: string;
@@ -13,7 +12,7 @@ export type DraggableStartPosition = {
 export type VideoWindowProps = {
   videoUrl: string;
   id?: string;
-  title?: string;
+  title?: string | ReactNode;
   autoPlay?: boolean;
   onClose: () => void;
   styles?: VideoWindowStyles;

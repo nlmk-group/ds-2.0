@@ -66,6 +66,7 @@
   display: flex;
   gap: 4px;
   align-items: center;
+  margin-left: auto;
 }
 
 .videoContent {
@@ -89,4 +90,17 @@
   cursor: nwse-resize;
   bottom: 0;
   right: 0;
+}
+
+.headerWithoutTitle {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.videoWithoutTitle {
+  height: 100%;
 }

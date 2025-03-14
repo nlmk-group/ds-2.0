@@ -32,7 +32,6 @@ export const VideoWindowExample = () => {
       {isVideoOpen && (
         <VideoWindow
           videoUrl="https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4"
-          // title="Демо-видео c автозапуском"
           title={<TitleExample/>}
           resizable
           draggable

@@ -92,9 +92,7 @@ const Autocomplete = ({
   const [realData, setRealData] = useState<Array<IAutocompleteValue> | null>(items);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
-  const [userInput, setUserInput] = useState('');
-  const [lastSearchValue, setLastSearchValue] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -104,7 +102,6 @@ const Autocomplete = ({
   const debouncedOnInputEnd = useDebounce(debounceDelay, (value: string) => {
     onDebouncedInputChange?.(value);
     if (onLoadOptions) {
-      setLastSearchValue(value);
       onLoadOptions(value);
     }
   });
@@ -113,11 +110,10 @@ const Autocomplete = ({
     if (selected) {
       setSelectedItems([selected]);
       setInputValue(nameGetter(selected));
-      setUserInput(nameGetter(selected));
-      setLastSearchValue(nameGetter(selected));
-      setIsEditing(false);
+      setIsSearching(false);
     } else {
       setSelectedItems([]);
+      setInputValue('');
     }
   }, [selected, nameGetter]);
 
@@ -128,24 +124,16 @@ const Autocomplete = ({
       );
       setRealData(dataValues);
 
-      setCurrentItems(getFieldOptions(dataValues, userInput, nameGetter));
+      if (!isSearching) {
+        setCurrentItems(dataValues);
+      } else {
+        setCurrentItems(getFieldOptions(dataValues, inputValue, nameGetter));
+      }
 
       setHighlightedIndex(-1);
     }
-  }, [items, isLoading, userInput, nameGetter]);
+  }, [items, isLoading, inputValue, nameGetter, isSearching]);
 
-  useEffect(() => {
-    if (isLoading) {
-      setInputValue(lastSearchValue);
-      setUserInput(lastSearchValue);
-    }
-  }, [isLoading, lastSearchValue]);
-
-  /**
-   * Функция, которая при выборе элемента пытается найти полный объект в realData и передать его в nameGetter.
-   * Если не находит, просто вызывает nameGetter(item).
-   * Это дает гибкость, чтобы nameGetter мог работать и с данными, и с их "полной" версией.
-   */
   const nameGetterInside = useCallback(
     (item: IAutocompleteValue) => {
       if (!realData) return nameGetter(item);
@@ -155,10 +143,6 @@ const Autocomplete = ({
     [realData, nameGetter]
   );
 
-  /**
-   * Утилитарная функция, которая фильтрует и преобразует каждый элемент optionsType
-   * в объект с обновленным label. Фильтрация идет по label или nameGetter.
-   */
   const getFieldOptions = (
     optionsType: IAutocompleteValue[],
     searchValue: string,
@@ -181,134 +165,118 @@ const Autocomplete = ({
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
 
-    setIsEditing(true);
-
-    // Устанавливаем значения сразу
-    setUserInput(value);
     setInputValue(value);
-    setLastSearchValue(value);
-
+    setIsSearching(true);
     setIsOpen(true);
 
-    // Если значение пустое, сразу очищаем выбор
     if (!value.trim()) {
-      // Важно: очищаем выбор и вызываем onChange только один раз
       setSelectedItems([]);
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
+      setCurrentItems(realData ?? []);
     } else {
+      setCurrentItems(getFieldOptions(realData ?? [], value, nameGetter));
       debouncedOnInputEnd(value);
     }
   };
 
   const onSelectMenuItem = (item: IAutocompleteValue) => {
-    setIsEditing(false);
-
     const name = nameGetterInside(item);
-    onChangeSingleSelect(item, name);
     if (onFullItemSelect) {
       const fullItem = realData?.find((value: any) => value.id === item.value);
       onFullItemSelect(fullItem ?? item);
     }
-  };
-
-  const onChangeSingleSelect = (item: IAutocompleteValue, name: string) => {
     setSelectedItems([item]);
     setInputValue(name);
-    setUserInput(name);
-    setLastSearchValue(name);
+    setIsSearching(false);
     onChange(item);
-    inputElementRef.current?.focus();
     setIsOpen(false);
+    inputElementRef.current?.focus();
   };
 
   const clearSelect = () => {
-    setIsEditing(false);
-
     setInputValue('');
-    setUserInput('');
-    setLastSearchValue('');
     setSelectedItems([]);
+    setIsSearching(false);
     const nextValue = noSelectionItem ?? undefined;
     onChange(nextValue);
     onFullItemSelect?.(undefined);
     setIsOpen(false);
+    setCurrentItems(realData ?? []);
   };
 
   const handleClickAway = () => {
     setIsOpen(false);
 
-    if (isEditing && !inputValue.trim()) {
-      setSelectedItems([]);
-      setInputValue('');
-      setUserInput('');
-      setLastSearchValue('');
-      setIsEditing(false);
-      return;
+    if (isSearching) {
+      const selectedItem = selectedItems[0];
+      if (selectedItem) {
+        setInputValue(nameGetter(selectedItem));
+        setIsSearching(false);
+        setCurrentItems(realData ?? []);
+      } else if (!inputValue.trim()) {
+        clearSelect();
+      }
     }
-
-    if (selectedItems.length === 0) {
-    } else {
-      const label = selectedItems.map(selectedItem => selectedItem.label).join(', ');
-      setInputValue(label);
-      setUserInput(label);
-      setLastSearchValue(label);
-    }
-
-    setIsEditing(false);
   };
 
   const handleInputClick = () => {
-    if (!disabled && !readOnly) {
+    if (!readOnly && !disabled) {
       setIsOpen(true);
+      if (!isSearching) {
+        setCurrentItems(realData ?? []);
+      }
     }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (!isOpen) return;
-
-    const hasItems = currentItems && currentItems.length > 0;
-    const showCreateItem = onCreateItem && inputValue.trim() !== '';
-
-    let totalCount = 0;
-    if (hasItems) {
-      totalCount = currentItems!.length;
-    } else if (showCreateItem) {
-      totalCount = 1;
-    }
+    if (readOnly || disabled) return;
 
     switch (e.key) {
       case 'ArrowDown':
-      case 'ArrowUp': {
-        if (totalCount === 0) return;
         e.preventDefault();
-        let nextIndex = highlightedIndex;
-
-        if (e.key === 'ArrowDown') {
-          nextIndex = highlightedIndex + 1 >= totalCount ? 0 : highlightedIndex + 1;
+        if (!isOpen) {
+          setIsOpen(true);
+          setHighlightedIndex(0);
         } else {
-          nextIndex = highlightedIndex - 1 < 0 ? totalCount - 1 : highlightedIndex - 1;
+          setHighlightedIndex(prev => (prev < currentItems.length - 1 ? prev + 1 : prev));
         }
-
-        setHighlightedIndex(nextIndex);
-
         break;
-      }
+
+      case 'ArrowUp':
+        e.preventDefault();
+        if (isOpen) {
+          setHighlightedIndex(prev => (prev > 0 ? prev - 1 : prev));
+        }
+        break;
+
       case 'Enter':
         e.preventDefault();
-        if (hasItems && highlightedIndex >= 0 && highlightedIndex < currentItems!.length) {
-          onSelectMenuItem(currentItems![highlightedIndex]);
-        } else if (showCreateItem && highlightedIndex === 0) {
-          onCreateItem!(inputValue);
-          setIsOpen(false);
-          setIsEditing(false);
+        if (isOpen && highlightedIndex >= 0 && currentItems[highlightedIndex]) {
+          onSelectMenuItem(currentItems[highlightedIndex]);
         }
         break;
+
       case 'Escape':
-        setIsOpen(false);
-        setIsEditing(false);
+        e.preventDefault();
+        if (isOpen) {
+          setIsOpen(false);
+          const selectedItem = selectedItems[0];
+          if (selectedItem) {
+            setInputValue(nameGetter(selectedItem));
+            setIsSearching(false);
+            setCurrentItems(realData ?? []);
+          }
+        }
         break;
+
+      case 'Backspace':
+        if (!inputValue && selectedItems.length > 0) {
+          clearSelect();
+        }
+        break;
+
       default:
         break;
     }
@@ -352,7 +320,7 @@ const Autocomplete = ({
         showCreateItem,
         onCreateItem,
         currentItems,
-        inputValue: lastSearchValue || inputValue,
+        inputValue: inputValue,
         highlightedIndex,
         selectedItems,
         createItemText,
@@ -376,7 +344,7 @@ const Autocomplete = ({
         <Input
           {...inputProps}
           inputRef={inputElementRef}
-          value={lastSearchValue || inputValue}
+          value={inputValue}
           onKeyDown={handleKeyDown}
           icon={
             <Icon

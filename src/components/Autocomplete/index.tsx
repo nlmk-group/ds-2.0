@@ -111,11 +111,11 @@ const Autocomplete = ({
       setSelectedItems([selected]);
       setInputValue(nameGetter(selected));
       setIsSearching(false);
-    } else {
+    } else if (!isSearching) {
       setSelectedItems([]);
       setInputValue('');
     }
-  }, [selected, nameGetter]);
+  }, [selected, nameGetter, isSearching]);
 
   useEffect(() => {
     if (items && !isLoading) {
@@ -191,8 +191,8 @@ const Autocomplete = ({
     setInputValue(name);
     setIsSearching(false);
     onChange(item);
-    setIsOpen(false);
     inputElementRef.current?.focus();
+    setIsOpen(false);
   };
 
   const clearSelect = () => {

@@ -105,6 +105,20 @@ export const AutocompleteWithAsyncLoading = (): JSX.Element => {
     }, 1000);
   }, []);
 
+  // const handleLoadOptions = useCallback((query: string) => {
+  //   setIsLoading(true);
+  
+  //   setTimeout(() => {
+  //     if (!query.trim()) {
+  //       setItems([]);
+  //     } else {
+  //       const filteredItems = defaultOptions.filter(item => item.label?.toLowerCase().includes(query.toLowerCase()));
+  //       setItems(filteredItems);
+  //     }
+  //     setIsLoading(false);
+  //   }, 1000);
+  // }, []);
+
   return (
     <div style={{ padding: '50px' }}>
       <Autocomplete

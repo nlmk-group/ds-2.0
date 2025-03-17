@@ -109,8 +109,9 @@ const Autocomplete = ({
   useEffect(() => {
     if (selected) {
       setSelectedItems([selected]);
-      setInputValue(nameGetter(selected));
-      setIsSearching(false);
+      if (!isSearching) {
+        setInputValue(nameGetter(selected));
+      }
     } else if (!isSearching) {
       setSelectedItems([]);
       setInputValue('');
@@ -164,11 +165,11 @@ const Autocomplete = ({
 
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
-
+  
     setInputValue(value);
     setIsSearching(true);
     setIsOpen(true);
-
+  
     if (!value.trim()) {
       setSelectedItems([]);
       const nextValue = noSelectionItem ?? undefined;
@@ -208,15 +209,16 @@ const Autocomplete = ({
 
   const handleClickAway = () => {
     setIsOpen(false);
-
+  
     if (isSearching) {
-      const selectedItem = selectedItems[0];
-      if (selectedItem) {
-        setInputValue(nameGetter(selectedItem));
+      if (selected && selectedItems.length > 0) {
+        setInputValue(nameGetter(selected));
         setIsSearching(false);
         setCurrentItems(realData ?? []);
       } else if (!inputValue.trim()) {
         clearSelect();
+      } else {
+        setIsSearching(false);
       }
     }
   };

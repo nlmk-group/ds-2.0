@@ -1,18 +1,16 @@
-import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Box, ClickAwayListener, Icon, Input, Spinner, Typography } from '@components/index';
-import MenuItem from '@components/Select/subcomponents/MenuItem';
+import { Icon, Input } from '@components/index';
 import clsx from 'clsx';
 
-import { EAutocompleteSize, IAutocompleteProps, IAutocompleteValue } from './types';
+import { IAutocompleteProps, IAutocompleteValue } from './types';
 
 import styles from './Autocomplete.module.scss';
 
-import { boldReactElement, boldString } from './helpers';
+import { AutocompleteContext } from './context';
 import { useDebounce, useScrollPagination } from './hooks';
-import { AutocompleteItem } from './subcomponents';
+import AutocompleteDropdown from './subcomponents/AutocompleteDropdown';
 
 /**
  * Компонент Autocomplete предоставляет пользователю возможность ввода текста с поддержкой автозаполнения на основе предложенных элементов.
@@ -43,8 +41,12 @@ import { AutocompleteItem } from './subcomponents';
  * @prop {() => void} [props.onLoadOptions] Колбэк для запроса новых данных при вводе.
  * @prop {(value: string) => void} [props.onCreateItem] Колбэк для создания нового элемента.
  * Если задан, при отсутствии результатов и непустом вводе отображается опция для создания.
- * @prop {string} [props.noResultsText='No results for your request'] - Текст при отсутствии результатов.
- * @prop {(value: string) => string} [props.createItemText=(value) => `Create: ${value}`] - Функция для текста кнопки создания.
+ * @prop {string} [props.noResultsText='Ничего не найдено'] - Текст при отсутствии результатов.
+ * @prop {(value: string) => string} [props.createItemText=(value) => `Добавить: ${value}`] - Функция для текста кнопки создания.
+ * @prop {string} [props.totalText='Всего:'] - Текст для отображения общего количества элементов.
+ * @prop {boolean} [props.showTotalCount=true] - Показывать ли общее количество элементов.
+ * @prop {number} [props.debounceDelay=500] - Задержка в миллисекундах для debounce при вводе.
+ * @prop {boolean} [props.showEmptyDropdown=true] - Показывать ли дропдаун при отсутствии результатов.
  *
  * Также принимаются любые пропсы для Input через `...inputProps`.
  *
@@ -74,60 +76,67 @@ const Autocomplete = ({
   canLoadMore = false,
   onLoadMore,
   onCreateItem,
-  noResultsText = 'No results for your request',
+  noResultsText = 'Ничего не найдено',
   createItemText = (value: string) => `Добавить: ${value}`,
+  totalText = 'Всего:',
+  showTotalCount = true,
+  debounceDelay = 500,
+  showEmptyDropdown = true,
   className,
   style,
   ...inputProps
 }: IAutocompleteProps): JSX.Element => {
   const [selectedItems, setSelectedItems] = useState<IAutocompleteValue[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue> | null>(items);
+  const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue>>(items ?? []);
   const [realData, setRealData] = useState<Array<IAutocompleteValue> | null>(items);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+  const [isSearching, setIsSearching] = useState(false);
 
+  const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
   const inputElementRef = useRef<HTMLInputElement>(null);
 
-  const debouncedOnInputEnd = useDebounce(500, (value: string) => {
+  const debouncedOnInputEnd = useDebounce(debounceDelay, (value: string) => {
     onDebouncedInputChange?.(value);
-    onLoadOptions?.(value);
+    if (onLoadOptions) {
+      onLoadOptions(value);
+    }
   });
 
   useEffect(() => {
     if (selected) {
       setSelectedItems([selected]);
-      setInputValue(nameGetter(selected));
+      if (!isSearching) {
+        setInputValue(nameGetter(selected));
+      }
     } else {
-      setSelectedItems([]);
-      setInputValue('');
+      if (!isSearching) {
+        setSelectedItems([]);
+        setInputValue('');
+      }
     }
-  }, [selected, nameGetter]);
+  }, [selected, nameGetter, isSearching]);
 
-  /**
-   * При изменении списка элементов или ввода (inputValue), пересчитываем currentItems.
-   * Это значит, что при каждом вводе текста фильтр обновляется.
-   */
   useEffect(() => {
     if (items && !isLoading) {
       const dataValues = items.filter(
         item => (item.id !== undefined && Number(item.id) >= 0) || Number.isNaN(Number(item.id))
       );
       setRealData(dataValues);
-      setCurrentItems(getFieldOptions(dataValues, inputValue, nameGetter));
-      // Сброс highlightedIndex при обновлении списка
+
+      if (!isSearching) {
+        setCurrentItems(dataValues);
+      } else {
+        setCurrentItems(getFieldOptions(dataValues, inputValue, nameGetter));
+      }
+
       setHighlightedIndex(-1);
     }
-  }, [items, isLoading, inputValue, nameGetter]);
+  }, [items, isLoading, inputValue, nameGetter, isSearching]);
 
-  /**
-   * Функция, которая при выборе элемента пытается найти полный объект в realData и передать его в nameGetter.
-   * Если не находит, просто вызывает nameGetter(item).
-   * Это дает гибкость, чтобы nameGetter мог работать и с данными, и с их "полной" версией.
-   */
   const nameGetterInside = useCallback(
     (item: IAutocompleteValue) => {
       if (!realData) return nameGetter(item);
@@ -137,10 +146,6 @@ const Autocomplete = ({
     [realData, nameGetter]
   );
 
-  /**
-   * Утилитарная функция, которая фильтрует и преобразует каждый элемент optionsType
-   * в объект с обновленным label. Фильтрация идет по label или nameGetter.
-   */
   const getFieldOptions = (
     optionsType: IAutocompleteValue[],
     searchValue: string,
@@ -162,110 +167,136 @@ const Autocomplete = ({
 
   const onChangeInput = ({ target: { value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (readOnly) return;
-    if (value) {
-      setOpen(true);
-    } else {
-      clearSelect();
-    }
+
     setInputValue(value);
-    debouncedOnInputEnd(value);
-    if (!value) {
+    setIsSearching(true);
+    setIsOpen(true);
+
+    if (!value.trim()) {
+      setSelectedItems([]);
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
+
+      if (onLoadOptions) {
+        debouncedOnInputEnd.cancel();
+        onLoadOptions('');
+      }
+
+      setCurrentItems([]);
+    } else {
+      setCurrentItems(getFieldOptions(realData ?? [], value, nameGetter));
+      debouncedOnInputEnd(value);
     }
   };
 
   const onSelectMenuItem = (item: IAutocompleteValue) => {
     const name = nameGetterInside(item);
-    onChangeSingleSelect(item, name);
     if (onFullItemSelect) {
       const fullItem = realData?.find((value: any) => value.id === item.value);
       onFullItemSelect(fullItem ?? item);
     }
-  };
-
-  const onChangeSingleSelect = (item: IAutocompleteValue, name: string) => {
     setSelectedItems([item]);
     setInputValue(name);
+    setIsSearching(false);
     onChange(item);
     inputElementRef.current?.focus();
-    setOpen(false);
+    setIsOpen(false);
   };
 
   const clearSelect = () => {
     setInputValue('');
     setSelectedItems([]);
+    setIsSearching(false);
     const nextValue = noSelectionItem ?? undefined;
     onChange(nextValue);
     onFullItemSelect?.(undefined);
-    inputElementRef.current?.focus();
-    setOpen(false);
+
+    if (onLoadOptions) {
+      debouncedOnInputEnd.cancel();
+      onLoadOptions('');
+    }
+
+    setIsOpen(false);
+    setCurrentItems([]);
   };
 
   const handleClickAway = () => {
-    setOpen(false);
-    if (selectedItems.length === 0) {
-      setInputValue('');
-    } else {
-      setInputValue(selectedItems.map(selectedItem => selectedItem.label).join(', '));
+    setIsOpen(false);
+
+    if (isSearching) {
+      if (selected) {
+        setInputValue(nameGetter(selected));
+        setIsSearching(false);
+        setCurrentItems(realData ?? []);
+      } else if (!inputValue.trim()) {
+        clearSelect();
+      } else {
+        setIsSearching(false);
+      }
+    }
+  };
+
+  const handleInputClick = () => {
+    if (!readOnly && !disabled) {
+      setIsOpen(true);
+      if (!isSearching) {
+        setCurrentItems(realData ?? []);
+      }
     }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (!open) return;
-
-    const hasItems = currentItems && currentItems.length > 0;
-    const showCreateItem = onCreateItem && inputValue.trim() !== '';
-
-    let totalCount = 0;
-    if (hasItems) {
-      totalCount = currentItems!.length;
-    } else if (showCreateItem) {
-      totalCount = 1;
-    }
+    if (readOnly || disabled) return;
 
     switch (e.key) {
       case 'ArrowDown':
-      case 'ArrowUp': {
-        if (totalCount === 0) return;
         e.preventDefault();
-        let nextIndex = highlightedIndex;
-
-        if (e.key === 'ArrowDown') {
-          nextIndex = highlightedIndex + 1 >= totalCount ? 0 : highlightedIndex + 1;
+        if (!isOpen) {
+          setIsOpen(true);
+          setHighlightedIndex(0);
         } else {
-          nextIndex = highlightedIndex - 1 < 0 ? totalCount - 1 : highlightedIndex - 1;
+          setHighlightedIndex(prev => (prev < currentItems.length - 1 ? prev + 1 : prev));
         }
+        break;
 
-        setHighlightedIndex(nextIndex);
+      case 'ArrowUp':
+        e.preventDefault();
+        if (isOpen) {
+          setHighlightedIndex(prev => (prev > 0 ? prev - 1 : prev));
+        }
+        break;
 
-        if (hasItems) {
-          const menuItems = wrapperRef.current?.querySelectorAll(`.${styles['menu-item']}`);
-          if (menuItems && menuItems[nextIndex]) {
-            menuItems[nextIndex].scrollIntoView({ block: 'nearest' });
+      case 'Enter':
+        e.preventDefault();
+        if (isOpen && highlightedIndex >= 0 && currentItems[highlightedIndex]) {
+          onSelectMenuItem(currentItems[highlightedIndex]);
+        }
+        break;
+
+      case 'Escape':
+        e.preventDefault();
+        if (isOpen) {
+          setIsOpen(false);
+          const selectedItem = selectedItems[0];
+          if (selectedItem) {
+            setInputValue(nameGetter(selectedItem));
+            setIsSearching(false);
+            setCurrentItems(realData ?? []);
           }
         }
         break;
-      }
-      case 'Enter':
-        e.preventDefault();
-        if (hasItems && highlightedIndex >= 0 && highlightedIndex < currentItems!.length) {
-          onSelectMenuItem(currentItems![highlightedIndex]);
-        } else if (showCreateItem && highlightedIndex === 0) {
-          onCreateItem!(inputValue);
-          setOpen(false);
+
+      case 'Backspace':
+        if (!inputValue && selectedItems.length > 0) {
+          clearSelect();
         }
         break;
-      case 'Escape':
-        setOpen(false);
-        break;
+
       default:
         break;
     }
   };
-
-  const cardBoundingRect = withPortal ? inputRef.current?.getBoundingClientRect() : undefined;
 
   useScrollPagination({
     wrapperRef,
@@ -279,124 +310,51 @@ const Autocomplete = ({
     isPortalMounted: withPortal
   });
 
-  const hasItems = currentItems && currentItems.length > 0;
   const hasExactMatch = currentItems?.some(
     item => item.label?.trim().toLowerCase() === inputValue.trim().toLowerCase()
   );
   const showCreateItem = onCreateItem && inputValue.trim() !== '' && !hasExactMatch;
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
-  const dropdownContent = (
-    <div
-      ref={wrapperRef}
-      className={clsx(
-        styles['card'],
-        {
-          [styles['card-small']]: size === EAutocompleteSize.s,
-          [styles['card-extra-small']]: size === EAutocompleteSize.xs
-        },
-        className
-      )}
-      style={
-        withPortal
-          ? {
-              width: cardBoundingRect?.width,
-              left: cardBoundingRect?.left,
-              top: cardBoundingRect ? cardBoundingRect.top + cardBoundingRect.height : undefined,
-              position: 'absolute',
-              ...style
-            }
-          : style
-      }
-      data-ui-autocomplete-dropdown
-    >
-      {!isLoading && (
-        <Box flexDirection="column" gap={0} data-ui-autocomplete-content>
-          {showCreateItem && (
-            <AutocompleteItem
-              key="__create_item__"
-              className={styles['menu-item']}
-              onClick={() => {
-                onCreateItem!(inputValue);
-                setOpen(false);
-              }}
-              value={inputValue}
-              highlighted={highlightedIndex === 0}
-              data-ui-autocomplete-create-item
-            >
-              {createItemText(inputValue)}
-            </AutocompleteItem>
-          )}
+  const hasItems = (currentItems ?? []).length > 0;
 
-          {hasItems ? (
-            <>
-              <Typography
-                className={styles.total}
-                variant="Caption-Medium"
-                color="var(--steel-90)"
-                data-ui-autocomplete-total
-              >
-                Total: {currentItems!.length}
-              </Typography>
-              {currentItems?.map((item, index) => {
-                const name = nameGetterInside(item);
-                if (!name) return null;
+  const shouldShowDropdown =
+    isOpen && !disabled && !readOnly && (showEmptyDropdown || hasItems || showCreateItem || isLoading);
 
-                const trimmedSubstr = inputValue.trim();
-                const label = renderLabel
-                  ? boldReactElement(renderLabel(item), trimmedSubstr)
-                  : boldString(item.label || '', trimmedSubstr);
-
-                return (
-                  <AutocompleteItem
-                    key={item.id}
-                    disabled={item.disabled || selectedItems.some(selectedItem => selectedItem.value === item.value)}
-                    className={styles['menu-item']}
-                    onClick={() => onSelectMenuItem(item)}
-                    value={item.name || ''}
-                    hint={showTooltip ? item.label : ''}
-                    highlighted={index === highlightedIndex}
-                    data-ui-autocomplete-item
-                  >
-                    {label}
-                  </AutocompleteItem>
-                );
-              })}
-            </>
-          ) : (
-            <Box flexDirection="column" data-ui-autocomplete-empty>
-              <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
-                <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
-                <Typography variant="Caption-Medium" color="var(--steel-90)">
-                  {noResultsText}
-                </Typography>
-              </Box>
-            </Box>
-          )}
-        </Box>
-      )}
-
-      {isLoading && (
-        <MenuItem
-          label={
-            <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
-              <Spinner />
-            </Box>
-          }
-          value=""
-          disabled
-        />
-      )}
-      <div ref={targetRef} />
-    </div>
-  );
+  const dropdownContent = <AutocompleteDropdown />;
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
+    <AutocompleteContext.Provider
+      value={{
+        isOpen,
+        disabled,
+        portalContainerId,
+        withPortal,
+        inputRef,
+        wrapperRef,
+        targetRef,
+        isLoading,
+        showCreateItem,
+        onCreateItem,
+        currentItems,
+        inputValue: inputValue,
+        highlightedIndex,
+        selectedItems,
+        createItemText,
+        onSelectMenuItem,
+        noResultsText,
+        size,
+        showTooltip,
+        renderLabel,
+        totalText,
+        showTotalCount,
+        showEmptyDropdown,
+        handleClickAway
+      }}
+    >
       <div
-        className={styles.autocomplete}
+        className={clsx(styles.autocomplete, className)}
         ref={inputRef}
-        style={{ width: isFullWidth ? '100%' : 'auto' }}
+        style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
         data-ui-autocomplete
       >
         <Input
@@ -419,19 +377,17 @@ const Autocomplete = ({
           helperText={helperText}
           onFocus={() => {
             if (!disabled && !readOnly) {
-              setOpen(true);
+              setIsOpen(true);
             }
           }}
+          onClick={handleInputClick}
           onChange={onChangeInput}
           data-ui-autocomplete-input
           data-testid="AUTOCOMPLETE_INPUT"
         />
-        {open &&
-          !disabled &&
-          !readOnly &&
-          (withPortal && portalContainer ? createPortal(dropdownContent, portalContainer) : dropdownContent)}
+        {shouldShowDropdown && dropdownContent}
       </div>
-    </ClickAwayListener>
+    </AutocompleteContext.Provider>
   );
 };
 

@@ -4,7 +4,7 @@ export interface IPaginationProps {
   /** Текущая страница */
   currentPage: number;
   /** Функция для установки текущей страницы */
-  setCurrentPage: Dispatch<SetStateAction<number>>;
+  setCurrentPage?: Dispatch<SetStateAction<number>>;
   /** Количество элементов на странице */
   elementsPerPage?: number;
   /** Функция для установки количества элементов на странице */

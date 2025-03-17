@@ -112,9 +112,11 @@ const Autocomplete = ({
       if (!isSearching) {
         setInputValue(nameGetter(selected));
       }
-    } else if (!isSearching) {
-      setSelectedItems([]);
-      setInputValue('');
+    } else {
+      if (!isSearching) {
+        setSelectedItems([]);
+        setInputValue('');
+      }
     }
   }, [selected, nameGetter, isSearching]);
 
@@ -175,7 +177,13 @@ const Autocomplete = ({
       const nextValue = noSelectionItem ?? undefined;
       onChange(nextValue);
       onFullItemSelect?.(undefined);
-      setCurrentItems(realData ?? []);
+      
+      if (onLoadOptions) {
+        debouncedOnInputEnd.cancel();
+        onLoadOptions('');
+      }
+      
+      setCurrentItems([]);  
     } else {
       setCurrentItems(getFieldOptions(realData ?? [], value, nameGetter));
       debouncedOnInputEnd(value);
@@ -203,25 +211,31 @@ const Autocomplete = ({
     const nextValue = noSelectionItem ?? undefined;
     onChange(nextValue);
     onFullItemSelect?.(undefined);
+    
+    if (onLoadOptions) {
+      debouncedOnInputEnd.cancel();
+      onLoadOptions('');
+    }
+    
     setIsOpen(false);
-    setCurrentItems(realData ?? []);
+    setCurrentItems([]);
   };
 
-  const handleClickAway = () => {
-    setIsOpen(false);
-  
-    if (isSearching) {
-      if (selected && selectedItems.length > 0) {
-        setInputValue(nameGetter(selected));
-        setIsSearching(false);
-        setCurrentItems(realData ?? []);
-      } else if (!inputValue.trim()) {
-        clearSelect();
-      } else {
-        setIsSearching(false);
-      }
+const handleClickAway = () => {
+  setIsOpen(false);
+
+  if (isSearching) {
+    if (selected) {
+      setInputValue(nameGetter(selected));
+      setIsSearching(false);
+      setCurrentItems(realData ?? []);
+    } else if (!inputValue.trim()) {
+      clearSelect();
+    } else {
+      setIsSearching(false);
     }
-  };
+  }
+};
 
   const handleInputClick = () => {
     if (!readOnly && !disabled) {

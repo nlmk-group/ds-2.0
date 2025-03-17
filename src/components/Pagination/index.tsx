@@ -53,12 +53,14 @@ const Pagination: FC<IPaginationProps> = ({
 
   const handlePageChange = useCallback(
     (newPage: number) => {
-      setCurrentPage(prev => {
-        if (typeof prev === 'function') {
+      if (setCurrentPage) {
+        setCurrentPage(prev => {
+          if (typeof prev === 'function') {
+            return newPage;
+          }
           return newPage;
-        }
-        return newPage;
-      });
+        });
+      }
       onPageChange?.(newPage);
     },
     [setCurrentPage, onPageChange]

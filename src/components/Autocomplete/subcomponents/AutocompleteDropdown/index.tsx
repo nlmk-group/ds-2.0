@@ -212,10 +212,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         )}
         <div
           ref={el => {
-            if (el) {
-              if (targetRef && typeof targetRef === 'object') {
-                (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
-              }
+            if (el && targetRef && typeof targetRef === 'object') {
+              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
             }
           }}
         />

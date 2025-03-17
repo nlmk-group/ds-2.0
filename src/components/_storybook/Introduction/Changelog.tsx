@@ -35,9 +35,36 @@ export const Changelog = () => {
               >
                 Autocomplete
               </Link>
-              .<li className={styles['left-padding']}>- Исправлен логика работы свойства onLoadOptions</li>
+              .<li className={styles['left-padding']}>- Исправлена логика работы свойства onLoadOptions</li>
               <li className={styles['left-padding']}>
                 - Выпадающий список теперь не закрывается после выбора через onClick
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено свойство style для iconButton</li>
+            </li>
+            <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pagination-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Свойство setCurrentPage стало опциональным. Теперь компонент поддерживает два подхода к управлению
+                состоянием: через прямое обновление состояния (setCurrentPage) или через обработку событий
+                (onPageChange).
               </li>
             </li>
           </ul>

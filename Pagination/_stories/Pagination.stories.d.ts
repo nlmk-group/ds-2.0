@@ -22,6 +22,14 @@ declare const _default: {
         setCurrentPage: {
             description: string;
         };
+        onPageChange: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
         elementsPerPage: {
             description: string;
             table: {

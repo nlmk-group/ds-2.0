@@ -1,4 +1,4 @@
-import { EAutocompleteSize } from '../types';
+import { EAutocompleteSize } from '../enums';
 
 export declare const argsTypes: {
     selected: {
@@ -194,6 +194,50 @@ export declare const argsTypes: {
     };
     createItemText: {
         description: string;
+        control: {
+            type: string;
+        };
+    };
+    totalText: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    debounceDelay: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    showTotalCount: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    showEmptyDropdown: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
         control: {
             type: string;
         };

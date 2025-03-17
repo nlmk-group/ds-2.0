@@ -16,6 +16,14 @@ export declare const argsTypes: {
     setCurrentPage: {
         description: string;
     };
+    onPageChange: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
     elementsPerPage: {
         description: string;
         table: {

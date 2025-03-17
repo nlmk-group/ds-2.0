@@ -3,7 +3,7 @@ import { IAutocompleteProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: ({ selected, items, isLoading, nameGetter, renderLabel, disabled, onChange, onFullItemSelect, noSelectionItem, onDebouncedInputChange, size, showTooltip, readOnly, helperText, error, isFullWidth, withPortal, onLoadOptions, portalContainerId, canLoadMore, onLoadMore, onCreateItem, noResultsText, createItemText, className, style, ...inputProps }: IAutocompleteProps) => JSX.Element;
+    component: ({ selected, items, isLoading, nameGetter, renderLabel, disabled, onChange, onFullItemSelect, noSelectionItem, onDebouncedInputChange, size, showTooltip, readOnly, helperText, error, isFullWidth, withPortal, onLoadOptions, portalContainerId, canLoadMore, onLoadMore, onCreateItem, noResultsText, createItemText, totalText, showTotalCount, debounceDelay, showEmptyDropdown, className, style, ...inputProps }: IAutocompleteProps) => JSX.Element;
     argTypes: {
         selected: {
             description: string;
@@ -154,7 +154,7 @@ declare const _default: {
                     summary: string;
                 };
             };
-            options: import('../types').EAutocompleteSize[];
+            options: import('../enums').EAutocompleteSize[];
             control: {
                 type: string;
             };
@@ -202,6 +202,50 @@ declare const _default: {
                 type: string;
             };
         };
+        totalText: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        debounceDelay: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        showTotalCount: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        showEmptyDropdown: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
         className: {
             description: string;
             control: {
@@ -225,6 +269,30 @@ declare const _default: {
 export default _default;
 export declare const AutocompleteDefault: {
     (args: IAutocompleteProps): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithCustomTotalText: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithAsyncLoading: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithCreateItem: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithCustomRendering: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithPortal: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const AutocompleteWithSizes: {
+    (): JSX.Element;
     storyName: string;
 };
 //# sourceMappingURL=Autocomplete.stories.d.ts.map

@@ -1,5 +1,6 @@
 import { CSSProperties, MutableRefObject, ReactNode } from '../../../node_modules/react';
 import { TInputProps } from '../Input/types';
+import { EAutocompleteSize } from './enums';
 
 export interface IAutocompleteValue {
     id?: number;
@@ -7,11 +8,6 @@ export interface IAutocompleteValue {
     label?: string;
     value?: any;
     disabled?: boolean;
-}
-export declare enum EAutocompleteSize {
-    s = "s",
-    m = "m",
-    xs = "xs"
 }
 export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
     selected?: IAutocompleteValue;
@@ -40,6 +36,10 @@ export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
     onCreateItem?: (value: string) => void;
     noResultsText?: string;
     createItemText?: (value: string) => string;
+    totalText?: string;
+    debounceDelay?: number;
+    showTotalCount?: boolean;
+    showEmptyDropdown?: boolean;
     className?: string;
     style?: CSSProperties;
 }

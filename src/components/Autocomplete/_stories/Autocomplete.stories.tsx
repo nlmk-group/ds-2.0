@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { createContext, ReactNode } from 'react';
 
-import { Autocomplete, Typography } from '@components/index';
+import { Autocomplete, Box, Typography } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -31,7 +31,11 @@ const AutocompleteStoryProvider = ({ children }: AutocompleteStoryContextProps) 
   return <AutocompleteStoryContext.Provider value={{}}>{children}</AutocompleteStoryContext.Provider>;
 };
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{Story()}</div>;
+const withWrapper = (Story: any) => (
+  <div className={styles.wrapper} style={{ padding: '50px' }}>
+    {Story()}
+  </div>
+);
 
 export default {
   title: 'Components/Autocomplete/Stories',
@@ -57,16 +61,14 @@ export const AutocompleteDefault = (args: IAutocompleteProps): JSX.Element => {
   }, [args.items]);
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        {...args}
-        items={items}
-        nameGetter={item => item.label || ''}
-        onCreateItem={undefined}
-        selected={selected}
-        onChange={setSelected}
-      />
-    </div>
+    <Autocomplete
+      {...args}
+      items={items}
+      nameGetter={item => item.label || ''}
+      onCreateItem={undefined}
+      selected={selected}
+      onChange={setSelected}
+    />
   );
 };
 AutocompleteDefault.storyName = 'Autocomplete по умолчанию';
@@ -76,16 +78,14 @@ export const AutocompleteWithCustomTotalText = (): JSX.Element => {
   const [selected, setSelected] = useState<IAutocompleteValue | undefined>(undefined);
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        totalText="Найдено:"
-        label="Autocomplete с кастомным текстом 'Total'"
-      />
-    </div>
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
+      onChange={setSelected}
+      selected={selected}
+      totalText="Найдено:"
+      label="Autocomplete с кастомным текстом 'Total'"
+    />
   );
 };
 AutocompleteWithCustomTotalText.storyName = 'Autocomplete с кастомным текстом "Total"';
@@ -106,18 +106,16 @@ export const AutocompleteWithAsyncLoading = (): JSX.Element => {
   }, []);
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        isLoading={isLoading}
-        onLoadOptions={handleLoadOptions}
-        label="Autocomplete с асинхронной загрузкой данных"
-        placeholder="Начните вводить для поиска..."
-      />
-    </div>
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
+      onChange={setSelected}
+      selected={selected}
+      isLoading={isLoading}
+      onLoadOptions={handleLoadOptions}
+      label="Autocomplete с асинхронной загрузкой данных"
+      placeholder="Начните вводить для поиска..."
+    />
   );
 };
 AutocompleteWithAsyncLoading.storyName = 'Autocomplete с асинхронной загрузкой';
@@ -141,18 +139,16 @@ export const AutocompleteWithCreateItem = (): JSX.Element => {
   );
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        onCreateItem={handleCreateItem}
-        createItemText={value => `Создать новый элемент: ${value}`}
-        label="Autocomplete с возможностью создания элементов"
-        placeholder="Введите название или создайте новый элемент"
-      />
-    </div>
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
+      onChange={setSelected}
+      selected={selected}
+      onCreateItem={handleCreateItem}
+      createItemText={value => `Создать новый элемент: ${value}`}
+      label="Autocomplete с возможностью создания элементов"
+      placeholder="Введите название или создайте новый элемент"
+    />
   );
 };
 AutocompleteWithCreateItem.storyName = 'Autocomplete с созданием новых элементов';
@@ -176,17 +172,15 @@ export const AutocompleteWithCustomRendering = (): JSX.Element => {
   }, []);
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        renderLabel={renderCustomLabel}
-        label="Autocomplete с кастомным рендерингом опций"
-        showTooltip={true}
-      />
-    </div>
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
+      onChange={setSelected}
+      selected={selected}
+      renderLabel={renderCustomLabel}
+      label="Autocomplete с кастомным рендерингом опций"
+      showTooltip={true}
+    />
   );
 };
 AutocompleteWithCustomRendering.storyName = 'Autocomplete с кастомным рендерингом опций';
@@ -196,17 +190,15 @@ export const AutocompleteWithPortal = (): JSX.Element => {
   const [selected, setSelected] = useState<IAutocompleteValue | undefined>(undefined);
 
   return (
-    <div style={{ padding: '50px' }}>
-      <Autocomplete
-        items={items}
-        nameGetter={item => item.label || ''}
-        onChange={setSelected}
-        selected={selected}
-        withPortal={true}
-        portalContainerId="root"
-        label="Autocomplete с рендерингом через портал"
-      />
-    </div>
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
+      onChange={setSelected}
+      selected={selected}
+      withPortal={true}
+      portalContainerId="root"
+      label="Autocomplete с рендерингом через портал"
+    />
   );
 };
 AutocompleteWithPortal.storyName = 'Autocomplete с рендерингом через портал';
@@ -215,7 +207,7 @@ export const AutocompleteWithSizes = (): JSX.Element => {
   const [items] = useState<IAutocompleteValue[]>(defaultOptions);
 
   return (
-    <div style={{ padding: '50px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <Box display="flex" flexDirection="column" gap="20px">
       <Autocomplete
         items={items}
         nameGetter={item => item.label || ''}
@@ -233,7 +225,7 @@ export const AutocompleteWithSizes = (): JSX.Element => {
         size="m"
         label="Размер M (по умолчанию)"
       />
-    </div>
+    </Box>
   );
 };
 AutocompleteWithSizes.storyName = 'Autocomplete с разными размерами';

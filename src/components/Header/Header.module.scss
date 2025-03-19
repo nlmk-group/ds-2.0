@@ -7,7 +7,7 @@
 }
 
 .breadcrumbs-wrapper {
-  margin-bottom: var(--8-space);
+  margin-bottom: 8px;
 }
 
 .alternative-background {
@@ -15,26 +15,26 @@
 }
 
 .wrapper-default {
-  padding: var(--16-space) var(--48-space);
+  padding: 16px 48px;
 }
 
 .wrapper-compact {
-  padding: var(--8-space) var(--24-space);
+  padding: 8px 24px;
 }
 
 .breadcrumbs-wrapper {
-  padding: var(--8-space) 0;
+  padding: 8px 0;
 }
 
 .title-btn-wrapper {
   display: flex;
   min-height: var(--heading2-line-height);
-  gap: var(--16-space);
+  gap: 16px;
 }
 
 .btn-wrapper {
   button {
-    padding: var(--8-space) var(--12-space);
+    padding: 8px 12px;
 
     span {
       margin: unset;
@@ -62,7 +62,7 @@
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: var(--24-space);
+  gap: 24px;
   height: var(--heading2-line-height);
   line-height: var(--heading2-line-height);
 }
@@ -82,8 +82,8 @@
 
 .btn-icon-size {
   svg {
-    height: var(--24-size);
-    width: var(--24-size);
+    height: 24px;
+    width: 24px;
   }
 }
 

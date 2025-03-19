@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
 import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
@@ -190,23 +190,21 @@ HeaderSpacing.args = {
 
 export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
   return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
-      />
-    </MemoryRouter>
+    <Header
+      {...argTypes}
+      back={argTypes.back || undefined}
+      favorite={argTypes.favorite || undefined}
+      notification={argTypes.notification || undefined}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    />
   );
 };
 
@@ -223,34 +221,32 @@ HeaderBreadcrumbs.args = {
 
 export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
   return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        type="compact"
-        date
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
+    <Header
+      {...argTypes}
+      back={argTypes.back || undefined}
+      type="compact"
+      date
+      favorite={argTypes.favorite || undefined}
+      notification={argTypes.notification || undefined}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    >
+      <Button
+        style={{ marginRight: '25px' }}
+        color="grey"
+        variant="secondary"
+        startIcon={<IconSettingsAltOutlined24 />}
       >
-        <Button
-          style={{ marginRight: '25px' }}
-          color="grey"
-          variant="secondary"
-          startIcon={<IconSettingsAltOutlined24 />}
-        >
-          Настройки
-        </Button>
-      </Header>
-    </MemoryRouter>
+        Настройки
+      </Button>
+    </Header>
   );
 };
 

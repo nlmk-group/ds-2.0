@@ -4,6 +4,7 @@ export interface IHeader {
   title: string;
   type?: string;
   bg?: boolean;
+  /* Кнопка назад */
   back?: MouseEventHandler<HTMLButtonElement>;
   favorite?: MouseEventHandler<HTMLButtonElement>;
   notification?: MouseEventHandler<HTMLButtonElement>;
@@ -12,9 +13,4 @@ export interface IHeader {
   breadcrumbs?: ReactNode;
   className?: string;
   children?: ReactNode;
-}
-
-export interface INotification {
-  notification: MouseEventHandler<HTMLButtonElement>;
-  notificationAmount?: number;
 }

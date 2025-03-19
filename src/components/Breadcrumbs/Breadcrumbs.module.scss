@@ -1,7 +1,7 @@
-@mixin body1-medium {
-  font-size: var(--body1-medium-font-size);
-  line-height: var(--body1-medium-line-height);
-  font-weight: var(--body1-medium-font-weight);
+@mixin body1mono-medium {
+  font-size: var(--body1-mono-medium-font-size);
+  line-height: var(--body1-mono-medium-line-height);
+  font-weight: var(--body1-mono-medium-font-weight);
 }
 
 // Стили основного компонента
@@ -48,7 +48,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  @include body1-medium;
+  @include body1mono-medium;
 }
 
 .separator {
@@ -67,7 +67,7 @@
   align-items: center;
   cursor: pointer;
   color: var(--steel-70);
-  @include body1-medium;
+  @include body1mono-medium;
 
   &:hover {
     color: var(--brand-sapphire-60);

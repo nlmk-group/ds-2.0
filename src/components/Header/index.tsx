@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 
-import { DateTime, Typography } from '@components/.';
+import { DateTime, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import { IHeader } from './types';
 
 import styles from './Header.module.scss';
 
-import BtnBack from './BtnBack';
-import BtnFavorite from './BtnFavorite';
-import BtnNotification from './BtnNotification';
 import { typeMapping } from './enums';
+import BtnBack from './subcomponents/ButtonBack';
+import BtnFavorite from './subcomponents/ButtonFavorite';
+import BtnNotification from './subcomponents/ButtonNotification';
 
 const Header: FC<IHeader> = ({
   title,

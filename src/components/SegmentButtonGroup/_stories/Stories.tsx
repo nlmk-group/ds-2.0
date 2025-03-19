@@ -51,22 +51,26 @@ const Stories = (): JSX.Element => {
           <Editor
             height={600}
             description="SegmentButtonGroup по умолчанию"
-            code={`import { SegmentButtonGroup } from '@nlmk/ds-2.0';
-
-const { Button } = SegmentButtonGroup;
+            code={`import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
 
 export default App = () => {
   return (
-    <SegmentButtonGroup>
-      <Button onClick={() => console.log(new Date())}>
-        Печенье
-      </Button>
-      <Button onClick={() => console.log(new Date())}>
-        Торты
-      </Button>
-      <Button onClick={() => console.log(new Date())}>
-        Конфеты
-      </Button>
+    <SegmentButtonGroup {...argTypes}>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Сталь
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Цинк
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Чугун
+        </Typography>
+      </SegmentButton>
     </SegmentButtonGroup>
   )
 }

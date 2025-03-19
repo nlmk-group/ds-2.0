@@ -9,7 +9,7 @@ import { Meta } from '@storybook/react';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { typeMapping } from '../enums';
-import { IHeader } from '../types';
+import { IHeaderProps } from '../types';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_HEADER,
@@ -32,7 +32,7 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Header>;
 
-export const DefaultHeader = (argTypes: IHeader): ReactNode => {
+export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -48,7 +48,7 @@ DefaultHeader.args = {
   title: DEFAULT_HEADER
 };
 
-export const HeaderBack = (argTypes: IHeader): ReactNode => {
+export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -65,7 +65,7 @@ HeaderBack.args = {
   back: action('goBack')
 };
 
-export const HeaderDate = (argTypes: IHeader): ReactNode => {
+export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -83,7 +83,7 @@ HeaderDate.args = {
   date: true
 };
 
-export const HeaderFavorite = (argTypes: IHeader): ReactNode => {
+export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -102,7 +102,7 @@ HeaderFavorite.args = {
   favorite: action('addToFavorite')
 };
 
-export const HeaderNotification = (argTypes: IHeader): ReactNode => {
+export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -122,7 +122,7 @@ HeaderNotification.args = {
   notificationAmount: 9
 };
 
-export const HeaderBackground = (argTypes: IHeader): ReactNode => {
+export const HeaderBackground = (argTypes: IHeaderProps): ReactNode => {
   return (
     <>
       <Header
@@ -152,7 +152,7 @@ HeaderBackground.args = {
   notificationAmount: 9
 };
 
-export const HeaderSpacing = (argTypes: IHeader): ReactNode => {
+export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       {Object.values(typeMapping).map((typeValue: typeMapping) => (
@@ -188,7 +188,7 @@ HeaderSpacing.args = {
   notificationAmount: 9
 };
 
-export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
+export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
@@ -219,7 +219,7 @@ HeaderBreadcrumbs.args = {
   notificationAmount: 9
 };
 
-export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
+export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}

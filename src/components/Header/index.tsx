@@ -3,16 +3,14 @@ import React, { FC } from 'react';
 import { DateTime, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
-import { IHeader } from './types';
+import { IHeaderProps } from './types';
 
 import styles from './Header.module.scss';
 
 import { typeMapping } from './enums';
-import BtnBack from './subcomponents/ButtonBack';
-import BtnFavorite from './subcomponents/ButtonFavorite';
-import BtnNotification from './subcomponents/ButtonNotification';
+import { ButtonBack, ButtonFavorite, ButtonNotification, ButtonPrint, ButtonVideo } from './subcomponents';
 
-const Header: FC<IHeader> = ({
+const Header: FC<IHeaderProps> = ({
   title,
   bg = false,
   type = typeMapping.default,
@@ -20,6 +18,8 @@ const Header: FC<IHeader> = ({
   date = false,
   favorite = null,
   notification = null,
+  video = null,
+  print = null,
   notificationAmount = 0,
   breadcrumbs = null,
   className,
@@ -39,7 +39,7 @@ const Header: FC<IHeader> = ({
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
           <div className={styles['title-btn-wrapper']}>
-            {back !== null && <BtnBack back={back} />}
+            {back !== null && <ButtonBack back={back} />}
             <div data-testid="HEADER_TITLE" className={styles.title} title={title}>
               <Typography variant="Heading2">{title}</Typography>
             </div>
@@ -50,9 +50,11 @@ const Header: FC<IHeader> = ({
 
         <div className={styles.right}>
           {Boolean(date) && <DateTime />}
-          {favorite !== null && <BtnFavorite favorite={favorite} />}
+          {favorite !== null && <ButtonFavorite favorite={favorite} />}
+          {print !== null && <ButtonPrint print={print} />}
+          {video !== null && <ButtonVideo video={video} />}
           {notification !== null && (
-            <BtnNotification notification={notification} notificationAmount={notificationAmount} />
+            <ButtonNotification notification={notification} notificationAmount={notificationAmount} />
           )}
         </div>
       </div>

@@ -33,14 +33,7 @@ export default {
 } as Meta<typeof Header>;
 
 export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+  return <Header {...argTypes} />;
 };
 
 DefaultHeader.storyName = DEFAULT_HEADER;
@@ -49,14 +42,7 @@ DefaultHeader.args = {
 };
 
 export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+  return <Header {...argTypes} />;
 };
 
 HeaderBack.storyName = HEADER_BACK;
@@ -66,14 +52,7 @@ HeaderBack.args = {
 };
 
 export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+  return <Header {...argTypes} />;
 };
 
 HeaderDate.storyName = HEADER_DATE;
@@ -84,14 +63,7 @@ HeaderDate.args = {
 };
 
 export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+  return <Header {...argTypes} />;
 };
 
 HeaderFavorite.storyName = HEADER_FAVORITE;
@@ -103,14 +75,7 @@ HeaderFavorite.args = {
 };
 
 export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+  return <Header {...argTypes} />;
 };
 
 HeaderNotification.storyName = HEADER_NOTIFICATION;
@@ -122,47 +87,9 @@ HeaderNotification.args = {
   notificationAmount: 9
 };
 
-export const HeaderBackground = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-    </>
-  );
-};
-
-HeaderBackground.storyName = HEADER_BACKGROUND;
-HeaderBackground.args = {
-  title: HEADER_BACKGROUND,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
 export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {Object.values(typeMapping).map((typeValue: typeMapping) => (
-        <Header
-          {...argTypes}
-          type={argTypes.type || typeValue}
-          back={argTypes.back || undefined}
-          favorite={argTypes.favorite || undefined}
-          notification={argTypes.notification || undefined}
-        />
-      ))}
       {Object.values(typeMapping).map((typeValue: typeMapping) => (
         <Header
           {...argTypes}
@@ -190,9 +117,6 @@ export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
       {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
       breadcrumbs={
         <Breadcrumbs>
           {breadcrumbsLinks.map((link, index) => (

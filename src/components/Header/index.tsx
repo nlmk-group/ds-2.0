@@ -24,12 +24,29 @@ const Header: FC<IHeaderProps> = ({
   className,
   children
 }): JSX.Element => {
+  const RightBlock = (
+    <div className={styles.right}>
+      {Boolean(date) && <DateTime />}
+      {favorite !== null && <ButtonFavorite favorite={favorite} />}
+      {print !== null && <ButtonPrint print={print} />}
+      {video !== null && <ButtonVideo video={video} />}
+      {notification !== null && (
+        <ButtonNotification notification={notification} notificationAmount={notificationAmount} />
+      )}
+    </div>
+  );
+
   return (
     <div
       data-testid="HEADER_WRAPPER"
       className={clsx(styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'], className)}
     >
-      {breadcrumbs !== null && <div className={styles['breadcrumbs-wrapper']}>{breadcrumbs}</div>}
+      {breadcrumbs !== null ? (
+        <div className={styles['breadcrumbs-wrapper']}>
+          <div>{breadcrumbs}</div>
+          {RightBlock}
+        </div>
+      ) : null}
 
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
@@ -41,15 +58,7 @@ const Header: FC<IHeaderProps> = ({
           </div>
         </div>
         {children}
-        <div className={styles.right}>
-          {Boolean(date) && <DateTime />}
-          {favorite !== null && <ButtonFavorite favorite={favorite} />}
-          {print !== null && <ButtonPrint print={print} />}
-          {video !== null && <ButtonVideo video={video} />}
-          {notification !== null && (
-            <ButtonNotification notification={notification} notificationAmount={notificationAmount} />
-          )}
-        </div>
+        {!breadcrumbs && RightBlock}
       </div>
     </div>
   );

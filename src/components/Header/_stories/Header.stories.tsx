@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
-import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
+import { Breadcrumbs, Button, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -14,7 +14,6 @@ import argsTypes from './argsTypes';
 import {
   DEFAULT_HEADER,
   HEADER_BACK,
-  HEADER_BACKGROUND,
   HEADER_BREADCRUMBS,
   HEADER_CHILDREN,
   HEADER_DATE,
@@ -31,6 +30,33 @@ export default {
   decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Header>;
+
+const dropdownOptions = [
+  { value: 'Сталь' },
+  { value: 'Железо' },
+  { value: 'Чугун', disabled: true },
+  { value: 'Медь' },
+  { value: 'Цинк' },
+  { value: 'Титан' },
+  { value: 'Хром' }
+];
+
+const dropdownOptionsComponent = dropdownOptions.map(({ value, disabled }) => {
+  const hasSpace = value.includes(' ');
+
+  return (
+    <DropdownMenuItem
+      key={value}
+      value={value}
+      disabled={disabled}
+      onClick={() => {
+        console.log(value);
+      }}
+    >
+      {value}
+    </DropdownMenuItem>
+  );
+});
 
 export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
@@ -85,6 +111,22 @@ HeaderNotification.args = {
   date: true,
   notification: action('addToNotification'),
   notificationAmount: 9
+};
+export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
+};
+HeaderWithDropdown.storyName = 'Header с выпадающим списком';
+
+HeaderWithDropdown.args = {
+  title: 'Заголовок',
+  back: action('goBack'),
+  date: true,
+  notification: action('addToNotification'),
+  notificationAmount: 9,
+  print: action('print'),
+  video: action('openVideo'),
+  dropdownItems: dropdownOptionsComponent,
+  dropdownTitle: 'Заголовок'
 };
 
 export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {

@@ -57,7 +57,10 @@
   -webkit-box-orient: vertical;
   line-clamp: 1;
 }
-
+.title-container {
+  display: flex;
+  gap: 8px;
+}
 .button-padding-unset {
   position: relative;
   button {
@@ -82,4 +85,19 @@
   path {
     fill: var(--steel-70);
   }
+}
+[data-ui-dropdown-button] {
+  background: none;
+  &:hover {
+    background: none;
+  }
+  &:active {
+    background: none;
+  }
+}
+[data-ui-dropdown-button-children] {
+  background: none;
+  font-weight: var(--heading2-32-font-weight);
+  font-size: var(--heading2-32-font-size);
+  line-height: var(--heading2-32-line-height);
 }

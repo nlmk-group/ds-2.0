@@ -54,11 +54,13 @@ const Header: FC<IHeaderProps> = ({
         <div style={{ flex: '1' }}>
           <div className={styles['title-btn-wrapper']}>
             {back !== null && <ButtonBack back={back} />}
-            <div data-testid="HEADER_TITLE" className={styles.title} title={title}>
-              <Typography variant="Heading2">{title}</Typography>
+            <div className={styles['title-container']}>
+              <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
+                {title}
+              </Typography>
               {dropdownItems && (
                 <Typography variant="Heading2">
-                  <Dropdown title={dropdownTitle}>{dropdownItems}</Dropdown>
+                  <Dropdown buttonChildren={dropdownTitle}>{dropdownItems}</Dropdown>
                 </Typography>
               )}
             </div>

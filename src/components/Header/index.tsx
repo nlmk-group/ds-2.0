@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { DateTime, Typography } from '@components/index';
+import { DateTime, Dropdown, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import { IHeaderProps } from './types';
@@ -21,6 +21,8 @@ const Header: FC<IHeaderProps> = ({
   print = null,
   notificationAmount = 0,
   breadcrumbs = null,
+  dropdownItems,
+  dropdownTitle,
   className,
   children
 }): JSX.Element => {
@@ -54,6 +56,11 @@ const Header: FC<IHeaderProps> = ({
             {back !== null && <ButtonBack back={back} />}
             <div data-testid="HEADER_TITLE" className={styles.title} title={title}>
               <Typography variant="Heading2">{title}</Typography>
+              {dropdownItems && (
+                <Typography variant="Heading2">
+                  <Dropdown title={dropdownTitle}>{dropdownItems}</Dropdown>
+                </Typography>
+              )}
             </div>
           </div>
         </div>

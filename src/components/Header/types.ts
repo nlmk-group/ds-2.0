@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactElement, ReactNode } from 'react';
 
 export interface IHeaderProps {
   title: string;
@@ -9,6 +9,8 @@ export interface IHeaderProps {
   notification?: MouseEventHandler<HTMLButtonElement>;
   video?: MouseEventHandler<HTMLButtonElement>;
   print?: MouseEventHandler<HTMLButtonElement>;
+  dropdownItems?: ReactElement[];
+  dropdownTitle?: string;
   date?: boolean;
   notificationAmount?: number;
   breadcrumbs?: ReactNode;

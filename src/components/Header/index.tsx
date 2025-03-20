@@ -12,7 +12,6 @@ import { ButtonBack, ButtonFavorite, ButtonNotification, ButtonPrint, ButtonVide
 
 const Header: FC<IHeaderProps> = ({
   title,
-  bg = false,
   type = typeMapping.default,
   back = null,
   date = false,
@@ -28,11 +27,7 @@ const Header: FC<IHeaderProps> = ({
   return (
     <div
       data-testid="HEADER_WRAPPER"
-      className={clsx(
-        styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'],
-        bg && styles['alternative-background'],
-        className
-      )}
+      className={clsx(styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'], className)}
     >
       {breadcrumbs !== null && <div className={styles['breadcrumbs-wrapper']}>{breadcrumbs}</div>}
 
@@ -45,9 +40,7 @@ const Header: FC<IHeaderProps> = ({
             </div>
           </div>
         </div>
-
-        {!!children && children}
-
+        {children}
         <div className={styles.right}>
           {Boolean(date) && <DateTime />}
           {favorite !== null && <ButtonFavorite favorite={favorite} />}

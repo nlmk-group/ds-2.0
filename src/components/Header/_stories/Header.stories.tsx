@@ -133,7 +133,6 @@ export const HeaderBackground = (argTypes: IHeaderProps): ReactNode => {
       />
       <Header
         {...argTypes}
-        bg
         back={argTypes.back || undefined}
         favorite={argTypes.favorite || undefined}
         notification={argTypes.notification || undefined}
@@ -167,7 +166,6 @@ export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {
       {Object.values(typeMapping).map((typeValue: typeMapping) => (
         <Header
           {...argTypes}
-          bg
           type={argTypes.type || typeValue}
           back={argTypes.back || undefined}
           favorite={argTypes.favorite || undefined}

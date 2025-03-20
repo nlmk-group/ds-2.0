@@ -18,15 +18,6 @@ const argsTypes = {
     options: Object.values(typeMapping),
     control: { type: 'select' }
   },
-  bg: {
-    description: 'Булево значение, которое переключает цвет фона заголовка.',
-    control: { type: 'boolean' },
-    table: {
-      defaultValue: {
-        summary: 'false'
-      }
-    }
-  },
   back: {
     description: 'Функция обратного вызова, которая выполняется при нажатии на кнопку "Назад".',
     control: { type: 'boolean' },

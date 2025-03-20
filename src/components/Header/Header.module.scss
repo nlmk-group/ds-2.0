@@ -10,10 +10,6 @@
   margin-bottom: 8px;
 }
 
-.alternative-background {
-  background-color: var(--background-paper);
-}
-
 .wrapper-default {
   padding: 16px 48px;
 }
@@ -28,7 +24,6 @@
 
 .title-btn-wrapper {
   display: flex;
-  min-height: var(--heading2-line-height);
   gap: 16px;
 }
 
@@ -44,12 +39,12 @@
 
 .btn-back-icon {
   path {
-    fill: var(--primary-blue-600);
+    fill: var(--brand-sapphire-60);
   }
 }
 
 .title {
-  color: var(--text-grey-900);
+  color: var(--steel-90);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -63,8 +58,6 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  height: var(--heading2-line-height);
-  line-height: var(--heading2-line-height);
 }
 
 .button-padding-unset {
@@ -89,6 +82,6 @@
 
 .favorite-icon-color {
   path {
-    fill: var(--ac-icon-grey);
+    fill: var(--steel-70);
   }
 }

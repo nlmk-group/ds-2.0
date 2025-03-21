@@ -35,11 +35,10 @@ export const Changelog = () => {
               >
                 SegmentButtonGroup
               </Link>
-              .<li className={styles['left-padding']}>- Добавлен экспорт SegmentButton</li>.
+              .<li className={styles['left-padding']}>- Добавлен экспорт SegmentButton</li>
               <li className={styles['left-padding']}>
                 - Обновлен раздел Info в Storybook компонента SegmentButtonGroup
               </li>
-              .<li className={styles['left-padding']}>- Обновлены импорты в документации и сторях</li>
             </li>
           </ul>
         </div>

@@ -1,3 +1,5 @@
+$borderActive: 4px solid var(--brand-sapphire-50);
+
 .videoWindow {
   overflow: hidden;
   min-width: 300px;
@@ -6,6 +8,14 @@
   height: 230px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+
+  &:focus-within {
+    border: $borderActive;
+  }
+}
+
+.active {
+  border: $borderActive;
 }
 
 .resizable {
@@ -27,6 +37,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 0;
+  &:focus-within {
+    border: none;
+  }
 }
 
 .minimized {

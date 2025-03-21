@@ -1,13 +1,13 @@
-import React, { FC, MouseEventHandler } from 'react';
+import React, { FC } from 'react';
 
 import { Button, IconChevronArrowLeftFilled24 } from '@components/index';
 import clsx from 'clsx';
 
-import styles from './Header.module.scss';
+import { IButtonBackProps } from './types';
 
-const BtnBack: FC<{
-  back: MouseEventHandler<HTMLButtonElement>;
-}> = ({ back }): JSX.Element => {
+import styles from '../../Header.module.scss';
+
+const BtnBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
   return (
     <div className={clsx(styles['btn-wrapper'], styles['btn-back-icon'])}>
       <Button

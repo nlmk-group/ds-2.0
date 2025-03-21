@@ -1,20 +1,19 @@
 import React, { ReactNode } from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
-import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
+import { Breadcrumbs, Button, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import { typeMapping } from '../enums';
-import { IHeader } from '../types';
+import { IHeaderProps } from '../types';
 import argsTypes from './argsTypes';
 import {
   DEFAULT_HEADER,
   HEADER_BACK,
-  HEADER_BACKGROUND,
   HEADER_BREADCRUMBS,
   HEADER_CHILDREN,
   HEADER_DATE,
@@ -32,15 +31,35 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Header>;
 
-export const DefaultHeader = (argTypes: IHeader): ReactNode => {
+const dropdownOptions = [
+  { value: 'Сталь' },
+  { value: 'Железо' },
+  { value: 'Чугун', disabled: true },
+  { value: 'Медь' },
+  { value: 'Цинк' },
+  { value: 'Титан' },
+  { value: 'Хром' }
+];
+
+const dropdownOptionsComponent = dropdownOptions.map(({ value, disabled }) => {
+  const hasSpace = value.includes(' ');
+
   return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
+    <DropdownMenuItem
+      key={value}
+      value={value}
+      disabled={disabled}
+      onClick={() => {
+        console.log(value);
+      }}
+    >
+      {value}
+    </DropdownMenuItem>
   );
+});
+
+export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
 
 DefaultHeader.storyName = DEFAULT_HEADER;
@@ -48,15 +67,8 @@ DefaultHeader.args = {
   title: DEFAULT_HEADER
 };
 
-export const HeaderBack = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
 
 HeaderBack.storyName = HEADER_BACK;
@@ -65,15 +77,8 @@ HeaderBack.args = {
   back: action('goBack')
 };
 
-export const HeaderDate = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
 
 HeaderDate.storyName = HEADER_DATE;
@@ -83,15 +88,8 @@ HeaderDate.args = {
   date: true
 };
 
-export const HeaderFavorite = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
 
 HeaderFavorite.storyName = HEADER_FAVORITE;
@@ -102,15 +100,8 @@ HeaderFavorite.args = {
   favorite: action('addToFavorite')
 };
 
-export const HeaderNotification = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
+export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
 
 HeaderNotification.storyName = HEADER_NOTIFICATION;
@@ -121,53 +112,29 @@ HeaderNotification.args = {
   notification: action('addToNotification'),
   notificationAmount: 9
 };
-
-export const HeaderBackground = (argTypes: IHeader): ReactNode => {
-  return (
-    <>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-      <Header
-        {...argTypes}
-        bg
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-    </>
-  );
+export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
 };
+HeaderWithDropdown.storyName = 'Header с выпадающим списком';
 
-HeaderBackground.storyName = HEADER_BACKGROUND;
-HeaderBackground.args = {
-  title: HEADER_BACKGROUND,
+HeaderWithDropdown.args = {
+  title: 'Заголовок',
   back: action('goBack'),
   date: true,
-  favorite: action('addToFavorite'),
   notification: action('addToNotification'),
-  notificationAmount: 9
+  notificationAmount: 9,
+  print: action('print'),
+  video: action('openVideo'),
+  dropdownItems: dropdownOptionsComponent,
+  dropdownTitle: 'Заголовок'
 };
 
-export const HeaderSpacing = (argTypes: IHeader): ReactNode => {
+export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       {Object.values(typeMapping).map((typeValue: typeMapping) => (
         <Header
           {...argTypes}
-          type={argTypes.type || typeValue}
-          back={argTypes.back || undefined}
-          favorite={argTypes.favorite || undefined}
-          notification={argTypes.notification || undefined}
-        />
-      ))}
-      {Object.values(typeMapping).map((typeValue: typeMapping) => (
-        <Header
-          {...argTypes}
-          bg
           type={argTypes.type || typeValue}
           back={argTypes.back || undefined}
           favorite={argTypes.favorite || undefined}
@@ -188,25 +155,20 @@ HeaderSpacing.args = {
   notificationAmount: 9
 };
 
-export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
+export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
   return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
-      />
-    </MemoryRouter>
+    <Header
+      {...argTypes}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    />
   );
 };
 
@@ -221,36 +183,34 @@ HeaderBreadcrumbs.args = {
   notificationAmount: 9
 };
 
-export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
+export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode => {
   return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        type="compact"
-        date
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
+    <Header
+      {...argTypes}
+      back={argTypes.back || undefined}
+      type="compact"
+      date
+      favorite={argTypes.favorite || undefined}
+      notification={argTypes.notification || undefined}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    >
+      <Button
+        style={{ marginRight: '25px' }}
+        color="grey"
+        variant="secondary"
+        startIcon={<IconSettingsAltOutlined24 />}
       >
-        <Button
-          style={{ marginRight: '25px' }}
-          color="grey"
-          variant="secondary"
-          startIcon={<IconSettingsAltOutlined24 />}
-        >
-          Настройки
-        </Button>
-      </Header>
-    </MemoryRouter>
+        Настройки
+      </Button>
+    </Header>
   );
 };
 

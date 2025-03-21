@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 import { INotification } from './types';
 
-import styles from './Header.module.scss';
+import styles from '../../Header.module.scss';
 
 const BtnNotification: FC<INotification> = ({ notification, notificationAmount = 0 }) => {
   return (

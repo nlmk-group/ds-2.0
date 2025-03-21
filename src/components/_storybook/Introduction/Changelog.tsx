@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.20.3 - <span className={styles.date}>21.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен экспорт SegmentButton</li>
+              <li className={styles['left-padding']}>
+                - Обновлен раздел Info в Storybook компонента SegmentButtonGroup
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.20.2 - <span className={styles.date}>17.03.24</span>
           </Typography>
           <ul className={styles.list}>

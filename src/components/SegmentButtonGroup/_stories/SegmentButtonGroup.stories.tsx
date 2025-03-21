@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
 
-import { SegmentButtonGroup, Typography } from '@components/index';
+import { SegmentButton, SegmentButtonGroup, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
 import { ESegmentButtonGroupSizes } from '../enums';
-import SegmentButton from '../SegmentButton';
 import { ISegmentButtonGroupProps } from '../types';
 import { argsTypes } from './argsTypes';
 

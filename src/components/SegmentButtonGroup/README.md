@@ -7,13 +7,29 @@
 ## Использование
 
 ```jsx
-import SegmentButton from './SegmentButton';
+import { SegmentButton, SegmentButtonGroup, Typography } from '@nlmk/ds-2.0';
 
-<SegmentButtonGroup>
-  <SegmentButton onClick={() => alert('Печенье')}>Печенье</SegmentButton>
-  <SegmentButton onClick={() => alert('Торты')}>Торты</SegmentButton>
-  <SegmentButton onClick={() => alert('Конфеты')}>Конфеты</SegmentButton>
-</SegmentButtonGroup>;
+export default App = () => {
+  return (
+    <SegmentButtonGroup {...argTypes}>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Сталь
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Цинк
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Чугун
+        </Typography>
+      </SegmentButton>
+    </SegmentButtonGroup>
+  );
+};
 ```
 
 ## Props

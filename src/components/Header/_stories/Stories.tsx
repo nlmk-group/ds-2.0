@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -21,7 +22,6 @@ import {
   HEADER_NOTIFICATION,
   HEADERS_DIFFERENT_SPACING
 } from './text';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 
 enum TabIds {
   dev,
@@ -31,7 +31,6 @@ enum TabIds {
 
 const COMPONENT_NAME = 'Header';
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434&t=HhCDuaOuzHu5rgyf-1';
-
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -127,7 +126,6 @@ export default  App = () => (
 export default  App = () => (
   <>
     <Header title="${HEADERS_DIFFERENT_SPACING}" type="default" />
-    <Header title="${HEADERS_DIFFERENT_SPACING}" type="compact" />
   </>
 )
               `}

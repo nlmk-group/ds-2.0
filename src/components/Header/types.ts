@@ -2,7 +2,6 @@ import { MouseEventHandler, ReactNode } from 'react';
 
 export interface IHeaderProps {
   title: string;
-  type?: string;
   /* Кнопка назад */
   back?: MouseEventHandler<HTMLButtonElement>;
   favorite?: MouseEventHandler<HTMLButtonElement>;

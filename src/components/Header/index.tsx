@@ -7,12 +7,10 @@ import { IHeaderProps } from './types';
 
 import styles from './Header.module.scss';
 
-import { typeMapping } from './enums';
 import { ButtonBack, ButtonFavorite, ButtonNotification, ButtonPrint, ButtonVideo } from './subcomponents';
 
 const Header: FC<IHeaderProps> = ({
   title,
-  type = typeMapping.default,
   back = null,
   date = false,
   favorite = null,
@@ -25,7 +23,7 @@ const Header: FC<IHeaderProps> = ({
   children
 }): JSX.Element => {
   const RightBlock = (
-    <div className={styles.right}>
+    <div className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
       {Boolean(date) && <DateTime />}
       {favorite !== null && <ButtonFavorite favorite={favorite} />}
       {print !== null && <ButtonPrint print={print} />}
@@ -37,30 +35,26 @@ const Header: FC<IHeaderProps> = ({
   );
 
   return (
-    <div
-      data-testid="HEADER_WRAPPER"
-      className={clsx(styles[type === typeMapping.default ? 'wrapper-default' : 'wrapper-compact'], className)}
-    >
+    <div data-testid="HEADER_WRAPPER" className={clsx(styles['wrapper-default'], className)}>
       {breadcrumbs !== null ? (
         <div className={styles['breadcrumbs-wrapper']}>
           <div>{breadcrumbs}</div>
           {RightBlock}
         </div>
       ) : null}
-
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
-          <div className={styles['title-btn-wrapper']}>
+          <div className={clsx(breadcrumbs ? styles['title-btn-wrapper-with-crumbs'] : styles['title-btn-wrapper'])}>
             {back !== null && <ButtonBack back={back} />}
             <div className={styles['title-container']}>
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}
               </Typography>
             </div>
+            {children}
+            {!breadcrumbs && RightBlock}
           </div>
         </div>
-        {children}
-        {!breadcrumbs && RightBlock}
       </div>
     </div>
   );

@@ -3,8 +3,6 @@ import React, { FC } from 'react';
 import { Header } from '@components/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { typeMapping } from './enums';
-
 describe('src/components/Header', () => {
   const testTitle = 'Hello world!';
 
@@ -18,12 +16,6 @@ describe('src/components/Header', () => {
     render(<Header title={testTitle} />);
     const headerComponent = screen.getByTestId('HEADER_TITLE');
     expect(headerComponent).toHaveTextContent(testTitle);
-  });
-
-  test('It should render a Header with compact type', () => {
-    render(<Header title={testTitle} type={typeMapping.compact} />);
-    const headerComponent = screen.getByTestId('HEADER_WRAPPER');
-    expect(headerComponent.classList.contains('wrapper-compact')).toBe(true);
   });
 
   describe('While rendering back button', () => {

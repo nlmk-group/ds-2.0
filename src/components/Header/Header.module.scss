@@ -17,20 +17,30 @@
 .right {
   display: flex;
   align-items: center;
+  justify-self: flex-end;
   gap: 24px;
-}
 
+  &-with-margin {
+    margin-left: auto;
+  }
+}
+.children-container {
+  display: flex;
+  justify-content: space-between;
+}
 .wrapper-default {
+  width: 100%;
   padding: 16px 48px;
-}
-
-.wrapper-compact {
-  padding: 8px 24px;
 }
 
 .title-btn-wrapper {
   display: flex;
+  justify-content: space-between;
   gap: 16px;
+  &-with-crumbs {
+    display: flex;
+    gap: 16px;
+  }
 }
 
 .btn-wrapper {

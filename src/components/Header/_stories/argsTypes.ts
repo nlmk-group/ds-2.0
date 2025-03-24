@@ -1,22 +1,7 @@
-import { typeMapping } from '../enums';
-
 const argsTypes = {
   title: {
     description: 'Строка, представляющая текст, отображаемый в качестве заголовка.',
     control: { type: 'string' }
-  },
-  type: {
-    description: 'Строка, которая задает тип заголовка, "default" (по умолчанию) или "compact" (компактный).',
-    table: {
-      defaultValue: {
-        summary: typeMapping.default
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(typeMapping),
-    control: { type: 'select' }
   },
   back: {
     description: 'Функция обратного вызова, которая выполняется при нажатии на кнопку "Назад".',

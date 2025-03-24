@@ -9,7 +9,6 @@ import { Meta } from '@storybook/react';
 // import styles from '@components/_storybook/styles.module.scss';
 import styles from './Header.stories.module.scss';
 
-import { typeMapping } from '../enums';
 import { IHeaderProps } from '../types';
 import argsTypes from './argsTypes';
 import {
@@ -133,32 +132,6 @@ HeaderWithDropdown.args = {
   favorite: action('favorite')
 };
 
-export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {Object.values(typeMapping).map((typeValue: typeMapping) => (
-        <Header
-          {...argTypes}
-          type={argTypes.type || typeValue}
-          back={argTypes.back || undefined}
-          favorite={argTypes.favorite || undefined}
-          notification={argTypes.notification || undefined}
-        />
-      ))}
-    </div>
-  );
-};
-
-HeaderSpacing.storyName = HEADERS_DIFFERENT_SPACING;
-HeaderSpacing.args = {
-  title: HEADERS_DIFFERENT_SPACING,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
 export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
   return (
     <Header
@@ -179,7 +152,6 @@ export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
 HeaderBreadcrumbs.storyName = HEADER_BREADCRUMBS;
 HeaderBreadcrumbs.args = {
   title: HEADER_BREADCRUMBS,
-  type: typeMapping.compact,
   back: action('goBack'),
   date: true,
   favorite: action('addToFavorite'),
@@ -192,7 +164,6 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode 
     <Header
       {...argTypes}
       back={argTypes.back || undefined}
-      type="compact"
       date
       favorite={argTypes.favorite || undefined}
       notification={argTypes.notification || undefined}
@@ -221,7 +192,6 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode 
 HeaderBreadcrumbsHasChildren.storyName = HEADER_CHILDREN;
 HeaderBreadcrumbsHasChildren.args = {
   title: HEADER_CHILDREN,
-  type: typeMapping.compact,
   back: action('goBack'),
   date: true,
   favorite: action('addToFavorite'),

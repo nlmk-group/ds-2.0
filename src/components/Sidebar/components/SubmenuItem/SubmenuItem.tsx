@@ -164,6 +164,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
               variant="Body1-Medium"
               color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
               className={styles.text}
+              title={label}
             >
               {content || label}
             </Typography>

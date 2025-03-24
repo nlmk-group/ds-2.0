@@ -1,7 +1,9 @@
 import React, { ReactNode, useState } from 'react';
 
+import { IAutocompleteValue } from '@components/Autocomplete/types';
 import DatePicker from '@components/DatePicker';
 import {
+  Autocomplete,
   Box,
   Button,
   Dropdown,
@@ -28,6 +30,19 @@ const withWrapper = (Story: any) => {
     </Box>
   );
 };
+
+const defaultOptions: IAutocompleteValue[] = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' },
+  { id: 4, value: 'sinter_plant', label: 'Агломерационная фабрика' },
+  { id: 5, value: 'coke_plant', label: 'Коксовая батарея' },
+  { id: 6, value: 'steel_ladle', label: 'Сталеразливочный ковш' },
+  { id: 7, value: 'continuous_casting', label: 'Машина непрерывного литья' },
+  { id: 8, value: 'electric_furnace', label: 'Электродуговая печь' },
+  { id: 9, value: 'oxygen_plant', label: 'Кислородная станция' },
+  { id: 10, value: 'heat_treatment', label: 'Термическая обработка' }
+];
 
 const options = [
   { value: 'steel', label: 'High-Strength Low-Alloy Steel' },
@@ -188,6 +203,8 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, onChange] = useState(new Date());
   const [selected, setSelected] = useState('');
+  const [items, setItems] = useState<IAutocompleteValue[]>(defaultOptions);
+  const [selectedAutocomplete, setSelectedAutocomplete] = useState<IAutocompleteValue | undefined>(undefined);
 
   return (
     <div>
@@ -200,24 +217,34 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="primary" style={{ marginBottom: '10px' }}>
-          Это модальное окно изменяемого размера.
-        </Typography>
-        <DatePicker withPortal value={value} onChange={onChange} />
-        <SimpleSelect
-          value={selected}
-          onChange={newValue => {
-            setSelected(newValue as string);
-          }}
-          withPortal
-        >
-          {options.map(({ value, label, disabled }) => (
-            <OptionItem key={value} value={value} label={label} disabled={disabled}>
-              <Typography variant="Body1-Medium">{label}</Typography>
-            </OptionItem>
-          ))}
-        </SimpleSelect>
-        <Input style={{ marginTop: '10px' }} />
+        <Box flexDirection="column" gap="8px">
+          <Typography color="primary" style={{ marginBottom: '10px' }}>
+            Это модальное окно изменяемого размера.
+          </Typography>
+          <DatePicker withPortal value={value} onChange={onChange} />
+          <SimpleSelect
+            value={selected}
+            onChange={newValue => {
+              setSelected(newValue as string);
+            }}
+            withPortal
+          >
+            {options.map(({ value, label, disabled }) => (
+              <OptionItem key={value} value={value} label={label} disabled={disabled}>
+                <Typography variant="Body1-Medium">{label}</Typography>
+              </OptionItem>
+            ))}
+          </SimpleSelect>
+          <Autocomplete
+            withPortal
+            items={items}
+            nameGetter={item => item.label || ''}
+            onCreateItem={undefined}
+            selected={selectedAutocomplete}
+            onChange={setSelectedAutocomplete}
+          />
+          <Input />
+        </Box>
         <div style={{ position: 'relative', marginTop: '10px' }}>
           <Dropdown buttonChildren="Dropdown Button" size="m" menuStyle={{ width: '200px' }} withPortal>
             {positions.map(({ value, disabled }) => (

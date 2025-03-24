@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
+
+
 import Button from '@components/Button';
-import {
-  IconASIImplementationOutlined24,
-  IconCloseOutlined24,
-  IconDeleteMinusOutlined24,
-  IconFullScreenOpenOutlined24
-} from '@components/Icon/IconsDirectory';
+import { IconASIImplementationOutlined24, IconCloseOutlined24, IconDeleteMinusOutlined24, IconFullScreenOpenOutlined24 } from '@components/Icon/IconsDirectory';
 import Typography from '@components/Typography';
 import { VideoWindowProps } from '@components/VideoWindow/types';
 import clsx from 'clsx';
 
+
+
 import videoStyles from './styles.module.scss';
 
+
+
 import { useDraggable } from './hooks';
+
 
 const VideoWindow = ({
   videoUrl,
@@ -24,7 +26,8 @@ const VideoWindow = ({
   draggable,
   draggableStartPosition,
   onClose,
-  styles
+  style,
+  className
 }: VideoWindowProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -45,22 +48,24 @@ const VideoWindow = ({
 
   return (
     <div
-      className={clsx(videoStyles.videoWindow, {
+      className={clsx(videoStyles.videoWindow, className, {
         [videoStyles.fullscreen]: isFullscreen && !isMinimized,
         [videoStyles.minimized]: isMinimized,
         [videoStyles.resizable]: !isFullscreen && resizable,
         [videoStyles.active]: !isFullscreen && isActive
       })}
-      style={draggable ? draggableData?.draggableStyle : undefined}
+      style={{ ...(draggable ? draggableData?.draggableStyle : {}), ...style }}
       tabIndex={0}
       onClick={() => setIsActive(true)}
       onBlur={() => setIsActive(false)}
+      data-ui-video-window-root
     >
       <div
         className={clsx(videoStyles.videoWindowHeader, {
           [videoStyles.draggable]: draggable && !isFullscreen,
           [videoStyles.headerWithoutTitle]: noTitle && !isMinimized
         })}
+        data-ui-video-window-header
         onMouseDown={draggable ? draggableData?.handleMouseDown : undefined}
       >
         {title && (
@@ -68,18 +73,13 @@ const VideoWindow = ({
             {React.isValidElement(title) ? (
               title
             ) : (
-              <Typography
-                color="var(--unique-white)"
-                variant="Body1-Medium"
-                className={styles?.videoTitleClassName}
-                style={styles?.videoTitleStyle}
-              >
+              <Typography color="var(--unique-white)" variant="Body1-Medium" data-ui-video-window-typography-title>
                 {title}
               </Typography>
             )}
           </>
         )}
-        <div className={videoStyles.videoControls}>
+        <div className={videoStyles.videoControls} data-ui-video-window-controls>
           <Button
             onClick={toggleFullscreen}
             iconButton={isFullscreen ? <IconASIImplementationOutlined24 /> : <IconFullScreenOpenOutlined24 />}
@@ -107,11 +107,14 @@ const VideoWindow = ({
         </div>
       </div>
       {!isMinimized && (
-        <div className={clsx(videoStyles.videoContent, { [videoStyles.videoWithoutTitle]: noTitle })}>
+        <div
+          className={clsx(videoStyles.videoContent, { [videoStyles.videoWithoutTitle]: noTitle })}
+          data-ui-video-window-video-content
+        >
           <video id={id} controls src={videoUrl} controlsList="nodownload" autoPlay={autoPlay} />
         </div>
       )}
-      {!isMinimized && <div className={videoStyles.resizer} />}
+      {!isMinimized && <div className={videoStyles.resizer} data-ui-video-window-resizer />}
     </div>
   );
 };

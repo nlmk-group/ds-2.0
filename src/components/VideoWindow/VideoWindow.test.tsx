@@ -5,15 +5,17 @@ import React from 'react';
 import { VideoWindowProps } from '@components/VideoWindow/types';
 import { render } from '@testing-library/react';
 
+
+
 import VideoWindow from './VideoWindow';
+
 
 describe('src/components/VideoWindowV1', () => {
   const defaultProps: VideoWindowProps = {
     videoUrl: 'https://example.com/video.mp4',
     title: 'Test Video',
     autoPlay: false,
-    onClose: jest.fn(),
-    styles: {}
+    onClose: jest.fn()
   };
 
   // Тест базового рендера

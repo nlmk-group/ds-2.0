@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-
+  gap: 16px;
   @media (max-width: 650px) {
     flex-direction: column;
   }
@@ -11,6 +11,7 @@
   justify-content: space-between;
   margin-bottom: 4px;
   padding: 8px 0;
+  gap: 8px;
 }
 
 .right {
@@ -85,19 +86,4 @@
   path {
     fill: var(--steel-70);
   }
-}
-[data-ui-dropdown-button] {
-  background: none;
-  &:hover {
-    background: none;
-  }
-  &:active {
-    background: none;
-  }
-}
-[data-ui-dropdown-button-children] {
-  background: none;
-  font-weight: var(--heading2-32-font-weight);
-  font-size: var(--heading2-32-font-size);
-  line-height: var(--heading2-32-line-height);
 }

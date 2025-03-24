@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { DateTime, Dropdown, Typography } from '@components/index';
+import { DateTime, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import { IHeaderProps } from './types';
@@ -21,8 +21,6 @@ const Header: FC<IHeaderProps> = ({
   print = null,
   notificationAmount = 0,
   breadcrumbs = null,
-  dropdownItems,
-  dropdownTitle,
   className,
   children
 }): JSX.Element => {
@@ -58,11 +56,6 @@ const Header: FC<IHeaderProps> = ({
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}
               </Typography>
-              {dropdownItems && (
-                <Typography variant="Heading2">
-                  <Dropdown buttonChildren={dropdownTitle}>{dropdownItems}</Dropdown>
-                </Typography>
-              )}
             </div>
           </div>
         </div>

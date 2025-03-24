@@ -2,11 +2,12 @@ import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
-import { Breadcrumbs, Button, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
+import { Breadcrumbs, Button, Dropdown, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
-import styles from '@components/_storybook/styles.module.scss';
+// import styles from '@components/_storybook/styles.module.scss';
+import styles from './Header.stories.module.scss';
 
 import { typeMapping } from '../enums';
 import { IHeaderProps } from '../types';
@@ -41,22 +42,22 @@ const dropdownOptions = [
   { value: 'Хром' }
 ];
 
-const dropdownOptionsComponent = dropdownOptions.map(({ value, disabled }) => {
-  const hasSpace = value.includes(' ');
-
-  return (
-    <DropdownMenuItem
-      key={value}
-      value={value}
-      disabled={disabled}
-      onClick={() => {
-        console.log(value);
-      }}
-    >
-      {value}
-    </DropdownMenuItem>
-  );
-});
+const dropdownOptionsComponent = (
+  <Dropdown buttonChildren="Заголовок">
+    {dropdownOptions.map(({ value, disabled }) => (
+      <DropdownMenuItem
+        key={value}
+        value={value}
+        disabled={disabled}
+        onClick={() => {
+          console.log(value);
+        }}
+      >
+        {value}
+      </DropdownMenuItem>
+    ))}
+  </Dropdown>
+);
 
 export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
@@ -113,7 +114,11 @@ HeaderNotification.args = {
   notificationAmount: 9
 };
 export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
-  return <Header {...argTypes} />;
+  return (
+    <Header className={styles['header-container']} {...argTypes}>
+      {dropdownOptionsComponent}
+    </Header>
+  );
 };
 HeaderWithDropdown.storyName = 'Header с выпадающим списком';
 
@@ -125,8 +130,7 @@ HeaderWithDropdown.args = {
   notificationAmount: 9,
   print: action('print'),
   video: action('openVideo'),
-  dropdownItems: dropdownOptionsComponent,
-  dropdownTitle: 'Заголовок'
+  favorite: action('favorite')
 };
 
 export const HeaderSpacing = (argTypes: IHeaderProps): ReactNode => {

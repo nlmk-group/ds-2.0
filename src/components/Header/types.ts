@@ -9,8 +9,6 @@ export interface IHeaderProps {
   notification?: MouseEventHandler<HTMLButtonElement>;
   video?: MouseEventHandler<HTMLButtonElement>;
   print?: MouseEventHandler<HTMLButtonElement>;
-  dropdownItems?: ReactNode;
-  dropdownTitle?: string;
   date?: boolean;
   notificationAmount?: number;
   breadcrumbs?: ReactNode;

@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.header-container [data-ui-dropdown-button] {
+  background: none;
+  &:hover {
+    background: none;
+  }
+  &:active {
+    background: none;
+  }
+}
+.header-container [data-ui-dropdown-button-children] {
+  background: none;
+  font-weight: var(--heading2-32-font-weight);
+  font-size: var(--heading2-32-font-size);
+  line-height: var(--heading2-32-line-height);
+}

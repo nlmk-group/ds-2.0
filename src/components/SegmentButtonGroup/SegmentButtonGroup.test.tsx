@@ -54,7 +54,7 @@ describe('SegmentButtonGroup Component', () => {
     render(<TestComponent />);
     const button = screen.getByTestId('SEGMENT_BUTTON');
     fireEvent.click(button);
-    expect(button.classList.contains('_active')).toBe(true);
+    expect(button.classList.contains('active')).toBe(true);
   });
 
   test('renders button with different sizes correctly', () => {

@@ -12,6 +12,10 @@
   margin-bottom: 4px;
   padding: 8px 0;
   gap: 8px;
+
+  > div:first-child {
+    flex-grow: 1;
+  }
 }
 
 .right {

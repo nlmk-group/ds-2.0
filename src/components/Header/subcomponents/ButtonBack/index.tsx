@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { Button, IconChevronArrowLeftFilled24 } from '@components/index';
-import clsx from 'clsx';
+import { Button, IconChevronArrowLeftOutlined24 } from '@components/index';
 
 import { IButtonBackProps } from './types';
 
@@ -9,11 +8,12 @@ import styles from '../../Header.module.scss';
 
 const BtnBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
   return (
-    <div className={clsx(styles['btn-wrapper'], styles['btn-back-icon'])}>
+    <div>
       <Button
         data-testid="HEADER_BACK"
         onClick={back}
-        iconButton={<IconChevronArrowLeftFilled24 />}
+        className={styles['btn-wrapper']}
+        iconButton={<IconChevronArrowLeftOutlined24 />}
         variant="primary"
         color="ghost"
       />

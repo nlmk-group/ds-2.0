@@ -40,29 +40,24 @@
 .title-btn-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   &-with-crumbs {
     display: flex;
+    align-items: center;
     gap: 16px;
   }
 }
 
 .btn-wrapper {
-  button {
-    padding: 8px 12px;
-
-    span {
-      margin: unset;
-    }
-  }
+  width: 40px;
+  height: 40px;
+  padding: 8px;
 }
-
-.btn-back-icon {
-  path {
-    fill: var(--brand-sapphire-60);
-  }
+.title-container {
+  display: flex;
+  gap: 8px;
 }
-
 .title {
   color: var(--steel-90);
   overflow: hidden;
@@ -72,10 +67,7 @@
   -webkit-box-orient: vertical;
   line-clamp: 1;
 }
-.title-container {
-  display: flex;
-  gap: 8px;
-}
+
 .button-padding-unset {
   position: relative;
   button {
@@ -87,11 +79,4 @@
   position: absolute;
   top: 0;
   right: 0;
-}
-
-.btn-icon-size {
-  svg {
-    height: 24px;
-    width: 24px;
-  }
 }

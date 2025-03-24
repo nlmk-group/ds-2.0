@@ -50,8 +50,8 @@ const Header: FC<IHeaderProps> = ({
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}
               </Typography>
+              {children}
             </div>
-            {children}
             {!breadcrumbs && RightBlock}
           </div>
         </div>

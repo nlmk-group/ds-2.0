@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import { Button, IconStarOutlined24 } from '@components/index';
-import clsx from 'clsx';
 
 import { IButtonFavoriteProps } from './types';
 
@@ -9,7 +8,7 @@ import styles from '../../Header.module.scss';
 
 const BtnFavorite: FC<IButtonFavoriteProps> = ({ favorite }): JSX.Element => {
   return (
-    <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
+    <div className={styles['button-padding-unset']}>
       <Button
         data-testid="HEADER_FAVORITE"
         onClick={favorite}

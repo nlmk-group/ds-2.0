@@ -24,7 +24,7 @@ export default  App = () => {
 
   return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
         <Modal
             isOpen={isOpen}
             onClose={() => {
@@ -46,7 +46,7 @@ export default  App = () => {
 
   return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
         <Modal
             isOpen={isOpen}
             isDraggable
@@ -68,7 +68,7 @@ export default  App = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>Открыть модальное окно</Button>
         <Modal
             isOpen={isOpen}
             isResizable

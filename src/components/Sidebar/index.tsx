@@ -248,6 +248,7 @@ const Sidebar: FC<ISidebarProps> &
               </div>
               {isExpanded && isVertical && handleAction && (
                 <Button
+                  type="button"
                   size="s"
                   color="ghost"
                   variant="secondary"

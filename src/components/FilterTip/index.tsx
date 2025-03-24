@@ -97,6 +97,7 @@ const FilterTip: FC<IFilterTipProps> = ({
       </Typography>
       {isWithoutCancelIcon ? null : (
         <Button
+          type="button"
           id="cancel-button"
           className={clsx(styles['cancel-button'], 'filter-tip-cancel-button')}
           color="grey"

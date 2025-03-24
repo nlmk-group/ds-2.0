@@ -132,6 +132,7 @@ const Modal: FC<IModalProps> = ({
             {children}
           </div>
           <Button
+            type="button"
             iconButton={<IconCloseOutlined24 htmlColor="var(--ac-overlay-button)" />}
             color="ghost"
             variant="secondary"

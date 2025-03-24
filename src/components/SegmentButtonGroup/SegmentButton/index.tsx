@@ -36,6 +36,7 @@ const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, 
 
   return (
     <button
+      type="button"
       onClick={handleClick}
       disabled={disabled}
       className={clsx(

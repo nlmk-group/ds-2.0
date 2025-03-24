@@ -44,7 +44,7 @@ export const AlertDefault = ({
   ...argTypes
 }: IAlertStoryProps): ReactNode => {
   const actionElement = showActionButton ? (
-    <Button variant="primary" size="s" onClick={onActionClick}>
+    <Button type="button" variant="primary" size="s" onClick={onActionClick}>
       {actionLabel || 'Действие'}
     </Button>
   ) : undefined;
@@ -154,7 +154,7 @@ export const AlertWithActions = ({
   showActionButton?: boolean;
 }): ReactNode => {
   const actionElement = showActionButton ? (
-    <Button variant="primary" size="s" onClick={onActionClick}>
+    <Button type="button" variant="primary" size="s" onClick={onActionClick}>
       {actionLabel || 'Действие'}
     </Button>
   ) : undefined;

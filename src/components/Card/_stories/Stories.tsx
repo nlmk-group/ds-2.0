@@ -79,10 +79,10 @@ export default  App = () => (
         />
 
         <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-          <Button>
+          <Button type="button">
             Button
           </Button>
-          <Button variant="secondary">
+          <Button type="button" variant="secondary">
             Button
           </Button>
         </div>
@@ -135,10 +135,10 @@ export default  App = () => (
         />
 
         <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-          <Button>
+          <Button type="button">
             Button
           </Button>
-          <Button variant="secondary">
+          <Button type="button" variant="secondary">
             Button
           </Button>
         </div>
@@ -165,10 +165,10 @@ export default  App = () => (
         />
 
         <div style={{ display: 'flex', gap: '8px' }}>
-          <Button>
+          <Button type="button">
             Button
           </Button>
-          <Button variant="secondary">
+          <Button type="button" variant="secondary">
             Button
           </Button>
         </div>

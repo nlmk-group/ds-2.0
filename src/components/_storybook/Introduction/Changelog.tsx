@@ -35,10 +35,10 @@ export const Changelog = () => {
               >
                 Button
               </Link>
-              , в остальных компонентах Дизайнерской системы.
+              , в остальных компонентах Дизайн системы.
             </li>
             <li>
-              • Исправлена компонент{' '}
+              • Исправлен компонент{' '}
               <Link
                 href="./?path=/docs/components-sidebar-info--docs"
                 target="blank"
@@ -49,6 +49,23 @@ export const Changelog = () => {
               .
               <li className={styles['left-padding']}>
                 - Исправлено значение z-index для компонентов Sidebar, Submenu и SubmenuItem
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен title в SubmenuItem для label
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено значение z-index для компонента при использовании withPortal
               </li>
             </li>
           </ul>

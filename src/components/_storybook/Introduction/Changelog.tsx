@@ -37,6 +37,20 @@ export const Changelog = () => {
               </Link>
               , в остальных компонентах Дизайнерской системы.
             </li>
+            <li>
+              • Исправлена компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено значение z-index для компонентов Sidebar, Submenu и SubmenuItem
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

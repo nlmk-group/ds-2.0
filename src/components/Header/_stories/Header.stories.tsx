@@ -24,7 +24,7 @@ export default {
 const dropdownOptions = [{ value: 'Сталь' }, { value: 'Железо' }, { value: 'Чугун', disabled: true }];
 
 const dropdownOptionsComponent = (
-  <Dropdown buttonChildren="Заголовок">
+  <Dropdown menuStyle={{ minWidth: '250px' }} buttonChildren="Заголовок">
     {dropdownOptions.map(({ value, disabled }) => (
       <DropdownMenuItem
         key={value}

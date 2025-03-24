@@ -21,15 +21,7 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Header>;
 
-const dropdownOptions = [
-  { value: 'Сталь' },
-  { value: 'Железо' },
-  { value: 'Чугун', disabled: true },
-  { value: 'Медь' },
-  { value: 'Цинк' },
-  { value: 'Титан' },
-  { value: 'Хром' }
-];
+const dropdownOptions = [{ value: 'Сталь' }, { value: 'Железо' }, { value: 'Чугун', disabled: true }];
 
 const dropdownOptionsComponent = (
   <Dropdown buttonChildren="Заголовок">

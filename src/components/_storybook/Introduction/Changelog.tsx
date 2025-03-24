@@ -16,10 +16,59 @@ export const Changelog = () => {
             target="blank"
             className={styles.link}
           >
-            <Button color="grey" variant="secondary">
+            <Button color="grey" type="button" variant="secondary">
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.4 - <span className={styles.date}>24.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Задан тип компонента{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              , в остальных компонентах Дизайн системы.
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено значение z-index для компонентов Sidebar, Submenu и SubmenuItem
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен title в SubmenuItem для label
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено значение z-index для компонента при использовании withPortal
+              </li>
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">

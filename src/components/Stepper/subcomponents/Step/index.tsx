@@ -19,7 +19,7 @@ import { StepStateToBadgeColor } from './helpers';
  */
 export const Step = ({ stepName, index, active, state }: IStepProps) => {
   return (
-    <Button color="ghost" variant="secondary" className={styles['step-button']} size="s">
+    <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s">
       <Badge className={clsx(active && styles.active, styles.badge)} color={StepStateToBadgeColor[state]}>
         {index + 1}
       </Badge>

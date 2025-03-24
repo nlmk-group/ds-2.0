@@ -11,6 +11,7 @@ const BtnFavorite: FC<{
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
+        type="button"
         data-testid="HEADER_FAVORITE"
         onClick={favorite}
         className={styles['favorite-icon-color']}

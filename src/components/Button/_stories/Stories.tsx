@@ -43,13 +43,13 @@ const Stories = (): JSX.Element => {
 
 export default App = () => (
   <>
-    <Button>
+    <Button type="button">
       Button
     </Button>
-    <Button size="s">
+    <Button type="button" size="s">
       Button
     </Button>
-    <Button size="xs">
+    <Button type="button" size="xs">
       Button
     </Button>
   </>
@@ -62,45 +62,45 @@ export default App = () => (
 
 export default App = () => (
   <>
-    <Button color="brand">
+    <Button type="button" color="brand">
       Brand Primary
     </Button>
-    <Button color="brand" variant="secondary">
+    <Button type="button" color="brand" variant="secondary">
       Brand Secondary
     </Button>
 
-    <Button color="grey">
+    <Button type="button" color="grey">
       Grey Primary
     </Button>
-    <Button color="grey" variant="secondary">
+    <Button type="button" color="grey" variant="secondary">
       Grey Secondary
     </Button>
 
-    <Button color="ghost">
+    <Button type="button" color="ghost">
       Ghost Primary
     </Button>
-    <Button color="ghost" variant="secondary">
+    <Button type="button" color="ghost" variant="secondary">
       Ghost Secondary
     </Button>
 
-    <Button color="error">
+    <Button type="button" color="error">
       Error Primary
     </Button>
-    <Button color="error" variant="secondary">
+    <Button type="button" color="error" variant="secondary">
       Error Secondary
     </Button>
 
-    <Button color="warning">
+    <Button type="button" color="warning">
       Warning Primary
     </Button>
-    <Button color="warning" variant="secondary">
+    <Button type="button" color="warning" variant="secondary">
       Warning Secondary
     </Button>
 
-    <Button color="success">
+    <Button type="button" color="success">
       Success Primary
     </Button>
-    <Button color="success" variant="secondary">
+    <Button type="button" color="success" variant="secondary">
       Success Secondary
     </Button>
   </>

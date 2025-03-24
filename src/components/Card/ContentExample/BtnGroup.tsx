@@ -10,6 +10,7 @@ const BtnGroup: FC<IBtnGroup> = ({ primaryButton, secondaryButton }) => {
       {primaryButton !== null && (
         <div data-testid="CARD_BUTTON_PRIMARY">
           <Button
+            type="button"
             startIcon={
               primaryButton.startIcon || (
                 <Icon
@@ -28,6 +29,7 @@ const BtnGroup: FC<IBtnGroup> = ({ primaryButton, secondaryButton }) => {
       {secondaryButton !== null && (
         <div data-testid="CARD_BUTTON_SECONDARY">
           <Button
+            type="button"
             color="ghost"
             variant="secondary"
             startIcon={secondaryButton.startIcon}

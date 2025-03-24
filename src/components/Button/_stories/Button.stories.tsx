@@ -20,7 +20,9 @@ export default {
 export const ButtonDefault = (args: IButtonProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Button {...args}>{args.children}</Button>
+      <Button type="button" {...args}>
+        {args.children}
+      </Button>
     </div>
   );
 };
@@ -50,6 +52,7 @@ export const IconButtons = () => {
               </Typography>
               {Object.values(EButtonSize).map(size => (
                 <Button
+                  type="button"
                   key={`${color}-${variant}-${size}`}
                   color={color}
                   variant={variant}
@@ -89,6 +92,7 @@ export const ButtonsWithElements = () => {
                     {size}
                   </Typography>
                   <Button
+                    type="button"
                     color={color}
                     variant={variant}
                     size={size}
@@ -97,10 +101,11 @@ export const ButtonsWithElements = () => {
                   >
                     With Icons
                   </Button>
-                  <Button color={color} variant={variant} size={size} startBadge="1" endBadge="2">
+                  <Button type="button" color={color} variant={variant} size={size} startBadge="1" endBadge="2">
                     With Badges
                   </Button>
                   <Button
+                    type="button"
                     color={color}
                     variant={variant}
                     size={size}

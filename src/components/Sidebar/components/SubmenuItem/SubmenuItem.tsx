@@ -144,6 +144,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
               className={clsx(styles['favorite-button'], {
                 [styles['favorite-button--visible']]: (isHovered || (isFavorite && isChildFavorite)) && !disabled
               })}
+              type="button"
               color="ghost"
               variant="secondary"
               size={EButtonSize.s}
@@ -163,6 +164,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
               variant="Body1-Medium"
               color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
               className={styles.text}
+              title={label}
             >
               {content || label}
             </Typography>

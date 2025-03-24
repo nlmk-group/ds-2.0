@@ -87,6 +87,7 @@ const Dropdown: FC<IDropdownProps> = ({
     <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonChildren, buttonRef, size, menuStyle }}>
       <div className={styles.wrapper}>
         <Button
+          type="button"
           ref={buttonRef}
           className={clsx(styles.button, className)}
           variant="secondary"

@@ -397,7 +397,7 @@ export const DatepickerWithPseudo = (): JSX.Element => {
           onChange={setInnerValue}
           pseudoChildren={<>{format(innerValue, 'dd.MM.yyyy')}</>}
         />
-        <Button style={{ marginTop: '10px' }} onClick={() => setSave(!save)}>
+        <Button type="button" style={{ marginTop: '10px' }} onClick={() => setSave(!save)}>
           Переключить
         </Button>
       </div>

@@ -105,6 +105,7 @@ export const DividerCustomClassName = (argTypes: IDividerProps): ReactNode => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
+            type="button"
             size="m"
             className={style['btn-divider-handler']}
             iconButton={<Icon name="IconChemical24" containerSize={16} htmlColor="var(--unique-white)" />}
@@ -134,7 +135,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
       </div>
 
       <Divider {...argTypes} dashed>
-        <Button>
+        <Button type="button">
           <span>Нажать</span>
         </Button>
       </Divider>
@@ -144,11 +145,12 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
           <Typography className={style['divider-content']}>Текст №1</Typography>
         </div>
         <Divider {...argTypes} type={EDividerType.vertical} className={style.space} />
-        <Button variant="secondary">
+        <Button type="button" variant="secondary">
           <span>Нажать</span>
         </Button>
         <Divider {...argTypes} type={EDividerType.vertical} dashed className={style.space} />
         <Button
+          type="button"
           variant="primary"
           color="ghost"
           iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}
@@ -163,6 +165,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Экспертиза</Typography>
           <Button
+            type="button"
             variant="primary"
             color="ghost"
             iconButton={<Icon name="IconChemical24" containerSize={24} htmlColor="var(--brand-sapphire-60)" />}

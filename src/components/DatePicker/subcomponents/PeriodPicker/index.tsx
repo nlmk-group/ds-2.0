@@ -37,6 +37,7 @@ export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
   return (
     <div className={clsx(styles.root, disableContent && styles.disableContent)}>
       <Button
+        type="button"
         className={styles['btn-icon-arrow']}
         onClick={onLeftClick}
         color="ghost"
@@ -51,6 +52,7 @@ export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
         </div>
         {shouldShowIcon && (
           <Button
+            type="button"
             className={styles['btn-icon-middle']}
             onClick={onLeftClick}
             color="ghost"
@@ -60,6 +62,7 @@ export const PeriodPicker: FC<IPeriodPickerProps & PropsWithChildren> = ({
         )}
       </div>
       <Button
+        type="button"
         className={styles['btn-icon-arrow']}
         onClick={onRightClick}
         color="ghost"

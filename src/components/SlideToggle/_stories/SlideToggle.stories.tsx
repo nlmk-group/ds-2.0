@@ -98,6 +98,7 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
   const actionBlockCompact = (
     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '4px', gap: '4px' }}>
       <Button
+        type="button"
         onClick={e => {
           e.stopPropagation();
           handleClick(e);
@@ -118,6 +119,7 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
   const actionBlockDefault = (
     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '4px', gap: '4px' }}>
       <Button
+        type="button"
         onClick={e => {
           e.stopPropagation();
           handleClick(e);
@@ -191,7 +193,7 @@ export const SlideToggleCustomized = (args: ISlideToggleProps): JSX.Element => {
   };
   const title = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
-      <Button onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
       <Typography variant="Body2-Medium">{args.title}</Typography>
     </div>
   );
@@ -199,9 +201,9 @@ export const SlideToggleCustomized = (args: ISlideToggleProps): JSX.Element => {
   const actionBlock = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
       <Input label="input в action block" />
-      <Button onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
-      <Button onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
-      <Button onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
     </div>
   );
 

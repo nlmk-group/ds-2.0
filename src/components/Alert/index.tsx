@@ -51,6 +51,7 @@ const Alert: FC<IAlertProps> = ({
           {action && action}
           {close && (
             <Button
+              type="button"
               color="ghost"
               variant="secondary"
               onClick={close}

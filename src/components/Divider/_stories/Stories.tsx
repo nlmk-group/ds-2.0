@@ -203,7 +203,7 @@ export default  App = () =>(
       </span>
     </div>
     <Divider dashed>
-      <Button>
+      <Button type="button">
           Нажать
       </Button>
     </Divider>
@@ -223,7 +223,7 @@ export default  App = () =>(
         </span>
       </div>
       <Divider type="vertical" />
-      <Button variant="secondary">
+      <Button type="button" variant="secondary">
         <span>
           Нажать
         </span>
@@ -232,7 +232,7 @@ export default  App = () =>(
         dashed
         type="vertical"
       />
-      <Button color="ghost" variant="secondary">
+      <Button type="button" color="ghost" variant="secondary">
         <IconChemical24 />
       </Button>
     </div>
@@ -247,7 +247,7 @@ export default  App = () =>(
         <span className="_divider-content_12xmv_74" style={{color: "var(--text-grey-900)"}}>
           Экспертиза
         </span>
-        <Button color="ghost" variant="secondary">
+        <Button type="button" color="ghost" variant="secondary">
           <IconChemical24 />
         </Button>
       </div>

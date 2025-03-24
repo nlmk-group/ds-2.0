@@ -30,7 +30,7 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Открыть Drawer</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer</Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -45,8 +45,8 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
           <Input label="Номер" />
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
-            <Button>Отправить</Button>
-            <Button variant="secondary">Отменить</Button>
+            <Button type="button">Отправить</Button>
+            <Button type="button" variant="secondary">Отменить</Button>
           </Box>
         </Box>
       </Drawer>
@@ -60,7 +60,7 @@ export const DrawerLeft = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -75,8 +75,8 @@ export const DrawerLeft = (args: IDrawerProps): ReactNode => {
           <Input label="Номер" />
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
-            <Button>Отправить</Button>
-            <Button variant="secondary">Отменить</Button>
+            <Button type="button">Отправить</Button>
+            <Button type="button" variant="secondary">Отменить</Button>
           </Box>
         </Box>
       </Drawer>
@@ -93,7 +93,7 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -110,8 +110,8 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
           <Input label="Номер" />
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
-            <Button>Отправить</Button>
-            <Button variant="secondary">Отменить</Button>
+            <Button type="button">Отправить</Button>
+            <Button type="button" variant="secondary">Отменить</Button>
           </Box>
         </Box>
       </Drawer>

@@ -43,6 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       iconButton,
       className,
       style,
+      type = 'button',
       ...props
     },
     ref
@@ -81,14 +82,14 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     if (iconButton) {
       return (
-        <button ref={ref} className={classes} style={style} {...props} data-ui-icon-button>
+        <button ref={ref} className={classes} style={style} type={type} {...props} data-ui-icon-button>
           {iconButton}
         </button>
       );
     }
 
     return (
-      <button ref={ref} className={classes} style={style} {...props} data-ui-button>
+      <button ref={ref} className={classes} style={style} type={type} {...props} data-ui-button>
         {startBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.left)} data-ui-button-badge-left>
             <ButtonBadge badge={startBadge} size={size} />

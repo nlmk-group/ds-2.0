@@ -11,17 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_HEADER,
-  HEADER_BACK,
-  HEADER_BACKGROUND,
-  HEADER_BREADCRUMBS,
-  HEADER_CHILDREN,
-  HEADER_DATE,
-  HEADER_FAVORITE,
-  HEADER_NOTIFICATION,
-  HEADERS_DIFFERENT_SPACING
-} from './text';
 
 enum TabIds {
   dev,
@@ -61,81 +50,61 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={180}
-            description={DEFAULT_HEADER}
+            description="Header по умолчанию"
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${DEFAULT_HEADER}" />
+  <Header title="Header по умолчанию" />
 )
               `}
           />
           <Editor
             height={200}
-            description={HEADER_BACK}
+            description="Header с кнопкой возвращения слева"
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_BACK}" back={() => {}} />
+  <Header title='Header с кнопкой возвращения слева' back={() => {}} />
 )
               `}
           />
           <Editor
             height={180}
-            description={HEADER_DATE}
+            description="Header с датой и временем"
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_DATE}" date />
+  <Header title='Header с датой и временем' date />
 )
               `}
           />
           <Editor
             height={180}
-            description={HEADER_FAVORITE}
+            description="Header с кнопкой добавления в избранное"
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_FAVORITE}" favorite={() => {}}/>
+  <Header title='Header с кнопкой добавления в избранное' favorite={() => {}}/>
 )
               `}
           />
           <Editor
             height={180}
-            description={HEADER_NOTIFICATION}
+            description="Header с кнопкой уведомления"
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_NOTIFICATION}" notification={() => {}} notificationAmount={9} />
+  <Header title='Header с кнопкой уведомления' notification={() => {}} notificationAmount={9} />
 )
               `}
           />
-          <Editor
-            height={180}
-            description={HEADER_BACKGROUND}
-            code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_BACKGROUND}" bg />
-)
-              `}
-          />
           <Editor
-            description={HEADERS_DIFFERENT_SPACING}
-            code={`import { Header } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <>
-    <Header title="${HEADERS_DIFFERENT_SPACING}" type="default" />
-  </>
-)
-              `}
-          />
-          <Editor
-            description={HEADER_BREADCRUMBS}
+            description="Header с хлебными крошками"
             code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_BREADCRUMBS}" breadcrumbs={(<Breadcrumbs crumbs={[
+  <Header title='Header с хлебными крошками' breadcrumbs={(<Breadcrumbs crumbs={[
       {
         href: 'https://developer.mozilla.org/en-US/',
         label: 'MDN'
@@ -162,11 +131,11 @@ export default  App = () => (
               `}
           />
           <Editor
-            description={HEADER_CHILDREN}
+            description="Header с дочерней кнопкой и хлебными крошками"
             code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title="${HEADER_CHILDREN}"} >
+  <Header title='Header с дочерней кнопкой и хлебными крошками' >
           <Button style={{ marginRight: '25px' }} color="grey" variant="secondary" startIcon={<IconSettingsAltOutlined24 />}>
           Настройки
         </Button>

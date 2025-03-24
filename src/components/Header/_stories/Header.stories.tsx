@@ -11,16 +11,6 @@ import styles from './Header.stories.module.scss';
 
 import { IHeaderProps } from '../types';
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_HEADER,
-  HEADER_BACK,
-  HEADER_BREADCRUMBS,
-  HEADER_CHILDREN,
-  HEADER_DATE,
-  HEADER_FAVORITE,
-  HEADER_NOTIFICATION,
-  HEADERS_DIFFERENT_SPACING
-} from './text';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -62,18 +52,18 @@ export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-DefaultHeader.storyName = DEFAULT_HEADER;
+DefaultHeader.storyName = 'Header по умолчанию';
 DefaultHeader.args = {
-  title: DEFAULT_HEADER
+  title: 'Заголовок'
 };
 
 export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-HeaderBack.storyName = HEADER_BACK;
+HeaderBack.storyName = 'Header с кнопкой возвращения слева';
 HeaderBack.args = {
-  title: HEADER_BACK,
+  title: 'Заголовок',
   back: action('goBack')
 };
 
@@ -81,9 +71,9 @@ export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-HeaderDate.storyName = HEADER_DATE;
+HeaderDate.storyName = 'Header с датой и временем';
 HeaderDate.args = {
-  title: HEADER_DATE,
+  title: 'Заголовок',
   back: action('goBack'),
   date: true
 };
@@ -92,9 +82,9 @@ export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-HeaderFavorite.storyName = HEADER_FAVORITE;
+HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';
 HeaderFavorite.args = {
-  title: HEADER_FAVORITE,
+  title: 'Заголовок',
   back: action('goBack'),
   date: true,
   favorite: action('addToFavorite')
@@ -104,9 +94,9 @@ export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-HeaderNotification.storyName = HEADER_NOTIFICATION;
+HeaderNotification.storyName = 'Header с кнопкой уведомления';
 HeaderNotification.args = {
-  title: HEADER_NOTIFICATION,
+  title: 'Заголовок',
   back: action('goBack'),
   date: true,
   notification: action('addToNotification'),
@@ -149,9 +139,9 @@ export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
   );
 };
 
-HeaderBreadcrumbs.storyName = HEADER_BREADCRUMBS;
+HeaderBreadcrumbs.storyName = 'Header с хлебными крошками';
 HeaderBreadcrumbs.args = {
-  title: HEADER_BREADCRUMBS,
+  title: 'Заголовок',
   back: action('goBack'),
   date: true,
   favorite: action('addToFavorite'),
@@ -189,9 +179,9 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode 
   );
 };
 
-HeaderBreadcrumbsHasChildren.storyName = HEADER_CHILDREN;
+HeaderBreadcrumbsHasChildren.storyName = 'Header с дочерней кнопкой и хлебными крошками';
 HeaderBreadcrumbsHasChildren.args = {
-  title: HEADER_CHILDREN,
+  title: 'Заголовок',
   back: action('goBack'),
   date: true,
   favorite: action('addToFavorite'),

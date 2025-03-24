@@ -11,6 +11,7 @@ const BtnBack: FC<{
   return (
     <div className={clsx(styles['btn-wrapper'], styles['btn-back-icon'])}>
       <Button
+        type="button"
         data-testid="HEADER_BACK"
         onClick={back}
         iconButton={<IconChevronArrowLeftFilled24 />}

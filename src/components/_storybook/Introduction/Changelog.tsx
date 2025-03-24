@@ -16,10 +16,28 @@ export const Changelog = () => {
             target="blank"
             className={styles.link}
           >
-            <Button color="grey" variant="secondary">
+            <Button color="grey" type="button" variant="secondary">
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.4 - <span className={styles.date}>24.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Задан тип компонента{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              , в остальных компонентах Дизайнерской системы.
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">

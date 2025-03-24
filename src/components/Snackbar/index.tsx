@@ -136,6 +136,7 @@ const Snackbar: FC<ISnackbarProps> = ({
       <div className={styles.actions} data-ui-snackbar-actions>
         {actionButton && (
           <Button
+            type="button"
             data-testid="SNACKBAR_ACTION"
             color="ghost"
             variant="secondary"
@@ -165,6 +166,7 @@ const Snackbar: FC<ISnackbarProps> = ({
         )}
         {onClose && (
           <Button
+            type="button"
             style={{ padding: '0' }}
             data-testid="SNACKBAR_CLOSE"
             color="ghost"

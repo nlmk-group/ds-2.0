@@ -242,6 +242,7 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
         }
       >
         <Button
+          type="button"
           style={{ marginRight: '25px' }}
           color="grey"
           variant="secondary"

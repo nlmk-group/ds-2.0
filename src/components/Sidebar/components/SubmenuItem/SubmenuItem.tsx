@@ -144,6 +144,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
               className={clsx(styles['favorite-button'], {
                 [styles['favorite-button--visible']]: (isHovered || (isFavorite && isChildFavorite)) && !disabled
               })}
+              type="button"
               color="ghost"
               variant="secondary"
               size={EButtonSize.s}

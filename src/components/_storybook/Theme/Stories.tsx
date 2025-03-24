@@ -56,7 +56,7 @@ export default  App = () => {
           />
         ))}
       </Grid>
-      <Button>Кнопка</Button>
+      <Button type="button">Кнопка</Button>
     </>
   );
 }`}

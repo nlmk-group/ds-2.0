@@ -194,7 +194,7 @@ const TableComponentsExample = () => {
                           <Status icon="IconDoneCheckOutlined16" color={statusColor as `${ECellStatus}`}>
                             {statusText}
                           </Status>
-                          <Button size="s">Button</Button>
+                          <Button type="button" size="s">Button</Button>
                           <Icon name="IconDoneCheckOutlined16" />
                         </Cell>
                       </Row>

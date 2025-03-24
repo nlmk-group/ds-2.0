@@ -137,7 +137,7 @@ export const InputWithColored = (): JSX.Element => {
   return (
     <>
       <Input label="Label" value={value} colored={colored} reset onChange={handleChange} onReset={handleReset} />
-      <Button style={{ marginTop: '10px' }} onClick={() => setColored(false)}>
+      <Button type="button" style={{ marginTop: '10px' }} onClick={() => setColored(false)}>
         Сохранить
       </Button>
     </>
@@ -170,7 +170,7 @@ export const InputPseudoDefaultChecking = (): JSX.Element => {
         onChange={handleChange}
         onReset={handleReset}
       />
-      <Button onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
+      <Button type="button" onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
         Переключить
       </Button>
     </>

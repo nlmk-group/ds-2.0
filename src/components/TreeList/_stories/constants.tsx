@@ -9,6 +9,7 @@ const SideControls = () => {
   return (
     <div style={{ display: 'flex', gap: 12 }}>
       <Button
+        type="button"
         onClick={() => console.log('Edit')}
         iconButton={<IconEditPenOutlined24 />}
         variant="secondary"
@@ -17,6 +18,7 @@ const SideControls = () => {
         title="Edit"
       />
       <Button
+        type="button"
         onClick={() => console.log('Delete')}
         iconButton={<IconDeleteBinOutlined24 />}
         variant="secondary"

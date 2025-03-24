@@ -44,8 +44,8 @@ export default App = () => (
       borderRadius="var(--8-radius)"
       p="var(--8-space)"
     >
-      <Button>Заполнить</Button>
-      <Button color="grey">Посмотреть</Button>
+      <Button type="button">Заполнить</Button>
+      <Button type="button" color="grey">Посмотреть</Button>
     </Box>
     <br />
     <Divider dashed />
@@ -63,7 +63,7 @@ export default App = () => (
           boxShadow: "0 10px 10px var(--background-default)"
         }}
       >
-        <Button>Заполнить</Button>
+        <Button type="button">Заполнить</Button>
       </Box>
     </Box>
   </div>
@@ -72,7 +72,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {activeTab === 2 && (<Tests componentName="Box" />)}
+      {activeTab === 2 && <Tests componentName="Box" />}
     </div>
   );
 };

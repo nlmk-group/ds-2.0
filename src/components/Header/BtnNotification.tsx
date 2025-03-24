@@ -12,6 +12,7 @@ const BtnNotification: FC<INotification> = ({ notification, notificationAmount =
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
+        type="button"
         data-testid="HEADER_NOTIFICATION"
         onClick={notification}
         iconButton={<IconNotificationsBellOutlined24 htmlColor={'var(--primary-blue-600)'} />}

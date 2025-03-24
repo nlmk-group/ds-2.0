@@ -529,7 +529,7 @@ export const NativeMenu = (argTypes: ISelectProps): JSX.Element => {
         onSelectionChange={handleChange}
         className={style['child-wrapper']}
       >
-        <Button variant="secondary" startIcon={<IconArticleOutlined24 />}>
+        <Button type="button" variant="secondary" startIcon={<IconArticleOutlined24 />}>
           Сформировать отчет
         </Button>
       </Select>

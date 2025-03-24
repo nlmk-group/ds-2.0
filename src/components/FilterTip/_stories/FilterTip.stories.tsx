@@ -41,7 +41,7 @@ export const FilterTipDelete = (args: IFilterTipProps) => {
   return (
     <div>
       {isDeleted ? (
-        <Button onClick={() => setIsDeleted(false)}>Вернуть FilterTip</Button>
+        <Button type="button" onClick={() => setIsDeleted(false)}>Вернуть FilterTip</Button>
       ) : (
         <FilterTip {...args} onDelete={() => setIsDeleted(true)} />
       )}

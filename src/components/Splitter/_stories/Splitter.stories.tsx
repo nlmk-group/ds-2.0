@@ -93,6 +93,7 @@ export const SplitterDefault = (): ReactNode => {
           Информация по рассмотрению
         </Typography>
         <Button
+          type="button"
           variant="secondary"
           color="ghost"
           style={{ pointerEvents: 'none' }}
@@ -112,10 +113,10 @@ export const SplitterDefault = (): ReactNode => {
           ))}
         </SimpleSelect>
         <Box justifyContent="center" alignItems="center" gap="16px">
-          <Button startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />} variant="secondary">
+          <Button type="button" startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />} variant="secondary">
             Добавить
           </Button>
-          <Button startIcon={<IconDoneCheckOutlined24 />}>Разрешить</Button>
+          <Button type="button" startIcon={<IconDoneCheckOutlined24 />}>Разрешить</Button>
         </Box>
       </Box>
     </div>

@@ -23,7 +23,7 @@ const Header: FC<IHeaderProps> = ({
   children
 }): JSX.Element => {
   const RightBlock = (
-    <div className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
+    <div data-ui-header-right-block className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
       {Boolean(date) && <DateTime />}
       {favorite !== null && <ButtonFavorite favorite={favorite} />}
       {print !== null && <ButtonPrint print={print} />}
@@ -35,7 +35,7 @@ const Header: FC<IHeaderProps> = ({
   );
 
   return (
-    <div data-testid="HEADER_WRAPPER" className={clsx(styles['wrapper-default'], className)}>
+    <div data-ui-header data-testid="HEADER_WRAPPER" className={clsx(styles['wrapper-default'], className)}>
       {breadcrumbs !== null ? (
         <div className={styles['breadcrumbs-wrapper']}>
           <div>{breadcrumbs}</div>

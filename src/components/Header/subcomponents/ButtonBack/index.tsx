@@ -6,7 +6,7 @@ import { IButtonBackProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const BtnBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
+const ButtonBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
   return (
     <div>
       <Button
@@ -21,4 +21,4 @@ const BtnBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
   );
 };
 
-export default BtnBack;
+export default ButtonBack;

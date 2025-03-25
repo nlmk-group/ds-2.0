@@ -7,7 +7,7 @@ import { IButtonPrintProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const BtnFavorite: FC<IButtonPrintProps> = ({ print }): JSX.Element => {
+const ButtonPrint: FC<IButtonPrintProps> = ({ print }): JSX.Element => {
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
@@ -23,4 +23,4 @@ const BtnFavorite: FC<IButtonPrintProps> = ({ print }): JSX.Element => {
   );
 };
 
-export default BtnFavorite;
+export default ButtonPrint;

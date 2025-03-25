@@ -7,8 +7,35 @@ import { IHeaderProps } from './types';
 
 import styles from './Header.module.scss';
 
-import { ButtonBack, ButtonFavorite, ButtonNotification, ButtonPrint, ButtonVideo } from './subcomponents';
+import {
+  ButtonBack,
+  ButtonFavorite,
+  ButtonMessage,
+  ButtonNotification,
+  ButtonPrint,
+  ButtonVideo
+} from './subcomponents';
 
+/**
+ * Компонент Header используется для отображения заголовка страницы с дополнительными элементами управления,
+ * такими как кнопки "назад", "избранное", "уведомления", "сообщения", "видео", "печать" и "дата".
+ *
+ * @component
+ * @param {IHeaderProps} props - Пропсы компонента.
+ * @param {string} props.title - Заголовок страницы.
+ * @param {Function} [props.back] - Обработчик клика по кнопке "назад".
+ * @param {boolean} [props.date=false] - Флаг для отображения текущей даты.
+ * @param {Function} [props.favorite] - Обработчик клика по кнопке "избранное".
+ * @param {Function} [props.notification] - Обработчик клика по кнопке "уведомления".
+ * @param {Function} [props.video] - Обработчик клика по кнопке "видео".
+ * @param {Function} [props.print] - Обработчик клика по кнопке "печать".
+ * @param {Function} [props.message] - Обработчик клика по кнопке "сообщения".
+ * @param {number} [props.notificationAmount=0] - Количество уведомлений, отображаемое на кнопке уведомлений.
+ * @param {ReactNode} [props.breadcrumbs] - Элемент хлебных крошек, отображаемый над заголовком.
+ * @param {string} [props.className] - Дополнительные CSS-классы для стилизации компонента.
+ * @param {ReactNode} [props.children] - Дополнительные элементы внутри заголовка.
+ * @returns {JSX.Element} Возвращает JSX-разметку компонента Header.
+ */
 const Header: FC<IHeaderProps> = ({
   title,
   back = null,
@@ -17,6 +44,7 @@ const Header: FC<IHeaderProps> = ({
   notification = null,
   video = null,
   print = null,
+  message = null,
   notificationAmount = 0,
   breadcrumbs = null,
   className,
@@ -31,6 +59,7 @@ const Header: FC<IHeaderProps> = ({
       {notification !== null && (
         <ButtonNotification notification={notification} notificationAmount={notificationAmount} />
       )}
+      {message !== null && <ButtonMessage message={message} />}
     </div>
   );
 

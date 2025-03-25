@@ -111,7 +111,8 @@ HeaderWithDropdown.args = {
   notificationAmount: 9,
   print: action('print'),
   video: action('openVideo'),
-  favorite: action('favorite')
+  favorite: action('favorite'),
+  message: action('message')
 };
 
 export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {

@@ -6,7 +6,7 @@ import { IButtonFavoriteProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const BtnFavorite: FC<IButtonFavoriteProps> = ({ favorite }): JSX.Element => {
+const ButtonFavorite: FC<IButtonFavoriteProps> = ({ favorite }): JSX.Element => {
   return (
     <div className={styles['button-padding-unset']}>
       <Button
@@ -22,4 +22,4 @@ const BtnFavorite: FC<IButtonFavoriteProps> = ({ favorite }): JSX.Element => {
   );
 };
 
-export default BtnFavorite;
+export default ButtonFavorite;

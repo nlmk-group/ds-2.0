@@ -48,6 +48,33 @@ const argsTypes = {
       }
     }
   },
+  video: {
+    description: 'Кнопка, отображающая видеокамеру',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    }
+  },
+  print: {
+    description: 'Кнопка, предназначенная для распечатывания документов',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    }
+  },
+  message: {
+    description: 'Кнопка, отображающая сообщения',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: 'false'
+      }
+    }
+  },
   breadcrumbs: {
     description:
       'Свойство, в которое можно добавить отдельный компонент Breadcrumbs, при этом он будет отображаться как часть Header',

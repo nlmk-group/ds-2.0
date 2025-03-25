@@ -7,7 +7,7 @@ import { IButtonVideoProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const BtnFavorite: FC<IButtonVideoProps> = ({ video }): JSX.Element => {
+const ButtonVideo: FC<IButtonVideoProps> = ({ video }): JSX.Element => {
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
@@ -23,4 +23,4 @@ const BtnFavorite: FC<IButtonVideoProps> = ({ video }): JSX.Element => {
   );
 };
 
-export default BtnFavorite;
+export default ButtonVideo;

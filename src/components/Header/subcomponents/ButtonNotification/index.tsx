@@ -8,7 +8,7 @@ import { INotification } from './types';
 
 import styles from '../../Header.module.scss';
 
-const BtnNotification: FC<INotification> = ({ notification, notificationAmount = 0 }) => {
+const ButtonNotification: FC<INotification> = ({ notification, notificationAmount = 0 }) => {
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
@@ -30,4 +30,4 @@ const BtnNotification: FC<INotification> = ({ notification, notificationAmount =
   );
 };
 
-export default BtnNotification;
+export default ButtonNotification;

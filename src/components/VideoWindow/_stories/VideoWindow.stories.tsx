@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 
-
-
 import Button from '@components/Button';
-
-
 
 import styles from './VideoWindow.module.scss';
 
-
-
-import { VideoWindowProps } from '../types';
+import { TVideoWindowProps } from '../types';
 import VideoWindow from '../VideoWindow';
-
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -23,7 +16,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 };
 
-export const VideoWindowDefault = (argTypes: VideoWindowProps): JSX.Element => {
+export const VideoWindowDefault = (argTypes: TVideoWindowProps): JSX.Element => {
   const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
 
   return (
@@ -37,6 +30,9 @@ export const VideoWindowDefault = (argTypes: VideoWindowProps): JSX.Element => {
           videoUrl={argTypes.videoUrl}
           title={argTypes.title}
           autoPlay={argTypes.autoPlay}
+          resizable={argTypes.resizable}
+          draggable={argTypes.draggable}
+          draggableStartPosition={argTypes.draggableStartPosition}
           onClose={() => setIsVideoOpen(false)}
         />
       )}
@@ -46,33 +42,73 @@ export const VideoWindowDefault = (argTypes: VideoWindowProps): JSX.Element => {
 
 VideoWindowDefault.args = {
   videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
-  title: 'Демо-видео'
+  title: 'Демо-видео',
+  autoPlay: false,
+  resizable: false,
+  draggable: false
 };
 VideoWindowDefault.storyName = 'VideoWindow по умолчанию';
 
-export const VideoWindowWithAutoPlay = (argTypes: VideoWindowProps): JSX.Element => {
+export const VideoWindowWithDragAndResize = (argTypes: TVideoWindowProps): JSX.Element => {
   const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.main}>
       <Button onClick={() => setIsVideoOpen(true)} variant="primary" size="s">
-        Открыть видео
+        Открыть видео с возможностью перетаскивания и изменения размера
       </Button>
 
       {isVideoOpen && (
         <VideoWindow
           videoUrl={argTypes.videoUrl}
           title={argTypes.title}
-          autoPlay={argTypes.autoPlay}
+          draggable
+          resizable
+          draggableStartPosition={{ x: 100, y: 100 }}
           onClose={() => setIsVideoOpen(false)}
         />
       )}
     </div>
   );
 };
-VideoWindowWithAutoPlay.storyName = 'VideoWindow c запуском видео при открытии';
-VideoWindowWithAutoPlay.parameters = {
+
+VideoWindowWithDragAndResize.args = {
   videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
-  title: 'Демо-видео c автозапуском',
-  autoPlay: true
+  title: 'Перетаскиваемое видео'
+};
+VideoWindowWithDragAndResize.storyName = 'VideoWindow с drag-n-drop и resize';
+VideoWindowWithDragAndResize.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const VideoWindowWithAutoPlay = (argTypes: TVideoWindowProps): JSX.Element => {
+  const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
+
+  return (
+    <div className={styles.main}>
+      <Button onClick={() => setIsVideoOpen(true)} variant="primary" size="s">
+        Открыть видео с автозапуском
+      </Button>
+
+      {isVideoOpen && (
+        <VideoWindow
+          videoUrl={argTypes.videoUrl}
+          title={argTypes.title}
+          autoPlay
+          onClose={() => setIsVideoOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
+
+VideoWindowWithAutoPlay.args = {
+  videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
+  title: 'Видео с автозапуском'
+};
+VideoWindowWithAutoPlay.storyName = 'VideoWindow c автозапуском';
+VideoWindowWithAutoPlay.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };

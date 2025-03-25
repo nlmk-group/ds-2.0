@@ -1,103 +1,174 @@
-# TreeList Component
+# VideoWindow Component
 
-## Версия компонента v1.0
+## Версия компонента v3.0
 
 Компонент VideoWindow предназначен для отображения видеоплеера с возможностью изменения размера окна, переключения в полноэкранный режим, минимизации и закрытия.
 
 ## Использование
 
 ```jsx
-import React, { useState } from 'react';
+import { VideoWindow } from '@nlmk/ds-2.0';
 
-import styles from './styles.module.scss';
-import VideoWindow from '../VideoWindow';
-export const VideoWindowExample = () => {
-  const [isVideoOpen, setIsVideoOpen] = useState < boolean > false;
-  return (
-    <div className={styles.main}>
-      <button onClick={() => setIsVideoOpen(true)}>Открыть видео</button>
-
-      {isVideoOpen && (
-        <VideoWindow
-          videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
-          title="Демо-видео"
-          autoPlay
-          onClose={() => setIsVideoOpen(false)}
-        />
-      )}
-    </div>
-  );
-};
+/ Базовое использование
+const [isVideoOpen, setIsVideoOpen] = useState(false);
+<VideoWindow videoUrl="https://example.com/video.mp4" title="Демо-видео" onClose={() => setIsVideoOpen(false)} />;
+/ С возможностью перетаскивания и изменения размера
+<VideoWindow
+  videoUrl="https://example.com/video.mp4"
+  title="Перетаскиваемое видео"
+  draggable
+  resizable
+  draggableStartPosition={{ x: 100, y: 100 }}
+  onClose={() => setIsVideoOpen(false)}
+/>;
+/ С автовоспроизведением
+<VideoWindow
+  videoUrl="https://example.com/video.mp4"
+  title="Видео с автозапуском"
+  autoPlay
+  onClose={() => setIsVideoOpen(false)}
+/>;
 ```
 
 ## Props
 
-| Prop       | Type           | Default | Description                          |
-| ---------- | -------------- | ------- | ------------------------------------ |
-| videoUrl   | string         | -       | Ссылка на видеофайл или поток        |
-| title      | string         | ""      | Заголовок видео                      |
-| autoPlay   | boolean        | false   | Автоматическое воспроизведение видео |
-| onClose    | () => void     | false   | Коллбэк для закрытия видео           |
-| style      | CSSProperties  | -       | Объект стилей                        |
-| className  | string         | -       | Дополнительный CSS класс             |
+| Prop                   | Type                     | Default | Description                                      |
+| ---------------------- | ------------------------ | ------- | ------------------------------------------------ |
+| videoUrl               | string                   | -       | URL видео для воспроизведения (обязательный)     |
+| id                     | string                   | -       | Уникальный идентификатор видео элемента          |
+| title                  | string \| ReactNode      | -       | Заголовок окна или кастомный компонент заголовка |
+| autoPlay               | boolean                  | false   | Автоматическое воспроизведение видео             |
+| resizable              | boolean                  | false   | Возможность изменения размера окна               |
+| draggable              | boolean                  | false   | Возможность перетаскивания окна                  |
+| draggableStartPosition | { x: number; y: number } | -       | Начальная позиция окна при перетаскивании        |
+| onClose                | () => void               | -       | Функция обработки закрытия окна (обязательный)   |
+| style                  | CSSProperties            | -       | Дополнительные CSS стили                         |
+| className              | string                   | -       | Дополнительный CSS класс                         |
 
-### Data-атрибуты
+## Стилизация
+
+### 1. CSS классы
+
+Компонент использует CSS модули для стилизации. Основные классы:
+
+```scss
+.videoWindow {
+  // Основной контейнер
+}
+
+.videoWindowHeader {
+  // Шапка окна
+}
+
+.videoContent {
+  // Контейнер с видео
+}
+
+.fullscreen {
+  // Полноэкранный режим
+}
+
+.minimized {
+  // Свернутое состояние
+}
+
+.resizable {
+  // Режим изменения размера
+}
+
+.draggable {
+  // Режим перетаскивания
+}
+```
+
+### 2. Data-атрибуты
 
 Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
 
 ```css
-/* Стилизация главного контейнера компонента */
+/* Основной контейнер */
 [data-ui-video-window-root] {
   /* стили */
 }
 
-/* Стилизация шапки компонента */
+/* Шапка окна */
 [data-ui-video-window-header] {
   /* стили */
 }
 
-/* Стилизация заголовка, если передан просто текст, который помещен в Typography элемент */
+/* Заголовок в Typography */
 [data-ui-video-window-typography-title] {
   /* стили */
 }
-/* Стилизация блока с элементами управления в шапке компонента */
+
+/* Блок с элементами управления */
 [data-ui-video-window-controls] {
   /* стили */
 }
-/* Стилизация контейнера содержащего тег <video>*/
+
+/* Контейнер с видео */
 [data-ui-video-window-video-content] {
   /* стили */
 }
-/* Стилизация отображения элемента для изменения размеров окна*/
+
+/* Элемент изменения размера */
 [data-ui-video-window-resizer] {
   /* стили */
 }
 ```
 
+### 3. Inline стили
 
-## Типы данных
+Можно передать объект стилей через проп `style`:
 
-### VideoWindowStyles
-
-```typescript
-export type VideoWindowStyles = {
-  videoTitleClassName?: string;
-  videoTitleStyle?: CSSProperties;
-};
+```jsx
+<VideoWindow
+  style={{ marginBottom: '16px' }}
+  videoUrl="https://example.com/video.mp4"
+  title="Демо-видео"
+  onClose={() => setIsVideoOpen(false)}
+/>
 ```
 
-### VideoWindowProps
+## Состояния
 
-```typescript
-export type VideoWindowProps = {
-  videoUrl: string;
-  title?: string;
-  autoPlay?: boolean;
-  onClose: () => void;
-  styles?: VideoWindowStyles;
-};
-```
+- **Обычное**: Окно с видео стандартного размера
+- **Полноэкранное**: Окно развернуто на весь экран
+- **Свернутое**: Отображается только заголовок
+- **Активное**: При фокусе или взаимодействии
+- **Перетаскивание**: При включенном draggable
+- **Изменение размера**: При включенном resizable
 
-## Советы по использованию
+## Особенности реализации
 
-Используйте `autoPlay` для автоматического воспроизведения видео при открытии `VideoWindow`.
+### Режимы отображения
+
+1. **Стандартный режим**:
+
+   - Окно фиксированного размера
+   - Видео с элементами управления
+   - Кнопки управления в шапке
+
+2. **Полноэкранный режим**:
+
+   - Окно занимает весь экран
+   - Отключается возможность перетаскивания
+   - Сохраняются все элементы управления
+
+3. **Свернутый режим**:
+   - Отображается только шапка с заголовком
+   - Видео скрыто
+   - Возможность быстрого восстановления
+
+### Управление окном
+
+1. **Перетаскивание**:
+
+   - Реализовано через хук useDraggable
+   - Работает только в стандартном режиме
+   - Учитывает границы экрана
+
+2. **Изменение размера**:
+   - Минимальные размеры: 300x230px
+   - Работает только в стандартном режиме
+   - Сохраняет пропорции видео

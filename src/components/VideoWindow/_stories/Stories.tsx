@@ -18,22 +18,27 @@ const VideoWindowStories = (): JSX.Element => {
 
   const videoWindowDefaultCode = `import { VideoWindow } from '@nlmk/ds-2.0';
 
-export default App = () => {
-const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
-  return (
-    <div style={{display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center'}}>
-      <button onClick={() => setIsVideoOpen(true)}>Открыть видео</button>
-
-      {isVideoOpen && (
-        <VideoWindow
-          videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
-          title="Демо-видео"
-          autoPlay
-          onClose={() => setIsVideoOpen(false)}
-        />
-      )}
-    </div>
-};`;
+  export default App = () => {
+    const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
+    
+    return (
+      <div style={{display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center'}}>
+        <button onClick={() => setIsVideoOpen(true)}>Открыть видео</button>
+  
+        {isVideoOpen && (
+          <VideoWindow
+            videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
+            title="Демо-видео"
+            autoPlay
+            draggable
+            resizable
+            draggableStartPosition={{ x: 100, y: 100 }}
+            onClose={() => setIsVideoOpen(false)}
+          />
+        )}
+      </div>
+    );
+  };`;
 
   return (
     <div className={styles.wrapper}>

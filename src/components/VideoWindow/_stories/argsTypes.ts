@@ -8,10 +8,11 @@ const argsTypes = {
       type: {
         summary: 'string'
       }
-    }
+    },
+    required: true
   },
   id: {
-    description: 'Id элемента',
+    description: 'Уникальный идентификатор видео элемента',
     table: {
       defaultValue: {
         summary: ''
@@ -65,12 +66,46 @@ const argsTypes = {
       }
     }
   },
+  draggableStartPosition: {
+    description: 'Начальная позиция окна при перетаскивании',
+    table: {
+      defaultValue: {
+        summary: 'undefined'
+      },
+      type: {
+        summary: '{ x: number; y: number }'
+      }
+    }
+  },
   onClose: {
     description: 'Callback, вызываемый для закрытия окна с видео',
     action: 'окно закрыто',
     table: {
       type: {
         summary: '() => void'
+      }
+    },
+    required: true
+  },
+  className: {
+    description: 'Дополнительный CSS класс',
+    table: {
+      defaultValue: {
+        summary: 'undefined'
+      },
+      type: {
+        summary: 'string'
+      }
+    }
+  },
+  style: {
+    description: 'Дополнительные CSS стили',
+    table: {
+      defaultValue: {
+        summary: 'undefined'
+      },
+      type: {
+        summary: 'CSSProperties'
       }
     }
   }

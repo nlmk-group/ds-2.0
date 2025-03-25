@@ -1,8 +1,8 @@
 import { CSSProperties, useEffect, useState } from 'react';
 
-import { DraggableStartPosition } from '@components/VideoWindow/types';
+import { TDraggableStartPosition } from './types';
 
-export const useDraggable = (isFullscreen: boolean, draggableStartPosition?: DraggableStartPosition) => {
+export const useDraggable = (isFullscreen: boolean, draggableStartPosition?: TDraggableStartPosition) => {
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const [dragging, setDragging] = useState(false);
   const [startPosition, setStartPosition] = useState(draggableStartPosition || { x: 0, y: 0 });
@@ -25,6 +25,7 @@ export const useDraggable = (isFullscreen: boolean, draggableStartPosition?: Dra
       y: event.clientY - startPosition.y
     });
   };
+
   // завершение перетаскивания
   const handleMouseUp = () => {
     setDragging(false);

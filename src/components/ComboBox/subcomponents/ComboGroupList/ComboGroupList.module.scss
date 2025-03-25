@@ -1,0 +1,49 @@
+.list {
+  &-container {
+    overflow-y: auto;
+    padding: 8px 0;
+    z-index: 1;
+    height: 100%;
+  }
+
+  &-item {
+    padding: 8px 8px 8px 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--steel-30);
+    }
+
+    &--active {
+      background-color: var(--brand-sapphire-10);
+
+      &:hover {
+        background-color: var(--brand-sapphire-20);
+      }
+    }
+
+    &--group {
+      cursor: default;
+      color: var(--steel-70);
+
+      &:hover {
+        background-color: initial;
+      }
+    }
+
+    &__label {
+      margin: 0;
+    }
+
+    &__checkbox {
+      & > label {
+        padding: 0 0 0 4px;
+        text-wrap: nowrap;
+      }
+
+      & > input[type="checkbox"] {
+        min-width: 18px;
+      }
+    }
+  }
+}

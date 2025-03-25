@@ -29,136 +29,136 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
   useEffect(() => setIsLoggedIn(Boolean(argTypes.isLoggedIn)), [argTypes.isLoggedIn]);
 
   return (
-    <Sidebar
-      key={argTypes.orientation}
-      orientation="vertical"
-      allowFavorites
-      {...argTypes}
-      isLoggedIn={isLoggedIn}
-      onLogout={() => setIsLoggedIn(false)}
-      onLogin={() => setIsLoggedIn(true)}
-      currentPath={currentPath}
-    >
-      <Sidebar.Avatar size="s" imageSrc="" />
-      <Sidebar.MenuItem
-        path="tasks"
-        label="Задание на добавление"
-        position="top"
-        icon="IconKovsh32"
-        onClick={() => setCurrentPath('tasks')}
+      <Sidebar
+        key={argTypes.orientation}
+        orientation="vertical"
+        allowFavorites
+        {...argTypes}
+        isLoggedIn={isLoggedIn}
+        onLogout={() => setIsLoggedIn(false)}
+        onLogin={() => setIsLoggedIn(true)}
+        currentPath={currentPath}
       >
-        <Sidebar.SubmenuItem
-          path="Плавка стали"
-          label="Плавка стали"
-          image={path}
-          onClick={() => setCurrentPath('Плавка стали')}
-        />
-        <Sidebar.SubmenuItem
-          path="Обработка и термообработка"
-          label="Обработка и термообработка"
-          image={path}
-          onClick={() => setCurrentPath('Обработка и термообработка')}
+        <Sidebar.Avatar size="s" imageSrc="" />
+        <Sidebar.MenuItem
+          path="tasks"
+          label="Задание на добавление"
+          position="top"
+          icon="IconKovsh32"
+          onClick={() => setCurrentPath('tasks')}
         >
           <Sidebar.SubmenuItem
-            path="Закалка и отпуск"
-            label="Закалка и отпуск"
-            onClick={() => setCurrentPath('Закалка и отпуск')}
+            path="Плавка стали"
+            label="Плавка стали"
+            image={path}
+            onClick={() => setCurrentPath('Плавка стали')}
           />
           <Sidebar.SubmenuItem
-            path="Отжиг и нормализация"
-            label="Отжиг и нормализация"
-            onClick={() => setCurrentPath('Отжиг и нормализация')}
-          />
+            path="Обработка и термообработка"
+            label="Обработка и термообработка"
+            image={path}
+            onClick={() => setCurrentPath('Обработка и термообработка')}
+          >
+            <Sidebar.SubmenuItem
+              path="Закалка и отпуск"
+              label="Закалка и отпуск"
+              onClick={() => setCurrentPath('Закалка и отпуск')}
+            />
+            <Sidebar.SubmenuItem
+              path="Отжиг и нормализация"
+              label="Отжиг и нормализация"
+              onClick={() => setCurrentPath('Отжиг и нормализация')}
+            />
+            <Sidebar.SubmenuItem
+              path="Механическая обработка"
+              label="Механическая обработка"
+              onClick={() => setCurrentPath('Механическая обработка')}
+              disabled
+            />
+          </Sidebar.SubmenuItem>
           <Sidebar.SubmenuItem
-            path="Механическая обработка"
-            label="Механическая обработка"
-            onClick={() => setCurrentPath('Механическая обработка')}
-            disabled
+            path="Литье сталепродукции"
+            label="Литье сталепродукции"
+            image={path}
+            onClick={() => setCurrentPath('Литье сталепродукции')}
+          ></Sidebar.SubmenuItem>
+          <Sidebar.SubmenuItem
+            path="Автоматизация производства"
+            label="Автоматизация производства"
+            image={path}
+            onClick={() => setCurrentPath('Автоматизация производства')}
           />
-        </Sidebar.SubmenuItem>
-        <Sidebar.SubmenuItem
-          path="Литье сталепродукции"
-          label="Литье сталепродукции"
-          image={path}
-          onClick={() => setCurrentPath('Литье сталепродукции')}
-        ></Sidebar.SubmenuItem>
-        <Sidebar.SubmenuItem
-          path="Автоматизация производства"
-          label="Автоматизация производства"
-          image={path}
-          onClick={() => setCurrentPath('Автоматизация производства')}
+        </Sidebar.MenuItem>
+        <Sidebar.MenuItem
+          path="Дивизионы НЛМК"
+          label="Дивизионы НЛМК"
+          position="top"
+          icon="IconBunkerOutlined32"
+          onClick={() => setCurrentPath('Дивизионы НЛМК')}
+        >
+          <Sidebar.SubmenuItem path="НЛМК-Европа" label="НЛМК-Европа" onClick={() => setCurrentPath('НЛМК-Европа')} />
+          <Sidebar.SubmenuItem path="НЛМК-Россия" label="НЛМК-Россия" onClick={() => setCurrentPath('ННЛМК-Россия')}>
+            <Sidebar.SubmenuItem path="Стагдок" label="Стагдок" onClick={() => setCurrentPath('Стагдок')} />
+            <Sidebar.SubmenuItem path="Доломит" label="Доломит" onClick={() => setCurrentPath('Доломит')} />
+            <Sidebar.SubmenuItem
+              path="Стойленский ГОК"
+              label="Стойленский ГОК"
+              onClick={() => setCurrentPath('Стойленский ГОК')}
+            />
+            <Sidebar.SubmenuItem path="ВИЗ-Сталь" label="ВИЗ-Сталь" onClick={() => setCurrentPath('ВИЗ-Сталь')} />
+          </Sidebar.SubmenuItem>
+          <Sidebar.SubmenuItem path="НЛМК-США" label="НЛМК-США" onClick={() => setCurrentPath('НЛМК-США')} />
+        </Sidebar.MenuItem>
+        <Sidebar.MenuItem
+          path="Кастомный раздел меню"
+          label="Кастомный раздел меню"
+          position="top"
+          icon="IconLightningStroke32"
+          onClick={() => setCurrentPath('Кастомный раздел меню')}
         />
-      </Sidebar.MenuItem>
-      <Sidebar.MenuItem
-        path="Дивизионы НЛМК"
-        label="Дивизионы НЛМК"
-        position="top"
-        icon="IconBunkerOutlined32"
-        onClick={() => setCurrentPath('Дивизионы НЛМК')}
-      >
-        <Sidebar.SubmenuItem path="НЛМК-Европа" label="НЛМК-Европа" onClick={() => setCurrentPath('НЛМК-Европа')} />
-        <Sidebar.SubmenuItem path="НЛМК-Россия" label="НЛМК-Россия" onClick={() => setCurrentPath('ННЛМК-Россия')}>
-          <Sidebar.SubmenuItem path="Стагдок" label="Стагдок" onClick={() => setCurrentPath('Стагдок')} />
-          <Sidebar.SubmenuItem path="Доломит" label="Доломит" onClick={() => setCurrentPath('Доломит')} />
-          <Sidebar.SubmenuItem
-            path="Стойленский ГОК"
-            label="Стойленский ГОК"
-            onClick={() => setCurrentPath('Стойленский ГОК')}
-          />
-          <Sidebar.SubmenuItem path="ВИЗ-Сталь" label="ВИЗ-Сталь" onClick={() => setCurrentPath('ВИЗ-Сталь')} />
-        </Sidebar.SubmenuItem>
-        <Sidebar.SubmenuItem path="НЛМК-США" label="НЛМК-США" onClick={() => setCurrentPath('НЛМК-США')} />
-      </Sidebar.MenuItem>
-      <Sidebar.MenuItem
-        path="Кастомный раздел меню"
-        label="Кастомный раздел меню"
-        position="top"
-        icon="IconLightningStroke32"
-        onClick={() => setCurrentPath('Кастомный раздел меню')}
-      />
-      <Sidebar.MenuItem
-        path="Отключенный раздел"
-        label="Отключенный раздел"
-        position="top"
-        icon="IconMapPinaltOutlined32"
-        disabled
-        onClick={() => setCurrentPath('Отключенный раздел')}
-      />
-      <Sidebar.MenuItem
-        path="Производственные отчеты-ссылка"
-        label="Производственные отчеты-ссылка"
-        content={
-          <Link to="/custom-menu" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Производственные отчеты-ссылка
-          </Link>
-        }
-        position="top"
-        icon="IconLink24"
-        onClick={() => setCurrentPath('Кастомный раздел-ссылка')}
-      >
-        <Sidebar.SubmenuItem
-          path="Анализ-качества-сплавов-ссылка"
-          label="Анализ-качества-сплавов-ссылка"
+        <Sidebar.MenuItem
+          path="Отключенный раздел"
+          label="Отключенный раздел"
+          position="top"
+          icon="IconMapPinaltOutlined32"
+          disabled
+          onClick={() => setCurrentPath('Отключенный раздел')}
+        />
+        <Sidebar.MenuItem
+          path="Производственные отчеты-ссылка"
+          label="Производственные отчеты-ссылка"
           content={
-            <Link to="/custom-submenu" style={{ color: 'inherit', textDecoration: 'none' }}>
-              Анализ-качества-сплавов-ссылка
+            <Link to="/custom-menu" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Производственные отчеты-ссылка
             </Link>
           }
-          onClick={() => setCurrentPath('Кастомный подраздел-ссылка')}
-        />
-      </Sidebar.MenuItem>
-      <Sidebar.MenuItem
-        path="Ресурсы"
-        label="Ресурсы"
-        position="bottom"
-        icon="IconInfoOutlined32"
-        onClick={() => setCurrentPath('Ресурсы')}
-      >
-        <Sidebar.SubmenuItem path="Сталь" label="Сталь" onClick={() => setCurrentPath('Сталь')} />
-        <Sidebar.SubmenuItem path="Чугун" label="Чугун" onClick={() => setCurrentPath('Чугун')} />
-        <Sidebar.SubmenuItem path="Медь" label="Медь" onClick={() => setCurrentPath('Медь')} />
-      </Sidebar.MenuItem>
-    </Sidebar>
+          position="top"
+          icon="IconLink24"
+          onClick={() => setCurrentPath('Кастомный раздел-ссылка')}
+        >
+          <Sidebar.SubmenuItem
+            path="Анализ-качества-сплавов-ссылка"
+            label="Анализ-качества-сплавов-ссылка"
+            content={
+              <Link to="/custom-submenu" style={{ color: 'inherit', textDecoration: 'none' }}>
+                Анализ-качества-сплавов-ссылка
+              </Link>
+            }
+            onClick={() => setCurrentPath('Кастомный подраздел-ссылка')}
+          />
+        </Sidebar.MenuItem>
+        <Sidebar.MenuItem
+          path="Ресурсы"
+          label="Ресурсы"
+          position="bottom"
+          icon="IconInfoOutlined32"
+          onClick={() => setCurrentPath('Ресурсы')}
+        >
+          <Sidebar.SubmenuItem path="Сталь" label="Сталь" onClick={() => setCurrentPath('Сталь')} />
+          <Sidebar.SubmenuItem path="Чугун" label="Чугун" onClick={() => setCurrentPath('Чугун')} />
+          <Sidebar.SubmenuItem path="Медь" label="Медь" onClick={() => setCurrentPath('Медь')} />
+        </Sidebar.MenuItem>
+      </Sidebar>
   );
 };
 SidebarDefault.storyName = 'Дефолтный сайдбар';

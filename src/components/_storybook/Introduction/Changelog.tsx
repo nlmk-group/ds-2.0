@@ -16,10 +16,311 @@ export const Changelog = () => {
             target="blank"
             className={styles.link}
           >
-            <Button color="grey" variant="secondary">
+            <Button color="grey" type="button" variant="secondary">
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.5 - <span className={styles.date}>25.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено отображение состояния чекбокса родительского узла при частичном выборе дочерних элементов (добавлен multiple с checked состоянием)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.4 - <span className={styles.date}>24.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Задан тип компонента{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              , в остальных компонентах Дизайн системы.
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено значение z-index для компонентов Sidebar, Submenu и SubmenuItem
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен title в SubmenuItem для label
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено значение z-index для компонента при использовании withPortal
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.3 - <span className={styles.date}>21.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен экспорт SegmentButton</li>
+              <li className={styles['left-padding']}>
+                - Обновлен раздел Info в Storybook компонента SegmentButtonGroup
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.2 - <span className={styles.date}>17.03.24</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-autocomplete-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Autocomplete
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлена логика работы свойства onLoadOptions</li>
+              <li className={styles['left-padding']}>
+                - Выпадающий список теперь не закрывается после выбора через onClick
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-button-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Button
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено свойство style для iconButton</li>
+            </li>
+            <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pagination-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Свойство setCurrentPage стало опциональным. Теперь компонент поддерживает два подхода к управлению
+                состоянием: через прямое обновление состояния (setCurrentPage) или через обработку событий
+                (onPageChange).
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.1 - <span className={styles.date}>13.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен useEffect для обновления внутреннего состояния при изменении входных данных
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.0 - <span className={styles.date}>12.03.25</span>
+            <Chip variant="outline" color="warning">
+              Breaking Changes
+            </Chip>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              . Обновлены типы, добавлены новые пропсы и изменена структура компонента.
+              <li className={styles['left-padding']}>- Изменены свойства компонента SegmentButton</li>
+              <li className={styles['left-padding']}>- Добавлен контекст для передачи свойств</li>
+              <li className={styles['left-padding']}>
+                - Изменена реализация использования компонента SegmentButtonGroup
+              </li>
+              <li className={styles['left-padding']}>- Обновлены stories в Storybook</li>
+              <li className={styles['left-padding']}>- Актуализированы тесты</li>
+              <li className={styles['left-padding']}>- Удалено свойство color</li>
+              <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки MES, Metallurgy и System</li>
+              <li className={styles['left-padding']}>- Добавлена новая директория иконок CRS</li>
+              <li className={styles['left-padding']}>- Обновлен скрипт для генерации импортов иконок</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.19.1 - <span className={styles.date}>05.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено отображение Tooltip внутри компонента ComboBox в темной теме
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.19.0 - <span className={styles.date}>04.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен вызов onSelectedNode в компоненте TreeList при использовании checkableSimple
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.18.9 - <span className={styles.date}>28.02.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен баг, при котором autofill использовал браузерные стили
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-breadcrumbs-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Breadcrumbs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен баг, при котором появлялся двойной тултип при использовании компонента Tooltip для обертки
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменено отображение выпадающего списка с использованием Popper.js
+              </li>
+            </li>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
@@ -97,7 +398,7 @@ export const Changelog = () => {
               .
               <li className={styles['left-padding']}>
                 - Исправлены теги &lt;a&gt; на &lt;div&gt; в компонентах MenuItem и SubmenuItem для корректной работы с
-                react-router и предотвращения нежелательных перенаправлений.
+                react-router и предотвращения нежелательных перенаправлений
               </li>
             </li>
           </ul>
@@ -119,11 +420,11 @@ export const Changelog = () => {
               .
               <li className={styles['left-padding']}>
                 - Добавлено свойство компонента initialCheckedKeys, которое используется для установки начального
-                состояния выбранных элементов.
+                состояния выбранных элементов
               </li>
               <li className={styles['left-padding']}>
                 - Добавлено свойство компонента initialExpandedKeys - используется для установки начального состояния
-                раскрытых элементов.
+                раскрытых элементов
               </li>
             </li>
           </ul>
@@ -245,7 +546,6 @@ export const Changelog = () => {
             </li>
           </ul>
         </div>
-
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.17.0 - <span className={styles.date}>11.02.25</span>

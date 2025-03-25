@@ -53,12 +53,14 @@ const Pagination: FC<IPaginationProps> = ({
 
   const handlePageChange = useCallback(
     (newPage: number) => {
-      setCurrentPage(prev => {
-        if (typeof prev === 'function') {
+      if (setCurrentPage) {
+        setCurrentPage(prev => {
+          if (typeof prev === 'function') {
+            return newPage;
+          }
           return newPage;
-        }
-        return newPage;
-      });
+        });
+      }
       onPageChange?.(newPage);
     },
     [setCurrentPage, onPageChange]
@@ -129,6 +131,7 @@ const Pagination: FC<IPaginationProps> = ({
         <div className={styles.controls}>
           <div className={styles.chevronWrapper}>
             <Button
+              type="button"
               className={clsx(styles.chevron, styles.left)}
               iconButton={<IconChevronArrowLeftOutlined16 />}
               color="grey"
@@ -157,6 +160,7 @@ const Pagination: FC<IPaginationProps> = ({
           )}
           <div className={styles.chevronWrapper}>
             <Button
+              type="button"
               className={clsx(styles.chevron, styles.right)}
               iconButton={<IconChevronArrowRightOutlined16 />}
               color="grey"

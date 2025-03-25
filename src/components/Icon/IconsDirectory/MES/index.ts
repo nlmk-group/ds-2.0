@@ -7,6 +7,7 @@ export { IconAttach16, IconAttach24, IconAttach32 } from './Attach';
 export { IconBarChartHorizontal16, IconBarChartHorizontal24, IconBarChartHorizontal32 } from './BarChartHorizontal';
 export { IconBox16, IconBox24, IconBox32 } from './Box';
 export { IconCalculator16, IconCalculator24, IconCalculator32 } from './Calculator';
+export { IconCalendarClock16, IconCalendarClock24, IconCalendarClock32 } from './CalendarClock';
 export { IconChannel16, IconChannel24, IconChannel32 } from './Channel';
 export { IconChartBubble16, IconChartBubble24, IconChartBubble32 } from './ChartBubble';
 export { IconChartDonut16, IconChartDonut24, IconChartDonut32 } from './ChartDonut';
@@ -14,6 +15,7 @@ export { IconChartGantt16, IconChartGantt24, IconChartGantt32 } from './ChartGan
 export { IconChartSolar16, IconChartSolar24, IconChartSolar32 } from './ChartSolar';
 export { IconChartTree16, IconChartTree24, IconChartTree32 } from './ChartTree';
 export { IconChartWaterfall16, IconChartWaterfall24, IconChartWaterfall32 } from './ChartWaterfall';
+export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
 export { IconColorPaletteOutline16, IconColorPaletteOutline24, IconColorPaletteOutline32 } from './ColorPaletteOutline';
 export { IconConnection16, IconConnection24, IconConnection32 } from './Connection';
 export { IconDatabase16, IconDatabase24, IconDatabase32 } from './Database';
@@ -25,6 +27,7 @@ export { IconFull16, IconFull24, IconFull32 } from './Full';
 export { IconFunnel16, IconFunnel24, IconFunnel32 } from './Funnel';
 export { IconFurmaOutlined16, IconFurmaOutlined24, IconFurmaOutlined32 } from './FurmaOutlined';
 export { IconHillsView16, IconHillsView24, IconHillsView32 } from './HillsView';
+export { IconHistory16, IconHistory24, IconHistory32 } from './History';
 export { IconInMachineFilled16, IconInMachineFilled24, IconInMachineFilled32 } from './InMachineFilled';
 export { IconInMachineOutlined16, IconInMachineOutlined24, IconInMachineOutlined32 } from './InMachineOutlined';
 export { IconInProcessFilled16, IconInProcessFilled24, IconInProcessFilled32 } from './InProcessFilled';
@@ -43,7 +46,10 @@ export { IconLevelHundred16, IconLevelHundred24, IconLevelHundred32 } from './Le
 export { IconLevelZero16, IconLevelZero24, IconLevelZero32 } from './LevelZero';
 export { IconMesBunkerOutlined16, IconMesBunkerOutlined24, IconMesBunkerOutlined32 } from './MesBunkerOutlined';
 export { IconMoneyBagOutline16, IconMoneyBagOutline24, IconMoneyBagOutline32 } from './MoneyBagOutline';
+export { IconNotesOffFilled16, IconNotesOffFilled24, IconNotesOffFilled32 } from './NotesOffFilled';
+export { IconNotesOffOutlined16, IconNotesOffOutlined24, IconNotesOffOutlined32 } from './NotesOffOutlined';
 export { IconOverlayHistogram16, IconOverlayHistogram24, IconOverlayHistogram32 } from './OverlayHistogram';
+export { IconPentool16, IconPentool24, IconPentool32 } from './Pentool';
 export { IconPicInPic16, IconPicInPic24, IconPicInPic32 } from './PicInPic';
 export { IconPicInPicOff16, IconPicInPicOff24, IconPicInPicOff32 } from './PicInPicOff';
 export { IconPicInPicOn16, IconPicInPicOn24, IconPicInPicOn32 } from './PicInPicOn';
@@ -55,6 +61,7 @@ export {
   IconPovtornayaObrabotkaPachek24,
   IconPovtornayaObrabotkaPachek32
 } from './PovtornayaObrabotkaPachek';
+export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export {
   IconRCMParallelOperation16,
   IconRCMParallelOperation24,
@@ -65,7 +72,6 @@ export {
   IconRCMSequentialOperation24,
   IconRCMSequentialOperation32
 } from './RCMSequentialOperation';
-export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export { IconRemovedFilled16, IconRemovedFilled24, IconRemovedFilled32 } from './RemovedFilled';
 export { IconRemovedOutlined16, IconRemovedOutlined24, IconRemovedOutlined32 } from './RemovedOutlined';
 export {
@@ -133,7 +139,9 @@ export { IconTextFields16, IconTextFields24, IconTextFields32 } from './TextFiel
 export { IconToMachine16, IconToMachine24, IconToMachine32 } from './ToMachine';
 export { IconToRepairFilled16, IconToRepairFilled24, IconToRepairFilled32 } from './ToRepairFilled';
 export { IconToRepairOutlined16, IconToRepairOutlined24, IconToRepairOutlined32 } from './ToRepairOutlined';
+export { IconUncheck16, IconUncheck24, IconUncheck32 } from './Uncheck';
 export { IconUnion16, IconUnion24, IconUnion32 } from './Union';
+export { IconUnrs16, IconUnrs24, IconUnrs32 } from './Unrs';
 export { IconUpdate16, IconUpdate24, IconUpdate32 } from './Update';
 export { IconVagonFull16, IconVagonFull24, IconVagonFull32 } from './VagonFull';
 export { IconViewFilled16, IconViewFilled24, IconViewFilled32 } from './ViewFilled';

@@ -22,7 +22,7 @@ export default  App = () => {
 
   return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Открыть Drawer</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer</Button>
         <Drawer
             isOpen={isOpen}
             onClose={() => {
@@ -44,7 +44,7 @@ export default  App = () => {
 
   return (
       <>
-        <Button onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
+        <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
         <Drawer
             isOpen={isOpen}
             position="left"

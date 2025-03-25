@@ -1,55 +1,60 @@
 # SegmentButton
 
-## Версия компонента v3.0
+## Версия компонента v3.1
 
 Компонент SegmentButton для переключения отображения, навигации.
 
 ## Использование
 
 ```jsx
-import SegmentButton from './SegmentButton';
+import { SegmentButton, SegmentButtonGroup, Typography } from '@nlmk/ds-2.0';
 
-<SegmentButtonGroup>
-  <SegmentButtonGroup.Button onClick={() => alert('Печенье')}>Печенье</SegmentButtonGroup.Button>
-  <SegmentButtonGroup.Button onClick={() => alert('Торты')}>Торты</SegmentButtonGroup.Button>
-  <SegmentButtonGroup.Button onClick={() => alert('Конфеты')}>Конфеты</SegmentButtonGroup.Button>
-</SegmentButtonGroup>;
+export default App = () => {
+  return (
+    <SegmentButtonGroup {...argTypes}>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Сталь
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Цинк
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Чугун
+        </Typography>
+      </SegmentButton>
+    </SegmentButtonGroup>
+  );
+};
 ```
 
 ## Props
 
-| Название  | Тип         | По умолчанию | Описание                     |
-| --------- | ----------- | ------------ | ---------------------------- |
-| color     | buttonColor | 'default'    | Цвет фона кнопок             |
-| compact   | boolean     | 'false'      | Уменьшенные по высоте кнопки |
-| disabled  | boolean     | 'false'      | Аттрибут disabled дял кнопок |
-| children  | ReactNode   | -            | Содержимое Snackbar          |
-| className | string      | -            | Дополнительный CSS класс     |
+| Название  | Тип                           | По умолчанию | Описание                                       |
+| --------- | ----------------------------- | ------------ | ---------------------------------------------- |
+| size      | `${ESegmentButtonGroupSizes}` | 'm'          | Размер кнопок                                  |
+| disabled  | boolean                       | 'false'      | Аттрибут disabled дял кнопок                   |
+| children  | ReactNode                     | -            | Кнопки SegmentButton внутри SegmentButtonGroup |
+| className | string                        | -            | Дополнительный CSS класс                       |
 
 ## Children Props
 
-| Название     | Тип         | По умолчанию | Описание                                             |
-| ------------ | ----------- | ------------ | ---------------------------------------------------- |
-| color        | buttonColor | 'default'    | Цвет фона кнопки                                     |
-| disabled     | boolean     | 'false'      | Аттрибут disabled дял кнопок                         |
-| active       | boolean     | 'false'      | Активное состояние кнопки(выбрана)                   |
-| onClick      | () => void  | -            | Callback по клику                                    |
-| toggleButton | () => void  | -            | Внутренний callback для переключения активной кнопки |
-| className    | string      | -            | Дополнительный CSS класс                             |
+| Название     | Тип        | По умолчанию | Описание                                                     |
+| ------------ | ---------- | ------------ | ------------------------------------------------------------ |
+| buttonIndex  | number     | index        | Индекс кнопки в группе (для управления `active` состоянием). |
+| children     | ReactNode  | -            | Контент кнопки (иконки, текст и т. д.).                      |
+| onClick      | () => void | -            | Callback по клику                                            |
+| toggleButton | () => void | -            | Внутренний callback для переключения активной кнопки         |
+| className    | string     | -            | Дополнительный CSS класс                                     |
 
-## Доступные цвета (buttonColor)
+## Размеры SegmentButtonGroup и SegmentButton
 
-- default
-- steel
-- sky
-- red
-- yellow
-- green
-
-## Варианты отображения (variantsMapping)
-
-- default
-- compact
+- `ESegmentButtonGroupSizes.m`
+- `ESegmentButtonGroupSizes.s`
 
 ## Стилизация
 
@@ -62,7 +67,6 @@ import SegmentButton from './SegmentButton';
 - `.segmentButtonGroup`: Контейнер группы сегментных кнопок.
 - `.segmentButton`: Базовый стиль для отдельной кнопки в группе.
 - `._active`: Класс для активной кнопки.
-- `._compact`: Класс для компактного режима отображения кнопок.
 
 Вы можете переопределить эти стили, передав собственный `className`.
 

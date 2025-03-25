@@ -27,6 +27,7 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
       case EDnDStatusColor.error:
         return (
           <Button
+            type="button"
             variant="primary"
             size="m"
             color="error"
@@ -37,6 +38,7 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
       case EDnDStatusColor.info:
         return (
           <Button
+            type="button"
             size="m"
             color="ghost"
             variant="secondary"
@@ -47,6 +49,7 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
       default:
         return (
           <Button
+            type="button"
             className={styles['small-default-icon']}
             size="m"
             color="ghost"

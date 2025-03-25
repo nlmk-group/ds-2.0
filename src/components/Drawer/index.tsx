@@ -107,6 +107,7 @@ const Drawer: FC<IDrawerProps> = ({
         {!isClosing && isViewCloseButton && (
           <div className={clsx(styles.close, styles[position])}>
             <Button
+              type="button"
               iconButton={
                 <IconCloseOutlined24
                   htmlColor={overlay ? 'var(--ac-overlay-button)' : 'var(--ac-button-black-outline-default-text)'}

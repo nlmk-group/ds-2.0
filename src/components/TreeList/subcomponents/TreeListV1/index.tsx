@@ -1,6 +1,4 @@
-import React, { Key, useState } from 'react';
-
-
+import React, { Key, useEffect, useState } from 'react';
 
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
@@ -37,6 +35,10 @@ export const TreeListV1 = ({
     setExpandedKeys(prev => (prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]));
   };
 
+  useEffect(() => {
+    setTreeData(data);
+  }, [data]);
+
   // Обработчик перетаскивания узлов
   const onDrop = (info: TDropEvent) => {
     const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
@@ -55,29 +57,29 @@ export const TreeListV1 = ({
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
-    let updatedKeys = [];
-    if (checkableSimple) {
-      const allKeys = new Set(keys);
-      if (checked) {
-        allKeys.add(nodeKey);
-      } else {
-        allKeys.delete(nodeKey);
-      }
-      updatedKeys = Array.from(allKeys);
-      setCheckedKeys(updatedKeys);
-      return;
-    }
+    let updatedKeys: Key[] = [];
 
-    updatedKeys = updateParentKeys(nodeKey, keys, treeData, checked);
+    const updateSimpleKeys = (key: Key, isChecked: boolean): Key[] => {
+      const allKeys = new Set(keys);
+      if (isChecked) {
+        allKeys.add(key);
+      } else {
+        allKeys.delete(key);
+      }
+      return Array.from(allKeys);
+    };
+
+    updatedKeys = checkableSimple
+      ? updateSimpleKeys(nodeKey, checked)
+      : updateParentKeys(nodeKey, keys, treeData, checked);
+
     setCheckedKeys(updatedKeys);
 
-    if (onSelectedNode) {
-      onSelectedNode({
-        currentKey: nodeKey,
-        allSelectedKeys: updatedKeys,
-        isChecked: Boolean(updatedKeys.includes(nodeKey))
-      });
-    }
+    onSelectedNode?.({
+      currentKey: nodeKey,
+      allSelectedKeys: updatedKeys,
+      isChecked: Boolean(updatedKeys.includes(nodeKey))
+    });
   };
 
   const renderSwitcherIcon = (node: TNodeItem) => {
@@ -99,7 +101,25 @@ export const TreeListV1 = ({
   };
 
   const renderTitle = (node: TNodeItem) => {
-    const isChecked = keys.includes(node.key);
+    const hasChildren = Boolean(node.children?.length);
+
+    const childrenState =
+      hasChildren && node.children
+        ? node.children.reduce(
+            (acc, child) => ({
+              checkedCount: acc.checkedCount + (keys.includes(child.key) ? 1 : 0),
+              total: acc.total + 1
+            }),
+            { checkedCount: 0, total: 0 }
+          )
+        : undefined;
+
+    const isMultiple = Boolean(
+      hasChildren && childrenState && childrenState.checkedCount > 0 && childrenState.checkedCount < childrenState.total
+    );
+
+    const isChecked = keys.includes(node.key) || isMultiple || childrenState?.checkedCount === childrenState?.total;
+
     return (
       <div
         className={clsx(
@@ -115,6 +135,7 @@ export const TreeListV1 = ({
           {(checkable || checkableSimple) && (
             <Checkbox
               checked={isChecked}
+              multiple={isMultiple}
               onChange={() => {
                 handleCheck(isChecked ? [] : [node.key], {
                   node,

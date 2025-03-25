@@ -90,6 +90,7 @@ const App = () => (
   <Alert severity="info"
     action={
       <Button 
+        type="button"
         color="ghost"
         variant="secondary"
         iconButton={

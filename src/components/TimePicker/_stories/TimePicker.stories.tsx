@@ -180,7 +180,7 @@ export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => 
         {...argTypes}
         onChange={handleValueChange}
       />
-      <Button style={{ marginTop: '10px' }} onClick={() => setSave(!save)}>
+      <Button type="button" style={{ marginTop: '10px' }} onClick={() => setSave(!save)}>
         Переключить
       </Button>
     </div>

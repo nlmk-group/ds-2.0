@@ -1,0 +1,174 @@
+.fullWidth {
+  width: 100%;
+}
+
+.input {
+  input {
+    cursor: pointer;
+    caret-color: transparent;
+  }
+
+  & > div {
+    background: transparent;
+  }
+}
+
+.inputIcon {
+  display: flex;
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: var(--steel-10);
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  z-index: 100000;
+  right: auto !important;
+  left: auto !important;
+}
+
+.listContainer {
+  overflow-y: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  z-index: 1;
+  height: 100%;
+}
+
+.draggableGroupsListContainer {
+  flex-grow: 1;
+}
+
+.listItem {
+  padding: 8px;
+  padding-left: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+}
+
+.listItemDraggable {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dragIndicator {
+  display: flex;
+  align-items: center;
+  color: var(--steel-30);
+}
+
+.listItemDragging {
+  min-width: unset;
+}
+
+.listItemActive {
+  background-color: var(--brand-sapphire-10);
+
+  &:hover {
+    background-color: var(--brand-sapphire-20);
+  }
+}
+
+.listItemDisabled {
+  background-color: var(--steel-10);
+  opacity: 0.5;
+}
+
+.listItemExpanded {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  padding-left: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--steel-30);
+  }
+}
+
+.listItemExpandedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 32px;
+
+  & > svg {
+    width: 24px;
+    cursor: pointer;
+  }
+}
+
+.listItemGroup {
+  cursor: default;
+  color: var(--steel-70);
+
+  &:hover {
+    background-color: initial;
+  }
+}
+
+.draggableGroupsListItem {
+  padding: 0;
+}
+
+.draggableGroupLabel {
+  padding-left: 12px;
+}
+
+.listItemLabel {
+  line-height: 24px;
+  margin: 0;
+}
+
+.listItemLabelWrapper {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItemDone {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.listItemCheckbox {
+  & > label {
+    padding: 0;
+    text-wrap: nowrap;
+    padding-left: 4px;
+  }
+
+  & > input[type="checkbox"] {
+    min-width: 18px;
+  }
+}
+
+.tooltipWrapper {
+  width: 100% !important;
+  display: block !important;
+
+  & > div {
+    display: block !important;
+  }
+}
+
+.popupText {
+  max-width: 320px;
+  max-height: 240px;
+  overflow: auto;
+  text-overflow: ellipsis;
+  background-color: var(--steel-90) !important;
+  color: var(--steel-10) !important;
+  opacity: 1;
+}

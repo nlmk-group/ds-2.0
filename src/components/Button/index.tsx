@@ -81,7 +81,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 
     if (iconButton) {
       return (
-        <button ref={ref} className={classes} {...props} data-ui-icon-button>
+        <button ref={ref} className={classes} style={style} {...props} data-ui-icon-button>
           {iconButton}
         </button>
       );

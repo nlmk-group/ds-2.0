@@ -5,6 +5,8 @@ import {
   Badge,
   Button,
   IconArticleOutlined24,
+  IconStarFilled16,
+  IconStarFilled24,
   IconStarOutlined16,
   IconStarOutlined24,
   Input,
@@ -85,20 +87,26 @@ SlideToggleSizes.args = {
 export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.Element => {
   const [showDefault, setShowDefault] = useState<boolean>(false);
   const [showCompact, setShowCompact] = useState<boolean>(false);
+
+  const [isCompactStarFilled, setIsCompactStarFilled] = useState(false);
+  const [isDefaultStarFilled, setIsDefaultStarFilled] = useState(false);
+
   const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    console.log('click', e);
   };
 
   const actionBlockCompact = (
     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '4px', gap: '4px' }}>
       <Button
+        type="button"
         onClick={e => {
+          e.stopPropagation();
           handleClick(e);
-          setShowCompact(!showCompact);
+          setIsCompactStarFilled(!isCompactStarFilled);
         }}
         size="s"
         style={{ padding: '4px' }}
-        startIcon={<IconStarOutlined16 />}
+        startIcon={isCompactStarFilled ? <IconStarFilled16 /> : <IconStarOutlined16 />}
         color="ghost"
         variant="secondary"
       />
@@ -111,15 +119,17 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
   const actionBlockDefault = (
     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '4px', gap: '4px' }}>
       <Button
+        type="button"
         onClick={e => {
+          e.stopPropagation();
           handleClick(e);
-          setShowDefault(!showDefault);
+          setIsDefaultStarFilled(!isDefaultStarFilled);
         }}
         color="ghost"
         variant="secondary"
         size="m"
         style={{ padding: '4px' }}
-        startIcon={<IconStarOutlined24 />}
+        startIcon={isDefaultStarFilled ? <IconStarFilled24 /> : <IconStarOutlined24 />}
       />
       <Badge size="l" color={args.badgeColor}>
         {args.badgeChildren}
@@ -177,9 +187,13 @@ SlideToggleWithButton.argTypes = {
 
 export const SlideToggleCustomized = (args: ISlideToggleProps): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log('click');
+  };
   const title = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
-      <Button iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
       <Typography variant="Body2-Medium">{args.title}</Typography>
     </div>
   );
@@ -187,9 +201,9 @@ export const SlideToggleCustomized = (args: ISlideToggleProps): JSX.Element => {
   const actionBlock = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
       <Input label="input в action block" />
-      <Button iconButton={<IconArticleOutlined24 />} />
-      <Button iconButton={<IconArticleOutlined24 />} />
-      <Button iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
+      <Button type="button" onClick={handleClick} iconButton={<IconArticleOutlined24 />} />
     </div>
   );
 

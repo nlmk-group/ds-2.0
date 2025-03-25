@@ -1,22 +1,16 @@
 import React, { ReactNode } from 'react';
 
-import { SegmentButtonGroup } from '@components/index';
+import { SegmentButton, SegmentButtonGroup, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { buttonColor } from '../enums';
-import { ISegmentButtonGroup } from '../types';
+import { ESegmentButtonGroupSizes } from '../enums';
+import { ISegmentButtonGroupProps } from '../types';
 import { argsTypes } from './argsTypes';
-import {
-  DEFAULT_SEGMENT_BUTTON,
-  SEGMENT_BUTTON_COLOR_OPTIONS,
-  SEGMENT_BUTTON_COLOR_OPTIONS_VARIABLE,
-  SEGMENT_BUTTON_COMPACT
-} from './constants';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/SegmentButtonGroup/Stories',
@@ -25,31 +19,31 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof SegmentButtonGroup>;
 
-export const DefaultBtnGroup = (argTypes: ISegmentButtonGroup): ReactNode => {
+export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Печенье</SegmentButtonGroup.Button>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Торты</SegmentButtonGroup.Button>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Конфеты</SegmentButtonGroup.Button>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Сталь
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Цинк
+        </Typography>
+      </SegmentButton>
+      <SegmentButton onClick={action('onClick')}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">
+          Чугун
+        </Typography>
+      </SegmentButton>
     </SegmentButtonGroup>
   );
 };
 
-DefaultBtnGroup.storyName = DEFAULT_SEGMENT_BUTTON;
+SegmentButtonGroupDefault.storyName = 'SegmentButtonGroup по умолчанию';
 
-export const BtnGroupCompact = (argTypes: ISegmentButtonGroup): ReactNode => {
-  return (
-    <SegmentButtonGroup compact {...argTypes}>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Печенье</SegmentButtonGroup.Button>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Торты</SegmentButtonGroup.Button>
-      <SegmentButtonGroup.Button onClick={action('onClick')}>Конфеты</SegmentButtonGroup.Button>
-    </SegmentButtonGroup>
-  );
-};
-
-BtnGroupCompact.storyName = SEGMENT_BUTTON_COMPACT;
-
-export const BtnGroupOptions = (argTypes: ISegmentButtonGroup): ReactNode => {
+export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <div
       style={{
@@ -58,29 +52,50 @@ export const BtnGroupOptions = (argTypes: ISegmentButtonGroup): ReactNode => {
         gap: '12px'
       }}
     >
-      {Object.values(buttonColor).map((color: buttonColor, index: number) => (
-        <SegmentButtonGroup color={color} key={index} {...argTypes}>
-          <SegmentButtonGroup.Button onClick={action('onClick')}>Печенье</SegmentButtonGroup.Button>
-          <SegmentButtonGroup.Button onClick={action('onClick')}>Торты</SegmentButtonGroup.Button>
-          <SegmentButtonGroup.Button onClick={action('onClick')}>Конфеты</SegmentButtonGroup.Button>
-        </SegmentButtonGroup>
+      {Object.values(ESegmentButtonGroupSizes).map((size, index) => (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">
+            {`Размер ${size} `}
+          </Typography>
+
+          <SegmentButtonGroup size={size} {...argTypes}>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Сталь
+              </Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Цинк
+              </Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Bold" color="var(--steel-90)">
+                Чугун
+              </Typography>
+            </SegmentButton>
+          </SegmentButtonGroup>
+
+          <SegmentButtonGroup size={size} {...argTypes}>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Сталь
+              </Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Цинк
+              </Typography>
+            </SegmentButton>
+            <SegmentButton onClick={action('onClick')}>
+              <Typography variant="Body1-Medium" color="var(--steel-90)">
+                Чугун
+              </Typography>
+            </SegmentButton>
+          </SegmentButtonGroup>
+        </div>
       ))}
     </div>
   );
 };
-
-BtnGroupOptions.storyName = SEGMENT_BUTTON_COLOR_OPTIONS;
-
-export const BtnGroupOptionsVariable = (argTypes: ISegmentButtonGroup): ReactNode => {
-  return (
-    <SegmentButtonGroup {...argTypes}>
-      {Object.values(buttonColor).map((color: buttonColor, index: number) => (
-        <SegmentButtonGroup.Button color={color} key={index} onClick={action('onClick')}>
-          {index}
-        </SegmentButtonGroup.Button>
-      ))}
-    </SegmentButtonGroup>
-  );
-};
-
-BtnGroupOptionsVariable.storyName = SEGMENT_BUTTON_COLOR_OPTIONS_VARIABLE;
+SegmentButtonGroupWithTypography.storyName = 'SegmentButtonGroup с разными обертками для текста';

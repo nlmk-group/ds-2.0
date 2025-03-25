@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface IPaginationProps {
   currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
+  setCurrentPage?: Dispatch<SetStateAction<number>>;
   elementsPerPage?: number;
   setElementsPerPage?: Dispatch<SetStateAction<number>>;
   maxPageCount: number;

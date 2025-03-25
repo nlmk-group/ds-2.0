@@ -97,6 +97,7 @@ const File: FC<IFileProps> = ({
           {!addFile && commented && (
             <div className={styles['control-btn']} data-testid="COMMENTED_CONTROL">
               <Button
+                type="button"
                 color="ghost"
                 variant="secondary"
                 onClick={commentedOnClick}
@@ -108,6 +109,7 @@ const File: FC<IFileProps> = ({
           {!addFile && saved && (
             <div className={styles['control-btn']} data-testid="SAVED_CONTROL">
               <Button
+                type="button"
                 color="ghost"
                 variant="secondary"
                 onClick={savedOnClick}
@@ -119,6 +121,7 @@ const File: FC<IFileProps> = ({
           {!addFile && removed && (
             <div data-testid="REMOVED_CONTROL" className={styles['control-btn']}>
               <Button
+                type="button"
                 color="ghost"
                 variant="secondary"
                 onClick={removedOnClick}
@@ -129,7 +132,7 @@ const File: FC<IFileProps> = ({
           )}
           {addFile && (
             <div className={styles['add-file-btn']} data-testid="ADD_FILE_CONTROL">
-              <Button variant="secondary" onClick={addFileOnClick} data-ui-file-add-button>
+              <Button type="button" variant="secondary" onClick={addFileOnClick} data-ui-file-add-button>
                 Добавить файл
               </Button>
             </div>

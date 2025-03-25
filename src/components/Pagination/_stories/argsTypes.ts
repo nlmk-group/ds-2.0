@@ -14,7 +14,15 @@ export const argsTypes = {
     }
   },
   setCurrentPage: {
-    description: 'Callback, вызываемый при изменении страницы.'
+    description: 'Функция для изменения текущей страницы. Опциональна при использовании onPageChange.'
+  },
+  onPageChange: {
+    description: 'Колбэк, вызываемый при изменении страницы. Может использоваться вместо setCurrentPage.',
+    table: {
+      type: {
+        summary: '(page: number) => void'
+      }
+    }
   },
   elementsPerPage: {
     description: 'Количество записей на странице.',

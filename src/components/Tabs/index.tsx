@@ -77,6 +77,7 @@ const Tabs: FC<ITabsProps> &
     <div className={clsx(styles['tabs-container'], className)}>
       {scrollable && !isScrolledLeft && (
         <Button
+          type="button"
           color="ghost"
           variant="secondary"
           size="s"
@@ -98,6 +99,7 @@ const Tabs: FC<ITabsProps> &
       </div>
       {scrollable && !isScrolledRight && (
         <Button
+          type="button"
           color="ghost"
           variant="secondary"
           size="s"

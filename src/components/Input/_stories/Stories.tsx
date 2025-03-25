@@ -113,7 +113,7 @@ const App = () => {
         <>
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Input pseudo={isPseudo} value={innerValue} label='Label' onChange={handleChange} />
-                <Button onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
+                <Button type="button" onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
                     Переключить
                 </Button>
             </div>

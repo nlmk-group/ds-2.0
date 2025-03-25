@@ -38,6 +38,7 @@ const UserControl: FC<IUserControlProps> = ({
 
       {!isVertical && handler && (
         <Button
+          type="button"
           size="s"
           color="ghost"
           variant="secondary"

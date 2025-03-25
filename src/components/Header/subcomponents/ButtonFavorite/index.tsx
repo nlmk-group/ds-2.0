@@ -10,6 +10,7 @@ const ButtonFavorite: FC<IButtonFavoriteProps> = ({ favorite }): JSX.Element => 
   return (
     <div className={styles['button-padding-unset']}>
       <Button
+        type="button"
         data-testid="HEADER_FAVORITE"
         onClick={favorite}
         className={styles['favorite-icon-color']}

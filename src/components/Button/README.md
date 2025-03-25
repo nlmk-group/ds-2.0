@@ -10,6 +10,7 @@ Button компонент используется для создания кн�
 import { Button, EButtonColor, EButtonSize, EButtonVariant } from '@nlmk/ds-2.0';
 
 <Button
+  type="button"
   variant={EButtonVariant.primary}
   color={EButtonColor.brand}
   size={EButtonSize.m}
@@ -101,7 +102,9 @@ import { Button, EButtonColor, EButtonSize, EButtonVariant } from '@nlmk/ds-2.0'
 Можно передать объект стилей через проп `style`:
 
 ```jsx
-<Button style={{ marginBottom: '16px' }}>Styled button</Button>
+<Button type="button" style={{ marginBottom: '16px' }}>
+  Styled button
+</Button>
 ```
 
 ## Состояния

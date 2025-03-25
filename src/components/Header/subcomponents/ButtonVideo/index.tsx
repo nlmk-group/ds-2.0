@@ -11,6 +11,7 @@ const ButtonVideo: FC<IButtonVideoProps> = ({ video }): JSX.Element => {
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
+        type="button"
         data-testid="HEADER_VIDEO"
         onClick={video}
         className={styles['video-icon-color']}

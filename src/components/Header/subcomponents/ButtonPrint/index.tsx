@@ -11,6 +11,7 @@ const ButtonPrint: FC<IButtonPrintProps> = ({ print }): JSX.Element => {
   return (
     <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
       <Button
+        type="button"
         data-testid="HEADER_PRINT"
         onClick={print}
         className={styles['print-icon-color']}

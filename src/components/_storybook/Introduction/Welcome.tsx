@@ -25,7 +25,9 @@ const FooterSection: FC<{
       {buttonText && (
         <>
           <br />
-          <Button variant="secondary">{buttonText}</Button>
+          <Button type="button" variant="secondary">
+            {buttonText}
+          </Button>
         </>
       )}
     </div>
@@ -110,16 +112,24 @@ export const WelcomePage = () => {
           </Typography>
           <div className={clsx(styles['description-buttons'], styles['description-buttons--primary'])}>
             <Link href="https://www.npmjs.com/package/@nlmk/ds-2.0" target="_blank" className={styles.links}>
-              <Button startIcon={<StarSvgIcon />}>NPM</Button>
+              <Button type="button" startIcon={<StarSvgIcon />}>
+                NPM
+              </Button>
             </Link>
             <Link href="https://github.com/nlmk-group/ds-2.0" target="_blank" className={styles.links}>
-              <Button startIcon={<GitHubSvgIcon />}>Github</Button>
+              <Button type="button" startIcon={<GitHubSvgIcon />}>
+                Github
+              </Button>
             </Link>
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
-              <Button startIcon={<WebSvgIcon />}>ДС</Button>
+              <Button type="button" startIcon={<WebSvgIcon />}>
+                ДС
+              </Button>
             </Link>
             <Link href="https://www.figma.com/@nlmk" target="_blank" className={styles.links}>
-              <Button startIcon={<FigmaLogoSvgIcon />}>UI-Kit</Button>
+              <Button type="button" startIcon={<FigmaLogoSvgIcon />}>
+                UI-Kit
+              </Button>
             </Link>
           </div>
         </div>

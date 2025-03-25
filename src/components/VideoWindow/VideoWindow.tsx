@@ -63,7 +63,7 @@ const VideoWindow = ({
 
   return (
     <div
-      className={clsx(videoStyles.videoWindow, className, {
+      className={clsx(videoStyles['video-window'], className, {
         [videoStyles.fullscreen]: isFullscreen && !isMinimized,
         [videoStyles.minimized]: isMinimized,
         [videoStyles.resizable]: !isFullscreen && resizable,
@@ -76,9 +76,9 @@ const VideoWindow = ({
       data-ui-video-window-root
     >
       <div
-        className={clsx(videoStyles.videoWindowHeader, {
+        className={clsx(videoStyles['video-window-header'], {
           [videoStyles.draggable]: draggable && !isFullscreen,
-          [videoStyles.headerWithoutTitle]: noTitle && !isMinimized
+          [videoStyles['header-without-title']]: noTitle && !isMinimized
         })}
         data-ui-video-window-header
         onMouseDown={draggable ? draggableData?.handleMouseDown : undefined}
@@ -88,13 +88,13 @@ const VideoWindow = ({
             {React.isValidElement(title) ? (
               title
             ) : (
-              <Typography color="var(--unique-white)" variant="Body1-Medium" data-ui-video-window-typography-title>
+              <Typography color="var(--unique-white)" variant="Body1-Medium">
                 {title}
               </Typography>
             )}
           </>
         )}
-        <div className={videoStyles.videoControls} data-ui-video-window-controls>
+        <div className={videoStyles['video-controls']}>
           <Button
             onClick={toggleFullscreen}
             iconButton={isFullscreen ? <IconASIImplementationOutlined24 /> : <IconFullScreenOpenOutlined24 />}
@@ -123,13 +123,14 @@ const VideoWindow = ({
       </div>
       {!isMinimized && (
         <div
-          className={clsx(videoStyles.videoContent, { [videoStyles.videoWithoutTitle]: noTitle })}
-          data-ui-video-window-video-content
+          className={clsx(videoStyles['video-content'], {
+            [videoStyles['video-without-title']]: noTitle
+          })}
         >
           <video id={id} controls src={videoUrl} controlsList="nodownload" autoPlay={autoPlay} />
         </div>
       )}
-      {!isMinimized && <div className={videoStyles.resizer} data-ui-video-window-resizer />}
+      {!isMinimized && <div className={videoStyles.resizer} />}
     </div>
   );
 };

@@ -1,21 +1,62 @@
-$borderActive: 4px solid var(--brand-sapphire-50);
+$border-active: 4px solid var(--brand-sapphire-50);
 
-.videoWindow {
-  overflow: hidden;
-  min-width: 300px;
-  min-height: 230px;
-  width: 300px;
-  height: 230px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+.video {
+  &-window {
+    overflow: hidden;
+    min-width: 300px;
+    min-height: 230px;
+    width: 300px;
+    height: 230px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 
-  &:focus-within {
-    border: $borderActive;
+    &:focus-within {
+      border: $border-active;
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      padding: 8px;
+      height: 48px;
+      box-sizing: border-box;
+      background: var(--unique-black);
+    }
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  &-content {
+    width: 100%;
+    height: calc(100% - 48px);
+    position: relative;
+
+    video {
+      width: 100%;
+      display: block;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-without-title {
+    height: 100%;
   }
 }
 
 .active {
-  border: $borderActive;
+  border: $border-active;
 }
 
 .resizable {
@@ -23,7 +64,6 @@ $borderActive: 4px solid var(--brand-sapphire-50);
   resize: both;
 }
 
-// полноэкранный контейнер
 .fullscreen {
   position: fixed;
   top: 0;
@@ -49,20 +89,9 @@ $borderActive: 4px solid var(--brand-sapphire-50);
   position: absolute;
   resize: none;
 
-  .videoContent {
+  .video-content {
     display: none;
   }
-}
-
-.videoWindowHeader {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  align-items: center;
-  padding: 8px;
-  height: 48px;
-  box-sizing: border-box;
-  background: var(--unique-black);
 }
 
 .draggable {
@@ -71,31 +100,6 @@ $borderActive: 4px solid var(--brand-sapphire-50);
   }
 }
 
-.videoTitle {
-  font-weight: bold;
-}
-
-.videoControls {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  margin-left: auto;
-}
-
-.videoContent {
-  width: 100%;
-  height: calc(100% - 48px);
-  position: relative;
-
-  video {
-    width: 100%;
-    display: block;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-// элемент для изменения размера
 .resizer {
   position: absolute;
   width: 16px;
@@ -105,15 +109,11 @@ $borderActive: 4px solid var(--brand-sapphire-50);
   right: 0;
 }
 
-.headerWithoutTitle {
+.header-without-title {
   background: transparent;
   position: absolute;
   width: 100%;
   top: 0;
   right: 0;
   z-index: 1;
-}
-
-.videoWithoutTitle {
-  height: 100%;
 }

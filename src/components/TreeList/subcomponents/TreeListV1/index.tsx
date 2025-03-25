@@ -101,7 +101,25 @@ export const TreeListV1 = ({
   };
 
   const renderTitle = (node: TNodeItem) => {
-    const isChecked = keys.includes(node.key);
+    const hasChildren = Boolean(node.children?.length);
+
+    const childrenState =
+      hasChildren && node.children
+        ? node.children.reduce(
+            (acc, child) => ({
+              checkedCount: acc.checkedCount + (keys.includes(child.key) ? 1 : 0),
+              total: acc.total + 1
+            }),
+            { checkedCount: 0, total: 0 }
+          )
+        : undefined;
+
+    const isMultiple = Boolean(
+      hasChildren && childrenState && childrenState.checkedCount > 0 && childrenState.checkedCount < childrenState.total
+    );
+
+    const isChecked = keys.includes(node.key) || isMultiple || childrenState?.checkedCount === childrenState?.total;
+
     return (
       <div
         className={clsx(
@@ -117,6 +135,7 @@ export const TreeListV1 = ({
           {(checkable || checkableSimple) && (
             <Checkbox
               checked={isChecked}
+              multiple={isMultiple}
               onChange={() => {
                 handleCheck(isChecked ? [] : [node.key], {
                   node,

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Box } from '@components/index';
+
 import styles from './TreeList.module.scss';
 
 import TreeList from '../TreeList';
@@ -74,20 +76,20 @@ TreeListSimpleCheckboxes.parameters = {
 };
 
 export const TreeListSizes = (): JSX.Element => (
-  <div style={{ display: 'flex', gap: '20px' }}>
-    <div style={{ width: '300px' }}>
+  <Box flexDirection="column" gap="20px">
+    <div>
       <h4>Размер XS</h4>
       <TreeList data={DEFAULT_TREE_DATA} checkable rowHeight="xs" />
     </div>
-    <div style={{ width: '300px' }}>
+    <div>
       <h4>Размер S</h4>
       <TreeList data={DEFAULT_TREE_DATA} checkable rowHeight="s" />
     </div>
-    <div style={{ width: '300px' }}>
+    <div>
       <h4>Размер M</h4>
       <TreeList data={DEFAULT_TREE_DATA} checkable rowHeight="m" />
     </div>
-  </div>
+  </Box>
 );
 TreeListSizes.storyName = 'TreeList с разными размерами строк';
 TreeListSizes.parameters = {

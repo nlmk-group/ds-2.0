@@ -6,7 +6,6 @@ import { Breadcrumbs, Button, Dropdown, DropdownMenuItem, Header, IconSettingsAl
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
-// import styles from '@components/_storybook/styles.module.scss';
 import styles from './Header.stories.module.scss';
 
 import { IHeaderProps } from '../types';

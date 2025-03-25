@@ -34,7 +34,7 @@
 }
 .wrapper-default {
   width: 100%;
-  padding: 16px 48px;
+  padding: 16px 24px;
 }
 
 .title-btn-wrapper {
@@ -48,7 +48,9 @@
     gap: 16px;
   }
 }
-
+.btn-message {
+  border-radius: 50%;
+}
 .btn-wrapper {
   width: 40px;
   height: 40px;

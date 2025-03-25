@@ -12,10 +12,10 @@ const ButtonMessage: FC<IButtonMessageProps> = ({ message }): JSX.Element => {
       <Button
         type="button"
         onClick={message}
-        className={styles['btn-wrapper']}
+        className={styles['btn-message']}
         iconButton={<IconHelperMailOutlined24 />}
         variant="primary"
-        color="ghost"
+        color="brand"
       />
     </div>
   );

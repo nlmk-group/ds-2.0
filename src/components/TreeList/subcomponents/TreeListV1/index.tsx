@@ -39,11 +39,12 @@ export const TreeListV1 = ({
     setTreeData(data);
   }, [data]);
 
+  // Обработчик перетаскивания узлов
   const onDrop = (info: TDropEvent) => {
-    const dropKey = info.node.key;
-    const dragKey = info.dragNode.key;
-    const dropPosition = info.dropPosition;
-    const dropToGap = info.dropToGap;
+    const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
+    const dragKey = info.dragNode.key; // Ключ перетаскиваемого узла
+    const dropPosition = info.dropPosition; // Позиция, в которую узел был сброшен
+    const dropToGap = info.dropToGap; // true, если узел был сброшен между другими узлами
     const data = [...treeData];
 
     const dragNode = findAndRemoveNode(data, dragKey);
@@ -164,14 +165,14 @@ export const TreeListV1 = ({
       style={{ ['--row-height' as string]: ROW_PX_HEIGHTS[rowHeight] }}
     >
       <Tree<TTreeItem>
-        treeData={treeData}
-        draggable={draggable}
-        onDrop={onDrop}
-        checkedKeys={checkedKeys}
-        titleRender={renderTitle}
-        switcherIcon={() => null}
-        checkable={false}
-        selectable={false}
+        treeData={treeData} // Данные для построения структуры дерева
+        draggable={draggable} // Включение функциональности перетаскивания узлов
+        onDrop={onDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
+        checkedKeys={checkedKeys} // Ключи отмеченных (выбранных) узлов
+        titleRender={renderTitle} // Пользовательская функция для рендеринга заголовков узлов
+        switcherIcon={() => null} // Отключаем стандартные стрелки
+        checkable={false} // Отключение стандартных чекбоксов
+        selectable={false} // Отключение возможности выбора узлов
         onDragStart={info => setDragging(String(info.node.key))}
         onDragEnd={() => setDragging(null)}
         expandedKeys={expandedKeys}

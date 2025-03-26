@@ -130,7 +130,7 @@ const VideoWindow = ({
           <video id={id} controls src={videoUrl} controlsList="nodownload" autoPlay={autoPlay} />
         </div>
       )}
-      {!isMinimized && <div className={videoStyles.resizer} />}
+      {!isMinimized && <div data-ui-video-window-resizer className={videoStyles.resizer} />}
     </div>
   );
 };

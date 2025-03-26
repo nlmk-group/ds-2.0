@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { TVideoWindowProps } from './types';
 
-import VideoWindow from './VideoWindow';
+import VideoWindow from '.';
 
 describe('src/components/VideoWindow', () => {
   const defaultProps: TVideoWindowProps = {

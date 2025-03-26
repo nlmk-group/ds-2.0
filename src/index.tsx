@@ -38,6 +38,7 @@ import {
   Dropdown,
   DropdownMenuItem,
   GroupHeaderTableWithResize,
+  Header,
   Icon,
   IconCloseOutlined24,
   IconEqualsSign24,
@@ -132,11 +133,25 @@ const InputExample = () => {
     </form>
   );
 };
+
+const DefaultHeader = (): ReactNode => {
+  return (
+    <Header
+      title="Заголовок"
+      onMessageClick={() => console.log('back')}
+      onNotificationClick={() => console.log('back')}
+      onFavoriteClick={() => console.log('back')}
+      onPrintClick={() => console.log('back')}
+      onVideoClick={() => console.log('back')}
+      onBackClick={() => console.log('back')}
+    />
+  );
+};
 root.render(
   <StrictMode>
     <div className="development-block">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', padding: '32px' }}>
-        <InputExample></InputExample>
+        <DefaultHeader></DefaultHeader>
       </div>
     </div>
   </StrictMode>

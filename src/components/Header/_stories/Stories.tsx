@@ -64,7 +64,7 @@ export default  App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title='Header с кнопкой возвращения слева' back={() => {}} />
+  <Header title='Header с кнопкой возвращения слева' hasBack onBackClick={() => {}} />
 )
               `}
           />
@@ -74,7 +74,7 @@ export default  App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title='Header с датой и временем' date />
+  <Header title='Header с датой и временем' hasDate />
 )
               `}
           />
@@ -84,7 +84,7 @@ export default  App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title='Header с кнопкой добавления в избранное' favorite={() => {}}/>
+  <Header title='Header с кнопкой добавления в избранное' hasFavorite onFavoriteClick={() => {}}/>
 )
               `}
           />
@@ -94,7 +94,7 @@ export default  App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <Header title='Header с кнопкой уведомления' notification={() => {}} notificationAmount={9} />
+  <Header title='Header с кнопкой уведомления' hasNotification onNotificationClick={() => {}} notificationAmount={9} />
 )
               `}
           />

@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from 'react';
+import { CSSProperties, FC, MouseEventHandler, ReactNode } from 'react';
 
 /**
  * Интерфейс свойств компонента Header.
@@ -7,43 +7,58 @@ export interface IHeaderProps {
   /** Заголовок страницы */
   title: string;
 
-  /** Кнопка назад */
-  back?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Назад" */
+  hasBack?: boolean;
+  /** Обработчик клика на кнопку "Назад" */
+  onBackClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Кнопка добавления в избранное */
-  favorite?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Избранное" */
+  hasFavorite?: boolean;
+  /** Обработчик клика на кнопку "Избранное" */
+  onFavoriteClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Кнопка уведомлений */
-  notification?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Уведомления" */
+  hasNotification?: boolean;
+  /** Обработчик клика на кнопку "Уведомления" */
+  onNotificationClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Кнопка воспроизведения видео */
-  video?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Видео" */
+  hasVideo?: boolean;
+  /** Обработчик клика на кнопку "Видео" */
+  onVideoClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Кнопка печати документа */
-  print?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Печать" */
+  hasPrint?: boolean;
+  /** Обработчик клика на кнопку "Печать" */
+  onPrintClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Кнопка сообщений (например, для чата или поддержки) */
-  message?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, должна ли отображаться кнопка "Сообщения" */
+  hasMessage?: boolean;
+  /** Обработчик клика на кнопку "Сообщения" */
+  onMessageClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг для отображения текущей даты */
-  date?: boolean;
+  /** Флаг, указывающий, должна ли отображаться текущая дата */
+  hasDate?: boolean;
 
   /** Количество непрочитанных уведомлений */
   notificationAmount?: number;
 
-  /** Компонент хлебных крошек */
+  /** Компонент хлебных крошек, который будет отображаться в заголовке */
   breadcrumbs?: ReactNode;
 
-  /** Дополнительные CSS-классы для стилизации */
+  /** Дополнительные CSS-классы для стилизации компонента */
   className?: string;
 
-  /** Дополнительный контент справа от заголовка */
+  /** Дополнительный контент, который будет отображаться справа от заголовка */
   children?: ReactNode;
+
+  /** Inline-стили для кастомизации компонента */
+  style?: CSSProperties;
 }
 
 /**
  * Компонент `Header` отображает заголовок страницы с возможностью добавления кнопок управления,
- * хлебных крошек и других элементов управления.
+ * хлебных крошек, даты и других элементов.
  */
 declare const Header: FC<IHeaderProps>;
 

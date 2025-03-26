@@ -23,23 +23,36 @@ import {
  * @component
  * @param {IHeaderProps} props - Пропсы компонента.
  * @param {string} props.title - Заголовок страницы.
- * @param {Function} [props.back] - Обработчик клика по кнопке "назад".
- * @param {boolean} [props.date=false] - Флаг для отображения текущей даты.
- * @param {Function} [props.favorite] - Обработчик клика по кнопке "избранное".
- * @param {Function} [props.notification] - Обработчик клика по кнопке "уведомления".
- * @param {Function} [props.video] - Обработчик клика по кнопке "видео".
- * @param {Function} [props.print] - Обработчик клика по кнопке "печать".
- * @param {Function} [props.message] - Обработчик клика по кнопке "сообщения".
+ * @param {boolean} [props.hasBack] - Флаг для отображения кнопки "Назад".
+ * @param {Function} [props.onBackClick] - Обработчик клика по кнопке "Назад".
+ * @param {boolean} [props.hasFavorite] - Флаг для отображения кнопки "Избранное".
+ * @param {Function} [props.onFavoriteClick] - Обработчик клика по кнопке "Избранное".
+ * @param {boolean} [props.hasNotification] - Флаг для отображения кнопки "Уведомления".
+ * @param {Function} [props.onNotificationClick] - Обработчик клика по кнопке "Уведомления".
+ * @param {boolean} [props.hasVideo] - Флаг для отображения кнопки "Видео".
+ * @param {Function} [props.onVideoClick] - Обработчик клика по кнопке "Видео".
+ * @param {boolean} [props.hasPrint] - Флаг для отображения кнопки "Печать".
+ * @param {Function} [props.onPrintClick] - Обработчик клика по кнопке "Печать".
+ * @param {boolean} [props.hasMessage] - Флаг для отображения кнопки "Сообщения".
+ * @param {Function} [props.onMessageClick] - Обработчик клика по кнопке "Сообщения".
+ * @param {boolean} [props.hasDate=false] - Флаг для отображения текущей даты.
  * @param {number} [props.notificationAmount=0] - Количество уведомлений, отображаемое на кнопке уведомлений.
- * @param {ReactNode} [props.breadcrumbs] - Элемент хлебных крошек, отображаемый над заголовком.
+ * @param {ReactNode} [props.breadcrumbs] - Элемент хлебных крошек, отображаемый в заголовке.
  * @param {string} [props.className] - Дополнительные CSS-классы для стилизации компонента.
  * @param {ReactNode} [props.children] - Дополнительные элементы внутри заголовка.
+ * @param {Object} [props.style] - Inline-стили для кастомизации компонента.
  * @returns {JSX.Element} Возвращает JSX-разметку компонента Header.
  */
 const Header: FC<IHeaderProps> = ({
   title,
   onBackClick = null,
   hasDate = false,
+  hasBack,
+  hasFavorite,
+  hasMessage,
+  hasNotification,
+  hasPrint,
+  hasVideo,
   onFavoriteClick = null,
   onNotificationClick = null,
   onVideoClick = null,
@@ -54,13 +67,13 @@ const Header: FC<IHeaderProps> = ({
   const RightBlock = (
     <div data-ui-header-right-block className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
       {Boolean(hasDate) && <DateTime />}
-      {onFavoriteClick !== null && <ButtonFavorite favorite={onFavoriteClick} />}
-      {onPrintClick !== null && <ButtonPrint print={onPrintClick} />}
-      {onVideoClick !== null && <ButtonVideo video={onVideoClick} />}
-      {onNotificationClick !== null && (
+      {onFavoriteClick && hasFavorite && <ButtonFavorite favorite={onFavoriteClick} />}
+      {onPrintClick && hasPrint && <ButtonPrint print={onPrintClick} />}
+      {onVideoClick && hasVideo && <ButtonVideo video={onVideoClick} />}
+      {onNotificationClick && hasNotification && (
         <ButtonNotification notification={onNotificationClick} notificationAmount={notificationAmount} />
       )}
-      {onMessageClick !== null && <ButtonMessage message={onMessageClick} />}
+      {onMessageClick && hasMessage && <ButtonMessage message={onMessageClick} />}
     </div>
   );
 
@@ -71,7 +84,7 @@ const Header: FC<IHeaderProps> = ({
       data-testid="HEADER_WRAPPER"
       className={clsx(styles['wrapper-default'], className)}
     >
-      {breadcrumbs !== null ? (
+      {breadcrumbs ? (
         <div className={styles['breadcrumbs-wrapper']}>
           <div>{breadcrumbs}</div>
           {RightBlock}
@@ -82,7 +95,7 @@ const Header: FC<IHeaderProps> = ({
           <div
             className={clsx(breadcrumbs ? styles['title-button-wrapper-with-crumbs'] : styles['title-button-wrapper'])}
           >
-            {onBackClick !== null && <ButtonBack back={onBackClick} />}
+            {onBackClick && hasBack && <ButtonBack back={onBackClick} />}
             <div className={styles['title-container']}>
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}

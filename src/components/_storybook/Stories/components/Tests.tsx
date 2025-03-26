@@ -10,11 +10,11 @@ import styles from '../Stories.module.scss';
 
 const Tests: FC<{ componentName: string }> = ({ componentName }) => {
   const { testResults } = data;
-  const currentComponentTest = testResults.find(({ name }) => name.includes(componentName));
+  const currentComponentTest = testResults.find(({ name }: {name: string }) => name.includes(componentName));
 
   return (
     <div className={styles.tests}>
-      {currentComponentTest?.assertionResults.map(({ title, status }) => (
+      {currentComponentTest?.assertionResults.map(({ title, status }: {title: string, status: string}) => (
         <div className={styles.test} key={title}>
           <div className={styles[status]}></div>
           <Typography variant="Body1-Bold" className={styles.text}>{title}</Typography>

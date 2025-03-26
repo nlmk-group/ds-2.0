@@ -71,6 +71,7 @@ export * from './Table';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';
 export * from './TreeList';
+export * from './VideoWindow';
 
 /** Хуки */
 export * from './Theme/hooks';

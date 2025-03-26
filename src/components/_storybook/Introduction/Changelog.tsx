@@ -23,6 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.21.0 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.20.5 - <span className={styles.date}>25.03.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -37,7 +55,8 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Исправлено отображение состояния чекбокса родительского узла при частичном выборе дочерних элементов (добавлен multiple с checked состоянием)
+                - Исправлено отображение состояния чекбокса родительского узла при частичном выборе дочерних элементов
+                (добавлен multiple с checked состоянием)
               </li>
             </li>
           </ul>
@@ -71,9 +90,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Исправлено значение z-index для компонентов Sidebar, Submenu и SubmenuItem
               </li>
-              <li className={styles['left-padding']}>
-                - Добавлен title в SubmenuItem для label
-              </li>
+              <li className={styles['left-padding']}>- Добавлен title в SubmenuItem для label</li>
             </li>
             <li>
               • Исправлен компонент{' '}

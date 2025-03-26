@@ -55,7 +55,7 @@ export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
 HeaderBack.storyName = 'Header с кнопкой возвращения слева';
 HeaderBack.args = {
   title: 'Заголовок',
-  back: action('goBack')
+  onBackClick: action('goBack')
 };
 
 export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
@@ -65,8 +65,8 @@ export const HeaderDate = (argTypes: IHeaderProps): ReactNode => {
 HeaderDate.storyName = 'Header с датой и временем';
 HeaderDate.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true
+  onBackClick: action('goBack'),
+  hasDate: true
 };
 
 export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
@@ -76,9 +76,9 @@ export const HeaderFavorite = (argTypes: IHeaderProps): ReactNode => {
 HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';
 HeaderFavorite.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite')
+  onBackClick: action('goonBackClick'),
+  hasDate: true,
+  onFavoriteClick: action('favorite')
 };
 
 export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
@@ -88,9 +88,9 @@ export const HeaderNotification = (argTypes: IHeaderProps): ReactNode => {
 HeaderNotification.storyName = 'Header с кнопкой уведомления';
 HeaderNotification.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true,
-  notification: action('addToNotification'),
+  onBackClick: action('back'),
+  hasDate: true,
+  onNotificationClick: action('notification'),
   notificationAmount: 9
 };
 export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
@@ -104,14 +104,14 @@ HeaderWithDropdown.storyName = 'Header с выпадающим списком';
 
 HeaderWithDropdown.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true,
-  notification: action('addToNotification'),
+  onBackClick: action('back'),
+  hasDate: true,
+  onNotificationClick: action('notification'),
   notificationAmount: 9,
-  print: action('print'),
-  video: action('openVideo'),
-  favorite: action('favorite'),
-  message: action('message')
+  onPrintClick: action('print'),
+  onVideoClick: action('video'),
+  onFavoriteClick: action('favorite'),
+  onMessageClick: action('message')
 };
 
 export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
@@ -134,10 +134,10 @@ export const HeaderBreadcrumbs = (argTypes: IHeaderProps): ReactNode => {
 HeaderBreadcrumbs.storyName = 'Header с хлебными крошками';
 HeaderBreadcrumbs.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
+  onBackClick: action('back'),
+  hasDate: true,
+  onFavoriteClick: action('favorite'),
+  onNotificationClick: action('notification'),
   notificationAmount: 9
 };
 
@@ -145,10 +145,10 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode 
   return (
     <Header
       {...argTypes}
-      back={argTypes.back || undefined}
-      date
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
+      onBackClick={argTypes.onBackClick || undefined}
+      hasDate
+      onFavoriteClick={argTypes.onFavoriteClick || undefined}
+      onNotificationClick={argTypes.onNotificationClick || undefined}
       breadcrumbs={
         <Breadcrumbs>
           {breadcrumbsLinks.map((link, index) => (
@@ -175,9 +175,9 @@ export const HeaderBreadcrumbsHasChildren = (argTypes: IHeaderProps): ReactNode 
 HeaderBreadcrumbsHasChildren.storyName = 'Header с дочерней кнопкой и хлебными крошками';
 HeaderBreadcrumbsHasChildren.args = {
   title: 'Заголовок',
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
+  onBackClick: action('back'),
+  hasDate: true,
+  onFavoriteClick: action('favorite'),
+  onNotificationClick: action('notification'),
   notificationAmount: 9
 };

@@ -38,13 +38,13 @@ import {
  */
 const Header: FC<IHeaderProps> = ({
   title,
-  back = null,
-  date = false,
-  favorite = null,
-  notification = null,
-  video = null,
-  print = null,
-  message = null,
+  onBackClick = null,
+  hasDate = false,
+  onFavoriteClick = null,
+  onNotificationClick = null,
+  onVideoClick = null,
+  onPrintClick = null,
+  onMessageClick = null,
   notificationAmount = 0,
   breadcrumbs = null,
   className,
@@ -53,14 +53,14 @@ const Header: FC<IHeaderProps> = ({
 }) => {
   const RightBlock = (
     <div data-ui-header-right-block className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
-      {Boolean(date) && <DateTime />}
-      {favorite !== null && <ButtonFavorite favorite={favorite} />}
-      {print !== null && <ButtonPrint print={print} />}
-      {video !== null && <ButtonVideo video={video} />}
-      {notification !== null && (
-        <ButtonNotification notification={notification} notificationAmount={notificationAmount} />
+      {Boolean(hasDate) && <DateTime />}
+      {onFavoriteClick !== null && <ButtonFavorite favorite={onFavoriteClick} />}
+      {onPrintClick !== null && <ButtonPrint print={onPrintClick} />}
+      {onVideoClick !== null && <ButtonVideo video={onVideoClick} />}
+      {onNotificationClick !== null && (
+        <ButtonNotification notification={onNotificationClick} notificationAmount={notificationAmount} />
       )}
-      {message !== null && <ButtonMessage message={message} />}
+      {onMessageClick !== null && <ButtonMessage message={onMessageClick} />}
     </div>
   );
 
@@ -82,7 +82,7 @@ const Header: FC<IHeaderProps> = ({
           <div
             className={clsx(breadcrumbs ? styles['title-button-wrapper-with-crumbs'] : styles['title-button-wrapper'])}
           >
-            {back !== null && <ButtonBack back={back} />}
+            {onBackClick !== null && <ButtonBack back={onBackClick} />}
             <div className={styles['title-container']}>
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}

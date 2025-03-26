@@ -19,14 +19,19 @@ import { Header } from '@nlmk/ds-2.0';
 ```jsx
 import { Header } from '@nlmk/ds-2.0';
 
-<Header title="Заголовок страницы" back={() => console.log('Назад')} />;
+<Header title="Заголовок страницы" onBackClick={() => console.log('Назад')} />;
 ```
+
+### Header с хлебными крошками и иконками
 
 ```jsx
 import { Breadcrumbs, ButtonFavorite, ButtonPrint, Header } from '@nlmk/ds-2.0';
-###  Header с хлебными крошками и иконками
+
 <Header
   title="Заголовок страницы"
+  onBackClick={() => console.log('Назад')}
+  onNotificationClick={() => console.log('Открыть уведомления')}
+  onFavoriteClick={() => console.log('Добавить в избранное')}
   breadcrumbs={
     <Breadcrumbs>
       <Breadcrumbs.Crumb>Главная</Breadcrumbs.Crumb>
@@ -34,28 +39,26 @@ import { Breadcrumbs, ButtonFavorite, ButtonPrint, Header } from '@nlmk/ds-2.0';
       <Breadcrumbs.Crumb>Страница</Breadcrumbs.Crumb>
     </Breadcrumbs>
   }
->
-  <ButtonFavorite onClick={() => console.log('В избранное')} />
-  <ButtonPrint onClick={() => console.log('Распечатать документ')} />
-</Header>;
+/>;
 ```
 
 ## Props
 
-| Prop                 | Type                                   | Default | Description                                |
-| -------------------- | -------------------------------------- | ------- | ------------------------------------------ |
-| `title`              | `string`                               | `-`     | Заголовок страницы                         |
-| `back`               | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка назад                               |
-| `favorite`           | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка добавления в избранное              |
-| `notification`       | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка уведомлений                         |
-| `video`              | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка воспроизведения видео               |
-| `print`              | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка печати документа                    |
-| `date`               | `boolean`                              | `false` | Отображение текущей даты                   |
-| `notificationAmount` | `number`                               | `0`     | Количество уведомлений                     |
-| `breadcrumbs`        | `ReactNode`                            | `-`     | Компонент хлебных крошек                   |
-| `children`           | `ReactNode`                            | `-`     | Дополнительный контент справа от заголовка |
-| `className`          | `string`                               | `-`     | Дополнительные CSS-классы для стилизации   |
-| `style`              | CSSProperties                          | `-`     | Кастомные стили для компонента             |
+| Prop                  | Type                                   | Default | Description                                |
+| --------------------- | -------------------------------------- | ------- | ------------------------------------------ |
+| `title`               | `string`                               | `-`     | Заголовок страницы                         |
+| `onBackClick`         | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка назад                               |
+| `onMessageClick`      | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка сообщений                           |
+| `onFavoriteClick`     | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка добавления в избранное              |
+| `onNotificationClick` | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка уведомлений                         |
+| `onVideoClick`        | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка воспроизведения видео               |
+| `onPrintClick`        | `MouseEventHandler<HTMLButtonElement>` | `-`     | Кнопка печати документа                    |
+| `hasDate`             | `boolean`                              | `false` | Отображение текущей даты                   |
+| `notificationAmount`  | `number`                               | `0`     | Количество уведомлений                     |
+| `breadcrumbs`         | `ReactNode`                            | `-`     | Компонент хлебных крошек                   |
+| `children`            | `ReactNode`                            | `-`     | Дополнительный контент справа от заголовка |
+| `className`           | `string`                               | `-`     | Дополнительные CSS-классы для стилизации   |
+| `style`               | CSSProperties                          | `-`     | Кастомные стили для компонента             |
 
 ## Стилизация
 

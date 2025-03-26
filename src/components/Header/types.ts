@@ -4,19 +4,19 @@ export interface IHeaderProps {
   /* Заголовок страницы */
   title: string;
   /* Кнопка назад */
-  back?: MouseEventHandler<HTMLButtonElement>;
+  onBackClick?: MouseEventHandler<HTMLButtonElement>;
   /* Кнопка добавления в избранное */
-  favorite?: MouseEventHandler<HTMLButtonElement>;
+  onFavoriteClick?: MouseEventHandler<HTMLButtonElement>;
   /* Кнопка уведомлений */
-  notification?: MouseEventHandler<HTMLButtonElement>;
+  onNotificationClick?: MouseEventHandler<HTMLButtonElement>;
   /* Кнопка воспроизведения видео */
-  video?: MouseEventHandler<HTMLButtonElement>;
+  onVideoClick?: MouseEventHandler<HTMLButtonElement>;
   /* Кнопка печати документа */
-  print?: MouseEventHandler<HTMLButtonElement>;
+  onPrintClick?: MouseEventHandler<HTMLButtonElement>;
   /* Кнопка сообщений (например, для чата или поддержки) */
-  message?: MouseEventHandler<HTMLButtonElement>;
+  onMessageClick?: MouseEventHandler<HTMLButtonElement>;
   /* Флаг для отображения текущей даты */
-  date?: boolean;
+  hasDate?: boolean;
   /* Количество непрочитанных уведомлений */
   notificationAmount?: number;
   /* Компонент хлебных крошек */

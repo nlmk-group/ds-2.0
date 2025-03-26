@@ -2,15 +2,14 @@ import React, { FC } from 'react';
 
 import { colorsMapping, sizesMapping } from '@components/declaration';
 import { Badge, Button, IconNotificationsBellOutlined24 } from '@components/index';
-import clsx from 'clsx';
 
-import { INotification } from './types';
+import { IButtonNotification } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonNotification: FC<INotification> = ({ notification, notificationAmount = 0 }) => {
+const ButtonNotification: FC<IButtonNotification> = ({ notification, notificationAmount = 0 }) => {
   return (
-    <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
+    <div className={styles['button-padding-unset']}>
       <Button
         type="button"
         data-testid="HEADER_NOTIFICATION"

@@ -1,26 +1,23 @@
 import React, { FC } from 'react';
 
 import { Button, IconVideoCameraOffOutlined24 } from '@components/index';
-import clsx from 'clsx';
 
 import { IButtonVideoProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonVideo: FC<IButtonVideoProps> = ({ video }): JSX.Element => {
+const ButtonVideo: FC<IButtonVideoProps> = ({ video }) => {
   return (
-    <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
-      <Button
-        type="button"
-        data-testid="HEADER_VIDEO"
-        onClick={video}
-        className={styles['video-icon-color']}
-        iconButton={<IconVideoCameraOffOutlined24 htmlColor={'var(--steel-80)'} />}
-        color="ghost"
-        variant="secondary"
-        size="xs"
-      />
-    </div>
+    <Button
+      type="button"
+      data-testid="HEADER_VIDEO"
+      onClick={video}
+      className={styles['button-padding-unset']}
+      iconButton={<IconVideoCameraOffOutlined24 htmlColor={'var(--steel-80)'} />}
+      color="ghost"
+      variant="secondary"
+      size="xs"
+    />
   );
 };
 

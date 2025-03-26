@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 
 export interface IHeaderProps {
   /* Заголовок страницы */
@@ -25,4 +25,6 @@ export interface IHeaderProps {
   className?: string;
   /* Дополнительный контент справа от заголовка */
   children?: ReactNode;
+  /* Inline стили для кастомизации компонента */
+  style?: CSSProperties;
 }

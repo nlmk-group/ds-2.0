@@ -1,26 +1,23 @@
 import React, { FC } from 'react';
 
 import { Button, IconPrintOutlined24 } from '@components/index';
-import clsx from 'clsx';
 
 import { IButtonPrintProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonPrint: FC<IButtonPrintProps> = ({ print }): JSX.Element => {
+const ButtonPrint: FC<IButtonPrintProps> = ({ print }) => {
   return (
-    <div className={clsx(styles['button-padding-unset'], styles['btn-icon-size'])}>
-      <Button
-        type="button"
-        data-testid="HEADER_PRINT"
-        onClick={print}
-        className={styles['print-icon-color']}
-        iconButton={<IconPrintOutlined24 htmlColor={'var(--steel-80)'} />}
-        color="ghost"
-        variant="secondary"
-        size="xs"
-      />
-    </div>
+    <Button
+      type="button"
+      data-testid="HEADER_PRINT"
+      onClick={print}
+      className={styles['button-padding-unset']}
+      iconButton={<IconPrintOutlined24 htmlColor={'var(--steel-80)'} />}
+      color="ghost"
+      variant="secondary"
+      size="xs"
+    />
   );
 };
 

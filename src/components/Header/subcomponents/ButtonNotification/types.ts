@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-export interface INotification {
+export interface IButtonNotification {
   notification: MouseEventHandler<HTMLButtonElement>;
   notificationAmount?: number;
 }

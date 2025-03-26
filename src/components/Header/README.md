@@ -8,7 +8,7 @@
 
 ### Header по умолчанию
 
-```
+```jsx
 import { Header } from '@nlmk/ds-2.0';
 
 <Header title="Заголовок страницы" />;
@@ -55,6 +55,7 @@ import { Breadcrumbs, ButtonFavorite, ButtonPrint, Header } from '@nlmk/ds-2.0';
 | `breadcrumbs`        | `ReactNode`                            | `-`     | Компонент хлебных крошек                   |
 | `children`           | `ReactNode`                            | `-`     | Дополнительный контент справа от заголовка |
 | `className`          | `string`                               | `-`     | Дополнительные CSS-классы для стилизации   |
+| `style`              | CSSProperties                          | `-`     | Кастомные стили для компонента             |
 
 ## Стилизация
 
@@ -84,4 +85,18 @@ import { Breadcrumbs, ButtonFavorite, ButtonPrint, Header } from '@nlmk/ds-2.0';
 [data-ui-header-right-block] {
   /* Ваши стили */
 }
+/* Кнопка добавления в избранное */
+[data-ui-header-button-favorite] {
+  /* Ваши стили */
+}
+```
+
+### 3. Inline-стили
+
+Можно передать объект стилей через проп `style`:
+
+```jsx
+import { Header } from '@nlmk/ds-2.0';
+
+<Header title="Заголовок страницы" style={{ backgroundColor: '#custom-color', padding: '8px' }} />;
 ```

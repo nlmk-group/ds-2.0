@@ -48,8 +48,9 @@ const Header: FC<IHeaderProps> = ({
   notificationAmount = 0,
   breadcrumbs = null,
   className,
-  children
-}): JSX.Element => {
+  children,
+  style
+}) => {
   const RightBlock = (
     <div data-ui-header-right-block className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
       {Boolean(date) && <DateTime />}
@@ -64,7 +65,12 @@ const Header: FC<IHeaderProps> = ({
   );
 
   return (
-    <div data-ui-header data-testid="HEADER_WRAPPER" className={clsx(styles['wrapper-default'], className)}>
+    <div
+      style={style}
+      data-ui-header
+      data-testid="HEADER_WRAPPER"
+      className={clsx(styles['wrapper-default'], className)}
+    >
       {breadcrumbs !== null ? (
         <div className={styles['breadcrumbs-wrapper']}>
           <div>{breadcrumbs}</div>
@@ -73,7 +79,9 @@ const Header: FC<IHeaderProps> = ({
       ) : null}
       <div className={styles['wrapper']}>
         <div style={{ flex: '1' }}>
-          <div className={clsx(breadcrumbs ? styles['title-btn-wrapper-with-crumbs'] : styles['title-btn-wrapper'])}>
+          <div
+            className={clsx(breadcrumbs ? styles['title-button-wrapper-with-crumbs'] : styles['title-button-wrapper'])}
+          >
             {back !== null && <ButtonBack back={back} />}
             <div className={styles['title-container']}>
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">

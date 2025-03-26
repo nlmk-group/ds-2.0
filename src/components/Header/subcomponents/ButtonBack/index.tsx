@@ -6,19 +6,17 @@ import { IButtonBackProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonBack: FC<IButtonBackProps> = ({ back }): JSX.Element => {
+const ButtonBack: FC<IButtonBackProps> = ({ back }) => {
   return (
-    <div>
-      <Button
-        type="button"
-        data-testid="HEADER_BACK"
-        onClick={back}
-        className={styles['btn-wrapper']}
-        iconButton={<IconChevronArrowLeftOutlined24 />}
-        variant="primary"
-        color="ghost"
-      />
-    </div>
+    <Button
+      type="button"
+      data-testid="HEADER_BACK"
+      onClick={back}
+      className={styles['button-wrapper']}
+      iconButton={<IconChevronArrowLeftOutlined24 />}
+      variant="primary"
+      color="ghost"
+    />
   );
 };
 

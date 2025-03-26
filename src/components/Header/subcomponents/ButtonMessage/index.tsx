@@ -6,18 +6,16 @@ import { IButtonMessageProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonMessage: FC<IButtonMessageProps> = ({ message }): JSX.Element => {
+const ButtonMessage: FC<IButtonMessageProps> = ({ message }) => {
   return (
-    <div>
-      <Button
-        type="button"
-        onClick={message}
-        className={styles['btn-message']}
-        iconButton={<IconHelperMailOutlined24 />}
-        variant="primary"
-        color="brand"
-      />
-    </div>
+    <Button
+      type="button"
+      onClick={message}
+      className={styles['button-message']}
+      iconButton={<IconHelperMailOutlined24 />}
+      variant="primary"
+      color="brand"
+    />
   );
 };
 

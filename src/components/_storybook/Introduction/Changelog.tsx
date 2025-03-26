@@ -23,6 +23,32 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.21.3 - <span className={styles.date}>27.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые пропсы: logo для возможности добавить пользовательский логотип или другую ReactNode,
+                isShowUserControl для управления отображением блока пользователя, className и style для расширенной
+                стилизации
+              </li>
+              <li className={styles['left-padding']}>
+                - Улучшена поддержка data-ui атрибутов для всех внутренних компонентов для более гибкой кастомизации
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.21.2 - <span className={styles.date}>26.03.25</span>
           </Typography>
           <ul className={styles.list}>

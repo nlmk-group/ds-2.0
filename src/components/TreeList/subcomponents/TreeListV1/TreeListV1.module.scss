@@ -3,7 +3,7 @@
   cursor: pointer;
 }
 
-@mixin selectedRow {
+@mixin selected {
   background-color: var(--brand-sapphire-10);
 }
 
@@ -66,7 +66,6 @@
   :global(.rc-tree-treenode.drop-container ~ .rc-tree-treenode) {
     border-left: none;
   }
-
 }
 
 .not-selectable {
@@ -76,46 +75,52 @@
 }
 
 .dragging {
-  border: 3px solid var(--brand-sapphire-60)!important; /* Синяя рамка */
+  border: 3px solid var(--brand-sapphire-60) !important; /* Синяя рамка */
   background-color: var(--steel-30);
   transition: all 0.2s ease-in-out;
 }
 
-.nodeTitle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.node {
+  &-title{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    height: var(--row-height);
+    padding: 0 10px;
+    box-sizing: border-box;
+    &[data-checked="true"] {
+      @include selected;
+    }
+  }
 }
 
 .switcher {
   display: inline-block;
   color: var(--steel-90);
   background: transparent;
-}
 
-.switcherOpen {
-  transform: rotate(90deg);
-  padding-left: 0;
+  &-open {
+    transform: rotate(90deg);
+    padding-left: 0;
+  }
 }
 
 :global(.rc-tree-treenode:has([data-checked="true"])) {
-  @include selectedRow;
+  @include selected;
 }
 
-[role='treeitem']:hover {@include nodeHoverEvent;}
+[role="treeitem"]:hover {
+  @include nodeHoverEvent;
+}
 
-[role='treeitem']:hover .nodeContent {@include nodeHoverEvent;}
-
-.nodeContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-  height: var(--row-height);
-  padding: 0 10px;
-  box-sizing: border-box;
-  &[data-checked="true"] {
-    @include selectedRow;
-  }
+[role="treeitem"]:hover .nodeContent {
+  @include nodeHoverEvent;
 }

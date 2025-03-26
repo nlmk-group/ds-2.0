@@ -141,6 +141,40 @@ export default  App = () => (
 )
               `}
           />
+          <Editor
+            description="Header со всеми свойствами"
+            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <Header
+      title="Заголовок"
+      hasDate
+      hasPrint
+      hasFavorite
+      hasBack
+      hasVideo
+      hasMessage
+      hasNotification
+      onPrintClick={action('print')}
+      onVideoClick={action('video')}
+      onMessageClick={action('message')}
+      onFavoriteClick={action('favorite')}
+      onBackClick={action('back')}
+      onNotificationClick={action('notification')}
+      notificationAmount={9}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    />
+)
+              `}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}

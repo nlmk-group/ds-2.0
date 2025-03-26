@@ -23,6 +23,30 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.21.1 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена логика отображения чекбоксов с поддержкой режимов checkable и checkableSimple
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено корректное отображение состояния multiple (indeterminate) у родительских чекбоксов
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.21.0 - <span className={styles.date}>26.03.25</span>
           </Typography>
           <ul className={styles.list}>

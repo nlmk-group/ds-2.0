@@ -70,5 +70,6 @@ export * from './Table';
 export * from './ThemeSwitcher';
 export * from './Icon/IconsDirectory';
 export * from './TreeList';
+export * from './VideoWindow';
 export * from './Theme/hooks';
 //# sourceMappingURL=index.d.ts.map

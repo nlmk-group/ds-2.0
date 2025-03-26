@@ -20,7 +20,7 @@ describe('src/components/Header', () => {
 
   describe('While rendering back button', () => {
     const mockCallBack = jest.fn();
-    const HeaderHelper = () => <Header title={testTitle} onBackClick={mockCallBack} />;
+    const HeaderHelper = () => <Header title={testTitle} hasBack onBackClick={mockCallBack} />;
 
     test('It should render a Header with back button', () => {
       render(<HeaderHelper />);
@@ -43,7 +43,7 @@ describe('src/components/Header', () => {
 
   describe('While rendering favorite button', () => {
     const favoriteMockCallBack = jest.fn();
-    const HeaderHelper = () => <Header title={testTitle} onFavoriteClick={favoriteMockCallBack} />;
+    const HeaderHelper = () => <Header title={testTitle} hasFavorite onFavoriteClick={favoriteMockCallBack} />;
 
     test('It should render a Header with favorite button', () => {
       render(<HeaderHelper />);
@@ -64,6 +64,7 @@ describe('src/components/Header', () => {
     const amountNumber = 5;
     const HeaderHelper: FC<{ amount?: number }> = ({ amount }) => (
       <Header
+        hasNotification
         title={testTitle}
         onNotificationClick={notificationMockCallBack}
         notificationAmount={amount || amountNumber}

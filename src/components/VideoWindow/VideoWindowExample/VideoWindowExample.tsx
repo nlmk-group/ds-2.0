@@ -6,7 +6,7 @@ import Typography from '@components/Typography';
 
 import styles from './styles.module.scss';
 
-import VideoWindow from '../VideoWindow';
+import VideoWindow from '..';
 
 const TitleExample = (): JSX.Element => {
   return (

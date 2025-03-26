@@ -23,6 +23,14 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.21.2 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Исправлен баг со сборкой файлов в библиотеке</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.21.1 - <span className={styles.date}>26.03.25</span>
           </Typography>
           <ul className={styles.list}>

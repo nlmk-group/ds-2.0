@@ -21,7 +21,118 @@ export const Changelog = () => {
             </Button>
           </Link>
         </div>
-
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.0 - <span className={styles.date}>27.03.25</span>
+          </Typography>
+          <Chip variant="outline" color="warning">
+            Breaking Changes
+          </Chip>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datetime-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DateTime
+              </Link>
+              .<li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+              <li className={styles['left-padding']}>- Актуализированы стили типографии</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-header-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Header
+              </Link>
+              .<li className={styles['left-padding']}>- Удалены свойства type и bg</li>
+              <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+              <li className={styles['left-padding']}>
+                - Изменена логика использования и переименованы свойства для кнопок-обработчиков
+              </li>
+              <li className={styles['left-padding']}>- Добавлены кнопки message, print и video</li>
+              <li className={styles['left-padding']}>- Обновлены и добавлены новые stories в Storybook</li>
+              <li className={styles['left-padding']}>- Добавленая документация для компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.21.2 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Исправлен баг со сборкой файлов в библиотеке</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.21.1 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена логика отображения чекбоксов с поддержкой режимов checkable и checkableSimple
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено корректное отображение состояния multiple (indeterminate) у родительских чекбоксов
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.21.0 - <span className={styles.date}>26.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.20.5 - <span className={styles.date}>25.03.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено отображение состояния чекбокса родительского узла при частичном выборе дочерних элементов
+                (добавлен multiple с checked состоянием)
+              </li>
+            </li>
+          </ul>
+        </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.20.4 - <span className={styles.date}>24.03.25</span>

@@ -7,7 +7,7 @@ import { isArray } from 'lodash';
 import Tree from 'rc-tree';
 import 'rc-tree/assets/index.css';
 
-import styles from './styles.module.scss';
+import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
 import { ERowHeight, TCheckedKeys, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
@@ -91,7 +91,7 @@ export const TreeListV1 = ({
             e.stopPropagation();
             handleExpand(node.key);
           }}
-          className={clsx(styles.switcher, isExpanded && styles.switcherOpen)}
+          className={clsx(styles.switcher, isExpanded && styles['switcher-open'])}
         >
           ▶
         </span>
@@ -101,22 +101,58 @@ export const TreeListV1 = ({
   };
 
   const renderTitle = (node: TNodeItem) => {
-    const isChecked = keys.includes(node.key);
+    const hasChildren = Boolean(node.children?.length);
+
+    const childrenState =
+      hasChildren && node.children
+        ? node.children.reduce(
+            (acc, child) => ({
+              checkedCount: acc.checkedCount + (keys.includes(child.key) ? 1 : 0),
+              total: acc.total + 1
+            }),
+            { checkedCount: 0, total: 0 }
+          )
+        : undefined;
+
+    let isMultiple: boolean, isChecked: boolean;
+
+    if (checkableSimple) {
+      // В простом режиме - нет multiple и чекбокс отмечен только если его ключ в списке
+      isMultiple = false;
+      isChecked = keys.includes(node.key);
+    } else {
+      isMultiple = Boolean(
+        hasChildren &&
+          childrenState &&
+          childrenState.checkedCount > 0 &&
+          childrenState.checkedCount < childrenState.total
+      );
+
+      isChecked =
+        Boolean(keys.includes(node.key)) ||
+        Boolean(isMultiple) ||
+        Boolean(childrenState && childrenState.checkedCount === childrenState.total && childrenState.total > 0);
+    }
+
     return (
       <div
         className={clsx(
-          styles.nodeContent,
+          styles['node-content'],
           dragging === node.key && styles.dragging,
           node.styles?.nodeContentClassName
         )}
         style={{ ...node.styles?.nodeContentStyle }}
         data-checked={isChecked}
       >
-        <div className={clsx(styles.nodeTitle, node.styles?.nodeTitleClassName)} style={node.styles?.nodeTitleStyle}>
+        <div
+          className={clsx(styles['node-title'], node.styles?.nodeTitleClassName)}
+          style={node.styles?.nodeTitleStyle}
+        >
           {renderSwitcherIcon(node)}
           {(checkable || checkableSimple) && (
             <Checkbox
               checked={isChecked}
+              multiple={isMultiple}
               onChange={() => {
                 handleCheck(isChecked ? [] : [node.key], {
                   node,

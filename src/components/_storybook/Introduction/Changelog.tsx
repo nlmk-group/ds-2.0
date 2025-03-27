@@ -38,8 +38,7 @@ export const Changelog = () => {
               >
                 DateTime
               </Link>
-              .<li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
-              <li className={styles['left-padding']}>- Актуализированы стили типографии</li>
+              .<li className={styles['left-padding']}>- Актуализированы стили согласно макету и типография</li>
             </li>
             <li>
               • Изменен компонент{' '}
@@ -56,8 +55,7 @@ export const Changelog = () => {
                 - Изменена логика использования и переименованы свойства для кнопок-обработчиков
               </li>
               <li className={styles['left-padding']}>- Добавлены кнопки message, print и video</li>
-              <li className={styles['left-padding']}>- Обновлены и добавлены новые stories в Storybook</li>
-              <li className={styles['left-padding']}>- Добавленая документация для компонента</li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
             </li>
           </ul>
         </div>

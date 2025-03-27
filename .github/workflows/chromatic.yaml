@@ -1,0 +1,24 @@
+name: Chromatic Visual Testing
+on:
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Publish to Chromatic
+        run: yarn chromatic

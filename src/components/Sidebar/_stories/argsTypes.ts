@@ -93,6 +93,47 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
 
+  logo: {
+    description: 'Кастомный логотип для отображения',
+    table: {
+      type: {
+        summary: 'ReactNode'
+      }
+    }
+  },
+  
+  isShowUserControl: {
+    description: 'Флаг для отображения управления пользователем',
+    table: {
+      defaultValue: {
+        summary: 'true'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+
+  className: {
+    description: 'Дополнительный класс для стилизации компонента',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+
+  style: {
+    description: 'Инлайн-стили для компонента',
+    table: {
+      type: {
+        summary: 'React.CSSProperties'
+      }
+    }
+  },
+
   onChangeFavorites: {
     description: 'Обработчик, позволяющий отслеживать изменения в списке избранного',
     action: 'onChangeFavorites'

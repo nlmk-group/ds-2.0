@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import Typography from '@components/Typography';
+
 import styles from './DateTime.module.scss';
 
 export const getDate = (currentDate: Date): string => {
@@ -36,13 +38,13 @@ const DateTime = (): JSX.Element => {
   }, []);
 
   return (
-    <div style={{ display: 'flex' }} data-testid="DATETIME_WRAPPER">
-      <div data-testid="DATETIME_DATE" className={styles['date-wrapper']}>
+    <div style={{ display: 'flex', alignItems: 'center' }} data-testid="DATETIME_WRAPPER">
+      <Typography variant="Body2-Medium" className={styles['date-wrapper']} data-testid="DATETIME_DATE">
         {getDate(currentDate)}
-      </div>
-      <div data-testid="DATETIME_TIME" className={styles['time-wrapper']}>
+      </Typography>
+      <Typography variant="Heading4" className={styles['time-wrapper']} data-testid="DATETIME_TIME">
         {getTime(currentDate)}
-      </div>
+      </Typography>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -10,18 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_HEADER,
-  HEADER_BACK,
-  HEADER_BACKGROUND,
-  HEADER_BREADCRUMBS,
-  HEADER_CHILDREN,
-  HEADER_DATE,
-  HEADER_FAVORITE,
-  HEADER_NOTIFICATION,
-  HEADERS_DIFFERENT_SPACING
-} from './text';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 
 enum TabIds {
   dev,
@@ -31,7 +20,6 @@ enum TabIds {
 
 const COMPONENT_NAME = 'Header';
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434&t=HhCDuaOuzHu5rgyf-1';
-
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -62,119 +50,133 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={180}
-            description={DEFAULT_HEADER}
+            description="Header по умолчанию"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${DEFAULT_HEADER}" />
-)
-              `}
+export default App = () => (
+  <Header title="Header по умолчанию" />
+)`}
           />
           <Editor
             height={200}
-            description={HEADER_BACK}
+            description="Header с кнопкой возвращения слева"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_BACK}" back={() => {}} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой возвращения слева' 
+    showBack 
+    onBackClick={() => console.log('Back clicked')} 
+  />
+)`}
           />
           <Editor
             height={180}
-            description={HEADER_DATE}
+            description="Header с датой и временем"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_DATE}" date />
-)
-              `}
+export default App = () => (
+  <Header title='Header с датой и временем' showDate />
+)`}
           />
           <Editor
             height={180}
-            description={HEADER_FAVORITE}
+            description="Header с кнопкой добавления в избранное"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_FAVORITE}" favorite={() => {}}/>
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой добавления в избранное' 
+    showFavorite 
+    onFavoriteClick={() => console.log('Favorite clicked')}
+  />
+)`}
           />
           <Editor
             height={180}
-            description={HEADER_NOTIFICATION}
+            description="Header с кнопкой уведомления"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_NOTIFICATION}" notification={() => {}} notificationAmount={9} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой уведомления' 
+    showNotification 
+    onNotificationClick={() => console.log('Notification clicked')} 
+    notificationAmount={9} 
+  />
+)`}
           />
           <Editor
-            height={180}
-            description={HEADER_BACKGROUND}
-            code={`import { Header } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <Header title="${HEADER_BACKGROUND}" bg />
-)
-              `}
-          />
-          <Editor
-            description={HEADERS_DIFFERENT_SPACING}
-            code={`import { Header } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <>
-    <Header title="${HEADERS_DIFFERENT_SPACING}" type="default" />
-    <Header title="${HEADERS_DIFFERENT_SPACING}" type="compact" />
-  </>
-)
-              `}
-          />
-          <Editor
-            description={HEADER_BREADCRUMBS}
+            description="Header с хлебными крошками"
             code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_BREADCRUMBS}" breadcrumbs={(<Breadcrumbs crumbs={[
-      {
-        href: 'https://developer.mozilla.org/en-US/',
-        label: 'MDN'
-      },
-      {
-        href: 'https://www.lipsum.com/',
-        label: 'Lorem Ipsum'
-      },
-      {
-        href: 'https://www.w3schools.com/',
-        label: 'W3 Schools'
-      },
-      {
-        href: 'https://css-tricks.com/',
-        label: 'CSS Tricks'
-      },
-      {
-        href: 'https://www.geeksforgeeks.org/',
-        label: 'Geeks For Geeks',
-        active: true
-      }
-    ]} />)} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с хлебными крошками' 
+    breadcrumbs={
+      <Breadcrumbs 
+        crumbs={[
+          { href: 'https://developer.mozilla.org/en-US/', label: 'MDN' },
+          { href: 'https://www.lipsum.com/', label: 'Lorem Ipsum' },
+          { href: 'https://www.w3schools.com/', label: 'W3 Schools' },
+          { href: 'https://css-tricks.com/', label: 'CSS Tricks' },
+          { href: 'https://www.geeksforgeeks.org/', label: 'Geeks For Geeks', active: true }
+        ]} 
+      />
+    } 
+  />
+)`}
           />
           <Editor
-            description={HEADER_CHILDREN}
-            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+            description="Header с дочерней кнопкой и хлебными крошками"
+            code={`import { Header, Button, IconSettingsAltOutlined24 } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title="${HEADER_CHILDREN}"} >
-          <Button type="button" style={{ marginRight: '25px' }} color="grey" variant="secondary" startIcon={<IconSettingsAltOutlined24 />}>
-          Настройки
-        </Button>
+export default App = () => (
+  <Header title='Header с дочерней кнопкой и хлебными крошками'>
+    <Button 
+      type="button" 
+      style={{ marginRight: '25px' }} 
+      color="grey" 
+      variant="secondary" 
+      startIcon={<IconSettingsAltOutlined24 />}
+    >
+      Настройки
+    </Button>
   </Header>
-)
-              `}
+)`}
+          />
+          <Editor
+            description="Header со всеми свойствами"
+            code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Header
+    title="Заголовок"
+    showDate
+    showPrint
+    showFavorite
+    showBack
+    showVideo
+    showMessage
+    showNotification
+    onPrintClick={() => console.log('Print clicked')}
+    onVideoClick={() => console.log('Video clicked')}
+    onMessageClick={() => console.log('Message clicked')}
+    onFavoriteClick={() => console.log('Favorite clicked')}
+    onBackClick={() => console.log('Back clicked')}
+    onNotificationClick={() => console.log('Notification clicked')}
+    notificationAmount={9}
+    breadcrumbs={
+      <Breadcrumbs>
+        {breadcrumbsLinks.map((link, index) => (
+          <Breadcrumbs.Crumb key={index}>
+            <Link to={link.href}>{link.label}</Link>
+          </Breadcrumbs.Crumb>
+        ))}
+      </Breadcrumbs>
+    }
+  />
+)`}
           />
           <Properties argsTypes={argsTypes} />
         </>

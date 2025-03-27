@@ -1,27 +1,15 @@
-import React, { ReactNode } from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import React, { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
-import { Breadcrumbs, Button, Header, IconSettingsAltOutlined24 } from '@components/index';
+import { Breadcrumbs, Button, Dropdown, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
-import styles from '@components/_storybook/styles.module.scss';
+import styles from './Header.stories.module.scss';
 
-import { typeMapping } from '../enums';
-import { IHeader } from '../types';
+import { IHeaderProps } from '../types';
 import argsTypes from './argsTypes';
-import {
-  DEFAULT_HEADER,
-  HEADER_BACK,
-  HEADER_BACKGROUND,
-  HEADER_BREADCRUMBS,
-  HEADER_CHILDREN,
-  HEADER_DATE,
-  HEADER_FAVORITE,
-  HEADER_NOTIFICATION,
-  HEADERS_DIFFERENT_SPACING
-} from './text';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -32,236 +20,217 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Header>;
 
-export const DefaultHeader = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
-};
+const dropdownOptions = [{ value: 'Сталь' }, { value: 'Железо' }, { value: 'Чугун', disabled: true }];
 
-DefaultHeader.storyName = DEFAULT_HEADER;
-DefaultHeader.args = {
-  title: DEFAULT_HEADER
-};
-
-export const HeaderBack = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
-};
-
-HeaderBack.storyName = HEADER_BACK;
-HeaderBack.args = {
-  title: HEADER_BACK,
-  back: action('goBack')
-};
-
-export const HeaderDate = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
-};
-
-HeaderDate.storyName = HEADER_DATE;
-HeaderDate.args = {
-  title: HEADER_DATE,
-  back: action('goBack'),
-  date: true
-};
-
-export const HeaderFavorite = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
-};
-
-HeaderFavorite.storyName = HEADER_FAVORITE;
-HeaderFavorite.args = {
-  title: HEADER_FAVORITE,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite')
-};
-
-export const HeaderNotification = (argTypes: IHeader): ReactNode => {
-  return (
-    <Header
-      {...argTypes}
-      back={argTypes.back || undefined}
-      favorite={argTypes.favorite || undefined}
-      notification={argTypes.notification || undefined}
-    />
-  );
-};
-
-HeaderNotification.storyName = HEADER_NOTIFICATION;
-HeaderNotification.args = {
-  title: HEADER_NOTIFICATION,
-  back: action('goBack'),
-  date: true,
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
-export const HeaderBackground = (argTypes: IHeader): ReactNode => {
-  return (
-    <>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-      <Header
-        {...argTypes}
-        bg
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-      />
-    </>
-  );
-};
-
-HeaderBackground.storyName = HEADER_BACKGROUND;
-HeaderBackground.args = {
-  title: HEADER_BACKGROUND,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
-export const HeaderSpacing = (argTypes: IHeader): ReactNode => {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {Object.values(typeMapping).map((typeValue: typeMapping) => (
-        <Header
-          {...argTypes}
-          type={argTypes.type || typeValue}
-          back={argTypes.back || undefined}
-          favorite={argTypes.favorite || undefined}
-          notification={argTypes.notification || undefined}
-        />
-      ))}
-      {Object.values(typeMapping).map((typeValue: typeMapping) => (
-        <Header
-          {...argTypes}
-          bg
-          type={argTypes.type || typeValue}
-          back={argTypes.back || undefined}
-          favorite={argTypes.favorite || undefined}
-          notification={argTypes.notification || undefined}
-        />
-      ))}
-    </div>
-  );
-};
-
-HeaderSpacing.storyName = HEADERS_DIFFERENT_SPACING;
-HeaderSpacing.args = {
-  title: HEADERS_DIFFERENT_SPACING,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
-export const HeaderBreadcrumbs = (argTypes: IHeader): ReactNode => {
-  return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
-      />
-    </MemoryRouter>
-  );
-};
-
-HeaderBreadcrumbs.storyName = HEADER_BREADCRUMBS;
-HeaderBreadcrumbs.args = {
-  title: HEADER_BREADCRUMBS,
-  type: typeMapping.compact,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
-};
-
-export const HeaderBreadcrumbsHasChildren = (argTypes: IHeader): ReactNode => {
-  return (
-    <MemoryRouter>
-      <Header
-        {...argTypes}
-        back={argTypes.back || undefined}
-        type="compact"
-        date
-        favorite={argTypes.favorite || undefined}
-        notification={argTypes.notification || undefined}
-        breadcrumbs={
-          <Breadcrumbs>
-            {breadcrumbsLinks.map((link, index) => (
-              <Breadcrumbs.Crumb key={index}>
-                <Link to={link.href}>{link.label}</Link>
-              </Breadcrumbs.Crumb>
-            ))}
-          </Breadcrumbs>
-        }
+const dropdownOptionsComponent = (
+  <Dropdown menuStyle={{ minWidth: '250px' }} buttonChildren="Заголовок">
+    {dropdownOptions.map(({ value, disabled }) => (
+      <DropdownMenuItem
+        key={value}
+        value={value}
+        disabled={disabled}
+        onClick={() => {
+          console.log(value);
+        }}
       >
-        <Button
-          type="button"
-          style={{ marginRight: '25px' }}
-          color="grey"
-          variant="secondary"
-          startIcon={<IconSettingsAltOutlined24 />}
-        >
-          Настройки
-        </Button>
-      </Header>
-    </MemoryRouter>
+        {value}
+      </DropdownMenuItem>
+    ))}
+  </Dropdown>
+);
+
+export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
+};
+
+DefaultHeader.storyName = 'Header по умолчанию';
+DefaultHeader.args = {
+  title: 'Заголовок',
+  showBack: false,
+  showFavorite: false,
+  showNotification: false,
+  showPrint: false,
+  showVideo: false,
+  showMessage: false,
+  showDate: false,
+  notificationAmount: 9,
+  onBackClick: action('back clicked'),
+  onFavoriteClick: action('favorite clicked'),
+  onNotificationClick: action('notification clicked'),
+  onPrintClick: action('print clicked'),
+  onVideoClick: action('video clicked'),
+  onMessageClick: action('message clicked')
+};
+
+export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
+  return <Header {...argTypes} />;
+};
+
+HeaderBack.storyName = 'Header с кнопкой назад';
+HeaderBack.args = {
+  title: 'Заголовок',
+  showBack: true,
+  onBackClick: action('back clicked')
+};
+
+export const HeaderDate = (): ReactNode => {
+  return <Header title="Заголовок" showDate />;
+};
+
+HeaderDate.storyName = 'Header с датой';
+HeaderDate.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const HeaderFavorite = (): ReactNode => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+    action('favorite clicked')(isFavorite ? 'removed from favorites' : 'added to favorites');
+  };
+
+  return (
+    <Header 
+      title="Заголовок" 
+      showFavorite 
+      isFavorite={isFavorite}
+      onFavoriteClick={handleFavoriteClick} 
+    />
   );
 };
 
-HeaderBreadcrumbsHasChildren.storyName = HEADER_CHILDREN;
-HeaderBreadcrumbsHasChildren.args = {
-  title: HEADER_CHILDREN,
-  type: typeMapping.compact,
-  back: action('goBack'),
-  date: true,
-  favorite: action('addToFavorite'),
-  notification: action('addToNotification'),
-  notificationAmount: 9
+HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';
+
+export const HeaderNotification = (): ReactNode => {
+  return (
+    <Header
+      title="Заголовок"
+      showNotification
+      onNotificationClick={action('notification clicked')}
+      notificationAmount={9}
+    />
+  );
+};
+
+HeaderNotification.storyName = 'Header с кнопкой уведомления';
+HeaderNotification.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const HeaderWithDropdown = (): ReactNode => {
+  return (
+    <Header
+      title="Заголовок"
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
+      notificationAmount={9}
+      className={styles['header-container']}
+    >
+      {dropdownOptionsComponent}
+    </Header>
+  );
+};
+
+HeaderWithDropdown.storyName = 'Header с выпадающим списком';
+HeaderWithDropdown.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const HeaderBreadcrumbs = (): ReactNode => {
+  return (
+    <Header
+      title="Заголовок"
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
+      notificationAmount={9}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    />
+  );
+};
+
+HeaderBreadcrumbs.storyName = 'Header с хлебными крошками';
+HeaderBreadcrumbs.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const HeaderBreadcrumbsHasChildren = (): ReactNode => {
+  return (
+    <Header
+      title="Заголовок"
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
+      notificationAmount={9}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    >
+      <Button
+        type="button"
+        style={{ marginRight: '25px' }}
+        color="grey"
+        variant="secondary"
+        startIcon={<IconSettingsAltOutlined24 />}
+      >
+        Настройки
+      </Button>
+    </Header>
+  );
+};
+
+HeaderBreadcrumbsHasChildren.storyName = 'Header с дочерней кнопкой и хлебными крошками';
+HeaderBreadcrumbsHasChildren.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };

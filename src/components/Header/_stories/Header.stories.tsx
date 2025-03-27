@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
@@ -84,14 +84,24 @@ HeaderDate.parameters = {
 };
 
 export const HeaderFavorite = (): ReactNode => {
-  return <Header title="Заголовок" showFavorite onFavoriteClick={action('favorite clicked')} />;
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+    action('favorite clicked')(isFavorite ? 'removed from favorites' : 'added to favorites');
+  };
+
+  return (
+    <Header 
+      title="Заголовок" 
+      showFavorite 
+      isFavorite={isFavorite}
+      onFavoriteClick={handleFavoriteClick} 
+    />
+  );
 };
 
 HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';
-HeaderFavorite.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
 
 export const HeaderNotification = (): ReactNode => {
   return (

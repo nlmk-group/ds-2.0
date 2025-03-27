@@ -1,5 +1,6 @@
 import { MouseEventHandler } from 'react';
 
 export interface IButtonFavoriteProps {
-  favorite: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  isFavorite?: boolean;
 }

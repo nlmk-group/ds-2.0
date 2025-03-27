@@ -46,27 +46,20 @@ export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
 DefaultHeader.storyName = 'Header по умолчанию';
 DefaultHeader.args = {
   title: 'Заголовок',
-  onBackClick: action('back'),
-  onFavoriteClick: action('favorite'),
-  onNotificationClick: action('notification'),
+  showBack: false,
+  showFavorite: false,
+  showNotification: false,
+  showPrint: false,
+  showVideo: false,
+  showMessage: false,
+  showDate: false,
   notificationAmount: 9,
-  onPrintClickaction: action('print'),
-  onVideoClickaction: action('video'),
-  onMessageClick: action('message')
-};
-DefaultHeader.argTypes = {
-  controls: {
-    disabled: [
-      'onBackClick',
-      'onFavoriteClick',
-      'onNotificationClick',
-      'notificationAmount',
-      'onVideoClick',
-      'onPrintClick',
-      'onMessageClick',
-      'breadcrumbs'
-    ]
-  }
+  onBackClick: action('back clicked'),
+  onFavoriteClick: action('favorite clicked'),
+  onNotificationClick: action('notification clicked'),
+  onPrintClick: action('print clicked'),
+  onVideoClick: action('video clicked'),
+  onMessageClick: action('message clicked')
 };
 
 export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
@@ -76,16 +69,12 @@ export const HeaderBack = (argTypes: IHeaderProps): ReactNode => {
 HeaderBack.storyName = 'Header с кнопкой назад';
 HeaderBack.args = {
   title: 'Заголовок',
-  hasBack: true,
-  onBackClick: action('back')
-};
-HeaderBack.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
+  showBack: true,
+  onBackClick: action('back clicked')
 };
 
 export const HeaderDate = (): ReactNode => {
-  return <Header title="Заголовок" hasDate />;
+  return <Header title="Заголовок" showDate />;
 };
 
 HeaderDate.storyName = 'Header с датой';
@@ -95,7 +84,7 @@ HeaderDate.parameters = {
 };
 
 export const HeaderFavorite = (): ReactNode => {
-  return <Header title="Заголовок" hasFavorite onFavoriteClick={action('favorite')} />;
+  return <Header title="Заголовок" showFavorite onFavoriteClick={action('favorite clicked')} />;
 };
 
 HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';
@@ -106,33 +95,38 @@ HeaderFavorite.parameters = {
 
 export const HeaderNotification = (): ReactNode => {
   return (
-    <Header title="Заголовок" hasNotification onNotificationClick={action('notification')} notificationAmount={9} />
+    <Header
+      title="Заголовок"
+      showNotification
+      onNotificationClick={action('notification clicked')}
+      notificationAmount={9}
+    />
   );
 };
+
 HeaderNotification.storyName = 'Header с кнопкой уведомления';
 HeaderNotification.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
 
-export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
+export const HeaderWithDropdown = (): ReactNode => {
   return (
     <Header
-      {...argTypes}
       title="Заголовок"
-      hasDate
-      hasPrint
-      hasFavorite
-      hasBack
-      hasVideo
-      hasMessage
-      hasNotification
-      onPrintClick={action('print')}
-      onVideoClick={action('video')}
-      onMessageClick={action('message')}
-      onFavoriteClick={action('favorite')}
-      onBackClick={action('back')}
-      onNotificationClick={action('notification')}
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
       notificationAmount={9}
       className={styles['header-container']}
     >
@@ -140,6 +134,7 @@ export const HeaderWithDropdown = (argTypes: IHeaderProps): ReactNode => {
     </Header>
   );
 };
+
 HeaderWithDropdown.storyName = 'Header с выпадающим списком';
 HeaderWithDropdown.parameters = {
   controls: { disable: true },
@@ -150,19 +145,19 @@ export const HeaderBreadcrumbs = (): ReactNode => {
   return (
     <Header
       title="Заголовок"
-      hasDate
-      hasPrint
-      hasFavorite
-      hasBack
-      hasVideo
-      hasMessage
-      hasNotification
-      onPrintClick={action('print')}
-      onVideoClick={action('video')}
-      onMessageClick={action('message')}
-      onFavoriteClick={action('favorite')}
-      onBackClick={action('back')}
-      onNotificationClick={action('notification')}
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
       notificationAmount={9}
       breadcrumbs={
         <Breadcrumbs>
@@ -187,19 +182,19 @@ export const HeaderBreadcrumbsHasChildren = (): ReactNode => {
   return (
     <Header
       title="Заголовок"
-      hasDate
-      hasPrint
-      hasFavorite
-      hasBack
-      hasVideo
-      hasMessage
-      hasNotification
-      onPrintClick={action('print')}
-      onVideoClick={action('video')}
-      onMessageClick={action('message')}
-      onFavoriteClick={action('favorite')}
-      onBackClick={action('back')}
-      onNotificationClick={action('notification')}
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={action('print clicked')}
+      onVideoClick={action('video clicked')}
+      onMessageClick={action('message clicked')}
+      onFavoriteClick={action('favorite clicked')}
+      onBackClick={action('back clicked')}
+      onNotificationClick={action('notification clicked')}
       notificationAmount={9}
       breadcrumbs={
         <Breadcrumbs>

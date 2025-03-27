@@ -6,11 +6,12 @@ import { IButtonMessageProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonMessage: FC<IButtonMessageProps> = ({ message }) => {
+const ButtonMessage: FC<IButtonMessageProps> = ({ onClick }) => {
   return (
     <Button
       type="button"
-      onClick={message}
+      onClick={onClick}
+      disabled={!onClick}
       className={styles['button-message']}
       iconButton={<IconHelperMailOutlined24 />}
       variant="primary"

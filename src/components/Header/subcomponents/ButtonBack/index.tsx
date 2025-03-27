@@ -6,12 +6,13 @@ import { IButtonBackProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonBack: FC<IButtonBackProps> = ({ back }) => {
+const ButtonBack: FC<IButtonBackProps> = ({ onClick }) => {
   return (
     <Button
       type="button"
       data-testid="HEADER_BACK"
-      onClick={back}
+      onClick={onClick}
+      disabled={!onClick}
       className={styles['button-wrapper']}
       iconButton={<IconChevronArrowLeftOutlined24 />}
       variant="primary"

@@ -6,12 +6,13 @@ import { IButtonPrintProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonPrint: FC<IButtonPrintProps> = ({ print }) => {
+const ButtonPrint: FC<IButtonPrintProps> = ({ onClick }) => {
   return (
     <Button
       type="button"
       data-testid="HEADER_PRINT"
-      onClick={print}
+      onClick={onClick}
+      disabled={!onClick}
       className={styles['button-padding-unset']}
       iconButton={<IconPrintOutlined24 htmlColor={'var(--steel-80)'} />}
       color="ghost"

@@ -7,52 +7,54 @@ export interface IHeaderProps {
   /** Заголовок страницы */
   title: string;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Назад" */
-  hasBack?: boolean;
+  /** Флаг для отображения кнопки "Назад" */
+  showBack?: boolean;
   /** Обработчик клика на кнопку "Назад" */
   onBackClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Избранное" */
-  hasFavorite?: boolean;
+  /** Флаг для отображения кнопки "Избранное" */
+  showFavorite?: boolean;
   /** Обработчик клика на кнопку "Избранное" */
   onFavoriteClick?: MouseEventHandler<HTMLButtonElement>;
+  /** Флаг, указывающий, находится ли элемент в избранном */
+  isFavorite?: boolean;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Уведомления" */
-  hasNotification?: boolean;
+  /** Флаг для отображения кнопки "Уведомления" */
+  showNotification?: boolean;
   /** Обработчик клика на кнопку "Уведомления" */
   onNotificationClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Видео" */
-  hasVideo?: boolean;
+  /** Флаг для отображения кнопки "Видео" */
+  showVideo?: boolean;
   /** Обработчик клика на кнопку "Видео" */
   onVideoClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Печать" */
-  hasPrint?: boolean;
+  /** Флаг для отображения кнопки "Печать" */
+  showPrint?: boolean;
   /** Обработчик клика на кнопку "Печать" */
   onPrintClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг, указывающий, должна ли отображаться кнопка "Сообщения" */
-  hasMessage?: boolean;
+  /** Флаг для отображения кнопки "Сообщения" */
+  showMessage?: boolean;
   /** Обработчик клика на кнопку "Сообщения" */
   onMessageClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /** Флаг, указывающий, должна ли отображаться текущая дата */
-  hasDate?: boolean;
+  /** Флаг для отображения текущей даты */
+  showDate?: boolean;
 
   /** Количество непрочитанных уведомлений */
   notificationAmount?: number;
 
-  /** Компонент хлебных крошек, который будет отображаться в заголовке */
+  /** Компонент хлебных крошек */
   breadcrumbs?: ReactNode;
 
-  /** Дополнительные CSS-классы для стилизации компонента */
+  /** Дополнительные CSS-классы */
   className?: string;
 
-  /** Дополнительный контент, который будет отображаться справа от заголовка */
+  /** Дополнительный контент */
   children?: ReactNode;
 
-  /** Inline-стили для кастомизации компонента */
+  /** Inline-стили */
   style?: CSSProperties;
 }
 

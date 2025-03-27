@@ -6,12 +6,13 @@ import { IButtonVideoProps } from './types';
 
 import styles from '../../Header.module.scss';
 
-const ButtonVideo: FC<IButtonVideoProps> = ({ video }) => {
+const ButtonVideo: FC<IButtonVideoProps> = ({ onClick }) => {
   return (
     <Button
       type="button"
       data-testid="HEADER_VIDEO"
-      onClick={video}
+      onClick={onClick}
+      disabled={!onClick}
       className={styles['button-padding-unset']}
       iconButton={<IconVideoCameraOffOutlined24 htmlColor={'var(--steel-80)'} />}
       color="ghost"

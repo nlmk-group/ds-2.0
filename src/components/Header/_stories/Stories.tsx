@@ -53,127 +53,130 @@ const Stories = (): JSX.Element => {
             description="Header по умолчанию"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default App = () => (
   <Header title="Header по умолчанию" />
-)
-              `}
+)`}
           />
           <Editor
             height={200}
             description="Header с кнопкой возвращения слева"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с кнопкой возвращения слева' hasBack onBackClick={() => {}} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой возвращения слева' 
+    showBack 
+    onBackClick={() => console.log('Back clicked')} 
+  />
+)`}
           />
           <Editor
             height={180}
             description="Header с датой и временем"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с датой и временем' hasDate />
-)
-              `}
+export default App = () => (
+  <Header title='Header с датой и временем' showDate />
+)`}
           />
           <Editor
             height={180}
             description="Header с кнопкой добавления в избранное"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с кнопкой добавления в избранное' hasFavorite onFavoriteClick={() => {}}/>
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой добавления в избранное' 
+    showFavorite 
+    onFavoriteClick={() => console.log('Favorite clicked')}
+  />
+)`}
           />
           <Editor
             height={180}
             description="Header с кнопкой уведомления"
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с кнопкой уведомления' hasNotification onNotificationClick={() => {}} notificationAmount={9} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с кнопкой уведомления' 
+    showNotification 
+    onNotificationClick={() => console.log('Notification clicked')} 
+    notificationAmount={9} 
+  />
+)`}
           />
-
           <Editor
             description="Header с хлебными крошками"
             code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с хлебными крошками' breadcrumbs={(<Breadcrumbs crumbs={[
-      {
-        href: 'https://developer.mozilla.org/en-US/',
-        label: 'MDN'
-      },
-      {
-        href: 'https://www.lipsum.com/',
-        label: 'Lorem Ipsum'
-      },
-      {
-        href: 'https://www.w3schools.com/',
-        label: 'W3 Schools'
-      },
-      {
-        href: 'https://css-tricks.com/',
-        label: 'CSS Tricks'
-      },
-      {
-        href: 'https://www.geeksforgeeks.org/',
-        label: 'Geeks For Geeks',
-        active: true
-      }
-    ]} />)} />
-)
-              `}
+export default App = () => (
+  <Header 
+    title='Header с хлебными крошками' 
+    breadcrumbs={
+      <Breadcrumbs 
+        crumbs={[
+          { href: 'https://developer.mozilla.org/en-US/', label: 'MDN' },
+          { href: 'https://www.lipsum.com/', label: 'Lorem Ipsum' },
+          { href: 'https://www.w3schools.com/', label: 'W3 Schools' },
+          { href: 'https://css-tricks.com/', label: 'CSS Tricks' },
+          { href: 'https://www.geeksforgeeks.org/', label: 'Geeks For Geeks', active: true }
+        ]} 
+      />
+    } 
+  />
+)`}
           />
           <Editor
             description="Header с дочерней кнопкой и хлебными крошками"
-            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+            code={`import { Header, Button, IconSettingsAltOutlined24 } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Header title='Header с дочерней кнопкой и хлебными крошками' >
-          <Button type="button" style={{ marginRight: '25px' }} color="grey" variant="secondary" startIcon={<IconSettingsAltOutlined24 />}>
+export default App = () => (
+  <Header title='Header с дочерней кнопкой и хлебными крошками'>
+    <Button 
+      type="button" 
+      style={{ marginRight: '25px' }} 
+      color="grey" 
+      variant="secondary" 
+      startIcon={<IconSettingsAltOutlined24 />}
+    >
+      Настройки
+    </Button>
   </Header>
-)
-              `}
+)`}
           />
           <Editor
             description="Header со всеми свойствами"
-            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+            code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default App = () => (
   <Header
-      title="Заголовок"
-      hasDate
-      hasPrint
-      hasFavorite
-      hasBack
-      hasVideo
-      hasMessage
-      hasNotification
-      onPrintClick={action('print')}
-      onVideoClick={action('video')}
-      onMessageClick={action('message')}
-      onFavoriteClick={action('favorite')}
-      onBackClick={action('back')}
-      onNotificationClick={action('notification')}
-      notificationAmount={9}
-      breadcrumbs={
-        <Breadcrumbs>
-          {breadcrumbsLinks.map((link, index) => (
-            <Breadcrumbs.Crumb key={index}>
-              <Link to={link.href}>{link.label}</Link>
-            </Breadcrumbs.Crumb>
-          ))}
-        </Breadcrumbs>
-      }
-    />
-)
-              `}
+    title="Заголовок"
+    showDate
+    showPrint
+    showFavorite
+    showBack
+    showVideo
+    showMessage
+    showNotification
+    onPrintClick={() => console.log('Print clicked')}
+    onVideoClick={() => console.log('Video clicked')}
+    onMessageClick={() => console.log('Message clicked')}
+    onFavoriteClick={() => console.log('Favorite clicked')}
+    onBackClick={() => console.log('Back clicked')}
+    onNotificationClick={() => console.log('Notification clicked')}
+    notificationAmount={9}
+    breadcrumbs={
+      <Breadcrumbs>
+        {breadcrumbsLinks.map((link, index) => (
+          <Breadcrumbs.Crumb key={index}>
+            <Link to={link.href}>{link.label}</Link>
+          </Breadcrumbs.Crumb>
+        ))}
+      </Breadcrumbs>
+    }
+  />
+)`}
           />
           <Properties argsTypes={argsTypes} />
         </>

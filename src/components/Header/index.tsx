@@ -23,19 +23,20 @@ import {
  * @component
  * @param {IHeaderProps} props - Пропсы компонента.
  * @param {string} props.title - Заголовок страницы.
- * @param {boolean} [props.hasBack] - Флаг для отображения кнопки "Назад".
+ * @param {boolean} [props.showBack] - Флаг для отображения кнопки "Назад".
  * @param {Function} [props.onBackClick] - Обработчик клика по кнопке "Назад".
- * @param {boolean} [props.hasFavorite] - Флаг для отображения кнопки "Избранное".
+ * @param {boolean} [props.showFavorite] - Флаг для отображения кнопки "Избранное".
  * @param {Function} [props.onFavoriteClick] - Обработчик клика по кнопке "Избранное".
- * @param {boolean} [props.hasNotification] - Флаг для отображения кнопки "Уведомления".
+ * @param {boolean} [props.isFavorite] - Флаг для изменения состояния кнопки "Избранное".
+ * @param {boolean} [props.showNotification] - Флаг для отображения кнопки "Уведомления".
  * @param {Function} [props.onNotificationClick] - Обработчик клика по кнопке "Уведомления".
- * @param {boolean} [props.hasVideo] - Флаг для отображения кнопки "Видео".
+ * @param {boolean} [props.showVideo] - Флаг для отображения кнопки "Видео".
  * @param {Function} [props.onVideoClick] - Обработчик клика по кнопке "Видео".
- * @param {boolean} [props.hasPrint] - Флаг для отображения кнопки "Печать".
+ * @param {boolean} [props.showPrint] - Флаг для отображения кнопки "Печать".
  * @param {Function} [props.onPrintClick] - Обработчик клика по кнопке "Печать".
- * @param {boolean} [props.hasMessage] - Флаг для отображения кнопки "Сообщения".
+ * @param {boolean} [props.showMessage] - Флаг для отображения кнопки "Сообщения".
  * @param {Function} [props.onMessageClick] - Обработчик клика по кнопке "Сообщения".
- * @param {boolean} [props.hasDate=false] - Флаг для отображения текущей даты.
+ * @param {boolean} [props.showDate=false] - Флаг для отображения текущей даты.
  * @param {number} [props.notificationAmount=0] - Количество уведомлений, отображаемое на кнопке уведомлений.
  * @param {ReactNode} [props.breadcrumbs] - Элемент хлебных крошек, отображаемый в заголовке.
  * @param {string} [props.className] - Дополнительные CSS-классы для стилизации компонента.
@@ -45,19 +46,20 @@ import {
  */
 const Header: FC<IHeaderProps> = ({
   title,
-  onBackClick = null,
-  hasDate = false,
-  hasBack,
-  hasFavorite,
-  hasMessage,
-  hasNotification,
-  hasPrint,
-  hasVideo,
-  onFavoriteClick = null,
-  onNotificationClick = null,
-  onVideoClick = null,
-  onPrintClick = null,
-  onMessageClick = null,
+  showDate = false,
+  showBack,
+  showFavorite,
+  isFavorite,
+  showMessage,
+  showNotification,
+  showPrint,
+  showVideo,
+  onBackClick,
+  onFavoriteClick,
+  onNotificationClick,
+  onVideoClick,
+  onPrintClick,
+  onMessageClick,
   notificationAmount = 0,
   breadcrumbs = null,
   className,
@@ -66,14 +68,12 @@ const Header: FC<IHeaderProps> = ({
 }) => {
   const RightBlock = (
     <div data-ui-header-right-block className={clsx(styles.right, !breadcrumbs && styles['right-with-margin'])}>
-      {Boolean(hasDate) && <DateTime />}
-      {onFavoriteClick && hasFavorite && <ButtonFavorite favorite={onFavoriteClick} />}
-      {onPrintClick && hasPrint && <ButtonPrint print={onPrintClick} />}
-      {onVideoClick && hasVideo && <ButtonVideo video={onVideoClick} />}
-      {onNotificationClick && hasNotification && (
-        <ButtonNotification notification={onNotificationClick} notificationAmount={notificationAmount} />
-      )}
-      {onMessageClick && hasMessage && <ButtonMessage message={onMessageClick} />}
+      {showDate && <DateTime />}
+      {showFavorite && <ButtonFavorite onClick={onFavoriteClick} isFavorite={isFavorite} />}
+      {showPrint && <ButtonPrint onClick={onPrintClick} />}
+      {showVideo && <ButtonVideo onClick={onVideoClick} />}
+      {showNotification && <ButtonNotification onClick={onNotificationClick} notificationAmount={notificationAmount} />}
+      {showMessage && <ButtonMessage onClick={onMessageClick} />}
     </div>
   );
 
@@ -95,7 +95,7 @@ const Header: FC<IHeaderProps> = ({
           <div
             className={clsx(breadcrumbs ? styles['title-button-wrapper-with-crumbs'] : styles['title-button-wrapper'])}
           >
-            {onBackClick && hasBack && <ButtonBack back={onBackClick} />}
+            {showBack && <ButtonBack onClick={onBackClick} />}
             <div className={styles['title-container']}>
               <Typography data-testid="HEADER_TITLE" className={styles.title} variant="Heading2">
                 {title}

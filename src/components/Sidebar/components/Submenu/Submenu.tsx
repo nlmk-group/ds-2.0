@@ -75,6 +75,7 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
       <div
         className={clsx(styles.submenu, styles[`submenu-${orientation}`], { [styles['submenu-fluid']]: !isVertical })}
         ref={nodeRef}
+        data-ui-sidebar-submenu
       >
         <div className={styles.top}>
           <Typography variant="Body-Bold" color="var(--steel-90)" className={styles.title}>

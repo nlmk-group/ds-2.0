@@ -126,6 +126,27 @@ export interface ISidebarProps extends PropsWithChildren {
    * @default false
    */
   overlay?: boolean;
+
+  /**
+   * Флаг для отображения UserControl.
+   * @default true
+   */
+  isShowUserControl?: boolean;
+
+  /**
+   * Кастомный логотип. Если не передан, используется стандартный.
+   */
+  logo?: ReactNode;
+
+  /**
+   * Дополнительный класс для стилизации.
+   */
+  className?: string;
+
+  /**
+   * Inline стили для компонента.
+   */
+  style?: CSSProperties;
 }
 
 /**

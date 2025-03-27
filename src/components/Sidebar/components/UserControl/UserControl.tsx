@@ -23,7 +23,7 @@ const UserControl: FC<IUserControlProps> = ({
   const handler = isLoggedIn ? onLogout : onLogin;
 
   return (
-    <div className={styles.control} data-vertical={isVertical} data-expanded={isExpanded}>
+    <div className={styles.control} data-vertical={isVertical} data-expanded={isExpanded} data-ui-sidebar-user-control>
       {isLoggedIn && (
         <button type="button" className={styles['user-button']} onClick={onOpenUser} title={fullName}>
           <div className={styles['avatar-wrapper']}>{children ?? <Avatar size="s" />}</div>

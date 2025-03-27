@@ -9,7 +9,14 @@ const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(({ is
   const buttonText = isExpanded ? 'Свернуть' : 'Развернуть';
 
   return (
-    <button ref={ref} type="button" className={styles.collapse} onClick={onClick} title={buttonText}>
+    <button
+      ref={ref}
+      type="button"
+      className={styles.collapse}
+      onClick={onClick}
+      title={buttonText}
+      data-ui-sidebar-collapse-button
+    >
       <div className={styles.arrow} data-expanded={isExpanded}>
         <Icon name="IconChevronArrowRightOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
       </div>

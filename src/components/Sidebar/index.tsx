@@ -43,6 +43,10 @@ import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMap
  * @param {string} props.currentPath - Текущий путь (URL) для определения активного элемента.
  * @param {boolean} [props.defaultMenuOpen=false] - Флаг, указывающий, должно ли боковое меню быть развернуто по умолчанию.
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
+ * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
+ * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
+ * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
+ * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
  */
 
@@ -66,7 +70,11 @@ const Sidebar: FC<ISidebarProps> &
   onChangeFavorites = () => {},
   currentPath,
   defaultMenuOpen = false,
-  overlay = false
+  overlay = false,
+  logo,
+  isShowUserControl = true,
+  className,
+  style
 }) => {
   const isBurger = variant === ESidebarVariantMapping.burger;
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
@@ -163,31 +171,29 @@ const Sidebar: FC<ISidebarProps> &
   const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
   const handleAction = isLoggedIn && onLogout ? onLogout : onLogin;
 
-  const renderUserControl = () => (
-    <UserControl
-      isExpanded={isExpanded}
-      isVertical={isVertical}
-      isLoggedIn={isLoggedIn}
-      userName={userName}
-      userSurname={userSurname}
-      onOpenUser={onOpenUser}
-      onLogin={onLogin}
-      onLogout={onLogout}
-      data-ui-sidebar-user-control
-    >
-      {avatar}
-    </UserControl>
-  );
+  const renderUserControl = () => {
+    if (!isShowUserControl) return null;
+
+    return (
+      <UserControl
+        isExpanded={isExpanded}
+        isVertical={isVertical}
+        isLoggedIn={isLoggedIn}
+        userName={userName}
+        userSurname={userSurname}
+        onOpenUser={onOpenUser}
+        onLogin={onLogin}
+        onLogout={onLogout}
+      >
+        {avatar}
+      </UserControl>
+    );
+  };
 
   if (isBurger && !isExpanded)
     return (
-      <div className={styles.burger} onClick={() => setExpanded(true)}>
-        <Icon
-          name="IconMenuBurgerOutlined32"
-          containerSize={32}
-          htmlColor="var(--unique-white)"
-          data-ui-sidebar-burger
-        />
+      <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
+        <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
       </div>
     );
 
@@ -210,25 +216,28 @@ const Sidebar: FC<ISidebarProps> &
       <ClickAwayListener
         onClickAway={() => setActiveItem(null)}
         excludeRef={collapseButtonRef}
-        className={clsx(styles.root, styles[`root-${orientation}`], {
-          [styles[`root-${orientation}-expanded`]]: isExpanded
-        })}
+        className={clsx(
+          styles.root,
+          styles[`root-${orientation}`],
+          {
+            [styles[`root-${orientation}-expanded`]]: isExpanded
+          },
+          className
+        )}
+        style={style}
       >
         <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
           {isBurger && !isVertical && (
-            <div className={clsx(styles.burger, styles['burger-expanded'])} onClick={collapseSidebar}>
-              <Icon
-                name="IconMenuBurgerOutlined32"
-                containerSize={32}
-                htmlColor="var(--unique-white)"
-                data-ui-sidebar-burger
-              />
+            <div
+              data-ui-sidebar-burger
+              className={clsx(styles.burger, styles['burger-expanded'])}
+              onClick={collapseSidebar}
+            >
+              <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
             </div>
           )}
           <div className={styles.head}>
-            {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} data-ui-siddebar-collapse-button />
-            )}
+            {isVertical && isBurger && <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} />}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
                 <div
@@ -238,7 +247,7 @@ const Sidebar: FC<ISidebarProps> &
                   onClick={onClickLogo}
                   data-ui-sidebar-logo
                 >
-                  <LogoSvgIcon />
+                  {logo || <LogoSvgIcon />}
                 </div>
                 {isExpanded && systemName && (
                   <Typography variant="Body1-Medium" color="var(--unique-white)" className={styles.company}>
@@ -284,19 +293,13 @@ const Sidebar: FC<ISidebarProps> &
                 ref={collapseButtonRef}
                 isExpanded={isExpanded}
                 onClick={() => setExpanded(val => !val)}
-                data-ui-sidebar-collapse-button
               />
             )
           ) : (
             <div className={styles.rightSection} data-ui-sidebar-right-section>
               {onSearch && (
-                <div className={styles.search}>
-                  <Icon
-                    name={'IconSearchOutlined32'}
-                    containerSize={32}
-                    htmlColor="var(--unique-white)"
-                    data-ui-sidebar-search-icon
-                  />
+                <div data-ui-sidebar-search-icon className={styles.search}>
+                  <Icon name={'IconSearchOutlined32'} containerSize={32} htmlColor="var(--unique-white)" />
                 </div>
               )}
               {renderUserControl()}
@@ -308,12 +311,7 @@ const Sidebar: FC<ISidebarProps> &
           <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
         )}
 
-        <Submenu
-          title={activeItem ?? ''}
-          isOpen={Boolean(activeItem)}
-          orientation={orientation}
-          data-ui-sidebar-submenu
-        >
+        <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>
           {submenuItems}
         </Submenu>
       </ClickAwayListener>

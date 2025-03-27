@@ -93,6 +93,7 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
       onClick={handleClick}
       ref={targetRef}
       title={label}
+      data-ui-sidebar-menu-item
     >
       <Icon name={icon} containerSize={32} htmlColor={!disabled ? 'var(--unique-white)' : 'var(--steel-60)'} />
       {isExpanded && (

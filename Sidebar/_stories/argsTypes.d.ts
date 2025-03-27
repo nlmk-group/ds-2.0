@@ -111,6 +111,47 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    logo: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    isShowUserControl: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    className: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    style: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
     onChangeFavorites: {
         description: string;
         action: string;

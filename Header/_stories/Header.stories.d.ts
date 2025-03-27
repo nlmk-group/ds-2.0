@@ -1,102 +1,110 @@
 import { ReactNode } from '../../../../node_modules/react';
-import { typeMapping } from '../enums';
-import { IHeader } from '../types';
+import { IHeaderProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IHeader>;
+declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IHeaderProps>;
 export default _default;
 export declare const DefaultHeader: {
-    (argTypes: IHeader): ReactNode;
+    (argTypes: IHeaderProps): ReactNode;
     storyName: string;
     args: {
         title: string;
+        showBack: boolean;
+        showFavorite: boolean;
+        showNotification: boolean;
+        showPrint: boolean;
+        showVideo: boolean;
+        showMessage: boolean;
+        showDate: boolean;
+        notificationAmount: number;
+        onBackClick: import('@storybook/addon-actions').HandlerFunction;
+        onFavoriteClick: import('@storybook/addon-actions').HandlerFunction;
+        onNotificationClick: import('@storybook/addon-actions').HandlerFunction;
+        onPrintClick: import('@storybook/addon-actions').HandlerFunction;
+        onVideoClick: import('@storybook/addon-actions').HandlerFunction;
+        onMessageClick: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const HeaderBack: {
-    (argTypes: IHeader): ReactNode;
+    (argTypes: IHeaderProps): ReactNode;
     storyName: string;
     args: {
         title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
+        showBack: boolean;
+        onBackClick: import('@storybook/addon-actions').HandlerFunction;
     };
 };
 export declare const HeaderDate: {
-    (argTypes: IHeader): ReactNode;
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
     };
 };
 export declare const HeaderFavorite: {
-    (argTypes: IHeader): ReactNode;
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        favorite: import('@storybook/addon-actions').HandlerFunction;
-    };
 };
 export declare const HeaderNotification: {
-    (argTypes: IHeader): ReactNode;
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        notification: import('@storybook/addon-actions').HandlerFunction;
-        notificationAmount: number;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
     };
 };
-export declare const HeaderBackground: {
-    (argTypes: IHeader): ReactNode;
+export declare const HeaderWithDropdown: {
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        favorite: import('@storybook/addon-actions').HandlerFunction;
-        notification: import('@storybook/addon-actions').HandlerFunction;
-        notificationAmount: number;
-    };
-};
-export declare const HeaderSpacing: {
-    (argTypes: IHeader): ReactNode;
-    storyName: string;
-    args: {
-        title: string;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        favorite: import('@storybook/addon-actions').HandlerFunction;
-        notification: import('@storybook/addon-actions').HandlerFunction;
-        notificationAmount: number;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
     };
 };
 export declare const HeaderBreadcrumbs: {
-    (argTypes: IHeader): ReactNode;
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        type: typeMapping;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        favorite: import('@storybook/addon-actions').HandlerFunction;
-        notification: import('@storybook/addon-actions').HandlerFunction;
-        notificationAmount: number;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
     };
 };
 export declare const HeaderBreadcrumbsHasChildren: {
-    (argTypes: IHeader): ReactNode;
+    (): ReactNode;
     storyName: string;
-    args: {
-        title: string;
-        type: typeMapping;
-        back: import('@storybook/addon-actions').HandlerFunction;
-        date: boolean;
-        favorite: import('@storybook/addon-actions').HandlerFunction;
-        notification: import('@storybook/addon-actions').HandlerFunction;
-        notificationAmount: number;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
     };
 };
 //# sourceMappingURL=Header.stories.d.ts.map

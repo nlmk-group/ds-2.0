@@ -1,6 +1,6 @@
 import { FC } from '../../../node_modules/react';
-import { IHeader } from './types';
+import { IHeaderProps } from './types';
 
-declare const Header: FC<IHeader>;
+declare const Header: FC<IHeaderProps>;
 export default Header;
 //# sourceMappingURL=index.d.ts.map

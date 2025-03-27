@@ -1,4 +1,4 @@
-import { Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from '../../../node_modules/react';
+import { CSSProperties, Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from '../../../node_modules/react';
 import { TIconName } from '../Icon/IconsDirectory/unionType';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 
@@ -21,6 +21,10 @@ export interface ISidebarProps extends PropsWithChildren {
     currentPath: string;
     defaultMenuOpen?: boolean;
     overlay?: boolean;
+    isShowUserControl?: boolean;
+    logo?: ReactNode;
+    className?: string;
+    style?: CSSProperties;
 }
 export interface ICollapseButtonProps {
     isExpanded?: boolean;

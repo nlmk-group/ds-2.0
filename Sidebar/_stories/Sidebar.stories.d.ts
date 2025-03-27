@@ -116,6 +116,47 @@ declare const _default: {
                 type: string;
             };
         };
+        logo: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
+        isShowUserControl: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        className: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        style: {
+            description: string;
+            table: {
+                type: {
+                    summary: string;
+                };
+            };
+        };
         onChangeFavorites: {
             description: string;
             action: string;
@@ -168,6 +209,15 @@ export declare const SidebarWithOverlayAndDefaultMenuOpen: {
     args: {
         overlay: boolean;
         defaultMenuOpen: boolean;
+        userName: string;
+        userSurname: string;
+        systemName: string;
+    };
+};
+export declare const SidebarWithCustomLogo: {
+    (argTypes: ISidebarProps): ReactNode;
+    storyName: string;
+    args: {
         userName: string;
         userSurname: string;
         systemName: string;

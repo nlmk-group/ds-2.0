@@ -1,5 +1,3 @@
-import { typeMapping } from '../enums';
-
 declare const argsTypes: {
     title: {
         description: string;
@@ -7,22 +5,7 @@ declare const argsTypes: {
             type: string;
         };
     };
-    type: {
-        description: string;
-        table: {
-            defaultValue: {
-                summary: typeMapping;
-            };
-            type: {
-                summary: string;
-            };
-        };
-        options: typeMapping[];
-        control: {
-            type: string;
-        };
-    };
-    bg: {
+    showMessage: {
         description: string;
         control: {
             type: string;
@@ -33,7 +16,11 @@ declare const argsTypes: {
             };
         };
     };
-    back: {
+    onMessageClick: {
+        description: string;
+        action: string;
+    };
+    showNotification: {
         description: string;
         control: {
             type: string;
@@ -44,7 +31,11 @@ declare const argsTypes: {
             };
         };
     };
-    favorite: {
+    onNotificationClick: {
+        description: string;
+        action: string;
+    };
+    showPrint: {
         description: string;
         control: {
             type: string;
@@ -55,7 +46,11 @@ declare const argsTypes: {
             };
         };
     };
-    date: {
+    onPrintClick: {
+        description: string;
+        action: string;
+    };
+    showVideo: {
         description: string;
         control: {
             type: string;
@@ -66,7 +61,52 @@ declare const argsTypes: {
             };
         };
     };
-    notification: {
+    onVideoClick: {
+        description: string;
+        action: string;
+    };
+    showFavorite: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+    };
+    onFavoriteClick: {
+        description: string;
+        action: string;
+    };
+    isFavorite: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+    };
+    showBack: {
+        description: string;
+        control: {
+            type: string;
+        };
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+        };
+    };
+    onBackClick: {
+        description: string;
+        action: string;
+    };
+    showDate: {
         description: string;
         control: {
             type: string;

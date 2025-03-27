@@ -1,20 +1,25 @@
-import { MouseEventHandler, ReactNode } from '../../../node_modules/react';
+import { CSSProperties, MouseEventHandler, ReactNode } from '../../../node_modules/react';
 
-export interface IHeader {
+export interface IHeaderProps {
     title: string;
-    type?: string;
-    bg?: boolean;
-    back?: MouseEventHandler<HTMLButtonElement>;
-    favorite?: MouseEventHandler<HTMLButtonElement>;
-    notification?: MouseEventHandler<HTMLButtonElement>;
-    date?: boolean;
+    showBack?: boolean;
+    onBackClick?: MouseEventHandler<HTMLButtonElement>;
+    showFavorite?: boolean;
+    onFavoriteClick?: MouseEventHandler<HTMLButtonElement>;
+    isFavorite?: boolean;
+    showNotification?: boolean;
+    onNotificationClick?: MouseEventHandler<HTMLButtonElement>;
+    showVideo?: boolean;
+    onVideoClick?: MouseEventHandler<HTMLButtonElement>;
+    showPrint?: boolean;
+    onPrintClick?: MouseEventHandler<HTMLButtonElement>;
+    showMessage?: boolean;
+    onMessageClick?: MouseEventHandler<HTMLButtonElement>;
+    showDate?: boolean;
     notificationAmount?: number;
     breadcrumbs?: ReactNode;
     className?: string;
     children?: ReactNode;
-}
-export interface INotification {
-    notification: MouseEventHandler<HTMLButtonElement>;
-    notificationAmount?: number;
+    style?: CSSProperties;
 }
 //# sourceMappingURL=types.d.ts.map

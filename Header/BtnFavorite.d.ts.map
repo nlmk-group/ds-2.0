@@ -1,1 +1,0 @@
-{"version":3,"file":"BtnFavorite.d.ts","sourceRoot":"","sources":["../../src/components/Header/BtnFavorite.tsx"],"names":[],"mappings":"AAAA,OAAc,EAAE,EAAE,EAAE,iBAAiB,EAAE,MAAM,OAAO,CAAC;AAOrD,QAAA,MAAM,WAAW,EAAE,EAAE,CAAC;IACpB,QAAQ,EAAE,iBAAiB,CAAC,iBAAiB,CAAC,CAAC;CAChD,CAeA,CAAC;AAEF,eAAe,WAAW,CAAC"}

@@ -23,6 +23,44 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.0 - <span className={styles.date}>27.03.25</span>
+          </Typography>
+          <Chip variant="outline" color="warning">
+            Breaking Changes
+          </Chip>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datetime-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DateTime
+              </Link>
+              .<li className={styles['left-padding']}>- Актуализированы стили согласно макету и типография</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-header-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Header
+              </Link>
+              .<li className={styles['left-padding']}>- Удалены свойства type и bg</li>
+              <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
+              <li className={styles['left-padding']}>
+                - Изменена логика использования и переименованы свойства для кнопок-обработчиков
+              </li>
+              <li className={styles['left-padding']}>- Добавлены кнопки message, print и video</li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.21.2 - <span className={styles.date}>26.03.25</span>
           </Typography>
           <ul className={styles.list}>

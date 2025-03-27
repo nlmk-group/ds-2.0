@@ -1,5 +1,8 @@
-import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import { CSSProperties, FC, MouseEventHandler, ReactNode } from 'react';
 
+/**
+ * Интерфейс свойств компонента Header.
+ */
 export interface IHeaderProps {
   /** Заголовок страницы */
   title: string;
@@ -54,3 +57,11 @@ export interface IHeaderProps {
   /** Inline-стили */
   style?: CSSProperties;
 }
+
+/**
+ * Компонент `Header` отображает заголовок страницы с возможностью добавления кнопок управления,
+ * хлебных крошек, даты и других элементов.
+ */
+declare const Header: FC<IHeaderProps>;
+
+export default Header;

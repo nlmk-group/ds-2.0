@@ -38,11 +38,11 @@ const DropdownMenuItem: FC<IDropdownMenuItemProps> = ({ children, onClick, value
 
   return (
     <ListItem
+      data-ui-dropdown-menu-item-container
       className={clsx(styles.item, { [styles.disabled]: disabled })}
       onClick={handleClick}
-      data-ui-dropdown-menu-item
     >
-      <Typography variant={size === EButtonSize.xs ? 'Body2-Medium' : 'Body1-Medium'}>
+      <Typography data-ui-dropdown-menu-item variant={size === EButtonSize.xs ? 'Body2-Medium' : 'Body1-Medium'}>
         <div>{children}</div>
       </Typography>
     </ListItem>

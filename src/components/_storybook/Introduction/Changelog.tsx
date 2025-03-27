@@ -21,43 +21,7 @@ export const Changelog = () => {
             </Button>
           </Link>
         </div>
-        <div className={styles.history}>
-          <Typography variant="Subheading3-Medium">
-            v2.21.0 - <span className={styles.date}>25.03.25</span>
-          </Typography>
-          <Chip variant="outline" color="warning">
-            Breaking Changes
-          </Chip>
-          <ul className={styles.list}>
-            <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-autocomplete-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                DateTime
-              </Link>
-              .<li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
-              <li className={styles['left-padding']}>- Актуализированы стили типографии</li>
-            </li>
-            <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-button-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Header
-              </Link>
-              .<li className={styles['left-padding']}>- Удалено свойство type</li>
-              <li className={styles['left-padding']}>- Актуализированы стили согласно макету</li>
-              <li className={styles['left-padding']}>- Добавлены кнопки message, print и video</li>
-              <li className={styles['left-padding']}>- Обновлены и добавлены новые stories в Storybook</li>
-              <li className={styles['left-padding']}>- Добавленая документация для компонента</li>
-            </li>
-          </ul>
-        </div>
+
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.20.4 - <span className={styles.date}>24.03.25</span>

@@ -144,5 +144,25 @@ export const argsTypes = {
   isClearInputOnSelect: {
     description: 'Удалить содержимое Input после выбора',
     control: { type: 'boolean' }
+  },
+  isLoading: {
+    description: 'Состояние загрузки опций',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  onOpen: {
+    description: 'Callback при открытии селекта для загрузки опций',
+    action: 'загрузка опций при открытии'
+  },
+  onSearch: {
+    description: 'Callback при вводе текста в поиск для асинхронной фильтрации',
+    action: 'поиск опций'
   }
 };

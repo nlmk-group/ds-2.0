@@ -9,6 +9,7 @@ import { Meta } from '@storybook/react';
 import style from '../Select.module.scss';
 import styles from './Select.module.scss';
 
+import { getLabel } from '../helpers';
 import {
   options,
   optionsWithIcons, // optionsWithNesting,
@@ -16,7 +17,7 @@ import {
   optionWithColorfulIcons
 } from './mocks';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Select/Stories',
@@ -25,6 +26,36 @@ export default {
   decorators: [withWrapper],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 } as Meta<typeof Select>;
+
+const frameworkOptions = [
+  { value: '1', label: 'React', subLabel: 'Библиотека для UI' },
+  { value: '2', label: 'Vue', subLabel: 'Прогрессивный фреймворк' },
+  { value: '3', label: 'Angular', subLabel: 'Фреймворк от Google' },
+  { value: '4', label: 'Svelte', subLabel: 'Компилируемый фреймворк' },
+  { value: '5', label: 'Preact', subLabel: 'Легковесная альтернатива React' },
+  { value: '6', label: 'Solid', subLabel: 'Реактивный фреймворк' },
+  { value: '7', label: 'Alpine', subLabel: 'Минималистичный фреймворк' },
+  { value: '8', label: 'Lit', subLabel: 'Для веб-компонентов' },
+  { value: '9', label: 'Next.js', subLabel: 'React фреймворк' },
+  { value: '10', label: 'Nuxt', subLabel: 'Vue фреймворк' },
+  { value: '11', label: 'Remix', subLabel: 'Fullstack фреймворк' },
+  { value: '12', label: 'Astro', subLabel: 'Статический сайт-генератор' }
+];
+
+const techStackOptions = [
+  { value: '1', label: 'JavaScript' },
+  { value: '2', label: 'TypeScript' },
+  { value: '3', label: 'React' },
+  { value: '4', label: 'Vue' },
+  { value: '5', label: 'Angular' },
+  { value: '6', label: 'Node.js' },
+  { value: '7', label: 'Express' },
+  { value: '8', label: 'MongoDB' },
+  { value: '9', label: 'PostgreSQL' },
+  { value: '10', label: 'GraphQL' },
+  { value: '11', label: 'Redux' },
+  { value: '12', label: 'MobX' }
+];
 
 export const SelectDefault = (argTypes: ISelectProps): JSX.Element => {
   const { options: ignoredOptions, ...otherArgs } = argTypes;
@@ -41,20 +72,15 @@ export const SelectMultilineOption = (argTypes: ISelectProps): JSX.Element => {
   const { options: ignoredOptions, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);
 
-  console.log(otherArgs)
+  console.log(otherArgs);
   return (
     <div style={{ padding: '50px' }}>
-      <Select
-        options={options}
-        {...otherArgs}
-        selected={selected}
-        onSelectionChange={setSelected}
-      />
+      <Select options={options} {...otherArgs} selected={selected} onSelectionChange={setSelected} />
     </div>
   );
 };
 SelectMultilineOption.storyName = 'Select с переносом текста опции на следующую строку';
-SelectMultilineOption.args = { multilineOption: true }
+SelectMultilineOption.args = { multilineOption: true };
 
 export const SelectSingle = (argTypes: ISelectProps): JSX.Element => {
   const { options: ignoredOptions, ...otherArgs } = argTypes;
@@ -533,8 +559,138 @@ export const NativeMenu = (argTypes: ISelectProps): JSX.Element => {
           Сформировать отчет
         </Button>
       </Select>
-      {format && <Typography color='var(--steel-90)'>Вы выбрали файл в формате .{format}.</Typography>}
+      {format && <Typography color="var(--steel-90)">Вы выбрали файл в формате .{format}.</Typography>}
     </div>
   );
 };
 NativeMenu.storyName = 'Нативное меню';
+
+export const AsyncSelectWithSearch = (): JSX.Element => {
+  const [selected, setSelected] = useState<TSelected>('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadOptions = async (): Promise<ISelectOption[]> => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    return techStackOptions;
+  };
+
+  const searchOptions = async (searchTerm: string): Promise<ISelectOption[]> => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    const filteredOptions = techStackOptions.filter(option =>
+      option.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setIsLoading(false);
+    return filteredOptions;
+  };
+
+  return (
+    <div className={styles['item-column-wrapper']}>
+      <Select
+        label="Поиск технологий"
+        options={[]}
+        isSearchable={true}
+        selected={selected}
+        onSelectionChange={setSelected}
+        onOpen={loadOptions}
+        onSearch={searchOptions}
+        isLoading={isLoading}
+      />
+    </div>
+  );
+};
+AsyncSelectWithSearch.storyName = 'Асинхронный Select с поиском';
+
+export const MultiAsyncSelect = (): JSX.Element => {
+  const [selected, setSelected] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [options, setOptions] = useState<ISelectOption[]>([]);
+
+  const loadOptions = async (): Promise<ISelectOption[]> => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const options = frameworkOptions.slice(0, 8);
+    setOptions(options);
+    setIsLoading(false);
+    return options;
+  };
+
+  const handleSelectionChange = (newSelected: string | string[]) => {
+    setSelected(Array.isArray(newSelected) ? newSelected : [newSelected]);
+  };
+
+  return (
+    <div className={styles['item-column-wrapper']}>
+      <Select
+        label="Frontend-фреймворки"
+        options={options}
+        multiple={true}
+        selected={selected}
+        onSelectionChange={handleSelectionChange}
+        onOpen={loadOptions}
+        isLoading={isLoading}
+        highlightSelected={true}
+        isAllSelectView={true}
+      />
+    </div>
+  );
+};
+MultiAsyncSelect.storyName = 'Асинхронный Select с множественным выбором';
+
+export const MultiAsyncSelectWithSearch = (): JSX.Element => {
+  const [selected, setSelected] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [options, setOptions] = useState<ISelectOption[]>([]);
+
+  const loadOptions = async (): Promise<ISelectOption[]> => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setOptions(frameworkOptions);
+    setIsLoading(false);
+    return frameworkOptions;
+  };
+
+  const searchOptions = async (searchTerm: string): Promise<ISelectOption[]> => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    const filteredOptions = options.filter(option => {
+      const searchTermLower = searchTerm.toLowerCase();
+      return (
+        getLabel(option.label).toLowerCase().includes(searchTermLower) ||
+        (option.subLabel?.toLowerCase() || '').includes(searchTermLower)
+      );
+    });
+
+    setIsLoading(false);
+    return filteredOptions;
+  };
+
+  const handleSelectionChange = (newSelected: string | string[]) => {
+    setSelected(Array.isArray(newSelected) ? newSelected : [newSelected]);
+  };
+
+  return (
+    <div className={styles['item-column-wrapper']}>
+      <Select
+        label="Frontend-фреймворки"
+        options={options}
+        multiple={true}
+        selected={selected}
+        onSelectionChange={handleSelectionChange}
+        onOpen={loadOptions}
+        onSearch={searchOptions}
+        isLoading={isLoading}
+        isSearchable={true}
+        highlightSelected={true}
+        isAllSelectView={true}
+        isClearSearchOnBlur={true}
+      />
+    </div>
+  );
+};
+MultiAsyncSelectWithSearch.storyName = 'Select с поиском, множественным выбором и асинхронной загрузкой';

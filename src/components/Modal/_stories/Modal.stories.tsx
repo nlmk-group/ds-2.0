@@ -8,9 +8,12 @@ import {
   Button,
   Dropdown,
   DropdownMenuItem,
+  IconKovsh32,
   Input,
   OptionItem,
+  Sidebar,
   SimpleSelect,
+  Tooltip,
   Typography
 } from '@components/index';
 import { positions } from '@components/Select/_stories/mocks';
@@ -23,13 +26,7 @@ import Modal from '..';
 import { IModalProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => {
-  return (
-    <Box className={styles.wrapper} alignItems="center" justifyContent="center">
-      <Story />
-    </Box>
-  );
-};
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 const defaultOptions: IAutocompleteValue[] = [
   { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
@@ -58,7 +55,10 @@ export default {
   title: 'Components/Modal/Stories',
   component: Modal,
   decorators: [withWrapper],
-  argTypes: argsTypes
+  argTypes: argsTypes,
+  parameters: {
+    layout: 'fullscreen'
+  }
 } as Meta<typeof Modal>;
 
 export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
@@ -75,12 +75,12 @@ export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
+        Содержимое модального окна
       </Modal>
     </div>
   );
 };
-ModalDefault.storyName = 'Модальное окно по умолчанию';
+ModalDefault.storyName = 'Modal по умолчанию';
 
 export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -169,12 +169,12 @@ export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
+        Содержимое модального окна
       </Modal>
     </div>
   );
 };
-ModalScroll.storyName = 'Открытие модального окна убирает скролл на странице';
+ModalScroll.storyName = 'Открытие Modal убирает скролл на странице';
 ModalScroll.args = { disablePageScroll: true };
 
 export const DraggableModal = (argsTypes: IModalProps): ReactNode => {
@@ -191,12 +191,12 @@ export const DraggableModal = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="primary">Это перетаскиваемое модальное окно.</Typography>
+        Это перетаскиваемое модальное окно.
       </Modal>
     </div>
   );
 };
-DraggableModal.storyName = 'Перетаскиваемое модальное окно';
+DraggableModal.storyName = 'Перетаскиваемое Modal';
 DraggableModal.args = { isDraggable: true };
 
 export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
@@ -218,9 +218,7 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
         }}
       >
         <Box flexDirection="column" gap="8px">
-          <Typography color="primary" style={{ marginBottom: '10px' }}>
-            Это модальное окно изменяемого размера.
-          </Typography>
+          <Typography style={{ marginBottom: '10px' }}>Это модальное окно изменяемого размера.</Typography>
           <DatePicker withPortal value={value} onChange={onChange} />
           <SimpleSelect
             value={selected}
@@ -265,5 +263,50 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-ResizableModal.storyName = 'Модальное окно изменяемого размера';
+ResizableModal.storyName = 'Modal изменяемого размера';
 ResizableModal.args = { isResizable: true };
+
+export const ModalWithSidebar = (argsTypes: IModalProps): ReactNode => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
+
+  return (
+    <Sidebar
+      variant="burger"
+      orientation="vertical"
+      isLoggedIn={true}
+      systemName="My System"
+      userName="John"
+      userSurname="Doe"
+      onOpenUser={() => console.log('Open user profile')}
+      onLogout={() => console.log('Logout')}
+      onLogin={() => console.log('Login')}
+      onSearch={() => console.log('Search')}
+      onClickLogo={() => console.log('Logo clicked')}
+      currentPath={currentPath}
+    >
+      <Sidebar.MenuItem
+        path="tasks"
+        label="Задание на добавление"
+        position="top"
+        icon="IconKovsh32"
+        onClick={() => setCurrentPath('tasks')}
+      >
+        <Button onClick={() => setIsOpen(true)}>Модальное окно</Button>
+        <Modal
+          {...argsTypes}
+          isOpen={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+            action('modalClosed')();
+          }}
+        >
+          <Tooltip title="Текст">Модальное окно.</Tooltip>
+        </Modal>
+      </Sidebar.MenuItem>
+      <Sidebar.Avatar userName="John" userSurname="Doe" />
+    </Sidebar>
+  );
+};
+ModalWithSidebar.storyName = 'Modal с боковым меню и тултипом';
+DraggableModal.args = { isDraggable: true };

@@ -10,7 +10,7 @@
   padding: 8px 0;
   max-height: 240px;
   overflow: auto;
-  z-index: calc(infinity);
+  z-index: 1000000;
 
   &-small {
     margin-top: 8px;

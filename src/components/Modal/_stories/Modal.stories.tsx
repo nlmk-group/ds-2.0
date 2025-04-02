@@ -8,12 +8,9 @@ import {
   Button,
   Dropdown,
   DropdownMenuItem,
-  IconKovsh32,
   Input,
   OptionItem,
-  Sidebar,
   SimpleSelect,
-  TimePicker,
   Tooltip,
   Typography
 } from '@components/index';
@@ -27,7 +24,13 @@ import Modal from '..';
 import { IModalProps } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
+const withWrapper = (Story: any) => {
+  return (
+    <Box className={styles.wrapper} alignItems="center" justifyContent="center">
+      <Story />
+    </Box>
+  );
+};
 
 const defaultOptions: IAutocompleteValue[] = [
   { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
@@ -56,10 +59,7 @@ export default {
   title: 'Components/Modal/Stories',
   component: Modal,
   decorators: [withWrapper],
-  argTypes: argsTypes,
-  parameters: {
-    layout: 'fullscreen'
-  }
+  argTypes: argsTypes
 } as Meta<typeof Modal>;
 
 export const ModalDefault = (argsTypes: IModalProps): ReactNode => {

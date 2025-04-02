@@ -1,6 +1,7 @@
 .wrapper {
   background-color: var(--unique-background);
-  min-height: 100vh;
-  display: flex;
-  overflow-x: hidden;
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+  min-height: 60vh;
 }

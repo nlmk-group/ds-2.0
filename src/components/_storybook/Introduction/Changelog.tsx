@@ -23,6 +23,93 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.1 - <span className={styles.date}>02.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-autocomplete-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Autocomplete
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TimePicker
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ToolTip
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено значение z-index на корректное</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              .<li className={styles['left-padding']}>- Увеличено значение z-index для работы с Tooltip</li>
+              <li className={styles['left-padding']}>- Удалены типографии из историй</li>
+              <li className={styles['left-padding']}>- Добавлен цвет текста по умолчанию</li>
+              <li className={styles['left-padding']}>- Добавлена история с использованием Tooltip</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.0 - <span className={styles.date}>27.03.25</span>
           </Typography>
           <Chip variant="outline" color="warning">

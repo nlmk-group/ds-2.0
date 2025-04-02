@@ -37,7 +37,7 @@ jobs:
         run: yarn test:ci
 
       - name: Build library
-        run: yarn snowpack:build
+        run: yarn build
 
       - name: Build Storybook
         run: yarn storybook:build

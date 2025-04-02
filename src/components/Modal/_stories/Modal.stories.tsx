@@ -13,6 +13,7 @@ import {
   OptionItem,
   Sidebar,
   SimpleSelect,
+  TimePicker,
   Tooltip,
   Typography
 } from '@components/index';
@@ -202,6 +203,7 @@ DraggableModal.args = { isDraggable: true };
 export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, onChange] = useState(new Date());
+
   const [selected, setSelected] = useState('');
   const [items, setItems] = useState<IAutocompleteValue[]>(defaultOptions);
   const [selectedAutocomplete, setSelectedAutocomplete] = useState<IAutocompleteValue | undefined>(undefined);
@@ -266,47 +268,25 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
 ResizableModal.storyName = 'Modal изменяемого размера';
 ResizableModal.args = { isResizable: true };
 
-export const ModalWithSidebar = (argsTypes: IModalProps): ReactNode => {
+export const ModalWithTooltip = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentPath, setCurrentPath] = useState('');
 
   return (
-    <Sidebar
-      variant="burger"
-      orientation="vertical"
-      isLoggedIn={true}
-      systemName="My System"
-      userName="John"
-      userSurname="Doe"
-      onOpenUser={() => console.log('Open user profile')}
-      onLogout={() => console.log('Logout')}
-      onLogin={() => console.log('Login')}
-      onSearch={() => console.log('Search')}
-      onClickLogo={() => console.log('Logo clicked')}
-      currentPath={currentPath}
-    >
-      <Sidebar.MenuItem
-        path="tasks"
-        label="Задание на добавление"
-        position="top"
-        icon="IconKovsh32"
-        onClick={() => setCurrentPath('tasks')}
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Открыть перетаскиваемое модальное окно</Button>
+
+      <Modal
+        {...argsTypes}
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+          action('modalClosed')();
+        }}
       >
-        <Button onClick={() => setIsOpen(true)}>Модальное окно</Button>
-        <Modal
-          {...argsTypes}
-          isOpen={isOpen}
-          onClose={() => {
-            setIsOpen(false);
-            action('modalClosed')();
-          }}
-        >
-          <Tooltip title="Текст">Модальное окно.</Tooltip>
-        </Modal>
-      </Sidebar.MenuItem>
-      <Sidebar.Avatar userName="John" userSurname="Doe" />
-    </Sidebar>
+        <Tooltip title="Модальное окно">Это перетаскиваемое модальное окно.</Tooltip>
+      </Modal>
+    </div>
   );
 };
-ModalWithSidebar.storyName = 'Modal с боковым меню и тултипом';
-DraggableModal.args = { isDraggable: true };
+ModalWithTooltip.storyName = 'Modal с тултипом';
+ModalWithTooltip.args = { isDraggable: true };

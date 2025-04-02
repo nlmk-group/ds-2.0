@@ -1,5 +1,7 @@
 # Компонент Sidebar
 
+## Версия компонента v3.0
+
 Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения
 
 ## Использование
@@ -31,23 +33,27 @@ export default App;
 
 ## Props
 
-| Prop            | Type                            | Default                             | Description                                           |
-| --------------- | ------------------------------- | ----------------------------------- | ----------------------------------------------------- |
-| orientation     | `${ESidebarOrientationMapping}` | ESidebarOrientationMapping.vertical | Ориентация бокового меню                              |
-| variant         | `${ESidebarVariantMapping}`     | ESidebarVariantMapping.default      | Вариант бокового меню                                 |
-| allowFavorites  | boolean                         | false                               | Разрешает ли меню избранное                           |
-| isLoggedIn      | boolean                         | -                                   | Логин                                                 |
-| systemName      | string                          | -                                   | Системное имя                                         |
-| userName        | string                          | -                                   | Имя пользователя                                      |
-| userSurname     | string                          | -                                   | Фамилия пользователя                                  |
-| onOpenUser      | () => void                      | -                                   | Функция, вызываемая при открытии профиля пользователя |
-| onLogout        | () => void                      | -                                   | Функция, вызываемая при выходе из аккаунта            |
-| onLogin         | () => void                      | -                                   | Функция, вызываемая при входе в аккаунт               |
-| onSearch        | () => void                      | -                                   | Функция, вызываемая при поиске                        |
-| onClickLogo     | () => void                      | -                                   | Функция, вызываемая при клике на логотип              |
-| currentPath     | string                          | -                                   | Текущий путь (URL) для определения активного элемента |
-| defaultMenuOpen | boolean                         | false                               | Флаг начального состояния меню (развернуто/свернуто)  |
-| overlay         | boolean                         | false                               | Флаг отображения оверлея при открытом подменю         |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| orientation | `${ESidebarOrientationMapping}` | ESidebarOrientationMapping.vertical | Ориентация бокового меню |
+| variant | `${ESidebarVariantMapping}` | ESidebarVariantMapping.default | Вариант бокового меню |
+| allowFavorites | boolean | false | Разрешает ли меню избранное |
+| isLoggedIn | boolean | - | Логин |
+| systemName | string | - | Системное имя |
+| userName | string | - | Имя пользователя |
+| userSurname | string | - | Фамилия пользователя |
+| onOpenUser | () => void | - | Функция, вызываемая при открытии профиля пользователя |
+| onLogout | () => void | - | Функция, вызываемая при выходе из аккаунта |
+| onLogin | () => void | - | Функция, вызываемая при входе в аккаунт |
+| onSearch | () => void | - | Функция, вызываемая при поиске |
+| onClickLogo | () => void | - | Функция, вызываемая при клике на логотип |
+| currentPath | string | - | Текущий путь (URL) для определения активного элемента |
+| defaultMenuOpen | boolean | false | Флаг начального состояния меню (развернуто/свернуто) |
+| overlay | boolean | false | Флаг отображения оверлея при открытом подменю |
+| logo | ReactNode | LogoSvgIcon | Кастомный логотип для отображения |
+| isShowUserControl | boolean | true | Флаг для отображения управления пользователем |
+| className | string | - | Дополнительный класс для стилизации компонента |
+| style | React.CSSProperties | - | Инлайн-стили для компонента |
 
 ## Orientation
 
@@ -158,6 +164,11 @@ export default App;
 
 /* Контейнер учетной записи пользователя */
 [data-ui-sidebar-user-control] {
+  /* Ваши стили */
+}
+
+/* Элемент меню */
+[data-ui-sidebar-menu-item] {
   /* Ваши стили */
 }
 ```

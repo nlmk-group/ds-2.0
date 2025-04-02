@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Link, MemoryRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Breadcrumbs from '@components/Breadcrumbs';
 import { IBreadcrumbsProps } from '@components/Breadcrumbs/types';
@@ -18,15 +18,13 @@ export default {
 export const BreadcrumbsDefault = (argsTypes: IBreadcrumbsProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      <MemoryRouter>
-        <Breadcrumbs {...argsTypes}>
-          {breadcrumbsLinks.map((link, index) => (
-            <Breadcrumbs.Crumb key={index}>
-              <Link to={link.href}>{link.label}</Link>
-            </Breadcrumbs.Crumb>
-          ))}
-        </Breadcrumbs>
-      </MemoryRouter>
+      <Breadcrumbs {...argsTypes}>
+        {breadcrumbsLinks.map((link, index) => (
+          <Breadcrumbs.Crumb key={index}>
+            <Link to={link.href}>{link.label}</Link>
+          </Breadcrumbs.Crumb>
+        ))}
+      </Breadcrumbs>
     </div>
   );
 };

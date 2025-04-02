@@ -1,12 +1,29 @@
 #!/bin/bash
 
-## Clean lib folder && Build package using snowpack configuration
-yarn snowpack:build
-## Add TS types to package
+## Подготовка к сборке
+yarn convert:dark-theme-tokens
+
+## Очистка директорий
+rm -rf lib
+rm -rf cache
+
+## Сборка JS с Vite
+BUILD_MODE=lib yarn vite build
+
+## Создание директорий
+mkdir -p lib/css
+mkdir -p lib/dist/components
+
+## Копирование CSS файлов
+cp -r public/css/* lib/css/
+
+## Генерация типов
+echo "Generating TypeScript declarations..."
 yarn build:types
-## Copy index files to lib root level
-cp lib/dist/components/index.js lib/dist/components/index.d.ts lib
-## Remove fonts from lib
-rm -rf lib/fonts
-## Run changes for path script
+
+## Выполнение скрипта для изменения путей
 node script/changePath.js
+
+## Проверка структуры созданного пакета
+echo "✅ Build completed. Contents of lib directory:"
+ls -la lib/

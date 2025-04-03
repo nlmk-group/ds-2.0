@@ -51,7 +51,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
                 Tabs
               </Link>
-              .<li className={styles['left-padding']}>- Высота компонента Tab уменьшена с 44px до 40px</li>
+              .<li className={styles['left-padding']}>- Высота компонента Tab уменьшена с 44px до 38px</li>
             </li>
           </ul>
           <ul className={styles.list}>

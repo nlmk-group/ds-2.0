@@ -125,4 +125,16 @@ export declare const NativeMenu: {
     (argTypes: ISelectProps): JSX.Element;
     storyName: string;
 };
+export declare const AsyncSelectWithSearch: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const MultiAsyncSelect: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const MultiAsyncSelectWithSearch: {
+    (): JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Select.stories.d.ts.map

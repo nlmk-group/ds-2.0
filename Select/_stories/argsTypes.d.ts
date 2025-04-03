@@ -195,5 +195,27 @@ export declare const argsTypes: {
             type: string;
         };
     };
+    isLoading: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    onOpen: {
+        description: string;
+        action: string;
+    };
+    onSearch: {
+        description: string;
+        action: string;
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

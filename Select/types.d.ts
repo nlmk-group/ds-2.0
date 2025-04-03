@@ -47,6 +47,9 @@ export interface ISelectProps {
     style?: CSSProperties;
     multilineOption?: boolean;
     isClearInputOnSelect?: boolean;
+    onOpen?: () => Promise<ISelectOption[]>;
+    onSearch?: (searchValue: string) => Promise<ISelectOption[]>;
+    isLoading?: boolean;
 }
 export interface IStealthyItem {
     option?: ISelectOption;
@@ -60,6 +63,7 @@ export interface IMenu {
     availableOptionsCount: number;
     filteredOptions: ISelectOption[];
     multilineOption?: boolean;
+    isLoading?: boolean;
 }
 export interface ISelectSharedProperties {
     multiple: boolean;

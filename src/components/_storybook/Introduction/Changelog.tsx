@@ -23,6 +23,20 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.1 - <span className={styles.date}>03.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .<li className={styles['left-padding']}>- Изменена высота каждого Tab на 40px</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.0 - <span className={styles.date}>27.03.25</span>
           </Typography>
           <Chip variant="outline" color="warning">

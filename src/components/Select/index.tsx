@@ -332,8 +332,8 @@ const Select: FC<ISelectProps> = ({
             onChange={e => {
               if (isSearchable) {
                 setSearchTerm(e.target.value);
-
-                if (onSearch && typeof onSearch === 'function' && e.target.value) {
+            
+                if (onSearch && typeof onSearch === 'function') {
                   handleAsyncSearch(e.target.value);
                 }
               }

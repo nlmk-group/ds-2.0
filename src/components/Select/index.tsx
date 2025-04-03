@@ -4,7 +4,6 @@ import { usePopper } from 'react-popper';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ClickAwayListener } from '@components/index';
-import { InputWithRef } from '@components/Select/subcomponents/SelectInput';
 import clsx from 'clsx';
 
 import { ISelectOption, ISelectProps, ISelectSharedProperties } from './types';
@@ -15,6 +14,7 @@ import { getLabel } from './helpers';
 import BadgeAmount from './subcomponents/BadgeAmount';
 import Menu from './subcomponents/Menu';
 import SelectButton from './subcomponents/SelectButton';
+import { InputWithRef } from './subcomponents/SelectInput';
 import StealthyItem from './subcomponents/StealthyItem';
 
 export const SelectSharedProperties = createContext<ISelectSharedProperties>({
@@ -70,12 +70,12 @@ const Select: FC<ISelectProps> = ({
   isLoading = false
 }) => {
   const [loading, setLoading] = useState(isLoading);
-  const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(null);
+  const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
   const [hasLoadedOptions, setHasLoadedOptions] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState<ISelectOption[] | null>(null);
-  
+  const [filteredOptions, setFilteredOptions] = useState<ISelectOption[] | null>(options);
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
@@ -105,16 +105,17 @@ const Select: FC<ISelectProps> = ({
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
   const generateDisplayValue = (): string => {
-    if (!asyncOptions) return '';
-    
+    const optionsToUse = asyncOptions || options;
+    if (!optionsToUse) return '';
+
     if (multiple) {
-      return asyncOptions
+      return optionsToUse
         .filter((option: ISelectOption) => selected?.includes(option.value))
         .map((option: ISelectOption) => getLabel(option.label))
         .join(', ');
     }
 
-    return getLabel(asyncOptions?.find((option: ISelectOption) => option.value === selected)?.label || '');
+    return getLabel(optionsToUse?.find((option: ISelectOption) => option.value === selected)?.label || '');
   };
 
   const handleOutsideClick = () => {
@@ -128,37 +129,20 @@ const Select: FC<ISelectProps> = ({
   };
 
   const handleFocusClick = async () => {
-    setIsOpen(true);
     if (onFocus) {
       onFocus();
     }
 
-    if (onOpen && !hasLoadedOptions) {
+    setIsOpen(true);
+
+    if (onOpen && typeof onOpen === 'function' && !hasLoadedOptions) {
       setLoading(true);
       try {
         const fetchedOptions = await onOpen();
         setAsyncOptions(fetchedOptions);
         setFilteredOptions(fetchedOptions);
         setHasLoadedOptions(true);
-      } catch (error) {
-        console.error('Ошибка при загрузке опций:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
-
-  const handleSearch = async (inputValue: string) => {
-    setSearchTerm(inputValue);
-
-    if (onSearch) {
-      setLoading(true);
-      try {
-        const searchResults = await onSearch(inputValue);
-        setAsyncOptions(searchResults);
-        setFilteredOptions(searchResults);
-      } catch (error) {
-        console.error('Ошибка при поиске опций:', error);
+      } catch {
       } finally {
         setLoading(false);
       }
@@ -173,43 +157,61 @@ const Select: FC<ISelectProps> = ({
   }, [options, onOpen]);
 
   useEffect(() => {
-    if (isSearchable && !onSearch && asyncOptions) {
-      setFilteredOptions(
-        asyncOptions.filter(option => 
-          getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
+    if (isSearchable) {
+      const optionsToFilter = asyncOptions || options;
+      if (optionsToFilter) {
+        setFilteredOptions(
+          optionsToFilter.filter(option => getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
+    } else {
+      setFilteredOptions(asyncOptions || options);
     }
-  }, [searchTerm, asyncOptions, isSearchable, onSearch]);
+  }, [searchTerm, asyncOptions, options, isSearchable]);
+
+  const handleAsyncSearch = async (value: string) => {
+    if (onSearch && typeof onSearch === 'function') {
+      setLoading(true);
+      try {
+        const results = await onSearch(value);
+        setAsyncOptions(results);
+        setFilteredOptions(results);
+      } catch (err) {
+        console.error('Ошибка при выполнении поиска:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   const availableOptionsCount = useMemo(() => {
-    return asyncOptions ? asyncOptions.filter(option => !option.disabled).length : 0;
-  }, [asyncOptions]);
+    const optionsToUse = asyncOptions || options;
+    return optionsToUse ? optionsToUse.filter(option => !option.disabled).length : 0;
+  }, [asyncOptions, options]);
 
   const handleSelect = (value: string, checked: boolean) => {
     if (multiple) {
-      const newSelected = checked 
+      const newSelected = checked
         ? (selected as string[]).filter(selectedValue => selectedValue !== value)
         : [...(selected as string[]), value];
-        
+
       onSelectionChange(newSelected);
     } else {
       setIsOpen(false);
       onSelectionChange(value);
     }
-  
+
     if (isClearInputOnSelect) {
       setSearchTerm('');
     }
   };
 
   const handleSelectAllClick = () => {
-    if (!asyncOptions) return;
+    const optionsToUse = asyncOptions || options;
+    if (!optionsToUse) return;
 
     if (multiple) {
-      const allValues = asyncOptions
-        .filter(option => !option.disabled)
-        .map(option => option.value);
+      const allValues = optionsToUse.filter(option => !option.disabled).map(option => option.value);
 
       if (selected?.length === availableOptionsCount) {
         onSelectionChange([]);
@@ -273,7 +275,7 @@ const Select: FC<ISelectProps> = ({
             <div ref={listRef}>
               <Menu
                 availableOptionsCount={availableOptionsCount}
-                filteredOptions={filteredOptions || []}
+                filteredOptions={filteredOptions || options || []}
                 multilineOption={multilineOption}
                 isLoading={loading}
               />
@@ -309,7 +311,7 @@ const Select: FC<ISelectProps> = ({
             data-testid="select-inconspicuous"
           >
             <StealthyItem
-              option={!multiple ? asyncOptions?.filter(item => item.value === selected)[0] : undefined}
+              option={!multiple ? (asyncOptions || options)?.filter(item => item.value === selected)[0] : undefined}
               size={size}
               displayValue={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
               multiple={multiple}
@@ -327,7 +329,15 @@ const Select: FC<ISelectProps> = ({
             ref={setInputRef}
             disabled={disabled}
             value={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
-            onChange={e => isSearchable && (onSearch ? handleSearch(e.target.value) : setSearchTerm(e.target.value))}
+            onChange={e => {
+              if (isSearchable) {
+                setSearchTerm(e.target.value);
+
+                if (onSearch && typeof onSearch === 'function' && e.target.value) {
+                  handleAsyncSearch(e.target.value);
+                }
+              }
+            }}
             readOnly={!isSearchable}
             onFocus={handleFocusClick}
             onKeyDown={handleKeyDown}

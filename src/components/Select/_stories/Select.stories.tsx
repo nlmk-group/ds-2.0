@@ -102,7 +102,7 @@ export const SelectSingle = (argTypes: ISelectProps): JSX.Element => {
 SelectSingle.storyName = 'Одиночный выбор';
 
 export const SelectWithSearch = (argTypes: ISelectProps): JSX.Element => {
-  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const { options: ignoredOptions, onSearch, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);
 
   return (
@@ -121,7 +121,7 @@ export const SelectWithSearch = (argTypes: ISelectProps): JSX.Element => {
 SelectWithSearch.storyName = 'Выбор с поиском';
 
 export const SelectWithSearchByEnter = (argTypes: ISelectProps): JSX.Element => {
-  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const { options: ignoredOptions, onSearch, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);
 
   return (
@@ -323,7 +323,7 @@ export const SelectEmpty = (argTypes: ISelectProps): JSX.Element => {
 SelectEmpty.storyName = 'Пустой Select';
 
 export const SelectWithClearSearchOnBlur = (argTypes: ISelectProps): JSX.Element => {
-  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const { options: ignoredOptions, onSearch, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>([]);
 
   return (
@@ -589,7 +589,7 @@ export const AsyncSelectWithSearch = (): JSX.Element => {
   };
 
   return (
-    <div className={styles['item-column-wrapper']}>
+    <div style={{ padding: '50px' }}>
       <Select
         label="Поиск технологий"
         options={[]}
@@ -624,7 +624,7 @@ export const MultiAsyncSelect = (): JSX.Element => {
   };
 
   return (
-    <div className={styles['item-column-wrapper']}>
+    <div style={{ padding: '50px' }}>
       <Select
         label="Frontend-фреймворки"
         options={options}
@@ -675,7 +675,7 @@ export const MultiAsyncSelectWithSearch = (): JSX.Element => {
   };
 
   return (
-    <div className={styles['item-column-wrapper']}>
+    <div style={{ padding: '50px' }}>
       <Select
         label="Frontend-фреймворки"
         options={options}

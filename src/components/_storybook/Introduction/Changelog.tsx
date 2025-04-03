@@ -60,7 +60,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
                 Table
               </Link>
-              .<li className={styles['left-padding']}>- Установлен цвет текста по умолчанию для компонента.</li>
+              .<li className={styles['left-padding']}>- Установлен цвет текста по умолчанию для компонента</li>
             </li>
           </ul>
         </div>

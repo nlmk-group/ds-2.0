@@ -51,6 +51,21 @@ export interface ISelectProps {
   style?: CSSProperties;
   multilineOption?: boolean;
   isClearInputOnSelect?: boolean;
+
+  /**
+   * Функция для загрузки опций при открытии селекта
+   */
+  onOpen?: () => Promise<ISelectOption[]>;
+
+  /**
+   * Функция для поиска опций при вводе значения
+   */
+  onSearch?: (searchValue: string) => Promise<ISelectOption[]>;
+
+  /**
+   * Состояние загрузки опций
+   */
+  isLoading?: boolean;
 }
 
 export interface IStealthyItem {
@@ -65,6 +80,8 @@ export interface IStealthyItem {
 export interface IMenu {
   availableOptionsCount: number;
   filteredOptions: ISelectOption[];
+  multilineOption?: boolean;
+  isLoading?: boolean;
 }
 
 export interface ISelectSharedProperties {
@@ -82,7 +99,7 @@ export interface ISelectSharedProperties {
   withPortal?: boolean;
 }
 
-export type IMenuItem = ISelectOption
+export type IMenuItem = ISelectOption;
 
 export interface IBadgeAmount {
   children: number;

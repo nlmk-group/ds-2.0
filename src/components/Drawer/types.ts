@@ -1,5 +1,7 @@
 import React, { CSSProperties } from 'react';
 
+import { TClickAwayEvent } from '@components/ClickAwayListener/types';
+
 import { EDrawerPosition } from './enums';
 
 export interface IDrawerProps {
@@ -14,4 +16,5 @@ export interface IDrawerProps {
   disableBackdropClick?: boolean;
   isViewCloseButton?: boolean;
   overlay?: boolean;
+  eventType?: TClickAwayEvent;
 }

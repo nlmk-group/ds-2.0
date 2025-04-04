@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { EButtonSize } from '@components/Button/enums';
+import { EClickAwayEvent } from '@components/ClickAwayListener/types';
 import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -39,7 +40,8 @@ const Drawer: FC<IDrawerProps> = ({
   height = 'var(--drawer-default-height)',
   disableBackdropClick,
   isViewCloseButton = true,
-  overlay = true
+  overlay = true,
+  eventType = EClickAwayEvent.mouseup
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const [isClosing, setIsClosing] = useState(false);
@@ -87,6 +89,7 @@ const Drawer: FC<IDrawerProps> = ({
       data-testid="DRAWER"
     >
       <ClickAwayListener
+        eventType={eventType}
         className={clsx(styles.wrapper, styles[position], {
           [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
           [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,

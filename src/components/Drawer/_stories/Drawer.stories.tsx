@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Box, Button, Drawer, Input, Typography } from '@components/index';
+import { Avatar, Box, Button, Drawer, Input, Sidebar, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -8,21 +8,14 @@ import { IDrawerProps } from '../types';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => {
-  return (
-    <Box alignItems="center" justifyContent="center" st={{ height: '100vh' }}>
-      <Story />
-    </Box>
-  );
+  return <Story />;
 };
 
 export default {
   title: 'Components/Drawer/Stories',
   component: Drawer,
   decorators: [withWrapper],
-  argTypes: argsTypes,
-  parameters: {
-    layout: 'fullscreen'
-  }
+  argTypes: argsTypes
 } as Meta<typeof Drawer>;
 
 export const DrawerDefault = (args: IDrawerProps): ReactNode => {
@@ -30,7 +23,9 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>
+        Открыть Drawer
+      </Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -39,14 +34,16 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
           action('drawerClosed')();
         }}
       >
-        <Box flexDirection="column" justifyContent="center" gap="var(--20-size)">
+        <Box flexDirection="column" justifyContent="center" gap="20px">
           <Typography color="primary">Содержимое Drawer</Typography>
           <Input label="Имя" />
           <Input label="Номер" />
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
             <Button type="button">Отправить</Button>
-            <Button type="button" variant="secondary">Отменить</Button>
+            <Button type="button" variant="secondary">
+              Отменить
+            </Button>
           </Box>
         </Box>
       </Drawer>
@@ -60,7 +57,9 @@ export const DrawerLeft = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>
+        Открыть Drawer слева
+      </Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -69,14 +68,16 @@ export const DrawerLeft = (args: IDrawerProps): ReactNode => {
           action('drawerClosed')();
         }}
       >
-        <Box flexDirection="column" justifyContent="center" gap="var(--20-size)">
+        <Box flexDirection="column" justifyContent="center" gap="20px">
           <Typography color="primary">Drawer, открывающийся слева</Typography>
           <Input label="Имя" />
           <Input label="Номер" />
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
             <Button type="button">Отправить</Button>
-            <Button type="button" variant="secondary">Отменить</Button>
+            <Button type="button" variant="secondary">
+              Отменить
+            </Button>
           </Box>
         </Box>
       </Drawer>
@@ -93,7 +94,9 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
 
   return (
     <div>
-      <Button type="button" onClick={() => setIsOpen(true)}>Открыть Drawer слева</Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>
+        Открыть Drawer слева
+      </Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -102,7 +105,7 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
           action('drawerClosed')();
         }}
       >
-        <Box flexDirection="column" justifyContent="center" gap="var(--20-size)">
+        <Box flexDirection="column" justifyContent="center" gap="20px">
           <Box alignItems="center" justifyContent="center">
             <Typography color="primary">Drawer, открывающийся слева</Typography>
           </Box>
@@ -111,7 +114,9 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
           <Input label="Почта" />
           <Box justifyContent="space-between" alignItems="center">
             <Button type="button">Отправить</Button>
-            <Button type="button" variant="secondary">Отменить</Button>
+            <Button type="button" variant="secondary">
+              Отменить
+            </Button>
           </Box>
         </Box>
       </Drawer>
@@ -121,4 +126,64 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
 DrawerWithoutCloseButton.storyName = 'Drawer без крестика';
 DrawerWithoutCloseButton.args = {
   isViewCloseButton: false
+};
+
+export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
+
+  return (
+    <div>
+      <Sidebar
+        orientation="vertical"
+        allowFavorites
+        isLoggedIn={isLoggedIn}
+        onLogout={() => setIsLoggedIn(false)}
+        onLogin={() => setIsLoggedIn(true)}
+        currentPath={currentPath}
+      >
+        <Sidebar.Avatar size="s" imageSrc="" />
+        <Sidebar.MenuItem
+          path="tasks"
+          label="Описание профиля"
+          position="top"
+          icon="IconKovsh32"
+          onClick={() => setIsOpen(true)}
+        ></Sidebar.MenuItem>
+      </Sidebar>
+      <Drawer
+        {...args}
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+          action('drawerClosed')();
+        }}
+      >
+        <Box flexDirection="column" gap="20px">
+          <Typography variant="Heading3">Профиль пользователя</Typography>
+          <Box gap="16px" alignItems="center">
+            <Avatar />
+            <Typography variant="Body1-Medium">Иван Иванов</Typography>
+          </Box>
+          <Box style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '24px' }}>
+            <Input pseudo label="Email" value="Ivanov_ii@nlmk.com" />
+            <Input pseudo label="Должность" value="Руководитель проекта" />
+            <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
+            <Input pseudo label="Полномочия" value="Не указано" />
+          </Box>
+          <Box gap="8px" alignItems="center">
+            <Button type="button">Редактировать</Button>
+            <Button type="button" variant="secondary">
+              Закрыть
+            </Button>
+          </Box>
+        </Box>
+      </Drawer>
+    </div>
+  );
+};
+DrawerSidebar.storyName = 'Drawer с боковой панелью';
+DrawerSidebar.parameters = {
+  layout: 'fullscreen'
 };

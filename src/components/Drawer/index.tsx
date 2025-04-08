@@ -41,7 +41,7 @@ const Drawer: FC<IDrawerProps> = ({
   disableBackdropClick,
   isViewCloseButton = true,
   overlay = true,
-  eventType = EClickAwayEvent.mouseup
+  eventType = EClickAwayEvent.mousedown
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const [isClosing, setIsClosing] = useState(false);

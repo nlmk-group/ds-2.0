@@ -88,23 +88,20 @@ const SettingsTableExample = () => {
   }, [table]);
 
   return (
-    <div className={styles.tableWrapper}>
-      <div className={styles.tableHeader}>
-        <h3>Таблица с настройками колонок</h3>
-        <CustomSettings
-          columns={columns}
-          visibleColumns={columnVisibility}
-          columnOrder={tableColumnOrder}
-          pinnedColumns={pinnedColumns}
-          onVisibilityChange={handleVisibilityChange}
-          onOrderChange={handleOrderChange}
-          onPinChange={handlePinChange}
-        />
-      </div>
+    <div>
+      <CustomSettings
+        columns={columns}
+        visibleColumns={columnVisibility}
+        columnOrder={tableColumnOrder}
+        pinnedColumns={pinnedColumns}
+        onVisibilityChange={handleVisibilityChange}
+        onOrderChange={handleOrderChange}
+        onPinChange={handlePinChange}
+      />
 
       <div className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders>
-          <Thead>
+          <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
             {table.getHeaderGroups().map(headerGroup => (
               <Row key={headerGroup.id}>
                 {headerGroup.headers.map(header => {

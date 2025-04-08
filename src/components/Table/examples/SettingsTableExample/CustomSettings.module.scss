@@ -1,0 +1,33 @@
+.columnListContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.droppableArea {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.customSettingsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 16px;
+}
+
+.searchBox {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.buttonsGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}

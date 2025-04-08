@@ -12,6 +12,7 @@ export { default as SelectableTableExample } from './SelectableTable';
 export { default as SelectableTableWithPaginationExample } from './SelectableTableWithPagination';
 export { default as SelectableTableWithGroupingHeaderExample } from './SelectableTableWithGroupingHeader';
 export { default as SelectableTableWithVirtualizationExample } from './SelectableTableWithVirtualization';
+export { default as SettingsTableExample } from './SettingsTableExample';
 export * from './utils';
 export * from './constants';
 export * from './types';

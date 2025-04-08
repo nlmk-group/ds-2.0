@@ -188,7 +188,7 @@ export const TableColumnList = <T extends object>({
               pinned={pinned}
               hasChildren={isParent}
               expanded={isExpanded}
-              draggable={!isParent}
+              draggable={true} // Разрешаем перетаскивание для всех колонок
               onVisibilityChange={visible => handleVisibilityChange(columnId, visible)}
               onPinChange={!isParent ? pinned => onPinChange(columnId, pinned) : undefined}
               onExpandChange={() => handleExpandToggle(columnId)}
@@ -206,7 +206,6 @@ export const TableColumnList = <T extends object>({
       );
     };
 
-    // Рендерим список
     return (
       <div className={styles.droppableArea}>
         {rootCols.map((column, index) => renderColumnWithChildren(column, index))}

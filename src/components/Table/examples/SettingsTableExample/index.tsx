@@ -18,8 +18,24 @@ import { columns, data } from './constants';
 import { CustomSettings } from './CustomSettings';
 
 const SettingsTableExample = () => {
+  const initVisibility = () => {
+    const visibility: VisibilityState = {};
+    const processColumns = (cols: any[]) => {
+      cols.forEach(col => {
+        if (col.id) {
+          visibility[col.id] = true;
+        }
+        if (col.columns) {
+          processColumns(col.columns);
+        }
+      });
+    };
+    processColumns(columns);
+    return visibility;
+  };
+
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(initVisibility());
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>([]);
   const [columnPinning, setColumnPinning] = useState<ColumnPinningState>({});
   const [columnResizeMode] = useState<ColumnResizeMode>('onChange');
@@ -94,6 +110,7 @@ const SettingsTableExample = () => {
         visibleColumns={columnVisibility}
         columnOrder={tableColumnOrder}
         pinnedColumns={pinnedColumns}
+        defaultVisibleColumns={initVisibility()}
         onVisibilityChange={handleVisibilityChange}
         onOrderChange={handleOrderChange}
         onPinChange={handlePinChange}

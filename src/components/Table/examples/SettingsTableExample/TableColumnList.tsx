@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+import React, { useEffect, useState } from 'react';
 
 import { ColumnSetting } from '@components/Table';
 import { ColumnDef } from '@tanstack/react-table';
@@ -8,118 +7,73 @@ import { ITableColumnListProps } from './types';
 
 import styles from './CustomSettings.module.scss';
 
-// Расширенный тип для поддержки вложенных колонок
 type TableColumn<T> = ColumnDef<T, any> & {
   parent?: { id: string };
   columns?: TableColumn<T>[];
+  accessorKey?: string;
 };
 
 export const TableColumnList = <T extends object>({
   columns,
   visibleColumns,
-  columnOrder,
   pinnedColumns,
   onVisibilityChange,
-  onOrderChange,
-  onPinChange
+  onPinChange,
+  columnOrder: _columnOrder,
+  onOrderChange: _onOrderChange
 }: ITableColumnListProps<T>) => {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+  const [flattenedColumns, setFlattenedColumns] = useState<TableColumn<T>[]>([]);
+  const [columnsMap, setColumnsMap] = useState<Record<string, TableColumn<T>>>({});
+  const [localVisibleColumns, setLocalVisibleColumns] = useState<Record<string, boolean>>(visibleColumns);
 
-  const normalizeColumns = (cols: ColumnDef<T, any>[]): TableColumn<T>[] => {
-    // Преобразуем колонки к нужному типу
-    const typedColumns = cols as TableColumn<T>[];
+  useEffect(() => {
+    const flatColumns: TableColumn<T>[] = [];
+    const colMap: Record<string, TableColumn<T>> = {};
+    const initialVisibility: Record<string, boolean> = { ...visibleColumns };
 
-    // Находим корневые колонки (без родителей)
-    const rootColumns = typedColumns.filter(col => !col.parent);
-
-    // Создаем карту дочерних колонок
-    const childrenMap: Record<string, TableColumn<T>[]> = {};
-    typedColumns.forEach(col => {
-      if (col.parent?.id) {
-        if (!childrenMap[col.parent.id]) {
-          childrenMap[col.parent.id] = [];
+    let idCounter = 0;
+    const ensureColumnHasId = (col: any): any => {
+      if (!col.id) {
+        if (col.accessorKey) {
+          col.id = col.accessorKey;
+        } else if (col.header && typeof col.header === 'string') {
+          col.id = col.header.replace(/\s+/g, '_').toLowerCase();
+        } else {
+          col.id = `column_${idCounter++}`;
         }
-        childrenMap[col.parent.id].push(col);
       }
-    });
+      return col;
+    };
 
-    const result: TableColumn<T>[] = [];
+    const processColumns = (cols: any[]) => {
+      cols.forEach(col => {
+        const processedCol = ensureColumnHasId(col);
+        const colId = processedCol.id;
 
-    const processColumns = (columns: TableColumn<T>[], depth = 0) => {
-      const sortedColumns = [...columns].sort((a, b) => {
-        if (!a.id || !b.id) return 0;
-        const aIndex = columnOrder.indexOf(a.id);
-        const bIndex = columnOrder.indexOf(b.id);
-        if (aIndex === -1 && bIndex === -1) return 0;
-        if (aIndex === -1) return 1;
-        if (bIndex === -1) return -1;
-        return aIndex - bIndex;
-      });
-
-      sortedColumns.forEach(col => {
-        if (!col.id) return;
-
-        result.push({
-          ...col,
-          meta: {
-            ...col.meta,
-            depth
-          }
-        });
-
-        let colChildren: TableColumn<T>[] = [];
-        if (col.columns && col.columns.length > 0) {
-          colChildren = col.columns;
-        } else if (col.id && childrenMap[col.id]) {
-          colChildren = childrenMap[col.id];
+        if (initialVisibility[colId] === undefined) {
+          initialVisibility[colId] = true;
         }
 
-        const hasChildren = colChildren.length > 0;
-        const isExpanded = col.id ? expandedGroups[col.id] || false : false;
+        flatColumns.push(processedCol);
+        colMap[colId] = processedCol;
 
-        if (hasChildren && isExpanded) {
-          processColumns(colChildren, depth + 1);
+        if (processedCol.columns && processedCol.columns.length > 0) {
+          processColumns(processedCol.columns);
         }
       });
     };
 
-    processColumns(rootColumns);
-    return result;
-  };
+    processColumns(columns);
 
-  const normalizedColumns = normalizeColumns(columns);
+    setFlattenedColumns(flatColumns);
+    setColumnsMap(colMap);
+    setLocalVisibleColumns(initialVisibility);
+  }, [columns, visibleColumns]);
 
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) return;
-
-    const sourceIndex = result.source.index;
-    const destinationIndex = result.destination.index;
-
-    if (sourceIndex === destinationIndex) return;
-
-    // Получаем информацию о перетаскиваемой колонке
-    const draggedColumn = normalizedColumns[sourceIndex];
-    if (!draggedColumn?.id) return;
-
-    // Проверяем, что колонка не имеет дочерних элементов
-    const hasChildren =
-      draggedColumn.columns?.length || normalizedColumns.some(col => col.parent?.id === draggedColumn.id);
-    if (hasChildren) return;
-
-    // Создаем новый порядок колонок
-    const newOrder = [...columnOrder];
-    const draggedColumnId = draggedColumn.id;
-
-    // Удаляем перетаскиваемую колонку из текущей позиции
-    const currentIndex = newOrder.indexOf(draggedColumnId);
-    if (currentIndex !== -1) {
-      newOrder.splice(currentIndex, 1);
-    }
-
-    // Вставляем в новую позицию
-    newOrder.splice(destinationIndex, 0, draggedColumnId);
-
-    onOrderChange(newOrder);
+  const getRootColumns = (): TableColumn<T>[] => {
+    const typedColumns = columns as TableColumn<T>[];
+    return typedColumns.filter(col => !col.parent);
   };
 
   const handleExpandToggle = (columnId: string) => {
@@ -129,75 +83,136 @@ export const TableColumnList = <T extends object>({
     }));
   };
 
-  return (
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="columns">
-        {provided => (
-          <div {...provided.droppableProps} ref={provided.innerRef} className={styles.droppableArea}>
-            {normalizedColumns.map((column, index) => {
-              if (!column.id) return null;
-              const columnId = column.id;
+  const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
+    const updateChildrenVisibility = (childColumns: TableColumn<T>[], visible: boolean) => {
+      if (!childColumns || childColumns.length === 0) return {};
 
-              // Проверяем наличие дочерних элементов
-              let hasChildren = false;
-              if (column.columns && column.columns.length > 0) {
-                hasChildren = true;
-              } else {
-                hasChildren = normalizedColumns.some(c => c.parent?.id === columnId);
-              }
+      let updatedVisibility: Record<string, boolean> = {};
 
-              const isExpanded = expandedGroups[columnId] || false;
-              const depth = column.meta?.depth || 0;
+      childColumns.forEach(child => {
+        if (!child.id) return;
 
-              const pinned = pinnedColumns[columnId] || false;
-              const columnStyle = depth > 0 ? { marginLeft: `${depth * 20}px` } : undefined;
+        updatedVisibility[child.id] = visible;
 
-              // Подготавливаем заголовок
-              let title: string;
-              if (typeof column.header === 'string') {
-                title = column.header;
-              } else if (column.meta && typeof column.meta.title === 'string') {
-                title = column.meta.title;
-              } else {
-                title = columnId;
-              }
+        if (child.columns && child.columns.length > 0) {
+          const childUpdates = updateChildrenVisibility(child.columns as TableColumn<T>[], visible);
+          updatedVisibility = { ...updatedVisibility, ...childUpdates };
+        }
+      });
 
-              return (
-                <Draggable key={columnId} draggableId={columnId} index={index} isDragDisabled={hasChildren}>
-                  {(dragProvided, snapshot) => (
-                    <div
-                      ref={dragProvided.innerRef}
-                      {...dragProvided.draggableProps}
-                      style={{
-                        ...dragProvided.draggableProps.style,
-                        ...columnStyle,
-                        opacity: snapshot.isDragging ? 0.7 : 1
-                      }}
-                      className={styles.draggableItem}
-                    >
-                      <ColumnSetting
-                        id={columnId}
-                        title={title}
-                        visible={visibleColumns[columnId] || false}
-                        pinned={pinned}
-                        hasChildren={hasChildren}
-                        expanded={isExpanded}
-                        draggable={!hasChildren}
-                        dragHandleProps={dragProvided.dragHandleProps || undefined}
-                        onVisibilityChange={visible => onVisibilityChange(columnId, visible)}
-                        onPinChange={!hasChildren ? pinned => onPinChange(columnId, pinned) : undefined}
-                        onExpandChange={() => handleExpandToggle(columnId)}
-                        highlighted={snapshot.isDragging}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              );
-            })}
-            {provided.placeholder}
+      return updatedVisibility;
+    };
+
+    let newVisibility: Record<string, boolean> = { [columnId]: isVisible };
+
+    const column = columnsMap[columnId];
+    if (column && column.columns && column.columns.length > 0) {
+      const childUpdates = updateChildrenVisibility(column.columns as TableColumn<T>[], isVisible);
+      newVisibility = { ...newVisibility, ...childUpdates };
+    }
+
+    if (isVisible) {
+      const updateParentVisibility = (column: TableColumn<T> | undefined): Record<string, boolean> => {
+        if (!column || !column.parent) return {};
+
+        const parentId = column.parent.id;
+        const parentColumn = flattenedColumns.find(col => col.id === parentId);
+
+        let parentVisibility: Record<string, boolean> = { [parentId]: true };
+
+        if (parentColumn && parentColumn.parent) {
+          const grandParentVisibility = updateParentVisibility(parentColumn);
+          parentVisibility = { ...parentVisibility, ...grandParentVisibility };
+        }
+
+        return parentVisibility;
+      };
+
+      const column = flattenedColumns.find(col => col.id === columnId);
+      if (column && column.parent) {
+        const parentVisibility = updateParentVisibility(column);
+        newVisibility = { ...newVisibility, ...parentVisibility };
+      }
+    }
+
+    const updatedVisibility = { ...localVisibleColumns, ...newVisibility };
+    setLocalVisibleColumns(updatedVisibility);
+
+    Object.entries(newVisibility).forEach(([colId, visible]) => {
+      onVisibilityChange(colId, visible);
+    });
+  };
+
+  const generateUniqueId = (column: TableColumn<T>, index: number): string => {
+    if (column.id) return column.id;
+
+    if (column.accessorKey) return column.accessorKey;
+
+    if (column.header && typeof column.header === 'string') {
+      return column.header.replace(/\s+/g, '_').toLowerCase();
+    }
+
+    return `column_${index}`;
+  };
+
+  const isColumnVisible = (columnId: string): boolean => {
+    return localVisibleColumns[columnId] !== undefined ? localVisibleColumns[columnId] : true;
+  };
+
+  const renderColumns = () => {
+    const rootCols = getRootColumns();
+
+    const renderColumnWithChildren = (column: TableColumn<T>, index: number, depth: number = 0) => {
+      const columnId = generateUniqueId(column, index);
+
+      const isParent = column.columns && column.columns.length > 0;
+      const isExpanded = expandedGroups[columnId] || false;
+      const pinned = pinnedColumns[columnId] || false;
+
+      let title: string;
+      if (typeof column.header === 'string') {
+        title = column.header;
+      } else if (column.meta && typeof column.meta.title === 'string') {
+        title = column.meta.title;
+      } else {
+        title = columnId;
+      }
+
+      return (
+        <React.Fragment key={columnId}>
+          <div className={styles.draggableItem} style={{ paddingLeft: `${depth * 20}px` }}>
+            <ColumnSetting
+              id={columnId}
+              title={title}
+              visible={isColumnVisible(columnId)}
+              pinned={pinned}
+              hasChildren={isParent}
+              expanded={isExpanded}
+              draggable={!isParent}
+              onVisibilityChange={visible => handleVisibilityChange(columnId, visible)}
+              onPinChange={!isParent ? pinned => onPinChange(columnId, pinned) : undefined}
+              onExpandChange={() => handleExpandToggle(columnId)}
+            />
           </div>
-        )}
-      </Droppable>
-    </DragDropContext>
-  );
+
+          {isParent && isExpanded && (
+            <div>
+              {column.columns!.map((childColumn, childIndex) =>
+                renderColumnWithChildren(childColumn as TableColumn<T>, childIndex, depth + 1)
+              )}
+            </div>
+          )}
+        </React.Fragment>
+      );
+    };
+
+    // Рендерим список
+    return (
+      <div className={styles.droppableArea}>
+        {rootCols.map((column, index) => renderColumnWithChildren(column, index))}
+      </div>
+    );
+  };
+
+  return <div>{renderColumns()}</div>;
 };

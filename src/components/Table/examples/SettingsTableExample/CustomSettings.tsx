@@ -127,10 +127,10 @@ export const CustomSettings = <T extends object>({
             <Button variant="primary" size="s" onClick={handleApply}>
               Применить
             </Button>
-            <Button variant="secondary" color="ghost" size="s" onClick={handleCancel}>
+            <Button variant="secondary" size="s" onClick={handleCancel}>
               Отмена
             </Button>
-            <Button variant="secondary" color="ghost" size="s" onClick={handleResetToDefault}>
+            <Button variant="secondary" size="s" onClick={handleResetToDefault}>
               Сбросить
             </Button>
           </div>

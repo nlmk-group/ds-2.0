@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
-import { TableColumnItem } from '@components/Table';
+import { ColumnSetting } from '@components/Table';
 import { ColumnDef } from '@tanstack/react-table';
 
 import styles from './CustomSettings.module.scss';
@@ -123,7 +123,7 @@ export const TableColumnList = <T extends object>({
                       style={{ ...provided.draggableProps.style, ...columnStyle }}
                       className={styles.draggableItem}
                     >
-                      <TableColumnItem
+                      <ColumnSetting
                         id={column.id}
                         title={
                           typeof column.header === 'string'

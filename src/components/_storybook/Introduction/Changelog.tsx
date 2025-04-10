@@ -23,6 +23,25 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.3 - <span className={styles.date}>10.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено свойство isMandatory</li>
+              <li className={styles['left-padding']}>- Изменены отступы в компоненте</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.1 - <span className={styles.date}>03.04.25</span>
           </Typography>
           <ul className={styles.list}>

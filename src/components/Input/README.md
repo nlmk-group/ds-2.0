@@ -23,6 +23,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
+| isMandatory | boolean | - | Флаг, показывающий, является ли поле обязательным |
 | id | string | - | Уникальный идентификатор инпута |
 | value | string | - | Значение инпута |
 | disabled | boolean | false | Флаг отключения инпута |

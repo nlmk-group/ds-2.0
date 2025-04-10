@@ -17,6 +17,7 @@ export interface IInputProps
   extends Omit<ComponentPropsWithoutRef<'input'>, 'size'>,
     Omit<ComponentPropsWithoutRef<'textarea'>, 'size'> {
   id?: string;
+  isMandatory?: boolean;
   value?: string;
   disabled?: boolean;
   label?: string;

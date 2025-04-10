@@ -13,6 +13,7 @@ import styles from './Input.module.scss';
  * @component
  * @param {Object} props - Свойства компонента Input.
  * @param {string} [props.id] - Уникальный идентификатор инпута.
+ * @param {boolean} [props.isMandatory] - Флаг, показывающий, является ли поле обязательным.
  * @param {string} [props.value] - Значение инпута.
  * @param {boolean} [props.disabled=false] - Флаг отключения инпута.
  * @param {string} [props.label] - Текст метки (label) инпута.

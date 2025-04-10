@@ -140,7 +140,7 @@ input:autofill:focus {
   outline: none;
   background: var(--steel-10);
   font-variant-numeric: tabular-nums lining-nums;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
   @include input-border-color-states;
 
   &::placeholder {

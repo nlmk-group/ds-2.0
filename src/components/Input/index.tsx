@@ -55,6 +55,7 @@ const Input: FC<TInputProps> = ({
   inputRef,
   colored = false,
   placeholder = '',
+  isMandatory,
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -139,6 +140,7 @@ const Input: FC<TInputProps> = ({
         <label className={clsx(styles.label, colorClassName)} htmlFor={id} data-ui-input-label>
           <Typography variant="Body2-Medium" className={styles.typography}>
             {label}
+            {isMandatory && <span>*</span>}
           </Typography>
         </label>
       )}

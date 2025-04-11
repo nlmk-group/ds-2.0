@@ -74,6 +74,20 @@ declare const argsTypes: {
             type: string;
         };
     };
+    required: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
     disabled: {
         description: string;
         table: {

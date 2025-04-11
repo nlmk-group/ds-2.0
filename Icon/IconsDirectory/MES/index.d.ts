@@ -12,6 +12,7 @@ export { IconChartSolar16, IconChartSolar24, IconChartSolar32 } from './ChartSol
 export { IconChartTree16, IconChartTree24, IconChartTree32 } from './ChartTree';
 export { IconChartWaterfall16, IconChartWaterfall24, IconChartWaterfall32 } from './ChartWaterfall';
 export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
+export { IconClaimScan16, IconClaimScan24, IconClaimScan32 } from './ClaimScan';
 export { IconColorPaletteOutline16, IconColorPaletteOutline24, IconColorPaletteOutline32 } from './ColorPaletteOutline';
 export { IconConnection16, IconConnection24, IconConnection32 } from './Connection';
 export { IconDatabase16, IconDatabase24, IconDatabase32 } from './Database';

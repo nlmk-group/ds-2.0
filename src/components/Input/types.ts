@@ -6,8 +6,6 @@ import { customInputColors, sizesMappingInput } from '@components/declaration';
 export interface IInputAdditionalProps {
   /** Уникальный идентификатор инпута */
   id?: string;
-  /** Флаг, показывающий, является ли поле обязательным */
-  isMandatory?: boolean;
   /** Значение инпута */
   value?: string;
   /** Флаг отключения инпута */

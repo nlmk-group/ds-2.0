@@ -23,7 +23,6 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| isMandatory | boolean | - | Флаг, показывающий, является ли поле обязательным |
 | id | string | - | Уникальный идентификатор инпута |
 | value | string | - | Значение инпута |
 | disabled | boolean | false | Флаг отключения инпута |
@@ -43,6 +42,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | className | string | - | Дополнительный CSS класс |
 | inputRef | Ref<HTMLInputElement \| HTMLTextAreaElement> | - | Реф для доступа к DOM-элементу инпута |
 | colored | boolean | false | Флаг цветного фона |
+| required | boolean | - | Атрибут, который указывает, что данное поле является обязательным для заполнения |
 
 ## Размеры (sizesMappingInput)
 

@@ -69,8 +69,8 @@ const argsTypes = {
     options: Object.values(sizesMappingInput),
     control: { type: 'select' }
   },
-  isMandatory: {
-    description: 'Флаг, показывающий, является ли поле обязательным ',
+  required: {
+    description: 'Атрибут, который указывает, что данное поле является обязательным для заполнения',
     table: {
       defaultValue: {
         summary: 'false'

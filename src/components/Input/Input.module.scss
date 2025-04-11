@@ -294,6 +294,6 @@ input:autofill:focus {
     background-color: var(--spectrum-yellow-10) !important;
   }
 }
-.mandatory {
-  color: var(--spectrum-red-60) !important;
+.required {
+  color: var(--spectrum-red-60);
 }

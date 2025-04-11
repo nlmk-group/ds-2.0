@@ -42,7 +42,10 @@ export const Changelog = () => {
               >
                 Input
               </Link>
-              .<li className={styles['left-padding']}>- Добавлено свойство isMandatory</li>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено визуальное отображение обязательного поля при наличии атрибута required
+              </li>
               <li className={styles['left-padding']}>- Изменены отступы в компоненте</li>
             </li>
           </ul>

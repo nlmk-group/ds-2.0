@@ -13,7 +13,6 @@ import styles from './Input.module.scss';
  * @component
  * @param {Object} props - Свойства компонента Input.
  * @param {string} [props.id] - Уникальный идентификатор инпута.
- * @param {boolean} [props.isMandatory] - Флаг, показывающий, является ли поле обязательным.
  * @param {string} [props.value] - Значение инпута.
  * @param {boolean} [props.disabled=false] - Флаг отключения инпута.
  * @param {string} [props.label] - Текст метки (label) инпута.
@@ -56,7 +55,7 @@ const Input: FC<TInputProps> = ({
   inputRef,
   colored = false,
   placeholder = '',
-  isMandatory,
+  required,
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -141,7 +140,7 @@ const Input: FC<TInputProps> = ({
         <label className={clsx(styles.label, colorClassName)} htmlFor={id} data-ui-input-label>
           <Typography variant="Body2-Medium" className={styles.typography}>
             {label}
-            {isMandatory && <span className={styles.mandatory}>*</span>}
+            {required && <span className={styles.required}>*</span>}
           </Typography>
         </label>
       )}

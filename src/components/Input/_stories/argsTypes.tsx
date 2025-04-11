@@ -69,6 +69,18 @@ const argsTypes = {
     options: Object.values(sizesMappingInput),
     control: { type: 'select' }
   },
+  required: {
+    description: 'Атрибут, который указывает, что данное поле является обязательным для заполнения',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
   disabled: {
     description: 'Условие блокировки input для ввода/изменений',
     table: {

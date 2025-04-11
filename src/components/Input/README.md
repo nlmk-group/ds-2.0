@@ -1,6 +1,6 @@
 # Input Component
 
-## Версия компонента v3.1
+## Версия компонента v3.2
 
 Input компонент используется для создания текстовых полей ввода различных стилей и размеров. Он поддерживает однострочный и многострочный режимы, а также дополнительные элементы, такие как иконки и вспомогательный текст.
 
@@ -42,6 +42,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | className | string | - | Дополнительный CSS класс |
 | inputRef | Ref<HTMLInputElement \| HTMLTextAreaElement> | - | Реф для доступа к DOM-элементу инпута |
 | colored | boolean | false | Флаг цветного фона |
+| required | boolean | - | Атрибут, который указывает, что данное поле является обязательным для заполнения |
 
 ## Размеры (sizesMappingInput)
 

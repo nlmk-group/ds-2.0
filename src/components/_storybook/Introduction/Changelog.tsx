@@ -28,6 +28,28 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена новая иконка MES (ClaimScan)</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено визуальное отображение обязательного поля при наличии атрибута required
+              </li>
+              <li className={styles['left-padding']}>- Изменены отступы в компоненте</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
               <Link
                 href="./?path=/docs/components-treelist-info--docs"
                 target="blank"

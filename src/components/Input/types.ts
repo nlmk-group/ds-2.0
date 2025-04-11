@@ -1,4 +1,3 @@
-// types.ts
 import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';

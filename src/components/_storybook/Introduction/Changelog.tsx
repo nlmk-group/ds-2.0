@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.2 - <span className={styles.date}>10.04.25</span>
+            v2.22.2 - <span className={styles.date}>11.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -32,6 +32,21 @@ export const Changelog = () => {
                 Icon
               </Link>
               .<li className={styles['left-padding']}>- Добавлена новая иконка MES (ClaimScan)</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено визуальное отображение обязательного поля при наличии атрибута required
+              </li>
+              <li className={styles['left-padding']}>- Изменены отступы в компоненте</li>
             </li>
           </ul>
         </div>

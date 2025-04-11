@@ -160,19 +160,19 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
           action('drawerClosed')();
         }}
       >
-        <Box flexDirection="column" gap="20px">
+        <Box height="100%" flexDirection="column">
           <Typography variant="Heading3">Профиль пользователя</Typography>
           <Box gap="16px" alignItems="center">
             <Avatar />
             <Typography variant="Body1-Medium">Иван Иванов</Typography>
           </Box>
-          <Box style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '24px' }}>
+          <Box style={{ display: 'flex', gap: '24px', flexDirection: 'column', flexGrow: '1' }}>
             <Input pseudo label="Email" value="Ivanov_ii@nlmk.com" />
             <Input pseudo label="Должность" value="Руководитель проекта" />
             <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
             <Input pseudo label="Полномочия" value="Не указано" />
           </Box>
-          <Box gap="8px" alignItems="center">
+          <Box style={{ marginTop: 'auto' }}>
             <Button type="button">Редактировать</Button>
             <Button type="button" variant="secondary">
               Закрыть

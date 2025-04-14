@@ -25,6 +25,24 @@ const argsTypes = {
       }
     }
   },
+  onDragStart: {
+    description: 'Callback, вызываемый в начале перетаскивания узла. Возвращает информацию о событии и перетаскиваемом узле',
+    action: 'начало перетаскивания узла',
+    table: {
+      type: {
+        summary: '(e: TDragEvent[]) => void'
+      }
+    }
+  },
+  onDragEnd: {
+    description: 'Callback, вызываемый в конце перетаскивания узла. Возвращает информацию о событии и перетаскиваемом узле',
+    action: 'конец перетаскивания узла',
+    table: {
+      type: {
+        summary: '(e: TDragEvent[]) => void'
+      }
+    }
+  },
   checkable: {
     description: 'Включает отображение чекбоксов с каскадным выделением',
     table: {

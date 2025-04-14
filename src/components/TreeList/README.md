@@ -9,7 +9,7 @@
 ```jsx
 import { TreeList } from '@nlmk/ds-2.0';
 
-<TreeList data={treeData} checkable draggable onSelectedNode={onSelectedNode} onDataAfterDrag={onDataAfterDrag} />;
+<TreeList data={treeData} checkable draggable onSelectedNode={onSelectedNode} onDataAfterDrag={onDataAfterDrag} onDragStart={onDragStart} onDragEnd={onDragEnd} />;
 ```
 
 ## Props
@@ -19,6 +19,8 @@ import { TreeList } from '@nlmk/ds-2.0';
 | data                | TNodeItem[]                     | -            | Данные для дерева в виде массива узлов                                             |
 | onSelectedNode      | (e: TSelectedNodeEvent) => void | -            | Обработчик события выбора узла                                                     |
 | onDataAfterDrag     | (e: TNodeItem[]) => void        | -            | Обработчик события после перетаскивания                                            |
+| onDragStart         | (e: TDragEvent[]) => void       | -            | Обработчик события начала перетаскивания |
+| onDragEnd           | (e: TDragEvent[]) => void       | -            | Обработчик события конца перетаскивания |
 | checkable           | boolean                         | false        | Флаг отображения чекбоксов                                                         |
 | draggable           | boolean                         | false        | Флаг возможности перетаскивания узлов                                              |
 | checkableSimple     | boolean                         | false        | Флаг упрощённого выбора чекбоксов                                                  |
@@ -60,7 +62,7 @@ type TNodeItem = {
 type TSelectedNodeEvent = {
   currentKey?: Key; // Ключ текущего узла
   allSelectedKeys?: Key[]; // Все выбранные ключи
-  isCheked?: boolean; // Статус выбора
+  isCheсked?: boolean; // Статус выбора
 };
 ```
 
@@ -73,6 +75,13 @@ type TDropEvent = {
   dropPosition: number; // Позиция вставки
   dropToGap: boolean; // Вставка между узлами
 };
+```
+
+```typescript
+type TDragEvent = {
+  event: React.DragEvent<T>; // Событие перетаскивания
+  node: EventDataNode<DataNode>; // Перетаскиваемый узел
+}
 ```
 
 ## Стилизация

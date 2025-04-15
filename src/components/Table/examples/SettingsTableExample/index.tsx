@@ -17,7 +17,41 @@ import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 import { CustomSettings } from './CustomSettings';
 
+/**
+ * Компонент SettingsTableExample - пример таблицы с настраиваемыми колонками
+ *
+ * Этот компонент демонстрирует возможности по настройке таблицы:
+ * - Изменение порядка колонок (перетаскивание)
+ * - Показ/скрытие колонок
+ * - Закрепление колонок (слева/справа)
+ */
 const SettingsTableExample = () => {
+  /**
+   * Функция для получения всех ID колонок из определения колонок
+   * Рекурсивно обходит все колонки, включая вложенные
+   */
+  const getAllColumnIds = () => {
+    const result: string[] = [];
+
+    const processColumns = (cols: any[]) => {
+      cols.forEach(col => {
+        if (col.id) {
+          result.push(col.id);
+        }
+        if (col.columns) {
+          processColumns(col.columns);
+        }
+      });
+    };
+
+    processColumns(columns);
+    return result;
+  };
+
+  /**
+   * Инициализация видимости колонок
+   * По умолчанию все колонки видимы
+   */
   const initVisibility = () => {
     const visibility: VisibilityState = {};
     const processColumns = (cols: any[]) => {
@@ -36,10 +70,14 @@ const SettingsTableExample = () => {
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(initVisibility());
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>([]);
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(getAllColumnIds());
   const [columnPinning, setColumnPinning] = useState<ColumnPinningState>({});
   const [columnResizeMode] = useState<ColumnResizeMode>('onChange');
 
+  /**
+   * Преобразование объекта columnPinning в формат, понятный для компонента CustomSettings
+   * Из { left: ['id1', 'id2'], right: ['id3'] } в { id1: 'left', id2: 'left', id3: 'right' }
+   */
   const pinnedColumns: Record<string, 'left' | 'right' | false> = {};
   if (columnPinning.left) {
     columnPinning.left.forEach(id => {
@@ -75,18 +113,38 @@ const SettingsTableExample = () => {
     }
   });
 
+  /**
+   * Обработчик изменения видимости колонок из панели настроек
+   * @param newVisibility Объект с новыми настройками видимости колонок
+   */
   const handleVisibilityChange = (newVisibility: Record<string, boolean>) => {
-    setColumnVisibility(newVisibility);
+    // Преобразуем объект newVisibility в формат, который ожидает tanstack/react-table
+    const tableVisibility: VisibilityState = {};
+
+    Object.entries(newVisibility).forEach(([id, isVisible]) => {
+      tableVisibility[id] = isVisible;
+    });
+
+    setColumnVisibility(tableVisibility);
   };
 
+  /**
+   * Обработчик изменения порядка колонок из панели настроек
+   * @param newOrder Массив с новым порядком колонок
+   */
   const handleOrderChange = (newOrder: string[]) => {
     setColumnOrder(newOrder);
   };
 
+  /**
+   * Обработчик изменения закрепления колонок из панели настроек
+   * @param newPinning Объект с новыми настройками закрепления колонок
+   */
   const handlePinChange = (newPinning: Record<string, 'left' | 'right' | false>) => {
     const left: string[] = [];
     const right: string[] = [];
 
+    // Преобразуем формат { id: 'left'/'right'/false } в { left: [], right: [] }
     Object.entries(newPinning).forEach(([id, pin]) => {
       if (pin === 'left') {
         left.push(id);
@@ -98,19 +156,15 @@ const SettingsTableExample = () => {
     setColumnPinning({ left, right });
   };
 
-  const tableColumnOrder = React.useMemo(() => {
-    const leafColumns = table.getAllLeafColumns();
-    return leafColumns.map(column => column.id);
-  }, [table]);
-
   return (
     <div>
       <CustomSettings
         columns={columns}
         visibleColumns={columnVisibility}
-        columnOrder={tableColumnOrder}
+        columnOrder={columnOrder}
         pinnedColumns={pinnedColumns}
         defaultVisibleColumns={initVisibility()}
+        defaultColumnOrder={getAllColumnIds()}
         onVisibilityChange={handleVisibilityChange}
         onOrderChange={handleOrderChange}
         onPinChange={handlePinChange}

@@ -1,217 +1,448 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 
 import { ColumnSetting } from '@components/Table';
-import { ColumnDef } from '@tanstack/react-table';
 
 import { ITableColumnListProps } from './types';
 
 import styles from './CustomSettings.module.scss';
 
-type TableColumn<T> = ColumnDef<T, any> & {
-  parent?: { id: string };
-  columns?: TableColumn<T>[];
-  accessorKey?: string;
-};
+// Тип для перетаскиваемых элементов
+const TABLE_COLUMN_LIST_COLUMN_TYPE = 'column';
 
+/**
+ * Интерфейс для перетаскиваемого элемента
+ */
+interface DragItem {
+  id: string;
+  parentId: string;
+  index: number;
+  type: string;
+}
+
+/**
+ * Компонент TableColumnList - список колонок с возможностью перетаскивания
+ */
 export const TableColumnList = <T extends object>({
   columns,
   visibleColumns,
   pinnedColumns,
   onVisibilityChange,
   onPinChange,
-  columnOrder: _columnOrder,
-  onOrderChange: _onOrderChange
+  columnOrder,
+  onOrderChange
 }: ITableColumnListProps<T>) => {
+  // Состояние развернутых групп - по умолчанию все свернуты
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
-  const [flattenedColumns, setFlattenedColumns] = useState<TableColumn<T>[]>([]);
-  const [columnsMap, setColumnsMap] = useState<Record<string, TableColumn<T>>>({});
-  const [localVisibleColumns, setLocalVisibleColumns] = useState<Record<string, boolean>>(visibleColumns);
 
+  // Структурные данные колонок
+  const [columnStructure, setColumnStructure] = useState<{
+    rootIds: string[];
+    parentMap: Record<string, string>;
+    childrenMap: Record<string, string[]>;
+    columnsMap: Record<string, any>;
+    levels: Record<string, number>; // Уровни вложенности для каждой колонки
+  }>({
+    rootIds: [],
+    parentMap: {},
+    childrenMap: {},
+    columnsMap: {},
+    levels: {}
+  });
+
+  /**
+   * Построение структуры колонок при инициализации
+   */
   useEffect(() => {
-    const flatColumns: TableColumn<T>[] = [];
-    const colMap: Record<string, TableColumn<T>> = {};
-    const initialVisibility: Record<string, boolean> = { ...visibleColumns };
+    const rootIds: string[] = [];
+    const parentMap: Record<string, string> = {};
+    const childrenMap: Record<string, string[]> = {};
+    const columnsMap: Record<string, any> = {};
+    const levels: Record<string, number> = {};
 
-    let idCounter = 0;
-    const ensureColumnHasId = (col: any): any => {
-      if (!col.id) {
-        if (col.accessorKey) {
-          col.id = col.accessorKey;
-        } else if (col.header && typeof col.header === 'string') {
-          col.id = col.header.replace(/\s+/g, '_').toLowerCase();
-        } else {
-          col.id = `column_${idCounter++}`;
-        }
-      }
-      return col;
-    };
-
-    const processColumns = (cols: any[]) => {
+    // Рекурсивная обработка колонок и установка уровней вложенности
+    const processColumns = (cols: any[], parent?: string, level: number = 0) => {
       cols.forEach(col => {
-        const processedCol = ensureColumnHasId(col);
-        const colId = processedCol.id;
+        const id = col.id || (typeof col.accessorKey === 'string' ? col.accessorKey : null);
+        if (!id) return;
 
-        if (initialVisibility[colId] === undefined) {
-          initialVisibility[colId] = true;
+        columnsMap[id] = col;
+
+        levels[id] = level;
+
+        if (parent) {
+          parentMap[id] = parent;
+
+          if (!childrenMap[parent]) {
+            childrenMap[parent] = [];
+          }
+          childrenMap[parent].push(id);
+        } else {
+          rootIds.push(id);
         }
 
-        flatColumns.push(processedCol);
-        colMap[colId] = processedCol;
-
-        if (processedCol.columns && processedCol.columns.length > 0) {
-          processColumns(processedCol.columns);
+        if (col.columns && Array.isArray(col.columns)) {
+          processColumns(col.columns, id, level + 1);
         }
       });
     };
 
     processColumns(columns);
 
-    setFlattenedColumns(flatColumns);
-    setColumnsMap(colMap);
-    setLocalVisibleColumns(initialVisibility);
-  }, [columns, visibleColumns]);
+    setColumnStructure({
+      rootIds,
+      parentMap,
+      childrenMap,
+      columnsMap,
+      levels
+    });
 
-  const getRootColumns = (): TableColumn<T>[] => {
-    const typedColumns = columns as TableColumn<T>[];
-    return typedColumns.filter(col => !col.parent);
-  };
+    // Инициализация развернутых групп - по умолчанию все свернуты
+    const initialExpanded: Record<string, boolean> = {};
+    Object.keys(childrenMap).forEach(id => {
+      initialExpanded[id] = false;
+    });
+    setExpandedGroups(initialExpanded);
+  }, [columns]);
 
-  const handleExpandToggle = (columnId: string) => {
+  /**
+   * Переключение развернутого состояния группы
+   */
+  const toggleExpanded = useCallback((id: string) => {
     setExpandedGroups(prev => ({
       ...prev,
-      [columnId]: !prev[columnId]
+      [id]: !prev[id]
     }));
-  };
+  }, []);
 
-  const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
-    const updateChildrenVisibility = (childColumns: TableColumn<T>[], visible: boolean) => {
-      if (!childColumns || childColumns.length === 0) return {};
+  /**
+   * Получение отсортированных колонок по родительскому ID
+   * @param parentId ID родительской колонки или пустая строка для корневых
+   */
+  const getSortedColumns = useCallback(
+    (parentId: string = ''): string[] => {
+      const { rootIds, childrenMap } = columnStructure;
 
-      let updatedVisibility: Record<string, boolean> = {};
+      const sourceColumns = parentId ? childrenMap[parentId] || [] : rootIds;
 
-      childColumns.forEach(child => {
-        if (!child.id) return;
+      return [...sourceColumns].sort((a, b) => {
+        const aIndex = columnOrder.indexOf(a);
+        const bIndex = columnOrder.indexOf(b);
 
-        updatedVisibility[child.id] = visible;
-
-        if (child.columns && child.columns.length > 0) {
-          const childUpdates = updateChildrenVisibility(child.columns as TableColumn<T>[], visible);
-          updatedVisibility = { ...updatedVisibility, ...childUpdates };
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
         }
+
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+
+        return sourceColumns.indexOf(a) - sourceColumns.indexOf(b);
       });
+    },
+    [columnStructure, columnOrder]
+  );
 
-      return updatedVisibility;
-    };
+  /**
+   * Функция для перемещения элемента в новый порядок
+   */
+  const moveItem = useCallback(
+    (
+      dragId: string,
+      hoverId: string,
+      dragParentId: string = '',
+      hoverParentId: string = '',
+      position: 'before' | 'after' = 'before'
+    ) => {
+      if (dragId === hoverId) return;
 
-    let newVisibility: Record<string, boolean> = { [columnId]: isVisible };
+      if (dragParentId !== hoverParentId) {
+        return;
+      }
 
-    const column = columnsMap[columnId];
-    if (column && column.columns && column.columns.length > 0) {
-      const childUpdates = updateChildrenVisibility(column.columns as TableColumn<T>[], isVisible);
-      newVisibility = { ...newVisibility, ...childUpdates };
-    }
+      const siblings = getSortedColumns(dragParentId);
 
-    if (isVisible) {
-      const updateParentVisibility = (column: TableColumn<T> | undefined): Record<string, boolean> => {
-        if (!column || !column.parent) return {};
+      if (siblings.length <= 1) return;
 
-        const parentId = column.parent.id;
-        const parentColumn = flattenedColumns.find(col => col.id === parentId);
+      const dragIndex = siblings.indexOf(dragId);
+      const hoverIndex = siblings.indexOf(hoverId);
 
-        let parentVisibility: Record<string, boolean> = { [parentId]: true };
+      if (dragIndex === -1 || hoverIndex === -1) {
+        return;
+      }
 
-        if (parentColumn && parentColumn.parent) {
-          const grandParentVisibility = updateParentVisibility(parentColumn);
-          parentVisibility = { ...parentVisibility, ...grandParentVisibility };
+      const newSiblings = [...siblings];
+
+      newSiblings.splice(dragIndex, 1);
+
+      let insertIndex;
+      if (position === 'before') {
+        insertIndex = newSiblings.indexOf(hoverId);
+      } else {
+        insertIndex = newSiblings.indexOf(hoverId) + 1;
+      }
+
+      if (insertIndex < 0) insertIndex = 0;
+      if (insertIndex > newSiblings.length) insertIndex = newSiblings.length;
+
+      newSiblings.splice(insertIndex, 0, dragId);
+
+      const newOrder: string[] = [];
+
+      const addColumnsInOrder = (parentId: string = '') => {
+        let columnsToAdd: string[];
+
+        if (parentId) {
+          if (parentId === dragParentId) {
+            columnsToAdd = newSiblings;
+          } else {
+            columnsToAdd = getSortedColumns(parentId);
+          }
+        } else {
+          if (dragParentId === '') {
+            columnsToAdd = newSiblings;
+          } else {
+            columnsToAdd = getSortedColumns('');
+          }
         }
 
-        return parentVisibility;
+        for (const colId of columnsToAdd) {
+          newOrder.push(colId);
+
+          const childIds = columnStructure.childrenMap[colId] || [];
+          if (childIds.length > 0) {
+            addColumnsInOrder(colId);
+          }
+        }
       };
 
-      const column = flattenedColumns.find(col => col.id === columnId);
-      if (column && column.parent) {
-        const parentVisibility = updateParentVisibility(column);
-        newVisibility = { ...newVisibility, ...parentVisibility };
+      addColumnsInOrder();
+
+      onOrderChange(newOrder);
+    },
+    [columnOrder, columnStructure, getSortedColumns, onOrderChange]
+  );
+  /**
+   * Перемещение элемента в начало списка
+   */
+  const moveToStart = useCallback(
+    (dragId: string, parentId: string = '') => {
+      const siblings = getSortedColumns(parentId);
+
+      // Если нет сиблингов или элемент уже первый, ничего не делаем
+      if (siblings.length <= 1 || siblings[0] === dragId) {
+        return;
       }
-    }
 
-    const updatedVisibility = { ...localVisibleColumns, ...newVisibility };
-    setLocalVisibleColumns(updatedVisibility);
+      // Перемещаем элемент перед первым сиблингом
+      moveItem(dragId, siblings[0], parentId, parentId, 'before');
+    },
+    [getSortedColumns, moveItem]
+  );
 
-    Object.entries(newVisibility).forEach(([colId, visible]) => {
-      onVisibilityChange(colId, visible);
-    });
-  };
+  /**
+   * Перемещение элемента в конец списка
+   */
+  const moveToEnd = useCallback(
+    (dragId: string, parentId: string = '') => {
+      const siblings = getSortedColumns(parentId);
 
-  const generateUniqueId = (column: TableColumn<T>, index: number): string => {
-    if (column.id) return column.id;
+      // Если нет сиблингов или элемент уже последний, ничего не делаем
+      if (siblings.length <= 1 || siblings[siblings.length - 1] === dragId) {
+        return;
+      }
 
-    if (column.accessorKey) return column.accessorKey;
+      // Перемещаем элемент после последнего сиблинга
+      moveItem(dragId, siblings[siblings.length - 1], parentId, parentId, 'after');
+    },
+    [getSortedColumns, moveItem]
+  );
 
-    if (column.header && typeof column.header === 'string') {
-      return column.header.replace(/\s+/g, '_').toLowerCase();
-    }
+  /**
+   * Компонент для зоны перетаскивания (начало или конец списка)
+   */
+  const DropZone = useCallback(
+    ({ parentId = '', position }: { parentId?: string; position: 'start' | 'end' }) => {
+      const [_dropProps, drop] = useDrop({
+        accept: TABLE_COLUMN_LIST_COLUMN_TYPE,
+        canDrop: (item: DragItem) => {
+          const { parentMap } = columnStructure;
+          return (parentMap[item.id] || '') === parentId;
+        },
+        drop: (item: DragItem) => {
+          if (position === 'start') {
+            moveToStart(item.id, parentId);
+          } else {
+            moveToEnd(item.id, parentId);
+          }
+          return { handled: true };
+        },
+        collect: monitor => ({
+          isOver: monitor.isOver() && monitor.canDrop()
+        })
+      });
 
-    return `column_${index}`;
-  };
+      return <div ref={drop} className={styles.dropZone} data-position={position} data-parent-id={parentId} />;
+    },
+    [columnStructure, moveToStart, moveToEnd]
+  );
 
-  const isColumnVisible = (columnId: string): boolean => {
-    return localVisibleColumns[columnId] !== undefined ? localVisibleColumns[columnId] : true;
-  };
+  /**
+   * Компонент для отображения колонки
+   */
+  const ColumnItem = useCallback(
+    ({
+      columnId,
+      index,
+      parentId = '',
+      level = 0
+    }: {
+      columnId: string;
+      index: number;
+      parentId?: string;
+      level?: number;
+    }) => {
+      const { columnsMap, childrenMap } = columnStructure;
+      const column = columnsMap[columnId];
 
-  const renderColumns = () => {
-    const rootCols = getRootColumns();
+      if (!column) return null;
 
-    const renderColumnWithChildren = (column: TableColumn<T>, index: number, depth: number = 0) => {
-      const columnId = generateUniqueId(column, index);
-
-      const isParent = column.columns && column.columns.length > 0;
+      const hasChildren = !!childrenMap[columnId] && childrenMap[columnId].length > 0;
       const isExpanded = expandedGroups[columnId] || false;
+      const isVisible = visibleColumns[columnId] !== false;
       const pinned = pinnedColumns[columnId] || false;
 
-      let title: string;
-      if (typeof column.header === 'string') {
-        title = column.header;
-      } else if (column.meta && typeof column.meta.title === 'string') {
-        title = column.meta.title;
-      } else {
-        title = columnId;
-      }
+      const title = typeof column.header === 'string' ? column.header : column.meta?.title || columnId;
+
+      const [{ isDragging }, drag] = useDrag({
+        type: TABLE_COLUMN_LIST_COLUMN_TYPE,
+        item: { id: columnId, parentId, index, type: TABLE_COLUMN_LIST_COLUMN_TYPE },
+        collect: monitor => ({
+          isDragging: monitor.isDragging()
+        })
+      });
+
+      const [{ isOver, canDrop }, drop] = useDrop({
+        accept: TABLE_COLUMN_LIST_COLUMN_TYPE,
+        canDrop: (item: DragItem) => {
+          if (item.id === columnId) return false;
+
+          // Проверяем, что элемент принадлежит тому же родителю
+          const { parentMap } = columnStructure;
+          return (parentMap[item.id] || '') === parentId;
+        },
+        drop: (item: DragItem, monitor) => {
+          // Если дроп был уже обработан, игнорируем
+          if (monitor.didDrop()) {
+            return;
+          }
+
+          // Определяем направление перетаскивания
+          const dragIndex = getSortedColumns(parentId).indexOf(item.id);
+          const hoverIndex = getSortedColumns(parentId).indexOf(columnId);
+
+          const position = dragIndex < hoverIndex ? 'after' : 'before';
+
+          moveItem(item.id, columnId, parentId, parentId, position);
+
+          return { handled: true };
+        },
+        collect: monitor => ({
+          isOver: monitor.isOver({ shallow: true }),
+          canDrop: monitor.canDrop()
+        })
+      });
+
+      const childColumns = hasChildren ? getSortedColumns(columnId) : [];
+
+      const childrenKey = childColumns.join(',');
+
+      const columnClasses = [
+        styles.column,
+        isDragging ? styles.dragging : '',
+        isOver && canDrop ? styles.dropTarget : ''
+      ]
+        .filter(Boolean)
+        .join(' ');
+
+      const indentStyle = {
+        marginLeft: `${level * 16}px`
+      };
 
       return (
-        <React.Fragment key={columnId}>
-          <div className={styles.draggableItem} style={{ paddingLeft: `${depth * 20}px` }}>
+        <>
+          <div
+            ref={node => {
+              drag(drop(node));
+            }}
+            className={columnClasses}
+            style={indentStyle}
+            data-id={columnId}
+            data-parent-id={parentId}
+            data-level={level}
+          >
             <ColumnSetting
               id={columnId}
               title={title}
-              visible={isColumnVisible(columnId)}
+              visible={isVisible}
               pinned={pinned}
-              hasChildren={isParent}
+              hasChildren={hasChildren}
               expanded={isExpanded}
-              draggable={true} // Разрешаем перетаскивание для всех колонок
-              onVisibilityChange={visible => handleVisibilityChange(columnId, visible)}
-              onPinChange={!isParent ? pinned => onPinChange(columnId, pinned) : undefined}
-              onExpandChange={() => handleExpandToggle(columnId)}
+              draggable={true}
+              onVisibilityChange={visible => onVisibilityChange(columnId, visible)}
+              onPinChange={pinValue => onPinChange(columnId, pinValue)}
+              onExpandChange={() => toggleExpanded(columnId)}
             />
           </div>
 
-          {isParent && isExpanded && (
-            <div>
-              {column.columns!.map((childColumn, childIndex) =>
-                renderColumnWithChildren(childColumn as TableColumn<T>, childIndex, depth + 1)
-              )}
+          {hasChildren && isExpanded && (
+            <div className={styles.childColumns} key={childrenKey}>
+              {/* Зона для перетаскивания в начало списка */}
+              <DropZone parentId={columnId} position="start" />
+
+              {/* Список дочерних колонок */}
+              {childColumns.map((childId, idx) => (
+                <ColumnItem key={childId} columnId={childId} index={idx} parentId={columnId} level={level + 1} />
+              ))}
+
+              {/* Зона для перетаскивания в конец списка */}
+              <DropZone parentId={columnId} position="end" />
             </div>
           )}
-        </React.Fragment>
+        </>
       );
-    };
+    },
+    [
+      columnStructure,
+      expandedGroups,
+      visibleColumns,
+      pinnedColumns,
+      getSortedColumns,
+      toggleExpanded,
+      onVisibilityChange,
+      onPinChange,
+      moveItem,
+      DropZone
+    ]
+  );
 
-    return (
-      <div className={styles.droppableArea}>
-        {rootCols.map((column, index) => renderColumnWithChildren(column, index))}
+  const rootColumns = getSortedColumns();
+
+  const rootKey = rootColumns.join(',');
+
+  return (
+    <div className={styles.table}>
+      <div key={rootKey}>
+        {/* Зона для перетаскивания в начало корневого списка */}
+        <DropZone position="start" />
+
+        {/* Список корневых колонок */}
+        {rootColumns.map((columnId, idx) => (
+          <ColumnItem key={columnId} columnId={columnId} index={idx} parentId="" level={0} />
+        ))}
+
+        {/* Зона для перетаскивания в конец корневого списка */}
+        <DropZone position="end" />
       </div>
-    );
-  };
-
-  return <div>{renderColumns()}</div>;
+    </div>
+  );
 };

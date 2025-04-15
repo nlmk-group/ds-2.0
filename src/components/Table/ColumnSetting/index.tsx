@@ -112,13 +112,14 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
           disabled={disabled}
           title={visible ? 'Скрыть' : 'Показать'}
           onClick={handleToggleVisibility}
-        >
-          {visible ? (
-            <IconEyeOutlined24 htmlColor="var(--brand-sapphire-60)" />
-          ) : (
-            <IconEyeOffOutlined24 htmlColor="var(--brand-sapphire-60)" />
-          )}
-        </Button>
+          iconButton={
+            visible ? (
+              <IconEyeOutlined24 htmlColor="var(--brand-sapphire-60)" />
+            ) : (
+              <IconEyeOffOutlined24 htmlColor="var(--brand-sapphire-60)" />
+            )
+          }
+        />
 
         {!hasChildren && onPinChange && (
           <>
@@ -129,13 +130,14 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
               disabled={disabled || isPinnedRight}
               title={isPinnedLeft ? 'Открепить слева' : 'Закрепить слева'}
               onClick={handleTogglePinLeft}
-            >
-              {isPinnedLeft ? (
-                <IconPushPinFilled24 htmlColor="var(--brand-sapphire-60)" />
-              ) : (
-                <IconPushPinOutlined24 htmlColor="var(--brand-sapphire-60)" />
-              )}
-            </Button>
+              iconButton={
+                isPinnedLeft ? (
+                  <IconPushPinFilled24 htmlColor="var(--brand-sapphire-60)" />
+                ) : (
+                  <IconPushPinOutlined24 htmlColor="var(--brand-sapphire-60)" />
+                )
+              }
+            />
 
             <Button
               variant="secondary"
@@ -144,13 +146,14 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
               disabled={disabled || isPinnedLeft}
               title={isPinnedRight ? 'Открепить справа' : 'Закрепить справа'}
               onClick={handleTogglePinRight}
-            >
-              {isPinnedRight ? (
-                <IconRightColumnArrowFilled24 htmlColor="var(--brand-sapphire-60)" />
-              ) : (
-                <IconRightColumnArrowOutlined24 htmlColor="var(--brand-sapphire-60)" />
-              )}
-            </Button>
+              iconButton={
+                isPinnedRight ? (
+                  <IconRightColumnArrowFilled24 htmlColor="var(--brand-sapphire-60)" />
+                ) : (
+                  <IconRightColumnArrowOutlined24 htmlColor="var(--brand-sapphire-60)" />
+                )
+              }
+            />
           </>
         )}
       </div>

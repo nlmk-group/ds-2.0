@@ -7,6 +7,10 @@
   background-color: var(--brand-sapphire-10);
 }
 
+@mixin selectedHover {
+  background-color: var(--brand-sapphire-20);
+}
+
 .custom-rc-tree {
   height: 100%;
   width: 100%;
@@ -38,6 +42,10 @@
 
   :global(.rc-tree-treenode-selected) {
     background: var(--brand-sapphire-10);
+  }
+
+  :global(.rc-tree-treenode-selected-hover) {
+    background: var(--brand-sapphire-20)
   }
 
   :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
@@ -97,7 +105,7 @@
     padding: 0 10px;
     box-sizing: border-box;
     &[data-checked="true"] {
-      @include selected;
+      background-color: inherit;
     }
   }
 }
@@ -113,14 +121,14 @@
   }
 }
 
+:global(.rc-tree-treenode:hover) {
+  @include nodeHoverEvent;
+}
+
 :global(.rc-tree-treenode:has([data-checked="true"])) {
   @include selected;
 }
 
-[role="treeitem"]:hover {
-  @include nodeHoverEvent;
-}
-
-[role="treeitem"]:hover .nodeContent {
-  @include nodeHoverEvent;
+:global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+  @include selectedHover;
 }

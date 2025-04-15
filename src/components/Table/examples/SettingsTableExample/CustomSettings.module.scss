@@ -41,7 +41,8 @@
   }
 
   &.dropTarget {
-    background-color: rgba(24, 144, 255, 0.1);
+    background-color: var(--brand-sapphire-10);
+    opacity: 0.5;
   }
 }
 

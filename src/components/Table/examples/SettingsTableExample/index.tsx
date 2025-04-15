@@ -121,8 +121,44 @@ const SettingsTableExample = () => {
     // Преобразуем объект newVisibility в формат, который ожидает tanstack/react-table
     const tableVisibility: VisibilityState = {};
 
-    Object.entries(newVisibility).forEach(([id, isVisible]) => {
-      tableVisibility[id] = isVisible;
+    const parentMap: Record<string, string> = {};
+
+    const buildParentMap = (cols: any[], parent?: string) => {
+      cols.forEach(col => {
+        if (col.id) {
+          if (parent) {
+            parentMap[col.id] = parent;
+          }
+
+          if (col.columns && col.columns.length > 0) {
+            buildParentMap(col.columns, col.id);
+          }
+        }
+      });
+    };
+
+    buildParentMap(columns);
+
+    const isAnyParentHidden = (columnId: string): boolean => {
+      let currentId = columnId;
+
+      while (parentMap[currentId]) {
+        const parentId = parentMap[currentId];
+        if (newVisibility[parentId] === false) {
+          return true;
+        }
+        currentId = parentId;
+      }
+
+      return false;
+    };
+
+    // Устанавливаем видимость для каждой колонки
+    Object.keys(newVisibility).forEach(id => {
+      // Колонка видима только если:
+      // 1. Она помечена как видимая в настройках
+      // 2. Все ее родители также видимы
+      tableVisibility[id] = newVisibility[id] && !isAnyParentHidden(id);
     });
 
     setColumnVisibility(tableVisibility);

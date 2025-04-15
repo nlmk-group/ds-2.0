@@ -143,6 +143,40 @@ export const TableColumnList = <T extends object>({
   );
 
   /**
+   * Обработчик изменения видимости колонки с учетом дочерних элементов
+   * @param columnId ID колонки
+   * @param isVisible Новое значение видимости
+   */
+  const handleVisibilityChange = useCallback(
+    (columnId: string, isVisible: boolean) => {
+      const childrenToUpdate: string[] = [];
+
+      const getChildrenRecursively = (parentId: string) => {
+        const children = columnStructure.childrenMap[parentId] || [];
+        children.forEach(childId => {
+          childrenToUpdate.push(childId);
+          if (columnStructure.childrenMap[childId]) {
+            getChildrenRecursively(childId);
+          }
+        });
+      };
+
+      if (columnStructure.childrenMap[columnId]) {
+        getChildrenRecursively(columnId);
+      }
+
+      onVisibilityChange(columnId, isVisible);
+
+      if (!isVisible) {
+        childrenToUpdate.forEach(childId => {
+          onVisibilityChange(childId, false);
+        });
+      }
+    },
+    [columnStructure, onVisibilityChange]
+  );
+
+  /**
    * Функция для перемещения элемента в новый порядок
    */
   const moveItem = useCallback(
@@ -219,8 +253,9 @@ export const TableColumnList = <T extends object>({
 
       onOrderChange(newOrder);
     },
-    [columnOrder, columnStructure, getSortedColumns, onOrderChange]
+    [columnStructure, getSortedColumns, onOrderChange]
   );
+
   /**
    * Перемещение элемента в начало списка
    */
@@ -388,7 +423,7 @@ export const TableColumnList = <T extends object>({
               hasChildren={hasChildren}
               expanded={isExpanded}
               draggable={true}
-              onVisibilityChange={visible => onVisibilityChange(columnId, visible)}
+              onVisibilityChange={visible => handleVisibilityChange(columnId, visible)}
               onPinChange={pinValue => onPinChange(columnId, pinValue)}
               onExpandChange={() => toggleExpanded(columnId)}
             />
@@ -418,7 +453,7 @@ export const TableColumnList = <T extends object>({
       pinnedColumns,
       getSortedColumns,
       toggleExpanded,
-      onVisibilityChange,
+      handleVisibilityChange,
       onPinChange,
       moveItem,
       DropZone

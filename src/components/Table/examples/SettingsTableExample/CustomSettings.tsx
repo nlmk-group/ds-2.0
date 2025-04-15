@@ -49,6 +49,35 @@ export const CustomSettings = <T extends object>({
   // Для отладки и логирования
   const sessionId = useRef(Date.now()).current;
 
+  const [parentChildMap, setParentChildMap] = useState<Record<string, string[]>>({});
+
+  /**
+   * Эффект для создания карты родитель-дочерние элементы
+   */
+  useEffect(() => {
+    const parentChildMap: Record<string, string[]> = {};
+
+    const processColumns = (cols: any[], parent?: string) => {
+      cols.forEach(col => {
+        if (col.id) {
+          if (parent) {
+            if (!parentChildMap[parent]) {
+              parentChildMap[parent] = [];
+            }
+            parentChildMap[parent].push(col.id);
+          }
+
+          if (col.columns) {
+            processColumns(col.columns, col.id);
+          }
+        }
+      });
+    };
+
+    processColumns(columns);
+    setParentChildMap(parentChildMap);
+  }, [columns]);
+
   /**
    * Эффект для начальной инициализации локальных состояний
    * Выполняется один раз при первом монтировании компонента
@@ -125,15 +154,40 @@ export const CustomSettings = <T extends object>({
   };
 
   /**
-   * Обработчик изменения видимости колонки
+   * Обработчик изменения видимости колонки с учетом дочерних элементов
    * @param columnId ID колонки
    * @param isVisible Новое значение видимости
    */
   const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
+    const childrenToUpdate: string[] = [];
+
+    const getChildrenRecursively = (parentId: string) => {
+      const children = parentChildMap[parentId] || [];
+      children.forEach(childId => {
+        childrenToUpdate.push(childId);
+        if (parentChildMap[childId]) {
+          getChildrenRecursively(childId);
+        }
+      });
+    };
+
     setLocalVisibleColumns(prev => ({
       ...prev,
       [columnId]: isVisible
     }));
+
+    // Если родительская колонка скрыта, скрываем и все дочерние
+    if (!isVisible && parentChildMap[columnId]) {
+      getChildrenRecursively(columnId);
+
+      setLocalVisibleColumns(prev => {
+        const updated = { ...prev };
+        childrenToUpdate.forEach(childId => {
+          updated[childId] = false;
+        });
+        return updated;
+      });
+    }
   };
 
   /**
@@ -171,6 +225,7 @@ export const CustomSettings = <T extends object>({
    */
   const handleApply = () => {
     const allColumnIds = new Set<string>();
+
     const processColumns = (cols: any[]) => {
       cols.forEach(col => {
         if (col.id) {
@@ -184,7 +239,6 @@ export const CustomSettings = <T extends object>({
     processColumns(columns);
 
     const completeOrder = [...localColumnOrder];
-
     allColumnIds.forEach(id => {
       if (!completeOrder.includes(id)) {
         completeOrder.push(id);

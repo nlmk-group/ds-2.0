@@ -9,7 +9,11 @@ import styles from '@components/_storybook/styles.module.scss';
 import { ITabProps } from '../subcomponents/Tab/types';
 import argsTypes from './argsTypes';
 
-const withWrapper = (Story: () => any) => <div className={style.wrapper}><Story/></div>;
+const withWrapper = (Story: () => any) => (
+  <div className={style.wrapper}>
+    <Story />
+  </div>
+);
 export default {
   title: 'Components/Tabs/Stories',
   component: Tabs,

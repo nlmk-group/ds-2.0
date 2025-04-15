@@ -23,6 +23,96 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.3 - <span className={styles.date}>14.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              <li className={styles['left-padding']}>- Исправлены стили элементов дерева в состояниях hover и selected</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.2 - <span className={styles.date}>11.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена новая иконка MES (ClaimScan)</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено визуальное отображение обязательного поля при наличии атрибута required
+              </li>
+              <li className={styles['left-padding']}>- Изменены отступы в компоненте</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.1 - <span className={styles.date}>03.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена поддержка асинхронной загрузки опций через onOpen</li>
+              <li className={styles['left-padding']}>- Добавлена поддержка асинхронного поиска через onSearch</li>
+              <li className={styles['left-padding']}>
+                - Добавлен индикатор загрузки (isLoading) при асинхронных операциях
+              </li>
+              <li className={styles['left-padding']}>
+                - Оптимизирована производительность при работе с большими списками
+              </li>
+            </li>
+          </ul>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .<li className={styles['left-padding']}>- Высота компонента Tab уменьшена с 44px до 38px</li>
+            </li>
+          </ul>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Table
+              </Link>
+              .<li className={styles['left-padding']}>- Установлен цвет текста по умолчанию для компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.0 - <span className={styles.date}>27.03.25</span>
           </Typography>
           <Chip variant="outline" color="warning">

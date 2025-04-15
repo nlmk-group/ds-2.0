@@ -213,6 +213,21 @@ export interface ISelectProps {
    * Удалить содержимое Input после выбора
    */
   isClearInputOnSelect?: boolean;
+
+  /**
+   * Функция для загрузки опций при открытии селекта
+   */
+  onOpen?: () => Promise<ISelectOption[]>;
+
+  /**
+   * Функция для поиска опций при вводе значения
+   */
+  onSearch?: (searchValue: string) => Promise<ISelectOption[]>;
+
+  /**
+   * Состояние загрузки опций
+   */
+  isLoading?: boolean;
 }
 
 export interface IStealthyItem {
@@ -228,6 +243,7 @@ export interface IMenu {
   availableOptionsCount: number;
   filteredOptions: ISelectOption[];
   multilineOption?: boolean;
+  isLoading?: boolean;
 }
 
 export interface ISelectSharedProperties {

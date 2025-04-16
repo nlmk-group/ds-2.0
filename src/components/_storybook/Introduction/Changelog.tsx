@@ -35,7 +35,7 @@ export const Changelog = () => {
               >
                 TreeList
               </Link>
-              <li className={styles['left-padding']}>- Добавлены пропсы onDragStart и onDragEnd</li>
+              <li className={styles['left-padding']}>- Добавлены свойства onDragStart и onDragEnd</li>
             </li>
           </ul>
         </div>

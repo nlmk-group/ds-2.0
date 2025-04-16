@@ -11,7 +11,7 @@ export type TSortDirection = 'asc' | 'desc' | false;
 export interface ITopProps extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'title'> {
   /** Размер ячейки заголовка */
   size?: `${ESize}`;
-  /** Текстовое содержимое заголовка */
+  /** Содержимое заголовка */
   title?: ReactNode;
   /** Флаг отключения ячейки */
   disable?: boolean;

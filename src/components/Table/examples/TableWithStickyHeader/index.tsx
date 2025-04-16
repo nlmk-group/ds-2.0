@@ -50,7 +50,7 @@ const TableWithStickyHeader = () => {
                 <Top
                   key={header.id}
                   className={styles.notSortable}
-                  title={flexRender(header.column.columnDef.header, header.getContext()) as string}
+                  title={flexRender(header.column.columnDef.header, header.getContext())}
                   right={header.column.columnDef.meta?.isNumeric}
                 />
               ))}

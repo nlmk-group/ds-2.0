@@ -37,6 +37,16 @@ export const Changelog = () => {
               </Link>
               <li className={styles['left-padding']}>- Добавлены свойства onDragStart и onDragEnd</li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Top
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Изменен тип свойства title. Теперь принимает ReactNode
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

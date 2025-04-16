@@ -61,7 +61,7 @@ const GroupingTableExample = () => {
                     colSpan={header.colSpan}
                     // rowSpan определяет, сколько строк объединить по вертикали
                     rowSpan={rowSpan}
-                    title={flexRender(header.column.columnDef.header, header.getContext()) as string}
+                    title={flexRender(header.column.columnDef.header, header.getContext())}
                     className={styles.notSortable}
                     right={header.column.columnDef.meta?.isNumeric}
                   />

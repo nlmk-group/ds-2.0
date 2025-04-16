@@ -19,8 +19,8 @@ import { TreeList } from '@nlmk/ds-2.0';
 | data                | TNodeItem[]                     | -            | Данные для дерева в виде массива узлов                                             |
 | onSelectedNode      | (e: TSelectedNodeEvent) => void | -            | Обработчик события выбора узла                                                     |
 | onDataAfterDrag     | (e: TNodeItem[]) => void        | -            | Обработчик события после перетаскивания                                            |
-| onDragStart         | (e: TDragEvent[]) => void       | -            | Обработчик события начала перетаскивания |
-| onDragEnd           | (e: TDragEvent[]) => void       | -            | Обработчик события конца перетаскивания |
+| onDragStart         | (e: TDragEvent) => void         | -            | Обработчик события начала перетаскивания |
+| onDragEnd           | (e: TDragEvent) => void         | -            | Обработчик события конца перетаскивания |
 | checkable           | boolean                         | false        | Флаг отображения чекбоксов                                                         |
 | draggable           | boolean                         | false        | Флаг возможности перетаскивания узлов                                              |
 | checkableSimple     | boolean                         | false        | Флаг упрощённого выбора чекбоксов                                                  |

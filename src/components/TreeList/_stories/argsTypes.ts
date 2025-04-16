@@ -30,7 +30,7 @@ const argsTypes = {
     action: 'начало перетаскивания узла',
     table: {
       type: {
-        summary: '(e: TDragEvent[]) => void'
+        summary: '(e: TDragEvent) => void'
       }
     }
   },
@@ -39,7 +39,7 @@ const argsTypes = {
     action: 'конец перетаскивания узла',
     table: {
       type: {
-        summary: '(e: TDragEvent[]) => void'
+        summary: '(e: TDragEvent) => void'
       }
     }
   },

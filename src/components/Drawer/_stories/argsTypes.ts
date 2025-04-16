@@ -1,3 +1,5 @@
+import { EClickAwayEvent } from '@components/ClickAwayListener/types';
+
 export const argsTypes = {
   isOpen: {
     description: 'Определяет, открыт ли Drawer',
@@ -68,5 +70,16 @@ export const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  clickAwayEventType: {
+    description: `Тип события для закрытия панели при клике вне её области – <b>${Object.values(EClickAwayEvent).join(
+      ' | '
+    )}</b>`,
+    table: {
+      defaultValue: { summary: 'click' },
+      type: { summary: 'string' }
+    },
+    options: Object.values(EClickAwayEvent),
+    control: { type: 'select' }
   }
 };

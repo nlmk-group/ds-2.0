@@ -42,9 +42,20 @@ export const Changelog = () => {
               <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
                 Top
               </Link>
-              .
+              .<li className={styles['left-padding']}>- Изменен тип свойства title. Теперь принимает ReactNode</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-drawer-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Drawer
+              </Link>
               <li className={styles['left-padding']}>
-                - Изменен тип свойства title. Теперь принимает ReactNode
+                - Добавлено свойство clickAwayEventType для указания типа события для закрытия панели при клике вне её
+                области
               </li>
             </li>
           </ul>
@@ -63,7 +74,9 @@ export const Changelog = () => {
               >
                 TreeList
               </Link>
-              <li className={styles['left-padding']}>- Исправлены стили элементов дерева в состояниях hover и selected</li>
+              <li className={styles['left-padding']}>
+                - Исправлены стили элементов дерева в состояниях hover и selected
+              </li>
             </li>
           </ul>
         </div>

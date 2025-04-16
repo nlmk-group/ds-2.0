@@ -26,6 +26,7 @@ import { EDrawerPosition } from './enums';
  * @param {boolean} [props.disableBackdropClick=false] - Отключает закрытие панели по клику вне её области.
  * @param {boolean} [props.isViewCloseButton=true] - Отображает кнопку закрытия.
  * @param {boolean} [props.overlay=true] - Отображает оверлей.
+ * @param {TClickAwayEvent} [props.clickAwayEventType=EClickAwayEvent.mousedown] - Тип события для закрытия панели при клике вне её области.
  * @returns {ReactElement | null} Компонент Drawer.
  */
 
@@ -41,10 +42,23 @@ const Drawer: FC<IDrawerProps> = ({
   disableBackdropClick,
   isViewCloseButton = true,
   overlay = true,
-  eventType = EClickAwayEvent.mousedown
+  clickAwayEventType = EClickAwayEvent.click
 }) => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const [isClosing, setIsClosing] = useState(false);
+  const justOpenedRef = useRef(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      justOpenedRef.current = true;
+
+      const timeoutId = setTimeout(() => {
+        justOpenedRef.current = false;
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -68,6 +82,15 @@ const Drawer: FC<IDrawerProps> = ({
     }, 300);
   };
 
+  const handleClickAway = () => {
+    if (clickAwayEventType === EClickAwayEvent.click && justOpenedRef.current) {
+      return;
+    }
+
+    if (disableBackdropClick) return;
+    handleClose();
+  };
+
   if (!isOpen && !isClosing) return null;
 
   const isHorizontal = position === EDrawerPosition.left || position === EDrawerPosition.right;
@@ -89,14 +112,14 @@ const Drawer: FC<IDrawerProps> = ({
       data-testid="DRAWER"
     >
       <ClickAwayListener
-        eventType={eventType}
+        eventType={clickAwayEventType}
         className={clsx(styles.wrapper, styles[position], {
           [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
           [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,
           [styles.slideOutTop]: isClosing && position === EDrawerPosition.top,
           [styles.slideOutBottom]: isClosing && position === EDrawerPosition.bottom
         })}
-        onClickAway={() => (disableBackdropClick ? undefined : handleClose())}
+        onClickAway={handleClickAway}
       >
         <div
           ref={drawerRef}

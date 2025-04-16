@@ -33,6 +33,8 @@ export interface IDrawerProps {
   isViewCloseButton?: boolean;
   /** Отображает оверлей */
   overlay?: boolean;
+  /** Тип события для закрытия панели при клике вне её области */
+  clickAwayEventType?: TClickAwayEvent;
 }
 
 /**

@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Sidebar, Typography } from '@components/index';
+import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -130,28 +130,12 @@ DrawerWithoutCloseButton.args = {
 
 export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentPath, setCurrentPath] = useState('');
 
   return (
     <div>
-      <Sidebar
-        orientation="vertical"
-        allowFavorites
-        isLoggedIn={isLoggedIn}
-        onLogout={() => setIsLoggedIn(false)}
-        onLogin={() => setIsLoggedIn(true)}
-        currentPath={currentPath}
-      >
-        <Sidebar.Avatar size="s" imageSrc="" />
-        <Sidebar.MenuItem
-          path="tasks"
-          label="Описание профиля"
-          position="top"
-          icon="IconKovsh32"
-          onClick={() => setIsOpen(true)}
-        ></Sidebar.MenuItem>
-      </Sidebar>
+      <Button type="button" onClick={() => setIsOpen(true)}>
+        Открыть Drawer c примером профиля
+      </Button>
       <Drawer
         {...args}
         isOpen={isOpen}
@@ -167,7 +151,7 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
             <Typography variant="Body1-Medium">Иван Иванов</Typography>
           </Box>
           <Box style={{ display: 'flex', gap: '24px', flexDirection: 'column', flexGrow: '1' }}>
-            <Input pseudo label="Email" value="Ivanov_ii@nlmk.com" />
+            <Input pseudo label="Email" value="maili@mail.com" />
             <Input pseudo label="Должность" value="Руководитель проекта" />
             <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
             <Input pseudo label="Полномочия" value="Не указано" />
@@ -185,7 +169,4 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
     </div>
   );
 };
-DrawerSidebar.storyName = 'Drawer с боковой панелью';
-DrawerSidebar.parameters = {
-  layout: 'fullscreen'
-};
+DrawerSidebar.storyName = 'Drawer с примером профиля';

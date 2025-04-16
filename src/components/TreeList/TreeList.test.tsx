@@ -87,4 +87,24 @@ describe('src/components/TreeList', () => {
     const { getByTestId } = render(<TreeList data={dataWithControls} />);
     expect(getByTestId('controls')).toBeInTheDocument();
   });
+
+  // Тест обработчиков onDragStart и onDragEnd
+  test('It should handle drag start and end callbacks', () => {
+    const onDragStart = jest.fn();
+    const onDragEnd = jest.fn();
+    const { container } = render(<TreeList data={MOCK_TREE_DATA} draggable onDragStart={onDragStart} onDragEnd={onDragEnd} />);
+
+    const dragNode = container.querySelector('[data-key="0-0-0"]');
+    const dropNode = container.querySelector('[data-key="0-1"]');
+
+    if (dragNode && dropNode) {
+      fireEvent.dragStart(dragNode);
+      expect(onDragStart).toHaveBeenCalled();
+
+      fireEvent.dragEnter(dropNode);
+      fireEvent.dragOver(dropNode);
+      fireEvent.drop(dropNode);
+      expect(onDragEnd).toHaveBeenCalled();
+    }
+  });
 });

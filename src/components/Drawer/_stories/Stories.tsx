@@ -71,7 +71,7 @@ export default  App = () => {
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          {/* <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} /> */}
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -86,7 +86,7 @@ export default  App = () => {
         </>
       )}
       {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/file/0BGHYt5CjO71I4KhygQJD5/DS2.0-Filtering-%26-Sorting?node-id=534-67220" />
+        <FigmaEmbed url="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=286-1924&p=f" />
       )}
       {Number(activeTab) === 2 && <Tests componentName="Drawer" />}
     </div>

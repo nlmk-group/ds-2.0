@@ -61,7 +61,7 @@ const GroupHeaderTableWithResizeExample = () => {
                     onMouseDown={header.getResizeHandler()}
                     onTouchStart={header.getResizeHandler()}
                     onDoubleClick={() => header.column.resetSize()}
-                    title={flexRender(header.column.columnDef.header, header.getContext()) as string}
+                    title={flexRender(header.column.columnDef.header, header.getContext())}
                     right={header.column.columnDef.meta?.isNumeric}
                   />
                 );

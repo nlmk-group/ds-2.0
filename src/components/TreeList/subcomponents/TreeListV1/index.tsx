@@ -10,7 +10,7 @@ import 'rc-tree/assets/index.css';
 import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
-import { ERowHeight, TCheckedKeys, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
+import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
 import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
@@ -20,6 +20,8 @@ export const TreeListV1 = ({
   checkableSimple,
   onSelectedNode,
   onDataAfterDrag,
+  onDragStart,
+  onDragEnd,
   rowHeight = ERowHeight.s,
   initialCheckedKeys = [],
   initialExpandedKeys = []
@@ -54,6 +56,16 @@ export const TreeListV1 = ({
     setTreeData(data);
     if (onDataAfterDrag) onDataAfterDrag(data);
   };
+
+  const handleDragStart = (event: TDragEvent) => {
+    setDragging(String(event.node.key))
+    onDragStart && onDragStart(event)
+  }
+
+  const handleDragEnd = (event: TDragEvent) => {
+    setDragging(null)
+    onDragEnd && onDragEnd(event)
+  }
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
@@ -190,8 +202,8 @@ export const TreeListV1 = ({
         switcherIcon={() => null} // Отключаем стандартные стрелки
         checkable={false} // Отключение стандартных чекбоксов
         selectable={false} // Отключение возможности выбора узлов
-        onDragStart={info => setDragging(String(info.node.key))}
-        onDragEnd={() => setDragging(null)}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
         expandedKeys={expandedKeys}
       />
     </div>

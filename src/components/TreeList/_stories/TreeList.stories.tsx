@@ -5,7 +5,7 @@ import { Box } from '@components/index';
 import styles from './TreeList.module.scss';
 
 import TreeList from '../TreeList';
-import { TNodeItem, TSelectedNodeEvent, TTreeListProps } from '../types';
+import { TDragEvent, TNodeItem, TSelectedNodeEvent, TTreeListProps } from '../types';
 import { DEFAULT_TREE_DATA } from './constants';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
@@ -29,6 +29,14 @@ export const TreeListDefault = (argTypes: TTreeListProps): JSX.Element => {
     setData(newData);
   };
 
+  const onDragStart = (e: TDragEvent) => {
+      console.log('Drag start event: ',  e.event)
+    }
+  
+    const onDragEnd = (e: TDragEvent) => {
+      console.log('Drag end event; ', e.event)
+    }
+
   return (
     <TreeList
       data={data}
@@ -37,6 +45,8 @@ export const TreeListDefault = (argTypes: TTreeListProps): JSX.Element => {
       rowHeight={argTypes.rowHeight}
       onSelectedNode={onSelectedNode}
       onDataAfterDrag={onDataAfterDrag}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     />
   );
 };

@@ -21,6 +21,7 @@ export type TCheckedKeys = Key[] | {
     checked: Key[];
     halfChecked: Key[];
 };
+export type TDragEvent = NodeDragEventParams<DataNode>;
 export type TDropEvent = NodeDragEventParams<TNodeItem> & {
     dragNode: EventDataNode<TTreeItem>;
     dragNodesKeys: Key[];
@@ -41,6 +42,8 @@ export type TTreeListProps = {
     data: TNodeItem[];
     onSelectedNode?: (e: TSelectedNodeEvent) => void;
     onDataAfterDrag?: (e: TNodeItem[]) => void;
+    onDragStart?: (e: TDragEvent) => void;
+    onDragEnd?: (e: TDragEvent) => void;
     checkable?: boolean;
     draggable?: boolean;
     checkableSimple?: boolean;

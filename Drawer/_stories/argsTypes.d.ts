@@ -1,3 +1,5 @@
+import { EClickAwayEvent } from '../../ClickAwayListener/types';
+
 export declare const argsTypes: {
     isOpen: {
         description: string;
@@ -83,6 +85,21 @@ export declare const argsTypes: {
                 summary: string;
             };
         };
+        control: {
+            type: string;
+        };
+    };
+    clickAwayEventType: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: EClickAwayEvent[];
         control: {
             type: string;
         };

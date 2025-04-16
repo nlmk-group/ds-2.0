@@ -8,7 +8,7 @@ export declare enum ESize {
 export type TSortDirection = 'asc' | 'desc' | false;
 export interface ITopProps extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'title'> {
     size?: `${ESize}`;
-    title?: string;
+    title?: ReactNode;
     disable?: boolean;
     sort?: boolean;
     sortDirection?: TSortDirection;

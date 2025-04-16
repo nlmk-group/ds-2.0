@@ -25,6 +25,24 @@ declare const argsTypes: {
             };
         };
     };
+    onDragStart: {
+        description: string;
+        action: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
+    onDragEnd: {
+        description: string;
+        action: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+    };
     checkable: {
         description: string;
         table: {

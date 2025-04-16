@@ -21,4 +21,8 @@ export declare const DrawerWithoutCloseButton: {
         isViewCloseButton: boolean;
     };
 };
+export declare const DrawerWithProfile: {
+    (args: IDrawerProps): JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=Drawer.stories.d.ts.map

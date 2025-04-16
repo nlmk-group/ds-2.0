@@ -1,6 +1,16 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Sidebar, Typography } from '@components/index';
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  IconEditPenOutlined24,
+  Input,
+  Sidebar,
+  Typography
+} from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
@@ -172,7 +182,16 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
             <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
             <Input pseudo label="Полномочия" value="Не указано" />
           </Box>
-          <Box style={{ display: 'flex', gap: '8px', justifySelf: 'flex-end' }}>
+          <Box
+            style={{
+              display: 'flex',
+              gap: '8px',
+              justifySelf: 'flex-end',
+              borderTop: '1px solid',
+              borderColor: 'var(--unique-divider)',
+              padding: '24px'
+            }}
+          >
             <Button startIcon={<IconEditPenOutlined24 />} type="button">
               Редактировать
             </Button>

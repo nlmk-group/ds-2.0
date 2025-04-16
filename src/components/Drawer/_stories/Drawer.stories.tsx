@@ -1,8 +1,10 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
+import { Avatar, Box, Button, Divider, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
+
+import styles from './Drawer.module.scss';
 
 import { IDrawerProps } from '../types';
 import { argsTypes } from './argsTypes';
@@ -128,7 +130,7 @@ DrawerWithoutCloseButton.args = {
   isViewCloseButton: false
 };
 
-export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
+export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -143,20 +145,32 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
           setIsOpen(false);
           action('drawerClosed')();
         }}
+        className={styles['profile-drawer']}
       >
         <Box flexDirection="column" height="100%">
-          <Typography variant="Heading3">Профиль пользователя</Typography>
-          <Box gap="16px" alignItems="center">
-            <Avatar />
-            <Typography variant="Body1-Medium">Иван Иванов</Typography>
+          <Box flexDirection="column" height="100%" px="24px">
+            <Typography variant="Heading3">Профиль пользователя</Typography>
+            <Box gap="16px" alignItems="center">
+              <Avatar />
+              <Typography variant="Body1-Medium">Иван Иванов</Typography>
+            </Box>
+            <Box style={{ display: 'flex', gap: '24px', flexDirection: 'column', flexGrow: '1' }}>
+              <Input pseudo label="Email" value="maili@mail.com" />
+              <Input pseudo label="Должность" value="Руководитель проекта" />
+              <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
+              <Input pseudo label="Полномочия" value="Не указано" />
+            </Box>
           </Box>
-          <Box style={{ display: 'flex', gap: '24px', flexDirection: 'column', flexGrow: '1' }}>
-            <Input pseudo label="Email" value="maili@mail.com" />
-            <Input pseudo label="Должность" value="Руководитель проекта" />
-            <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
-            <Input pseudo label="Полномочия" value="Не указано" />
-          </Box>
-          <Box style={{ display: 'flex', gap: '8px', justifySelf: 'flex-end' }}>
+          <Box
+            style={{
+              display: 'flex',
+              gap: '8px',
+              justifySelf: 'flex-end',
+              borderTop: '1px solid',
+              borderColor: 'var(--unique-divider)',
+              padding: '24px'
+            }}
+          >
             <Button startIcon={<IconEditPenOutlined24 />} type="button">
               Редактировать
             </Button>
@@ -169,4 +183,4 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
     </div>
   );
 };
-DrawerSidebar.storyName = 'Drawer с примером профиля';
+DrawerWithProfile.storyName = 'Drawer с примером профиля';

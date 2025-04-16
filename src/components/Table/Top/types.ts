@@ -12,7 +12,7 @@ export interface ITopProps extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElem
   /** Размер ячейки заголовка */
   size?: `${ESize}`;
   /** Текстовое содержимое заголовка */
-  title?: string;
+  title?: ReactNode;
   /** Флаг отключения ячейки */
   disable?: boolean;
   /** Флаг включения сортировки */

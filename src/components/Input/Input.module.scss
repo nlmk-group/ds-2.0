@@ -80,7 +80,7 @@ input:autofill:focus {
   input:not(:placeholder-shown):not(:focus) ~ label,
   textarea:not(:placeholder-shown):not(:focus) ~ label {
     top: -9px;
-    left: 12px;
+    left: 8px;
     padding: 0 4px;
     // Создаем эффект "разрыва" границы инпута для лейбла
     background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
@@ -140,7 +140,7 @@ input:autofill:focus {
   outline: none;
   background: var(--steel-10);
   font-variant-numeric: tabular-nums lining-nums;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
   @include input-border-color-states;
 
   &::placeholder {
@@ -293,4 +293,7 @@ input:autofill:focus {
   &.textarea {
     background-color: var(--spectrum-yellow-10) !important;
   }
+}
+.required {
+  color: var(--spectrum-red-60);
 }

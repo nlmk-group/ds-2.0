@@ -74,7 +74,7 @@ const SortableTableExample = () => {
                         header.column.toggleSorting();
                       }
                     }}
-                    title={flexRender(header.column.columnDef.header, header.getContext()) as string}
+                    title={flexRender(header.column.columnDef.header, header.getContext())}
                     right={header.column.columnDef.meta?.isNumeric}
                   />
                 );

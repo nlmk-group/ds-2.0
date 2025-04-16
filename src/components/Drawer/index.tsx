@@ -103,7 +103,7 @@ const Drawer: FC<IDrawerProps> = ({
           className={clsx(styles.drawer, styles[position], className)}
           style={isHorizontal ? { width } : { height }}
         >
-          <div className={styles.drawerContent} data-ui-drawer-content>
+          <div className={clsx(styles.drawerContent, styles[position])} data-ui-drawer-content>
             {children}
           </div>
         </div>

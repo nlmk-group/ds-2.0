@@ -172,7 +172,7 @@ export const DrawerSidebar = (args: IDrawerProps): JSX.Element => {
             <Input pseudo label="Отдел" value="Направление ИТ базовых процессов ТОиР" />
             <Input pseudo label="Полномочия" value="Не указано" />
           </Box>
-          <Box style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
+          <Box style={{ display: 'flex', gap: '8px', justifySelf: 'flex-end' }}>
             <Button startIcon={<IconEditPenOutlined24 />} type="button">
               Редактировать
             </Button>

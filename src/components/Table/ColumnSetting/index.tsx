@@ -3,8 +3,8 @@ import React, { FC } from 'react';
 import {
   Button,
   IconDragIndicatorDotsFilled24,
-  IconEyeOffOutlined24,
-  IconEyeOutlined24,
+  IconEyeOffFilled24,
+  IconEyeFilled24,
   IconPushPinFilled24,
   IconPushPinOutlined24,
   IconRightColumnArrowFilled24,
@@ -38,30 +38,43 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
   onPinChange,
   onExpandChange,
   dragHandleProps,
+  preventEventBubbling = true,
   className
 }) => {
   const isPinnedLeft = pinned === 'left';
   const isPinnedRight = pinned === 'right';
 
-  const handleToggleVisibility = () => {
+  const handleToggleVisibility = (e: React.MouseEvent) => {
+    if (preventEventBubbling) {
+      e.stopPropagation();
+    }
     if (!disabled) {
       onVisibilityChange(!visible);
     }
   };
 
-  const handleTogglePinLeft = () => {
+  const handleTogglePinLeft = (e: React.MouseEvent) => {
+    if (preventEventBubbling) {
+      e.stopPropagation();
+    }
     if (!disabled && onPinChange) {
       onPinChange(isPinnedLeft ? false : 'left');
     }
   };
 
-  const handleTogglePinRight = () => {
+  const handleTogglePinRight = (e: React.MouseEvent) => {
+    if (preventEventBubbling) {
+      e.stopPropagation();
+    }
     if (!disabled && onPinChange) {
       onPinChange(isPinnedRight ? false : 'right');
     }
   };
 
-  const handleExpandToggle = () => {
+  const handleExpandToggle = (e: React.MouseEvent) => {
+    if (preventEventBubbling) {
+      e.stopPropagation();
+    }
     if (hasChildren && onExpandChange) {
       onExpandChange();
     }
@@ -79,7 +92,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
             color="ghost"
             variant="secondary"
             size="s"
-            iconButton={<IconDragIndicatorDotsFilled24 htmlColor={'var(--brand-sapphire-60)'} />}
+            iconButton={<IconDragIndicatorDotsFilled24 htmlColor={'var(--steel-70)'} />}
           />
         </div>
       )}
@@ -114,9 +127,9 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
           onClick={handleToggleVisibility}
           iconButton={
             visible ? (
-              <IconEyeOutlined24 htmlColor="var(--brand-sapphire-60)" />
+              <IconEyeFilled24 htmlColor="var(--brand-sapphire-60)" />
             ) : (
-              <IconEyeOffOutlined24 htmlColor="var(--brand-sapphire-60)" />
+              <IconEyeOffFilled24 htmlColor="var(--steel-70)" />
             )
           }
         />
@@ -134,7 +147,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
                 isPinnedLeft ? (
                   <IconPushPinFilled24 htmlColor="var(--brand-sapphire-60)" />
                 ) : (
-                  <IconPushPinOutlined24 htmlColor="var(--brand-sapphire-60)" />
+                  <IconPushPinOutlined24 htmlColor="var(--steel-70)" />
                 )
               }
             />
@@ -150,7 +163,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
                 isPinnedRight ? (
                   <IconRightColumnArrowFilled24 htmlColor="var(--brand-sapphire-60)" />
                 ) : (
-                  <IconRightColumnArrowOutlined24 htmlColor="var(--brand-sapphire-60)" />
+                  <IconRightColumnArrowOutlined24 htmlColor="var(--steel-70)" />
                 )
               }
             />

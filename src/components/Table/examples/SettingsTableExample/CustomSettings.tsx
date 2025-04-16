@@ -296,13 +296,13 @@ export const CustomSettings = <T extends object>({
           </div>
 
           <div className={styles.buttonsGroup}>
-            <Button variant="primary" size="s" onClick={handleApply}>
+            <Button variant="primary" onClick={handleApply}>
               Применить
             </Button>
-            <Button variant="secondary" size="s" onClick={handleCancel}>
+            <Button variant="secondary" onClick={handleCancel}>
               Отмена
             </Button>
-            <Button variant="secondary" size="s" onClick={handleResetToDefault}>
+            <Button variant="primary" color="ghost" onClick={handleResetToDefault}>
               Сбросить
             </Button>
           </div>

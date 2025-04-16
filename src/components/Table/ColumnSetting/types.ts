@@ -64,6 +64,15 @@ export interface IColumnSettingProps {
    */
   dragHandleProps?: React.DOMAttributes<HTMLDivElement>;
 
+/**
+ * Флаг для предотвращения всплытия событий клика от кнопок компонента.
+ * Если установлен в true, вызывает e.stopPropagation() в обработчиках
+ * событий кнопок, что предотвращает закрытие родительских компонентов
+ * (например, Drawer) при взаимодействии с кнопками настроек колонок.
+ * @default true
+ */
+  preventEventBubbling?: boolean;
+
   /**
    * Дополнительный CSS класс
    */

@@ -68,6 +68,14 @@ export default App = () => {
     console.log('Структура после перемещения:', newData);
   };
 
+  const onDragStart = (e) => {
+    console.log('Событие начала перетаскивания: ',  e.event)
+  }
+  
+  const onDragEnd = (e) => {
+    console.log('Событие конца перетаскивания: ', e.event)
+  }
+
   return (
     <TreeList
       data={defaultTreeData}
@@ -76,6 +84,8 @@ export default App = () => {
       rowHeight="s"
       onSelectedNode={onSelectedNode}
       onDataAfterDrag={onDataAfterDrag}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     />
   );
 };`;

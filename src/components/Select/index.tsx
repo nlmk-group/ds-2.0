@@ -4,7 +4,6 @@ import { usePopper } from 'react-popper';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ClickAwayListener } from '@components/index';
-import { InputWithRef } from '@components/Select/subcomponents/SelectInput';
 import clsx from 'clsx';
 
 import { ISelectOption, ISelectProps, ISelectSharedProperties } from './types';
@@ -15,6 +14,7 @@ import { getLabel } from './helpers';
 import BadgeAmount from './subcomponents/BadgeAmount';
 import Menu from './subcomponents/Menu';
 import SelectButton from './subcomponents/SelectButton';
+import { InputWithRef } from './subcomponents/SelectInput';
 import StealthyItem from './subcomponents/StealthyItem';
 
 export const SelectSharedProperties = createContext<ISelectSharedProperties>({
@@ -30,58 +30,6 @@ export const SelectSharedProperties = createContext<ISelectSharedProperties>({
   handleTypographyClick: () => {},
   withPortal: false
 });
-
-/**
- * Компонент Select представляет собой настраиваемый выпадающий список с возможностью
- * одиночного или множественного выбора, поиска, и различными визуальными настройками.
- *
- * @component
- * @example
- * <Select
- *   options={[
- *     { value: '1', label: 'Option 1' },
- *     { value: '2', label: 'Option 2' }
- *   ]}
- *   label="Select an option"
- *   onSelectionChange={(selected) => console.log(selected)}
- * />
- *
- * @param {Object} props - Свойства компонента Select
- * @param {ReactNode} [props.children] - Элемент, представляющий собой селект
- * @param {number} [props.listMinWidth] - Минимальная ширина меню опций
- * @param {string} [props.id] - Идентификатор компонента
- * @param {ISelectOption[] | null} props.options - Опции для выбора
- * @param {string} [props.label] - Метка для компонента
- * @param {boolean} [props.multiple=false] - Множественный выбор
- * @param {TSize} [props.size=sizesMappingInput.m] - Размер компонента
- * @param {number} [props.scrollingItems=6] - Количество элементов после которого включается прокрутка
- * @param {boolean} [props.disabled=false] - Отключен ли компонент
- * @param {customInputColors} [props.color=customInputColors.default] - Цвет компонента
- * @param {string} [props.allSelectText='Выбрать все'] - Текст для выбора всех опций
- * @param {boolean} [props.isAllSelectView=true] - Показывать ли выбор всех опций
- * @param {boolean} [props.isSearchable=false] - Поиск по опциям
- * @param {boolean} [props.autoSelectSingleOnEnter=false] - Выбор значения по Enter при найденной опции по isSearchable
- * @param {TSelected} props.selected - Выбранные значения
- * @param {function} props.onSelectionChange - Обработчик изменения выбора
- * @param {boolean} [props.withPortal=false] - Использовать ли портал для отображения
- * @param {function} [props.onEnterPress] - Обработчик нажатия Enter
- * @param {function} [props.onBlur] - Обработчик закрытия меню options
- * @param {function} [props.onFocus] - Обработчик открытия меню options
- * @param {boolean} [props.isClearSearchOnBlur=false] - Удалять ли поисковый запрос при отработке onBlur на Input
- * @param {string} [props.className] - Дополнительный CSS класс
- * @param {boolean} [props.stealthy=false] - Условие для незаметного инпута
- * @param {boolean} [props.highlightSelected=false] - Отображать выбранные элементы иконкой
- * @param {boolean} [props.withoutCheckbox=false] - Отображать без чекбоксов
- * @param {number} [props.badgeAmount] - Отображать badge с количеством выбранных опций
- * @param {boolean} [props.activeSelectedValue=false] - Выделять значение синим цветом, доступно в stealthy
- * @param {boolean} [props.enableScrollToActiveOption=false] - Условие фокуса на опциях компонента при раскрытии списка
- * @param {string} [props.portalContainerId='root'] - id рутового контейнера для создания портала
- * @param {string} [props.name] - name определяет имя элемента, используется для ссылки на элемент
- * @param {CSSProperties} [props.style] - Кастомные стили для компонента
- * @param {boolean} [props.isClearInputOnSelect=false] - Удалить содержимое Input после выбора 
- *
- * @returns {JSX.Element} Компонент Select
- */
 
 const Select: FC<ISelectProps> = ({
   id,
@@ -111,41 +59,28 @@ const Select: FC<ISelectProps> = ({
   className,
   children,
   listMinWidth,
-  onSelectionChange: onSelectionChangeSource,
+  onSelectionChange,
   onEnterPress,
   onBlur,
   onFocus,
   style,
-  isClearInputOnSelect = false
+  isClearInputOnSelect = false,
+  onOpen,
+  onSearch,
+  isLoading = false
 }) => {
-  const generateDisplayValue = (): string => {
-    if (multiple) {
-      return (
-        options
-          ?.filter((option: ISelectOption) => selected?.includes(option.value))
-          .map((option: ISelectOption) => getLabel(option.label))
-          .join(', ') || ''
-      );
-    }
-
-    return getLabel(options?.find((option: ISelectOption) => option.value === selected)?.label || '');
-  };
-
+  const [loading, setLoading] = useState(isLoading);
+  const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
+  const [hasLoadedOptions, setHasLoadedOptions] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState(options);
+  const [filteredOptions, setFilteredOptions] = useState<ISelectOption[] | null>(options);
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
-
-  const onSelectionChange = (props: Parameters<typeof onSelectionChangeSource>[0]) => {
-    if (isClearInputOnSelect) {
-      setSearchTerm('')
-    }
-    onSelectionChangeSource?.(props)
-  }  
 
   const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
     placement: 'bottom-start'
@@ -165,9 +100,23 @@ const Select: FC<ISelectProps> = ({
       return;
     }
     window.scrollTo({ top: currentScrollPosition, behavior: 'smooth' });
-  }, [isOpen, enableScrollToActiveOption]);
+  }, [isOpen, enableScrollToActiveOption, currentScrollPosition]);
 
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
+
+  const generateDisplayValue = (): string => {
+    const optionsToUse = asyncOptions || options;
+    if (!optionsToUse) return '';
+
+    if (multiple) {
+      return optionsToUse
+        .filter((option: ISelectOption) => selected?.includes(option.value))
+        .map((option: ISelectOption) => getLabel(option.label))
+        .join(', ');
+    }
+
+    return getLabel(optionsToUse?.find((option: ISelectOption) => option.value === selected)?.label || '');
+  };
 
   const handleOutsideClick = () => {
     setIsOpen(false);
@@ -179,62 +128,95 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
-  const handleFocusClick = () => {
-    setIsOpen(true);
+  const handleFocusClick = async () => {
     if (onFocus) {
       onFocus();
     }
-  };
 
-  useEffect(() => {
-    if (isSearchable && options) {
-      setFilteredOptions(
-        options.filter(option => getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    } else {
-      setFilteredOptions(options);
-    }
-  }, [searchTerm, options, isSearchable]);
+    setIsOpen(true);
 
-  const availableOptionsCount = useMemo(() => {
-    return options ? options.filter(option => !option.disabled).length : 0;
-  }, [options]);
-
-  const handleSelect = (value: string, checked: boolean) => {
-    if (options) {
-      if (multiple) {
-        if (Array.isArray(selected)) {
-          const newSelectedValues = checked
-            ? selected?.filter(selectedValue => selectedValue !== value)
-            : [...selected, value];
-          if (onSelectionChange) {
-            onSelectionChange(newSelectedValues);
-          }
-        } else {
-          onSelectionChange([selected, value]);
-        }
-      } else {
-        setIsOpen(false);
-        if (onSelectionChange) {
-          onSelectionChange(value);
-        }
+    if (onOpen && typeof onOpen === 'function' && !hasLoadedOptions) {
+      setLoading(true);
+      try {
+        const fetchedOptions = await onOpen();
+        setAsyncOptions(fetchedOptions);
+        setFilteredOptions(fetchedOptions);
+        setHasLoadedOptions(true);
+      } catch {
+      } finally {
+        setLoading(false);
       }
     }
   };
 
+  useEffect(() => {
+    if (!onOpen) {
+      setAsyncOptions(options);
+      setFilteredOptions(options);
+    }
+  }, [options, onOpen]);
+
+  useEffect(() => {
+    if (isSearchable) {
+      const optionsToFilter = asyncOptions || options;
+      if (optionsToFilter) {
+        setFilteredOptions(
+          optionsToFilter.filter(option => getLabel(option.label).toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
+    } else {
+      setFilteredOptions(asyncOptions || options);
+    }
+  }, [searchTerm, asyncOptions, options, isSearchable]);
+
+  const handleAsyncSearch = async (value: string) => {
+    if (onSearch && typeof onSearch === 'function') {
+      setLoading(true);
+      try {
+        const results = await onSearch(value);
+        setAsyncOptions(results);
+        setFilteredOptions(results);
+      } catch (err) {
+        console.error('Ошибка при выполнении поиска:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const availableOptionsCount = useMemo(() => {
+    const optionsToUse = asyncOptions || options;
+    return optionsToUse ? optionsToUse.filter(option => !option.disabled).length : 0;
+  }, [asyncOptions, options]);
+
+  const handleSelect = (value: string, checked: boolean) => {
+    if (multiple) {
+      const newSelected = checked
+        ? (selected as string[]).filter(selectedValue => selectedValue !== value)
+        : [...(selected as string[]), value];
+
+      onSelectionChange(newSelected);
+    } else {
+      setIsOpen(false);
+      onSelectionChange(value);
+    }
+
+    if (isClearInputOnSelect) {
+      setSearchTerm('');
+    }
+  };
+
   const handleSelectAllClick = () => {
-    if (options) {
+    const optionsToUse = asyncOptions || options;
+    if (!optionsToUse) return;
+
+    if (multiple) {
+      const allValues = optionsToUse.filter(option => !option.disabled).map(option => option.value);
+
       if (selected?.length === availableOptionsCount) {
-        if (onSelectionChange) {
-          onSelectionChange([]);
-        }
+        onSelectionChange([]);
       } else {
-        const filteredOptions = options.filter(option => !option.disabled);
-        const returnValueWithMap = (key: string) => filteredOptions.map(option => option[key]);
-        const [allValues] = [returnValueWithMap('value')];
-        if (onSelectionChange) {
-          onSelectionChange(allValues);
-        }
+        onSelectionChange(allValues);
       }
     }
   };
@@ -261,7 +243,6 @@ const Select: FC<ISelectProps> = ({
       handleSelect(option.value, selected?.includes(option.value));
       onEnterPress?.(option.value);
     }
-
   };
 
   const handleTypographyClick = (value: string, event: React.MouseEvent<HTMLElement>) => {
@@ -292,7 +273,12 @@ const Select: FC<ISelectProps> = ({
         {isOpen && (
           <SelectSharedProperties.Provider value={sharedProps}>
             <div ref={listRef}>
-              <Menu availableOptionsCount={availableOptionsCount} filteredOptions={filteredOptions || []} multilineOption={multilineOption} />
+              <Menu
+                availableOptionsCount={availableOptionsCount}
+                filteredOptions={filteredOptions || options || []}
+                multilineOption={multilineOption}
+                isLoading={loading}
+              />
             </div>
           </SelectSharedProperties.Provider>
         )}
@@ -325,7 +311,7 @@ const Select: FC<ISelectProps> = ({
             data-testid="select-inconspicuous"
           >
             <StealthyItem
-              option={!multiple ? options?.filter(item => item.value === selected)[0] : undefined}
+              option={!multiple ? (asyncOptions || options)?.filter(item => item.value === selected)[0] : undefined}
               size={size}
               displayValue={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
               multiple={multiple}
@@ -343,7 +329,15 @@ const Select: FC<ISelectProps> = ({
             ref={setInputRef}
             disabled={disabled}
             value={isSearchable && isOpen ? searchTerm : generateDisplayValue()}
-            onChange={e => isSearchable && setSearchTerm(e.target.value)}
+            onChange={e => {
+              if (isSearchable) {
+                setSearchTerm(e.target.value);
+            
+                if (onSearch && typeof onSearch === 'function') {
+                  handleAsyncSearch(e.target.value);
+                }
+              }
+            }}
             readOnly={!isSearchable}
             onFocus={handleFocusClick}
             onKeyDown={handleKeyDown}

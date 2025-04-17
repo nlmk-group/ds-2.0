@@ -1,6 +1,6 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
 
-import { Cell, Pagination, Row, Spinner, Tbody, Thead, Top } from '@components/index';
+import { Box, Cell, Pagination, Row, Spinner, Tbody, Thead, Top } from '@components/index';
 import {
   ColumnDef,
   flexRender,
@@ -12,7 +12,9 @@ import {
   TableState,
   useReactTable
 } from '@tanstack/react-table';
-import cn from 'classnames';
+import clsx from 'clsx';
+
+import styles from './Table.stories.module.scss';
 
 import {
   ExpandableTableExample,
@@ -23,6 +25,7 @@ import {
   SelectableTableExample,
   SelectableTableWithGroupingHeaderExample,
   SelectableTableWithPaginationExample,
+  SelectableTableWithVirtualizationExample,
   SortableTableExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
@@ -31,6 +34,7 @@ import {
 } from '../examples';
 import { defaultColumns, defaultData } from '../examples/constants';
 import Table from '../Table';
+import { ESize } from '../Top/types';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
 
@@ -81,8 +85,8 @@ SelectableTableWithPagination.storyName = 'Таблица с выбором ст
 export const SelectableTableWithGroupingHeader = () => <SelectableTableWithGroupingHeaderExample />;
 SelectableTableWithGroupingHeader.storyName = 'Таблица с выбором строк и многоуровневой шапкой';
 
-// export const SelectableTableWithVirtualization = () => <SelectableTableWithVirtualizationExample />;
-// SelectableTableWithVirtualization.storyName = 'Таблица с выбором строк и виртуализацией';
+export const SelectableTableWithVirtualization = () => <SelectableTableWithVirtualizationExample />;
+SelectableTableWithVirtualization.storyName = 'Таблица с выбором строк и виртуализацией';
 
 export const CommonTableUsage = () => {
   const CommonTable = <T,>({
@@ -93,20 +97,21 @@ export const CommonTableUsage = () => {
     onPageChange,
     onPageSizeChange,
     state,
-    pageCount,
-    pageSizes = [10, 20, 50],
-    size = 's',
-    stickyHeader = true
+    size = ESize.S,
+    stickyHeader = false,
+    withPagination = false,
+    pagination
   }: Omit<TableOptions<T>, 'getCoreRowModel'> & {
     data: T[];
     columns: ColumnDef<T>[];
     isLoading?: boolean;
+    onSortingChange?: OnChangeFn<SortingState>;
     onPageChange?: (page: number) => void;
     onPageSizeChange?: (size: number) => void;
-    pageSizes?: number[];
-    pageCount?: number;
-    size?: 'xs' | 'm' | 's';
+    size?: ESize;
     stickyHeader?: boolean;
+    withPagination?: boolean;
+    pagination?: { pageCount: number; pageSizes: number[] };
   }) => {
     const table = useReactTable({
       data,
@@ -114,13 +119,13 @@ export const CommonTableUsage = () => {
       getCoreRowModel: getCoreRowModel(),
       onSortingChange,
       state,
-      pageCount: pageCount
+      pageCount: pagination?.pageCount
     });
 
-    const pagination = table.getState().pagination;
+    const tablePagination = table.getState().pagination;
 
     const handleChangeCurrentPage = (value: SetStateAction<number>) =>
-      onPageChange?.(typeof value === 'function' ? value(pagination.pageIndex + 1) : value);
+      onPageChange?.(typeof value === 'function' ? value(tablePagination.pageIndex + 1) : value);
 
     const handleChangeElementsPerPage = (value: SetStateAction<number>) =>
       onPageSizeChange?.(typeof value === 'function' ? value(state?.pagination?.pageSize || 10) : value);
@@ -134,20 +139,19 @@ export const CommonTableUsage = () => {
 
     return (
       <>
-        <div className="h-full overflow-auto">
+        <div style={{ height: '100%' }}>
           {isLoading ? (
-            <div className="flex h-full w-full items-center justify-center">
+            <Box justifyContent="center">
               <Spinner />
-            </div>
+            </Box>
           ) : (
             <Table>
-              <Thead className={cn({ 'sticky top-0 z-10': stickyHeader })}>
+              <Thead className={clsx(stickyHeader && styles.tableHeaderSticky)}>
                 {table.getHeaderGroups().map(headerGroup => (
                   <Row key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
                       <Top
                         align="left"
-                        className="!border-x-0"
                         key={header.id}
                         onClick={() => handleChangeSorting(header)}
                         size={size}
@@ -163,13 +167,7 @@ export const CommonTableUsage = () => {
                 {table.getRowModel().rows.map(row => (
                   <Row key={row.id}>
                     {row.getVisibleCells().map(cell => (
-                      <Cell
-                        align="right"
-                        className="text-steel-90 tabular-nums cell-body1-table-medium"
-                        key={cell.id}
-                        size={size}
-                        width={cell.column.getSize()}
-                      >
+                      <Cell align="right" key={cell.id} size={size} width={cell.column.getSize()}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </Cell>
                     ))}
@@ -179,12 +177,12 @@ export const CommonTableUsage = () => {
             </Table>
           )}
         </div>
-        {state && Boolean(tablePageCount) && (
+        {withPagination && (
           <Pagination
-            currentPage={pagination.pageIndex + 1}
-            elementsPerPage={pagination.pageSize}
+            currentPage={tablePagination.pageIndex + 1}
+            elementsPerPage={tablePagination.pageSize}
             maxPageCount={tablePageCount}
-            pageSizes={pageSizes}
+            pageSizes={pagination?.pageSizes}
             setCurrentPage={handleChangeCurrentPage}
             setElementsPerPage={handleChangeElementsPerPage}
             withSelect
@@ -199,7 +197,7 @@ export const CommonTableUsage = () => {
 
 CommonTableUsage.storyName = 'Реализация компонента таблицы с использованием tanstack';
 
-export const CommonTableWithPaginagionAndSortingUsage = () => {
+export const CommonTableWithPaginationAndSortingUsage = () => {
   const CommonTable = <T,>({
     data,
     columns,
@@ -208,20 +206,21 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
     onPageChange,
     onPageSizeChange,
     state,
-    pageCount,
-    pageSizes = [10, 20, 50],
-    size = 's',
-    stickyHeader = true
+    size = ESize.S,
+    stickyHeader = false,
+    withPagination = false,
+    pagination
   }: Omit<TableOptions<T>, 'getCoreRowModel'> & {
     data: T[];
     columns: ColumnDef<T>[];
     isLoading?: boolean;
+    onSortingChange?: OnChangeFn<SortingState>;
     onPageChange?: (page: number) => void;
     onPageSizeChange?: (size: number) => void;
-    pageSizes?: number[];
-    pageCount?: number;
-    size?: 'xs' | 'm' | 's';
+    size?: ESize;
     stickyHeader?: boolean;
+    withPagination?: boolean;
+    pagination?: { pageCount: number; pageSizes: number[] };
   }) => {
     const table = useReactTable({
       data,
@@ -229,13 +228,13 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
       getCoreRowModel: getCoreRowModel(),
       onSortingChange,
       state,
-      pageCount: pageCount
+      pageCount: pagination?.pageCount
     });
 
-    const pagination = table.getState().pagination;
+    const tablePagination = table.getState().pagination;
 
     const handleChangeCurrentPage = (value: SetStateAction<number>) =>
-      onPageChange?.(typeof value === 'function' ? value(pagination.pageIndex + 1) : value);
+      onPageChange?.(typeof value === 'function' ? value(tablePagination.pageIndex + 1) : value);
 
     const handleChangeElementsPerPage = (value: SetStateAction<number>) =>
       onPageSizeChange?.(typeof value === 'function' ? value(state?.pagination?.pageSize || 10) : value);
@@ -249,20 +248,19 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
 
     return (
       <>
-        <div className="h-full overflow-auto">
+        <div style={{ height: '100%' }}>
           {isLoading ? (
-            <div className="flex h-full w-full items-center justify-center">
+            <Box justifyContent="center">
               <Spinner />
-            </div>
+            </Box>
           ) : (
             <Table>
-              <Thead className={cn({ 'sticky top-0 z-10': stickyHeader })}>
+              <Thead className={clsx(stickyHeader && styles.tableHeaderSticky)}>
                 {table.getHeaderGroups().map(headerGroup => (
                   <Row key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
                       <Top
                         align="left"
-                        className="!border-x-0"
                         key={header.id}
                         onClick={() => handleChangeSorting(header)}
                         size={size}
@@ -278,13 +276,7 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
                 {table.getRowModel().rows.map(row => (
                   <Row key={row.id}>
                     {row.getVisibleCells().map(cell => (
-                      <Cell
-                        align="right"
-                        className="text-steel-90 tabular-nums cell-body1-table-medium"
-                        key={cell.id}
-                        size={size}
-                        width={cell.column.getSize()}
-                      >
+                      <Cell align="right" key={cell.id} size={size} width={cell.column.getSize()}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </Cell>
                     ))}
@@ -294,12 +286,12 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
             </Table>
           )}
         </div>
-        {state && Boolean(tablePageCount) && (
+        {withPagination && (
           <Pagination
-            currentPage={pagination.pageIndex + 1}
-            elementsPerPage={pagination.pageSize}
+            currentPage={tablePagination.pageIndex + 1}
+            elementsPerPage={tablePagination.pageSize}
             maxPageCount={tablePageCount}
-            pageSizes={pageSizes}
+            pageSizes={pagination?.pageSizes}
             setCurrentPage={handleChangeCurrentPage}
             setElementsPerPage={handleChangeElementsPerPage}
             withSelect
@@ -312,7 +304,7 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
   const [data, setData] = useState(defaultData);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(20);
 
   const handleSortingChange: OnChangeFn<SortingState> = updaterOrValue => {
     setCurrentPageNumber(1);
@@ -330,25 +322,41 @@ export const CommonTableWithPaginagionAndSortingUsage = () => {
   };
 
   useEffect(() => {
-    const { pageIndex, pageSize } = state.pagination ?? {};
+    const { pagination, sorting } = state;
+    const { pageIndex, pageSize } = pagination;
+
+    const sortedData = [...defaultData].sort((a, b) => {
+      for (const sort of sorting) {
+        const comparator = (a: IData, b: IData) => {
+          const aValue = a[sort.id as keyof IData] ?? 0;
+          const bValue = b[sort.id as keyof IData] ?? 0;
+          return sort.desc ? (aValue < bValue ? 1 : -1) : aValue > bValue ? 1 : -1;
+        };
+        return comparator(a, b);
+      }
+      return 0;
+    });
+
     const start = pageIndex * pageSize;
     const end = (pageIndex + 1) * pageSize;
-    setData(defaultData.slice(start, end));
-  }, [currentPageNumber, pageSize]);
+    setData(sortedData.slice(start, end));
+  }, [currentPageNumber, pageSize, sorting]);
 
   return (
     <CommonTable<IData>
+      stickyHeader
       columns={defaultColumns}
       data={data}
       isLoading={false}
+      withPagination
+      pagination={{ pageCount, pageSizes: [10, 15] }}
       onPageChange={setCurrentPageNumber}
       onPageSizeChange={setPageSize}
       onSortingChange={handleSortingChange}
-      pageCount={pageCount}
       state={state}
     />
   );
 };
 
-CommonTableWithPaginagionAndSortingUsage.storyName =
+CommonTableWithPaginationAndSortingUsage.storyName =
   'Реализация компонента таблицы c пагинацией и сортировкой с использованием tanstack';

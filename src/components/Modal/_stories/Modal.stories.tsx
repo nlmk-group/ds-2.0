@@ -11,6 +11,7 @@ import {
   Input,
   OptionItem,
   SimpleSelect,
+  Tooltip,
   Typography
 } from '@components/index';
 import { positions } from '@components/Select/_stories/mocks';
@@ -75,12 +76,12 @@ export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
+        Содержимое модального окна
       </Modal>
     </div>
   );
 };
-ModalDefault.storyName = 'Модальное окно по умолчанию';
+ModalDefault.storyName = 'Modal по умолчанию';
 
 export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -169,12 +170,12 @@ export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="var(--steel-90)">Содержимое модального окна</Typography>
+        Содержимое модального окна
       </Modal>
     </div>
   );
 };
-ModalScroll.storyName = 'Открытие модального окна убирает скролл на странице';
+ModalScroll.storyName = 'Открытие Modal убирает скролл на странице';
 ModalScroll.args = { disablePageScroll: true };
 
 export const DraggableModal = (argsTypes: IModalProps): ReactNode => {
@@ -191,17 +192,18 @@ export const DraggableModal = (argsTypes: IModalProps): ReactNode => {
           action('modalClosed')();
         }}
       >
-        <Typography color="primary">Это перетаскиваемое модальное окно.</Typography>
+        Это перетаскиваемое модальное окно.
       </Modal>
     </div>
   );
 };
-DraggableModal.storyName = 'Перетаскиваемое модальное окно';
+DraggableModal.storyName = 'Перетаскиваемое Modal';
 DraggableModal.args = { isDraggable: true };
 
 export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, onChange] = useState(new Date());
+
   const [selected, setSelected] = useState('');
   const [items, setItems] = useState<IAutocompleteValue[]>(defaultOptions);
   const [selectedAutocomplete, setSelectedAutocomplete] = useState<IAutocompleteValue | undefined>(undefined);
@@ -218,9 +220,7 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
         }}
       >
         <Box flexDirection="column" gap="8px">
-          <Typography color="primary" style={{ marginBottom: '10px' }}>
-            Это модальное окно изменяемого размера.
-          </Typography>
+          <Typography style={{ marginBottom: '10px' }}>Это модальное окно изменяемого размера.</Typography>
           <DatePicker withPortal value={value} onChange={onChange} />
           <SimpleSelect
             value={selected}
@@ -265,5 +265,28 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-ResizableModal.storyName = 'Модальное окно изменяемого размера';
+ResizableModal.storyName = 'Modal изменяемого размера';
 ResizableModal.args = { isResizable: true };
+
+export const ModalWithTooltip = (argsTypes: IModalProps): ReactNode => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Открыть перетаскиваемое модальное окно</Button>
+
+      <Modal
+        {...argsTypes}
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+          action('modalClosed')();
+        }}
+      >
+        <Tooltip title="Модальное окно">Это перетаскиваемое модальное окно.</Tooltip>
+      </Modal>
+    </div>
+  );
+};
+ModalWithTooltip.storyName = 'Modal с тултипом';
+ModalWithTooltip.args = { isDraggable: true };

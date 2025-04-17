@@ -6,7 +6,7 @@
   height: 100%;
   background-color: var(--unique-black);
   opacity: 60%;
-  z-index: 10001;
+  z-index: 100000;
 }
 
 .modalWrapper {
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10001;
+  z-index: 100000;
   pointer-events: none;
 }
 
@@ -32,6 +32,7 @@
 .modal {
   border-radius: 4px;
   background: var(--steel-10);
+  color: var(--steel-90);
   padding: 0 32px 32px;
   position: relative;
   overflow: hidden;

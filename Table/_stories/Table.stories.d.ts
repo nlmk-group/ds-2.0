@@ -42,6 +42,10 @@ export declare const GroupHeaderTableWithResize: {
     (): React.JSX.Element;
     storyName: string;
 };
+export declare const TableWithSettings: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 export declare const SelectableTable: {
     (): React.JSX.Element;
     storyName: string;

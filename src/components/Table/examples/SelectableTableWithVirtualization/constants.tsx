@@ -52,7 +52,10 @@ export const columns: ColumnDef<ISelectionWithVirtualization>[] = [
     size: 180
   }),
   columnHelper.accessor('plan', {
-    header: 'Плановый объем'
+    header: 'Плановый объем',
+    meta: {
+      isNumeric: true
+    }
   }),
   columnHelper.accessor('date', {
     header: 'Сроки поставки',

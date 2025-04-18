@@ -94,7 +94,7 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                   width: '100%'
                 }}
               >
-                {headerGroup.headers.map(header => {
+                {headerGroup.headers.map((header, index) => {
                   const size = header.getSize();
                   return (
                     <Top
@@ -104,7 +104,7 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                         width: size
                       }}
                       title={flexRender(header.column.columnDef.header, header.getContext())}
-                      right={header.column.columnDef.meta?.isNumeric}
+                      right={header.column.columnDef.meta?.isNumeric && index !== 0}
                       className={styles.notSortable}
                     />
                   );
@@ -138,7 +138,7 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                     width: '100%'
                   }}
                 >
-                  {row.getVisibleCells().map(cell => {
+                  {row.getVisibleCells().map((cell, index) => {
                     const size = cell.column.getSize();
 
                     return (
@@ -148,6 +148,7 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                         style={{
                           width: size
                         }}
+                        align={index === 0 ? 'left' : undefined}
                         {...getCellProps(cell)}
                       />
                     );

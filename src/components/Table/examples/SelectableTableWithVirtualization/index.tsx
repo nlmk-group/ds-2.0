@@ -108,7 +108,7 @@ const SelectableTableWithVirtualizationExample = () => {
                   width: '100%'
                 }}
               >
-                {headerGroup.headers.map(header => {
+                {headerGroup.headers.map((header, index) => {
                   const size = header.getSize();
                   const isSelectColumn = header.column.columnDef.id === 'select';
                   return (
@@ -119,11 +119,9 @@ const SelectableTableWithVirtualizationExample = () => {
                         width: size
                       }}
                       className={clsx({ [styles.notSortable]: !isSelectColumn })}
-                    >
-                      <Typography variant="Body2-Medium" color="var(--steel-70)">
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                      </Typography>
-                    </Top>
+                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      right={header.column.columnDef.meta?.isNumeric && index !== 1}
+                    />
                   );
                 })}
               </Row>
@@ -155,7 +153,7 @@ const SelectableTableWithVirtualizationExample = () => {
                     width: '100%'
                   }}
                 >
-                  {row.getVisibleCells().map(cell => {
+                  {row.getVisibleCells().map((cell, index) => {
                     const isSelected = row.getIsSelected();
                     return (
                       <Cell
@@ -164,6 +162,7 @@ const SelectableTableWithVirtualizationExample = () => {
                         style={{
                           width: cell.column.getSize()
                         }}
+                        align={index === 1 ? 'left' : undefined}
                         {...(cell.column.id !== 'select' ? getCellProps(cell) : {})}
                       >
                         {cell.column.id === 'select' ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null}

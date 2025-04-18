@@ -23,6 +23,19 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.5 - <span className={styles.date}>18.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                ColumnSetting
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.4 - <span className={styles.date}>16.04.25</span>
           </Typography>
           <ul className={styles.list}>

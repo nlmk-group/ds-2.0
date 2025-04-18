@@ -187,12 +187,12 @@ export const TreeViewExample = () => {
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
       <ComboTreeList
+        maxLevel={2}
         items={treeOptions}
         onChange={setSelected}
         isMultiple={true}
         isSearch={true}
         isCheckAll={true}
-        maxLevel={2}
       />
     </ComboBox>
   );

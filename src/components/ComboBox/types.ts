@@ -31,6 +31,7 @@ export interface IComboBoxTree {
 export interface IComboBoxTreeOption extends IComboBoxOption {
   parentId?: string | null;
   level?: number;
+  children?: IComboBoxTreeOption[];
 }
 
 export type IdToOrderMap = Record<string | number, number>;

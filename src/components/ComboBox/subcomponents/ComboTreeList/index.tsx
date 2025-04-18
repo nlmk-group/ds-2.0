@@ -16,7 +16,7 @@ import { findChildIds, findManyParentsIds, findParentsIds, getTreeOptions } from
 const ComboTreeList = <T extends IComboBoxTree>({
   items,
   onChange,
-  maxLevel = 2,
+  maxLevel,
   isSearch = false,
   isCheckAll = false,
   isLoading = false,
@@ -99,7 +99,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
     const isExpanded = expandIds.includes(item.id);
     const isChecked = checkedIds.includes(item.id);
     const isIndeterminate = parentCheckedIds.includes(item.id);
-    const isLastChildren = item.level === maxLevel;
+    const isLastChildren = !item.children?.length;
 
     // Базовый паддинг для всех уровней
     const basePadding = 8;

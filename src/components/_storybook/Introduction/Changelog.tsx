@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.5 - <span className={styles.date}>18.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              <li className={styles['left-padding']}>- Убрано значение maxLevel по умолчанию у ComboTreeList</li>
+              <li className={styles['left-padding']}>
+                - Доработана логика рендеринга последнего элемента у ComboTreeList
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.4 - <span className={styles.date}>16.04.25</span>
           </Typography>
           <ul className={styles.list}>

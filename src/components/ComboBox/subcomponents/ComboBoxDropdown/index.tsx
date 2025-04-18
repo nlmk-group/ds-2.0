@@ -104,11 +104,11 @@ const ComboBoxDropdown = ({
     if (withPortal) {
       return {
         ...baseStyles,
-        ...popperStyles.popper, 
+        ...popperStyles.popper,
         ...dropdownStyle
       };
     }
-    
+
     return {
       ...baseStyles,
       position: 'absolute',
@@ -129,7 +129,7 @@ const ComboBoxDropdown = ({
       onFocusSearchInput={openDropdown}
       onOpenClick={openDropdown}
       onCloseClick={closeDropdown}
-      value={initialValue}
+      initialValue={initialValue}
       displayEnumerated={displayEnumerated}
       displayChildCount={displayChildCount}
       countOnlyLevel={countOnlyLevel}
@@ -140,7 +140,7 @@ const ComboBoxDropdown = ({
 
   const dropdownContent = isOpen && (
     <div
-      ref={(el) => {
+      ref={el => {
         dropdownRef.current = el;
         if (withPortal && el) {
           setPopperElement(el);

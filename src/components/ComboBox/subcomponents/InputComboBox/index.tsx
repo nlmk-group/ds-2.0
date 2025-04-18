@@ -22,6 +22,7 @@ const InputComboBox = ({
   onFocusSearchInput,
   onOpenClick,
   value,
+  initialValue,
   onCloseClick,
   displayEnumerated,
   displayChildCount,
@@ -65,6 +66,12 @@ const InputComboBox = ({
     return '';
   }, [comboBoxValue]);
 
+  useEffect(() => {
+    if (setComboValue && initialValue) {
+      setComboValue(initialValue);
+    }
+    // ← добавьте пустой массив как второй аргумент:
+  }, []);
   useEffect(() => {
     if (setComboValue && value) {
       setComboValue(value);

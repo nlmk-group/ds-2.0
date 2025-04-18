@@ -49,7 +49,10 @@ export const columns: ColumnDef<IExpandableData>[] = [
     header: 'Age',
     accessorKey: 'age',
     size: 100,
-    enableSorting: true
+    enableSorting: true,
+    meta: {
+      isNumeric: true
+    }
   },
   {
     header: 'Status',

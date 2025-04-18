@@ -32,7 +32,7 @@ const SelectableTableWithGroupingHeaderExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 // Вычисляем разницу между текущей глубиной заголовка и глубиной самой колонки
                 // header.depth - уровень вложенности текущего заголовка (0 - верхний уровень, 1, 2, ...)
                 // header.column.depth - базовый уровень колонки
@@ -75,7 +75,7 @@ const SelectableTableWithGroupingHeaderExample = () => {
                     // rowSpan определяет, сколько строк объединить по вертикали
                     rowSpan={rowSpan}
                     title={header.column.columnDef.id !== 'select' ? String(header.column.columnDef.header) : ''}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 1}
                     lastInGroup={isLastInGroup}
                     className={clsx({ [styles.notSortable]: !isSelectColumn })}
                   >
@@ -91,13 +91,14 @@ const SelectableTableWithGroupingHeaderExample = () => {
             const isSelected = row.getIsSelected();
             return (
               <Row key={row.id}>
-                {row.getVisibleCells().map(cell => (
+                {row.getVisibleCells().map((cell, index) => (
                   <Cell
                     key={cell.id}
                     state={isSelected ? ECellState.SELECTED : ECellState.DEFAULT}
                     style={{
                       width: cell.column.getSize()
                     }}
+                    align={index === 1 ? 'left' : undefined}
                     {...(cell.column.id !== 'select' ? getCellProps(cell) : {})}
                   >
                     {flexRenderCells.includes(cell.column.id)

@@ -186,7 +186,14 @@ export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
-      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboTreeList
+        maxLevel={2}
+        items={treeOptions}
+        onChange={setSelected}
+        isMultiple={true}
+        isSearch={true}
+        isCheckAll={true}
+      />
     </ComboBox>
   );
 };

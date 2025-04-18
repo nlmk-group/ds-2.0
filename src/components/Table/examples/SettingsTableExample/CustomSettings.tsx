@@ -106,13 +106,62 @@ export const CustomSettings = <T extends object>({
     let orderChanged = false;
     let pinningChanges = 0;
 
-    Object.keys({ ...initialSettings.current.visibleColumns, ...visibleColumns }).forEach(key => {
-      const initialValue = initialSettings.current.visibleColumns[key];
-      const currentValue = visibleColumns[key];
+    const parentChildMap: Record<string, string[]> = {};
+    const childParentMap: Record<string, string> = {};
+
+    const buildRelationMaps = (cols: any[], parent?: string) => {
+      cols.forEach(col => {
+        if (col.id) {
+          if (parent) {
+            if (!parentChildMap[parent]) {
+              parentChildMap[parent] = [];
+            }
+            parentChildMap[parent].push(col.id);
+            childParentMap[col.id] = parent;
+          }
+
+          if (col.columns) {
+            buildRelationMaps(col.columns, col.id);
+          }
+        }
+      });
+    };
+
+    buildRelationMaps(columns);
+
+    const processedIds = new Set<string>();
+    const getVisibilityChangeCount = (id: string) => {
+      if (processedIds.has(id)) return 0;
+      processedIds.add(id);
+
+      const initialValue = initialSettings.current.visibleColumns[id] ?? true;
+      const currentValue = visibleColumns[id] ?? true;
 
       if (initialValue !== currentValue) {
-        visibilityChanges++;
+        const parentId = childParentMap[id];
+        if (parentId) {
+          const parentInitial = initialSettings.current.visibleColumns[parentId] ?? true;
+          const parentCurrent = visibleColumns[parentId] ?? true;
+
+          if (!parentCurrent && !currentValue && parentInitial !== parentCurrent) {
+            return 0;
+          }
+
+          if (parentCurrent && currentValue && !parentInitial && initialValue) {
+            return 0;
+          }
+
+          return 1;
+        } else {
+          return 1;
+        }
       }
+
+      return 0;
+    };
+
+    Object.keys({ ...initialSettings.current.visibleColumns, ...visibleColumns }).forEach(id => {
+      visibilityChanges += getVisibilityChangeCount(id);
     });
 
     if (columnOrder.join(',') !== initialSettings.current.columnOrder.join(',')) {
@@ -132,7 +181,7 @@ export const CustomSettings = <T extends object>({
 
     const totalChanges = visibilityChanges + (orderChanged ? 1 : 0) + pinningChanges;
     return totalChanges;
-  }, [visibleColumns, columnOrder, pinnedColumns]);
+  }, [visibleColumns, columnOrder, pinnedColumns, columns]);
 
   /**
    * Эффект для создания карты родитель-дочерние элементы
@@ -469,7 +518,11 @@ export const CustomSettings = <T extends object>({
               gap: '16px',
               borderTop: '1px solid',
               borderColor: 'var(--unique-divider)',
-              padding: '24px'
+              padding: '24px',
+              position: 'fixed',
+              bottom: 0,
+              width: '100%',
+              backgroundColor: 'var(--steel-10)'
             }}
           >
             <Button variant="primary" onClick={handleApply}>

@@ -254,16 +254,16 @@ const SettingsTableExample = () => {
             ))}
           </Thead>
           <Tbody>
-            {table.getRowModel().rows.map((row, index) => (
+            {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map(cell => {
+                {row.getVisibleCells().map((cell, index) => {
                   const size = cell.column.columnDef.meta?.size || cell.column.getSize();
 
                   return (
                     <Cell
                       key={cell.id}
                       style={{ width: size }}
-                      align={index === 1 ? 'left' : undefined}
+                      align={index === 0 ? 'left' : undefined}
                       {...getCellProps(cell)}
                     />
                   );

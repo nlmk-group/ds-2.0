@@ -29,7 +29,7 @@ const GroupHeaderTableWithResizeExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 if (!header || !header.column) return null;
 
                 const columnRelativeDepth = header.depth - header.column.depth;
@@ -62,7 +62,7 @@ const GroupHeaderTableWithResizeExample = () => {
                     onTouchStart={header.getResizeHandler()}
                     onDoubleClick={() => header.column.resetSize()}
                     title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 0}
                   />
                 );
               })}
@@ -72,12 +72,13 @@ const GroupHeaderTableWithResizeExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
+              {row.getVisibleCells().map((cell, index) => (
                 <Cell
                   key={cell.id}
                   style={{
                     width: cell.column.getSize()
                   }}
+                  align={index === 0 ? 'left' : undefined}
                   {...getCellProps(cell)}
                 />
               ))}

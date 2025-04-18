@@ -22,7 +22,7 @@ const GroupingTableExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 // Вычисляем разницу между текущей глубиной заголовка и глубиной самой колонки
                 // header.depth - уровень вложенности текущего заголовка (0 - верхний уровень, 1, 2, ...)
                 // header.column.depth - базовый уровень колонки
@@ -63,7 +63,7 @@ const GroupingTableExample = () => {
                     rowSpan={rowSpan}
                     title={flexRender(header.column.columnDef.header, header.getContext())}
                     className={styles.notSortable}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 0}
                   />
                 );
               })}
@@ -74,8 +74,13 @@ const GroupingTableExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <Cell key={cell.id} color={row.original.status} {...getCellProps(cell)} />
+              {row.getVisibleCells().map((cell, index) => (
+                <Cell
+                  key={cell.id}
+                  color={row.original.status}
+                  align={index === 0 ? 'left' : undefined}
+                  {...getCellProps(cell)}
+                />
               ))}
             </Row>
           ))}

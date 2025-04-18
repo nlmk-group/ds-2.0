@@ -5,7 +5,7 @@ import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-tabl
 
 import styles from '../Example.module.scss';
 
-import { defaultColumns, defaultData, getCellAlign, getCellProps } from '..';
+import { defaultColumns, defaultData, getCellProps } from '..';
 
 const TableWithTanStackExample = () => {
   const table = useReactTable({
@@ -25,7 +25,7 @@ const TableWithTanStackExample = () => {
                   key={header.id}
                   className={styles.notSortable}
                   title={flexRender(header.column.columnDef.header, header.getContext())}
-                  right={getCellAlign(header.column.columnDef, index) === 'right'}
+                  right={header.column.columnDef.meta?.isNumeric && index !== 0}
                 />
               ))}
             </Row>
@@ -38,7 +38,7 @@ const TableWithTanStackExample = () => {
                 <Cell
                   key={cell.id}
                   color={row.original.status}
-                  align={getCellAlign(cell.column.columnDef, index)}
+                  align={index === 0 ? 'left' : undefined}
                   {...getCellProps(cell)}
                 />
               ))}

@@ -40,11 +40,15 @@
 
   &.dragging {
     opacity: 0.5;
+    border: 1px solid var(--brand-sapphire-60);
+    border-radius: 4px;
+    cursor: grabbing;
   }
 
   &.dropTarget {
-    background-color: var(--brand-sapphire-10);
+    background-color: var(--steel-30);
     opacity: 0.5;
+    border-radius: 4px;
   }
 }
 

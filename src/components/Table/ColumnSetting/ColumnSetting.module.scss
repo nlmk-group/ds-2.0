@@ -2,15 +2,16 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 0px;
+  padding: 16px 8px;
   transition: background-color 0.2s ease;
+  border-radius: 4px;
 
   &:hover:not(.disabled) {
-    background-color: var(--brand-sapphire-10);
+    background-color: var(--steel-30);
   }
 
   &.highlighted {
-    background-color: var(--brand-sapphire-10);
+    background-color: var(--steel-30);
   }
 
   &.disabled {

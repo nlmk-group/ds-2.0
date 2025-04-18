@@ -53,7 +53,7 @@ const SortableTableExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 const canSort = header.column.getCanSort();
                 const isSorted = header.column.getIsSorted();
 
@@ -75,7 +75,7 @@ const SortableTableExample = () => {
                       }
                     }}
                     title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 0}
                   />
                 );
               })}
@@ -86,13 +86,14 @@ const SortableTableExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => {
+              {row.getVisibleCells().map((cell, index) => {
                 const rowStatus = row.original.status;
 
                 return (
                   <Cell
                     key={cell.id}
                     color={rowStatus}
+                    align={index === 0 ? 'left' : undefined}
                     {...getCellProps(cell)}
                     style={{
                       width: cell.column.getSize()

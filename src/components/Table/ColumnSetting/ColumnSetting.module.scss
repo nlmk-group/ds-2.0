@@ -1,0 +1,52 @@
+.columnItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 8px;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+
+  &:hover:not(.disabled) {
+    background-color: var(--steel-30);
+  }
+
+  &.highlighted {
+    background-color: var(--steel-30);
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.dragHandle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.expandIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.columnTitle {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controlButtons {
+  display: flex;
+  gap: 4px;
+}

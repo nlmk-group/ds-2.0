@@ -209,7 +209,7 @@ const SettingsTableExample = () => {
       <div className={styles.tableContainer} style={{ width: '100%' }}>
         <Table horizontalBorders verticalBorders>
           <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
-            {table.getHeaderGroups().map(headerGroup => (
+            {table.getHeaderGroups().map((headerGroup, index) => (
               <Row key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   const columnRelativeDepth = header.depth - header.column.depth;
@@ -246,7 +246,7 @@ const SettingsTableExample = () => {
                           ? header.column.columnDef.header
                           : (header.column.columnDef.meta?.title as string) || header.id
                       }
-                      right={header.column.columnDef.meta?.isNumeric}
+                      right={header.column.columnDef.meta?.isNumeric && index !== 1}
                     />
                   );
                 })}
@@ -254,12 +254,19 @@ const SettingsTableExample = () => {
             ))}
           </Thead>
           <Tbody>
-            {table.getRowModel().rows.map(row => (
+            {table.getRowModel().rows.map((row, index) => (
               <Row key={row.id}>
                 {row.getVisibleCells().map(cell => {
                   const size = cell.column.columnDef.meta?.size || cell.column.getSize();
 
-                  return <Cell key={cell.id} style={{ width: size }} {...getCellProps(cell)} />;
+                  return (
+                    <Cell
+                      key={cell.id}
+                      style={{ width: size }}
+                      align={index === 1 ? 'left' : undefined}
+                      {...getCellProps(cell)}
+                    />
+                  );
                 })}
               </Row>
             ))}

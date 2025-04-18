@@ -35,63 +35,104 @@ export const CustomSettings = <T extends object>({
   visibleColumns,
   columnOrder,
   pinnedColumns,
-  defaultVisibleColumns = {},
-  defaultColumnOrder = [],
-  defaultPinnedColumns = {},
   onVisibilityChange,
   onOrderChange,
   onPinChange
 }: ICustomSettingsProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Локальные состояния настроек (изменяются только внутри панели до применения)
   const [localVisibleColumns, setLocalVisibleColumns] = useState<Record<string, boolean>>({});
   const [localColumnOrder, setLocalColumnOrder] = useState<string[]>([]);
   const [localPinnedColumns, setLocalPinnedColumns] = useState<Record<string, any>>({});
 
-  // Состояния для хранения оригинальных значений
-  const [originalVisibleColumns, setOriginalVisibleColumns] = useState<Record<string, boolean>>({});
-  const [originalColumnOrder, setOriginalColumnOrder] = useState<string[]>([]);
-  const [originalPinnedColumns, setOriginalPinnedColumns] = useState<Record<string, any>>({});
+  const initialSettings = useRef({
+    visibleColumns: {} as Record<string, boolean>,
+    columnOrder: [] as string[],
+    pinnedColumns: {} as Record<string, any>
+  });
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Для отслеживания первой инициализации
   const isInitialized = useRef(false);
 
   const [parentChildMap, setParentChildMap] = useState<Record<string, string[]>>({});
 
   /**
+   * Инициализация видимости колонок напрямую из columns
+   * По умолчанию все колонки видимы
+   */
+  const initVisibility = useCallback(() => {
+    const visibility: Record<string, boolean> = {};
+    const processColumns = (cols: any[]) => {
+      cols.forEach(col => {
+        if (col.id) {
+          visibility[col.id] = true;
+        }
+        if (col.columns) {
+          processColumns(col.columns);
+        }
+      });
+    };
+    processColumns(columns);
+    return visibility;
+  }, [columns]);
+
+  /**
+   * Получение всех ID колонок напрямую из columns
+   */
+  const getAllColumnIds = useCallback(() => {
+    const result: string[] = [];
+
+    const processColumns = (cols: any[]) => {
+      cols.forEach(col => {
+        if (col.id) {
+          result.push(col.id);
+        }
+        if (col.columns) {
+          processColumns(col.columns);
+        }
+      });
+    };
+
+    processColumns(columns);
+    return result;
+  }, [columns]);
+
+  /**
    * Функция для подсчета количества измененных настроек
    */
   const countChanges = useCallback(() => {
-    let changes = 0;
+    let visibilityChanges = 0;
+    let orderChanged = false;
+    let pinningChanges = 0;
 
-    Object.keys(localVisibleColumns).forEach(key => {
-      if (localVisibleColumns[key] !== originalVisibleColumns[key]) {
-        changes++;
+    Object.keys({ ...initialSettings.current.visibleColumns, ...visibleColumns }).forEach(key => {
+      const initialValue = initialSettings.current.visibleColumns[key];
+      const currentValue = visibleColumns[key];
+
+      if (initialValue !== currentValue) {
+        visibilityChanges++;
       }
     });
 
-    if (localColumnOrder.join(',') !== originalColumnOrder.join(',')) {
-      changes++;
+    if (columnOrder.join(',') !== initialSettings.current.columnOrder.join(',')) {
+      orderChanged = true;
     }
 
-    Object.keys(localPinnedColumns).forEach(key => {
-      if (localPinnedColumns[key] !== originalPinnedColumns[key]) {
-        changes++;
+    const allPinKeys = new Set([...Object.keys(initialSettings.current.pinnedColumns), ...Object.keys(pinnedColumns)]);
+
+    allPinKeys.forEach(key => {
+      const initialValue = initialSettings.current.pinnedColumns[key] || false;
+      const currentValue = pinnedColumns[key] || false;
+
+      if (initialValue !== currentValue) {
+        pinningChanges++;
       }
     });
 
-    return changes;
-  }, [
-    localVisibleColumns,
-    localColumnOrder,
-    localPinnedColumns,
-    originalVisibleColumns,
-    originalColumnOrder,
-    originalPinnedColumns
-  ]);
+    const totalChanges = visibilityChanges + (orderChanged ? 1 : 0) + pinningChanges;
+    return totalChanges;
+  }, [visibleColumns, columnOrder, pinnedColumns]);
 
   /**
    * Эффект для создания карты родитель-дочерние элементы
@@ -122,7 +163,7 @@ export const CustomSettings = <T extends object>({
 
   /**
    * Эффект для начальной инициализации локальных состояний
-   * Выполняется один раз при первом монтировании компонента
+   * и сохранения начальных настроек для бейджа
    */
   useEffect(() => {
     if (!isInitialized.current) {
@@ -130,9 +171,11 @@ export const CustomSettings = <T extends object>({
       setLocalColumnOrder([...columnOrder]);
       setLocalPinnedColumns({ ...pinnedColumns });
 
-      setOriginalVisibleColumns({ ...visibleColumns });
-      setOriginalColumnOrder([...columnOrder]);
-      setOriginalPinnedColumns({ ...pinnedColumns });
+      initialSettings.current = {
+        visibleColumns: { ...visibleColumns },
+        columnOrder: [...columnOrder],
+        pinnedColumns: { ...pinnedColumns }
+      };
 
       isInitialized.current = true;
     }
@@ -140,33 +183,18 @@ export const CustomSettings = <T extends object>({
 
   /**
    * Эффект для обновления локальных состояний при открытии панели
-   * Синхронизирует локальные состояния с пропсами при каждом открытии панели
    */
   useEffect(() => {
     if (isOpen) {
       setLocalVisibleColumns({ ...visibleColumns });
+      setLocalColumnOrder([...columnOrder]);
       setLocalPinnedColumns({ ...pinnedColumns });
-
-      if (localColumnOrder.length === 0) {
-        setLocalColumnOrder([...columnOrder]);
-      } else {
-        const newIds = columnOrder.filter(id => !localColumnOrder.includes(id));
-        if (newIds.length > 0) {
-          setLocalColumnOrder([...columnOrder]);
-        }
-      }
-
-      setOriginalVisibleColumns({ ...visibleColumns });
-      setOriginalColumnOrder([...columnOrder]);
-      setOriginalPinnedColumns({ ...pinnedColumns });
-
       setSearchTerm('');
     }
-  }, [isOpen, visibleColumns, columnOrder, pinnedColumns, localColumnOrder]);
+  }, [isOpen, visibleColumns, columnOrder, pinnedColumns]);
 
   /**
    * Фильтрация колонок по поисковому запросу
-   * Рекурсивно проверяет каждую колонку и её подколонки на соответствие поисковому запросу
    */
   const filteredColumns = React.useMemo(() => {
     if (!searchTerm) return columns;
@@ -206,8 +234,6 @@ export const CustomSettings = <T extends object>({
 
   /**
    * Обработчик изменения видимости колонки с учетом дочерних элементов
-   * @param columnId ID колонки
-   * @param isVisible Новое значение видимости
    */
   const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
     setLocalVisibleColumns(prev => ({
@@ -300,7 +326,6 @@ export const CustomSettings = <T extends object>({
 
   /**
    * Обработчик изменения порядка колонок
-   * @param newOrder Новый порядок колонок
    */
   const handleOrderChange = (newOrder: string[]) => {
     setLocalColumnOrder(newOrder);
@@ -308,8 +333,6 @@ export const CustomSettings = <T extends object>({
 
   /**
    * Обработчик изменения закрепления колонки
-   * @param columnId ID колонки
-   * @param pinned Новое значение закрепления
    */
   const handlePinChange = (columnId: string, pinned: 'left' | 'right' | false) => {
     setLocalPinnedColumns(prev => ({
@@ -322,18 +345,25 @@ export const CustomSettings = <T extends object>({
    * Обработчик сброса настроек к значениям по умолчанию
    */
   const handleResetToDefault = () => {
-    const defaultVisibleCols = { ...defaultVisibleColumns };
-    const defaultColOrder = [...defaultColumnOrder];
-    const defaultPinnedCols = { ...defaultPinnedColumns };
+    const defaultVisibleCols = initVisibility();
+    const defaultColOrder = getAllColumnIds();
+    const defaultPinnedCols = {};
 
-    setLocalVisibleColumns(defaultVisibleCols);
-    setLocalColumnOrder(defaultColOrder);
-    setLocalPinnedColumns(defaultPinnedCols);
+    onVisibilityChange(defaultVisibleCols);
+    onOrderChange(defaultColOrder);
+    onPinChange(defaultPinnedCols);
+
+    initialSettings.current = {
+      visibleColumns: { ...defaultVisibleCols },
+      columnOrder: [...defaultColOrder],
+      pinnedColumns: { ...defaultPinnedCols }
+    };
+
+    setIsOpen(false);
   };
 
   /**
    * Обработчик применения изменений
-   * Вызывает колбэки для передачи новых настроек родительскому компоненту
    */
   const handleApply = () => {
     const allColumnIds = new Set<string>();
@@ -384,9 +414,9 @@ export const CustomSettings = <T extends object>({
           onClick={() => handleToggleDrawer(true)}
           title="Настройки таблицы"
         />
-          <Badge size="m" style={{ height: '24px' }}>
-            {changesCount}
-          </Badge>
+        <Badge size="m" style={{ height: '24px' }}>
+          {changesCount}
+        </Badge>
       </Box>
 
       <Drawer

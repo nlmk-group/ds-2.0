@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Typography } from '@components/index';
-import { flexRender } from '@tanstack/react-table';
+import { ColumnDef, flexRender } from '@tanstack/react-table';
 
 export const getCellProps = (cell: any) => {
   const value = cell.getValue();
@@ -28,4 +28,10 @@ export const getCellProps = (cell: any) => {
       </Typography>
     )
   };
+};
+
+type TAlign = 'left' | 'right'
+
+export const getCellAlign = <TData,>(columnDef: ColumnDef<TData>, index: number): TAlign => {
+  return index === 0 || !columnDef.meta?.isNumeric ? 'left' : 'right';
 };

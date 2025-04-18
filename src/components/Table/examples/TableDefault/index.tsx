@@ -5,7 +5,7 @@ import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-tabl
 
 import styles from '../Example.module.scss';
 
-import { defaultColumns, defaultData, getCellProps } from '..';
+import { defaultColumns, defaultData, getCellAlign, getCellProps } from '..';
 
 const TableWithTanStackExample = () => {
   const table = useReactTable({
@@ -20,12 +20,12 @@ const TableWithTanStackExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header, index) => (
                 <Top
                   key={header.id}
                   className={styles.notSortable}
                   title={flexRender(header.column.columnDef.header, header.getContext())}
-                  right={header.column.columnDef.meta?.isNumeric}
+                  right={getCellAlign(header.column.columnDef, index) === 'right'}
                 />
               ))}
             </Row>
@@ -34,8 +34,13 @@ const TableWithTanStackExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <Cell key={cell.id} color={row.original.status} {...getCellProps(cell)} />
+              {row.getVisibleCells().map((cell, index) => (
+                <Cell
+                  key={cell.id}
+                  color={row.original.status}
+                  align={getCellAlign(cell.column.columnDef, index)}
+                  {...getCellProps(cell)}
+                />
               ))}
             </Row>
           ))}

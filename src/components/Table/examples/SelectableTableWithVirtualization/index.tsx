@@ -122,10 +122,6 @@ const SelectableTableWithVirtualizationExample = () => {
                       title={flexRender(header.column.columnDef.header, header.getContext())}
                       right={header.column.columnDef.meta?.isNumeric && index !== 1}
                     />
-                      /* <Typography variant="Body2-Medium" color="var(--steel-70)">
-                        {}
-                      </Typography>
-                    </Top> */
                   );
                 })}
               </Row>

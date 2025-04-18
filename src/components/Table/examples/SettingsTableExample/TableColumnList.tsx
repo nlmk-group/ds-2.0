@@ -167,9 +167,14 @@ export const TableColumnList = <T extends object>({
 
       onVisibilityChange(columnId, isVisible);
 
-      if (!isVisible) {
+      if (!isVisible && columnStructure.childrenMap[columnId]) {
         childrenToUpdate.forEach(childId => {
           onVisibilityChange(childId, false);
+        });
+      }
+      else if (isVisible && columnStructure.childrenMap[columnId]) {
+        childrenToUpdate.forEach(childId => {
+          onVisibilityChange(childId, true);
         });
       }
     },

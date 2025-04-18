@@ -172,17 +172,27 @@ export const CustomSettings = <T extends object>({
       [columnId]: isVisible
     }));
 
-    // Если родительская колонка скрыта, скрываем и все дочерние
-    if (!isVisible && parentChildMap[columnId]) {
+    if (parentChildMap[columnId]) {
       getChildrenRecursively(columnId);
 
-      setLocalVisibleColumns(prev => {
-        const updated = { ...prev };
-        childrenToUpdate.forEach(childId => {
-          updated[childId] = false;
+      if (!isVisible) {
+        setLocalVisibleColumns(prev => {
+          const updated = { ...prev };
+          childrenToUpdate.forEach(childId => {
+            updated[childId] = false;
+          });
+          return updated;
         });
-        return updated;
-      });
+      }
+      else {
+        setLocalVisibleColumns(prev => {
+          const updated = { ...prev };
+          childrenToUpdate.forEach(childId => {
+            updated[childId] = true;
+          });
+          return updated;
+        });
+      }
     }
   };
 

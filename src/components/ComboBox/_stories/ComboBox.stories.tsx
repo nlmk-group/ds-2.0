@@ -133,7 +133,7 @@ const tooltipItems: IComboBoxOption[] = [
 export const BasicSingleSelect = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
-    <ComboBox label="Базовый выбор">
+    <ComboBox initialValue={[{ id: '124', label: 'Сталь' }]} label="Базовый выбор">
       <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
     </ComboBox>
   );

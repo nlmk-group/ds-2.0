@@ -149,8 +149,10 @@ export const TableColumnList = <T extends object>({
    */
   const handleVisibilityChange = useCallback(
     (columnId: string, isVisible: boolean) => {
-      const childrenToUpdate: string[] = [];
+      onVisibilityChange(columnId, isVisible);
   
+      const childrenToUpdate: string[] = [];
+      
       const getChildrenRecursively = (parentId: string) => {
         const children = columnStructure.childrenMap[parentId] || [];
         children.forEach(childId => {
@@ -163,42 +165,62 @@ export const TableColumnList = <T extends object>({
   
       if (columnStructure.childrenMap[columnId]) {
         getChildrenRecursively(columnId);
-      }
-  
-      onVisibilityChange(columnId, isVisible);
-  
-      if (!isVisible && columnStructure.childrenMap[columnId]) {
-        childrenToUpdate.forEach(childId => {
-          onVisibilityChange(childId, false);
-        });
-      }
-      else if (isVisible && columnStructure.childrenMap[columnId]) {
-        childrenToUpdate.forEach(childId => {
-          onVisibilityChange(childId, true);
-        });
-      }
-  
-      const updateParentVisibility = (childId: string) => {
-        const parentId = columnStructure.parentMap[childId];
-  
-        if (!parentId) return;
-  
-        const siblings = columnStructure.childrenMap[parentId] || [];
-  
-        const allChildrenHidden = siblings.every(siblingId => visibleColumns[siblingId] === false);
-        const anyChildVisible = siblings.some(siblingId => visibleColumns[siblingId] !== false);
-  
-        if (allChildrenHidden) {
-          onVisibilityChange(parentId, false);
+        
+        if (!isVisible) {
+          childrenToUpdate.forEach(childId => {
+            onVisibilityChange(childId, false);
+          });
         }
-        else if (anyChildVisible) {
-          onVisibilityChange(parentId, true);
+        else {
+          childrenToUpdate.forEach(childId => {
+            onVisibilityChange(childId, true);
+          });
         }
+      }
   
-        updateParentVisibility(parentId);
-      };
-  
-      updateParentVisibility(columnId);
+      const directParentId = columnStructure.parentMap[columnId];
+      if (directParentId) {
+        const siblings = columnStructure.childrenMap[directParentId] || [];
+        
+        const siblingsVisibility: Record<string, boolean> = {};
+        siblings.forEach(siblingId => {
+          if (siblingId === columnId) {
+            siblingsVisibility[siblingId] = isVisible;
+          } else {
+            siblingsVisibility[siblingId] = visibleColumns[siblingId] !== false;
+          }
+        });
+        
+        const allSiblingsHidden = siblings.every(siblingId => siblingsVisibility[siblingId] === false);
+        const anySiblingVisible = siblings.some(siblingId => siblingsVisibility[siblingId] !== false);
+        
+        if (allSiblingsHidden) {
+          onVisibilityChange(directParentId, false);
+        }
+        else if (anySiblingVisible) {
+          onVisibilityChange(directParentId, true);
+        }
+        
+        const updateParentChain = (childId: string) => {
+          const parentId = columnStructure.parentMap[childId];
+          if (!parentId) return;
+          
+          const siblings = columnStructure.childrenMap[parentId] || [];
+          
+          const allChildrenHidden = siblings.every(sibId => visibleColumns[sibId] === false);
+          const anyChildVisible = siblings.some(sibId => visibleColumns[sibId] !== false);
+          
+          if (allChildrenHidden) {
+            onVisibilityChange(parentId, false);
+          } else if (anyChildVisible) {
+            onVisibilityChange(parentId, true);
+          }
+          
+          updateParentChain(parentId);
+        };
+        
+        updateParentChain(directParentId);
+      }
     },
     [columnStructure, onVisibilityChange, visibleColumns]
   );

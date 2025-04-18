@@ -155,8 +155,15 @@ export const CustomSettings = <T extends object>({
    * @param isVisible Новое значение видимости
    */
   const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
+    // Сначала обновляем состояние текущей колонки
+    setLocalVisibleColumns(prev => ({
+      ...prev,
+      [columnId]: isVisible
+    }));
+
+    // Обрабатываем дочерние элементы
     const childrenToUpdate: string[] = [];
-  
+
     const getChildrenRecursively = (parentId: string) => {
       const children = parentChildMap[parentId] || [];
       children.forEach(childId => {
@@ -166,15 +173,10 @@ export const CustomSettings = <T extends object>({
         }
       });
     };
-  
-    setLocalVisibleColumns(prev => ({
-      ...prev,
-      [columnId]: isVisible
-    }));
-  
+
     if (parentChildMap[columnId]) {
       getChildrenRecursively(columnId);
-  
+
       if (!isVisible) {
         setLocalVisibleColumns(prev => {
           const updated = { ...prev };
@@ -193,33 +195,58 @@ export const CustomSettings = <T extends object>({
         });
       }
     }
-  
-    const updateParentVisibility = (childId: string) => {
-      const parentId = Object.keys(parentChildMap).find(parentId => parentChildMap[parentId].includes(childId));
-  
-      if (!parentId) return;
-  
-      setLocalVisibleColumns(prev => {
-        const updated = { ...prev };
-        const siblings = parentChildMap[parentId] || [];
-  
-        const allChildrenHidden = siblings.every(siblingId => !updated[siblingId]);
-        const anyChildVisible = siblings.some(siblingId => updated[siblingId]);
-  
-        if (allChildrenHidden) {
-          updated[parentId] = false;
-        }
-        else if (anyChildVisible) {
-          updated[parentId] = true;
-        }
-  
-        return updated;
-      });
-  
-      updateParentVisibility(parentId);
-    };
-  
-    updateParentVisibility(columnId);
+
+    // Немедленное обновление родителя после изменения состояния чилдрена
+    setTimeout(() => {
+      // Используем setTimeout с нулевой задержкой, чтобы дать React обновить состояние
+      // перед проверкой родительского элемента
+      const directParentId = Object.keys(parentChildMap).find(parentId => parentChildMap[parentId].includes(columnId));
+
+      if (directParentId) {
+        setLocalVisibleColumns(prev => {
+          const updated = { ...prev };
+          const siblings = parentChildMap[directParentId] || [];
+
+          // Определяем актуальное состояние всех сиблингов
+          const allSiblingsHidden = siblings.every(siblingId => !updated[siblingId]);
+          const anySiblingVisible = siblings.some(siblingId => updated[siblingId]);
+
+          if (allSiblingsHidden) {
+            updated[directParentId] = false;
+          } else if (anySiblingVisible) {
+            updated[directParentId] = true;
+          }
+
+          return updated;
+        });
+
+        const updateParentChain = (childId: string) => {
+          const parentId = Object.keys(parentChildMap).find(parentId => parentChildMap[parentId].includes(childId));
+
+          if (!parentId) return;
+
+          setLocalVisibleColumns(prev => {
+            const updated = { ...prev };
+            const siblings = parentChildMap[parentId] || [];
+
+            const allChildrenHidden = siblings.every(siblingId => !updated[siblingId]);
+            const anyChildVisible = siblings.some(siblingId => updated[siblingId]);
+
+            if (allChildrenHidden) {
+              updated[parentId] = false;
+            } else if (anyChildVisible) {
+              updated[parentId] = true;
+            }
+
+            return updated;
+          });
+
+          updateParentChain(parentId);
+        };
+
+        updateParentChain(directParentId);
+      }
+    }, 0);
   };
 
   /**

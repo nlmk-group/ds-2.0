@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -49,12 +49,49 @@ export const CustomSettings = <T extends object>({
   const [localColumnOrder, setLocalColumnOrder] = useState<string[]>([]);
   const [localPinnedColumns, setLocalPinnedColumns] = useState<Record<string, any>>({});
 
+  // Состояния для хранения оригинальных значений
+  const [originalVisibleColumns, setOriginalVisibleColumns] = useState<Record<string, boolean>>({});
+  const [originalColumnOrder, setOriginalColumnOrder] = useState<string[]>([]);
+  const [originalPinnedColumns, setOriginalPinnedColumns] = useState<Record<string, any>>({});
+
   const [searchTerm, setSearchTerm] = useState('');
 
   // Для отслеживания первой инициализации
   const isInitialized = useRef(false);
 
   const [parentChildMap, setParentChildMap] = useState<Record<string, string[]>>({});
+
+  /**
+   * Функция для подсчета количества измененных настроек
+   */
+  const countChanges = useCallback(() => {
+    let changes = 0;
+
+    Object.keys(localVisibleColumns).forEach(key => {
+      if (localVisibleColumns[key] !== originalVisibleColumns[key]) {
+        changes++;
+      }
+    });
+
+    if (localColumnOrder.join(',') !== originalColumnOrder.join(',')) {
+      changes++;
+    }
+
+    Object.keys(localPinnedColumns).forEach(key => {
+      if (localPinnedColumns[key] !== originalPinnedColumns[key]) {
+        changes++;
+      }
+    });
+
+    return changes;
+  }, [
+    localVisibleColumns,
+    localColumnOrder,
+    localPinnedColumns,
+    originalVisibleColumns,
+    originalColumnOrder,
+    originalPinnedColumns
+  ]);
 
   /**
    * Эффект для создания карты родитель-дочерние элементы
@@ -92,6 +129,11 @@ export const CustomSettings = <T extends object>({
       setLocalVisibleColumns({ ...visibleColumns });
       setLocalColumnOrder([...columnOrder]);
       setLocalPinnedColumns({ ...pinnedColumns });
+
+      setOriginalVisibleColumns({ ...visibleColumns });
+      setOriginalColumnOrder([...columnOrder]);
+      setOriginalPinnedColumns({ ...pinnedColumns });
+
       isInitialized.current = true;
     }
   }, [visibleColumns, columnOrder, pinnedColumns]);
@@ -113,6 +155,10 @@ export const CustomSettings = <T extends object>({
           setLocalColumnOrder([...columnOrder]);
         }
       }
+
+      setOriginalVisibleColumns({ ...visibleColumns });
+      setOriginalColumnOrder([...columnOrder]);
+      setOriginalPinnedColumns({ ...pinnedColumns });
 
       setSearchTerm('');
     }
@@ -164,13 +210,11 @@ export const CustomSettings = <T extends object>({
    * @param isVisible Новое значение видимости
    */
   const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
-    // Сначала обновляем состояние текущей колонки
     setLocalVisibleColumns(prev => ({
       ...prev,
       [columnId]: isVisible
     }));
 
-    // Обрабатываем дочерние элементы
     const childrenToUpdate: string[] = [];
 
     const getChildrenRecursively = (parentId: string) => {
@@ -205,10 +249,7 @@ export const CustomSettings = <T extends object>({
       }
     }
 
-    // Немедленное обновление родителя после изменения состояния чилдрена
     setTimeout(() => {
-      // Используем setTimeout с нулевой задержкой, чтобы дать React обновить состояние
-      // перед проверкой родительского элемента
       const directParentId = Object.keys(parentChildMap).find(parentId => parentChildMap[parentId].includes(columnId));
 
       if (directParentId) {
@@ -216,7 +257,6 @@ export const CustomSettings = <T extends object>({
           const updated = { ...prev };
           const siblings = parentChildMap[directParentId] || [];
 
-          // Определяем актуальное состояние всех сиблингов
           const allSiblingsHidden = siblings.every(siblingId => !updated[siblingId]);
           const anySiblingVisible = siblings.some(siblingId => updated[siblingId]);
 
@@ -282,9 +322,13 @@ export const CustomSettings = <T extends object>({
    * Обработчик сброса настроек к значениям по умолчанию
    */
   const handleResetToDefault = () => {
-    setLocalVisibleColumns(defaultVisibleColumns);
-    setLocalColumnOrder(defaultColumnOrder);
-    setLocalPinnedColumns(defaultPinnedColumns);
+    const defaultVisibleCols = { ...defaultVisibleColumns };
+    const defaultColOrder = [...defaultColumnOrder];
+    const defaultPinnedCols = { ...defaultPinnedColumns };
+
+    setLocalVisibleColumns(defaultVisibleCols);
+    setLocalColumnOrder(defaultColOrder);
+    setLocalPinnedColumns(defaultPinnedCols);
   };
 
   /**
@@ -327,9 +371,11 @@ export const CustomSettings = <T extends object>({
     setIsOpen(false);
   };
 
+  const changesCount = countChanges();
+
   return (
     <>
-      <Box gap="0px" alignItems="center">
+      <Box gap="4px" alignItems="center">
         <Button
           variant="secondary"
           color="ghost"
@@ -338,9 +384,9 @@ export const CustomSettings = <T extends object>({
           onClick={() => handleToggleDrawer(true)}
           title="Настройки таблицы"
         />
-        <Badge size="m" style={{ height: '24px' }}>
-          1
-        </Badge>
+          <Badge size="m" style={{ height: '24px' }}>
+            {changesCount}
+          </Badge>
       </Box>
 
       <Drawer

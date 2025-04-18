@@ -165,7 +165,6 @@ export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
             style={{
               display: 'flex',
               gap: '8px',
-              justifySelf: 'flex-end',
               borderTop: '1px solid',
               borderColor: 'var(--unique-divider)',
               padding: '24px'

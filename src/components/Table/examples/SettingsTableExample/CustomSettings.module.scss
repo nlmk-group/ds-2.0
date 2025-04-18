@@ -20,6 +20,8 @@
   height: 100%;
   width: 100%;
   gap: 16px;
+  padding: 24px 0 0 0;
+  box-sizing: border-box;
 }
 
 .searchBox {
@@ -63,4 +65,8 @@
   left: 0;
   right: 0;
   pointer-events: none;
+}
+
+.drawer {
+  padding: 0;
 }

@@ -206,7 +206,7 @@ const SettingsTableExample = () => {
         onPinChange={handlePinChange}
       />
 
-      <div className={styles.tableContainer}>
+      <div className={styles.tableContainer} style={{ width: '100%' }}>
         <Table horizontalBorders verticalBorders>
           <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
             {table.getHeaderGroups().map(headerGroup => (

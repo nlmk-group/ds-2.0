@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { Button, Drawer, IconSearchOutlined24, IconSettingOutlined24, Input } from '@components/index';
+import { Box, Button, Drawer, IconSearchOutlined24, IconSettingOutlined24, Input, Typography } from '@components/index';
 
 import { ICustomSettingsProps } from './types';
 
@@ -40,14 +40,10 @@ export const CustomSettings = <T extends object>({
   const [localColumnOrder, setLocalColumnOrder] = useState<string[]>([]);
   const [localPinnedColumns, setLocalPinnedColumns] = useState<Record<string, any>>({});
 
-  // Поисковый запрос для фильтрации колонок
   const [searchTerm, setSearchTerm] = useState('');
 
   // Для отслеживания первой инициализации
   const isInitialized = useRef(false);
-
-  // Для отладки и логирования
-  const sessionId = useRef(Date.now()).current;
 
   const [parentChildMap, setParentChildMap] = useState<Record<string, string[]>>({});
 
@@ -89,7 +85,7 @@ export const CustomSettings = <T extends object>({
       setLocalPinnedColumns({ ...pinnedColumns });
       isInitialized.current = true;
     }
-  }, [visibleColumns, columnOrder, pinnedColumns, sessionId]);
+  }, [visibleColumns, columnOrder, pinnedColumns]);
 
   /**
    * Эффект для обновления локальных состояний при открытии панели
@@ -111,7 +107,7 @@ export const CustomSettings = <T extends object>({
 
       setSearchTerm('');
     }
-  }, [isOpen, visibleColumns, columnOrder, pinnedColumns, localColumnOrder, sessionId]);
+  }, [isOpen, visibleColumns, columnOrder, pinnedColumns, localColumnOrder]);
 
   /**
    * Фильтрация колонок по поисковому запросу
@@ -270,32 +266,59 @@ export const CustomSettings = <T extends object>({
         title="Настройки таблицы"
       />
 
-      <Drawer isOpen={isOpen} onClose={() => handleToggleDrawer(false)} position="right" width="450px">
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => handleToggleDrawer(false)}
+        position="right"
+        width="450px"
+        className={styles.drawer}
+      >
         <div className={styles.customSettingsContainer}>
-          <div className={styles.searchBox}>
-            <Input
-              placeholder="Поиск колонок"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              icon={<IconSearchOutlined24 />}
-            />
-          </div>
-
-          <div className={styles.columnListContainer}>
-            <DndProvider backend={HTML5Backend}>
-              <TableColumnList
-                columns={filteredColumns}
-                visibleColumns={localVisibleColumns}
-                columnOrder={localColumnOrder}
-                pinnedColumns={localPinnedColumns}
-                onVisibilityChange={handleVisibilityChange}
-                onOrderChange={handleOrderChange}
-                onPinChange={handlePinChange}
+          <Box
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              gap: '16px',
+              padding: '0px 24px'
+            }}
+          >
+            <Typography variant="Heading3" color="var(--steel-90)">
+              Настройки колонок таблицы
+            </Typography>
+            <div className={styles.searchBox}>
+              <Input
+                placeholder="Поиск колонок"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                icon={<IconSearchOutlined24 />}
               />
-            </DndProvider>
-          </div>
+            </div>
 
-          <div className={styles.buttonsGroup}>
+            <div className={styles.columnListContainer}>
+              <DndProvider backend={HTML5Backend}>
+                <TableColumnList
+                  columns={filteredColumns}
+                  visibleColumns={localVisibleColumns}
+                  columnOrder={localColumnOrder}
+                  pinnedColumns={localPinnedColumns}
+                  onVisibilityChange={handleVisibilityChange}
+                  onOrderChange={handleOrderChange}
+                  onPinChange={handlePinChange}
+                />
+              </DndProvider>
+            </div>
+          </Box>
+
+          <Box
+            style={{
+              display: 'flex',
+              gap: '16px',
+              borderTop: '1px solid',
+              borderColor: 'var(--unique-divider)',
+              padding: '24px'
+            }}
+          >
             <Button variant="primary" onClick={handleApply}>
               Применить
             </Button>
@@ -305,7 +328,7 @@ export const CustomSettings = <T extends object>({
             <Button variant="primary" color="ghost" onClick={handleResetToDefault}>
               Сбросить
             </Button>
-          </div>
+          </Box>
         </div>
       </Drawer>
     </>

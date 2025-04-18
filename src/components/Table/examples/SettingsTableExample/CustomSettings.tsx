@@ -156,7 +156,7 @@ export const CustomSettings = <T extends object>({
    */
   const handleVisibilityChange = (columnId: string, isVisible: boolean) => {
     const childrenToUpdate: string[] = [];
-
+  
     const getChildrenRecursively = (parentId: string) => {
       const children = parentChildMap[parentId] || [];
       children.forEach(childId => {
@@ -166,15 +166,15 @@ export const CustomSettings = <T extends object>({
         }
       });
     };
-
+  
     setLocalVisibleColumns(prev => ({
       ...prev,
       [columnId]: isVisible
     }));
-
+  
     if (parentChildMap[columnId]) {
       getChildrenRecursively(columnId);
-
+  
       if (!isVisible) {
         setLocalVisibleColumns(prev => {
           const updated = { ...prev };
@@ -183,8 +183,7 @@ export const CustomSettings = <T extends object>({
           });
           return updated;
         });
-      }
-      else {
+      } else {
         setLocalVisibleColumns(prev => {
           const updated = { ...prev };
           childrenToUpdate.forEach(childId => {
@@ -194,6 +193,33 @@ export const CustomSettings = <T extends object>({
         });
       }
     }
+  
+    const updateParentVisibility = (childId: string) => {
+      const parentId = Object.keys(parentChildMap).find(parentId => parentChildMap[parentId].includes(childId));
+  
+      if (!parentId) return;
+  
+      setLocalVisibleColumns(prev => {
+        const updated = { ...prev };
+        const siblings = parentChildMap[parentId] || [];
+  
+        const allChildrenHidden = siblings.every(siblingId => !updated[siblingId]);
+        const anyChildVisible = siblings.some(siblingId => updated[siblingId]);
+  
+        if (allChildrenHidden) {
+          updated[parentId] = false;
+        }
+        else if (anyChildVisible) {
+          updated[parentId] = true;
+        }
+  
+        return updated;
+      });
+  
+      updateParentVisibility(parentId);
+    };
+  
+    updateParentVisibility(columnId);
   };
 
   /**

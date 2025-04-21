@@ -50,12 +50,12 @@ const SelectableTableWithPaginationExample = () => {
           <Thead>
             {table.getHeaderGroups().map(headerGroup => (
               <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
+                {headerGroup.headers.map((header, index) => (
                   <Top
                     key={header.id}
                     className={header.column.columnDef.meta?.className}
                     title={header.column.columnDef.id !== 'select' ? String(header.column.columnDef.header) : ''}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 1}
                   >
                     {header.column.columnDef.id === 'select'
                       ? flexRender(header.column.columnDef.header, header.getContext())
@@ -70,13 +70,14 @@ const SelectableTableWithPaginationExample = () => {
               const isSelected = row.getIsSelected();
               return (
                 <Row key={row.id}>
-                  {row.getVisibleCells().map(cell => (
+                  {row.getVisibleCells().map((cell, index) => (
                     <Cell
                       key={cell.id}
                       state={isSelected ? ECellState.SELECTED : ECellState.DEFAULT}
                       style={{
                         width: cell.column.getSize()
                       }}
+                      align={index === 1 ? 'left' : undefined}
                       {...(cell.column.id !== 'select' ? getCellProps(cell) : {})}
                     >
                       {cell.column.id === 'select' ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null}

@@ -70,7 +70,6 @@ const InputComboBox = ({
     if (setComboValue && initialValue) {
       setComboValue(initialValue);
     }
-    // ← добавьте пустой массив как второй аргумент:
   }, []);
   useEffect(() => {
     if (setComboValue && value) {

@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.6 - <span className={styles.date}>21.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа атрибутов data-ui-dropdown-menu и data-ui-dropdown-menu-portal в компоненте
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.5 - <span className={styles.date}>18.04.25</span>
           </Typography>
           <ul className={styles.list}>

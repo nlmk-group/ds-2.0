@@ -133,12 +133,21 @@ const tooltipItems: IComboBoxOption[] = [
 export const BasicSingleSelect = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
-    <ComboBox initialValue={[{ id: '124', label: 'Сталь' }]} label="Базовый выбор">
+    <ComboBox label="Базовый выбор">
       <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
     </ComboBox>
   );
 };
 BasicSingleSelect.storyName = 'Базовый выбор одного элемента';
+export const BasicSingleSelectWithInitialValue = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox initialValue={[simpleOptions[0]]} label="Базовый выбор">
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
+    </ComboBox>
+  );
+};
+BasicSingleSelectWithInitialValue.storyName = 'Базовый выбор одного элемента с начальным значением';
 
 export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);

@@ -23,6 +23,7 @@
     "build": "./script/build",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir lib/dist/components",
     "packing": "yarn build && npm publish",
+    "packing:beta": "yarn build && npm publish --tag beta",
     "conveyor": "yarn snowpack:build",
     "deploy": "yarn conveyor && yarn packing",
     "test": "jest",

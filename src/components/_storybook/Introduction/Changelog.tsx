@@ -23,6 +23,23 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.7 - <span className={styles.date}>22.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Улучшена кросс-платформенная совместимость.
+              <li className={styles['left-padding']}>- Добавлена поддержка Windows при работе с библиотекой</li>
+              <li className={styles['left-padding']}>
+                - Исправлены пути с двоеточиями, которые вызывали ошибки при использовании в Windows
+              </li>
+              <li className={styles['left-padding']}>
+                - Библиотеки react-dnd и react-dnd-html5-backend перемещены в optionalDependencies
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.6 - <span className={styles.date}>21.04.25</span>
           </Typography>
           <ul className={styles.list}>

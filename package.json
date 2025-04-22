@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "0.0.2148",
+  "version": "2.22.7",
   "author": "NLMK IT",
   "public": false,
   "main": "lib/index.js",
@@ -19,7 +19,6 @@
     "lint": "eslint ./src && yarn check-types",
     "clean": "rm -rf lib && rm -rf cache",
     "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build --polyfill-node",
-    "build:windows": "yarn snowpack:build && node script/windowsPaths.js && yarn build:types",
     "build": "./script/build",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir lib/dist/components",
     "packing": "yarn build && npm publish",

@@ -148,6 +148,15 @@ export const BasicSingleSelectWithInitialValue = () => {
   );
 };
 BasicSingleSelectWithInitialValue.storyName = 'Базовый выбор одного элемента с начальным значением';
+export const MultipleSelectWithInitialValue = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox initialValue={[simpleOptions[0], simpleOptions[1]]} label="Базовый выбор">
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} />
+    </ComboBox>
+  );
+};
+MultipleSelectWithInitialValue.storyName = 'Множественный выбор с начальным значением';
 
 export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);

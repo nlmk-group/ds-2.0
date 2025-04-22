@@ -23,6 +23,26 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.7 - <span className={styles.date}>22.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              <li className={styles['left-padding']}>
+                - Исправлена работа свойства initialValue - Добавлены новые истории
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.6 - <span className={styles.date}>21.04.25</span>
           </Typography>
           <ul className={styles.list}>

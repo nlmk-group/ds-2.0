@@ -1,12 +1,17 @@
 #!/bin/bash
 
-## Clean lib folder && Build package using snowpack configuration
-yarn snowpack:build
-## Add TS types to package
-yarn build:types
-## Copy index files to lib root level
-cp lib/dist/components/index.js lib/dist/components/index.d.ts lib
-## Remove fonts from lib
-rm -rf lib/fonts
-## Run changes for path script
-node script/changePath.js
+## Detect OS
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+  yarn build:windows
+else
+  ## Clean lib folder && Build package using snowpack configuration
+  yarn snowpack:build
+  ## Add TS types to package
+  yarn build:types
+  ## Copy index files to lib root level
+  cp lib/dist/components/index.js lib/dist/components/index.d.ts lib
+  ## Remove fonts from lib
+  rm -rf lib/fonts
+  ## Run changes for path script
+  node script/changePath.js
+fi

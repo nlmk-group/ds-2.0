@@ -564,6 +564,8 @@ export {
 export { IconNumbersOutlined16, IconNumbersOutlined24, IconNumbersOutlined32 } from './NumbersOutlined';
 export { IconParentalLeaveFilled16, IconParentalLeaveFilled24, IconParentalLeaveFilled32 } from './ParentalLeaveFilled';
 export { IconPauseFilled16, IconPauseFilled24, IconPauseFilled32 } from './PauseFilled';
+export { IconPennantFilled16, IconPennantFilled24, IconPennantFilled32 } from './PennantFilled';
+export { IconPennantOutlined16, IconPennantOutlined24, IconPennantOutlined32 } from './PennantOutlined';
 export { IconPeopleCancelFilled16, IconPeopleCancelFilled24, IconPeopleCancelFilled32 } from './PeopleCancelFilled';
 export {
   IconPeopleCancelOutlined16,

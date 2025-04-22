@@ -92,6 +92,7 @@ export { IconPechivtoFilled16, IconPechivtoFilled24, IconPechivtoFilled32 } from
 export { IconPechivtoOutlined16, IconPechivtoOutlined24, IconPechivtoOutlined32 } from './PechivtoOutlined';
 export { IconProkat16, IconProkat24, IconProkat32 } from './Prokat';
 export { IconProkatFilled16, IconProkatFilled24, IconProkatFilled32 } from './ProkatFilled';
+export { IconRezMetallaOutlined16, IconRezMetallaOutlined24, IconRezMetallaOutlined32 } from './RezMetallaOutlined';
 export {
   IconRMRecommendationOutlined16,
   IconRMRecommendationOutlined24,

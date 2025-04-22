@@ -27,6 +27,7 @@ export { IconFilterClean16, IconFilterClean24, IconFilterClean32 } from './Filte
 export { IconFull16, IconFull24, IconFull32 } from './Full';
 export { IconFunnel16, IconFunnel24, IconFunnel32 } from './Funnel';
 export { IconFurmaOutlined16, IconFurmaOutlined24, IconFurmaOutlined32 } from './FurmaOutlined';
+export { IconGrafana16, IconGrafana24, IconGrafana32 } from './Grafana';
 export { IconHillsView16, IconHillsView24, IconHillsView32 } from './HillsView';
 export { IconHistory16, IconHistory24, IconHistory32 } from './History';
 export { IconInMachineFilled16, IconInMachineFilled24, IconInMachineFilled32 } from './InMachineFilled';

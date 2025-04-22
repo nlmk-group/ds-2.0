@@ -1,0 +1,76 @@
+.columnListContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.droppableArea {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 8px 0;
+}
+
+.customSettingsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 16px;
+  padding: 24px 0 0 0;
+  box-sizing: border-box;
+}
+
+.searchBox {
+  width: 100%;
+}
+
+.buttonsGroup {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.column {
+  position: relative;
+  cursor: grab;
+
+  &.dragging {
+    opacity: 0.5;
+    border: 1px solid var(--brand-sapphire-60);
+    border-radius: 4px;
+    cursor: grabbing;
+  }
+
+  &.dropTarget {
+    background-color: var(--steel-30);
+    opacity: 0.5;
+    border-radius: 4px;
+  }
+}
+
+.childColumns {
+  position: relative;
+  margin-left: 16px;
+}
+
+.dropZone {
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.dropIndicator {
+  position: absolute;
+  height: 2px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.drawer {
+  padding: 0;
+}

@@ -27,14 +27,18 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Улучшена кросс-платформенная совместимость.
+              • Улучшена кросс-платформенная совместимость
               <li className={styles['left-padding']}>- Добавлена поддержка Windows при работе с библиотекой</li>
               <li className={styles['left-padding']}>
                 - Исправлены пути с двоеточиями, которые вызывали ошибки при использовании в Windows
               </li>
               <li className={styles['left-padding']}>
-                - Библиотеки react-dnd и react-dnd-html5-backend перемещены в optionalDependencies
+                - Библиотеки react-dnd, react-dnd-html5-backend и rc-tree перемещены в optionalDependencies
               </li>
+              <li className={styles['left-padding']}>
+                - Добавлен Snowpack плагин для автоматического переименования файлов с двоеточиями
+              </li>
+              <li className={styles['left-padding']}>- Отключены полифиллы Node.js для уменьшения размера сборки</li>
             </li>
           </ul>
         </div>

@@ -8,5 +8,5 @@ yarn build:types
 cp lib/dist/components/index.js lib/dist/components/index.d.ts lib
 ## Remove fonts from lib
 rm -rf lib/fonts
-## Process library files (fix Windows paths and update import paths)
+## Run changes for path script
 node script/changePath.js

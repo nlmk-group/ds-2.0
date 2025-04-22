@@ -18,7 +18,7 @@
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
     "clean": "rm -rf lib && rm -rf cache",
-    "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build --polyfill-node",
+    "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build",
     "build": "./script/build",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir lib/dist/components",
     "packing": "yarn build && npm publish",
@@ -50,7 +50,6 @@
   "dependencies": {
     "@snowpack/plugin-sass": "1.4.0",
     "date-fns": "3.3.1",
-    "rc-tree": "^5.11.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-input-mask": "2.0.4",
     "react-is": "^18.3.1",
@@ -61,7 +60,8 @@
   },
   "optionalDependencies": {
     "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1"
+    "react-dnd-html5-backend": "^16.0.1",
+    "rc-tree": "^5.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",

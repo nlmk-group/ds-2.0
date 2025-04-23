@@ -18,7 +18,7 @@
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
     "clean": "rm -rf lib && rm -rf cache",
-    "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build",
+    "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build --polyfill-node",
     "build": "./script/build",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir lib/dist/components",
     "packing": "yarn build && npm publish",

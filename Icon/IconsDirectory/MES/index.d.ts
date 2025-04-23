@@ -11,8 +11,8 @@ export { IconChartGantt16, IconChartGantt24, IconChartGantt32 } from './ChartGan
 export { IconChartSolar16, IconChartSolar24, IconChartSolar32 } from './ChartSolar';
 export { IconChartTree16, IconChartTree24, IconChartTree32 } from './ChartTree';
 export { IconChartWaterfall16, IconChartWaterfall24, IconChartWaterfall32 } from './ChartWaterfall';
-export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
 export { IconClaimScan16, IconClaimScan24, IconClaimScan32 } from './ClaimScan';
+export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
 export { IconColorPaletteOutline16, IconColorPaletteOutline24, IconColorPaletteOutline32 } from './ColorPaletteOutline';
 export { IconConnection16, IconConnection24, IconConnection32 } from './Connection';
 export { IconDatabase16, IconDatabase24, IconDatabase32 } from './Database';
@@ -23,6 +23,7 @@ export { IconFilterClean16, IconFilterClean24, IconFilterClean32 } from './Filte
 export { IconFull16, IconFull24, IconFull32 } from './Full';
 export { IconFunnel16, IconFunnel24, IconFunnel32 } from './Funnel';
 export { IconFurmaOutlined16, IconFurmaOutlined24, IconFurmaOutlined32 } from './FurmaOutlined';
+export { IconGrafana16, IconGrafana24, IconGrafana32 } from './Grafana';
 export { IconHillsView16, IconHillsView24, IconHillsView32 } from './HillsView';
 export { IconHistory16, IconHistory24, IconHistory32 } from './History';
 export { IconInMachineFilled16, IconInMachineFilled24, IconInMachineFilled32 } from './InMachineFilled';
@@ -54,9 +55,9 @@ export { IconPiece16, IconPiece24, IconPiece32 } from './Piece';
 export { IconPieceImportant16, IconPieceImportant24, IconPieceImportant32 } from './PieceImportant';
 export { IconPivotTable16, IconPivotTable24, IconPivotTable32 } from './PivotTable';
 export { IconPovtornayaObrabotkaPachek16, IconPovtornayaObrabotkaPachek24, IconPovtornayaObrabotkaPachek32 } from './PovtornayaObrabotkaPachek';
-export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export { IconRCMParallelOperation16, IconRCMParallelOperation24, IconRCMParallelOperation32 } from './RCMParallelOperation';
 export { IconRCMSequentialOperation16, IconRCMSequentialOperation24, IconRCMSequentialOperation32 } from './RCMSequentialOperation';
+export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export { IconRemovedFilled16, IconRemovedFilled24, IconRemovedFilled32 } from './RemovedFilled';
 export { IconRemovedOutlined16, IconRemovedOutlined24, IconRemovedOutlined32 } from './RemovedOutlined';
 export { IconReportCanceledFilled16, IconReportCanceledFilled24, IconReportCanceledFilled32 } from './ReportCanceledFilled';

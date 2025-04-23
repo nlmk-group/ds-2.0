@@ -15,7 +15,7 @@ const IconGrafana16: FC<IIconsProps> = ({ color = 'inherit' }) => {
         fill={'url(#a)'}
       />
       <defs>
-        <linearGradient id="a" x1="8" x2="8" y1="16.706" y2="5.754" gradientUnits="userSpaceOnUse">
+        <linearGradient id="a" x1="14" x2="14" y1="34.313" y2="8.76" gradientUnits="userSpaceOnUse">
           <stop stopColor="#FCEE1F" />
           <stop offset="1" stopColor="#F15B2A" />
         </linearGradient>

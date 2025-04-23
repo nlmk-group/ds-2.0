@@ -56,7 +56,7 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                 }}
               >
                 {virtualPaddingLeft > 0 && <Top style={{ width: virtualPaddingLeft }} />}
-                {virtualColumns.map(virtualColumn => {
+                {virtualColumns.map((virtualColumn, index) => {
                   const header = headerGroup.headers[virtualColumn.index];
                   return (
                     <Top
@@ -64,8 +64,8 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                       style={{
                         width: header.getSize()
                       }}
-                      title={flexRender(header.column.columnDef.header, header.getContext()) as string}
-                      right={header.column.columnDef.meta?.isNumeric}
+                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      right={header.column.columnDef.meta?.isNumeric && index !== 0}
                       className={styles.notSortable}
                     />
                   );
@@ -85,8 +85,8 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                 }}
               >
                 {virtualPaddingLeft > 0 && <Cell style={{ width: virtualPaddingLeft }} />}
-                {virtualColumns.map(virtualColumn => {
-                  const cell = row.getVisibleCells()[virtualColumn.index];
+                {virtualColumns.map(({ index }) => {
+                  const cell = row.getVisibleCells()[index];
                   return (
                     <Cell
                       key={cell.id}
@@ -94,6 +94,7 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                       style={{
                         width: cell.column.getSize()
                       }}
+                      align={index === 0 ? 'left' : undefined}
                       {...getCellProps(cell)}
                     />
                   );

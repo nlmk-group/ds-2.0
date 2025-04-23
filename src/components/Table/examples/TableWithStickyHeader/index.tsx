@@ -46,12 +46,12 @@ const TableWithStickyHeader = () => {
         <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header, index) => (
                 <Top
                   key={header.id}
                   className={styles.notSortable}
-                  title={flexRender(header.column.columnDef.header, header.getContext()) as string}
-                  right={header.column.columnDef.meta?.isNumeric}
+                  title={flexRender(header.column.columnDef.header, header.getContext())}
+                  right={header.column.columnDef.meta?.isNumeric && index !== 0}
                 />
               ))}
             </Row>
@@ -60,13 +60,13 @@ const TableWithStickyHeader = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell =>
+              {row.getVisibleCells().map((cell, index) =>
                 cell.column.id === 'status' ? (
                   <Cell key={cell.id} {...getCellProps(cell)}>
                     <Status {...getStatusConfig(row.original.status)}>{row.original.status}</Status>
                   </Cell>
                 ) : (
-                  <Cell key={cell.id} {...getCellProps(cell)} />
+                  <Cell key={cell.id} align={index === 0 ? 'left' : undefined} {...getCellProps(cell)} />
                 )
               )}
             </Row>

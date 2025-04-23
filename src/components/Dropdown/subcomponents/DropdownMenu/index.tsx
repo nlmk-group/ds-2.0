@@ -17,7 +17,7 @@ import styles from './DropdownMenu.module.scss';
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @returns {ReactNode|null} Возвращает JSX элемент или null, если меню закрыто.
  */
-const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) => {
+const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ...props }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
@@ -81,6 +81,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false }) 
         className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })}
         style={getMenuStyles() as CSSProperties}
         {...(withPortal ? attributes.popper : {})}
+        {...props}
       >
         {children}
       </List>

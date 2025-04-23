@@ -72,7 +72,7 @@ const FilterableTableExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 const canSort = header.column.getCanSort();
                 const isSorted = header.column.getIsSorted();
 
@@ -94,8 +94,8 @@ const FilterableTableExample = () => {
                       }
                     }}
                     className={!header.column.getCanSort() ? styles.notSortable : ''}
-                    title={flexRender(header.column.columnDef.header, header.getContext()) as string}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    title={flexRender(header.column.columnDef.header, header.getContext())}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 0}
                   >
                     {header.column.getCanFilter() && (
                       <Filter
@@ -130,8 +130,13 @@ const FilterableTableExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <Cell key={cell.id} style={{ width: cell.column.getSize() }} {...getCellProps(cell)} />
+              {row.getVisibleCells().map((cell, index) => (
+                <Cell
+                  key={cell.id}
+                  style={{ width: cell.column.getSize() }}
+                  align={index === 0 ? 'left' : undefined}
+                  {...getCellProps(cell)}
+                />
               ))}
             </Row>
           ))}

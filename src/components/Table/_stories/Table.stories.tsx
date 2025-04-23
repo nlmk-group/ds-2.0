@@ -26,6 +26,7 @@ import {
   SelectableTableWithGroupingHeaderExample,
   SelectableTableWithPaginationExample,
   SelectableTableWithVirtualizationExample,
+  SettingsTableExample,
   SortableTableExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
@@ -72,6 +73,9 @@ GroupingHeaderTable.storyName = 'Таблица с группировкой и �
 
 export const GroupHeaderTableWithResize = () => <GroupHeaderTableWithResizeExample />;
 GroupHeaderTableWithResize.storyName = 'Таблица с группировкой и заголовками с возможностью изменения ширины столбцов';
+
+export const TableWithSettings = () => <SettingsTableExample />;
+TableWithSettings.storyName = 'Таблица с настройками колонок';
 
 // export const TableComponents = () => <TableComponentsExample />;
 // TableComponents.storyName = 'Таблица с компонентами';

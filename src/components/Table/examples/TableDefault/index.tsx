@@ -20,12 +20,12 @@ const TableWithTanStackExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header, index) => (
                 <Top
                   key={header.id}
                   className={styles.notSortable}
-                  title={flexRender(header.column.columnDef.header, header.getContext()) as string}
-                  right={header.column.columnDef.meta?.isNumeric}
+                  title={flexRender(header.column.columnDef.header, header.getContext())}
+                  right={header.column.columnDef.meta?.isNumeric && index !== 0}
                 />
               ))}
             </Row>
@@ -34,8 +34,13 @@ const TableWithTanStackExample = () => {
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <Cell key={cell.id} color={row.original.status} {...getCellProps(cell)} />
+              {row.getVisibleCells().map((cell, index) => (
+                <Cell
+                  key={cell.id}
+                  color={row.original.status}
+                  align={index === 0 ? 'left' : undefined}
+                  {...getCellProps(cell)}
+                />
               ))}
             </Row>
           ))}

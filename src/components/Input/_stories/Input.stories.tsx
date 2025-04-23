@@ -1,7 +1,7 @@
 import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Button } from '@components/index';
+import { Button, IconMock } from '@components/index';
 import { expect, fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/test';
 
@@ -193,3 +193,8 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
 };
+
+export const InputWithIconMock = (): JSX.Element => (
+  <InputDefault icon={<IconMock weight="кг" style={{ paddingBottom: '4px' }} />} />
+);
+InputWithIconMock.storyName = 'Input с иконкой для единиц измерения';

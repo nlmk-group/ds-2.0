@@ -25,6 +25,7 @@ export { default as Typography } from './Typography';
 export { default as Tooltip } from './Tooltip';
 export { default as Icon } from './Icon';
 export { default as IconContainer } from './Icon/subcomponent/IconContainer';
+export { default as IconMock } from './Icon/IconMock';
 export { default as ThemeSwitcher } from './ThemeSwitcher';
 export { default as DatePicker } from './DatePicker';
 export { default as DateTime } from './DateTime';

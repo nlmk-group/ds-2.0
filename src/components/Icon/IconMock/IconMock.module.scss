@@ -1,0 +1,16 @@
+.icon-mock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  z-index: 5;
+  background-color: transparent;
+  color: var(--brand-sapphire-60);
+
+  &__text {
+    font-size: var(--body1-medium-16-fontSize);
+    font-weight: var(--body1-medium-16-fontWeight);
+  }
+}

@@ -40,6 +40,13 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>- Отключены полифиллы Node.js для уменьшения размера сборки</li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлены новые иконки</li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

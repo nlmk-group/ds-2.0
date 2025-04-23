@@ -15,8 +15,8 @@ export { IconChartGantt16, IconChartGantt24, IconChartGantt32 } from './ChartGan
 export { IconChartSolar16, IconChartSolar24, IconChartSolar32 } from './ChartSolar';
 export { IconChartTree16, IconChartTree24, IconChartTree32 } from './ChartTree';
 export { IconChartWaterfall16, IconChartWaterfall24, IconChartWaterfall32 } from './ChartWaterfall';
-export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
 export { IconClaimScan16, IconClaimScan24, IconClaimScan32 } from './ClaimScan';
+export { IconClaimsAnalysis16, IconClaimsAnalysis24, IconClaimsAnalysis32 } from './ClaimsAnalysis';
 export { IconColorPaletteOutline16, IconColorPaletteOutline24, IconColorPaletteOutline32 } from './ColorPaletteOutline';
 export { IconConnection16, IconConnection24, IconConnection32 } from './Connection';
 export { IconDatabase16, IconDatabase24, IconDatabase32 } from './Database';
@@ -63,7 +63,6 @@ export {
   IconPovtornayaObrabotkaPachek24,
   IconPovtornayaObrabotkaPachek32
 } from './PovtornayaObrabotkaPachek';
-export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export {
   IconRCMParallelOperation16,
   IconRCMParallelOperation24,
@@ -74,6 +73,7 @@ export {
   IconRCMSequentialOperation24,
   IconRCMSequentialOperation32
 } from './RCMSequentialOperation';
+export { IconRadarChart16, IconRadarChart24, IconRadarChart32 } from './RadarChart';
 export { IconRemovedFilled16, IconRemovedFilled24, IconRemovedFilled32 } from './RemovedFilled';
 export { IconRemovedOutlined16, IconRemovedOutlined24, IconRemovedOutlined32 } from './RemovedOutlined';
 export {

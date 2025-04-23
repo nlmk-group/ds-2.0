@@ -45,7 +45,10 @@ export const Changelog = () => {
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
                 Icon
               </Link>
-              .<li className={styles['left-padding']}>- Добавлены новые иконки Grafana, RezMetallaOutlined, Pennant</li>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки Grafana, RezMetallaOutlined, PennantOutlined и PennantFilled
+              </li>
             </li>
           </ul>
         </div>

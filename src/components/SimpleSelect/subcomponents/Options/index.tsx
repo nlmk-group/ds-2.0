@@ -33,7 +33,10 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       {
         name: 'flip', // Автоматически переворачивает меню наверх, если внизу нет места
         options: {
-          fallbackPlacements: ['top-start']
+          fallbackPlacements: ['top'],
+          rootBoundary: 'viewport',
+          flipVariations: true,
+          padding: 8
         }
       },
       {
@@ -78,21 +81,12 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`
     };
 
-    if (withPortal) {
-      return {
-        ...baseStyles,
-        ...popperStyles.popper,
-        marginTop: '0px'
-      };
-    }
-
     return {
       ...baseStyles,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      zIndex: 1000
-    };
+      ...popperStyles.popper,
+      zIndex: 1000,
+      marginTop: 0
+    }
   };
 
   const menu = (
@@ -103,9 +97,9 @@ const Options: FC<IOptionsProps> = ({ children }) => {
             if (menuRef && typeof menuRef === 'object') {
               (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
             }
-            if (withPortal) {
-              setPopperElement(el);
-            }
+            
+            setPopperElement(el);
+
           }
         }}
         style={getMenuStyles() as CSSProperties}

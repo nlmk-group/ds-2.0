@@ -186,6 +186,15 @@ export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+    </ComboBox>
+  );
+};
+TreeViewExample.storyName = 'Древовидный список';
+export const TreeViewWithMaxLevelExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Древовидный список" countOnlyLevel={2}>
       <ComboTreeList
         maxLevel={2}
         items={treeOptions}
@@ -197,7 +206,7 @@ export const TreeViewExample = () => {
     </ComboBox>
   );
 };
-TreeViewExample.storyName = 'Древовидный список';
+TreeViewWithMaxLevelExample.storyName = 'Древовидный список с максимальным уровнем вложенности';
 
 export const ResizableDropdownExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);

@@ -67,7 +67,10 @@ export const iconsAlwaysDefaultColor = [
   'IconOrderIsPartiallySecured32',
   'IconOrderIsPartiallySecuredLater16',
   'IconOrderIsPartiallySecuredLater24',
-  'IconOrderIsPartiallySecuredLater32'
+  'IconOrderIsPartiallySecuredLater32',
+  'IconGrafana16',
+  'IconGrafana24',
+  'IconGrafana32'
 ];
 
 export const rowCount = 3;

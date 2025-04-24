@@ -45,7 +45,7 @@ const ExpandableTableExample = () => {
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
+              {headerGroup.headers.map((header, index) => {
                 const canSort = header.column.getCanSort();
                 const isSorted = header.column.getIsSorted();
 
@@ -68,7 +68,7 @@ const ExpandableTableExample = () => {
                       header.column.columnDef.meta?.isExpander && styles.expanderColumn
                     )}
                     title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
+                    right={header.column.columnDef.meta?.isNumeric && index !== 1}
                   />
                 );
               })}
@@ -80,12 +80,13 @@ const ExpandableTableExample = () => {
           {table.getRowModel().rows.map(row => (
             <React.Fragment key={row.id}>
               <Row>
-                {row.getVisibleCells().map(cell => {
+                {row.getVisibleCells().map((cell, index) => {
                   const rowStatus = row.original.status;
                   return (
                     <Cell
                       key={cell.id}
                       color={rowStatus}
+                      align={index === 1 ? 'left' : undefined}
                       {...getCellProps(cell)}
                       disableHover={cell.column.columnDef.meta?.isExpander}
                       className={clsx(cell.column.columnDef.meta?.isExpander && styles.expanderColumn)}

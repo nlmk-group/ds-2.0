@@ -71,7 +71,7 @@ const Dropdown: FC<IDropdownProps> = ({
   const getDropdownMenu = () => {
     const menu = withPortal ? (
       ReactDOM.createPortal(
-        <DropdownMenu withPortal data-ui-dropdown-menu>
+        <DropdownMenu withPortal data-ui-dropdown-menu-portal>
           {children}
         </DropdownMenu>,
         portalContainer

@@ -23,22 +23,87 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.5 - <span className={styles.date}>18.04.25</span>
+            v2.22.8 - <span className={styles.date}>24.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-treelist-info--docs"
+                href="./?path=/docs/components-combobox-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                TreeList
+                ComboBox
               </Link>
               <li className={styles['left-padding']}>- Убрано значение maxLevel по умолчанию у ComboTreeList</li>
               <li className={styles['left-padding']}>
                 - Доработана логика рендеринга последнего элемента у ComboTreeList
               </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.7 - <span className={styles.date}>23.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Улучшена кросс-платформенная совместимость
+              <li className={styles['left-padding']}>- Добавлена поддержка Windows при работе с библиотекой</li>
+              <li className={styles['left-padding']}>
+                - Исправлены пути с двоеточиями, которые вызывали ошибки при использовании в Windows
+              </li>
+              <li className={styles['left-padding']}>
+                - Библиотеки react-dnd, react-dnd-html5-backend и rc-tree перемещены в optionalDependencies
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен Snowpack плагин для автоматического переименования файлов с двоеточиями
+              </li>
+              <li className={styles['left-padding']}>- Отключены полифиллы Node.js для уменьшения размера сборки</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки Grafana, RezMetallaOutlined, PennantOutlined и PennantFilled
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.6 - <span className={styles.date}>21.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа атрибутов data-ui-dropdown-menu и data-ui-dropdown-menu-portal в компоненте
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.5 - <span className={styles.date}>18.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                ColumnSetting
+              </Link>
             </li>
           </ul>
         </div>

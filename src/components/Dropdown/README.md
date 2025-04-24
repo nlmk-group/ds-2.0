@@ -87,7 +87,8 @@ import {
 
 ```css
 /* Основной контейнер выпадающего меню */
-[data-ui-dropdown-menu] {
+[data-ui-dropdown-menu],
+[data-ui-dropdown-menu-portal] {
   /* Ваши стили */
 }
 

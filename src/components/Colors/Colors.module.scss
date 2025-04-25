@@ -6,8 +6,10 @@ $transition: 0.1s linear;
   width: calc(100vw - 48px);
   box-sizing: border-box;
   padding: 24px 24px;
+  // FIXME: --bg-paper not found
   background: var(--bg-paper);
-  border-radius: var(--8-radius);
+  // FIXME: --8-radius removed, not replaced
+  border-radius: 8px;
   margin: 10px auto 0;
 
   span {
@@ -19,11 +21,11 @@ $transition: 0.1s linear;
     flex-direction: column;
     gap: 16px;
     padding: 36px 0 40px;
-    color: var(--grey-text-primary);
+    color: var(--steel-90);
 
     .colors-table-subtitle {
       max-width: 1024px;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
     }
   }
 
@@ -33,9 +35,10 @@ $transition: 0.1s linear;
       gap: 16px;
       align-items: flex-start;
       box-sizing: border-box;
+      // FIXME: --grey-phantom not found
       border-bottom: 1px solid var(--grey-phantom);
       padding: 24px 0;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
 
       &.color-row-header {
         padding: 0 0 16px;
@@ -48,7 +51,7 @@ $transition: 0.1s linear;
       flex-direction: column;
       align-items: flex-start;
       gap: 16px;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
     }
 
     .cells-color {
@@ -70,6 +73,7 @@ $transition: 0.1s linear;
       cursor: pointer;
 
       &:hover .color-value {
+        // FIXME: --bg-smoke not found
         background: var(--bg-smoke);
       }
 
@@ -79,12 +83,13 @@ $transition: 0.1s linear;
         height: 30px;
 
         &.color-white {
-          border: 1px solid var(--misc-divider);
+          border: 1px solid var(--unique-divider);
         }
       }
 
       .color-value {
         transition: $transition;
+        // FIXME: --font-size-1 not found (12 or 14px ?)
         font-size: var(--font-size-1);
         text-transform: uppercase;
         color: var(--grey-concrete);
@@ -96,16 +101,20 @@ $transition: 0.1s linear;
 
     code {
       padding: 4px 8px 4px 8px;
-      font-weight: var(--font-weights-pt-root-ui-0);
+      // FIXME: --font-weights-pt-root-ui-0 removed, not replaced
+      font-weight: 700;
       border-radius: $border-radius;
+      // FIXME: --font-size-1 not found (12 or 14px ?)
       font-size: var(--font-size-1);
       font-family: monospace;
+      // FIXME: --bg-steel not found
       background-color: var(--bg-steel);
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
       cursor: pointer;
       transition: $transition;
 
       &:hover {
+        // FIXME: --grey-phantom not found
         background: var(--grey-phantom);
       }
     }
@@ -120,7 +129,7 @@ $transition: 0.1s linear;
     flex-direction: column;
   }
   .colors-page-wrapper .colors-table .color-wrapper .color-value {
-    color: var(--grey-text-primary);
+    color: var(--steel-90);
   }
 }
 

@@ -40,9 +40,11 @@ const Stories = (): JSX.Element => {
 export default App = () => (
   <div style={{ width: "100%", padding: 0 }}>
     <Box
+      // FIXME: --ac-button-grey-outline-default-stroke not found
       border="1px solid var(--ac-button-grey-outline-default-stroke)"
-      borderRadius="var(--8-radius)"
-      p="var(--8-space)"
+      // FIXME: --8-radius removed, not replaced
+      borderRadius="8px"
+      p="8px"
     >
       <Button type="button">Заполнить</Button>
       <Button type="button" color="grey">Посмотреть</Button>
@@ -54,13 +56,17 @@ export default App = () => (
       <Box
         width="250px"
         flexDirection="column"
-        borderRadius="var(--4-radius)"
+        // FIXME: --4-radius removed, not replaced
+        borderRadius="4px"
         alignItems="center"
+        // FIXME: --background-info not found
         background="var(--background-info)"
+        // FIXME: --60-space not found
         py="var(--60-space)"
+        // FIXME: --60-space not found
         px="var(--60-space)"
         st={{
-          boxShadow: "0 10px 10px var(--background-default)"
+          boxShadow: "0 10px 10px var(--unique-background)"
         }}
       >
         <Button type="button">Заполнить</Button>

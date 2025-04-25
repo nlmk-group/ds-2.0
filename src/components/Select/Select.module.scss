@@ -161,7 +161,8 @@
 }
 
 .inconspicuous-s {
-  @include set-height-and-line-height(var(--32-size));
+  // FIXME: --32-size removed not replaced
+  @include set-height-and-line-height(32px);
 }
 
 .inconspicuous-xs {

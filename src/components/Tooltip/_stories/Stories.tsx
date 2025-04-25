@@ -20,7 +20,7 @@ const style = `{{
   padding: '30px',
   margin: '0 auto',
   height: '180px',
-  color: 'var(--text-grey-900)'
+  color: 'var(--steel-90)'
 }}`;
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=560-4267&t=EnvIMGos3m33avAX-1';

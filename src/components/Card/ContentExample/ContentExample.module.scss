@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  // FIXME: --dark-primary-navyblue-50 not found
   background: var(--dark-primary-navyblue-50);
 }
 
@@ -74,6 +75,7 @@
 .title-typography-helper {
   white-space: nowrap;
   @include ellipse;
+  // FIXME: --default-main not found
   color: var(--default-main);
 }
 
@@ -82,7 +84,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  color: var(--text-grey-900);
+  color: var(--steel-90);
 }
 
 .badge-helper {

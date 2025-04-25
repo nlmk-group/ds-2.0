@@ -204,7 +204,7 @@ export const AllIcons = (): JSX.Element => {
             {Row}
           </List>
         ) : (
-          <Typography variant="Heading2" color="var(--text-grey-900)" className={styles.noResults}>
+          <Typography variant="Heading2" color="var(--steel-90)" className={styles.noResults}>
             Ничего не найдено
           </Typography>
         )}

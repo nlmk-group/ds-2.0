@@ -30,8 +30,9 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
   &.radius-4px {
     border-radius: var(--4-radius);
   }
+  // FIXME: --8-radius removed, not replaced
   &.radius-8px {
-    border-radius: var(--8-radius);
+    border-radius: 8px;
   }
 
   // Image common styles

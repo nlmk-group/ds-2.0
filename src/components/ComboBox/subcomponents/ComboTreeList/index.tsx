@@ -198,8 +198,11 @@ const ComboTreeList = <T extends IComboBoxTree>({
   );
 
   const leafItems = useMemo(() => {
-    return treeOptions.filter(option => option.level === maxLevel);
-  }, [treeOptions, maxLevel]);
+    return treeOptions.filter(option => {
+      const hasChildren = treeOptions.some(child => child.parentId === option.id);
+      return !hasChildren;
+    });
+  }, [treeOptions]);
 
   return (
     <>

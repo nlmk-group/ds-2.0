@@ -42,7 +42,6 @@ export default App = () => (
     <Box
       // FIXME: --ac-button-grey-outline-default-stroke not found
       border="1px solid var(--ac-button-grey-outline-default-stroke)"
-      // FIXME: --8-radius removed, not replaced
       borderRadius="8px"
       p="8px"
     >
@@ -56,7 +55,6 @@ export default App = () => (
       <Box
         width="250px"
         flexDirection="column"
-        // FIXME: --4-radius removed, not replaced
         borderRadius="4px"
         alignItems="center"
         // FIXME: --background-info not found

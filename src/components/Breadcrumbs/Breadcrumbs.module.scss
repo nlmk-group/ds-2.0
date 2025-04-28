@@ -1,10 +1,7 @@
 @mixin body1mono-medium {
-  // FIXME: --body1-mono-medium-font-size removed, not replaced
-  // FIXME: --body1-mono-medium-line-height removed, not replaced
-  // FIXME: --body1-mono-medium-font-weight removed, not replaced
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 500;
+  font-size: var(--body1-mono-medium-font-size);
+  line-height: var(--body1-mono-medium-line-height);
+  font-weight: var(--body1-mono-medium-font-weight);
 }
 
 // Стили основного компонента

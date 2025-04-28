@@ -55,7 +55,6 @@ export const argsTypes = {
     description: 'В компонент можно передать кастомное значение максимальной ширины контейнера.',
     control: { type: 'text' }
   },
-  // FIXME: --size-24 removed, not replaced
   gap: {
     description: 'В компонент можно передать кастомное значение отступов по умолчанию <b>24px</b>.',
     control: { type: 'text' },

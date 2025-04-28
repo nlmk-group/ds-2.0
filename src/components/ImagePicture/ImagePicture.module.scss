@@ -28,9 +28,8 @@ $blackOpacity60: rgba(0, 0, 0, 0.6);
     border-radius: 0;
   }
   &.radius-4px {
-    border-radius: var(--4-radius);
+    border-radius: 4px;
   }
-  // FIXME: --8-radius removed, not replaced
   &.radius-8px {
     border-radius: 8px;
   }

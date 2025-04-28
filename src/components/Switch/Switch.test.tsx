@@ -79,6 +79,7 @@ describe('src/components/Switch', () => {
       </div>
     );
 
+    // FIXME: --primary-blue-600 not found
     const InactiveIcon = (): JSX.Element => (
       <div data-testid="INACTIVE_ICON">
         <Icon containerSize={16} htmlColor="var(--primary-blue-600)" name="IconMetallalomScrap16" />

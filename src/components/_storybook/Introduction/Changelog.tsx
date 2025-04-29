@@ -23,6 +23,25 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>29.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              для единиц измерения
+              <li className={styles['left-padding']}>- Добавлены примеры использования в компоненты Input и Icon</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.7 - <span className={styles.date}>23.04.25</span>
           </Typography>
           <ul className={styles.list}>

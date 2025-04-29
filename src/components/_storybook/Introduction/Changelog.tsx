@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.7 - <span className={styles.date}>22.04.25</span>
+            v2.22.7 - <span className={styles.date}>23.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -39,6 +39,16 @@ export const Changelog = () => {
                 - Добавлен Snowpack плагин для автоматического переименования файлов с двоеточиями
               </li>
               <li className={styles['left-padding']}>- Отключены полифиллы Node.js для уменьшения размера сборки</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки Grafana, RezMetallaOutlined, PennantOutlined и PennantFilled
+              </li>
             </li>
           </ul>
         </div>

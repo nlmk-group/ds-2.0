@@ -40,7 +40,7 @@ export const Changelog = () => {
                 - Исправлена работа свойств helperText и pseudo для компонента SimpleSelect
               </li>
               <li className={styles['left-padding']}>- Обновлена документация компонента</li>
-              <li className={styles['left-padding']}>- Исправлен argTypes в storybook</li>
+              <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
             </li>
           </ul>
         </div>

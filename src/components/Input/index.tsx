@@ -151,7 +151,7 @@ const Input: FC<TInputProps> = ({
           data-testid="RESET_ICON"
           onClick={onReset}
         >
-          {<Icon htmlColor="var(--steel-70)" containerSize={24} name="IconCloseOutlined24" />}
+          {<Icon htmlColor="var(--steel-70)" containerSize={24} name="IconCloseOutlined16" />}
         </div>
       )}
       {isCustomIconVisible && (

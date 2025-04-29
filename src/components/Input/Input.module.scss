@@ -282,8 +282,7 @@ input:autofill:focus {
 .helper {
   display: flex;
   margin: 0;
-  padding-top: 4px;
-  padding-left: 16px;
+  padding: 4px 0 0 12px;
   color: var(--steel-70);
   @include input-color-states;
 }

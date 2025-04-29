@@ -41,6 +41,7 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>- Обновлена документация компонента</li>
               <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
+              <li className={styles['left-padding']}>- Изменена иконка reset в компонентах Input на 16px</li>
             </li>
           </ul>
         </div>

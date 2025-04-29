@@ -14,8 +14,8 @@ import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import argsTypes from '@components/Icon/_stories/argsTypes';
-import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
+import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Card, Icon, IconUnit, Input, Typography } from '@components/index';
 import { Meta } from '@storybook/react';
@@ -223,8 +223,21 @@ export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
         justifyContent: ' center'
       }}
     >
-      <IconUnit {...argsTypes} unit="кг" />
+      <IconUnit {...argsTypes} />
     </div>
   );
 };
+
 IconUnitComponent.storyName = 'Компонент иконки для единиц измерения';
+IconUnitComponent.args = { unit: 'кг' };
+IconUnitComponent.argTypes = {
+  unit: {
+    description: 'Строковое значение, отображаемое в иконке. Например, кг, см и тд',
+    control: { type: 'text' }
+  },
+  name: { table: { disable: true } },
+  color: { table: { disable: true } },
+  htmlColor: { table: { disable: true } },
+  containerSize: { table: { disable: true } },
+  badge: { table: { disable: true } }
+};

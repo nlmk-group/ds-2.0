@@ -32,7 +32,6 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
   };
 
   const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // какая-нибудь логика после прекращения ввода в input
     console.log('event blur: ', e);
   };
 
@@ -195,6 +194,11 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {
 };
 
 export const InputWithIconUnit = (): JSX.Element => (
-  <InputDefault icon={<IconUnit unit="кг" style={{ paddingBottom: '4px' }} />} />
+  <InputDefault icon={<IconUnit unit="кг" />} />
 );
 InputWithIconUnit.storyName = 'Input с иконкой для единиц измерения';
+InputWithIconUnit.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+

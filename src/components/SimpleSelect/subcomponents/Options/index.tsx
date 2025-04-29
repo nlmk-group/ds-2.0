@@ -75,7 +75,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
   const getMenuStyles = () => {
     const baseStyles = {
       width: withPortal ? menuWidth || selectRef.current?.offsetWidth : '100%',
-      maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`
+      maxHeight: `calc((40px * ${scrollingItems}) + 16px)`
     };
 
     if (withPortal) {

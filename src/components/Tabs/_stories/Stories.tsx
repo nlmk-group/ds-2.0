@@ -67,6 +67,7 @@ export default  App = () => {
             <Tabs.Icon
               name="IconInfoOutlined16"
               containerSize={16}
+              // FIXME: --text-grey-500 not found
               htmlColor="var(--text-grey-500)"
             />
           </Tabs.Tooltip>

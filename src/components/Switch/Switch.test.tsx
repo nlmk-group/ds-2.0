@@ -73,6 +73,7 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch has icons', () => {
+    // FIXME: --text-grey-100 not found
     const ActiveIcon = (): JSX.Element => (
       <div data-testid="ACTIVE_ICON">
         <Icon containerSize={16} htmlColor="var(--text-grey-100)" name="IconMetallalomScrapFilled16" />

@@ -49,6 +49,7 @@ export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
   return (
     <div>
       <Spinner>
+        {/* FIXME: --ac-loader-stroke-progress not found */}
         <IconAutoRenewReloadOutlined24 htmlColor="var(--ac-loader-stroke-progress)" />
       </Spinner>
     </div>
@@ -83,6 +84,7 @@ export const SpinnerStretchedContainer = (args: ISpinnerProps): JSX.Element => {
         justifyContent: 'center',
         width: '300px',
         backgroundColor: '#fff',
+        /* FIXME: --ac-border-primary not found */
         border: '1px solid var(--ac-border-primary)'
       }}
     >

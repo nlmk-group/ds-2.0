@@ -22,17 +22,21 @@
     height: 24px !important;
     padding: 0 4px 0 0 !important;
 
+    // FIXME: --ac-input-default-bg not found
     &:hover {
       background-color: var(--ac-input-default-bg) !important;
     }
 
+    // FIXME: --ac-input-disabled-bg not found
     &.disabled {
       background: var(--ac-input-disabled-bg);
 
+      // FIXME: --ac-icon-grey not found
       path {
         fill: var(--ac-icon-grey);
       }
 
+      // FIXME: --ac-input-disabled-bg not found
       &:hover {
         background: var(--ac-input-disabled-bg) !important;
       }
@@ -41,15 +45,16 @@
 
   .item {
     position: relative;
-    color: var(--ac-select-item-default-label);
+    color: var(--steel-90);
 
     &:hover {
-      color: var(--ac-select-item-hover-label);
+      color: var(--steel-90);
+      // FIXME: --ac-select-item-hover-bg not found
       background-color: var(--ac-select-item-hover-bg);
     }
 
     &.disabled {
-      opacity: var(--45-opacity);
+      opacity: 45%;
       div {
         cursor: default;
         pointer-events: none;
@@ -62,12 +67,14 @@
     }
 
     &.selected {
+      // FIXME: --ac-select-item-selected-bg not found
       background: var(--ac-select-item-selected-bg);
-      color: var(--ac-select-item-selected-label);
+      color: var(--steel-90);
 
       &:hover {
+        // FIXME: --ac-select-item-activehover-bg not found
         background-color: var(--ac-select-item-activehover-bg);
-        color: var(--ac-select-item-activehover-label);
+        color: var(--steel-90);
       }
     }
   }
@@ -137,41 +144,44 @@
   width: 100%;
   cursor: pointer;
   transition: 0.1s;
+  // FIXME: --text-grey-400 not found
   color: var(--text-grey-400);
   path {
+    // FIXME: --text-grey-400 not found
     fill: var(--text-grey-400);
   }
 
   &:hover {
+    // FIXME: --text-grey-500 not found
     color: var(--text-grey-500);
     path {
+      // FIXME: --text-grey-500 not found
       fill: var(--text-grey-500);
     }
   }
 }
 
 .inconspicuous-disabled {
-  opacity: var(--45-opacity);
+  opacity: 45%;
   cursor: default;
   pointer-events: none;
 }
 
 .inconspicuous-m {
-  @include set-height-and-line-height(var(--40-size));
+  @include set-height-and-line-height(40px);
 }
 
 .inconspicuous-s {
-  // FIXME: --32-size removed not replaced
   @include set-height-and-line-height(32px);
 }
 
 .inconspicuous-xs {
-  @include set-height-and-line-height(var(--28-size));
+  @include set-height-and-line-height(28px);
 }
 
 .inconspicuous-item {
   display: flex;
-  gap: var(--4-space);
+  gap: 4px;
   align-items: center;
 }
 
@@ -188,28 +198,30 @@
   height: 24px;
   width: 24px;
   svg {
-    color: var(--ac-select-item-default-label);
+    color: var(--steel-90);
   }
 }
 
 .icon-selected {
   svg {
+    // FIXME: --ac-icon-blue not found
     color: var(--ac-icon-blue);
   }
 }
 
 .badge-amount-wrapper {
   position: absolute;
-  top: calc(var(--4-space) * -1);
-  right: calc(var(--4-space) * -1);
+  top: calc(4px * -1);
+  right: calc(4px * -1);
 }
 
 .item-with-sub-label {
-  height: var(--60-size) !important;
+  height: 60px !important;
 }
 
 .sub-label-wrapper {
   cursor: pointer;
+  // FIXME: --text-grey-600 not found
   color: var(--text-grey-600);
 }
 
@@ -257,6 +269,7 @@
 .inconspicuous-active {
   color: var(--primary-blue-600);
   path {
+    // FIXME: --ac-icon-blue not found
     fill: var(--ac-icon-blue);
   }
 }

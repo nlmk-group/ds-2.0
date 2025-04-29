@@ -52,7 +52,7 @@ const Menu = forwardRef<HTMLDivElement, IMenu>(
       <List
         ref={ref}
         style={{
-          maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
+          maxHeight: `calc((40px * ${scrollingItems}) + 16px)`,
           minWidth: listMinWidth === undefined ? 'unset' : listMinWidth,
           position: withPortal ? 'static' : 'absolute'
         }}

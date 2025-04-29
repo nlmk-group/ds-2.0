@@ -24,7 +24,11 @@
     background-color: var(--steel-30);
   }
 }
-
+.listItemLastChildren {
+  display: flex;
+  width: 24px;
+  height: 24px;
+}
 .listItemExpandedButton {
   display: flex;
   justify-content: center;

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
-import { Checkbox, Icon, Spinner, Typography } from '@components/index';
+import { Button, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
 
 import { IComboTreeListProps } from './types';
@@ -128,20 +128,25 @@ const ComboTreeList = <T extends IComboBoxTree>({
         style={{ paddingLeft: optionPadding }}
         onClick={() => handleItemClick(item, isMultiple, isLastChildren)}
       >
-        {!isLastChildren && (
-          <div
+        {!isLastChildren ? (
+          <Button
             className={styles.listItemExpandedButton}
+            color="ghost"
+            variant="secondary"
             onClick={event => {
               event.stopPropagation();
               handleChangeExpand(item.id);
             }}
-          >
-            {isExpanded ? (
-              <Icon htmlColor="var(--steel-90)" name="IconStackExpandedTriangleDown24" />
-            ) : (
-              <Icon htmlColor="var(--steel-90)" name="IconStackCollapsed24" />
-            )}
-          </div>
+            iconButton={
+              isExpanded ? (
+                <Icon htmlColor="var(--steel-90)" name="IconStackExpandedTriangleDown24" />
+              ) : (
+                <Icon htmlColor="var(--steel-90)" name="IconStackCollapsed24" />
+              )
+            }
+          />
+        ) : (
+          <div className={styles.listItemLastChildren}></div>
         )}
         {isMultiple && (
           <Checkbox

@@ -39,6 +39,9 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Доработана логика рендеринга последнего элемента у ComboTreeList
               </li>
+              <li className={styles['left-padding']}>
+                - Добавлено выравнивание для листьев TreeList, не имеющих дочерние элементы
+              </li>
             </li>
           </ul>
         </div>

@@ -72,7 +72,6 @@ CardVariant.arg = {
 
 export const CardOrientation = (argTypes: ICard): ReactNode => {
   return (
-    // FIXME: --24-size removed, not replaced
     <div style={{ display: 'inline-grid', gap: 24 }}>
       {Object.values(EOrientationMapping).map((orientation: EOrientationMapping, index: number) => (
         <Card key={index} {...argTypes} orientation={orientation}>

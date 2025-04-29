@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 
-export interface IIconMockProps {
-  weight?: string;
+export interface IIconUnitProps {
+  unit?: string;
   style?: CSSProperties;
   className?: string;
 }

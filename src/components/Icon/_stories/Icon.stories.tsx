@@ -14,10 +14,10 @@ import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import argsTypes from '@components/Icon/_stories/argsTypes';
-import { IIconMockProps } from '@components/Icon/IconMock/types';
+import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
-import { Card, Icon, IconMock, Input, Typography } from '@components/index';
+import { Card, Icon, IconUnit, Input, Typography } from '@components/index';
 import { Meta } from '@storybook/react';
 import { clsx } from 'clsx';
 import { startCase } from 'lodash';
@@ -215,7 +215,7 @@ export const AllIcons = (): JSX.Element => {
 };
 AllIcons.storyName = 'Все доступные иконки';
 
-export const IconMockComponent = (argsTypes: IIconMockProps): JSX.Element => {
+export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
   return (
     <div
       style={{
@@ -223,8 +223,8 @@ export const IconMockComponent = (argsTypes: IIconMockProps): JSX.Element => {
         justifyContent: ' center'
       }}
     >
-      <IconMock {...argsTypes} weight="кг" />
+      <IconUnit {...argsTypes} unit="кг" />
     </div>
   );
 };
-IconMockComponent.storyName = 'Компонент иконки для единиц измерения';
+IconUnitComponent.storyName = 'Компонент иконки для единиц измерения';

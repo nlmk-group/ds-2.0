@@ -213,7 +213,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
-      {isCheckAll && <AllItemsCheckbox items={leafItems} onChange={onChange} />}
+      {isCheckAll && <AllItemsCheckbox treeOptions={treeOptions} items={leafItems} onChange={onChange} />}
       {isVirtualize ? (
         <VirtualizedResizableGrip
           items={expandedFilterOptions}

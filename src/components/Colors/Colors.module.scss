@@ -100,8 +100,7 @@ $transition: 0.1s linear;
 
     code {
       padding: 4px 8px 4px 8px;
-      // FIXME: --font-weights-pt-root-ui-0 removed, not replaced
-      font-weight: 700;
+      font-weight: --font-weights-pt-root-ui-0;
       border-radius: $border-radius;
       // FIXME: --font-size-1 not found (12 or 14px ?)
       font-size: var(--font-size-1);

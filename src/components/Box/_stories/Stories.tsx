@@ -59,10 +59,8 @@ export default App = () => (
         alignItems="center"
         // FIXME: --background-info not found
         background="var(--background-info)"
-        // FIXME: --60-space not found
-        py="var(--60-space)"
-        // FIXME: --60-space not found
-        px="var(--60-space)"
+        py="60px"
+        px="60px"
         st={{
           boxShadow: "0 10px 10px var(--unique-background)"
         }}

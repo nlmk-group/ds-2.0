@@ -13,7 +13,7 @@ import React, {
 import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
-import argsTypes from '@components/Icon/_stories/argsTypes';
+import { argsTypes, iconUnitArgsTypes } from './argsTypes';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
@@ -214,6 +214,11 @@ export const AllIcons = (): JSX.Element => {
   );
 };
 AllIcons.storyName = 'Все доступные иконки';
+AllIcons.parameters = {
+  controls: { 
+    disable: true 
+  }
+};
 
 export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
   return (
@@ -227,17 +232,11 @@ export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
     </div>
   );
 };
-
 IconUnitComponent.storyName = 'Компонент иконки для единиц измерения';
 IconUnitComponent.args = { unit: 'кг' };
-IconUnitComponent.argTypes = {
-  unit: {
-    description: 'Строковое значение, отображаемое в иконке. Например, кг, см и тд',
-    control: { type: 'text' }
-  },
-  name: { table: { disable: true } },
-  color: { table: { disable: true } },
-  htmlColor: { table: { disable: true } },
-  containerSize: { table: { disable: true } },
-  badge: { table: { disable: true } }
+IconUnitComponent.parameters = {
+  controls: {
+    include: Object.keys(iconUnitArgsTypes)
+  }
 };
+IconUnitComponent.argTypes = iconUnitArgsTypes;

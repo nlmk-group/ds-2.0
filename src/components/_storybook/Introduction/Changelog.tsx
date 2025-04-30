@@ -21,7 +21,34 @@ export const Changelog = () => {
             </Button>
           </Link>
         </div>
-
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.23.0 - <span className={styles.date}>30.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              <li className={styles['left-padding']}>- Убрано значение maxLevel по умолчанию у ComboTreeList</li>
+              <li className={styles['left-padding']}>
+                - Доработана логика рендеринга последнего элемента у ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено выравнивание для листьев TreeList, не имеющих дочерние элементы
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено внутреннее свойство treeOptions для чекбокса CheckAll, благодаря которому в ComboBoxTree
+                чекбоксы выбираются правильно
+              </li>
+            </li>
+          </ul>
+        </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.22.8 - <span className={styles.date}>24.04.25</span>

@@ -40,8 +40,7 @@ const Stories = (): JSX.Element => {
 export default App = () => (
   <div style={{ width: "100%", padding: 0 }}>
     <Box
-      // FIXME: --ac-button-grey-outline-default-stroke not found
-      border="1px solid var(--ac-button-grey-outline-default-stroke)"
+      border="1px solid var(--steel-90)"
       borderRadius="8px"
       p="8px"
     >
@@ -57,8 +56,7 @@ export default App = () => (
         flexDirection="column"
         borderRadius="4px"
         alignItems="center"
-        // FIXME: --background-info not found
-        background="var(--background-info)"
+        background="var(--spectrum-sky-10)"
         py="60px"
         px="60px"
         st={{

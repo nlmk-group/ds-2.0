@@ -14,8 +14,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  // FIXME: --dark-primary-navyblue-50 not found
-  background: var(--dark-primary-navyblue-50);
+  background: var(--steel-30);
 }
 
 .image-container {
@@ -75,8 +74,7 @@
 .title-typography-helper {
   white-space: nowrap;
   @include ellipse;
-  // FIXME: --default-main not found
-  color: var(--default-main);
+  color: var(--steel-90);
 }
 
 .description-typography-helper {

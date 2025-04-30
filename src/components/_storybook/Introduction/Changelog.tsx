@@ -23,7 +23,28 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.8 - <span className={styles.date}>24.04.25</span>
+            v2.22.9 - <span className={styles.date}>01.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              .
+              <li className={styles['left-padding']}>
+                - Параметр unit стал обязательным для корректного отображения компонента
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>30.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

@@ -81,6 +81,7 @@ export default App
 `}
           />
 
+          {/* FIXME: --ac-alert-info-text fix */}
           <Editor
             description="Компонент Alert может быть добавлен с другими кнопками"
             code={`

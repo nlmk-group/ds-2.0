@@ -17,6 +17,7 @@ const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(({ is
       title={buttonText}
       data-ui-sidebar-collapse-button
     >
+      {/* FIXME: --ac-icon-white not found */}
       <div className={styles.arrow} data-expanded={isExpanded}>
         <Icon name="IconChevronArrowRightOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
       </div>

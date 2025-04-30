@@ -51,6 +51,7 @@ const SplitterExample = () => {
       style={{ 
         height: '100%',
         padding: '16px',
+        // FIXME: --background-secondary not found
         background: 'var(--background-secondary)'
       }}
     >
@@ -71,6 +72,7 @@ const SplitterExample = () => {
       style={{ 
         height: '100%',
         padding: '16px',
+        // FIXME: --background-secondary not found
         background: 'var(--background-secondary)'
       }}
     >

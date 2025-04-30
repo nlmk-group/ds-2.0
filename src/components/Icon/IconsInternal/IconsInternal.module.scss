@@ -1,6 +1,8 @@
 .path {
-  fill: var(--white);
+  fill: var(--unique-white);
 }
+
+// FIXME: --primary-blue-600 not found
 .path:hover {
   fill: var(--primary-blue-600);
 }

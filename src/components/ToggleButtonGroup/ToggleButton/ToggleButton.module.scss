@@ -93,10 +93,12 @@
 }
 
 .test-class-wrapper {
+  // FIXME: --primary-blue-900 not found
   border-color: var(--primary-blue-900);
 }
 
 .test-class-button {
+  // FIXME: --primary-blue-500 not found
   background-color: var(--primary-blue-500);
 }
 

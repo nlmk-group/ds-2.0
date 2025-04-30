@@ -32,6 +32,7 @@
     display: none;
   }
 
+  // FIXME: --row-height not found
   :global(.rc-tree-treenode) {
     height: var(--row-height);
     overflow: hidden;
@@ -95,6 +96,7 @@
     gap: 8px;
   }
 
+  // FIXME: --row-height not found
   &-content {
     display: flex;
     justify-content: space-between;

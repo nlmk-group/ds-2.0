@@ -43,6 +43,8 @@ import { OptionItem, SimpleSelect } from '@nlmk/ds-2.0';
 | className         | string            | -                         | Дополнительный CSS класс                    |
 | style             | CSSProperties     | -                         | Кастомные стили для компонента              |
 | reset             | boolean           | false                     | Флаг наличия кнопки сброса                  |
+| helperText        | ReactNode         | -                         | Вспомогательный текст                       |
+| pseudo            | boolean           | false                     | Флаг псевдо-инпута                          |
 | onReset           | () => void        | -                         | Обработчик сброса значения                  |
 
 ## Примечания

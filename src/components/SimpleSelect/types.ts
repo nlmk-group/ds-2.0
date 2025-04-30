@@ -1,4 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
+
 import { TInputProps } from '@components/Input/types';
 
 type TOverrideInputProps = {
@@ -13,7 +14,7 @@ type TOverrideInputProps = {
 
   /** Обработчик открытия меню options */
   onFocus?: () => void;
-}
+};
 
 interface ISelectSpecificProps {
   /** id рутового контейнера для создания портала */
@@ -44,6 +45,4 @@ interface ISelectSpecificProps {
   style?: CSSProperties;
 }
 
-export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> &
-  TOverrideInputProps &
-  ISelectSpecificProps;
+export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;

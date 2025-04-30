@@ -18,7 +18,7 @@ export default {
   argTypes: argsTypes
 };
 
-export const Default = (argTypes: TDatePickerProps): JSX.Element => {
+export const DatePickerDefault = (argTypes: TDatePickerProps): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '330px' }}>
@@ -26,10 +26,10 @@ export const Default = (argTypes: TDatePickerProps): JSX.Element => {
     </div>
   );
 };
+DatePickerDefault.storyName = 'DatePicker по умолчанию';
+DatePickerDefault.args = {};
 
-Default.args = {};
-
-export const DefaultWithError = (argTypes: TDatePickerProps): JSX.Element => {
+export const DatePickerDefaultWithError = (argTypes: TDatePickerProps): JSX.Element => {
   const [value, onChange] = useState(new Date());
   const helperText = 'Helper text';
   return (
@@ -38,8 +38,9 @@ export const DefaultWithError = (argTypes: TDatePickerProps): JSX.Element => {
     </div>
   );
 };
+DatePickerDefaultWithError.storyName = 'DatePicker с вспомогательным текстом';
 
-export const WithColored = (): JSX.Element => {
+export const DatePickerWithColored = (): JSX.Element => {
   const [colored, setColored] = useState(false);
   const [value, onChange] = useState(new Date());
   const handleChange = (event: Date) => {
@@ -57,7 +58,9 @@ export const WithColored = (): JSX.Element => {
   );
 };
 
-export const LevelMonth = (): JSX.Element => {
+DatePickerWithColored.storyName = 'DatePicker в разных цветах';
+
+export const DatePickerLevelMonth = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '250px' }}>
@@ -66,7 +69,9 @@ export const LevelMonth = (): JSX.Element => {
   );
 };
 
-export const LevelQuarter = (): JSX.Element => {
+DatePickerLevelMonth.storyName = 'DatePicker с выбором месяца';
+
+export const DatePickerLevelQuarter = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   const onChangeDate = (d: Date) => onChange(d);
   return (
@@ -75,8 +80,9 @@ export const LevelQuarter = (): JSX.Element => {
     </div>
   );
 };
+DatePickerLevelQuarter.storyName = 'DatePicker с выбором квартала';
 
-export const LevelYear = (): JSX.Element => {
+export const DatePickerLevelYear = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '230px' }}>
@@ -85,7 +91,9 @@ export const LevelYear = (): JSX.Element => {
   );
 };
 
-export const EnglishDatepicker = (): JSX.Element => {
+DatePickerLevelYear.storyName = 'DatePicker с выбором года';
+
+export const DatePickerEnglishDatePicker = (): JSX.Element => {
   const [values, setValues] = useState<{
     valueFrom?: Date;
     valueTo?: Date;
@@ -119,7 +127,9 @@ export const EnglishDatepicker = (): JSX.Element => {
   );
 };
 
-export const EnabledHoursFromTo = (): JSX.Element => {
+DatePickerEnglishDatePicker.storyName = 'DatePicker в английской локализации';
+
+export const DatePickerEnabledHoursFromTo = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   const func = (date: Date): TEnabledHour => {
     if (date.getDay() === 4) {
@@ -140,8 +150,9 @@ export const EnabledHoursFromTo = (): JSX.Element => {
     </div>
   );
 };
+DatePickerEnabledHoursFromTo.storyName = 'DatePicker с выбором начального значения в часах';
 
-export const EnabledMinutesFromTo = (): JSX.Element => {
+export const DatePickerEnabledMinutesFromTo = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   const func = (date: Date): number => {
     if (date.getDay() === 4) {
@@ -162,8 +173,9 @@ export const EnabledMinutesFromTo = (): JSX.Element => {
     </div>
   );
 };
+DatePickerEnabledMinutesFromTo.storyName = 'DatePicker с выбором начального значения в минутах';
 
-export const EnabledFromTo = (): JSX.Element => {
+export const DatePickerEnabledFromTo = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   const now = new Date().getTime();
   const day = 24 * 3600 * 1000;
@@ -179,7 +191,9 @@ export const EnabledFromTo = (): JSX.Element => {
   );
 };
 
-export const WithTime = (): JSX.Element => {
+DatePickerEnabledFromTo.storyName = 'DatePicker с выбором начального значения';
+
+export const DatePickerWithTime = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '385px' }}>
@@ -187,8 +201,9 @@ export const WithTime = (): JSX.Element => {
     </div>
   );
 };
+DatePickerWithTime.storyName = 'DatePicker с выбором времени';
 
-export const WithSeconds = (): JSX.Element => {
+export const DatePickerWithSeconds = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '385px' }}>
@@ -196,8 +211,9 @@ export const WithSeconds = (): JSX.Element => {
     </div>
   );
 };
+DatePickerWithSeconds.storyName = 'DatePicker с выбором времени в секундах';
 
-export const Period = (): JSX.Element => {
+export const DatePickerPeriod = (): JSX.Element => {
   const now = new Date().getTime();
   const day = 24 * 3600 * 1000;
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
@@ -221,8 +237,9 @@ export const Period = (): JSX.Element => {
     </div>
   );
 };
+DatePickerPeriod.storyName = 'DatePicker с выбором периода';
 
-export const PeriodMonth = (): JSX.Element => {
+export const DatePickerPeriodMonth = (): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
     valueFrom: new Date(2020, 10, 10),
     valueTo: new Date(2021, 10, 10)
@@ -245,7 +262,9 @@ export const PeriodMonth = (): JSX.Element => {
   );
 };
 
-export const PeriodQuarter = (): JSX.Element => {
+DatePickerPeriodMonth.storyName = 'DatePicker с выбором периода по месяцам';
+
+export const DatePickerPeriodQuarter = (): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
     valueFrom: new Date(2020, 10, 10),
     valueTo: new Date(2021, 10, 10)
@@ -268,7 +287,9 @@ export const PeriodQuarter = (): JSX.Element => {
   );
 };
 
-export const PeriodYear = (): JSX.Element => {
+DatePickerPeriodQuarter.storyName = 'DatePicker с выбором периода по кварталам';
+
+export const DatePickerPeriodYear = (): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
     valueFrom: new Date(2020, 10, 10),
     valueTo: new Date(2021, 10, 10)
@@ -290,8 +311,9 @@ export const PeriodYear = (): JSX.Element => {
     </div>
   );
 };
+DatePickerPeriodYear.storyName = 'DatePicker с выбором периода по годам';
 
-export const PeriodWithShift = (): JSX.Element => {
+export const DatePickerPeriodWithShift = (): JSX.Element => {
   const [values, setValues] = useState<{
     valueFrom?: Date;
     valueTo?: Date;
@@ -324,7 +346,9 @@ export const PeriodWithShift = (): JSX.Element => {
   );
 };
 
-export const PeriodWithCustomShift = (): JSX.Element => {
+DatePickerPeriodWithShift.storyName = 'DatePicker с выбором периода и смен';
+
+export const DatePickerPeriodWithCustomShift = (): JSX.Element => {
   const [values, setValues] = useState<{
     valueFrom?: Date;
     valueTo?: Date;
@@ -358,7 +382,9 @@ export const PeriodWithCustomShift = (): JSX.Element => {
   );
 };
 
-export const LabelWithDisabled = (): JSX.Element => {
+DatePickerPeriodWithCustomShift.storyName = 'DatePicker с выбором периода и кастомных смен';
+
+export const DatePickerLabelWithDisabled = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '370px' }}>
@@ -367,7 +393,9 @@ export const LabelWithDisabled = (): JSX.Element => {
   );
 };
 
-export const DisableChangesOnBlur = (): JSX.Element => {
+DatePickerLabelWithDisabled.storyName = 'DatePicker в отключенном состоянии';
+
+export const DatePickerDisableChangesOnBlur = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '385px' }}>
@@ -376,7 +404,9 @@ export const DisableChangesOnBlur = (): JSX.Element => {
   );
 };
 
-export const OpenPickerOnInputFocus = (): JSX.Element => {
+DatePickerDisableChangesOnBlur.storyName = 'DatePicker со сбросом значения в поиске при onBlur поля ввода';
+
+export const DatePickerOpenPickerOnInputFocus = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '385px' }}>
@@ -385,7 +415,9 @@ export const OpenPickerOnInputFocus = (): JSX.Element => {
   );
 };
 
-export const DatepickerWithPseudo = (): JSX.Element => {
+DatePickerOpenPickerOnInputFocus.storyName = 'DatePicker с открывающимся меню при фокусировке поля ввода';
+
+export const DatePickerWithPseudo = (): JSX.Element => {
   const [save, setSave] = useState(false);
   const [innerValue, setInnerValue] = useState(new Date());
   return (
@@ -405,7 +437,9 @@ export const DatepickerWithPseudo = (): JSX.Element => {
   );
 };
 
-export const WithoutYear = (): JSX.Element => {
+DatePickerWithPseudo.storyName = 'DatePicker в псевдоинпуте';
+
+export const DatePickerWithoutYear = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '380px' }}>
@@ -413,8 +447,9 @@ export const WithoutYear = (): JSX.Element => {
     </div>
   );
 };
+DatePickerWithoutYear.storyName = 'DatePicker без выбора года';
 
-export const ExtraCompact = (): JSX.Element => {
+export const DatePickerExtraCompact = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '330px' }}>
@@ -422,8 +457,9 @@ export const ExtraCompact = (): JSX.Element => {
     </div>
   );
 };
+DatePickerExtraCompact.storyName = 'DatePicker в размере xs';
 
-export const infiniteTimeScroll = (): JSX.Element => {
+export const DatePickerWithInfiniteTimeScroll = (): JSX.Element => {
   const [value, onChange] = useState(new Date());
   return (
     <div style={{ height: '330px' }}>
@@ -431,3 +467,4 @@ export const infiniteTimeScroll = (): JSX.Element => {
     </div>
   );
 };
+DatePickerWithInfiniteTimeScroll.storyName = 'DatePicker с бесконечным скроллом времени';

@@ -121,5 +121,21 @@ export const argsTypes = {
         summary: false
       }
     }
+  },
+  pseudo: {
+    description: 'Свойство, позволяющее отображать компонент как PseudoInput (не редактируемое поле)',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  helperText: {
+    description: 'Строка для вспомогательно текста под инпутом. Может быть как текстом, так и элементом ReactNode',
+    control: { type: 'text' }
   }
 };

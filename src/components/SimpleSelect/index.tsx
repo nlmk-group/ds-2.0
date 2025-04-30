@@ -80,6 +80,8 @@ const SimpleSelect: FC<ISelectProps> = ({
   label,
   withPortal = false,
   disabled = false,
+  helperText,
+  pseudo,
   onFocus,
   onBlur,
   color = customInputColors.default,
@@ -230,6 +232,7 @@ const SimpleSelect: FC<ISelectProps> = ({
       <div className={clsx(styles.select, className)} ref={selectRef} style={style} data-ui-select>
         <Input
           id={id}
+          helperText={helperText}
           name={name}
           size={size}
           inputRef={inputRef}
@@ -240,6 +243,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           placeholder={placeholder}
           disabled={disabled}
           readOnly={!searchable || !isOpen}
+          pseudo={pseudo}
           color={color}
           onFocus={handleFocus}
           onBlur={handleBlur}

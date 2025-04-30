@@ -1,10 +1,16 @@
+$icon-unit-size: 32px;
+
 .icon-unit {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  min-width: 32px;
-  height: 32px;
+  width: $icon-unit-size;
+  /* 
+   * для гарантии, что компонент не будет сжиматься
+   * в flex-контейнерах даже при ограниченном пространстве
+   */
+  min-width: $icon-unit-size;
+  height: $icon-unit-size;
   background-color: transparent;
   color: var(--brand-sapphire-60);
 }

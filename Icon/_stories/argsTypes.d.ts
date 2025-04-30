@@ -79,5 +79,43 @@ declare const argsTypes: {
         };
     };
 };
-export default argsTypes;
+declare const iconUnitArgsTypes: {
+    unit: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    className: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    style: {
+        description: string;
+        table: {
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+};
+export { argsTypes, iconUnitArgsTypes };
 //# sourceMappingURL=argsTypes.d.ts.map

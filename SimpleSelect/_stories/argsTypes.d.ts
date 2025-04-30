@@ -160,5 +160,25 @@ export declare const argsTypes: {
             };
         };
     };
+    pseudo: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: string;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        control: {
+            type: string;
+        };
+    };
+    helperText: {
+        description: string;
+        control: {
+            type: string;
+        };
+    };
 };
 //# sourceMappingURL=argsTypes.d.ts.map

@@ -165,6 +165,26 @@ declare const _default: {
                 };
             };
         };
+        pseudo: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: string;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            control: {
+                type: string;
+            };
+        };
+        helperText: {
+            description: string;
+            control: {
+                type: string;
+            };
+        };
     };
     decorators: ((Story: any) => React.JSX.Element)[];
     parameters: {

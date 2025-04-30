@@ -247,32 +247,105 @@ declare const _default: {
     };
 };
 export default _default;
-export declare const Default: {
+export declare const DatePickerDefault: {
     (argTypes: TDatePickerProps): JSX.Element;
+    storyName: string;
     args: {};
 };
-export declare const DefaultWithError: (argTypes: TDatePickerProps) => JSX.Element;
-export declare const WithColored: () => JSX.Element;
-export declare const LevelMonth: () => JSX.Element;
-export declare const LevelQuarter: () => JSX.Element;
-export declare const LevelYear: () => JSX.Element;
-export declare const EnglishDatepicker: () => JSX.Element;
-export declare const EnabledHoursFromTo: () => JSX.Element;
-export declare const EnabledMinutesFromTo: () => JSX.Element;
-export declare const EnabledFromTo: () => JSX.Element;
-export declare const WithTime: () => JSX.Element;
-export declare const WithSeconds: () => JSX.Element;
-export declare const Period: () => JSX.Element;
-export declare const PeriodMonth: () => JSX.Element;
-export declare const PeriodQuarter: () => JSX.Element;
-export declare const PeriodYear: () => JSX.Element;
-export declare const PeriodWithShift: () => JSX.Element;
-export declare const PeriodWithCustomShift: () => JSX.Element;
-export declare const LabelWithDisabled: () => JSX.Element;
-export declare const DisableChangesOnBlur: () => JSX.Element;
-export declare const OpenPickerOnInputFocus: () => JSX.Element;
-export declare const DatepickerWithPseudo: () => JSX.Element;
-export declare const WithoutYear: () => JSX.Element;
-export declare const ExtraCompact: () => JSX.Element;
-export declare const infiniteTimeScroll: () => JSX.Element;
+export declare const DatePickerDefaultWithError: {
+    (argTypes: TDatePickerProps): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithColored: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerLevelMonth: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerLevelQuarter: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerLevelYear: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerEnglishDatePicker: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerEnabledHoursFromTo: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerEnabledMinutesFromTo: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerEnabledFromTo: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithTime: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithSeconds: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriod: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriodMonth: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriodQuarter: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriodYear: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriodWithShift: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerPeriodWithCustomShift: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerLabelWithDisabled: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerDisableChangesOnBlur: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerOpenPickerOnInputFocus: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithPseudo: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithoutYear: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerExtraCompact: {
+    (): JSX.Element;
+    storyName: string;
+};
+export declare const DatePickerWithInfiniteTimeScroll: {
+    (): JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=DatePicker.stories.d.ts.map

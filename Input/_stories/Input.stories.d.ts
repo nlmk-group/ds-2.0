@@ -326,4 +326,18 @@ export declare const InputPseudoDefaultChecking: {
         canvasElement: any;
     }): Promise<void>;
 };
+export declare const InputWithIconUnit: {
+    (): JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+        previewTabs: {
+            controls: {
+                hidden: boolean;
+            };
+        };
+    };
+};
 //# sourceMappingURL=Input.stories.d.ts.map

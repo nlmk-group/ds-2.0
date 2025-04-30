@@ -13,10 +13,11 @@ import React, {
 import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
-import argsTypes from '@components/Icon/_stories/argsTypes';
+import { argsTypes, iconUnitArgsTypes } from './argsTypes';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
+import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
-import { Card, Icon, Input, Typography } from '@components/index';
+import { Card, Icon, IconUnit, Input, Typography } from '@components/index';
 import { Meta } from '@storybook/react';
 import { clsx } from 'clsx';
 import { startCase } from 'lodash';
@@ -213,3 +214,29 @@ export const AllIcons = (): JSX.Element => {
   );
 };
 AllIcons.storyName = 'Все доступные иконки';
+AllIcons.parameters = {
+  controls: { 
+    disable: true 
+  }
+};
+
+export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: ' center'
+      }}
+    >
+      <IconUnit {...argsTypes} />
+    </div>
+  );
+};
+IconUnitComponent.storyName = 'Компонент иконки для единиц измерения';
+IconUnitComponent.args = { unit: 'кг' };
+IconUnitComponent.parameters = {
+  controls: {
+    include: Object.keys(iconUnitArgsTypes)
+  }
+};
+IconUnitComponent.argTypes = iconUnitArgsTypes;

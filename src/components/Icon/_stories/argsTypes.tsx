@@ -78,4 +78,37 @@ const argsTypes = {
   }
 };
 
-export default argsTypes;
+const iconUnitArgsTypes = {
+  unit: {
+    description: 'Строковое значение, отображаемое в иконке. Например, кг, см и тд',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+  className: {
+    description: 'Дополнительный CSS класс',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+  style: {
+    description: 'Inline CSS стили',
+    table: {
+      type: {
+        summary: 'CSSProperties'
+      }
+    },
+    control: { type: 'object' }
+  }
+};
+
+export { argsTypes, iconUnitArgsTypes };

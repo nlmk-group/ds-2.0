@@ -23,6 +23,44 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>24.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа свойств helperText и pseudo для компонента SimpleSelect
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+              <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
+              <li className={styles['left-padding']}>- Изменена иконка reset в компонентах Input на 16px</li>
+            </li>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              для отображения единиц измерения в текстовом формате.
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования IconUnit в компоненты Input и Icon
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.7 - <span className={styles.date}>23.04.25</span>
           </Typography>
           <ul className={styles.list}>

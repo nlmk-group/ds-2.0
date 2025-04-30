@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
+import { IconUnit } from '@components/index';
 import { fireEvent, render } from '@testing-library/react';
 
 import { IInputAdditionalProps } from './types';
 
 import Input from '.';
-import { IconMock } from './mock/IconMock';
 
 const inputColorClassNames: IInputAdditionalProps['color'][] = [
   customInputColors.default,
@@ -47,7 +47,7 @@ describe('src/components/Input', () => {
 
   test('It should render an input with text icon', () => {
     const weight = 'кг';
-    const { getByText } = render(<Input icon={<IconMock weight={weight} />} />);
+    const { getByText } = render(<Input icon={<IconUnit unit={weight} />} />);
     const iconText = getByText(weight);
     expect(iconText).toBeInTheDocument();
   });

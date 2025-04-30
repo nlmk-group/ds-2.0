@@ -1,7 +1,7 @@
 import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Button } from '@components/index';
+import { Button, IconUnit } from '@components/index';
 import { expect, fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/test';
 
@@ -32,7 +32,6 @@ export const InputDefault = (argTypes: TInputProps): JSX.Element => {
   };
 
   const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // какая-нибудь логика после прекращения ввода в input
     console.log('event blur: ', e);
   };
 
@@ -193,3 +192,13 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
 };
+
+export const InputWithIconUnit = (): JSX.Element => (
+  <InputDefault icon={<IconUnit unit="кг" />} />
+);
+InputWithIconUnit.storyName = 'Input с иконкой для единиц измерения';
+InputWithIconUnit.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+

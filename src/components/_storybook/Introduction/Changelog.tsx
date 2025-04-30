@@ -43,6 +43,20 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
               <li className={styles['left-padding']}>- Изменена иконка reset в компонентах Input на 16px</li>
             </li>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              для отображения единиц измерения в текстовом формате.
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования IconUnit в компоненты Input и Icon
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

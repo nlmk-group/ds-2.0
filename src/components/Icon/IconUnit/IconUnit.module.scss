@@ -1,0 +1,12 @@
+$icon-unit-size: 32px;
+
+.icon-unit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $icon-unit-size;
+  flex-shrink: 0;
+  height: $icon-unit-size;
+  background-color: transparent;
+  color: var(--brand-sapphire-60);
+}

@@ -254,7 +254,7 @@ export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Множественный выбор с поиском" tooltipDescription="Выберите одну или несколько опций">
-      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
@@ -274,7 +274,7 @@ export const DraggableListExample = () => {
         items={options}
         onChange={setSelected}
         onReorder={handleReorder}
-        isMultiple={true}
+        isMultiple
         droppableId="draggable-list"
       />
     </ComboBox>
@@ -286,7 +286,7 @@ export const GroupedOptionsExample = () => {
   const [selected, setSelected] = useState<IComboBoxGroupOption[]>([]);
   return (
     <ComboBox label="Группировка опций">
-      <ComboGroupList items={groupOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboGroupList items={groupOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
@@ -296,7 +296,7 @@ export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
-      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
@@ -306,18 +306,11 @@ export const TreeViewWithMaxLevelExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
-      <ComboTreeList
-        items={treeOptions}
-        maxLevel={2}
-        onChange={setSelected}
-        isMultiple={true}
-        isSearch={true}
-        isCheckAll={true}
-      />
+      <ComboTreeList items={treeOptions} maxLevel={2} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
-TreeViewWithMaxLevelExample.storyName = 'Древовидный список с максимальным уровнем вложенности';
+TreeViewWithMaxLevelExample.storyName = 'Древовидный список с ограничением уровня вложенности';
 
 export const ResizableDropdownExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -330,7 +323,7 @@ export const ResizableDropdownExample = () => {
       dropdownMinWidth={200}
       dropdownMinHeight={150}
     >
-      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} />
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple />
     </ComboBox>
   );
 };

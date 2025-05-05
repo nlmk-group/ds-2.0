@@ -10,7 +10,7 @@ import { Tabs, Typography } from '@components/index';
 import localStyles from './Icon.module.scss';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import argsTypes from './argsTypes';
+import { argsTypes } from './argsTypes';
 import { AllIcons } from './Icon.stories';
 
 enum TabIds {

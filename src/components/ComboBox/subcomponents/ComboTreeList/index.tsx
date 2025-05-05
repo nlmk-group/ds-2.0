@@ -138,11 +138,10 @@ const ComboTreeList = <T extends IComboBoxTree>({
               handleChangeExpand(item.id);
             }}
             iconButton={
-              isExpanded ? (
-                <Icon htmlColor="var(--steel-90)" name="IconStackExpandedTriangleDown24" />
-              ) : (
-                <Icon htmlColor="var(--steel-90)" name="IconStackCollapsed24" />
-              )
+              <Icon
+                htmlColor="var(--steel-90)"
+                name={isExpanded ? 'IconStackExpandedTriangleDown24' : 'IconStackCollapsed24'}
+              />
             }
           />
         ) : (

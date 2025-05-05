@@ -18,24 +18,20 @@ const AllItemsCheckbox = <T extends IComboBoxOption>({ items, onChange, treeOpti
   const someItemsSelected = comboBoxLength > 0 && !allItemsSelected;
 
   const handleCheckAll = () => {
-    if (allItemsSelected) {
-      setComboValue?.([]);
-      onChange?.([]);
-      return;
-    }
+    let selectedData;
+
     if (treeOptions) {
-      const leafIds = items.map(item => item.id);
+      const itemIds = items.map(item => item.id);
 
-      const parentIds = findManyParentsIds(leafIds, treeOptions);
-      const treeData = allItemsSelected ? [] : [...items, ...treeOptions.filter(item => parentIds.includes(item.id))];
+      const parentIds = findManyParentsIds(itemIds, treeOptions);
 
-      setComboValue?.(treeData);
-      onChange?.(treeData);
+      selectedData = allItemsSelected ? [] : [...items, ...treeOptions.filter(item => parentIds.includes(item.id))];
     } else {
-      const newValue = allItemsSelected ? [] : items;
-      setComboValue?.(newValue);
-      onChange?.(newValue);
+      selectedData = allItemsSelected ? [] : items;
     }
+
+    setComboValue?.(selectedData);
+    onChange?.(selectedData);
   };
 
   return (

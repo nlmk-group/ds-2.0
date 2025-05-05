@@ -8,6 +8,7 @@ import { IOptionsProps } from './types';
 
 import styles from './Options.module.scss';
 
+import { MENU_OFFSET } from '../../constants';
 import { SelectContext } from '../../context';
 import { IOptionItemProps } from '../OptionItem/types';
 
@@ -33,23 +34,22 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       {
         name: 'flip', // Автоматически переворачивает меню наверх, если внизу нет места
         options: {
-          fallbackPlacements: ['top'],
+          fallbackPlacements: ['top-start'],
           rootBoundary: 'viewport',
-          flipVariations: true,
-          padding: 8
+          flipVariations: true
         }
       },
       {
         name: 'preventOverflow', // Предотвращает выход за пределы viewport
         options: {
           boundary: 'clippingParents',
-          padding: 8
+          padding: MENU_OFFSET
         }
       },
       {
         name: 'offset', // Добавляет отступ от инпута
         options: {
-          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
+          offset: [0, MENU_OFFSET] // [горизонтальный, вертикальный] отступ в пикселях
         }
       }
     ]
@@ -83,28 +83,25 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       ...popperStyles.popper
     };
 
-    if (withPortal) {
-      return baseStyles
+    if (!withPortal) {
+      return {
+        ...baseStyles,
+        zIndex: 1000
+      };
     }
 
-    return {
-      ...baseStyles,
-      zIndex: 1000
-    }
+    return baseStyles;
   };
 
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={selectRef}>
       <List
         ref={el => {
-          if (el) {
-            if (menuRef && typeof menuRef === 'object') {
-              (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
-            }
-            
-            setPopperElement(el);
-
+          if (!el) return;
+          if (menuRef && typeof menuRef === 'object') {
+            (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
           }
+          setPopperElement(el);
         }}
         style={getMenuStyles() as CSSProperties}
         className={styles.options}

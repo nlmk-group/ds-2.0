@@ -27,6 +27,20 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              .
+              <li className={styles['left-padding']}>
+                - Параметр unit стал обязательным для корректного отображения компонента
+              </li>
+            </li>
+            <li>
               • Исправлен компонент{' '}
               <Link
                 href="./?path=/docs/components-simpleselect-info--docs"
@@ -37,15 +51,15 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Улучшена работа с react-popper при withPortal=false: настроено корректное позиционирование выпадающего списка с
-                fallbackPlacement и rootBoundary для автоматической адаптации при ограниченном пространстве
+                - Улучшена работа с react-popper при withPortal=false: настроено корректное позиционирование выпадающего
+                списка с fallbackPlacement и rootBoundary для автоматической адаптации при ограниченном пространстве
               </li>
             </li>
           </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.8 - <span className={styles.date}>24.04.25</span>
+            v2.22.8 - <span className={styles.date}>30.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

@@ -1,15 +1,31 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { TreeListExample } from './components/TreeList/example';
+import { OptionItem, SimpleSelect, Typography } from './components';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
+const options = [
+  { value: 'steel', label: 'High-Strength Low-Alloy Steel' },
+  { value: 'aluminum', label: 'Aluminum' },
+  { value: 'copper', label: 'Copper', disabled: true },
+  { value: 'nickel', label: 'Nickel' },
+  { value: 'zinc', label: 'Zinc' },
+  { value: 'lead', label: 'Lead' },
+  { value: 'tin', label: 'Tin' }
+];
+
 root.render(
   <StrictMode>
-    <div className="development-block">
-      <TreeListExample />
+    <div className="development-block" style={{ height: 200 }}>
+      <SimpleSelect value={'steel'}>
+        {options.map(({ value, label, disabled }) => (
+          <OptionItem key={value} value={value} label={label} disabled={disabled}>
+            <Typography variant="Body1-Medium">{label}</Typography>
+          </OptionItem>
+        ))}
+      </SimpleSelect>
     </div>
   </StrictMode>
 );

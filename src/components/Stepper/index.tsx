@@ -22,7 +22,16 @@ import { Step } from './subcomponents/Step';
  * @param {number} props.index - Индекс шага.
  * @param {(value: { state: `${EStepState}`, index: number }) => void} [props.onClick] - Обработчик клика по шагу.
  */
-const Stepper: FC<IStepperProps> = ({ state, stepName, showStep, className, index, currentStep, onClick }) => {
+const Stepper: FC<IStepperProps> = ({
+  state,
+  stepName,
+  showStep,
+  className,
+  index,
+  currentStep,
+  onClick,
+  color = 'brand'
+}) => {
   return (
     <Box
       className={clsx(className, state === 'disabled' && styles.disabled)}
@@ -34,7 +43,7 @@ const Stepper: FC<IStepperProps> = ({ state, stepName, showStep, className, inde
       key={index}
       data-ui-stepper
     >
-      <Step stepName={stepName} index={index} state={state} active={index === currentStep} data-ui-step />
+      <Step color={color} stepName={stepName} index={index} state={state} active={index === currentStep} data-ui-step />
       {showStep && <Divider className={styles['divider-line']} data-ui-stepper-divider />}
     </Box>
   );

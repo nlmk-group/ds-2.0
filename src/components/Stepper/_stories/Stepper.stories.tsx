@@ -4,7 +4,7 @@ import { Box, Stepper } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
-import { EStepState } from '../subcomponents/Step/enums';
+import { EStepColor, EStepState } from '../subcomponents/Step/enums';
 import { IStepperProps } from '../types';
 import { argsTypes } from './argsTypes';
 
@@ -37,8 +37,8 @@ export const StepperWithSteps = () => {
   const baseSteps = [
     { stepName: 'Step 1', index: 0 },
     { stepName: 'Step 2', index: 1 },
-    { stepName: 'Step 3', index: 2 },
-    { stepName: 'Step 4', index: 3 },
+    { stepName: 'Step 3', index: 2, color: EStepColor.success },
+    { stepName: 'Step 4', index: 3, color: EStepColor.error },
     { stepName: 'Step 5', index: 4, state: EStepState.disabled }
   ];
 
@@ -59,6 +59,7 @@ export const StepperWithSteps = () => {
           <Stepper
             currentStep={currentStep}
             key={i}
+            color={step.color}
             state={step.state}
             index={i}
             showStep={i !== steps.length - 1}

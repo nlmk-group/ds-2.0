@@ -2,14 +2,15 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import { EStepState } from './enums';
+import { EStepColor, EStepState } from './enums';
 import { Step } from './index';
 
 describe('Step Component', () => {
   const defaultProps = {
     stepName: 'Step 1',
     index: 0,
-    state: EStepState.notFilled
+    state: EStepState.notFilled,
+    color: EStepColor.brand
   };
 
   it('renders the step name', () => {

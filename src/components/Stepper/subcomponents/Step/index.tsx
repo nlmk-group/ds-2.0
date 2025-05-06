@@ -17,13 +17,16 @@ import { StepStateToBadgeColor } from './helpers';
  * @param {number} props.index - Индекс шага.
  * @param {`${EStepState}`} props.state - Состояние шага.
  */
-export const Step = ({ stepName, index, active, state }: IStepProps) => {
+export const Step = ({ stepName, index, active, state, color }: IStepProps) => {
   return (
     <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s">
-      <Badge className={clsx(active && styles.active, styles.badge)} color={StepStateToBadgeColor[state]}>
+      <Badge
+        className={clsx(active && styles[`active-${color}`], styles[`badge-${color}`])}
+        color={StepStateToBadgeColor[state]}
+      >
         {index + 1}
       </Badge>
-      <Typography variant="Body1-Bold" className={styles['step-name']}>
+      <Typography variant="Body1-Bold" className={clsx(styles['step-name'], styles[`step-name-${color}`])}>
         {stepName}
       </Typography>
     </Button>

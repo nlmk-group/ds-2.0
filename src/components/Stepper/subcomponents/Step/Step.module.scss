@@ -1,3 +1,8 @@
+@mixin standard-helper($bg, $color) {
+  background: $bg;
+  color: $color;
+}
+
 .step-button {
   & > span {
     display: flex;
@@ -5,27 +10,46 @@
     flex-shrink: 0;
     gap: 2px;
   }
+
   &:hover {
     .badge {
-      background-color: var(--brand-sapphire-60);
-      color: var(--unique-white);
       cursor: pointer;
-    }
-    .step-name {
-      color: var(--brand-sapphire-60);
+
+      .step-name {
+        &-success {
+          color: var(--spectrum-green-60);
+        }
+        &-error {
+          color: var(--spectrum-red-60);
+        }
+      }
+
+      &-brand {
+        @include standard-helper(var(--brand-sapphire-60), var(--unique-white));
+      }
+      &-success {
+        @include standard-helper(var(--spectrum-green-60), var(--unique-white));
+      }
+      &-error {
+        @include standard-helper(var(--spectrum-red-60), var(--unique-white));
+      }
     }
   }
 
   .step-name {
     padding: 0 4px;
     color: var(--steel-90);
-    &:hover {
-      color: var(--brand-sapphire-60);
-    }
   }
 }
 
 .active {
-  background-color: var(--brand-sapphire-60);
-  color: var(--unique-white);
+  &-brand {
+    @include standard-helper(var(--brand-sapphire-60), var(--unique-white));
+  }
+  &-success {
+    @include standard-helper(var(--spectrum-green-60), var(--unique-white));
+  }
+  &-error {
+    @include standard-helper(var(--spectrum-red-60), var(--unique-white));
+  }
 }

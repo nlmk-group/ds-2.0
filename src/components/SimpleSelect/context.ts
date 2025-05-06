@@ -1,6 +1,6 @@
 import { createContext, RefObject } from 'react';
 
-import { ScrollingItemsDefault } from './constants';
+import { SCROLLING_ITEMS_DEFAULT } from './constants';
 
 interface SelectContextProps {
   /**
@@ -102,7 +102,7 @@ export const SelectContext = createContext<SelectContextProps>({
   menuWidth: undefined,
   withPortal: false,
   portalContainerId: 'root',
-  scrollingItems: ScrollingItemsDefault,
+  scrollingItems: SCROLLING_ITEMS_DEFAULT,
   searchTerm: '',
   setSearchTerm: () => {},
   focusedIndex: -1,

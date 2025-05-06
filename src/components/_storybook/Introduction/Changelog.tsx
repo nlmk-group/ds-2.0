@@ -23,20 +23,127 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.7 - <span className={styles.date}>22.04.25</span>
+            v2.23.0 - <span className={styles.date}>07.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
               <Link
-                href="./?path=/docs/components-treelist-info--docs"
+                href="./?path=/docs/components-combobox-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                TreeList
+                ComboBox
               </Link>
+              <li className={styles['left-padding']}>- Удалено значение maxLevel по умолчанию у ComboTreeList</li>
               <li className={styles['left-padding']}>
-                - Исправлена работа свойства initialValue - Добавлены новые истории
+                - Доработана логика рендеринга последнего элемента у ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено выравнивание для вложенных элементов TreeList, не имеющих дочерние элементы
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено внутреннее свойство treeOptions для чекбокса CheckAll, благодаря которому в ComboBoxTree
+                чекбоксы выбираются правильно
+              </li>
+              <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              .
+              <li className={styles['left-padding']}>
+                - Параметр unit стал обязательным для корректного отображения компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена работа с react-popper при withPortal=false: настроено корректное позиционирование выпадающего
+                списка с fallbackPlacement и rootBoundary для автоматической адаптации при ограниченном пространстве
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>30.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа свойств helperText и pseudo для компонента SimpleSelect
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+              <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
+              <li className={styles['left-padding']}>- Изменена иконка reset в компонентах Input на 16px</li>
+            </li>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              для отображения единиц измерения в текстовом формате.
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования IconUnit в компоненты Input и Icon
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.7 - <span className={styles.date}>23.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Улучшена кросс-платформенная совместимость
+              <li className={styles['left-padding']}>- Добавлена поддержка Windows при работе с библиотекой</li>
+              <li className={styles['left-padding']}>
+                - Исправлены пути с двоеточиями, которые вызывали ошибки при использовании в Windows
+              </li>
+              <li className={styles['left-padding']}>
+                - Библиотеки react-dnd, react-dnd-html5-backend и rc-tree перемещены в optionalDependencies
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен Snowpack плагин для автоматического переименования файлов с двоеточиями
+              </li>
+              <li className={styles['left-padding']}>- Отключены полифиллы Node.js для уменьшения размера сборки</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки Grafana, RezMetallaOutlined, PennantOutlined и PennantFilled
               </li>
             </li>
           </ul>

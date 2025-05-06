@@ -1,4 +1,11 @@
-const MODULES = ['react', 'react-dom', 'react-helmet-async', '@codesandbox/nodebox', '@storybook/addon-actions', '@storybook/blocks'];
+const MODULES = [
+  'react',
+  'react-dom',
+  'react-helmet-async',
+  '@codesandbox/nodebox',
+  '@storybook/addon-actions',
+  '@storybook/blocks'
+];
 const EXTERNAL_MODULES = process.env.NODE_ENV !== 'production' ? [] : MODULES;
 
 module.exports = {
@@ -17,7 +24,12 @@ module.exports = {
   devOptions: {
     open: 'none'
   },
-  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-sass', 'snowpack-plugin-svgr'],
+  plugins: [
+    '@snowpack/plugin-react-refresh',
+    '@snowpack/plugin-sass',
+    'snowpack-plugin-svgr',
+    './script/snowpackPluginRenameColon.js'
+  ],
   alias: {
     '@components': './src/components',
     '@root': './'

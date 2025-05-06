@@ -82,18 +82,62 @@ const treeOptions = [
         id: '2',
         label: 'Сортовой прокат',
         children: [
-          { id: '3', label: 'Круг стальной' },
-          { id: '4', label: 'Квадрат стальной' },
-          { id: '5', label: 'Шестигранник' }
+          {
+            id: '3',
+            label: 'Круг стальной',
+            children: [
+              { id: '19', label: 'Круг стальной горячекатаный' },
+              { id: '20', label: 'Круг стальной калиброванный' },
+              { id: '21', label: 'Круг стальной легированный' }
+            ]
+          },
+          {
+            id: '4',
+            label: 'Квадрат стальной',
+            children: [
+              { id: '22', label: 'Квадрат стальной горячекатаный' },
+              { id: '23', label: 'Квадрат стальной калиброванный' }
+            ]
+          },
+          {
+            id: '5',
+            label: 'Шестигранник',
+            children: [
+              { id: '24', label: 'Шестигранник стальной горячекатаный' },
+              { id: '25', label: 'Шестигранник стальной калиброванный' }
+            ]
+          }
         ]
       },
       {
         id: '6',
         label: 'Листовой прокат',
         children: [
-          { id: '7', label: 'Лист горячекатаный' },
-          { id: '8', label: 'Лист холоднокатаный' },
-          { id: '9', label: 'Лист оцинкованный' }
+          {
+            id: '7',
+            label: 'Лист горячекатаный',
+            children: [
+              { id: '26', label: 'Лист горячекатаный тонкий (до 4 мм)' },
+              { id: '27', label: 'Лист горячекатаный толстый (от 4 мм)' },
+              { id: '28', label: 'Лист горячекатаный рифленый' }
+            ]
+          },
+          {
+            id: '8',
+            label: 'Лист холоднокатаный',
+            children: [
+              { id: '29', label: 'Лист холоднокатаный тонкий' },
+              { id: '30', label: 'Лист холоднокатаный высокой точности' }
+            ]
+          },
+          {
+            id: '9',
+            label: 'Лист оцинкованный',
+            children: [
+              { id: '31', label: 'Лист оцинкованный матовый' },
+              { id: '32', label: 'Лист оцинкованный глянцевый' }
+            ]
+          }
         ]
       }
     ]
@@ -106,19 +150,85 @@ const treeOptions = [
         id: '11',
         label: 'Алюминиевый прокат',
         children: [
-          { id: '12', label: 'Лист алюминиевый' },
-          { id: '13', label: 'Труба алюминиевая' },
-          { id: '14', label: 'Профиль алюминиевый' }
+          {
+            id: '12',
+            label: 'Лист алюминиевый',
+            children: [
+              { id: '33', label: 'Лист алюминиевый рифленый' },
+              { id: '34', label: 'Лист алюминиевый гладкий' },
+              { id: '35', label: 'Лист алюминиевый дюралевый' }
+            ]
+          },
+          {
+            id: '13',
+            label: 'Труба алюминиевая',
+            children: [
+              { id: '36', label: 'Труба алюминиевая круглая' },
+              { id: '37', label: 'Труба алюминиевая квадратная' },
+              { id: '38', label: 'Труба алюминиевая профильная' }
+            ]
+          },
+          {
+            id: '14',
+            label: 'Профиль алюминиевый',
+            children: [
+              { id: '39', label: 'Профиль алюминиевый стандартный' },
+              { id: '40', label: 'Профиль алюминиевый конструкционный' },
+              { id: '41', label: 'Профиль алюминиевый анодированный' }
+            ]
+          }
         ]
       },
       {
         id: '15',
         label: 'Медный прокат',
         children: [
-          { id: '16', label: 'Лист медный' },
-          { id: '17', label: 'Труба медная' },
-          { id: '18', label: 'Пруток медный' }
+          {
+            id: '16',
+            label: 'Лист медный',
+            children: [
+              { id: '42', label: 'Лист медный мягкий' },
+              { id: '43', label: 'Лист медный твердый' },
+              { id: '44', label: 'Лист медный полутвердый' }
+            ]
+          },
+          {
+            id: '17',
+            label: 'Труба медная',
+            children: [
+              { id: '45', label: 'Труба медная отожженная' },
+              { id: '46', label: 'Труба медная капиллярная' },
+              { id: '47', label: 'Труба медная тонкостенная' }
+            ]
+          },
+          {
+            id: '18',
+            label: 'Пруток медный',
+            children: [
+              { id: '48', label: 'Пруток медный круглый' },
+              { id: '49', label: 'Пруток медный квадратный' },
+              { id: '50', label: 'Пруток медный шестигранный' }
+            ]
+          }
         ]
+      }
+    ]
+  },
+  {
+    id: '51',
+    label: 'Метизная продукция'
+  },
+  {
+    id: '52',
+    label: 'Трубный прокат',
+    children: [
+      {
+        id: '53',
+        label: 'Трубы стальные'
+      },
+      {
+        id: '57',
+        label: 'Трубы нержавеющие'
       }
     ]
   }
@@ -162,7 +272,7 @@ export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Множественный выбор с поиском" tooltipDescription="Выберите одну или несколько опций">
-      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
@@ -182,7 +292,7 @@ export const DraggableListExample = () => {
         items={options}
         onChange={setSelected}
         onReorder={handleReorder}
-        isMultiple={true}
+        isMultiple
         droppableId="draggable-list"
       />
     </ComboBox>
@@ -194,7 +304,7 @@ export const GroupedOptionsExample = () => {
   const [selected, setSelected] = useState<IComboBoxGroupOption[]>([]);
   return (
     <ComboBox label="Группировка опций">
-      <ComboGroupList items={groupOptions} onChange={setSelected} isMultiple={true} isSearch={true} isCheckAll={true} />
+      <ComboGroupList items={groupOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
@@ -204,18 +314,21 @@ export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
     <ComboBox label="Древовидный список" countOnlyLevel={2}>
-      <ComboTreeList
-        items={treeOptions}
-        onChange={setSelected}
-        isMultiple={true}
-        isSearch={true}
-        isCheckAll={true}
-        maxLevel={2}
-      />
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
     </ComboBox>
   );
 };
 TreeViewExample.storyName = 'Древовидный список';
+
+export const TreeViewWithMaxLevelExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Древовидный список" countOnlyLevel={2}>
+      <ComboTreeList items={treeOptions} maxLevel={2} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+TreeViewWithMaxLevelExample.storyName = 'Древовидный список с ограничением уровня вложенности';
 
 export const ResizableDropdownExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -228,7 +341,7 @@ export const ResizableDropdownExample = () => {
       dropdownMinWidth={200}
       dropdownMinHeight={150}
     >
-      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} />
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple />
     </ComboBox>
   );
 };

@@ -1,71 +1,77 @@
-.listContainer {
-  overflow-y: auto;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  z-index: 1;
-  height: 100%;
-}
-
-.listItemActive {
-  background-color: var(--brand-sapphire-10);
-
-  &:hover {
-    background-color: var(--brand-sapphire-20);
-  }
-}
-
-.listItemExpanded {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--steel-30);
-  }
-}
-.listItemLastChildren {
-  display: flex;
-  width: 24px;
-  height: 24px;
-}
-.listItemExpandedButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 32px;
-
-  & > svg {
-    width: 24px;
-    cursor: pointer;
-  }
-}
-
-.listItemLabel {
-  line-height: 24px;
-  margin: 0;
-}
-
-.listItemLabelWrapper {
-  align-items: center;
-  justify-content: space-between;
-}
-
-.listItemDone {
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.listItemCheckbox {
-  & > label {
-    padding: 0;
-    text-wrap: nowrap;
-    padding-left: 4px;
+.list {
+  &-container {
+    overflow-y: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    z-index: 1;
+    height: 100%;
   }
 
-  & > input[type="checkbox"] {
-    min-width: 18px;
+  &-item {
+    &-expanded {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--steel-30);
+      }
+    }
+
+    &-active {
+      background-color: var(--brand-sapphire-10);
+
+      &:hover {
+        background-color: var(--brand-sapphire-20);
+      }
+    }
+
+    &-last-children {
+      display: flex;
+      width: 24px;
+      height: 24px;
+    }
+
+    &-expanded-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 32px;
+
+      & > svg {
+        width: 24px;
+        cursor: pointer;
+      }
+    }
+
+    &-label {
+      line-height: 24px;
+      margin: 0;
+
+      &-wrapper {
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    &-done {
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &-checkbox {
+      & > label {
+        padding: 0;
+        text-wrap: nowrap;
+        padding-left: 4px;
+      }
+
+      & > input[type="checkbox"] {
+        min-width: 18px;
+      }
+    }
   }
 }

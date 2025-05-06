@@ -135,15 +135,15 @@ const ComboTreeList = <T extends IComboBoxTree>({
     return (
       <div
         key={item.id}
-        className={clsx(styles.listItemExpanded, {
-          [styles.listItemActive]: isChecked || isIndeterminate
+        className={clsx(styles['list-item-expanded'], {
+          [styles['list-item-active']]: isChecked || isIndeterminate
         })}
         style={{ paddingLeft: optionPadding }}
         onClick={() => handleItemClick(item, isMultiple, isLastChildren)}
       >
         {!isLastChildren ? (
           <Button
-            className={styles.listItemExpandedButton}
+            className={styles['list-item-expanded-button']}
             color="ghost"
             variant="secondary"
             onClick={event => {
@@ -158,7 +158,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
             }
           />
         ) : (
-          <div className={styles.listItemLastChildren}></div>
+          <div className={styles['list-item-last-children']}></div>
         )}
         {isMultiple && (
           <Checkbox
@@ -166,14 +166,14 @@ const ComboTreeList = <T extends IComboBoxTree>({
             multiple={isChecked ? false : isIndeterminate}
             label={item.label}
             onChange={() => handleChangeChecked(item)}
-            className={styles.listItemCheckbox}
+            className={styles['list-item-checkbox']}
           />
         )}
         {!isMultiple && (
           <Typography
             variant="Body1-Medium"
-            className={clsx(styles.listItemLabel, {
-              [styles.listItemActive]: isChecked || isIndeterminate
+            className={clsx(styles['list-item-label'], {
+              [styles['list-item-active']]: isChecked || isIndeterminate
             })}
           >
             {item.label}
@@ -225,12 +225,12 @@ const ComboTreeList = <T extends IComboBoxTree>({
         <VirtualizedResizableGrip
           items={expandedFilterOptions}
           renderItem={renderItem}
-          classNameContainer={styles.listContainer}
+          classNameContainer={styles['list-container']}
           isCheckAll={isCheckAll}
           isSearch={isSearch}
         />
       ) : (
-        <div className={styles.listContainer}>{expandedFilterOptions.map(renderItem)}</div>
+        <div className={styles['list-container']}>{expandedFilterOptions.map(renderItem)}</div>
       )}
     </>
   );

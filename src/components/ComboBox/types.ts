@@ -68,6 +68,7 @@ export interface IComboBoxInputProps {
   isDisabled: boolean;
   isOpen: boolean;
   label?: string;
+  initialValue?: IComboBoxOption[];
   value?: IComboBoxOption[];
   onFocusSearchInput: () => void;
   onOpenClick: () => void;

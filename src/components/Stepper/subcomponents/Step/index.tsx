@@ -21,7 +21,7 @@ export const Step = ({ stepName, index, active, state, color }: IStepProps) => {
   return (
     <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s">
       <Badge
-        className={clsx(active && styles[`active-${color}`], styles[`badge-${color}`])}
+        className={clsx(styles[`badge-${color}`], active && styles[`active-${color}`])}
         color={StepStateToBadgeColor[state]}
       >
         {index + 1}

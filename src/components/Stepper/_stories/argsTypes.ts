@@ -1,4 +1,4 @@
-import { EStepState } from '../subcomponents/Step/enums';
+import { EStepColor, EStepState } from '../subcomponents/Step/enums';
 
 export const argsTypes = {
   className: {
@@ -16,6 +16,19 @@ export const argsTypes = {
       }
     },
     options: Object.keys(EStepState),
+    control: { type: 'select' }
+  },
+  color: {
+    description: 'Отвечает за цвет Stepper.',
+    table: {
+      defaultValue: {
+        summary: EStepColor.brand
+      },
+      type: {
+        summary: Object.values(EStepColor).join(' | ')
+      }
+    },
+    options: Object.keys(EStepColor),
     control: { type: 'select' }
   },
   stepName: {

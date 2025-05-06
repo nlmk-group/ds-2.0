@@ -3,6 +3,15 @@
   color: $color;
 }
 
+.badge {
+  &-success {
+    @include standard-helper(var(--spectrum-green-30), var(--unique-white));
+  }
+  &-error {
+    @include standard-helper(var(--spectrum-red-30), var(--unique-white));
+  }
+}
+
 .step-button {
   & > span {
     display: flex;
@@ -12,17 +21,16 @@
   }
 
   &:hover {
+    .step-name {
+      &-success {
+        color: var(--spectrum-green-60);
+      }
+      &-error {
+        color: var(--spectrum-red-60);
+      }
+    }
     .badge {
       cursor: pointer;
-
-      .step-name {
-        &-success {
-          color: var(--spectrum-green-60);
-        }
-        &-error {
-          color: var(--spectrum-red-60);
-        }
-      }
 
       &-brand {
         @include standard-helper(var(--brand-sapphire-60), var(--unique-white));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Checkbox, findManyParentsIds } from '@components/index';
 
@@ -13,25 +13,32 @@ const AllItemsCheckbox = <T extends IComboBoxOption>({ items, onChange, treeOpti
   const comboBoxValue = useComboBoxValue();
   const setComboValue = useSetComboBoxValue();
 
-  const comboBoxLength = comboBoxValue?.length ?? 0;
-  const allItemsSelected = items.every(leaf => comboBoxValue?.some(v => v.id === leaf.id));
-  const someItemsSelected = comboBoxLength > 0 && !allItemsSelected;
+  const { allItemsSelected, someItemsSelected } = useMemo(() => {
+    const allSelected = items.length > 0 && items.every(item => comboBoxValue?.some(value => value.id === item.id));
+    const someSelected = (comboBoxValue?.length ?? 0) > 0 && !allSelected;
+
+    return { allItemsSelected: allSelected, someItemsSelected: someSelected };
+  }, [items, comboBoxValue]);
 
   const handleCheckAll = () => {
-    let selectedData;
+    if (allItemsSelected) {
+      setComboValue?.([]);
+      onChange?.([]);
+      return;
+    }
 
     if (treeOptions) {
       const itemIds = items.map(item => item.id);
-
       const parentIds = findManyParentsIds(itemIds, treeOptions);
+      const parentItems = treeOptions.filter(item => parentIds.includes(item.id));
 
-      selectedData = allItemsSelected ? [] : [...items, ...treeOptions.filter(item => parentIds.includes(item.id))];
+      const selectedData = [...items, ...parentItems];
+      setComboValue?.(selectedData);
+      onChange?.(selectedData);
     } else {
-      selectedData = allItemsSelected ? [] : items;
+      setComboValue?.(items);
+      onChange?.(items);
     }
-
-    setComboValue?.(selectedData);
-    onChange?.(selectedData);
   };
 
   return (

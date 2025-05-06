@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { Button, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -48,7 +48,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
 
   const handleChangeChecked = (item: IComboBoxTreeOption) => {
     if (!isMultiple) {
-      if (item.level === maxLevel) {
+      if (isLeafNode(item)) {
         const newValue = [item];
         setComboValue?.(newValue);
         onChange?.(newValue);
@@ -95,11 +95,24 @@ const ComboTreeList = <T extends IComboBoxTree>({
     return Array.from(new Set(parentsIds));
   }, [treeOptions, checkedIds]);
 
+  const parentIdsSet = useMemo(() => {
+    const ids = new Set<string>();
+    treeOptions.forEach(option => {
+      if (option.parentId) ids.add(option.parentId);
+    });
+    return ids;
+  }, [treeOptions]);
+
+  const isLeafNode = useCallback(
+    (item: IComboBoxTreeOption) => (maxLevel !== undefined && item.level === maxLevel) || !parentIdsSet.has(item.id),
+    [maxLevel, parentIdsSet]
+  );
+
   const renderItem = (item: IComboBoxTreeOption) => {
     const isExpanded = expandIds.includes(item.id);
     const isChecked = checkedIds.includes(item.id);
     const isIndeterminate = parentCheckedIds.includes(item.id);
-    const isLastChildren = item.level === maxLevel || !item.children?.length;
+    const isLastChildren = isLeafNode(item);
 
     // Базовый паддинг для всех уровней
     const basePadding = 8;
@@ -201,12 +214,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
     [filteredSearchItems, expandIds]
   );
 
-  const leafItems = useMemo(() => {
-    return treeOptions.filter(option => {
-      const hasChildren = treeOptions.some(child => child.parentId === option.id);
-      return !hasChildren;
-    });
-  }, [treeOptions]);
+  const leafItems = useMemo(() => treeOptions.filter(isLeafNode), [treeOptions, isLeafNode]);
 
   return (
     <>

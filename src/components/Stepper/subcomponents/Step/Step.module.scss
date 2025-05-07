@@ -22,6 +22,9 @@
 
   &:hover {
     .step-name {
+      &-brand {
+        color: var(--brand-sapphire-60);
+      }
       &-success {
         color: var(--spectrum-green-60);
       }
@@ -31,7 +34,6 @@
     }
     .badge {
       cursor: pointer;
-
       &-brand {
         @include standard-helper(var(--brand-sapphire-60), var(--unique-white));
       }

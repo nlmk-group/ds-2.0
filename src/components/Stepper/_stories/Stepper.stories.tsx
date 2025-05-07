@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Stepper } from '@components/index';
+import { Box, Button, Stepper } from '@components/index';
 
 import styles from '@components/_storybook/styles.module.scss';
 
@@ -27,7 +27,7 @@ export const StepperDefault = (argTypes: IStepperProps): JSX.Element => {
 
 StepperDefault.storyName = 'Stepper по умолчанию';
 StepperDefault.args = {
-  stepName: 'Step 1',
+  stepName: 'Шаг 1',
   index: 0,
   showStep: true
 };
@@ -35,11 +35,11 @@ export const StepperWithSteps = () => {
   const [currentStep, setCurrentStep] = React.useState(1);
 
   const baseSteps = [
-    { stepName: 'Step 1', index: 0 },
-    { stepName: 'Step 2', index: 1 },
-    { stepName: 'Step 3', index: 2, color: EStepColor.success },
-    { stepName: 'Step 4', index: 3, color: EStepColor.error },
-    { stepName: 'Step 5', index: 4, state: EStepState.disabled }
+    { stepName: 'Шаг 1', index: 0 },
+    { stepName: 'Шаг 2', index: 1 },
+    { stepName: 'Шаг 3', index: 2 },
+    { stepName: 'Шаг 4', index: 3 },
+    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
   ];
 
   const steps = baseSteps.map(step => ({
@@ -59,7 +59,6 @@ export const StepperWithSteps = () => {
           <Stepper
             currentStep={currentStep}
             key={i}
-            color={step.color}
             state={step.state}
             index={i}
             showStep={i !== steps.length - 1}
@@ -73,3 +72,109 @@ export const StepperWithSteps = () => {
 };
 
 StepperWithSteps.storyName = 'Stepper с несколькими шагами';
+
+export const StepperWithSuccess = () => {
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [isCompleted, setIsCompleted] = React.useState(false);
+
+  const baseSteps = [
+    { stepName: 'Шаг 1', index: 0 },
+    { stepName: 'Шаг 2', index: 1 },
+    { stepName: 'Шаг 3', index: 2 },
+    { stepName: 'Шаг 4', index: 3 },
+    { stepName: 'Шаг 5', index: 4 }
+  ];
+
+  const steps = baseSteps.map(step => ({
+    ...step,
+    state: step.index <= currentStep ? EStepState.filled : EStepState.notFilled,
+    color: isCompleted ? EStepColor.success : EStepColor.brand
+  }));
+
+  const handleNext = () => {
+    if (currentStep < baseSteps.length - 1) {
+      setCurrentStep(prev => prev + 1);
+    } else {
+      setIsCompleted(true);
+    }
+  };
+  const handleReset = () => {
+    setCurrentStep(0);
+    setIsCompleted(false);
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <Box flexDirection="row" width="100%" gap={16}>
+        {steps.map((step, i) => (
+          <Stepper
+            currentStep={currentStep}
+            key={i}
+            state={step.state}
+            index={i}
+            color={step.color}
+            showStep={i !== steps.length - 1}
+            stepName={step.stepName}
+            onClick={() => setCurrentStep(i)}
+          />
+        ))}
+      </Box>
+      <Box pt={24} gap={8}>
+        {!isCompleted ? (
+          <Button onClick={handleNext}>
+            {currentStep === baseSteps.length - 1 ? 'Завершить процесс' : 'Следующий шаг'}
+          </Button>
+        ) : (
+          <Button variant="secondary" onClick={handleReset}>
+            Начать заново
+          </Button>
+        )}
+      </Box>
+    </div>
+  );
+};
+
+StepperWithSuccess.storyName = 'Stepper с индикатором успеха';
+
+export const StepperWithError = () => {
+  const [currentStep, setCurrentStep] = React.useState(1);
+
+  const baseSteps = [
+    { stepName: 'Шаг 1', index: 0 },
+    { stepName: 'Шаг 2', index: 1 },
+    { stepName: 'Шаг 3', index: 2 },
+    { stepName: 'Шаг 4', index: 3, color: EStepColor.error },
+    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
+  ];
+
+  const steps = baseSteps.map(step => ({
+    ...step,
+    state:
+      step.state === EStepState.disabled
+        ? EStepState.disabled
+        : step.index <= currentStep
+        ? EStepState.filled
+        : EStepState.notFilled
+  }));
+
+  return (
+    <div className={styles.wrapper}>
+      <Box flexDirection="row" width="100%" gap={16}>
+        {steps.map((step, i) => (
+          <Stepper
+            currentStep={currentStep}
+            key={i}
+            state={step.state}
+            color={step.color}
+            index={i}
+            showStep={i !== steps.length - 1}
+            stepName={step.stepName}
+            onClick={() => setCurrentStep(i)}
+          />
+        ))}
+      </Box>
+    </div>
+  );
+};
+
+StepperWithError.storyName = 'Stepper с индикатором ошибки';

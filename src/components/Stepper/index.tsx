@@ -16,6 +16,7 @@ import { Step } from './subcomponents/Step';
  * @param {IStepperProps} props
  * @param {number} props.currentStep - Текущий активный шаг.
  * @param {`${EStepState}`} props.state - Состояние шага.
+ * @param {`${EStepColor}`} props.color - Цвет шага.
  * @param {string} props.stepName - Название шага.
  * @param {boolean} props.showStep - Показывать ли шаг.
  * @param {string} [props.className] - Дополнительный CSS класс.

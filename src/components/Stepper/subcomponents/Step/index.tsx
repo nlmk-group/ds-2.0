@@ -16,6 +16,8 @@ import { StepStateToBadgeColor } from './helpers';
  * @param {string} props.stepName - Название шага.
  * @param {number} props.index - Индекс шага.
  * @param {`${EStepState}`} props.state - Состояние шага.
+ * @param {`${EStepColor}`} props.color - Состояние шага.
+ * @param {boolean} props.active - Индикатор активного шага.
  */
 export const Step = ({ stepName, index, active, state, color }: IStepProps) => {
   return (

@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.0 - <span className={styles.date}>07.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-stepper-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Stepper
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено новое свойство color в компонентах Step и Stepper</li>
+              <li className={styles['left-padding']}>- Добавлены новые истории с использованием нового свойства</li>
+              <li className={styles['left-padding']}>- Обновлена документация к компоненту Stepper</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}></div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.23.0 - <span className={styles.date}>06.05.25</span>
           </Typography>
           <ul className={styles.list}>

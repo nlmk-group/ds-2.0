@@ -5,10 +5,10 @@
 
 .badge {
   &-success {
-    @include standard-helper(var(--spectrum-green-30), var(--unique-white));
+    @include standard-helper(var(--spectrum-green-30), var(--steel-90));
   }
   &-error {
-    @include standard-helper(var(--spectrum-red-30), var(--unique-white));
+    @include standard-helper(var(--spectrum-red-30), var(--steel-90));
   }
 }
 
@@ -35,13 +35,13 @@
     .badge {
       cursor: pointer;
       &-brand {
-        @include standard-helper(var(--brand-sapphire-60), var(--unique-white));
+        @include standard-helper(var(--brand-sapphire-50), var(--unique-white));
       }
       &-success {
-        @include standard-helper(var(--spectrum-green-60), var(--unique-white));
+        @include standard-helper(var(--spectrum-green-50), var(--unique-white));
       }
       &-error {
-        @include standard-helper(var(--spectrum-red-60), var(--unique-white));
+        @include standard-helper(var(--spectrum-red-50), var(--unique-white));
       }
     }
   }
@@ -54,12 +54,12 @@
 
 .active {
   &-brand {
-    @include standard-helper(var(--brand-sapphire-60), var(--unique-white));
+    @include standard-helper(var(--brand-sapphire-50), var(--unique-white));
   }
   &-success {
-    @include standard-helper(var(--spectrum-green-60), var(--unique-white));
+    @include standard-helper(var(--spectrum-green-50), var(--unique-white));
   }
   &-error {
-    @include standard-helper(var(--spectrum-red-60), var(--unique-white));
+    @include standard-helper(var(--spectrum-red-50), var(--unique-white));
   }
 }

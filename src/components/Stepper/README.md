@@ -8,11 +8,12 @@
 
 ```jsx
 import React, { useState } from 'react';
-import { EStepState, Stepper } from '@nlmk/ds-2.0';
+import { EStepColor, EStepState, Stepper } from '@nlmk/ds-2.0';
 const [currentStep, setCurrentStep] = React.useState(1);
 <Stepper
   currentStep={currentStep}
   state={EStepState.filled}
+  color={EStepState.brand}
   stepName="Step 1"
   showStep={true}
   index={0}
@@ -26,6 +27,7 @@ const [currentStep, setCurrentStep] = React.useState(1);
 | ----------- | --------------------------------------------------- | ----------- | ------------------------ |
 | currentStep | number                                              | ---         | Текущий шаг              |
 | state       | `${EStepState}`                                     | 'notFilled' | Состояние шага           |
+| color       | `${EStepColor}`                                     | 'brand'     | Цвет шага                |
 | stepName    | string                                              | 'undefined' | Название шага            |
 | className   | string                                              | -           | Дополнительный CSS класс |
 | index       | number                                              | '0'         | Индекс шага              |

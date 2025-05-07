@@ -20,15 +20,16 @@ import { StepStateToBadgeColor } from './helpers';
  * @param {boolean} props.active - Индикатор активного шага.
  */
 export const Step = ({ stepName, index, active, state, color }: IStepProps) => {
+  const badgeClasses = clsx(styles.badge, styles[`badge-${color}`], active && styles[`active-${color}`]);
+
+  const stepNameClasses = clsx(styles['step-name'], styles[`step-name-${color}`]);
+
   return (
     <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s">
-      <Badge
-        className={clsx(styles.badge, styles[`badge-${color}`], active && styles[`active-${color}`])}
-        color={StepStateToBadgeColor[state]}
-      >
+      <Badge className={badgeClasses} color={StepStateToBadgeColor[state]}>
         {index + 1}
       </Badge>
-      <Typography variant="Body1-Bold" className={clsx(styles['step-name'], styles[`step-name-${color}`])}>
+      <Typography variant="Body1-Bold" className={stepNameClasses}>
         {stepName}
       </Typography>
     </Button>

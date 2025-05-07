@@ -72,6 +72,9 @@ export const StepperWithSteps = () => {
 };
 
 StepperWithSteps.storyName = 'Stepper с несколькими шагами';
+StepperWithSteps.parameters = {
+  controls: { disable: true }
+};
 
 export const StepperWithSuccess = () => {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -135,6 +138,7 @@ export const StepperWithSuccess = () => {
 };
 
 StepperWithSuccess.storyName = 'Stepper с индикатором успеха';
+StepperWithSuccess.parameters = { controls: { disable: true } };
 
 export const StepperWithError = () => {
   const [currentStep, setCurrentStep] = React.useState(1);
@@ -178,3 +182,4 @@ export const StepperWithError = () => {
 };
 
 StepperWithError.storyName = 'Stepper с индикатором ошибки';
+StepperWithError.parameters = { controls: { disable: true } };

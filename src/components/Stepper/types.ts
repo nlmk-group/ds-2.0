@@ -1,4 +1,4 @@
-import { EStepState } from './subcomponents/Step/enums';
+import { EStepColor, EStepState } from './subcomponents/Step/enums';
 
 export interface IStepperProps {
   /**
@@ -35,4 +35,8 @@ export interface IStepperProps {
    * Обработчик клика по шагу.
    */
   onClick?: (value: { state: `${EStepState}`; index: number }) => void;
+  /**
+   * Цвет шага.
+   */
+  color?: `${EStepColor}`;
 }

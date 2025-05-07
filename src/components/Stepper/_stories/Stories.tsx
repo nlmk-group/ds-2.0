@@ -19,8 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Stepper';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=50-13689&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=50-13689&t=EnvIMGos3m33avAX-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -55,24 +54,47 @@ const Stories = (): JSX.Element => {
             height={420}
             description="Stepper в состоянии filled"
             code={`import { Box, Stepper } from '@nlmk/ds-2.0';
+                   import React, { useState } from 'react';
+                   import {EStepState, EStepColor} from '@nlmk/ds-2.0';
 
 const App = () => {
-  const mockSteps = [{
-    state: 'filled',
-    stepName: 'Filled'
-  }, {
-    state: 'focused',
-    stepName: 'Focused'
-  }, {
-    state: 'inProgress',
-    stepName: 'In Progress'
-  }];
+  const [currentStep, setCurrentStep] = React.useState(1);
+
+  const baseSteps = [
+    { stepName: 'Шаг 1', index: 0 },
+    { stepName: 'Шаг 2', index: 1 },
+    { stepName: 'Шаг 3', index: 2 },
+    { stepName: 'Шаг 4', index: 3 },
+    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
+  ];
+
+  const steps = baseSteps.map(step => ({
+    ...step,
+    state:
+      step.state === EStepState.disabled
+        ? EStepState.disabled
+        : step.index <= currentStep
+        ? EStepState.filled
+        : EStepState.notFilled
+  }));
 
   return (
-        <Box flexDirection="row" width="100%" gap={16}>
-          {mockSteps.map((step, i) => <Stepper key={i} state={step.state} index={i} showStep={i !== mockSteps.length - 1} stepName={step.stepName} />)}
-        </Box>
-    )
+    <div className={styles.wrapper}>
+      <Box flexDirection="row" width="100%" gap={16}>
+        {steps.map((step, i) => (
+          <Stepper
+            currentStep={currentStep}
+            key={i}
+            state={step.state}
+            index={i}
+            showStep={i !== steps.length - 1}
+            stepName={step.stepName}
+            onClick={() => setCurrentStep(i)}
+          />
+        ))}
+      </Box>
+    </div>
+  );
 }
 
 export default App;

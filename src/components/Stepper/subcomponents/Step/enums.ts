@@ -3,3 +3,8 @@ export enum EStepState {
   notFilled = 'notFilled',
   disabled = 'disabled'
 }
+export enum EStepColor {
+  brand = 'brand',
+  success = 'success',
+  error = 'error'
+}

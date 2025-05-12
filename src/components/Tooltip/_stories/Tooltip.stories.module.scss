@@ -137,27 +137,23 @@
   width: 6px;
   height: 24px;
   border-radius: 2px;
-  padding: 0 auto;
+  padding: 0px auto;
 }
 
 .line-success {
-  // FIXME: --ac-badge-solid-success-fill not found
-  background-color: var(--ac-badge-solid-success-fill);
+  background-color: var(--spectrum-green-40);
 }
 
 .line-warning {
-  // FIXME: --ac-badge-solid-warning-fill not found
-  background-color: var(--ac-badge-solid-warning-fill);
+  background-color: var(--spectrum-yellow-40);
 }
 
 .line-primary {
-  // FIXME: --ac-badge-solid-primary-fill not found
-  background-color: var(--ac-badge-solid-primary-fill);
+  background-color: var(--brand-sapphire-40);
 }
 
 .line-error {
-  // FIXME: --ac-badge-solid-error-fill not found
-  background-color: var(--ac-badge-solid-error-fill);
+  background-color: var(--spectrum-red-40);
 }
 
 .popup {

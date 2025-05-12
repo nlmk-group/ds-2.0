@@ -73,17 +73,15 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch has icons', () => {
-    // FIXME: --text-grey-100 not found
     const ActiveIcon = (): JSX.Element => (
       <div data-testid="ACTIVE_ICON">
-        <Icon containerSize={16} htmlColor="var(--text-grey-100)" name="IconMetallalomScrapFilled16" />
+        <Icon containerSize={16} htmlColor="var(--steel-10)" name="IconMetallalomScrapFilled16" />
       </div>
     );
 
-    // FIXME: --primary-blue-600 not found
     const InactiveIcon = (): JSX.Element => (
       <div data-testid="INACTIVE_ICON">
-        <Icon containerSize={16} htmlColor="var(--primary-blue-600)" name="IconMetallalomScrap16" />
+        <Icon containerSize={16} htmlColor="var(--brand-sapphire-60)" name="IconMetallalomScrap16" />
       </div>
     );
 

@@ -22,21 +22,17 @@
     height: 24px !important;
     padding: 0 4px 0 0 !important;
 
-    // FIXME: --ac-input-default-bg not found
     &:hover {
       background-color: var(--ac-input-default-bg) !important;
     }
 
-    // FIXME: --ac-input-disabled-bg not found
     &.disabled {
       background: var(--ac-input-disabled-bg);
 
-      // FIXME: --ac-icon-grey not found
       path {
         fill: var(--ac-icon-grey);
       }
 
-      // FIXME: --ac-input-disabled-bg not found
       &:hover {
         background: var(--ac-input-disabled-bg) !important;
       }
@@ -49,7 +45,6 @@
 
     &:hover {
       color: var(--steel-90);
-      // FIXME: --ac-select-item-hover-bg not found
       background-color: var(--ac-select-item-hover-bg);
     }
 
@@ -67,12 +62,10 @@
     }
 
     &.selected {
-      // FIXME: --ac-select-item-selected-bg not found
       background: var(--ac-select-item-selected-bg);
       color: var(--steel-90);
 
       &:hover {
-        // FIXME: --ac-select-item-activehover-bg not found
         background-color: var(--ac-select-item-activehover-bg);
         color: var(--steel-90);
       }
@@ -144,18 +137,14 @@
   width: 100%;
   cursor: pointer;
   transition: 0.1s;
-  // FIXME: --text-grey-400 not found
   color: var(--text-grey-400);
   path {
-    // FIXME: --text-grey-400 not found
     fill: var(--text-grey-400);
   }
 
   &:hover {
-    // FIXME: --text-grey-500 not found
     color: var(--text-grey-500);
     path {
-      // FIXME: --text-grey-500 not found
       fill: var(--text-grey-500);
     }
   }
@@ -204,7 +193,6 @@
 
 .icon-selected {
   svg {
-    // FIXME: --ac-icon-blue not found
     color: var(--ac-icon-blue);
   }
 }
@@ -221,7 +209,6 @@
 
 .sub-label-wrapper {
   cursor: pointer;
-  // FIXME: --text-grey-600 not found
   color: var(--text-grey-600);
 }
 
@@ -265,11 +252,9 @@
   }
 }
 
-// FIXME: --primary-blue-600 not found
 .inconspicuous-active {
   color: var(--primary-blue-600);
   path {
-    // FIXME: --ac-icon-blue not found
     fill: var(--ac-icon-blue);
   }
 }

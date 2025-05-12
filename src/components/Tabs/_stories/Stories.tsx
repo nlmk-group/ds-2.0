@@ -63,12 +63,11 @@ export default  App = () => {
           onClick={() => setActiveTab(2)}
           badgeNumber="91"
         >
-          <Tabs.Tooltip description="Сюда вы можете добавить текстподсказу для компонента">
+          <Tabs.Tooltip description="Сюда вы можете добавить текст-подсказку для компонента">
             <Tabs.Icon
               name="IconInfoOutlined16"
               containerSize={16}
-              // FIXME: --text-grey-500 not found
-              htmlColor="var(--text-grey-500)"
+              htmlColor="var(--steel-90)"
             />
           </Tabs.Tooltip>
         </Tabs.Tab>

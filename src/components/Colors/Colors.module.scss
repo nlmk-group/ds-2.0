@@ -88,8 +88,7 @@ $transition: 0.1s linear;
 
       .color-value {
         transition: $transition;
-        // FIXME: --font-size-1 not found (12 or 14px ?)
-        font-size: var(--font-size-1);
+        font-size: 12px;
         text-transform: uppercase;
         color: var(--grey-concrete);
         text-align: left;
@@ -102,8 +101,7 @@ $transition: 0.1s linear;
       padding: 4px 8px 4px 8px;
       font-weight: --font-weights-pt-root-ui-0;
       border-radius: $border-radius;
-      // FIXME: --font-size-1 not found (12 or 14px ?)
-      font-size: var(--font-size-1);
+      font-size: 12px;
       font-family: monospace;
       // FIXME: --bg-steel not found
       background-color: var(--bg-steel);

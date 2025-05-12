@@ -73,7 +73,7 @@ const ComboBoxDropdown = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
+          offset: [0, 4] // [горизонтальный, вертикальный] отступ в пикселях
         }
       }
     ]
@@ -104,18 +104,18 @@ const ComboBoxDropdown = ({
     if (withPortal) {
       return {
         ...baseStyles,
-        ...popperStyles.popper, 
+        ...popperStyles.popper,
         ...dropdownStyle
       };
     }
-    
+
     return {
       ...baseStyles,
       position: 'absolute',
       left: 0,
       right: 0,
       zIndex: 1000,
-      marginTop: '8px',
+      marginTop: '4px',
       ...dropdownStyle
     };
   };
@@ -140,7 +140,7 @@ const ComboBoxDropdown = ({
 
   const dropdownContent = isOpen && (
     <div
-      ref={(el) => {
+      ref={el => {
         dropdownRef.current = el;
         if (withPortal && el) {
           setPopperElement(el);

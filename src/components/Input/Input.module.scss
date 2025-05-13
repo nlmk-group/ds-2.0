@@ -96,10 +96,11 @@ input:autofill:focus {
 
   // Скрываем плейсхолдер когда:
   // 1. Есть label (:has(label))
-  // 2. Есть input который:
+  // 2. Есть input или textarea, который:
   //    - не в фокусе (not(:focus))
   //    - показывает плейсхолдер (placeholder-shown)
-  &:has(label):has(input:not(:focus):placeholder-shown) input::placeholder {
+  &:has(label):has(input:not(:focus):placeholder-shown) input::placeholder,
+  &:has(label):has(textarea:not(:focus):placeholder-shown) textarea::placeholder {
     opacity: 0;
   }
 

@@ -71,6 +71,7 @@ const InputComboBox = ({
       setComboValue(initialValue);
     }
   }, []);
+
   useEffect(() => {
     if (setComboValue && value) {
       setComboValue(value);

@@ -1,7 +1,7 @@
 import { CSSProperties } from '../../../../node_modules/react';
 
 export interface IIconUnitProps {
-    unit?: string;
+    unit: string;
     style?: CSSProperties;
     className?: string;
 }

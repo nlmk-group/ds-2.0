@@ -158,6 +158,14 @@ export declare const BasicSingleSelect: {
     (): React.JSX.Element;
     storyName: string;
 };
+export declare const BasicSingleSelectWithInitialValue: {
+    (): React.JSX.Element;
+    storyName: string;
+};
+export declare const MultipleSelectWithInitialValue: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 export declare const MultipleSelectWithSearchAndCheckAll: {
     (): React.JSX.Element;
     storyName: string;
@@ -171,6 +179,10 @@ export declare const GroupedOptionsExample: {
     storyName: string;
 };
 export declare const TreeViewExample: {
+    (): React.JSX.Element;
+    storyName: string;
+};
+export declare const TreeViewWithMaxLevelExample: {
     (): React.JSX.Element;
     storyName: string;
 };

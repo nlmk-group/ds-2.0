@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.23.0 - <span className={styles.date}>06.05.25</span>
+            v2.23.0 - <span className={styles.date}>14.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -46,6 +46,7 @@ export const Changelog = () => {
                 - Добавлено внутреннее свойство treeOptions для чекбокса CheckAll, благодаря которому в ComboBoxTree
                 чекбоксы выбираются правильно
               </li>
+              <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
             </li>
             <li>
               • Обновлен компонент{' '}

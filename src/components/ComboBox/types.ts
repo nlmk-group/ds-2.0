@@ -31,6 +31,7 @@ export interface IComboBoxTree {
 export interface IComboBoxTreeOption extends IComboBoxOption {
   parentId?: string | null;
   level?: number;
+  children?: IComboBoxTreeOption[];
 }
 
 export type IdToOrderMap = Record<string | number, number>;
@@ -67,6 +68,7 @@ export interface IComboBoxInputProps {
   isDisabled: boolean;
   isOpen: boolean;
   label?: string;
+  initialValue?: IComboBoxOption[];
   value?: IComboBoxOption[];
   onFocusSearchInput: () => void;
   onOpenClick: () => void;

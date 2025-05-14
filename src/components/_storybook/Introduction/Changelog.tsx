@@ -23,7 +23,65 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.22.8 - <span className={styles.date}>24.04.25</span>
+            v2.23.0 - <span className={styles.date}>14.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              <li className={styles['left-padding']}>- Удалено значение maxLevel по умолчанию у ComboTreeList</li>
+              <li className={styles['left-padding']}>
+                - Доработана логика рендеринга последнего элемента у ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено выравнивание для вложенных элементов TreeList, не имеющих дочерние элементы
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено внутреннее свойство treeOptions для чекбокса CheckAll, благодаря которому в ComboBoxTree
+                чекбоксы выбираются правильно
+              </li>
+              <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              .
+              <li className={styles['left-padding']}>
+                - Параметр unit стал обязательным для корректного отображения компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена работа с react-popper при withPortal=false: настроено корректное позиционирование выпадающего
+                списка с fallbackPlacement и rootBoundary для автоматической адаптации при ограниченном пространстве
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>30.04.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

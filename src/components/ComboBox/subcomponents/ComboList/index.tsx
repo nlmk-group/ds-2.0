@@ -87,7 +87,7 @@ const ComboList = <T extends IComboBoxOption>({
         )}
 
         {!isMultiple && !isSingleChoiceCheckbox && (
-          <Box className={styles.listItemLabelWrapper} gap={8} onClick={() => !item?.disabled && handleChange(item)} >
+          <Box className={styles.listItemLabelWrapper} gap={8} onClick={() => !item?.disabled && handleChange(item)}>
             <Typography
               variant="Body1-Medium"
               className={clsx(styles.listItemLabel, {

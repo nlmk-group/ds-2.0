@@ -1,4 +1,7 @@
-type TSkeletonAnimation = 'wave' | 'pulse'
+export enum ESkeletonAnimation {
+  wave = 'wave',
+  pulse = 'pulse'
+}
 
 export interface ISkeletonLoadingProps {
   id?: string;
@@ -6,5 +9,5 @@ export interface ISkeletonLoadingProps {
   count?: number;
   width?: string;
   height?: string;
-  animation?: TSkeletonAnimation
+  animation?: ESkeletonAnimation;
 }

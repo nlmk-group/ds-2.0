@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 
 import clsx from 'clsx';
 
-import { ISkeletonLoadingProps } from './types';
+import { ESkeletonAnimation, ISkeletonLoadingProps } from './types';
 
 import styles from './SkeletonLoader.module.scss';
 
 const SkeletonLoader: FC<ISkeletonLoadingProps> = ({
   id,
   className,
-  animation = 'wave',
+  animation = ESkeletonAnimation.wave,
   count = 1,
   width = '200px',
   height = '100px'

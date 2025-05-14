@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -10,7 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=53-31464&t=EnvIMGos3m33avAX-1';
 
@@ -45,6 +45,19 @@ const Stories = (): JSX.Element => {
 export default  App = () => (
   <>
     <SkeletonLoader width="350px" />
+  </>
+)
+`}
+          />
+
+          <Editor
+            height={200}
+            description="Компонент лоадера с анимацией пульсации"
+            code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <>
+    <SkeletonLoader width="350px" animation="pulse" />
   </>
 )
 `}

@@ -41,6 +41,19 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>- Обновлена документация компонента Stepper</li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство animation для выбора типа анимации компонента
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 /**
  * Типы анимации для компонента SkeletonLoader
  */
@@ -25,3 +27,12 @@ export interface ISkeletonLoadingProps {
   /** Тип анимации (по умолчанию: 'wave') */
   animation?: `${ESkeletonAnimation}`;
 }
+
+/**
+ * Компонент SkeletonLoader
+ *
+ * Отображает анимированные заглушки для контента во время загрузки данных.
+ */
+declare const SkeletonLoader: FC<ISkeletonLoadingProps>;
+
+export default SkeletonLoader;

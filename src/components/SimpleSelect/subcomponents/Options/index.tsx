@@ -80,7 +80,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     const baseStyles = {
       width: withPortal ? menuWidth || selectRef.current?.offsetWidth : '100%',
       maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
-      marginTop: helperText ? '-20px' : '4px',
+      marginTop: helperText ? '-20px' : '0',
       ...popperStyles.popper
     };
 

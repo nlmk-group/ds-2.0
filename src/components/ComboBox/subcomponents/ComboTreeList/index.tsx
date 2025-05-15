@@ -21,7 +21,8 @@ const ComboTreeList = <T extends IComboBoxTree>({
   isCheckAll = false,
   isLoading = false,
   isMultiple = true,
-  isVirtualize = false
+  isVirtualize = false,
+  checkableSimple = false
 }: IComboTreeListProps<T>) => {
   const setComboValue = useSetComboBoxValue();
   const comboBoxValue = useComboBoxValue();
@@ -55,9 +56,22 @@ const ComboTreeList = <T extends IComboBoxTree>({
       }
     } else {
       setComboValue?.(previousValue => {
+        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+        if (checkableSimple) {
+          if (isCheck && previousValue) {
+            const filteredValue = previousValue.filter(value => value.id !== item.id);
+            onChange?.(filteredValue);
+            return filteredValue;
+          } else {
+            const newValue = [...(previousValue ?? []), item];
+            onChange?.(newValue);
+            return newValue;
+          }
+        }
+
         const childIds = findChildIds(item.id, treeOptions).filter(element => element !== item.id);
         const parentsIds = findParentsIds(item.parentId, treeOptions);
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
 
         if (isCheck && previousValue) {
           const filteredValue = previousValue.filter(value => {
@@ -91,9 +105,11 @@ const ComboTreeList = <T extends IComboBoxTree>({
   };
 
   const parentCheckedIds = useMemo(() => {
+    if (checkableSimple) return [];
+
     const parentsIds = findManyParentsIds(checkedIds, treeOptions);
     return Array.from(new Set(parentsIds));
-  }, [treeOptions, checkedIds]);
+  }, [treeOptions, checkedIds, checkableSimple]);
 
   const parentIdsSet = useMemo(() => {
     const ids = new Set<string>();
@@ -162,8 +178,8 @@ const ComboTreeList = <T extends IComboBoxTree>({
         )}
         {isMultiple && (
           <Checkbox
-            checked={isChecked || isIndeterminate}
-            multiple={isChecked ? false : isIndeterminate}
+            checked={checkableSimple ? isChecked : isChecked || isIndeterminate}
+            multiple={!checkableSimple && !isChecked && isIndeterminate}
             label={item.label}
             onChange={() => handleChangeChecked(item)}
             className={styles['list-item-checkbox']}

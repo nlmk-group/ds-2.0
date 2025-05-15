@@ -23,9 +23,25 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.23.1 - <span className={styles.date}>14.05.25</span>
+            v2.23.1 - <span className={styles.date}>15.05.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство checkableSimple для независимого выбора чекбоксов в ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пример использования с независимыми чекбоксами в истории компонента
+              </li>
+            </li>
             <li>
               • Изменен компонент{' '}
               <Link

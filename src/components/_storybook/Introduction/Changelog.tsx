@@ -50,8 +50,9 @@ export const Changelog = () => {
               >
                 SkeletonLoader
               </Link>
-              <li className={styles['left-padding']}>- Добавлено свойство animation для типа анимаций компонента</li>
-              <li className={styles['left-padding']}>- Добавлен новый тип анимации pulse</li>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство animation для выбора типа анимации компонента
+              </li>
             </li>
           </ul>
         </div>

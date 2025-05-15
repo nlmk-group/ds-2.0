@@ -13,6 +13,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import argsTypes from './argsTypes';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=53-31464&t=EnvIMGos3m33avAX-1';
+const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components/SkeletonLoader';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -21,9 +22,9 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="SkeletonLoader"
-        description="Skeleton Loader — это статический/анимированный элемент для информации, которая все еще загружается."
+        description="SkeletonLoader используется для отображения анимированных заглушек во время загрузки контента."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/SkeletonLoader"
+        codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
       />
 

@@ -39,7 +39,7 @@ $margin: 10px;
     animation: animation-wave-skeleton-loader 1.2s ease-in-out infinite;
   }
   &_pulse {
-    background-color: var(--steel-20, rgba(var(--steel-40, undefined) / .1));
+    background-color: var(--steel-20, rgba(var(--steel-40, undefined) / 0.1));
     animation: animation-pulse-skeleton-loader 2s ease-in-out 0.5s infinite;
   }
 }

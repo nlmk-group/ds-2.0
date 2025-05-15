@@ -34,18 +34,19 @@ export const SkeletonLoaderPulseAnimation = (argsTypes: ISkeletonLoadingProps): 
 SkeletonLoaderPulseAnimation.storyName = 'Skeleton loader c анимацией пульсации';
 SkeletonLoaderPulseAnimation.args = { animation: 'pulse' };
 
-export const SkeletonLoaderMulti = (): JSX.Element => {
+export const SkeletonLoaderMulti = (argTypes: ISkeletonLoadingProps): JSX.Element => {
+  const skeletonArgs = { height: '50px', ...argTypes };
   return (
     <div className={styles.wrapper}>
       <Box gap={20}>
-        <SkeletonLoader width="50px" count={2} height="50px" />
-        <SkeletonLoader width="50px" count={2} height="50px" />
-        <SkeletonLoader width="780px" count={2} height="50px" />
+        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
+        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
+        <SkeletonLoader width="780px" count={2} {...skeletonArgs} />
       </Box>
       <Box gap={20}>
-        <SkeletonLoader width="600px" count={4} height="50px" />
-        <SkeletonLoader width="230px" count={4} height="50px" />
-        <SkeletonLoader width="50px" count={4} height="50px" />
+        <SkeletonLoader width="600px" count={4} {...skeletonArgs} />
+        <SkeletonLoader width="230px" count={4} {...skeletonArgs} />
+        <SkeletonLoader width="50px" count={4} {...skeletonArgs} />
       </Box>
     </div>
   );

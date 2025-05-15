@@ -23,6 +23,41 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.0 - <span className={styles.date}>15.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-stepper-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Stepper
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено свойство color в компонентах Step и Stepper</li>
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования нового свойства в истории компонента
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента Stepper</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство animation для выбора типа анимации компонента
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.23.1 - <span className={styles.date}>15.05.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -52,7 +87,7 @@ export const Changelog = () => {
                 Input
               </Link>
               <li className={styles['left-padding']}>
-                - Исправлен визуальный баг с placeholder в случае многострочного компонента
+                - Исправлен визуальный баг взаимодействия свойств placeholder и label при наличии атрибута multiple
               </li>
             </li>
           </ul>

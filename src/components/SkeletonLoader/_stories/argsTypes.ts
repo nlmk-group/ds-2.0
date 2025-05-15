@@ -1,3 +1,5 @@
+import { ESkeletonAnimation } from '../types';
+
 const argsTypes = {
   id: {
     description: 'Индентификатор лоадера',
@@ -38,6 +40,19 @@ const argsTypes = {
         summary: '100px'
       }
     }
+  },
+  animation: {
+    description: 'Анимация лоадера',
+    table: {
+      defaultValue: {
+        summary: ESkeletonAnimation.wave
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: [ESkeletonAnimation.wave, ESkeletonAnimation.pulse],
+    control: { type: 'select' }
   }
 };
 

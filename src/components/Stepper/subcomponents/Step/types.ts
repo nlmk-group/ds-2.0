@@ -11,7 +11,7 @@ export interface IStepProps {
   /** Индекс шага (порядковый номер в последовательности) */
   index: number;
 
-  /** Состояние шага (например: active, done, error, disabled) */
+  /** Состояние шага (например: filled, notFilled, disabled) */
   state: `${EStepState}`;
 
   /** Цвет шага (например: primary, success, error) */

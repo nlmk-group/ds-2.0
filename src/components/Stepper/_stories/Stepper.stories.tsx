@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box, Button, Stepper } from '@components/index';
 
@@ -17,6 +17,14 @@ export default {
   argTypes: argsTypes
 };
 
+const BASE_STEPS = [
+  { stepName: 'Шаг 1', index: 0 },
+  { stepName: 'Шаг 2', index: 1 },
+  { stepName: 'Шаг 3', index: 2 },
+  { stepName: 'Шаг 4', index: 3, color: EStepColor.error },
+  { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
+];
+
 export const StepperDefault = (argTypes: IStepperProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
@@ -24,25 +32,17 @@ export const StepperDefault = (argTypes: IStepperProps): JSX.Element => {
     </div>
   );
 };
-
 StepperDefault.storyName = 'Stepper по умолчанию';
 StepperDefault.args = {
   stepName: 'Шаг 1',
   index: 0,
   showStep: true
 };
+
 export const StepperWithSteps = () => {
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const baseSteps = [
-    { stepName: 'Шаг 1', index: 0 },
-    { stepName: 'Шаг 2', index: 1 },
-    { stepName: 'Шаг 3', index: 2 },
-    { stepName: 'Шаг 4', index: 3 },
-    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
-  ];
-
-  const steps = baseSteps.map(step => ({
+  const steps = BASE_STEPS.map(step => ({
     ...step,
     state:
       step.state === EStepState.disabled
@@ -70,32 +70,23 @@ export const StepperWithSteps = () => {
     </div>
   );
 };
-
 StepperWithSteps.storyName = 'Stepper с несколькими шагами';
 StepperWithSteps.parameters = {
   controls: { disable: true }
 };
 
-export const StepperWithSuccess = () => {
-  const [currentStep, setCurrentStep] = React.useState(0);
-  const [isCompleted, setIsCompleted] = React.useState(false);
+export const StepperWithInteractive = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
-  const baseSteps = [
-    { stepName: 'Шаг 1', index: 0 },
-    { stepName: 'Шаг 2', index: 1 },
-    { stepName: 'Шаг 3', index: 2 },
-    { stepName: 'Шаг 4', index: 3 },
-    { stepName: 'Шаг 5', index: 4 }
-  ];
-
-  const steps = baseSteps.map(step => ({
+  const steps = BASE_STEPS.map(step => ({
     ...step,
     state: step.index <= currentStep ? EStepState.filled : EStepState.notFilled,
     color: isCompleted ? EStepColor.success : EStepColor.brand
   }));
 
   const handleNext = () => {
-    if (currentStep < baseSteps.length - 1) {
+    if (currentStep < BASE_STEPS.length - 1) {
       setCurrentStep(prev => prev + 1);
     } else {
       setIsCompleted(true);
@@ -125,7 +116,7 @@ export const StepperWithSuccess = () => {
       <Box pt={24} gap={8}>
         {!isCompleted ? (
           <Button onClick={handleNext}>
-            {currentStep === baseSteps.length - 1 ? 'Завершить процесс' : 'Следующий шаг'}
+            {currentStep === BASE_STEPS.length - 1 ? 'Завершить процесс' : 'Следующий шаг'}
           </Button>
         ) : (
           <Button variant="secondary" onClick={handleReset}>
@@ -136,22 +127,13 @@ export const StepperWithSuccess = () => {
     </div>
   );
 };
-
-StepperWithSuccess.storyName = 'Stepper с индикатором успеха';
-StepperWithSuccess.parameters = { controls: { disable: true } };
+StepperWithInteractive.storyName = 'Пример Stepper с интерактивным сценарием';
+StepperWithInteractive.parameters = { controls: { disable: true } };
 
 export const StepperWithError = () => {
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const baseSteps = [
-    { stepName: 'Шаг 1', index: 0 },
-    { stepName: 'Шаг 2', index: 1 },
-    { stepName: 'Шаг 3', index: 2 },
-    { stepName: 'Шаг 4', index: 3, color: EStepColor.error },
-    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
-  ];
-
-  const steps = baseSteps.map(step => ({
+  const steps = BASE_STEPS.map(step => ({
     ...step,
     state:
       step.state === EStepState.disabled
@@ -180,6 +162,5 @@ export const StepperWithError = () => {
     </div>
   );
 };
-
 StepperWithError.storyName = 'Stepper с индикатором ошибки';
 StepperWithError.parameters = { controls: { disable: true } };

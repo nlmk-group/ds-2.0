@@ -44,7 +44,7 @@ const Stepper: FC<IStepperProps> = ({
       key={index}
       data-ui-stepper
     >
-      <Step color={color} stepName={stepName} index={index} state={state} active={index === currentStep} data-ui-step />
+      <Step color={color} stepName={stepName} index={index} state={state} active={index === currentStep} />
       {showStep && <Divider className={styles['divider-line']} data-ui-stepper-divider />}
     </Box>
   );

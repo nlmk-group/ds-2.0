@@ -19,7 +19,7 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   color: {
-    description: 'Отвечает за цвет Stepper.',
+    description: 'Цвет шага в Stepper.',
     table: {
       defaultValue: {
         summary: EStepColor.brand

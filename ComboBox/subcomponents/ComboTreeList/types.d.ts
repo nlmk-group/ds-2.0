@@ -8,6 +8,7 @@ export interface IComboTreeListProps<T> {
     isMultiple?: boolean;
     maxLevel?: number;
     items: T[];
+    checkableSimple?: boolean;
     onChange?: (value: IComboBoxTreeOption[]) => void;
 }
 //# sourceMappingURL=types.d.ts.map

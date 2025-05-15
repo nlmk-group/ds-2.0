@@ -198,4 +198,8 @@ export declare const TooltipDescriptionStringExample: {
     (): React.JSX.Element;
     storyName: string;
 };
+export declare const TreeViewWithSimpleCheckboxesExample: {
+    (): React.JSX.Element;
+    storyName: string;
+};
 //# sourceMappingURL=ComboBox.stories.d.ts.map

@@ -23,6 +23,29 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.23.2 - <span className={styles.date}>15.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство animation для типа анимаций компонента
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен новый тип анимации pulse
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.23.1 - <span className={styles.date}>15.05.25</span>
           </Typography>
           <ul className={styles.list}>

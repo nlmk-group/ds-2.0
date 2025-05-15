@@ -1,7 +1,7 @@
 import { ReactNode } from '../../../../node_modules/react';
 import { ISwitchProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISwitchProps>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, ISwitchProps>;
 export default _default;
 export declare const DefaultSwitch: {
     (argTypes: ISwitchProps): ReactNode;

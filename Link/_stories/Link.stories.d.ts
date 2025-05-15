@@ -2,7 +2,7 @@ import { default as React, MouseEvent, ReactNode } from '../../../../node_module
 import { sizeMapping } from '../enums';
 import { ILink } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ILink>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, ILink>;
 export default _default;
 export declare const DefaultLink: {
     (argTypes: ILink): ReactNode;

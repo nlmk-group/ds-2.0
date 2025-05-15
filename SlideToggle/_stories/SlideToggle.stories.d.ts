@@ -1,7 +1,7 @@
 import { EBadgeColors } from '../../Badge/enums';
 import { ISlideToggleProps, ISlideToggleWithButtonProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ISlideToggleProps>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, ISlideToggleProps>;
 export default _default;
 export declare const SlideToggleDefault: {
     (args: ISlideToggleProps): JSX.Element;

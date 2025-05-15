@@ -3,4 +3,9 @@ export declare enum EStepState {
     notFilled = "notFilled",
     disabled = "disabled"
 }
+export declare enum EStepColor {
+    brand = "brand",
+    success = "success",
+    error = "error"
+}
 //# sourceMappingURL=enums.d.ts.map

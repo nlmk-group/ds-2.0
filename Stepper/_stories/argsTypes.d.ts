@@ -1,4 +1,4 @@
-import { EStepState } from '../subcomponents/Step/enums';
+import { EStepColor, EStepState } from '../subcomponents/Step/enums';
 
 export declare const argsTypes: {
     className: {
@@ -12,6 +12,21 @@ export declare const argsTypes: {
         table: {
             defaultValue: {
                 summary: EStepState;
+            };
+            type: {
+                summary: string;
+            };
+        };
+        options: string[];
+        control: {
+            type: string;
+        };
+    };
+    color: {
+        description: string;
+        table: {
+            defaultValue: {
+                summary: EStepColor;
             };
             type: {
                 summary: string;

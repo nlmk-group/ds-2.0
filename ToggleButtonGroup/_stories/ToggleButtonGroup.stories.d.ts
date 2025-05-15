@@ -1,7 +1,7 @@
 import { ReactNode } from '../../../../node_modules/react';
 import { IToggleButtonGroupProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, IToggleButtonGroupProps>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, IToggleButtonGroupProps>;
 export default _default;
 export declare const DefaultBtnGroup: {
     (argTypes: IToggleButtonGroupProps): ReactNode;

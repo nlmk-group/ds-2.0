@@ -1,1 +1,1 @@
-{"version":3,"file":"Stories.d.ts","sourceRoot":"","sources":["../../../src/components/SkeletonLoader/_stories/Stories.tsx"],"names":[],"mappings":"AAMA,OAAO,2CAA2C,CAAC;AAUnD,QAAA,MAAM,OAAO,QAAO,WA4DnB,CAAC;AAEF,eAAe,OAAO,CAAC"}
+{"version":3,"file":"Stories.d.ts","sourceRoot":"","sources":["../../../src/components/SkeletonLoader/_stories/Stories.tsx"],"names":[],"mappings":"AAOA,OAAO,2CAA2C,CAAC;AAUnD,QAAA,MAAM,OAAO,QAAO,WAyEnB,CAAC;AAEF,eAAe,OAAO,CAAC"}

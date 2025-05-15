@@ -2,7 +2,7 @@ import { ReactNode } from '../../../../node_modules/react';
 import { EOrientationMapping } from '../enums';
 import { ICard } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ICard>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, ICard>;
 export default _default;
 export declare const CardDefault: {
     (argTypes: ICard): ReactNode;

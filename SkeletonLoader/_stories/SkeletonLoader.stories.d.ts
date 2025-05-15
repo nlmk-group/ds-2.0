@@ -1,8 +1,9 @@
 import { default as React } from '../../../../node_modules/react';
+import { ESkeletonAnimation, ISkeletonLoadingProps } from '../types';
 
 declare const _default: {
     title: string;
-    component: React.FC<import('../types').ISkeletonLoading>;
+    component: React.FC<ISkeletonLoadingProps>;
     decorators: ((Story: () => any) => React.JSX.Element)[];
     argTypes: {
         id: {
@@ -56,15 +57,41 @@ declare const _default: {
                 };
             };
         };
+        animation: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: ESkeletonAnimation;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: ESkeletonAnimation[];
+            control: {
+                type: string;
+            };
+        };
     };
 };
 export default _default;
 export declare const SkeletonLoaderDefault: {
-    (): JSX.Element;
+    (argTypes: ISkeletonLoadingProps): JSX.Element;
     storyName: string;
 };
+export declare const SkeletonLoaderPulseAnimation: {
+    (argsTypes: ISkeletonLoadingProps): JSX.Element;
+    storyName: string;
+    args: {
+        animation: string;
+    };
+};
 export declare const SkeletonLoaderMulti: {
-    (): JSX.Element;
+    (argTypes: ISkeletonLoadingProps): JSX.Element;
+    storyName: string;
+};
+export declare const SkeletonLoaderMultiPulseAnimation: {
+    (argTypes: ISkeletonLoadingProps): JSX.Element;
     storyName: string;
 };
 //# sourceMappingURL=SkeletonLoader.stories.d.ts.map

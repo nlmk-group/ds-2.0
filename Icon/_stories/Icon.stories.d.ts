@@ -1,7 +1,7 @@
 import { IIconUnitProps } from '../IconUnit/types';
 import { TIconProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, TIconProps>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, TIconProps>;
 export default _default;
 export declare const IconComponent: {
     (argsTypes: TIconProps): JSX.Element;

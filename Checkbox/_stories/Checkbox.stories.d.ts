@@ -1,6 +1,6 @@
 import { ICheckboxProps } from '../types';
 
-declare const _default: import('@storybook/csf').ComponentAnnotations<import('@storybook/react/dist/types-a5624094').R, ICheckboxProps>;
+declare const _default: import('@storybook/core/csf').ComponentAnnotations<import('@storybook/react/dist/types-5617c98e').R, ICheckboxProps>;
 export default _default;
 export declare const CheckboxDefault: {
     (argTypes: ICheckboxProps): JSX.Element;

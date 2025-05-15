@@ -1,5 +1,5 @@
 import { default as React } from '../../../../node_modules/react';
-import { EStepState } from '../subcomponents/Step/enums';
+import { EStepColor, EStepState } from '../subcomponents/Step/enums';
 import { IStepperProps } from '../types';
 
 declare const _default: {
@@ -18,6 +18,21 @@ declare const _default: {
             table: {
                 defaultValue: {
                     summary: EStepState;
+                };
+                type: {
+                    summary: string;
+                };
+            };
+            options: string[];
+            control: {
+                type: string;
+            };
+        };
+        color: {
+            description: string;
+            table: {
+                defaultValue: {
+                    summary: EStepColor;
                 };
                 type: {
                     summary: string;
@@ -91,5 +106,28 @@ export declare const StepperDefault: {
 export declare const StepperWithSteps: {
     (): React.JSX.Element;
     storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
+};
+export declare const StepperWithInteractive: {
+    (): React.JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
+};
+export declare const StepperWithError: {
+    (): React.JSX.Element;
+    storyName: string;
+    parameters: {
+        controls: {
+            disable: boolean;
+        };
+    };
 };
 //# sourceMappingURL=Stepper.stories.d.ts.map

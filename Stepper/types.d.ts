@@ -1,4 +1,4 @@
-import { EStepState } from './subcomponents/Step/enums';
+import { EStepColor, EStepState } from './subcomponents/Step/enums';
 
 export interface IStepperProps {
     currentStep: number;
@@ -11,5 +11,6 @@ export interface IStepperProps {
         state: `${EStepState}`;
         index: number;
     }) => void;
+    color?: `${EStepColor}`;
 }
 //# sourceMappingURL=types.d.ts.map

@@ -371,3 +371,13 @@ export const TooltipDescriptionStringExample = () => {
   );
 };
 TooltipDescriptionStringExample.storyName = 'ComboBox с текстовой подсказкой (строка)';
+
+export const TreeViewWithSimpleCheckboxesExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Древовидный список с независимыми чекбоксами" countOnlyLevel={2}>
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll checkableSimple />
+    </ComboBox>
+  );
+};
+TreeViewWithSimpleCheckboxesExample.storyName = 'Древовидный список с независимыми чекбоксами';

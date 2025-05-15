@@ -11,7 +11,6 @@ import { IAutocompleteDropdownProps } from './types';
 import styles from './AutocompleteDropdown.module.scss';
 
 import { AutocompleteContext } from '../../context';
-import { EAutocompleteSize } from '../../enums';
 import { boldReactElement, boldString } from '../../helpers';
 import AutocompleteItem from '../AutocompleteItem';
 
@@ -21,6 +20,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     isOpen,
     withPortal,
     inputRef,
+    helperText,
     wrapperRef,
     isLoading,
     showCreateItem,
@@ -33,7 +33,6 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     onSelectMenuItem,
     noResultsText,
     targetRef,
-    size,
     showTooltip,
     renderLabel,
     totalText,
@@ -63,7 +62,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'preventOverflow',
         options: {
-          padding: 8,
+          padding: 4,
           boundary: 'clippingParents'
         }
       },
@@ -76,7 +75,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'offset',
         options: {
-          offset: [0, 0]
+          offset: [0, 4]
         }
       }
     ]
@@ -87,23 +86,22 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     const baseStyles = {
       width: rect?.width,
       left: rect?.left,
-      top: rect ? rect.top + rect.height : undefined
+      top: rect ? rect.top + rect.height : undefined,
+      marginTop: helperText ? '-20px' : '0',
+      // Добавляем остальные стили Popper
+      ...popperStyles.popper
     };
 
-    if (withPortal) {
+    if (!withPortal) {
       return {
         ...baseStyles,
-        ...popperStyles.popper
+        top: '100%',
+        position: 'absolute',
+        zIndex: 1000
       };
     }
 
-    return {
-      ...baseStyles,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      zIndex: 1000
-    };
+    return baseStyles;
   };
 
   const hasItems = (currentItems ?? []).length > 0;
@@ -120,12 +118,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
             (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
           }
         }}
-        className={clsx(
-          styles.card,
-          size === EAutocompleteSize.s && styles['card-small'],
-          size === EAutocompleteSize.xs && styles['card-extra-small'],
-          className
-        )}
+        className={clsx(styles.card, helperText && styles['card-with-helper'], className)}
         style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}
         {...(withPortal ? attributes.popper : {})}
         data-ui-autocomplete-dropdown

@@ -212,6 +212,7 @@ const SimpleSelect: FC<ISelectProps> = ({
       value={{
         isOpen,
         setIsOpen,
+        helperText,
         selectedOption: value,
         setSelectedOption: handleOptionChange,
         selectedLabel,

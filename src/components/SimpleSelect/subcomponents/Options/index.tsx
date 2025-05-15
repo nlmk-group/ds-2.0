@@ -17,6 +17,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     isOpen,
     selectRef,
     menuWidth,
+    helperText,
     withPortal,
     menuRef,
     portalContainerId,
@@ -79,7 +80,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     const baseStyles = {
       width: withPortal ? menuWidth || selectRef.current?.offsetWidth : '100%',
       maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
-      marginTop: 0,
+      marginTop: helperText ? '-20px' : '4px',
       ...popperStyles.popper
     };
 

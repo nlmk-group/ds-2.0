@@ -2,11 +2,10 @@ import { createContext, ReactNode, RefObject } from 'react';
 
 import { IAutocompleteValue } from './types';
 
-import { EAutocompleteSize } from './enums';
-
 interface AutocompleteContextProps {
   isOpen: boolean;
   disabled: boolean;
+  helperText?: ReactNode;
   withPortal?: boolean;
   wrapperRef: RefObject<HTMLDivElement>;
   targetRef: RefObject<HTMLDivElement>;
@@ -21,7 +20,6 @@ interface AutocompleteContextProps {
   createItemText: (value: string) => string;
   onSelectMenuItem: (item: IAutocompleteValue) => void;
   noResultsText: string;
-  size?: `${EAutocompleteSize}`;
   showTooltip: boolean;
   renderLabel?: (item: IAutocompleteValue) => ReactNode;
   portalContainerId: string;
@@ -48,7 +46,6 @@ export const AutocompleteContext = createContext<AutocompleteContextProps>({
   createItemText: (value: string) => `Добавить: ${value}`,
   onSelectMenuItem: () => {},
   noResultsText: '',
-  size: EAutocompleteSize.m,
   showTooltip: false,
   renderLabel: undefined,
   portalContainerId: 'root',

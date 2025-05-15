@@ -1,4 +1,4 @@
-import { createContext, RefObject } from 'react';
+import { createContext, ReactNode, RefObject } from 'react';
 
 import { SCROLLING_ITEMS_DEFAULT } from './constants';
 
@@ -7,6 +7,8 @@ interface SelectContextProps {
    * Флаг, указывающий, открыто ли меню
    */
   isOpen: boolean;
+
+  helperText: ReactNode;
 
   /**
    * Функция для установки состояния открытия меню
@@ -95,6 +97,7 @@ export const SelectContext = createContext<SelectContextProps>({
   selectedOption: undefined,
   setSelectedOption: () => {},
   onChange: undefined,
+  helperText: '',
   selectedLabel: '',
   setSelectedLabel: () => {},
   selectRef: { current: null },

@@ -11,6 +11,7 @@ on:
 
 jobs:
   validate:
+    if: github.event_name != 'push' || !github.event.pull_request
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

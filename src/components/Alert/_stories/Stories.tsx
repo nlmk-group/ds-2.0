@@ -81,7 +81,6 @@ export default App
 `}
           />
 
-          {/* FIXME: --ac-alert-info-text fix */}
           <Editor
             description="Компонент Alert может быть добавлен с другими кнопками"
             code={`
@@ -96,7 +95,7 @@ const App = () => (
         variant="secondary"
         iconButton={
           <IconDeleteBinOutlined24
-            htmlColor='var(--ac-alert-info-text)' />
+            htmlColor='var(--spectrum-sky-60)' />
         }
         onClick={() => confirm('Подтвердите удаление!')} />
     }

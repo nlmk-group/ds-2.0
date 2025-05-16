@@ -134,7 +134,6 @@ export default  App = () => (
 )
 `}
           />
-          {/* FIXME: --ac-tooltip-text not found */}
           <Editor
             height={600}
             description="Тултип с кастомной JSX разметкой внутри"
@@ -143,15 +142,15 @@ export default  App = () => (
 const RenderCustom = () => {
   return (
     <div>
-    <Box color="var(--ac-tooltip-text)" gap="8px" alignItems="center" paddingSpace="xs">
-      <Icon name="IconDoneCheckOutlined16" color="success"/>
-      <Typography variant="Caption-Medium">Первый пункт</Typography>
-    </Box>
-      <Box color="var(--ac-tooltip-text)" gap="8px" alignItems="center" paddingSpace="xs">
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
+        <Icon name="IconDoneCheckOutlined16" color="success"/>
+        <Typography variant="Caption-Medium">Первый пункт</Typography>
+      </Box>
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
         <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Второй пункт</Typography>
       </Box>
-        <Box color="var(--ac-tooltip-text)" gap="8px" alignItems="center" paddingSpace="xs">
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
         <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Третий пункт</Typography>
       </Box>

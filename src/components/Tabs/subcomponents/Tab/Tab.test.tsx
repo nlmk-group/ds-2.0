@@ -38,8 +38,7 @@ describe('src/components/Tab', () => {
     const { container } = render(
       <Tabs.Tab label="Hello World!">
         <Tabs.Tooltip render="Сюда вы можете добавить текст подсказу для компонента">
-          {/* FIXME: --text-grey-500 not found */}
-          <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--text-grey-500)" />
+          <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--steel-90)" />
         </Tabs.Tooltip>
       </Tabs.Tab>
     );

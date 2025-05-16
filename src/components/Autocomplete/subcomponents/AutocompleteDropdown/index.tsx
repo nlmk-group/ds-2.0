@@ -62,7 +62,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'preventOverflow',
         options: {
-          padding: 4,
+          padding: 8,
           boundary: 'clippingParents'
         }
       },
@@ -88,7 +88,6 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       left: rect?.left,
       top: rect ? rect.top + rect.height : undefined,
       marginTop: helperText ? '-20px' : '0',
-      // Добавляем остальные стили Popper
       ...popperStyles.popper
     };
 

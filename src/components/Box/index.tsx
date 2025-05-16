@@ -21,7 +21,7 @@ const Box: FC<IBox> = ({
   height,
   width,
   maxWidth,
-  color = 'var(--text-grey-900)',
+  color = 'var(--steel-90)',
   border,
   borderRadius,
   display = 'flex',

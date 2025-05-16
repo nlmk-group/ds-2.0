@@ -6,8 +6,8 @@ $transition: 0.1s linear;
   width: calc(100vw - 48px);
   box-sizing: border-box;
   padding: 24px 24px;
-  background: var(--bg-paper);
-  border-radius: var(--8-radius);
+  background: var(--steel-10);
+  border-radius: 8px;
   margin: 10px auto 0;
 
   span {
@@ -19,11 +19,11 @@ $transition: 0.1s linear;
     flex-direction: column;
     gap: 16px;
     padding: 36px 0 40px;
-    color: var(--grey-text-primary);
+    color: var(--steel-90);
 
     .colors-table-subtitle {
       max-width: 1024px;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
     }
   }
 
@@ -33,9 +33,9 @@ $transition: 0.1s linear;
       gap: 16px;
       align-items: flex-start;
       box-sizing: border-box;
-      border-bottom: 1px solid var(--grey-phantom);
+      border-bottom: 1px solid var(--unique-divider);
       padding: 24px 0;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
 
       &.color-row-header {
         padding: 0 0 16px;
@@ -48,7 +48,7 @@ $transition: 0.1s linear;
       flex-direction: column;
       align-items: flex-start;
       gap: 16px;
-      color: var(--grey-text-primary);
+      color: var(--steel-90);
     }
 
     .cells-color {
@@ -70,7 +70,7 @@ $transition: 0.1s linear;
       cursor: pointer;
 
       &:hover .color-value {
-        background: var(--bg-smoke);
+        background: var(--steel-10);
       }
 
       .color {
@@ -79,7 +79,7 @@ $transition: 0.1s linear;
         height: 30px;
 
         &.color-white {
-          border: 1px solid var(--misc-divider);
+          border: 1px solid var(--unique-divider);
         }
       }
 
@@ -100,13 +100,13 @@ $transition: 0.1s linear;
       border-radius: $border-radius;
       font-size: var(--font-size-1);
       font-family: monospace;
-      background-color: var(--bg-steel);
-      color: var(--grey-text-primary);
+      background-color: var(--steel-30);
+      color: var(--steel-90);
       cursor: pointer;
       transition: $transition;
 
       &:hover {
-        background: var(--grey-phantom);
+        background: var(--steel-50);
       }
     }
   }
@@ -120,7 +120,7 @@ $transition: 0.1s linear;
     flex-direction: column;
   }
   .colors-page-wrapper .colors-table .color-wrapper .color-value {
-    color: var(--grey-text-primary);
+    color: var(--steel-90);
   }
 }
 

@@ -49,7 +49,7 @@ export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
   return (
     <div>
       <Spinner>
-        <IconAutoRenewReloadOutlined24 htmlColor="var(--ac-loader-stroke-progress)" />
+        <IconAutoRenewReloadOutlined24 htmlColor="var(--brand-sapphire-60)" />
       </Spinner>
     </div>
   );
@@ -83,7 +83,7 @@ export const SpinnerStretchedContainer = (args: ISpinnerProps): JSX.Element => {
         justifyContent: 'center',
         width: '300px',
         backgroundColor: '#fff',
-        border: '1px solid var(--ac-border-primary)'
+        border: '1px solid var(--unique-divider)'
       }}
     >
       <Spinner {...args} />

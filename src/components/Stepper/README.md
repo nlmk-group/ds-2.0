@@ -1,6 +1,6 @@
 # Stepper Component
 
-## Версия компонента v3.1
+## Версия компонента v3.2
 
 Компонент Stepper используется для отображения последовательности шагов, например, в форме или процессе регистрации. Он поддерживает различные состояния шагов и позволяет пользователям легко ориентироваться между ними.
 
@@ -8,11 +8,12 @@
 
 ```jsx
 import React, { useState } from 'react';
-import { EStepState, Stepper } from '@nlmk/ds-2.0';
-const [currentStep, setCurrentStep] = React.useState(1);
+import { EStepColor, EStepState, Stepper } from '@nlmk/ds-2.0';
+const [currentStep, setCurrentStep] = useState(1);
 <Stepper
   currentStep={currentStep}
   state={EStepState.filled}
+  color={EStepState.brand}
   stepName="Step 1"
   showStep={true}
   index={0}
@@ -26,6 +27,7 @@ const [currentStep, setCurrentStep] = React.useState(1);
 | ----------- | --------------------------------------------------- | ----------- | ------------------------ |
 | currentStep | number                                              | ---         | Текущий шаг              |
 | state       | `${EStepState}`                                     | 'notFilled' | Состояние шага           |
+| color       | `${EStepColor}`                                     | 'brand'     | Цвет шага                |
 | stepName    | string                                              | 'undefined' | Название шага            |
 | className   | string                                              | -           | Дополнительный CSS класс |
 | index       | number                                              | '0'         | Индекс шага              |
@@ -35,10 +37,14 @@ const [currentStep, setCurrentStep] = React.useState(1);
 ## Состояния шагов (EStepState)
 
 - `filled`: Заполнен
-- `focused`: Сфокусирован
-- `inProgress`: В процессе
 - `notFilled`: Не заполнен (по умолчанию)
 - `disabled`: Отключен
+
+## Цвета шагов (EStepColor)
+
+- `brand`: цвет бренда
+- `success`: цвет успеха
+- `error`: цвет ошибки
 
 ## Стилизация
 

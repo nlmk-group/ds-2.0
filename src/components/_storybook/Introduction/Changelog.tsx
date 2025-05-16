@@ -23,6 +23,173 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.0 - <span className={styles.date}>15.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-stepper-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Stepper
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлено свойство color в компонентах Step и Stepper</li>
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования нового свойства в истории компонента
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента Stepper</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство animation для выбора типа анимации компонента
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.23.1 - <span className={styles.date}>15.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              <li className={styles['left-padding']}>
+                - Добавлено свойство checkableSimple для независимого выбора чекбоксов в ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пример использования с независимыми чекбоксами в истории компонента
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              <li className={styles['left-padding']}>
+                - Исправлен визуальный баг взаимодействия свойств placeholder и label при наличии атрибута multiple
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.23.0 - <span className={styles.date}>14.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              <li className={styles['left-padding']}>- Удалено значение maxLevel по умолчанию у ComboTreeList</li>
+              <li className={styles['left-padding']}>
+                - Доработана логика рендеринга последнего элемента у ComboTreeList
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено выравнивание для вложенных элементов TreeList, не имеющих дочерние элементы
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлено внутреннее свойство treeOptions для чекбокса CheckAll, благодаря которому в ComboBoxTree
+                чекбоксы выбираются правильно
+              </li>
+              <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              .
+              <li className={styles['left-padding']}>
+                - Параметр unit стал обязательным для корректного отображения компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Улучшена работа с react-popper при withPortal=false: настроено корректное позиционирование выпадающего
+                списка с fallbackPlacement и rootBoundary для автоматической адаптации при ограниченном пространстве
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.22.8 - <span className={styles.date}>30.04.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа свойств helperText и pseudo для компонента SimpleSelect
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+              <li className={styles['left-padding']}>- Исправлен argsTypes в storybook</li>
+              <li className={styles['left-padding']}>- Изменена иконка reset в компонентах Input на 16px</li>
+            </li>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/story/components-icon-stories--icon-unit-component"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                IconUnit
+              </Link>{' '}
+              для отображения единиц измерения в текстовом формате.
+              <li className={styles['left-padding']}>
+                - Добавлены примеры использования IconUnit в компоненты Input и Icon
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.22.7 - <span className={styles.date}>23.04.25</span>
           </Typography>
           <ul className={styles.list}>

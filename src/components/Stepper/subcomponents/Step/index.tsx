@@ -16,14 +16,20 @@ import { StepStateToBadgeColor } from './helpers';
  * @param {string} props.stepName - Название шага.
  * @param {number} props.index - Индекс шага.
  * @param {`${EStepState}`} props.state - Состояние шага.
+ * @param {`${EStepColor}`} props.color - Состояние шага.
+ * @param {boolean} props.active - Индикатор активного шага.
  */
-export const Step = ({ stepName, index, active, state }: IStepProps) => {
+export const Step = ({ stepName, index, active, state, color }: IStepProps) => {
+  const badgeClasses = clsx(styles.badge, styles[`badge-${color}`], active && styles[`active-${color}`]);
+
+  const stepNameClasses = clsx(styles['step-name'], styles[`step-name-${color}`]);
+
   return (
-    <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s">
-      <Badge className={clsx(active && styles.active, styles.badge)} color={StepStateToBadgeColor[state]}>
+    <Button type="button" color="ghost" variant="secondary" className={styles['step-button']} size="s" data-ui-step>
+      <Badge className={badgeClasses} color={StepStateToBadgeColor[state]}>
         {index + 1}
       </Badge>
-      <Typography variant="Body1-Bold" className={styles['step-name']}>
+      <Typography variant="Body1-Bold" className={stepNameClasses}>
         {stepName}
       </Typography>
     </Button>

@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
-import { Checkbox, Icon, Spinner, Typography } from '@components/index';
+import { Button, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
 
 import { IComboTreeListProps } from './types';
@@ -16,12 +16,13 @@ import { findChildIds, findManyParentsIds, findParentsIds, getTreeOptions } from
 const ComboTreeList = <T extends IComboBoxTree>({
   items,
   onChange,
-  maxLevel = 2,
+  maxLevel,
   isSearch = false,
   isCheckAll = false,
   isLoading = false,
   isMultiple = true,
-  isVirtualize = false
+  isVirtualize = false,
+  checkableSimple = false
 }: IComboTreeListProps<T>) => {
   const setComboValue = useSetComboBoxValue();
   const comboBoxValue = useComboBoxValue();
@@ -48,16 +49,29 @@ const ComboTreeList = <T extends IComboBoxTree>({
 
   const handleChangeChecked = (item: IComboBoxTreeOption) => {
     if (!isMultiple) {
-      if (item.level === maxLevel) {
+      if (isLeafNode(item)) {
         const newValue = [item];
         setComboValue?.(newValue);
         onChange?.(newValue);
       }
     } else {
       setComboValue?.(previousValue => {
+        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+        if (checkableSimple) {
+          if (isCheck && previousValue) {
+            const filteredValue = previousValue.filter(value => value.id !== item.id);
+            onChange?.(filteredValue);
+            return filteredValue;
+          } else {
+            const newValue = [...(previousValue ?? []), item];
+            onChange?.(newValue);
+            return newValue;
+          }
+        }
+
         const childIds = findChildIds(item.id, treeOptions).filter(element => element !== item.id);
         const parentsIds = findParentsIds(item.parentId, treeOptions);
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
 
         if (isCheck && previousValue) {
           const filteredValue = previousValue.filter(value => {
@@ -91,15 +105,30 @@ const ComboTreeList = <T extends IComboBoxTree>({
   };
 
   const parentCheckedIds = useMemo(() => {
+    if (checkableSimple) return [];
+
     const parentsIds = findManyParentsIds(checkedIds, treeOptions);
     return Array.from(new Set(parentsIds));
-  }, [treeOptions, checkedIds]);
+  }, [treeOptions, checkedIds, checkableSimple]);
+
+  const parentIdsSet = useMemo(() => {
+    const ids = new Set<string>();
+    treeOptions.forEach(option => {
+      if (option.parentId) ids.add(option.parentId);
+    });
+    return ids;
+  }, [treeOptions]);
+
+  const isLeafNode = useCallback(
+    (item: IComboBoxTreeOption) => (maxLevel !== undefined && item.level === maxLevel) || !parentIdsSet.has(item.id),
+    [maxLevel, parentIdsSet]
+  );
 
   const renderItem = (item: IComboBoxTreeOption) => {
     const isExpanded = expandIds.includes(item.id);
     const isChecked = checkedIds.includes(item.id);
     const isIndeterminate = parentCheckedIds.includes(item.id);
-    const isLastChildren = item.level === maxLevel;
+    const isLastChildren = isLeafNode(item);
 
     // Базовый паддинг для всех уровней
     const basePadding = 8;
@@ -122,41 +151,45 @@ const ComboTreeList = <T extends IComboBoxTree>({
     return (
       <div
         key={item.id}
-        className={clsx(styles.listItemExpanded, {
-          [styles.listItemActive]: isChecked || isIndeterminate
+        className={clsx(styles['list-item-expanded'], {
+          [styles['list-item-active']]: isChecked || isIndeterminate
         })}
         style={{ paddingLeft: optionPadding }}
         onClick={() => handleItemClick(item, isMultiple, isLastChildren)}
       >
-        {!isLastChildren && (
-          <div
-            className={styles.listItemExpandedButton}
+        {!isLastChildren ? (
+          <Button
+            className={styles['list-item-expanded-button']}
+            color="ghost"
+            variant="secondary"
             onClick={event => {
               event.stopPropagation();
               handleChangeExpand(item.id);
             }}
-          >
-            {isExpanded ? (
-              <Icon htmlColor="var(--steel-90)" name="IconStackExpandedTriangleDown24" />
-            ) : (
-              <Icon htmlColor="var(--steel-90)" name="IconStackCollapsed24" />
-            )}
-          </div>
+            iconButton={
+              <Icon
+                htmlColor="var(--steel-90)"
+                name={isExpanded ? 'IconStackExpandedTriangleDown24' : 'IconStackCollapsed24'}
+              />
+            }
+          />
+        ) : (
+          <div className={styles['list-item-last-children']}></div>
         )}
         {isMultiple && (
           <Checkbox
-            checked={isChecked || isIndeterminate}
-            multiple={isChecked ? false : isIndeterminate}
+            checked={checkableSimple ? isChecked : isChecked || isIndeterminate}
+            multiple={!checkableSimple && !isChecked && isIndeterminate}
             label={item.label}
             onChange={() => handleChangeChecked(item)}
-            className={styles.listItemCheckbox}
+            className={styles['list-item-checkbox']}
           />
         )}
         {!isMultiple && (
           <Typography
             variant="Body1-Medium"
-            className={clsx(styles.listItemLabel, {
-              [styles.listItemActive]: isChecked || isIndeterminate
+            className={clsx(styles['list-item-label'], {
+              [styles['list-item-active']]: isChecked || isIndeterminate
             })}
           >
             {item.label}
@@ -197,25 +230,23 @@ const ComboTreeList = <T extends IComboBoxTree>({
     [filteredSearchItems, expandIds]
   );
 
-  const leafItems = useMemo(() => {
-    return treeOptions.filter(option => option.level === maxLevel);
-  }, [treeOptions, maxLevel]);
+  const leafItems = useMemo(() => treeOptions.filter(isLeafNode), [treeOptions, isLeafNode]);
 
   return (
     <>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
-      {isCheckAll && <AllItemsCheckbox items={leafItems} onChange={onChange} />}
+      {isCheckAll && <AllItemsCheckbox treeOptions={treeOptions} items={leafItems} onChange={onChange} />}
       {isVirtualize ? (
         <VirtualizedResizableGrip
           items={expandedFilterOptions}
           renderItem={renderItem}
-          classNameContainer={styles.listContainer}
+          classNameContainer={styles['list-container']}
           isCheckAll={isCheckAll}
           isSearch={isSearch}
         />
       ) : (
-        <div className={styles.listContainer}>{expandedFilterOptions.map(renderItem)}</div>
+        <div className={styles['list-container']}>{expandedFilterOptions.map(renderItem)}</div>
       )}
     </>
   );

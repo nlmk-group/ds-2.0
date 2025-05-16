@@ -19,7 +19,7 @@ import { ISelectProps } from './types';
 
 import styles from './SimpleSelect.module.scss';
 
-import { ScrollingItemsDefault } from './constants';
+import { SCROLLING_ITEMS_DEFAULT } from './constants';
 import { SelectContext } from './context';
 import { ArrowButton, OptionItem, Options } from './subcomponents';
 import { IOptionItemProps } from './subcomponents/OptionItem/types';
@@ -54,7 +54,7 @@ import { IOptionItemProps } from './subcomponents/OptionItem/types';
  * @param {function} [props.onFocus] - Обработчик открытия меню options
  * @param {customInputColors} [props.color=customInputColors.default] - Цвет компонента
  * @param {TSize} [props.size=sizesMappingInput.m] - Размер компонента
- * @param {number} [props.scrollingItems=ScrollingItemsDefault] - Количество элементов после которого включается прокрутка
+ * @param {number} [props.scrollingItems=SCROLLING_ITEMS_DEFAULT] - Количество элементов после которого включается прокрутка
  * @param {string} [props.noOptionsText='Ничего не найдено'] - Текст, отображаемый когда нет доступных опций
  * @param {boolean} [props.searchable=false] - Флаг, указывающий, доступен ли поиск
  * @param {string} [props.name] - name определяет имя элемента, используется для ссылки на элемент
@@ -80,11 +80,13 @@ const SimpleSelect: FC<ISelectProps> = ({
   label,
   withPortal = false,
   disabled = false,
+  helperText,
+  pseudo,
   onFocus,
   onBlur,
   color = customInputColors.default,
   size = sizesMappingInput.m,
-  scrollingItems = ScrollingItemsDefault,
+  scrollingItems = SCROLLING_ITEMS_DEFAULT,
   noOptionsText = 'Ничего не найдено',
   searchable = false,
   colored = false,
@@ -230,6 +232,7 @@ const SimpleSelect: FC<ISelectProps> = ({
       <div className={clsx(styles.select, className)} ref={selectRef} style={style} data-ui-select>
         <Input
           id={id}
+          helperText={helperText}
           name={name}
           size={size}
           inputRef={inputRef}
@@ -240,6 +243,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           placeholder={placeholder}
           disabled={disabled}
           readOnly={!searchable || !isOpen}
+          pseudo={pseudo}
           color={color}
           onFocus={handleFocus}
           onBlur={handleBlur}

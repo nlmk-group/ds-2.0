@@ -19,6 +19,9 @@
 
 ```shell
 npm install @nlmk/ds-2.0
+```
+
+```shell
 yarn add @nlmk/ds-2.0
 ```
 

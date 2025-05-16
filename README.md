@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://nlmk-group.github.io/ds-2.0" target="_blank">
-    <img src="https://nlmk-group.github.io/ds-2.0/img/banner.jpg" alt="Дизайн-система НЛМК — это библиотека React компонентов, инструментов и правил, которые объединяют разработчиков и дизайнеров в процессе создания интерфейсов."/>
+    <img src="https://nlmk-group.github.io/ds-2.0/img/banner.png" alt="Дизайн-система НЛМК — это библиотека React компонентов, инструментов и правил, которые объединяют разработчиков и дизайнеров в процессе создания интерфейсов."/>
     </a>
 </div>
 

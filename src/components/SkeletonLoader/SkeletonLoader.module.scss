@@ -1,7 +1,7 @@
 $bgPositionWidth: 200px;
 $margin: 10px;
 
-@keyframes animation-skeleton-loader {
+@keyframes wave {
   from {
     background-position: (-$bgPositionWidth) 0;
   }
@@ -11,15 +11,36 @@ $margin: 10px;
   }
 }
 
-.loading-wrapper {
-  display: inline-block;
-  line-height: 1;
-  margin-bottom: $margin;
-  background-color: var(--steel-20);
-  background-image: linear-gradient(90deg, var(--steel-20), var(--steel-40), var(--steel-20));
-  background-size: $bgPositionWidth 100%;
-  background-repeat: no-repeat;
-  border-radius: 4px;
-  cursor: wait;
-  animation: animation-skeleton-loader 1.2s ease-in-out infinite;
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.loading {
+  &-wrapper {
+    display: inline-block;
+    line-height: 1;
+    margin-bottom: $margin;
+    background-color: var(--steel-20);
+    background-size: $bgPositionWidth 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    cursor: wait;
+
+    &-wave {
+      background-image: linear-gradient(90deg, var(--steel-20), var(--steel-40), var(--steel-20));
+      animation: wave 1.2s ease-in-out infinite;
+    }
+
+    &-pulse {
+      background-color: var(--steel-20);
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  }
 }

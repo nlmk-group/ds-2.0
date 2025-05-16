@@ -249,6 +249,24 @@ export const BasicSingleSelect = () => {
   );
 };
 BasicSingleSelect.storyName = 'Базовый выбор одного элемента';
+export const BasicSingleSelectWithInitialValue = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox initialValue={[simpleOptions[0]]} label="Базовый выбор">
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={false} />
+    </ComboBox>
+  );
+};
+BasicSingleSelectWithInitialValue.storyName = 'Базовый выбор одного элемента с начальным значением';
+export const MultipleSelectWithInitialValue = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox initialValue={[simpleOptions[0], simpleOptions[1]]} label="Базовый выбор">
+      <ComboList items={simpleOptions} onChange={setSelected} isMultiple={true} />
+    </ComboBox>
+  );
+};
+MultipleSelectWithInitialValue.storyName = 'Множественный выбор с начальным значением';
 
 export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -353,3 +371,13 @@ export const TooltipDescriptionStringExample = () => {
   );
 };
 TooltipDescriptionStringExample.storyName = 'ComboBox с текстовой подсказкой (строка)';
+
+export const TreeViewWithSimpleCheckboxesExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Древовидный список с независимыми чекбоксами" countOnlyLevel={2}>
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll checkableSimple />
+    </ComboBox>
+  );
+};
+TreeViewWithSimpleCheckboxesExample.storyName = 'Древовидный список с независимыми чекбоксами';

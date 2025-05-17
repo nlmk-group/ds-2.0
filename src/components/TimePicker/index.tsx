@@ -11,8 +11,7 @@ import { ETimePickerType, TDateValues, TTimePickerType } from './types';
 
 import styles from './TimePicker.module.scss';
 
-import TimePickerInput from './subcomponents/TimePickerInput';
-import TimeSelector from './subcomponents/TimeSelector';
+import { TimePickerInput, TimeSelector } from './subcomponents';
 
 /**
  * Компонент TimePicker для выбора времени в различных форматах.

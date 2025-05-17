@@ -11,6 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import { argsTypes } from './argsTypes';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-30495&t=EnvIMGos3m33avAX-1';
+const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TimePicker';
 
 const TimePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -59,7 +60,7 @@ export default App;
         title="TimePicker"
         description="TimePicker позволяет пользователям выбирать время или период времени. Поддерживает различные форматы и диапазоны времени."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TimePicker"
+        codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
       />
 
@@ -87,9 +88,7 @@ export default App;
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
     </div>
   );
 };

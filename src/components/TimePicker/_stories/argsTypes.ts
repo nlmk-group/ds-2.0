@@ -1,4 +1,4 @@
-import { sizesMappingInput } from '@components/declaration';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
 
 export const argsTypes = {
   onChange: {
@@ -182,16 +182,13 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   color: {
-    description: 'Цвет инпута (доступен только от родительского Input компонента)',
+    description: 'Цвет компонента, отображающий разные состояния',
     table: {
       defaultValue: {
-        summary: 'default'
-      },
-      type: {
-        summary: 'string'
+        summary: customInputColors.default
       }
     },
-    options: ['default', 'primary', 'secondary'],
+    options: Object.values(customInputColors),
     control: { type: 'select' }
   }
 };

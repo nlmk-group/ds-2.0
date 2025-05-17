@@ -1,7 +1,7 @@
 import { ENABLED_HOURS_VALUES } from '@components/declaration';
 import { IInputAdditionalProps } from '@components/Input/types';
 
-type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
+export type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
 
 export enum ETimePickerType {
   time = 'time',

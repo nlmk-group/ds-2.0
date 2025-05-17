@@ -1,7 +1,5 @@
-import { ENABLED_HOURS_VALUES } from '@components/declaration';
 import { IInputAdditionalProps } from '@components/Input/types';
-
-type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
+import { TEnabledHour } from '../../types';
 
 export interface ITimePickerInputProps
   extends Pick<IInputAdditionalProps, 'colored' | 'label' | 'reset' | 'onReset' | 'disabled'> {

@@ -1,3 +1,5 @@
+import { sizesMappingInput } from '@components/declaration';
+
 export const argsTypes = {
   onChange: {
     description: 'Callback, который будет вызван при выборе времени',
@@ -148,5 +150,48 @@ export const argsTypes = {
         summary: false
       }
     }
+  },
+  isOpenOnFocus: {
+    description: 'Флаг открытия пикера при фокусе на инпуте',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  id: {
+    description: 'Уникальный идентификатор компонента',
+    control: { type: 'text' }
+  },
+  helperText: {
+    description: 'Вспомогательный текст под инпутом',
+    control: { type: 'text' }
+  },
+  size: {
+    description: 'Свойство, позволяющее регулировать высоту инпута',
+    table: {
+      defaultValue: {
+        summary: sizesMappingInput.m
+      }
+    },
+    options: Object.values(sizesMappingInput),
+    control: { type: 'select' }
+  },
+  color: {
+    description: 'Цвет инпута (доступен только от родительского Input компонента)',
+    table: {
+      defaultValue: {
+        summary: 'default'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    options: ['default', 'primary', 'secondary'],
+    control: { type: 'select' }
   }
 };

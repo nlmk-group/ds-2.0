@@ -2,7 +2,7 @@ import React, { forwardRef, RefObject, useCallback, useEffect, useMemo, useRef }
 
 import { TimeType } from '@components/declaration/enums';
 import { Typography } from '@components/index';
-import { TimeUnits } from '@components/TimePicker/helpers';
+import { TIME_UNITS } from '@components/TimePicker/helpers';
 import clsx from 'clsx';
 import { set } from 'date-fns';
 
@@ -181,7 +181,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
             </div>
           )}
           {renderColumn(
-            TimeUnits.hh,
+            TIME_UNITS.hh,
             enabledHours,
             initialSelectedTimeFirst?.getHours(),
             firstHoursContainerRef,
@@ -191,7 +191,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
             }
           )}
           {renderColumn(
-            TimeUnits.mm,
+            TIME_UNITS.mm,
             enabledMinutes,
             initialSelectedTimeFirst?.getMinutes(),
             firstMinutesContainerRef,
@@ -202,7 +202,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
           )}
           {(isTimeWithSecondsType || isTimePeriodWithSecondsType) &&
             renderColumn(
-              TimeUnits.ss,
+              TIME_UNITS.ss,
               Array.from({ length: 60 }, (_, i) => i),
               initialSelectedTimeFirst?.getSeconds(),
               firstSecondsContainerRef,
@@ -222,7 +222,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
               <Typography variant="Body1-Medium">Окончание</Typography>
             </div>
             {renderColumn(
-              TimeUnits.hh,
+              TIME_UNITS.hh,
               enabledHours,
               initialSelectedTimeSecond?.getHours(),
               secondHoursContainerRef,
@@ -230,7 +230,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
               isHourDisabled
             )}
             {renderColumn(
-              TimeUnits.mm,
+              TIME_UNITS.mm,
               enabledMinutes,
               initialSelectedTimeSecond?.getMinutes(),
               secondMinutesContainerRef,
@@ -239,7 +239,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
             )}
             {isTimePeriodWithSecondsType &&
               renderColumn(
-                TimeUnits.ss,
+                TIME_UNITS.ss,
                 Array.from({ length: 60 }, (_, i) => i),
                 initialSelectedTimeSecond?.getSeconds(),
                 secondSecondsContainerRef,

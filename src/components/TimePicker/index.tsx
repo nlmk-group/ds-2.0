@@ -7,7 +7,7 @@ import { ClickAwayListener, PseudoInput } from '@components/index';
 import clsx from 'clsx';
 import { isAfter, isEqual, set } from 'date-fns';
 
-import { TDateValues, TTimePickerType } from './types';
+import { ETimePickerType, TDateValues, TTimePickerType } from './types';
 
 import styles from './TimePicker.module.scss';
 
@@ -19,7 +19,7 @@ import TimeSelector from './subcomponents/TimeSelector';
  * @component
  * @param {Object} props - Свойства компонента TimePicker.
  * @param {number|string} [props.id] - Уникальный идентификатор компонента.
- * @param {'time'|'timeWithSeconds'|'period'|'periodWithSeconds'} [props.type='time'] - Тип пикера времени.
+ * @param {ETimePickerType} [props.type=ETimePickerType.time] - Тип пикера времени.
  * @param {string} [props.name] - Имя поля для использования в формах.
  * @param {function} [props.enabledHourFrom] - Функция для определения начального доступного часа.
  * @param {function} [props.enabledHourTo] - Функция для определения конечного доступного часа.
@@ -45,7 +45,7 @@ import TimeSelector from './subcomponents/TimeSelector';
  */
 const TimePicker: FC<TTimePickerType> = ({
   id,
-  type = 'time',
+  type = ETimePickerType.time,
   name,
   enabledHourFrom,
   enabledHourTo,
@@ -69,10 +69,10 @@ const TimePicker: FC<TTimePickerType> = ({
   onReset,
   ...restInputProps
 }) => {
-  const isTimeType = useMemo(() => type === 'time', [type]);
-  const isTimeWithSecondsType = useMemo(() => type === 'timeWithSeconds', [type]);
-  const isTimePeriodType = useMemo(() => type === 'period', [type]);
-  const isTimePeriodWithSecondsType = useMemo(() => type === 'periodWithSeconds', [type]);
+  const isTimeType = useMemo(() => type === ETimePickerType.time, [type]);
+  const isTimeWithSecondsType = useMemo(() => type === ETimePickerType.timeWithSeconds, [type]);
+  const isTimePeriodType = useMemo(() => type === ETimePickerType.period, [type]);
+  const isTimePeriodWithSecondsType = useMemo(() => type === ETimePickerType.periodWithSeconds, [type]);
 
   const [isOpenOnInputFocus, setOpenOnFocus] = useState<boolean>(isOpenOnFocus);
   const [isOpen, setOpen] = useState(false);
@@ -161,7 +161,7 @@ const TimePicker: FC<TTimePickerType> = ({
   });
 
   const handleSetValues = useCallback(
-    (isBlur?: boolean) => (date: any, date2: any) => {
+    (isBlur?: boolean) => (date: Date | null, date2?: Date | null) => {
       if (!isBlur) {
         inputRef?.blur();
         if ((isTimePeriodType || isTimePeriodWithSecondsType) && onPeriodChange) {
@@ -170,7 +170,7 @@ const TimePicker: FC<TTimePickerType> = ({
           } else {
             onPeriodChange(date || undefined, date2 || undefined);
           }
-        } else if (onChange) {
+        } else if (onChange && date) {
           onChange(date);
         }
         setOpen(false);
@@ -258,7 +258,7 @@ const TimePicker: FC<TTimePickerType> = ({
       id={id as string}
       data-ui-timepicker
     >
-      {name && ['time', 'timeWithSeconds'].includes(type) && (
+      {name && [ETimePickerType.time, ETimePickerType.timeWithSeconds].includes(type as ETimePickerType) && (
         <input type="hidden" name={name} value={value?.toISOString()} />
       )}
       <TimePickerInput

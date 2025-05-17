@@ -73,7 +73,7 @@ const ComboBoxDropdown = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
+          offset: [0, 4] // [горизонтальный, вертикальный] отступ в пикселях
         }
       }
     ]
@@ -115,7 +115,7 @@ const ComboBoxDropdown = ({
       left: 0,
       right: 0,
       zIndex: 1000,
-      marginTop: '8px',
+      marginTop: '4px',
       ...dropdownStyle
     };
   };

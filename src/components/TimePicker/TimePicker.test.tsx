@@ -1,30 +1,102 @@
 import React from 'react';
 
 import { TimePicker } from '@components/index';
-import { render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
 jest.mock('react-popper', () => ({
   usePopper: () => ({
-    styles: { popper: { position: 'absolute' } },
-    attributes: { popper: {} }
+    styles: { popper: { position: 'absolute', top: '0px', left: '0px' } },
+    attributes: { popper: {} },
+    state: {},
+    update: jest.fn()
   })
 }));
 
-describe('TimePicker Component', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+beforeEach(() => {
+  const mockPortalRoot = document.createElement('div');
+  mockPortalRoot.setAttribute('id', 'root');
+  document.body.appendChild(mockPortalRoot);
+});
 
-  it('renders the TimePicker component with default props', () => {
+afterEach(() => {
+  document.body.innerHTML = '';
+  jest.clearAllMocks();
+});
+
+describe('TimePicker компонент', () => {
+  it('рендерит компонент с дефолтными параметрами', () => {
     render(<TimePicker />);
-    const pickerContainer = screen.getByRole('textbox');
-    expect(pickerContainer).toBeInTheDocument();
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
   });
 
-  it('renders pseudo mode with the correct label', () => {
-    render(<TimePicker pseudo label="Custom Label" />);
+  it('отображает выбранное время', () => {
+    const testDate = new Date(2023, 0, 1, 14, 30);
+    render(<TimePicker value={testDate} />);
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('14:30');
+  });
 
-    expect(screen.getByText('Custom Label')).toBeInTheDocument();
-    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+  it('вызывает onChange при изменении времени', async () => {
+    const handleChange = jest.fn();
+    const testDate = new Date(2023, 0, 1, 14, 30);
+
+    render(<TimePicker value={testDate} onChange={handleChange} />);
+
+    const input = screen.getByRole('textbox');
+
+    await act(async () => {
+      fireEvent.focus(input);
+    });
+
+    await act(async () => {
+      const firstSelectedElement = screen.queryByTestId('selected');
+
+      if (firstSelectedElement) {
+        fireEvent.click(firstSelectedElement);
+      }
+
+      fireEvent.blur(input);
+    });
+
+    expect(handleChange).toHaveBeenCalled();
+  });
+
+  it('отображает секунды при type="timeWithSeconds"', () => {
+    const testDate = new Date(2023, 0, 1, 14, 30, 45);
+    render(<TimePicker type="timeWithSeconds" value={testDate} />);
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('14:30:45');
+  });
+
+  it('отображает период времени при type="period"', () => {
+    const startDate = new Date(2023, 0, 1, 10, 0);
+    const endDate = new Date(2023, 0, 1, 11, 30);
+
+    render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('10:00 — 11:30');
+  });
+
+  it('отображает период с секундами при type="periodWithSeconds"', () => {
+    const startDate = new Date(2023, 0, 1, 10, 0, 15);
+    const endDate = new Date(2023, 0, 1, 11, 30, 45);
+
+    render(<TimePicker type="periodWithSeconds" valueFrom={startDate} valueTo={endDate} />);
+
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('10:00:15 — 11:30:45');
+  });
+
+  it('отображает label', () => {
+    render(<TimePicker label="Время" />);
+    expect(screen.getByText('Время')).toBeInTheDocument();
+  });
+
+  it('корректно применяет состояние disabled', () => {
+    render(<TimePicker disabled />);
+    const input = screen.getByRole('textbox');
+    expect(input).toBeDisabled();
   });
 });

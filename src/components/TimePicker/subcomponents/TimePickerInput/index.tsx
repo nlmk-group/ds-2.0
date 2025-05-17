@@ -2,7 +2,12 @@ import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, 
 
 import { IconScheduleTimeWatchOutlined24, Input } from '@components/index';
 import InputMaskCorrect from '@components/InputMaskCorrect';
-import { timeFormat, timeMask, timeWithSecondsFormat, timeWithSecondsMask } from '@components/TimePicker/helpers';
+import {
+  TIME_FORMAT,
+  TIME_MASK,
+  TIME_WITH_SECONDS_FORMAT,
+  TIME_WITH_SECONDS_MASK
+} from '@components/TimePicker/helpers';
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import { range } from 'lodash';
@@ -106,7 +111,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
           setInnerMaskedValue('');
           return;
         }
-        setInnerMaskedValue(format(value, isTimeWithSecondsType ? timeWithSecondsFormat : timeFormat));
+        setInnerMaskedValue(format(value, isTimeWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT));
         return;
       }
       if (withPeriod && !selectedTimeFirst && !selectedTimeSecond) {
@@ -120,18 +125,18 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
 
           const formattedValueFrom = format(
             selectedTimeFirst,
-            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+            isTimePeriodWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT
           );
 
           setInnerMaskedValue(`${formattedValueFrom} — ${undefined}`);
         } else {
           const formattedValueFrom = format(
             selectedTimeFirst,
-            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+            isTimePeriodWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT
           );
           const formattedValueTo = format(
             selectedTimeSecond,
-            isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat
+            isTimePeriodWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT
           );
           setInnerMaskedValue(`${formattedValueFrom} — ${formattedValueTo}`);
         }
@@ -141,10 +146,10 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     const mask = useMemo(() => {
       if (withPeriod) {
         return isTimePeriodWithSecondsType
-          ? `${timeWithSecondsMask} — ${timeWithSecondsMask}`
-          : `${timeMask} — ${timeMask}`;
+          ? `${TIME_WITH_SECONDS_MASK} — ${TIME_WITH_SECONDS_MASK}`
+          : `${TIME_MASK} — ${TIME_MASK}`;
       }
-      return isTimeWithSecondsType ? timeWithSecondsMask : timeMask;
+      return isTimeWithSecondsType ? TIME_WITH_SECONDS_MASK : TIME_MASK;
     }, [focused, isTimeType, isTimeWithSecondsType]);
 
     const icon = useMemo(() => {
@@ -190,7 +195,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         if (withPeriod) {
           const timeParts = innerMaskedValue.split(' — ');
           const times = timeParts.map(time =>
-            time ? parse(time, isTimePeriodWithSecondsType ? timeWithSecondsFormat : timeFormat, currentDate) : null
+            time ? parse(time, isTimePeriodWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT, currentDate) : null
           );
           const enabledTimes = times.map(time => (time ? makeEnabledTimeRangeDate(time) : null));
           if (times.some(time => !time || !isValid(time))) {
@@ -210,7 +215,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         } else if (!innerMaskedValue.includes('_')) {
           const newTime = parse(
             innerMaskedValue,
-            isTimeWithSecondsType ? timeWithSecondsFormat : timeFormat,
+            isTimeWithSecondsType ? TIME_WITH_SECONDS_FORMAT : TIME_FORMAT,
             currentDate
           );
           const enabledTime = makeEnabledTimeRangeDate(newTime);
@@ -218,8 +223,8 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
             return enabledTime;
           }
         } else if (
-          (isTimeType && isValueMatchesTheMask(timeMask, innerMaskedValue)) ||
-          (isTimeWithSecondsType && isValueMatchesTheMask(timeWithSecondsMask, innerMaskedValue))
+          (isTimeType && isValueMatchesTheMask(TIME_MASK, innerMaskedValue)) ||
+          (isTimeWithSecondsType && isValueMatchesTheMask(TIME_WITH_SECONDS_MASK, innerMaskedValue))
         ) {
           return value || null;
         }

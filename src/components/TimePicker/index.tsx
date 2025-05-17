@@ -255,7 +255,7 @@ const TimePicker: FC<TTimePickerType> = ({
   const renderTimepicker = () => (
     <div
       className={clsx(styles.root, className, restInputProps.disabled && styles.disabled, isOpen && styles.opened)}
-      id={id as string}
+      id={String(id)}
       data-ui-timepicker
     >
       {name && [ETimePickerType.time, ETimePickerType.timeWithSeconds].includes(type as ETimePickerType) && (

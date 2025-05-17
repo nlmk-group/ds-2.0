@@ -45,6 +45,10 @@ export const TimePickerWithLabel = (argTypes: TTimePickerType): JSX.Element => {
   return <TimePicker value={value} label="Время" {...argTypes} onChange={handleValueChange} />;
 };
 TimePickerWithLabel.storyName = 'TimePicker с полем label';
+TimePickerWithLabel.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const DisabledTimePicker = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -59,6 +63,10 @@ export const DisabledTimePicker = (argTypes: TTimePickerType): JSX.Element => {
   return <TimePicker value={value} disabled={true} {...argTypes} onChange={handleValueChange} />;
 };
 DisabledTimePicker.storyName = 'TimePicker в состоянии disabled';
+DisabledTimePicker.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -73,6 +81,10 @@ export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element =>
   return <TimePicker value={value} type="timeWithSeconds" {...argTypes} onChange={handleValueChange} />;
 };
 TimePickerWithSeconds.storyName = 'TimePicker с опцией выбора секунд';
+TimePickerWithSeconds.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -102,6 +114,11 @@ export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => 
   );
 };
 EnabledMinutesFromTo.storyName = 'TimePicker с включенным ограничением по выбору минут';
+EnabledMinutesFromTo.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
 export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
   const func = (): any => {
@@ -130,6 +147,10 @@ export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
   );
 };
 EnabledHoursFromTo.storyName = 'TimePicker с включенным ограничением по выбору часов';
+EnabledHoursFromTo.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -144,6 +165,10 @@ export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Eleme
   return <TimePicker value={value} isOpenOnFocus={true} {...argTypes} onChange={handleValueChange} />;
 };
 OpenTimePickerOnInputFocus.storyName = 'TimePicker с опцией открытия панели при фокусе на поле ввода';
+OpenTimePickerOnInputFocus.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerWithoutIcon = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -158,6 +183,10 @@ export const TimePickerWithoutIcon = (argTypes: TTimePickerType): JSX.Element =>
   return <TimePicker value={value} withIcon={false} {...argTypes} onChange={handleValueChange} />;
 };
 TimePickerWithoutIcon.storyName = 'TimePicker без иконки';
+TimePickerWithoutIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => {
   const [save, setSave] = useState(false);
@@ -187,6 +216,10 @@ export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => 
   );
 };
 TimePickerWithPseudo.storyName = 'TimePicker с кнопкой переключения на pseudo input';
+TimePickerWithPseudo.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element => {
   const [value, setValue] = useState(new Date());
@@ -201,6 +234,10 @@ export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element 
   return <TimePicker value={value} withPicker={false} {...argTypes} onChange={handleValueChange} />;
 };
 TimePickerWithoutPicker.storyName = 'TimePicker без панели выбора времени';
+TimePickerWithoutPicker.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
@@ -224,6 +261,10 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
   );
 };
 TimePickerPeriod.storyName = 'TimePicker с возможностью выбора периода времени';
+TimePickerPeriod.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
@@ -247,3 +288,7 @@ export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Elem
 };
 
 TimePickerPeriodWithSeconds.storyName = 'TimePicker с возможностью выбора периода времени с секундами';
+TimePickerPeriodWithSeconds.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};

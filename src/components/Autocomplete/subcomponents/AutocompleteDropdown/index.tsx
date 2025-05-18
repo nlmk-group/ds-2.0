@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -20,7 +20,6 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     isOpen,
     withPortal,
     inputRef,
-    helperText,
     wrapperRef,
     isLoading,
     showCreateItem,
@@ -85,20 +84,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
   const getMenuStyles = () => {
     const baseStyles = {
       width: rect?.width,
-      left: rect?.left,
-      top: rect ? rect.top + rect.height : undefined,
-      marginTop: helperText ? '-20px' : '0',
       ...popperStyles.popper
     };
-
-    if (!withPortal) {
-      return {
-        ...baseStyles,
-        top: '100%',
-        position: 'absolute',
-        zIndex: 1000
-      };
-    }
 
     return baseStyles;
   };
@@ -111,14 +98,13 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         ref={el => {
           if (!el) return;
 
-          if (withPortal) {
-            setPopperElement(el);
-          } else {
+          if (wrapperRef && typeof wrapperRef === 'object') {
             (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
           }
+          setPopperElement(el);
         }}
-        className={clsx(styles.card, helperText && styles['card-with-helper'], className)}
-        style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}
+        className={clsx(styles.card, className)}
+        style={{ ...getMenuStyles(), ...style }}
         {...(withPortal ? attributes.popper : {})}
         data-ui-autocomplete-dropdown
       >

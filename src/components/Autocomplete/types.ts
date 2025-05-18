@@ -12,7 +12,7 @@ export interface IAutocompleteValue {
   disabled?: boolean;
 }
 
-export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
+export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'| 'color'> {
   /** Изначально выбранный элемент */
   selected?: IAutocompleteValue;
 

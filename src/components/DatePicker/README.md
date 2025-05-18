@@ -14,35 +14,47 @@ import { DatePicker } from '@nlmk/ds-2.0';
 
 ## Props
 
-| Prop              | Type                                                 | Default                | Description                               |
-| ----------------- | ---------------------------------------------------- | ---------------------- | ----------------------------------------- |
-| id                | number \| string                                     | -                      | Уникальный идентификатор компонента       |
-| locale            | string                                               | 'ru'                   | Локаль для форматирования дат             |
-| level             | TLevel                                               | 'day'                  | Уровень детализации выбора даты           |
-| type              | 'date' \| 'time' \| 'seconds' \| 'period' \| 'shift' | 'date'                 | Тип пикера                                |
-| name              | string                                               | -                      | Имя поля для использования в формах       |
-| portalContainerId | string                                               | 'root'                 | ID контейнера для портала                 |
-| value             | Date                                                 | -                      | Выбранное значение даты                   |
-| valueFrom         | Date                                                 | -                      | Начальная дата для периода                |
-| valueTo           | Date                                                 | -                      | Конечная дата для периода                 |
-| enabledFrom       | Date                                                 | new Date(1900, 0, 1)   | Минимальная доступная дата                |
-| enabledTo         | Date                                                 | new Date(2100, 11, 31) | Максимальная доступная дата               |
-| onChange          | function                                             | -                      | Обработчик изменения даты                 |
-| onPeriodChange    | function                                             | -                      | Обработчик изменения периода              |
-| className         | string                                               | -                      | Дополнительный CSS класс                  |
-| shiftFrom         | number                                               | -                      | Начальное значение смены для типа 'shift' |
-| shiftTo           | number                                               | -                      | Конечное значение смены для типа 'shift'  |
-| shiftLength       | 2 \| 3                                               | defaultShiftLength     | Длина смены                               |
-| disableChange     | boolean                                              | false                  | Флаг для отключения возможности изменения |
-| withPortal        | boolean                                              | false                  | Флаг для рендеринга в портале             |
-| colored           | boolean                                              | false                  | Флаг для применения цветовых стилей       |
-| pseudo            | boolean                                              | false                  | Флаг для отображения псевдо-инпута        |
-| pseudoChildren    | ReactNode                                            | -                      | Содержимое для псевдо-инпута              |
-| isOpenOnFocus     | boolean                                              | false                  | Флаг для открытия пикера при фокусе       |
-| isHideYear        | boolean                                              | false                  | Флаг для скрытия года                     |
-| withoutWeekdays   | boolean                                              | false                  | Флаг для отображения без дней недели      |
-| reset             | boolean                                              | false                  | Флаг наличия кнопки сброса                |
-| onReset           | () => void                                           | -                      | Обработчик сброса значения                |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| id | number \| string | - | Уникальный идентификатор компонента |
+| locale | string | 'ru' | Локаль для форматирования дат |
+| level | TLevel | 'day' | Уровень детализации выбора даты |
+| type | 'date' \| 'time' \| 'seconds' \| 'period' \| 'shift' | 'date' | Тип пикера |
+| name | string | - | Имя поля для использования в формах |
+| portalContainerId | string | 'root' | ID контейнера для портала |
+| value | Date | - | Выбранное значение даты |
+| valueFrom | Date | - | Начальная дата для периода |
+| valueTo | Date | - | Конечная дата для периода |
+| enabledFrom | Date | new Date(1900, 0, 1) | Минимальная доступная дата |
+| enabledTo | Date | new Date(2100, 11, 31) | Максимальная доступная дата |
+| enabledHourFrom | (date: Date) => TEnabledHour | - | Функция для определения минимального доступного часа |
+| enabledHourTo | (date: Date) => TEnabledHour | - | Функция для определения максимального доступного часа |
+| enabledMinuteFrom | (date: Date) => number | - | Функция для определения минимальной доступной минуты |
+| enabledMinuteTo | (date: Date) => number | - | Функция для определения максимальной доступной минуты |
+| onChange | function | - | Обработчик изменения даты |
+| onPeriodChange | function | - | Обработчик изменения периода |
+| onFocus | () => void | - | Обработчик получения фокуса инпутом или клика по иконке календаря |
+| onBlur | () => void | - | Обработчик потери фокуса инпутом |
+| onPanelChange | (date: Date) => void | - | Обработчик изменения панели календаря |
+| onSelect | (date: Date) => void | - | Обработчик выбора конкретной даты в календаре |
+| className | string | - | Дополнительный CSS класс |
+| shiftFrom | number | - | Начальное значение смены для типа 'shift' |
+| shiftTo | number | - | Конечное значение смены для типа 'shift' |
+| shiftLength | 2 \| 3 | defaultShiftLength | Длина смены |
+| disableChange | boolean | false | Флаг для отключения возможности изменения |
+| disableChangesOnBlur | boolean | false | Флаг для отключения изменений при потере фокуса |
+| withPortal | boolean | false | Флаг для рендеринга в портале |
+| colored | boolean | false | Флаг для применения цветовых стилей |
+| pseudo | boolean | false | Флаг для отображения псевдо-инпута |
+| pseudoChildren | ReactNode | - | Содержимое для псевдо-инпута |
+| isOpenOnFocus | boolean | false | Флаг для открытия пикера при фокусе |
+| isHideYear | boolean | false | Флаг для скрытия года |
+| withoutWeekdays | boolean | false | Флаг для отображения без дней недели |
+| infiniteTimeScroll | boolean | false | Флаг для бесконечной прокрутки времени |
+| reset | boolean | false | Флаг наличия кнопки сброса |
+| onReset | () => void | - | Обработчик сброса значения |
+| error | boolean | false | Флаг ошибки, влияет на стиль компонента |
+| helperText | string | - | Вспомогательный текст под инпутом |
 
 ## Примечания
 

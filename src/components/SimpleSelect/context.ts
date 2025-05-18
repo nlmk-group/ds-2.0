@@ -1,4 +1,4 @@
-import { createContext, ReactNode, RefObject } from 'react';
+import { createContext, RefObject } from 'react';
 
 import { SCROLLING_ITEMS_DEFAULT } from './constants';
 
@@ -7,8 +7,6 @@ interface SelectContextProps {
    * Флаг, указывающий, открыто ли меню
    */
   isOpen: boolean;
-
-  helperText: ReactNode;
 
   /**
    * Функция для установки состояния открытия меню
@@ -31,9 +29,9 @@ interface SelectContextProps {
   onChange?: (value: string | number) => void;
 
   /**
-   * Реф для корневого элемента селекта, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
+   * Реф инпута из корневого элемента селекта, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
    */
-  selectRef: RefObject<HTMLDivElement>;
+  inputRef: RefObject<HTMLInputElement>;
 
   /**
    * Реф для элемента меню, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
@@ -97,10 +95,9 @@ export const SelectContext = createContext<SelectContextProps>({
   selectedOption: undefined,
   setSelectedOption: () => {},
   onChange: undefined,
-  helperText: '',
   selectedLabel: '',
   setSelectedLabel: () => {},
-  selectRef: { current: null },
+  inputRef: { current: null },
   menuRef: { current: null },
   menuWidth: undefined,
   withPortal: false,

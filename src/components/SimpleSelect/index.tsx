@@ -63,6 +63,8 @@ import { IOptionItemProps } from './subcomponents/OptionItem/types';
  * @param {string} [props.className] - Добавление самостоятельного CSS класса
  * @param {boolean} [props.colored=false] - Флаг применения цветовых стилей
  * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса
+ * @param {string} [props.helperText] - Вспомогательный текст под инпутом
+ * @param {boolean} [props.pseudo] - Флаг для отображения псевдо-элемента инпута
  * @param {function} [props.onReset] - Обработчик сброса значения
  *
  * @returns {JSX.Element} Компонент SimpleSelect
@@ -100,7 +102,6 @@ const SimpleSelect: FC<ISelectProps> = ({
   const [selectedLabel, setSelectedLabel] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
-  const selectRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
@@ -212,12 +213,11 @@ const SimpleSelect: FC<ISelectProps> = ({
       value={{
         isOpen,
         setIsOpen,
-        helperText,
         selectedOption: value,
         setSelectedOption: handleOptionChange,
         selectedLabel,
         setSelectedLabel,
-        selectRef,
+        inputRef,
         menuRef,
         menuWidth,
         withPortal,
@@ -230,7 +230,7 @@ const SimpleSelect: FC<ISelectProps> = ({
         onChange
       }}
     >
-      <div className={clsx(styles.select, className)} ref={selectRef} style={style} data-ui-select>
+      <div className={clsx(styles.select, className)} style={style} data-ui-select>
         <Input
           id={id}
           helperText={helperText}
@@ -256,7 +256,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           data-ui-select-input
           data-testid="select-input"
         />
-        <Options menuStyle={{ maxWidth: selectRef.current?.offsetWidth }} data-ui-select-options>
+        <Options menuStyle={{ maxWidth: inputRef.current?.offsetWidth }} data-ui-select-options>
           {noOptions ? (
             <OptionItem value="" label={noOptionsText} disabled data-ui-select-option>
               {noOptionsText}

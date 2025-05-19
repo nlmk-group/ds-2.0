@@ -1,0 +1,1 @@
+export const SCROLLING_ITEMS_DEFAULT = 5;

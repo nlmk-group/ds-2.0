@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export interface IOptionItemProps {
   value: string | number;
@@ -8,4 +8,6 @@ export interface IOptionItemProps {
   className?: string;
   style?: CSSProperties;
   isFocused?: boolean;
+  isSelected?: boolean;
+  onSelect?: () => void;
 }

@@ -68,6 +68,7 @@ export { default as Legend } from './Legend';
 export { default as PdfPreview } from './PdfPreview';
 export { default as Filter } from './Filter';
 export { default as VideoWindow } from './VideoWindow';
+export { default as MultiSelect } from './MultiSelect';
 export * from './ComboBox';
 export * from './Table';
 export * from './ThemeSwitcher';
@@ -76,4 +77,3 @@ export * from './TreeList';
 
 /** Хуки */
 export * from './Theme/hooks';
-

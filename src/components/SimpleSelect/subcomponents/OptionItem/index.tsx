@@ -16,7 +16,9 @@ const OptionItem: FC<IOptionItemProps> = ({
   disabled = false,
   className,
   style,
-  isFocused
+  isFocused,
+  isSelected,
+  onSelect
 }) => {
   const { setSelectedOption, setSelectedLabel, setIsOpen, selectedOption } = useContext(SelectContext);
   const itemRef = useRef<HTMLDivElement>(null);
@@ -31,9 +33,13 @@ const OptionItem: FC<IOptionItemProps> = ({
     event.stopPropagation();
     if (disabled) return;
 
-    setSelectedOption(value);
-    setSelectedLabel(label || (typeof children === 'string' ? children : ''));
-    setIsOpen(false);
+    if (onSelect) {
+      onSelect();
+    } else {
+      setSelectedOption(value);
+      setSelectedLabel(label || (typeof children === 'string' ? children : ''));
+      setIsOpen(false);
+    }
   };
 
   const itemStyles = {
@@ -42,6 +48,8 @@ const OptionItem: FC<IOptionItemProps> = ({
     ...style
   };
 
+  const isItemSelected = isSelected !== undefined ? isSelected : selectedOption === value;
+
   return (
     <ListItem
       ref={itemRef}
@@ -49,7 +57,7 @@ const OptionItem: FC<IOptionItemProps> = ({
       className={clsx(
         styles.item,
         {
-          [styles.selected]: selectedOption === value && value,
+          [styles.selected]: isItemSelected && value,
           [styles.focused]: isFocused,
           [styles.disabled]: disabled
         },

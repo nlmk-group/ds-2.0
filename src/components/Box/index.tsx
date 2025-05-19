@@ -6,6 +6,13 @@ import { IBox } from './types';
 
 import styles from './Box.module.scss';
 
+const getPadding = (p: string | number) => {
+  if (typeof p === 'number') {
+    return `${p}px`;
+  }
+  return p;
+};
+
 const Box: FC<IBox> = ({
   children,
   st,
@@ -32,6 +39,13 @@ const Box: FC<IBox> = ({
   gap = '24px',
   ...rest
 }) => {
+  const paddings = {
+    pl: getPadding(px ?? pl ?? p ?? 0),
+    pr: getPadding(px ?? pr ?? p ?? 0),
+    pt: getPadding(py ?? pt ?? p ?? 0),
+    pb: getPadding(py ?? pb ?? p ?? 0)
+  };
+  const padding = `${paddings.pt} ${paddings.pr} ${paddings.pb} ${paddings.pl}`;
   const propsStyles = {
     backgroundColor: background,
     height,
@@ -46,23 +60,9 @@ const Box: FC<IBox> = ({
     alignItems,
     flexWrap,
     gap,
-    padding: p,
-    paddingTop: pt,
-    paddingBottom: pb,
-    paddingLeft: pl,
-    paddingRight: pr,
+    padding,
     ...st
   };
-
-  if (px !== undefined) {
-    propsStyles.paddingLeft = px;
-    propsStyles.paddingRight = px;
-  }
-
-  if (py !== undefined) {
-    propsStyles.paddingTop = py;
-    propsStyles.paddingBottom = py;
-  }
 
   return (
     <div data-testid="BOX_WRAPPER" className={clsx(styles.wrapper, className)} style={propsStyles} {...rest}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { MultiSelect, OptionItem, Typography } from '@components/index';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
+import { Box, IconSelectionContains24, MultiSelect, OptionItem, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 
 import styles from './MultiSelect.module.scss';
@@ -30,10 +31,8 @@ export default {
 
 export const MultiSelectDefault = (args: IMultiSelectProps): JSX.Element => {
   const [value, setValue] = useState<Array<string | number>>(args.value || []);
-  console.log('MultiSelectDefault render, текущее значение:', value);
 
   const handleChange = (newValue: Array<string | number>) => {
-    console.log('MultiSelectDefault.handleChange вызван с:', newValue);
     setValue(newValue);
     if (args.onChange) {
       args.onChange(newValue);
@@ -41,15 +40,13 @@ export const MultiSelectDefault = (args: IMultiSelectProps): JSX.Element => {
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      <MultiSelect {...args} value={value} onChange={handleChange}>
-        {options.map(({ value, label, disabled }) => (
-          <OptionItem key={value} value={value} label={label} disabled={disabled}>
-            <Typography variant="Body1-Medium">{label}</Typography>
-          </OptionItem>
-        ))}
-      </MultiSelect>
-    </div>
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
   );
 };
 
@@ -69,15 +66,13 @@ export const MultiSelectWithSearch = (args: IMultiSelectProps): JSX.Element => {
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      <MultiSelect {...args} value={value} onChange={handleChange}>
-        {options.map(({ value, label, disabled }) => (
-          <OptionItem key={value} value={value} label={label} disabled={disabled}>
-            <Typography variant="Body1-Medium">{label}</Typography>
-          </OptionItem>
-        ))}
-      </MultiSelect>
-    </div>
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
   );
 };
 
@@ -98,15 +93,13 @@ export const MultiSelectDisabled = (args: IMultiSelectProps): JSX.Element => {
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      <MultiSelect {...args} value={value} onChange={handleChange}>
-        {options.map(({ value, label }) => (
-          <OptionItem key={value} value={value} label={label}>
-            <Typography variant="Body1-Medium">{label}</Typography>
-          </OptionItem>
-        ))}
-      </MultiSelect>
-    </div>
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label }) => (
+        <OptionItem key={value} value={value} label={label}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
   );
 };
 
@@ -128,15 +121,13 @@ export const MultiSelectSelectionCallback = (args: IMultiSelectProps): JSX.Eleme
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      <MultiSelect {...args} value={value} onChange={handleChange}>
-        {options.map(({ value, label, disabled }) => (
-          <OptionItem key={value} value={value} label={label} disabled={disabled}>
-            <Typography variant="Body1-Medium">{label}</Typography>
-          </OptionItem>
-        ))}
-      </MultiSelect>
-    </div>
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
   );
 };
 
@@ -156,15 +147,13 @@ export const MultiSelectWithTags = (args: IMultiSelectProps): JSX.Element => {
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      <MultiSelect {...args} value={value} onChange={handleChange}>
-        {options.map(({ value, label, disabled }) => (
-          <OptionItem key={value} value={value} label={label} disabled={disabled}>
-            <Typography variant="Body1-Medium">{label}</Typography>
-          </OptionItem>
-        ))}
-      </MultiSelect>
-    </div>
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
   );
 };
 
@@ -172,3 +161,195 @@ MultiSelectWithTags.args = {
   label: 'MultiSelect с тегами'
 };
 MultiSelectWithTags.storyName = 'MultiSelect с тегами';
+
+export const MultiSelectCompact = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectCompact.args = {
+  label: 'Размер s',
+  size: sizesMappingInput.s
+};
+MultiSelectCompact.storyName = 'MultiSelect компактный';
+
+export const MultiSelectScrollingItems = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectScrollingItems.args = {
+  label: 'Скролл',
+  scrollingItems: 2
+};
+MultiSelectScrollingItems.storyName = 'MultiSelect с настройкой скролла';
+
+export const MultiSelectSuccess = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectSuccess.args = {
+  label: 'Цвет success',
+  color: customInputColors.success
+};
+MultiSelectSuccess.storyName = 'MultiSelect в состоянии success';
+
+export const MultiSelectWarning = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectWarning.args = {
+  label: 'Цвет warning',
+  color: customInputColors.warning
+};
+MultiSelectWarning.storyName = 'MultiSelect в состоянии warning';
+
+export const MultiSelectError = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectError.args = {
+  label: 'Цвет error',
+  color: customInputColors.error
+};
+MultiSelectError.storyName = 'MultiSelect в состоянии error';
+
+export const MultiSelectEmpty = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {/* No options */}
+    </MultiSelect>
+  );
+};
+
+MultiSelectEmpty.args = {
+  label: 'Пустой MultiSelect'
+};
+MultiSelectEmpty.storyName = 'MultiSelect пустой';
+
+export const MultiSelectWithCustomOptions = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled} className={styles.customOption}>
+          <Box alignItems="center" justifyContent="space-between" width="100%">
+            <IconSelectionContains24 />
+            <Box flexDirection="column" alignItems="center" gap="4px">
+              <Typography variant="Body1-Medium">{label}</Typography>
+              <Typography variant="Caption" color="success">
+                Дополнительное описание {label}
+              </Typography>
+            </Box>
+            <IconSelectionContains24 />
+          </Box>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectWithCustomOptions.args = {
+  label: 'MultiSelect со стилизованными OptionItems'
+};
+MultiSelectWithCustomOptions.storyName = 'MultiSelect со стилизованными OptionItems';

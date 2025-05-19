@@ -4,6 +4,7 @@ import { usePopper } from 'react-popper';
 
 import { Box, ClickAwayListener, List, Typography } from '@components/index';
 import OptionItem from '@components/SimpleSelect/subcomponents/OptionItem';
+import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
 
 import { IOptionsProps } from './types';
 
@@ -28,7 +29,8 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     selectAll,
     showSelectAll,
     selectAllLabel,
-    allOptions
+    allOptions,
+    noOptionsText
   } = useContext(MultiSelectContext);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
@@ -54,7 +56,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
       {
         name: 'offset',
         options: {
-          offset: [0, 8]
+          offset: [0, 4]
         }
       }
     ]
@@ -71,16 +73,18 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     }
   };
 
-  const childrenWithProps = Children.map(children, (child, index) => {
-    if (isValidElement(child)) {
-      return cloneElement(child, {
-        isFocused: index === focusedIndex,
-        isSelected: selectedOptions.includes(child.props.value),
-        onSelect: () => toggleOption(child.props.value, child.props.label || child.props.children)
-      });
-    }
-    return child;
-  });
+  const childrenWithProps =
+    Children.map(children, (child, index) => {
+      if (isValidElement<IOptionItemProps>(child)) {
+        const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
+        return cloneElement(child, {
+          isFocused: index === focusedIndex,
+          isSelected: selectedOptions.includes(child.props.value),
+          onSelect: () => toggleOption(child.props.value, label)
+        });
+      }
+      return child;
+    }) || [];
 
   const getMenuStyles = () => {
     const baseStyles = {
@@ -123,15 +127,15 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
             </OptionItem>
           </Box>
         )}
-        
+
         {showSelectAll && allOptions.length > 0 && <div className={styles.divider} />}
 
         {childrenWithProps.length > 0 ? (
           childrenWithProps
         ) : (
-          <Box padding="12px" data-ui-multi-select-no-options>
+          <Box className={styles.noOptionsContainer} data-ui-multi-select-no-options>
             <Typography variant="Caption-Medium" color="var(--steel-70)">
-              Ничего не найдено
+              {noOptionsText}
             </Typography>
           </Box>
         )}

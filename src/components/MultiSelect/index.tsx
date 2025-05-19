@@ -91,7 +91,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     isValidElement(child)
   );
 
-  // Извлечем все доступные опции для функциональности "Выбрать все"
   const allOptions = useMemo(() => {
     return options.map(option => ({
       label: option.props.label || (typeof option.props.children === 'string' ? option.props.children : ''),
@@ -99,7 +98,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     }));
   }, [options]);
 
-  // Получаем метки для выбранных значений
   const selectedOptionsWithLabels = useMemo(() => {
     return value.map(val => {
       const option = allOptions.find(opt => opt.value === val);
@@ -133,10 +131,8 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     let newValue: Array<string | number>;
 
     if (value.includes(optionValue)) {
-      // Удаляем опцию, если она уже выбрана
       newValue = value.filter(val => val !== optionValue);
     } else {
-      // Добавляем опцию, если она не выбрана
       newValue = [...value, optionValue];
     }
 
@@ -145,7 +141,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
       onEnterPress(newValue);
     }
 
-    // Оставляем фокус на инпуте и не закрываем меню
     inputRef.current?.focus();
   };
 
@@ -154,24 +149,20 @@ const MultiSelect: FC<IMultiSelectProps> = ({
 
     let newValue: Array<string | number>;
 
-    // Если уже все выбраны - очищаем выбор
     if (allOptions.length > 0 && value.length === allOptions.length) {
       newValue = [];
     } else {
-      // Иначе выбираем все
       newValue = allOptions.map(opt => opt.value);
     }
 
     onChange?.(newValue);
 
-    // Оставляем фокус на инпуте и не закрываем меню
     inputRef.current?.focus();
   };
 
   const clearAll = () => {
     if (disabled) return;
 
-    // Сбрасываем выбранные значения
     onChange?.([]);
     setIsOpen(false);
     inputRef.current?.blur();
@@ -232,7 +223,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     }
   };
 
-  // Формируем отображаемый текст для инпута
   const inputDisplayValue = useMemo(() => {
     if (searchable && isOpen) {
       return searchTerm;
@@ -274,7 +264,8 @@ const MultiSelect: FC<IMultiSelectProps> = ({
         clearAll,
         showSelectAll,
         selectAllLabel,
-        allOptions
+        allOptions,
+        noOptionsText
       }}
     >
       <div className={clsx(styles.multiSelect, className)} style={style} data-ui-multi-select>
@@ -297,13 +288,11 @@ const MultiSelect: FC<IMultiSelectProps> = ({
           onBlur={handleBlur}
           colored={colored}
           icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
-          className={clsx(styles.input, selectedOptionsWithLabels.length > 0 && styles.hasSelection)}
+          className={clsx(selectedOptionsWithLabels.length > 0 && styles.hasSelection)}
           reset={Boolean(selectedOptionsWithLabels.length > 0 || reset)}
           onReset={() => {
-            // Всегда сбрасываем значение при нажатии на крестик
             if (onReset) {
               onReset();
-              // Дополнительно очищаем значение, даже если пользовательский onReset не делает этого
               onChange?.([]);
             } else {
               clearAll();

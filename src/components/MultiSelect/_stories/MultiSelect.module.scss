@@ -1,22 +1,16 @@
 .wrapper {
-  width: 100%;
-  :global {
-    .container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .row {
-      width: 100%;
-      display: flex;
-      gap: 16px;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-    .col {
-      flex: 1;
-      min-width: 250px;
-    }
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px;
+  height: 400px;
+}
+
+.customOption {
+  height: 90px;
+
+  &:last-child,
+  &:first-child {
+    height: 90px;
   }
 }

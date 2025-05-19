@@ -7,12 +7,6 @@ import { IArrowButtonProps } from './types';
 
 import styles from './ArrowButton.module.scss';
 
-/**
- * Компонент стрелки для выпадающего списка MultiSelect
- *
- * @param {IArrowButtonProps} props - Свойства компонента
- * @returns {JSX.Element} Компонент ArrowButton
- */
 const ArrowButton: FC<IArrowButtonProps> = ({ isOpen, color, disabled, toggleDropdown }) => {
   return (
     <button

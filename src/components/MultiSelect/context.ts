@@ -73,6 +73,9 @@ export interface IMultiSelectContextProps {
 
   /** Все опции доступные для выбора */
   allOptions: ISelectedOption[];
+
+  /** Текст, отображаемый, когда нет доступных опций */
+  noOptionsText: string;
 }
 
 export const MultiSelectContext = createContext<IMultiSelectContextProps>({
@@ -96,5 +99,6 @@ export const MultiSelectContext = createContext<IMultiSelectContextProps>({
   clearAll: () => {},
   showSelectAll: false,
   selectAllLabel: 'Выбрать все',
-  allOptions: []
+  allOptions: [],
+  noOptionsText: 'Ничего не найдено'
 });

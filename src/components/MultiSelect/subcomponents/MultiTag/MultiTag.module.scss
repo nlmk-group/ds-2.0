@@ -1,0 +1,42 @@
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    margin: 2px;
+    border-radius: 4px;
+    background-color: var(--steel-20);
+    font-size: 14px;
+    max-width: 100%;
+    
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  .label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .removeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--steel-80);
+    
+    &:hover {
+      color: var(--steel-100);
+    }
+    
+    &:focus {
+      outline: none;
+      color: var(--steel-100);
+    }
+  }

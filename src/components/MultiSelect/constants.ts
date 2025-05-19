@@ -1,0 +1,2 @@
+export const SCROLLING_ITEMS_DEFAULT = 5;
+export const MAX_VISIBLE_TAGS_DEFAULT = 3;

@@ -1,20 +1,22 @@
-import { Meta } from '@storybook/blocks';
-import * as MultiSelectStories from './MultiSelect.stories';
+import { Meta, Story, Unstyled } from '@storybook/addon-docs';
+import MultiSelect from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
 
-<Meta of={MultiSelectStories} />
+<Meta
+  title="Components/MultiSelect/Info"
+  component={MultiSelect}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=569-248397'
+    },
+    jest: ['MultiSelect.test.tsx']
+  }}
+/>
 
-# MultiSelect
+<Story of={DecoratorDefault} />
 
-MultiSelect - компонент, который позволяет выбирать несколько элементов из выпадающего списка. Выбранные значения отображаются в поле ввода через указанный разделитель (по умолчанию - запятая).
-
-## Использование
-
-```jsx
-import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
-
-<MultiSelect value={['option1', 'option2']} onChange={values => console.log(values)} label="Выберите опции">
-  <OptionItem value="option1" label="Опция 1" />
-  <OptionItem value="option2" label="Опция 2" />
-  <OptionItem value="option3" label="Опция 3" />
-</MultiSelect>;
-```
+<Unstyled>
+  <Stories />
+</Unstyled>

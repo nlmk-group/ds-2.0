@@ -11,7 +11,7 @@ import React, {
 } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { Box, Input, Typography } from '@components/index';
+import { Input } from '@components/index';
 import OptionItem from '@components/SimpleSelect/subcomponents/OptionItem';
 import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
 import clsx from 'clsx';
@@ -20,10 +20,9 @@ import { IMultiSelectProps } from './types';
 
 import styles from './MultiSelect.module.scss';
 
-import { MAX_VISIBLE_TAGS_DEFAULT, SCROLLING_ITEMS_DEFAULT } from './constants';
+import { SCROLLING_ITEMS_DEFAULT } from './constants';
 import { MultiSelectContext } from './context';
 import ArrowButton from './subcomponents/ArrowButton';
-import MultiTag from './subcomponents/MultiTag';
 import Options from './subcomponents/Options';
 
 /**
@@ -70,8 +69,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
   className,
   style,
   valueSeparator = ', ',
-  maxVisibleTags = MAX_VISIBLE_TAGS_DEFAULT,
-  showCounter = true,
   allSelectedText = 'Все',
   selectAllLabel = 'Выбрать все',
   showSelectAll = false,
@@ -131,7 +128,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
   };
 
   const toggleOption = (optionValue: string | number, _optionLabel: string) => {
-    console.log('toggleOption вызван с:', optionValue);
     if (disabled) return;
 
     let newValue: Array<string | number>;
@@ -144,7 +140,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
       newValue = [...value, optionValue];
     }
 
-    console.log('toggleOption: новое значение', newValue);
     onChange?.(newValue);
     if (onEnterPress && isOpen) {
       onEnterPress(newValue);
@@ -176,16 +171,10 @@ const MultiSelect: FC<IMultiSelectProps> = ({
   const clearAll = () => {
     if (disabled) return;
 
+    // Сбрасываем выбранные значения
     onChange?.([]);
     setIsOpen(false);
     inputRef.current?.blur();
-  };
-
-  const handleRemoveTag = (optionValue: string | number) => {
-    if (disabled) return;
-
-    const newValue = value.filter(val => val !== optionValue);
-    onChange?.(newValue);
   };
 
   const filteredChildren = useMemo(() => {
@@ -260,49 +249,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     return selectedOptionsWithLabels.map(opt => opt.label).join(valueSeparator);
   }, [selectedOptionsWithLabels, searchable, isOpen, searchTerm, allOptions.length, allSelectedText, valueSeparator]);
 
-  // Компонент для отображения выбранных тегов
-  const renderTags = () => {
-    if (selectedOptionsWithLabels.length === 0) return null;
-
-    // Все выбраны - показываем общий текст
-    if (allOptions.length > 0 && selectedOptionsWithLabels.length === allOptions.length && allSelectedText) {
-      return (
-        <Box className={styles.tagsContainer} data-ui-multi-select-tags>
-          <MultiTag label={allSelectedText} onRemove={clearAll} disabled={disabled} />
-        </Box>
-      );
-    }
-
-    // Показываем видимые теги
-    const visibleTags = selectedOptionsWithLabels.slice(0, maxVisibleTags);
-    const hiddenCount = selectedOptionsWithLabels.length - visibleTags.length;
-
-    return (
-      <Box className={styles.tagsContainer} data-ui-multi-select-tags>
-        {visibleTags.map(option => (
-          <MultiTag
-            key={option.value}
-            label={option.label}
-            onRemove={() => handleRemoveTag(option.value)}
-            disabled={disabled}
-          />
-        ))}
-
-        {hiddenCount > 0 && (
-          <div className={styles.moreTag} data-ui-multi-select-more-tag>
-            +{hiddenCount}
-          </div>
-        )}
-
-        {showCounter && selectedOptionsWithLabels.length > 0 && (
-          <Typography variant="Caption-Medium" className={styles.counter} data-ui-multi-select-counter>
-            {selectedOptionsWithLabels.length}
-          </Typography>
-        )}
-      </Box>
-    );
-  };
-
   return (
     <MultiSelectContext.Provider
       value={{
@@ -324,7 +270,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
         setFocusedIndex,
         onChange,
         valueSeparator,
-        maxVisibleTags,
         selectAll,
         clearAll,
         showSelectAll,
@@ -333,7 +278,6 @@ const MultiSelect: FC<IMultiSelectProps> = ({
       }}
     >
       <div className={clsx(styles.multiSelect, className)} style={style} data-ui-multi-select>
-        {renderTags()}
         <Input
           id={id}
           helperText={helperText}
@@ -354,8 +298,17 @@ const MultiSelect: FC<IMultiSelectProps> = ({
           colored={colored}
           icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
           className={clsx(styles.input, selectedOptionsWithLabels.length > 0 && styles.hasSelection)}
-          reset={reset || selectedOptionsWithLabels.length > 0}
-          onReset={onReset || clearAll}
+          reset={Boolean(selectedOptionsWithLabels.length > 0 || reset)}
+          onReset={() => {
+            // Всегда сбрасываем значение при нажатии на крестик
+            if (onReset) {
+              onReset();
+              // Дополнительно очищаем значение, даже если пользовательский onReset не делает этого
+              onChange?.([]);
+            } else {
+              clearAll();
+            }
+          }}
           data-ui-multi-select-input
           {...props}
         />

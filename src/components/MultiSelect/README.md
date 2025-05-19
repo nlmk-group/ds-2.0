@@ -45,8 +45,6 @@ import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
 | reset | boolean | false | Булевое значение для показа иконки сброса |
 | onReset | function | - | Callback, который будет вызван при клике по иконке сброса |
 | valueSeparator | string | ', ' | Разделитель для отображения выбранных значений |
-| maxVisibleTags | number | 3 | Максимальное количество отображаемых тегов (остальные будут под "+N") |
-| showCounter | boolean | true | Флаг для отображения счетчика выбранных элементов |
 | allSelectedText | string | 'Все' | Текст при выборе всех элементов |
 | selectAllLabel | string | 'Выбрать все' | Лейбл для кнопки "Выбрать все" |
 | showSelectAll | boolean | false | Флаг отображения кнопки "Выбрать все" |

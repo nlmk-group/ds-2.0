@@ -2,7 +2,7 @@ import { createContext, Dispatch, MutableRefObject, SetStateAction } from 'react
 
 import { ISelectedOption } from './types';
 
-import { MAX_VISIBLE_TAGS_DEFAULT, SCROLLING_ITEMS_DEFAULT } from './constants';
+import { SCROLLING_ITEMS_DEFAULT } from './constants';
 
 export interface IMultiSelectContextProps {
   /** Открыто ли меню опций */
@@ -59,9 +59,6 @@ export interface IMultiSelectContextProps {
   /** Разделитель для отображения выбранных значений */
   valueSeparator: string;
 
-  /** Максимальное количество отображаемых тегов */
-  maxVisibleTags: number;
-
   /** Выбрать все опции */
   selectAll: () => void;
 
@@ -95,7 +92,6 @@ export const MultiSelectContext = createContext<IMultiSelectContextProps>({
   focusedIndex: -1,
   setFocusedIndex: () => {},
   valueSeparator: ', ',
-  maxVisibleTags: MAX_VISIBLE_TAGS_DEFAULT,
   selectAll: () => {},
   clearAll: () => {},
   showSelectAll: false,

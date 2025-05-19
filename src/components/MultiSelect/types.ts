@@ -48,12 +48,6 @@ interface IMultiSelectSpecificProps {
   /** Разделитель для отображения выбранных значений */
   valueSeparator?: string;
 
-  /** Максимальное количество отображаемых тегов (остальные будут под "+N") */
-  maxVisibleTags?: number;
-
-  /** Флаг для отображения счетчика выбранных элементов */
-  showCounter?: boolean;
-
   /** Текст при выборе всех элементов */
   allSelectedText?: string;
 

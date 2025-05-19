@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
-import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { Box, MultiSelect, OptionItem, Typography } from '@components/index';
+import { MultiSelect, OptionItem, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
 
 import styles from './MultiSelect.module.scss';
 

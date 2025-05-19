@@ -4,39 +4,4 @@
 
 .input {
   cursor: pointer;
-
-  &.hasSelection {
-    padding-left: 8px; // Уменьшаем отступ при наличии тегов
-  }
-
-  input {
-    cursor: pointer;
-    text-overflow: ellipsis;
-  }
-}
-
-.tagsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  max-width: calc(100% - 24px);
-  align-items: center;
-}
-
-.moreTag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 6px;
-  background-color: var(--steel-40);
-  color: var(--steel-10);
-  border-radius: 4px;
-  font-size: 12px;
-  min-width: 24px;
-  height: 20px;
-}
-
-.counter {
-  margin-left: 4px;
-  color: var(--steel-70);
 }

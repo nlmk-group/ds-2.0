@@ -23,6 +23,19 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.1 - <span className={styles.date}>20.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены проблемы сборки библиотеки
+              <li className={styles['left-padding']}>
+                - Добавлены зависимости clsx, date-fns, flat, lodash и другие в список внешних модулей Snowpack
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
           <ul className={styles.list}>

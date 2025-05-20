@@ -23,6 +23,38 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.1 - <span className={styles.date}>20.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено поведение в истории компонента Checkbox по умолчанию
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              <li className={styles['left-padding']}>- Актуализирован цвет заднего фона</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
           <ul className={styles.list}>

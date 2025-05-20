@@ -20,9 +20,13 @@ export default {
 } as Meta<typeof Checkbox>;
 
 export const CheckboxDefault = (argTypes: ICheckboxProps): JSX.Element => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(argTypes.checked || false);
 
-  return <Checkbox {...argTypes} checked={checked} onChange={e => setChecked(e.target.checked)} />;
+  const handleChange = () => {
+    setChecked(prev => !prev);
+  };
+
+  return <Checkbox {...argTypes} checked={checked} onChange={handleChange} />;
 };
 CheckboxDefault.storyName = 'Checkbox по умолчанию';
 

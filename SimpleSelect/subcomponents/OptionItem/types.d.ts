@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from '../../../../../node_modules/react';
+import { CSSProperties, ReactNode } from '../../../../../node_modules/react';
 
 export interface IOptionItemProps {
     value: string | number;
@@ -8,5 +8,7 @@ export interface IOptionItemProps {
     className?: string;
     style?: CSSProperties;
     isFocused?: boolean;
+    isSelected?: boolean;
+    onSelect?: () => void;
 }
 //# sourceMappingURL=types.d.ts.map

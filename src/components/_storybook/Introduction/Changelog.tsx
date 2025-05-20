@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.1 - <span className={styles.date}>16.05.25</span>
+            v2.24.1 - <span className={styles.date}>19.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -35,53 +35,61 @@ export const Changelog = () => {
               >
                 SimpleSelect
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-autocomplete-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Autocomplete
+                Autocomplete
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-datepicker-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Datepicker
+                Datepicker
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-timepicker-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Timepicker
+                Timepicker
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-combobox-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Combobox
+                Combobox
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-dropdown-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Dropdown
+                Dropdown
               </Link>
+              ,{' '}
               <Link
                 href="./?path=/docs/components-legend-info--docs"
                 target="blank"
                 className={styles['link-changelog']}
               >
-                , Legend.
+                Legend
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Исправлен отступ между выпадающим списком и источником выпадающего списка
               </li>
               <li className={styles['left-padding']}>
-                - Теперь выпадающий список в компонентах SimpleSelect и Autocomplete скрывает helperText
+                - Теперь выпадающий список в компонентах SimpleSelect, Autocomplete, DatePicker, TimePicker скрывает
+                helperText
               </li>
             </li>
           </ul>

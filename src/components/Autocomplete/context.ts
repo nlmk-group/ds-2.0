@@ -5,7 +5,6 @@ import { IAutocompleteValue } from './types';
 interface AutocompleteContextProps {
   isOpen: boolean;
   disabled: boolean;
-  helperText?: ReactNode;
   withPortal?: boolean;
   wrapperRef: RefObject<HTMLDivElement>;
   targetRef: RefObject<HTMLDivElement>;

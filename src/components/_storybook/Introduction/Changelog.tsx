@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.1 - <span className={styles.date}>19.05.25</span>
+            v2.24.2 - <span className={styles.date}>21.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -89,6 +89,19 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>
                 - Теперь выпадающий список в компонентах выше скрывает helperText
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.24.1 - <span className={styles.date}>20.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены проблемы сборки библиотеки
+              <li className={styles['left-padding']}>
+                - Добавлены зависимости clsx, date-fns, flat, lodash и другие в список внешних модулей Snowpack
               </li>
             </li>
           </ul>

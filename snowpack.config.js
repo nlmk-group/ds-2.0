@@ -4,7 +4,17 @@ const MODULES = [
   'react-helmet-async',
   '@codesandbox/nodebox',
   '@storybook/addon-actions',
-  '@storybook/blocks'
+  '@storybook/blocks',
+  'clsx',
+  'date-fns',
+  'flat',
+  'lodash',
+  'react-beautiful-dnd',
+  'react-input-mask',
+  'react-is',
+  'react-popper',
+  'react-tooltip',
+  'react-transition-group'
 ];
 const EXTERNAL_MODULES = process.env.NODE_ENV !== 'production' ? [] : MODULES;
 

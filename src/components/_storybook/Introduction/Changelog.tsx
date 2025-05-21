@@ -88,8 +88,7 @@ export const Changelog = () => {
                 - Исправлен отступ между выпадающим списком и источником выпадающего списка
               </li>
               <li className={styles['left-padding']}>
-                - Теперь выпадающий список в компонентах SimpleSelect, Autocomplete, DatePicker, TimePicker скрывает
-                helperText
+                - Теперь выпадающий список в компонентах выше скрывает helperText
               </li>
             </li>
           </ul>

@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.1 - <span className={styles.date}>20.05.25</span>
+            v2.24.3 - <span className={styles.date}>22.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -50,6 +50,13 @@ export const Changelog = () => {
                 Modal
               </Link>
               <li className={styles['left-padding']}>- Актуализирован цвет заднего фона</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              <li className={styles['left-padding']}>- Актуаилизирована иконка CloseOutlined в соответствии макету</li>
             </li>
           </ul>
         </div>

@@ -2,14 +2,6 @@
   position: relative;
 }
 
-// TODO: изменить после кнопок v3.3
-.button {
-  background: none !important;
-  &:hover {
-    background: none !important;
-  }
-}
-
 .icon-disabled {
   svg {
     color: var(--steel-70);

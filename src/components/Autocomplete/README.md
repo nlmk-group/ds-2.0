@@ -1,6 +1,6 @@
 # Autocomplete Component
 
-## Версия компонента v3.0
+## Версия компонента v3.2
 
 Компонент Autocomplete используется для предоставления функции автозаполнения на основе введенного текста, позволяя пользователю выбирать из предложенных вариантов.
 
@@ -74,6 +74,8 @@ import { Autocomplete } from '@nlmk/ds-2.0';
 | showTotalCount | boolean | true | Показывать ли общее количество элементов |
 | debounceDelay | number | 500 | Задержка в мс для debounce при вводе |
 | showEmptyDropdown | boolean | true | Показывать ли дропдаун при отсутствии результатов |
+| helperText | string | '' | Вспомогательный текст под полем ввода |
+| error | boolean | false | Флаг состояния ошибки (окрашивает компонент в красный цвет) |
 | className | string | - | Дополнительный CSS класс |
 | style | CSSProperties | - | Inline стили |
 

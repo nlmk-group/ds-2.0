@@ -1,4 +1,4 @@
-import { sizesMappingInput } from '@components/declaration';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
 
 export const argsTypes = {
   onPeriodChange: {
@@ -8,6 +8,12 @@ export const argsTypes = {
   onChange: {
     description: 'Callback, который будет вызван при выборе даты',
     action: 'изменена дата'
+  },
+  onFocus: {
+    description: 'Callback, который будет вызван при фокусе на инпуте или клике на иконку календаря'
+  },
+  onBlur: {
+    description: 'Callback, который будет вызван при потере фокуса инпутом'
   },
   value: {
     description: 'Значение выбранной даты'
@@ -114,6 +120,20 @@ export const argsTypes = {
       }
     },
     options: Object.values(sizesMappingInput),
+    control: { type: 'select' }
+  },
+  helperText: {
+    description: 'Вспомогательный текст под инпутом',
+    control: { type: 'text' }
+  },
+  color: {
+    description: 'Цвет компонента, отображающий разные состояния',
+    table: {
+      defaultValue: {
+        summary: customInputColors.default
+      }
+    },
+    options: Object.values(customInputColors),
     control: { type: 'select' }
   },
   error: {

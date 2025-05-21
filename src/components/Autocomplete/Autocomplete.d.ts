@@ -25,7 +25,7 @@ export enum EAutocompleteSize {
   m = 'm'
 }
 
-export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'> {
+export interface IAutocompleteProps extends Omit<TInputProps, 'onChange' | 'color'> {
   /** Изначально выбранный элемент */
   selected?: IAutocompleteValue;
 

@@ -15,7 +15,7 @@ import { IOptionItemProps } from '../OptionItem/types';
 const Options: FC<IOptionsProps> = ({ children }) => {
   const {
     isOpen,
-    selectRef,
+    inputRef,
     menuWidth,
     withPortal,
     menuRef,
@@ -28,7 +28,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
-  const { styles: popperStyles, attributes } = usePopper(selectRef.current, popperElement, {
+  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
     placement: 'bottom-start', // Позиционируем список под инпутом, выравнивая по левому краю
     modifiers: [
       {
@@ -77,24 +77,15 @@ const Options: FC<IOptionsProps> = ({ children }) => {
 
   const getMenuStyles = () => {
     const baseStyles = {
-      width: withPortal ? menuWidth || selectRef.current?.offsetWidth : '100%',
+      width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
       maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
-      marginTop: 0,
       ...popperStyles.popper
     };
-
-    if (!withPortal) {
-      return {
-        ...baseStyles,
-        zIndex: 1000
-      };
-    }
-
     return baseStyles;
   };
 
   const menu = (
-    <ClickAwayListener onClickAway={handleClickAway} excludeRef={selectRef}>
+    <ClickAwayListener onClickAway={handleClickAway} excludeRef={inputRef}>
       <List
         ref={el => {
           if (!el) return;

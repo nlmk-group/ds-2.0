@@ -3,12 +3,14 @@ import { CSSProperties, FC, ReactNode } from 'react';
 import { TInputProps } from '@components/Input/types';
 
 export enum ESelectSizes {
+  /** (по умолчанию) */
   m = 'm',
   s = 's',
   xs = 'xs'
 }
 
 export enum ESelectColors {
+  /** Обычное состояние (по умолчанию) */
   default = 'default',
   error = 'error',
   warning = 'warning',
@@ -56,6 +58,18 @@ export interface ISelectSpecificProps {
 
   /** Кастомные стили для компонента */
   style?: CSSProperties;
+  
+  /** Дополнительный CSS класс */
+  className?: string;
+  
+  /** Флаг применения цветовых стилей */
+  colored?: boolean;
+  
+  /** Флаг наличия кнопки сброса */
+  reset?: boolean;
+  
+  /** Обработчик сброса значения */
+  onReset?: () => void;
 }
 
 export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;

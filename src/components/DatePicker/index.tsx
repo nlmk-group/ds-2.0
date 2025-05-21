@@ -54,6 +54,10 @@ import { LocaleProvider } from './utils';
  * @param {boolean} [props.infiniteTimeScroll] - Флаг для бесконечной прокрутки времени.
  * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса.
  * @param {function} [props.onReset] - Обработчик сброса значения.
+ * @param {function} [props.onFocus] - Обработчик события фокуса на инпуте или клике на иконку календаря.
+ * @param {function} [props.onBlur] - Обработчик события потери фокуса инпутом.
+ * @param {boolean} [props.error] - Флаг ошибки, влияет на стиль компонента.
+ * @param {string} [props.helperText] - Вспомогательный текст, отображаемый под инпутом.
  * @returns {JSX.Element} Компонент DatePicker.
  */
 
@@ -172,10 +176,6 @@ export const DatePicker: TDatePickerProps = ({
     setOpen(false);
   }, []);
 
-  const handleFocus = useCallback(() => {
-    setOpen(true);
-  }, []);
-
   const handleReset = useCallback(() => {
     setToggle(s => !s);
     setOpen(false);
@@ -211,6 +211,16 @@ export const DatePicker: TDatePickerProps = ({
     },
     [inputRef, isOpen, onChange, onPeriodChange, withPeriod, withShift]
   );
+
+  const handleFocus = useCallback(() => {
+    restInputProps.onFocus?.();
+    setOpen(true);
+  }, [restInputProps.onFocus]);
+
+  const handleBlur = useCallback(() => {
+    restInputProps.onBlur?.();
+    handleSetValues(true);
+  }, [restInputProps.onBlur, handleSetValues]);
 
   const renderCalendarPanel = () => (
     <CalendarPanel
@@ -285,7 +295,6 @@ export const DatePicker: TDatePickerProps = ({
         enabledHourTo={enabledHourTo}
         enabledMinuteFrom={enabledMinuteFrom}
         enabledMinuteTo={enabledMinuteTo}
-        onFocus={handleFocus}
         withPeriod={withPeriod}
         valueFrom={valueFrom}
         valueTo={valueTo}
@@ -297,7 +306,6 @@ export const DatePicker: TDatePickerProps = ({
         isOpenOnFocus={isOpenOnFocus}
         onEnterKeyDown={handleSetValues(false)}
         onTabKeyDown={handleSetValues(false)}
-        onBlur={handleSetValues(true)}
         colored={colored}
         reset={reset}
         onReset={onReset}
@@ -305,6 +313,8 @@ export const DatePicker: TDatePickerProps = ({
         error={error}
         helperText={helperText}
         {...restInputProps}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         data-ui-datepicker-input
       />
       {isOpen &&

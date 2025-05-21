@@ -10,12 +10,19 @@ const IconCloseOutlined32: FC<IIconsProps> = ({ color = 'inherit', htmlColor }) 
   const classes = clsx(styles[color as keyof typeof styles]);
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes}>
-      <path
-        fill={htmlColor || 'currentColor'}
-        fillRule="evenodd"
-        d="M13.943 16.257 7 23.2 8.8 25l6.943-6.943L16 17.8l.257.257L23.2 25l1.8-1.8-6.943-6.943L17.8 16l.257-.257.579-.579L25 8.8 23.2 7l-6.943 6.943L16 14.2l-.257-.257-.579-.579L8.8 7 7 8.8l6.943 6.943.257.257-.257.257Z"
-        clipRule="evenodd"
-      />
+      <g clipPath="url(#clip0_521_25818)">
+        <path
+          fillRule="evenodd"
+          clipPath="evenodd"
+          d="M26.9966 24.6968L24.6973 26.996L15.9966 18.2963L7.29685 26.996L4.99758 24.6968L13.6973 15.997L4.99658 7.29732L7.29585 4.99805L15.9966 13.6978L24.6963 4.99805L26.9956 7.29732L18.2958 15.997L26.9966 24.6968Z"
+          fill={htmlColor || 'currentColor'}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_521_25818">
+          <rect width="32" height="32" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

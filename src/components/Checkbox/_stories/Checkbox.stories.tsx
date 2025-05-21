@@ -19,7 +19,15 @@ export default {
   decorators: [withThemeProvider]
 } as Meta<typeof Checkbox>;
 
-export const CheckboxDefault = (argTypes: ICheckboxProps): JSX.Element => <Checkbox {...argTypes} />;
+export const CheckboxDefault = (argTypes: ICheckboxProps): JSX.Element => {
+  const [checked, setChecked] = useState(argTypes.checked || false);
+
+  const handleChange = () => {
+    setChecked(prev => !prev);
+  };
+
+  return <Checkbox {...argTypes} checked={checked} onChange={handleChange} />;
+};
 CheckboxDefault.storyName = 'Checkbox по умолчанию';
 
 export const CheckboxColors = (): JSX.Element => {

@@ -56,7 +56,7 @@ export default defineConfig({
               'src/components/**/_stories/**/*',
               'src/components/**/*.stories.*',
               'src/components/**/*.test.*',
-              'src/_storybook/**/*',
+              'src/components/_storybook/**/*', 
               'src/stories/**/*',
               'src/**/__tests__/**/*'
             ],

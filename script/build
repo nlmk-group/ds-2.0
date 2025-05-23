@@ -21,7 +21,18 @@ cp -r public/fonts/* lib/fonts/ 2>/dev/null || true
 cat > lib/css/main.css << 'EOF'
 /* NLMK DS 2.0 Styles */
 @import './style.css';
+@import './tokens/old-colour-shadow.css';
+@import './tokens/main-color-light.css';
+@import './tokens/spacing.css';
+@import './tokens/sizing.css';
+@import './tokens/opacity.css';
+@import './tokens/radius.css';
 @import './temp-variables.css';
+@import './tokens/main-typography.css';
+@import './tokens/desktop/typo/main-typography.css';
+@import './tokens/desktop/color/main-color-light.css';
+@import './tokens/light-tokens.css';
+@import './tokens/typography-tokens.css';
 @import './dark-theme-storybook.css';
 EOF
 

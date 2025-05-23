@@ -37,7 +37,6 @@ fs.writeFileSync(constructPath('index.d.ts'), dtsContent);
 // Создаем CSS экспорты для селективного импорта
 const cssExports = `// CSS файлы библиотеки NLMK DS 2.0
 export const mainCSS = './css/main.css';
-export const stylesCSS = './css/style.css';
 export const variablesCSS = './css/temp-variables.css';
 export const darkThemeCSS = './css/dark-theme-storybook.css';
 `;

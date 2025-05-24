@@ -2,8 +2,10 @@
 
 echo "🚀 Сборка библиотеки NLMK DS 2.0..."
 
+# Генерация токенов темной темы
 yarn convert:dark-theme-tokens
 
+# Удаление старых файлов сборки
 rm -rf lib cache
 
 # Основная сборка с Vite (включает JS, CSS и типы)
@@ -13,13 +15,13 @@ BUILD_MODE=lib yarn vite build
 echo "📦 Копирование статических ресурсов..."
 mkdir -p lib/css lib/fonts
 
-# Копируем CSS и шрифты
+# Копируем CSS файлы из public
 cp -r public/css/* lib/css/ 2>/dev/null || true
 cp -r public/fonts/* lib/fonts/ 2>/dev/null || true
 
-# Создаем объединенный CSS файл
 cat > lib/css/main.css << 'EOF'
-/* NLMK DS 2.0 Стили */
+/* NLMK DS 2.0 Styles */
+@import './style.css';
 @import './tokens/old-colour-shadow.css';
 @import './tokens/main-color-light.css';
 @import './tokens/spacing.css';
@@ -36,6 +38,7 @@ cat > lib/css/main.css << 'EOF'
 EOF
 
 # Настройка точек входа
+echo "🔧 Настройка точек входа..."
 node script/entryPoints.js
 
 echo "✅ Сборка завершена успешно!"

@@ -23,23 +23,9 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.3 - <span className={styles.date}>22.05.25</span>
+            v2.24.2 - <span className={styles.date}>26.05.25</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-checkbox-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Checkbox
-              </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Исправлено поведение в истории компонента Checkbox по умолчанию
-              </li>
-            </li>
             <li>
               • Изменен компонент{' '}
               <Link
@@ -57,6 +43,17 @@ export const Changelog = () => {
                 Icon
               </Link>
               <li className={styles['left-padding']}>- Актуаилизирована иконка CloseOutlined в соответствии макету</li>
+            </li>
+            <li>
+              • Исправлена документация к компоненту{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено поведение контролов в историях компонента</li>
             </li>
           </ul>
         </div>

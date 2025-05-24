@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import Checkbox from '@components/Checkbox';
 import { Box, Typography } from '@components/index';
 import { Meta } from '@storybook/react';
+import { useArgs } from 'storybook/internal/preview-api';
 
 import styles from './Checkbox.module.scss';
 
@@ -20,20 +21,20 @@ export default {
 } as Meta<typeof Checkbox>;
 
 export const CheckboxDefault = (argTypes: ICheckboxProps): JSX.Element => {
-  const [checked, setChecked] = useState(argTypes.checked || false);
+  const [args, updateArgs] = useArgs();
 
-  const handleChange = () => {
-    setChecked(prev => !prev);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    updateArgs({ checked: event.target.checked });
   };
 
-  return <Checkbox {...argTypes} checked={checked} onChange={handleChange} />;
+  return <Checkbox {...argTypes} checked={args.checked} onChange={handleChange} />;
 };
 CheckboxDefault.storyName = 'Checkbox по умолчанию';
 
 export const CheckboxColors = (): JSX.Element => {
   const [selectedValues, setSelectedValues] = useState<Record<string, boolean>>({});
 
-  const handleChange = (color: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (color: string) => (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValues(prev => ({
       ...prev,
       [color]: event.target.checked

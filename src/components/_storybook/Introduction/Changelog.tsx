@@ -23,8 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.2 - <span className={styles.date}>23.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Миграция сборки библиотеки с Snowpack на Vite
+              <li className={styles['left-padding']}>
+                - Переведена система сборки с Snowpack на Vite для улучшения производительности
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.24.1 - <span className={styles.date}>20.05.25</span>
           </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
           <ul className={styles.list}>
             <li>
               • Исправлены проблемы сборки библиотеки
@@ -38,6 +54,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}

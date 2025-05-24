@@ -28,7 +28,7 @@ try {
   fs.writeFileSync(writeFilePath, `export const darkThemeStyles = \`:root{${cleanStyles}}\``);
   fs.writeFileSync(storyBookCSSFilePath, storyBookTheme);
 
-  console.log('Файлы успешно созданы');
+  console.log('✅ Файлы темной темы созданы успешно');
 } catch (err) {
-  console.error('Произошла ошибка:', err);
+  console.error('❌ Произошла ошибка при создании темной темы:', err);
 }

@@ -1,12 +1,44 @@
 #!/bin/bash
 
-## Clean lib folder && Build package using snowpack configuration
-yarn snowpack:build
-## Add TS types to package
-yarn build:types
-## Copy index files to lib root level
-cp lib/dist/components/index.js lib/dist/components/index.d.ts lib
-## Remove fonts from lib
-rm -rf lib/fonts
-## Run changes for path script
-node script/changePath.js
+echo "🚀 Сборка библиотеки NLMK DS 2.0..."
+
+# Генерация токенов темной темы
+yarn convert:dark-theme-tokens
+
+# Удаление старых файлов сборки
+rm -rf lib cache
+
+# Основная сборка с Vite (включает JS, CSS и типы)
+BUILD_MODE=lib yarn vite build
+
+# Копирование статических ресурсов
+echo "📦 Копирование статических ресурсов..."
+mkdir -p lib/css lib/fonts
+
+# Копируем CSS файлы из public
+cp -r public/css/* lib/css/ 2>/dev/null || true
+cp -r public/fonts/* lib/fonts/ 2>/dev/null || true
+
+cat > lib/css/main.css << 'EOF'
+/* NLMK DS 2.0 Styles */
+@import './style.css';
+@import './tokens/old-colour-shadow.css';
+@import './tokens/main-color-light.css';
+@import './tokens/spacing.css';
+@import './tokens/sizing.css';
+@import './tokens/opacity.css';
+@import './tokens/radius.css';
+@import './temp-variables.css';
+@import './tokens/main-typography.css';
+@import './tokens/desktop/typo/main-typography.css';
+@import './tokens/desktop/color/main-color-light.css';
+@import './tokens/light-tokens.css';
+@import './tokens/typography-tokens.css';
+@import './dark-theme-storybook.css';
+EOF
+
+# Настройка точек входа
+echo "🔧 Настройка точек входа..."
+node script/entryPoints.js
+
+echo "✅ Сборка завершена успешно!"

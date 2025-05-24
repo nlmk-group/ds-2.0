@@ -4,10 +4,10 @@ const path = require('path');
 const libPath = path.resolve(__dirname, '../lib');
 const constructPath = filePath => path.join(libPath, filePath);
 
-console.log('🔧 Setting up entry points...');
+console.log('🔧 Настройка точек входа...');
 
 const createdFiles = fs.readdirSync(libPath).filter(f => f.startsWith('index.') && f.endsWith('.js'));
-console.log('📁 Found bundle files:', createdFiles);
+console.log('📁 Найдены файлы сборки:', createdFiles);
 
 fs.writeFileSync(constructPath('index.js'), `export * from './index.es.js';\n`);
 
@@ -21,11 +21,11 @@ createdFiles.forEach(filename => {
     if (filename !== 'index.js' && !content.includes("import './css/main.css'")) {
       const newContent = `import './css/main.css';\n\n${content}`;
       fs.writeFileSync(filePath, newContent);
-      console.log(`✅ Updated ${filename}`);
+      console.log(`✅ Обновлен ${filename}`);
     } else if (filename === 'index.js') {
-      console.log(`ℹ️ Skipping main entry point ${filename}`);
+      console.log(`ℹ️ Пропускаем основную точку входа ${filename}`);
     } else {
-      console.log(`ℹ️ CSS already imported in ${filename}`);
+      console.log(`ℹ️ CSS уже импортирован в ${filename}`);
     }
   }
 });
@@ -45,7 +45,7 @@ fs.writeFileSync(constructPath('styles.js'), cssExports);
 // Создаем package.json для tree-shaking
 if (fs.existsSync(constructPath('dist'))) {
   fs.writeFileSync(constructPath('dist/package.json'), '{"sideEffects": false}\n');
-  console.log('📦 Created dist/package.json for tree-shaking');
+  console.log('📦 Создан dist/package.json для tree-shaking');
 }
 
-console.log('🎉 Entry points configured successfully!');
+console.log('🎉 Точки входа настроены успешно!');

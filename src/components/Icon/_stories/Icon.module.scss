@@ -134,6 +134,7 @@
   color: var(--icon-search, --brand-sapphire-60);
 }
 
+// FIXME: third parameter? maybe var(--icon-search, var(--brand-sapphire-60, #1952b6));
 .strokeIcon path {
   stroke: var(--icon-search, --brand-sapphire-60, #1952b6);
 }

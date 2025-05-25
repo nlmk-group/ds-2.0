@@ -165,7 +165,7 @@ input:autofill:focus {
     height: 32px;
 
     ~ label {
-      padding: 5px 0;
+      padding: 6px 0;
     }
 
     ~ .icon {
@@ -233,7 +233,7 @@ input:autofill:focus {
   position: absolute;
   padding: 10px 0;
   left: 16px;
-  top: 0;
+  top: 1px;
   color: var(--steel-70);
   cursor: text;
   transition: 150ms ease-out;

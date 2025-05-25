@@ -1,6 +1,6 @@
 # TimePicker Component
 
-## Версия компонента v3.1
+## Версия компонента v3.3
 
 TimePicker компонент используется для выбора времени в различных форматах, включая выбор одного значения времени или периода.
 
@@ -39,12 +39,18 @@ import { TimePicker } from '@nlmk/ds-2.0';
 | label             | string                                                         | ''      | Текст метки (label) для инпута                     |
 | reset             | boolean                                                        | false   | Флаг наличия кнопки сброса                         |
 | onReset           | () => void                                                     | -       | Обработчик сброса значения                         |
+| error             | boolean                                                        | false   | Флаг отображения состояния ошибки                  |
+| helperText        | ReactNode                                                      | -       | Вспомогательный текст под инпутом                  |
+| disabled          | boolean                                                        | false   | Флаг отключения компонента                         |
+| size              | 'm' \| 's' \| 'xs'                                             | 'm'     | Размер инпута (наследуется от Input)               |
+| color             | 'default' \| 'primary' \| 'secondary'                          | 'default' | Цвет инпута (наследуется от Input)                |
 
 ## Примечания
 
 - Компонент поддерживает выбор времени в различных форматах: обычное время, время с секундами, период времени.
 - При использовании типа 'period' или 'periodWithSeconds', используйте props `valueFrom`, `valueTo` и `onPeriodChange`.
 - Для кастомизации доступных часов и минут используйте функции `enabledHourFrom`, `enabledHourTo`, `enabledMinuteFrom`, `enabledMinuteTo`.
+- TimePicker имеет частичную поддержку пропсов родительского компонента Input, включая color, size, helperText.
 
 ## Стилизация
 

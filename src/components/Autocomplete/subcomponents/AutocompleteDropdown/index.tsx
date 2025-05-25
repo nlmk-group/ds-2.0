@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -11,7 +11,6 @@ import { IAutocompleteDropdownProps } from './types';
 import styles from './AutocompleteDropdown.module.scss';
 
 import { AutocompleteContext } from '../../context';
-import { EAutocompleteSize } from '../../enums';
 import { boldReactElement, boldString } from '../../helpers';
 import AutocompleteItem from '../AutocompleteItem';
 
@@ -33,7 +32,6 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     onSelectMenuItem,
     noResultsText,
     targetRef,
-    size,
     showTooltip,
     renderLabel,
     totalText,
@@ -76,7 +74,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
       {
         name: 'offset',
         options: {
-          offset: [0, 0]
+          offset: [0, 4]
         }
       }
     ]
@@ -86,24 +84,10 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
   const getMenuStyles = () => {
     const baseStyles = {
       width: rect?.width,
-      left: rect?.left,
-      top: rect ? rect.top + rect.height : undefined
+      ...popperStyles.popper
     };
 
-    if (withPortal) {
-      return {
-        ...baseStyles,
-        ...popperStyles.popper
-      };
-    }
-
-    return {
-      ...baseStyles,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      zIndex: 1000
-    };
+    return baseStyles;
   };
 
   const hasItems = (currentItems ?? []).length > 0;
@@ -114,19 +98,13 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         ref={el => {
           if (!el) return;
 
-          if (withPortal) {
-            setPopperElement(el);
-          } else {
+          if (wrapperRef && typeof wrapperRef === 'object') {
             (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
           }
+          setPopperElement(el);
         }}
-        className={clsx(
-          styles.card,
-          size === EAutocompleteSize.s && styles['card-small'],
-          size === EAutocompleteSize.xs && styles['card-extra-small'],
-          className
-        )}
-        style={withPortal ? (getMenuStyles() as CSSProperties) : { ...style }}
+        className={clsx(styles.card, className)}
+        style={{ ...getMenuStyles(), ...style }}
         {...(withPortal ? attributes.popper : {})}
         data-ui-autocomplete-dropdown
       >

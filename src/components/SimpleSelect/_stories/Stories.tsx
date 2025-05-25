@@ -11,7 +11,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=557-223626&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=569-248397';
+const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components/SimpleSelect';
 
 const SimpleSelectStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -152,7 +153,7 @@ export default App;
         title="SimpleSelect"
         description="SimpleSelect позволяет пользователям выбирать один элемент из списка. Он поддерживает различные настройки и стили."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/SimpleSelect"
+        codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
       />
 

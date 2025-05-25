@@ -29,7 +29,7 @@ export const Changelog = () => {
             <li>
               • Миграция сборки библиотеки с Snowpack на Vite.
               <li className={styles['left-padding']}>
-                - Переведена система сборки с Snowpack на Vite для улучшения производительности
+                - Переведена система сборки со Snowpack на Vite для улучшения производительности
               </li>
             </li>
             <li>

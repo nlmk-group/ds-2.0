@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 
 import { EButtonSize } from '@components/Button/enums';
 import { EClickAwayEvent } from '@components/ClickAwayListener/types';
@@ -112,6 +112,7 @@ const Drawer: FC<IDrawerProps> = ({
       data-testid="DRAWER"
     >
       <ClickAwayListener
+        excludeRef={[drawerRef]}
         eventType={clickAwayEventType}
         className={clsx(styles.wrapper, styles[position], {
           [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
@@ -127,7 +128,16 @@ const Drawer: FC<IDrawerProps> = ({
           style={isHorizontal ? { width } : { height }}
         >
           <div className={clsx(styles.drawerContent, styles[position])} data-ui-drawer-content>
-            {children}
+            {React.Children.map(children, child => {
+              return React.cloneElement(child as ReactElement, {
+                onClick: (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  if (React.isValidElement(child) && child.props.onClick) {
+                    child.props.onClick(e);
+                  }
+                }
+              });
+            })}
           </div>
         </div>
         {!isClosing && isViewCloseButton && (

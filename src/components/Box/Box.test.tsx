@@ -89,24 +89,25 @@ describe('src/components/Box', () => {
 
   test('It must render Box with custom padding', () => {
     const padding = 16;
+    const paddings = `${padding}px `.repeat(4);
     render(<Box p={padding}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${padding}px`);
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${paddings}`);
   });
 
   test('It must render Box with custom horizontal padding', () => {
     const paddingHorizontal = 16;
+    const paddings = `0px ${paddingHorizontal}px 0px ${paddingHorizontal}px`;
     render(<Box px={paddingHorizontal}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-left: ${paddingHorizontal}px`);
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-right: ${paddingHorizontal}px`);
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${paddings}`);
   });
 
   test('It must render Box with custom vertical padding', () => {
     const paddingVertical = 16;
+    const paddings = `${paddingVertical}px 0px ${paddingVertical}px 0px`;
     render(<Box py={paddingVertical}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-top: ${paddingVertical}px`);
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-bottom: ${paddingVertical}px`);
+    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${paddings}`);
   });
 });

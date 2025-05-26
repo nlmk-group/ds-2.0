@@ -38,7 +38,6 @@ import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMap
  * @param {() => void} props.onOpenUser - Функция, вызываемая при открытии профиля пользователя.
  * @param {() => void} [props.onLogout] - Функция, вызываемая при выходе из аккаунта.
  * @param {() => void} [props.onLogin] - Функция, вызываемая при входе в аккаунт.
- * @param {() => void} [props.onSearch] - Функция, вызываемая при поиске.
  * @param {() => void} [props.onClickLogo] - Функция, вызываемая при клике на логотип.
  * @param {string} props.currentPath - Текущий путь (URL) для определения активного элемента.
  * @param {boolean} [props.defaultMenuOpen=false] - Флаг, указывающий, должно ли боковое меню быть развернуто по умолчанию.
@@ -65,7 +64,6 @@ const Sidebar: FC<ISidebarProps> &
   onOpenUser,
   onLogout,
   onLogin,
-  onSearch,
   onClickLogo,
   onChangeFavorites = () => {},
   currentPath,
@@ -227,7 +225,7 @@ const Sidebar: FC<ISidebarProps> &
         style={style}
       >
         <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
-          {isBurger && !isVertical && (
+          {!isVertical && isBurger && (
             <div
               data-ui-sidebar-burger
               className={clsx(styles.burger, styles['burger-expanded'])}
@@ -287,23 +285,8 @@ const Sidebar: FC<ISidebarProps> &
             )}
           </Scrollbar>
 
-          {isVertical ? (
-            !isBurger && (
-              <CollapseButton
-                ref={collapseButtonRef}
-                isExpanded={isExpanded}
-                onClick={() => setExpanded(val => !val)}
-              />
-            )
-          ) : (
-            <div className={styles.rightSection} data-ui-sidebar-right-section>
-              {onSearch && (
-                <div data-ui-sidebar-search-icon className={styles.search}>
-                  <Icon name={'IconSearchOutlined32'} containerSize={32} htmlColor="var(--unique-white)" />
-                </div>
-              )}
-              {renderUserControl()}
-            </div>
+          {isVertical && !isBurger && (
+            <CollapseButton ref={collapseButtonRef} isExpanded={isExpanded} onClick={() => setExpanded(val => !val)} />
           )}
         </div>
 

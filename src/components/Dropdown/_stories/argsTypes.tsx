@@ -1,4 +1,4 @@
-import { EButtonSize } from '@components/Button/enums';
+import { EButtonSize, EButtonVariant } from '@components/Button/enums';
 
 export const argsTypes = {
   children: {
@@ -85,5 +85,14 @@ export const argsTypes = {
       }
     },
     control: { type: 'text' }
+  },
+  variant: {
+    description: `Вариант отображения – <b>${Object.values(EButtonVariant).join(' | ')}</b>`,
+    table: {
+      defaultValue: { summary: 'secondary' },
+      type: { summary: 'string' }
+    },
+    options: Object.values(EButtonVariant),
+    control: { type: 'select' }
   }
 };

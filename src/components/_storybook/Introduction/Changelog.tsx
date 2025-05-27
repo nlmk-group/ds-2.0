@@ -23,11 +23,132 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.1 - <span className={styles.date}>20.05.25</span>
+            v2.25.0 - <span className={styles.date}>27.05.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлены проблемы сборки библиотеки
+              • Миграция сборки библиотеки с Snowpack на Vite.
+              <li className={styles['left-padding']}>
+                - Переведена система сборки со Snowpack на Vite для улучшения производительности
+              </li>
+            </li>
+            <li>
+              • Изменены компоненты{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-autocomplete-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Autocomplete
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Datepicker
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Timepicker
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Combobox
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-legend-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Legend
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен отступ между выпадающим списком и источником выпадающего списка
+              </li>
+              <li className={styles['left-padding']}>
+                - Теперь выпадающий список в компонентах выше скрывает helperText
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-modal-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Modal
+              </Link>
+              .<li className={styles['left-padding']}>- Актуализирован цвет заднего фона</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Актуаилизирована иконка CloseOutlined в соответствии макету</li>
+            </li>
+            <li>
+              • Исправлена документация к компоненту{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено поведение контролов в историях компонента</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Удалено свойство onSearch</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.24.1 - <span className={styles.date}>20.05.25</span>
+          </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
+          <ul className={styles.list}>
+            <li>
+              • Исправлены проблемы сборки библиотеки.
               <li className={styles['left-padding']}>
                 - Добавлены зависимости clsx, date-fns, flat, lodash и другие в список внешних модулей Snowpack
               </li>
@@ -38,6 +159,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
@@ -63,6 +187,7 @@ export const Changelog = () => {
               >
                 SkeletonLoader
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Добавлено свойство animation для выбора типа анимации компонента
               </li>
@@ -83,6 +208,7 @@ export const Changelog = () => {
               >
                 ComboBox
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Добавлено свойство checkableSimple для независимого выбора чекбоксов в ComboTreeList
               </li>
@@ -99,6 +225,7 @@ export const Changelog = () => {
               >
                 Input
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Исправлен визуальный баг взаимодействия свойств placeholder и label при наличии атрибута multiple
               </li>
@@ -119,7 +246,7 @@ export const Changelog = () => {
               >
                 ComboBox
               </Link>
-              <li className={styles['left-padding']}>- Удалено значение maxLevel по умолчанию у ComboTreeList</li>
+              .<li className={styles['left-padding']}>- Удалено значение maxLevel по умолчанию у ComboTreeList</li>
               <li className={styles['left-padding']}>
                 - Доработана логика рендеринга последнего элемента у ComboTreeList
               </li>
@@ -133,14 +260,14 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
             </li>
             <li>
-              • Обновлен компонент{' '}
+              . • Обновлен компонент{' '}
               <Link
                 href="./?path=/story/components-icon-stories--icon-unit-component"
                 target="blank"
                 className={styles['link-changelog']}
               >
                 IconUnit
-              </Link>{' '}
+              </Link>
               .
               <li className={styles['left-padding']}>
                 - Параметр unit стал обязательным для корректного отображения компонента
@@ -207,7 +334,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Улучшена кросс-платформенная совместимость
+              • Улучшена кросс-платформенная совместимость.
               <li className={styles['left-padding']}>- Добавлена поддержка Windows при работе с библиотекой</li>
               <li className={styles['left-padding']}>
                 - Исправлены пути с двоеточиями, которые вызывали ошибки при использовании в Windows
@@ -263,6 +390,7 @@ export const Changelog = () => {
               <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
                 ColumnSetting
               </Link>
+              .
             </li>
           </ul>
         </div>
@@ -280,7 +408,7 @@ export const Changelog = () => {
               >
                 TreeList
               </Link>
-              <li className={styles['left-padding']}>- Добавлены свойства onDragStart и onDragEnd</li>
+              .<li className={styles['left-padding']}>- Добавлены свойства onDragStart и onDragEnd</li>
             </li>
             <li>
               • Изменен компонент{' '}
@@ -298,6 +426,7 @@ export const Changelog = () => {
               >
                 Drawer
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Добавлено свойство clickAwayEventType для указания типа события для закрытия панели при клике вне её
                 области
@@ -319,6 +448,7 @@ export const Changelog = () => {
               >
                 TreeList
               </Link>
+              .
               <li className={styles['left-padding']}>
                 - Исправлены стили элементов дерева в состояниях hover и selected
               </li>
@@ -459,7 +589,7 @@ export const Changelog = () => {
             v2.21.2 - <span className={styles.date}>26.03.25</span>
           </Typography>
           <ul className={styles.list}>
-            <li>• Исправлен баг со сборкой файлов в библиотеке</li>
+            <li>• Исправлен баг со сборкой файлов в библиотеке.</li>
           </ul>
         </div>
         <div className={styles.history}>

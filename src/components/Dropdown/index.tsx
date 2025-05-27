@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { EButtonSize } from '@components/Button/enums';
@@ -45,7 +45,7 @@ const Dropdown: FC<IDropdownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
   /**
    * Переключает состояние открытия/закрытия выпадающего меню.
    * @param {React.MouseEvent<HTMLButtonElement>} e - Событие клика мыши.

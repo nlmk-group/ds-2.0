@@ -80,7 +80,7 @@ const Select: FC<ISelectProps> = ({
   const listRef = useRef<HTMLDivElement | null>(null);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
     placement: 'bottom-start'
@@ -332,7 +332,7 @@ const Select: FC<ISelectProps> = ({
             onChange={e => {
               if (isSearchable) {
                 setSearchTerm(e.target.value);
-            
+
                 if (onSearch && typeof onSearch === 'function') {
                   handleAsyncSearch(e.target.value);
                 }

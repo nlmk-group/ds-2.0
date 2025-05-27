@@ -261,7 +261,7 @@ export const DatePicker: TDatePickerProps = ({
     />
   );
 
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const renderDatepicker = () => (
     <div

@@ -174,6 +174,7 @@ export default defineConfig({
             outDir: 'lib/dist',
             rollupTypes: false,
             bundledPackages: [],
+            insertTypesEntry: true,
             compilerOptions: {
               skipLibCheck: true,
               emitDeclarationOnly: true

@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useMemo, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -55,7 +55,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     ]
   });
 
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   if (!isOpen) return null;
 

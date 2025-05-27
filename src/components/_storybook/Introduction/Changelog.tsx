@@ -126,6 +126,17 @@ export const Changelog = () => {
               </Link>
               .<li className={styles['left-padding']}>- Исправлено поведение контролов в историях компонента</li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Удалено свойство onSearch</li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

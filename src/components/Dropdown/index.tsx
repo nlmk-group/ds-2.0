@@ -32,7 +32,8 @@ const Dropdown: FC<IDropdownProps> = ({
   size = EButtonSize.m,
   menuStyle,
   withPortal = false,
-  portalContainerId = 'root'
+  portalContainerId = 'root',
+  ...buttonProps
 }: {
   children: ReactNode;
   disabled?: boolean;
@@ -96,6 +97,7 @@ const Dropdown: FC<IDropdownProps> = ({
           size={size}
           iconButton={!buttonChildren ? Chevron : undefined}
           endIcon={buttonChildren ? Chevron : undefined}
+          {...buttonProps}
           data-ui-dropdown-button
         >
           <div data-ui-dropdown-button-children>{buttonChildren}</div>

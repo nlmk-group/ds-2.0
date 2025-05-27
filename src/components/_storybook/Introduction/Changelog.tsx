@@ -23,6 +23,38 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.24.3 - <span className={styles.date}>27.05.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены props от компонента{' '}
+                <Link
+                  href="./?path=/docs/components-button-info--docs"
+                  target="blank"
+                  className={styles['link-changelog']}
+                >
+                  Button
+                </Link>{' '}
+                для компонента Dropdown
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлена работа argtypes в компоненте Dropdown с учетом новых props
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.24.2 - <span className={styles.date}>26.05.25</span>
           </Typography>
           <ul className={styles.list}>

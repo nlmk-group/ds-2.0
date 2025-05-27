@@ -1,1 +1,0 @@
-{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../src/components/Splitter/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAElC,MAAM,WAAW,cAAc;IAC7B,YAAY,CAAC,EAAE,SAAS,CAAC;IACzB,eAAe,CAAC,EAAE,SAAS,CAAC;CAC7B"}

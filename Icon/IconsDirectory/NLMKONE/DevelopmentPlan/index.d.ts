@@ -1,2 +1,0 @@
-export { default as IconDevelopmentPlan24 } from './24';
-//# sourceMappingURL=index.d.ts.map

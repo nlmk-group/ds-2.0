@@ -1,1 +1,0 @@
-{"version":3,"file":"constants.d.ts","sourceRoot":"","sources":["../../../../src/components/Table/examples/VirtualizedTableWithDynamicRowHeight/constants.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,uBAAuB,CAAC;AAElD,OAAO,EAAE,gBAAgB,EAAE,MAAM,SAAS,CAAC;AAE3C,eAAO,MAAM,OAAO,EAAE,SAAS,CAAC,gBAAgB,CAAC,EA2ChD,CAAC;AAEF,eAAO,MAAM,IAAI,EAAE,gBAAgB,EAShC,CAAC"}

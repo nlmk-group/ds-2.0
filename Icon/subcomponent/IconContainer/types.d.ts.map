@@ -1,1 +1,0 @@
-{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/Icon/subcomponent/IconContainer/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEjD,MAAM,MAAM,cAAc,GAAG;IAC3B,aAAa,EAAE,EAAE,GAAG,EAAE,GAAG,EAAE,CAAC;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,KAAK,CAAC,EAAE,aAAa,CAAC;CACvB,CAAC"}

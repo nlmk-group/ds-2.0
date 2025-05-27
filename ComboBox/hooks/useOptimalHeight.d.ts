@@ -1,2 +1,0 @@
-export declare const useOptimalHeight: (items: import('../types').IComboBoxOption[], isSearch?: boolean | undefined, isCheckAll?: boolean | undefined, isMultiple?: boolean | undefined, hasChildren?: boolean | undefined) => void;
-//# sourceMappingURL=useOptimalHeight.d.ts.map

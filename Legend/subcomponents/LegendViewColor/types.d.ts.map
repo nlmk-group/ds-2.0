@@ -1,1 +1,0 @@
-{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../src/components/Legend/subcomponents/LegendViewColor/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,aAAa,CAAC;AAK3C,MAAM,WAAW,qBAAsB,SAAQ,IAAI,CAAC,YAAY,EAAE,OAAO,GAAG,eAAe,CAAC;IAI1F,QAAQ,CAAC,EAAE,OAAO,CAAC;IAInB,YAAY,CAAC,EAAE,OAAO,CAAC;CACxB"}

@@ -7,7 +7,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import { IBox } from '../types';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
 
 export default {
   title: 'Components/Box/Stories',

@@ -1,16 +1,15 @@
 import { IBox } from '@components/Box/types';
 
-export type IGrid = IBox
+export type TGridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-/**
- * В дальнейшем можно/нужно добавить пропсы для адаптива
- * к примеру как в bootstrap
- * export interface IGrid extends IBox {
- *   xs?: number;
- *   sm?: number;
- *   md?: number;
- *   lg?: number;
- *   xl?: number;
- * }
- */
-
+export interface IGridSize {
+  xs?: TGridSize;
+  sm?: TGridSize;
+  md?: TGridSize;
+  lg?: TGridSize;
+  xl?: TGridSize;
+}
+export interface IGrid extends IBox {
+  container?: boolean;
+  size?: TGridSize | IGridSize;
+}

@@ -10,7 +10,7 @@ import { argsTypes } from './argsTypes';
 
 const withPadding = (Story: () => any) => (
   <div className={styles.wrapper} style={{ minHeight: 80 }}>
-    {<Story/>}
+    {<Story />}
   </div>
 );
 
@@ -730,3 +730,24 @@ ColumnBreaks.storyName = 'Разрывы колонок';
 ColumnBreaks.args = {
   background: 'var(--text-grey-200)'
 };
+
+export const GridWithSizeProp = (argTypes: IBox): JSX.Element => {
+  return (
+    <Grid container gap={8} {...argTypes}>
+      <Grid size={{ xs: 6, md: 8 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+        <div>xs=6 md=8</div>
+      </Grid>
+      <Grid size={{ xs: 6, md: 4 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+        <div>xs=6 md=4</div>
+      </Grid>
+      <Grid size={{ xs: 6, md: 4 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+        <div>xs=6 md=4</div>
+      </Grid>
+      <Grid size={{ xs: 6, md: 8 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+        <div>xs=6 md=8</div>
+      </Grid>
+    </Grid>
+  );
+};
+
+GridWithSizeProp.storyName = 'Grid c использованием bootstrap параметра size';

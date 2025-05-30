@@ -10,6 +10,7 @@
 
   @for $i from 1 through 12 {
     &.xs-#{$i} {
+      box-sizing: border-box;
       flex: $i 0 calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12));
       max-width: calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12)); 
     }

@@ -7,11 +7,17 @@ import styles from './Grid.module.scss';
 
 import { GridColumn, GridRow } from './subcomponents';
 
+const updateRootVars = (gap: number | string) => {
+  const root = document.documentElement
+  root.style.setProperty('--gap', `${gap}px`)
+}
+
 const Grid = ({ children, container, size, gap = 0, ...props }: IGrid) => {
   const classNames = [styles.grid];
 
   if (container) {
     classNames.push(styles.container);
+    updateRootVars(gap)
   }
 
   const sizes = typeof size === 'number' ? { xs: size } : size || {};

@@ -733,17 +733,17 @@ ColumnBreaks.args = {
 
 export const GridWithSizeProp = (argTypes: IBox): JSX.Element => {
   return (
-    <Grid container gap={8} {...argTypes}>
-      <Grid size={{ xs: 6, md: 8 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+    <Grid container gap={32} {...argTypes}>
+      <Grid size={{ xs: 6, sm: 8, lg: 3 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
         <div>xs=6 md=8</div>
       </Grid>
-      <Grid size={{ xs: 6, md: 4 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+      <Grid size={{ xs: 6, sm: 4, lg: 3 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
         <div>xs=6 md=4</div>
       </Grid>
-      <Grid size={{ xs: 6, md: 4 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+      <Grid size={{ xs: 6, sm: 4, lg: 3 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
         <div>xs=6 md=4</div>
       </Grid>
-      <Grid size={{ xs: 6, md: 8 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
+      <Grid size={{ xs: 6, sm: 8, lg: 3 }} borderRadius="var(--4-border)" background="var(--primary-blue-400)">
         <div>xs=6 md=8</div>
       </Grid>
     </Grid>

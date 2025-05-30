@@ -19,6 +19,7 @@
   @media (min-width: 600px) {
     @for $i from 1 through 12 {
       &.sm-#{$i} {
+        box-sizing: border-box;
         flex: $i 0 calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12));
         max-width: calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12)); 
       }
@@ -28,6 +29,7 @@
   @media (min-width: 960px) {
     @for $i from 1 through 12 {
       &.md-#{$i} {
+        box-sizing: border-box;
         flex: $i 0 calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12));
         max-width: calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12)); 
       }
@@ -37,6 +39,7 @@
   @media (min-width: 1280px) {
     @for $i from 1 through 12 {
       &.lg-#{$i} {
+        box-sizing: border-box;
         flex: $i 0 calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12));
         max-width: calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12)); 
       }
@@ -46,6 +49,7 @@
   @media (min-width: 1920px) {
     @for $i from 1 through 12 {
       &.xl-#{$i} {
+        box-sizing: border-box;
         flex: $i 0 calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12));
         max-width: calc((100% / 12 * $i) - (12 - $i) * (var(--gap) / 12)); 
       }

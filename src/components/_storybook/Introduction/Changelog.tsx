@@ -37,6 +37,31 @@ export const Changelog = () => {
               </Link>
               .<li className={styles['left-padding']}>- Исправлена работа закрытия панели при нажатии на Escape</li>
             </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-dropdown-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Dropdown
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено наследование свойств от компонента{' '}
+                <Link
+                  href="./?path=/docs/components-button-info--docs"
+                  target="blank"
+                  className={styles['link-changelog']}
+                >
+                  Button
+                </Link>
+                .
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлена работа argtypes в компоненте Dropdown с учетом новых props
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -45,7 +70,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Миграция сборки библиотеки с Snowpack на Vite.
+              • Миграция сборки библиотеки со Snowpack на Vite.
               <li className={styles['left-padding']}>
                 - Переведена система сборки со Snowpack на Vite для улучшения производительности
               </li>

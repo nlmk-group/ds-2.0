@@ -23,9 +23,20 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.3 - <span className={styles.date}>27.05.25</span>
+            v2.25.1 - <span className={styles.date}>06.06.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-drawer-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Drawer
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлена работа закрытия панели при нажатии на Escape</li>
+            </li>
             <li>
               • Исправлен компонент{' '}
               <Link
@@ -37,15 +48,15 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Добавлены props от компонента{' '}
+                - Исправлено наследование свойств от компонента{' '}
                 <Link
                   href="./?path=/docs/components-button-info--docs"
                   target="blank"
                   className={styles['link-changelog']}
                 >
                   Button
-                </Link>{' '}
-                для компонента Dropdown
+                </Link>
+                .
               </li>
               <li className={styles['left-padding']}>
                 - Исправлена работа argtypes в компоненте Dropdown с учетом новых props
@@ -55,9 +66,15 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.24.2 - <span className={styles.date}>26.05.25</span>
+            v2.25.0 - <span className={styles.date}>27.05.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Миграция сборки библиотеки со Snowpack на Vite.
+              <li className={styles['left-padding']}>
+                - Переведена система сборки со Snowpack на Vite для улучшения производительности
+              </li>
+            </li>
             <li>
               • Изменены компоненты{' '}
               <Link
@@ -152,12 +169,26 @@ export const Changelog = () => {
               </Link>
               .<li className={styles['left-padding']}>- Исправлено поведение контролов в историях компонента</li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .<li className={styles['left-padding']}>- Удалено свойство onSearch</li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.24.1 - <span className={styles.date}>20.05.25</span>
           </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
           <ul className={styles.list}>
             <li>
               • Исправлены проблемы сборки библиотеки.
@@ -171,6 +202,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
+          <Chip variant="outline" color="error">
+            Broken - Do Not Use
+          </Chip>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}

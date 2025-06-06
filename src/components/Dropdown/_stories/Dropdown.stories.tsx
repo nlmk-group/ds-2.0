@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
 
-import { EButtonSize } from '@components/Button/enums';
+import { EButtonColor, EButtonSize, EButtonVariant } from '@components/Button/enums';
 import { Box, Dropdown, DropdownMenuItem } from '@components/index';
 import {
   IconCancelOutlined16,
   IconCancelOutlined24,
   IconChevronArrowRightOutlined16,
   IconChevronArrowRightOutlined24,
+  IconSearchOutlined24,
   IconStarOutlined16,
   IconStarOutlined24
 } from '@components/index';
@@ -45,6 +46,7 @@ const dropdownOptions = [
   { value: 'Титан' },
   { value: 'Хром' }
 ];
+
 const dropdownOptionsSmall = [
   { value: 'Ag' },
   { value: 'N' },
@@ -54,6 +56,7 @@ const dropdownOptionsSmall = [
   { value: 'Ti' },
   { value: 'C' }
 ];
+
 const dropdownOptionsForCustom = [
   { value: 'Металлургический комбинат' },
   { value: 'Железо' },
@@ -63,16 +66,19 @@ const dropdownOptionsForCustom = [
   { value: 'Титан' },
   { value: 'Хром' }
 ];
+
 const sizeToIconStar = {
   [EButtonSize.m]: <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />,
   [EButtonSize.s]: <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />,
   [EButtonSize.xs]: <IconStarOutlined16 htmlColor="var(--brand-sapphire-60)" />
 };
+
 const sizeToIconCancel = {
   [EButtonSize.m]: <IconCancelOutlined24 htmlColor="var(--spectrum-red-60)" />,
   [EButtonSize.s]: <IconCancelOutlined24 htmlColor="var(--spectrum-red-60)" />,
   [EButtonSize.xs]: <IconCancelOutlined16 htmlColor="var(--spectrum-red-60)" />
 };
+
 const sizeToIconChevronRight = {
   [EButtonSize.m]: <IconChevronArrowRightOutlined24 htmlColor="var(--brand-sapphire-60)" />,
   [EButtonSize.s]: <IconChevronArrowRightOutlined24 htmlColor="var(--brand-sapphire-60)" />,
@@ -106,6 +112,7 @@ export const DefaultDropdown = (args: IDropdownProps): ReactNode => {
     </Dropdown>
   );
 };
+
 DefaultDropdown.args = {
   buttonChildren: 'Dropdown Button',
   size: EButtonSize.m,
@@ -141,6 +148,7 @@ export const PortalDropdown = (args: IDropdownProps): ReactNode => {
     </Dropdown>
   );
 };
+
 PortalDropdown.args = {
   buttonChildren: 'Dropdown Button',
   size: EButtonSize.m,
@@ -187,6 +195,7 @@ export const DropdownWithCustomElements = (args: IDropdownProps): ReactNode => {
     </Dropdown>
   );
 };
+
 DropdownWithCustomElements.storyName = 'Dropdown с кастомизированными элементами списка';
 DropdownWithCustomElements.args = {
   buttonChildren: 'Dropdown Button',
@@ -221,6 +230,7 @@ export const SmallDropdown = (args: IDropdownProps): ReactNode => {
     </Dropdown>
   );
 };
+
 SmallDropdown.args = {
   buttonChildren: 'Ед.',
   size: EButtonSize.m,
@@ -228,3 +238,78 @@ SmallDropdown.args = {
 };
 
 SmallDropdown.storyName = 'Dropdown с короткими значениями';
+
+export const DropdownWithButtonFeatures = (args: IDropdownProps): ReactNode => {
+  return (
+    <Dropdown {...args}>
+      {dropdownOptions.map(({ value, disabled }) => (
+        <DropdownMenuItem key={value} value={value} disabled={disabled} onClick={() => console.log(value)}>
+          {value}
+        </DropdownMenuItem>
+      ))}
+    </Dropdown>
+  );
+};
+
+DropdownWithButtonFeatures.args = {
+  buttonChildren: 'Фильтр',
+  size: EButtonSize.m,
+  variant: EButtonVariant.primary,
+  color: EButtonColor.brand,
+  startIcon: <IconStarOutlined24 />,
+  startBadge: '3',
+  menuStyle: { minWidth: '150px' },
+  buttonStyle: { fontWeight: 'bold' }
+};
+
+DropdownWithButtonFeatures.storyName = 'Dropdown с Button возможностями';
+
+export const DropdownWithCustomIcon = (args: IDropdownProps): ReactNode => {
+  return (
+    <Dropdown {...args}>
+      {dropdownOptions.map(({ value, disabled }) => (
+        <DropdownMenuItem key={value} value={value} disabled={disabled} onClick={() => console.log(value)}>
+          {value}
+        </DropdownMenuItem>
+      ))}
+    </Dropdown>
+  );
+};
+
+DropdownWithCustomIcon.args = {
+  iconButton: <IconSearchOutlined24 />,
+  size: EButtonSize.m,
+  variant: EButtonVariant.secondary,
+  menuStyle: { minWidth: '150px' }
+};
+
+DropdownWithCustomIcon.storyName = 'Dropdown с кастомной иконкой';
+
+export const DropdownVariantsShowcase = (args: IDropdownProps): ReactNode => {
+  return (
+    <Box display="flex" gap="16px" flexWrap="wrap">
+      <Dropdown {...args} variant={EButtonVariant.primary} buttonChildren="Primary">
+        {dropdownOptionsSmall.map(({ value, disabled }) => (
+          <DropdownMenuItem key={value} value={value} disabled={disabled}>
+            {value}
+          </DropdownMenuItem>
+        ))}
+      </Dropdown>
+
+      <Dropdown {...args} variant={EButtonVariant.secondary} buttonChildren="Secondary">
+        {dropdownOptionsSmall.map(({ value, disabled }) => (
+          <DropdownMenuItem key={value} value={value} disabled={disabled}>
+            {value}
+          </DropdownMenuItem>
+        ))}
+      </Dropdown>
+    </Box>
+  );
+};
+
+DropdownVariantsShowcase.args = {
+  size: EButtonSize.m,
+  menuStyle: { minWidth: '120px' }
+};
+
+DropdownVariantsShowcase.storyName = 'Dropdown варианты';

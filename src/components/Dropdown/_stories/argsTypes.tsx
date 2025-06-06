@@ -1,4 +1,4 @@
-import { EButtonSize } from '@components/Button/enums';
+import { EButtonColor, EButtonSize, EButtonVariant } from '@components/Button/enums';
 
 export const argsTypes = {
   children: {
@@ -54,10 +54,19 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   menuStyle: {
-    description: 'Кастомная ширина меню',
+    description: 'Кастомные стили меню',
     table: {
       type: {
-        summary: 'string'
+        summary: 'CSSProperties'
+      }
+    },
+    control: { type: 'object' }
+  },
+  buttonStyle: {
+    description: 'Кастомные стили кнопки',
+    table: {
+      type: {
+        summary: 'CSSProperties'
       }
     },
     control: { type: 'object' }
@@ -66,7 +75,7 @@ export const argsTypes = {
     description: 'Открывает выпадающий список в портале',
     table: {
       defaultValue: {
-        summary: 'true'
+        summary: 'false'
       },
       type: {
         summary: 'boolean'
@@ -82,6 +91,59 @@ export const argsTypes = {
       },
       type: {
         summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+  variant: {
+    description: `Вариант отображения – <b>${Object.values(EButtonVariant).join(' | ')}</b>`,
+    table: {
+      defaultValue: { summary: 'secondary' },
+      type: { summary: 'string' }
+    },
+    options: Object.values(EButtonVariant),
+    control: { type: 'select' }
+  },
+  color: {
+    description: `Цвет кнопки – <b>${Object.values(EButtonColor).join(' | ')}</b>`,
+    table: {
+      type: { summary: 'string' }
+    },
+    options: Object.values(EButtonColor),
+    control: { type: 'select' }
+  },
+  startIcon: {
+    description: 'Иконка в начале кнопки',
+    table: {
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  iconButton: {
+    description: 'Иконка для кнопки-иконки (переопределяет стандартный шеврон)',
+    table: {
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+  startBadge: {
+    description: 'Бейдж в начале кнопки',
+    table: {
+      type: {
+        summary: 'string | number'
+      }
+    },
+    control: { type: 'text' }
+  },
+  endBadge: {
+    description: 'Бейдж в конце кнопки',
+    table: {
+      type: {
+        summary: 'string | number'
       }
     },
     control: { type: 'text' }

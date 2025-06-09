@@ -65,10 +65,7 @@ const Filter: FC<IFilterProps> = ({
     }
   }, [openedMenu, update]);
 
-  const portalContainer = useMemo(() => {
-    if (!withPortal) return null;
-    return document.getElementById(portalContainerId) as HTMLElement;
-  }, [withPortal, portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const currentFilterOption = useMemo(() => {
     return (

@@ -101,11 +101,6 @@ export interface ISidebarProps extends PropsWithChildren {
   onLogin?: () => void;
 
   /**
-   * Функция, вызываемая при поиске.
-   */
-  onSearch?: () => void;
-
-  /**
    * Функция, вызываемая при клике на логотип.
    */
   onClickLogo?: () => void;

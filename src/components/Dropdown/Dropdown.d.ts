@@ -1,11 +1,12 @@
 import { CSSProperties, FC, ReactNode } from 'react';
 
-import { EButtonSize } from '@components/Button/enums';
+import { EButtonColor, EButtonSize, EButtonVariant } from '@components/Button/enums';
+import { IButtonProps } from '@components/Button/types';
 
 /**
  * Интерфейс свойств компонента Dropdown.
  */
-export interface IDropdownProps {
+export interface IDropdownProps extends IButtonProps {
   /** Элементы, которые будут отображаться в меню */
   children: ReactNode;
   /** Отключает кнопку и возможность открытия меню */
@@ -14,10 +15,24 @@ export interface IDropdownProps {
   className?: string;
   /** Размер кнопки и меню */
   size?: `${EButtonSize}`;
+  /** Вариант стиля кнопки */
+  variant?: `${EButtonVariant}`;
+  /** Цвет кнопки */
+  color?: `${EButtonColor}`;
   /** Содержимое кнопки */
   buttonChildren?: ReactNode;
+  /** Иконка в начале кнопки */
+  startIcon?: ReactNode;
+  /** Иконка для кнопки-иконки (переопределяет стандартный шеврон) */
+  iconButton?: ReactNode;
+  /** Бейдж в начале кнопки */
+  startBadge?: string | number;
+  /** Бейдж в конце кнопки */
+  endBadge?: string | number;
   /** Кастомные стили меню */
   menuStyle?: CSSProperties;
+  /** Кастомные стили кнопки */
+  buttonStyle?: CSSProperties;
   /** открытие выпадающего списка в портале */
   withPortal?: boolean;
   /** контейнер для портала */
@@ -40,6 +55,7 @@ export declare interface IDropdownMenuItemProps {
 
 /**
  * Компонент Dropdown предоставляет интерактивное выпадающее меню с настраиваемыми кнопками и элементами меню.
+ * Наследует все возможности компонента Button.
  */
 declare const Dropdown: FC<IDropdownProps>;
 

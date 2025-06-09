@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.24.2",
+  "version": "2.25.2",
   "author": "NLMK IT",
   "public": false,
   "main": "lib/index.js",
@@ -18,21 +18,18 @@
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
     "clean": "rm -rf lib && rm -rf cache",
-    "snowpack:build": "rm -rf lib && yarn convert:dark-theme-tokens && snowpack build --polyfill-node",
-    "build": "./script/build",
-    "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir lib/dist/components",
+    "build": "BUILD_MODE=lib vite build",
     "packing": "yarn build && npm publish",
     "packing:beta": "yarn build && npm publish --tag beta",
-    "conveyor": "yarn snowpack:build",
     "deploy": "yarn conveyor && yarn packing",
     "test": "jest",
     "test:clear-cache": "jest --clearCache",
     "test:ci": "jest --watchAll=false --ci --config=jest.config.js",
-    "test:coverage": "jest  --coverage",
+    "test:coverage": "jest --coverage",
     "test:generate-output": "jest --json --env=jsdom --outputFile=.jest-test-results.json || true",
     "prebuild:storybook": "yarn test:generate-output",
     "storybook": "yarn convert:dark-theme-tokens && yarn prebuild:storybook && storybook dev -p 6006",
-    "storybook:dev": "yarn convert:dark-theme-tokens  && storybook dev -p 6006",
+    "storybook:dev": "yarn convert:dark-theme-tokens && storybook dev -p 6006",
     "storybook:build": "yarn convert:dark-theme-tokens && rm -rf storybook-static && yarn prebuild:storybook && storybook build && cp -r dist/* storybook-static",
     "serve": "yarn storybook:build && npx serve storybook-static",
     "storybook:build:windows": "yarn convert:dark-theme-tokens && (if exist storybook-static ( rd /s /q storybook-static)) && yarn prebuild:storybook && storybook build && xcopy /s /y dist storybook-static",
@@ -40,7 +37,7 @@
     "token:generate:windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && node generateTokens.mjs",
     "commit": "cz",
     "packpackage": "cd lib && yarn pack",
-    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts  && prettier --write src/components/Icon",
+    "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts && prettier --write src/components/Icon",
     "chromatic": "yarn storybook:build && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
     "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
   },
@@ -48,7 +45,7 @@
     "lint"
   ],
   "dependencies": {
-    "@snowpack/plugin-sass": "1.4.0",
+    "clsx": "^2.1.1",
     "date-fns": "3.3.1",
     "react-beautiful-dnd": "^13.1.1",
     "react-input-mask": "2.0.4",
@@ -59,9 +56,9 @@
     "sass": "1.69.5"
   },
   "optionalDependencies": {
+    "rc-tree": "^5.11.0",
     "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "rc-tree": "^5.11.0"
+    "react-dnd-html5-backend": "^16.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -83,8 +80,6 @@
     "@eslint/compat": "^1.2.3",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-typescript": "^11.0.0",
-    "@snowpack/plugin-react-refresh": "2.5.0",
-    "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-backgrounds": "^8.6.12",
     "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
@@ -123,7 +118,6 @@
     "babel-loader": "8.2.2",
     "babel-plugin-const-enum": "1.1.0",
     "chromatic": "^10.3.1",
-    "clsx": "^2.1.1",
     "commitizen": "4.2.5",
     "copyfiles": "2.4.1",
     "css-loader": "5.0.0",
@@ -148,8 +142,6 @@
     "react-window": "^1.8.10",
     "resize-observer-polyfill": "^1.5.1",
     "sass-loader": "10.1.0",
-    "snowpack": "3.8.1",
-    "snowpack-plugin-svgr": "0.1.2",
     "storybook": "^8.6.12",
     "storybook-addon-turbo-build": "2.0.1",
     "storybook-dark-mode": "^4.0.2",
@@ -164,7 +156,7 @@
     "typescript": "5.0.4",
     "typescript-eslint": "^8.15.0",
     "typescript-plugin-css-modules": "3.4.0",
-    "vite": "^5.3.5",
+    "vite": "6.3.5",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^4.3.1"
@@ -172,9 +164,6 @@
   "resolutions": {
     "wrap-ansi": "7.0.0",
     "string-width": "4.1.0"
-  },
-  "peerDependencies": {
-    "@snowpack/plugin-sass": "1.4.0"
   },
   "config": {
     "commitizen": {

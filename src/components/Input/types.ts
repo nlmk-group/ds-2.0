@@ -34,7 +34,7 @@ export interface IInputAdditionalProps {
   /** Размер инпута */
   size?: `${sizesMappingInput}`;
   /** Цвет инпута */
-  color?: customInputColors;
+  color?: `${customInputColors}`;
   /** Флаг цветного фона */
   colored?: boolean;
 }

@@ -23,6 +23,32 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.2 - <span className={styles.date}>09.06.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлена типизация свойства color у компонентов{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>{' '}
+              и{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.1 - <span className={styles.date}>06.06.25</span>
           </Typography>
           <ul className={styles.list}>

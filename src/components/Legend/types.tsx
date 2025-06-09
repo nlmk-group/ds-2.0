@@ -17,7 +17,7 @@ export interface ILegendProps {
   /**
    * Тип компонента (ELegendType.VIEW | ELegendType.EDIT)
    */
-  type?: ELegendType;
+  type?: `${ELegendType}`;
   /**
    * Подпись у элемента Legend
    */

@@ -20,5 +20,5 @@ export interface ISlideToggleProps extends PropsWithChildren {
 }
 export interface ISlideToggleWithButtonProps extends ISlideToggleProps {
   badgeChildren?: string;
-  badgeColor?: EBadgeColors;
+  badgeColor?: `${EBadgeColors}`;
 }

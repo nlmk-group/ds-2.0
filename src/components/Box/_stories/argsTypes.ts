@@ -56,11 +56,11 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   gap: {
-    description: 'В компонент можно передать кастомное значение отступов по умолчанию <b>var(--24-size)</b>.',
+    description: 'В компонент можно передать кастомное значение отступов по умолчанию <b>24px</b>.',
     control: { type: 'text' },
     table: {
       defaultValue: {
-        summary: 'var(--24-size)'
+        summary: '24px'
       },
       type: {
         summary: 'string'

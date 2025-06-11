@@ -18,7 +18,7 @@ export default {
 
 export const TypographyDefault = (argsTypes: any): JSX.Element => {
   return (
-    <div className={styles.wrapper} style={{ color: 'var(--text-grey-900)' }}>
+    <div className={styles.wrapper}>
       <Typography {...argsTypes}>Default Typography Component</Typography>
     </div>
   );

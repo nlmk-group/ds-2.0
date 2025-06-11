@@ -98,7 +98,7 @@ export interface ISelectProps {
   /**
    * Цвет компонента.
    */
-  color?: customInputColors;
+  color?: `${customInputColors}`;
 
   /**
    * Текст для выбора всех опций.

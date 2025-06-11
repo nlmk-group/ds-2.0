@@ -26,7 +26,7 @@ export interface IPseudoInputProps extends TBadgeProps {
   /**
    * Цвет метки PseudoInput
    */
-  labelColor?: customInputColors;
+  labelColor?: `${customInputColors}`;
 
   /**
    * Дополнительный CSS класс

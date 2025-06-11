@@ -1,18 +1,18 @@
-// FIXME: --action-active not found
+// was --action-active
 .action {
-  color: var(--action-active);
+  color: var(--steel-60);
 
   path {
-    fill: var(--action-active);
+    fill: var(--steel-60);
   }
 }
 
-// FIXME: --action-disabled not found
+// was --action-disabled
 .disabled {
-  color: var(--action-disabled);
+  color: var(--steel-50);
 
   path {
-    fill: var(--action-disabled);
+    fill: var(--steel-50);
   }
 }
 
@@ -32,12 +32,12 @@
   }
 }
 
-// FIXME: --primary-blue-100 not found
+// was --primary-blue-100
 .secondary {
-  color: var(--primary-blue-100);
+  color: var(--brand-sapphire-10);
 
   path {
-    fill: var(--primary-blue-100);
+    fill: var(--brand-sapphire-10);
   }
 }
 

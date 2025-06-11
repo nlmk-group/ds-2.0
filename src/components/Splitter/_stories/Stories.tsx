@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={200}
+            height={500}
             description="Базовое использование Splitter"
             code={`import React from 'react';
 import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
@@ -54,10 +54,10 @@ const SplitterExample = () => {
         background: 'var(--unique-background)'
       }}
     >
-      <Typography variant="Heading4">
+      <Typography variant="Heading4" color="var(--steel-90)">
         Информация
       </Typography>
-      <Typography variant="Body1-Medium">
+      <Typography variant="Body1-Medium" color="var(--steel-90)">
         Верхняя панель со скроллом при необходимости. 
         Разделитель можно перетаскивать для изменения размеров панелей.
       </Typography>
@@ -74,10 +74,10 @@ const SplitterExample = () => {
         background: 'var(--unique-background)'
       }}
     >
-      <Typography variant="Heading4">
+      <Typography variant="Heading4" color="var(--steel-90)">
         Информация
       </Typography>
-      <Typography variant="Body1-Medium">
+      <Typography variant="Body1-Medium" color="var(--steel-90)">
         Нижняя панель со скроллом при необходимости. 
         Разделитель можно перетаскивать для изменения размеров панелей.
       </Typography>

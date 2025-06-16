@@ -27,3 +27,18 @@ export const BoxDefault = (argTypes: IBox): JSX.Element => {
   );
 };
 BoxDefault.storyName = 'Box по умолчанию';
+BoxDefault.args = {
+  p: 16,
+  background: undefined,
+  color: 'var(--steel-90)',
+  borderRadius: 0,
+  height: undefined,
+  width: undefined,
+  maxWidth: undefined,
+  border: undefined,
+  justifyContent: undefined,
+  alignItems: undefined,
+  flexWrap: undefined,
+  className: undefined,
+  st: undefined
+};

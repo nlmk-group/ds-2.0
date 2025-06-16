@@ -23,4 +23,6 @@ export interface IDropdownProps extends IButtonProps {
   withPortal?: boolean;
   /** контейнер для портала */
   portalContainerId?: string;
+  /** Кастомные стили кнопки */
+  buttonStyle?: CSSProperties;
 }

@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -41,7 +41,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
   } = useContext(AutocompleteContext);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   useEffect(() => {
     if (highlightedIndex < 0) return;

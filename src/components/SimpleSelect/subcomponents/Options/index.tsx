@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useMemo, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -55,7 +55,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     ]
   });
 
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   if (!isOpen) return null;
 
@@ -78,7 +78,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
   const getMenuStyles = () => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
-      maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
+      maxHeight: `calc((40px * ${scrollingItems}) + 16px)`,
       ...popperStyles.popper
     };
     return baseStyles;

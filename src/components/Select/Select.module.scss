@@ -49,7 +49,7 @@
     }
 
     &.disabled {
-      opacity: var(--45-opacity);
+      opacity: 45%;
       div {
         cursor: default;
         pointer-events: none;
@@ -151,26 +151,26 @@
 }
 
 .inconspicuous-disabled {
-  opacity: var(--45-opacity);
+  opacity: 45%;
   cursor: default;
   pointer-events: none;
 }
 
 .inconspicuous-m {
-  @include set-height-and-line-height(var(--40-size));
+  @include set-height-and-line-height(40px);
 }
 
 .inconspicuous-s {
-  @include set-height-and-line-height(var(--32-size));
+  @include set-height-and-line-height(32px);
 }
 
 .inconspicuous-xs {
-  @include set-height-and-line-height(var(--28-size));
+  @include set-height-and-line-height(28px);
 }
 
 .inconspicuous-item {
   display: flex;
-  gap: var(--4-space);
+  gap: 4px;
   align-items: center;
 }
 
@@ -199,12 +199,12 @@
 
 .badge-amount-wrapper {
   position: absolute;
-  top: calc(var(--4-space) * -1);
-  right: calc(var(--4-space) * -1);
+  top: calc(4px * -1);
+  right: calc(4px * -1);
 }
 
 .item-with-sub-label {
-  height: var(--60-size) !important;
+  height: 60px !important;
 }
 
 .sub-label-wrapper {

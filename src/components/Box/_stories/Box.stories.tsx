@@ -28,7 +28,7 @@ export const BoxDefault = (argTypes: IBox): JSX.Element => {
 };
 BoxDefault.storyName = 'Box по умолчанию';
 BoxDefault.args = {
-  p: 16,
+  p: 0,
   background: undefined,
   color: 'var(--steel-90)',
   borderRadius: 0,

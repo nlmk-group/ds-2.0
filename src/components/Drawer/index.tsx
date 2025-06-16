@@ -138,7 +138,7 @@ const Drawer: FC<IDrawerProps> = ({
               type="button"
               iconButton={
                 <IconCloseOutlined24
-                  htmlColor={overlay ? 'var(--ac-overlay-button)' : 'var(--ac-button-black-outline-default-text)'}
+                  htmlColor={overlay ? 'var(--unique-white)' : 'var(--steel-90)'}
                 />
               }
               color="ghost"

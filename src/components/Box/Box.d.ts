@@ -1,6 +1,6 @@
-import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { CSSProperties, DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react';
 
-type TSpacingProps = string | number;
+export type TSpacingProps = string | number;
 
 export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   /**
@@ -118,3 +118,18 @@ export interface IBox extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, 
    */
   className?: string;
 }
+
+/**
+ * Компонент Box предоставляет гибкую систему layout и spacing.
+ * Позволяет быстро создавать контейнеры с настраиваемыми отступами, размерами и flexbox свойствами.
+ *
+ * @description
+ * **Система приоритетов для spacing:**
+ * 1. `p` - базовый padding для всех сторон
+ * 2. `px/py` - padding по осям (перезаписывает p)
+ * 3. `pt/pr/pb/pl` - padding для конкретных сторон (наивысший приоритет)
+ */
+declare const Box: FC<IBox>;
+
+export default Box;
+export type { IBox };

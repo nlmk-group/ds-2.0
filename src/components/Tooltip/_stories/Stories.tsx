@@ -20,7 +20,7 @@ const style = `{{
   padding: '30px',
   margin: '0 auto',
   height: '180px',
-  color: 'var(--text-grey-900)'
+  color: 'var(--steel-90)'
 }}`;
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=560-4267&t=EnvIMGos3m33avAX-1';
@@ -134,7 +134,6 @@ export default  App = () => (
 )
 `}
           />
-
           <Editor
             height={600}
             description="Тултип с кастомной JSX разметкой внутри"
@@ -143,15 +142,15 @@ export default  App = () => (
 const RenderCustom = () => {
   return (
     <div>
-    <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
-      <Icon name="IconDoneCheckOutlined16" color="success"/>
-      <Typography variant="Caption-Medium">Первый пункт</Typography>
-    </Box>
-      <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
+        <Icon name="IconDoneCheckOutlined16" color="success"/>
+        <Typography variant="Caption-Medium">Первый пункт</Typography>
+      </Box>
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
         <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Второй пункт</Typography>
       </Box>
-        <Box color="var(--ac-tooltip-text)" gap="var(--8-size)" alignItems="center" paddingSpace="xs">
+      <Box color="var(--unique-white)" gap="8px" alignItems="center" paddingSpace="xs">
         <Icon name="IconDoneCheckOutlined16" color="success"/>
         <Typography variant="Caption-Medium">Третий пункт</Typography>
       </Box>
@@ -179,9 +178,7 @@ export default  App = () =>(
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="Tooltip" />}
     </div>
   );

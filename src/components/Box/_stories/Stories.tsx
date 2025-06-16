@@ -40,9 +40,9 @@ const Stories = (): JSX.Element => {
 export default App = () => (
   <div style={{ width: "100%", padding: 0 }}>
     <Box
-      border="1px solid var(--ac-button-grey-outline-default-stroke)"
-      borderRadius="var(--8-radius)"
-      p="var(--8-space)"
+      border="1px solid var(--steel-90)"
+      borderRadius="8px"
+      p="8px"
     >
       <Button type="button">Заполнить</Button>
       <Button type="button" color="grey">Посмотреть</Button>
@@ -54,13 +54,13 @@ export default App = () => (
       <Box
         width="250px"
         flexDirection="column"
-        borderRadius="var(--4-radius)"
+        borderRadius="4px"
         alignItems="center"
-        background="var(--background-info)"
-        py="var(--60-space)"
-        px="var(--60-space)"
+        background="var(--spectrum-sky-10)"
+        py="60px"
+        px="60px"
         st={{
-          boxShadow: "0 10px 10px var(--background-default)"
+          boxShadow: "0 10px 10px var(--unique-background)"
         }}
       >
         <Button type="button">Заполнить</Button>

@@ -23,14 +23,39 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.25.3 - <span className={styles.date}>10.04.25</span>
+            v2.25.4 - <span className={styles.date}>16.06.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-box-info--docs" target="blank" className={styles['link-changelog']}>
+                Box
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена система приоритетов для spacing свойств в соответствии со стандартом MUI
+              </li>
+              <li className={styles['left-padding']}>
+                - Изменена логика padding: теперь используются отдельные CSS-свойства (paddingTop, paddingRight, etc.)
+                вместо строки padding
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлена функция getPadding для корректной обработки undefined значений
+              </li>
+              <li className={styles['left-padding']}>- Добавлена полная декларация типов Box.d.ts</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.3 - <span className={styles.date}>10.06.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
               • Добавлена декларация типов для{' '}
               <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
                 Table
-              </Link>
+              </Link>{' '}
               и дочерних компонентов.
             </li>
           </ul>

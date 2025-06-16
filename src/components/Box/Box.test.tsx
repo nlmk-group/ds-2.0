@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
-import styles from './_stories/Box.module.scss';
+
+import styles from './Box.module.scss';
+
 import Box from './index';
 
 describe('src/components/Box', () => {
@@ -91,22 +94,57 @@ describe('src/components/Box', () => {
     const padding = 16;
     render(<Box p={padding}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding: ${padding}px`);
+    const element = screen.getByTestId('BOX_WRAPPER');
+    expect(element).toHaveStyle(`padding-top: ${padding}px`);
+    expect(element).toHaveStyle(`padding-right: ${padding}px`);
+    expect(element).toHaveStyle(`padding-bottom: ${padding}px`);
+    expect(element).toHaveStyle(`padding-left: ${padding}px`);
   });
 
   test('It must render Box with custom horizontal padding', () => {
     const paddingHorizontal = 16;
     render(<Box px={paddingHorizontal}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-left: ${paddingHorizontal}px`);
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-right: ${paddingHorizontal}px`);
+    const element = screen.getByTestId('BOX_WRAPPER');
+    expect(element).toHaveStyle(`padding-left: ${paddingHorizontal}px`);
+    expect(element).toHaveStyle(`padding-right: ${paddingHorizontal}px`);
   });
 
   test('It must render Box with custom vertical padding', () => {
     const paddingVertical = 16;
     render(<Box py={paddingVertical}>10</Box>);
 
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-top: ${paddingVertical}px`);
-    expect(screen.getByTestId('BOX_WRAPPER')).toHaveStyle(`padding-bottom: ${paddingVertical}px`);
+    const element = screen.getByTestId('BOX_WRAPPER');
+    expect(element).toHaveStyle(`padding-top: ${paddingVertical}px`);
+    expect(element).toHaveStyle(`padding-bottom: ${paddingVertical}px`);
+  });
+
+  test('It must render Box with padding priority system', () => {
+    render(
+      <Box p={10} px={20} pl={30}>
+        10
+      </Box>
+    );
+
+    const element = screen.getByTestId('BOX_WRAPPER');
+    expect(element).toHaveStyle('padding-top: 10px'); // от p
+    expect(element).toHaveStyle('padding-right: 20px'); // от px
+    expect(element).toHaveStyle('padding-bottom: 10px'); // от p
+    expect(element).toHaveStyle('padding-left: 30px'); // от pl (наивысший приоритет в данном случае)
+  });
+
+  test('It must render Box with flexbox properties', () => {
+    render(
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={8}>
+        10
+      </Box>
+    );
+
+    const element = screen.getByTestId('BOX_WRAPPER');
+    expect(element).toHaveStyle('display: flex');
+    expect(element).toHaveStyle('flex-direction: column');
+    expect(element).toHaveStyle('justify-content: center');
+    expect(element).toHaveStyle('align-items: center');
+    expect(element).toHaveStyle('gap: 8px');
   });
 });

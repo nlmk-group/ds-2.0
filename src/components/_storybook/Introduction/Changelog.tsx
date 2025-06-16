@@ -55,7 +55,7 @@ export const Changelog = () => {
               • Добавлена декларация типов для{' '}
               <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
                 Table
-              </Link>
+              </Link>{' '}
               и дочерних компонентов.
             </li>
           </ul>

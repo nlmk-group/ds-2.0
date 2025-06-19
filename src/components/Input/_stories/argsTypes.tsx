@@ -28,7 +28,7 @@ const argsTypes = {
     control: { type: 'boolean' },
     table: {
       defaultValue: {
-        summary: false
+        summary: 'false'
       }
     }
   },
@@ -172,7 +172,7 @@ const argsTypes = {
     description: 'Свойство, позволяющее отображать компонент как PseudoInput (не редактируемое поле)',
     table: {
       defaultValue: {
-        summary: 'false'
+        summary: 'false' 
       },
       type: {
         summary: 'boolean'

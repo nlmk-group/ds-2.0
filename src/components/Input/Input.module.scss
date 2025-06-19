@@ -86,6 +86,14 @@ input:autofill:focus {
     background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
   }
 
+  input[value]:not([value=""]) ~ label,
+  textarea[value]:not([value=""]) ~ label {
+    top: -9px;
+    left: 8px;
+    padding: 0 4px;
+    background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
+  }
+
   input,
   textarea {
     &::placeholder {

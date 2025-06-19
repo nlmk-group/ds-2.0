@@ -179,6 +179,15 @@ const argsTypes = {
       }
     },
     control: { type: 'boolean' }
+  },
+  pseudoInputStyle: {
+    description: 'Инлайн стили для PseudoInput режима. Работает только при pseudo={true}',
+    table: {
+      type: {
+        summary: 'CSSProperties'
+      }
+    },
+    control: { type: 'object' }
   }
 };
 

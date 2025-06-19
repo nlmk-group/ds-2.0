@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { IBadgeProps } from '@components/Badge/types';
 import { customInputColors } from '@components/declaration';
@@ -47,4 +47,9 @@ export interface IPseudoInputProps extends TBadgeProps {
    * Флаг, добавляющий ширину в 100%
    */
   fullWidth?: boolean;
+
+  /**
+   * Inline стили для кастомизации компонента
+   */
+  style?: CSSProperties;
 }

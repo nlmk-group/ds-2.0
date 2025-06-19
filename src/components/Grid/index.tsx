@@ -1,43 +1,48 @@
 import React from 'react';
 
 import Box from '@components/Box';
-import { IGrid, IGridSize } from '@components/Grid/types';
+import { IGrid } from '@components/Grid/types';
+import clsx from 'clsx';
 
 import styles from './Grid.module.scss';
 
 import { GridColumn, GridRow } from './subcomponents';
 
 const updateRootVars = (gap: number | string) => {
-  const root = document.documentElement
-  root.style.setProperty('--gap', `${gap}px`)
-}
+  const root = document.documentElement;
+  const gapValue = typeof gap === 'number' ? gap : parseInt(gap.toString()) || 0;
+  root.style.setProperty('--gap', `${gapValue}px`);
+};
 
 const Grid = ({ children, container, size, gap = 0, ...props }: IGrid) => {
-  const classNames = [styles.grid];
-
   if (container) {
-    classNames.push(styles.container);
-    updateRootVars(gap)
+    updateRootVars(gap);
+
+    return (
+      <Box className={clsx(styles.grid, styles.container)} {...props}>
+        {children}
+      </Box>
+    );
   }
 
-  const sizes = typeof size === 'number' ? { xs: size } : size || {};
+  if (size) {
+    const classNames = [styles.grid];
+    const sizes = typeof size === 'number' ? { xs: size } : size || {};
 
-  Object.keys(sizes).forEach(breakpoint => {
-    const value = sizes[breakpoint as keyof IGridSize];
-    if (value) {
-      classNames.push(`${styles[`${breakpoint}-${value}`]}`);
-    }
-  });
+    Object.entries(sizes).forEach(([breakpoint, value]) => {
+      if (value) {
+        classNames.push(styles[`${breakpoint}-${value}`]);
+      }
+    });
 
-  return (
-    <Box  
-      className={classNames.join(' ')}
-      gap={gap}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
+    return (
+      <Box className={clsx(classNames)} {...props}>
+        {children}
+      </Box>
+    );
+  }
+
+  return <Box {...props}>{children}</Box>;
 };
 
 Grid.Column = GridColumn;

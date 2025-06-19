@@ -9,6 +9,7 @@ export interface IGridSize {
   lg?: TGridSize;
   xl?: TGridSize;
 }
+
 export interface IGrid extends IBox {
   container?: boolean;
   size?: TGridSize | IGridSize;

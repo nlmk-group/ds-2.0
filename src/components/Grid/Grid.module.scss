@@ -1,0 +1,61 @@
+@use "sass:math";
+
+.grid {
+  display: block;
+
+  &.container {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+    margin: calc(var(--gap, 0px) / -2);
+
+    .grid {
+      padding: calc(var(--gap, 0px) / 2);
+    }
+  }
+
+  @for $i from 1 through 12 {
+    &.xs-#{$i} {
+      box-sizing: border-box;
+      flex: 0 0 percentage(math.div($i, 12));
+      max-width: percentage(math.div($i, 12));
+    }
+  }
+
+  @media (min-width: 600px) {
+    @for $i from 1 through 12 {
+      &.sm-#{$i} {
+        flex: 0 0 percentage(math.div($i, 12));
+        max-width: percentage(math.div($i, 12));
+      }
+    }
+  }
+
+  @media (min-width: 960px) {
+    @for $i from 1 through 12 {
+      &.md-#{$i} {
+        flex: 0 0 percentage(math.div($i, 12));
+        max-width: percentage(math.div($i, 12));
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    @for $i from 1 through 12 {
+      &.lg-#{$i} {
+        flex: 0 0 percentage(math.div($i, 12));
+        max-width: percentage(math.div($i, 12));
+      }
+    }
+  }
+
+  @media (min-width: 1920px) {
+    @for $i from 1 through 12 {
+      &.xl-#{$i} {
+        flex: 0 0 percentage(math.div($i, 12));
+        max-width: percentage(math.div($i, 12));
+      }
+    }
+  }
+}

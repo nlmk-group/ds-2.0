@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode, Ref } from 'react';
+import { ChangeEventHandler, ComponentPropsWithoutRef, CSSProperties, ReactNode, Ref } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 
@@ -37,6 +37,8 @@ export interface IInputAdditionalProps {
   color?: `${customInputColors}`;
   /** Флаг цветного фона */
   colored?: boolean;
+  /** Инлайн стили для PseudoInput режима */
+  pseudoInputStyle?: CSSProperties;
 }
 
 export type TInputProps = IInputAdditionalProps &

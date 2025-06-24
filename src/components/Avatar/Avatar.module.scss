@@ -1,7 +1,7 @@
 $greyOpacity24: #97a4b73d;
 $greyOpacity9: #97a4b716;
 $blackOpacity12: rgba(0, 0, 0, 0.12);
-$white: var(--never-changes-white);
+$white: var(--unique-white);
 
 @mixin rounded {
   border-radius: 50%;

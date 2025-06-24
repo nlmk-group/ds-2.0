@@ -29,6 +29,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | label | string | - | Текст метки (label) инпута |
 | placeholder | string | - | Текст плейсхолдера |
 | pseudo | boolean | false | Флаг псевдо-инпута |
+| pseudoInputStyle | CSSProperties | - | Инлайн стили для PseudoInput режима |
 | icon | ReactNode | - | Иконка инпута |
 | multiline | boolean | false | Флаг многострочного режима |
 | resize | boolean | false | Флаг возможности изменения размера (для textarea) |
@@ -56,6 +57,21 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 - `error`
 - `warning`
 - `success`
+
+## Псевдо-режим
+
+При установке `pseudo={true}` компонент рендерит `PseudoInput` вместо обычного input. Это полезно для отображения данных в стиле поля ввода, но без возможности редактирования.
+
+```jsx
+<Input
+  pseudo={true}
+  label="Только для чтения"
+  value="Нередактируемое значение"
+  pseudoInputStyle={{ backgroundColor: '#f5f5f5' }}
+/>
+```
+
+**Примечание**: В псевдо-режиме работают только пропсы: `label`, `value`, `size`, `color`, `pseudoInputStyle`.
 
 ## Особенности работы placeholder
 

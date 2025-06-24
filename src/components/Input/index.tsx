@@ -56,6 +56,7 @@ const Input: FC<TInputProps> = ({
   colored = false,
   placeholder = '',
   required,
+  pseudoInputStyle,
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -73,6 +74,7 @@ const Input: FC<TInputProps> = ({
         label={label as string}
         size={size === sizesMappingInput.s ? sizesMappingInput.s : sizesMappingInput.m}
         labelColor={color}
+        style={pseudoInputStyle}
       >
         {value}
       </PseudoInput>

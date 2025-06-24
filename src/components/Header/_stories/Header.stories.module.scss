@@ -16,9 +16,9 @@
 }
 .header-container [data-ui-dropdown-button-children] {
   background: none;
-  font-weight: var(--heading2-32-font-weight);
-  font-size: var(--heading2-32-font-size);
-  line-height: var(--heading2-32-line-height);
+  font-weight: var(--heading2-32-fontWeight);
+  font-size: var(--heading2-32-fontSize);
+  line-height: var(--heading2-32-lineHeight);
 }
 .header-container [data-ui-dropdown-menu-item-container] {
   &:hover {
@@ -30,7 +30,7 @@
 }
 .header-container [data-ui-dropdown-menu-item]:nth-child(n) {
   color: var(--brand-sapphire-60);
-  font-weight: var(--heading2-32-font-weight);
-  font-size: var(--heading2-32-font-size);
-  line-height: var(--heading2-32-line-height);
+  font-weight: var(--heading2-32-fontWeight);
+  font-size: var(--heading2-32-fontSize);
+  line-height: var(--heading2-32-lineHeight);
 }

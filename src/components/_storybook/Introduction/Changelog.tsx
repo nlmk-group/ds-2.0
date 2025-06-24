@@ -23,6 +23,63 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.5 - <span className={styles.date}>24.06.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Datepicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема совместимости пропсов withPortal и isOpenOnFocus: календарь больше не закрывается
+                до выбора значения при клике по дате
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлена корректная обработка excludeRef для ClickAwayListener при использовании портала
+              </li>
+            </li>
+            <li>
+              • Расширен компонент{' '}
+              <Link
+                href="./?path=/docs/components-grid-stories--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Grid
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка адаптивных размеров через свойство size с breakpoint&apos;ами (xs, sm, md, lg, xl)
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлен визуальный баг с эффектом разрыва границы инпута для лейбла при изменении масштаба страницы
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка старых браузеров Chrome версии 115 и ниже: :placeholder-shown заменен на value при
+                условии отображения лейбла. Для корректного отображения value и label при первом рендере
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.4 - <span className={styles.date}>16.06.25</span>
           </Typography>
           <ul className={styles.list}>

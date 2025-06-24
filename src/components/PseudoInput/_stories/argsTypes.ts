@@ -1,6 +1,7 @@
-import { customInputColors } from '@components/declaration';
+import { customInputColors, variantsMapping } from '@components/declaration';
 
 import { EPseudoInputSizes } from '../enums';
+import { EBadgeColors } from '@components/Badge/enums';
 
 export const argsTypes = {
   label: {
@@ -9,7 +10,7 @@ export const argsTypes = {
   },
   children: {
     description: 'Содержимое компонента, любой JSX фрагмент или текст',
-    control: { type: 'boolean' }
+    control: { type: 'text' }
   },
   size: {
     description: 'Размер шрифта компонента',
@@ -34,28 +35,50 @@ export const argsTypes = {
     options: Object.values(customInputColors),
     control: { type: 'select' }
   },
-  variant: {
-    description: 'Вариант бейджа',
-    table: { type: { summary: 'string' } }
-  },
   color: {
-    description: 'Цвет бейджа',
-    table: { type: { summary: 'string' } }
+    description: 'Цвет бэйджа',
+    table: {
+      defaultValue: {
+        summary: EBadgeColors.brand
+      },
+      type: {
+        summary: Object.values(EBadgeColors).join(' | ')
+      }
+    },
+    options: Object.values(EBadgeColors),
+    control: { type: 'select' }
+  },
+  variant: {
+    description: 'Вариант бэйджа',
+    table: {
+      defaultValue: {
+        summary: variantsMapping.solid
+      },
+      type: {
+        summary: Object.values(variantsMapping).join(' | ')
+      }
+    },
+    options: Object.values(variantsMapping),
+    control: { type: 'select' }
   },
   className: {
-    description: 'Классы для бейджа',
-    table: { type: { summary: 'string' } }
+    description: 'Дополнительный CSS класс',
+    control: { type: 'text' }
   },
   suffix: {
     description: 'Суффикс компонента',
-    table: { type: { summary: 'ReactNode' } }
+    control: { type: 'text' }
   },
   style: {
-    description: 'Стили бейджа',
-    table: { type: { summary: 'CSSProperties' } }
+    description: 'Inline стили для кастомизации компонента',
+    control: { type: 'object' }
   },
   badgeChildren: {
     description: 'Содержимое бейджа',
-    table: { type: { summary: 'ReactNode' } }
+    control: { type: 'text' }
+  },
+  fullWidth: {
+    description: 'Флаг, добавляющий ширину в 100%',
+    control: { type: 'boolean' }
   }
 };

@@ -23,11 +23,12 @@ import { PseudoInput } from '@nlmk/ds-2.0';
 | size          | 'm' \| 's' \| 'xs'    | 'm'                       | Размер компонента               |
 | labelColor    | customInputColors     | customInputColors.default | Цвет метки                      |
 | className     | string                | -                         | Дополнительный CSS класс        |
+| style         | CSSProperties         | -                         | Инлайн стили для компонента     |
 | suffix        | Reactnode             | -                         | Суффикс в конце PseudoInput     |
 | fullWidth     | boolean               | -                         | Флаг, добавляющий ширину в 100% |
 | badgeChildren | string                | -                         | Содержимое бейджа               |
-| color         | EBadgeColors         | 'brand'                  | Цвет бейджа (пропс от Badge)    |
-| variant       | variantsMapping      | 'solid'                  | Вариант бейджа (пропс от Badge) |
+| color         | EBadgeColors          | 'brand'                   | Цвет бейджа (пропс от Badge)    |
+| variant       | variantsMapping       | 'solid'                   | Вариант бейджа (пропс от Badge) |
 
 ### Пропсы Badge
 
@@ -37,13 +38,9 @@ import { PseudoInput } from '@nlmk/ds-2.0';
 - `variant` - вариант отображения бейджа ('solid' | 'outline')
 
 Пример использования с бейджем:
+
 ```jsx
-<PseudoInput 
-  label="Статус"
-  badgeChildren="Активен"
-  color="success"
-  variant="outline"
->
+<PseudoInput label="Статус" badgeChildren="Активен" color="success" variant="outline">
   Содержимое
 </PseudoInput>
 ```
@@ -96,4 +93,14 @@ import { PseudoInput } from '@nlmk/ds-2.0';
 [data-ui-pseudo-input-suffix] {
   /* Ваши стили */
 }
+```
+
+### 3. Inline стили
+
+Можно передать объект стилей через проп `style`:
+
+```jsx
+<PseudoInput label="Метка" size="m" style={{ width: '100%' }}>
+  Контент
+</PseudoInput>
 ```

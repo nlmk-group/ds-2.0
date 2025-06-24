@@ -1,7 +1,7 @@
-import React, { CSSProperties, FC, MouseEventHandler, ReactNode, useMemo, useRef, useState } from 'react';
+import React, { FC, MouseEventHandler, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import { EButtonSize } from '@components/Button/enums';
+import { EButtonSize, EButtonVariant } from '@components/Button/enums';
 import { Button, IconChevronArrowDownOutlined16, IconChevronArrowDownOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
@@ -15,13 +15,23 @@ import { DropdownMenu } from './subcomponents';
 /**
  * Компонент Dropdown предоставляет интерактивное выпадающее меню с настраиваемыми кнопками и элементами меню.
  * @component
- * @param {object} props - Пропсы компонента.
+ * @param {IDropdownProps} props - Пропсы компонента.
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @param {boolean} [props.disabled=false] - Отключает кнопку и возможность открытия меню.
- * @param {ReactNode} props.buttonChildren - Содержимое кнопки.
+ * @param {ReactNode} [props.buttonChildren] - Содержимое кнопки.
  * @param {string} [props.className] - Дополнительный класс для кнопки.
  * @param {EButtonSize} [props.size=EButtonSize.m] - Размер кнопки и меню.
- * @param {CSSProperties} [props.menuStyle] - Размер кнопки и меню.
+ * @param {EButtonVariant} [props.variant=EButtonVariant.secondary] - Вариант стиля кнопки.
+ * @param {string} [props.color] - Цвет кнопки.
+ * @param {ReactNode} [props.startIcon] - Иконка в начале кнопки.
+ * @param {ReactNode} [props.iconButton] - Иконка для кнопки-иконки (переопределяет стандартный шеврон).
+ * @param {string|number} [props.startBadge] - Бейдж в начале кнопки.
+ * @param {string|number} [props.endBadge] - Бейдж в конце кнопки.
+ * @param {CSSProperties} [props.menuStyle] - Кастомные стили меню.
+ * @param {CSSProperties} [props.buttonStyle] - Кастомные стили кнопки.
+ * @param {boolean} [props.withPortal=false] - Открытие выпадающего списка в портале.
+ * @param {string} [props.portalContainerId='root'] - Контейнер для портала.
+ * @returns {ReactElement | null} Компонент Dropdown.
  */
 
 const Dropdown: FC<IDropdownProps> = ({
@@ -29,23 +39,23 @@ const Dropdown: FC<IDropdownProps> = ({
   disabled = false,
   buttonChildren,
   className,
-  size = EButtonSize.m,
   menuStyle,
   withPortal = false,
-  portalContainerId = 'root'
-}: {
-  children: ReactNode;
-  disabled?: boolean;
-  buttonChildren?: ReactNode;
-  className?: string;
-  size?: `${EButtonSize}`;
-  menuStyle?: CSSProperties;
-  withPortal?: boolean;
-  portalContainerId?: string;
+  portalContainerId = 'root',
+  variant = EButtonVariant.secondary,
+  size = EButtonSize.m,
+  color,
+  startIcon,
+  startBadge,
+  endBadge,
+  iconButton,
+  buttonStyle,
+  ...buttonProps
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
+
   /**
    * Переключает состояние открытия/закрытия выпадающего меню.
    * @param {React.MouseEvent<HTMLButtonElement>} e - Событие клика мыши.
@@ -83,6 +93,9 @@ const Dropdown: FC<IDropdownProps> = ({
     return isOpen ? menu : null;
   };
 
+  const resolvedIconButton = iconButton || (!buttonChildren ? Chevron : undefined);
+  const resolvedEndIcon = buttonChildren && !iconButton ? Chevron : undefined;
+
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, disabled, buttonChildren, buttonRef, size, menuStyle }}>
       <div className={styles.wrapper}>
@@ -90,13 +103,19 @@ const Dropdown: FC<IDropdownProps> = ({
           type="button"
           ref={buttonRef}
           className={clsx(styles.button, className)}
-          variant="secondary"
+          variant={variant}
+          color={color}
           onClick={toggleDropdown}
           disabled={disabled}
           size={size}
-          iconButton={!buttonChildren ? Chevron : undefined}
-          endIcon={buttonChildren ? Chevron : undefined}
+          startIcon={startIcon}
+          startBadge={startBadge}
+          endBadge={endBadge}
+          iconButton={resolvedIconButton}
+          endIcon={resolvedEndIcon}
           data-ui-dropdown-button
+          {...buttonProps}
+          style={buttonStyle}
         >
           <div data-ui-dropdown-button-children>{buttonChildren}</div>
         </Button>

@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background: var(--dark-primary-navyblue-50);
+  background: var(--steel-30);
 }
 
 .image-container {
@@ -48,9 +48,7 @@
   flex-wrap: wrap;
   padding: 12px 12px 0 12px;
 }
-.badges-bg-color {
-  background-color: var(--brand-sapphire-50);
-}
+
 .info-block {
   display: flex;
   flex-direction: column;
@@ -74,7 +72,7 @@
 .title-typography-helper {
   white-space: nowrap;
   @include ellipse;
-  color: var(--default-main);
+  color: var(--steel-90);
 }
 
 .description-typography-helper {
@@ -82,7 +80,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  color: var(--text-grey-900);
+  color: var(--steel-90);
 }
 
 .badge-helper {

@@ -94,10 +94,9 @@ const Autocomplete = ({
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
   const [isSearching, setIsSearching] = useState(false);
 
-  const inputRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
-  const inputElementRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const debouncedOnInputEnd = useDebounce(debounceDelay, (value: string) => {
     onDebouncedInputChange?.(value);
@@ -200,7 +199,7 @@ const Autocomplete = ({
     setInputValue(name);
     setIsSearching(false);
     onChange(item);
-    inputElementRef.current?.focus();
+    inputRef.current?.focus();
     setIsOpen(false);
   };
 
@@ -342,7 +341,6 @@ const Autocomplete = ({
         createItemText,
         onSelectMenuItem,
         noResultsText,
-        size,
         showTooltip,
         renderLabel,
         totalText,
@@ -353,13 +351,12 @@ const Autocomplete = ({
     >
       <div
         className={clsx(styles.autocomplete, className)}
-        ref={inputRef}
         style={{ width: isFullWidth ? '100%' : 'auto', ...style }}
         data-ui-autocomplete
       >
         <Input
           {...inputProps}
-          inputRef={inputElementRef}
+          inputRef={inputRef}
           value={inputValue}
           onKeyDown={handleKeyDown}
           icon={

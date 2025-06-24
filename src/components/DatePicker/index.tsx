@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -54,6 +54,10 @@ import { LocaleProvider } from './utils';
  * @param {boolean} [props.infiniteTimeScroll] - Флаг для бесконечной прокрутки времени.
  * @param {boolean} [props.reset=false] - Флаг наличия кнопки сброса.
  * @param {function} [props.onReset] - Обработчик сброса значения.
+ * @param {function} [props.onFocus] - Обработчик события фокуса на инпуте или клике на иконку календаря.
+ * @param {function} [props.onBlur] - Обработчик события потери фокуса инпутом.
+ * @param {boolean} [props.error] - Флаг ошибки, влияет на стиль компонента.
+ * @param {string} [props.helperText] - Вспомогательный текст, отображаемый под инпутом.
  * @returns {JSX.Element} Компонент DatePicker.
  */
 
@@ -103,7 +107,8 @@ export const DatePicker: TDatePickerProps = ({
   const withShift = useMemo(() => type === 'shift', [type]);
   const [isOpen, setOpen] = useState(false);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
-  const [calendarRef, setCalendarRef] = useState<null | HTMLDivElement>(null);
+  const [calendarElement, setCalendarElement] = useState<null | HTMLDivElement>(null);
+  const calendarRef = useRef<null | HTMLDivElement>(null)
   const [toggle, setToggle] = useState(false);
 
   id = useMemo(() => `DatePicker-${id?.toString() ?? performance.now().toString().split('.').join('')}`, [id]);
@@ -172,10 +177,6 @@ export const DatePicker: TDatePickerProps = ({
     setOpen(false);
   }, []);
 
-  const handleFocus = useCallback(() => {
-    setOpen(true);
-  }, []);
-
   const handleReset = useCallback(() => {
     setToggle(s => !s);
     setOpen(false);
@@ -187,7 +188,13 @@ export const DatePicker: TDatePickerProps = ({
     }
   }, [handleClose, pseudo]);
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarRef, {
+  useEffect(() => {
+    if (calendarElement) {
+      calendarRef.current = calendarElement;
+    }
+  }, [calendarElement])
+
+  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarElement, {
     placement: 'bottom-start'
   });
 
@@ -212,11 +219,21 @@ export const DatePicker: TDatePickerProps = ({
     [inputRef, isOpen, onChange, onPeriodChange, withPeriod, withShift]
   );
 
+  const handleFocus = useCallback(() => {
+    restInputProps.onFocus?.();
+    setOpen(true);
+  }, [restInputProps.onFocus]);
+
+  const handleBlur = useCallback(() => {
+    restInputProps.onBlur?.();
+    handleSetValues(true);
+  }, [restInputProps.onBlur, handleSetValues]);
+
   const renderCalendarPanel = () => (
     <CalendarPanel
       type={type}
       level={level}
-      ref={setCalendarRef}
+      ref={setCalendarElement}
       withPeriod={withPeriod}
       valueFrom={valueFrom}
       valueTo={valueTo}
@@ -251,7 +268,7 @@ export const DatePicker: TDatePickerProps = ({
     />
   );
 
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const renderDatepicker = () => (
     <div
@@ -285,7 +302,6 @@ export const DatePicker: TDatePickerProps = ({
         enabledHourTo={enabledHourTo}
         enabledMinuteFrom={enabledMinuteFrom}
         enabledMinuteTo={enabledMinuteTo}
-        onFocus={handleFocus}
         withPeriod={withPeriod}
         valueFrom={valueFrom}
         valueTo={valueTo}
@@ -297,7 +313,6 @@ export const DatePicker: TDatePickerProps = ({
         isOpenOnFocus={isOpenOnFocus}
         onEnterKeyDown={handleSetValues(false)}
         onTabKeyDown={handleSetValues(false)}
-        onBlur={handleSetValues(true)}
         colored={colored}
         reset={reset}
         onReset={onReset}
@@ -305,6 +320,8 @@ export const DatePicker: TDatePickerProps = ({
         error={error}
         helperText={helperText}
         {...restInputProps}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         data-ui-datepicker-input
       />
       {isOpen &&
@@ -321,7 +338,7 @@ export const DatePicker: TDatePickerProps = ({
       {pseudo ? (
         <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
       ) : (
-        (isOpenOnFocus && <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
+        (isOpenOnFocus && <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
           <>{renderDatepicker()}</>
         )
       )}

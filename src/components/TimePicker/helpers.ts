@@ -1,9 +1,9 @@
-export const timeFormat = 'HH:mm';
-export const timeWithSecondsFormat = 'HH:mm:ss';
-export const timeMask = '99:99';
-export const timeWithSecondsMask = '99:99:99';
+export const TIME_FORMAT = 'HH:mm';
+export const TIME_WITH_SECONDS_FORMAT = 'HH:mm:ss';
+export const TIME_MASK = '99:99';
+export const TIME_WITH_SECONDS_MASK = '99:99:99';
 
-export const TimeUnits = {
+export const TIME_UNITS = {
   hh: 'чч',
   mm: 'мм',
   ss: 'сс'

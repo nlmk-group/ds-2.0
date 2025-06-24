@@ -20,11 +20,6 @@ export default {
   title: 'Components/PseudoInput/Stories',
   component: PseudoInput,
   argTypes: argsTypes,
-  parameters: {
-    controls: {
-      exclude: ['variant', 'color', 'className', 'suffix', 'style', 'badgeChildren']
-    }
-  },
   decorators: [withWrapper]
 };
 

@@ -57,7 +57,6 @@ export const DatePickerWithColored = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerWithColored.storyName = 'DatePicker в разных цветах';
 
 export const DatePickerLevelMonth = (): JSX.Element => {
@@ -68,7 +67,6 @@ export const DatePickerLevelMonth = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerLevelMonth.storyName = 'DatePicker с выбором месяца';
 
 export const DatePickerLevelQuarter = (): JSX.Element => {
@@ -90,7 +88,6 @@ export const DatePickerLevelYear = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerLevelYear.storyName = 'DatePicker с выбором года';
 
 export const DatePickerEnglishDatePicker = (): JSX.Element => {
@@ -126,7 +123,6 @@ export const DatePickerEnglishDatePicker = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerEnglishDatePicker.storyName = 'DatePicker в английской локализации';
 
 export const DatePickerEnabledHoursFromTo = (): JSX.Element => {
@@ -190,7 +186,6 @@ export const DatePickerEnabledFromTo = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerEnabledFromTo.storyName = 'DatePicker с выбором начального значения';
 
 export const DatePickerWithTime = (): JSX.Element => {
@@ -261,7 +256,6 @@ export const DatePickerPeriodMonth = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerPeriodMonth.storyName = 'DatePicker с выбором периода по месяцам';
 
 export const DatePickerPeriodQuarter = (): JSX.Element => {
@@ -286,7 +280,6 @@ export const DatePickerPeriodQuarter = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerPeriodQuarter.storyName = 'DatePicker с выбором периода по кварталам';
 
 export const DatePickerPeriodYear = (): JSX.Element => {
@@ -345,7 +338,6 @@ export const DatePickerPeriodWithShift = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerPeriodWithShift.storyName = 'DatePicker с выбором периода и смен';
 
 export const DatePickerPeriodWithCustomShift = (): JSX.Element => {
@@ -381,7 +373,6 @@ export const DatePickerPeriodWithCustomShift = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerPeriodWithCustomShift.storyName = 'DatePicker с выбором периода и кастомных смен';
 
 export const DatePickerLabelWithDisabled = (): JSX.Element => {
@@ -392,7 +383,6 @@ export const DatePickerLabelWithDisabled = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerLabelWithDisabled.storyName = 'DatePicker в отключенном состоянии';
 
 export const DatePickerDisableChangesOnBlur = (): JSX.Element => {
@@ -403,7 +393,6 @@ export const DatePickerDisableChangesOnBlur = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerDisableChangesOnBlur.storyName = 'DatePicker со сбросом значения в поиске при onBlur поля ввода';
 
 export const DatePickerOpenPickerOnInputFocus = (): JSX.Element => {
@@ -414,7 +403,6 @@ export const DatePickerOpenPickerOnInputFocus = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerOpenPickerOnInputFocus.storyName = 'DatePicker с открывающимся меню при фокусировке поля ввода';
 
 export const DatePickerWithPseudo = (): JSX.Element => {
@@ -436,7 +424,6 @@ export const DatePickerWithPseudo = (): JSX.Element => {
     </div>
   );
 };
-
 DatePickerWithPseudo.storyName = 'DatePicker в псевдоинпуте';
 
 export const DatePickerWithoutYear = (): JSX.Element => {

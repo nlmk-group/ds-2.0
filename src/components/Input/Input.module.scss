@@ -82,8 +82,9 @@ input:autofill:focus {
     top: -9px;
     left: 8px;
     padding: 0 4px;
-    // Создаем эффект "разрыва" границы инпута для лейбла
-    background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
+    background: 
+      linear-gradient(to top, var(--steel-10) 0%, var(--steel-10) 52%, transparent 48%),
+      linear-gradient(to bottom, transparent 48%, var(--steel-10) 52%, var(--steel-10) 100%);
   }
 
   input,

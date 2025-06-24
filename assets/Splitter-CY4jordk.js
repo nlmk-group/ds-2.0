@@ -1,0 +1,59 @@
+import{j as t}from"./jsx-runtime-BTJTZTIL.js";import{useMDXComponents as m}from"./index-D2yTtfOz.js";import"./index-D6_S9Wxc.js";import{af as e,aT as s}from"./TreeList-BqxVwK_V.js";import{DecoratorDefault as n}from"./Decorator.stories-D7iJJ_iz.js";import{r as l}from"./index-BcJSXhQi.js";import{s as p,H as c,E as d}from"./Header--yT6lINj.js";import{F as x}from"./FigmaEmbed-qtKAclLv.js";import{P as g}from"./Properties-D9m8XxST.js";import{T as u}from"./Tests-BCbKFRWX.js";/* empty css               */import"./generateUUID-Cr6BF8sx.js";import"./index-D9qQUMnP.js";import"./index-WHoiTdKD.js";import"./index-D-jyRV5V.js";import"./index-D8WlRtvM.js";import"./index-DmffzHLE.js";import"./index-53N2drcz.js";import"./index-VmJK6twV.js";import"./index-BPWT-JIL.js";import"./index-BQAMZg9d.js";import"./index-C1EIKtiR.js";import"./32-DMwn_7G4.js";import{c as y,S as b,U as h}from"./DocsRenderer-CFRXHY34-CFH1eQhb.js";import"./index-ChsGqxH_.js";import"./preview-a1BA6wSx.js";import"./iframe-CgXnHU-M.js";import"./clsx-B-dksMZM.js";import"./index-BevFGyV5.js";import"./index-DdXvKv-Q.js";import"./types-CpBSVUgC.js";import"./tiny-invariant-CopsF_GD.js";import"./.jest-test-results-DsmJLuSk.js";import"./index-CRm92gKC.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";import"./client-DQNj1uEJ.js";const f={topComponent:{description:"Верхний компонент",type:{summary:"ReactNode"}},bottomComponent:{description:"Нижний компонент",type:{summary:"ReactNode"}}},i="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=286-17862",j=()=>{const[o,r]=l.useState(0);return t.jsxs("div",{className:p.wrapper,children:[t.jsx(c,{title:"Splitter",description:"Splitter — это компонент, предназначенный для разделения экрана на две части: верхнюю и нижнюю панели. Этот компонент полезен, когда вам нужно показать два разных элемента или группы информации в одной области и позволить пользователю управлять их размерами.",isStable:!0,codeLink:"https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Splitter",figmaLink:i}),t.jsx("div",{className:p.tabs,children:t.jsxs(e,{children:[t.jsx(e.Tab,{label:"Разработчику",active:Number(o)===0,onClick:()=>r(0)}),t.jsx(e.Tab,{label:"Дизайнеру",active:Number(o)===1,onClick:()=>r(1)}),t.jsx(e.Tab,{label:"Тестирование",active:Number(o)===2,onClick:()=>r(2)})]})}),Number(o)===0&&t.jsxs(t.Fragment,{children:[t.jsx(d,{height:500,description:"Базовое использование Splitter",code:`import React from 'react';
+import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
+
+const SplitterExample = () => {
+  const topComponent = (
+    <Box 
+      alignItems="flex-start"
+      gap="16px"
+      style={{ 
+        height: '100%',
+        padding: '16px',
+        background: 'var(--unique-background)'
+      }}
+    >
+      <Typography variant="Heading4" color="var(--steel-90)">
+        Информация
+      </Typography>
+      <Typography variant="Body1-Medium" color="var(--steel-90)">
+        Верхняя панель со скроллом при необходимости. 
+        Разделитель можно перетаскивать для изменения размеров панелей.
+      </Typography>
+    </Box>
+  );
+
+  const bottomComponent = (
+    <Box 
+      alignItems="flex-start"
+      gap="16px"
+      style={{ 
+        height: '100%',
+        padding: '16px',
+        background: 'var(--unique-background)'
+      }}
+    >
+      <Typography variant="Heading4" color="var(--steel-90)">
+        Информация
+      </Typography>
+      <Typography variant="Body1-Medium" color="var(--steel-90)">
+        Нижняя панель со скроллом при необходимости. 
+        Разделитель можно перетаскивать для изменения размеров панелей.
+      </Typography>
+    </Box>
+  );
+
+  return (
+    <>
+      <div style={{ height: '200px' }}>
+        <Splitter
+          topComponent={topComponent}
+          bottomComponent={bottomComponent}
+        />
+      </div>
+    </>
+  );
+};
+
+export default SplitterExample;`}),t.jsx(g,{argsTypes:f})]}),Number(o)===1&&t.jsx(x,{url:i}),Number(o)===2&&t.jsx(u,{componentName:"Splitter"})]})};function a(o){return t.jsxs(t.Fragment,{children:[t.jsx(y,{title:"Components/Splitter/Info",component:s,parameters:{design:{type:"figma"},jest:["Splitter.test.tsx"]}}),`
+`,t.jsx(b,{of:n}),`
+`,t.jsx(h,{children:t.jsx(j,{})})]})}function pt(o={}){const{wrapper:r}={...m(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(a,{...o})}):a()}export{pt as default};

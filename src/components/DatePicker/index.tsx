@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -107,7 +107,8 @@ export const DatePicker: TDatePickerProps = ({
   const withShift = useMemo(() => type === 'shift', [type]);
   const [isOpen, setOpen] = useState(false);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
-  const [calendarRef, setCalendarRef] = useState<null | HTMLDivElement>(null);
+  const [calendarElement, setCalendarElement] = useState<null | HTMLDivElement>(null);
+  const calendarRef = useRef<null | HTMLDivElement>(null)
   const [toggle, setToggle] = useState(false);
 
   id = useMemo(() => `DatePicker-${id?.toString() ?? performance.now().toString().split('.').join('')}`, [id]);
@@ -187,7 +188,13 @@ export const DatePicker: TDatePickerProps = ({
     }
   }, [handleClose, pseudo]);
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarRef, {
+  useEffect(() => {
+    if (calendarElement) {
+      calendarRef.current = calendarElement;
+    }
+  }, [calendarElement])
+
+  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarElement, {
     placement: 'bottom-start'
   });
 
@@ -226,7 +233,7 @@ export const DatePicker: TDatePickerProps = ({
     <CalendarPanel
       type={type}
       level={level}
-      ref={setCalendarRef}
+      ref={setCalendarElement}
       withPeriod={withPeriod}
       valueFrom={valueFrom}
       valueTo={valueTo}
@@ -331,7 +338,7 @@ export const DatePicker: TDatePickerProps = ({
       {pseudo ? (
         <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
       ) : (
-        (isOpenOnFocus && <ClickAwayListener onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
+        (isOpenOnFocus && <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
           <>{renderDatepicker()}</>
         )
       )}

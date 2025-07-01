@@ -1,6 +1,6 @@
 # Компонент Box
 
-## Версия компонента 2.0
+## Версия компонента 3.0
 
 Компонент Box предоставляет гибкую систему layout и spacing. Позволяет быстро создавать контейнеры с настраиваемыми отступами, размерами и flexbox свойствами.
 
@@ -27,57 +27,60 @@ const App = () => {
 export default App;
 ```
 
-
 ## Props
 
 | Prop           | Type                           | Default               | Description                                                                 |
-|----------------|--------------------------------|-----------------------|-----------------------------------------------------------------------------|
-| children       | ReactNode                      | -                     | Дочерние элементы для отображения внутри Box                               |
-| p              | string \| number               | -                     | Базовый padding для всех сторон. Числа конвертируются в px                 |
+| -------------- | ------------------------------ | --------------------- | --------------------------------------------------------------------------- |
+| children       | ReactNode                      | -                     | Дочерние элементы для отображения внутри Box                                |
+| p              | string \| number               | -                     | Базовый padding для всех сторон. Числа конвертируются в px                  |
 | px             | string \| number               | -                     | Горизонтальный padding (left, right). Перезаписывает p для левой и правой стороны |
 | py             | string \| number               | -                     | Вертикальный padding (top, bottom). Перезаписывает p для верхней и нижней стороны |
-| pt             | string \| number               | -                     | Padding сверху. Наивысший приоритет для верхней стороны                    |
-| pr             | string \| number               | -                     | Padding справа. Наивысший приоритет для правой стороны                     |
-| pb             | string \| number               | -                     | Padding снизу. Наивысший приоритет для нижней стороны                      |
-| pl             | string \| number               | -                     | Padding слева. Наивысший приоритет для левой стороны                       |
-| background     | string                         | -                     | Цвет фона контейнера                                                       |
-| height         | string \| number               | -                     | Высота контейнера                                                          |
-| width          | string \| number               | -                     | Ширина контейнера                                                          |
-| maxWidth       | string \| number               | -                     | Максимальная ширина контейнера                                             |
-| color          | string                         | 'var(--steel-90)'     | Цвет текста                                                                |
-| border         | string                         | -                     | CSS свойство border                                                        |
-| borderRadius   | string \| number               | -                     | Радиус скругления углов                                                    |
-| display        | CSSProperties['display']       | 'flex'                | CSS свойство display                                                       |
-| flexDirection  | CSSProperties['flexDirection'] | -                     | Направление flex контейнера                                                |
-| justifyContent | CSSProperties['justifyContent']| -                     | Выравнивание по главной оси                                                |
-| alignItems     | CSSProperties['alignItems']    | -                     | Выравнивание по поперечной оси                                             |
-| flexWrap       | CSSProperties['flexWrap']      | -                     | Перенос flex элементов                                                     |
-| gap            | string \| number               | '24px'                | Промежуток между дочерними элементами                                      |
-| st             | CSSProperties                  | -                     | Дополнительные inline стили (наивысший приоритет)                          |
-| className      | string                         | -                     | Дополнительные CSS классы                                                  |
-
+| pt             | string \| number               | -                     | Padding сверху. Наивысший приоритет для верхней стороны                     |
+| pr             | string \| number               | -                     | Padding справа. Наивысший приоритет для правой стороны                      |
+| pb             | string \| number               | -                     | Padding снизу. Наивысший приоритет для нижней стороны                       |
+| pl             | string \| number               | -                     | Padding слева. Наивысший приоритет для левой стороны                        |
+| background     | string                         | -                     | Цвет фона контейнера                                                        |
+| height         | string \| number               | -                     | Высота контейнера                                                           |
+| width          | string \| number               | -                     | Ширина контейнера                                                           |
+| maxWidth       | string \| number               | -                     | Максимальная ширина контейнера                                              |
+| color          | string                         | 'var(--steel-90)'     | Цвет текста                                                                 |
+| border         | string                         | -                     | CSS свойство border                                                         |
+| borderRadius   | string \| number               | -                     | Радиус скругления углов                                                     |
+| display        | CSSProperties['display']       | 'flex'                | CSS свойство display                                                        |
+| flexDirection  | CSSProperties['flexDirection'] | -                     | Направление flex контейнера                                                 |
+| justifyContent | CSSProperties['justifyContent']| -                     | Выравнивание по главной оси                                                 |
+| alignItems     | CSSProperties['alignItems']    | -                     | Выравнивание по поперечной оси                                              |
+| flexWrap       | CSSProperties['flexWrap']      | -                     | Перенос flex элементов                                                      |
+| gap            | string \| number               | '24px'                | Промежуток между дочерними элементами                                       |
+| st             | CSSProperties                  | -                     | Дополнительные inline стили (наивысший приоритет)                           |
+| className      | string                         | -                     | Дополнительные CSS классы                                                   |
 
 ## Система приоритетов для spacing
 
-- `p` - базовый padding для всех сторон
-- `px/py` - padding по осям (перезаписывает p)
-- `pt/pr/pb/pl` - padding для конкретных сторон (наивысший приоритет)
+- `p` — базовый padding для всех сторон
+- `px/py` — padding по осям (перезаписывает p)
+- `pt/pr/pb/pl` — padding для конкретных сторон (наивысший приоритет)
 
-### Пример:
+**Пример:**
 ```jsx
-<Box p={10} px={20} pl={30} /> → top: 10px, right: 20px, bottom: 10px, left: 30px
+<Box p={10} px={20} pl={30} /> // top: 10px, right: 20px, bottom: 10px, left: 30px
 ```
 
-### Стилизация
+## Стилизация
 
-#### 1. CSS-классы  
-**Основной класс:**  
-`.wrapper` - Основной контейнер Box  
+Компонент можно кастомизировать несколькими способами:
 
-Чтобы применить пользовательские стили, передайте свой `className` и переопределите необходимые стили.  
+### 1. CSS-классы
 
-#### 2. Inline-стили  
-Используйте проп `st` для передачи inline-стилей с наивысшим приоритетом:  
+Компонент использует CSS-модули для стилизации. Основные классы:
+
+- `.wrapper`: Основной контейнер Box
+
+Чтобы применить пользовательские стили, вы можете передать свой `className` и переопределить необходимые стили.
+
+### 2. Inline-стили
+
+Используйте проп `st` для передачи inline-стилей с наивысшим приоритетом:
 
 ```jsx
 <Box st={{ backgroundColor: 'red', padding: '20px' }}>
@@ -85,17 +88,19 @@ export default App;
 </Box>
 ```
 
-#### 3. Data-атрибуты
-Для кастомизации через CSS можно использовать data-атрибут:
-```jsx
+### 3. Data-атрибуты
+
+Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
+
+```css
 [data-testid="BOX_WRAPPER"] {
   /* Ваши стили */
 }
 ```
 
-### Примеры использования
+## Примеры использования
 
-#### Flex-контейнер с отступами
+### Flex-контейнер с отступами
 
 ```jsx
 <Box 
@@ -109,7 +114,7 @@ export default App;
 </Box>
 ```
 
-#### Контейнер с границей и скруглением
+### Контейнер с границей и скруглением
 
 ```jsx
 <Box 
@@ -121,7 +126,7 @@ export default App;
 </Box>
 ```
 
-#### Вертикальный stack
+### Вертикальный stack
 
 ```jsx
 <Box 

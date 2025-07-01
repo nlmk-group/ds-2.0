@@ -2,13 +2,16 @@
 
 ## Версия компонента 3.0
 
-ClickAwayListener — это вспомогательный компонент для отслеживания кликов или тапов вне границ своего DOM-элемента. Он полезен для закрытия модалок, выпадающих списков, popover'ов и других элементов при взаимодействии вне их области. Компонент поддерживает исключение внешних элементов, которые также не должны вызывать событие `onClickAway`.
+## Описание
+
+ClickAwayListener — вспомогательный компонент для отслеживания кликов или тапов вне границ своего DOM-элемента. Полезен для закрытия модалок, выпадающих списков, popover'ов и других элементов при взаимодействии вне их области. Поддерживает исключение внешних элементов, которые не должны вызывать событие `onClickAway`.
 
 ## Использование
 
 ```jsx
 import React, { useRef } from 'react';
 import ClickAwayListener from '@nlmk/ds-2.0';
+
 const Example = () => {
   const ref = useRef(null);
   const handleClickAway = () => {
@@ -31,21 +34,21 @@ export default Example;
 
 ## Props
 
-| Prop | Type | Default | Description |
-| :-- | :-- | :-- | :-- |
-| children | React.ReactNode | – | Дочерние элементы компонента |
-| className | string | – | Дополнительный CSS-класс для корневого элемента |
-| style | React.CSSProperties | – | Inline-стили для корневого элемента |
-| onClickAway | () => void | – (обязательный) | Callback вызывается при клике вне компонента и исключённых элементов |
-| excludeRef | React.RefObject<HTMLElement> \| React.RefObject<HTMLElement>[] | – | Ref или массив refs элементов, клики по которым не приводят к срабатыванию onClickAway |
-| eventType | 'mouseup' \| 'mousedown' \| 'click' \| 'touchend' | 'mouseup' | Тип события, на которое реагирует компонент |
+| Prop         | Type                                                                 | Default     | Description                                                                                       |
+| ------------ | -------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| children     | React.ReactNode                                                      | –           | Дочерние элементы компонента                                                                      |
+| className    | string                                                               | –           | Дополнительный CSS-класс для корневого элемента                                                   |
+| style        | React.CSSProperties                                                  | –           | Inline-стили для корневого элемента                                                               |
+| onClickAway  | () => void                                                           | – (обязательный) | Callback вызывается при клике вне компонента и исключённых элементов                              |
+| excludeRef   | React.RefObject<HTMLElement> \| React.RefObject<HTMLElement>[]      | –           | Ref или массив refs элементов, клики по которым не приводят к срабатыванию onClickAway            |
+| eventType    | 'mouseup' \| 'mousedown' \| 'click' \| 'touchend'                  | 'mouseup'   | Тип события, на которое реагирует компонент                                                       |
 
-## Типы событий (`eventType`)
+## Варианты eventType
 
-- `'mouseup'` (по умолчанию)
-- `'mousedown'`
-- `'click'`
-- `'touchend'`
+- `mouseup` (по умолчанию)
+- `mousedown`
+- `click`
+- `touchend`
 
 ## Примеры использования
 
@@ -81,20 +84,19 @@ const ref2 = useRef(null);
 </ClickAwayListener>;
 ```
 
-## Стилизация
+## Кастомизация
 
 Компонент не имеет собственной визуальной оболочки, но вы можете кастомизировать корневой контейнер через стандартные средства.
 
 ### CSS-классы
 
-`.click-away-listener` — основной класс (передаётся через prop className).
+- `.click-away-listener` — основной класс (передаётся через prop className).
 
 ### Data-атрибуты
 
 Для удобной стилизации компонент использует следующий data-атрибут:
 
-```jsx
-/* Основной контейнер компонента ClickAwayListener */
+```css
 [data-ui-click-away-listener] {
   /* Ваши стили */
 }

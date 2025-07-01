@@ -1,72 +1,63 @@
-# Grid
+# Компонент Grid
 
-## Версия компонента: 3.0
+## Версия компонента 3.0
 
-Компонент **Grid** предназначен для построения гибких и адаптивных layout-структур на основе flexbox. Позволяет удобно организовывать сетки, строки и колонки, а также управлять выравниванием, отступами и распределением пространства между элементами. Grid реализован как обертка над компонентом [Box](../Box/README.md), наследуя все его props и возможности стилизации.
+Компонент Grid предназначен для построения гибких и адаптивных layout-структур на основе flexbox. Является оберткой над компонентом [Box](../Box/README.md) и наследует все его props и возможности стилизации.
 
-## Базовый пример использования
+## Использование
 
 ```jsx
-import Box from '@components/Box';
-import Grid from '@components/Grid';
+import Grid from '@nlmk/ds-2.0';
 
-const Example = () => (
+const App = () => (
   <Grid gap={16} background="#f5f5f5" p={16} borderRadius={8}>
-    <Box>Элемент 1</Box>
-    <Box>Элемент 2</Box>
-    <Box>Элемент 3</Box>
+    <div>Элемент 1</div>
+    <div>Элемент 2</div>
+    <div>Элемент 3</div>
   </Grid>
 );
+export default App;
 ```
 
----
+## Props
 
-## Таблица Props
+| Prop           | Type                           | Default               | Description                                                                 |
+| -------------- | ------------------------------ | --------------------- | --------------------------------------------------------------------------- |
+| children       | ReactNode                      | -                     | Дочерние элементы для отображения внутри Grid                               |
+| className      | string                         | -                     | Дополнительные CSS-классы                                                   |
+| background     | string                         | -                     | Цвет фона контейнера                                                        |
+| color          | string                         | 'var(--steel-90)'     | Цвет текста                                                                 |
+| height         | string \| number               | -                     | Высота контейнера                                                           |
+| width          | string \| number               | -                     | Ширина контейнера                                                           |
+| maxWidth       | string \| number               | -                     | Максимальная ширина контейнера                                              |
+| gap            | string \| number               | '24px'                | Промежуток между дочерними элементами                                       |
+| border         | string                         | -                     | CSS свойство border                                                         |
+| borderRadius   | string \| number               | -                     | Радиус скругления углов                                                     |
+| display        | CSSProperties['display']       | 'flex'                | CSS свойство display                                                        |
+| flexDirection  | CSSProperties['flexDirection'] | -                     | Направление flex контейнера                                                 |
+| justifyContent | CSSProperties['justifyContent']| -                     | Выравнивание по главной оси                                                 |
+| alignItems     | CSSProperties['alignItems']    | -                     | Выравнивание по поперечной оси                                              |
+| flexWrap       | CSSProperties['flexWrap']      | -                     | Перенос flex элементов                                                      |
+| st             | CSSProperties                  | -                     | Дополнительные inline стили (наивысший приоритет)                           |
+| p, px, py, pt, pr, pb, pl | string \| number    | -                     | Система отступов (см. [Box](../Box/README.md))                              |
 
-> Компонент Grid поддерживает все props компонента [Box](../Box/README.md), а также дополнительные props для управления layout.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| children | ReactNode | - | Дочерние элементы для отображения внутри Grid |
-| className | string | - | Альтернативные CSS-классы |
-| background | string | - | Цвет фона контейнера |
-| color | string | 'var(--steel-90)' | Цвет текста |
-| height | string \| number | - | Высота контейнера |
-| width | string \| number | - | Ширина контейнера |
-| maxWidth | string \| number | - | Максимальная ширина контейнера |
-| gap | string \| number | '24px' | Промежуток между дочерними элементами |
-| border | string | - | CSS свойство border |
-| borderRadius | string \| number | - | Радиус скругления углов |
-| display | CSSProperties['display'] | 'flex' | CSS свойство display |
-| flexDirection | CSSProperties['flexDirection'] | - | Направление flex контейнера |
-| justifyContent | CSSProperties['justifyContent'] | - | Выравнивание по главной оси |
-| alignItems | CSSProperties['alignItems'] | - | Выравнивание по поперечной оси |
-| flexWrap | CSSProperties['flexWrap'] | - | Перенос flex элементов |
-| st | CSSProperties | - | Дополнительные inline стили (наивысший приоритет) |
-| p, px, py, pt, pr, pb, pl | string \| number | - | Система отступов (см. [Box](../Box/README.md)) |
-
----
-
-## Другие варианты использования
+## Варианты использования
 
 ### Сетка с колонками и строками
 
 ```jsx
-import Box from '@components/Box';
-import Grid from '@components/Grid';
+import Grid from '@nlmk/ds-2.0';
 
-const Example = () => (
-  <Grid>
-    <Grid.Row>
-      <Grid.Column>
-        <Box>Левая колонка</Box>
-      </Grid.Column>
-      <Grid.Column>
-        <Box>Правая колонка</Box>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
-);
+<Grid>
+  <Grid.Row>
+    <Grid.Column>
+      <div>Левая колонка</div>
+    </Grid.Column>
+    <Grid.Column>
+      <div>Правая колонка</div>
+    </Grid.Column>
+  </Grid.Row>
+</Grid>
 ```
 
 ### Несколько строк и колонок разной ширины
@@ -75,15 +66,15 @@ const Example = () => (
 <Grid>
   <Grid.Row>
     <Grid.Column width="70%">
-      <Box>Основной контент</Box>
+      <div>Основной контент</div>
     </Grid.Column>
     <Grid.Column width="30%">
-      <Box>Сайдбар</Box>
+      <div>Сайдбар</div>
     </Grid.Column>
   </Grid.Row>
   <Grid.Row>
     <Grid.Column width="100%">
-      <Box>Футер</Box>
+      <div>Футер</div>
     </Grid.Column>
   </Grid.Row>
 </Grid>
@@ -93,29 +84,47 @@ const Example = () => (
 
 ```jsx
 <Grid justifyContent="space-between" alignItems="center" gap={32}>
-  <Box>Левый блок</Box>
-  <Box>Центр</Box>
-  <Box>Правый блок</Box>
+  <div>Левый блок</div>
+  <div>Центр</div>
+  <div>Правый блок</div>
 </Grid>
 ```
 
----
-
 ## Стилизация
 
-- Для стилизации используйте пропсы `className` и `st` (inline-стили).
-- Все правила и возможности кастомизации аналогичны компоненту [Box](../Box/README.md#стилизация).
-- Для изменения отступов используйте систему props: `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`.
+Компонент можно кастомизировать несколькими способами:
 
----
+### 1. CSS-классы
 
-## Дополнительная информация
+Компонент использует CSS-модули для стилизации. Основные классы:
 
-- Grid не реализует собственную адаптивность, но вы можете управлять layout через props и media-запросы в CSS.
-- Для сложных адаптивных сеток рекомендуется использовать кастомные классы или оборачивать Grid в дополнительные компоненты.
-- Grid и его подкомпоненты не накладывают ограничений на вложенность и количество элементов.
+- `.wrapper`: Основной контейнер Grid
 
----
+Чтобы применить пользовательские стили, вы можете передать свой `className` и переопределить необходимые стили.
+
+### 2. Inline-стили
+
+Используйте проп `st` для передачи inline-стилей с наивысшим приоритетом:
+
+```jsx
+<Grid st={{ backgroundColor: 'red', padding: '20px' }}>
+  Контент
+</Grid>
+```
+
+### 3. Data-атрибуты
+
+Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
+
+```css
+[data-testid="grid-row"] {
+  /* Стили для строки Grid */
+}
+
+[data-testid="grid-column"] {
+  /* Стили для колонки Grid */
+}
+```
 
 ## Дочерние компоненты
 
@@ -129,18 +138,16 @@ const Example = () => (
 <Grid>
   <Grid.Row>
     <Grid.Column>
-      <Box>Колонка 1</Box>
+      <div>Колонка 1</div>
     </Grid.Column>
     <Grid.Column>
-      <Box>Колонка 2</Box>
+      <div>Колонка 2</div>
     </Grid.Column>
   </Grid.Row>
 </Grid>
 ```
 
 **Props:** такие же, как у Grid (унаследованы от Box).
-
----
 
 ### Grid.Column
 
@@ -152,18 +159,16 @@ const Example = () => (
 <Grid>
   <Grid.Row>
     <Grid.Column width="60%">
-      <Box>Основная часть</Box>
+      <div>Основная часть</div>
     </Grid.Column>
     <Grid.Column width="40%">
-      <Box>Боковая часть</Box>
+      <div>Боковая часть</div>
     </Grid.Column>
   </Grid.Row>
 </Grid>
 ```
 
 **Props:** такие же, как у Grid (унаследованы от Box).
-
----
 
 ## См. также
 

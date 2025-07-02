@@ -61,6 +61,18 @@ export const Changelog = () => {
                 - Обновлены названия историй в Storybook с указанием размеров в скобочках для лучшей навигации
               </li>
             </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Добавлен пропс valueSuffix для контроля отображения суффикса</li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

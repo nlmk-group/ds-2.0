@@ -30,6 +30,8 @@ export interface IInputSliderProps {
   showValue?: boolean;
   /** Позиция текущего значения */
   valuePosition?: `${EInputSliderValuePosition}`;
+  /** Суффикс для отображаемого значения (по умолчанию '%'). Передайте пустую строку для скрытия суффикса */
+  valueSuffix?: string;
   /** Функция, вызываемая при изменении значения */
   onChange?: (value: number) => void;
   /** Отключает ползунок */

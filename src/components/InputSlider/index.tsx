@@ -21,6 +21,7 @@ import { EInputSliderValuePosition } from './enums';
  * @param {(value: number) => void} [props.onChange] - Функция, вызываемая при изменении значения.
  * @param {boolean} [props.showValue=true] - Показывать ли текущее значение.
  * @param {`${EInputSliderValuePosition}`} [props.valuePosition=EInputSliderValuePosition.top] - Позиция текущего значения.
+ * @param {string} [props.valueSuffix='%'] - Суффикс для отображаемого значения. Передайте '' для скрытия суффикса.
  * @param {boolean} [props.disabled=false] - Отключает ползунок.
  * @returns {JSX.Element} - Компонент InputSlider.
  */
@@ -34,6 +35,7 @@ const InputSlider: FC<IInputSliderProps> = ({
   onChange,
   showValue = true,
   valuePosition = EInputSliderValuePosition.top,
+  valueSuffix = '%',
   disabled = false
 }) => {
   const [value, setValue] = useState(outerValue ?? min);
@@ -79,12 +81,12 @@ const InputSlider: FC<IInputSliderProps> = ({
       </Slider.ControlWrapper>
       {showValue && valuePosition === 'top' && (
         <div className={style.top}>
-          <Typography variant="Caption-Medium">{`${value}%`}</Typography>
+          <Typography variant="Caption-Medium">{`${value}${valueSuffix}`}</Typography>
         </div>
       )}
       {showValue && valuePosition === 'right' && (
         <div className={style.right}>
-          <Typography variant="Caption-Medium">{`${value}%`}</Typography>
+          <Typography variant="Caption-Medium">{`${value}${valueSuffix}`}</Typography>
         </div>
       )}
     </Slider.Wrapper>

@@ -56,23 +56,16 @@ export interface ISelectSpecificProps {
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
 
-  /** Кастомные стили для компонента */
+  /** Кастомные стили для самого селекта (контейнера) */
   style?: CSSProperties;
-  
-  /** Дополнительный CSS класс */
-  className?: string;
-  
-  /** Флаг применения цветовых стилей */
-  colored?: boolean;
-  
-  /** Флаг наличия кнопки сброса */
-  reset?: boolean;
-  
-  /** Обработчик сброса значения */
-  onReset?: () => void;
+
+  /** Кастомные стили для внутреннего Input компонента */
+  inputStyle?: CSSProperties;
 }
 
-export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;
+export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps | 'style'> &
+  TOverrideInputProps &
+  ISelectSpecificProps;
 
 declare const SimpleSelect: FC<ISelectProps>;
 

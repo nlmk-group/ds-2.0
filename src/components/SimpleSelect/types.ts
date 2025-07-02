@@ -41,8 +41,13 @@ interface ISelectSpecificProps {
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
 
-  /** Кастомные стили для компонента */
+  /** Кастомные стили для самого селекта (контейнера) */
   style?: CSSProperties;
+
+  /** Кастомные стили для внутреннего Input компонента */
+  inputStyle?: CSSProperties;
 }
 
-export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;
+export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps | 'style'> &
+  TOverrideInputProps &
+  ISelectSpecificProps;

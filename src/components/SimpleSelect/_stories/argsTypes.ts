@@ -90,11 +90,15 @@ export const argsTypes = {
     action: 'onEnterPress'
   },
   style: {
-    description: 'Кастомные стили для компонента',
+    description: 'Кастомные стили для контейнера селекта',
+    control: { type: 'object' }
+  },
+  inputStyle: {
+    description: 'Кастомные стили для внутреннего Input компонента',
     control: { type: 'object' }
   },
   className: {
-    description: 'Добавление самостоятельного CSS класса',
+    description: 'Дополнительный CSS класс для контейнера',
     control: { type: 'text' }
   },
   colored: {
@@ -137,5 +141,9 @@ export const argsTypes = {
   helperText: {
     description: 'Строка для вспомогательно текста под инпутом. Может быть как текстом, так и элементом ReactNode',
     control: { type: 'text' }
+  },
+  required: {
+    description: 'HTML атрибут required',
+    control: { type: 'boolean' }
   }
 };

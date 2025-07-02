@@ -229,21 +229,21 @@ const SimpleSelect: FC<ISelectProps> = ({
           size={size}
           inputRef={inputRef}
           value={searchable && isOpen ? searchTerm : selectedLabel}
-          onChange={e => searchable && setSearchTerm(e.target.value)}
-          onKeyDown={handleKeyDown}
           label={label}
           placeholder={placeholder}
           disabled={disabled}
           readOnly={!searchable || !isOpen}
           pseudo={pseudo}
           color={color}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           colored={colored}
-          icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
-          className={clsx(styles.select__input, styles['input-helper'])}
           reset={reset}
           onReset={onReset}
+          icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
+          onChange={e => searchable && setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className={clsx(styles.select__input, styles['input-helper'])}
           style={inputStyle}
           data-ui-select-input
           data-testid="select-input"

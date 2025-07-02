@@ -23,6 +23,60 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.6 - <span className={styles.date}>02.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено полное наследование всех пропсов от компонента Input для максимальной совместимости
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пропс inputStyle для стилизации внутреннего Input компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-illustration-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Illustration
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены fallback hex значения в SVG иллюстрации для корректного отображения при отсутствии CSS
+                переменных
+              </li>
+              <li className={styles['left-padding']}>
+                - Обновлены названия историй в Storybook с указанием размеров в скобочках для лучшей навигации
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Добавлен пропс valueSuffix для контроля отображения суффикса</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.5 - <span className={styles.date}>24.06.25</span>
           </Typography>
           <ul className={styles.list}>

@@ -31,6 +31,7 @@ import styles from './Input.module.scss';
  * @param {Ref<HTMLInputElement | HTMLTextAreaElement>} [props.inputRef] - Реф для доступа к DOM-элементу инпута.
  * @param {boolean} [props.colored=false] - Флаг цветного фона.
  * @param {string} [props.placeholder=''] - Текст плейсхолдера. Скрывается при наличии label и отсутствии фокуса.
+ * @param {boolean} [props.required=false] - Флаг обязательности заполнения.
  * @extends {InputHTMLAttributes<HTMLInputElement>} Наследует все стандартные атрибуты input элемента
  * @extends {TextareaHTMLAttributes<HTMLTextAreaElement>} Наследует все стандартные атрибуты textarea элемента
  * @returns {JSX.Element} Компонент Input.
@@ -55,7 +56,7 @@ const Input: FC<TInputProps> = ({
   inputRef,
   colored = false,
   placeholder = '',
-  required,
+  required = false,
   pseudoInputStyle,
   ...props
 }) => {

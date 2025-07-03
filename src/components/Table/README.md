@@ -22,8 +22,6 @@
 ## Базовый пример использования
 
 ```jsx
-import { Table, Thead, Tbody, Row, Cell, Top } from '@nlmk/ds-2.0';
-
 const columns = [
   { header: 'ID', accessorKey: 'id' },
   { header: 'Name', accessorKey: 'name' },
@@ -81,7 +79,6 @@ export default App;
 ### С фильтрацией и сортировкой
 
 ```jsx
-import { Table, Thead, Tbody, Row, Cell, Top, Filter, tableFilterOperations } from '@nlmk/ds-2.0';
 // ...подключение tanstack/react-table и подготовка данных
 
 <Table horizontalBorders verticalBorders>
@@ -119,6 +116,8 @@ import { Table, Thead, Tbody, Row, Cell, Top, Filter, tableFilterOperations } fr
 - Sticky header: TableWithStickyHeader
 - Группировка: GroupingHeaderTableExample
 - Пагинация: SelectableTableWithPagination
+
+и т.д.
 
 ---
 

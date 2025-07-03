@@ -7,7 +7,6 @@
 ## Использование
 
 ```jsx
-import { Filter } from '@components/Filter';
 
 const filterTypeOptions = [
   { value: 'contains', label: 'Содержит', icon: <IconSelectionContains24 /> },
@@ -115,8 +114,6 @@ interface IFilterValueOption {
 ## Использование
 
 ```jsx
-import { FilterInput } from '@components/Filter/subcomponents/FilterInput';
-
 <FilterInput
   value={value}
   label="Поиск"

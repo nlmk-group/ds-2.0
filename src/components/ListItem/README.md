@@ -9,7 +9,6 @@
 ## Базовый пример использования
 
 ```jsx
-import ListItem from '@nlmk/ds-2.0';
 
 const Example = () => (
   <ListItem>Пункт списка</ListItem>
@@ -17,20 +16,6 @@ const Example = () => (
 
 export default Example;
 ```
-
----
-
-## Props
-
-| Prop       | Type                          | Default | Description                                      |
-|------------|-------------------------------|---------|--------------------------------------------------|
-| children   | ReactNode                     | —       | Содержимое элемента списка                       |
-| className  | string                        | —       | Дополнительный CSS-класс                         |
-| title      | string                        | —       | Атрибут title для всплывающей подсказки          |
-| ...props   | HTMLAttributes<HTMLDivElement> | —       | Любые другие props для div-контейнера            |
-
----
-
 ## Другие варианты использования
 
 ### С кастомными стилями и обработчиком событий
@@ -50,6 +35,18 @@ export default Example;
   <ListItem disabled>Опция 3 (disabled)</ListItem>
 </List>
 ```
+---
+
+## Props
+
+| Prop       | Type                          | Default | Description                                      |
+|------------|-------------------------------|---------|--------------------------------------------------|
+| children   | ReactNode                     | —       | Содержимое элемента списка                       |
+| className  | string                        | —       | Дополнительный CSS-класс                         |
+| title      | string                        | —       | Атрибут title для всплывающей подсказки          |
+| ...props   | HTMLAttributes<HTMLDivElement> | —       | Любые другие props для div-контейнера            |
+
+
 
 ---
 
@@ -83,5 +80,4 @@ export default Example;
 ## Дополнительная информация
 
 - Может использоваться совместно с внешними компонентами, например, List, Select, Autocomplete, Dropdown и др.
-- Для объединения CSS-классов используется библиотека [clsx](https://github.com/lukeed/clsx).
 - Поддерживает передачу любых стандартных props для `<div>`.

@@ -9,8 +9,6 @@
 ## Базовый пример использования
 
 ```jsx
-import { Slider } from '@nlmk/ds-2.0';
-import { useState } from 'react';
 
 const Example = () => {
   const [minValue, setMinValue] = useState(10);
@@ -144,18 +142,9 @@ export default Example;
 
 ---
 
-## Внешние зависимости
-
-- Использует компонент `Typography` из `@components/Typography` для отображения значения.
-- Для объединения классов используется `clsx`.
-
----
-
 ## Дополнительная информация
 
 - Компонент Slider — низкоуровневый, для типовых сценариев используйте более высокоуровневые компоненты, например, `InputSlider` или `InputRange`.
 - Все значения позиций (`position`, `minPosition`, `maxPosition`) задаются в процентах (0-100).
 
 ---
-
-Если нужно добавить примеры для InputSlider или InputRange, дайте знать!

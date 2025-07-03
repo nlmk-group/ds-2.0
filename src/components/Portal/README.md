@@ -9,8 +9,6 @@
 ## Базовый пример использования
 
 ```jsx
-import Portal from '@nlmk/ds-2.0/src/components/Portal';
-
 const node = document.getElementById('portal-root');
 
 const App = () => (
@@ -38,7 +36,6 @@ export default App;
 ### Использование с модальным окном
 
 ```jsx
-import Portal from '@nlmk/ds-2.0/src/components/Portal';
 
 const modalRoot = document.getElementById('modal-root');
 

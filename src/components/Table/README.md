@@ -4,6 +4,19 @@
 
 **Table** — компонент для отображения табличных данных с поддержкой кастомизации, сортировки, фильтрации, виртуализации и других расширенных возможностей. Используется для представления структурированных данных в виде таблицы с возможностью управления колонками, строками и ячейками.
 
+## Headless UI и Tanstack Table
+
+Компонент **Table** реализован с использованием подхода Headless UI. Это означает, что логика, состояние, обработка событий и API для работы с таблицей отделены от визуальной части (разметки и стилей). Такой подход позволяет использовать Table совместно с различными headless-библиотеками, которые отвечают только за бизнес-логику компонента, а визуализация и стилизация остаются на стороне Table.
+
+**Headless UI** — это термин для библиотек и утилит, которые предоставляют только логику и API для UI-элементов и взаимодействий, но не содержат готовой разметки или стилей. Примеры таких библиотек: [Tanstack Table](https://tanstack.com/table/v8), DevExtreme, MUI Table (headless-режим).
+
+Преимущества headless-подхода:
+- Гибкость: можно использовать любую визуализацию и стилизацию, не ограничиваясь предустановленными шаблонами.
+- Интеграция: легко интегрировать Table с различными библиотеками для управления состоянием и логикой (например, Tanstack Table, DevExtreme и др.).
+- Кастомизация: разработчик полностью контролирует внешний вид и поведение таблицы.
+
+Таким образом, Table может быть использован как визуальный слой поверх headless-логики, предоставляемой сторонними библиотеками, что делает компонент универсальным и легко расширяемым.
+
 ---
 
 ## Базовый пример использования
@@ -134,52 +147,91 @@ import { Table, Thead, Tbody, Row, Cell, Top, Filter, tableFilterOperations } fr
 
 Ячейка таблицы.
 
-**Props:**
-- `size` — размер ячейки (`m`, `s`, `xs`)
-- `color` — статус ячейки (`default`, `error`, `success`, `warning`)
-- `state` — состояние (`default`, `active`, `disabled`, `selected`)
-- `text`, `number` — содержимое
-- `align` — выравнивание (`left`, `center`, `right`)
-- `disableHover` — отключить hover-эффект
-- `onClick` — обработчик клика
-- `className`, `style`, `children` — стандартные
+| Prop         | Type / Values                                         | Default | Description                |
+|--------------|-------------------------------------------------------|---------|----------------------------|
+| size         | 'm' \| 's' \| 'xs'                                    | -       | Размер ячейки              |
+| color        | 'default' \| 'error' \| 'success' \| 'warning'        | -       | Статус ячейки              |
+| state        | 'default' \| 'active' \| 'disabled' \| 'selected'     | -       | Состояние                  |
+| text, number | string, number                                        | -       | Содержимое                 |
+| align        | 'left' \| 'center' \| 'right'                         | -       | Выравнивание               |
+| disableHover | boolean                                               | -       | Отключить hover-эффект     |
+| onClick      | function                                              | -       | Обработчик клика           |
+| className    | string                                                | -       | Дополнительный CSS-класс   |
+| style        | CSSProperties                                         | -       | Инлайн-стили               |
+| children     | ReactNode                                             | -       | Содержимое                 |
 
 ### Table.Row
 
 Строка таблицы.
 
-**Props:**  
-- `children` — содержимое  
-- `className`, `style` — стандартные
+| Prop       | Type        | Default | Description                  |
+|------------|-------------|---------|------------------------------|
+| children   | ReactNode   | -       | Содержимое                   |
+| className  | string      | -       | Дополнительный CSS-класс     |
+| style      | CSSProperties | -     | Инлайн-стили                 |
 
 ### Table.ColumnSetting
 
 Элемент для настройки колонок (видимость, закрепление, drag-n-drop).
 
-**Props:**  
-- `id`, `title`, `visible`, `pinned`, `hasChildren`, `expanded`, `draggable`, `disabled`, `highlighted`, `onVisibilityChange`, `onPinChange`, `onExpandChange`, `dragHandleProps`, `preventEventBubbling`, `className`
+| Prop                  | Type      | Default | Description                                 |
+|-----------------------|-----------|---------|---------------------------------------------|
+| id                    | string    | -       | Идентификатор колонки                       |
+| title                 | string    | -       | Название колонки                            |
+| visible               | boolean   | -       | Видимость                                   |
+| pinned                | boolean   | -       | Закрепление                                 |
+| hasChildren           | boolean   | -       | Есть ли дочерние элементы                   |
+| expanded              | boolean   | -       | Состояние раскрытия                         |
+| draggable             | boolean   | -       | Возможность drag-n-drop                     |
+| disabled              | boolean   | -       | Отключение                                  |
+| highlighted           | boolean   | -       | Подсветка                                   |
+| onVisibilityChange    | function  | -       | Обработчик изменения видимости              |
+| onPinChange           | function  | -       | Обработчик закрепления                      |
+| onExpandChange        | function  | -       | Обработчик раскрытия                        |
+| dragHandleProps       | object    | -       | Свойства drag handle                        |
+| preventEventBubbling  | boolean   | -       | Предотвращение всплытия событий             |
+| className             | string    | -       | Дополнительный CSS-класс                    |
 
 ### Table.Tbody, Table.Thead, Table.Tfooter
 
 Контейнеры для секций таблицы.
 
-**Props:**  
-- `children` — содержимое  
-- `className`, `style` — стандартные
+| Prop       | Type        | Default | Description                  |
+|------------|-------------|---------|------------------------------|
+| children   | ReactNode   | -       | Содержимое                   |
+| className  | string      | -       | Дополнительный CSS-класс     |
+| style      | CSSProperties | -     | Инлайн-стили                 |
 
 ### Table.Top
 
 Ячейка заголовка таблицы.
 
-**Props:**  
-- `size`, `title`, `disable`, `sort`, `sortDirection`, `right`, `number`, `lastInGroup`, `onClick`, `drag`, `filtered`, `children`, `className`, `style`, `onMouseDown`, `onTouchStart`, `onDoubleClick`
+| Prop           | Type / Values                                         | Default | Description                |
+|----------------|-------------------------------------------------------|---------|----------------------------|
+| size           | 'm' \| 's' \| 'xs'                                    | -       | Размер ячейки              |
+| title          | string                                                | -       | Заголовок                  |
+| disable        | boolean                                               | -       | Отключить                  |
+| sort           | boolean                                               | -       | Включить сортировку        |
+| sortDirection  | 'asc' \| 'desc' \| undefined                         | -       | Направление сортировки     |
+| right          | boolean                                               | -       | Выравнивание вправо        |
+| number         | number                                                | -       | Числовое значение          |
+| lastInGroup    | boolean                                               | -       | Последний в группе         |
+| onClick        | function                                              | -       | Обработчик клика           |
+| drag           | boolean                                               | -       | Drag-n-drop                |
+| filtered       | boolean                                               | -       | Фильтрация                 |
+| children       | ReactNode                                             | -       | Содержимое                 |
+| className      | string                                                | -       | Дополнительный CSS-класс   |
+| style          | CSSProperties                                         | -       | Инлайн-стили               |
+| onMouseDown    | function                                              | -       | Обработчик mouse down      |
+| onTouchStart   | function                                              | -       | Обработчик touch start     |
+| onDoubleClick  | function                                              | -       | Обработчик двойного клика  |
 
 ---
 
 ## Внешние зависимости
 
 - [@tanstack/react-table](https://tanstack.com/table/v8) — для управления состоянием и логикой таблицы
-- Компоненты из `@nlmk/ds-2.0` (Button, Icon, Typography и др.)
+- Вы также можете использовать другие библиотеки в своих проектах, за счет подхода headless ui
 
 ---
 

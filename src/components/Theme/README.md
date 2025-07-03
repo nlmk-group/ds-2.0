@@ -61,7 +61,6 @@ const App = () => {
 В библиотеке есть готовый компонент-переключатель темы:
 
 ```jsx
-import ThemeSwitcher from '@nlmk/ds-2.0/dist/components/ThemeSwitcher';
 
 const App = () => (
   <div>

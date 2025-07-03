@@ -17,39 +17,6 @@ import { EClickAwayEvent, IClickAwayListenerProps } from '@components/ClickAwayL
  *
  * @returns {React.ReactElement} React-элемент
  *
- * @example
- * // Базовое использование
- * const ref = useRef(null);
- *
- * <ClickAwayListener
- *   onClickAway={() => console.log('Clicked away!')}
- *   excludeRef={ref}
- * >
- *   <div>Содержимое</div>
- * </ClickAwayListener>
- *
- * @example
- * // С массивом исключаемых элементов и кастомным событием
- * const ref1 = useRef(null);
- * const ref2 = useRef(null);
- *
- * <ClickAwayListener
- *   onClickAway={() => console.log('Clicked away!')}
- *   excludeRef={[ref1, ref2]}
- *   eventType="click"
- * >
- *   <div>Содержимое</div>
- * </ClickAwayListener>
- *
- * @example
- * // Со стилями и классом
- * <ClickAwayListener
- *   onClickAway={handleClose}
- *   className="my-listener"
- *   style={{ padding: 16 }}
- * >
- *   <div>Контент с кастомными стилями</div>
- * </ClickAwayListener>
  */
 const ClickAwayListener: FC<IClickAwayListenerProps> = ({
   children,

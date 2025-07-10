@@ -23,6 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.7 - <span className={styles.date}>09.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: FileDOCX, FilePDF, FileXLS, FileNoType, FileZIP, FilePPT,
+                PerformanceManagement, DataGovernance
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.6 - <span className={styles.date}>02.07.25</span>
           </Typography>
           <ul className={styles.list}>

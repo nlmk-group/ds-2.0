@@ -254,4 +254,195 @@ describe('src/components/ComboBox', () => {
       expect(tooltipWrapper).toBeInTheDocument();
     });
   });
+
+  describe('Функции автофокуса и автораскрытия', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.clearAllTimers();
+    });
+
+    afterEach(() => {
+      jest.runOnlyPendingTimers();
+      jest.useRealTimers();
+    });
+
+    describe('autoFocusSearch', () => {
+      it('должен передавать autoFocusSearch=true в children через cloneElement', async () => {
+        const TestChild = ({ autoFocusSearch, isDropdownOpen }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="auto-focus-value">{String(autoFocusSearch)}</span>
+            <span data-testid="dropdown-open">{String(isDropdownOpen)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown autoFocusSearch={true}>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('auto-focus-value')).toHaveTextContent('true');
+        expect(await screen.findByTestId('dropdown-open')).toHaveTextContent('true');
+      });
+
+      it('должен передавать autoFocusSearch=false по умолчанию', async () => {
+        const TestChild = ({ autoFocusSearch }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="auto-focus-value">{String(autoFocusSearch)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('auto-focus-value')).toHaveTextContent('false');
+      });
+
+      it('должен работать с фейковыми таймерами для автофокуса', () => {
+        jest.useFakeTimers();
+
+        const mockFocus = jest.fn();
+        const MockSearch = ({ autoFocusSearch, isDropdownOpen }: any) => {
+          const inputRef = React.useRef({ focus: mockFocus });
+
+          React.useEffect(() => {
+            if (autoFocusSearch && isDropdownOpen && inputRef.current) {
+              const timeoutId = setTimeout(() => {
+                inputRef.current?.focus();
+              }, 100);
+              return () => clearTimeout(timeoutId);
+            }
+          }, [autoFocusSearch, isDropdownOpen]);
+
+          return <div data-testid="mock-search">Search Mock</div>;
+        };
+
+        render(
+          <Provider>
+            <ComboBoxDropdown autoFocusSearch={true}>
+              <MockSearch />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(mockFocus).not.toHaveBeenCalled();
+
+        jest.advanceTimersByTime(100);
+
+        expect(mockFocus).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('autoExpandOnSearch', () => {
+      it('должен передавать autoExpandOnSearch=true в children', async () => {
+        const TestChild = ({ autoExpandOnSearch, isDropdownOpen }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="auto-expand-value">{String(autoExpandOnSearch)}</span>
+            <span data-testid="dropdown-open">{String(isDropdownOpen)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown autoExpandOnSearch={true}>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('auto-expand-value')).toHaveTextContent('true');
+        expect(await screen.findByTestId('dropdown-open')).toHaveTextContent('true');
+      });
+
+      it('должен передавать autoExpandOnSearch=false по умолчанию', async () => {
+        const TestChild = ({ autoExpandOnSearch }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="auto-expand-value">{String(autoExpandOnSearch)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('auto-expand-value')).toHaveTextContent('false');
+      });
+    });
+
+    describe('комбинированные функции', () => {
+      it('должен корректно передавать оба пропса одновременно', async () => {
+        const TestChild = ({ autoFocusSearch, autoExpandOnSearch, isDropdownOpen }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="auto-focus">{String(autoFocusSearch)}</span>
+            <span data-testid="auto-expand">{String(autoExpandOnSearch)}</span>
+            <span data-testid="is-open">{String(isDropdownOpen)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown autoFocusSearch={true} autoExpandOnSearch={true}>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('auto-focus')).toHaveTextContent('true');
+        expect(await screen.findByTestId('auto-expand')).toHaveTextContent('true');
+        expect(await screen.findByTestId('is-open')).toHaveTextContent('true');
+      });
+
+      it('должен корректно работать с isDropdownOpen состоянием', async () => {
+        const TestChild = ({ isDropdownOpen }: any) => (
+          <div data-testid="test-child">
+            <span data-testid="is-open">{String(isDropdownOpen)}</span>
+          </div>
+        );
+
+        render(
+          <Provider>
+            <ComboBoxDropdown>
+              <TestChild />
+            </ComboBoxDropdown>
+          </Provider>
+        );
+
+        expect(screen.queryByTestId('test-child')).not.toBeInTheDocument();
+
+        const input = screen.getByRole('textbox');
+        fireEvent.focus(input);
+
+        expect(await screen.findByTestId('is-open')).toHaveTextContent('true');
+      });
+    });
+  });
 });

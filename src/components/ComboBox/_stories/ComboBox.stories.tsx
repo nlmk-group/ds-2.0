@@ -381,3 +381,19 @@ export const TreeViewWithSimpleCheckboxesExample = () => {
   );
 };
 TreeViewWithSimpleCheckboxesExample.storyName = 'Древовидный список с независимыми чекбоксами';
+
+export const TreeViewWithAutoFeaturesExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox
+      label="Древовидный список с автофункциями"
+      countOnlyLevel={2}
+      autoFocusSearch
+      autoExpandOnSearch
+      tooltipDescription="При открытии фокус автоматически переходит в поиск, при поиске дерево автоматически раскрывается"
+    >
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+TreeViewWithAutoFeaturesExample.storyName = 'Древовидный список с автофокусом и автораскрытием';

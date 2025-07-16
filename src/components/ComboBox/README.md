@@ -58,6 +58,8 @@ export default function App() {
 | inputStyle          | CSSProperties                     | —         | Inline-стили для поля ввода.                                                                |
 | withPortal          | boolean                           | false     | Рендерить ли выпадающий список через портал (`portalContainerId`).                          |
 | portalContainerId   | string                            | —         | Если используется портал, id DOM-элемента-контейнера для выпадающего списка.                |
+| autoFocusSearch     | boolean                           | false     | Автоматический фокус на поле поиска при открытии выпадающего списка.                         |
+| autoExpandOnSearch  | boolean                           | false     | Автоматическое раскрытие дерева элементов при поиске (для ComboTreeList).                   |
 
 ---
 
@@ -96,6 +98,7 @@ export default function App() {
   portalContainerId="my-portal-root"
 />
 ```
+
 
 ---
 

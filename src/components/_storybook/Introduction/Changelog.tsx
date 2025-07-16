@@ -27,6 +27,25 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Combobox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoFocusSearch для автоматического фокуса на поле поиска при открытии выпадающего
+                списка (по умолчанию false)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoExpandOnSearch для автоматического раскрытия дерева элементов при поиске (по
+                умолчанию false)
+              </li>
+            </li>
+            <li>
               • Исправлен компонент{' '}
               <Link
                 href="./?path=/docs/components-breadcrumbs-info--docs"

@@ -6,7 +6,11 @@ const BasicBreadcrumbs: FC<IBasicBreadcrumbsProps> = ({ crumbs }) => (
   <>
     {crumbs.map((crumb: ReactElement, index: number) => {
       const isLast = index === crumbs.length - 1;
-      return cloneElement(crumb, { isLast, key: index });
+      return cloneElement(crumb, {
+        isLast,
+        showSeparator: !isLast,
+        key: index
+      });
     })}
   </>
 );

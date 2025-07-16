@@ -45,6 +45,20 @@ export const Changelog = () => {
                 умолчанию false)
               </li>
             </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-breadcrumbs-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Breadcrumbs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема с некликабельными ссылками в выпадающем списке хлебных крошек
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

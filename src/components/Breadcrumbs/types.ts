@@ -25,6 +25,8 @@ export interface IBasicBreadcrumbsProps {
 export interface IInternalCrumbProps {
   /** Флаг, указывающий, является ли элемент последним */
   isLast?: boolean;
+  /** Флаг, указывающий, нужно ли отображать разделитель */
+  showSeparator?: boolean;
   /** Дочерний элемент, обычно ссылка */
   children: ReactElement;
 }

@@ -9,7 +9,7 @@
 ```tsx
 import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-<Breadcrumbs width={100}>
+<Breadcrumbs width="100%">
   <Breadcrumbs.Crumb>
     <a href="https://developer.mozilla.org/en-US/">MDN</a>
   </Breadcrumbs.Crumb>

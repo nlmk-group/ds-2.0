@@ -1,4 +1,4 @@
-import { targetMapping } from '../enums';
+import { targetMapping } from './enums';
 
 export const BASIC_COMPONENT_USE = 'Обычное использование компонента';
 export const CUSTOM_WIDTH = 'Компонент с заданной шириной';

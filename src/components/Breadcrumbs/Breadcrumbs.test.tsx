@@ -93,4 +93,127 @@ describe('src/components/Breadcrumbs', () => {
     const separators = screen.getAllByTestId('CRUMB_SEPARATOR');
     expect(separators).toHaveLength(1);
   });
+
+  it('last crumb should have isLast class but clickable links in dropdown should not', () => {
+    const mockOnClick = jest.fn();
+
+    render(
+      <Breadcrumbs width="200px">
+        <Breadcrumbs.Crumb>
+          <a href="#" onClick={mockOnClick}>
+            Home
+          </a>
+        </Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>
+          <a href="#" onClick={mockOnClick}>
+            Category
+          </a>
+        </Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>
+          <a href="#" onClick={mockOnClick}>
+            Subcategory
+          </a>
+        </Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>
+          <a href="#" onClick={mockOnClick}>
+            Product
+          </a>
+        </Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    fireEvent.click(screen.getByTestId('HIDDEN_OPTIONS_BUTTON'));
+
+    const dropdownLinks = screen.getByTestId('HIDDEN_OPTIONS_LIST').querySelectorAll('a');
+    fireEvent.click(dropdownLinks[0]);
+
+    expect(mockOnClick).toHaveBeenCalled();
+  });
+
+  it('elements in dropdown should not have separators', () => {
+    render(
+      <Breadcrumbs width="200px">
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Subcategory' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    fireEvent.click(screen.getByTestId('HIDDEN_OPTIONS_BUTTON'));
+
+    const dropdownList = screen.getByTestId('HIDDEN_OPTIONS_LIST');
+    const separatorsInDropdown = dropdownList.querySelectorAll('[data-testid="CRUMB_SEPARATOR"]');
+
+    expect(separatorsInDropdown).toHaveLength(0);
+  });
+
+  it('last crumb should have isLast class and no separator', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    const crumbs = screen.getAllByTestId('LINK_HREF');
+    const lastCrumb = crumbs[crumbs.length - 1];
+
+    expect(lastCrumb.parentElement).toHaveClass('isLast');
+
+    expect(lastCrumb.parentElement?.querySelector('[data-testid="CRUMB_SEPARATOR"]')).toBeNull();
+  });
+
+  it('separators should be correctly distributed in basic mode', () => {
+    render(
+      <Breadcrumbs>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    const separators = screen.getAllByTestId('CRUMB_SEPARATOR');
+    const crumbs = screen.getAllByTestId('LINK_HREF');
+
+    expect(separators).toHaveLength(crumbs.length - 1);
+  });
+
+  it('in shortened mode should have exactly one separator after first element', () => {
+    render(
+      <Breadcrumbs width="100px">
+        {' '}
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Subcategory' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    expect(screen.getByTestId('HIDDEN_OPTIONS_BUTTON')).toBeInTheDocument();
+
+    const separators = screen.getAllByTestId('CRUMB_SEPARATOR');
+    expect(separators).toHaveLength(1);
+  });
+
+  it('elements in dropdown should not have isLast class but last visible element should', () => {
+    render(
+      <Breadcrumbs width="200px">
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Home' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Category' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Subcategory' })}</Breadcrumbs.Crumb>
+        <Breadcrumbs.Crumb>{mockLink({ children: 'Product' })}</Breadcrumbs.Crumb>
+      </Breadcrumbs>
+    );
+
+    fireEvent.click(screen.getByTestId('HIDDEN_OPTIONS_BUTTON'));
+
+    const dropdownCrumbs = screen.getByTestId('HIDDEN_OPTIONS_LIST').querySelectorAll('[data-ui-crumb]');
+    dropdownCrumbs.forEach(crumb => {
+      expect(crumb).not.toHaveClass('isLast');
+    });
+
+    const visibleCrumbs = screen.getAllByTestId('LINK_HREF');
+    const lastVisibleCrumb = visibleCrumbs[visibleCrumbs.length - 1];
+    expect(lastVisibleCrumb.parentElement).toHaveClass('isLast');
+  });
 });

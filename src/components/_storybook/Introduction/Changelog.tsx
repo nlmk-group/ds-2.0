@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.8 - <span className={styles.date}>16.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-breadcrumbs-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Breadcrumbs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема с некликабельными ссылками в выпадающем списке хлебных крошек
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.7 - <span className={styles.date}>09.07.25</span>
           </Typography>
           <ul className={styles.list}>

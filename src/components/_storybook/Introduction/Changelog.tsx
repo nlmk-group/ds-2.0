@@ -23,6 +23,46 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.8 - <span className={styles.date}>16.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Combobox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoFocusSearch для автоматического фокуса на поле поиска при открытии выпадающего
+                списка (по умолчанию false)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoExpandOnSearch для автоматического раскрытия дерева элементов при поиске (по
+                умолчанию false)
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-breadcrumbs-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Breadcrumbs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема с некликабельными ссылками в выпадающем списке хлебных крошек
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.7 - <span className={styles.date}>09.07.25</span>
           </Typography>
           <ul className={styles.list}>

@@ -49,6 +49,6 @@ export const BreadcrumbsTarget = (argsTypes: IBreadcrumbsProps): ReactNode => {
   );
 };
 BreadcrumbsTarget.storyName = DIFFERENT_TARGET;
-BreadcrumbsDefault.args = {
+BreadcrumbsTarget.args = {
   width: '100%'
 };

@@ -3,13 +3,12 @@ import * as ReactDOM from 'react-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { IComboBoxOption } from './types';
+import { IComboBoxOption, IComboBoxTreeOption } from './types';
 
 import { Provider } from './context';
 import ComboBoxDropdown from './subcomponents/ComboBoxDropdown';
 import InputComboBox from './subcomponents/InputComboBox';
 
-// Мок для usePopper
 jest.mock('react-popper', () => ({
   usePopper: () => ({
     styles: { popper: {} },
@@ -161,14 +160,74 @@ describe('src/components/ComboBox', () => {
 
       expect(screen.getByLabelText('Тестовый лейбл')).toHaveValue('Опция 1, Опция 2');
     });
+
+    it('должен корректно фильтровать по уровню, когда countOnlyLevel > 0', () => {
+      const value: IComboBoxTreeOption[] = [
+        { id: '1', label: 'Уровень 1', level: 1 },
+        { id: '2', label: 'Уровень 2 - 1', level: 2 },
+        { id: '3', label: 'Уровень 2 - 2', level: 2 },
+        { id: '4', label: 'Уровень 3', level: 3 }
+      ];
+
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} value={value} countOnlyLevel={2} />
+        </Provider>
+      );
+
+      expect(screen.getByLabelText('Тестовый лейбл')).toHaveValue('Выбрано 2');
+    });
+
+    it('должен корректно считать только листовые элементы, когда countOnlyLevel=-1', () => {
+      const value: IComboBoxTreeOption[] = [
+        { id: '1', label: 'Родитель 1', level: 1, parentId: null },
+        { id: '2', label: 'Ребенок 1', level: 2, parentId: '1' },
+        { id: '3', label: 'Ребенок 2', level: 2, parentId: '1' },
+        { id: '4', label: 'Родитель 2', level: 1, parentId: null },
+        { id: '5', label: 'Внук', level: 3, parentId: '2' }
+      ];
+
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} value={value} countOnlyLevel={-1} />
+        </Provider>
+      );
+
+      // Должно считать только листовые элементы (те, которые не являются родителями)
+      expect(screen.getByLabelText('Тестовый лейбл')).toHaveValue('Выбрано 3');
+    });
+
+    it('должен корректно обрабатывать пустой список при countOnlyLevel=-1', () => {
+      const value: IComboBoxOption[] = [];
+
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} value={value} countOnlyLevel={-1} />
+        </Provider>
+      );
+
+      expect(screen.getByLabelText('Тестовый лейбл')).toHaveValue('');
+    });
+
+    it('должен корректно обрабатывать единственный элемент при countOnlyLevel=-1', () => {
+      const value: IComboBoxTreeOption[] = [
+        { id: '1', label: 'Единственный элемент', level: 1, parentId: null }
+      ];
+
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} value={value} countOnlyLevel={-1} />
+        </Provider>
+      );
+
+      expect(screen.getByLabelText('Тестовый лейбл')).toHaveValue('Единственный элемент');
+    });
   });
 
   describe('ComboBoxDropdown', () => {
-    // Мок для createPortal
     let portalSpy: jest.SpyInstance;
 
     beforeAll(() => {
-      // Используем jest.spyOn вместо прямого переопределения
       // @ts-expect-error - игнорируем типы для мока
       portalSpy = jest.spyOn(ReactDOM, 'createPortal').mockImplementation((element, _container) => {
         return element;
@@ -254,6 +313,74 @@ describe('src/components/ComboBox', () => {
       expect(tooltipWrapper).toBeInTheDocument();
     });
   });
+
+describe('initialValue', () => {
+  const mockInputRef = { current: null };
+  const mockOnFocusSearchInput = jest.fn();
+  const mockOnOpenClick = jest.fn();
+  const mockOnCloseClick = jest.fn();
+
+  const defaultProps = {
+    inputRef: mockInputRef,
+    isDisabled: false,
+    isOpen: false,
+    label: 'Тестовый лейбл',
+    onFocusSearchInput: mockOnFocusSearchInput,
+    onOpenClick: mockOnOpenClick,
+    onCloseClick: mockOnCloseClick
+  };
+
+  const testOptions: IComboBoxOption[] = [
+    { id: '1', label: 'Опция 1' },
+    { id: '2', label: 'Опция 2' }
+  ];
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('должен устанавливать initialValue при монтировании', () => {
+    render(
+      <Provider>
+        <InputComboBox 
+          {...defaultProps} 
+          initialValue={[testOptions[0]]} 
+        />
+      </Provider>
+    );
+
+    const input = screen.getByDisplayValue('Опция 1');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('должен устанавливать несколько значений в initialValue', () => {
+    render(
+      <Provider>
+        <InputComboBox 
+          {...defaultProps} 
+          initialValue={testOptions} 
+        />
+      </Provider>
+    );
+
+    const input = screen.getByDisplayValue('Выбрано 2');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('не должен устанавливать значение при пустом initialValue', () => {
+    render(
+      <Provider>
+        <InputComboBox 
+          {...defaultProps} 
+          initialValue={[]} 
+        />
+      </Provider>
+    );
+
+    const input = screen.getByDisplayValue('');
+    expect(input).toBeInTheDocument();
+  });
+});
 
   describe('Функции автофокуса и автораскрытия', () => {
     beforeEach(() => {

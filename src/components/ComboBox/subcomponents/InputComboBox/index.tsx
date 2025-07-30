@@ -49,8 +49,20 @@ const InputComboBox = ({
       return showSelected(childValues);
     }
     if (comboBoxValue && comboBoxValue.length > 1 && countOnlyLevel) {
-      const values = comboBoxValue.filter(child => child.level === countOnlyLevel);
-      return showSelected(values);
+      if (countOnlyLevel === -1) {
+        const parentIdsSet = new Set<string>();
+        comboBoxValue.forEach(option => {
+          if (option.parentId) {
+            parentIdsSet.add(option.parentId);
+          }
+        });
+
+        const leafValues = comboBoxValue.filter(child => !parentIdsSet.has(child.id));
+        return showSelected(leafValues);
+      } else {
+        const values = comboBoxValue.filter(child => child.level === countOnlyLevel);
+        return showSelected(values);
+      }
     }
 
     if (comboBoxValue && comboBoxValue.length > 1 && displayEnumerated) {
@@ -64,7 +76,7 @@ const InputComboBox = ({
       return option?.label ?? '';
     }
     return '';
-  }, [comboBoxValue]);
+  }, [comboBoxValue, displayChildCount, countOnlyLevel, displayEnumerated]);
 
   useEffect(() => {
     if (setComboValue && initialValue) {

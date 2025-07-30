@@ -397,3 +397,17 @@ export const TreeViewWithAutoFeaturesExample = () => {
   );
 };
 TreeViewWithAutoFeaturesExample.storyName = 'Древовидный список с автофокусом и автораскрытием';
+
+export const TreeViewWithLeafCountExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox
+      label="Древовидный список - считать только листовые элементы"
+      countOnlyLevel={-1}
+      tooltipDescription="При countOnlyLevel={-1} в инпуте считаются только листовые элементы (без дочерних)"
+    >
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+TreeViewWithLeafCountExample.storyName = 'Древовидный список - листовые элементы';

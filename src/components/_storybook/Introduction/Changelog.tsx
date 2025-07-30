@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.9 - <span className={styles.date}>30.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена возможность подсчета только листовых элементов в ComboTreeList (countOnlyLevel={-1})
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.8 - <span className={styles.date}>16.07.25</span>
           </Typography>
           <ul className={styles.list}>

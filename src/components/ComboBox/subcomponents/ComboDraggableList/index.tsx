@@ -110,7 +110,8 @@ const ComboDraggableList = <T extends IComboBoxOption>({
             ref={provided.innerRef}
             className={clsx(styles['list-item'], styles['list-item--draggable'], {
               [styles['list-item--active']]: isChecked,
-              [styles['list-item--dragging']]: snapshot.isDragging
+              [styles['list-item--dragging']]: snapshot.isDragging,
+              [styles['list-item--disabled']]: Boolean(item.disabled)
             })}
             {...provided.draggableProps}
             style={provided.draggableProps.style}
@@ -121,6 +122,7 @@ const ComboDraggableList = <T extends IComboBoxOption>({
             {isMultiple && (
               <Checkbox
                 checked={isChecked}
+                disabled={Boolean(item.disabled)}
                 label={item.label}
                 onChange={() => handleMultiChange(item)}
                 className={styles['list-item__checkbox']}
@@ -130,7 +132,7 @@ const ComboDraggableList = <T extends IComboBoxOption>({
               <Typography
                 variant="Body1-Medium"
                 className={styles['list-item__label']}
-                onClick={() => handleChange(item)}
+                onClick={() => !item.disabled && handleChange(item)}
               >
                 {item.label}
               </Typography>

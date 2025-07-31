@@ -25,6 +25,11 @@
       align-items: center;
     }
 
+    &--disabled {
+      background-color: var(--steel-10);
+      opacity: 0.5;
+    }
+
     &--active {
       background-color: var(--brand-sapphire-10);
 
@@ -52,7 +57,7 @@
 
     &__checkbox {
       flex: 1;
-      
+
       & > label {
         padding: 0 0 0 4px;
         text-wrap: nowrap;
@@ -74,7 +79,7 @@
   color: var(--steel-70);
   flex-shrink: 0;
   cursor: grab;
-  
+
   &:active {
     cursor: grabbing;
   }

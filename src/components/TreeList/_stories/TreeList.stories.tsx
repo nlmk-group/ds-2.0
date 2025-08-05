@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Box, IconCircleOutlined24, IconFolderFilled24 } from '@components/index';
+import { Box, IconCircleOutlined24, IconFolderFilled24, Typography } from '@components/index';
 
 import styles from './TreeList.module.scss';
 
@@ -301,10 +301,10 @@ export const TreeListWithOnDrop = (): JSX.Element => {
 
   return (
     <div>
-      <p style={{ marginBottom: '16px', color: '#666' }}>
-        Откройте консоль браузера (F12) и попробуйте перетащить узлы. Callback onDrop покажет детальную информацию о
-        процессе перетаскивания.
-      </p>
+      <Typography style={{ marginBottom: '16px', color: '#666' }}>
+        Откройте консоль браузера и попробуйте перетащить узлы. Callback onDrop покажет детальную информацию о процессе
+        перетаскивания.
+      </Typography>
       <TreeList data={simpleData} draggable rowHeight="s" onDrop={onDrop} onDataAfterDrag={onDataAfterDrag} />
     </div>
   );

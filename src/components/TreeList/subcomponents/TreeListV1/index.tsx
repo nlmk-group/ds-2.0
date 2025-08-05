@@ -10,7 +10,7 @@ import 'rc-tree/assets/index.css';
 import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
-import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
+import { ERowHeight, TCheckedKeys, TDragEvent, TNodeItem, TTreeListProps } from '../../types';
 import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
@@ -42,7 +42,7 @@ export const TreeListV1 = ({
   }, [data]);
 
   // Обработчик перетаскивания узлов
-  const onDrop = (info: TDropEvent) => {
+  const onDrop = (info: any) => {
     const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
     const dragKey = info.dragNode.key; // Ключ перетаскиваемого узла
     const dropPosition = info.dropPosition; // Позиция, в которую узел был сброшен
@@ -58,14 +58,14 @@ export const TreeListV1 = ({
   };
 
   const handleDragStart = (event: TDragEvent) => {
-    setDragging(String(event.node.key))
-    onDragStart && onDragStart(event)
-  }
+    setDragging(String(event.node.key));
+    onDragStart && onDragStart(event);
+  };
 
   const handleDragEnd = (event: TDragEvent) => {
-    setDragging(null)
-    onDragEnd && onDragEnd(event)
-  }
+    setDragging(null);
+    onDragEnd && onDragEnd(event);
+  };
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
@@ -151,21 +151,42 @@ export const TreeListV1 = ({
         className={clsx(
           styles['node-content'],
           dragging === node.key && styles.dragging,
+          node.disabled && styles['node-disabled'],
           node.styles?.nodeContentClassName
         )}
         style={{ ...node.styles?.nodeContentStyle }}
         data-checked={isChecked}
+        data-disabled={node.disabled}
       >
         <div
           className={clsx(styles['node-title'], node.styles?.nodeTitleClassName)}
           style={node.styles?.nodeTitleStyle}
         >
-          {renderSwitcherIcon(node)}
+          {node.icon ? (
+            <span
+              className={styles['custom-icon']}
+              onClick={e => {
+                if (node.children && node.children.length > 0) {
+                  e.stopPropagation();
+                  handleExpand(node.key);
+                }
+              }}
+              style={{
+                cursor: node.children && node.children.length > 0 ? 'pointer' : 'default'
+              }}
+            >
+              {node.icon}
+            </span>
+          ) : (
+            renderSwitcherIcon(node)
+          )}
           {(checkable || checkableSimple) && (
             <Checkbox
               checked={isChecked}
               multiple={isMultiple}
+              disabled={node.disabled}
               onChange={() => {
+                if (node.disabled) return;
                 handleCheck(isChecked ? [] : [node.key], {
                   node,
                   checked: !isChecked
@@ -177,7 +198,10 @@ export const TreeListV1 = ({
             {typeof node.title === 'function' ? (
               node.title({ key: node.key, title: node.title })
             ) : (
-              <Typography color="var(--steel-90)" variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}>
+              <Typography
+                color={node.disabled ? 'var(--steel-30)' : 'var(--steel-90)'}
+                variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}
+              >
                 {node.title}
               </Typography>
             )}
@@ -193,9 +217,16 @@ export const TreeListV1 = ({
       className={clsx(styles['custom-rc-tree'], { [styles['not-selectable']]: !selectable })}
       style={{ ['--row-height' as string]: ROW_PX_HEIGHTS[rowHeight] }}
     >
-      <Tree<TTreeItem>
+      <Tree<TNodeItem>
         treeData={treeData} // Данные для построения структуры дерева
-        draggable={draggable} // Включение функциональности перетаскивания узлов
+        draggable={
+          draggable
+            ? (node: any) => {
+                const nodeData = node as TNodeItem;
+                return !nodeData.disabled && !nodeData.disableDraggable;
+              }
+            : false
+        } // Включение функциональности перетаскивания узлов с проверкой на блокировку
         onDrop={onDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
         checkedKeys={checkedKeys} // Ключи отмеченных (выбранных) узлов
         titleRender={renderTitle} // Пользовательская функция для рендеринга заголовков узлов
@@ -205,6 +236,10 @@ export const TreeListV1 = ({
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         expandedKeys={expandedKeys}
+        allowDrop={({ dropNode }) => {
+          const dropNodeData = dropNode as any as TNodeItem;
+          return !dropNodeData.disabled;
+        }} // Запрещаем сброс на disabled узлы
       />
     </div>
   );

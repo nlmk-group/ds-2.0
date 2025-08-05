@@ -45,7 +45,111 @@
   }
 
   :global(.rc-tree-treenode-selected-hover) {
-    background: var(--brand-sapphire-20)
+    background: var(--brand-sapphire-20);
+  }
+
+  :global(.rc-tree-treenode-disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+  }
+
+  :global(.rc-tree-treenode-disabled:hover),
+  :global(.rc-tree-treenode-disabled.rc-tree-treenode-selected:hover) {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .node-content[data-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+  }
+
+  :global(.custom-rc-tree) {
+    :global(.rc-tree) {
+      :global(.rc-tree-treenode:hover) {
+        .node-content[data-disabled="true"] {
+          background-color: transparent !important;
+          background: transparent !important;
+        }
+      }
+    }
+  }
+
+  :global(.custom-rc-tree .rc-tree .rc-tree-treenode:hover) {
+    .node-content[data-disabled="true"] {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+  }
+
+  :global(.custom-rc-tree .rc-tree .rc-tree-treenode) {
+    &:hover {
+      .node-content[data-disabled="true"] {
+        background-color: transparent !important;
+        background: transparent !important;
+      }
+    }
+  }
+
+  :global(.custom-rc-tree .rc-tree-treenode:hover .rc-tree-node-content-wrapper .node-content[data-disabled="true"]) {
+    background-color: transparent !important;
+  }
+
+  :global(.rc-tree-treenode:hover) {
+    .node-content[data-disabled="true"],
+    .node-content[data-disabled="true"] * {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+  }
+
+  :global(.rc-tree-treenode) {
+    .node-content[data-disabled="true"] {
+      &,
+      & ~ *,
+      & + * {
+        background-color: transparent !important;
+        background: transparent !important;
+      }
+    }
+
+    &:hover {
+      .node-content[data-disabled="true"] {
+        background-color: transparent !important;
+        background: transparent !important;
+      }
+    }
+
+    &:hover:not(:has(.node-content:not([data-disabled="true"]))) {
+      .node-content[data-disabled="true"] {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  :global(.rc-tree-treenode) {
+    --hover-bg: var(--steel-30);
+
+    &:hover {
+      background-color: var(--hover-bg);
+
+      .node-content[data-disabled="true"] {
+        --hover-bg: transparent;
+        background-color: transparent !important;
+      }
+    }
   }
 
   :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
@@ -89,7 +193,7 @@
 }
 
 .node {
-  &-title{
+  &-title {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -107,6 +211,23 @@
     &[data-checked="true"] {
       background-color: inherit;
     }
+    &[data-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  &-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent !important;
+    }
   }
 }
 
@@ -119,6 +240,14 @@
     transform: rotate(90deg);
     padding-left: 0;
   }
+}
+
+.custom-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  min-height: 16px;
 }
 
 :global(.rc-tree-treenode:hover) {

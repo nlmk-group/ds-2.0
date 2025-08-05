@@ -1,22 +1,22 @@
-import { TNodeItem, TTreeItem } from '@components/TreeList/types';
+import { TNodeItem } from '@components/TreeList/types';
 import { Key } from 'rc-tree/lib/interface';
 
-export const findAndRemoveNode = (nodes: TTreeItem[] | undefined, key: Key): TTreeItem | undefined => {
+export const findAndRemoveNode = (nodes: TNodeItem[] | undefined, key: Key): TNodeItem | undefined => {
   for (let i = 0; i < (nodes?.length || 0); i++) {
     if (nodes?.[i].key === key) {
       return nodes.splice(i, 1)[0];
     }
     if (nodes?.[i].children) {
-      const removedNode: TTreeItem | undefined = findAndRemoveNode(nodes[i].children, key);
+      const removedNode: TNodeItem | undefined = findAndRemoveNode(nodes[i].children, key);
       if (removedNode) return removedNode;
     }
   }
 };
 
 export const addNodeAtKey = (
-  nodes: TTreeItem[] | undefined,
+  nodes: TNodeItem[] | undefined,
   key: Key,
-  node: TTreeItem | undefined,
+  node: TNodeItem | undefined,
   position: number,
   toGap: boolean
 ) => {
@@ -49,7 +49,7 @@ export const addNodeAtKey = (
  * @param checked - Флаг, указывающий, выбран текущий узел или снят.
  * @returns Массив с обновленным списком отмеченных ключей.
  */
-export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TTreeItem[], checked: boolean): Key[] => {
+export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeItem[], checked: boolean): Key[] => {
   const allKeys = new Set(checkedKeys); // Используем Set для удобства модификации
 
   /**

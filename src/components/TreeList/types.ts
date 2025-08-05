@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { NodeDragEventParams } from 'rc-tree/lib/contextTypes';
 import { DataNode, EventDataNode, Key } from 'rc-tree/lib/interface';
@@ -11,6 +11,9 @@ export type TСhildrenProps = {
   parentId?: number | string;
   children?: TNodeItem[];
   blockedControlsReason?: string;
+  disabled?: boolean;
+  disableDraggable?: boolean;
+  icon?: ReactNode;
   styles?: {
     nodeContentClassName?: string;
     nodeContentStyle?: CSSProperties;
@@ -23,10 +26,10 @@ export type TNodeItem = TTreeItem<TСhildrenProps>;
 
 export type TCheckedKeys = Key[] | { checked: Key[]; halfChecked: Key[] };
 
-export type TDragEvent = NodeDragEventParams<DataNode>;
+export type TDragEvent = NodeDragEventParams<TNodeItem>;
 
 export type TDropEvent = NodeDragEventParams<TNodeItem> & {
-  dragNode: EventDataNode<TTreeItem>;
+  dragNode: EventDataNode<TNodeItem>;
   dragNodesKeys: Key[];
   dropPosition: number;
   dropToGap: boolean;

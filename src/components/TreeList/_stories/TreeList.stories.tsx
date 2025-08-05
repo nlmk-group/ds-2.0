@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Box } from '@components/index';
+import { Box, IconCircleOutlined24, IconFolderFilled24 } from '@components/index';
 
 import styles from './TreeList.module.scss';
 
 import TreeList from '../TreeList';
 import { TDragEvent, TNodeItem, TSelectedNodeEvent, TTreeListProps } from '../types';
-import { DEFAULT_TREE_DATA } from './constants';
+import { DEFAULT_TREE_DATA, ENHANCED_TREE_DATA } from './constants';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -30,12 +30,12 @@ export const TreeListDefault = (argTypes: TTreeListProps): JSX.Element => {
   };
 
   const onDragStart = (e: TDragEvent) => {
-      console.log('Drag start event: ',  e.event)
-    }
-  
-    const onDragEnd = (e: TDragEvent) => {
-      console.log('Drag end event; ', e.event)
-    }
+    console.log('Drag start event: ', e.event);
+  };
+
+  const onDragEnd = (e: TDragEvent) => {
+    console.log('Drag end event; ', e.event);
+  };
 
   return (
     <TreeList
@@ -103,6 +103,163 @@ export const TreeListSizes = (): JSX.Element => (
 );
 TreeListSizes.storyName = 'TreeList с разными размерами строк';
 TreeListSizes.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListWithEnhancements = (): JSX.Element => {
+  const [data, setData] = useState(ENHANCED_TREE_DATA);
+
+  const onSelectedNode = (e: TSelectedNodeEvent) => {
+    console.log('SelectedNodeEvent: ', e);
+  };
+
+  const onDataAfterDrag = (newData: TNodeItem[]) => {
+    console.log('onDataAfterDrag: ', newData);
+    setData(newData);
+  };
+
+  const onDragStart = (e: TDragEvent) => {
+    console.log('Drag start event: ', e.event);
+  };
+
+  const onDragEnd = (e: TDragEvent) => {
+    console.log('Drag end event: ', e.event);
+  };
+
+  return (
+    <TreeList
+      data={data}
+      checkable
+      draggable
+      rowHeight="s"
+      onSelectedNode={onSelectedNode}
+      onDataAfterDrag={onDataAfterDrag}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+    />
+  );
+};
+TreeListWithEnhancements.storyName = 'TreeList с комплексным примером';
+TreeListWithEnhancements.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListCustomIcons = (): JSX.Element => {
+  const iconsData: TNodeItem[] = [
+    {
+      key: '0-0',
+      title: 'Папка проекта',
+      icon: <IconFolderFilled24 />,
+      children: [
+        {
+          key: '0-0-0',
+          title: 'Файл документации',
+          icon: <IconCircleOutlined24 />
+        },
+        {
+          key: '0-0-1',
+          title: 'Файл конфигурации',
+          icon: <IconCircleOutlined24 />
+        }
+      ]
+    },
+    {
+      key: '0-1',
+      title: 'Папка с исходным кодом',
+      icon: <IconFolderFilled24 />,
+      children: [
+        {
+          key: '0-1-0',
+          title: 'Главный файл',
+          icon: <IconCircleOutlined24 />
+        }
+      ]
+    },
+    {
+      key: '0-2',
+      title: 'Узел без иконки (стандартная стрелка)',
+      children: [{ key: '0-2-0', title: 'Дочерний элемент' }]
+    }
+  ];
+
+  return <TreeList data={iconsData} rowHeight="s" />;
+};
+TreeListCustomIcons.storyName = 'TreeList с кастомными иконками';
+TreeListCustomIcons.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListDragDisabled = (): JSX.Element => {
+  const dragDisabledData: TNodeItem[] = [
+    {
+      key: '0-0',
+      title: 'Обычный узел (можно перетаскивать)',
+      children: [
+        { key: '0-0-0', title: 'Дочерний узел' } as TNodeItem,
+        { key: '0-0-1', title: 'Еще один дочерний узел' } as TNodeItem
+      ]
+    },
+    {
+      key: '0-1',
+      title: 'Узел с блокировкой перетаскивания',
+      disableDraggable: true,
+      children: [{ key: '0-1-0', title: 'Дочерний узел' } as TNodeItem]
+    },
+    {
+      key: '0-2',
+      title: 'Секция без перетаскивания',
+      disableDraggable: true,
+      children: [
+        {
+          key: '0-2-0',
+          title: 'Обычный дочерний узел (можно перетаскивать)',
+          children: [{ key: '0-2-0-0', title: 'Внук' } as TNodeItem]
+        } as TNodeItem,
+        {
+          key: '0-2-1',
+          title: 'Заблокированный дочерний узел',
+          disableDraggable: true
+        } as TNodeItem
+      ]
+    }
+  ];
+
+  return <TreeList data={dragDisabledData} draggable rowHeight="s" />;
+};
+TreeListDragDisabled.storyName = 'TreeList с блокировкой перетаскивания';
+TreeListDragDisabled.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListDisabledNodes = (): JSX.Element => {
+  const disabledData: TNodeItem[] = [
+    {
+      key: '0-0',
+      title: 'Обычный узел',
+      children: [
+        { key: '0-0-0', title: 'Подчиненный узел' },
+        { key: '0-0-1', title: 'Заблокированный узел', disabled: true }
+      ]
+    },
+    {
+      key: '0-1',
+      title: 'Полностью заблокированный раздел',
+      disabled: true,
+      children: [
+        { key: '0-1-0', title: 'Дочерний узел 1' },
+        { key: '0-1-1', title: 'Дочерний узел 2' }
+      ]
+    }
+  ];
+
+  return <TreeList data={disabledData} checkable draggable rowHeight="s" />;
+};
+TreeListDisabledNodes.storyName = 'TreeList с заблокированными узлами';
+TreeListDisabledNodes.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

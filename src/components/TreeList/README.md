@@ -1,38 +1,73 @@
 # TreeList Component
 
-## Версия компонента v3.0
+## Версия компонента v3.1
 
-Компонент TreeList предназначен для визуализации и взаимодействия с данными в виде дерева. Он поддерживает функции выбора узлов, перетаскивание, настройку дочерних элементов и добавление дополнительных элементов управления.
+Компонент TreeList предназначен для визуализации и взаимодействия с данными в виде дерева. Он поддерживает функции выбора узлов, перетаскивание, настройку дочерних элементов, добавление дополнительных элементов управления, блокировку узлов, ограничение drag-and-drop и кастомные иконки.
 
-## Использование
+---
+
+## Базовый пример использования
 
 ```jsx
+import React from 'react';
 import { TreeList } from '@nlmk/ds-2.0';
-
-<TreeList data={treeData} checkable draggable onSelectedNode={onSelectedNode} onDataAfterDrag={onDataAfterDrag} onDragStart={onDragStart} onDragEnd={onDragEnd} />;
+const treeData = [
+  {
+    key: '1',
+    title: 'Производство стали',
+    children: [
+      {
+        key: '1-1',
+        title: 'Конвертерный цех',
+        children: [
+          { key: '1-1-1', title: 'Конвертер №1' },
+          { key: '1-1-2', title: 'Конвертер №2' }
+        ]
+      }
+    ]
+  }
+];
+export default function App() {
+  return (
+    <TreeList
+      data={treeData}
+      checkable
+      draggable
+      rowHeight="s"
+      onSelectedNode={e => console.log('Selected:', e)}
+      onDataAfterDrag={data => console.log('New data:', data)}
+    />
+  );
+}
 ```
+
+---
 
 ## Props
 
-| Prop                | Type                            | Default      | Description                                                                        |
-|---------------------|---------------------------------|--------------|------------------------------------------------------------------------------------|
-| data                | TNodeItem[]                     | -            | Данные для дерева в виде массива узлов                                             |
-| onSelectedNode      | (e: TSelectedNodeEvent) => void | -            | Обработчик события выбора узла                                                     |
-| onDataAfterDrag     | (e: TNodeItem[]) => void        | -            | Обработчик события после перетаскивания                                            |
-| onDragStart         | (e: TDragEvent) => void         | -            | Обработчик события начала перетаскивания |
-| onDragEnd           | (e: TDragEvent) => void         | -            | Обработчик события конца перетаскивания |
-| checkable           | boolean                         | false        | Флаг отображения чекбоксов                                                         |
-| draggable           | boolean                         | false        | Флаг возможности перетаскивания узлов                                              |
-| checkableSimple     | boolean                         | false        | Флаг упрощённого выбора чекбоксов                                                  |
-| rowHeight           | \`${ERowHeight}\`               | ERowHeight.s | Высота строки узла                                                                 |
-| initialCheckedKeys  | Key[]                           | []           | Массив ключей элементов, которые должны быть отмечены (выбраны) при первом рендере |
-| initialExpandedKeys | Key[]                           | []           | Массив ключей элементов, которые должны быть развернуты при первом рендере         |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| data | TNodeItem[] | - | Данные для дерева в виде массива узлов |
+| onSelectedNode | (e: TSelectedNodeEvent) => void | - | Обработчик события выбора узла |
+| onDataAfterDrag | (e: TNodeItem[]) => void | - | Обработчик события после перетаскивания |
+| onDragStart | (e: TDragEvent) => void | - | Обработчик события начала перетаскивания |
+| onDragEnd | (e: TDragEvent) => void | - | Обработчик события конца перетаскивания |
+| checkable | boolean | false | Флаг отображения чекбоксов |
+| draggable | boolean | false | Флаг возможности перетаскивания узлов |
+| checkableSimple | boolean | false | Флаг упрощённого выбора чекбоксов |
+| rowHeight | `${ERowHeight}` | ERowHeight.s | Высота строки узла |
+| initialCheckedKeys | Key[] | [] | Массив ключей элементов, которые должны быть отмечены при первом рендере |
+| initialExpandedKeys | Key[] | [] | Массив ключей элементов, которые должны быть развернуты при первом рендере |
+
+---
 
 ## Размеры (ERowHeight)
 
 - `m` - большой (48px)
 - `s` - стандартный (40px) (по умолчанию)
 - `xs` - компактный (32px)
+
+---
 
 ## Типы данных
 
@@ -47,6 +82,9 @@ type TNodeItem = {
   parentId?: number | string; // Идентификатор родителя
   children?: TNodeItem[]; // Дочерние узлы
   blockedControlsReason?: string; // Причина блокировки
+  disabled?: boolean; // Блокировка узла (отключает взаимодействие и изменяет внешний вид)
+  disableDraggable?: boolean; // Запрещает перетаскивание данного узла
+  icon?: React.ReactNode; // Кастомная иконка узла (заменяет стандартную стрелку)
   styles?: {
     nodeContentClassName?: string;
     nodeContentStyle?: CSSProperties;
@@ -66,34 +104,108 @@ type TSelectedNodeEvent = {
 };
 ```
 
-### DropEvent
-
-```typescript
-type TDropEvent = {
-  dragNode: EventDataNode<TreeItem>; // Перетаскиваемый узел
-  dragNodesKeys: Key[]; // Ключи перетаскиваемых узлов
-  dropPosition: number; // Позиция вставки
-  dropToGap: boolean; // Вставка между узлами
-};
-```
+### TDragEvent
 
 ```typescript
 type TDragEvent = {
   event: React.DragEvent<T>; // Событие перетаскивания
   node: EventDataNode<DataNode>; // Перетаскиваемый узел
-}
+};
 ```
 
+---
+
+## Расширенные возможности
+
+### Блокировка узлов
+
+Используйте свойство `disabled` для полной блокировки взаимодействия с узлом:
+
+```jsx
+const treeData = [
+  {
+    key: '1',
+    title: 'Заблокированный узел',
+    disabled: true, // Полная блокировка взаимодействия
+    children: [{ key: '1-1', title: 'Дочерний узел' }]
+  }
+];
+```
+
+### Блокировка перетаскивания
+
+Используйте `disableDraggable` для запрета только drag-and-drop:
+
+```jsx
+const treeData = [
+  {
+    key: '2',
+    title: 'Нельзя перетаскивать',
+    disableDraggable: true, // Только запрет на drag-and-drop
+    children: [...]
+  }
+];
+```
+
+### Кастомные иконки
+
+Заменяйте стандартные стрелки на любые React элементы:
+
+```jsx
+import { IconCircleOutlined24, IconFolderFilled24 } from '@nlmk/ds-2.0';
+
+const treeData = [
+  {
+    key: '3',
+    title: 'Папка с кастомной иконкой',
+    icon: <IconFolderFilled24 />, / Любой React элемент
+    children: [
+      {
+        key: '3-1',
+        title: 'Файл с иконкой',
+        icon: <IconCircleOutlined24 />
+      }
+    ]
+  }
+];
+```
+
+### Дополнительные контролы
+
+Добавляйте кастомные элементы управления справа от узлов:
+
+```jsx
+const SideControls = () => (
+  <div style={{ display: 'flex', gap: 12 }}>
+    <Button iconButton={<IconEditPenOutlined24 />} />
+    <Button iconButton={<IconDeleteBinOutlined24 />} />
+  </div>
+);
+
+const treeData = [
+  {
+    key: '4',
+    title: 'Узел с контролами',
+    rightSideControls: <SideControls />
+  }
+];
+```
+
+---
+
 ## Стилизация
+
+Компонент можно кастомизировать несколькими способами:
 
 ### 1. CSS классы
 
 Основные классы компонента:
 
 - `.custom-rc-tree`: Основной контейнер
-- `.nodeContent`: Контейнер содержимого узла
-- `.nodeTitle`: Заголовок узла
+- `.node-content`: Контейнер содержимого узла
+- `.node-title`: Заголовок узла
 - `.switcher`: Переключатель раскрытия
+- `.custom-icon`: Контейнер для кастомных иконок
 - `.dragging`: Стиль при перетаскивании
 
 ### 2. Data-атрибуты
@@ -101,6 +213,12 @@ type TDragEvent = {
 ```css
 [data-checked='true'] {
   /* Стили выбранного узла */
+}
+
+[data-disabled='true'] {
+  /* Стили заблокированного узла */
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 [role='treeitem'] {
@@ -123,6 +241,8 @@ const customNode = {
 };
 ```
 
+---
+
 ## Состояния
 
 - **Обычное**: Базовое отображение узла
@@ -130,14 +250,24 @@ const customNode = {
 - **Наведение**: Изменение фона при наведении
 - **Перетаскивание**: Специальное оформление при drag&drop
 - **Раскрытое**: Отображение дочерних элементов
+- **Заблокированное**: Узел отключен для взаимодействия (disabled: true)
 
-## Примечания
+---
+
+## Особенности поведения
 
 - При `checkableSimple=true` выбор узлов происходит независимо от их иерархии
 - Компонент поддерживает вложенность любой глубины
 - Для работы drag&drop необходимо включить `draggable`
-- `rightSideControls` позволяет добавлять кастомные элементы управления
+- `disabled=true` полностью блокирует взаимодействие с узлом и изменяет его внешний вид
+- `disableDraggable=true` запрещает только перетаскивание узла, остальное взаимодействие остается доступным
+- `icon` заменяет стандартную стрелку на кастомную иконку
+- Заблокированные узлы (`disabled=true`) нельзя использовать как цель для сброса при перетаскивании
 
-## Советы по использованию
+---
 
-Используйте `checkableSimple`, если дочерние узлы не должны влиять на состояние родительских узлов при выборе. `rightSideControls` позволяет добавить любой JSX-элемент (например, кнопки или иконки) рядом с узлом, что может быть полезно для дополнительных действий, связанных с узлами. Импортируемые зависимости Компонент использует `rc-tree` для реализации управления деревом.
+## Импортируемые зависимости
+
+Компонент использует `rc-tree` для реализации управления деревом.
+
+---

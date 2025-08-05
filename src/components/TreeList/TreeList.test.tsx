@@ -292,4 +292,35 @@ describe('src/components/TreeList', () => {
       expect(onDataAfterDrag).not.toHaveBeenCalled();
     }
   });
+
+  it('It should call onDrop callback with detailed drag information', () => {
+    const onDrop = jest.fn();
+    const onDataAfterDrag = jest.fn();
+
+    const { container } = render(
+      <TreeList data={MOCK_TREE_DATA} draggable onDrop={onDrop} onDataAfterDrag={onDataAfterDrag} />
+    );
+
+    const treeNodes = container.querySelectorAll('.rc-tree-treenode .rc-tree-node-content-wrapper');
+
+    if (treeNodes.length >= 2) {
+      const sourceNode = treeNodes[0];
+      const targetNode = treeNodes[1];
+
+      fireEvent.dragStart(sourceNode);
+      fireEvent.dragEnter(targetNode);
+      fireEvent.dragOver(targetNode);
+      fireEvent.drop(targetNode);
+
+      expect(onDrop).toHaveBeenCalledTimes(1);
+
+      const dropEventArgs = onDrop.mock.calls[0][0];
+      expect(dropEventArgs).toHaveProperty('dragNode');
+      expect(dropEventArgs).toHaveProperty('dropPosition');
+      expect(dropEventArgs).toHaveProperty('dropToGap');
+      expect(dropEventArgs).toHaveProperty('dragNodesKeys');
+
+      expect(onDataAfterDrag).toHaveBeenCalledTimes(1);
+    }
+  });
 });

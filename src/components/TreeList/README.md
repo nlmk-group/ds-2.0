@@ -36,6 +36,7 @@ export default function App() {
       rowHeight="s"
       onSelectedNode={e => console.log('Selected:', e)}
       onDataAfterDrag={data => console.log('New data:', data)}
+      onDrop={e => console.log('Drop details:', e)}
     />
   );
 }
@@ -50,6 +51,7 @@ export default function App() {
 | data | TNodeItem[] | - | Данные для дерева в виде массива узлов |
 | onSelectedNode | (e: TSelectedNodeEvent) => void | - | Обработчик события выбора узла |
 | onDataAfterDrag | (e: TNodeItem[]) => void | - | Обработчик события после перетаскивания |
+| onDrop | (e: TDropEvent) => void | - | Обработчик события сброса при перетаскивании с детальной информацией |
 | onDragStart | (e: TDragEvent) => void | - | Обработчик события начала перетаскивания |
 | onDragEnd | (e: TDragEvent) => void | - | Обработчик события конца перетаскивания |
 | checkable | boolean | false | Флаг отображения чекбоксов |
@@ -110,6 +112,19 @@ type TSelectedNodeEvent = {
 type TDragEvent = {
   event: React.DragEvent<T>; // Событие перетаскивания
   node: EventDataNode<DataNode>; // Перетаскиваемый узел
+};
+```
+
+### TDropEvent
+
+```typescript
+type TDropEvent = {
+  event: React.DragEvent<T>; // Событие перетаскивания
+  node: EventDataNode<DataNode>; // Целевой узел (где происходит сброс)
+  dragNode: EventDataNode<TNodeItem>; // Перетаскиваемый узел
+  dragNodesKeys: Key[]; // Массив ключей всех перетаскиваемых узлов
+  dropPosition: number; // Позиция сброса относительно целевого узла
+  dropToGap: boolean; // true если сброс между узлами, false если внутрь узла
 };
 ```
 
@@ -190,6 +205,27 @@ const treeData = [
   }
 ];
 ```
+
+### Получение детальной информации о перетаскивании
+
+Используйте callback `onDrop` для получения подробной информации о процессе перетаскивания:
+
+```jsx
+const handleDrop = dropEvent => {
+  console.log('Ключ перетаскиваемого узла:', dropEvent.dragNode.key);
+  console.log('Ключ целевого узла:', dropEvent.node.key);
+  console.log('Позиция сброса:', dropEvent.dropPosition);
+  console.log('Сброшен между узлами:', dropEvent.dropToGap);
+  console.log('Все ключи перетаскиваемых узлов:', dropEvent.dragNodesKeys);
+};
+
+<TreeList data={treeData} draggable onDrop={handleDrop} onDataAfterDrag={data => console.log('Новые данные:', data)} />;
+```
+
+**Различия между onDrop и onDataAfterDrag:**
+
+- `onDrop` - вызывается при сбросе узла и содержит детальную информацию о процессе перетаскивания
+- `onDataAfterDrag` - вызывается после обновления данных и содержит итоговую структуру дерева
 
 ---
 

@@ -10,7 +10,7 @@ import 'rc-tree/assets/index.css';
 import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
-import { ERowHeight, TCheckedKeys, TDragEvent, TNodeItem, TTreeListProps } from '../../types';
+import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeListProps } from '../../types';
 import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
@@ -22,6 +22,7 @@ export const TreeListV1 = ({
   onDataAfterDrag,
   onDragStart,
   onDragEnd,
+  onDrop,
   rowHeight = ERowHeight.s,
   initialCheckedKeys = [],
   initialExpandedKeys = []
@@ -42,11 +43,23 @@ export const TreeListV1 = ({
   }, [data]);
 
   // Обработчик перетаскивания узлов
-  const onDrop = (info: any) => {
+  const handleDrop = (info: any) => {
     const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
     const dragKey = info.dragNode.key; // Ключ перетаскиваемого узла
     const dropPosition = info.dropPosition; // Позиция, в которую узел был сброшен
     const dropToGap = info.dropToGap; // true, если узел был сброшен между другими узлами
+
+    if (onDrop) {
+      const dropEvent: TDropEvent = {
+        ...info,
+        dragNode: info.dragNode,
+        dragNodesKeys: info.dragNodesKeys || [dragKey],
+        dropPosition,
+        dropToGap
+      };
+      onDrop(dropEvent);
+    }
+
     const data = [...treeData];
 
     const dragNode = findAndRemoveNode(data, dragKey);
@@ -227,7 +240,7 @@ export const TreeListV1 = ({
               }
             : false
         } // Включение функциональности перетаскивания узлов с проверкой на блокировку
-        onDrop={onDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
+        onDrop={handleDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
         checkedKeys={checkedKeys} // Ключи отмеченных (выбранных) узлов
         titleRender={renderTitle} // Пользовательская функция для рендеринга заголовков узлов
         switcherIcon={() => null} // Отключаем стандартные стрелки

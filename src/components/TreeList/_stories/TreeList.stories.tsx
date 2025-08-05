@@ -5,7 +5,7 @@ import { Box, IconCircleOutlined24, IconFolderFilled24 } from '@components/index
 import styles from './TreeList.module.scss';
 
 import TreeList from '../TreeList';
-import { TDragEvent, TNodeItem, TSelectedNodeEvent, TTreeListProps } from '../types';
+import { TDragEvent, TDropEvent, TNodeItem, TSelectedNodeEvent, TTreeListProps } from '../types';
 import { DEFAULT_TREE_DATA, ENHANCED_TREE_DATA } from './constants';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
@@ -260,6 +260,57 @@ export const TreeListDisabledNodes = (): JSX.Element => {
 };
 TreeListDisabledNodes.storyName = 'TreeList с заблокированными узлами';
 TreeListDisabledNodes.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListWithOnDrop = (): JSX.Element => {
+  const onDrop = (dropEvent: TDropEvent) => {
+    console.log('onDrop вызван с деталями:');
+    console.log('- Ключ перетаскиваемого узла:', dropEvent.dragNode.key);
+    console.log('- Ключ целевого узла:', dropEvent.node.key);
+    console.log('- Позиция сброса:', dropEvent.dropPosition);
+    console.log('- Сброшен между узлами:', dropEvent.dropToGap);
+    console.log('- Все ключи перетаскиваемых узлов:', dropEvent.dragNodesKeys);
+    console.log('- Полный объект события:', dropEvent);
+  };
+
+  const onDataAfterDrag = (newData: TNodeItem[]) => {
+    console.log('onDataAfterDrag - новые данные:', newData);
+  };
+
+  const simpleData: TNodeItem[] = [
+    {
+      key: '0-0',
+      title: 'Перетащите меня в другой узел',
+      children: [
+        { key: '0-0-0', title: 'Дочерний узел 1' } as TNodeItem,
+        { key: '0-0-1', title: 'Дочерний узел 2' } as TNodeItem
+      ]
+    } as TNodeItem,
+    {
+      key: '0-1',
+      title: 'Целевой узел для перетаскивания',
+      children: [{ key: '0-1-0', title: 'Существующий дочерний узел' } as TNodeItem]
+    } as TNodeItem,
+    {
+      key: '0-2',
+      title: 'Еще один целевой узел'
+    } as TNodeItem
+  ];
+
+  return (
+    <div>
+      <p style={{ marginBottom: '16px', color: '#666' }}>
+        Откройте консоль браузера (F12) и попробуйте перетащить узлы. Callback onDrop покажет детальную информацию о
+        процессе перетаскивания.
+      </p>
+      <TreeList data={simpleData} draggable rowHeight="s" onDrop={onDrop} onDataAfterDrag={onDataAfterDrag} />
+    </div>
+  );
+};
+TreeListWithOnDrop.storyName = 'TreeList с onDrop callback';
+TreeListWithOnDrop.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

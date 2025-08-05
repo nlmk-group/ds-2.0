@@ -53,6 +53,7 @@ export type TTreeListProps = {
   onDataAfterDrag?: (e: TNodeItem[]) => void;
   onDragStart?: (e: TDragEvent) => void;
   onDragEnd?: (e: TDragEvent) => void;
+  onDrop?: (e: TDropEvent) => void;
   checkable?: boolean;
   draggable?: boolean;
   checkableSimple?: boolean;

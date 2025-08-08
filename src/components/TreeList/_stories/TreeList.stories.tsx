@@ -361,6 +361,7 @@ TreeListSameLevelDragOnly.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
+// TODO: удалить перед публикацией
 export const TreeListDragPositions = (): JSX.Element => {
   const [data, setData] = useState([
     {

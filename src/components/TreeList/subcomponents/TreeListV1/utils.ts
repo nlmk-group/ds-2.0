@@ -18,7 +18,8 @@ export const addNodeAtKey = (
   key: Key,
   node: TNodeItem | undefined,
   position: number,
-  toGap: boolean
+  toGap: boolean,
+  originalDragIndex?: number
 ) => {
   if (!nodes || !node) return false;
 
@@ -39,9 +40,14 @@ export const addNodeAtKey = (
   if (!target) return false;
 
   if (toGap) {
-    const actualTargetIndex = target.parent.findIndex(n => n.key === key);
+    const currentTargetIndex = target.parent.findIndex(n => n.key === key);
 
-    const insertIndex = position === -1 ? actualTargetIndex : actualTargetIndex + 1;
+    let adjustedTargetIndex = currentTargetIndex;
+    if (originalDragIndex !== undefined && originalDragIndex < currentTargetIndex + 1) {
+      adjustedTargetIndex = currentTargetIndex; // уже сдвинутый
+    }
+
+    const insertIndex = position === -1 ? adjustedTargetIndex : adjustedTargetIndex + 1;
     target.parent.splice(insertIndex, 0, node);
   } else {
     target.parent[target.index].children = target.parent[target.index].children || [];
@@ -172,4 +178,19 @@ export const getNodeLevel = (key: Key, nodes: TNodeItem[], currentLevel = 0): nu
     }
   }
   return -1;
+};
+
+export const getNodeParent = (key: Key, nodes: TNodeItem[]): TNodeItem | null => {
+  for (const node of nodes) {
+    if (node.children) {
+      for (const child of node.children) {
+        if (child.key === key) {
+          return node;
+        }
+      }
+      const result = getNodeParent(key, node.children);
+      if (result) return result;
+    }
+  }
+  return null;
 };

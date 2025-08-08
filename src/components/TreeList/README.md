@@ -57,7 +57,7 @@ export default function App() {
 | checkable | boolean | false | Флаг отображения чекбоксов |
 | draggable | boolean | false | Флаг возможности перетаскивания узлов |
 | checkableSimple | boolean | false | Флаг упрощённого выбора чекбоксов |
-| sameLevelDragOnly | boolean | false | Ограничение перетаскивания только в пределах одного уровня |
+| sameLevelDragOnly | boolean | false | Ограничение перетаскивания только между узлами одного уровня вложенности |
 | rowHeight | `${ERowHeight}` | ERowHeight.s | Высота строки узла |
 | initialCheckedKeys | Key[] | [] | Массив ключей элементов, которые должны быть отмечены при первом рендере |
 | initialExpandedKeys | Key[] | [] | Массив ключей элементов, которые должны быть развернуты при первом рендере |
@@ -230,7 +230,7 @@ const handleDrop = dropEvent => {
 
 ## Ограничение перетаскивания на одном уровне
 
-С помощью prop `sameLevelDragOnly` можно ограничить перетаскивание узлов только в пределах одного уровня иерархии:
+С помощью prop `sameLevelDragOnly` можно ограничить перетаскивание узлов только между узлами одного уровня вложенности (разных родителей, но того же уровня):
 
 ```jsx
 <TreeList data={treeData} draggable sameLevelDragOnly onDataAfterDrag={data => console.log('Updated data:', data)} />
@@ -337,7 +337,7 @@ const customNode = {
 - `disableDraggable=true` запрещает только перетаскивание узла, остальное взаимодействие остается доступным
 - `icon` заменяет стандартную стрелку на кастомную иконку
 - Заблокированные узлы (`disabled=true`) нельзя использовать как цель для сброса при перетаскивании
-- `sameLevelDragOnly=true` ограничивает перетаскивание только узлами одного уровня иерархии
+- `sameLevelDragOnly=true` ограничивает перетаскивание только между узлами одного уровня вложенности (можно перемещать между разными родителями на том же уровне)
 
 ---
 

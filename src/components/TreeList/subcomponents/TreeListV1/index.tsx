@@ -62,7 +62,7 @@ export const TreeListV1 = ({
     let actualDropKey = dropKey;
     let actualDropToGap = dropToGap;
 
-    if (rawDropPosition === 0 && dropToGap === false) {
+    if (dropToGap === false) {
       const findNodeByKey = (nodes: TNodeItem[], key: string): TNodeItem | null => {
         for (const node of nodes) {
           if (node.key === key) return node;
@@ -75,6 +75,7 @@ export const TreeListV1 = ({
       };
 
       const parentNode = findNodeByKey(treeData, dropKey);
+
       if (parentNode?.children && parentNode.children.length > 0) {
         actualDropKey = parentNode.children[0].key;
         actualDropToGap = true;
@@ -95,9 +96,94 @@ export const TreeListV1 = ({
 
     const data = [...treeData];
 
+    const findSiblingIndex = (
+      nodes: TNodeItem[],
+      dragKey: Key,
+      targetKey: Key
+    ): { dragIndex: number; targetIndex: number; parent: TNodeItem[] } | null => {
+      for (const node of nodes) {
+        if (node.children) {
+          const dragIdx = node.children.findIndex(child => child.key === dragKey);
+          const targetIdx = node.children.findIndex(child => child.key === targetKey);
+
+          if (dragIdx !== -1 && targetIdx !== -1) {
+            return { dragIndex: dragIdx, targetIndex: targetIdx, parent: node.children };
+          }
+
+          const result = findSiblingIndex(node.children, dragKey, targetKey);
+          if (result) return result;
+        }
+      }
+      return null;
+    };
+
+    let siblingInfo = findSiblingIndex(data, dragKey, actualDropKey);
+
+    if (!siblingInfo) {
+      const findChildInParent = (
+        nodes: TNodeItem[],
+        parentKey: Key,
+        dragKey: Key
+      ): { dragIndex: number; parent: TNodeItem[] } | null => {
+        for (const node of nodes) {
+          if (node.key === parentKey && node.children) {
+            const dragIdx = node.children.findIndex(child => child.key === dragKey);
+            if (dragIdx !== -1) {
+              return { dragIndex: dragIdx, parent: node.children };
+            }
+          }
+          if (node.children) {
+            const result = findChildInParent(node.children, parentKey, dragKey);
+            if (result) return result;
+          }
+        }
+        return null;
+      };
+
+      const parentInfo = findChildInParent(data, actualDropKey, dragKey);
+      if (parentInfo) {
+        siblingInfo = {
+          dragIndex: parentInfo.dragIndex,
+          targetIndex: 0, // всегда на первое место
+          parent: parentInfo.parent
+        };
+      } else if (actualDropKey !== dropKey) {
+        const findParentAndSibling = (
+          nodes: TNodeItem[],
+          childKey: Key,
+          dragKey: Key
+        ): { dragIndex: number; parent: TNodeItem[] } | null => {
+          for (const node of nodes) {
+            if (node.children) {
+              const childExists = node.children.some(child => child.key === childKey);
+              if (childExists) {
+                const dragIdx = node.children.findIndex(child => child.key === dragKey);
+                if (dragIdx !== -1) {
+                  return { dragIndex: dragIdx, parent: node.children };
+                }
+              }
+              const result = findParentAndSibling(node.children, childKey, dragKey);
+              if (result) return result;
+            }
+          }
+          return null;
+        };
+
+        const redirectInfo = findParentAndSibling(data, actualDropKey, dragKey);
+        if (redirectInfo) {
+          siblingInfo = {
+            dragIndex: redirectInfo.dragIndex,
+            targetIndex: 0,
+            parent: redirectInfo.parent
+          };
+        }
+      }
+    }
+
     const dragNode = findAndRemoveNode(data, dragKey);
 
-    addNodeAtKey(data, actualDropKey, dragNode, relativeDropPosition, actualDropToGap);
+    const originalDragIndex = siblingInfo?.dragIndex ?? -1;
+    addNodeAtKey(data, actualDropKey, dragNode, relativeDropPosition, actualDropToGap, originalDragIndex);
 
     setTreeData(data);
     if (onDataAfterDrag) onDataAfterDrag(data);
@@ -293,12 +379,17 @@ export const TreeListV1 = ({
           if (sameLevelDragOnly) {
             const dragNodeData = dragNode as any as TNodeItem;
 
-            if (dropPosition === 0) {
-              return false;
-            }
-
             const dragLevel = getNodeLevel(dragNodeData.key, treeData);
             const dropLevel = getNodeLevel(dropNodeData.key, treeData);
+
+            if (dropPosition === 0) {
+              if (!dropNodeData.children || dropNodeData.children.length === 0) {
+                return false;
+              }
+
+              const firstChildLevel = dropLevel + 1;
+              return dragLevel === firstChildLevel;
+            }
 
             return dragLevel === dropLevel;
           }

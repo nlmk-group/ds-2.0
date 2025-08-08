@@ -47,7 +47,7 @@ export const DEFAULT_TREE_DATA: TNodeItem[] = [
         key: '0-0-0',
         title: 'Конвертерный цех',
         children: [
-          { key: '0-0-0-0', title: 'Конвертер №1', children: [] },
+          { key: '0-0-0-0', title: 'Конвертер №1' },
           { key: '0-0-0-1', title: 'Конвертер №2' },
           { key: '0-0-0-2', title: 'МНЛЗ №3' }
         ]

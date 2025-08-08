@@ -301,16 +301,119 @@ export const TreeListWithOnDrop = (): JSX.Element => {
 
   return (
     <div>
-      <Typography style={{ marginBottom: '16px', color: '#666' }}>
-        Откройте консоль браузера и попробуйте перетащить узлы. Callback onDrop покажет детальную информацию о процессе
-        перетаскивания.
-      </Typography>
       <TreeList data={simpleData} draggable rowHeight="s" onDrop={onDrop} onDataAfterDrag={onDataAfterDrag} />
     </div>
   );
 };
 TreeListWithOnDrop.storyName = 'TreeList с onDrop callback';
 TreeListWithOnDrop.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListSameLevelDragOnly = (): JSX.Element => {
+  const [data, setData] = useState<TNodeItem[]>([
+    {
+      key: '0',
+      title: 'Корневой узел 1',
+      children: [
+        { key: '0-0', title: 'Дочерний 1.1' } as TNodeItem,
+        { key: '0-1', title: 'Дочерний 1.2' } as TNodeItem,
+        {
+          key: '0-2',
+          title: 'Дочерний 1.3 с детьми',
+          children: [
+            { key: '0-2-0', title: 'Внук 1.3.1' } as TNodeItem,
+            { key: '0-2-1', title: 'Внук 1.3.2' } as TNodeItem
+          ]
+        } as TNodeItem
+      ]
+    } as TNodeItem,
+    {
+      key: '1',
+      title: 'Корневой узел 2',
+      children: [{ key: '1-0', title: 'Дочерний 2.1' } as TNodeItem, { key: '1-1', title: 'Дочерний 2.2' } as TNodeItem]
+    } as TNodeItem,
+    { key: '2', title: 'Корневой узел 3 (без детей)' } as TNodeItem
+  ]);
+
+  const onDataAfterDrag = (newData: TNodeItem[]) => {
+    console.log('Обновленные данные после перетаскивания:', newData);
+    setData(newData);
+  };
+
+  return (
+    <div>
+      <TreeList
+        data={data}
+        draggable
+        sameLevelDragOnly
+        rowHeight="s"
+        onDataAfterDrag={onDataAfterDrag}
+        initialExpandedKeys={['0', '1', '0-2']}
+      />
+    </div>
+  );
+};
+TreeListSameLevelDragOnly.storyName = 'TreeList с ограничением DnD на одном уровне';
+TreeListSameLevelDragOnly.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const TreeListDragPositions = (): JSX.Element => {
+  const [data, setData] = useState([
+    {
+      key: 'parent',
+      title: 'Parent',
+      children: [
+        { key: 'child1', title: 'Child 1' } as TNodeItem,
+        { key: 'child2', title: 'Child 2' } as TNodeItem,
+        { key: 'child3', title: 'Child 3' } as TNodeItem,
+        { key: 'child4', title: 'Child 4' } as TNodeItem,
+        { key: 'child5', title: 'Child 5' } as TNodeItem
+      ]
+    } as TNodeItem
+  ]);
+
+  const onDataAfterDrag = (newData: TNodeItem[]) => {
+    setData(newData);
+  };
+
+  const onDrop = (e: TDropEvent) => {
+    console.log('Drop event:', {
+      dragKey: e.dragNode.key,
+      dropKey: e.node.key,
+      dropPosition: e.dropPosition,
+      dropToGap: e.dropToGap,
+      interpretation: e.dropToGap
+        ? e.dropPosition < 0
+          ? `Insert ${e.dragNode.key} BEFORE ${e.node.key}`
+          : `Insert ${e.dragNode.key} AFTER ${e.node.key}`
+        : `Add ${e.dragNode.key} as CHILD of ${e.node.key}`,
+      hint:
+        e.dropToGap && e.dropPosition === -1
+          ? '🎯 Ставим ПЕРЕД целевым элементом (в начало, если цель первая)'
+          : e.dropToGap && e.dropPosition === 1
+          ? '🎯 Ставим ПОСЛЕ целевого элемента'
+          : '✅ Добавляем как дочерний элемент'
+    });
+  };
+
+  return (
+    <Box style={{ padding: '20px' }}>
+      <TreeList
+        data={data}
+        draggable
+        onDataAfterDrag={onDataAfterDrag}
+        onDrop={onDrop}
+        initialExpandedKeys={['parent']}
+      />
+    </Box>
+  );
+};
+TreeListDragPositions.storyName = 'TreeList DnD ';
+TreeListDragPositions.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

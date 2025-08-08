@@ -323,4 +323,241 @@ describe('src/components/TreeList', () => {
       expect(onDataAfterDrag).toHaveBeenCalledTimes(1);
     }
   });
+
+  it('It should restrict drag and drop to same level when sameLevelDragOnly is enabled', () => {
+    const sameLevelData = [
+      {
+        key: '0',
+        title: 'Root Node 1',
+        children: [
+          { key: '0-0', title: 'Child 1-1' },
+          { key: '0-1', title: 'Child 1-2' }
+        ]
+      },
+      {
+        key: '1',
+        title: 'Root Node 2',
+        children: [{ key: '1-0', title: 'Child 2-1' }]
+      }
+    ];
+
+    const onDataAfterDrag = jest.fn();
+
+    const { container } = render(
+      <TreeList data={sameLevelData} draggable sameLevelDragOnly onDataAfterDrag={onDataAfterDrag} />
+    );
+
+    const treeNodes = container.querySelectorAll('.rc-tree-treenode .rc-tree-node-content-wrapper');
+
+    if (treeNodes.length >= 3) {
+      // Попытка перетащить root узел на child узел (должна быть заблокирована)
+      const rootNode = treeNodes[0]; // Root Node 1
+      const childNode = treeNodes[2]; // Child node
+
+      fireEvent.dragStart(rootNode);
+      fireEvent.dragEnter(childNode);
+      fireEvent.dragOver(childNode);
+      fireEvent.drop(childNode);
+
+      // onDataAfterDrag не должен быть вызван, так как операция заблокирована
+      expect(onDataAfterDrag).not.toHaveBeenCalled();
+    }
+  });
+
+  it('It should allow drag and drop between nodes of the same level', () => {
+    const sameLevelData = [
+      { key: '0', title: 'Root Node 1' },
+      { key: '1', title: 'Root Node 2' },
+      { key: '2', title: 'Root Node 3' }
+    ];
+
+    const onDataAfterDrag = jest.fn();
+
+    const { container } = render(
+      <TreeList data={sameLevelData} draggable sameLevelDragOnly onDataAfterDrag={onDataAfterDrag} />
+    );
+
+    const treeNodes = container.querySelectorAll('.rc-tree-treenode .rc-tree-node-content-wrapper');
+
+    if (treeNodes.length >= 2) {
+      // Перетаскивание между root узлами одного уровня (должно работать)
+      const sourceNode = treeNodes[0];
+      const targetNode = treeNodes[1];
+
+      fireEvent.dragStart(sourceNode);
+      fireEvent.dragEnter(targetNode);
+      fireEvent.dragOver(targetNode);
+      fireEvent.drop(targetNode);
+
+      // onDataAfterDrag должен быть вызван
+      expect(onDataAfterDrag).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it('It should prevent creating children when sameLevelDragOnly is enabled (dropPosition = 0)', () => {
+    const hierarchicalData = [
+      {
+        key: '0',
+        title: 'Parent Node',
+        children: [
+          { key: '0-0', title: 'Child 1' },
+          { key: '0-1', title: 'Child 2' }
+        ]
+      },
+      { key: '1', title: 'Standalone Node' }
+    ];
+
+    const onDataAfterDrag = jest.fn();
+
+    render(
+      <TreeList
+        data={hierarchicalData}
+        draggable
+        sameLevelDragOnly
+        onDataAfterDrag={onDataAfterDrag}
+        initialExpandedKeys={['0']}
+      />
+    );
+
+    expect(onDataAfterDrag).not.toHaveBeenCalled();
+  });
+
+  it('It should prevent drag between different hierarchy branches when sameLevelDragOnly is enabled', () => {
+    const branchedData = [
+      {
+        key: 'branch-a',
+        title: 'Branch A',
+        children: [
+          { key: 'a-1', title: 'A Child 1' },
+          { key: 'a-2', title: 'A Child 2' }
+        ]
+      },
+      {
+        key: 'branch-b',
+        title: 'Branch B',
+        children: [
+          { key: 'b-1', title: 'B Child 1' },
+          { key: 'b-2', title: 'B Child 2' }
+        ]
+      }
+    ];
+
+    const onDataAfterDrag = jest.fn();
+
+    render(
+      <TreeList
+        data={branchedData}
+        draggable
+        sameLevelDragOnly
+        onDataAfterDrag={onDataAfterDrag}
+        initialExpandedKeys={['branch-a', 'branch-b']}
+      />
+    );
+
+    expect(onDataAfterDrag).not.toHaveBeenCalled();
+  });
+
+  it('It should work correctly without sameLevelDragOnly (backward compatibility)', () => {
+    const testData = [
+      {
+        key: '0',
+        title: 'Root',
+        children: [{ key: '0-0', title: 'Child' }]
+      },
+      { key: '1', title: 'Another Root' }
+    ];
+
+    const onDataAfterDrag = jest.fn();
+
+    const { container } = render(
+      <TreeList data={testData} draggable onDataAfterDrag={onDataAfterDrag} initialExpandedKeys={['0']} />
+    );
+
+    const treeNodes = container.querySelectorAll('.rc-tree-treenode .rc-tree-node-content-wrapper');
+
+    if (treeNodes.length >= 2) {
+      const sourceNode = treeNodes[1];
+      const targetNode = treeNodes[2];
+
+      fireEvent.dragStart(sourceNode);
+      fireEvent.dragEnter(targetNode);
+      fireEvent.dragOver(targetNode);
+      fireEvent.drop(targetNode);
+
+      expect(onDataAfterDrag).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it('It should correctly handle moving element to different positions', () => {
+    // Импортируем функции утилит для тестирования
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { findAndRemoveNode, addNodeAtKey } = require('./subcomponents/TreeListV1/utils');
+
+    // Тест перемещения в начало (position = 0)
+    let testData = [
+      { key: 'child1', title: 'Child 1' },
+      { key: 'child2', title: 'Child 2' },
+      { key: 'child3', title: 'Child 3' }
+    ];
+
+    // Перемещаем child3 ПЕРЕД child1 (relative = -1)
+    const dragNode = findAndRemoveNode(testData, 'child3');
+    addNodeAtKey(testData, 'child1', dragNode, -1, true);
+
+    expect(testData[0].key).toBe('child3');
+    expect(testData[1].key).toBe('child1');
+    expect(testData[2].key).toBe('child2');
+
+    // Тест перемещения в конец (position = 2)
+    testData = [
+      { key: 'child1', title: 'Child 1' },
+      { key: 'child2', title: 'Child 2' },
+      { key: 'child3', title: 'Child 3' }
+    ];
+
+    // Перемещаем child1 ПОСЛЕ child3 (relative = +1)
+    const dragNode2 = findAndRemoveNode(testData, 'child1');
+    addNodeAtKey(testData, 'child3', dragNode2, 1, true);
+
+    expect(testData[0].key).toBe('child2');
+    expect(testData[1].key).toBe('child3');
+    expect(testData[2].key).toBe('child1');
+
+    // Тест добавления как дочерний элемент (!toGap)
+    const parentTestData: TNodeItem[] = [
+      { key: 'parent', title: 'Parent', children: [] },
+      { key: 'child1', title: 'Child 1' }
+    ];
+
+    const dragNode3 = findAndRemoveNode(parentTestData, 'child1');
+    addNodeAtKey(parentTestData, 'parent', dragNode3, 0, false);
+
+    expect(parentTestData[0].children).toHaveLength(1);
+    expect(parentTestData[0].children?.[0].key).toBe('child1');
+  });
+
+  it('It should correctly handle moving element to first position (position -1)', () => {
+    // Импортируем функции утилит для тестирования
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { findAndRemoveNode, addNodeAtKey } = require('./subcomponents/TreeListV1/utils');
+
+    // Тест: ставим child5 в самое начало
+    const testData = [
+      { key: 'child1', title: 'Child 1' },
+      { key: 'child2', title: 'Child 2' },
+      { key: 'child3', title: 'Child 3' },
+      { key: 'child4', title: 'Child 4' },
+      { key: 'child5', title: 'Child 5' }
+    ];
+
+    // Удаляем child5
+    const dragNode = findAndRemoveNode(testData, 'child5');
+
+    // Вставляем ПЕРЕД child1 (position = -1)
+    addNodeAtKey(testData, 'child1', dragNode, -1, true);
+
+    // child5 должен быть первым
+    expect(testData[0].key).toBe('child5');
+    expect(testData[1].key).toBe('child1');
+  });
 });

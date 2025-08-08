@@ -20,20 +20,35 @@ export const addNodeAtKey = (
   position: number,
   toGap: boolean
 ) => {
-  for (let i = 0; i < (nodes?.length || 0); i++) {
-    if (nodes?.[i].key === key && node) {
-      if (toGap) {
-        nodes.splice(position > 1 ? i + 1 : i, 0, node);
-      } else {
-        nodes[i].children = nodes[i].children || [];
-        nodes[i]?.children?.push(node);
+  if (!nodes || !node) return false;
+
+  const findNodeParent = (nodesList: TNodeItem[], targetKey: Key): { parent: TNodeItem[]; index: number } | null => {
+    for (let i = 0; i < nodesList.length; i++) {
+      if (nodesList[i].key === targetKey) {
+        return { parent: nodesList, index: i };
       }
-      break;
+      if (nodesList[i].children) {
+        const result = findNodeParent(nodesList[i].children!, targetKey);
+        if (result) return result;
+      }
     }
-    if (nodes?.[i].children) {
-      addNodeAtKey(nodes[i].children, key, node, position, toGap);
-    }
+    return null;
+  };
+
+  const target = findNodeParent(nodes, key);
+  if (!target) return false;
+
+  if (toGap) {
+    const actualTargetIndex = target.parent.findIndex(n => n.key === key);
+
+    const insertIndex = position === -1 ? actualTargetIndex : actualTargetIndex + 1;
+    target.parent.splice(insertIndex, 0, node);
+  } else {
+    target.parent[target.index].children = target.parent[target.index].children || [];
+    target.parent[target.index].children!.push(node);
   }
+
+  return true;
 };
 
 /**
@@ -144,4 +159,17 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeIt
   });
 
   return Array.from(allKeys); // Возвращаем массив ключей
+};
+
+export const getNodeLevel = (key: Key, nodes: TNodeItem[], currentLevel = 0): number => {
+  for (const node of nodes) {
+    if (node.key === key) {
+      return currentLevel;
+    }
+    if (node.children) {
+      const result = getNodeLevel(key, node.children, currentLevel + 1);
+      if (result !== -1) return result;
+    }
+  }
+  return -1;
 };

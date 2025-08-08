@@ -17,7 +17,6 @@
 
   :global(.rc-tree-node-content-wrapper) {
     width: 100%;
-    // черта при перетаскивании
     & > div {
       background-color: var(--brand-sapphire-50) !important;
     }
@@ -48,108 +47,10 @@
     background: var(--brand-sapphire-20);
   }
 
-  :global(.rc-tree-treenode-disabled) {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    &:hover {
-      background-color: transparent !important;
-      background: transparent !important;
-    }
-  }
-
-  :global(.rc-tree-treenode-disabled:hover),
-  :global(.rc-tree-treenode-disabled.rc-tree-treenode-selected:hover) {
-    background-color: transparent !important;
-    background: transparent !important;
-  }
-
   .node-content[data-disabled="true"] {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent !important;
-      background: transparent !important;
-    }
-  }
-
-  :global(.custom-rc-tree) {
-    :global(.rc-tree) {
-      :global(.rc-tree-treenode:hover) {
-        .node-content[data-disabled="true"] {
-          background-color: transparent !important;
-          background: transparent !important;
-        }
-      }
-    }
-  }
-
-  :global(.custom-rc-tree .rc-tree .rc-tree-treenode:hover) {
-    .node-content[data-disabled="true"] {
-      background-color: transparent !important;
-      background: transparent !important;
-    }
-  }
-
-  :global(.custom-rc-tree .rc-tree .rc-tree-treenode) {
-    &:hover {
-      .node-content[data-disabled="true"] {
-        background-color: transparent !important;
-        background: transparent !important;
-      }
-    }
-  }
-
-  :global(.custom-rc-tree .rc-tree-treenode:hover .rc-tree-node-content-wrapper .node-content[data-disabled="true"]) {
-    background-color: transparent !important;
-  }
-
-  :global(.rc-tree-treenode:hover) {
-    .node-content[data-disabled="true"],
-    .node-content[data-disabled="true"] * {
-      background-color: transparent !important;
-      background: transparent !important;
-    }
-  }
-
-  :global(.rc-tree-treenode) {
-    .node-content[data-disabled="true"] {
-      &,
-      & ~ *,
-      & + * {
-        background-color: transparent !important;
-        background: transparent !important;
-      }
-    }
-
-    &:hover {
-      .node-content[data-disabled="true"] {
-        background-color: transparent !important;
-        background: transparent !important;
-      }
-    }
-
-    &:hover:not(:has(.node-content:not([data-disabled="true"]))) {
-      .node-content[data-disabled="true"] {
-        background-color: transparent !important;
-      }
-    }
-  }
-
-  :global(.rc-tree-treenode) {
-    --hover-bg: var(--steel-30);
-
-    &:hover {
-      background-color: var(--hover-bg);
-
-      .node-content[data-disabled="true"] {
-        --hover-bg: transparent;
-        background-color: transparent !important;
-      }
-    }
+    opacity: 0.5 !important;
+    cursor: default !important;
+    pointer-events: none;
   }
 
   :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
@@ -174,7 +75,6 @@
     color: var(--steel-30);
   }
 
-  // убираем границу слева при перетаскивании
   :global(.rc-tree-treenode.drop-container ~ .rc-tree-treenode) {
     border-left: none;
   }
@@ -187,7 +87,7 @@
 }
 
 .dragging {
-  border: 3px solid var(--brand-sapphire-60) !important; /* Синяя рамка */
+  border: 3px solid var(--brand-sapphire-60) !important;
   background-color: var(--steel-30);
   transition: all 0.2s ease-in-out;
 }
@@ -210,23 +110,6 @@
     box-sizing: border-box;
     &[data-checked="true"] {
       background-color: inherit;
-    }
-    &[data-disabled="true"] {
-      opacity: 0.5;
-      cursor: not-allowed;
-
-      &:hover {
-        background-color: transparent !important;
-      }
-    }
-  }
-
-  &-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    &:hover {
-      background-color: transparent !important;
     }
   }
 }
@@ -254,10 +137,50 @@
   @include nodeHoverEvent;
 }
 
+:global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+  @include selectedHover;
+}
+
 :global(.rc-tree-treenode:has([data-checked="true"])) {
   @include selected;
 }
 
-:global(.rc-tree-treenode:has([data-checked="true"]):hover) {
-  @include selectedHover;
+.custom-rc-tree.is-dragging {
+  :global(.rc-tree-treenode),
+  :global(.rc-tree-treenode:hover),
+  :global(.rc-tree-treenode:has([data-checked="true"])),
+  :global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+    background-color: transparent !important;
+    background: none !important;
+  }
+}
+
+:global(.rc-tree-dragging) {
+  :global(.rc-tree-treenode),
+  :global(.rc-tree-treenode:hover),
+  :global(.rc-tree-treenode:has([data-checked="true"])),
+  :global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+    background-color: transparent !important;
+    background: none !important;
+  }
+}
+
+:global(.rc-tree-treenode) {
+  &:has([data-disabled="true"]) {
+    cursor: default !important;
+    pointer-events: none !important;
+
+    &:hover {
+      background-color: transparent !important;
+      background: none !important;
+    }
+  }
+
+  &:has([data-disable-draggable="true"]) {
+    cursor: default !important;
+
+    :global(.rc-tree-node-content-wrapper) {
+      cursor: default !important;
+    }
+  }
 }

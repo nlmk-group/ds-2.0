@@ -40,8 +40,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             description="Базовый пример использования ComboBox с простым списком опций."
-            code={`import { ComboBox } from '@nlmk/ds-2.0';
-import ComboList from '@nlmk/ds-2.0/ComboList';
+            code={`import { ComboBox, ComboList } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <ComboBox label="Выберите опцию">

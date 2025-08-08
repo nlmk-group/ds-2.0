@@ -57,6 +57,7 @@ export type TTreeListProps = {
   checkable?: boolean;
   draggable?: boolean;
   checkableSimple?: boolean;
+  sameLevelDragOnly?: boolean;
   rowHeight?: `${ERowHeight}`;
   initialCheckedKeys?: Key[];
   initialExpandedKeys?: Key[];

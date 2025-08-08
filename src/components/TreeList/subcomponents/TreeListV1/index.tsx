@@ -11,7 +11,7 @@ import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
 import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeListProps } from '../../types';
-import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
+import { addNodeAtKey, findAndRemoveNode, getNodeLevel, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
   data,
@@ -23,6 +23,7 @@ export const TreeListV1 = ({
   onDragStart,
   onDragEnd,
   onDrop,
+  sameLevelDragOnly = false,
   rowHeight = ERowHeight.s,
   initialCheckedKeys = [],
   initialExpandedKeys = []
@@ -42,20 +43,52 @@ export const TreeListV1 = ({
     setTreeData(data);
   }, [data]);
 
-  // Обработчик перетаскивания узлов
   const handleDrop = (info: any) => {
-    const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
-    const dragKey = info.dragNode.key; // Ключ перетаскиваемого узла
-    const dropPosition = info.dropPosition; // Позиция, в которую узел был сброшен
-    const dropToGap = info.dropToGap; // true, если узел был сброшен между другими узлами
+    const dropKey = info.node.key;
+    const dragKey = info.dragNode.key;
+    const rawDropPosition = info.dropPosition;
+    const dropToGap = info.dropToGap;
+
+    let relativeDropPosition: number;
+
+    if (dropToGap) {
+      const posArr = String(info.node.pos || '').split('-');
+      const nodeIndex = Number(posArr[posArr.length - 1]) || 0;
+      relativeDropPosition = rawDropPosition <= nodeIndex ? -1 : 1;
+    } else {
+      relativeDropPosition = 0;
+    }
+
+    let actualDropKey = dropKey;
+    let actualDropToGap = dropToGap;
+
+    if (rawDropPosition === 0 && dropToGap === false) {
+      const findNodeByKey = (nodes: TNodeItem[], key: string): TNodeItem | null => {
+        for (const node of nodes) {
+          if (node.key === key) return node;
+          if (node.children) {
+            const found = findNodeByKey(node.children, key);
+            if (found) return found;
+          }
+        }
+        return null;
+      };
+
+      const parentNode = findNodeByKey(treeData, dropKey);
+      if (parentNode?.children && parentNode.children.length > 0) {
+        actualDropKey = parentNode.children[0].key;
+        actualDropToGap = true;
+        relativeDropPosition = -1;
+      }
+    }
 
     if (onDrop) {
       const dropEvent: TDropEvent = {
         ...info,
         dragNode: info.dragNode,
         dragNodesKeys: info.dragNodesKeys || [dragKey],
-        dropPosition,
-        dropToGap
+        dropPosition: relativeDropPosition,
+        dropToGap: actualDropToGap
       };
       onDrop(dropEvent);
     }
@@ -64,7 +97,7 @@ export const TreeListV1 = ({
 
     const dragNode = findAndRemoveNode(data, dragKey);
 
-    addNodeAtKey(data, dropKey, dragNode, dropPosition, dropToGap);
+    addNodeAtKey(data, actualDropKey, dragNode, relativeDropPosition, actualDropToGap);
 
     setTreeData(data);
     if (onDataAfterDrag) onDataAfterDrag(data);
@@ -170,6 +203,7 @@ export const TreeListV1 = ({
         style={{ ...node.styles?.nodeContentStyle }}
         data-checked={isChecked}
         data-disabled={node.disabled}
+        data-disable-draggable={node.disableDraggable}
       >
         <div
           className={clsx(styles['node-title'], node.styles?.nodeTitleClassName)}
@@ -211,10 +245,7 @@ export const TreeListV1 = ({
             {typeof node.title === 'function' ? (
               node.title({ key: node.key, title: node.title })
             ) : (
-              <Typography
-                color={node.disabled ? 'var(--steel-30)' : 'var(--steel-90)'}
-                variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}
-              >
+              <Typography color={'var(--steel-90)'} variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}>
                 {node.title}
               </Typography>
             )}
@@ -227,11 +258,14 @@ export const TreeListV1 = ({
 
   return (
     <div
-      className={clsx(styles['custom-rc-tree'], { [styles['not-selectable']]: !selectable })}
+      className={clsx(styles['custom-rc-tree'], {
+        [styles['not-selectable']]: !selectable,
+        [styles['is-dragging']]: dragging !== null
+      })}
       style={{ ['--row-height' as string]: ROW_PX_HEIGHTS[rowHeight] }}
     >
       <Tree<TNodeItem>
-        treeData={treeData} // Данные для построения структуры дерева
+        treeData={treeData}
         draggable={
           draggable
             ? (node: any) => {
@@ -239,20 +273,38 @@ export const TreeListV1 = ({
                 return !nodeData.disabled && !nodeData.disableDraggable;
               }
             : false
-        } // Включение функциональности перетаскивания узлов с проверкой на блокировку
-        onDrop={handleDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
-        checkedKeys={checkedKeys} // Ключи отмеченных (выбранных) узлов
-        titleRender={renderTitle} // Пользовательская функция для рендеринга заголовков узлов
-        switcherIcon={() => null} // Отключаем стандартные стрелки
-        checkable={false} // Отключение стандартных чекбоксов
-        selectable={false} // Отключение возможности выбора узлов
+        }
+        onDrop={handleDrop}
+        checkedKeys={checkedKeys}
+        titleRender={renderTitle}
+        switcherIcon={() => null}
+        checkable={false}
+        selectable={false}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         expandedKeys={expandedKeys}
-        allowDrop={({ dropNode }) => {
+        allowDrop={({ dragNode, dropNode, dropPosition }) => {
           const dropNodeData = dropNode as any as TNodeItem;
-          return !dropNodeData.disabled;
-        }} // Запрещаем сброс на disabled узлы
+
+          if (dropNodeData.disabled) {
+            return false;
+          }
+
+          if (sameLevelDragOnly) {
+            const dragNodeData = dragNode as any as TNodeItem;
+
+            if (dropPosition === 0) {
+              return false;
+            }
+
+            const dragLevel = getNodeLevel(dragNodeData.key, treeData);
+            const dropLevel = getNodeLevel(dropNodeData.key, treeData);
+
+            return dragLevel === dropLevel;
+          }
+
+          return true;
+        }}
       />
     </div>
   );

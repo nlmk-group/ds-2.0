@@ -244,20 +244,34 @@ export const TreeListV1 = ({
     return null;
   };
 
+  const getNodeCheckState = (node: TNodeItem): boolean | null => {
+    if (!node.children || node.children.length === 0) return null;
+
+    const childStates = node.children.map(child => {
+      const isDirectlyChecked = keys.includes(child.key);
+      const childrenState = getNodeCheckState(child);
+
+      if (isDirectlyChecked || childrenState === true) return true;
+      if (childrenState === null) return null;
+      return false;
+    });
+
+    if (childStates.every(state => state === true)) return true;
+    if (childStates.every(state => state === false)) return false;
+    return null;
+  };
+
+  const hasAnyCheckedDescendant = (node: TNodeItem): boolean => {
+    if (!node.children || node.children.length === 0) return false;
+
+    return node.children.some(child => {
+      const isDirectlyChecked = keys.includes(child.key);
+      const hasCheckedChildren = hasAnyCheckedDescendant(child);
+      return isDirectlyChecked || hasCheckedChildren;
+    });
+  };
+
   const renderTitle = (node: TNodeItem) => {
-    const hasChildren = Boolean(node.children?.length);
-
-    const childrenState =
-      hasChildren && node.children
-        ? node.children.reduce(
-            (acc, child) => ({
-              checkedCount: acc.checkedCount + (keys.includes(child.key) ? 1 : 0),
-              total: acc.total + 1
-            }),
-            { checkedCount: 0, total: 0 }
-          )
-        : undefined;
-
     let isMultiple: boolean, isChecked: boolean;
 
     if (checkableSimple) {
@@ -265,17 +279,13 @@ export const TreeListV1 = ({
       isMultiple = false;
       isChecked = keys.includes(node.key);
     } else {
-      isMultiple = Boolean(
-        hasChildren &&
-          childrenState &&
-          childrenState.checkedCount > 0 &&
-          childrenState.checkedCount < childrenState.total
-      );
+      const nodeCheckState = getNodeCheckState(node);
+      const isDirectlyChecked = keys.includes(node.key);
+      const hasCheckedDescendants = hasAnyCheckedDescendant(node);
 
-      isChecked =
-        Boolean(keys.includes(node.key)) ||
-        Boolean(isMultiple) ||
-        Boolean(childrenState && childrenState.checkedCount === childrenState.total && childrenState.total > 0);
+      isMultiple = nodeCheckState === null && hasCheckedDescendants;
+
+      isChecked = isDirectlyChecked || nodeCheckState === true || isMultiple;
     }
 
     return (

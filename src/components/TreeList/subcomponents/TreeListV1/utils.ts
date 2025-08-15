@@ -116,10 +116,21 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeIt
   const getChildrenCheckState = (node: TNodeItem): boolean | null => {
     if (!node.children || node.children.length === 0) return null;
 
-    const checkedStates = node.children.map(child => allKeys.has(child.key));
+    const childStates = node.children.map(child => {
+      const isDirectlyChecked = allKeys.has(child.key);
+      const childrenState = getChildrenCheckState(child);
 
-    if (checkedStates.every(state => state)) return true;
-    if (checkedStates.every(state => !state)) return false;
+      if (isDirectlyChecked || childrenState === true) return true;
+
+      if (childrenState === null) return null;
+
+      return false;
+    });
+
+    if (childStates.every(state => state === true)) return true;
+
+    if (childStates.every(state => state === false)) return false;
+
     return null;
   };
 
@@ -151,6 +162,7 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeIt
 
   // 2. Собрать все родительские ключи и обновить их
   const parentKeys = getParentKeyChain(key, treeData);
+
   parentKeys.forEach(parentKey => {
     const parentNode = findNodeByKey(parentKey, treeData);
     if (!parentNode) return;
@@ -158,9 +170,11 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeIt
     const childrenCheckState = getChildrenCheckState(parentNode);
 
     if (childrenCheckState === true) {
-      allKeys.add(parentNode.key); // Если все дочерние элементы выбраны, родитель становится выбранным
+      allKeys.add(parentNode.key);
     } else if (childrenCheckState === false) {
-      allKeys.delete(parentNode.key); // Если ни один дочерний элемент не выбран, родитель становится снятым
+      allKeys.delete(parentNode.key);
+    } else if (childrenCheckState === null) {
+      allKeys.delete(parentNode.key);
     }
   });
 

@@ -497,3 +497,54 @@ TreeListClickedOnly.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
+
+export const TreeListIndeterminateDebug = (): JSX.Element => {
+  const [data] = useState(DEFAULT_TREE_DATA);
+
+  const handleSelectedNode = (e: TSelectedNodeEvent) => {
+    console.log('🎯 Клик по узлу:', e.currentKey);
+    console.log('📋 Все выбранные ключи:', e.allSelectedKeys);
+    console.log('✅ Состояние узла:', e.isChecked ? 'ОТМЕЧЕН' : 'НЕ ОТМЕЧЕН');
+    console.log('---');
+  };
+
+  return (
+    <div>
+      <div
+        style={{
+          marginBottom: 16,
+          padding: 16,
+          backgroundColor: '#d4edda',
+          borderRadius: 8,
+          border: '2px solid #28a745'
+        }}
+      >
+        <Typography variant="Body1-Medium" style={{ marginBottom: 8, color: '#155724' }}>
+          ✅ ИСПРАВЛЕННАЯ ЛОГИКА INDETERMINATE СОСТОЯНИЯ:
+        </Typography>
+        <Typography variant="Body1-Medium" style={{ color: '#155724' }}>
+          1. Отметьте "Конвертер №1" → "Конвертерный цех" станет indeterminate (частично отмечен)
+          <br />
+          2. "Производство стали" ТЕПЕРЬ КОРРЕКТНО станет indeterminate (один из детей частично отмечен)
+          <br />
+          3. Узлы БЕЗ отмеченных потомков НЕ показывают indeterminate состояние
+          <br />
+          4. Indeterminate показывается только когда есть смешанное состояние детей
+        </Typography>
+      </div>
+
+      <TreeList
+        data={data}
+        checkable
+        checkableSimple={false}
+        onSelectedNode={handleSelectedNode}
+        initialExpandedKeys={['0-0', '0-0-0', '0-0-1']}
+      />
+    </div>
+  );
+};
+TreeListIndeterminateDebug.storyName = 'TreeList - Исправленная логика Indeterminate';
+TreeListIndeterminateDebug.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};

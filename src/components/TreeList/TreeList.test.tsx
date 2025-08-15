@@ -5,6 +5,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { TNodeItem } from './types';
 
 import { MOCK_TREE_DATA } from './mock/constants';
+import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './subcomponents/TreeListV1/utils';
 import TreeList from './TreeList';
 
 describe('src/components/TreeList', () => {
@@ -536,10 +537,6 @@ describe('src/components/TreeList', () => {
   });
 
   it('It should correctly handle moving element to first position (position -1)', () => {
-    // Импортируем функции утилит для тестирования
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { findAndRemoveNode, addNodeAtKey } = require('./subcomponents/TreeListV1/utils');
-
     // Тест: ставим child5 в самое начало
     const testData = [
       { key: 'child1', title: 'Child 1' },
@@ -558,5 +555,65 @@ describe('src/components/TreeList', () => {
     // child5 должен быть первым
     expect(testData[0].key).toBe('child5');
     expect(testData[1].key).toBe('child1');
+  });
+
+  it('It should correctly handle indeterminate state for nested hierarchies', () => {
+    const nestedData: TNodeItem[] = [
+      {
+        key: 'root',
+        title: 'Root',
+        children: [
+          {
+            key: 'branch1',
+            title: 'Branch 1',
+            children: [{ key: 'leaf1', title: 'Leaf 1' } as TNodeItem, { key: 'leaf2', title: 'Leaf 2' } as TNodeItem]
+          } as TNodeItem,
+          {
+            key: 'branch2',
+            title: 'Branch 2',
+            children: [{ key: 'leaf3', title: 'Leaf 3' } as TNodeItem, { key: 'leaf4', title: 'Leaf 4' } as TNodeItem]
+          } as TNodeItem
+        ]
+      } as TNodeItem
+    ];
+
+    // Тест 1: Отмечаем leaf1 - root должен получить indeterminate состояние
+    let checkedKeys = updateParentKeys('leaf1', [], nestedData, true);
+
+    // leaf1 должен быть отмечен
+    expect(checkedKeys).toContain('leaf1');
+
+    // branch1 НЕ должен быть отмечен (не все дети отмечены)
+    expect(checkedKeys).not.toContain('branch1');
+
+    // root НЕ должен быть отмечен (не все дети отмечены)
+    expect(checkedKeys).not.toContain('root');
+
+    // Но логика должна корректно обрабатывать indeterminate состояние
+    // Проверим, что если отметим еще один элемент в branch2, root все еще не будет отмечен
+    checkedKeys = updateParentKeys('leaf3', checkedKeys, nestedData, true);
+
+    expect(checkedKeys).toContain('leaf1');
+    expect(checkedKeys).toContain('leaf3');
+    expect(checkedKeys).not.toContain('root'); // root все еще не полностью отмечен
+
+    // Тест 2: Отмечаем все листья в branch1 - branch1 должен стать отмеченным
+    checkedKeys = updateParentKeys('leaf2', checkedKeys, nestedData, true);
+
+    expect(checkedKeys).toContain('leaf1');
+    expect(checkedKeys).toContain('leaf2');
+    expect(checkedKeys).toContain('branch1'); // Теперь branch1 полностью отмечен
+    expect(checkedKeys).not.toContain('root'); // root все еще частично отмечен
+
+    // Тест 3: Отмечаем все листья в branch2 - root должен стать отмеченным
+    checkedKeys = updateParentKeys('leaf4', checkedKeys, nestedData, true);
+
+    expect(checkedKeys).toContain('leaf1');
+    expect(checkedKeys).toContain('leaf2');
+    expect(checkedKeys).toContain('leaf3');
+    expect(checkedKeys).toContain('leaf4');
+    expect(checkedKeys).toContain('branch1');
+    expect(checkedKeys).toContain('branch2');
+    expect(checkedKeys).toContain('root'); // Теперь root полностью отмечен
   });
 });

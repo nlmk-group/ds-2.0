@@ -361,64 +361,6 @@ TreeListSameLevelDragOnly.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-// TODO: удалить перед публикацией
-export const TreeListDragPositions = (): JSX.Element => {
-  const [data, setData] = useState([
-    {
-      key: 'parent',
-      title: 'Parent',
-      children: [
-        { key: 'child1', title: 'Child 1' } as TNodeItem,
-        { key: 'child2', title: 'Child 2' } as TNodeItem,
-        { key: 'child3', title: 'Child 3' } as TNodeItem,
-        { key: 'child4', title: 'Child 4' } as TNodeItem,
-        { key: 'child5', title: 'Child 5' } as TNodeItem
-      ]
-    } as TNodeItem
-  ]);
-
-  const onDataAfterDrag = (newData: TNodeItem[]) => {
-    setData(newData);
-  };
-
-  const onDrop = (e: TDropEvent) => {
-    console.log('Drop event:', {
-      dragKey: e.dragNode.key,
-      dropKey: e.node.key,
-      dropPosition: e.dropPosition,
-      dropToGap: e.dropToGap,
-      interpretation: e.dropToGap
-        ? e.dropPosition < 0
-          ? `Insert ${e.dragNode.key} BEFORE ${e.node.key}`
-          : `Insert ${e.dragNode.key} AFTER ${e.node.key}`
-        : `Add ${e.dragNode.key} as CHILD of ${e.node.key}`,
-      hint:
-        e.dropToGap && e.dropPosition === -1
-          ? '🎯 Ставим ПЕРЕД целевым элементом (в начало, если цель первая)'
-          : e.dropToGap && e.dropPosition === 1
-          ? '🎯 Ставим ПОСЛЕ целевого элемента'
-          : '✅ Добавляем как дочерний элемент'
-    });
-  };
-
-  return (
-    <Box style={{ padding: '20px' }}>
-      <TreeList
-        data={data}
-        draggable
-        onDataAfterDrag={onDataAfterDrag}
-        onDrop={onDrop}
-        initialExpandedKeys={['parent']}
-      />
-    </Box>
-  );
-};
-TreeListDragPositions.storyName = 'TreeList DnD ';
-TreeListDragPositions.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
-
 export const TreeListClickedOnly = (): JSX.Element => {
   const [data] = useState<TNodeItem[]>([
     {
@@ -492,59 +434,8 @@ export const TreeListClickedOnly = (): JSX.Element => {
     </div>
   );
 };
-TreeListClickedOnly.storyName = 'TreeList - Финальный массив только реальных кликов';
+TreeListClickedOnly.storyName = 'TreeList - подсчет только реальных кликов';
 TreeListClickedOnly.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
-
-export const TreeListIndeterminateDebug = (): JSX.Element => {
-  const [data] = useState(DEFAULT_TREE_DATA);
-
-  const handleSelectedNode = (e: TSelectedNodeEvent) => {
-    console.log('🎯 Клик по узлу:', e.currentKey);
-    console.log('📋 Все выбранные ключи:', e.allSelectedKeys);
-    console.log('✅ Состояние узла:', e.isChecked ? 'ОТМЕЧЕН' : 'НЕ ОТМЕЧЕН');
-    console.log('---');
-  };
-
-  return (
-    <div>
-      <div
-        style={{
-          marginBottom: 16,
-          padding: 16,
-          backgroundColor: '#d4edda',
-          borderRadius: 8,
-          border: '2px solid #28a745'
-        }}
-      >
-        <Typography variant="Body1-Medium" style={{ marginBottom: 8, color: '#155724' }}>
-          ✅ ИСПРАВЛЕННАЯ ЛОГИКА INDETERMINATE СОСТОЯНИЯ:
-        </Typography>
-        <Typography variant="Body1-Medium" style={{ color: '#155724' }}>
-          1. Отметьте "Конвертер №1" → "Конвертерный цех" станет indeterminate (частично отмечен)
-          <br />
-          2. "Производство стали" ТЕПЕРЬ КОРРЕКТНО станет indeterminate (один из детей частично отмечен)
-          <br />
-          3. Узлы БЕЗ отмеченных потомков НЕ показывают indeterminate состояние
-          <br />
-          4. Indeterminate показывается только когда есть смешанное состояние детей
-        </Typography>
-      </div>
-
-      <TreeList
-        data={data}
-        checkable
-        checkableSimple={false}
-        onSelectedNode={handleSelectedNode}
-        initialExpandedKeys={['0-0', '0-0-0', '0-0-1']}
-      />
-    </div>
-  );
-};
-TreeListIndeterminateDebug.storyName = 'TreeList - Исправленная логика Indeterminate';
-TreeListIndeterminateDebug.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

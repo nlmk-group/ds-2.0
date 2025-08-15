@@ -87,9 +87,13 @@
 }
 
 .dragging {
-  border: 3px solid var(--brand-sapphire-60) !important;
-  background-color: var(--steel-30);
+  background-color: var(--steel-30) !important;
+  border: 2px solid var(--brand-sapphire-60) !important;
   transition: all 0.2s ease-in-out;
+}
+
+.dragging[data-checked="true"] {
+  background-color: var(--brand-sapphire-20) !important;
 }
 
 .node {
@@ -183,4 +187,16 @@
       cursor: default !important;
     }
   }
+}
+
+.custom-rc-tree
+  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container) {
+  background-color: var(--brand-sapphire-20) !important;
+  box-shadow: none !important;
+  opacity: 0.8 !important;
+}
+
+.custom-rc-tree
+  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container):has([data-checked="true"]) {
+  background-color: var(--brand-sapphire-20) !important;
 }

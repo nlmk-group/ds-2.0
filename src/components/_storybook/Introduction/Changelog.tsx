@@ -23,6 +23,31 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.10 - <span className={styles.date}>18.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены свойства sameLevelDragOnly и onDrop для элементов дерева
+              </li>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены свойства disabled, disableDraggable, icon для дерева
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.9 - <span className={styles.date}>30.07.25</span>
           </Typography>
           <ul className={styles.list}>

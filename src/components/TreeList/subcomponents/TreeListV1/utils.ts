@@ -1,39 +1,60 @@
-import { TNodeItem, TTreeItem } from '@components/TreeList/types';
+import { TNodeItem } from '@components/TreeList/types';
 import { Key } from 'rc-tree/lib/interface';
 
-export const findAndRemoveNode = (nodes: TTreeItem[] | undefined, key: Key): TTreeItem | undefined => {
+export const findAndRemoveNode = (nodes: TNodeItem[] | undefined, key: Key): TNodeItem | undefined => {
   for (let i = 0; i < (nodes?.length || 0); i++) {
     if (nodes?.[i].key === key) {
       return nodes.splice(i, 1)[0];
     }
     if (nodes?.[i].children) {
-      const removedNode: TTreeItem | undefined = findAndRemoveNode(nodes[i].children, key);
+      const removedNode: TNodeItem | undefined = findAndRemoveNode(nodes[i].children, key);
       if (removedNode) return removedNode;
     }
   }
 };
 
 export const addNodeAtKey = (
-  nodes: TTreeItem[] | undefined,
+  nodes: TNodeItem[] | undefined,
   key: Key,
-  node: TTreeItem | undefined,
+  node: TNodeItem | undefined,
   position: number,
-  toGap: boolean
+  toGap: boolean,
+  originalDragIndex?: number
 ) => {
-  for (let i = 0; i < (nodes?.length || 0); i++) {
-    if (nodes?.[i].key === key && node) {
-      if (toGap) {
-        nodes.splice(position > 1 ? i + 1 : i, 0, node);
-      } else {
-        nodes[i].children = nodes[i].children || [];
-        nodes[i]?.children?.push(node);
+  if (!nodes || !node) return false;
+
+  const findNodeParent = (nodesList: TNodeItem[], targetKey: Key): { parent: TNodeItem[]; index: number } | null => {
+    for (let i = 0; i < nodesList.length; i++) {
+      if (nodesList[i].key === targetKey) {
+        return { parent: nodesList, index: i };
       }
-      break;
+      if (nodesList[i].children) {
+        const result = findNodeParent(nodesList[i].children!, targetKey);
+        if (result) return result;
+      }
     }
-    if (nodes?.[i].children) {
-      addNodeAtKey(nodes[i].children, key, node, position, toGap);
+    return null;
+  };
+
+  const target = findNodeParent(nodes, key);
+  if (!target) return false;
+
+  if (toGap) {
+    const currentTargetIndex = target.parent.findIndex(n => n.key === key);
+
+    let adjustedTargetIndex = currentTargetIndex;
+    if (originalDragIndex !== undefined && originalDragIndex < currentTargetIndex + 1) {
+      adjustedTargetIndex = currentTargetIndex; // уже сдвинутый
     }
+
+    const insertIndex = position === -1 ? adjustedTargetIndex : adjustedTargetIndex + 1;
+    target.parent.splice(insertIndex, 0, node);
+  } else {
+    target.parent[target.index].children = target.parent[target.index].children || [];
+    target.parent[target.index].children!.push(node);
   }
+
+  return true;
 };
 
 /**
@@ -49,7 +70,7 @@ export const addNodeAtKey = (
  * @param checked - Флаг, указывающий, выбран текущий узел или снят.
  * @returns Массив с обновленным списком отмеченных ключей.
  */
-export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TTreeItem[], checked: boolean): Key[] => {
+export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TNodeItem[], checked: boolean): Key[] => {
   const allKeys = new Set(checkedKeys); // Используем Set для удобства модификации
 
   /**
@@ -95,10 +116,21 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TTreeIt
   const getChildrenCheckState = (node: TNodeItem): boolean | null => {
     if (!node.children || node.children.length === 0) return null;
 
-    const checkedStates = node.children.map(child => allKeys.has(child.key));
+    const childStates = node.children.map(child => {
+      const isDirectlyChecked = allKeys.has(child.key);
+      const childrenState = getChildrenCheckState(child);
 
-    if (checkedStates.every(state => state)) return true;
-    if (checkedStates.every(state => !state)) return false;
+      if (isDirectlyChecked || childrenState === true) return true;
+
+      if (childrenState === null) return null;
+
+      return false;
+    });
+
+    if (childStates.every(state => state === true)) return true;
+
+    if (childStates.every(state => state === false)) return false;
+
     return null;
   };
 
@@ -130,6 +162,7 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TTreeIt
 
   // 2. Собрать все родительские ключи и обновить их
   const parentKeys = getParentKeyChain(key, treeData);
+
   parentKeys.forEach(parentKey => {
     const parentNode = findNodeByKey(parentKey, treeData);
     if (!parentNode) return;
@@ -137,11 +170,41 @@ export const updateParentKeys = (key: Key, checkedKeys: Key[], treeData: TTreeIt
     const childrenCheckState = getChildrenCheckState(parentNode);
 
     if (childrenCheckState === true) {
-      allKeys.add(parentNode.key); // Если все дочерние элементы выбраны, родитель становится выбранным
+      allKeys.add(parentNode.key);
     } else if (childrenCheckState === false) {
-      allKeys.delete(parentNode.key); // Если ни один дочерний элемент не выбран, родитель становится снятым
+      allKeys.delete(parentNode.key);
+    } else if (childrenCheckState === null) {
+      allKeys.delete(parentNode.key);
     }
   });
 
   return Array.from(allKeys); // Возвращаем массив ключей
+};
+
+export const getNodeLevel = (key: Key, nodes: TNodeItem[], currentLevel = 0): number => {
+  for (const node of nodes) {
+    if (node.key === key) {
+      return currentLevel;
+    }
+    if (node.children) {
+      const result = getNodeLevel(key, node.children, currentLevel + 1);
+      if (result !== -1) return result;
+    }
+  }
+  return -1;
+};
+
+export const getNodeParent = (key: Key, nodes: TNodeItem[]): TNodeItem | null => {
+  for (const node of nodes) {
+    if (node.children) {
+      for (const child of node.children) {
+        if (child.key === key) {
+          return node;
+        }
+      }
+      const result = getNodeParent(key, node.children);
+      if (result) return result;
+    }
+  }
+  return null;
 };

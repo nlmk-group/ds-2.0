@@ -17,7 +17,6 @@
 
   :global(.rc-tree-node-content-wrapper) {
     width: 100%;
-    // черта при перетаскивании
     & > div {
       background-color: var(--brand-sapphire-50) !important;
     }
@@ -45,7 +44,13 @@
   }
 
   :global(.rc-tree-treenode-selected-hover) {
-    background: var(--brand-sapphire-20)
+    background: var(--brand-sapphire-20);
+  }
+
+  .node-content[data-disabled="true"] {
+    opacity: 0.5 !important;
+    cursor: default !important;
+    pointer-events: none;
   }
 
   :global(.rc-tree-treenode .rc-tree-node-content-wrapper) {
@@ -70,7 +75,6 @@
     color: var(--steel-30);
   }
 
-  // убираем границу слева при перетаскивании
   :global(.rc-tree-treenode.drop-container ~ .rc-tree-treenode) {
     border-left: none;
   }
@@ -83,13 +87,17 @@
 }
 
 .dragging {
-  border: 3px solid var(--brand-sapphire-60) !important; /* Синяя рамка */
-  background-color: var(--steel-30);
+  background-color: var(--steel-30) !important;
+  border: 2px solid var(--brand-sapphire-60) !important;
   transition: all 0.2s ease-in-out;
 }
 
+.dragging[data-checked="true"] {
+  background-color: var(--brand-sapphire-20) !important;
+}
+
 .node {
-  &-title{
+  &-title {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -121,14 +129,74 @@
   }
 }
 
+.custom-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  min-height: 16px;
+}
+
 :global(.rc-tree-treenode:hover) {
   @include nodeHoverEvent;
+}
+
+:global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+  @include selectedHover;
 }
 
 :global(.rc-tree-treenode:has([data-checked="true"])) {
   @include selected;
 }
 
-:global(.rc-tree-treenode:has([data-checked="true"]):hover) {
-  @include selectedHover;
+.custom-rc-tree.is-dragging {
+  :global(.rc-tree-treenode),
+  :global(.rc-tree-treenode:hover),
+  :global(.rc-tree-treenode:has([data-checked="true"])),
+  :global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+    background-color: transparent !important;
+    background: none !important;
+  }
+}
+
+:global(.rc-tree-dragging) {
+  :global(.rc-tree-treenode),
+  :global(.rc-tree-treenode:hover),
+  :global(.rc-tree-treenode:has([data-checked="true"])),
+  :global(.rc-tree-treenode:has([data-checked="true"]):hover) {
+    background-color: transparent !important;
+    background: none !important;
+  }
+}
+
+:global(.rc-tree-treenode) {
+  &:has([data-disabled="true"]) {
+    cursor: default !important;
+    pointer-events: none !important;
+
+    &:hover {
+      background-color: transparent !important;
+      background: none !important;
+    }
+  }
+
+  &:has([data-disable-draggable="true"]) {
+    cursor: default !important;
+
+    :global(.rc-tree-node-content-wrapper) {
+      cursor: default !important;
+    }
+  }
+}
+
+.custom-rc-tree
+  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container) {
+  background-color: var(--brand-sapphire-20) !important;
+  box-shadow: none !important;
+  opacity: 0.8 !important;
+}
+
+.custom-rc-tree
+  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container):has([data-checked="true"]) {
+  background-color: var(--brand-sapphire-20) !important;
 }

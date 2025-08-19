@@ -2,6 +2,22 @@ import React, { FC, useEffect, useRef } from 'react';
 
 import { EClickAwayEvent, IClickAwayListenerProps } from '@components/ClickAwayListener/types';
 
+
+/**
+ * Компонент, который отслеживает клики вне своего DOM-элемента и дочерних элементов.
+ * Вызывает callback `onClickAway` при клике снаружи, исключая элементы, указанные в `excludeRef`.
+ *
+ * @param {Object} props - Пропсы компонента
+ * @param {React.ReactNode} props.children - Дочерние элементы компонента
+ * @param {string} [props.className] - Дополнительные CSS-классы для корневого элемента
+ * @param {React.CSSProperties} [props.style] - Инлайн-стили для корневого элемента
+ * @param {() => void} props.onClickAway - Callback, вызываемый при клике вне компонента и исключённых элементов
+ * @param {React.RefObject<HTMLElement> | React.RefObject<HTMLElement>[]} [props.excludeRef] - Ref или массив refs элементов, клики по которым не должны вызывать onClickAway
+ * @param {TClickAwayEvent} [props.eventType="mouseup"] - Тип события для отслеживания (по умолчанию: "mouseup")
+ *
+ * @returns {React.ReactElement} React-элемент
+ *
+ */
 const ClickAwayListener: FC<IClickAwayListenerProps> = ({
   children,
   className,

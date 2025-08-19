@@ -29,7 +29,7 @@
     }
   }
 
-  &:last-child {
+  &.isLast {
     .link {
       color: var(--steel-90);
       cursor: default;

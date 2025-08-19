@@ -10,8 +10,8 @@ import 'rc-tree/assets/index.css';
 import styles from './TreeListV1.module.scss';
 
 import { ROW_PX_HEIGHTS, TITLE_VARIANT_BY_ROW_HEIGHT } from '../../constants';
-import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeItem, TTreeListProps } from '../../types';
-import { addNodeAtKey, findAndRemoveNode, updateParentKeys } from './utils';
+import { ERowHeight, TCheckedKeys, TDragEvent, TDropEvent, TNodeItem, TTreeListProps } from '../../types';
+import { addNodeAtKey, findAndRemoveNode, getNodeLevel, updateParentKeys } from './utils';
 
 export const TreeListV1 = ({
   data,
@@ -22,6 +22,8 @@ export const TreeListV1 = ({
   onDataAfterDrag,
   onDragStart,
   onDragEnd,
+  onDrop,
+  sameLevelDragOnly = false,
   rowHeight = ERowHeight.s,
   initialCheckedKeys = [],
   initialExpandedKeys = []
@@ -41,31 +43,161 @@ export const TreeListV1 = ({
     setTreeData(data);
   }, [data]);
 
-  // Обработчик перетаскивания узлов
-  const onDrop = (info: TDropEvent) => {
-    const dropKey = info.node.key; // Ключ узла, в который осуществляется перетаскивание
-    const dragKey = info.dragNode.key; // Ключ перетаскиваемого узла
-    const dropPosition = info.dropPosition; // Позиция, в которую узел был сброшен
-    const dropToGap = info.dropToGap; // true, если узел был сброшен между другими узлами
+  const handleDrop = (info: any) => {
+    const dropKey = info.node.key;
+    const dragKey = info.dragNode.key;
+    const rawDropPosition = info.dropPosition;
+    const dropToGap = info.dropToGap;
+
+    let relativeDropPosition: number;
+
+    if (dropToGap) {
+      const posArr = String(info.node.pos || '').split('-');
+      const nodeIndex = Number(posArr[posArr.length - 1]) || 0;
+      relativeDropPosition = rawDropPosition <= nodeIndex ? -1 : 1;
+    } else {
+      relativeDropPosition = 0;
+    }
+
+    let actualDropKey = dropKey;
+    let actualDropToGap = dropToGap;
+
+    if (dropToGap === false) {
+      const findNodeByKey = (nodes: TNodeItem[], key: string): TNodeItem | null => {
+        for (const node of nodes) {
+          if (node.key === key) return node;
+          if (node.children) {
+            const found = findNodeByKey(node.children, key);
+            if (found) return found;
+          }
+        }
+        return null;
+      };
+
+      const parentNode = findNodeByKey(treeData, dropKey);
+
+      if (parentNode?.children && parentNode.children.length > 0) {
+        actualDropKey = parentNode.children[0].key;
+        actualDropToGap = true;
+        relativeDropPosition = -1;
+      }
+    }
+
+    if (onDrop) {
+      const dropEvent: TDropEvent = {
+        ...info,
+        dragNode: info.dragNode,
+        dragNodesKeys: info.dragNodesKeys || [dragKey],
+        dropPosition: relativeDropPosition,
+        dropToGap: actualDropToGap
+      };
+      onDrop(dropEvent);
+    }
+
     const data = [...treeData];
+
+    const findSiblingIndex = (
+      nodes: TNodeItem[],
+      dragKey: Key,
+      targetKey: Key
+    ): { dragIndex: number; targetIndex: number; parent: TNodeItem[] } | null => {
+      for (const node of nodes) {
+        if (node.children) {
+          const dragIdx = node.children.findIndex(child => child.key === dragKey);
+          const targetIdx = node.children.findIndex(child => child.key === targetKey);
+
+          if (dragIdx !== -1 && targetIdx !== -1) {
+            return { dragIndex: dragIdx, targetIndex: targetIdx, parent: node.children };
+          }
+
+          const result = findSiblingIndex(node.children, dragKey, targetKey);
+          if (result) return result;
+        }
+      }
+      return null;
+    };
+
+    let siblingInfo = findSiblingIndex(data, dragKey, actualDropKey);
+
+    if (!siblingInfo) {
+      const findChildInParent = (
+        nodes: TNodeItem[],
+        parentKey: Key,
+        dragKey: Key
+      ): { dragIndex: number; parent: TNodeItem[] } | null => {
+        for (const node of nodes) {
+          if (node.key === parentKey && node.children) {
+            const dragIdx = node.children.findIndex(child => child.key === dragKey);
+            if (dragIdx !== -1) {
+              return { dragIndex: dragIdx, parent: node.children };
+            }
+          }
+          if (node.children) {
+            const result = findChildInParent(node.children, parentKey, dragKey);
+            if (result) return result;
+          }
+        }
+        return null;
+      };
+
+      const parentInfo = findChildInParent(data, actualDropKey, dragKey);
+      if (parentInfo) {
+        siblingInfo = {
+          dragIndex: parentInfo.dragIndex,
+          targetIndex: 0, // всегда на первое место
+          parent: parentInfo.parent
+        };
+      } else if (actualDropKey !== dropKey) {
+        const findParentAndSibling = (
+          nodes: TNodeItem[],
+          childKey: Key,
+          dragKey: Key
+        ): { dragIndex: number; parent: TNodeItem[] } | null => {
+          for (const node of nodes) {
+            if (node.children) {
+              const childExists = node.children.some(child => child.key === childKey);
+              if (childExists) {
+                const dragIdx = node.children.findIndex(child => child.key === dragKey);
+                if (dragIdx !== -1) {
+                  return { dragIndex: dragIdx, parent: node.children };
+                }
+              }
+              const result = findParentAndSibling(node.children, childKey, dragKey);
+              if (result) return result;
+            }
+          }
+          return null;
+        };
+
+        const redirectInfo = findParentAndSibling(data, actualDropKey, dragKey);
+        if (redirectInfo) {
+          siblingInfo = {
+            dragIndex: redirectInfo.dragIndex,
+            targetIndex: 0,
+            parent: redirectInfo.parent
+          };
+        }
+      }
+    }
 
     const dragNode = findAndRemoveNode(data, dragKey);
 
-    addNodeAtKey(data, dropKey, dragNode, dropPosition, dropToGap);
+    const originalDragIndex = siblingInfo?.dragIndex ?? -1;
+    addNodeAtKey(data, actualDropKey, dragNode, relativeDropPosition, actualDropToGap, originalDragIndex);
 
     setTreeData(data);
     if (onDataAfterDrag) onDataAfterDrag(data);
   };
 
   const handleDragStart = (event: TDragEvent) => {
-    setDragging(String(event.node.key))
-    onDragStart && onDragStart(event)
-  }
+    setDragging(String(event.node.key));
+    onDragStart && onDragStart(event);
+  };
 
   const handleDragEnd = (event: TDragEvent) => {
-    setDragging(null)
-    onDragEnd && onDragEnd(event)
-  }
+    setDragging(null);
+    onDragEnd && onDragEnd(event);
+  };
 
   const handleCheck = (_: TCheckedKeys, { checked, node }: { checked: boolean; node: TNodeItem }) => {
     const nodeKey = node?.key;
@@ -112,20 +244,34 @@ export const TreeListV1 = ({
     return null;
   };
 
+  const getNodeCheckState = (node: TNodeItem): boolean | null => {
+    if (!node.children || node.children.length === 0) return null;
+
+    const childStates = node.children.map(child => {
+      const isDirectlyChecked = keys.includes(child.key);
+      const childrenState = getNodeCheckState(child);
+
+      if (isDirectlyChecked || childrenState === true) return true;
+      if (childrenState === null) return null;
+      return false;
+    });
+
+    if (childStates.every(state => state === true)) return true;
+    if (childStates.every(state => state === false)) return false;
+    return null;
+  };
+
+  const hasAnyCheckedDescendant = (node: TNodeItem): boolean => {
+    if (!node.children || node.children.length === 0) return false;
+
+    return node.children.some(child => {
+      const isDirectlyChecked = keys.includes(child.key);
+      const hasCheckedChildren = hasAnyCheckedDescendant(child);
+      return isDirectlyChecked || hasCheckedChildren;
+    });
+  };
+
   const renderTitle = (node: TNodeItem) => {
-    const hasChildren = Boolean(node.children?.length);
-
-    const childrenState =
-      hasChildren && node.children
-        ? node.children.reduce(
-            (acc, child) => ({
-              checkedCount: acc.checkedCount + (keys.includes(child.key) ? 1 : 0),
-              total: acc.total + 1
-            }),
-            { checkedCount: 0, total: 0 }
-          )
-        : undefined;
-
     let isMultiple: boolean, isChecked: boolean;
 
     if (checkableSimple) {
@@ -133,17 +279,13 @@ export const TreeListV1 = ({
       isMultiple = false;
       isChecked = keys.includes(node.key);
     } else {
-      isMultiple = Boolean(
-        hasChildren &&
-          childrenState &&
-          childrenState.checkedCount > 0 &&
-          childrenState.checkedCount < childrenState.total
-      );
+      const nodeCheckState = getNodeCheckState(node);
+      const isDirectlyChecked = keys.includes(node.key);
+      const hasCheckedDescendants = hasAnyCheckedDescendant(node);
 
-      isChecked =
-        Boolean(keys.includes(node.key)) ||
-        Boolean(isMultiple) ||
-        Boolean(childrenState && childrenState.checkedCount === childrenState.total && childrenState.total > 0);
+      isMultiple = nodeCheckState === null && hasCheckedDescendants;
+
+      isChecked = isDirectlyChecked || nodeCheckState === true || isMultiple;
     }
 
     return (
@@ -151,21 +293,43 @@ export const TreeListV1 = ({
         className={clsx(
           styles['node-content'],
           dragging === node.key && styles.dragging,
+          node.disabled && styles['node-disabled'],
           node.styles?.nodeContentClassName
         )}
         style={{ ...node.styles?.nodeContentStyle }}
         data-checked={isChecked}
+        data-disabled={node.disabled}
+        data-disable-draggable={node.disableDraggable}
       >
         <div
           className={clsx(styles['node-title'], node.styles?.nodeTitleClassName)}
           style={node.styles?.nodeTitleStyle}
         >
-          {renderSwitcherIcon(node)}
+          {node.icon ? (
+            <span
+              className={styles['custom-icon']}
+              onClick={e => {
+                if (node.children && node.children.length > 0) {
+                  e.stopPropagation();
+                  handleExpand(node.key);
+                }
+              }}
+              style={{
+                cursor: node.children && node.children.length > 0 ? 'pointer' : 'default'
+              }}
+            >
+              {node.icon}
+            </span>
+          ) : (
+            renderSwitcherIcon(node)
+          )}
           {(checkable || checkableSimple) && (
             <Checkbox
               checked={isChecked}
               multiple={isMultiple}
+              disabled={node.disabled}
               onChange={() => {
+                if (node.disabled) return;
                 handleCheck(isChecked ? [] : [node.key], {
                   node,
                   checked: !isChecked
@@ -177,7 +341,7 @@ export const TreeListV1 = ({
             {typeof node.title === 'function' ? (
               node.title({ key: node.key, title: node.title })
             ) : (
-              <Typography color="var(--steel-90)" variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}>
+              <Typography color={'var(--steel-90)'} variant={TITLE_VARIANT_BY_ROW_HEIGHT[rowHeight]}>
                 {node.title}
               </Typography>
             )}
@@ -190,21 +354,58 @@ export const TreeListV1 = ({
 
   return (
     <div
-      className={clsx(styles['custom-rc-tree'], { [styles['not-selectable']]: !selectable })}
+      className={clsx(styles['custom-rc-tree'], {
+        [styles['not-selectable']]: !selectable,
+        [styles['is-dragging']]: dragging !== null
+      })}
       style={{ ['--row-height' as string]: ROW_PX_HEIGHTS[rowHeight] }}
     >
-      <Tree<TTreeItem>
-        treeData={treeData} // Данные для построения структуры дерева
-        draggable={draggable} // Включение функциональности перетаскивания узлов
-        onDrop={onDrop} // Функция-обработчик для пересоздания дерева после перетаскивания
-        checkedKeys={checkedKeys} // Ключи отмеченных (выбранных) узлов
-        titleRender={renderTitle} // Пользовательская функция для рендеринга заголовков узлов
-        switcherIcon={() => null} // Отключаем стандартные стрелки
-        checkable={false} // Отключение стандартных чекбоксов
-        selectable={false} // Отключение возможности выбора узлов
+      <Tree<TNodeItem>
+        treeData={treeData}
+        draggable={
+          draggable
+            ? (node: any) => {
+                const nodeData = node as TNodeItem;
+                return !nodeData.disabled && !nodeData.disableDraggable;
+              }
+            : false
+        }
+        onDrop={handleDrop}
+        checkedKeys={checkedKeys}
+        titleRender={renderTitle}
+        switcherIcon={() => null}
+        checkable={false}
+        selectable={false}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         expandedKeys={expandedKeys}
+        allowDrop={({ dragNode, dropNode, dropPosition }) => {
+          const dropNodeData = dropNode as any as TNodeItem;
+
+          if (dropNodeData.disabled) {
+            return false;
+          }
+
+          if (sameLevelDragOnly) {
+            const dragNodeData = dragNode as any as TNodeItem;
+
+            const dragLevel = getNodeLevel(dragNodeData.key, treeData);
+            const dropLevel = getNodeLevel(dropNodeData.key, treeData);
+
+            if (dropPosition === 0) {
+              if (!dropNodeData.children || dropNodeData.children.length === 0) {
+                return false;
+              }
+
+              const firstChildLevel = dropLevel + 1;
+              return dragLevel === firstChildLevel;
+            }
+
+            return dragLevel === dropLevel;
+          }
+
+          return true;
+        }}
       />
     </div>
   );

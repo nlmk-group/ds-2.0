@@ -23,6 +23,186 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.11 - <span className={styles.date}>20.08.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка свойства disabled для элементов списка в компонентах ComboList и
+                ComboDraggableList
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.10 - <span className={styles.date}>18.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-treelist-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TreeList
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены свойства sameLevelDragOnly и onDrop для элементов дерева
+              </li>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены свойства disabled, disableDraggable, icon для дерева
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.9 - <span className={styles.date}>30.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена возможность подсчета только листовых элементов в ComboTreeList (countOnlyLevel={-1})
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.8 - <span className={styles.date}>16.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Улучшен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Combobox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoFocusSearch для автоматического фокуса на поле поиска при открытии выпадающего
+                списка (по умолчанию false)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пропс autoExpandOnSearch для автоматического раскрытия дерева элементов при поиске (по
+                умолчанию false)
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-breadcrumbs-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Breadcrumbs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема с некликабельными ссылками в выпадающем списке хлебных крошек
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.7 - <span className={styles.date}>09.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: FileDOCX, FilePDF, FileXLS, FileNoType, FileZIP, FilePPT,
+                PerformanceManagement, DataGovernance
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.25.6 - <span className={styles.date}>02.07.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено полное наследование всех пропсов от компонента Input для максимальной совместимости
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен пропс inputStyle для стилизации внутреннего Input компонента
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-illustration-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Illustration
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены fallback hex значения в SVG иллюстрации для корректного отображения при отсутствии CSS
+                переменных
+              </li>
+              <li className={styles['left-padding']}>
+                - Обновлены названия историй в Storybook с указанием размеров в скобочках для лучшей навигации
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Добавлен пропс valueSuffix для контроля отображения суффикса</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.5 - <span className={styles.date}>24.06.25</span>
           </Typography>
           <ul className={styles.list}>

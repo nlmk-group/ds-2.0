@@ -23,6 +23,28 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.11 - <span className={styles.date}>20.08.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка свойства disabled для элементов списка в компонентах ComboList и
+                ComboDraggableList
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.10 - <span className={styles.date}>18.07.25</span>
           </Typography>
           <ul className={styles.list}>

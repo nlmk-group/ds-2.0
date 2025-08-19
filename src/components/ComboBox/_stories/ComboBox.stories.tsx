@@ -28,7 +28,7 @@ const simpleOptions: IComboBoxOption[] = [
   { id: '2', label: 'Сталь легированная' },
   { id: '3', label: 'Чугун серый' },
   { id: '4', label: 'Чугун ковкий' },
-  { id: '5', label: 'Алюминиевые сплавы' },
+  { id: '5', label: 'Алюминиевые сплавы', disabled: true },
   { id: '6', label: 'Медные сплавы' }
 ];
 

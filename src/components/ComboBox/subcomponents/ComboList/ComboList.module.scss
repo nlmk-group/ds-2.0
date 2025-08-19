@@ -26,6 +26,11 @@
   }
 }
 
+.listItemDisabled {
+  background-color: var(--steel-10);
+  opacity: 0.5;
+}
+
 .listItemLabel {
   line-height: 24px;
   margin: 0;

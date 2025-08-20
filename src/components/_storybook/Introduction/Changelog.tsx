@@ -23,6 +23,41 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.12 - <span className={styles.date}>20.08.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка HTML атрибута required для валидации форм
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-drawer-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Drawer
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена проблема с закрытием панели при клике на интерактивные элементы внутри drawer
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.11 - <span className={styles.date}>20.08.25</span>
           </Typography>
           <ul className={styles.list}>

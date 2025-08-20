@@ -228,6 +228,11 @@ export interface ISelectProps {
    * Состояние загрузки опций
    */
   isLoading?: boolean;
+
+  /**
+   * HTML атрибут required
+   */
+  required?: boolean;
 }
 
 export interface IStealthyItem {

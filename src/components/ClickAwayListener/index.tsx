@@ -2,7 +2,6 @@ import React, { FC, useEffect, useRef } from 'react';
 
 import { EClickAwayEvent, IClickAwayListenerProps } from '@components/ClickAwayListener/types';
 
-
 /**
  * Компонент, который отслеживает клики вне своего DOM-элемента и дочерних элементов.
  * Вызывает callback `onClickAway` при клике снаружи, исключая элементы, указанные в `excludeRef`.

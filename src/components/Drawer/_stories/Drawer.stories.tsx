@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 
-import { Avatar, Box, Button, Divider, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
+import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 

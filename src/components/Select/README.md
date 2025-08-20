@@ -74,6 +74,7 @@ import { Select } from '@nlmk/ds-2.0';
 | onSearch | function | - | Callback для асинхронного поиска по опциям |
 | multilineOption | boolean | false | Разрешить многострочное отображение опций |
 | listMinWidth | number | - | Минимальная ширина выпадающего списка |
+| required | boolean | false | HTML атрибут required |
 
 ## Примеры
 

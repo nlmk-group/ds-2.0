@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { EButtonSize } from '@components/Button/enums';
 import { EClickAwayEvent } from '@components/ClickAwayListener/types';
-import { Button, ClickAwayListener, IconCloseOutlined24 } from '@components/index';
+import { Button, IconCloseOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
 import { IDrawerProps } from './types';
@@ -26,7 +26,7 @@ import { EDrawerPosition } from './enums';
  * @param {boolean} [props.disableBackdropClick=false] - Отключает закрытие панели по клику вне её области.
  * @param {boolean} [props.isViewCloseButton=true] - Отображает кнопку закрытия.
  * @param {boolean} [props.overlay=true] - Отображает оверлей.
- * @param {TClickAwayEvent} [props.clickAwayEventType=EClickAwayEvent.mousedown] - Тип события для закрытия панели при клике вне её области.
+ * @param {TClickAwayEvent} [props.clickAwayEventType=EClickAwayEvent.click] - Тип события для закрытия панели при клике вне её области.
  * @returns {ReactElement | null} Компонент Drawer.
  */
 
@@ -44,9 +44,16 @@ const Drawer: FC<IDrawerProps> = ({
   overlay = true,
   clickAwayEventType = EClickAwayEvent.click
 }) => {
-  const drawerRef = useRef<HTMLDivElement>(null);
   const [isClosing, setIsClosing] = useState(false);
   const justOpenedRef = useRef(false);
+
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose();
+    }, 300);
+  }, [onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -54,7 +61,7 @@ const Drawer: FC<IDrawerProps> = ({
 
       const timeoutId = setTimeout(() => {
         justOpenedRef.current = false;
-      }, 100);
+      }, 300);
 
       return () => clearTimeout(timeoutId);
     }
@@ -74,24 +81,7 @@ const Drawer: FC<IDrawerProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, isClosing]);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 300);
-  };
-
-  const handleClickAway = () => {
-    if (clickAwayEventType === EClickAwayEvent.click && justOpenedRef.current) {
-      return;
-    }
-
-    if (disableBackdropClick) return;
-    handleClose();
-  };
+  }, [isOpen, isClosing, handleClose]);
 
   if (!isOpen && !isClosing) return null;
 
@@ -104,30 +94,35 @@ const Drawer: FC<IDrawerProps> = ({
     bottom: position === EDrawerPosition.bottom ? `calc(${height} + 16px)` : 'auto'
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      if (clickAwayEventType === EClickAwayEvent.click && justOpenedRef.current) {
+        return;
+      }
+      if (disableBackdropClick) return;
+      handleClose();
+    }
+  };
+
   return (
     <div
       className={clsx(styles.drawerOverlay, styles[position], overlayClassName, {
         [styles.fadeOut]: isClosing,
         [styles.drawerOverlayBackdrop]: !overlay
       })}
+      onClick={handleBackdropClick}
       data-ui-drawer
       data-testid="DRAWER"
     >
-      <ClickAwayListener
-        eventType={clickAwayEventType}
+      <div
         className={clsx(styles.wrapper, styles[position], {
           [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
           [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,
           [styles.slideOutTop]: isClosing && position === EDrawerPosition.top,
           [styles.slideOutBottom]: isClosing && position === EDrawerPosition.bottom
         })}
-        onClickAway={handleClickAway}
       >
-        <div
-          ref={drawerRef}
-          className={clsx(styles.drawer, styles[position], className)}
-          style={isHorizontal ? { width } : { height }}
-        >
+        <div className={clsx(styles.drawer, styles[position], className)} style={isHorizontal ? { width } : { height }}>
           <div className={clsx(styles.drawerContent, styles[position])} data-ui-drawer-content>
             {children}
           </div>
@@ -136,11 +131,7 @@ const Drawer: FC<IDrawerProps> = ({
           <div className={clsx(styles.close, styles[position])}>
             <Button
               type="button"
-              iconButton={
-                <IconCloseOutlined24
-                  htmlColor={overlay ? 'var(--unique-white)' : 'var(--steel-90)'}
-                />
-              }
+              iconButton={<IconCloseOutlined24 htmlColor={overlay ? 'var(--unique-white)' : 'var(--steel-90)'} />}
               color="ghost"
               variant="secondary"
               className={clsx(styles.drawerClose, styles[position])}
@@ -152,7 +143,7 @@ const Drawer: FC<IDrawerProps> = ({
             />
           </div>
         )}
-      </ClickAwayListener>
+      </div>
     </div>
   );
 };

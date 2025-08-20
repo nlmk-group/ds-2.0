@@ -67,7 +67,8 @@ const Select: FC<ISelectProps> = ({
   isClearInputOnSelect = false,
   onOpen,
   onSearch,
-  isLoading = false
+  isLoading = false,
+  required = false
 }) => {
   const [loading, setLoading] = useState(isLoading);
   const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
@@ -343,6 +344,7 @@ const Select: FC<ISelectProps> = ({
             onKeyDown={handleKeyDown}
             icon={<SelectButton isOpen={isOpen} disabled={disabled} color={color} toggleDropdown={toggleDropdown} />}
             color={color}
+            required={required}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

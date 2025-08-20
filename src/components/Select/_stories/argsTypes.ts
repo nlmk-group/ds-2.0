@@ -164,5 +164,9 @@ export const argsTypes = {
   onSearch: {
     description: 'Callback при вводе текста в поиск для асинхронной фильтрации',
     action: 'поиск опций'
+  },
+  required: {
+    description: 'HTML атрибут required',
+    control: { type: 'boolean' }
   }
 };

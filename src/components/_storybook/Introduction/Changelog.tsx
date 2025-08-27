@@ -118,7 +118,6 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Добавлены свойства sameLevelDragOnly и onDrop для элементов дерева
               </li>
-              .
               <li className={styles['left-padding']}>
                 - Добавлены свойства disabled, disableDraggable, icon для дерева
               </li>
@@ -662,7 +661,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Исправлена логика работы свойства initialValue</li>
             </li>
             <li>
-              . • Обновлен компонент{' '}
+              • Обновлен компонент{' '}
               <Link
                 href="./?path=/story/components-icon-stories--icon-unit-component"
                 target="blank"

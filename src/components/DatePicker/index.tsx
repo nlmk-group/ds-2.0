@@ -210,28 +210,20 @@ export const DatePicker: TDatePickerProps = ({
         setToggle(s => !s);
       } else if (outerOnChange) {
         if (date && date instanceof Date && !isNaN(date.getTime())) {
-          // При валидной дате - всегда обновляем внутреннее состояние
           innerOnChange(date);
-          // При blur с disableChangesOnBlur=true НЕ вызываем внешний onChange
           if (!(isBlur && disableChangesOnBlur) && outerOnChange) {
             outerOnChange(date);
           }
         } else if (date === null || date === undefined) {
           if (isBlur) {
-            // При BLUR с пустым полем
             if (disableChangesOnBlur) {
-              // При disableChangesOnBlur=true - НЕ меняем состояние, оставляем как есть
-              // Поле визуально останется с введенным значением
             } else {
-              // При disableChangesOnBlur=false - сбрасываем состояние
               innerOnChange(undefined);
               if (outerOnChange) {
                 outerOnChange(undefined as any);
               }
             }
           } else {
-            // При ENTER/TAB с пустым полем - НЕ вызываем onChange (как раньше)
-            // Только сбрасываем внутреннее состояние для визуальной очистки
             innerOnChange(undefined);
           }
         }

@@ -542,10 +542,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }}
         onBlur={() => {
           if (disableChangesOnBlur) {
-            // При disableChangesOnBlur=true - принудительно восстанавливаем поле к текущему value
-            // Используем ту же логику, что и в useEffect для форматирования
             setTimeout(() => {
-              // Используем setTimeout чтобы восстановление произошло после обработки blur
               if (!withPeriod) {
                 if (!value) {
                   setInnerMaskedValue('');
@@ -573,7 +570,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
               }
             }, 0);
           } else {
-            // При disableChangesOnBlur=false - очищаем поле если нет значения (старая логика)
             if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
               setInnerMaskedValue('');
             }

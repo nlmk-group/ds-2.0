@@ -76,6 +76,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       level,
       isOpenOnFocus,
       isHideYear,
+      disableChangesOnBlur,
       reset,
       onReset,
       error,
@@ -540,9 +541,44 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           onInputFocus();
         }}
         onBlur={() => {
-          if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
-            setInnerMaskedValue('');
+          if (disableChangesOnBlur) {
+            // При disableChangesOnBlur=true - принудительно восстанавливаем поле к текущему value
+            // Используем ту же логику, что и в useEffect для форматирования
+            setTimeout(() => {
+              // Используем setTimeout чтобы восстановление произошло после обработки blur
+              if (!withPeriod) {
+                if (!value) {
+                  setInnerMaskedValue('');
+                } else {
+                  if (level === LEVEL_MAPPING_ENUM.month || level === LEVEL_MAPPING_ENUM.year) {
+                    const dateFormat = dateFormatByLevel[level];
+                    setInnerMaskedValue(format(value, dateFormat));
+                  } else if (level === LEVEL_MAPPING_ENUM.quarter) {
+                    const quarter = Math.floor((value.getMonth() + 3) / 3);
+                    const year = value.getFullYear();
+                    setInnerMaskedValue(`${quarter} квартал ${year}`);
+                  } else {
+                    const dateFormatMask = isHideYear ? dateFormatWithoutYear : dateFormat;
+                    const dateTimeFormatMask = isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat;
+                    const dateTimeSecondsFormatMask = isHideYear
+                      ? dateTimeSecondsFormatWithoutYear
+                      : dateTimeSecondsFormat;
+                    const withSecondsCondition = () => {
+                      return withSeconds ? dateTimeSecondsFormatMask : dateTimeFormatMask;
+                    };
+                    const defaultFormat = showTime ? withSecondsCondition() : dateFormatMask;
+                    setInnerMaskedValue(format(value, defaultFormat));
+                  }
+                }
+              }
+            }, 0);
+          } else {
+            // При disableChangesOnBlur=false - очищаем поле если нет значения (старая логика)
+            if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
+              setInnerMaskedValue('');
+            }
           }
+
           if (onBlur) {
             onBlur(...applyIfEnabled(...computeNewDate()));
           }

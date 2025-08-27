@@ -108,8 +108,8 @@ export const DatePicker: TDatePickerProps = ({
   const [isOpen, setOpen] = useState(false);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [calendarElement, setCalendarElement] = useState<null | HTMLDivElement>(null);
-  const calendarRef = useRef<null | HTMLDivElement>(null)
-  const [toggle, setToggle] = useState(false);
+  const calendarRef = useRef<null | HTMLDivElement>(null);
+  const [_toggle, setToggle] = useState(false);
 
   id = useMemo(() => `DatePicker-${id?.toString() ?? performance.now().toString().split('.').join('')}`, [id]);
 
@@ -171,7 +171,7 @@ export const DatePicker: TDatePickerProps = ({
 
   const outerValue = useMemo(() => {
     return value && new Date(value);
-  }, [value, toggle]);
+  }, [value, _toggle]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -192,7 +192,7 @@ export const DatePicker: TDatePickerProps = ({
     if (calendarElement) {
       calendarRef.current = calendarElement;
     }
-  }, [calendarElement])
+  }, [calendarElement]);
 
   const { styles: popperStyles, attributes } = usePopper(inputRef, calendarElement, {
     placement: 'bottom-start'
@@ -200,9 +200,6 @@ export const DatePicker: TDatePickerProps = ({
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any, shiftFrom: any, shiftTo: any) => {
-      if (isOpen && isBlur) {
-        return;
-      }
       inputRef?.blur();
       if (withPeriod && onPeriodChange) {
         if (withShift) {
@@ -211,12 +208,47 @@ export const DatePicker: TDatePickerProps = ({
           onPeriodChange(date || undefined, date2 || undefined);
         }
         setToggle(s => !s);
-      } else if (onChange) {
-        onChange(date);
+      } else if (outerOnChange) {
+        if (date && date instanceof Date && !isNaN(date.getTime())) {
+          // При валидной дате - всегда обновляем внутреннее состояние
+          innerOnChange(date);
+          // При blur с disableChangesOnBlur=true НЕ вызываем внешний onChange
+          if (!(isBlur && disableChangesOnBlur) && outerOnChange) {
+            outerOnChange(date);
+          }
+        } else if (date === null || date === undefined) {
+          if (isBlur) {
+            // При BLUR с пустым полем
+            if (disableChangesOnBlur) {
+              // При disableChangesOnBlur=true - НЕ меняем состояние, оставляем как есть
+              // Поле визуально останется с введенным значением
+            } else {
+              // При disableChangesOnBlur=false - сбрасываем состояние
+              innerOnChange(undefined);
+              if (outerOnChange) {
+                outerOnChange(undefined as any);
+              }
+            }
+          } else {
+            // При ENTER/TAB с пустым полем - НЕ вызываем onChange (как раньше)
+            // Только сбрасываем внутреннее состояние для визуальной очистки
+            innerOnChange(undefined);
+          }
+        }
       }
       setOpen(false);
     },
-    [inputRef, isOpen, onChange, onPeriodChange, withPeriod, withShift]
+    [
+      inputRef,
+      isOpen,
+      onChange,
+      onPeriodChange,
+      withPeriod,
+      withShift,
+      disableChangesOnBlur,
+      innerOnChange,
+      outerOnChange
+    ]
   );
 
   const handleFocus = useCallback(() => {
@@ -224,10 +256,13 @@ export const DatePicker: TDatePickerProps = ({
     setOpen(true);
   }, [restInputProps.onFocus]);
 
-  const handleBlur = useCallback(() => {
-    restInputProps.onBlur?.();
-    handleSetValues(true);
-  }, [restInputProps.onBlur, handleSetValues]);
+  const handleBlur = useCallback(
+    (date?: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => {
+      restInputProps.onBlur?.();
+      handleSetValues(true)(date, date2, shiftFrom, shiftTo);
+    },
+    [restInputProps.onBlur, handleSetValues]
+  );
 
   const renderCalendarPanel = () => (
     <CalendarPanel
@@ -317,6 +352,7 @@ export const DatePicker: TDatePickerProps = ({
         reset={reset}
         onReset={onReset}
         isHideYear={isHideYear}
+        disableChangesOnBlur={disableChangesOnBlur}
         error={error}
         helperText={helperText}
         {...restInputProps}
@@ -338,9 +374,11 @@ export const DatePicker: TDatePickerProps = ({
       {pseudo ? (
         <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
       ) : (
-        (isOpenOnFocus && <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>{renderDatepicker()}</ClickAwayListener>) || (
-          <>{renderDatepicker()}</>
-        )
+        (isOpenOnFocus && (
+          <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>
+            {renderDatepicker()}
+          </ClickAwayListener>
+        )) || <>{renderDatepicker()}</>
       )}
     </LocaleProvider>
   );

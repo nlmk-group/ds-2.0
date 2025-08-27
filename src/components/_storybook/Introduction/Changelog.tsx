@@ -26,6 +26,20 @@ export const Changelog = () => {
             v2.25.13 - <span className={styles.date}>26.08.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Datepicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена логика работы с датой при потере фокуса на поле ввода компонента
+              </li>
+            </li>
             <li>• Расширен экспорт типов из индекса пакета.</li>
           </ul>
         </div>

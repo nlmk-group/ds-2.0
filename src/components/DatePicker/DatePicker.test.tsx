@@ -5,20 +5,19 @@ import userEvent from '@testing-library/user-event';
 
 import DatePicker from './index';
 
-// Мокаем date-fns для стабильности тестов
+// Мока date-fns для стабильности тестов
 jest.mock('date-fns', () => ({
   ...jest.requireActual('date-fns'),
   isValid: (date: any) => date instanceof Date && !isNaN(date.getTime()),
   parse: (dateString: string, _format: string, _referenceDate: Date) => {
-    // Простая имитация парсинга даты в формате dd.MM.yyyy
     const parts = dateString.split('.');
     if (parts.length === 3) {
       const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1; // месяцы в JS начинаются с 0
+      const month = parseInt(parts[1], 10) - 1;
       const year = parseInt(parts[2], 10);
       return new Date(year, month, day);
     }
-    return new Date(NaN); // невалидная дата
+    return new Date(NaN);
   }
 }));
 
@@ -46,7 +45,7 @@ describe('src/components/DatePicker', () => {
     it('вызывает onChange при blur с ручно введенной датой когда disableChangesOnBlur=false', async () => {
       const mockOnChange = jest.fn();
       const mockOnBlur = jest.fn();
-      const initialDate = new Date(2024, 0, 1); // 1 января 2024
+      const initialDate = new Date(2024, 0, 1);
 
       render(
         <DatePicker
@@ -202,7 +201,7 @@ describe('src/components/DatePicker', () => {
         const newDate = lastCall[0];
         expect(newDate).toBeInstanceOf(Date);
         expect(newDate.getDate()).toBe(20);
-        expect(newDate.getMonth()).toBe(7); // август = 7
+        expect(newDate.getMonth()).toBe(7);
         expect(newDate.getFullYear()).toBe(2024);
       });
     });
@@ -232,7 +231,7 @@ describe('src/components/DatePicker', () => {
     it('работает с type="time" как в примере пользователя', async () => {
       const mockOnChange = jest.fn();
       const mockOnBlur = jest.fn();
-      const initialDate = new Date(2024, 0, 1, 10, 30); // 1 января 2024, 10:30
+      const initialDate = new Date(2024, 0, 1, 10, 30);
 
       render(
         <DatePicker
@@ -271,7 +270,7 @@ describe('src/components/DatePicker', () => {
         const newDate = lastCall[0];
         expect(newDate).toBeInstanceOf(Date);
         expect(newDate.getDate()).toBe(15);
-        expect(newDate.getMonth()).toBe(11); // декабрь
+        expect(newDate.getMonth()).toBe(11);
         expect(newDate.getFullYear()).toBe(2024);
         expect(newDate.getHours()).toBe(14);
         expect(newDate.getMinutes()).toBe(45);
@@ -280,7 +279,7 @@ describe('src/components/DatePicker', () => {
 
     it('корректно обрабатывает enabledFrom и enabledHourFrom', () => {
       const mockOnChange = jest.fn();
-      const enabledHourFrom = jest.fn().mockReturnValue(8); // минимальный час = 8
+      const enabledHourFrom = jest.fn().mockReturnValue(8);
       const enabledFrom = new Date(); // сегодня
 
       render(

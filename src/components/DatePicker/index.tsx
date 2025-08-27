@@ -200,7 +200,12 @@ export const DatePicker: TDatePickerProps = ({
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any, shiftFrom: any, shiftTo: any) => {
+      if (isBlur && disableChangesOnBlur) {
+        return;
+      }
+
       inputRef?.blur();
+
       if (withPeriod && onPeriodChange) {
         if (withShift) {
           onPeriodChange(date || undefined, date2 || undefined, shiftFrom || undefined, shiftTo || undefined);
@@ -211,36 +216,16 @@ export const DatePicker: TDatePickerProps = ({
       } else if (outerOnChange) {
         if (date && date instanceof Date && !isNaN(date.getTime())) {
           innerOnChange(date);
-          if (!(isBlur && disableChangesOnBlur) && outerOnChange) {
-            outerOnChange(date);
-          }
-        } else if (date === null || date === undefined) {
-          if (isBlur) {
-            if (disableChangesOnBlur) {
-            } else {
-              innerOnChange(undefined);
-              if (outerOnChange) {
-                outerOnChange(undefined as any);
-              }
-            }
-          } else {
-            innerOnChange(undefined);
-          }
+          outerOnChange(date);
+        }
+        else if (date === null || date === undefined) {
+          innerOnChange(undefined);
+          outerOnChange(undefined as any);
         }
       }
       setOpen(false);
     },
-    [
-      inputRef,
-      isOpen,
-      onChange,
-      onPeriodChange,
-      withPeriod,
-      withShift,
-      disableChangesOnBlur,
-      innerOnChange,
-      outerOnChange
-    ]
+    [inputRef, onPeriodChange, withPeriod, withShift, disableChangesOnBlur, innerOnChange, outerOnChange]
   );
 
   const handleFocus = useCallback(() => {

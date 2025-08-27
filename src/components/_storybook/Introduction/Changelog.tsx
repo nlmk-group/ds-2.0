@@ -23,6 +23,14 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.13 - <span className={styles.date}>26.08.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Расширен экспорт типов из индекса пакета.</li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.12 - <span className={styles.date}>20.08.25</span>
           </Typography>
           <ul className={styles.list}>

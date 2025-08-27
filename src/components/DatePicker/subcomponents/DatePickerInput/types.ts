@@ -32,6 +32,7 @@ export interface IDatePickerInputSpecificProps {
   level: TLevel;
   isOpenOnFocus?: boolean;
   isHideYear?: boolean;
+  disableChangesOnBlur?: boolean;
   error?: boolean;
 }
 

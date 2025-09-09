@@ -32,3 +32,8 @@ tokens.json
 # JSON
 tokens.json
 typographyTokens.json
+
+# Builder.io
+builder/temp/
+.builderio.local
+*.builderio.cache

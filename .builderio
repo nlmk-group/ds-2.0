@@ -1,0 +1,24 @@
+{
+  "spaceId": "1665fa31072f4506a1109bb690a33967",
+  "componentsPath": "./src/components",
+  "mappersPath": "./builder/mappers",
+  "configPath": "./builder.config.js",
+  "designSystem": {
+    "name": "@nlmk/ds-2.0",
+    "version": "2.25.13",
+    "description": "Дизайн-система NLMK версии 2.0"
+  },
+  "typescript": {
+    "enabled": true,
+    "configPath": "./tsconfig.json"
+  },
+  "build": {
+    "outDir": "./lib",
+    "format": "esm"
+  },
+  "figma": {
+    "autoSync": true,
+    "preserveMetadata": true,
+    "componentPrefix": "DS/"
+  }
+}

@@ -694,3 +694,59 @@ export const MultiAsyncSelectWithSearch = (): JSX.Element => {
   );
 };
 MultiAsyncSelectWithSearch.storyName = 'Select с поиском, множественным выбором и асинхронной загрузкой';
+
+export const SelectWithReset = (argTypes: ISelectProps): JSX.Element => {
+  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const [selected, setSelected] = useState<TSelected>('banana');
+  const [selectedMultiple, setSelectedMultiple] = useState<TSelected>(['banana', 'date']);
+  
+  console.log('📖 SelectWithReset story:', {
+    ignoredOptions: ignoredOptions?.slice(0, 3),
+    actualOptions: options.slice(0, 3),
+    selected,
+    selectedMultiple,
+    otherArgs: Object.keys(otherArgs)
+  });
+
+  return (
+    <div style={{ padding: '50px' }}>
+      <div style={{ marginBottom: '30px' }}>
+        <Typography variant="Heading4" style={{ marginBottom: '10px' }}>
+          Одиночный выбор с кнопкой сброса (предвыбрано: Banana)
+        </Typography>
+        <Select
+          options={options}
+          label="Выберите опцию"
+          selected={selected}
+          onSelectionChange={setSelected}
+          reset={true}
+          {...otherArgs}
+        />
+        <Typography variant="Body2-Medium" style={{ marginTop: '10px', color: 'var(--steel-70)' }}>
+          Текущее значение: {selected || 'не выбрано'}
+        </Typography>
+      </div>
+      
+      <div>
+        <Typography variant="Heading4" style={{ marginBottom: '10px' }}>
+          Множественный выбор с кнопкой сброса (предвыбрано: Banana, Date)
+        </Typography>
+        <Select
+          options={options}
+          label="Выберите несколько опций"
+          multiple={true}
+          selected={selectedMultiple}
+          onSelectionChange={setSelectedMultiple}
+          reset={true}
+          {...otherArgs}
+        />
+        <Typography variant="Body2-Medium" style={{ marginTop: '10px', color: 'var(--steel-70)' }}>
+          Текущие значения: {Array.isArray(selectedMultiple) && selectedMultiple.length > 0 
+            ? selectedMultiple.join(', ') 
+            : 'не выбрано'}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+SelectWithReset.storyName = 'Select с кнопкой сброса';

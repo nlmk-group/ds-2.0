@@ -85,6 +85,16 @@ const Input: FC<TInputProps> = ({
   const colorClassName = styles[color];
   const isResetIconVisible = reset && onReset && value && value.length > 0 && !disabled && !resize;
   const isCustomIconVisible = icon && !multiline;
+  
+  console.log('🔍 Input reset logic:', {
+    reset,
+    hasOnReset: !!onReset,
+    value,
+    valueLength: value?.length,
+    disabled,
+    resize,
+    isResetIconVisible
+  });
 
   const hasBothIcons = isResetIconVisible && isCustomIconVisible;
   const hasIcon = isCustomIconVisible;

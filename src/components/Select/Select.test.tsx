@@ -37,6 +37,45 @@ describe('Select Component', () => {
     });
   });
 
+  test('shows reset button when reset prop is true and value is selected', async () => {
+    const mockOnSelectionChange = jest.fn();
+    render(
+      <Select
+        options={options}
+        label="Select Label"
+        selected="1"
+        onSelectionChange={mockOnSelectionChange}
+        reset={true}
+      />
+    );
+
+    const resetIcon = screen.getByTestId('RESET_ICON');
+    expect(resetIcon).toBeInTheDocument();
+
+    fireEvent.click(resetIcon);
+    expect(mockOnSelectionChange).toHaveBeenCalledWith('');
+  });
+
+  test('resets multiple selection when reset button is clicked', async () => {
+    const mockOnSelectionChange = jest.fn();
+    render(
+      <Select
+        options={options}
+        label="Select Label"
+        selected={['1', '2']}
+        onSelectionChange={mockOnSelectionChange}
+        multiple={true}
+        reset={true}
+      />
+    );
+
+    const resetIcon = screen.getByTestId('RESET_ICON');
+    expect(resetIcon).toBeInTheDocument();
+
+    fireEvent.click(resetIcon);
+    expect(mockOnSelectionChange).toHaveBeenCalledWith([]);
+  });
+
   test('closes the options list when an option is clicked', async () => {
     render(
       <Select

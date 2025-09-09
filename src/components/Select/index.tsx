@@ -68,7 +68,8 @@ const Select: FC<ISelectProps> = ({
   onOpen,
   onSearch,
   isLoading = false,
-  required = false
+  required = false,
+  reset = false
 }) => {
   const [loading, setLoading] = useState(isLoading);
   const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
@@ -107,16 +108,28 @@ const Select: FC<ISelectProps> = ({
 
   const generateDisplayValue = (): string => {
     const optionsToUse = asyncOptions || options;
+    console.log('🔍 generateDisplayValue:', {
+      optionsToUse: optionsToUse?.map(o => ({ value: o.value, label: getLabel(o.label) })),
+      selected,
+      multiple
+    });
+    
     if (!optionsToUse) return '';
 
     if (multiple) {
-      return optionsToUse
-        .filter((option: ISelectOption) => selected?.includes(option.value))
+      const filteredOptions = optionsToUse
+        .filter((option: ISelectOption) => selected?.includes(option.value));
+      console.log('🔍 multiple filteredOptions:', filteredOptions.map(o => ({ value: o.value, label: getLabel(o.label) })));
+      
+      return filteredOptions
         .map((option: ISelectOption) => getLabel(option.label))
         .join(', ');
     }
 
-    return getLabel(optionsToUse?.find((option: ISelectOption) => option.value === selected)?.label || '');
+    const foundOption = optionsToUse?.find((option: ISelectOption) => option.value === selected);
+    console.log('🔍 single foundOption:', foundOption ? { value: foundOption.value, label: getLabel(foundOption.label) } : null);
+    
+    return getLabel(foundOption?.label || '');
   };
 
   const handleOutsideClick = () => {
@@ -253,6 +266,16 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
+  const handleReset = () => {
+    console.log('🔄 handleReset called:', { multiple, currentSelected: selected });
+    if (multiple) {
+      onSelectionChange([]);
+    } else {
+      onSelectionChange('');
+    }
+    setSearchTerm('');
+  };
+
   const sharedProps = {
     multiple,
     withoutCheckbox,
@@ -345,6 +368,8 @@ const Select: FC<ISelectProps> = ({
             icon={<SelectButton isOpen={isOpen} disabled={disabled} color={color} toggleDropdown={toggleDropdown} />}
             color={color}
             required={required}
+            reset={reset}
+            onReset={handleReset}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

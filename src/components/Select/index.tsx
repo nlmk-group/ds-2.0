@@ -266,10 +266,6 @@ const Select: FC<ISelectProps> = ({
     setSearchTerm('');
   };
 
-  const handleInputReset = () => {
-    handleReset();
-  };
-
   const sharedProps = {
     multiple,
     withoutCheckbox,
@@ -363,7 +359,7 @@ const Select: FC<ISelectProps> = ({
             color={color}
             required={required}
             reset={reset}
-            onReset={handleInputReset}
+            onReset={handleReset}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

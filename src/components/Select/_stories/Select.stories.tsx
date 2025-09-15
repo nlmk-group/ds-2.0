@@ -10,12 +10,7 @@ import style from '../Select.module.scss';
 import styles from './Select.module.scss';
 
 import { getLabel } from '../helpers';
-import {
-  options,
-  optionsWithIcons,
-  optionsWithSubLabel,
-  optionWithColorfulIcons
-} from './mocks';
+import { options, optionsWithIcons, optionsWithSubLabel, optionWithColorfulIcons } from './mocks';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -696,17 +691,9 @@ export const MultiAsyncSelectWithSearch = (): JSX.Element => {
 MultiAsyncSelectWithSearch.storyName = 'Select с поиском, множественным выбором и асинхронной загрузкой';
 
 export const SelectWithReset = (argTypes: ISelectProps): JSX.Element => {
-  const { options: ignoredOptions, onReset: ignoredOnReset, ...otherArgs } = argTypes;
+  const { options: ignoredOptions, ...otherArgs } = argTypes;
   const [selected, setSelected] = useState<TSelected>('');
   const [selectedMultiple, setSelectedMultiple] = useState<TSelected>([]);
-
-  const handleResetSingle = () => {
-    setSelected('');
-  };
-
-  const handleResetMultiple = () => {
-    setSelectedMultiple([]);
-  };
 
   const handleSelectionChangeSingle = (value: TSelected) => {
     setSelected(value);
@@ -728,7 +715,6 @@ export const SelectWithReset = (argTypes: ISelectProps): JSX.Element => {
           selected={selected}
           onSelectionChange={handleSelectionChangeSingle}
           reset={true}
-          onReset={handleResetSingle}
         />
       </div>
 
@@ -743,7 +729,6 @@ export const SelectWithReset = (argTypes: ISelectProps): JSX.Element => {
           selected={selectedMultiple}
           onSelectionChange={handleSelectionChangeMultiple}
           reset={true}
-          onReset={handleResetMultiple}
         />
       </div>
     </div>

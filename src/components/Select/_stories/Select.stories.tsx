@@ -10,12 +10,7 @@ import style from '../Select.module.scss';
 import styles from './Select.module.scss';
 
 import { getLabel } from '../helpers';
-import {
-  options,
-  optionsWithIcons, // optionsWithNesting,
-  optionsWithSubLabel,
-  optionWithColorfulIcons
-} from './mocks';
+import { options, optionsWithIcons, optionsWithSubLabel, optionWithColorfulIcons } from './mocks';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
@@ -694,3 +689,49 @@ export const MultiAsyncSelectWithSearch = (): JSX.Element => {
   );
 };
 MultiAsyncSelectWithSearch.storyName = 'Select с поиском, множественным выбором и асинхронной загрузкой';
+
+export const SelectWithReset = (argTypes: ISelectProps): JSX.Element => {
+  const { options: ignoredOptions, ...otherArgs } = argTypes;
+  const [selected, setSelected] = useState<TSelected>('');
+  const [selectedMultiple, setSelectedMultiple] = useState<TSelected>([]);
+
+  const handleSelectionChangeSingle = (value: TSelected) => {
+    setSelected(value);
+  };
+
+  const handleSelectionChangeMultiple = (value: TSelected) => {
+    setSelectedMultiple(value);
+  };
+
+  return (
+    <div style={{ padding: '50px' }}>
+      <div style={{ marginBottom: '30px' }}>
+        <Typography variant="Heading4" style={{ marginBottom: '10px' }}>
+          Одиночный выбор с кнопкой сброса
+        </Typography>
+        <Select
+          options={options}
+          label="Выберите опцию"
+          selected={selected}
+          onSelectionChange={handleSelectionChangeSingle}
+          reset={true}
+        />
+      </div>
+
+      <div>
+        <Typography variant="Heading4" style={{ marginBottom: '10px' }}>
+          Множественный выбор с кнопкой сброса
+        </Typography>
+        <Select
+          options={options}
+          label="Выберите несколько опций"
+          multiple={true}
+          selected={selectedMultiple}
+          onSelectionChange={handleSelectionChangeMultiple}
+          reset={true}
+        />
+      </div>
+    </div>
+  );
+};
+SelectWithReset.storyName = 'Select с кнопкой сброса';

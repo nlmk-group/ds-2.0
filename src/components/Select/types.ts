@@ -233,6 +233,11 @@ export interface ISelectProps {
    * HTML атрибут required
    */
   required?: boolean;
+
+  /**
+   * Флаг наличия кнопки сброса
+   */
+  reset?: boolean;
 }
 
 export interface IStealthyItem {

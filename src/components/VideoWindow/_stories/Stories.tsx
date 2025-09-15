@@ -19,8 +19,8 @@ const VideoWindowStories = (): JSX.Element => {
   const videoWindowDefaultCode = `import React, { useState } from 'react';
 import { VideoWindow } from '@nlmk/ds-2.0';
 
-  export default App = () => {
-    const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
+const App = () => {
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
     
     return (
       <div style={{display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center'}}>
@@ -39,7 +39,9 @@ import { VideoWindow } from '@nlmk/ds-2.0';
         )}
       </div>
     );
-  };`;
+  };
+
+export default App;`;
 
   return (
     <div className={styles.wrapper}>

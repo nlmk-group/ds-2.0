@@ -17,7 +17,8 @@ const FIGMA_LINK =
 const TreeListStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const treeListDefaultCode = `import { TreeList, IconFolderFilled24, IconCircleOutlined24, IconWarningFilled24 } from '@nlmk/ds-2.0';
+  const treeListDefaultCode = `import React, { useState } from 'react';
+import { TreeList, IconFolderFilled24, IconCircleOutlined24, IconWarningFilled24, IconFolderOutlined24 } from '@nlmk/ds-2.0';
 
 const defaultTreeData = [
   {
@@ -71,7 +72,7 @@ const defaultTreeData = [
   {
     key: '0-1',
     title: 'Прокатное производство',
-    icon: <IconFolderOpenFilled24 />,
+    icon: <IconFolderOutlined24 />,
     children: [
       {
         key: '0-1-0',
@@ -94,7 +95,7 @@ const defaultTreeData = [
   }
 ];
 
-export default App = () => {
+const App = () => {
   const [data, setData] = useState(defaultTreeData);
 
   const onSelectedNode = (e) => {
@@ -126,7 +127,9 @@ export default App = () => {
       onDragEnd={onDragEnd}
     />
   );
-};`;
+};
+
+export default App;`;
 
   return (
     <div className={styles.wrapper}>

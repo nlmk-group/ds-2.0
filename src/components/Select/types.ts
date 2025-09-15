@@ -238,6 +238,11 @@ export interface ISelectProps {
    * Флаг наличия кнопки сброса
    */
   reset?: boolean;
+
+  /**
+   * Обработчик сброса значений
+   */
+  onReset?: () => void;
 }
 
 export interface IStealthyItem {

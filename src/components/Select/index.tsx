@@ -108,27 +108,17 @@ const Select: FC<ISelectProps> = ({
 
   const generateDisplayValue = (): string => {
     const optionsToUse = asyncOptions || options;
-    console.log('🔍 generateDisplayValue:', {
-      optionsToUse: optionsToUse?.map(o => ({ value: o.value, label: getLabel(o.label) })),
-      selected,
-      multiple
-    });
-    
+
     if (!optionsToUse) return '';
 
     if (multiple) {
-      const filteredOptions = optionsToUse
-        .filter((option: ISelectOption) => selected?.includes(option.value));
-      console.log('🔍 multiple filteredOptions:', filteredOptions.map(o => ({ value: o.value, label: getLabel(o.label) })));
-      
-      return filteredOptions
-        .map((option: ISelectOption) => getLabel(option.label))
-        .join(', ');
+      const filteredOptions = optionsToUse.filter((option: ISelectOption) => selected?.includes(option.value));
+
+      return filteredOptions.map((option: ISelectOption) => getLabel(option.label)).join(', ');
     }
 
     const foundOption = optionsToUse?.find((option: ISelectOption) => option.value === selected);
-    console.log('🔍 single foundOption:', foundOption ? { value: foundOption.value, label: getLabel(foundOption.label) } : null);
-    
+
     return getLabel(foundOption?.label || '');
   };
 
@@ -267,13 +257,17 @@ const Select: FC<ISelectProps> = ({
   };
 
   const handleReset = () => {
-    console.log('🔄 handleReset called:', { multiple, currentSelected: selected });
     if (multiple) {
       onSelectionChange([]);
     } else {
       onSelectionChange('');
     }
+
     setSearchTerm('');
+  };
+
+  const handleInputReset = () => {
+    handleReset();
   };
 
   const sharedProps = {
@@ -369,7 +363,7 @@ const Select: FC<ISelectProps> = ({
             color={color}
             required={required}
             reset={reset}
-            onReset={handleReset}
+            onReset={handleInputReset}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

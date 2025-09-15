@@ -40,7 +40,7 @@ const Stories = (): JSX.Element => {
             code={`import { Tabs, Typography, Box } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+const App = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -105,6 +105,8 @@ export default  App = () => {
     </>
   )
 }
+
+export default App;
 `}
           />
         </>

@@ -16,7 +16,8 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const VideoWindowStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const videoWindowDefaultCode = `import { VideoWindow } from '@nlmk/ds-2.0';
+  const videoWindowDefaultCode = `import React, { useState } from 'react';
+import { VideoWindow } from '@nlmk/ds-2.0';
 
   export default App = () => {
     const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);

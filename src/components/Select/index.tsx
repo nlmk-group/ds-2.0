@@ -68,7 +68,8 @@ const Select: FC<ISelectProps> = ({
   onOpen,
   onSearch,
   isLoading = false,
-  required = false
+  required = false,
+  reset = false
 }) => {
   const [loading, setLoading] = useState(isLoading);
   const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
@@ -107,16 +108,18 @@ const Select: FC<ISelectProps> = ({
 
   const generateDisplayValue = (): string => {
     const optionsToUse = asyncOptions || options;
+
     if (!optionsToUse) return '';
 
     if (multiple) {
-      return optionsToUse
-        .filter((option: ISelectOption) => selected?.includes(option.value))
-        .map((option: ISelectOption) => getLabel(option.label))
-        .join(', ');
+      const filteredOptions = optionsToUse.filter((option: ISelectOption) => selected?.includes(option.value));
+
+      return filteredOptions.map((option: ISelectOption) => getLabel(option.label)).join(', ');
     }
 
-    return getLabel(optionsToUse?.find((option: ISelectOption) => option.value === selected)?.label || '');
+    const foundOption = optionsToUse?.find((option: ISelectOption) => option.value === selected);
+
+    return getLabel(foundOption?.label || '');
   };
 
   const handleOutsideClick = () => {
@@ -253,6 +256,16 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
+  const handleReset = () => {
+    if (multiple) {
+      onSelectionChange([]);
+    } else {
+      onSelectionChange('');
+    }
+
+    setSearchTerm('');
+  };
+
   const sharedProps = {
     multiple,
     withoutCheckbox,
@@ -345,6 +358,8 @@ const Select: FC<ISelectProps> = ({
             icon={<SelectButton isOpen={isOpen} disabled={disabled} color={color} toggleDropdown={toggleDropdown} />}
             color={color}
             required={required}
+            reset={reset}
+            onReset={handleReset}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

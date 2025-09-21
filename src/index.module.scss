@@ -1,20 +1,216 @@
-.tableContainer {
-  width: 800px;
-  height: 600px;
-  overflow-y: auto;
-  overflow-x: auto;
-  border: 1px solid var(--unique-divider);
+// CSS Variables from Builder.io generation
+:root {
+  --steel-10: rgba(255, 255, 255, 1);
+  --brand-sapphire-50: rgba(40, 100, 206, 1);
+  --unique-white: rgba(255, 255, 255, 1);
+  --steel-70: rgba(85, 100, 114, 1);
+  --steel-90: rgba(0, 23, 41, 1);
+  --brand-sapphire-60: rgba(25, 82, 182, 1);
+  --steel-50: rgba(204, 208, 212, 1);
+  --unique-divider: rgba(0, 23, 41, 0.16);
+  --brand-sapphire-10: rgba(213, 232, 253, 1);
+  --steel-60: rgba(149, 161, 172, 1);
+  --brand-sapphire-20: rgba(192, 220, 253, 1);
+  --unique-bluewhite: rgba(25, 82, 182, 1);
+  --brand-jeans-20: rgba(11, 52, 97, 1);
+  --brand-jeans-30: rgba(17, 37, 66, 1);
+  --steel-80: rgba(60, 74, 86, 1);
+  --spectrum-red-40: rgba(247, 105, 121, 1);
 }
 
-.tableContainer thead th {
-  position: sticky;
+// Main Container
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background: #edeeef;
+  position: relative;
+  font-family: "PT Root UI", -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+// Sidebar Styles
+.app-sidebar {
+  position: absolute;
+  left: 0;
   top: 0;
-  z-index: 2;
+  width: 64px;
+  height: 100vh;
+  background: var(--brand-jeans-20);
+  z-index: 10;
 }
 
+// Header Styles
+.app-header {
+  position: absolute;
+  left: 64px;
+  top: 0;
+  right: 0;
+  height: 56px;
+  background: var(--unique-white);
+  z-index: 5;
+}
+
+// Main Content
+.main-content {
+  position: absolute;
+  left: 88px;
+  top: 68px;
+  right: 24px;
+  bottom: 120px;
+  background: var(--unique-white);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// Tabs
+.tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: -1px;
+  flex: 1 0 0;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.tab {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
+
+  &.active {
+    border-bottom: 2px solid var(--brand-sapphire-60);
+  }
+}
+
+// Filters
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-input {
+  min-width: 120px;
+  max-width: 200px;
+}
+
+// Table Container
+.tableContainer {
+  flex: 1;
+  overflow: auto;
+  border: 1px solid var(--unique-divider);
+  border-radius: 4px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th {
+    background: var(--steel-10);
+    border-bottom: 1px solid var(--unique-divider);
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--steel-90);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  td {
+    padding: 8px;
+    border-bottom: 1px solid var(--unique-divider);
+    color: var(--steel-90);
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  tr {
+    &:hover {
+      background: var(--brand-sapphire-10);
+    }
+
+    &.selected {
+      background: var(--brand-sapphire-20);
+    }
+  }
+}
+
+// Bottom Bars
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--unique-divider);
+}
+
+.bottom-stats-bar {
+  position: absolute;
+  left: 88px;
+  right: 24px;
+  bottom: 24px;
+  height: 48px;
+  background: var(--unique-white);
+  border-radius: 4px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stats-container {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+
+  svg {
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--steel-60);
+  }
+}
+
+// Legacy styles for compatibility
 [data-ui-dropdown-button] {
   background-color: transparent;
 }
+
 .select [data-ui-select-arrow-button] {
   display: none;
 }

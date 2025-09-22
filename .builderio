@@ -1,5 +1,5 @@
 {
-  "spaceId": "1665fa31072f4506a1109bb690a33967",
+  "spaceId": "${VITE_PUBLIC_BUILDER_KEY}",
   "componentsPath": "./src/components",
   "mappersPath": "./builder/mappers",
   "configPath": "./builder.config.js",

@@ -39,7 +39,12 @@
     "packpackage": "cd lib && yarn pack",
     "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts && prettier --write src/components/Icon",
     "chromatic": "yarn storybook:build && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
-    "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
+    "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
+    "builder:publish": "npx @builder.io/figma publish",
+    "builder:dev": "npx @builder.io/dev-tools dev",
+    "builder:map": "npx @builder.io/dev-tools map",
+    "builder:sync": "npx @builder.io/dev-tools sync",
+    "builder:init": "npx @builder.io/dev-tools init"
   },
   "pre-commit": [
     "lint"

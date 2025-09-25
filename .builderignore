@@ -1,0 +1,31 @@
+# Ignore heavy directories for Builder.io CLI
+node_modules/
+dist/
+lib/
+storybook-static/
+.storybook/
+.github/
+script/
+public/
+.git/
+yarn.lock
+.jest-test-results.json
+*.log
+coverage/
+.DS_Store
+
+# Keep only essential files for Builder.io
+!src/
+!builder/
+!builder.config.js
+!.builderio
+!package.json
+!tsconfig.json
+
+src/components/
+!src/index.tsx
+!src/components/Button/
+!src/components/Input/
+!src/components/Header/
+!src/components/Sidebar/
+!src/components/Icon/

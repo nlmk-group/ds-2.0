@@ -23,6 +23,69 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.25.15 - <span className={styles.date}>01.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена типизация свойств orientation и type с использованием enum
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство displayValue для кастомного отображения текста в инпуте
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-pagination-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Pagination
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство itemsLabel для кастомизации текста в селекте выбора количества записей
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Splitter
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство orientation для управления ориентацией разделителя (horizontal/vertical)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.14 - <span className={styles.date}>15.09.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -35,10 +98,7 @@ export const Changelog = () => {
               >
                 Select
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Добавлено свойство reset для сброса выбранного значения
-              </li>
+              .<li className={styles['left-padding']}>- Добавлено свойство reset для сброса выбранного значения</li>
             </li>
           </ul>
         </div>

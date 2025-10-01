@@ -50,6 +50,7 @@ import { IOptionItemProps } from './subcomponents/OptionItem/types';
  * @param {string} [noOptionsText='Ничего не найдено'] - Текст при отсутствии опций
  * @param {number} [scrollingItems=6] - Количество видимых опций до прокрутки
  * @param {boolean} [withPortal=false] - Рендерить меню в портале
+ * @param {string} [displayValue] - Кастомное отображаемое значение в инпуте (переопределяет автоматическое определение по label)
  * @param {CSSProperties} [style] - Стили для контейнера селекта
  * @param {CSSProperties} [inputStyle] - Стили для внутреннего Input
  * @param {string} [className] - Дополнительный CSS класс
@@ -83,6 +84,7 @@ const SimpleSelect: FC<ISelectProps> = ({
   onEnterPress,
   reset,
   onReset,
+  displayValue,
   className,
   style,
   inputStyle,
@@ -228,7 +230,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           name={name}
           size={size}
           inputRef={inputRef}
-          value={searchable && isOpen ? searchTerm : selectedLabel}
+          value={searchable && isOpen ? searchTerm : displayValue || selectedLabel}
           label={label}
           placeholder={placeholder}
           disabled={disabled}

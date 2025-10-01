@@ -95,3 +95,4 @@ export * from './Autocomplete/types';
 export * from './Modal/types';
 export * from './Box/types';
 export * from './Input/types';
+export * from './Splitter/enums';

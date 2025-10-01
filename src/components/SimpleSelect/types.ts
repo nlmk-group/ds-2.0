@@ -41,6 +41,9 @@ interface ISelectSpecificProps {
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
 
+  /** Кастомное отображаемое значение в инпуте (переопределяет автоматическое определение по label) */
+  displayValue?: string;
+
   /** Кастомные стили для самого селекта (контейнера) */
   style?: CSSProperties;
 

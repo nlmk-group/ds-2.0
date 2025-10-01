@@ -113,10 +113,16 @@ export const SplitterDefault = (): ReactNode => {
           ))}
         </SimpleSelect>
         <Box justifyContent="center" alignItems="center" gap="16px">
-          <Button type="button" startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />} variant="secondary">
+          <Button
+            type="button"
+            startIcon={<IconAddPlusOutlined24 htmlColor="var(--unique-bluewhite)" />}
+            variant="secondary"
+          >
             Добавить
           </Button>
-          <Button type="button" startIcon={<IconDoneCheckOutlined24 />}>Разрешить</Button>
+          <Button type="button" startIcon={<IconDoneCheckOutlined24 />}>
+            Разрешить
+          </Button>
         </Box>
       </Box>
     </div>
@@ -142,3 +148,38 @@ export const SplitterImages = (): ReactNode => {
   return <Splitter bottomComponent={bottomComponent} topComponent={topComponent} />;
 };
 SplitterImages.storyName = 'Splitter c логотипами';
+
+export const SplitterVertical = (): ReactNode => {
+  const leftComponent = (
+    <div
+      className={style['wrapper-light']}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+    >
+      <Box flexDirection="column" alignItems="center" gap="16px">
+        <IconLogotype className={style['icon-light']} />
+        <Typography variant="Heading4">Левая панель</Typography>
+        <Typography variant="Body1-Medium">Содержимое левой части</Typography>
+      </Box>
+    </div>
+  );
+
+  const rightComponent = (
+    <div
+      className={style['wrapper-dark']}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+    >
+      <Box flexDirection="column" alignItems="center" gap="16px">
+        <IconLogotype className={style['icon-dark']} />
+        <Typography variant="Heading4" style={{ color: 'white' }}>
+          Правая панель
+        </Typography>
+        <Typography variant="Body1-Medium" style={{ color: 'white' }}>
+          Содержимое правой части
+        </Typography>
+      </Box>
+    </div>
+  );
+
+  return <Splitter topComponent={leftComponent} bottomComponent={rightComponent} orientation="vertical" />;
+};
+SplitterVertical.storyName = 'Splitter вертикальный';

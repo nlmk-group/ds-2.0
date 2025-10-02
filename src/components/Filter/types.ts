@@ -1,9 +1,9 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 
 export interface IFilterTypeOption {
   value: string;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   disabled?: boolean;
 }
 

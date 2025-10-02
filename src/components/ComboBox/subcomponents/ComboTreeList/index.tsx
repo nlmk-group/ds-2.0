@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Button, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -22,7 +22,10 @@ const ComboTreeList = <T extends IComboBoxTree>({
   isLoading = false,
   isMultiple = true,
   isVirtualize = false,
-  checkableSimple = false
+  checkableSimple = false,
+  autoFocusSearch = false,
+  autoExpandOnSearch = false,
+  isDropdownOpen = false
 }: IComboTreeListProps<T>) => {
   const setComboValue = useSetComboBoxValue();
   const comboBoxValue = useComboBoxValue();
@@ -36,6 +39,33 @@ const ComboTreeList = <T extends IComboBoxTree>({
   useOptimalWidth(treeOptions, isMultiple);
 
   const checkedIds = useMemo(() => comboBoxValue?.map(value => value.id) ?? [], [comboBoxValue]);
+
+  useEffect(() => {
+    if (autoExpandOnSearch && searchValue && searchValue.trim() !== '') {
+      const searchFilteredOptions = treeOptions.filter(option =>
+        option.label.toLowerCase().includes(searchValue.trim().toLowerCase())
+      );
+
+      const allParentIds = searchFilteredOptions.reduce<string[]>((result, option) => {
+        if (option.parentId) {
+          const parentsIds = findParentsIds(option.parentId, treeOptions);
+          return [...result, ...parentsIds];
+        }
+        return result;
+      }, []);
+
+      const uniqueParentIds = Array.from(new Set(allParentIds));
+      setExpandIds(prevIds => {
+        const newIds = [...prevIds];
+        uniqueParentIds.forEach(id => {
+          if (!newIds.includes(id)) {
+            newIds.push(id);
+          }
+        });
+        return newIds;
+      });
+    }
+  }, [autoExpandOnSearch, searchValue, treeOptions]);
 
   const handleChangeExpand = (id: string) => {
     setExpandIds(prevIds => {
@@ -235,7 +265,7 @@ const ComboTreeList = <T extends IComboBoxTree>({
   return (
     <>
       {isLoading && <Spinner />}
-      {isSearch && <Search />}
+      {isSearch && <Search autoFocusSearch={autoFocusSearch} isDropdownOpen={isDropdownOpen} />}
       {isCheckAll && <AllItemsCheckbox treeOptions={treeOptions} items={leafItems} onChange={onChange} />}
       {isVirtualize ? (
         <VirtualizedResizableGrip

@@ -41,12 +41,12 @@ import PictureUploadVideoSmall from './images/small/picture-upload-video.svg';
 import AnonymousStandard from './images/standard/anonymous.svg';
 import BlockStandard from './images/standard/block.svg';
 import CalendarStandard from './images/standard/calendar.svg';
+import CommunicationStandard from './images/standard/communication.svg';
 import MeetStandard from './images/standard/meet.svg';
 import NoImageStandard from './images/standard/noimage.svg';
 import PyramidStandard from './images/standard/pyramid.svg';
 import RateStandard from './images/standard/rate.svg';
 import RostStandard from './images/standard/rost.svg';
-import CommunicationStandard from './images/standard/сommunication.svg';
 // Tall
 import CalendarTall from './images/tall/calendar.svg';
 import KeyTall from './images/tall/key.svg';

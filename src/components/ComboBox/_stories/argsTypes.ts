@@ -102,6 +102,16 @@ const argsTypes = {
     description: 'Дополнительные CSS стили для поля ввода',
     control: { type: 'object' },
     defaultValue: {}
+  },
+  autoFocusSearch: {
+    description: 'Автоматический фокус на поиске при открытии выпадающего списка',
+    control: { type: 'boolean' },
+    defaultValue: false
+  },
+  autoExpandOnSearch: {
+    description: 'Автоматическое раскрытие дерева элементов при поиске',
+    control: { type: 'boolean' },
+    defaultValue: false
   }
 };
 

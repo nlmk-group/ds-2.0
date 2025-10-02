@@ -67,7 +67,9 @@ const Select: FC<ISelectProps> = ({
   isClearInputOnSelect = false,
   onOpen,
   onSearch,
-  isLoading = false
+  isLoading = false,
+  required = false,
+  reset = false
 }) => {
   const [loading, setLoading] = useState(isLoading);
   const [asyncOptions, setAsyncOptions] = useState<ISelectOption[] | null>(options);
@@ -80,7 +82,7 @@ const Select: FC<ISelectProps> = ({
   const listRef = useRef<HTMLDivElement | null>(null);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
-  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
+  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
     placement: 'bottom-start'
@@ -106,16 +108,18 @@ const Select: FC<ISelectProps> = ({
 
   const generateDisplayValue = (): string => {
     const optionsToUse = asyncOptions || options;
+
     if (!optionsToUse) return '';
 
     if (multiple) {
-      return optionsToUse
-        .filter((option: ISelectOption) => selected?.includes(option.value))
-        .map((option: ISelectOption) => getLabel(option.label))
-        .join(', ');
+      const filteredOptions = optionsToUse.filter((option: ISelectOption) => selected?.includes(option.value));
+
+      return filteredOptions.map((option: ISelectOption) => getLabel(option.label)).join(', ');
     }
 
-    return getLabel(optionsToUse?.find((option: ISelectOption) => option.value === selected)?.label || '');
+    const foundOption = optionsToUse?.find((option: ISelectOption) => option.value === selected);
+
+    return getLabel(foundOption?.label || '');
   };
 
   const handleOutsideClick = () => {
@@ -252,6 +256,16 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
+  const handleReset = () => {
+    if (multiple) {
+      onSelectionChange([]);
+    } else {
+      onSelectionChange('');
+    }
+
+    setSearchTerm('');
+  };
+
   const sharedProps = {
     multiple,
     withoutCheckbox,
@@ -332,7 +346,7 @@ const Select: FC<ISelectProps> = ({
             onChange={e => {
               if (isSearchable) {
                 setSearchTerm(e.target.value);
-            
+
                 if (onSearch && typeof onSearch === 'function') {
                   handleAsyncSearch(e.target.value);
                 }
@@ -343,6 +357,9 @@ const Select: FC<ISelectProps> = ({
             onKeyDown={handleKeyDown}
             icon={<SelectButton isOpen={isOpen} disabled={disabled} color={color} toggleDropdown={toggleDropdown} />}
             color={color}
+            required={required}
+            reset={reset}
+            onReset={handleReset}
             className={clsx(styles.select__input, styles['input-helper'])}
             data-testid="select-input"
           />

@@ -38,13 +38,6 @@
   flex: unset;
 }
 
-.vertical-wrapper {
-  height: inherit;
-  min-height: 24px;
-  margin: 0;
-  display: flex;
-}
-
 .border-vertical {
   border-right-width: 1px;
   border-right-color: var(--steel-50);

@@ -7,3 +7,4 @@ export interface IOptionsProps {
   /** Дополнительные стили для меню */
   menuStyle?: CSSProperties;
 }
+

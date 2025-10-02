@@ -34,7 +34,9 @@ const ComboBoxDropdown = ({
   inputClassName,
   inputStyle,
   withPortal = false,
-  portalContainerId = 'root'
+  portalContainerId = 'root',
+  autoFocusSearch = false,
+  autoExpandOnSearch = false
 }: IComboBoxProps) => {
   const dropdownOptimalWidth = useDropdownWidth() ?? 150;
   const dropdownContextHeight = useDropdownHeight();
@@ -73,7 +75,7 @@ const ComboBoxDropdown = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 8] // [горизонтальный, вертикальный] отступ в пикселях
+          offset: [0, 4] // [горизонтальный, вертикальный] отступ в пикселях
         }
       }
     ]
@@ -115,7 +117,7 @@ const ComboBoxDropdown = ({
       left: 0,
       right: 0,
       zIndex: 1000,
-      marginTop: '8px',
+      marginTop: '4px',
       ...dropdownStyle
     };
   };
@@ -138,6 +140,18 @@ const ComboBoxDropdown = ({
     />
   );
 
+  const enhancedChildren = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, {
+        ...child.props,
+        autoFocusSearch,
+        autoExpandOnSearch,
+        isDropdownOpen: isOpen
+      });
+    }
+    return child;
+  });
+
   const dropdownContent = isOpen && (
     <div
       ref={el => {
@@ -157,7 +171,7 @@ const ComboBoxDropdown = ({
           minHeight={minDDHeight}
         />
       )}
-      {children}
+      {enhancedChildren}
     </div>
   );
 

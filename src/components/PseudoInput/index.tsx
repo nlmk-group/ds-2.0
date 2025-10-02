@@ -24,6 +24,7 @@ import { EBadgeSizes } from '@components/Badge/enums';
  * @param {ReactNode} [props.suffix] - Дополнительный текст справа от псевдо-ввода.
  * @param {string | number} [props.badgeChildren] - Содержимое бейджа.
  * @param {boolean} [props.fullWidth] - Флаг, добавляющий ширину в 100%.
+ * @param {CSSProperties} [props.style] - Inline стили для кастомизации компонента.
  * @param {EBadgeColors} [props.color=EBadgeColors.brand] - Цвет бейджа (пропс от Badge).
  * @param {variantsMapping} [props.variant=variantsMapping.solid] - Вариант отображения бейджа (пропс от Badge).
  * @returns {JSX.Element} Компонент PseudoInput.
@@ -40,6 +41,7 @@ export const PseudoInput = forwardRef<HTMLDivElement, IPseudoInputProps>(
       suffix,
       badgeChildren,
       fullWidth,
+      style,
       color,
       variant,
       ...badgeProps
@@ -51,10 +53,15 @@ export const PseudoInput = forwardRef<HTMLDivElement, IPseudoInputProps>(
     const badgeSize = size === EPseudoInputSizes.m ? EBadgeSizes.l : EBadgeSizes.s;
     const colorClassName = styles[labelColor as keyof typeof styles];
 
+    const combinedStyles = {
+      ...(fullWidth && { width: '100%' }),
+      ...style
+    };
+
     return (
       <div
         className={clsx(styles.pseudo, compact && styles.s, small && styles.xs, className)}
-        style={fullWidth ? { width: '100%' } : {}}
+        style={combinedStyles}
         data-ui-pseudo-input
         ref={ref}
       >

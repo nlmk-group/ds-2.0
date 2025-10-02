@@ -76,6 +76,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       level,
       isOpenOnFocus,
       isHideYear,
+      disableChangesOnBlur,
       reset,
       onReset,
       error,
@@ -540,9 +541,12 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           onInputFocus();
         }}
         onBlur={() => {
-          if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
-            setInnerMaskedValue('');
+          if (!disableChangesOnBlur) {
+            if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
+              setInnerMaskedValue('');
+            }
           }
+
           if (onBlur) {
             onBlur(...applyIfEnabled(...computeNewDate()));
           }

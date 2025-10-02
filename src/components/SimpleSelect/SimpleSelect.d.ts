@@ -3,12 +3,14 @@ import { CSSProperties, FC, ReactNode } from 'react';
 import { TInputProps } from '@components/Input/types';
 
 export enum ESelectSizes {
+  /** (по умолчанию) */
   m = 'm',
   s = 's',
   xs = 'xs'
 }
 
 export enum ESelectColors {
+  /** Обычное состояние (по умолчанию) */
   default = 'default',
   error = 'error',
   warning = 'warning',
@@ -54,11 +56,19 @@ export interface ISelectSpecificProps {
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
 
-  /** Кастомные стили для компонента */
+  /** Кастомное отображаемое значение в инпуте (переопределяет автоматическое определение по label) */
+  displayValue?: string;
+
+  /** Кастомные стили для самого селекта (контейнера) */
   style?: CSSProperties;
+
+  /** Кастомные стили для внутреннего Input компонента */
+  inputStyle?: CSSProperties;
 }
 
-export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps> & TOverrideInputProps & ISelectSpecificProps;
+export type ISelectProps = Omit<TInputProps, keyof TOverrideInputProps | 'style'> &
+  TOverrideInputProps &
+  ISelectSpecificProps;
 
 declare const SimpleSelect: FC<ISelectProps>;
 

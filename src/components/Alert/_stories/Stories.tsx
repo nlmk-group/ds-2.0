@@ -95,7 +95,7 @@ const App = () => (
         variant="secondary"
         iconButton={
           <IconDeleteBinOutlined24
-            htmlColor='var(--ac-alert-info-text)' />
+            htmlColor='var(--spectrum-sky-60)' />
         }
         onClick={() => confirm('Подтвердите удаление!')} />
     }

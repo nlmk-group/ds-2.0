@@ -17,28 +17,54 @@ const FIGMA_LINK =
 const TreeListStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const treeListDefaultCode = `import { TreeList } from '@nlmk/ds-2.0';
+  const treeListDefaultCode = `import React, { useState } from 'react';
+import { TreeList, IconFolderFilled24, IconCircleOutlined24, IconWarningFilled24, IconFolderOutlined24 } from '@nlmk/ds-2.0';
 
 const defaultTreeData = [
   {
     key: '0-0',
     title: 'Производство стали',
+    icon: <IconFolderFilled24 />, // Кастомная иконка
     children: [
       {
         key: '0-0-0',
         title: 'Конвертерный цех',
+        icon: <IconFolderFilled24 />,
         children: [
-          { key: '0-0-0-0', title: 'Конвертер №1' },
-          { key: '0-0-0-1', title: 'МНЛЗ №3' },
-          { key: '0-0-0-2', title: 'Установка ковш-печь' }
+          { 
+            key: '0-0-0-0', 
+            title: 'Конвертер №1',
+            icon: <IconCircleOutlined24 />
+          },
+          { 
+            key: '0-0-0-1', 
+            title: 'МНЛЗ №3 (заблокировано)',
+            icon: <IconWarningFilled24 />,
+            disabled: true // Полная блокировка узла
+          },
+          { 
+            key: '0-0-0-2', 
+            title: 'Установка ковш-печь (нельзя перетаскивать)',
+            icon: <IconCircleOutlined24 />,
+            disableDraggable: true // Запрет только на перетаскивание
+          }
         ]
       },
       {
         key: '0-0-1',
         title: 'Электросталеплавильный цех',
+        icon: <IconFolderFilled24 />,
         children: [
-          { key: '0-0-1-0', title: 'ДСП №1' },
-          { key: '0-0-1-1', title: 'Агрегат печь-ковш' }
+          { 
+            key: '0-0-1-0', 
+            title: 'ДСП №1',
+            icon: <IconCircleOutlined24 />
+          },
+          { 
+            key: '0-0-1-1', 
+            title: 'Агрегат печь-ковш',
+            icon: <IconCircleOutlined24 />
+          }
         ]
       }
     ]
@@ -46,26 +72,39 @@ const defaultTreeData = [
   {
     key: '0-1',
     title: 'Прокатное производство',
+    icon: <IconFolderOutlined24 />,
     children: [
       {
         key: '0-1-0',
         title: 'Цех горячей прокатки',
+        icon: <IconFolderFilled24 />,
         children: [
-          { key: '0-1-0-0', title: 'Стан 2000' },
-          { key: '0-1-0-1', title: 'Методические печи' }
+          { 
+            key: '0-1-0-0', 
+            title: 'Стан 2000',
+            icon: <IconCircleOutlined24 />
+          },
+          { 
+            key: '0-1-0-1', 
+            title: 'Методические печи',
+            icon: <IconCircleOutlined24 />
+          }
         ]
       }
     ]
   }
 ];
 
-export default App = () => {
+const App = () => {
+  const [data, setData] = useState(defaultTreeData);
+
   const onSelectedNode = (e) => {
     console.log('Выбранный узел:', e);
   };
 
   const onDataAfterDrag = (newData) => {
     console.log('Структура после перемещения:', newData);
+    setData(newData);
   };
 
   const onDragStart = (e) => {
@@ -78,7 +117,7 @@ export default App = () => {
 
   return (
     <TreeList
-      data={defaultTreeData}
+      data={data}
       checkable
       draggable
       rowHeight="s"
@@ -88,7 +127,9 @@ export default App = () => {
       onDragEnd={onDragEnd}
     />
   );
-};`;
+};
+
+export default App;`;
 
   return (
     <div className={styles.wrapper}>

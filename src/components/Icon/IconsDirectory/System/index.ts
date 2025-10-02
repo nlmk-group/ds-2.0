@@ -367,7 +367,13 @@ export { IconEyeOffOutlined16, IconEyeOffOutlined24, IconEyeOffOutlined32 } from
 export { IconEyeOutlined16, IconEyeOutlined24, IconEyeOutlined32 } from './EyeOutlined';
 export { IconEyeglassesFill16, IconEyeglassesFill24, IconEyeglassesFill32 } from './EyeglassesFill';
 export { IconEyeglassesOutlined16, IconEyeglassesOutlined24, IconEyeglassesOutlined32 } from './EyeglassesOutlined';
+export { IconFileDOCX16, IconFileDOCX24, IconFileDOCX32 } from './FileDOCX';
+export { IconFileNoType16, IconFileNoType24, IconFileNoType32 } from './FileNoType';
+export { IconFilePDF16, IconFilePDF24, IconFilePDF32 } from './FilePDF';
+export { IconFilePPT16, IconFilePPT24, IconFilePPT32 } from './FilePPT';
 export { IconFileSetting16, IconFileSetting24, IconFileSetting32 } from './FileSetting';
+export { IconFileXLS16, IconFileXLS24, IconFileXLS32 } from './FileXLS';
+export { IconFileZIP16, IconFileZIP24, IconFileZIP32 } from './FileZIP';
 export { IconFilterListFilled16, IconFilterListFilled24, IconFilterListFilled32 } from './FilterListFilled';
 export { IconFilterListOutlined16, IconFilterListOutlined24, IconFilterListOutlined32 } from './FilterListOutlined';
 export {

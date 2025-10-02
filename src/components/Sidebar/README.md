@@ -8,7 +8,7 @@
 
 ```jsx
 import React from 'react';
-import Sidebar from '@your-package/sidebar';
+import { Sidebar } from '@nlmk/ds-2.0';
 const App = () => (
   <Sidebar
     variant="burger"
@@ -20,7 +20,6 @@ const App = () => (
     onOpenUser={() => console.log('Open user profile')}
     onLogout={() => console.log('Logout')}
     onLogin={() => console.log('Login')}
-    onSearch={() => console.log('Search')}
     onClickLogo={() => console.log('Logo clicked')}
     currentPath="/dashboard"
   >
@@ -45,7 +44,6 @@ export default App;
 | onOpenUser | () => void | - | Функция, вызываемая при открытии профиля пользователя |
 | onLogout | () => void | - | Функция, вызываемая при выходе из аккаунта |
 | onLogin | () => void | - | Функция, вызываемая при входе в аккаунт |
-| onSearch | () => void | - | Функция, вызываемая при поиске |
 | onClickLogo | () => void | - | Функция, вызываемая при клике на логотип |
 | currentPath | string | - | Текущий путь (URL) для определения активного элемента |
 | defaultMenuOpen | boolean | false | Флаг начального состояния меню (развернуто/свернуто) |
@@ -97,7 +95,6 @@ export default App;
 - `.overlay`: Оверлей, отображаемый при открытом подменю.
 - `.burger`: Иконка "бургерного" меню для сайдбаров в режиме burger.
 - `.burger-expanded`: Слово "бургер" в развернутой версии.
-- `.search`: Контейнер для иконки поиска.
 - `.clickable`: Класс, указывающий, что элемент интерактивный.
 
 Вы можете переопределить эти стили, передав собственный `className`.
@@ -124,11 +121,6 @@ export default App;
 
 /* Логотип сайдбара */
 [data-ui-sidebar-logo] {
-  /* Ваши стили */
-}
-
-/* Иконка поиска */
-[data-ui-sidebar-search-icon] {
   /* Ваши стили */
 }
 

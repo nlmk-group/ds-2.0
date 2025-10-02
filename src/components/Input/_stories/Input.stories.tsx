@@ -1,4 +1,4 @@
-import React, { ChangeEvent, SetStateAction, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
 import { Button, IconUnit } from '@components/index';
@@ -24,37 +24,47 @@ export default {
   argTypes: argsTypes
 };
 
-export const InputDefault = (argTypes: TInputProps): JSX.Element => {
-  const [value, setValue] = useState('');
+export const InputDefault = (args: TInputProps): JSX.Element => {
+  const [value, setValue] = useState(args.value || '');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(e.target.value);
+    args.onChange?.(e);
   };
 
   const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     console.log('event blur: ', e);
+    args.onBlur?.(e);
   };
 
   const handleReset = () => {
     setValue('');
+    args.onReset?.();
   };
 
-  console.log({ argTypes });
+  useEffect(() => {
+    setValue(args.value || '');
+  }, [args.value]);
 
   return (
     <Input
+      {...args}
       value={value}
-      reset={argTypes.reset}
-      label={labelText}
-      {...argTypes}
-      onBlur={handleBlur}
+      label={args.label || labelText}
       onChange={handleChange}
-      onReset={handleReset}
+      onBlur={handleBlur}
+      onReset={args.reset ? handleReset : undefined}
     />
   );
 };
+
 InputDefault.storyName = 'Input по умолчанию';
-InputDefault.args = {};
+InputDefault.args = {
+  label: labelText,
+  placeholder: '',
+  value: '',
+  reset: false
+};
 
 export const InputWithLabelHelperTextElement = () => {
   const messageHelper = {
@@ -83,7 +93,6 @@ InputWithLabelHelperTextElement.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-// Textarea
 export const InputMultilineDefault = (): JSX.Element => <Input multiline />;
 InputMultilineDefault.storyName = 'Textarea по умолчанию';
 InputMultilineDefault.parameters = {
@@ -148,12 +157,11 @@ InputWithColored.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-// Переключатель на PseudoInput
 export const InputPseudoDefaultChecking = (): JSX.Element => {
   const [isPseudo, setIsPseudo] = useState(false);
   const [innerValue, setInnerValue] = useState('value');
 
-  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInnerValue(e.target.value);
   };
 
@@ -185,20 +193,16 @@ InputPseudoDefaultChecking.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-// @ts-ignore
-InputPseudoDefaultChecking.play = async ({ args, canvasElement }) => {
+InputPseudoDefaultChecking.play = async ({ args, canvasElement }: { args: any; canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole('button'));
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
 };
 
-export const InputWithIconUnit = (): JSX.Element => (
-  <InputDefault icon={<IconUnit unit="кг" />} />
-);
+export const InputWithIconUnit = (): JSX.Element => <InputDefault icon={<IconUnit unit="кг" />} />;
 InputWithIconUnit.storyName = 'Input с иконкой для единиц измерения';
 InputWithIconUnit.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
-

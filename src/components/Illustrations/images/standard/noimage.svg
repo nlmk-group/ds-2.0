@@ -1,1 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" fill="none"><rect width="300" height="200" fill="var(--steel-10)" rx="1.829"/><path stroke="var(--unique-divider)" stroke-opacity=".3" d="m8 8 284 184m0-184L8 192"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" fill="none"><rect width="300" height="200" fill="var(--steel-10, #ffffff)" rx="1.829"/><path stroke="var(--unique-divider, #00172929)" stroke-opacity=".3" d="m8 8 284 184m0-184L8 192"/></svg>

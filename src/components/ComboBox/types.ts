@@ -60,6 +60,8 @@ export interface IComboBoxProps {
   inputStyle?: CSSProperties;
   withPortal?: boolean;
   portalContainerId?: string;
+  autoFocusSearch?: boolean;
+  autoExpandOnSearch?: boolean;
 }
 
 export interface IComboBoxInputProps {

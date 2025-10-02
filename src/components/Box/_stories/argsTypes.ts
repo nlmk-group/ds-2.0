@@ -4,128 +4,111 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   className: {
-    description: 'В компонент можно передать альтернативные стили',
-    control: { type: 'string' }
+    description: 'Дополнительные CSS классы',
+    control: { type: 'text' }
   },
   background: {
-    description: 'В компонент можно передать цвет заднего фона',
+    description: 'Цвет заднего фона',
     control: { type: 'color' }
   },
   color: {
-    description: 'В компонент можно передать цвет',
-    control: { type: 'color' }
-  },
-  p: {
-    description: 'Размер отступов со всех сторон',
-    control: { type: 'text' }
-  },
-  px: {
-    description: 'Размер горизонтальных отступов (слева и справа)',
-    control: { type: 'text' }
-  },
-  py: {
-    description: 'Размер вертикальных отступов (сверху и снизу)',
-    control: { type: 'text' }
-  },
-  pt: {
-    description: 'Размер отступа сверху',
-    control: { type: 'text' }
-  },
-  pb: {
-    description: 'Размер отступа снизу',
-    control: { type: 'text' }
-  },
-  pl: {
-    description: 'Размер отступа слева',
-    control: { type: 'text' }
-  },
-  pr: {
-    description: 'Размер отступа справа',
-    control: { type: 'text' }
-  },
-  height: {
-    description: 'В компонент можно передать кастомное значение высоты в пикселях.',
-    control: { type: 'text' }
-  },
-  width: {
-    description: 'В компонент можно передать кастомное значение ширины в пикселях.',
-    control: { type: 'text' }
-  },
-  maxWidth: {
-    description: 'В компонент можно передать кастомное значение максимальной ширины контейнера.',
-    control: { type: 'text' }
-  },
-  gap: {
-    description: 'В компонент можно передать кастомное значение отступов по умолчанию <b>var(--24-size)</b>.',
-    control: { type: 'text' },
+    description: 'Цвет текста',
+    control: { type: 'color' },
     table: {
       defaultValue: {
-        summary: 'var(--24-size)'
-      },
-      type: {
-        summary: 'string'
+        summary: 'var(--steel-90)'
+      }
+    }
+  },
+  p: {
+    description: 'Базовый padding для всех сторон (px или строка)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  px: {
+    description: 'Горизонтальный padding (перезаписывает p для left/right)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  py: {
+    description: 'Вертикальный padding (перезаписывает p для top/bottom)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  pt: {
+    description: 'Padding сверху (наивысший приоритет)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  pb: {
+    description: 'Padding снизу (наивысший приоритет)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  pl: {
+    description: 'Padding слева (наивысший приоритет)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  pr: {
+    description: 'Padding справа (наивысший приоритет)',
+    control: { type: 'number', min: 0, max: 100, step: 1 }
+  },
+  height: {
+    description: 'Высота контейнера',
+    control: { type: 'number', min: 0, max: 500, step: 1 }
+  },
+  width: {
+    description: 'Ширина контейнера',
+    control: { type: 'number', min: 0, max: 500, step: 1 }
+  },
+  maxWidth: {
+    description: 'Максимальная ширина контейнера',
+    control: { type: 'number', min: 0, max: 1000, step: 1 }
+  },
+  gap: {
+    description: 'Промежуток между дочерними элементами',
+    control: { type: 'number', min: 0, max: 50, step: 1 },
+    table: {
+      defaultValue: {
+        summary: '24px'
       }
     }
   },
   border: {
-    description: 'Граница.',
+    description: 'CSS свойство border',
     control: { type: 'text' }
   },
   borderRadius: {
-    description: 'Радиус границ компонента.',
-    control: { type: 'range' }
+    description: 'Радиус скругления углов',
+    control: { type: 'range', min: 0, max: 50, step: 1 }
   },
   display: {
-    description: 'Тип display для flex контейнера.',
+    description: 'CSS свойство display',
     table: {
       defaultValue: {
         summary: 'flex'
-      },
-      type: {
-        summary: 'string'
       }
     },
-    options: ['flex', 'block', 'inline-block', 'grid', 'none'],
+    options: ['flex', 'block', 'inline-block', 'inline-flex', 'grid', 'inline-grid', 'none'],
     control: { type: 'select' }
   },
   flexDirection: {
-    description: 'Определяет направление элементов внутри flex контейнера.',
-    table: {
-      type: {
-        summary: 'string'
-      }
-    },
+    description: 'Направление flex контейнера',
     options: ['row', 'column', 'row-reverse', 'column-reverse'],
     control: { type: 'select' }
   },
   justifyContent: {
-    description: 'Определяет выравнивание элементов вдоль главной оси контейнера.',
-    table: {
-      type: {
-        summary: 'string'
-      }
-    },
+    description: 'Выравнивание по главной оси',
     options: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'],
     control: { type: 'select' }
   },
   alignItems: {
-    description: 'Определяет выравнивание элементов вдоль поперечной оси контейнера.',
-    table: {
-      type: {
-        summary: 'string'
-      }
-    },
+    description: 'Выравнивание по поперечной оси',
     options: ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
     control: { type: 'select' }
   },
   flexWrap: {
-    description: 'Определяет, могут ли элементы обертываться на новую строку.',
-    table: {
-      type: {
-        summary: 'string'
-      }
-    },
+    description: 'Перенос flex элементов',
     options: ['nowrap', 'wrap', 'wrap-reverse'],
     control: { type: 'select' }
+  },
+  st: {
+    description: 'Дополнительные inline стили (объект)',
+    control: { type: 'object' }
   }
 };

@@ -149,17 +149,6 @@
   @include cell;
 }
 
-.search {
-  @include cell;
-  justify-content: center;
-  width: 64px;
-
-  &:hover {
-    background: var(--brand-jeans-10);
-  }
-}
-
-
 @keyframes fadeIn {
   from {
     opacity: 0;

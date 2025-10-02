@@ -16,7 +16,6 @@ package-lock.json
 client-stats.json
 yarn-error.log
 cypress/fixtures/example.json
-snowpack.config.js
 tsconfig.json
 tslint.json
 storybook-static/

@@ -9,8 +9,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=45-1167&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=45-1167&t=EnvIMGos3m33avAX-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -41,7 +40,7 @@ const Stories = (): JSX.Element => {
             code={`import { Tabs, Typography, Box } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+const App = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -61,21 +60,23 @@ export default  App = () => {
           label="Спам"
           active={2 === Number(activeTab)}
           onClick={() => setActiveTab(2)}
-          badgeNumber="91"
+          hasBadge={true}
+          badgeChildren="91"
         >
-          <Tabs.Tooltip description="Сюда вы можете добавить текстподсказу для компонента">
-            <Tabs.Icon
-              name="IconInfoOutlined16"
-              containerSize={16}
-              htmlColor="var(--text-grey-500)"
-            />
-          </Tabs.Tooltip>
+<Tabs.Tooltip
+  render={
+    <Typography variant="Caption-Medium" color="var(--steel-90)">Сюда вы можете добавить текст-подсказку для компонента</Typography>
+  }
+>
+  <Tabs.Icon name="IconInfoOutlined16" containerSize={16} htmlColor="var(--steel-90)" />
+</Tabs.Tooltip>
         </Tabs.Tab>
         <Tabs.Tab
           label="Черновики"
           active={3 === Number(activeTab)}
           onClick={() => setActiveTab(3)}
-          badgeNumber="2"
+          hasBadge={true}
+          badgeChildren="2"
         />
       </Tabs>
 
@@ -92,7 +93,7 @@ export default  App = () => {
         )}
         {Number(activeTab) == 2 && (
           <Typography variant="Heading4" color="var(--steel-90)">
-            Папка с спамом
+            Папка со спамом
           </Typography>
         )}
         {Number(activeTab) == 3 && (
@@ -104,6 +105,8 @@ export default  App = () => {
     </>
   )
 }
+
+export default App;
 `}
           />
         </>

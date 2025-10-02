@@ -83,7 +83,19 @@ input:autofill:focus {
     left: 8px;
     padding: 0 4px;
     // Создаем эффект "разрыва" границы инпута для лейбла
-    background: linear-gradient(to top, var(--steel-10) 50%, transparent 50%);
+    background: linear-gradient(to top, var(--steel-10) 0%, var(--steel-10) 52%, transparent 48%),
+      linear-gradient(to bottom, transparent 48%, var(--steel-10) 52%, var(--steel-10) 100%);
+  }
+
+  // Chrome <115 :placeholder-shown работает некорректно, поэтому используем value
+  input[value]:not([value=""]) ~ label,
+  textarea[value]:not([value=""]) ~ label {
+    top: -9px;
+    left: 8px;
+    padding: 0 4px;
+    // Создаем эффект "разрыва" границы инпута для лейбла
+    background: linear-gradient(to top, var(--steel-10) 0%, var(--steel-10) 52%, transparent 48%),
+      linear-gradient(to bottom, transparent 48%, var(--steel-10) 52%, var(--steel-10) 100%);
   }
 
   input,
@@ -165,7 +177,7 @@ input:autofill:focus {
     height: 32px;
 
     ~ label {
-      padding: 5px 0;
+      padding: 6px 0;
     }
 
     ~ .icon {
@@ -233,7 +245,7 @@ input:autofill:focus {
   position: absolute;
   padding: 10px 0;
   left: 16px;
-  top: 0;
+  top: 1px;
   color: var(--steel-70);
   cursor: text;
   transition: 150ms ease-out;

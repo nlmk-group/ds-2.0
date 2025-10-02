@@ -64,5 +64,17 @@ export const argsTypes = {
     },
     options: Object.values(EInputSliderValuePosition),
     control: { type: 'select' }
+  },
+  valueSuffix: {
+    description: 'Суффикс для отображаемого значения. По умолчанию "%". Передайте пустую строку для скрытия суффикса',
+    table: {
+      defaultValue: {
+        summary: "'%'"
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
   }
 };

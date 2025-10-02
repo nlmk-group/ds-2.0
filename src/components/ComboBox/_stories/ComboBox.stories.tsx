@@ -28,7 +28,7 @@ const simpleOptions: IComboBoxOption[] = [
   { id: '2', label: 'Сталь легированная' },
   { id: '3', label: 'Чугун серый' },
   { id: '4', label: 'Чугун ковкий' },
-  { id: '5', label: 'Алюминиевые сплавы' },
+  { id: '5', label: 'Алюминиевые сплавы', disabled: true },
   { id: '6', label: 'Медные сплавы' }
 ];
 
@@ -381,3 +381,33 @@ export const TreeViewWithSimpleCheckboxesExample = () => {
   );
 };
 TreeViewWithSimpleCheckboxesExample.storyName = 'Древовидный список с независимыми чекбоксами';
+
+export const TreeViewWithAutoFeaturesExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox
+      label="Древовидный список с автофункциями"
+      countOnlyLevel={2}
+      autoFocusSearch
+      autoExpandOnSearch
+      tooltipDescription="При открытии фокус автоматически переходит в поиск, при поиске дерево автоматически раскрывается"
+    >
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+TreeViewWithAutoFeaturesExample.storyName = 'Древовидный список с автофокусом и автораскрытием';
+
+export const TreeViewWithLeafCountExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox
+      label="Древовидный список - считать только листовые элементы"
+      countOnlyLevel={-1}
+      tooltipDescription="При countOnlyLevel={-1} в инпуте считаются только листовые элементы (без дочерних)"
+    >
+      <ComboTreeList items={treeOptions} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+TreeViewWithLeafCountExample.storyName = 'Древовидный список - листовые элементы';

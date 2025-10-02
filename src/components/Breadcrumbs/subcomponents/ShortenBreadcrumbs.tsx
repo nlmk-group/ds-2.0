@@ -45,7 +45,8 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
                     children: React.cloneElement(item.props.children, {
                       className: clsx(styles.link, item.props.children.props.className)
                     }),
-                    isLast: true
+                    isLast: false,
+                    showSeparator: false
                   })}
                 </ListItem>
               ))}
@@ -53,7 +54,7 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
           </ClickAwayListener>
         )}
       </div>
-      {React.cloneElement(lastElement as ReactElement, { isLast: true })}
+      {React.cloneElement(lastElement as ReactElement, { isLast: true, showSeparator: false })}
     </>
   );
 };

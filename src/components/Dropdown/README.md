@@ -1,6 +1,6 @@
 # Dropdown
 
-## Версия компонента v3.1
+## Версия компонента v3.2
 
 Компонент Dropdown предоставляет удобный способ создания интерактивных выпадающих меню с настраиваемыми кнопками и элементами меню.
 
@@ -9,11 +9,39 @@
 ### Использование Dropdown Default
 
 ```jsx
-import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
+import { Dropdown, DropdownMenuItem } from '@nlmk/ds-2.0';
 
 <Dropdown buttonChildren="Dropdown button">
   {positions.map(({ value, disabled }) => (
-    <DropdownMenuItem value={value} disabled={disabled}>
+    <DropdownMenuItem key={value} value={value} disabled={disabled}>
+      {value}
+    </DropdownMenuItem>
+  ))}
+</Dropdown>;
+```
+
+### Использование Dropdown с возможностями Button
+
+```jsx
+import { Dropdown, DropdownMenuItem, IconFilterOutlined24 } from '@nlmk/ds-2.0';
+
+<Dropdown buttonChildren="Фильтр" variant="primary" startIcon={<IconFilterOutlined24 />} startBadge="3" color="primary">
+  {filterOptions.map(({ value, disabled }) => (
+    <DropdownMenuItem key={value} value={value} disabled={disabled}>
+      {value}
+    </DropdownMenuItem>
+  ))}
+</Dropdown>;
+```
+
+### Использование Dropdown с кастомной иконкой
+
+```jsx
+import { Dropdown, DropdownMenuItem, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+<Dropdown iconButton={<IconSearchOutlined24 />} variant="ghost">
+  {searchOptions.map(({ value, disabled }) => (
+    <DropdownMenuItem key={value} value={value} disabled={disabled}>
       {value}
     </DropdownMenuItem>
   ))}
@@ -23,17 +51,11 @@ import { Dropdown, DropdownMenuItem, Typography } from '@nlmk/ds-2.0';
 ### Использование Dropdown Custom
 
 ```jsx
-import {
-  Dropdown,
-  DropdownMenuItem,
-  IconCancelOutlined24,
-  IconChevronArrowRightOutlined24,
-  Typography
-} from '@nlmk/ds-2.0';
+import { Box, Dropdown, DropdownMenuItem, IconCancelOutlined24, IconChevronArrowRightOutlined24 } from '@nlmk/ds-2.0';
 <Dropdown buttonChildren="Dropdown button">
   {positionsCustom.map(({ value, disabled }) => (
     <DropdownMenuItem key={value} value={value} disabled={disabled}>
-      <Box key={value} display="flex" alignItems={finalAlign} gap="8px">
+      <Box key={value} display="flex" alignItems="center" gap="8px">
         <div style={{ position: 'relative', top: '4px' }}>
           <IconCancelOutlined24 htmlColor="var(--spectrum-red-60)" />
         </div>
@@ -56,14 +78,46 @@ import {
 
 ## Props
 
-Компонент предоставляет интерфейс [IDropdownProps](types.ts), основанный на интерфейсе [IButtonProps](../Button/types.ts), и наследует соответствующие props от [Button](../Button/README.md).
+### Dropdown-специфичные пропсы
 
-| Prop           | Type          | Default | Description                                 |
-| -------------- | ------------- | ------- | ------------------------------------------- |
-| className      | string        | -       | Дополнительный класс для кнопки             |
-| children       | ReactNode     | -       | Элементы, которые будут отображаться в меню |
-| buttonChildren | ReactNode     | -       | Содержимое кнопки                           |
-| menuStyle      | CSSProperties | -       | Кастомные стили кнопки.                     |
+| Prop              | Type          | Default | Description                                 |
+| ----------------- | ------------- | ------- | ------------------------------------------- |
+| children          | ReactNode     | -       | Элементы, которые будут отображаться в меню |
+| buttonChildren    | ReactNode     | -       | Содержимое кнопки                           |
+| menuStyle         | CSSProperties | -       | Кастомные стили меню                        |
+| buttonStyle       | CSSProperties | -       | Кастомные стили кнопки                      |
+| withPortal        | boolean       | false   | Открытие выпадающего списка в портале       |
+| portalContainerId | string        | 'root'  | Контейнер для портала                       |
+
+### Наследуемые от Button пропсы
+
+| Prop       | Type              | Default     | Description                                            |
+| ---------- | ----------------- | ----------- | ------------------------------------------------------ |
+| variant    | EButtonVariant    | 'secondary' | Вариант стиля кнопки                                   |
+| size       | EButtonSize       | 'm'         | Размер кнопки и меню                                   |
+| color      | EButtonColor      | -           | Цвет кнопки                                            |
+| disabled   | boolean           | false       | Отключает кнопку и возможность открытия меню           |
+| className  | string            | -           | Дополнительный класс для кнопки                        |
+| startIcon  | ReactNode         | -           | Иконка в начале кнопки                                 |
+| iconButton | ReactNode         | -           | Иконка для кнопки-иконки (переопределяет шеврон)       |
+| startBadge | string \| number  | -           | Бейдж в начале кнопки                                  |
+| endBadge   | string \| number  | -           | Бейдж в конце кнопки                                   |
+| onClick    | MouseEventHandler | -           | Обработчик клика (переопределяется внутренней логикой) |
+
+И все остальные HTML-атрибуты кнопки: `id`, `onFocus`, `onBlur`, `aria-*`, `data-*` и т.д.
+
+## Особенности наследования
+
+### Логика иконок
+
+- Если передан `iconButton` - используется он вместо стандартного шеврона
+- Если `iconButton` не передан и нет `buttonChildren` - показывается шеврон как `iconButton`
+- Если есть `buttonChildren` и нет кастомного `iconButton` - показывается шеврон как `endIcon`
+
+### Приоритет стилей
+
+- `buttonStyle` имеет приоритет над `style` из других пропсов
+- `className` объединяется с внутренними классами компонента
 
 ## Стилизация
 
@@ -75,7 +129,6 @@ import {
 
 - `.icon-rotate`: Контейнер для иконки, отвечающий за анимацию поворота
 - `.icon-rotate-open`: Класс, применяемый при открытом состоянии, трансформирует иконку на 180 градусов
-- `.icon-padding`: Класс для добавления верхнего отступа иконе
 - `.button`: Класс для стилизации кнопки
 - `&:focus`: Стили для кнопки при фокусе (смена фона и цвета текста)
 
@@ -101,6 +154,7 @@ import {
 [data-ui-dropdown-menu-item-container] {
   /* Ваши стили */
 }
+
 /* Отдельный пункт внутри меню */
 [data-ui-dropdown-menu-item] {
   /* Ваши стили */
@@ -110,6 +164,7 @@ import {
 [data-ui-dropdown-chevron-icon] {
   /* Ваши стили */
 }
+
 /* Кастомный контент внутри кнопки дропдауна */
 [data-ui-dropdown-button-children] {
   /* Ваши стили */
@@ -118,8 +173,40 @@ import {
 
 ### 3. Inline стили
 
-Можно передать объект стилей через проп `menuStyles`, принимающий значение минимальной ширины для выпадающего меню:
+Можно передать объекты стилей через пропсы:
 
 ```jsx
-<Dropdown style={{ minWidth: '200px' }}>Styled dropdown menu</Dropdown>
+<Dropdown menuStyle={{ minWidth: '200px' }} buttonStyle={{ fontWeight: 'bold' }}>
+  Styled dropdown menu
+</Dropdown>
+```
+
+## Примеры использования
+
+### Фильтр с бейджем
+
+```jsx
+<Dropdown buttonChildren="Фильтры" startIcon={<IconFilterOutlined24 />} startBadge="5" variant="primary">
+  {/* элементы меню */}
+</Dropdown>
+```
+
+### Кнопка-иконка
+
+```jsx
+<Dropdown iconButton={<IconMoreVerticalOutlined24 />} variant="ghost">
+  {/* элементы меню */}
+</Dropdown>
+```
+
+### Кастомизация портала
+
+```jsx
+<Dropdown withPortal={true} portalContainerId="dropdown-portal" buttonChildren="В портале">
+  {/* элементы меню */}
+</Dropdown>
+```
+
+```
+
 ```

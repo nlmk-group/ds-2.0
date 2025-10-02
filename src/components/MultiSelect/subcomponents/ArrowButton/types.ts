@@ -16,3 +16,4 @@ export interface IArrowButtonProps {
   /** Обработчик клика по кнопке */
   toggleDropdown: MouseEventHandler<HTMLButtonElement>;
 }
+

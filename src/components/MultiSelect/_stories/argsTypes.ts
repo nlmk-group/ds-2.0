@@ -3,71 +3,43 @@ import { customInputColors, sizesMappingInput } from '@components/declaration';
 export const argsTypes = {
   value: {
     description: 'Массив выбранных значений',
-    control: { type: 'object' },
-    table: {
-      type: { summary: 'Array<string | number>' },
-      defaultValue: { summary: '[]' }
-    }
+    control: { type: 'array' }
   },
   onChange: {
-    description: 'Callback функция, вызываемая при изменении выбранных значений',
-    action: 'onChange',
-    table: {
-      type: { summary: '(values: Array<string | number>) => void' }
-    }
+    description: 'Обработчик изменения выбранных значений',
+    action: 'onChange'
   },
   id: {
     description: 'Идентификатор компонента',
     control: { type: 'text' }
   },
   portalContainerId: {
-    description: 'ID контейнера для портала',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'root' }
-    }
+    description: 'id рутового контейнера для создания портала',
+    control: { type: 'text' }
   },
   children: {
     description: 'Дочерние элементы селекта (опции меню)',
     control: { type: 'text' }
   },
   menuWidth: {
-    description: 'Ширина выпадающего меню',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string | number' }
-    }
+    description: 'Ширина меню селекта',
+    control: { type: 'text' }
   },
   placeholder: {
-    description: 'Плейсхолдер для поля ввода',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' }
-    }
+    description: 'Плейсхолдер для инпута селекта',
+    control: { type: 'text' }
   },
   label: {
-    description: 'Метка для поля ввода',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' }
-    }
+    description: 'Лейбл инпута в селекте',
+    control: { type: 'text' }
   },
   withPortal: {
-    description: 'Рендерит выпадающий список в портале',
-    control: { type: 'boolean' },
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' }
-    }
+    description: 'Флаг, указывающий, должно ли меню рендериться в портале',
+    control: { type: 'boolean' }
   },
   disabled: {
-    description: 'Отключает компонент',
-    control: { type: 'boolean' },
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' }
-    }
+    description: 'Флаг доступности селекта',
+    control: { type: 'boolean' }
   },
   onBlur: {
     description: 'Обработчик закрытия меню options',
@@ -89,15 +61,6 @@ export const argsTypes = {
   },
   size: {
     description: 'Размер компонента',
-    control: { type: 'select' },
-    options: ['xs', 's', 'm', 'l', 'xl'],
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'm' }
-    }
-  },
-  scrollingItems: {
-    description: 'Количество элементов, отображаемых в выпадающем списке без скролла',
     table: {
       defaultValue: {
         summary: sizesMappingInput.m
@@ -106,21 +69,17 @@ export const argsTypes = {
     options: Object.values(sizesMappingInput),
     control: { type: 'select' }
   },
+  scrollingItems: {
+    description: 'Количество элементов после которого включается прокрутка',
+    control: { type: 'number' }
+  },
   noOptionsText: {
     description: 'Текст, отображаемый когда нет доступных опций',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'Ничего не найдено' }
-    }
+    control: { type: 'text' }
   },
   searchable: {
-    description: 'Включает возможность поиска по опциям',
-    control: { type: 'boolean' },
-    table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' }
-    }
+    description: 'Флаг, указывающий, доступен ли поиск',
+    control: { type: 'boolean' }
   },
   name: {
     description: 'Name элемента, используется для ссылки на элемент',
@@ -131,18 +90,12 @@ export const argsTypes = {
     action: 'onEnterPress'
   },
   style: {
-    description: 'Дополнительные CSS стили',
-    control: { type: 'object' },
-    table: {
-      type: { summary: 'CSSProperties' }
-    }
+    description: 'Кастомные стили для компонента',
+    control: { type: 'object' }
   },
   className: {
-    description: 'Дополнительный CSS класс',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' }
-    }
+    description: 'Добавление самостоятельного CSS класса',
+    control: { type: 'text' }
   },
   colored: {
     description: 'Условие применения стилей подсветки',
@@ -182,42 +135,62 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   helperText: {
-    description: 'Вспомогательный текст под полем ввода',
-    control: { type: 'text' },
-    table: {
-      type: { summary: 'string' }
-    }
+    description: 'Строка для вспомогательного текста под инпутом. Может быть как текстом, так и элементом ReactNode',
+    control: { type: 'text' }
   },
   valueSeparator: {
-    description: 'Разделитель между выбранными значениями',
+    description: 'Разделитель для отображения выбранных значений',
     control: { type: 'text' },
     table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: ', ' }
+      defaultValue: {
+        summary: ', '
+      }
+    }
+  },
+  maxVisibleTags: {
+    description: 'Максимальное количество отображаемых тегов (остальные будут под "+N")',
+    control: { type: 'number' },
+    table: {
+      defaultValue: {
+        summary: 3
+      }
+    }
+  },
+  showCounter: {
+    description: 'Флаг для отображения счетчика выбранных элементов',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: true
+      }
     }
   },
   allSelectedText: {
-    description: 'Текст, отображаемый когда выбраны все опции',
+    description: 'Текст при выборе всех элементов',
     control: { type: 'text' },
     table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'Все' }
+      defaultValue: {
+        summary: 'Все'
+      }
     }
   },
   selectAllLabel: {
-    description: 'Текст для опции "Выбрать все"',
+    description: 'Лейбл для кнопки "Выбрать все"',
     control: { type: 'text' },
     table: {
-      type: { summary: 'string' },
-      defaultValue: { summary: 'Выбрать все' }
+      defaultValue: {
+        summary: 'Выбрать все'
+      }
     }
   },
   showSelectAll: {
-    description: 'Показывает опцию "Выбрать все"',
+    description: 'Флаг отображения кнопки "Выбрать все"',
     control: { type: 'boolean' },
     table: {
-      type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' }
+      defaultValue: {
+        summary: false
+      }
     }
   }
 };
+

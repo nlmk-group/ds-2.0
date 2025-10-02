@@ -329,3 +329,46 @@ SelectWithCustomOptions.args = {
   label: 'Select со стилизованными OptionItems'
 };
 SelectWithCustomOptions.storyName = 'Select со стилизованными OptionItems';
+
+export const SelectWithDisplayValue = (args: ISelectProps): JSX.Element => {
+  const [paginationValue, setPaginationValue] = useState('10');
+
+  const pageSizes = [10, 20, 30, 50, 100];
+
+  const generateDisplayValue = (val: string) => {
+    if (!val) return '';
+    const num = Number(val);
+    return `${num} записей на странице`;
+  };
+
+  const handleReset = () => {
+    setPaginationValue('');
+    args.onReset && args.onReset();
+  };
+
+  return (
+    <SimpleSelect
+      {...args}
+      value={paginationValue}
+      displayValue={generateDisplayValue(paginationValue)}
+      onChange={newValue => {
+        setPaginationValue(newValue.toString());
+        args.onChange && args.onChange(newValue);
+      }}
+      onReset={handleReset}
+      reset
+      label="Количество записей"
+    >
+      {pageSizes.map(pageSize => (
+        <OptionItem key={pageSize} value={pageSize.toString()} label={pageSize.toString()}>
+          <Typography variant="Body1-Medium">{pageSize} записей</Typography>
+        </OptionItem>
+      ))}
+    </SimpleSelect>
+  );
+};
+
+SelectWithDisplayValue.args = {
+  label: 'Select с кастомным displayValue'
+};
+SelectWithDisplayValue.storyName = 'Select с кастомным displayValue';

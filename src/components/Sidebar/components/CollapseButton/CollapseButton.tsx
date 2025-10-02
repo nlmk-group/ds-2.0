@@ -18,7 +18,7 @@ const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(({ is
       data-ui-sidebar-collapse-button
     >
       <div className={styles.arrow} data-expanded={isExpanded}>
-        <Icon name="IconChevronArrowRightOutlined32" containerSize={32} htmlColor="var(--ac-icon-white)" />
+        <Icon name="IconChevronArrowRightOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
       </div>
 
       {isExpanded && (

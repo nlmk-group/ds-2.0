@@ -74,6 +74,8 @@ import { Select } from '@nlmk/ds-2.0';
 | onSearch | function | - | Callback для асинхронного поиска по опциям |
 | multilineOption | boolean | false | Разрешить многострочное отображение опций |
 | listMinWidth | number | - | Минимальная ширина выпадающего списка |
+| required | boolean | false | HTML атрибут required |
+| reset | boolean | false | Флаг наличия кнопки сброса значения |
 
 ## Примеры
 
@@ -212,6 +214,30 @@ const MultilineExample = () => {
       label="Выберите опцию"
       multilineOption={true}
       listMinWidth={300}
+    />
+  );
+};
+```
+
+### Селект с кнопкой сброса
+
+```jsx
+import React, { useState } from 'react';
+import { Select } from '@nlmk/ds-2.0';
+const ResetExample = () => {
+  const [selected, setSelected] = useState('');
+  const options = [
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' }
+  ];
+  return (
+    <Select
+      options={options}
+      selected={selected}
+      onSelectionChange={setSelected}
+      label="Выберите опцию"
+      reset={true}
     />
   );
 };

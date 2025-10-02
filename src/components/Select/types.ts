@@ -98,7 +98,7 @@ export interface ISelectProps {
   /**
    * Цвет компонента.
    */
-  color?: customInputColors;
+  color?: `${customInputColors}`;
 
   /**
    * Текст для выбора всех опций.
@@ -228,6 +228,16 @@ export interface ISelectProps {
    * Состояние загрузки опций
    */
   isLoading?: boolean;
+
+  /**
+   * HTML атрибут required
+   */
+  required?: boolean;
+
+  /**
+   * Флаг наличия кнопки сброса
+   */
+  reset?: boolean;
 }
 
 export interface IStealthyItem {

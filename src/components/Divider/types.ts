@@ -1,11 +1,13 @@
 import { PropsWithChildren } from 'react';
 
+import { EDividerOrientation, EDividerType } from './enums';
+
 export interface IDividerProps extends PropsWithChildren<any> {
   className?: string;
   dashed?: boolean;
-  orientation?: string;
+  orientation?: `${EDividerOrientation}`;
   orientationSpace?: number;
-  type?: string;
+  type?: `${EDividerType}`;
 }
 
 export interface IHorizontalBorder {

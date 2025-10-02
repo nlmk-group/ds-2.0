@@ -11,14 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import {
-  DASHED_DIVIDER,
-  DEFAULT_DIVIDER,
-  DIVIDER_ORIENTATION,
-  DIVIDER_ORIENTATION_CUSTOM_SPACE,
-  DIVIDER_TYPE,
-  VERTICAL_DIVIDER
-} from './text';
 
 const style = '{{ width: 900, padding: 30 }}';
 
@@ -29,8 +21,7 @@ const styleVariations = `{{
     gap: '24px'
 }}`;
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=533-6991&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=533-6991&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -56,7 +47,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            description={DEFAULT_DIVIDER}
+            description="Divider по умолчанию"
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -72,7 +63,7 @@ export default  App = () => (
           />
 
           <Editor
-            description={DASHED_DIVIDER}
+            description="Divider с пунктирной линией"
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -88,7 +79,7 @@ export default  App = () => (
           />
 
           <Editor
-            description={DIVIDER_ORIENTATION}
+            description="Варианты ориентаций Divider"
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -116,7 +107,7 @@ export default  App = () => (
           />
 
           <Editor
-            description={DIVIDER_ORIENTATION_CUSTOM_SPACE}
+            description="Кастомизация размера пространства"
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -144,7 +135,7 @@ export default  App = () => (
           />
 
           <Editor
-            description={VERTICAL_DIVIDER}
+            description="Вертикальный Divider"
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -176,7 +167,7 @@ export default  App = () => (
 
           <Editor
             height={400}
-            description={DIVIDER_TYPE}
+            description="Типы Divider"
             code={`import { Divider, Button, Icon, IconChemical24 } from '@nlmk/ds-2.0';
 
 export default  App = () =>(

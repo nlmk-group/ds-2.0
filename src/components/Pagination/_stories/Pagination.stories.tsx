@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Pagination } from '@components/index';
+import { Box, Pagination } from '@components/index';
 
 import styles from '../Pagination.module.scss';
 
@@ -21,12 +21,7 @@ export const PaginationDefault = (argsTypes: IPaginationProps): JSX.Element => {
 
   return (
     <div style={{ width: '800px' }}>
-      <Pagination
-        {...argsTypes}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPageCount={20}
-      />
+      <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
 };
@@ -37,51 +32,36 @@ export const PaginationWithGap = (argsTypes: IPaginationProps): JSX.Element => {
 
   return (
     <div style={{ width: '800px' }}>
-      <Pagination
-        {...argsTypes}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPageCount={20}
-      />
+      <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
 };
 
-PaginationWithGap.storyName = 'Pagination с разрывами'
+PaginationWithGap.storyName = 'Pagination с разрывами';
 
 export const PaginationWithLeftGap = (argsTypes: IPaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(17);
 
   return (
     <div style={{ width: '800px' }}>
-      <Pagination
-        {...argsTypes}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPageCount={20}
-      />
+      <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
 };
 
-PaginationWithLeftGap.storyName = 'Pagination с левым разрывом'
+PaginationWithLeftGap.storyName = 'Pagination с левым разрывом';
 
 export const PaginationWithRightGap = (argsTypes: IPaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(4);
 
   return (
     <div style={{ width: '800px' }}>
-      <Pagination
-        {...argsTypes}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        maxPageCount={20}
-      />
+      <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
 };
 
-PaginationWithRightGap.storyName = 'Pagination с правым разрывом'
+PaginationWithRightGap.storyName = 'Pagination с правым разрывом';
 
 export const PaginationWithSelect = (argsTypes: IPaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -102,4 +82,44 @@ export const PaginationWithSelect = (argsTypes: IPaginationProps): JSX.Element =
   );
 };
 
-PaginationWithSelect.storyName = 'Pagination с возможностью выбора количества записей на странице'
+PaginationWithSelect.storyName = 'Pagination с возможностью выбора количества записей на странице';
+
+export const PaginationWithCustomLabel = (): JSX.Element => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementsPerPage, setElementsPerPage] = useState(20);
+
+  return (
+    <Box flexDirection="column" gap="40px">
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        elementsPerPage={elementsPerPage}
+        setElementsPerPage={setElementsPerPage}
+        withSelect
+        maxPageCount={15}
+        itemsLabel="элементов"
+      />
+
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        elementsPerPage={elementsPerPage}
+        setElementsPerPage={setElementsPerPage}
+        withSelect
+        maxPageCount={15}
+        itemsLabel="строк"
+      />
+
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        elementsPerPage={elementsPerPage}
+        setElementsPerPage={setElementsPerPage}
+        withSelect
+        maxPageCount={15}
+      />
+    </Box>
+  );
+};
+
+PaginationWithCustomLabel.storyName = 'Pagination с настраиваемым текстом в селекте';

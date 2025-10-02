@@ -1,19 +1,31 @@
 import { useCallback, useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 
-const useSplitter = (containerRef: RefObject<HTMLDivElement>, setTopHeight: (height: number) => void) => {
+import { ESplitterOrientation } from './enums';
+
+const useSplitter = (
+  containerRef: RefObject<HTMLDivElement>,
+  setTopHeight: (height: number) => void,
+  orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal
+) => {
   const splitterRef = useRef<HTMLDivElement>(null);
+  const isVertical = orientation === ESplitterOrientation.vertical;
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       const container = containerRef.current;
       if (container) {
         const rect = container.getBoundingClientRect();
-        const newHeight = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
-        setTopHeight(newHeight);
+        if (isVertical) {
+          const newWidth = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
+          setTopHeight(newWidth);
+        } else {
+          const newHeight = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
+          setTopHeight(newHeight);
+        }
       }
     },
-    [containerRef, setTopHeight]
+    [containerRef, setTopHeight, isVertical]
   );
 
   useEffect(() => {

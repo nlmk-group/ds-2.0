@@ -9,15 +9,6 @@ import styles from '@components/_storybook/styles.module.scss';
 import { EDividerOrientation, EDividerType } from '../enums';
 import { IDividerProps } from '../types';
 import argsTypes from './argsTypes';
-import {
-  DASHED_DIVIDER,
-  DEFAULT_DIVIDER,
-  DIVIDER_CUSTOM_CLASSNAME,
-  DIVIDER_ORIENTATION,
-  DIVIDER_ORIENTATION_CUSTOM_SPACE,
-  DIVIDER_TYPE,
-  VERTICAL_DIVIDER
-} from './text';
 
 export default {
   title: 'Components/Divider/Stories',
@@ -25,7 +16,7 @@ export default {
   argTypes: argsTypes
 };
 
-export const DefaultDivider = (argTypes: IDividerProps): ReactNode => {
+export const DividerDefault = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Divider {...argTypes} />
@@ -33,12 +24,12 @@ export const DefaultDivider = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DefaultDivider.storyName = DEFAULT_DIVIDER;
-DefaultDivider.args = {
-  children: <Typography>{DEFAULT_DIVIDER}</Typography>
+DividerDefault.storyName = 'Divider по умолчанию';
+DividerDefault.args = {
+  children: <Typography>Divider по умолчанию</Typography>
 };
 
-export const DashedDivider = (argTypes: IDividerProps): ReactNode => {
+export const DividerDashed = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
       <Divider {...argTypes} />
@@ -46,26 +37,30 @@ export const DashedDivider = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DashedDivider.storyName = DASHED_DIVIDER;
-DashedDivider.args = {
-  children: <Typography className={style['divider-content']}>{DASHED_DIVIDER}</Typography>,
+DividerDashed.storyName = 'Divider с пунктирной линией';
+DividerDashed.args = {
+  children: <Typography className={style['divider-content']}>Divider с пунктирной линией</Typography>,
   dashed: true
 };
 
 export const DividerOrientation = (argTypes: IDividerProps): ReactNode => {
   return (
     <div className={styles.wrapper}>
-      {Object.values(EDividerOrientation).map((orientation: EDividerOrientation) => (
-        <Divider {...argTypes} orientation={orientation} key={orientation} />
-      ))}
+      <Divider {...argTypes} orientation={EDividerOrientation.left}>
+        <Typography className={style['divider-content']}>Left</Typography>
+      </Divider>
+      <Divider {...argTypes} orientation={EDividerOrientation.center}>
+        <Typography className={style['divider-content']}>Center</Typography>
+      </Divider>
+      <Divider {...argTypes} orientation={EDividerOrientation.right}>
+        <Typography className={style['divider-content']}>Right</Typography>
+      </Divider>
     </div>
   );
 };
 
-DividerOrientation.storyName = DIVIDER_ORIENTATION;
-DividerOrientation.args = {
-  children: <Typography className={style['divider-content']}>{DIVIDER_ORIENTATION}</Typography>
-};
+DividerOrientation.storyName = 'Варианты ориентаций Divider';
+DividerOrientation.args = {};
 
 export const DividerOrientationWithCustomSpace = (argTypes: IDividerProps): ReactNode => {
   return (
@@ -76,9 +71,9 @@ export const DividerOrientationWithCustomSpace = (argTypes: IDividerProps): Reac
   );
 };
 
-DividerOrientationWithCustomSpace.storyName = DIVIDER_ORIENTATION_CUSTOM_SPACE;
+DividerOrientationWithCustomSpace.storyName = 'Кастомизация размера пространства';
 DividerOrientationWithCustomSpace.args = {
-  children: <Typography className={style['divider-content']}>{DIVIDER_ORIENTATION_CUSTOM_SPACE}</Typography>
+  children: <Typography className={style['divider-content']}>Кастомизация размера пространства</Typography>
 };
 
 export const DividerVertical = (argTypes: IDividerProps): ReactNode => {
@@ -95,8 +90,7 @@ export const DividerVertical = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DividerVertical.storyName = VERTICAL_DIVIDER;
-DividerVertical.args = {};
+DividerVertical.storyName = 'Вертикальный Divider';
 
 export const DividerCustomClassName = (argTypes: IDividerProps): ReactNode => {
   return (
@@ -116,10 +110,7 @@ export const DividerCustomClassName = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DividerCustomClassName.storyName = DIVIDER_CUSTOM_CLASSNAME;
-DividerCustomClassName.args = {
-  children: DIVIDER_CUSTOM_CLASSNAME
-};
+DividerCustomClassName.storyName = 'Divider с кастомным классом';
 
 export const DividerType = (argTypes: IDividerProps): ReactNode => {
   return (
@@ -176,5 +167,4 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DividerType.storyName = DIVIDER_TYPE;
-DividerType.args = {};
+DividerType.storyName = 'Типы Divider';

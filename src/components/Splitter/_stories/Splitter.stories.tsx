@@ -172,10 +172,10 @@ export const SplitterVertical = (): ReactNode => {
     >
       <Box flexDirection="column" alignItems="center" gap="16px">
         <IconLogotype className={style['icon-dark']} />
-        <Typography variant="Heading4" style={{ color: 'white' }}>
+        <Typography variant="Heading4" className={style['text-dark']}>
           Правая панель
         </Typography>
-        <Typography variant="Body1-Medium" style={{ color: 'white' }}>
+        <Typography variant="Body1-Medium" className={style['text-dark']}>
           Содержимое правой части
         </Typography>
       </Box>

@@ -44,6 +44,16 @@
   }
 }
 
+.text-dark {
+  :root[data-theme="dark-theme"] & {
+    color: #001729;
+  }
+
+  :root:not([data-theme="dark-theme"]) & {
+    color: #f2f3f4;
+  }
+}
+
 .mgtop {
   margin-top: 0;
 }

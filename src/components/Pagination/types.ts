@@ -11,6 +11,7 @@ export interface IPaginationProps {
   pageSizes?: number[];
   onPageChange?: (page: number) => void;
   onPageSizeChange?: (pageSize: number) => void;
+  itemsLabel?: string;
 }
 
 export interface IPlainButtonsProps {

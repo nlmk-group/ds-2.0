@@ -9,12 +9,12 @@
 ```tsx
 import { Pagination } from '@nlmk/ds-2.0';
 
-/ Базовое использование
+// Базовое использование
 const Example = () => {
   const [currentPage, setCurrentPage] = useState(1);
   return <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={10} />;
 };
-/ Расширенное использование с выбором количества элементов
+// Расширенное использование с выбором количества элементов
 const AdvancedExample = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [elementsPerPage, setElementsPerPage] = useState(10);
@@ -36,18 +36,18 @@ const AdvancedExample = () => {
 // Использование только с onPageChange
 const CallbackExample = () => {
   const [page, setPage] = useState(1);
-  
+
   const handlePageChange = (newPage) => {
     setPage(newPage);
     // Дополнительная логика, например, загрузка данных
     fetchData(newPage);
   };
-  
+
   return (
-    <Pagination 
-      currentPage={page} 
-      maxPageCount={10} 
-      onPageChange={handlePageChange} 
+    <Pagination
+      currentPage={page}
+      maxPageCount={10}
+      onPageChange={handlePageChange}
     />
   );
 };
@@ -67,6 +67,7 @@ const CallbackExample = () => {
 | pageSizes | number[] | [10,20,30,50,100] | Массив значений для выбора количества элементов |
 | onPageChange | (page: number) => void | - | Колбэк при изменении страницы |
 | onPageSizeChange | (pageSize: number) => void | - | Колбэк при изменении количества элементов |
+| itemsLabel | string | 'записей' | Текст для отображения рядом с числом в селекте |
 
 ## Режимы отображения
 
@@ -140,18 +141,20 @@ const CallbackExample = () => {
 Компонент Pagination поддерживает два подхода к управлению состоянием:
 
 1. **Контролируемый компонент** - используйте `currentPage` и `setCurrentPage` для прямого управления состоянием:
+
    ```tsx
    const [page, setPage] = useState(1);
-   <Pagination currentPage={page} setCurrentPage={setPage} maxPageCount={10} />
+   <Pagination currentPage={page} setCurrentPage={setPage} maxPageCount={10} />;
    ```
 
 2. **Компонент с колбэками** - используйте `currentPage` и `onPageChange` для обработки изменений:
+
    ```tsx
    const [page, setPage] = useState(1);
-   
-   const handlePageChange = (newPage) => {
+
+   const handlePageChange = newPage => {
      setPage(newPage);
    };
-   
-   <Pagination currentPage={page} onPageChange={handlePageChange} maxPageCount={10} />
+
+   <Pagination currentPage={page} onPageChange={handlePageChange} maxPageCount={10} />;
    ```

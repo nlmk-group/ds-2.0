@@ -21,6 +21,8 @@ export interface IPaginationProps {
   onPageChange?: (page: number) => void;
   /** Колбэк, вызываемый при изменении количества элементов на странице */
   onPageSizeChange?: (pageSize: number) => void;
+  /** Текст для отображения рядом с числом в селекте (например, "записей", "элементов", "строк") */
+  itemsLabel?: string;
 }
 
 export interface IPlainButtonsProps {

@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import { ISvgProps } from '../types';
 
-const IconLogotype: FC<ISvgProps> = (): JSX.Element => {
+const IconLogotype: FC<ISvgProps> = (props: ISvgProps): JSX.Element => {
   return (
-    <svg width="150" height="81" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="150" height="81" fill="none" xmlns="http://www.w3.org/2000/svg" className={props.className ?? ''}>
       <path
         d="M75 71.948c-39.381 0-65.72-12.901-65.72-32.004C9.28 20.84 35.62 7.939 75 7.939c39.382 0 65.719 12.901 65.719 32.005 0 19.103-26.337 32.004-65.719 32.004Zm0-64.753c-39.883 0-66.473 13.149-66.473 32.749S35.117 72.693 75 72.693c39.883 0 66.473-13.15 66.473-32.75S114.883 7.196 75 7.196Zm0 68.97c-42.392 0-70.736-14.637-70.736-36.221C4.264 18.11 32.608 3.722 75 3.722c42.642 0 70.736 14.39 70.736 36.222 0 21.584-28.094 36.22-70.736 36.22ZM75 0C29.85 0 0 16.126 0 39.944c0 23.568 29.85 39.943 75 39.943 45.402 0 75-16.375 75-39.943C150 16.126 120.402 0 75 0Z"
         fill="#1952B6"

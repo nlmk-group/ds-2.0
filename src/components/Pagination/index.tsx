@@ -34,6 +34,7 @@ const DEFAULT_PAGE_SIZES = [10, 20, 30, 50, 100];
  * @param {number[]} [props.pageSizes=[10,20,30,50,100]] - Массив доступных значений для выбора количества элементов на странице.
  * @param {(page: number) => void} [props.onPageChange] - Колбэк, вызываемый при изменении страницы.
  * @param {(pageSize: number) => void} [props.onPageSizeChange] - Колбэк, вызываемый при изменении количества элементов на странице.
+ * @param {string} [props.itemsLabel='записей'] - Текст для отображения рядом с числом в селекте (например, "записей", "элементов", "строк").
  * @returns {JSX.Element} Компонент пагинации.
  *
  */
@@ -47,7 +48,8 @@ const Pagination: FC<IPaginationProps> = ({
   withSelect = false,
   pageSizes = DEFAULT_PAGE_SIZES,
   onPageChange,
-  onPageSizeChange
+  onPageSizeChange,
+  itemsLabel = 'записей'
 }) => {
   const isPlainButtons = maxPageCount <= 5;
 
@@ -100,6 +102,8 @@ const Pagination: FC<IPaginationProps> = ({
     [handlePageChange]
   );
 
+  const generateDisplayValue = useCallback((value: number) => `${value} ${itemsLabel}`, [itemsLabel]);
+
   return (
     <div className={clsx(styles.pagination, className)}>
       <div className={styles.panel}>
@@ -110,6 +114,7 @@ const Pagination: FC<IPaginationProps> = ({
             </div>
             <SimpleSelect
               value={elementsPerPage?.toString()}
+              displayValue={generateDisplayValue(elementsPerPage || 10)}
               onChange={handlePageSizeChange}
               withPortal
               className={styles.select}
@@ -122,7 +127,9 @@ const Pagination: FC<IPaginationProps> = ({
                   label={pageSize.toString()}
                   data-ui-pagination-select-item
                 >
-                  <Typography variant="Body1-Medium">{pageSize} записей</Typography>
+                  <Typography variant="Body1-Medium">
+                    {pageSize} {itemsLabel}
+                  </Typography>
                 </OptionItem>
               ))}
             </SimpleSelect>

@@ -102,16 +102,18 @@ export const SplitterDefault = (): ReactNode => {
         />
       </Box>
       <Box justifyContent="center" alignItems="center">
-        <Typography className={style.mgtop} variant="Body1-Medium">
-          Отображать строк
-        </Typography>
-        <SimpleSelect value={10} style={{ width: '80px' }}>
-          {options.map(i => (
-            <OptionItem key={i} value={i} label={String(i)}>
-              {i}
-            </OptionItem>
-          ))}
-        </SimpleSelect>
+        <Box justifyContent="center" alignItems="center" gap="16px">
+          <Typography className={style.mgtop} variant="Body1-Medium">
+            Отображать строк
+          </Typography>
+          <SimpleSelect value={10} style={{ width: '80px' }}>
+            {options.map(i => (
+              <OptionItem key={i} value={i} label={String(i)}>
+                {i}
+              </OptionItem>
+            ))}
+          </SimpleSelect>
+        </Box>
         <Box justifyContent="center" alignItems="center" gap="16px">
           <Button
             type="button"

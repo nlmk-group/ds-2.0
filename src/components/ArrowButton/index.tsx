@@ -4,24 +4,26 @@ import { IconColor } from '@components/Icon/types';
 import { Button, IconChevronArrowDownOutlined24 } from '@components/index';
 import clsx from 'clsx';
 
-import { ECustomInputColors, IArrowButtonProps } from './types';
+import { IArrowButtonProps } from './types';
 
 import styles from './ArrowButton.module.scss';
+
+import { EArrowButtonColor } from './enums';
 
 type TIconColor = `${IconColor}`;
 
 const ArrowButton: FC<IArrowButtonProps> = ({
   disabled,
-  color = ECustomInputColors.primary,
+  color = EArrowButtonColor.primary,
   isOpen,
   toggleDropdown
 }) => {
-  const colorsArray = Object.values(ECustomInputColors);
+  const colorsArray = Object.values(EArrowButtonColor);
   const getIconColor = (): TIconColor => {
-    if (colorsArray.includes(ECustomInputColors[color])) {
+    if (colorsArray.includes(EArrowButtonColor[color])) {
       return color;
     }
-    return ECustomInputColors.primary;
+    return EArrowButtonColor.primary;
   };
 
   return (

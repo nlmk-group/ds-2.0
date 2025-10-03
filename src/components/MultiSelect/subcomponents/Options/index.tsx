@@ -115,20 +115,18 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
         data-ui-multi-select-options
       >
         {showSelectAll && allOptions.length > 0 && (
-          <Box className={styles.selectAllContainer} data-ui-multi-select-select-all>
-            <OptionItem
-              value="__select_all__"
-              label={selectAllLabel}
-              isSelected={isAllSelected}
-              onSelect={selectAll}
-              className={styles.selectAllOption}
-            >
+          <OptionItem
+            value="__select_all__"
+            label={selectAllLabel}
+            isSelected={isAllSelected}
+            onSelect={selectAll}
+            data-ui-multi-select-select-all
+          >
+            <Typography variant="Caption-Medium" color="var(--steel-70)">
               {selectAllLabel}
-            </OptionItem>
-          </Box>
+            </Typography>
+          </OptionItem>
         )}
-
-        {showSelectAll && allOptions.length > 0 && <div className={styles.divider} />}
 
         {childrenWithProps.length > 0 ? (
           childrenWithProps

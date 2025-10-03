@@ -353,3 +353,91 @@ MultiSelectWithCustomOptions.args = {
   label: 'MultiSelect со стилизованными OptionItems'
 };
 MultiSelectWithCustomOptions.storyName = 'MultiSelect со стилизованными OptionItems';
+
+export const MultiSelectWithSelectAll = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectWithSelectAll.args = {
+  label: 'MultiSelect с кнопкой "Выбрать все"',
+  showSelectAll: true
+};
+MultiSelectWithSelectAll.storyName = 'MultiSelect с выбором всех';
+
+export const MultiSelectWithClearSearch = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || []);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange}>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectWithClearSearch.args = {
+  label: 'MultiSelect с очисткой поиска при выборе',
+  searchable: true,
+  clearSearchOnSelect: true
+};
+MultiSelectWithClearSearch.storyName = 'MultiSelect с очисткой поиска';
+
+export const MultiSelectWithReset = (args: IMultiSelectProps): JSX.Element => {
+  const [value, setValue] = useState<Array<string | number>>(args.value || ['steel', 'aluminum']);
+
+  const handleChange = (newValue: Array<string | number>) => {
+    setValue(newValue);
+    if (args.onChange) {
+      args.onChange(newValue);
+    }
+  };
+
+  const handleReset = () => {
+    setValue([]);
+    if (args.onReset) {
+      args.onReset();
+    }
+  };
+
+  return (
+    <MultiSelect {...args} value={value} onChange={handleChange} onReset={handleReset} reset>
+      {options.map(({ value, label, disabled }) => (
+        <OptionItem key={value} value={value} label={label} disabled={disabled}>
+          <Typography variant="Body1-Medium">{label}</Typography>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+
+MultiSelectWithReset.args = {
+  label: 'MultiSelect с кнопкой сброса'
+};
+MultiSelectWithReset.storyName = 'MultiSelect с кнопкой сброса';

@@ -11,7 +11,7 @@ import React, {
 } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { Input } from '@components/index';
+import { ArrowButton, Input } from '@components/index';
 import OptionItem from '@components/SimpleSelect/subcomponents/OptionItem';
 import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
 import clsx from 'clsx';
@@ -22,7 +22,6 @@ import styles from './MultiSelect.module.scss';
 
 import { SCROLLING_ITEMS_DEFAULT } from './constants';
 import { MultiSelectContext } from './context';
-import ArrowButton from './subcomponents/ArrowButton';
 import Options from './subcomponents/Options';
 
 /**
@@ -68,10 +67,12 @@ const MultiSelect: FC<IMultiSelectProps> = ({
   onReset,
   className,
   style,
+  inputStyle,
   valueSeparator = ', ',
   allSelectedText = 'Все',
   selectAllLabel = 'Выбрать все',
   showSelectAll = false,
+  clearSearchOnSelect = false,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -139,6 +140,10 @@ const MultiSelect: FC<IMultiSelectProps> = ({
     onChange?.(newValue);
     if (onEnterPress && isOpen) {
       onEnterPress(newValue);
+    }
+
+    if (clearSearchOnSelect) {
+      setSearchTerm('');
     }
 
     inputRef.current?.focus();
@@ -287,7 +292,15 @@ const MultiSelect: FC<IMultiSelectProps> = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           colored={colored}
-          icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
+          style={inputStyle}
+          icon={
+            <ArrowButton
+              isOpen={isOpen}
+              color={color as 'error' | 'success' | 'warning' | 'primary' | 'default'}
+              disabled={disabled}
+              toggleDropdown={toggleDropdown}
+            />
+          }
           className={clsx(selectedOptionsWithLabels.length > 0 && styles.hasSelection)}
           reset={Boolean(selectedOptionsWithLabels.length > 0 || reset)}
           onReset={() => {

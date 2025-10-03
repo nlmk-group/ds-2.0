@@ -57,8 +57,11 @@ export interface IMultiSelectSpecificProps {
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
 
-  /** Кастомные стили для компонента */
+  /** Кастомные стили для самого селекта (контейнера) */
   style?: CSSProperties;
+
+  /** Кастомные стили для внутреннего Input компонента */
+  inputStyle?: CSSProperties;
 
   /** Разделитель для отображения выбранных значений */
   valueSeparator?: string;
@@ -77,6 +80,9 @@ export interface IMultiSelectSpecificProps {
 
   /** Флаг отображения кнопки "Выбрать все" */
   showSelectAll?: boolean;
+
+  /** Очищать поле поиска при выборе значения */
+  clearSearchOnSelect?: boolean;
 }
 
 /**

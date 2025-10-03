@@ -90,7 +90,11 @@ export const argsTypes = {
     action: 'onEnterPress'
   },
   style: {
-    description: 'Кастомные стили для компонента',
+    description: 'Кастомные стили для самого селекта (контейнера)',
+    control: { type: 'object' }
+  },
+  inputStyle: {
+    description: 'Кастомные стили для внутреннего Input компонента',
     control: { type: 'object' }
   },
   className: {
@@ -191,6 +195,14 @@ export const argsTypes = {
         summary: false
       }
     }
+  },
+  clearSearchOnSelect: {
+    description: 'Очищать поле поиска при выборе значения',
+    control: { type: 'boolean' },
+    table: {
+      defaultValue: {
+        summary: false
+      }
+    }
   }
 };
-

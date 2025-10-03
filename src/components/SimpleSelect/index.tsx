@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { Input } from '@components/index';
+import { ArrowButton, Input } from '@components/index';
 import clsx from 'clsx';
 
 import { ISelectProps } from './types';
@@ -21,7 +21,7 @@ import styles from './SimpleSelect.module.scss';
 
 import { SCROLLING_ITEMS_DEFAULT } from './constants';
 import { SelectContext } from './context';
-import { ArrowButton, OptionItem, Options } from './subcomponents';
+import { OptionItem, Options } from './subcomponents';
 import { IOptionItemProps } from './subcomponents/OptionItem/types';
 
 /**

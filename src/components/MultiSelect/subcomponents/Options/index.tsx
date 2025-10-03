@@ -12,6 +12,9 @@ import styles from './Options.module.scss';
 
 import { MultiSelectContext } from '../../context';
 
+const OPTION_ITEM_HEIGHT = 40;
+const MENU_PADDING = 16;
+
 const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   const {
     isOpen,
@@ -89,7 +92,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   const getMenuStyles = () => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
-      maxHeight: `calc((var(--40-size) * ${scrollingItems}) + var(--16-space))`,
+      maxHeight: `${OPTION_ITEM_HEIGHT * scrollingItems + MENU_PADDING}px`,
       ...popperStyles.popper,
       ...menuStyle
     };

@@ -37,7 +37,7 @@ export interface IMultiSelectSpecificProps {
   portalContainerId?: string;
 
   /** Дочерние элементы селекта (опции меню) */
-  children: ReactNode;
+  children?: ReactNode;
 
   /** Ширина меню селекта */
   menuWidth?: string;

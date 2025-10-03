@@ -12,6 +12,9 @@ import { MENU_OFFSET } from '../../constants';
 import { SelectContext } from '../../context';
 import { IOptionItemProps } from '../OptionItem/types';
 
+const OPTION_ITEM_HEIGHT = 40;
+const MENU_PADDING = 16;
+
 const Options: FC<IOptionsProps> = ({ children }) => {
   const {
     isOpen,
@@ -78,7 +81,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
   const getMenuStyles = () => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
-      maxHeight: `calc((40px * ${scrollingItems}) + 16px)`,
+      maxHeight: `${OPTION_ITEM_HEIGHT * scrollingItems + MENU_PADDING}px`,
       ...popperStyles.popper
     };
     return baseStyles;

@@ -80,6 +80,10 @@ MultiSelectWithSearch.args = {
   label: 'MultiSelect с поиском',
   searchable: true
 };
+MultiSelectWithSearch.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectWithSearch.storyName = 'MultiSelect с поиском';
 
 export const MultiSelectDisabled = (args: IMultiSelectProps): JSX.Element => {
@@ -106,6 +110,10 @@ export const MultiSelectDisabled = (args: IMultiSelectProps): JSX.Element => {
 MultiSelectDisabled.args = {
   label: 'Disabled',
   disabled: true
+};
+MultiSelectDisabled.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectDisabled.storyName = 'Заблокированный MultiSelect';
 
@@ -134,6 +142,10 @@ export const MultiSelectSelectionCallback = (args: IMultiSelectProps): JSX.Eleme
 MultiSelectSelectionCallback.args = {
   label: 'Обработчик при выборе'
 };
+MultiSelectSelectionCallback.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectSelectionCallback.storyName = 'MultiSelect с коллбэком при выборе';
 
 export const MultiSelectWithTags = (args: IMultiSelectProps): JSX.Element => {
@@ -159,6 +171,10 @@ export const MultiSelectWithTags = (args: IMultiSelectProps): JSX.Element => {
 
 MultiSelectWithTags.args = {
   label: 'MultiSelect с тегами'
+};
+MultiSelectWithTags.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectWithTags.storyName = 'MultiSelect с тегами';
 
@@ -187,6 +203,10 @@ MultiSelectCompact.args = {
   label: 'Размер s',
   size: sizesMappingInput.s
 };
+MultiSelectCompact.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectCompact.storyName = 'MultiSelect компактный';
 
 export const MultiSelectScrollingItems = (args: IMultiSelectProps): JSX.Element => {
@@ -213,6 +233,10 @@ export const MultiSelectScrollingItems = (args: IMultiSelectProps): JSX.Element 
 MultiSelectScrollingItems.args = {
   label: 'Скролл',
   scrollingItems: 2
+};
+MultiSelectScrollingItems.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectScrollingItems.storyName = 'MultiSelect с настройкой скролла';
 
@@ -241,6 +265,10 @@ MultiSelectSuccess.args = {
   label: 'Цвет success',
   color: customInputColors.success
 };
+MultiSelectSuccess.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectSuccess.storyName = 'MultiSelect в состоянии success';
 
 export const MultiSelectWarning = (args: IMultiSelectProps): JSX.Element => {
@@ -267,6 +295,10 @@ export const MultiSelectWarning = (args: IMultiSelectProps): JSX.Element => {
 MultiSelectWarning.args = {
   label: 'Цвет warning',
   color: customInputColors.warning
+};
+MultiSelectWarning.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectWarning.storyName = 'MultiSelect в состоянии warning';
 
@@ -295,6 +327,10 @@ MultiSelectError.args = {
   label: 'Цвет error',
   color: customInputColors.error
 };
+MultiSelectError.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectError.storyName = 'MultiSelect в состоянии error';
 
 export const MultiSelectEmpty = (args: IMultiSelectProps): JSX.Element => {
@@ -316,6 +352,10 @@ export const MultiSelectEmpty = (args: IMultiSelectProps): JSX.Element => {
 
 MultiSelectEmpty.args = {
   label: 'Пустой MultiSelect'
+};
+MultiSelectEmpty.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectEmpty.storyName = 'MultiSelect пустой';
 
@@ -352,6 +392,10 @@ export const MultiSelectWithCustomOptions = (args: IMultiSelectProps): JSX.Eleme
 MultiSelectWithCustomOptions.args = {
   label: 'MultiSelect со стилизованными OptionItems'
 };
+MultiSelectWithCustomOptions.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 MultiSelectWithCustomOptions.storyName = 'MultiSelect со стилизованными OptionItems';
 
 export const MultiSelectWithSelectAll = (args: IMultiSelectProps): JSX.Element => {
@@ -378,6 +422,10 @@ export const MultiSelectWithSelectAll = (args: IMultiSelectProps): JSX.Element =
 MultiSelectWithSelectAll.args = {
   label: 'MultiSelect с кнопкой "Выбрать все"',
   showSelectAll: true
+};
+MultiSelectWithSelectAll.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectWithSelectAll.storyName = 'MultiSelect с выбором всех';
 
@@ -406,6 +454,10 @@ MultiSelectWithClearSearch.args = {
   label: 'MultiSelect с очисткой поиска при выборе',
   searchable: true,
   clearSearchOnSelect: true
+};
+MultiSelectWithClearSearch.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectWithClearSearch.storyName = 'MultiSelect с очисткой поиска';
 
@@ -439,5 +491,9 @@ export const MultiSelectWithReset = (args: IMultiSelectProps): JSX.Element => {
 
 MultiSelectWithReset.args = {
   label: 'MultiSelect с кнопкой сброса'
+};
+MultiSelectWithReset.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 MultiSelectWithReset.storyName = 'MultiSelect с кнопкой сброса';

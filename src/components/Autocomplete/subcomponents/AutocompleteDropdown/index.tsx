@@ -165,9 +165,9 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
             ) : (
               showEmptyDropdown && (
                 <Box flexDirection="column" data-ui-autocomplete-empty>
-                  <Box gap={8} flexDirection="row" className={styles['not-found-item']} data-ui-autocomplete-no-results>
+                  <Box gap={8} flexDirection="row" className={styles['not-found-item']} alignItems="center" data-ui-autocomplete-no-results>
                     <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
-                    <Typography variant="Caption-Medium" color="var(--steel-90)">
+                    <Typography variant="Body1-Medium" color="var(--steel-90)">
                       {noResultsText ?? 'Ничего не найдено'}
                     </Typography>
                   </Box>

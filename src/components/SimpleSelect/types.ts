@@ -21,7 +21,7 @@ interface ISelectSpecificProps {
   portalContainerId?: string;
 
   /** Дочерние элементы селекта (опции меню) */
-  children: ReactNode;
+  children?: ReactNode;
 
   /** Ширина меню селекта */
   menuWidth?: string;
@@ -40,6 +40,9 @@ interface ISelectSpecificProps {
 
   /** Флаг, указывающий, доступен ли поиск */
   searchable?: boolean;
+
+  /** Очищать поле поиска при выборе значения */
+  clearSearchOnSelect?: boolean;
 
   /** Кастомное отображаемое значение в инпуте (переопределяет автоматическое определение по label) */
   displayValue?: string;

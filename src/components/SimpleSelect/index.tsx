@@ -12,7 +12,8 @@ import React, {
 } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { ArrowButton, Input } from '@components/index';
+import { ArrowButton, Input, OptionItem } from '@components/index';
+import { IOptionItemProps } from '@components/OptionItem/types';
 import clsx from 'clsx';
 
 import { ISelectProps } from './types';
@@ -21,8 +22,7 @@ import styles from './SimpleSelect.module.scss';
 
 import { SCROLLING_ITEMS_DEFAULT } from './constants';
 import { SelectContext } from './context';
-import { OptionItem, Options } from './subcomponents';
-import { IOptionItemProps } from './subcomponents/OptionItem/types';
+import { Options } from './subcomponents';
 
 /**
  * Компонент SimpleSelect представляет собой кастомизируемый выпадающий список с возможностью поиска.
@@ -85,6 +85,7 @@ const SimpleSelect: FC<ISelectProps> = ({
   reset,
   onReset,
   displayValue,
+  clearSearchOnSelect = false,
   className,
   style,
   inputStyle,
@@ -96,6 +97,7 @@ const SimpleSelect: FC<ISelectProps> = ({
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const arrowButtonRef = useRef<HTMLButtonElement>(null);
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
   if (scrollingItems < 1) {
@@ -123,19 +125,23 @@ const SimpleSelect: FC<ISelectProps> = ({
   const toggleDropdown: MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
     e.stopPropagation();
+
     if (isOpen) {
-      handleBlur();
+      setIsOpen(false);
+      onBlur?.();
+      inputRef.current?.blur();
     } else {
+      setIsOpen(true);
       onFocus?.();
+      inputRef.current?.focus();
     }
-    setIsOpen(!isOpen);
   };
 
   const handleOptionChange = (optionValue: string | number) => {
     setSelectedLabel(findOptionLabel(optionValue));
     setIsOpen(false);
     setFocusedIndex(-1);
-    inputRef.current?.blur(); // Убираем фокус с инпута
+    inputRef.current?.blur();
     onChange?.(optionValue);
   };
 
@@ -211,6 +217,7 @@ const SimpleSelect: FC<ISelectProps> = ({
         setSelectedLabel,
         inputRef,
         menuRef,
+        arrowButtonRef,
         menuWidth,
         withPortal,
         portalContainerId,
@@ -219,7 +226,9 @@ const SimpleSelect: FC<ISelectProps> = ({
         setSearchTerm,
         focusedIndex,
         setFocusedIndex,
-        onChange
+        onChange,
+        size,
+        clearSearchOnSelect
       }}
     >
       <div className={clsx(styles.select, className)} style={style} data-ui-select>
@@ -238,9 +247,24 @@ const SimpleSelect: FC<ISelectProps> = ({
           pseudo={pseudo}
           color={color}
           colored={colored}
-          reset={reset}
-          onReset={onReset}
-          icon={<ArrowButton isOpen={isOpen} color={color} disabled={disabled} toggleDropdown={toggleDropdown} />}
+          reset={reset && !!value}
+          onReset={() => {
+            if (onReset) {
+              onReset();
+              onChange?.('');
+            } else {
+              onChange?.('');
+            }
+          }}
+          icon={
+            <ArrowButton
+              isOpen={isOpen}
+              color={color}
+              disabled={disabled}
+              toggleDropdown={toggleDropdown}
+              buttonRef={arrowButtonRef}
+            />
+          }
           onChange={e => searchable && setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}

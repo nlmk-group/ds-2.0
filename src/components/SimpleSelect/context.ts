@@ -1,6 +1,6 @@
-import { createContext, RefObject } from 'react';
+import { createContext, RefObject, useContext } from 'react';
 
-import { SCROLLING_ITEMS_DEFAULT } from './constants';
+import { TOptionItemSize } from '@components/OptionItem/types';
 
 interface SelectContextProps {
   /**
@@ -37,6 +37,11 @@ interface SelectContextProps {
    * Реф для элемента меню, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
    */
   menuRef: RefObject<HTMLDivElement>;
+
+  /**
+   * Реф для кнопки со стрелкой, нужен чтобы ClickAwayListener игнорировал клики на неё
+   */
+  arrowButtonRef: RefObject<HTMLButtonElement>;
 
   /**
    * Ширина меню селекта
@@ -87,24 +92,24 @@ interface SelectContextProps {
    * Функция для установки индекса элемента в фокусе
    */
   setFocusedIndex: (index: number) => void;
+
+  /**
+   * Размер опций
+   */
+  size: TOptionItemSize;
+
+  /**
+   * Очищать поле поиска при выборе значения
+   */
+  clearSearchOnSelect: boolean;
 }
 
-export const SelectContext = createContext<SelectContextProps>({
-  isOpen: false,
-  setIsOpen: () => {},
-  selectedOption: undefined,
-  setSelectedOption: () => {},
-  onChange: undefined,
-  selectedLabel: '',
-  setSelectedLabel: () => {},
-  inputRef: { current: null },
-  menuRef: { current: null },
-  menuWidth: undefined,
-  withPortal: false,
-  portalContainerId: 'root',
-  scrollingItems: SCROLLING_ITEMS_DEFAULT,
-  searchTerm: '',
-  setSearchTerm: () => {},
-  focusedIndex: -1,
-  setFocusedIndex: () => {}
-});
+export const SelectContext = createContext<SelectContextProps | null>(null);
+
+export const useSelectContext = () => {
+  const context = useContext(SelectContext);
+  if (!context) {
+    throw new Error('useSelectContext must be used within SelectContext.Provider');
+  }
+  return context;
+};

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { Box, IconSelectionContains24, MultiSelect, OptionItem, Typography } from '@components/index';
+import { Box, Checkbox, IconSelectionContains24, MultiSelect, OptionItem, Typography } from '@components/index';
 import { action } from '@storybook/addon-actions';
 
 import styles from './MultiSelect.module.scss';
@@ -21,6 +21,16 @@ const options = [
   { value: 'tin', label: 'Tin' }
 ];
 
+const OptionWithCheckbox: React.FC<{
+  option: typeof options[0];
+  isSelected?: boolean;
+}> = ({ option, isSelected = false }) => (
+  <Box alignItems="center" gap="8px">
+    <Checkbox checked={isSelected} disabled={option.disabled} onChange={() => {}} style={{ pointerEvents: 'none' }} />
+    <Typography variant="Body1-Medium">{option.label}</Typography>
+  </Box>
+);
+
 export default {
   title: 'Components/MultiSelect/Stories',
   component: MultiSelect,
@@ -39,11 +49,24 @@ export const MultiSelectDefault = (args: IMultiSelectProps): JSX.Element => {
     }
   };
 
+  const handleReset = () => {
+    setValue([]);
+    if (args.onReset) {
+      args.onReset();
+    }
+  };
+
   return (
-    <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+    <MultiSelect
+      {...args}
+      value={value}
+      onChange={handleChange}
+      onReset={args.reset ? handleReset : undefined}
+      reset={args.reset}
+    >
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -67,9 +90,9 @@ export const MultiSelectWithSearch = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -98,9 +121,9 @@ export const MultiSelectDisabled = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label }) => (
-        <OptionItem key={value} value={value} label={label}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -130,9 +153,9 @@ export const MultiSelectSelectionCallback = (args: IMultiSelectProps): JSX.Eleme
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -160,9 +183,9 @@ export const MultiSelectWithTags = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -190,9 +213,9 @@ export const MultiSelectCompact = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -221,9 +244,9 @@ export const MultiSelectScrollingItems = (args: IMultiSelectProps): JSX.Element 
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -252,9 +275,9 @@ export const MultiSelectSuccess = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -283,9 +306,9 @@ export const MultiSelectWarning = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -314,9 +337,9 @@ export const MultiSelectError = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -410,9 +433,9 @@ export const MultiSelectWithSelectAll = (args: IMultiSelectProps): JSX.Element =
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -441,9 +464,9 @@ export const MultiSelectWithClearSearch = (args: IMultiSelectProps): JSX.Element
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange}>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>
@@ -480,9 +503,9 @@ export const MultiSelectWithReset = (args: IMultiSelectProps): JSX.Element => {
 
   return (
     <MultiSelect {...args} value={value} onChange={handleChange} onReset={handleReset} reset>
-      {options.map(({ value, label, disabled }) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          <Typography variant="Body1-Medium">{label}</Typography>
+      {options.map(option => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <OptionWithCheckbox option={option} />
         </OptionItem>
       ))}
     </MultiSelect>

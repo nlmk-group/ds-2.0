@@ -32,6 +32,14 @@ export default {
 
 export const SelectDefault = (args: ISelectProps): JSX.Element => {
   const [value, setValue] = useState(args.value || '');
+
+  const handleReset = () => {
+    setValue('');
+    if (args.onReset) {
+      args.onReset();
+    }
+  };
+
   return (
     <div style={{ padding: '50px' }}>
       <SimpleSelect
@@ -41,6 +49,8 @@ export const SelectDefault = (args: ISelectProps): JSX.Element => {
           setValue(newValue);
           args.onChange && args.onChange(newValue);
         }}
+        onReset={args.reset ? handleReset : undefined}
+        reset={args.reset}
       >
         {options.map(({ value, label, disabled }) => (
           <OptionItem key={value} value={value} label={label} disabled={disabled}>

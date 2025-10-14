@@ -28,7 +28,7 @@ const MultiSelectStories = (): JSX.Element => {
   ];`;
 
   const multiSelectDefaultCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -37,9 +37,12 @@ const App = () => {
   const [value, setValue] = useState([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="Мультивыбор">
-      {options.map(({value, label, disabled}) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>
@@ -49,7 +52,7 @@ export default App;
 `;
 
   const multiSelectSearchableCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -58,9 +61,12 @@ const App = () => {
   const [value, setValue] = useState([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="MultiSelect с поиском" searchable>
-      {options.map(({value, label, disabled}) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>
@@ -70,7 +76,7 @@ export default App;
 `;
 
   const multiSelectDisabledCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -79,9 +85,12 @@ const App = () => {
   const [value, setValue] = useState([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="Disabled" disabled>
-      {options.map(({value, label}) => (
-        <OptionItem key={value} value={value} label={label}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>
@@ -91,7 +100,7 @@ export default App;
 `;
 
   const multiSelectSelectAllCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -100,9 +109,12 @@ const App = () => {
   const [value, setValue] = useState([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="С кнопкой выбрать все" showSelectAll>
-      {options.map(({value, label, disabled}) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>
@@ -112,7 +124,7 @@ export default App;
 `;
 
   const multiSelectClearSearchCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -121,9 +133,12 @@ const App = () => {
   const [value, setValue] = useState([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="С очисткой поиска" searchable clearSearchOnSelect>
-      {options.map(({value, label, disabled}) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>
@@ -133,7 +148,7 @@ export default App;
 `;
 
   const multiSelectResetCode = `
-  import { MultiSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
   import { useState } from 'react';
 
 ${optionsExample}
@@ -142,9 +157,12 @@ const App = () => {
   const [value, setValue] = useState(['steel', 'aluminum']);
   return (
     <MultiSelect value={value} onChange={setValue} label="С кнопкой сброса" reset onReset={() => setValue([])}>
-      {options.map(({value, label, disabled}) => (
-        <OptionItem key={value} value={value} label={label} disabled={disabled}>
-          {label}
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
         </OptionItem>
       ))}
     </MultiSelect>

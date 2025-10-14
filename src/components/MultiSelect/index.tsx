@@ -12,8 +12,7 @@ import React, {
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ArrowButton, Input } from '@components/index';
-import OptionItem from '@components/SimpleSelect/subcomponents/OptionItem';
-import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
+import { IOptionItemProps } from '@components/OptionItem/types';
 import clsx from 'clsx';
 
 import { IMultiSelectProps } from './types';
@@ -81,6 +80,7 @@ const MultiSelect: FC<IMultiSelectProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const arrowButtonRef = useRef<HTMLButtonElement>(null);
   id = useMemo(() => `MultiSelect-${(id && id.toString()) || generateUUID()}`, [id]);
 
   if (scrollingItems < 1) {
@@ -118,12 +118,16 @@ const MultiSelect: FC<IMultiSelectProps> = ({
   const toggleDropdown: MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
     e.stopPropagation();
+
     if (isOpen) {
-      handleBlur();
+      setIsOpen(false);
+      onBlur?.();
+      inputRef.current?.blur();
     } else {
+      setIsOpen(true);
       onFocus?.();
+      inputRef.current?.focus();
     }
-    setIsOpen(!isOpen);
   };
 
   const toggleOption = (optionValue: string | number, _optionLabel: string) => {
@@ -255,6 +259,7 @@ const MultiSelect: FC<IMultiSelectProps> = ({
         setSelectedOptionsWithLabels: onChange,
         inputRef,
         menuRef,
+        arrowButtonRef,
         menuWidth,
         withPortal,
         portalContainerId,
@@ -270,7 +275,8 @@ const MultiSelect: FC<IMultiSelectProps> = ({
         showSelectAll,
         selectAllLabel,
         allOptions,
-        noOptionsText
+        noOptionsText,
+        size
       }}
     >
       <div className={clsx(styles.multiSelect, className)} style={style} data-ui-multi-select>
@@ -299,10 +305,11 @@ const MultiSelect: FC<IMultiSelectProps> = ({
               color={color as 'error' | 'success' | 'warning' | 'primary' | 'default'}
               disabled={disabled}
               toggleDropdown={toggleDropdown}
+              buttonRef={arrowButtonRef}
             />
           }
           className={clsx(selectedOptionsWithLabels.length > 0 && styles.hasSelection)}
-          reset={Boolean(selectedOptionsWithLabels.length > 0 || reset)}
+          reset={reset && selectedOptionsWithLabels.length > 0}
           onReset={() => {
             if (onReset) {
               onReset();
@@ -314,15 +321,7 @@ const MultiSelect: FC<IMultiSelectProps> = ({
           data-ui-multi-select-input
           {...props}
         />
-        <Options data-ui-multi-select-options>
-          {filteredChildren.length > 0 ? (
-            filteredChildren
-          ) : (
-            <OptionItem value="" label={noOptionsText} disabled data-ui-multi-select-no-options>
-              {noOptionsText}
-            </OptionItem>
-          )}
-        </Options>
+        <Options data-ui-multi-select-options>{filteredChildren}</Options>
       </div>
     </MultiSelectContext.Provider>
   );

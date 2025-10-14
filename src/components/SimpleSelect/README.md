@@ -42,6 +42,7 @@ import { OptionItem, SimpleSelect } from '@nlmk/ds-2.0';
 | scrollingItems | number | 6 | Количество элементов до включения прокрутки |
 | noOptionsText | string | 'Ничего не найдено' | Текст при отсутствии опций |
 | searchable | boolean | false | Флаг доступности поиска |
+| clearSearchOnSelect | boolean | false | Очищать поле поиска при выборе значения |
 | displayValue | string | - | Кастомное отображаемое значение в инпуте (переопределяет автоматическое определение по label) |
 | onEnterPress | function | - | Обработчик нажатия клавиши Enter |
 | style | CSSProperties | - | Кастомные стили для контейнера селекта |

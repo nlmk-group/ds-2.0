@@ -1,24 +1,29 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
 import { ClickAwayListener, List } from '@components/index';
+import { IOptionItemProps } from '@components/OptionItem/types';
 
 import { IOptionsProps } from './types';
 
 import styles from './Options.module.scss';
 
 import { MENU_OFFSET } from '../../constants';
-import { SelectContext } from '../../context';
-import { IOptionItemProps } from '../OptionItem/types';
+import { useSelectContext } from '../../context';
 
-const OPTION_ITEM_HEIGHT = 40;
+const OPTION_ITEM_HEIGHT_MAP = {
+  m: 40,
+  s: 32,
+  xs: 32
+};
 const MENU_PADDING = 16;
 
 const Options: FC<IOptionsProps> = ({ children }) => {
   const {
     isOpen,
     inputRef,
+    arrowButtonRef,
     menuWidth,
     withPortal,
     menuRef,
@@ -26,8 +31,14 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     scrollingItems,
     setIsOpen,
     setFocusedIndex,
-    focusedIndex
-  } = useContext(SelectContext);
+    focusedIndex,
+    selectedOption,
+    setSelectedOption,
+    setSelectedLabel,
+    size,
+    clearSearchOnSelect,
+    setSearchTerm
+  } = useSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
@@ -71,24 +82,38 @@ const Options: FC<IOptionsProps> = ({ children }) => {
 
   const childrenWithProps = Children.map(children, (child, index) => {
     if (isValidElement<IOptionItemProps>(child)) {
+      const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
+      const isSelected = selectedOption === child.props.value;
+
       return cloneElement(child, {
-        isFocused: index === focusedIndex
+        isFocused: index === focusedIndex,
+        isSelected,
+        size,
+        onSelect: () => {
+          setSelectedOption(child.props.value);
+          setSelectedLabel(label);
+          if (clearSearchOnSelect) {
+            setSearchTerm('');
+          }
+          setIsOpen(false);
+        }
       });
     }
     return child;
   });
 
   const getMenuStyles = () => {
+    const optionHeight = OPTION_ITEM_HEIGHT_MAP[size as keyof typeof OPTION_ITEM_HEIGHT_MAP] || 40;
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
-      maxHeight: `${OPTION_ITEM_HEIGHT * scrollingItems + MENU_PADDING}px`,
+      maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
       ...popperStyles.popper
     };
     return baseStyles;
   };
 
   const menu = (
-    <ClickAwayListener onClickAway={handleClickAway} excludeRef={inputRef}>
+    <ClickAwayListener onClickAway={handleClickAway} excludeRef={[inputRef, arrowButtonRef]}>
       <List
         ref={el => {
           if (!el) return;

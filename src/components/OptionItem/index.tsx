@@ -1,13 +1,11 @@
-import React, { FC, MouseEvent, useContext, useEffect, useRef } from 'react';
+import React, { FC, MouseEvent, useEffect, useRef } from 'react';
 
 import { ListItem } from '@components/index';
 import clsx from 'clsx';
 
-import { IOptionItemProps } from './types';
+import { IOptionItemProps, sizesMappingOptionItem } from './types';
 
 import styles from './OptionItem.module.scss';
-
-import { SelectContext } from '../../context';
 
 const OptionItem: FC<IOptionItemProps> = ({
   value,
@@ -17,10 +15,10 @@ const OptionItem: FC<IOptionItemProps> = ({
   className,
   style,
   isFocused,
-  isSelected,
-  onSelect
+  isSelected = false,
+  onSelect,
+  size = sizesMappingOptionItem.m
 }) => {
-  const { setSelectedOption, setSelectedLabel, setIsOpen, selectedOption } = useContext(SelectContext);
   const itemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,20 +33,27 @@ const OptionItem: FC<IOptionItemProps> = ({
 
     if (onSelect) {
       onSelect();
-    } else {
-      setSelectedOption(value);
-      setSelectedLabel(label || (typeof children === 'string' ? children : ''));
-      setIsOpen(false);
     }
+  };
+
+  const heightMap: Record<typeof sizesMappingOptionItem[keyof typeof sizesMappingOptionItem], number> = {
+    [sizesMappingOptionItem.m]: 40,
+    [sizesMappingOptionItem.s]: 32,
+    [sizesMappingOptionItem.xs]: 32 // TODO: изменить на 28 после правок в дизайне
   };
 
   const itemStyles = {
     cursor: disabled ? 'default' : 'pointer',
-    height: 'auto',
+    height: `${heightMap[size]}px`,
+    minHeight: `${heightMap[size]}px`,
     ...style
   };
 
-  const isItemSelected = isSelected !== undefined ? isSelected : selectedOption === value;
+  const isItemSelected = isSelected;
+
+  const enhancedChildren = React.isValidElement(children)
+    ? React.cloneElement(children as React.ReactElement<any>, { isSelected: isItemSelected })
+    : children;
 
   return (
     <ListItem
@@ -59,14 +64,18 @@ const OptionItem: FC<IOptionItemProps> = ({
         {
           [styles.selected]: isItemSelected && value,
           [styles.focused]: isFocused,
-          [styles.disabled]: disabled
+          [styles.disabled]: disabled,
+          [styles['item-size-s']]: size === sizesMappingOptionItem.s,
+          [styles['item-size-xs']]: size === sizesMappingOptionItem.xs
         },
         className
       )}
       onClick={handleClick}
       style={itemStyles}
+      data-size={size}
+      data-ui-option-item
     >
-      {children}
+      {enhancedChildren}
     </ListItem>
   );
 };

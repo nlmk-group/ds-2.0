@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, RefObject } from 'react';
 
 import { EArrowButtonColor } from './enums';
 
@@ -7,4 +7,5 @@ export interface IArrowButtonProps {
   disabled: boolean;
   color: `${EArrowButtonColor}`;
   toggleDropdown: MouseEventHandler;
+  buttonRef?: RefObject<HTMLButtonElement>;
 }

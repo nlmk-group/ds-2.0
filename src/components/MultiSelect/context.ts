@@ -1,8 +1,8 @@
-import { createContext, Dispatch, MutableRefObject, SetStateAction } from 'react';
+import { createContext, Dispatch, MutableRefObject, SetStateAction, useContext } from 'react';
+
+import { TOptionItemSize } from '@components/OptionItem/types';
 
 import { ISelectedOption } from './types';
-
-import { SCROLLING_ITEMS_DEFAULT } from './constants';
 
 export interface IMultiSelectContextProps {
   /** Открыто ли меню опций */
@@ -28,6 +28,9 @@ export interface IMultiSelectContextProps {
 
   /** Реф меню опций */
   menuRef: MutableRefObject<HTMLDivElement | null>;
+
+  /** Реф для кнопки со стрелкой, нужен чтобы ClickAwayListener игнорировал клики на неё */
+  arrowButtonRef: MutableRefObject<HTMLButtonElement | null>;
 
   /** Ширина меню опций */
   menuWidth?: string;
@@ -76,29 +79,17 @@ export interface IMultiSelectContextProps {
 
   /** Текст, отображаемый, когда нет доступных опций */
   noOptionsText: string;
+
+  /** Размер опций */
+  size: TOptionItemSize;
 }
 
-export const MultiSelectContext = createContext<IMultiSelectContextProps>({
-  isOpen: false,
-  setIsOpen: () => {},
-  selectedOptions: [],
-  toggleOption: () => {},
-  selectedOptionsWithLabels: [],
-  setSelectedOptionsWithLabels: () => {},
-  inputRef: { current: null },
-  menuRef: { current: null },
-  withPortal: false,
-  portalContainerId: 'root',
-  scrollingItems: SCROLLING_ITEMS_DEFAULT,
-  searchTerm: '',
-  setSearchTerm: () => {},
-  focusedIndex: -1,
-  setFocusedIndex: () => {},
-  valueSeparator: ', ',
-  selectAll: () => {},
-  clearAll: () => {},
-  showSelectAll: false,
-  selectAllLabel: 'Выбрать все',
-  allOptions: [],
-  noOptionsText: 'Ничего не найдено'
-});
+export const MultiSelectContext = createContext<IMultiSelectContextProps | null>(null);
+
+export const useMultiSelectContext = () => {
+  const context = useContext(MultiSelectContext);
+  if (!context) {
+    throw new Error('useMultiSelectContext must be used within MultiSelectContext.Provider');
+  }
+  return context;
+};

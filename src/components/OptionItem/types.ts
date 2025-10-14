@@ -1,5 +1,17 @@
 import { CSSProperties, ReactNode } from 'react';
 
+/**
+ * @enum {string} sizesMappingOptionItem
+ * Размеры для OptionItem (аналогичны размерам Input)
+ */
+export enum sizesMappingOptionItem {
+  m = 'm',
+  s = 's',
+  xs = 'xs'
+}
+
+export type TOptionItemSize = `${sizesMappingOptionItem}`;
+
 export interface IOptionItemProps {
   value: string | number;
   label: string;
@@ -10,4 +22,5 @@ export interface IOptionItemProps {
   isFocused?: boolean;
   isSelected?: boolean;
   onSelect?: () => void;
+  size?: TOptionItemSize;
 }

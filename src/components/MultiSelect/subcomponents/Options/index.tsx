@@ -1,24 +1,28 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useContext, useMemo, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import { Box, ClickAwayListener, List, Typography } from '@components/index';
-import OptionItem from '@components/SimpleSelect/subcomponents/OptionItem';
-import { IOptionItemProps } from '@components/SimpleSelect/subcomponents/OptionItem/types';
+import { Box, ClickAwayListener, Icon, List, OptionItem, Typography } from '@components/index';
+import { IOptionItemProps } from '@components/OptionItem/types';
 
 import { IOptionsProps } from './types';
 
 import styles from './Options.module.scss';
 
-import { MultiSelectContext } from '../../context';
+import { useMultiSelectContext } from '../../context';
 
-const OPTION_ITEM_HEIGHT = 40;
+const OPTION_ITEM_HEIGHT_MAP = {
+  m: 40,
+  s: 32,
+  xs: 32
+};
 const MENU_PADDING = 16;
 
 const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   const {
     isOpen,
     inputRef,
+    arrowButtonRef,
     menuWidth,
     withPortal,
     menuRef,
@@ -33,8 +37,9 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     showSelectAll,
     selectAllLabel,
     allOptions,
-    noOptionsText
-  } = useContext(MultiSelectContext);
+    noOptionsText,
+    size
+  } = useMultiSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
@@ -80,9 +85,12 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     Children.map(children, (child, index) => {
       if (isValidElement<IOptionItemProps>(child)) {
         const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
+        const isSelected = selectedOptions.includes(child.props.value);
+
         return cloneElement(child, {
           isFocused: index === focusedIndex,
-          isSelected: selectedOptions.includes(child.props.value),
+          isSelected,
+          size,
           onSelect: () => toggleOption(child.props.value, label)
         });
       }
@@ -90,9 +98,10 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     }) || [];
 
   const getMenuStyles = () => {
+    const optionHeight = OPTION_ITEM_HEIGHT_MAP[size as keyof typeof OPTION_ITEM_HEIGHT_MAP] || 40;
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
-      maxHeight: `${OPTION_ITEM_HEIGHT * scrollingItems + MENU_PADDING}px`,
+      maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
       ...popperStyles.popper,
       ...menuStyle
     };
@@ -103,7 +112,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   const isAllSelected = allOptions.length > 0 && selectedOptions.length === allOptions.length;
 
   const menu = (
-    <ClickAwayListener onClickAway={handleClickAway} excludeRef={inputRef}>
+    <ClickAwayListener onClickAway={handleClickAway} excludeRef={[inputRef, arrowButtonRef]}>
       <List
         ref={el => {
           if (!el) return;
@@ -122,6 +131,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
             value="__select_all__"
             label={selectAllLabel}
             isSelected={isAllSelected}
+            size={size}
             onSelect={selectAll}
             data-ui-multi-select-select-all
           >
@@ -134,9 +144,16 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
         {childrenWithProps.length > 0 ? (
           childrenWithProps
         ) : (
-          <Box className={styles.noOptionsContainer} data-ui-multi-select-no-options>
-            <Typography variant="Caption-Medium" color="var(--steel-70)">
-              {noOptionsText}
+          <Box
+            className={styles['not-found-item']}
+            alignItems="center"
+            gap={8}
+            flexDirection="row"
+            data-ui-multi-select-no-options
+          >
+            <Icon name="IconCancelOutlined16" containerSize={16} color="error" />
+            <Typography variant="Body1-Medium" color="var(--steel-90)">
+              {noOptionsText ?? 'Ничего не найдено'}
             </Typography>
           </Box>
         )}

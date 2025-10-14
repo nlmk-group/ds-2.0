@@ -16,7 +16,8 @@ const ArrowButton: FC<IArrowButtonProps> = ({
   disabled,
   color = EArrowButtonColor.primary,
   isOpen,
-  toggleDropdown
+  toggleDropdown,
+  buttonRef
 }) => {
   const colorsArray = Object.values(EArrowButtonColor);
   const getIconColor = (): TIconColor => {
@@ -28,6 +29,7 @@ const ArrowButton: FC<IArrowButtonProps> = ({
 
   return (
     <Button
+      ref={buttonRef}
       type="button"
       iconButton={
         <div className={clsx(styles.arrow, isOpen && styles.open)}>
@@ -37,12 +39,13 @@ const ArrowButton: FC<IArrowButtonProps> = ({
       color="ghost"
       variant="secondary"
       size="s"
-      onClick={toggleDropdown}
+      onMouseDown={toggleDropdown}
       className={clsx(styles.button, {
         [styles.disabled]: disabled
       })}
       disabled={disabled}
       data-ui-select-arrow-button
+      data-testid="ARROW_BUTTON"
     />
   );
 };

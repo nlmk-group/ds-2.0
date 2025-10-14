@@ -40,7 +40,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>
@@ -64,7 +69,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>
@@ -88,7 +98,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>
@@ -112,7 +127,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>
@@ -136,7 +156,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>
@@ -160,7 +185,12 @@ const App = () => {
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
           <Box alignItems="center" gap="8px">
-            <Checkbox checked={value.includes(option.value)} disabled={option.disabled} />
+            <Checkbox 
+              checked={value.includes(option.value)} 
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
             <Typography variant="Body1-Medium">{option.label}</Typography>
           </Box>
         </OptionItem>

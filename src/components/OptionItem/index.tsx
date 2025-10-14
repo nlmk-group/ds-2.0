@@ -39,7 +39,7 @@ const OptionItem: FC<IOptionItemProps> = ({
   const heightMap: Record<typeof sizesMappingOptionItem[keyof typeof sizesMappingOptionItem], number> = {
     [sizesMappingOptionItem.m]: 40,
     [sizesMappingOptionItem.s]: 32,
-    [sizesMappingOptionItem.xs]: 32 // TODO: изменить на 28 после правок в дизайне
+    [sizesMappingOptionItem.xs]: 28
   };
 
   const itemStyles = {

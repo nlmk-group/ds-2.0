@@ -47,7 +47,7 @@ const Checkbox: FC<ICheckboxProps> = ({
       data-ui-checkbox
       data-testid="checkbox"
     >
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} data-ui-checkbox-wrapper>
         <input
           type="checkbox"
           id={id}

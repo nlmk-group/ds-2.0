@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
-import { ArrowButton, Input, OptionItem } from '@components/index';
+import { ArrowButton, Input } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
 import clsx from 'clsx';
 
@@ -163,7 +163,6 @@ const SimpleSelect: FC<ISelectProps> = ({
   }, [options, searchTerm, searchable]);
 
   const optionsCount = filteredChildren.length;
-  const noOptions = optionsCount === 0;
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!isOpen) {
@@ -228,7 +227,8 @@ const SimpleSelect: FC<ISelectProps> = ({
         setFocusedIndex,
         onChange,
         size,
-        clearSearchOnSelect
+        clearSearchOnSelect,
+        noOptionsText
       }}
     >
       <div className={clsx(styles.select, className)} style={style} data-ui-select>
@@ -275,13 +275,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           data-testid="select-input"
         />
         <Options menuStyle={{ maxWidth: inputRef.current?.offsetWidth }} data-ui-select-options>
-          {noOptions ? (
-            <OptionItem value="" label={noOptionsText} disabled data-ui-select-option>
-              {noOptionsText}
-            </OptionItem>
-          ) : (
-            filteredChildren
-          )}
+          {filteredChildren}
         </Options>
       </div>
     </SelectContext.Provider>

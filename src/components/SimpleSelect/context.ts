@@ -102,6 +102,11 @@ interface SelectContextProps {
    * Очищать поле поиска при выборе значения
    */
   clearSearchOnSelect: boolean;
+
+  /**
+   * Текст, отображаемый когда нет доступных опций
+   */
+  noOptionsText: string;
 }
 
 export const SelectContext = createContext<SelectContextProps | null>(null);

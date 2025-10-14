@@ -62,6 +62,12 @@ import { Checkbox, ECheckboxColors } from '@nlmk/ds-2.0';
   /* стили */
 }
 
+/* Стилизация обертки инпут и иконки checked */
+[data-ui-checkbox-wrapper] {
+  /* стили */
+}
+
+
 /* Стилизация инпута */
 [data-ui-checkbox-input] {
   /* стили */

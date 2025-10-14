@@ -2,7 +2,7 @@ import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useSt
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import { ClickAwayListener, List } from '@components/index';
+import { Box, ClickAwayListener, Icon, List, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
 
 import { IOptionsProps } from './types';
@@ -37,7 +37,8 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     setSelectedLabel,
     size,
     clearSearchOnSelect,
-    setSearchTerm
+    setSearchTerm,
+    noOptionsText
   } = useSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
@@ -80,27 +81,28 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     }
   };
 
-  const childrenWithProps = Children.map(children, (child, index) => {
-    if (isValidElement<IOptionItemProps>(child)) {
-      const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
-      const isSelected = selectedOption === child.props.value;
+  const childrenWithProps =
+    Children.map(children, (child, index) => {
+      if (isValidElement<IOptionItemProps>(child)) {
+        const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
+        const isSelected = selectedOption === child.props.value;
 
-      return cloneElement(child, {
-        isFocused: index === focusedIndex,
-        isSelected,
-        size,
-        onSelect: () => {
-          setSelectedOption(child.props.value);
-          setSelectedLabel(label);
-          if (clearSearchOnSelect) {
-            setSearchTerm('');
+        return cloneElement(child, {
+          isFocused: index === focusedIndex,
+          isSelected,
+          size,
+          onSelect: () => {
+            setSelectedOption(child.props.value);
+            setSelectedLabel(label);
+            if (clearSearchOnSelect) {
+              setSearchTerm('');
+            }
+            setIsOpen(false);
           }
-          setIsOpen(false);
-        }
-      });
-    }
-    return child;
-  });
+        });
+      }
+      return child;
+    }) || [];
 
   const getMenuStyles = () => {
     const optionHeight = OPTION_ITEM_HEIGHT_MAP[size as keyof typeof OPTION_ITEM_HEIGHT_MAP] || 40;
@@ -125,8 +127,24 @@ const Options: FC<IOptionsProps> = ({ children }) => {
         style={getMenuStyles() as CSSProperties}
         className={styles.options}
         {...(withPortal ? attributes.popper : {})}
+        data-ui-select-options
       >
-        {childrenWithProps}
+        {childrenWithProps.length > 0 ? (
+          childrenWithProps
+        ) : (
+          <Box
+            className={styles['not-found-item']}
+            alignItems="center"
+            gap={8}
+            flexDirection="row"
+            data-ui-select-no-options
+          >
+            <Icon name="IconCancelOutlined16" containerSize={16} color="error" />
+            <Typography variant="Body1-Medium" color="var(--steel-90)">
+              {noOptionsText}
+            </Typography>
+          </Box>
+        )}
       </List>
     </ClickAwayListener>
   );

@@ -23,6 +23,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.26.0 - <span className={styles.date}>14.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-multielect-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                MultiSelect
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.25.15 - <span className={styles.date}>01.10.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -3402,7 +3420,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент SimpleSelect{' '}
+              • Добавлен компонент{' '}
               <Link
                 href="./?path=/docs/components-simpleselect-info--docs"
                 target="blank"

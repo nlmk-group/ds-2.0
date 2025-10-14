@@ -32,6 +32,14 @@ export default {
 
 export const SelectDefault = (args: ISelectProps): JSX.Element => {
   const [value, setValue] = useState(args.value || '');
+
+  const handleReset = () => {
+    setValue('');
+    if (args.onReset) {
+      args.onReset();
+    }
+  };
+
   return (
     <div style={{ padding: '50px' }}>
       <SimpleSelect
@@ -41,6 +49,8 @@ export const SelectDefault = (args: ISelectProps): JSX.Element => {
           setValue(newValue);
           args.onChange && args.onChange(newValue);
         }}
+        onReset={args.reset ? handleReset : undefined}
+        reset={args.reset}
       >
         {options.map(({ value, label, disabled }) => (
           <OptionItem key={value} value={value} label={label} disabled={disabled}>
@@ -83,6 +93,10 @@ SelectWithSearch.args = {
   label: 'Select с поиском',
   searchable: true
 };
+SelectWithSearch.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 SelectWithSearch.storyName = 'Select с поиском';
 
 export const SelectDisabled = (args: ISelectProps): JSX.Element => {
@@ -111,6 +125,10 @@ SelectDisabled.args = {
   label: 'Disabled',
   disabled: true
 };
+SelectDisabled.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 SelectDisabled.storyName = 'Заблокированный Select';
 
 export const SelectWithSelectionCallback = (args: ISelectProps): JSX.Element => {
@@ -137,6 +155,10 @@ export const SelectWithSelectionCallback = (args: ISelectProps): JSX.Element => 
 };
 SelectWithSelectionCallback.args = {
   label: 'Обработчик при выборе'
+};
+SelectWithSelectionCallback.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectWithSelectionCallback.storyName = 'Select с коллбэком при выборе';
 
@@ -165,6 +187,10 @@ SelectCompact.args = {
   label: 'Размер s',
   size: sizesMappingInput.s
 };
+SelectCompact.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 SelectCompact.storyName = 'Select компактный';
 
 export const SelectScrollingItems = (args: ISelectProps): JSX.Element => {
@@ -191,6 +217,10 @@ export const SelectScrollingItems = (args: ISelectProps): JSX.Element => {
 SelectScrollingItems.args = {
   label: 'Скролл',
   scrollingItems: 2
+};
+SelectScrollingItems.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectScrollingItems.storyName = 'Select с настройкой скролла';
 
@@ -219,6 +249,10 @@ SelectSuccess.args = {
   label: 'Цвет success',
   color: customInputColors.success
 };
+SelectSuccess.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 SelectSuccess.storyName = 'Select в состоянии success';
 
 export const SelectWarning = (args: ISelectProps): JSX.Element => {
@@ -245,6 +279,10 @@ export const SelectWarning = (args: ISelectProps): JSX.Element => {
 SelectWarning.args = {
   label: 'Цвет warning',
   color: customInputColors.warning
+};
+SelectWarning.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectWarning.storyName = 'Select в состоянии warning';
 
@@ -273,6 +311,10 @@ SelectError.args = {
   label: 'Цвет error',
   color: customInputColors.error
 };
+SelectError.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 SelectError.storyName = 'Select в состоянии error';
 
 export const SelectEmpty = (args: ISelectProps): JSX.Element => {
@@ -294,6 +336,10 @@ export const SelectEmpty = (args: ISelectProps): JSX.Element => {
 };
 SelectEmpty.args = {
   label: 'Пустой select'
+};
+SelectEmpty.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectEmpty.storyName = 'Select пустой';
 
@@ -327,6 +373,10 @@ export const SelectWithCustomOptions = (args: ISelectProps): JSX.Element => {
 };
 SelectWithCustomOptions.args = {
   label: 'Select со стилизованными OptionItems'
+};
+SelectWithCustomOptions.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectWithCustomOptions.storyName = 'Select со стилизованными OptionItems';
 
@@ -370,5 +420,9 @@ export const SelectWithDisplayValue = (args: ISelectProps): JSX.Element => {
 
 SelectWithDisplayValue.args = {
   label: 'Select с кастомным displayValue'
+};
+SelectWithDisplayValue.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 SelectWithDisplayValue.storyName = 'Select с кастомным displayValue';

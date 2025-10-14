@@ -1,16 +1,15 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopper } from 'react-popper';
 
-import { Box, ClickAwayListener, Icon, List, Typography } from '@components/index';
+import { Box, ClickAwayListener, Icon, List, OptionItem, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
 
 import { IOptionsProps } from './types';
 
 import styles from './Options.module.scss';
 
-import { MENU_OFFSET } from '../../constants';
-import { useSelectContext } from '../../context';
+import { useMultiSelectContext } from '../../context';
 
 const OPTION_ITEM_HEIGHT_MAP = {
   m: 40,
@@ -19,7 +18,7 @@ const OPTION_ITEM_HEIGHT_MAP = {
 };
 const MENU_PADDING = 16;
 
-const Options: FC<IOptionsProps> = ({ children }) => {
+const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   const {
     isOpen,
     inputRef,
@@ -32,22 +31,23 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     setIsOpen,
     setFocusedIndex,
     focusedIndex,
-    selectedOption,
-    setSelectedOption,
-    setSelectedLabel,
-    size,
-    clearSearchOnSelect,
-    setSearchTerm,
-    noOptionsText
-  } = useSelectContext();
+    selectedOptions,
+    toggleOption,
+    selectAll,
+    showSelectAll,
+    selectAllLabel,
+    allOptions,
+    noOptionsText,
+    size
+  } = useMultiSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
   const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
-    placement: 'bottom-start', // Позиционируем список под инпутом, выравнивая по левому краю
+    placement: 'bottom-start',
     modifiers: [
       {
-        name: 'flip', // Автоматически переворачивает меню наверх, если внизу нет места
+        name: 'flip',
         options: {
           fallbackPlacements: ['top-start'],
           rootBoundary: 'viewport',
@@ -55,22 +55,22 @@ const Options: FC<IOptionsProps> = ({ children }) => {
         }
       },
       {
-        name: 'preventOverflow', // Предотвращает выход за пределы viewport
+        name: 'preventOverflow',
         options: {
           boundary: 'clippingParents',
-          padding: MENU_OFFSET
+          padding: 8
         }
       },
       {
-        name: 'offset', // Добавляет отступ от инпута
+        name: 'offset',
         options: {
-          offset: [0, MENU_OFFSET] // [горизонтальный, вертикальный] отступ в пикселях
+          offset: [0, 4]
         }
       }
     ]
   });
 
-  const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
+  const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
   if (!isOpen) return null;
 
@@ -85,20 +85,13 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     Children.map(children, (child, index) => {
       if (isValidElement<IOptionItemProps>(child)) {
         const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
-        const isSelected = selectedOption === child.props.value;
+        const isSelected = selectedOptions.includes(child.props.value);
 
         return cloneElement(child, {
           isFocused: index === focusedIndex,
           isSelected,
           size,
-          onSelect: () => {
-            setSelectedOption(child.props.value);
-            setSelectedLabel(label);
-            if (clearSearchOnSelect) {
-              setSearchTerm('');
-            }
-            setIsOpen(false);
-          }
+          onSelect: () => toggleOption(child.props.value, label)
         });
       }
       return child;
@@ -109,10 +102,14 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
       maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
-      ...popperStyles.popper
+      ...popperStyles.popper,
+      ...menuStyle
     };
-    return baseStyles;
+
+    return baseStyles as CSSProperties;
   };
+
+  const isAllSelected = allOptions.length > 0 && selectedOptions.length === allOptions.length;
 
   const menu = (
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={[inputRef, arrowButtonRef]}>
@@ -124,11 +121,26 @@ const Options: FC<IOptionsProps> = ({ children }) => {
           }
           setPopperElement(el);
         }}
-        style={getMenuStyles() as CSSProperties}
+        style={getMenuStyles()}
         className={styles.options}
         {...(withPortal ? attributes.popper : {})}
-        data-ui-select-options
+        data-ui-multi-select-options
       >
+        {showSelectAll && allOptions.length > 0 && (
+          <OptionItem
+            value="__select_all__"
+            label={selectAllLabel}
+            isSelected={isAllSelected}
+            size={size}
+            onSelect={selectAll}
+            data-ui-multi-select-select-all
+          >
+            <Typography variant="Caption-Medium" color="var(--steel-70)">
+              {selectAllLabel}
+            </Typography>
+          </OptionItem>
+        )}
+
         {childrenWithProps.length > 0 ? (
           childrenWithProps
         ) : (
@@ -137,11 +149,11 @@ const Options: FC<IOptionsProps> = ({ children }) => {
             alignItems="center"
             gap={8}
             flexDirection="row"
-            data-ui-select-no-options
+            data-ui-multi-select-no-options
           >
             <Icon name="IconCancelOutlined16" containerSize={16} color="error" />
             <Typography variant="Body1-Medium" color="var(--steel-90)">
-              {noOptionsText}
+              {noOptionsText ?? 'Ничего не найдено'}
             </Typography>
           </Box>
         )}

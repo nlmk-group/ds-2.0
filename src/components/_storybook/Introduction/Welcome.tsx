@@ -134,7 +134,7 @@ export const WelcomePage = () => {
           </div>
         </div>
         <div className={styles.icon}>
-          <img src="img/preview.svg" alt="NLMK UI Picture" width={420} />
+          <img src="img/preview.png" alt="NLMK UI Picture" width={420} />
         </div>
       </div>
     </div>

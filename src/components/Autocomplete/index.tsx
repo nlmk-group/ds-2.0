@@ -10,7 +10,7 @@ import styles from './Autocomplete.module.scss';
 
 import { AutocompleteContext } from './context';
 import { useDebounce, useScrollPagination } from './hooks';
-import AutocompleteDropdown from './subcomponents/AutocompleteDropdown';
+import { AutocompleteDropdown } from './subcomponents';
 
 /**
  * Компонент Autocomplete предоставляет пользователю возможность ввода текста с поддержкой автозаполнения на основе предложенных элементов.

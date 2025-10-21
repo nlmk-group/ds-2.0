@@ -77,13 +77,6 @@ const EditableCellsTableExample = () => {
     setData(initialData);
   };
 
-  /**
-   * Подсчет общей суммы
-   */
-  const totalSum = useMemo(() => {
-    return data.reduce((sum, row) => sum + row.quantity * row.price, 0);
-  }, [data]);
-
   const columns = useMemo(
     () => [
       ...createColumns(handleCellChange),
@@ -136,7 +129,7 @@ const EditableCellsTableExample = () => {
       </Box>
 
       <Box gap={8} style={{ marginBottom: '16px' }} justifyContent="space-between" alignItems="center">
-        <Box gap={8} pb={16}>
+        <Box gap={8}>
           <Button variant="primary" size="s" onClick={handleAddRow}>
             Добавить строку
           </Button>
@@ -144,9 +137,6 @@ const EditableCellsTableExample = () => {
             Сбросить изменения
           </Button>
         </Box>
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          Общая сумма: {totalSum.toLocaleString('ru-RU')} ₽
-        </Typography>
       </Box>
 
       <div className={styles.tableContainer}>

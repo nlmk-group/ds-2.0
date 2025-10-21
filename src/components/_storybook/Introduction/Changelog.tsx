@@ -23,6 +23,37 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.26.1 - <span className={styles.date}>22.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлён компонент{' '}
+              <Link
+                href="./?path=/docs/components-slidetoggle-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SlideToggle
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство defaultOpen для установки состояния по умолчанию
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: PinLeftFilled, PinRightFilled, Antibaktery
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.26.0 - <span className={styles.date}>14.10.25</span>
           </Typography>
           <ul className={styles.list}>

@@ -17,7 +17,7 @@ import { IconStackCollapsed16, IconStackCollapsed24, Typography } from '..';
  * @param {string | JSX.Element} props.title - Заголовок свайдера.
  * @param {ReactNode} [props.after] - Элемент после заголовка.
  * @param {boolean} props.isShow - Показан ли контент.
- * @param {boolean} props.isOpenDefault - Закрыт ли слайдер по умолчанию.
+ * @param {boolean} props.defaultOpen - Открыт ли слайдер по умолчанию.
  * @param {() => void} [props.onToggle] - Функция, вызываемая при переключении.
  * @param {string} [props.className] - Дополнительные CSS классы.
  * @param {TSize} [props.size=ESizeMapping.default] - Размер свайдера.
@@ -32,7 +32,7 @@ const SlideToggle: FC<TSlideToggleProps> = ({
   title,
   children,
   className,
-  isOpenDefault,
+  defaultOpen,
   onToggle,
   isShow,
   size = ESizeMapping.default,
@@ -42,9 +42,9 @@ const SlideToggle: FC<TSlideToggleProps> = ({
   afterWrapperId,
   contentWrapperId
 }) => {
-  const [open, setOpen] = useState<boolean>(isOpenDefault ?? false);
+  const [open, setOpen] = useState<boolean>(defaultOpen ?? false);
 
-  const handleToogle = () => {
+  const handleToggle = () => {
     onToggle ? onToggle() : typeof isShow === 'undefined' && setOpen(open => !open);
   };
 
@@ -87,7 +87,7 @@ const SlideToggle: FC<TSlideToggleProps> = ({
 
   return (
     <div className={clsx(styles['slide-toggle-wrapper'], className)} data-testid="slide-toggle-wrapper">
-      <div className={clsx(styles['title-wrapper'], styles[`title-wrapper-${size}`])} onClick={handleToogle}>
+      <div className={clsx(styles['title-wrapper'], styles[`title-wrapper-${size}`])} onClick={handleToggle}>
         <div
           className={clsx(
             styles['icon-wrapper'],

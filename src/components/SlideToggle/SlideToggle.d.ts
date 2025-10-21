@@ -37,14 +37,14 @@ export interface ISlideToggleBaseProps extends PropsWithChildren {
 export type TSlideToggleProps = ISlideToggleBaseProps &
   (
     | {
-        /** Показать контент при монтировании SlideToogle */
-        isOpenDefault: boolean;
+        /** Показать контент при монтировании компонента */
+        defaultOpen: boolean;
         isShow?: never;
         onToggle?: never;
       }
     /** Свойства дают возможность контролировать состояние извне */
     | {
-        isOpenDefault?: never;
+        defaultOpen?: never;
         /** Показан ли контент */
         isShow: boolean;
         /** Функция, вызываемая при переключении */

@@ -21,7 +21,7 @@ import SlideToggle from '@nlmk/ds-2.0';
 | title            | string     | JSX.Element | Заголовок свайдера                      |
 | after            | ReactNode  | -           | Элемент после заголовка                 |
 | isShow           | boolean    | -           | Показан ли контент                      |
-| isOpenDefault    | boolean    | -           | Отображать ли контент при монтировании  |
+| defaultOpen      | boolean    | -           | Открыт ли контент при монтировании      |
 | onToggle         | () => void | -           | Функция, вызываемая при переключении    |
 | className        | string     | -           | Дополнительные CSS классы               |
 | size             | TSize      | 'default'   | Размер                                  |

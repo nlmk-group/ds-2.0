@@ -21,6 +21,7 @@ export {
   IconAnalyticalUIOutlined24,
   IconAnalyticalUIOutlined32
 } from './AnalyticalUIOutlined';
+export { IconAntibaktery16, IconAntibaktery24, IconAntibaktery32 } from './Antibaktery';
 export { IconArmatura16, IconArmatura24, IconArmatura32 } from './Armatura';
 export { IconArmaturaFilled16, IconArmaturaFilled24, IconArmaturaFilled32 } from './ArmaturaFilled';
 export { IconBalanceFilled16, IconBalanceFilled24, IconBalanceFilled32 } from './BalanceFilled';

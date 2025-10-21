@@ -17,12 +17,22 @@ export interface ISlideToggleBaseProps extends PropsWithChildren {
   contentWrapperId?: string;
 }
 
-export type SlideToggleProps = ISlideToggleBaseProps & ({ isOpenDefault: boolean; isShow?: never; onToggle?: never }
- | { 
-  isOpenDefault?: never;
-  isShow: boolean;
-  onToggle?: () => void;
-})
+export type TSlideToggleProps = ISlideToggleBaseProps &
+  (
+    | {
+        /** Показать контент при монтировании компонента */
+        defaultOpen: boolean;
+        isShow?: never;
+        onToggle?: never;
+      }
+    | {
+        defaultOpen?: never;
+        /** Показан ли контент */
+        isShow: boolean;
+        /** Функция, вызываемая при переключении */
+        onToggle?: () => void;
+      }
+  );
 export interface ISlideToggleWithButtonProps extends ISlideToggleBaseProps {
   badgeChildren?: string;
   badgeColor?: `${EBadgeColors}`;

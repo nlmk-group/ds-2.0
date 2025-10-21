@@ -594,6 +594,8 @@ export { IconPhoneCallContact16, IconPhoneCallContact24, IconPhoneCallContact32 
 export { IconPhotoCameraOutlined16, IconPhotoCameraOutlined24, IconPhotoCameraOutlined32 } from './PhotoCameraOutlined';
 export { IconPictureInPictureOff16, IconPictureInPictureOff24, IconPictureInPictureOff32 } from './PictureInPictureOff';
 export { IconPictureInPictureOn16, IconPictureInPictureOn24, IconPictureInPictureOn32 } from './PictureInPictureOn';
+export { IconPinLeftFilled16, IconPinLeftFilled24, IconPinLeftFilled32 } from './PinLeftFilled';
+export { IconPinRightFilled16, IconPinRightFilled24, IconPinRightFilled32 } from './PinRightFilled';
 export { IconPlay16, IconPlay24, IconPlay32 } from './Play';
 export { IconPlayOutlined16, IconPlayOutlined24, IconPlayOutlined32 } from './PlayOutlined';
 export { IconPlayerStop16, IconPlayerStop24, IconPlayerStop32 } from './PlayerStop';

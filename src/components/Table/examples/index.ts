@@ -14,6 +14,9 @@ export { default as SelectableTableWithGroupingHeaderExample } from './Selectabl
 export { default as SelectableTableWithVirtualizationExample } from './SelectableTableWithVirtualization';
 export { default as SettingsTableExample } from './SettingsTableExample';
 export { default as SortingPaginationExample } from './CommonTableExample';
+export { default as LocalStorageTableExample } from './LocalStorageTableExample';
+export { default as PinnedColumnsTableExample } from './PinnedColumnsTableExample';
+export { default as EditableCellsTableExample } from './EditableCellsTableExample';
 export * from './utils';
 export * from './constants';
 export * from './types';

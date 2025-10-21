@@ -34,27 +34,28 @@ export interface ISlideToggleBaseProps extends PropsWithChildren {
 /**
  * Тип пересечения компонента SlideToogle.
  */
-export type SlideToggleProps = 
-ISlideToggleBaseProps & 
-({ 
-  /** Показать контент при монтировании SlideToogle */
-  isOpenDefault: boolean;
-  isShow?: never;
-  onToggle?: never;
-}
-  /** Свойства дают возможность контролировать состояние извне */
- | { 
-  isOpenDefault?: never;
-  /** Показан ли контент */
-  isShow: boolean;
-  /** Функция, вызываемая при переключении */
-  onToggle?: () => void;
-})
+export type TSlideToggleProps = ISlideToggleBaseProps &
+  (
+    | {
+        /** Показать контент при монтировании компонента */
+        defaultOpen: boolean;
+        isShow?: never;
+        onToggle?: never;
+      }
+    /** Свойства дают возможность контролировать состояние извне */
+    | {
+        defaultOpen?: never;
+        /** Показан ли контент */
+        isShow: boolean;
+        /** Функция, вызываемая при переключении */
+        onToggle?: () => void;
+      }
+  );
 
 /**
  * Компонент SlideToggle для отображения развертывающегося контента.
  * Компонент SlideToggle принимает свойства, описанные в ISlideToggleProps, и отображает развертывающийся контент.
  */
-declare const SlideToggle: FC<ISlideToggleProps>;
+declare const SlideToggle: FC<TSlideToggleProps>;
 
 export default SlideToggle;

@@ -58,33 +58,33 @@ describe('src/components/SlideToggle', () => {
     expect(screen.queryByText(children)).not.toBeInTheDocument();
   });
 
-  test('It must not render content when isOpenDefault is false', () => {
+  test('It must not render content when defaultOpen is false', () => {
     render(
-      <SlideToggle title={titleString} isOpenDefault={false}>
+      <SlideToggle title={titleString} defaultOpen={false}>
         {children}
       </SlideToggle>
     );
     expect(screen.queryByText(children)).not.toBeInTheDocument();
   });
 
-  test('It must not render content when isOpenDefault is true', () => {
+  test('It must render content when defaultOpen is true', () => {
     render(
-      <SlideToggle title={titleString} isOpenDefault={true}>
+      <SlideToggle title={titleString} defaultOpen={true}>
         {children}
       </SlideToggle>
     );
     expect(screen.queryByText(children)).toBeInTheDocument();
   });
 
-  test('It must render content when click to SlideToogle, provided isShow has never and isOpenDefault is false', () => {
+  test('It must render content when click to SlideToggle, provided isShow has never and defaultOpen is false', () => {
     render(
-      <SlideToggle title={titleString} isOpenDefault={false}>
+      <SlideToggle title={titleString} defaultOpen={false}>
         {children}
       </SlideToggle>
     );
     expect(screen.queryByText(children)).not.toBeInTheDocument();
     const title = screen.getByText(titleString);
-    fireEvent.click(title)
+    fireEvent.click(title);
     expect(screen.queryByText(children)).toBeInTheDocument();
   });
 });

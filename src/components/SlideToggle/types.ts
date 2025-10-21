@@ -17,7 +17,7 @@ export interface ISlideToggleBaseProps extends PropsWithChildren {
   contentWrapperId?: string;
 }
 
-export type SlideToggleProps = ISlideToggleBaseProps & ({ isOpenDefault: boolean; isShow?: never; onToggle?: never }
+export type TSlideToggleProps = ISlideToggleBaseProps & ({ isOpenDefault: boolean; isShow?: never; onToggle?: never }
  | { 
   isOpenDefault?: never;
   isShow: boolean;

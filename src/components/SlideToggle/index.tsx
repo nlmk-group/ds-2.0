@@ -4,7 +4,7 @@ import { generateUUID } from '@components/declaration';
 import { ESizeMapping } from '@components/SlideToggle/enum';
 import clsx from 'clsx';
 
-import { SlideToggleProps } from './types';
+import { TSlideToggleProps } from './types';
 
 import styles from './SlideToggle.module.scss';
 
@@ -28,7 +28,7 @@ import { IconStackCollapsed16, IconStackCollapsed24, Typography } from '..';
  * @returns {JSX.Element} - Компонент SlideToggle.
  */
 
-const SlideToggle: FC<SlideToggleProps> = ({
+const SlideToggle: FC<TSlideToggleProps> = ({
   title,
   children,
   className,
@@ -42,11 +42,11 @@ const SlideToggle: FC<SlideToggleProps> = ({
   afterWrapperId,
   contentWrapperId
 }) => {
-  const [ open, setOpen ] = useState<boolean>(isOpenDefault ?? false)
+  const [open, setOpen] = useState<boolean>(isOpenDefault ?? false);
 
   const handleToogle = () => {
-    onToggle? onToggle() : typeof isShow === 'undefined' && setOpen((open) => !open);
-  }
+    onToggle ? onToggle() : typeof isShow === 'undefined' && setOpen(open => !open);
+  };
 
   const renderIcon = () => {
     return size === ESizeMapping.default ? (

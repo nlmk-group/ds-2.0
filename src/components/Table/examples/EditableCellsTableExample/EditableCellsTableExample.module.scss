@@ -1,0 +1,30 @@
+.tableContainer {
+  width: 1200px;
+  max-width: 100%;
+  max-height: 500px;
+  overflow: auto;
+  position: relative;
+  border: 1px solid var(--unique-divider);
+  border-radius: 4px;
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input,
+  select {
+    pointer-events: auto;
+  }
+
+  td {
+    [data-ui-input] {
+      width: 100%;
+    }
+  }
+}

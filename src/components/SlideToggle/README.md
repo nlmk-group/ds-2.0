@@ -21,6 +21,7 @@ import SlideToggle from '@nlmk/ds-2.0';
 | title            | string     | JSX.Element | Заголовок свайдера                      |
 | after            | ReactNode  | -           | Элемент после заголовка                 |
 | isShow           | boolean    | -           | Показан ли контент                      |
+| defaultOpen      | boolean    | -           | Открыт ли контент при монтировании      |
 | onToggle         | () => void | -           | Функция, вызываемая при переключении    |
 | className        | string     | -           | Дополнительные CSS классы               |
 | size             | TSize      | 'default'   | Размер                                  |
@@ -42,7 +43,7 @@ import SlideToggle from '@nlmk/ds-2.0';
 
 Компонент использует CSS модули для стилизации. Основные классы:
 
-- `.slide-toggle-wrapper`: Основной контейнер свайдера
+- `.slide-toggle-wrapper`: Основной контейнер слайдера
 - `.title-wrapper`: Стили для обёртки заголовка
 - `icon-wrapper`: Стили для обёртки иконки
 - `.content-wrapper`: Стили для обёртки контента

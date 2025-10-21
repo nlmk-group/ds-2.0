@@ -19,7 +19,7 @@ import style from './SlideToggle.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import { ESizeMapping } from '../enum';
-import { ISlideToggleProps, ISlideToggleWithButtonProps } from '../types';
+import { ISlideToggleBaseProps, ISlideToggleWithButtonProps } from '../types';
 import argsTypes from './argsTypes';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
@@ -34,7 +34,7 @@ export default {
 const loremIpsum =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus tellus non arcu dignissim, sed venenatis tortor sollicitudin. Phasellus sodales urna ut mi porttitor blandit. Integer id ligula quis ante ultrices rhoncus. Aenean mi augue, venenatis id volutpat a, vehicula vitae massa. Nullam aliquam diam eu dui imperdiet rutrum. Nam porta quam eu dolor malesuada consequat. Cras non lacinia orci, scelerisque tincidunt mi. Praesent velit turpis, euismod a dictum et, viverra et diam. Morbi feugiat erat a bibendum commodo. Nullam facilisis pulvinar justo, et posuere leo dapibus et. Morbi quam mi, rutrum sed egestas eu, rutrum vitae ipsum. Integer dignissim ex in mauris suscipit volutpat. Donec nec ipsum rutrum lectus venenatis pulvinar. Sed molestie id ex a tristique. Sed arcu augue, rhoncus at commodo ut, rutrum in libero';
 
-export const SlideToggleDefault = (args: ISlideToggleProps): JSX.Element => {
+export const SlideToggleDefault = (args: ISlideToggleBaseProps): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
   return (
     <SlideToggle {...args} isShow={show} onToggle={() => setShow(!show)}>
@@ -49,7 +49,7 @@ SlideToggleDefault.args = {
   title: 'Заголовок'
 };
 
-export const SlideToggleSizes = (args: ISlideToggleProps): JSX.Element => {
+export const SlideToggleSizes = (args: ISlideToggleBaseProps): JSX.Element => {
   const [showDefault, setShowDefault] = useState<boolean>(false);
   const [showCompact, setShowCompact] = useState<boolean>(false);
   return (
@@ -185,7 +185,7 @@ SlideToggleWithButton.argTypes = {
   }
 };
 
-export const SlideToggleCustomized = (args: ISlideToggleProps): JSX.Element => {
+export const SlideToggleCustomized = (args: ISlideToggleBaseProps): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

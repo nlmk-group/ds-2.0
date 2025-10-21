@@ -1,10 +1,10 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 
 import { generateUUID } from '@components/declaration';
 import { ESizeMapping } from '@components/SlideToggle/enum';
 import clsx from 'clsx';
 
-import { ISlideToggleProps } from './types';
+import { TSlideToggleProps } from './types';
 
 import styles from './SlideToggle.module.scss';
 
@@ -17,6 +17,7 @@ import { IconStackCollapsed16, IconStackCollapsed24, Typography } from '..';
  * @param {string | JSX.Element} props.title - Заголовок свайдера.
  * @param {ReactNode} [props.after] - Элемент после заголовка.
  * @param {boolean} props.isShow - Показан ли контент.
+ * @param {boolean} props.defaultOpen - Открыт ли слайдер по умолчанию.
  * @param {() => void} [props.onToggle] - Функция, вызываемая при переключении.
  * @param {string} [props.className] - Дополнительные CSS классы.
  * @param {TSize} [props.size=ESizeMapping.default] - Размер свайдера.
@@ -27,11 +28,12 @@ import { IconStackCollapsed16, IconStackCollapsed24, Typography } from '..';
  * @returns {JSX.Element} - Компонент SlideToggle.
  */
 
-const SlideToggle: FC<ISlideToggleProps> = ({
+const SlideToggle: FC<TSlideToggleProps> = ({
   title,
   children,
   className,
-  onToggle = () => {},
+  defaultOpen,
+  onToggle,
   isShow,
   size = ESizeMapping.default,
   after,
@@ -40,6 +42,12 @@ const SlideToggle: FC<ISlideToggleProps> = ({
   afterWrapperId,
   contentWrapperId
 }) => {
+  const [open, setOpen] = useState<boolean>(defaultOpen ?? false);
+
+  const handleToggle = () => {
+    onToggle ? onToggle() : typeof isShow === 'undefined' && setOpen(open => !open);
+  };
+
   const renderIcon = () => {
     return size === ESizeMapping.default ? (
       <IconStackCollapsed24 htmlColor="var(--steel-90)" />
@@ -79,12 +87,12 @@ const SlideToggle: FC<ISlideToggleProps> = ({
 
   return (
     <div className={clsx(styles['slide-toggle-wrapper'], className)} data-testid="slide-toggle-wrapper">
-      <div className={clsx(styles['title-wrapper'], styles[`title-wrapper-${size}`])} onClick={onToggle}>
+      <div className={clsx(styles['title-wrapper'], styles[`title-wrapper-${size}`])} onClick={handleToggle}>
         <div
           className={clsx(
             styles['icon-wrapper'],
             styles[`icon-wrapper-${size}`],
-            isShow && styles['icon-wrapper-show']
+            (isShow ?? open) && styles['icon-wrapper-show']
           )}
           id={iconId}
           data-ui-slide-toggle-show-icon
@@ -93,7 +101,7 @@ const SlideToggle: FC<ISlideToggleProps> = ({
         </div>
         {renderTitle()}
       </div>
-      {isShow && (
+      {(isShow ?? open) && (
         <div
           id={contentId}
           className={clsx(

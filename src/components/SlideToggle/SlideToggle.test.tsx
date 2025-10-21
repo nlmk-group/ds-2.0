@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SlideToggle from '@components/SlideToggle';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('src/components/SlideToggle', () => {
   const handleChange = jest.fn();
@@ -56,5 +56,35 @@ describe('src/components/SlideToggle', () => {
       </SlideToggle>
     );
     expect(screen.queryByText(children)).not.toBeInTheDocument();
+  });
+
+  test('It must not render content when defaultOpen is false', () => {
+    render(
+      <SlideToggle title={titleString} defaultOpen={false}>
+        {children}
+      </SlideToggle>
+    );
+    expect(screen.queryByText(children)).not.toBeInTheDocument();
+  });
+
+  test('It must render content when defaultOpen is true', () => {
+    render(
+      <SlideToggle title={titleString} defaultOpen={true}>
+        {children}
+      </SlideToggle>
+    );
+    expect(screen.queryByText(children)).toBeInTheDocument();
+  });
+
+  test('It must render content when click to SlideToggle, provided isShow has never and defaultOpen is false', () => {
+    render(
+      <SlideToggle title={titleString} defaultOpen={false}>
+        {children}
+      </SlideToggle>
+    );
+    expect(screen.queryByText(children)).not.toBeInTheDocument();
+    const title = screen.getByText(titleString);
+    fireEvent.click(title);
+    expect(screen.queryByText(children)).toBeInTheDocument();
   });
 });

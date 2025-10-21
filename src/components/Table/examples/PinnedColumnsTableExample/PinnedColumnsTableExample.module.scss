@@ -1,0 +1,13 @@
+.tableContainer {
+  width: 1200px;
+  max-width: 100%;
+  overflow: auto;
+  position: relative;
+  border: 1px solid var(--unique-divider);
+  border-radius: 4px;
+}
+
+.pinnedColumnRight {
+  border-left: 1px solid var(--steel-40);
+  background-color: var(--steel-10);
+}

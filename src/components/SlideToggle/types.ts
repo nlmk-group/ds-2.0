@@ -6,11 +6,9 @@ import { ESizeMapping } from './enum';
 
 export type TSize = `${ESizeMapping}`;
 
-export interface ISlideToggleProps extends PropsWithChildren {
+export interface ISlideToggleBaseProps extends PropsWithChildren {
   title: string | JSX.Element;
   after?: ReactNode;
-  isShow: boolean;
-  onToggle?: () => void;
   className?: string;
   size?: TSize;
   iconWrapperId?: string;
@@ -18,7 +16,24 @@ export interface ISlideToggleProps extends PropsWithChildren {
   afterWrapperId?: string;
   contentWrapperId?: string;
 }
-export interface ISlideToggleWithButtonProps extends ISlideToggleProps {
+
+export type TSlideToggleProps = ISlideToggleBaseProps &
+  (
+    | {
+        /** Показать контент при монтировании компонента */
+        defaultOpen: boolean;
+        isShow?: never;
+        onToggle?: never;
+      }
+    | {
+        defaultOpen?: never;
+        /** Показан ли контент */
+        isShow: boolean;
+        /** Функция, вызываемая при переключении */
+        onToggle?: () => void;
+      }
+  );
+export interface ISlideToggleWithButtonProps extends ISlideToggleBaseProps {
   badgeChildren?: string;
   badgeColor?: `${EBadgeColors}`;
 }

@@ -10,17 +10,13 @@ export type TSize = `${ESizeMapping}`;
 
 /**
  * Свойства компонента SlideToggle.
- * Интерфейс, описывающий свойства, принимаемые компонентом SlideToggle.
+ * Базовый интерфейс, описывающий свойства, принимаемые компонентом SlideToggle.
  */
-export interface ISlideToggleProps extends PropsWithChildren {
+export interface ISlideToggleBaseProps extends PropsWithChildren {
   /** Заголовок свайдера */
   title: string | JSX.Element;
   /** Элемент после заголовка */
   after?: ReactNode;
-  /** Показан ли контент */
-  isShow: boolean;
-  /** Функция, вызываемая при переключении */
-  onToggle?: () => void;
   /** Дополнительные CSS классы */
   className?: string;
   /** Размер свайдера */
@@ -36,9 +32,30 @@ export interface ISlideToggleProps extends PropsWithChildren {
 }
 
 /**
+ * Тип пересечения компонента SlideToogle.
+ */
+export type TSlideToggleProps = ISlideToggleBaseProps &
+  (
+    | {
+        /** Показать контент при монтировании компонента */
+        defaultOpen: boolean;
+        isShow?: never;
+        onToggle?: never;
+      }
+    /** Свойства дают возможность контролировать состояние извне */
+    | {
+        defaultOpen?: never;
+        /** Показан ли контент */
+        isShow: boolean;
+        /** Функция, вызываемая при переключении */
+        onToggle?: () => void;
+      }
+  );
+
+/**
  * Компонент SlideToggle для отображения развертывающегося контента.
  * Компонент SlideToggle принимает свойства, описанные в ISlideToggleProps, и отображает развертывающийся контент.
  */
-declare const SlideToggle: FC<ISlideToggleProps>;
+declare const SlideToggle: FC<TSlideToggleProps>;
 
 export default SlideToggle;

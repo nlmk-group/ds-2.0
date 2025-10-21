@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.26.1 - <span className={styles.date}>22.10.25</span>
+            v2.26.1 - <span className={styles.date}>21.10.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>

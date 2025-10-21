@@ -1,21 +1,24 @@
 import React from 'react';
 
 import {
+  EditableCellsTableExample,
   ExpandableTableExample,
   FilterableTableExample,
   GroupHeaderTableWithResizeExample,
   GroupingHeaderTableExample,
+  LocalStorageTableExample,
+  PinnedColumnsTableExample,
   SelectableTableExample,
   SelectableTableWithGroupingHeaderExample,
   SelectableTableWithPaginationExample,
   SelectableTableWithVirtualizationExample,
   SettingsTableExample,
   SortableTableExample,
+  SortingPaginationExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
   VirtualizedTableWithDynamicRowHeightExample,
-  VirtualizedTableWithHorizontalVirtualizationExample,
-  SortingPaginationExample
+  VirtualizedTableWithHorizontalVirtualizationExample
 } from '../examples';
 import Table from '../Table';
 
@@ -99,9 +102,6 @@ TableWithSettings.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-// export const TableComponents = () => <TableComponentsExample />;
-// TableComponents.storyName = 'Таблица с компонентами';
-
 export const SelectableTable = () => <SelectableTableExample />;
 SelectableTable.storyName = 'Таблица с выбором строк';
 SelectableTable.parameters = {
@@ -131,9 +131,30 @@ SelectableTableWithVirtualization.parameters = {
 };
 
 export const CommonTableWithPaginationAndSortingUsage = () => <SortingPaginationExample />;
-CommonTableWithPaginationAndSortingUsage.storyName = 
+CommonTableWithPaginationAndSortingUsage.storyName =
   'Переиспользуемый компонент таблицы с пагинацией и сортировкой из проекта на основе TanStack';
 CommonTableWithPaginationAndSortingUsage.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const LocalStorageTable = () => <LocalStorageTableExample />;
+LocalStorageTable.storyName = 'Таблица с сохранением настроек в localStorage';
+LocalStorageTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const PinnedColumnsTable = () => <PinnedColumnsTableExample />;
+PinnedColumnsTable.storyName = 'Таблица с закрепленными столбцами и горизонтальным скроллом';
+PinnedColumnsTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const EditableCellsTable = () => <EditableCellsTableExample />;
+EditableCellsTable.storyName = 'Таблица с интерактивными элементами ввода в ячейках';
+EditableCellsTable.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

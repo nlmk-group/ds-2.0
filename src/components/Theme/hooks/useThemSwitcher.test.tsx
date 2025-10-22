@@ -5,14 +5,9 @@ import { Themes } from '../types';
 
 describe('useThemeSwitcher', () => {
   // Мокаем глобальные объекты, которые используются в хуке
-  beforeAll(() => {
-    Object.defineProperty(window, 'sessionStorage', {
-      value: {
-        getItem: jest.fn(),
-        setItem: jest.fn()
-      },
-      writable: true
-    });
+  beforeEach(() => {
+    sessionStorage.clear();
+    jest.clearAllMocks();
   });
 
   test('should initialize with light theme by default', () => {
@@ -20,9 +15,21 @@ describe('useThemeSwitcher', () => {
     expect(result.current.theme).toBe(Themes.LIGHT);
   });
 
+  test('should initialize with theme from sessionStorage', () => {
+    sessionStorage.setItem('theme', Themes.DARK);
+    const { result } = renderHook(() => useThemeSwitcher());
+    expect(result.current.theme).toBe(Themes.DARK);
+  });
+
   test('should initialize with custom theme if provided', () => {
     const { result } = renderHook(() => useThemeSwitcher(Themes.DARK));
     expect(result.current.theme).toBe(Themes.DARK);
+  });
+
+  test('should prioritize customTheme over sessionStorage', () => {
+    sessionStorage.setItem('theme', Themes.DARK);
+    const { result } = renderHook(() => useThemeSwitcher(Themes.LIGHT));
+    expect(result.current.theme).toBe(Themes.LIGHT);
   });
 
   test('should toggle theme', () => {
@@ -42,7 +49,19 @@ describe('useThemeSwitcher', () => {
     act(() => {
       result.current.toggleTheme();
     });
-    // Сделал так чтобы сохранить правило eslint и игнорировать только эту строку
-    expect(window.sessionStorage.setItem).toHaveBeenCalledWith('theme', Themes.DARK);
+    expect(sessionStorage.getItem('theme')).toBe(Themes.DARK);
+  });
+
+  test('should persist theme after toggle and re-initialization', () => {
+    const { result: firstRender } = renderHook(() => useThemeSwitcher());
+
+    act(() => {
+      firstRender.current.toggleTheme();
+    });
+    expect(firstRender.current.theme).toBe(Themes.DARK);
+
+    const { result: secondRender } = renderHook(() => useThemeSwitcher());
+
+    expect(secondRender.current.theme).toBe(Themes.DARK);
   });
 });

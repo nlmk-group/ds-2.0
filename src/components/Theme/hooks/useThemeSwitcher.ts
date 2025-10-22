@@ -7,7 +7,18 @@ import { Theme, Themes } from '../types';
 const tagName = 'style';
 
 export const useThemeSwitcher = (customTheme?: Themes) => {
-  const [theme, setTheme] = useState<Theme>(customTheme || Themes.LIGHT);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (customTheme) {
+      return customTheme;
+    }
+
+    const savedTheme = sessionStorage.getItem('theme');
+    if (savedTheme === Themes.DARK || savedTheme === Themes.LIGHT) {
+      return savedTheme as Theme;
+    }
+
+    return Themes.LIGHT;
+  });
 
   useEffect(() => {
     if (customTheme) {

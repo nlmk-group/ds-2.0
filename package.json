@@ -3,12 +3,15 @@
   "version": "2.26.2",
   "author": "NLMK IT",
   "public": false,
-  "main": "lib/index.js",
+  "type": "module",
   "license": "MIT",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -24,7 +27,7 @@
     "deploy": "yarn conveyor && yarn packing",
     "test": "jest",
     "test:clear-cache": "jest --clearCache",
-    "test:ci": "jest --watchAll=false --ci --config=jest.config.js",
+    "test:ci": "jest --watchAll=false --ci --config=jest.config.cjs",
     "test:coverage": "jest --coverage",
     "test:generate-output": "jest --json --env=jsdom --outputFile=.jest-test-results.json || true",
     "prebuild:storybook": "yarn test:generate-output",
@@ -37,6 +40,7 @@
     "token:generate:windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && node generateTokens.mjs",
     "commit": "cz",
     "packpackage": "cd lib && yarn pack",
+    "generate:exports": "node script/generateExports.mjs",
     "generateIconsExports": "ts-node src/components/Icon/generateIconsExports.ts && prettier --write src/components/Icon",
     "chromatic": "yarn storybook:build && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/",
     "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
@@ -59,6 +63,10 @@
     "rc-tree": "^5.11.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -171,7 +179,305 @@
       "path": "./node_modules/cz-customizable"
     },
     "cz-customizable": {
-      "config": "./commitizen.js"
+      "config": "./commitizen.cjs"
     }
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./Accordion": {
+      "import": "./lib/Accordion/index.js",
+      "types": "./lib/Accordion/index.d.ts"
+    },
+    "./Alert": {
+      "import": "./lib/Alert/index.js",
+      "types": "./lib/Alert/index.d.ts"
+    },
+    "./ArrowButton": {
+      "import": "./lib/ArrowButton/index.js",
+      "types": "./lib/ArrowButton/index.d.ts"
+    },
+    "./AttachFiles": {
+      "import": "./lib/AttachFiles/index.js",
+      "types": "./lib/AttachFiles/index.d.ts"
+    },
+    "./Autocomplete": {
+      "import": "./lib/Autocomplete/index.js",
+      "types": "./lib/Autocomplete/index.d.ts"
+    },
+    "./Avatar": {
+      "import": "./lib/Avatar/index.js",
+      "types": "./lib/Avatar/index.d.ts"
+    },
+    "./Badge": {
+      "import": "./lib/Badge/index.js",
+      "types": "./lib/Badge/index.d.ts"
+    },
+    "./Box": {
+      "import": "./lib/Box/index.js",
+      "types": "./lib/Box/index.d.ts"
+    },
+    "./Breadcrumbs": {
+      "import": "./lib/Breadcrumbs/index.js",
+      "types": "./lib/Breadcrumbs/index.d.ts"
+    },
+    "./Button": {
+      "import": "./lib/Button/index.js",
+      "types": "./lib/Button/index.d.ts"
+    },
+    "./Card": {
+      "import": "./lib/Card/index.js",
+      "types": "./lib/Card/index.d.ts"
+    },
+    "./Checkbox": {
+      "import": "./lib/Checkbox/index.js",
+      "types": "./lib/Checkbox/index.d.ts"
+    },
+    "./Chip": {
+      "import": "./lib/Chip/index.js",
+      "types": "./lib/Chip/index.d.ts"
+    },
+    "./ClickAwayListener": {
+      "import": "./lib/ClickAwayListener/index.js",
+      "types": "./lib/ClickAwayListener/index.d.ts"
+    },
+    "./Colors": {
+      "import": "./lib/Colors/index.js",
+      "types": "./lib/Colors/index.d.ts"
+    },
+    "./ComboBox": {
+      "import": "./lib/ComboBox/index.js",
+      "types": "./lib/ComboBox/index.d.ts"
+    },
+    "./DatePicker": {
+      "import": "./lib/DatePicker/index.js",
+      "types": "./lib/DatePicker/index.d.ts"
+    },
+    "./DateTime": {
+      "import": "./lib/DateTime/index.js",
+      "types": "./lib/DateTime/index.d.ts"
+    },
+    "./Divider": {
+      "import": "./lib/Divider/index.js",
+      "types": "./lib/Divider/index.d.ts"
+    },
+    "./DragAndDrop": {
+      "import": "./lib/DragAndDrop/index.js",
+      "types": "./lib/DragAndDrop/index.d.ts"
+    },
+    "./Drawer": {
+      "import": "./lib/Drawer/index.js",
+      "types": "./lib/Drawer/index.d.ts"
+    },
+    "./Dropdown": {
+      "import": "./lib/Dropdown/index.js",
+      "types": "./lib/Dropdown/index.d.ts"
+    },
+    "./ErrorPage": {
+      "import": "./lib/ErrorPage/index.js",
+      "types": "./lib/ErrorPage/index.d.ts"
+    },
+    "./Filter": {
+      "import": "./lib/Filter/index.js",
+      "types": "./lib/Filter/index.d.ts"
+    },
+    "./FilterTip": {
+      "import": "./lib/FilterTip/index.js",
+      "types": "./lib/FilterTip/index.d.ts"
+    },
+    "./Grid": {
+      "import": "./lib/Grid/index.js",
+      "types": "./lib/Grid/index.d.ts"
+    },
+    "./Header": {
+      "import": "./lib/Header/index.js",
+      "types": "./lib/Header/index.d.ts"
+    },
+    "./Icon": {
+      "import": "./lib/Icon/index.js",
+      "types": "./lib/Icon/index.d.ts"
+    },
+    "./Illustrations": {
+      "import": "./lib/Illustrations/index.js",
+      "types": "./lib/Illustrations/index.d.ts"
+    },
+    "./ImagePicture": {
+      "import": "./lib/ImagePicture/index.js",
+      "types": "./lib/ImagePicture/index.d.ts"
+    },
+    "./Input": {
+      "import": "./lib/Input/index.js",
+      "types": "./lib/Input/index.d.ts"
+    },
+    "./InputMaskCorrect": {
+      "import": "./lib/InputMaskCorrect/index.js",
+      "types": "./lib/InputMaskCorrect/index.d.ts"
+    },
+    "./InputRange": {
+      "import": "./lib/InputRange/index.js",
+      "types": "./lib/InputRange/index.d.ts"
+    },
+    "./InputSlider": {
+      "import": "./lib/InputSlider/index.js",
+      "types": "./lib/InputSlider/index.d.ts"
+    },
+    "./Legend": {
+      "import": "./lib/Legend/index.js",
+      "types": "./lib/Legend/index.d.ts"
+    },
+    "./Link": {
+      "import": "./lib/Link/index.js",
+      "types": "./lib/Link/index.d.ts"
+    },
+    "./List": {
+      "import": "./lib/List/index.js",
+      "types": "./lib/List/index.d.ts"
+    },
+    "./ListItem": {
+      "import": "./lib/ListItem/index.js",
+      "types": "./lib/ListItem/index.d.ts"
+    },
+    "./Modal": {
+      "import": "./lib/Modal/index.js",
+      "types": "./lib/Modal/index.d.ts"
+    },
+    "./MultiSelect": {
+      "import": "./lib/MultiSelect/index.js",
+      "types": "./lib/MultiSelect/index.d.ts"
+    },
+    "./OptionItem": {
+      "import": "./lib/OptionItem/index.js",
+      "types": "./lib/OptionItem/index.d.ts"
+    },
+    "./Pagination": {
+      "import": "./lib/Pagination/index.js",
+      "types": "./lib/Pagination/index.d.ts"
+    },
+    "./PdfPreview": {
+      "import": "./lib/PdfPreview/index.js",
+      "types": "./lib/PdfPreview/index.d.ts"
+    },
+    "./Portal": {
+      "import": "./lib/Portal/index.js",
+      "types": "./lib/Portal/index.d.ts"
+    },
+    "./ProgressBar": {
+      "import": "./lib/ProgressBar/index.js",
+      "types": "./lib/ProgressBar/index.d.ts"
+    },
+    "./PseudoInput": {
+      "import": "./lib/PseudoInput/index.js",
+      "types": "./lib/PseudoInput/index.d.ts"
+    },
+    "./Radio": {
+      "import": "./lib/Radio/index.js",
+      "types": "./lib/Radio/index.d.ts"
+    },
+    "./Scrollbar": {
+      "import": "./lib/Scrollbar/index.js",
+      "types": "./lib/Scrollbar/index.d.ts"
+    },
+    "./SegmentButtonGroup": {
+      "import": "./lib/SegmentButtonGroup/index.js",
+      "types": "./lib/SegmentButtonGroup/index.d.ts"
+    },
+    "./Select": {
+      "import": "./lib/Select/index.js",
+      "types": "./lib/Select/index.d.ts"
+    },
+    "./Sidebar": {
+      "import": "./lib/Sidebar/index.js",
+      "types": "./lib/Sidebar/index.d.ts"
+    },
+    "./SimpleSelect": {
+      "import": "./lib/SimpleSelect/index.js",
+      "types": "./lib/SimpleSelect/index.d.ts"
+    },
+    "./SkeletonLoader": {
+      "import": "./lib/SkeletonLoader/index.js",
+      "types": "./lib/SkeletonLoader/index.d.ts"
+    },
+    "./SlideToggle": {
+      "import": "./lib/SlideToggle/index.js",
+      "types": "./lib/SlideToggle/index.d.ts"
+    },
+    "./Slider": {
+      "import": "./lib/Slider/index.js",
+      "types": "./lib/Slider/index.d.ts"
+    },
+    "./Snackbar": {
+      "import": "./lib/Snackbar/index.js",
+      "types": "./lib/Snackbar/index.d.ts"
+    },
+    "./Spinner": {
+      "import": "./lib/Spinner/index.js",
+      "types": "./lib/Spinner/index.d.ts"
+    },
+    "./Splitter": {
+      "import": "./lib/Splitter/index.js",
+      "types": "./lib/Splitter/index.d.ts"
+    },
+    "./Status": {
+      "import": "./lib/Status/index.js",
+      "types": "./lib/Status/index.d.ts"
+    },
+    "./Stepper": {
+      "import": "./lib/Stepper/index.js",
+      "types": "./lib/Stepper/index.d.ts"
+    },
+    "./Switch": {
+      "import": "./lib/Switch/index.js",
+      "types": "./lib/Switch/index.d.ts"
+    },
+    "./Table": {
+      "import": "./lib/Table/index.js",
+      "types": "./lib/Table/index.d.ts"
+    },
+    "./Tabs": {
+      "import": "./lib/Tabs/index.js",
+      "types": "./lib/Tabs/index.d.ts"
+    },
+    "./Theme": {
+      "import": "./lib/Theme/index.js",
+      "types": "./lib/Theme/index.d.ts"
+    },
+    "./ThemeSwitcher": {
+      "import": "./lib/ThemeSwitcher/index.js",
+      "types": "./lib/ThemeSwitcher/index.d.ts"
+    },
+    "./TimePicker": {
+      "import": "./lib/TimePicker/index.js",
+      "types": "./lib/TimePicker/index.d.ts"
+    },
+    "./ToggleButtonGroup": {
+      "import": "./lib/ToggleButtonGroup/index.js",
+      "types": "./lib/ToggleButtonGroup/index.d.ts"
+    },
+    "./Tooltip": {
+      "import": "./lib/Tooltip/index.js",
+      "types": "./lib/Tooltip/index.d.ts"
+    },
+    "./TreeList": {
+      "import": "./lib/TreeList/index.js",
+      "types": "./lib/TreeList/index.d.ts"
+    },
+    "./Typography": {
+      "import": "./lib/Typography/index.js",
+      "types": "./lib/Typography/index.d.ts"
+    },
+    "./VideoWindow": {
+      "import": "./lib/VideoWindow/index.js",
+      "types": "./lib/VideoWindow/index.d.ts"
+    },
+    "./*": {
+      "import": "./lib/*/index.js",
+      "types": "./lib/*/index.d.ts"
+    },
+    "./css/main.css": "./lib/css/main.css",
+    "./css/style.css": "./lib/css/style.css",
+    "./css/*": "./lib/css/*",
+    "./fonts/*": "./lib/fonts/*"
   }
 }

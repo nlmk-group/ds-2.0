@@ -9,12 +9,11 @@
 ## Базовый пример использования
 
 ```jsx
-import { useThemeSwitcher, Themes } from '@nlmk/ds-2.0';
+import { Themes, useThemeSwitcher } from '@nlmk/ds-2.0';
 
 // В функциональном компоненте:
 const App = () => {
   const { theme, toggleTheme } = useThemeSwitcher();
-
   return (
     <div>
       <span>Текущая тема: {theme}</span>
@@ -22,7 +21,6 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
 ```
 
@@ -30,14 +28,24 @@ export default App;
 
 ## Props
 
-| Prop         | Type                | Default         | Description                                      |
-|--------------|---------------------|-----------------|--------------------------------------------------|
-| customTheme  | `Themes`            | `Themes.LIGHT`  | Начальная тема (светлая или тёмная)              |
+| Prop        | Type     | Default     | Description                                         |
+| ----------- | -------- | ----------- | --------------------------------------------------- |
+| customTheme | `Themes` | `undefined` | Принудительная тема (переопределяет sessionStorage) |
+
+> **Примечание:**  
+> Хук автоматически сохраняет выбранную тему в `sessionStorage` и восстанавливает её при следующей загрузке страницы.
 
 > **Примечание:**  
 > Хук `useThemeSwitcher` возвращает объект `{ theme, toggleTheme }`, где:
+>
 > - `theme` — текущая тема (`'light'` или `'dark'`)
 > - `toggleTheme` — функция для переключения темы
+>
+> **Приоритет инициализации темы:**
+>
+> 1. `customTheme` (если передан)
+> 2. Сохранённая тема из `sessionStorage`
+> 3. `Themes.LIGHT` (по умолчанию)
 
 ---
 
@@ -46,12 +54,11 @@ export default App;
 ### Принудительное задание темы
 
 ```jsx
-import { useThemeSwitcher, Themes } from '@nlmk/ds-2.0';
+import { Themes, useThemeSwitcher } from '@nlmk/ds-2.0';
 
 const App = () => {
   // Принудительно задаём тёмную тему
   const { theme } = useThemeSwitcher(Themes.DARK);
-
   return <div>Тема: {theme}</div>;
 };
 ```
@@ -61,7 +68,6 @@ const App = () => {
 В библиотеке есть готовый компонент-переключатель темы:
 
 ```jsx
-
 const App = () => (
   <div>
     <ThemeSwitcher />

@@ -23,6 +23,30 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.26.2 - <span className={styles.date}>22.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен хук{' '}
+              <Link
+                href="https://github.com/nlmk-group/ds-2.0/tree/dev/src/components/ThemeSwitcher"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                useThemeSwitcher
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено автоматическое восстановление темы из sessionStorage при инициализации
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлено сохранение темы после перезагрузки страницы
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.26.1 - <span className={styles.date}>21.10.25</span>
           </Typography>
           <ul className={styles.list}>

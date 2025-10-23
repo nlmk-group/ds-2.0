@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 import tsConfigPaths from 'vite-tsconfig-paths';
@@ -71,35 +72,7 @@ const buildPostProcessPlugin = () => ({
       fs.cpSync(publicFontsDir, fontsDir, { recursive: true });
     }
 
-    const collectComponentStyles = (dir: string, collected: string[] = []): string[] => {
-      const items = fs.readdirSync(dir, { withFileTypes: true });
-      
-      for (const item of items) {
-        const fullPath = resolve(dir, item.name);
-        
-        if (item.isDirectory() && !['css', 'fonts', 'node_modules'].includes(item.name)) {
-          collectComponentStyles(fullPath, collected);
-        } else if (item.isFile() && item.name.endsWith('.module.css')) {
-          const relativePath = fullPath.replace(libPath + '/', '');
-          collected.push(relativePath);
-        }
-      }
-      
-      return collected;
-    };
-
-    const componentCssFiles = collectComponentStyles(libPath);
-    console.log(`📦 Найдено ${componentCssFiles.length} CSS модулей компонентов`);
-
-    const styleCssContent = componentCssFiles
-      .map(file => `@import '../${file}';`)
-      .join('\n');
-    
-    fs.writeFileSync(resolve(cssDir, 'style.css'), styleCssContent);
-    console.log('✅ Создан style.css с импортами компонентов');
-
-    const mainCssContent = `/* NLMK DS 2.0 Styles */
-@import './style.css';
+    const mainCssContent = `/* NLMK DS 2.0 Tokens */
 @import './tokens/old-colour-shadow.css';
 @import './tokens/main-color-light.css';
 @import './tokens/spacing.css';
@@ -116,12 +89,11 @@ const buildPostProcessPlugin = () => ({
 `;
 
     fs.writeFileSync(resolve(cssDir, 'main.css'), mainCssContent);
+    console.log('✅ Создан main.css с токенами (CSS модули инжектируются автоматически)');
 
     const packageJson = {
       type: 'module',
       sideEffects: [
-        '*.css',
-        '*.scss',
         './css/**/*.css',
         './index.js'
       ],
@@ -131,7 +103,6 @@ const buildPostProcessPlugin = () => ({
           types: './index.d.ts'
         },
         './css/main.css': './css/main.css',
-        './css/style.css': './css/style.css',
         './fonts/*': './fonts/*'
       }
     };
@@ -139,8 +110,9 @@ const buildPostProcessPlugin = () => ({
     fs.writeFileSync(resolve(libPath, 'package.json'), JSON.stringify(packageJson, null, 2));
 
     const cssExports = `// CSS файлы библиотеки NLMK DS 2.0
+// CSS модули компонентов инжектируются автоматически
+// Токены можно импортировать отдельно при необходимости
 export const mainCSS = './css/main.css';
-export const stylesCSS = './css/style.css';
 export const variablesCSS = './css/temp-variables.css';
 export const darkThemeCSS = './css/dark-theme-storybook.css';
 `;
@@ -153,7 +125,7 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
       if (!indexContent.includes("import './css/main.css'")) {
         indexContent = `import './css/main.css';\n\n${indexContent}`;
         fs.writeFileSync(indexJsPath, indexContent);
-        console.log('✅ Добавлен импорт CSS в index.js');
+        console.log('✅ Добавлен импорт токенов в index.js');
       }
     }
 
@@ -253,6 +225,14 @@ export default defineConfig({
     tsConfigPaths(),
     ...(isLibBuild
       ? [
+          cssInjectedByJsPlugin({
+            relativeCSSInjection: true,
+            jsAssetsFilterFunction: (chunk) => {
+              return !chunk.fileName.includes('utils/') && 
+                     !chunk.fileName.includes('declaration/') &&
+                     !chunk.fileName.includes('Theme/');
+            }
+          }),
           dts({
             tsconfigPath: './tsconfig.json',
             include: ['src/components/**/*'],

@@ -71,7 +71,35 @@ const buildPostProcessPlugin = () => ({
       fs.cpSync(publicFontsDir, fontsDir, { recursive: true });
     }
 
+    const collectComponentStyles = (dir: string, collected: string[] = []): string[] => {
+      const items = fs.readdirSync(dir, { withFileTypes: true });
+      
+      for (const item of items) {
+        const fullPath = resolve(dir, item.name);
+        
+        if (item.isDirectory() && !['css', 'fonts', 'node_modules'].includes(item.name)) {
+          collectComponentStyles(fullPath, collected);
+        } else if (item.isFile() && item.name.endsWith('.module.css')) {
+          const relativePath = fullPath.replace(libPath + '/', '');
+          collected.push(relativePath);
+        }
+      }
+      
+      return collected;
+    };
+
+    const componentCssFiles = collectComponentStyles(libPath);
+    console.log(`📦 Найдено ${componentCssFiles.length} CSS модулей компонентов`);
+
+    const styleCssContent = componentCssFiles
+      .map(file => `@import '../${file}';`)
+      .join('\n');
+    
+    fs.writeFileSync(resolve(cssDir, 'style.css'), styleCssContent);
+    console.log('✅ Создан style.css с импортами компонентов');
+
     const mainCssContent = `/* NLMK DS 2.0 Styles */
+@import './style.css';
 @import './tokens/old-colour-shadow.css';
 @import './tokens/main-color-light.css';
 @import './tokens/spacing.css';
@@ -91,7 +119,12 @@ const buildPostProcessPlugin = () => ({
 
     const packageJson = {
       type: 'module',
-      sideEffects: false,
+      sideEffects: [
+        '*.css',
+        '*.scss',
+        './css/**/*.css',
+        './index.js'
+      ],
       exports: {
         '.': {
           import: './index.js',
@@ -112,6 +145,17 @@ export const variablesCSS = './css/temp-variables.css';
 export const darkThemeCSS = './css/dark-theme-storybook.css';
 `;
     fs.writeFileSync(resolve(libPath, 'styles.js'), cssExports);
+
+    const indexJsPath = resolve(libPath, 'index.js');
+    if (fs.existsSync(indexJsPath)) {
+      let indexContent = fs.readFileSync(indexJsPath, 'utf-8');
+      
+      if (!indexContent.includes("import './css/main.css'")) {
+        indexContent = `import './css/main.css';\n\n${indexContent}`;
+        fs.writeFileSync(indexJsPath, indexContent);
+        console.log('✅ Добавлен импорт CSS в index.js');
+      }
+    }
 
     const totalSize = getDirectorySize(libPath);
     const cssSize = fs.existsSync(cssDir) ? getDirectorySize(cssDir) : 0;

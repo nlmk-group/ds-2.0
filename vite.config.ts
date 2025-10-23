@@ -65,44 +65,24 @@ const buildPostProcessPlugin = () => ({
     const publicCssDir = resolve(__dirname, 'public/css');
     if (fs.existsSync(publicCssDir)) {
       fs.cpSync(publicCssDir, cssDir, { recursive: true });
+      console.log('✅ Скопированы CSS токены и main.css');
     }
 
     const publicFontsDir = resolve(__dirname, 'public/fonts');
     if (fs.existsSync(publicFontsDir)) {
       fs.cpSync(publicFontsDir, fontsDir, { recursive: true });
+      console.log('✅ Скопированы шрифты');
     }
-
-    const mainCssContent = `/* NLMK DS 2.0 Tokens */
-@import './tokens/old-colour-shadow.css';
-@import './tokens/main-color-light.css';
-@import './tokens/spacing.css';
-@import './tokens/sizing.css';
-@import './tokens/opacity.css';
-@import './tokens/radius.css';
-@import './temp-variables.css';
-@import './tokens/main-typography.css';
-@import './tokens/desktop/typo/main-typography.css';
-@import './tokens/desktop/color/main-color-light.css';
-@import './tokens/light-tokens.css';
-@import './tokens/typography-tokens.css';
-@import './dark-theme-storybook.css';
-`;
-
-    fs.writeFileSync(resolve(cssDir, 'main.css'), mainCssContent);
-    console.log('✅ Создан main.css с токенами (CSS модули инжектируются автоматически)');
 
     const packageJson = {
       type: 'module',
-      sideEffects: [
-        './css/**/*.css',
-        './index.js'
-      ],
+      sideEffects: ['./css/**/*.css', './index.js'],
       exports: {
         '.': {
           import: './index.js',
           types: './index.d.ts'
         },
-        './css/main.css': './css/main.css',
+        './css/*': './css/*',
         './fonts/*': './fonts/*'
       }
     };
@@ -121,7 +101,7 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
     const indexJsPath = resolve(libPath, 'index.js');
     if (fs.existsSync(indexJsPath)) {
       let indexContent = fs.readFileSync(indexJsPath, 'utf-8');
-      
+
       if (!indexContent.includes("import './css/main.css'")) {
         indexContent = `import './css/main.css';\n\n${indexContent}`;
         fs.writeFileSync(indexJsPath, indexContent);
@@ -200,19 +180,12 @@ export default defineConfig({
         output: {
           preserveModules: true,
           preserveModulesRoot: 'src/components',
-          entryFileNames: chunkInfo => {
-            return '[name].js';
-          },
+          entryFileNames: '[name].js',
           assetFileNames: assetInfo => {
             if (assetInfo.name?.endsWith('.css')) {
               return '[name][extname]';
             }
             return 'assets/[name][extname]';
-          },
-          globals: {
-            'react': 'React',
-            'react-dom': 'ReactDOM',
-            'react/jsx-runtime': 'jsxRuntime'
           }
         }
       },
@@ -227,10 +200,12 @@ export default defineConfig({
       ? [
           cssInjectedByJsPlugin({
             relativeCSSInjection: true,
-            jsAssetsFilterFunction: (chunk) => {
-              return !chunk.fileName.includes('utils/') && 
-                     !chunk.fileName.includes('declaration/') &&
-                     !chunk.fileName.includes('Theme/');
+            jsAssetsFilterFunction: chunk => {
+              return (
+                !chunk.fileName.includes('utils/') &&
+                !chunk.fileName.includes('declaration/') &&
+                !chunk.fileName.includes('Theme/')
+              );
             }
           }),
           dts({

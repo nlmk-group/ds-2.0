@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   dateFormat,
@@ -37,9 +37,9 @@ import { useLocale } from '@components/DatePicker/utils';
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
-import InputMaskCorrect from '@components/InputMaskCorrect';
 import clsx from 'clsx';
 import { format, isValid, parse, set } from 'date-fns';
+import { useIMask } from 'react-imask';
 import { isInteger, range } from 'lodash';
 
 import { IDatePickerInputProps } from './types';
@@ -88,6 +88,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     const language = useLocale();
     const [innerMaskedValue, setInnerMaskedValue] = useState('');
     const [focused, setFocused] = React.useState(false);
+    const _inputRef = useRef<HTMLInputElement>(null);
+
     const onInputFocus = () => {
       setFocused(true);
       if (onFocus && isOpenOnFocus) {
@@ -205,6 +207,39 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       }
       return isHideYear ? dateMaskWithoutYear : dateMask;
     }, [focused, level, shiftLength, showTime, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
+
+    const { ref: maskRef, value: maskedValue, setValue: setMaskedValue } = useIMask(
+      {
+        mask: mask,
+        definitions: {
+          '9': /[0-9]/,
+          '3': /[0-3]/,
+          '2': /[0-2]/
+        },
+        lazy: false
+      },
+      {
+        onAccept: (value) => {
+          setInnerMaskedValue(value);
+        }
+      }
+    );
+
+    useEffect(() => {
+      if (ref) {
+        if (typeof ref === 'function') {
+          ref(maskRef.current as HTMLInputElement | null);
+        } else {
+          (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
+        }
+      }
+    }, [ref, maskRef]);
+
+    useEffect(() => {
+      if (maskedValue !== innerMaskedValue) {
+        setMaskedValue(innerMaskedValue);
+      }
+    }, [innerMaskedValue, maskedValue, setMaskedValue]);
 
     const isValueMatchesTheMask = (mask: string, value: string) => mask.replace(/9/gi, '_') === value;
 
@@ -528,13 +563,14 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       return [null, null, undefined, undefined];
     }, [innerMaskedValue, level, showTime, value, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const newValue = e.target.value;
       setInnerMaskedValue(newValue);
     }, []);
+
     return (
-      <InputMaskCorrect
-        mask={mask}
+      <Input
+        inputRef={maskRef as any}
         value={innerMaskedValue}
         onChange={handleChange}
         onFocus={() => {
@@ -552,43 +588,31 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
           onInputBlur();
         }}
-        disabled={disabled}
-        formatChars={{
-          9: '[0-9]',
-          3: '[0-3]',
-          2: '[0-2]'
+        onKeyDown={(e: any) => {
+          if (e.key === 'Tab' && onTabKeyDown) {
+            onTabKeyDown(...applyIfEnabled(...computeNewDate()));
+          }
+          if (e.key === 'Enter' && onEnterKeyDown) {
+            onEnterKeyDown(...applyIfEnabled(...computeNewDate()));
+          }
         }}
-      >
-        {() => (
-          <Input
-            inputRef={ref}
-            onKeyDown={(e: any) => {
-              if (e.key === 'Tab' && onTabKeyDown) {
-                onTabKeyDown(...applyIfEnabled(...computeNewDate()));
-              }
-              if (e.key === 'Enter' && onEnterKeyDown) {
-                onEnterKeyDown(...applyIfEnabled(...computeNewDate()));
-              }
-            }}
-            className={clsx(className, styles.input)}
-            disabled={disabled}
-            label={showTime ? locale[language].label.showtime : locale[language].label.default}
-            icon={
-              <div className={styles.calendar}>
-                <CalendarSvgIcon
-                  className={clsx(props.size === sizesMappingInput.xs && styles['icon-xs'])}
-                  onClick={onFocus}
-                />
-              </div>
-            }
-            reset={reset}
-            onReset={onReset}
-            helperText={helperText}
-            color={error ? customInputColors.error : customInputColors.default}
-            {...props}
-          />
-        )}
-      </InputMaskCorrect>
+        className={clsx(className, styles.input)}
+        disabled={disabled}
+        label={showTime ? locale[language].label.showtime : locale[language].label.default}
+        icon={
+          <div className={styles.calendar}>
+            <CalendarSvgIcon
+              className={clsx(props.size === sizesMappingInput.xs && styles['icon-xs'])}
+              onClick={onFocus}
+            />
+          </div>
+        }
+        reset={reset}
+        onReset={onReset}
+        helperText={helperText}
+        color={error ? customInputColors.error : customInputColors.default}
+        {...props}
+      />
     );
   }
 );

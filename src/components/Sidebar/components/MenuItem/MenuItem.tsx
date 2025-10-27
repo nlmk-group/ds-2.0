@@ -53,10 +53,11 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
   const hasActiveChild = (item: ReactNode): boolean => {
     if (!isValidElement(item)) return false;
 
-    if (item.props.path === currentPath) return true;
+    const itemProps = item.props as any;
+    if (itemProps.path === currentPath) return true;
 
-    if (item.props.children) {
-      return Children.toArray(item.props.children).some(hasActiveChild);
+    if (itemProps.children) {
+      return Children.toArray(itemProps.children).some(hasActiveChild);
     }
 
     return false;

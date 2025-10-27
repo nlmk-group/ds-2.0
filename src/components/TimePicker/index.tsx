@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
@@ -155,9 +155,30 @@ const TimePicker: FC<TTimePickerType> = ({
     return value.toLocaleTimeString([], timeOptions);
   }, [value, isTimeWithSecondsType]);
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarRef, {
-    placement: 'bottom-start'
+  const [isPositioned, setIsPositioned] = useState(false);
+
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip(), shift()],
+    whileElementsMounted: autoUpdate
   });
+
+  useEffect(() => {
+    if (inputRef) {
+      refs.setReference(inputRef);
+    }
+  }, [inputRef, refs]);
+
+  useEffect(() => {
+    if (calendarRef) {
+      refs.setFloating(calendarRef);
+      requestAnimationFrame(() => {
+        setIsPositioned(true);
+      });
+    } else {
+      setIsPositioned(false);
+    }
+  }, [calendarRef, refs]);
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: Date | null, date2?: Date | null) => {
@@ -228,7 +249,7 @@ const TimePicker: FC<TTimePickerType> = ({
         }
       }}
     >
-      <div className={styles.opened} ref={setCalendarRef} style={popperStyles.popper} {...attributes.popper}>
+      <div className={styles.opened} ref={setCalendarRef} style={{ ...floatingStyles, visibility: isPositioned ? 'visible' : 'hidden' }} data-popper-placement={placement}>
         <TimeSelector
           initialSelectedTimeFirst={selectedTimeFirst}
           initialSelectedTimeSecond={selectedTimeSecond}

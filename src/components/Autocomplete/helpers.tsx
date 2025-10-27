@@ -37,11 +37,9 @@ export const boldReactElement = (element: ReactNode | string, substr: string): R
   }
 
   if (isValidElement(element)) {
-    const newProps = { ...element.props };
+    const newChildren = Children.map((element.props as any).children as ReactNode, child => boldReactElement(child, substr));
 
-    const newChildren = Children.map(element.props.children, child => boldReactElement(child, substr));
-
-    return cloneElement(element, { ...newProps, children: newChildren });
+    return cloneElement(element, { children: newChildren } as any);
   }
 
   return element;

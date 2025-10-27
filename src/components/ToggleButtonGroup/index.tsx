@@ -44,7 +44,8 @@ const ToggleButtonGroup = ({
     setChildrenWithProps(
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
-          if (child.props.active) {
+          const childProps = child.props as any;
+          if (childProps.active) {
             setActiveId(index);
           }
           return cloneElement(child, {

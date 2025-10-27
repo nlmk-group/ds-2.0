@@ -39,22 +39,25 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
         {showItems && (
           <ClickAwayListener onClickAway={toggleShowItems}>
             <List className={styles.list} data-ui-crumbs-list data-testid="HIDDEN_OPTIONS_LIST">
-              {otherElementsArray.map((item: ReactElement, index: number) => (
-                <ListItem key={index} className={clsx(styles.option)} data-ui-crumbs-list-item>
-                  {React.cloneElement(item, {
-                    children: React.cloneElement(item.props.children, {
-                      className: clsx(styles.link, item.props.children.props.className)
-                    }),
-                    isLast: false,
-                    showSeparator: false
-                  })}
-                </ListItem>
-              ))}
+              {otherElementsArray.map((item: ReactElement, index: number) => {
+                const itemProps = item.props as any;
+                return (
+                  <ListItem key={index} className={clsx(styles.option)} data-ui-crumbs-list-item>
+                    {React.cloneElement(item, {
+                      children: React.cloneElement(itemProps.children, {
+                        className: clsx(styles.link, itemProps.children.props.className)
+                      } as any),
+                      isLast: false,
+                      showSeparator: false
+                    } as any)}
+                  </ListItem>
+                );
+              })}
             </List>
           </ClickAwayListener>
         )}
       </div>
-      {React.cloneElement(lastElement as ReactElement, { isLast: true, showSeparator: false })}
+      {React.cloneElement(lastElement as ReactElement, { isLast: true, showSeparator: false } as any)}
     </>
   );
 };

@@ -22,7 +22,7 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
 
   const favoritesChildren = useMemo(
-    () => Children.toArray(children).filter(child => isValidElement(child) && checkChildIsFavorite(child.props.id)),
+    () => Children.toArray(children).filter(child => isValidElement(child) && checkChildIsFavorite((child.props as any).id)),
     [children, checkChildIsFavorite]
   );
 

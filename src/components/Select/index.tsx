@@ -1,6 +1,6 @@
 import React, { createContext, FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ClickAwayListener } from '@components/index';
@@ -84,9 +84,23 @@ const Select: FC<ISelectProps> = ({
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
-    placement: 'bottom-start'
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip(), shift()],
+    whileElementsMounted: autoUpdate
   });
+
+  useEffect(() => {
+    if (inputRef) {
+      refs.setReference(inputRef);
+    }
+  }, [inputRef, refs]);
+
+  useEffect(() => {
+    if (menuRef) {
+      refs.setFloating(menuRef);
+    }
+  }, [menuRef, refs]);
 
   const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(0);
 
@@ -304,8 +318,8 @@ const Select: FC<ISelectProps> = ({
     <div
       className={clsx(withPortal ? styles.wrapper : null)}
       ref={setMenuRef}
-      style={popperStyles.popper}
-      {...attributes.popper}
+      style={floatingStyles}
+      data-popper-placement={placement}
     >
       {renderItems()}
     </div>

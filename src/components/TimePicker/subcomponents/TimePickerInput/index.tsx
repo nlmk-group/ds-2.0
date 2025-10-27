@@ -1,7 +1,6 @@
 import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IconScheduleTimeWatchOutlined24, Input } from '@components/index';
-import InputMaskCorrect from '@components/InputMaskCorrect';
 import {
   TIME_FORMAT,
   TIME_MASK,
@@ -11,6 +10,7 @@ import {
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import { range } from 'lodash';
+import { useIMask } from 'react-imask';
 
 import { ITimePickerInputProps } from './types';
 
@@ -81,11 +81,6 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       }
     };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setInnerMaskedValue(newValue);
-    };
-
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (e.key === 'Tab' && onTabKeyDown) {
         const newDate = computeNewDate();
@@ -150,7 +145,36 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
           : `${TIME_MASK} — ${TIME_MASK}`;
       }
       return isTimeWithSecondsType ? TIME_WITH_SECONDS_MASK : TIME_MASK;
-    }, [focused, isTimeType, isTimeWithSecondsType]);
+    }, [focused, isTimeType, isTimeWithSecondsType, withPeriod, isTimePeriodWithSecondsType]);
+
+    const { ref: maskRef, value: maskedValue, setValue: setMaskedValue } = useIMask(
+      {
+        mask: mask,
+        definitions: { '9': /[0-9]/ },
+        lazy: false
+      },
+      {
+        onAccept: (value) => {
+          setInnerMaskedValue(value);
+        }
+      }
+    );
+
+    useEffect(() => {
+      if (ref) {
+        if (typeof ref === 'function') {
+          ref(maskRef.current as HTMLInputElement | null);
+        } else {
+          (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
+        }
+      }
+    }, [ref, maskRef]);
+
+    useEffect(() => {
+      if (maskedValue !== innerMaskedValue) {
+        setMaskedValue(innerMaskedValue);
+      }
+    }, [innerMaskedValue, maskedValue, setMaskedValue]);
 
     const icon = useMemo(() => {
       return withIcon && withPicker ? (
@@ -171,6 +195,11 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     const handleResetInput = useCallback(() => {
       setInnerMaskedValue('');
     }, [onReset]);
+
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const newValue = e.target.value;
+      setInnerMaskedValue(newValue);
+    }, []);
 
     const computeNewDate = useCallback((): Date | null | (Date | null)[] => {
       const currentDate = new Date();
@@ -246,34 +275,27 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       valueTo,
       valueFrom,
       onChangeFirst,
-      onChangeSecond
+      onChangeSecond,
+      withPeriod
     ]);
 
     return (
-      <InputMaskCorrect
-        mask={mask}
+      <Input
+        inputRef={maskRef as any}
         value={innerMaskedValue}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        className={clsx(className, styles.input)}
         disabled={disabled}
-        formatChars={{ 9: '[0-9]' }}
-      >
-        {() => (
-          <Input
-            inputRef={ref}
-            onKeyDown={handleKeyDown}
-            className={clsx(className, styles.input)}
-            disabled={disabled}
-            label={label}
-            icon={icon}
-            colored={colored}
-            reset={reset}
-            onReset={handleResetInput}
-            {...props}
-          />
-        )}
-      </InputMaskCorrect>
+        label={label}
+        icon={icon}
+        colored={colored}
+        reset={reset}
+        onReset={handleResetInput}
+        {...props}
+      />
     );
   }
 );

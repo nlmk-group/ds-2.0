@@ -7,5 +7,5 @@ export interface IArrowButtonProps {
   disabled: boolean;
   color: `${EArrowButtonColor}`;
   toggleDropdown: MouseEventHandler;
-  buttonRef?: RefObject<HTMLButtonElement>;
+  buttonRef?: RefObject<HTMLButtonElement | null>;
 }

@@ -51,10 +51,6 @@ const OptionItem: FC<IOptionItemProps> = ({
 
   const isItemSelected = isSelected;
 
-  const enhancedChildren = React.isValidElement(children)
-    ? React.cloneElement(children as React.ReactElement<any>, { isSelected: isItemSelected })
-    : children;
-
   return (
     <ListItem
       ref={itemRef}
@@ -75,7 +71,7 @@ const OptionItem: FC<IOptionItemProps> = ({
       data-size={size}
       data-ui-option-item
     >
-      {enhancedChildren}
+      {children}
     </ListItem>
   );
 };

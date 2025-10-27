@@ -51,12 +51,13 @@ const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
     setChildrenWithProps(
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
-          if (child.props.active) {
+          const childProps = child.props as any;
+          if (childProps.active) {
             setActiveId(index);
           }
 
           const childrenProps: ISegmentButtonProps = {
-            children: child.props.children,
+            children: childProps.children,
             buttonIndex: index,
             toggleButton: () => handleToggle(index)
           };

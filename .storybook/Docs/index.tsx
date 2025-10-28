@@ -1,6 +1,6 @@
 import React, { ComponentProps, FC, PropsWithChildren } from 'react';
 
-import { DocsContainer } from '@storybook/addon-docs';
+import { DocsContainer } from '@storybook/addon-docs/blocks';
 
 import { storybookDarkTheme, storybookLightTheme } from '../storybookTheme';
 import useRootAttributeTheme from './useRootAttributeTheme';

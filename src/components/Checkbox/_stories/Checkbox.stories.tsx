@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 
 import Checkbox from '@components/Checkbox';
 import { Box, Typography } from '@components/index';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { useArgs } from 'storybook/internal/preview-api';
 
 import styles from './Checkbox.module.scss';

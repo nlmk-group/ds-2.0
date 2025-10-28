@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { fn } from 'storybook/test';
 
 export const selectorOptions = [
   {
@@ -33,12 +33,12 @@ export const descriptionExample =
 
 export const primaryButton = {
   label: 'Принять',
-  onClick: action('onClick, Принять')
+  onClick: fn()
 };
 
 export const secondaryButton = {
   label: 'Отменить',
-  onClick: action('onClick, Отменить')
+  onClick: fn()
 };
 
 export const imageURL =
@@ -49,5 +49,5 @@ export const badges = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angu
 export const selector = {
   label: 'Programming languages',
   options: selectorOptions,
-  onSelectionChange: action('onSelectionChange')
+  onSelectionChange: fn()
 };

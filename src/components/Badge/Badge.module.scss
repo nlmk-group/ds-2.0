@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @mixin outline {
   outline-style: solid;
   background-color: transparent;
@@ -60,13 +62,13 @@ $outline-colors: (
 // Цикл для генерации стилей для каждого варианта
 @each $variant in $variants {
   .#{"" + $variant} {
-    background-color: map-get($bg-colors, $variant);
+    background-color: map.get($bg-colors, $variant);
     color: var(--steel-90);
   }
 
   .outline-#{"" + $variant} {
     @include outline;
-    outline-color: map-get($outline-colors, $variant);
+    outline-color: map.get($outline-colors, $variant);
     color: var(--steel-90);
   }
 }

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
 import { Breadcrumbs, Button, Dropdown, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
-import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
+import { action } from 'storybook/actions';
+import { Meta } from '@storybook/react-vite';
 
 import styles from './Header.stories.module.scss';
 

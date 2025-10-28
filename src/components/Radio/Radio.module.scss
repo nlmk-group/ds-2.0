@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $radio-wrapper-size: 32px;
 $radio-circle-size: 20px;
 $radio-dot-size: 10px;
@@ -74,17 +76,17 @@ $radio-colors: (
       &[data-color="#{$color}"] {
         // Базовое состояние (неотмеченное)
         &:before {
-          border-color: map-get($values, border);
+          border-color: map.get($values, border);
         }
 
         // Отмеченное состояние
         &:checked {
           &:before {
-            border-color: map-get($values, border-checked);
+            border-color: map.get($values, border-checked);
           }
 
           &:after {
-            background-color: map-get($values, dot);
+            background-color: map.get($values, dot);
             opacity: 1;
           }
         }
@@ -123,17 +125,17 @@ $radio-colors: (
           } @else {
             &:before {
               background-color: var(--steel-30);
-              border-color: map-get($values, border);
+              border-color: map.get($values, border);
               opacity: 0.5;
             }
 
             &:checked {
               &:before {
-                border-color: map-get($values, border);
+                border-color: map.get($values, border);
               }
 
               &:after {
-                background-color: map-get($values, dot);
+                background-color: map.get($values, dot);
                 opacity: 0.5;
               }
             }

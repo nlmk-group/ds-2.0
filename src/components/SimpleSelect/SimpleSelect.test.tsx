@@ -2,7 +2,7 @@ import React from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { OptionItem, SimpleSelect, Typography } from '@components/index';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 
 describe('SimpleSelect Component', () => {
   const options = [

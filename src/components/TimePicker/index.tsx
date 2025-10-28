@@ -1,9 +1,9 @@
-import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, FC, useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 import { isAfter, isEqual, set } from 'date-fns';
 
@@ -249,7 +249,12 @@ const TimePicker: FC<TTimePickerType> = ({
         }
       }}
     >
-      <div className={styles.opened} ref={setCalendarRef} style={{ ...floatingStyles, visibility: isPositioned ? 'visible' : 'hidden' }} data-popper-placement={placement}>
+      <div
+        className={styles.opened}
+        ref={setCalendarRef}
+        style={{ ...floatingStyles, visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility'] }}
+        data-popper-placement={placement}
+      >
         <TimeSelector
           initialSelectedTimeFirst={selectedTimeFirst}
           initialSelectedTimeSecond={selectedTimeSecond}

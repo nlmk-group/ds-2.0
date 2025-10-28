@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 
 import { Card } from '@components/index';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import styles from '@components/_storybook/styles.module.scss';
 

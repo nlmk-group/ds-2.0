@@ -1,9 +1,9 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useMemo, useState, useEffect } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate, limitShift } from '@floating-ui/react';
 
 import { Box, ClickAwayListener, Icon, List, OptionItem, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 
 import { IOptionsProps } from './types';
 
@@ -46,11 +46,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
 
   const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    middleware: [
-      offset(4),
-      flip({ fallbackPlacements: ['top-start'] }),
-      shift({ limiter: limitShift(), padding: 8 })
-    ],
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
     whileElementsMounted: autoUpdate
   });
 
@@ -105,7 +101,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
       maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
       ...floatingStyles,
       ...menuStyle,
-      visibility: isPositioned ? 'visible' : 'hidden'
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     return baseStyles as CSSProperties;

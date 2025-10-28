@@ -60,7 +60,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
     const baseStyles = {
       minWidth: isSmallContent ? `${MIN_WIDTH}px` : rect?.width,
       ...menuStyle,
-      visibility: isPositioned ? 'visible' : 'hidden'
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     return withPortal ? { ...baseStyles, ...floatingStyles } : baseStyles;

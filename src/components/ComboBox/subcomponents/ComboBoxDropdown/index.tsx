@@ -100,7 +100,7 @@ const ComboBoxDropdown = ({
       height: dropdownHeight ? dropdownHeight : calculateDropdownMinHeight,
       width: dropdownWidth ? dropdownWidth : calculateDropdownMinWidth,
       minWidth: inputRef.current?.offsetWidth ?? calculateDropdownMinWidth,
-      visibility: isPositioned ? 'visible' : 'hidden'
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     if (withPortal) {
@@ -155,7 +155,7 @@ const ComboBoxDropdown = ({
     <div
       ref={el => {
         dropdownRef.current = el;
-        if (withPortal && el) {
+        if (el) {
           setPopperElement(el);
         }
       }}

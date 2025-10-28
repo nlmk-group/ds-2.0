@@ -1,9 +1,9 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, FC, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate, limitShift } from '@floating-ui/react';
 
 import { Box, ClickAwayListener, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IAutocompleteDropdownProps } from './types';
@@ -46,11 +46,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
 
   const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    middleware: [
-      offset(4),
-      flip({ fallbackPlacements: ['top-start'] }),
-      shift({ limiter: limitShift(), padding: 8 })
-    ],
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
     whileElementsMounted: autoUpdate
   });
 
@@ -88,7 +84,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     const baseStyles: React.CSSProperties = {
       width: rect?.width,
       ...floatingStyles,
-      visibility: isPositioned ? 'visible' : 'hidden'
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     return baseStyles;
@@ -169,7 +165,13 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
             ) : (
               showEmptyDropdown && (
                 <Box flexDirection="column" data-ui-autocomplete-empty>
-                  <Box gap={8} flexDirection="row" className={styles['not-found-item']} alignItems="center" data-ui-autocomplete-no-results>
+                  <Box
+                    gap={8}
+                    flexDirection="row"
+                    className={styles['not-found-item']}
+                    alignItems="center"
+                    data-ui-autocomplete-no-results
+                  >
                     <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
                     <Typography variant="Body1-Medium" color="var(--steel-90)">
                       {noResultsText ?? 'Ничего не найдено'}

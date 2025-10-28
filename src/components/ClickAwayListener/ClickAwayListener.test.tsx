@@ -1,6 +1,6 @@
 import React from 'react';
 import ClickAwayListener from '@components/ClickAwayListener/index';
-import { fireEvent, render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('src/components/ClickAwayListener', () => {
   let onClickAway: jest.Mock;

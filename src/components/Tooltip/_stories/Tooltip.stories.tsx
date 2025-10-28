@@ -10,7 +10,7 @@ import {
   Tooltip
 } from '@components/index';
 import Typography from '@components/Typography';
-import { Args } from '@storybook/react';
+import { Args } from '@storybook/react-vite';
 import clsx from 'clsx';
 
 import styles from './Tooltip.stories.module.scss';

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $variants: brand, error, warning, success;
 $track-colors: (
   brand: var(--brand-sapphire-20),
@@ -22,14 +24,14 @@ $track-bg-colors-off: (
 
 @each $variant in $variants {
   .track-active-#{"" + $variant} {
-    background-color: map-get($track-colors, $variant);
+    background-color: map.get($track-colors, $variant);
   }
   .track-inactive-#{"" + $variant} {
-    background-color: map-get($track-bg-colors-off, $variant);
+    background-color: map.get($track-bg-colors-off, $variant);
   }
   .touch-active-#{"" + $variant} {
     transform: translateX(17px);
-    background-color: map-get($touch-bg-colors-on, $variant);
+    background-color: map.get($touch-bg-colors-on, $variant);
   }
   .touch-inactive-#{"" + $variant} {
     background-color: var(--steel-10);
@@ -38,7 +40,7 @@ $track-bg-colors-off: (
     height: 18px;
     width: 18px;
     transform: translateX(0);
-    border-color: map-get($track-bg-colors-off, $variant);
+    border-color: map.get($track-bg-colors-off, $variant);
   }
 }
 .switch {

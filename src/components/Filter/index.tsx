@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, FC, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate, limitShift } from '@floating-ui/react';
 
 import { ClickAwayListener, IconSelectionContains24, List, ListItem, Typography } from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IFilterProps, IFilterTypeOption, IFilterValueOption, TMenuState } from './types';
@@ -182,7 +182,7 @@ const Filter: FC<IFilterProps> = ({
           minWidth: openedMenu === 'type' ? 200 : inputRef.current?.offsetWidth,
           zIndex: 1100,
           ...(withPortal && { marginTop: '0px' }),
-          visibility: isPositioned ? 'visible' : 'hidden'
+          visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
         }}
         className={styles.menu}
         data-popper-placement={placement}

@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 import { DragAndDrop, Icon } from '@components/index';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import customStyle from '../DragAndDrop.module.scss';
 import styles from '@components/_storybook/styles.module.scss';

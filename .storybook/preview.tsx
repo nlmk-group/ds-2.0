@@ -1,9 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { withTests } from '@storybook/addon-jest';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
-import results from '../.jest-test-results.json';
 import { name, version } from '../package.json';
 import '../public/css/main.css';
 import { getSystemTheme } from '../src/components/Theme/utils';
@@ -39,20 +37,17 @@ export const parameters = {
     disable: true
   },
   layout: 'centered',
-  darkMode: {
-    dark: storybookDarkTheme,
-    light: storybookLightTheme,
-    current: getSystemTheme()
-  },
   backgrounds: {
-    default: 'default',
-    values: [
-      { name: 'default', value: 'var(--steel-10, #455161)' },
-      { name: 'info', value: 'var(--background-info, #636f7f)' },
-      { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
-    ]
+    options: {
+      default: { name: 'default', value: 'var(--steel-10, #455161)' },
+      info: { name: 'info', value: 'var(--background-info, #636f7f)' },
+      blue: { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
+    }
   },
-  docs: { container: DocsThemeContainer },
+  docs: {
+    container: DocsThemeContainer,
+    theme: storybookLightTheme
+  },
   options: {
     showPanel: true,
     panelPosition: 'bottom',
@@ -81,9 +76,6 @@ export const decorators = [
     },
     defaultTheme: getSystemTheme()
   }),
-  withTests({
-    results
-  }),
   Story => (
     <BrowserRouter>
       <Story />
@@ -91,3 +83,9 @@ export const decorators = [
   )
 ];
 export const tags = ['autodocs'];
+
+export const initialGlobals = {
+  backgrounds: {
+    value: 'default'
+  }
+};

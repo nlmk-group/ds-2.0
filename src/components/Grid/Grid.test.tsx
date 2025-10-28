@@ -57,7 +57,7 @@ describe('src/components/Grid', () => {
     const gridItems = screen.getAllByTestId('grid-item');
 
     expect(gridItems.length).toBe(testArr.length);
-    gridItems.forEach((girdItem, index) => {
+    gridItems.forEach((girdItem: any, index: number) => {
       expect(girdItem).toHaveTextContent(testArr[index]);
     });
   });

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import Breadcrumbs from './index';
 
@@ -208,7 +208,7 @@ describe('src/components/Breadcrumbs', () => {
     fireEvent.click(screen.getByTestId('HIDDEN_OPTIONS_BUTTON'));
 
     const dropdownCrumbs = screen.getByTestId('HIDDEN_OPTIONS_LIST').querySelectorAll('[data-ui-crumb]');
-    dropdownCrumbs.forEach(crumb => {
+    dropdownCrumbs.forEach((crumb: any) => {
       expect(crumb).not.toHaveClass('isLast');
     });
 

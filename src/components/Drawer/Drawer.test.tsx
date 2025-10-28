@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { Drawer } from '..';
 

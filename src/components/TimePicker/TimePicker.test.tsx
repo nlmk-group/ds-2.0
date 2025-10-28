@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TimePicker } from '@components/index';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, fireEvent, screen } from '@testing-library/react';
 
 jest.mock('@floating-ui/react', () => ({
   useFloating: () => ({

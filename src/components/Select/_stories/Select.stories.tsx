@@ -4,7 +4,7 @@ import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Button, IconArticleOutlined24, Select, Typography } from '@components/index';
 import { argsTypes } from '@components/Select/_stories/argsTypes';
 import { ISelectOption, ISelectProps, TSelected } from '@components/Select/types';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import style from '../Select.module.scss';
 import styles from './Select.module.scss';

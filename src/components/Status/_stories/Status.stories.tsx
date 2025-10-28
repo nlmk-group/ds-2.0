@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Status } from '@components/Status';
 import { IStatusProps } from '@components/Status/types';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 
 import styles from './Status.module.scss';
 

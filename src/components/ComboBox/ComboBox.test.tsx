@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import { IComboBoxOption, IComboBoxTreeOption } from './types';
 

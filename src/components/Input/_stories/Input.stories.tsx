@@ -2,8 +2,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
 import { Button, IconUnit } from '@components/index';
-import { expect, fn } from '@storybook/test';
-import { userEvent, waitFor, within } from '@storybook/test';
+import { expect, fn } from 'storybook/test';
+import { userEvent, waitFor, within } from 'storybook/test';
 
 import styles from './Input.module.scss';
 

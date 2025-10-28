@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Box, Checkbox, IconSelectionContains24, MultiSelect, OptionItem, Typography } from '@components/index';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import styles from './MultiSelect.module.scss';
 

@@ -8,6 +8,7 @@ import {
   GroupingHeaderTableExample,
   LocalStorageTableExample,
   PinnedColumnsTableExample,
+  RowHighlightExamples,
   SelectableTableExample,
   SelectableTableWithGroupingHeaderExample,
   SelectableTableWithPaginationExample,
@@ -155,6 +156,13 @@ PinnedColumnsTable.parameters = {
 export const EditableCellsTable = () => <EditableCellsTableExample />;
 EditableCellsTable.storyName = 'Таблица с интерактивными элементами ввода в ячейках';
 EditableCellsTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const RowHighlight = () => <RowHighlightExamples />;
+RowHighlight.storyName = 'Варианты подсветки строк';
+RowHighlight.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

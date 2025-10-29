@@ -1,0 +1,90 @@
+.tableWrapper {
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid var(--unique-divider);
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.rowHoverTable {
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      td {
+        background-color: var(--steel-30) !important;
+      }
+    }
+  }
+}
+
+.stripedTable {
+  tbody tr {
+    &:nth-child(odd) {
+      td {
+        background-color: var(--steel-10) !important;
+      }
+    }
+
+    &:nth-child(even) {
+      td {
+        background-color: var(--unique-background) !important;
+      }
+    }
+  }
+}
+
+.crosshairTable {
+  .hoveredRow {
+    td {
+      background-color: var(--steel-20) !important;
+    }
+  }
+
+  .hoveredColumn {
+    background-color: var(--steel-20) !important;
+  }
+
+  .hoveredRow td.hoveredColumn {
+    background-color: var(--steel-30) !important;
+  }
+}
+
+.editableRowHoverTable {
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      td {
+        background-color: var(--steel-20) !important;
+      }
+    }
+
+    td.editableCell {
+      &:hover {
+        background-color: var(--steel-40) !important;
+      }
+    }
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input,
+  select {
+    pointer-events: auto;
+  }
+
+  td {
+    [data-ui-input] {
+      width: 100%;
+    }
+  }
+}

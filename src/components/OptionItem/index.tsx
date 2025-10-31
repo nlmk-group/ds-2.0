@@ -51,7 +51,7 @@ const OptionItem: FC<IOptionItemProps> = ({
 
   const isItemSelected = isSelected;
 
-  const enhancedChildren = React.isValidElement(children)
+  const enhancedChildren = React.isValidElement(children) && typeof children.type !== 'string'
     ? React.cloneElement(children as React.ReactElement<any>, { isSelected: isItemSelected })
     : children;
 

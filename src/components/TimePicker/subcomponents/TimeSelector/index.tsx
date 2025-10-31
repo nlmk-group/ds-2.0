@@ -139,7 +139,7 @@ const TimeSelector = forwardRef<HTMLDivElement, ITimeSelectorProps>(
       title: string,
       items: number[],
       selectedValue: number | undefined,
-      scrollRef: RefObject<HTMLDivElement>,
+      scrollRef: RefObject<HTMLDivElement | null>,
       onClick: (value: number) => void,
       disableCondition?: (value: number) => boolean
     ) => (

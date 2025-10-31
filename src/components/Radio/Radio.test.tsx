@@ -26,11 +26,11 @@ describe('src/components/Radio', () => {
     expect(radio).toHaveAttribute('disabled');
   });
 
-  // Check disabled (default) state for radio
+  // Check checked state for radio
   test('Проверка отмеченного состояния радиокнопки', () => {
-    radio.setAttribute('type', 'checkbox');
-    radio.setAttribute('checked', 'true');
-    expect(radio).toBeChecked();
+    const { container } = render(<Radio checked />);
+    const checkedRadio = container.getElementsByTagName('input')[0];
+    expect(checkedRadio).toBeChecked();
   });
 
   test('Проверка значения свойства label', () => {

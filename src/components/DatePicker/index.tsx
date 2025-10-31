@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
@@ -188,15 +188,31 @@ export const DatePicker: TDatePickerProps = ({
     }
   }, [handleClose, pseudo]);
 
+  const [isPositioned, setIsPositioned] = useState(false);
+
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip(), shift()],
+    whileElementsMounted: autoUpdate
+  });
+
+  useEffect(() => {
+    if (inputRef) {
+      refs.setReference(inputRef);
+    }
+  }, [inputRef, refs]);
+
   useEffect(() => {
     if (calendarElement) {
       calendarRef.current = calendarElement;
+      refs.setFloating(calendarElement);
+      requestAnimationFrame(() => {
+        setIsPositioned(true);
+      });
+    } else {
+      setIsPositioned(false);
     }
-  }, [calendarElement]);
-
-  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarElement, {
-    placement: 'bottom-start'
-  });
+  }, [calendarElement, refs]);
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any, shiftFrom: any, shiftTo: any) => {
@@ -266,7 +282,7 @@ export const DatePicker: TDatePickerProps = ({
       withTime={withTime}
       enabledTo={enabledTo}
       enabledFrom={enabledFrom}
-      style={popperStyles.popper}
+      style={{ ...floatingStyles, visibility: isPositioned ? 'visible' : 'hidden' }}
       withShift={withShift}
       withSeconds={withSeconds}
       isOpenOnFocus={isOpenOnFocus}
@@ -275,7 +291,7 @@ export const DatePicker: TDatePickerProps = ({
       onPanelChange={onPanelChange}
       onSelect={onSelect}
       infiniteTimeScroll={infiniteTimeScroll}
-      {...attributes.popper}
+      data-popper-placement={placement}
       data-ui-datepicker-calendar-panel
     />
   );

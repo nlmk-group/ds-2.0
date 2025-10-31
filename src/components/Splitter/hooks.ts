@@ -4,7 +4,7 @@ import type { RefObject } from 'react';
 import { ESplitterOrientation } from './enums';
 
 const useSplitter = (
-  containerRef: RefObject<HTMLDivElement>,
+  containerRef: RefObject<HTMLDivElement | null>,
   setTopHeight: (height: number) => void,
   orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal
 ) => {

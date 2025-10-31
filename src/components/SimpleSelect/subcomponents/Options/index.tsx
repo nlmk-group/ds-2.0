@@ -1,9 +1,9 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
 
 import { Box, ClickAwayListener, Icon, List, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 
 import { IOptionsProps } from './types';
 
@@ -42,33 +42,34 @@ const Options: FC<IOptionsProps> = ({ children }) => {
   } = useSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
-    placement: 'bottom-start', // Позиционируем список под инпутом, выравнивая по левому краю
-    modifiers: [
-      {
-        name: 'flip', // Автоматически переворачивает меню наверх, если внизу нет места
-        options: {
-          fallbackPlacements: ['top-start'],
-          rootBoundary: 'viewport',
-          flipVariations: true
-        }
-      },
-      {
-        name: 'preventOverflow', // Предотвращает выход за пределы viewport
-        options: {
-          boundary: 'clippingParents',
-          padding: MENU_OFFSET
-        }
-      },
-      {
-        name: 'offset', // Добавляет отступ от инпута
-        options: {
-          offset: [0, MENU_OFFSET] // [горизонтальный, вертикальный] отступ в пикселях
-        }
-      }
-    ]
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [
+      offset(MENU_OFFSET),
+      flip({ fallbackPlacements: ['top-start'] }),
+      shift({ limiter: limitShift(), padding: MENU_OFFSET })
+    ],
+    whileElementsMounted: autoUpdate
   });
+
+  useEffect(() => {
+    if (inputRef.current) {
+      refs.setReference(inputRef.current);
+    }
+  }, [inputRef, refs]);
+
+  useEffect(() => {
+    if (popperElement) {
+      refs.setFloating(popperElement);
+      requestAnimationFrame(() => {
+        setIsPositioned(true);
+      });
+    } else {
+      setIsPositioned(false);
+    }
+  }, [popperElement, refs]);
 
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
@@ -83,7 +84,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
 
   const childrenWithProps =
     Children.map(children, (child, index) => {
-      if (isValidElement<IOptionItemProps>(child)) {
+      if (isValidElement<IOptionItemProps>(child) && typeof child.type !== 'string') {
         const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
         const isSelected = selectedOption === child.props.value;
 
@@ -109,7 +110,8 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
       maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
-      ...popperStyles.popper
+      ...floatingStyles,
+      visibility: isPositioned ? 'visible' : 'hidden'
     };
     return baseStyles;
   };
@@ -126,7 +128,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
         }}
         style={getMenuStyles() as CSSProperties}
         className={styles.options}
-        {...(withPortal ? attributes.popper : {})}
+        data-popper-placement={placement}
         data-ui-select-options
       >
         {childrenWithProps.length > 0 ? (

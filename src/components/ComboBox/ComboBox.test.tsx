@@ -9,12 +9,20 @@ import { Provider } from './context';
 import ComboBoxDropdown from './subcomponents/ComboBoxDropdown';
 import InputComboBox from './subcomponents/InputComboBox';
 
-jest.mock('react-popper', () => ({
-  usePopper: () => ({
-    styles: { popper: {} },
-    attributes: { popper: {} },
-    update: jest.fn()
-  })
+jest.mock('@floating-ui/react', () => ({
+  useFloating: () => ({
+    refs: {
+      setReference: jest.fn(),
+      setFloating: jest.fn()
+    },
+    floatingStyles: {},
+    placement: 'bottom-start'
+  }),
+  offset: jest.fn(),
+  flip: jest.fn(),
+  shift: jest.fn(),
+  limitShift: jest.fn(),
+  autoUpdate: jest.fn()
 }));
 
 describe('src/components/ComboBox', () => {
@@ -385,12 +393,6 @@ describe('initialValue', () => {
   describe('Функции автофокуса и автораскрытия', () => {
     beforeEach(() => {
       jest.clearAllMocks();
-      jest.clearAllTimers();
-    });
-
-    afterEach(() => {
-      jest.runOnlyPendingTimers();
-      jest.useRealTimers();
     });
 
     describe('autoFocusSearch', () => {
@@ -473,6 +475,9 @@ describe('initialValue', () => {
         jest.advanceTimersByTime(100);
 
         expect(mockFocus).toHaveBeenCalledTimes(1);
+
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
       });
     });
 

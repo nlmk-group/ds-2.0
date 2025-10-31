@@ -4,7 +4,7 @@ const handleGetLabel = (lbl: string | ReactElement): string | undefined => {
   if (typeof lbl === 'string') {
     return lbl.replace(/\n/g, ' ').replace(/\s\s+/g, ' ');
   } else {
-    const children = lbl?.props?.children || undefined;
+    const children = (lbl?.props as any)?.children || undefined;
     if (children === undefined) {
       return '';
     }

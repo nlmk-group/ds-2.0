@@ -65,7 +65,7 @@ export interface IComboBoxProps {
 }
 
 export interface IComboBoxInputProps {
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement | null>;
   color?: string;
   isDisabled: boolean;
   isOpen: boolean;

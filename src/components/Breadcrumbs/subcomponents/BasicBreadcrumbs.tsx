@@ -10,7 +10,7 @@ const BasicBreadcrumbs: FC<IBasicBreadcrumbsProps> = ({ crumbs }) => (
         isLast,
         showSeparator: !isLast,
         key: index
-      });
+      } as any);
     })}
   </>
 );

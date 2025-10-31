@@ -53,7 +53,7 @@ const Dropdown: FC<IDropdownProps> = ({
   ...buttonProps
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   /**

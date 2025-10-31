@@ -3,13 +3,20 @@ import React from 'react';
 import { TimePicker } from '@components/index';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
-jest.mock('react-popper', () => ({
-  usePopper: () => ({
-    styles: { popper: { position: 'absolute', top: '0px', left: '0px' } },
-    attributes: { popper: {} },
-    state: {},
-    update: jest.fn()
-  })
+jest.mock('@floating-ui/react', () => ({
+  useFloating: () => ({
+    refs: {
+      setReference: jest.fn(),
+      setFloating: jest.fn()
+    },
+    floatingStyles: { position: 'absolute', top: '0px', left: '0px' },
+    placement: 'bottom-start'
+  }),
+  offset: jest.fn(),
+  flip: jest.fn(),
+  shift: jest.fn(),
+  limitShift: jest.fn(),
+  autoUpdate: jest.fn()
 }));
 
 beforeEach(() => {

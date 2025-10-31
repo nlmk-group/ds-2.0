@@ -6,8 +6,6 @@
 
 ## Использование
 
-### Базовое использование
-
 ```jsx
 import { SegmentButton, SegmentButtonGroup, Typography } from '@nlmk/ds-2.0';
 

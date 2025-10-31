@@ -48,6 +48,8 @@ export interface ITimePickerProps {
   disabledPanel?: boolean;
   /** Имя поля формы */
   name?: string;
+  /** ID рутового контейнера для создания портала */
+  portalContainerId?: string;
   /** Флаг использования портала для рендеринга */
   withPortal?: boolean;
   /** Флаг наличия ошибки */

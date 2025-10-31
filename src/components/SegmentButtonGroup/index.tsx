@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, FC, isValidElement, ReactNode, useEffect, useState } from 'react';
+import React, { Children, cloneElement, FC, isValidElement, ReactNode, useEffect, useMemo, useState } from 'react';
 
 import { Box } from '@components/index';
 import clsx from 'clsx';
@@ -47,14 +47,24 @@ const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
     setActiveId(index);
   };
 
+  const activeIndexFromProps = useMemo(() => {
+    let result: number | null = null;
+    Children.forEach(children, (child, index) => {
+      if (isValidElement(child) && child.props.active && result === null) {
+        result = index;
+      }
+    });
+    return result;
+  }, [children]);
+
+  useEffect(() => {
+    setActiveId(activeIndexFromProps);
+  }, [activeIndexFromProps]);
+
   useEffect(() => {
     setChildrenWithProps(
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
-          if (child.props.active) {
-            setActiveId(index);
-          }
-
           const childrenProps: ISegmentButtonProps = {
             children: child.props.children,
             buttonIndex: index,
@@ -67,7 +77,7 @@ const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
         return child;
       })
     );
-  }, [activeId]);
+  }, [activeId, children]);
 
   return (
     <SegmentButtonGroupContext.Provider value={{ disabled, size, activeId }}>

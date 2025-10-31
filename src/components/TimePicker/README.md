@@ -19,6 +19,7 @@ import { TimePicker } from '@nlmk/ds-2.0';
 | id                | number \| string                                               | -       | Уникальный идентификатор компонента                |
 | type              | 'time' \| 'timeWithSeconds' \| 'period' \| 'periodWithSeconds' | 'time'  | Тип пикера времени                                 |
 | name              | string                                                         | -       | Имя поля для использования в формах                |
+| portalContainerId | string                                                         | 'root'  | ID рутового контейнера для создания портала        |
 | enabledHourFrom   | function                                                       | -       | Функция для определения начального доступного часа |
 | enabledHourTo     | function                                                       | -       | Функция для определения конечного доступного часа  |
 | enabledMinuteFrom | function                                                       | -       | Функция для определения начальной доступной минуты |
@@ -50,6 +51,8 @@ import { TimePicker } from '@nlmk/ds-2.0';
 - Компонент поддерживает выбор времени в различных форматах: обычное время, время с секундами, период времени.
 - При использовании типа 'period' или 'periodWithSeconds', используйте props `valueFrom`, `valueTo` и `onPeriodChange`.
 - Для кастомизации доступных часов и минут используйте функции `enabledHourFrom`, `enabledHourTo`, `enabledMinuteFrom`, `enabledMinuteTo`.
+- При использовании `withPortal={true}` панель выбора будет рендериться в портале. По умолчанию используется контейнер с `id="root"`, но вы можете указать другой контейнер через проп `portalContainerId`.
+- Кнопка сброса (`reset`) будет отображаться только если проп `reset={true}` И есть выбранное значение (для типов 'time'/'timeWithSeconds') или хотя бы одно из значений периода (для типов 'period'/'periodWithSeconds').
 - TimePicker имеет частичную поддержку пропсов родительского компонента Input, включая color, size, helperText.
 
 ## Стилизация

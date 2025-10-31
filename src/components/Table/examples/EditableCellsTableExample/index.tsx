@@ -16,6 +16,8 @@ import { createColumns, EditableRow, initialData } from './constants';
  * - Редактирование текстовых полей (Input)
  * - Редактирование числовых полей (Input type="number")
  * - Выбор из выпадающего списка (SimpleSelect)
+ * - Выбор даты (DatePicker) с кнопкой сброса
+ * - Выбор времени (TimePicker) с кнопкой сброса
  * - Вычисляемые поля (quantity * price)
  * - Сохранение изменений в состоянии
  * - Добавление и удаление строк
@@ -57,7 +59,9 @@ const EditableCellsTableExample = () => {
       quantity: 1,
       price: 0,
       status: 'pending',
-      notes: ''
+      notes: '',
+      deliveryDate: undefined,
+      deliveryTime: undefined
     };
 
     setData([...data, newRow]);
@@ -124,7 +128,8 @@ const EditableCellsTableExample = () => {
           Таблица с интерактивными элементами ввода
         </Typography>
         <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
-          Редактируйте значения прямо в таблице, добавляйте и удаляйте строки
+          Редактируйте значения прямо в таблице: текст, числа, выбор из списка, дата и время. Добавляйте и удаляйте
+          строки.
         </Typography>
       </Box>
 

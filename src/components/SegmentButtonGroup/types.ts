@@ -43,6 +43,16 @@ export interface ISegmentButtonProps {
   buttonIndex?: number;
 
   /**
+   * Флаг, указывающий, что кнопка должна быть активной по умолчанию.
+   */
+  active?: boolean;
+
+  /**
+   * Флаг, отключающий конкретную кнопку (имеет приоритет над групповым disabled).
+   */
+  disabled?: boolean;
+
+  /**
    * Контент кнопки (иконки, текст и т. д.).
    */
   children: ReactNode;

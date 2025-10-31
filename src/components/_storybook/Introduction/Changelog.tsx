@@ -23,6 +23,50 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.26.3 - <span className={styles.date}>31.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TimePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство portalContainerId для управления контейнером портала
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлена логика отображения кнопки сброса: теперь показывается только при наличии значения для
+                сброса
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство active для установки активной кнопки по умолчанию
+              </li>
+              <li className={styles['left-padding']}>- Добавлено свойство disabled для отключения отдельных кнопок</li>
+              <li className={styles['left-padding']}>
+                - Исправлена реактивность свойства active: теперь корректно реагирует на изменения извне
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.26.2 - <span className={styles.date}>22.10.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -39,9 +83,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Добавлено автоматическое восстановление темы из sessionStorage при инициализации
               </li>
-              <li className={styles['left-padding']}>
-                - Исправлено сохранение темы после перезагрузки страницы
-              </li>
+              <li className={styles['left-padding']}>- Исправлено сохранение темы после перезагрузки страницы</li>
             </li>
           </ul>
         </div>

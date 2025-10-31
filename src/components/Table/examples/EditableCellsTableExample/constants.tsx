@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Input, OptionItem, SimpleSelect } from '@components/index';
+import { DatePicker, Input, OptionItem, SimpleSelect, TimePicker } from '@components/index';
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
 
 export type EditableRow = {
@@ -10,6 +10,8 @@ export type EditableRow = {
   price: number;
   status: 'active' | 'pending' | 'completed';
   notes: string;
+  deliveryDate: Date | undefined;
+  deliveryTime: Date | undefined;
 };
 
 export const statusOptions = [
@@ -150,6 +152,53 @@ export const createColumns = (
       isEditable: true
     }
   }),
+  columnHelper.accessor('deliveryDate', {
+    header: 'Дата доставки',
+    cell: info => {
+      const rowId = info.row.original.id;
+      const value = info.getValue();
+
+      return (
+        <DatePicker
+          value={value}
+          onChange={(date: Date) => onCellChange(rowId, 'deliveryDate', date)}
+          size="s"
+          reset={true}
+          onReset={() => onCellChange(rowId, 'deliveryDate', undefined)}
+          style={{ width: '100%' }}
+          placeholder="Выберите дату"
+        />
+      );
+    },
+    size: 180,
+    meta: {
+      title: 'Плановая дата доставки',
+      isEditable: true
+    }
+  }),
+  columnHelper.accessor('deliveryTime', {
+    header: 'Время доставки',
+    cell: info => {
+      const rowId = info.row.original.id;
+      const value = info.getValue();
+
+      return (
+        <TimePicker
+          value={value}
+          onChange={(time: Date) => onCellChange(rowId, 'deliveryTime', time)}
+          size="s"
+          reset={true}
+          onReset={() => onCellChange(rowId, 'deliveryTime', undefined)}
+          withPicker={true}
+        />
+      );
+    },
+    size: 180,
+    meta: {
+      title: 'Плановое время доставки',
+      isEditable: true
+    }
+  }),
   columnHelper.display({
     id: 'total',
     header: 'Сумма (₽)',
@@ -175,7 +224,9 @@ export const initialData: EditableRow[] = [
     quantity: 15,
     price: 52000,
     status: 'active',
-    notes: 'Срочная доставка на объект'
+    notes: 'Срочная доставка на объект',
+    deliveryDate: new Date(2025, 0, 15),
+    deliveryTime: new Date(2025, 0, 1, 10, 30)
   },
   {
     id: '2',
@@ -183,7 +234,9 @@ export const initialData: EditableRow[] = [
     quantity: 8,
     price: 65000,
     status: 'pending',
-    notes: ''
+    notes: '',
+    deliveryDate: new Date(2025, 0, 20),
+    deliveryTime: undefined
   },
   {
     id: '3',
@@ -191,7 +244,9 @@ export const initialData: EditableRow[] = [
     quantity: 20,
     price: 78000,
     status: 'active',
-    notes: 'Требуется сертификат качества'
+    notes: 'Требуется сертификат качества',
+    deliveryDate: new Date(2025, 0, 18),
+    deliveryTime: new Date(2025, 0, 1, 14, 0)
   },
   {
     id: '4',
@@ -199,7 +254,9 @@ export const initialData: EditableRow[] = [
     quantity: 12,
     price: 58000,
     status: 'completed',
-    notes: 'Отгружено со склада А'
+    notes: 'Отгружено со склада А',
+    deliveryDate: new Date(2025, 0, 10),
+    deliveryTime: new Date(2025, 0, 1, 9, 0)
   },
   {
     id: '5',
@@ -207,6 +264,8 @@ export const initialData: EditableRow[] = [
     quantity: 25,
     price: 54000,
     status: 'active',
-    notes: ''
+    notes: '',
+    deliveryDate: undefined,
+    deliveryTime: new Date(2025, 0, 1, 16, 0)
   }
 ];

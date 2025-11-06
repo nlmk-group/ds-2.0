@@ -1,10 +1,12 @@
+@use "sass:list";
+
 @mixin typography-properties($args...) {
-  $font-family: nth($args, 1);
-  $font-size: nth($args, 2);
-  $font-weight: nth($args, 3);
-  $line-height: nth($args, 4);
-  $letter-spacing: nth($args, 5);
-  $text-decoration: nth($args, 6);
+  $font-family: list.nth($args, 1);
+  $font-size: list.nth($args, 2);
+  $font-weight: list.nth($args, 3);
+  $line-height: list.nth($args, 4);
+  $letter-spacing: list.nth($args, 5);
+  $text-decoration: list.nth($args, 6);
   font-family: $font-family;
   font-size: $font-size;
   font-weight: $font-weight;

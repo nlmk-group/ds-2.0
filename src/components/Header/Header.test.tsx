@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Header } from '@components/index';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 describe('src/components/Header', () => {
   const testTitle = 'Hello world!';

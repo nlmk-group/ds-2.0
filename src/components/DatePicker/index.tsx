@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { useUpdatedValues } from '@components/declaration';
 import { ClickAwayListener, PseudoInput } from '@components/index';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 import { isEqual } from 'date-fns';
 
@@ -233,8 +233,7 @@ export const DatePicker: TDatePickerProps = ({
         if (date && date instanceof Date && !isNaN(date.getTime())) {
           innerOnChange(date);
           outerOnChange(date);
-        }
-        else if (date === null || date === undefined) {
+        } else if (date === null || date === undefined) {
           innerOnChange(undefined);
           outerOnChange(undefined as any);
         }
@@ -282,7 +281,7 @@ export const DatePicker: TDatePickerProps = ({
       withTime={withTime}
       enabledTo={enabledTo}
       enabledFrom={enabledFrom}
-      style={{ ...floatingStyles, visibility: isPositioned ? 'visible' : 'hidden' }}
+      style={{ ...floatingStyles, visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility'] }}
       withShift={withShift}
       withSeconds={withSeconds}
       isOpenOnFocus={isOpenOnFocus}

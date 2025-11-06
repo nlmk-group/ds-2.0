@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { AttachFiles, File } from '@components/index';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import { FILE_NAME, FILES_DESCRIPTION } from './_stories/text';
 

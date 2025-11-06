@@ -17,7 +17,7 @@ import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Box, Card, Icon, IconUnit, Input, Typography } from '@components/index';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { clsx } from 'clsx';
 import { startCase } from 'lodash';
 

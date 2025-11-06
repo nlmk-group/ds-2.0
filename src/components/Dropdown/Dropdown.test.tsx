@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, ClassAttributes, ReactNode } from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, fireEvent, screen } from '@testing-library/react';
 import Dropdown from './index';
 
 jest.mock(

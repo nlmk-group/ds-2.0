@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, TimePicker } from '@components/index';
 import { argsTypes } from '@components/TimePicker/_stories/argsTypes';
 import { TTimePickerType } from '@components/TimePicker/types';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { addMinutes } from 'date-fns';
 
 import styles from './TimePicker.module.scss';

@@ -13,7 +13,7 @@ import {
   SlideToggle,
   Typography
 } from '@components/index';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import style from './SlideToggle.module.scss';
 import styles from '@components/_storybook/styles.module.scss';

@@ -111,7 +111,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
       maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
       ...floatingStyles,
-      visibility: isPositioned ? 'visible' : 'hidden'
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
     return baseStyles;
   };

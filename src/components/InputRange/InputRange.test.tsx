@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { InputRange } from '@components/index';
-import { fireEvent, render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('src/components/InputRange', () => {
   const defaultProps = {
@@ -49,7 +49,7 @@ describe('src/components/InputRange', () => {
   test('Renders in disabled state', () => {
     const { container } = render(<InputRange {...defaultProps} disabled />);
     const inputs = container.querySelectorAll('input');
-    inputs.forEach(input => {
+    inputs.forEach((input: any) => {
       expect(input).toBeDisabled();
     });
   });

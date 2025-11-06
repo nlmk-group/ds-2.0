@@ -20,6 +20,7 @@ import { TimePickerInput, TimeSelector } from './subcomponents';
  * @param {number|string} [props.id] - Уникальный идентификатор компонента.
  * @param {ETimePickerType} [props.type=ETimePickerType.time] - Тип пикера времени.
  * @param {string} [props.name] - Имя поля для использования в формах.
+ * @param {string} [props.portalContainerId='root'] - ID контейнера для портала.
  * @param {function} [props.enabledHourFrom] - Функция для определения начального доступного часа.
  * @param {function} [props.enabledHourTo] - Функция для определения конечного доступного часа.
  * @param {function} [props.enabledMinuteFrom] - Функция для определения начальной доступной минуты.
@@ -46,6 +47,7 @@ const TimePicker: FC<TTimePickerType> = ({
   id,
   type = ETimePickerType.time,
   name,
+  portalContainerId = 'root',
   enabledHourFrom,
   enabledHourTo,
   enabledMinuteFrom,
@@ -99,8 +101,6 @@ const TimePicker: FC<TTimePickerType> = ({
 
   const [innerValue, setInnerOnChange] = useState(value);
   const [selectedTime, setSelectedTime] = useState(new Date());
-
-  const isResetIconVisible = !(reset && onReset && !disabledPanel && value);
 
   useEffect(() => {
     if (value) {
@@ -313,7 +313,9 @@ const TimePicker: FC<TTimePickerType> = ({
         withIcon={withIcon}
         withPicker={withPicker}
         label={label}
-        reset={isResetIconVisible}
+        reset={
+          reset && (isTimePeriodType || isTimePeriodWithSecondsType ? !!(outerValueFrom || outerValueTo) : !!value)
+        }
         onReset={onReset}
         {...restInputProps}
         data-ui-time-picker-input
@@ -322,7 +324,10 @@ const TimePicker: FC<TTimePickerType> = ({
         (!withPortal ? (
           <>{renderTimePickerPanel()}</>
         ) : (
-          ReactDOM.createPortal(<>{renderTimePickerPanel()}</>, document.getElementById('root') as HTMLElement)
+          ReactDOM.createPortal(
+            <>{renderTimePickerPanel()}</>,
+            document.getElementById(portalContainerId) as HTMLElement
+          )
         ))}
     </div>
   );

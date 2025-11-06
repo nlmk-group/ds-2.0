@@ -36,6 +36,8 @@ export interface TTimePickerType
   enabledMinuteTo?: (date: Date | undefined) => number;
   /** Флаг блокировки панели выбора */
   disabledPanel?: boolean;
+  /** ID рутового контейнера для создания портала */
+  portalContainerId?: string;
   /** Флаг использования портала для рендеринга */
   withPortal?: boolean;
   /** Флаг открытия пикера при фокусе */

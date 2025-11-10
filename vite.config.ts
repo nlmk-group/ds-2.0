@@ -15,16 +15,20 @@ const isLibBuild = process.env.BUILD_MODE === 'lib';
 const getDirectorySize = (dirPath: string): number => {
   let totalSize = 0;
 
-  const files = fs.readdirSync(dirPath, { withFileTypes: true });
+  try {
+    const files = fs.readdirSync(dirPath, { withFileTypes: true });
 
-  for (const file of files) {
-    const filePath = resolve(dirPath, file.name);
+    for (const file of files) {
+      const filePath = resolve(dirPath, file.name);
 
-    if (file.isDirectory()) {
-      totalSize += getDirectorySize(filePath);
-    } else {
-      totalSize += fs.statSync(filePath).size;
+      if (file.isDirectory()) {
+        totalSize += getDirectorySize(filePath);
+      } else {
+        totalSize += fs.statSync(filePath).size;
+      }
     }
+  } catch (error) {
+    console.warn(`Не удалось прочитать директорию ${dirPath}:`, error);
   }
 
   return totalSize;

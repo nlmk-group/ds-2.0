@@ -1,4 +1,5 @@
 import React, { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useIMask } from 'react-imask';
 
 import {
   dateFormat,
@@ -39,7 +40,6 @@ import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
 import clsx from 'clsx';
 import { format, isValid, parse, set } from 'date-fns';
-import { useIMask } from 'react-imask';
 import { isInteger, range } from 'lodash';
 
 import { IDatePickerInputProps } from './types';
@@ -208,7 +208,11 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       return isHideYear ? dateMaskWithoutYear : dateMask;
     }, [focused, level, shiftLength, showTime, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
-    const { ref: maskRef, value: maskedValue, setValue: setMaskedValue } = useIMask(
+    const {
+      ref: maskRef,
+      value: maskedValue,
+      setValue: setMaskedValue
+    } = useIMask(
       {
         mask: mask,
         definitions: {
@@ -219,20 +223,21 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         lazy: false
       },
       {
-        onAccept: (value) => {
+        onAccept: value => {
           setInnerMaskedValue(value);
         }
       }
     );
 
     useEffect(() => {
-      if (ref) {
-        if (typeof ref === 'function') {
-          ref(maskRef.current as HTMLInputElement | null);
-        } else {
-          (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
-        }
+      if (!ref) return;
+
+      if (typeof ref === 'function') {
+        ref(maskRef.current as HTMLInputElement | null);
+        return;
       }
+
+      (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
     }, [ref, maskRef]);
 
     useEffect(() => {
@@ -598,7 +603,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }}
         className={clsx(className, styles.input)}
         disabled={disabled}
-        label={showTime ? locale[language].label.showtime : locale[language].label.default}
+        label={locale[language].label[showTime ? 'showtime' : 'default']}
         icon={
           <div className={styles.calendar}>
             <CalendarSvgIcon

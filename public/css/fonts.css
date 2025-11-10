@@ -1,9 +1,7 @@
 @font-face {
   font-family: 'PT Root UI';
-  src: url('../fonts/PT_Root_Regular.eot');
-  src: url('../fonts/PT_Root_Regular.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/PT_Root_Regular.woff2') format('woff2'), url('../fonts/PT_Root_Regular.woff') format('woff'),
-    url('../fonts/PT_Root_Regular.ttf') format('truetype');
+  src: url('../fonts/PT_Root_Regular.woff2') format('woff2'),
+       url('../fonts/PT_Root_Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -11,7 +9,8 @@
 
 @font-face {
   font-family: 'PT Root UI';
-  src: url('../fonts/PT_Root_Light.ttf') format('truetype');
+  src: url('../fonts/PT_Root_Light.woff2') format('woff2'),
+       url('../fonts/PT_Root_Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -19,8 +18,8 @@
 
 @font-face {
   font-family: 'PT Root UI';
-  src: url('../fonts/PT_Root_Medium.woff2') format('woff2'), url('../fonts/PT_Root_Medium.woff') format('woff'),
-    url('../fonts/PT_Root_Medium.ttf') format('truetype');
+  src: url('../fonts/PT_Root_Medium.woff2') format('woff2'),
+       url('../fonts/PT_Root_Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -28,10 +27,8 @@
 
 @font-face {
   font-family: 'PT Root UI';
-  src: url('../fonts/PT_Root_Bold.eot');
-  src: url('../fonts/PT_Root_Bold.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/PT_Root_Bold.woff2') format('woff2'), url('../fonts/PT_Root_Bold.woff') format('woff'),
-    url('../fonts/PT_Root_Bold.ttf') format('truetype');
+  src: url('../fonts/PT_Root_Bold.woff2') format('woff2'),
+       url('../fonts/PT_Root_Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

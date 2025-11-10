@@ -149,7 +149,7 @@ const PinnedColumnsTableExample = () => {
   }, [columnPinning]);
 
   return (
-    <div style={{ maxWidth: '1000px' }}>
+    <div style={{ maxWidth: '1024px' }}>
       <Box gap={8} style={{ marginBottom: '16px' }} justifyContent="space-between" alignItems="center">
         <Box gap={8} pb={16}>
           <Button size="s" onClick={() => togglePinLeft('id')}>

@@ -98,11 +98,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
       if (dragIndex === hoverIndex) return;
 
       const newOrder = reorderList(items, dragIndex, hoverIndex);
-      if (isGroupLevel) {
-        onGroupsReorder?.(newOrder);
-      } else {
-        onReorder?.(newOrder);
-      }
+      (isGroupLevel ? onGroupsReorder : onReorder)?.(newOrder);
     },
     [onReorder, onGroupsReorder]
   );

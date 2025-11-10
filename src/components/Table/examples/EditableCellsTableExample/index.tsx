@@ -122,7 +122,7 @@ const EditableCellsTableExample = () => {
   });
 
   return (
-    <div style={{ maxWidth: '1000px' }}>
+    <div style={{ maxWidth: '1024px' }}>
       <Box gap={16} style={{ marginBottom: '16px' }}>
         <Typography variant="Heading4" color="var(--steel-90)">
           Таблица с интерактивными элементами ввода

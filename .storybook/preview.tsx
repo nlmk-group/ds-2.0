@@ -1,12 +1,9 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
-
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import { getSystemTheme } from '../src/components/Theme/utils';
 import DocsThemeContainer from './Docs';
-import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
+import { storybookLightTheme } from './storybookTheme';
 
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
@@ -69,13 +66,6 @@ export const parameters = {
 };
 
 export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light-theme',
-      dark: 'dark-theme'
-    },
-    defaultTheme: getSystemTheme()
-  }),
   Story => (
     <BrowserRouter>
       <Story />

@@ -3422,13 +3422,6 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/addon-themes@^9.1.16":
-  version "9.1.16"
-  resolved "https://registry.npmjs.org/@storybook/addon-themes/-/addon-themes-9.1.16.tgz#2ed10613ceaa56484e222fecfaeb09f15c1fff11"
-  integrity sha512-wAB11HfXmK7KcYI6an1+WQi2m9VPfFnM4EV66VOWR+1e1PUThfwr0LhaPXj1g32lFBWdmTZp/9YLGXTyJqSQwQ==
-  dependencies:
-    ts-dedent "^2.0.0"
-
 "@storybook/builder-vite@9.1.16":
   version "9.1.16"
   resolved "https://registry.npmjs.org/@storybook/builder-vite/-/builder-vite-9.1.16.tgz#58e00c16c8ba7d4c94f828753386bba1932c95b4"

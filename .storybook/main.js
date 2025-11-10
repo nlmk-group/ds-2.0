@@ -36,8 +36,6 @@ export default {
 
   addons: [
     '@storybook/addon-links',
-    'storybook/test',
-    '@storybook/addon-themes',
     '@storybook/addon-docs'
   ],
 

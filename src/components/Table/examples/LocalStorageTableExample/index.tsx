@@ -159,7 +159,7 @@ const LocalStorageTableExample = () => {
   };
 
   return (
-    <>
+    <div style={{ maxWidth: '1000px' }}>
       <Box gap={16} style={{ marginBottom: '16px' }}>
         <Typography variant="Body1-Medium" color="var(--steel-90)">
           Настройте таблицу через панель настроек (видимость, порядок, закрепление столбцов).
@@ -264,7 +264,7 @@ const LocalStorageTableExample = () => {
           </Tbody>
         </Table>
       </div>
-    </>
+    </div>
   );
 };
 

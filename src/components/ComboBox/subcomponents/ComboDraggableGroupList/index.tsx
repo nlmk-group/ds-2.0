@@ -78,20 +78,21 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
 
   const handleMultiChange = (item: T) => {
     const option = flatOptions.find(option => option.id === item.id);
-    if (setComboValue && option) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck && previousValue) {
-          const filteredValue = previousValue.filter(value => value.id !== item.id);
-          onChange?.(filteredValue as T[]);
-          return filteredValue;
-        }
+    if (!setComboValue || !option) return;
 
-        const newValue = [...(previousValue ?? []), option];
-        onChange?.(newValue as T[]);
-        return newValue;
-      });
-    }
+    setComboValue(previousValue => {
+      const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+      if (isCheck && previousValue) {
+        const filteredValue = previousValue.filter(value => value.id !== item.id);
+        onChange?.(filteredValue as T[]);
+        return filteredValue;
+      }
+
+      const newValue = [...(previousValue ?? []), option];
+      onChange?.(newValue as T[]);
+      return newValue;
+    });
   };
 
   const moveItem = useCallback(

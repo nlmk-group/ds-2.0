@@ -107,6 +107,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
       <List
         ref={el => {
           if (!el) return;
+
           if (menuRef && typeof menuRef === 'object') {
             (menuRef as RefObject<HTMLElement | null>).current = el;
           }

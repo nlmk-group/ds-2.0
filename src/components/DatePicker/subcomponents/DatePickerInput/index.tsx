@@ -573,6 +573,12 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       setInnerMaskedValue(newValue);
     }, []);
 
+    const hasValue = withPeriod
+      ? Boolean(valueFrom || valueTo)
+      : Boolean(value);
+
+    const shouldShowReset = reset && hasValue;
+
     return (
       <Input
         inputRef={maskRef as any}
@@ -612,7 +618,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             />
           </div>
         }
-        reset={reset}
+        reset={shouldShowReset}
         onReset={onReset}
         helperText={helperText}
         color={error ? customInputColors.error : customInputColors.default}

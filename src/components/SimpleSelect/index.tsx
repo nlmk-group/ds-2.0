@@ -147,11 +147,14 @@ const SimpleSelect: FC<ISelectProps> = ({
 
   const findOptionLabel = (value: string | number | undefined): string => {
     if (value === undefined) return '';
+
     const selectedOption = options.find(child => child.props.value === value);
-    return selectedOption
-      ? selectedOption.props.label ||
-          (typeof selectedOption.props.children === 'string' ? selectedOption.props.children : '')
-      : '';
+    if (!selectedOption) return '';
+
+    return (
+      selectedOption.props.label ||
+      (typeof selectedOption.props.children === 'string' ? selectedOption.props.children : '')
+    );
   };
 
   const filteredChildren = useMemo(() => {

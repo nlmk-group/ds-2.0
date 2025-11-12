@@ -208,6 +208,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
     const isValueMatchesTheMask = (mask: string, value: string) => mask.replace(/9/gi, '_') === value;
     const handleResetInput = useCallback(() => {
       setInnerMaskedValue('');
+      onReset?.();
     }, [onReset]);
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -293,6 +294,10 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       withPeriod
     ]);
 
+    const hasValue = withPeriod ? Boolean(valueFrom || valueTo) : Boolean(value);
+
+    const shouldShowReset = reset && hasValue;
+
     return (
       <Input
         inputRef={maskRef as any}
@@ -306,7 +311,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         label={label}
         icon={icon}
         colored={colored}
-        reset={reset}
+        reset={shouldShowReset}
         onReset={handleResetInput}
         {...props}
       />

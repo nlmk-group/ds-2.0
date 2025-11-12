@@ -165,6 +165,7 @@ export const createColumns = (
           size="s"
           reset={true}
           onReset={() => onCellChange(rowId, 'deliveryDate', undefined)}
+          withPortal={true}
           style={{ width: '100%' }}
           placeholder="Выберите дату"
         />
@@ -190,6 +191,7 @@ export const createColumns = (
           reset={true}
           onReset={() => onCellChange(rowId, 'deliveryTime', undefined)}
           withPicker={true}
+          withPortal={true}
         />
       );
     },

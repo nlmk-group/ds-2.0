@@ -84,12 +84,14 @@ const ThemeToggleButton = () => {
     applyPreviewTheme(newIsDark);
   };
 
+  const toggleLabel = `Переключить на ${isDark ? 'светлую' : 'темную'} тему`;
+
   return (
     <button
       key="theme-toggle"
-      title={isDark ? 'Переключить на светлую тему' : 'Переключить на темную тему'}
+      title={toggleLabel}
       onClick={handleToggle}
-      aria-label={isDark ? 'Переключить на светлую тему' : 'Переключить на темную тему'}
+      aria-label={toggleLabel}
       style={{
         background: 'transparent',
         border: 'none',

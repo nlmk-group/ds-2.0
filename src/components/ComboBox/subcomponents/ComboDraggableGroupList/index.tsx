@@ -1,3 +1,4 @@
+// TODO: переписать код с использованием  style guide ДС.
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';

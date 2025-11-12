@@ -1,8 +1,9 @@
-import React, { CSSProperties, FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, FC, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ClickAwayListener, IconSelectionContains24, List, ListItem, Typography } from '@components/index';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import clsx from 'clsx';
 
 import { IFilterProps, IFilterTypeOption, IFilterValueOption, TMenuState } from './types';
@@ -51,22 +52,7 @@ const Filter: FC<IFilterProps> = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (referenceElement) {
-      refs.setReference(referenceElement);
-    }
-  }, [referenceElement, refs]);
-
-  useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [popperElement, refs]);
+  useFloatingReferenceSync(referenceElement, popperElement, refs, setIsPositioned);
 
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 

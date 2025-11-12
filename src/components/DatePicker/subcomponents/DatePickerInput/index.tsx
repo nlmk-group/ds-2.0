@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ChangeEvent, forwardRef, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useIMask } from 'react-imask';
 
 import {
@@ -237,7 +237,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         return;
       }
 
-      (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
+      (ref as RefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
     }, [ref, maskRef]);
 
     useEffect(() => {

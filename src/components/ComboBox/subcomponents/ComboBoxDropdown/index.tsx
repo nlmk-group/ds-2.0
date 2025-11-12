@@ -1,6 +1,7 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { cloneElement, CSSProperties, isValidElement, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Tooltip } from '@components/index';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
@@ -63,22 +64,7 @@ const ComboBoxDropdown = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (wrapInputRef.current) {
-      refs.setReference(wrapInputRef.current);
-    }
-  }, [wrapInputRef, refs]);
-
-  useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [popperElement, refs]);
+  useFloatingReferenceSync(wrapInputRef, popperElement, refs, setIsPositioned);
 
   const handleOutsideClick = (event: MouseEvent) => {
     const isInputClick = wrapInputRef.current?.contains(event.target as Node) ?? false;
@@ -141,8 +127,8 @@ const ComboBoxDropdown = ({
   );
 
   const enhancedChildren = React.Children.map(children, child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      return React.cloneElement(child, {
+    if (isValidElement(child) && typeof child.type !== 'string') {
+      return cloneElement(child, {
         autoFocusSearch,
         autoExpandOnSearch,
         isDropdownOpen: isOpen

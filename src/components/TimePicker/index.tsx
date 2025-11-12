@@ -2,6 +2,7 @@ import React, { CSSProperties, FC, useCallback, useEffect, useMemo, useState } f
 import ReactDOM from 'react-dom';
 
 import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
@@ -163,22 +164,7 @@ const TimePicker: FC<TTimePickerType> = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (inputRef) {
-      refs.setReference(inputRef);
-    }
-  }, [inputRef, refs]);
-
-  useEffect(() => {
-    if (calendarRef) {
-      refs.setFloating(calendarRef);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [calendarRef, refs]);
+  useFloatingReferenceSync(inputRef, calendarRef, refs, setIsPositioned);
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: Date | null, date2?: Date | null) => {

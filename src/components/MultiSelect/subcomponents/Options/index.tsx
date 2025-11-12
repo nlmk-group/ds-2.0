@@ -1,6 +1,7 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useEffect, useMemo, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, RefObject, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, List, OptionItem, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
@@ -50,22 +51,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (inputRef.current) {
-      refs.setReference(inputRef.current);
-    }
-  }, [inputRef, refs]);
-
-  useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [popperElement, refs]);
+  useFloatingReferenceSync(inputRef, popperElement, refs, setIsPositioned);
 
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
@@ -115,7 +101,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
         ref={el => {
           if (!el) return;
           if (menuRef && typeof menuRef === 'object') {
-            (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            (menuRef as RefObject<HTMLElement | null>).current = el;
           }
           setPopperElement(el);
         }}

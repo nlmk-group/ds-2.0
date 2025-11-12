@@ -1,4 +1,14 @@
-import React, { ChangeEvent, forwardRef, KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  ChangeEvent,
+  forwardRef,
+  KeyboardEvent,
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
+import { useIMask } from 'react-imask';
 
 import { IconScheduleTimeWatchOutlined24, Input } from '@components/index';
 import {
@@ -10,7 +20,6 @@ import {
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import { range } from 'lodash';
-import { useIMask } from 'react-imask';
 
 import { ITimePickerInputProps } from './types';
 
@@ -147,27 +156,32 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       return isTimeWithSecondsType ? TIME_WITH_SECONDS_MASK : TIME_MASK;
     }, [focused, isTimeType, isTimeWithSecondsType, withPeriod, isTimePeriodWithSecondsType]);
 
-    const { ref: maskRef, value: maskedValue, setValue: setMaskedValue } = useIMask(
+    const {
+      ref: maskRef,
+      value: maskedValue,
+      setValue: setMaskedValue
+    } = useIMask(
       {
         mask: mask,
         definitions: { '9': /[0-9]/ },
         lazy: false
       },
       {
-        onAccept: (value) => {
+        onAccept: value => {
           setInnerMaskedValue(value);
         }
       }
     );
 
     useEffect(() => {
-      if (ref) {
-        if (typeof ref === 'function') {
-          ref(maskRef.current as HTMLInputElement | null);
-        } else {
-          (ref as React.MutableRefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
-        }
+      if (!ref) return;
+
+      if (typeof ref === 'function') {
+        ref(maskRef.current as HTMLInputElement | null);
+        return;
       }
+
+      (ref as RefObject<HTMLInputElement | null>).current = maskRef.current as HTMLInputElement | null;
     }, [ref, maskRef]);
 
     useEffect(() => {

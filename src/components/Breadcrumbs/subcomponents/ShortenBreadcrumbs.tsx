@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useCallback, useMemo, useState } from 'react';
+import React, { cloneElement, FC, ReactElement, useCallback, useMemo, useState } from 'react';
 
 import { ClickAwayListener, Icon, List, ListItem } from '@components/index';
 import clsx from 'clsx';
@@ -25,7 +25,7 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
 
   return (
     <>
-      {React.cloneElement(firstElement as ReactElement)}
+      {cloneElement(firstElement as ReactElement)}
       <div
         className={clsx(styles.options, showItems && styles.show)}
         onClick={toggleShowItems}
@@ -43,8 +43,8 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
                 const itemProps = item.props as any;
                 return (
                   <ListItem key={index} className={clsx(styles.option)} data-ui-crumbs-list-item>
-                    {React.cloneElement(item, {
-                      children: React.cloneElement(itemProps.children, {
+                    {cloneElement(item, {
+                      children: cloneElement(itemProps.children, {
                         className: clsx(styles.link, itemProps.children.props.className)
                       } as any),
                       isLast: false,
@@ -57,7 +57,7 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
           </ClickAwayListener>
         )}
       </div>
-      {React.cloneElement(lastElement as ReactElement, { isLast: true, showSeparator: false } as any)}
+      {cloneElement(lastElement as ReactElement, { isLast: true, showSeparator: false } as any)}
     </>
   );
 };

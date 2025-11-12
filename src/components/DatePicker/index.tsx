@@ -2,6 +2,7 @@ import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState
 import ReactDOM from 'react-dom';
 
 import { useUpdatedValues } from '@components/declaration';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
@@ -196,23 +197,12 @@ export const DatePicker: TDatePickerProps = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (inputRef) {
-      refs.setReference(inputRef);
-    }
-  }, [inputRef, refs]);
-
-  useEffect(() => {
-    if (calendarElement) {
+  useFloatingReferenceSync(inputRef, calendarElement, refs, positioned => {
+    if (calendarElement && positioned) {
       calendarRef.current = calendarElement;
-      refs.setFloating(calendarElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
     }
-  }, [calendarElement, refs]);
+    setIsPositioned(positioned);
+  });
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any, shiftFrom: any, shiftTo: any) => {

@@ -1,5 +1,6 @@
-import React, { CSSProperties, FC, useContext, useState, useEffect } from 'react';
+import React, { CSSProperties, FC, useContext, useState } from 'react';
 import { useFloating, offset, flip, shift, autoUpdate, limitShift } from '@floating-ui/react';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 
 import { DropdownContext } from '@components/Dropdown/context';
 import { ClickAwayListener, List } from '@components/index';
@@ -34,22 +35,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (buttonRef?.current) {
-      refs.setReference(buttonRef.current);
-    }
-  }, [buttonRef, refs]);
-
-  useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [popperElement, refs]);
+  useFloatingReferenceSync(buttonRef, popperElement, refs, setIsPositioned);
 
   const MIN_WIDTH = 130;
 

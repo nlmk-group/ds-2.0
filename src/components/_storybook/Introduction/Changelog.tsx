@@ -31,7 +31,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Обновлена версия React до 19 для улучшения производительности и новых возможностей
               </li>
-              <li className={styles['left-padding']}>- Обновлен Vite и конфигурация сборки библиотеки</li>
+              <li className={styles['left-padding']}>- Vite обновлен до версии 7 и улучшена конфигурация сборки библиотеки</li>
               <li className={styles['left-padding']}>
                 - Внедрен режим Preserve Module для оптимизации tree-shaking и уменьшения размера бандла
               </li>

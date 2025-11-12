@@ -79,7 +79,7 @@ yarn generate:exports
 
 ### Требования
 
-- Node.js 16+
+- Node.js 20.19+
 - Структура проекта: `src/components/ComponentName/index.tsx`
 
 ### Ограничения

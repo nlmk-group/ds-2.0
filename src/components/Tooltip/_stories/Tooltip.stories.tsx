@@ -19,7 +19,11 @@ import globalStyles from '@components/_storybook/styles.module.scss';
 import { ETooltipPlacementType } from '../enums';
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: () => any) => <div className={globalStyles.wrapper}><Story/></div>;
+const withWrapper = (Story: () => any) => (
+  <div className={globalStyles.wrapper}>
+    <Story />
+  </div>
+);
 export default {
   title: 'Components/Tooltip/Stories',
   component: Tooltip,
@@ -337,7 +341,9 @@ export const TooltipWithManualOpen = () => {
     <div className={styles.wrapper}>
       <div className={styles['manual-wrapper']}>
         <Tooltip title="Заголовок тултипа" isOpen={isOpen}>
-          <Button type="button" variant="secondary">Кнопка с тултипом</Button>
+          <Button type="button" variant="secondary">
+            Кнопка с тултипом
+          </Button>
         </Tooltip>
         <Button type="button" variant="secondary" onClick={() => setOpen(!isOpen)}>
           Нажми на меня для переключения тултипа!

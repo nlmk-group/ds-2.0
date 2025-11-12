@@ -73,6 +73,47 @@ const isDarkTheme = getInitialTheme();
 applyManagerTheme(isDarkTheme);
 setTimeout(() => applyPreviewTheme(isDarkTheme), 1000);
 
+const observePreviewIframe = () => {
+  let lastIframe: HTMLIFrameElement | null = null;
+
+  const applyThemeToIframe = (iframe: HTMLIFrameElement) => {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const shouldBeDark = savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const checkTheme = () => {
+      const previewDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (previewDoc?.documentElement) {
+        const currentTheme = previewDoc.documentElement.getAttribute('data-theme');
+        const expectedTheme = shouldBeDark ? 'dark-theme' : 'light-theme';
+        if (currentTheme !== expectedTheme) {
+          applyPreviewTheme(shouldBeDark);
+        }
+      }
+    };
+
+    checkTheme();
+    iframe.addEventListener('load', checkTheme);
+  };
+
+  const observer = new MutationObserver(() => {
+    const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement;
+    if (iframe && iframe !== lastIframe) {
+      lastIframe = iframe;
+      applyThemeToIframe(iframe);
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  const initialIframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement;
+  if (initialIframe) {
+    lastIframe = initialIframe;
+    applyThemeToIframe(initialIframe);
+  }
+};
+
+observePreviewIframe();
+
 const ThemeToggleButton = () => {
   const [isDark, setIsDark] = useState(getInitialTheme);
 

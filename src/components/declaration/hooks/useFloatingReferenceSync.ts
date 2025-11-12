@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
+
 import type { ReferenceType, UseFloatingReturn } from '@floating-ui/react';
 
 /**
@@ -31,14 +32,11 @@ export const useFloatingReferenceSync = (
     }
 
     refs.setFloating(popperElement);
-
-    const raf = requestAnimationFrame(() => {
-      setIsPositioned(true);
-    });
-
-    return () => {
-      cancelAnimationFrame(raf);
-    };
   }, [popperElement, refs, setIsPositioned]);
-};
 
+  useLayoutEffect(() => {
+    if (popperElement) {
+      setIsPositioned(true);
+    }
+  }, [popperElement, setIsPositioned]);
+};

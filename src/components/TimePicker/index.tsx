@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { generateUUID, TWO_DIGIT_FORMAT, useUpdatedValues } from '@components/declaration';
@@ -80,10 +80,26 @@ const TimePicker: FC<TTimePickerType> = ({
   const [isOpen, setOpen] = useState(false);
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [calendarRef, setCalendarRef] = useState<null | HTMLDivElement>(null);
-  id = useMemo(() => `TimePicker-${(id && id.toString()) || generateUUID()}`, [id]);
+  const iconRef = useRef<HTMLDivElement>(null);
+  const componentId = useMemo(() => `TimePicker-${(id && id.toString()) || generateUUID()}`, [id]);
 
   const [selectedTimeFirst, setSelectedTimeFirst] = useState<Date | undefined>(outerValueFrom);
   const [selectedTimeSecond, setSelectedTimeSecond] = useState<Date | undefined>(outerValueTo);
+
+  const [selectedPartsFirst, setSelectedPartsFirst] = useState<{ hours?: number; minutes?: number; seconds?: number }>({
+    hours: outerValueFrom?.getHours(),
+    minutes: outerValueFrom?.getMinutes(),
+    seconds: outerValueFrom?.getSeconds()
+  });
+  const [selectedPartsSecond, setSelectedPartsSecond] = useState<{
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+  }>({
+    hours: outerValueTo?.getHours(),
+    minutes: outerValueTo?.getMinutes(),
+    seconds: outerValueTo?.getSeconds()
+  });
 
   const { onChange: innerOnPeriodChange } = useUpdatedValues<TDateValues>(
     useMemo(() => ({ valueFrom: outerValueFrom, valueTo: outerValueTo }), [outerValueFrom, outerValueTo]),
@@ -100,17 +116,40 @@ const TimePicker: FC<TTimePickerType> = ({
 
   const { value, onChange: innerOnChange } = useUpdatedValues<Date | undefined>(externalValue);
 
-  const [innerValue, setInnerOnChange] = useState(value);
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState<Date | undefined>(value);
+  const [selectedParts, setSelectedParts] = useState<{ hours?: number; minutes?: number; seconds?: number }>({
+    hours: value?.getHours(),
+    minutes: value?.getMinutes(),
+    seconds: value?.getSeconds()
+  });
 
   useEffect(() => {
-    if (value) {
-      setInnerOnChange(value);
-      setSelectedTime(value);
-      setSelectedTimeFirst(value);
-      setSelectedTimeSecond(value);
+    setSelectedTime(value);
+    setSelectedParts({
+      hours: value?.getHours(),
+      minutes: value?.getMinutes(),
+      seconds: value?.getSeconds()
+    });
+
+    if (isTimePeriodType || isTimePeriodWithSecondsType) {
+      setSelectedTimeFirst(outerValueFrom);
+      setSelectedTimeSecond(outerValueTo);
+
+      const newPartsFirst = {
+        hours: outerValueFrom?.getHours(),
+        minutes: outerValueFrom?.getMinutes(),
+        seconds: outerValueFrom?.getSeconds()
+      };
+      const newPartsSecond = {
+        hours: outerValueTo?.getHours(),
+        minutes: outerValueTo?.getMinutes(),
+        seconds: outerValueTo?.getSeconds()
+      };
+
+      setSelectedPartsFirst(newPartsFirst);
+      setSelectedPartsSecond(newPartsSecond);
     }
-  }, [value]);
+  }, [value, isTimePeriodType, isTimePeriodWithSecondsType, outerValueFrom, outerValueTo]);
 
   useEffect(() => {
     if (isOpenOnFocus || !withIcon) {
@@ -133,10 +172,6 @@ const TimePicker: FC<TTimePickerType> = ({
     },
     [innerOnPeriodChange, outerOnPeriodChange]
   );
-
-  const outerValue = useMemo(() => {
-    return value && new Date(value);
-  }, [value]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -180,32 +215,35 @@ const TimePicker: FC<TTimePickerType> = ({
           onChange(date);
         }
         setOpen(false);
+      } else if (!isOpenOnInputFocus) {
+        setOpen(false);
       }
     },
-    [inputRef, onChange, onPeriodChange, isTimePeriodType, isTimePeriodWithSecondsType]
+    [inputRef, onChange, onPeriodChange, isTimePeriodType, isTimePeriodWithSecondsType, isOpenOnInputFocus]
   );
 
   const handleAccept = useCallback(() => {
     const isPeriodType = isTimePeriodType || isTimePeriodWithSecondsType;
 
     const updatePeriod = () => {
-      if (selectedTimeFirst && selectedTimeSecond) {
-        onPeriodChange(
-          isAfter(selectedTimeFirst, selectedTimeSecond) ? selectedTimeSecond : selectedTimeFirst,
-          isAfter(selectedTimeFirst, selectedTimeSecond) ? selectedTimeFirst : selectedTimeSecond
-        );
+      if (selectedTimeFirst || selectedTimeSecond) {
+        if (selectedTimeFirst && selectedTimeSecond && isAfter(selectedTimeFirst, selectedTimeSecond)) {
+          onPeriodChange(selectedTimeSecond, selectedTimeFirst);
+        } else {
+          onPeriodChange(selectedTimeFirst, selectedTimeSecond);
+        }
       }
     };
 
     const updateTime = () => {
-      if (onChange && innerValue) {
-        const newDate = set(innerValue, {
+      if (onChange && selectedTime) {
+        const baseDate = value || set(new Date(), { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
+        const newDate = set(baseDate, {
           hours: selectedTime.getHours(),
           minutes: selectedTime.getMinutes(),
           ...(isTimeWithSecondsType && { seconds: selectedTime.getSeconds() })
         });
         onChange(newDate);
-        setInnerOnChange(newDate);
       }
     };
 
@@ -219,16 +257,27 @@ const TimePicker: FC<TTimePickerType> = ({
   }, [
     onChange,
     selectedTime,
+    value,
     isTimeWithSecondsType,
     selectedTimeFirst,
     selectedTimeSecond,
     isTimePeriodType,
     isTimePeriodWithSecondsType,
-    onPeriodChange
+    onPeriodChange,
+    handleClose
   ]);
+
+  const handleToggle = useCallback(() => {
+    if (isOpen) {
+      handleAccept();
+    } else {
+      setOpen(true);
+    }
+  }, [isOpen, handleAccept]);
 
   const renderTimePickerPanel = () => (
     <ClickAwayListener
+      excludeRef={[{ current: inputRef }, iconRef]}
       onClickAway={() => {
         if (!isOpenOnInputFocus) {
           handleAccept();
@@ -247,7 +296,13 @@ const TimePicker: FC<TTimePickerType> = ({
           onChangeFirst={setSelectedTimeFirst}
           onChangeSecond={setSelectedTimeSecond}
           selectedTime={selectedTime}
+          selectedParts={selectedParts}
           onChange={setSelectedTime}
+          onPartsChange={setSelectedParts}
+          selectedPartsFirst={selectedPartsFirst}
+          selectedPartsSecond={selectedPartsSecond}
+          onPartsChangeFirst={setSelectedPartsFirst}
+          onPartsChangeSecond={setSelectedPartsSecond}
           isTimeWithSecondsType={isTimeWithSecondsType}
           isTimePeriodType={isTimePeriodType}
           isTimePeriodWithSecondsType={isTimePeriodWithSecondsType}
@@ -266,7 +321,7 @@ const TimePicker: FC<TTimePickerType> = ({
   const renderTimepicker = () => (
     <div
       className={clsx(styles.root, className, restInputProps.disabled && styles.disabled, isOpen && styles.opened)}
-      id={String(id)}
+      id={String(componentId)}
       data-ui-timepicker
     >
       {name && [ETimePickerType.time, ETimePickerType.timeWithSeconds].includes(type as ETimePickerType) && (
@@ -274,13 +329,11 @@ const TimePicker: FC<TTimePickerType> = ({
       )}
       <TimePickerInput
         ref={setInputRef}
-        value={outerValue}
+        value={value}
         valueFrom={selectedTimeFirst}
         valueTo={selectedTimeSecond}
         onChangeFirst={setSelectedTimeFirst}
         onChangeSecond={setSelectedTimeSecond}
-        selectedTimeFirst={selectedTimeFirst}
-        selectedTimeSecond={selectedTimeSecond}
         isTimeType={isTimeType}
         isTimeWithSecondsType={isTimeWithSecondsType}
         isTimePeriodType={isTimePeriodType}
@@ -298,6 +351,8 @@ const TimePicker: FC<TTimePickerType> = ({
         colored={colored}
         withIcon={withIcon}
         withPicker={withPicker}
+        onToggle={handleToggle}
+        iconRef={iconRef}
         label={label}
         reset={
           reset && (isTimePeriodType || isTimePeriodWithSecondsType ? !!(outerValueFrom || outerValueTo) : !!value)
@@ -307,30 +362,21 @@ const TimePicker: FC<TTimePickerType> = ({
         data-ui-time-picker-input
       />
       {isOpen &&
-        (!withPortal ? (
-          <>{renderTimePickerPanel()}</>
-        ) : (
-          ReactDOM.createPortal(
-            <>{renderTimePickerPanel()}</>,
-            document.getElementById(portalContainerId) as HTMLElement
-          )
-        ))}
+        (!withPortal
+          ? renderTimePickerPanel()
+          : ReactDOM.createPortal(renderTimePickerPanel(), document.getElementById(portalContainerId) as HTMLElement))}
     </div>
   );
 
-  if (pseudo) return <PseudoInput label={label}>{pseudoTime}</PseudoInput>;
+  if (pseudo) {
+    return <PseudoInput label={label}>{pseudoTime}</PseudoInput>;
+  }
 
-  if (isOpenOnInputFocus)
-    return (
-      <ClickAwayListener
-        onClickAway={() => {
-          handleAccept();
-        }}
-      >
-        {renderTimepicker()}
-      </ClickAwayListener>
-    );
-  else return <>{renderTimepicker()}</>;
+  if (isOpenOnInputFocus) {
+    return <ClickAwayListener onClickAway={handleAccept}>{renderTimepicker()}</ClickAwayListener>;
+  }
+
+  return renderTimepicker();
 };
 
 export default TimePicker;

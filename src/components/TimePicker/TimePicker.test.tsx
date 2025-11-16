@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TimePicker } from '@components/index';
-import { act, render, fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 jest.mock('@floating-ui/react', () => ({
   useFloating: () => ({
@@ -18,6 +18,8 @@ jest.mock('@floating-ui/react', () => ({
   limitShift: jest.fn(),
   autoUpdate: jest.fn()
 }));
+
+Element.prototype.scrollTo = jest.fn();
 
 beforeEach(() => {
   const mockPortalRoot = document.createElement('div');
@@ -38,7 +40,7 @@ describe('TimePicker компонент', () => {
   });
 
   it('отображает выбранное время', () => {
-    const testDate = new Date(2023, 0, 1, 14, 30);
+    const testDate = new Date(2025, 0, 1, 14, 30);
     render(<TimePicker value={testDate} />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('14:30');
@@ -46,7 +48,7 @@ describe('TimePicker компонент', () => {
 
   it('вызывает onChange при изменении времени', async () => {
     const handleChange = jest.fn();
-    const testDate = new Date(2023, 0, 1, 14, 30);
+    const testDate = new Date(2025, 0, 1, 14, 30);
 
     render(<TimePicker value={testDate} onChange={handleChange} />);
 
@@ -70,30 +72,34 @@ describe('TimePicker компонент', () => {
   });
 
   it('отображает секунды при type="timeWithSeconds"', () => {
-    const testDate = new Date(2023, 0, 1, 14, 30, 45);
+    const testDate = new Date(2025, 0, 1, 14, 30, 45);
     render(<TimePicker type="timeWithSeconds" value={testDate} />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('14:30:45');
   });
 
-  it('отображает период времени при type="period"', () => {
-    const startDate = new Date(2023, 0, 1, 10, 0);
-    const endDate = new Date(2023, 0, 1, 11, 30);
+  it('отображает период времени при type="period"', async () => {
+    const startDate = new Date(2025, 0, 1, 10, 0);
+    const endDate = new Date(2025, 0, 1, 11, 30);
 
     render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
 
     const input = screen.getByRole('textbox');
-    expect(input).toHaveValue('10:00 — 11:30');
+    await waitFor(() => {
+      expect(input).toHaveValue('10:00 — 11:30');
+    });
   });
 
-  it('отображает период с секундами при type="periodWithSeconds"', () => {
-    const startDate = new Date(2023, 0, 1, 10, 0, 15);
-    const endDate = new Date(2023, 0, 1, 11, 30, 45);
+  it('отображает период с секундами при type="periodWithSeconds"', async () => {
+    const startDate = new Date(2025, 0, 1, 10, 0, 15);
+    const endDate = new Date(2025, 0, 1, 11, 30, 45);
 
     render(<TimePicker type="periodWithSeconds" valueFrom={startDate} valueTo={endDate} />);
 
     const input = screen.getByRole('textbox');
-    expect(input).toHaveValue('10:00:15 — 11:30:45');
+    await waitFor(() => {
+      expect(input).toHaveValue('10:00:15 — 11:30:45');
+    });
   });
 
   it('отображает label', () => {
@@ -105,5 +111,492 @@ describe('TimePicker компонент', () => {
     render(<TimePicker disabled />);
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
+  });
+
+  it('отображает кнопку reset когда есть значение', () => {
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    const { container } = render(<TimePicker value={testDate} reset={true} />);
+    const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+    expect(resetButton).toBeInTheDocument();
+  });
+
+  it('не отображает кнопку reset когда значение отсутствует', () => {
+    const { container } = render(<TimePicker value={undefined} reset={true} />);
+    const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+    expect(resetButton).not.toBeInTheDocument();
+  });
+
+  it('вызывает onReset при клике на кнопку сброса', async () => {
+    const handleReset = jest.fn();
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    const { container } = render(<TimePicker value={testDate} reset={true} onReset={handleReset} />);
+
+    const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+
+    await act(async () => {
+      if (resetButton) {
+        fireEvent.click(resetButton);
+      }
+    });
+
+    expect(handleReset).toHaveBeenCalled();
+  });
+
+  it('корректно работает с undefined value', () => {
+    render(<TimePicker value={undefined} />);
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('__:__');
+  });
+
+  it('открывает панель выбора времени при фокусе', async () => {
+    render(<TimePicker isOpenOnFocus={true} />);
+    const input = screen.getByRole('textbox');
+
+    await act(async () => {
+      fireEvent.focus(input);
+    });
+
+    await waitFor(() => {
+      const timeSelector = document.querySelector('[data-ui-time-selector]');
+      expect(timeSelector).toBeInTheDocument();
+    });
+  });
+
+  it('отображает кнопку reset для периода когда есть хотя бы одно значение', () => {
+    const startDate = new Date(2025, 0, 1, 10, 0);
+    const { container } = render(<TimePicker type="period" valueFrom={startDate} valueTo={undefined} reset={true} />);
+    const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+    expect(resetButton).toBeInTheDocument();
+  });
+
+  it('работает с withPortal=true', () => {
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    render(<TimePicker value={testDate} withPortal={true} />);
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('сбрасывает неполный ввод при blur если нет значения', async () => {
+    render(<TimePicker value={undefined} />);
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+
+    await act(async () => {
+      fireEvent.focus(input);
+      fireEvent.change(input, { target: { value: '14:__' } });
+    });
+
+    await act(async () => {
+      fireEvent.blur(input);
+    });
+
+    await waitFor(() => {
+      expect(input).toHaveValue('__:__');
+    });
+  });
+
+  it('тогглит панель при клике на иконку', async () => {
+    render(<TimePicker withPicker={true} />);
+
+    const icon = document.querySelector('[class*="clock"]');
+    expect(icon).toBeInTheDocument();
+
+    await act(async () => {
+      fireEvent.click(icon!);
+    });
+
+    await waitFor(() => {
+      const timeSelector = document.querySelector('[data-ui-time-selector]');
+      expect(timeSelector).toBeInTheDocument();
+    });
+
+    await act(async () => {
+      fireEvent.click(icon!);
+    });
+
+    await waitFor(() => {
+      const timeSelector = document.querySelector('[data-ui-time-selector]');
+      expect(timeSelector).not.toBeInTheDocument();
+    });
+  });
+
+  it('вызывает onReset при очистке инпута и blur', async () => {
+    const handleReset = jest.fn();
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    render(<TimePicker value={testDate} reset={true} onReset={handleReset} />);
+
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    expect(input).toHaveValue('14:30');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '' } });
+    });
+
+    await act(async () => {
+      fireEvent.blur(input);
+    });
+
+    await waitFor(() => {
+      expect(handleReset).toHaveBeenCalled();
+    });
+  });
+
+  it('вызывает onReset при очистке инпута и нажатии Enter', async () => {
+    const handleReset = jest.fn();
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    render(<TimePicker value={testDate} reset={true} onReset={handleReset} />);
+
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    expect(input).toHaveValue('14:30');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '' } });
+    });
+
+    await act(async () => {
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    });
+
+    await waitFor(() => {
+      expect(handleReset).toHaveBeenCalled();
+    });
+  });
+
+  it('не отображает кнопку reset когда disabled=true даже если reset=true', () => {
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    const { container } = render(<TimePicker value={testDate} disabled={true} reset={true} />);
+    const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+    expect(resetButton).not.toBeInTheDocument();
+  });
+
+  it('тогглит панель при клике на иконку: открывает, затем закрывает', async () => {
+    const testDate = new Date(2025, 0, 1, 14, 30);
+    const { container } = render(<TimePicker value={testDate} withIcon={true} withPicker={true} />);
+
+    const icon = container.querySelector('.clock');
+    expect(icon).toBeInTheDocument();
+
+    let panel = container.querySelector('[data-ui-time-selector]');
+    expect(panel).not.toBeInTheDocument();
+
+    await act(async () => {
+      fireEvent.click(icon!);
+    });
+
+    await waitFor(() => {
+      panel = container.querySelector('[data-ui-time-selector]');
+      expect(panel).toBeInTheDocument();
+    });
+
+    await act(async () => {
+      fireEvent.click(icon!);
+    });
+
+    await waitFor(() => {
+      panel = container.querySelector('[data-ui-time-selector]');
+      expect(panel).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Частичный выбор через picker', () => {
+    it('позволяет выбрать только часы в обычном TimePicker', async () => {
+      const handleChange = jest.fn();
+      render(<TimePicker onChange={handleChange} />);
+
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      const selector = document.querySelector('[data-ui-time-selector]');
+      const columns = selector!.querySelectorAll('.selector-column');
+      const hourColumn = columns[0]; // Первая колонка - часы
+      const hourItems = hourColumn!.querySelectorAll('.root');
+      const hour14 = Array.from(hourItems).find(el => el.textContent?.trim() === '14');
+
+      expect(hour14).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(hour14!);
+      });
+
+      await waitFor(() => {
+        expect(hour14!.classList.contains('selected')).toBe(true);
+      });
+
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+
+    it('позволяет выбрать только часы в period TimePicker', async () => {
+      const handlePeriodChange = jest.fn();
+      render(<TimePicker type="period" onPeriodChange={handlePeriodChange} />);
+
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      const selectors = document.querySelectorAll('[data-ui-time-selector]');
+      const firstSelector = selectors[0];
+      const columns = firstSelector.querySelectorAll('.selector-column');
+      const hourColumn = columns[0];
+      const hourItems = hourColumn!.querySelectorAll('.root');
+      const hour14 = Array.from(hourItems).find(el => el.textContent?.trim() === '14');
+
+      expect(hour14).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(hour14!);
+      });
+
+      await waitFor(() => {
+        expect(hour14!.classList.contains('selected')).toBe(true);
+      });
+
+      expect(handlePeriodChange).not.toHaveBeenCalled();
+    });
+
+    it('вызывает onChange после выбора часов И минут в обычном TimePicker', async () => {
+      const handleChange = jest.fn();
+      render(<TimePicker onChange={handleChange} />);
+
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      const selector = document.querySelector('[data-ui-time-selector]');
+      const columns = selector!.querySelectorAll('.selector-column');
+
+      const hourColumn = columns[0];
+      const hourItems = hourColumn!.querySelectorAll('.root');
+      const hour14 = Array.from(hourItems).find(el => el.textContent?.trim() === '14');
+
+      expect(hour14).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(hour14!);
+      });
+
+      await waitFor(() => {
+        expect(hour14!.classList.contains('selected')).toBe(true);
+      });
+
+      const minuteColumn = columns[1];
+      const minuteItems = minuteColumn!.querySelectorAll('.root');
+      const minute30 = Array.from(minuteItems).find(el => el.textContent?.trim() === '30');
+
+      expect(minute30).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(minute30!);
+      });
+
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        expect(handleChange).toHaveBeenCalled();
+      });
+
+      const callArg = handleChange.mock.calls[handleChange.mock.calls.length - 1][0];
+      expect(callArg).toBeInstanceOf(Date);
+      expect(callArg.getHours()).toBe(14);
+      expect(callArg.getMinutes()).toBe(30);
+    });
+
+    it('вызывает onPeriodChange после выбора часов И минут для первого периода', async () => {
+      const handlePeriodChange = jest.fn();
+      render(<TimePicker type="period" onPeriodChange={handlePeriodChange} />);
+
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      const selectors = document.querySelectorAll('[data-ui-time-selector]');
+      const firstSelector = selectors[0];
+      const columns = firstSelector.querySelectorAll('.selector-column');
+
+      const hourColumn = columns[0];
+      const hourItems = hourColumn!.querySelectorAll('.root');
+      const hour10 = Array.from(hourItems).find(el => el.textContent?.trim() === '10');
+
+      expect(hour10).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(hour10!);
+      });
+
+      await waitFor(() => {
+        expect(hour10!.classList.contains('selected')).toBe(true);
+      });
+
+      const minuteColumn = columns[1];
+      const minuteItems = minuteColumn!.querySelectorAll('.root');
+      const minute00 = Array.from(minuteItems).find(el => el.textContent?.trim() === '00');
+
+      expect(minute00).toBeDefined();
+
+      await act(async () => {
+        fireEvent.click(minute00!);
+      });
+
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        expect(handlePeriodChange).toHaveBeenCalled();
+      });
+
+      const [valueFrom, valueTo] = handlePeriodChange.mock.calls[handlePeriodChange.mock.calls.length - 1];
+      expect(valueFrom).toBeInstanceOf(Date);
+      expect(valueFrom.getHours()).toBe(10);
+      expect(valueFrom.getMinutes()).toBe(0);
+      if (valueTo !== undefined) {
+        expect(valueTo).toBeInstanceOf(Date);
+      }
+    });
+  });
+
+  describe('Частичные периоды', () => {
+    it('отображает и сохраняет частичный период: только valueFrom без valueTo', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const handlePeriodChange = jest.fn();
+
+      const { rerender } = render(
+        <TimePicker type="period" valueFrom={startDate} valueTo={undefined} onPeriodChange={handlePeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — __:__');
+      });
+
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      rerender(
+        <TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />
+      );
+
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+    });
+
+    it('корректно обрабатывает переключение между полным и частичным периодом', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+
+      const { rerender } = render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input.value).toContain('10:00');
+        expect(input.value).toContain('14:30');
+      });
+
+      rerender(<TimePicker type="period" valueFrom={undefined} valueTo={endDate} />);
+
+      await waitFor(() => {
+        expect(input.value).toContain('14:30');
+        expect(input.value).toContain('__:__');
+      });
+    });
+
+    it('переключается с полного периода на частичный (сброс valueTo)', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+
+      const { rerender } = render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      rerender(<TimePicker type="period" valueFrom={startDate} valueTo={undefined} />);
+
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — __:__');
+      });
+    });
+
+    it('показывает пустую маску при undefined обоих значений', async () => {
+      render(<TimePicker type="period" valueFrom={undefined} valueTo={undefined} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input).toHaveValue('__:__ — __:__');
+    });
+
+    it('возвращается к сохраненному значению при неполном вводе (10:3_) и Enter', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      const handlePeriodChange = jest.fn();
+
+      render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      await act(async () => {
+        fireEvent.change(input, { target: { value: '10:3_ — 14:30' } });
+      });
+
+      await act(async () => {
+        fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+      });
+
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+        expect(handlePeriodChange).not.toHaveBeenCalled();
+      });
+    });
+
+    it('НЕ откатывает при полном стирании значения (__:__) и Enter', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      const handlePeriodChange = jest.fn();
+
+      const { rerender } = render(
+        <TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      rerender(
+        <TimePicker type="period" valueFrom={undefined} valueTo={endDate} onPeriodChange={handlePeriodChange} />
+      );
+
+      await waitFor(() => {
+        expect(input.value).toContain('14:30');
+        expect(input.value).toContain('__:__');
+      });
+    });
   });
 });

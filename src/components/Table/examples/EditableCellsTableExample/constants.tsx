@@ -190,8 +190,9 @@ export const createColumns = (
           size="s"
           reset={true}
           onReset={() => onCellChange(rowId, 'deliveryTime', undefined)}
-          withPicker={true}
-          withPortal={true}
+          withPicker
+          withPortal
+          type="timeWithSeconds"
         />
       );
     },

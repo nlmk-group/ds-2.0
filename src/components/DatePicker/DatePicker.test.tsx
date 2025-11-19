@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import DatePicker from './index';
 
-// Мока date-fns для стабильности тестов
 jest.mock('date-fns', () => ({
   ...jest.requireActual('date-fns'),
   isValid: (date: any) => date instanceof Date && !isNaN(date.getTime()),
@@ -58,13 +57,10 @@ describe('src/components/DatePicker', () => {
       await user.type(input, '15.12.2024');
       fireEvent.blur(input);
 
-      // Проверяем вызов пользовательского onBlur
       await waitFor(() => {
         expect(mockOnBlur).toHaveBeenCalled();
       });
 
-      // onBlur получает параметры: (date, date2, shiftFrom, shiftTo)
-      // Проверяем количество вызовов
       expect(mockOnBlur.mock.calls.length).toBeGreaterThan(0);
     });
 
@@ -85,15 +81,11 @@ describe('src/components/DatePicker', () => {
         expect(mockOnBlur).toHaveBeenCalled();
       });
 
-      // Проверяем параметры onBlur
       const onBlurCalls = mockOnBlur.mock.calls;
 
-      // onBlur может вызываться несколько раз, берем последний вызов
       if (onBlurCalls.length > 0) {
         const lastCall = onBlurCalls[onBlurCalls.length - 1];
 
-        // В DatePicker onBlur может получать: (date, date2, shiftFrom, shiftTo)
-        // Проверяем, что первый параметр - это дата или undefined
         if (lastCall.length > 0) {
           const firstParam = lastCall[0];
           if (firstParam !== undefined) {
@@ -122,13 +114,270 @@ describe('src/components/DatePicker', () => {
       await user.type(input, '15.12.2024');
       fireEvent.blur(input);
 
-      // onBlur должен вызываться всегда, независимо от disableChangesOnBlur
       await waitFor(() => {
         expect(mockOnBlur).toHaveBeenCalled();
       });
 
-      // но onChange НЕ должен вызываться
       expect(mockOnChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Отображение маски при фокусе', () => {
+    it('показывает пустую маску при фокусе на пустом инпуте', async () => {
+      const mockOnChange = jest.fn();
+      render(<DatePicker value={undefined} onChange={mockOnChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      await user.click(input);
+
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____');
+      });
+    });
+
+    it('показывает пустую маску для периода при фокусе', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      await user.click(input);
+
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____ — __.__.____');
+      });
+    });
+  });
+
+  describe('Валидация периодов при blur/enter', () => {
+    it('откатывает незавершенный ввод при blur в периоде', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+      await user.clear(input);
+      await user.type(input, '15.01.2024 — 20._1.2024');
+      fireEvent.blur(input);
+
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+    });
+
+    it('НЕ откатывает при полном стирании одного значения', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+      await user.clear(input);
+      await user.type(input, '15.01.2024 — __.__.____');
+      fireEvent.blur(input);
+
+      await waitFor(() => {
+        expect(mockOnPeriodChange).toHaveBeenCalled();
+        const callArgs = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        expect(callArgs[0]).toBeInstanceOf(Date);
+        expect(callArgs[0]?.getDate()).toBe(15);
+      });
+    });
+
+    it('откатывает незавершенный ввод при Enter в периоде', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+      await user.clear(input);
+      await user.type(input, '15.01.2024 — 20._1.2024');
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+    });
+  });
+
+  describe('Частичные периоды', () => {
+    it('отображает частичный период: только valueFrom без valueTo', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker type="period" valueFrom={startDate} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        const value = input.value;
+        expect(value).toContain('15.01.2024');
+        expect(value).toContain('__');
+      });
+    });
+
+    it('отображает частичный период: только valueTo без valueFrom', async () => {
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(<DatePicker type="period" valueFrom={undefined} valueTo={endDate} onPeriodChange={mockOnPeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        const value = input.value;
+        expect(value).toContain('20.01.2024');
+        expect(value).toContain('__');
+      });
+    });
+
+    it('корректно переключается между полным и частичным периодом', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+
+      const { rerender } = render(
+        <DatePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={() => {}} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      rerender(<DatePicker type="period" valueFrom={startDate} valueTo={undefined} onPeriodChange={() => {}} />);
+
+      await waitFor(() => {
+        const value = input.value;
+        expect(value).toContain('15.01.2024');
+        expect(value).toContain('__');
+      });
+    });
+  });
+
+  describe('Reset для периодов', () => {
+    it('отображает кнопку reset для периода когда есть хотя бы одно значение', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const mockOnReset = jest.fn();
+      const { container } = render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={undefined}
+          reset={true}
+          onReset={mockOnReset}
+          onPeriodChange={() => {}}
+        />
+      );
+
+      await waitFor(() => {
+        const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+        expect(resetButton).toBeInTheDocument();
+      });
+    });
+
+    it('НЕ отображает кнопку reset когда оба значения пустые', () => {
+      const { container } = render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} reset={true} onPeriodChange={() => {}} />
+      );
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+      expect(resetButton).not.toBeInTheDocument();
+    });
+
+    it('вызывает onReset при клике на кнопку reset в периоде', async () => {
+      const mockOnReset = jest.fn();
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+
+      const { container } = render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          reset={true}
+          onReset={mockOnReset}
+          onPeriodChange={() => {}}
+        />
+      );
+
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+      expect(resetButton).toBeInTheDocument();
+
+      await user.click(resetButton!);
+
+      await waitFor(() => {
+        expect(mockOnReset).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('Предотвращение смещения при удалении', () => {
+    it('корректно обрабатывает редактирование периода', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(<DatePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={mockOnPeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+
+      expect(input.value).toContain('—');
+      expect(input.value.split('—').length).toBe(2);
+
+      const [leftPart, rightPart] = input.value.split('—');
+      expect(leftPart.trim()).toBeTruthy();
+      expect(rightPart.trim()).toBeTruthy();
     });
   });
 });

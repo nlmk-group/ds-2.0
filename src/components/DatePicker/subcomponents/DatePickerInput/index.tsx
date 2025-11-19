@@ -89,9 +89,54 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     const [innerMaskedValue, setInnerMaskedValue] = useState('');
     const [focused, setFocused] = React.useState(false);
     const _inputRef = useRef<HTMLInputElement>(null);
+    const prevValueRef = useRef<string>('');
+
+    const getEmptyMaskForLevel = useCallback(() => {
+      if (level === LEVEL_MAPPING_ENUM.quarter) {
+        return `_ квартал ____`;
+      }
+      if (level === LEVEL_MAPPING_ENUM.year) {
+        return '____';
+      }
+      if (level === LEVEL_MAPPING_ENUM.month) {
+        return '__.____';
+      }
+      if (showTime) {
+        if (withSeconds) {
+          return isHideYear ? '__.__  __:__:__' : '__.__.____  __:__:__';
+        }
+        return isHideYear ? '__.__  __:__' : '__.__.____  __:__';
+      }
+      return isHideYear ? '__.__' : '__.__.____';
+    }, [level, showTime, withSeconds, isHideYear]);
+
+    const getEmptyMask = useCallback(() => {
+      return periodInnerMaskByLevel(locale[language].quarterTranslation)[level];
+    }, [level, language]);
+
+    const getEmptyMaskForPeriod = useCallback(() => {
+      const emptyMask = getEmptyMask();
+      const separator = withShift ? '/' : ' — ';
+
+      if (withShift) {
+        return `${emptyMask}/_${separator}${emptyMask}/_`;
+      }
+      return `${emptyMask}${separator}${emptyMask}`;
+    }, [getEmptyMask, withShift]);
 
     const onInputFocus = () => {
       setFocused(true);
+
+      if (!withPeriod && !value && !innerMaskedValue) {
+        const emptyMask = getEmptyMaskForLevel();
+        setInnerMaskedValue(emptyMask);
+        prevValueRef.current = emptyMask;
+      } else if (withPeriod && !valueFrom && !valueTo && !innerMaskedValue) {
+        const emptyMask = getEmptyMaskForPeriod();
+        setInnerMaskedValue(emptyMask);
+        prevValueRef.current = emptyMask;
+      }
+
       if (onFocus && isOpenOnFocus) {
         onFocus();
       }
@@ -99,23 +144,20 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     const onInputBlur = () => setFocused(false);
 
     useEffect(() => {
+      let newValue = '';
+
       if (!withPeriod) {
         if (!value) {
-          // Очищаем значение маски, если оно не задано
-          setInnerMaskedValue('');
+          newValue = '';
         } else {
-          // Добавляем отступы и разбиваем на блоки условия, чтобы лучше читать код
           if (level === LEVEL_MAPPING_ENUM.month || level === LEVEL_MAPPING_ENUM.year) {
-            // Извлекаем формат даты, основываясь на пропсе level
             const dateFormat = dateFormatByLevel[level];
-            setInnerMaskedValue(format(value, dateFormat));
+            newValue = format(value, dateFormat);
           } else if (level === LEVEL_MAPPING_ENUM.quarter) {
-            // Формируем строку для квартала
             const quarter = Math.floor((value.getMonth() + 3) / 3);
             const year = value.getFullYear();
-            setInnerMaskedValue(`${quarter} квартал ${year}`);
+            newValue = `${quarter} квартал ${year}`;
           } else {
-            // Извлекаем формат даты или времени, основываясь на настройках
             const dateFormatMask = isHideYear ? dateFormatWithoutYear : dateFormat;
             const dateTimeFormatMask = isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat;
             const dateTimeSecondsFormatMask = isHideYear ? dateTimeSecondsFormatWithoutYear : dateTimeSecondsFormat;
@@ -125,7 +167,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
             const defaultFormat = showTime ? withSecondsCondition() : dateFormatMask;
 
-            setInnerMaskedValue(format(value, defaultFormat));
+            newValue = format(value, defaultFormat);
           }
         }
       }
@@ -135,28 +177,29 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         const valueToFormatted = valueTo ? format(valueTo, dateFormatByLevel[level]) : '';
 
         if (!valueFromFormatted && !valueToFormatted) {
-          setInnerMaskedValue('');
-          return;
+          newValue = '';
+        } else {
+          const shiftFromValue = shiftFrom ?? '_';
+          const shiftToValue = shiftTo ?? '_';
+          const periodSeparator = withShift ? '/' : ' — ';
+
+          let formattedValue = `${valueFromFormatted}${periodSeparator}${valueToFormatted}`;
+
+          if (withShift) {
+            formattedValue = `${valueFromFormatted}/${shiftFromValue}${periodSeparator}${valueToFormatted}/${shiftToValue}`;
+          } else if (valueFrom && valueTo && level === LEVEL_MAPPING_ENUM.quarter) {
+            formattedValue = `${quarterFormatInput(valueFrom)}${periodSeparator}${quarterFormatInput(valueTo)}`;
+          }
+
+          newValue = formattedValue;
         }
-
-        const shiftFromValue = shiftFrom ?? '_';
-        const shiftToValue = shiftTo ?? '_';
-        const periodSeparator = withShift ? '/' : ' — ';
-
-        let formattedValue = `${valueFromFormatted}${periodSeparator}${valueToFormatted}`;
-
-        if (withShift) {
-          formattedValue = `${valueFromFormatted}/${shiftFromValue}${periodSeparator}${valueToFormatted}/${shiftToValue}`;
-        } else if (valueFrom && valueTo && level === LEVEL_MAPPING_ENUM.quarter) {
-          formattedValue = `${quarterFormatInput(valueFrom)}${periodSeparator}${quarterFormatInput(valueTo)}`;
-        }
-
-        setInnerMaskedValue(formattedValue);
       }
+
+      setInnerMaskedValue(newValue);
+      prevValueRef.current = newValue;
     }, [level, shiftFrom, shiftTo, showTime, value, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
     const mask = useMemo(() => {
-      // Форматирование значения valueFrom для использования в маске
       let valueFromFormatted = '';
 
       if (valueFrom) {
@@ -166,22 +209,17 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             : format(valueFrom, dateFormatByLevel[level]);
       }
 
-      // Маски для разных уровней даты/времени с одной датой или периодом
       const oneDateMask = periodMaskByLeveWithOneDate(locale[language].quarterTranslation)[level];
       const periodMask = periodMaskByLevel(locale[language].quarterTranslation)[level];
 
-      // Маски со временем для скрытия года
       const dateTimeMaskValue = isHideYear ? dateTimeMaskWithoutYear : dateTimeMask;
       const dateTimeSecondsMaskValue = isHideYear ? dateTimeSecondsMaskWithoutYear : dateTimeSecondsMask;
 
-      // Маски для периодов со сменой
       const periodWithShiftsMaskDefaultValue =
         shiftLength === defaultShiftLength ? periodWithShiftsMaskDefault : periodWithShiftsMaskCustom;
 
-      // Маски для периодов с внутренней маской
       const periodInnerMask = periodInnerMaskByLevel(locale[language].quarterTranslation)[level];
 
-      // Установка маски в зависимости от настроек
       if (level !== LEVEL_MAPPING_ENUM.day && !withPeriod) {
         return oneDateMask;
       }
@@ -225,6 +263,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       {
         onAccept: value => {
           setInnerMaskedValue(value);
+          prevValueRef.current = value;
         }
       }
     );
@@ -452,7 +491,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
               const [quarter, , year] = innerMaskedValue.split(' ');
               newDate = new Date(+year, quarterMonthKeys[quarter as unknown as keyof typeof quarterMonthKeys]);
             } else {
-              // Форматы со временем для скрытия года
               const formats = {
                 date: isHideYear ? dateFormatWithoutYear : dateFormat,
                 dateTime: isHideYear ? dateTimeFormatWithoutYear : dateTimeFormat,
@@ -568,14 +606,81 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       return [null, null, undefined, undefined];
     }, [innerMaskedValue, level, showTime, value, valueFrom, valueTo, withPeriod, withSeconds, withShift]);
 
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const newValue = e.target.value;
-      setInnerMaskedValue(newValue);
-    }, []);
+    const rollbackPeriodValue = useCallback(() => {
+      const emptyMask = getEmptyMask();
+      const valueFromFormatted = valueFrom ? format(valueFrom, dateFormatByLevel[level]) : '';
+      const valueToFormatted = valueTo ? format(valueTo, dateFormatByLevel[level]) : '';
 
-    const hasValue = withPeriod
-      ? Boolean(valueFrom || valueTo)
-      : Boolean(value);
+      if (valueFromFormatted || valueToFormatted) {
+        const periodSeparator = withShift ? '/' : ' — ';
+        let newValue = '';
+
+        if (withShift) {
+          const shiftFromValue = shiftFrom ?? '_';
+          const shiftToValue = shiftTo ?? '_';
+          newValue = `${valueFromFormatted}/${shiftFromValue}${periodSeparator}${valueToFormatted}/${shiftToValue}`;
+        } else if (level === LEVEL_MAPPING_ENUM.quarter) {
+          newValue = `${valueFrom ? quarterFormatInput(valueFrom) : ''}${periodSeparator}${
+            valueTo ? quarterFormatInput(valueTo) : ''
+          }`;
+        } else {
+          newValue = `${valueFromFormatted || emptyMask}${periodSeparator}${valueToFormatted || emptyMask}`;
+        }
+
+        setInnerMaskedValue(newValue);
+        prevValueRef.current = newValue;
+      } else {
+        setInnerMaskedValue('');
+        prevValueRef.current = '';
+      }
+    }, [valueFrom, valueTo, level, withShift, shiftFrom, shiftTo, getEmptyMask]);
+
+    const hasIncompleteInput = useCallback(
+      (dateParts: string[]): boolean => {
+        const emptyMask = getEmptyMask();
+        return dateParts.some(part => part && part.includes('_') && part !== emptyMask);
+      },
+      [getEmptyMask]
+    );
+
+    const handleChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const newValue = e.target.value;
+        const prevValue = prevValueRef.current;
+
+        if (withPeriod && prevValue && newValue.length < prevValue.length) {
+          let deletePos = -1;
+          for (let i = 0; i < prevValue.length; i++) {
+            if (i >= newValue.length || newValue[i] !== prevValue[i]) {
+              deletePos = i;
+              break;
+            }
+          }
+
+          if (deletePos >= 0 && deletePos < prevValue.length) {
+            const deletedChar = prevValue[deletePos];
+
+            if (/[0-9]/.test(deletedChar)) {
+              const result = prevValue.substring(0, deletePos) + '_' + prevValue.substring(deletePos + 1);
+              setInnerMaskedValue(result);
+              prevValueRef.current = result;
+
+              setTimeout(() => {
+                const input = e.target as HTMLInputElement;
+                input.setSelectionRange(deletePos, deletePos);
+              }, 0);
+              return;
+            }
+          }
+        }
+
+        setInnerMaskedValue(newValue);
+        prevValueRef.current = newValue;
+      },
+      [withPeriod]
+    );
+
+    const hasValue = withPeriod ? Boolean(valueFrom || valueTo) : Boolean(value);
 
     const shouldShowReset = reset && hasValue;
 
@@ -589,8 +694,26 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }}
         onBlur={() => {
           if (!disableChangesOnBlur) {
-            if ((!value && !withPeriod) || (!valueFrom && !valueTo && withPeriod)) {
-              setInnerMaskedValue('');
+            if (!withPeriod) {
+              if (!value) {
+                setInnerMaskedValue('');
+              }
+            } else {
+              const separator = withShift ? '/' : ' — ';
+              const dateParts = innerMaskedValue.split(separator);
+
+              if (hasIncompleteInput(dateParts)) {
+                rollbackPeriodValue();
+                if (onBlur) {
+                  onBlur(valueFrom || null, valueTo || null, shiftFrom, shiftTo);
+                }
+                onInputBlur();
+                return;
+              }
+
+              if (!valueFrom && !valueTo) {
+                setInnerMaskedValue('');
+              }
             }
           }
 
@@ -601,9 +724,27 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }}
         onKeyDown={(e: any) => {
           if (e.key === 'Tab' && onTabKeyDown) {
+            if (withPeriod) {
+              const separator = withShift ? '/' : ' — ';
+              const dateParts = innerMaskedValue.split(separator);
+
+              if (hasIncompleteInput(dateParts)) {
+                rollbackPeriodValue();
+                return;
+              }
+            }
             onTabKeyDown(...applyIfEnabled(...computeNewDate()));
           }
           if (e.key === 'Enter' && onEnterKeyDown) {
+            if (withPeriod) {
+              const separator = withShift ? '/' : ' — ';
+              const dateParts = innerMaskedValue.split(separator);
+
+              if (hasIncompleteInput(dateParts)) {
+                rollbackPeriodValue();
+                return;
+              }
+            }
             onEnterKeyDown(...applyIfEnabled(...computeNewDate()));
           }
         }}

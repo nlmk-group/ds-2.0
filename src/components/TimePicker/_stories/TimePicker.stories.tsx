@@ -361,6 +361,13 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
     setValues({ valueFrom, valueTo });
   };
 
+  const handleReset = () => {
+    setValues({ valueFrom: undefined, valueTo: undefined });
+    if (argTypes.onReset) {
+      argTypes.onReset();
+    }
+  };
+
   return (
     <TimePicker
       {...argTypes}
@@ -368,6 +375,8 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
       valueFrom={values.valueFrom}
       valueTo={values.valueTo}
       onPeriodChange={handlePeriodChange}
+      reset={true}
+      onReset={handleReset}
     />
   );
 };
@@ -387,6 +396,13 @@ export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Elem
     setValues({ valueFrom, valueTo });
   };
 
+  const handleReset = () => {
+    setValues({ valueFrom: undefined, valueTo: undefined });
+    if (argTypes.onReset) {
+      argTypes.onReset();
+    }
+  };
+
   return (
     <TimePicker
       {...argTypes}
@@ -394,6 +410,8 @@ export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Elem
       valueFrom={values.valueFrom}
       valueTo={values.valueTo}
       onPeriodChange={handlePeriodChange}
+      reset={true}
+      onReset={handleReset}
     />
   );
 };

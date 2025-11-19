@@ -1,19 +1,18 @@
 import React, { FC, useMemo, useState } from 'react';
 
+import {
+  normalizeDate,
+  useIsDisabled,
+  useIsEnd,
+  useIsMid,
+  useIsSelected,
+  useIsStart
+} from '@components/DatePicker/helpers';
 import { Day } from '@components/DatePicker/subcomponents';
 
 import { IYearsCalendarProps } from './types';
 
 import styles from './YearsCalendar.module.scss';
-
-import {
-  normalizeDateToYear,
-  useIsDisabledYear,
-  useIsEndYear,
-  useIsMidYear,
-  useIsSelectedYear,
-  useIsStartYear
-} from './helpers';
 
 export const YearsCalendar: FC<IYearsCalendarProps> = ({
   panelValue,
@@ -28,8 +27,8 @@ export const YearsCalendar: FC<IYearsCalendarProps> = ({
 }) => {
   const today = useMemo(() => new Date(), []);
   const startYear = useMemo(() => (panelValue ?? new Date()).getFullYear() - 6, [panelValue]);
-  const dateFrom = useMemo(() => valueFrom && normalizeDateToYear(valueFrom), [valueFrom]);
-  const dateTo = useMemo(() => valueTo && normalizeDateToYear(valueTo), [valueTo]);
+  const dateFrom = useMemo(() => valueFrom && normalizeDate(valueFrom, 'year'), [valueFrom]);
+  const dateTo = useMemo(() => valueTo && normalizeDate(valueTo, 'year'), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
   const currentHover = useMemo(
     () => (!valueFrom || !valueTo ? innerCurrentHover : null),
@@ -40,31 +39,44 @@ export const YearsCalendar: FC<IYearsCalendarProps> = ({
     [currentHover]
   );
 
-  const isSelectedYear = useIsSelectedYear({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo,
-    selectedDate
-  });
-  const isStartYear = useIsStartYear({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom
-  });
-  const isMidYear = useIsMidYear({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isEndYear = useIsEndYear({
-    dateCurrentHover,
-    withPeriod,
-    dateTo,
-    dateFrom
-  });
-  const isDisabled = useIsDisabledYear(enabledFrom, enabledTo);
+  const isSelectedYear = useIsSelected(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo,
+      selectedDate
+    },
+    'year'
+  );
+  const isStartYear = useIsStart(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'year'
+  );
+  const isMidYear = useIsMid(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'year'
+  );
+  const isEndYear = useIsEnd(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateTo,
+      dateFrom
+    },
+    'year'
+  );
+  const isDisabled = useIsDisabled(enabledFrom, enabledTo, 'year');
 
   return (
     <div className={styles.root}>

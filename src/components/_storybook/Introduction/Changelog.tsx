@@ -31,7 +31,9 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Обновлена версия React до 19 для улучшения производительности и новых возможностей
               </li>
-              <li className={styles['left-padding']}>- Vite обновлен до версии 7 и улучшена конфигурация сборки библиотеки</li>
+              <li className={styles['left-padding']}>
+                - Vite обновлен до версии 7 и улучшена конфигурация сборки библиотеки
+              </li>
               <li className={styles['left-padding']}>
                 - Внедрен режим Preserve Module для оптимизации tree-shaking и уменьшения размера бандла
               </li>
@@ -49,6 +51,23 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Исправлена критическая ошибка со свойством clickable, оно не работало корректно из-за CSS-стиля
                 pointer-events: none
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.26.4 - <span className={styles.date}>20.11.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: IconCombineFilled, IconCombineOutlined
               </li>
             </li>
           </ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Typography from '@components/Typography';
-import { ColorItem, ColorPalette } from '@storybook/addon-docs';
+import { ColorItem, ColorPalette } from '@storybook/addon-docs/blocks';
 import clsx from 'clsx';
 
 import styles from '../Introduction/Welcome.module.scss';

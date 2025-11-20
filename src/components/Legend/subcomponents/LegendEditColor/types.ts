@@ -7,7 +7,7 @@ export interface MenuProps {
   /**
    * divRef к которому привязать Dropdown
    */
-  divRef: RefObject<HTMLDivElement> | null;
+  divRef: RefObject<HTMLDivElement | null> | null;
   /**
    * Изменение state открытия Dropdown
    */

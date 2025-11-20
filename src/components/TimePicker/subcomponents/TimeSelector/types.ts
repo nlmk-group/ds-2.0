@@ -3,6 +3,8 @@ import { TEnabledHour } from '../../types';
 export interface ITimeSelectorProps {
   /** Выбранное время */
   selectedTime?: Date;
+  /** Выбранные части времени (для подсветки) */
+  selectedParts?: { hours?: number; minutes?: number; seconds?: number };
   /** Начальное время для первого селектора */
   initialSelectedTimeFirst?: Date;
   /** Начальное время для второго селектора */
@@ -13,6 +15,16 @@ export interface ITimeSelectorProps {
   onChangeSecond?: (date: Date) => void;
   /** Общий обработчик изменения времени */
   onChange?: (date: Date) => void;
+  /** Обработчик изменения выбранных частей */
+  onPartsChange?: (parts: { hours?: number; minutes?: number; seconds?: number }) => void;
+  /** Выбранные части времени для первого селектора периода */
+  selectedPartsFirst?: { hours?: number; minutes?: number; seconds?: number };
+  /** Выбранные части времени для второго селектора периода */
+  selectedPartsSecond?: { hours?: number; minutes?: number; seconds?: number };
+  /** Обработчик изменения выбранных частей первого селектора */
+  onPartsChangeFirst?: (parts: { hours?: number; minutes?: number; seconds?: number }) => void;
+  /** Обработчик изменения выбранных частей второго селектора */
+  onPartsChangeSecond?: (parts: { hours?: number; minutes?: number; seconds?: number }) => void;
   /** Значение времени */
   value?: Date;
   /** Внутреннее значение времени */

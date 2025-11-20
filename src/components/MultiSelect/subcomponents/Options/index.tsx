@@ -1,9 +1,10 @@
-import React, { Children, cloneElement, CSSProperties, FC, isValidElement, useMemo, useState } from 'react';
+import React, { Children, cloneElement, CSSProperties, FC, isValidElement, RefObject, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, List, OptionItem, Typography } from '@components/index';
 import { IOptionItemProps } from '@components/OptionItem/types';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 
 import { IOptionsProps } from './types';
 
@@ -42,33 +43,15 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
   } = useMultiSelectContext();
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
+  const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    modifiers: [
-      {
-        name: 'flip',
-        options: {
-          fallbackPlacements: ['top-start'],
-          rootBoundary: 'viewport',
-          flipVariations: true
-        }
-      },
-      {
-        name: 'preventOverflow',
-        options: {
-          boundary: 'clippingParents',
-          padding: 8
-        }
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4]
-        }
-      }
-    ]
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
+    whileElementsMounted: autoUpdate
   });
+
+  useFloatingReferenceSync(inputRef, popperElement, refs, setIsPositioned);
 
   const portalContainer = useMemo(() => document.getElementById(portalContainerId) as HTMLElement, [portalContainerId]);
 
@@ -83,7 +66,7 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
 
   const childrenWithProps =
     Children.map(children, (child, index) => {
-      if (isValidElement<IOptionItemProps>(child)) {
+      if (isValidElement<IOptionItemProps>(child) && typeof child.type !== 'string') {
         const label = child.props.label || (typeof child.props.children === 'string' ? child.props.children : '');
         const isSelected = selectedOptions.includes(child.props.value);
 
@@ -102,8 +85,9 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
     const baseStyles = {
       width: withPortal ? menuWidth || inputRef.current?.offsetWidth : '100%',
       maxHeight: `${optionHeight * scrollingItems + MENU_PADDING}px`,
-      ...popperStyles.popper,
-      ...menuStyle
+      ...floatingStyles,
+      ...menuStyle,
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     return baseStyles as CSSProperties;
@@ -117,13 +101,13 @@ const Options: FC<IOptionsProps> = ({ children, menuStyle }) => {
         ref={el => {
           if (!el) return;
           if (menuRef && typeof menuRef === 'object') {
-            (menuRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            (menuRef as RefObject<HTMLElement | null>).current = el;
           }
           setPopperElement(el);
         }}
         style={getMenuStyles()}
         className={styles.options}
-        {...(withPortal ? attributes.popper : {})}
+        data-popper-placement={placement}
         data-ui-multi-select-options
       >
         {showSelectAll && allOptions.length > 0 && (

@@ -1,13 +1,19 @@
 import React, { FC, useMemo, useState } from 'react';
 
-import { getCalendar } from '@components/DatePicker/helpers';
+import {
+  getCalendar,
+  useIsDisabled,
+  useIsEnd,
+  useIsMid,
+  useIsSelected,
+  useIsStart,
+  useIsToday
+} from '@components/DatePicker/helpers';
 import { Day, Weekdays } from '@components/DatePicker/subcomponents';
 
 import { ICalendarProps } from './types';
 
 import styles from './DaysCalendar.module.scss';
-
-import { useIsDaySelected, useIsDisabled, useIsEndDay, useIsMidDay, useIsStartDay, useIsToday } from './helpers';
 
 export const DaysCalendar: FC<ICalendarProps> = ({
   withTime,
@@ -22,7 +28,7 @@ export const DaysCalendar: FC<ICalendarProps> = ({
   withoutWeekdays,
   onSelect
 }) => {
-  const isToday = useIsToday();
+  const isToday = useIsToday('day');
   const dateFrom = useMemo(
     () => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth(), valueFrom.getDate()),
     [valueFrom]
@@ -43,28 +49,37 @@ export const DaysCalendar: FC<ICalendarProps> = ({
     [currentHover]
   );
 
-  const isDaySelected = useIsDaySelected({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo,
-    withTime,
-    selectedDate
-  });
-  const isStartDay = useIsStartDay({ dateCurrentHover, withPeriod, dateFrom });
-  const isMidDay = useIsMidDay({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isEndDay = useIsEndDay({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isDisabled = useIsDisabled(enabledFrom, enabledTo);
+  const isDaySelected = useIsSelected(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo,
+      withTime,
+      selectedDate
+    },
+    'day'
+  );
+  const isStartDay = useIsStart({ dateCurrentHover, withPeriod, dateFrom, dateTo }, 'day');
+  const isMidDay = useIsMid(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'day'
+  );
+  const isEndDay = useIsEnd(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'day'
+  );
+  const isDisabled = useIsDisabled(enabledFrom, enabledTo, 'day');
 
   return (
     <>

@@ -7,7 +7,7 @@ export interface IDropdownLegendProps {
   /**
    * Ref div Legend, для открытия Dropdown
    */
-  divRef: RefObject<HTMLDivElement> | null;
+  divRef: RefObject<HTMLDivElement | null> | null;
   /**
    * Изменение state открытия Dropdown
    */

@@ -9,7 +9,8 @@ import styles from '../../Legend.module.scss';
 
 import { LegendContext } from '../../context';
 import { isCustomElement } from '../../utils';
-import { LegendCustomEditColor, LegendEditColor } from '../LegendEditColor';
+import { LegendCustomEditColor } from '../LegendEditColor/LegendCustomEditColor';
+import { LegendEditColor } from '../LegendEditColor/LegendEditColor';
 import { COMPONENT_NAME, NO_EDIT_LABEL } from './constants';
 
 const LegendEdit: FC<ILegendEditProps> = ({ label }) => {

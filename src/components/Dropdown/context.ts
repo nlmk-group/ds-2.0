@@ -12,7 +12,7 @@ interface DropdownContextProps {
   /** Содержимое кнопки */
   buttonChildren?: ReactNode;
   /** Ссылка на DOM-элемент кнопки */
-  buttonRef: RefObject<HTMLButtonElement> | null;
+  buttonRef: RefObject<HTMLButtonElement | null> | null;
   /** Размер компонента */
   size?: `${EButtonSize}`;
   /** Кастомные стили меню */

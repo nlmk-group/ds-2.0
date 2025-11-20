@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Select } from '@components/index';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { sizesMappingInput } from '@components/declaration';
 
 describe('Select Component', () => {
@@ -144,7 +144,6 @@ describe('Select Component', () => {
     const leftIcon = screen.getByTestId('right-icon');
     expect(leftIcon).toBeInTheDocument();
   });
-
 
   describe('While rendering stealthy select', () => {
     test('It should render an stealthy select', () => {

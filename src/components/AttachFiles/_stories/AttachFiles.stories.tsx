@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Fragment, useState } from 'react';
 
 import { AttachFiles, File } from '@components/index';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { clsx } from 'clsx';
 
 import style from '../AttachFiles.module.scss';

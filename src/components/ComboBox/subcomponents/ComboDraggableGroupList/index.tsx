@@ -1,5 +1,8 @@
-import React, { useMemo } from 'react';
-import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+// TODO: переписать код с использованием  style guide ДС.
+import React, { useCallback, useMemo, useRef } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import { Box, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -14,6 +17,15 @@ import { InfiniteScrollTrigger, Search } from '../../subcomponents';
 import type { IGroupDraggableOption } from '../../types';
 import { reorderList } from '../../utils';
 
+const COMBO_GROUP_ITEM_TYPE = 'combo-group-item';
+
+interface DragItem {
+  id: string;
+  index: number;
+  type: string;
+  isGroup: boolean;
+}
+
 const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
   items,
   onChange,
@@ -26,7 +38,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
   isVirtualize = false,
   isInfinityLoading = false,
   infinityLoadingOptions,
-  droppableId
+  droppableId: _droppableId
 }: IComboDraggableGroupListProps<T>) => {
   const setComboValue = useSetComboBoxValue();
   const comboBoxValue = useComboBoxValue();
@@ -66,107 +78,32 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
 
   const handleMultiChange = (item: T) => {
     const option = flatOptions.find(option => option.id === item.id);
-    if (setComboValue && option) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck && previousValue) {
-          const filteredValue = previousValue.filter(value => value.id !== item.id);
-          onChange?.(filteredValue as T[]);
-          return filteredValue;
-        }
+    if (!setComboValue || !option) return;
 
-        const newValue = [...(previousValue ?? []), option];
-        onChange?.(newValue as T[]);
-        return newValue;
-      });
-    }
+    setComboValue(previousValue => {
+      const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+      if (isCheck && previousValue) {
+        const filteredValue = previousValue.filter(value => value.id !== item.id);
+        onChange?.(filteredValue as T[]);
+        return filteredValue;
+      }
+
+      const newValue = [...(previousValue ?? []), option];
+      onChange?.(newValue as T[]);
+      return newValue;
+    });
   };
 
-  const handleDragEnd = (result: DropResult, items: T[]) => {
-    if (!result.destination) {
-      return;
-    }
-    if (result.destination.index === result.source.index) {
-      return;
-    }
-    const newOrder = reorderList(items, result.source.index, result.destination.index);
-    if (items.find(item => item.isGroupLabel)) {
-      onGroupsReorder?.(newOrder);
-    } else {
-      onReorder?.(newOrder);
-    }
-  };
+  const moveItem = useCallback(
+    (dragIndex: number, hoverIndex: number, items: T[], isGroupLevel: boolean) => {
+      if (dragIndex === hoverIndex) return;
 
-  const renderItem = (item: T, index: number) => {
-    const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
-    const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
-    const isGroupLabel = item.isGroupLabel;
-
-    return (
-      <>
-        <Draggable key={item.id} draggableId={`${droppableId}-${item.id}`} index={index}>
-          {(provided, { isDragging }) => {
-            return (
-              <div
-                ref={provided.innerRef}
-                className={clsx(styles['list-item'], {
-                  [styles['list-item--active']]: isChecked,
-                  [styles['list-item--dragging']]: isDragging,
-                  [styles['list-item--group']]: isGroupLabel
-                })}
-                {...provided.draggableProps}
-              >
-                <Box
-                  gap={8}
-                  className={clsx({
-                    [styles['drag-group-label']]: isGroupLabel
-                  })}
-                >
-                  <span {...provided.dragHandleProps} className={styles['drag-indicator']}>
-                    <Icon name="IconDragIndicatorDotsOutlined24" />
-                  </span>
-                  {isGroupLabel && (
-                    <Typography className={styles['list-item__label']} variant="Caption-Medium">
-                      {item.label}
-                    </Typography>
-                  )}
-                  {!isGroupLabel && isMultiple && (
-                    <Checkbox
-                      checked={isChecked}
-                      label={item.label}
-                      onChange={() => handleMultiChange(item)}
-                      className={styles['list-item__checkbox']}
-                    />
-                  )}
-                  {!isGroupLabel && !isMultiple && (
-                    <Typography
-                      variant="Body1-Medium"
-                      className={styles['list-item__label']}
-                      onClick={() => handleChange(item)}
-                    >
-                      {item.label}
-                    </Typography>
-                  )}
-                </Box>
-                {item.items && item.items.length > 0 && (
-                  <Box gap={8}>
-                    <DroppableList items={item.items as T[]} droppableId={`${droppableId}-${item.id}`} />
-                  </Box>
-                )}
-                {isRenderInfinityLoadingAnchor && (
-                  <InfiniteScrollTrigger
-                    isVirtualize={isVirtualize}
-                    isLoading={isLoading}
-                    infinityLoadingOptions={infinityLoadingOptions}
-                  />
-                )}
-              </div>
-            );
-          }}
-        </Draggable>
-      </>
-    );
-  };
+      const newOrder = reorderList(items, dragIndex, hoverIndex);
+      (isGroupLevel ? onGroupsReorder : onReorder)?.(newOrder);
+    },
+    [onReorder, onGroupsReorder]
+  );
 
   const filteredSearchItems = useMemo(() => {
     if (!searchValue) return items;
@@ -238,30 +175,112 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
     );
   };
 
-  const DroppableList = ({ items, droppableId }: { items: T[]; droppableId: string }) => (
-    <DragDropContext onDragEnd={result => handleDragEnd(result, items)}>
-      <Droppable droppableId={droppableId}>
-        {provided => (
-          <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            className={clsx(styles['list-container'], styles['list-container--draggable-groups'])}
+  const DraggableItem = useCallback(
+    ({ item, index, items, parentId: _parentId }: { item: T; index: number; items: T[]; parentId?: string }) => {
+      const ref = useRef<HTMLDivElement>(null);
+      const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
+      const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
+      const isGroupLabel = item.isGroupLabel;
+      const isGroupLevel = items.some(i => i.isGroupLabel);
+
+      const [{ isDragging }, drag] = useDrag({
+        type: COMBO_GROUP_ITEM_TYPE,
+        item: { id: item.id, index, type: COMBO_GROUP_ITEM_TYPE, isGroup: isGroupLabel },
+        collect: monitor => ({
+          isDragging: monitor.isDragging()
+        })
+      });
+
+      const [{ isOver: _isOver }, drop] = useDrop({
+        accept: COMBO_GROUP_ITEM_TYPE,
+        hover: (draggedItem: DragItem) => {
+          if (draggedItem.index !== index) {
+            moveItem(draggedItem.index, index, items, isGroupLevel);
+            draggedItem.index = index;
+          }
+        },
+        collect: monitor => ({
+          isOver: monitor.isOver()
+        })
+      });
+
+      drag(drop(ref));
+
+      return (
+        <div
+          ref={ref}
+          className={clsx(styles['list-item'], {
+            [styles['list-item--active']]: isChecked,
+            [styles['list-item--dragging']]: isDragging,
+            [styles['list-item--group']]: isGroupLabel
+          })}
+          style={{ opacity: isDragging ? 0.5 : 1 }}
+        >
+          <Box
+            gap={8}
+            className={clsx({
+              [styles['drag-group-label']]: isGroupLabel
+            })}
           >
-            {items.map((item, index) => renderItem(item, index))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+            <span className={styles['drag-indicator']}>
+              <Icon name="IconDragIndicatorDotsOutlined24" />
+            </span>
+            {isGroupLabel && (
+              <Typography className={styles['list-item__label']} variant="Caption-Medium">
+                {item.label}
+              </Typography>
+            )}
+            {!isGroupLabel && isMultiple && (
+              <Checkbox
+                checked={isChecked}
+                label={item.label}
+                onChange={() => handleMultiChange(item)}
+                className={styles['list-item__checkbox']}
+              />
+            )}
+            {!isGroupLabel && !isMultiple && (
+              <Typography
+                variant="Body1-Medium"
+                className={styles['list-item__label']}
+                onClick={() => handleChange(item)}
+              >
+                {item.label}
+              </Typography>
+            )}
+          </Box>
+          {item.items && item.items.length > 0 && (
+            <Box gap={8}>
+              <DraggableList items={item.items as T[]} parentId={item.id} />
+            </Box>
+          )}
+          {isRenderInfinityLoadingAnchor && (
+            <InfiniteScrollTrigger
+              isVirtualize={isVirtualize}
+              isLoading={isLoading}
+              infinityLoadingOptions={infinityLoadingOptions}
+            />
+          )}
+        </div>
+      );
+    },
+    [comboBoxValue, isInfinityLoading, offsetItemLoadingId, isMultiple, handleMultiChange, handleChange, isLoading, infinityLoadingOptions, isVirtualize, moveItem]
+  );
+
+  const DraggableList = ({ items, parentId }: { items: T[]; parentId?: string }) => (
+    <div className={clsx(styles['list-container'], styles['list-container--draggable-groups'])}>
+      {items.map((item, index) => (
+        <DraggableItem key={item.id} item={item} index={index} items={items} parentId={parentId} />
+      ))}
+    </div>
   );
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
       {isCheckAll && <GroupAllItemsCheckbox items={onlyCheckableItems} onChange={onChange} />}
-      <DroppableList items={filteredSearchItems} droppableId={droppableId} />
-    </>
+      <DraggableList items={filteredSearchItems} />
+    </DndProvider>
   );
 };
 

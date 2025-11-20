@@ -50,8 +50,11 @@ const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
   const activeIndexFromProps = useMemo(() => {
     let result: number | null = null;
     Children.forEach(children, (child, index) => {
-      if (isValidElement(child) && child.props.active && result === null) {
-        result = index;
+      if (isValidElement(child)) {
+        const childProps = child.props as ISegmentButtonProps;
+        if (childProps.active && result === null) {
+          result = index;
+        }
       }
     });
     return result;
@@ -65,8 +68,10 @@ const SegmentButtonGroup: FC<ISegmentButtonGroupProps> = ({
     setChildrenWithProps(
       Children.map(children, (child, index) => {
         if (isValidElement(child)) {
+          const childProps = child.props as any;
+
           const childrenProps: ISegmentButtonProps = {
-            children: child.props.children,
+            children: childProps.children,
             buttonIndex: index,
             toggleButton: () => handleToggle(index)
           };

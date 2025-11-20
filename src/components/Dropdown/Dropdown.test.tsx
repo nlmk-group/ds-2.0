@@ -1,12 +1,20 @@
 import React, { ButtonHTMLAttributes, ClassAttributes, ReactNode } from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, fireEvent, screen } from '@testing-library/react';
 import Dropdown from './index';
 
 jest.mock(
   '@components/Button',
   () => {
-    const MockButton = (props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement>) =>
-      <button {...props} />;
+    const MockButton = (props: JSX.IntrinsicAttributes & ClassAttributes<HTMLButtonElement> & ButtonHTMLAttributes<HTMLButtonElement> & {
+      startIcon?: React.ReactNode;
+      endIcon?: React.ReactNode;
+      startBadge?: string | number;
+      endBadge?: string | number;
+      iconButton?: React.ReactNode;
+    }) => {
+      const { startIcon: _startIcon, endIcon: _endIcon, startBadge: _startBadge, endBadge: _endBadge, iconButton: _iconButton, ...buttonProps } = props;
+      return <button {...buttonProps} />;
+    };
     MockButton.displayName = 'MockButton';
     return MockButton;
   }

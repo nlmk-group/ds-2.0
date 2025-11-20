@@ -17,39 +17,78 @@ const TimePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
   const timepickerDefaultCode = `import { TimePicker } from '@nlmk/ds-2.0';
+import { useState } from 'react';
 
-const App = () => (
-  <TimePicker
-    value={new Date()}
-    onChange={(newTime) => console.log(newTime)}
-  />
-);
+const App = () => {
+  const [time, setTime] = useState<Date | undefined>(new Date());
+
+  return (
+    <TimePicker
+      value={time}
+      onChange={setTime}
+      reset={true}
+      onReset={() => setTime(undefined)}
+    />
+  );
+};
 
 export default App;
 `;
 
   const timepickerWithLabelCode = `import { TimePicker } from '@nlmk/ds-2.0';
+import { useState } from 'react';
 
-const App = () => (
-  <TimePicker
-    label="Время"
-    value={new Date()}
-    onChange={(newTime) => console.log(newTime)}
-  />
-);
+const App = () => {
+  const [time, setTime] = useState<Date | undefined>(new Date());
+
+  return (
+    <TimePicker
+      label="Время"
+      value={time}
+      onChange={setTime}
+    />
+  );
+};
 
 export default App;
 `;
 
   const timepickerDisabledCode = `import { TimePicker } from '@nlmk/ds-2.0';
+import { useState } from 'react';
 
-const App = () => (
-  <TimePicker
-    disabled
-    value={new Date()}
-    onChange={(newTime) => console.log(newTime)}
-  />
-);
+const App = () => {
+  const [time, setTime] = useState<Date | undefined>(new Date());
+
+  return (
+    <TimePicker
+      disabled
+      value={time}
+      onChange={setTime}
+    />
+  );
+};
+
+export default App;
+`;
+
+  const timepickerWithPortalCode = `import { TimePicker } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const App = () => {
+  const [time, setTime] = useState<Date | undefined>(new Date());
+
+  return (
+    <div style={{ overflow: 'hidden', height: '200px' }}>
+      {/* withPortal предотвращает обрезку выпадающей панели */}
+      <TimePicker
+        value={time}
+        onChange={setTime}
+        withPortal={true}
+        label="Время (с порталом)"
+      />
+    </div>
+  );
+};
 
 export default App;
 `;
@@ -58,7 +97,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="TimePicker"
-        description="TimePicker позволяет пользователям выбирать время или период времени. Поддерживает различные форматы и диапазоны времени."
+        description="TimePicker позволяет пользователям выбирать время или период времени. Использует двухуровневую валидацию (IMask + onBlur) для предотвращения ввода невалидных значений (например, 12:95). Поддерживает различные форматы и диапазоны времени."
         isStable
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
@@ -75,15 +114,24 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={250}
-            description="Основной TimePicker. Позволяет выбирать время."
+            height={300}
+            description="Основной TimePicker с кнопкой сброса. Использует controlled подход - требует внешний state и обработчик onReset."
             code={timepickerDefaultCode}
           />
-          <Editor height={250} description="TimePicker с лейблом." code={timepickerWithLabelCode} />
           <Editor
-            height={250}
+            height={300}
+            description="TimePicker с лейблом. IMask автоматически блокирует ввод невалидных значений (например, 25:30 или 12:95)."
+            code={timepickerWithLabelCode}
+          />
+          <Editor
+            height={300}
             description="Отключенный TimePicker. Не доступен для взаимодействия."
             code={timepickerDisabledCode}
+          />
+          <Editor
+            height={300}
+            description="TimePicker с withPortal={true}. Критично для использования в таблицах или контейнерах с overflow:hidden."
+            code={timepickerWithPortalCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

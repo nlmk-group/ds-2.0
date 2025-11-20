@@ -84,25 +84,25 @@ const ComboGroupList = <T extends IComboBoxGroupOption>({
     const flatList: IListItem[] = [];
 
     groupsMap.forEach(group => {
-      if (group.shouldShow) {
-        flatList.push({
-          id: group.id,
-          label: group.label,
-          isGroupLabel: true,
-          _key: createStableKey(group.id, true, searchValue || '')
-        });
+      if (!group.shouldShow) return;
 
-        group.filteredItems.forEach(item => {
-          flatList.push({
-            ...item,
-            id: item.id,
-            idMdm: item.idMdm || item.id,
-            label: item.label || item.name || item.shortName || '',
-            isGroupLabel: false,
-            _key: createStableKey(item.id, false, searchValue || '')
-          });
+      flatList.push({
+        id: group.id,
+        label: group.label,
+        isGroupLabel: true,
+        _key: createStableKey(group.id, true, searchValue || '')
+      });
+
+      group.filteredItems.forEach(item => {
+        flatList.push({
+          ...item,
+          id: item.id,
+          idMdm: item.idMdm || item.id,
+          label: item.label || item.name || item.shortName || '',
+          isGroupLabel: false,
+          _key: createStableKey(item.id, false, searchValue || '')
         });
-      }
+      });
     });
 
     return flatList;
@@ -117,17 +117,17 @@ const ComboGroupList = <T extends IComboBoxGroupOption>({
       if (item.isGroupLabel) return;
 
       const option = items.find(option => option.id === item.id);
-      if (setComboValue && option) {
-        setComboValue(previousValue => {
-          const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-          if (isCheck) {
-            onChange?.([]);
-            return [];
-          }
-          onChange?.([option]);
-          return [option];
-        });
-      }
+      if (!setComboValue || !option) return;
+
+      setComboValue(previousValue => {
+        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+        if (isCheck) {
+          onChange?.([]);
+          return [];
+        }
+        onChange?.([option]);
+        return [option];
+      });
     },
     [items, onChange, setComboValue]
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '@components/Accordion/enums';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import AccordionItem from '.';
 

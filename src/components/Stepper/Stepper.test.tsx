@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Stepper } from '@components/index';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import { EStepState } from './subcomponents/Step/enums';
 

@@ -1,9 +1,10 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, FC, RefObject, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IAutocompleteDropdownProps } from './types';
@@ -41,7 +42,16 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
   } = useContext(AutocompleteContext);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
+
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
+    whileElementsMounted: autoUpdate
+  });
+
+  useFloatingReferenceSync(inputRef, popperElement, refs, setIsPositioned);
 
   useEffect(() => {
     if (highlightedIndex < 0) return;
@@ -55,36 +65,12 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
 
   if (!isOpen) return null;
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef.current, popperElement, {
-    placement: 'bottom-start',
-    modifiers: [
-      {
-        name: 'preventOverflow',
-        options: {
-          padding: 8,
-          boundary: 'clippingParents'
-        }
-      },
-      {
-        name: 'flip',
-        options: {
-          fallbackPlacements: ['top-start']
-        }
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4]
-        }
-      }
-    ]
-  });
-
   const rect = inputRef?.current?.getBoundingClientRect();
-  const getMenuStyles = () => {
-    const baseStyles = {
+  const getMenuStyles = (): CSSProperties => {
+    const baseStyles: CSSProperties = {
       width: rect?.width,
-      ...popperStyles.popper
+      ...floatingStyles,
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     return baseStyles;
@@ -99,13 +85,13 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
           if (!el) return;
 
           if (wrapperRef && typeof wrapperRef === 'object') {
-            (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            (wrapperRef as RefObject<HTMLElement | null>).current = el;
           }
           setPopperElement(el);
         }}
         className={clsx(styles.card, className)}
         style={{ ...getMenuStyles(), ...style }}
-        {...(withPortal ? attributes.popper : {})}
+        data-popper-placement={placement}
         data-ui-autocomplete-dropdown
       >
         {!isLoading && (
@@ -165,7 +151,13 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
             ) : (
               showEmptyDropdown && (
                 <Box flexDirection="column" data-ui-autocomplete-empty>
-                  <Box gap={8} flexDirection="row" className={styles['not-found-item']} alignItems="center" data-ui-autocomplete-no-results>
+                  <Box
+                    gap={8}
+                    flexDirection="row"
+                    className={styles['not-found-item']}
+                    alignItems="center"
+                    data-ui-autocomplete-no-results
+                  >
                     <Icon color="error" name="IconCancelOutlined16" containerSize={16} />
                     <Typography variant="Body1-Medium" color="var(--steel-90)">
                       {noResultsText ?? 'Ничего не найдено'}
@@ -191,7 +183,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         <div
           ref={el => {
             if (el && targetRef && typeof targetRef === 'object') {
-              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
+              (targetRef as RefObject<HTMLElement | null>).current = el;
             }
           }}
         />

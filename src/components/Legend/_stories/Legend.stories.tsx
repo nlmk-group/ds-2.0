@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Icon, IconRollFilled24, Typography } from '@components/index';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import styles from './Legend.module.scss';
 

@@ -27,7 +27,7 @@ export const getTime = (currentDate: Date): string => {
 
 const DateTime = (): JSX.Element => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const refTimer = useRef<NodeJS.Timeout>();
+  const refTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     refTimer.current = setInterval(() => setCurrentDate(new Date()), 60000);

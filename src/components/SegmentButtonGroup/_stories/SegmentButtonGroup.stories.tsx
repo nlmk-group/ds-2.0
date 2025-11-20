@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 
 import { Box, Button, SegmentButton, SegmentButtonGroup, Typography } from '@components/index';
-import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import styles from '@components/_storybook/styles.module.scss';
@@ -22,17 +21,17 @@ export default {
 export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
     <SegmentButtonGroup {...argTypes}>
-      <SegmentButton onClick={action('onClick')}>
+      <SegmentButton onClick={() => {}}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Сталь
         </Typography>
       </SegmentButton>
-      <SegmentButton onClick={action('onClick')}>
+      <SegmentButton onClick={() => {}}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Цинк
         </Typography>
       </SegmentButton>
-      <SegmentButton onClick={action('onClick')}>
+      <SegmentButton onClick={() => {}}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Чугун
         </Typography>
@@ -53,17 +52,17 @@ export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupPr
           </Typography>
 
           <SegmentButtonGroup size={size} {...argTypes}>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
                 Сталь
               </Typography>
             </SegmentButton>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
                 Цинк
               </Typography>
             </SegmentButton>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Bold" color="var(--steel-90)">
                 Чугун
               </Typography>
@@ -71,17 +70,17 @@ export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupPr
           </SegmentButtonGroup>
 
           <SegmentButtonGroup size={size} {...argTypes}>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
                 Сталь
               </Typography>
             </SegmentButton>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
                 Цинк
               </Typography>
             </SegmentButton>
-            <SegmentButton onClick={action('onClick')}>
+            <SegmentButton onClick={() => {}}>
               <Typography variant="Body1-Medium" color="var(--steel-90)">
                 Чугун
               </Typography>
@@ -106,17 +105,17 @@ export const SegmentButtonGroupWithDefaultActive = (): ReactNode => {
           Первая кнопка активна по умолчанию
         </Typography>
         <SegmentButtonGroup>
-          <SegmentButton active onClick={action('Сталь clicked')}>
+          <SegmentButton active onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Цинк clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Чугун clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>
@@ -129,17 +128,17 @@ export const SegmentButtonGroupWithDefaultActive = (): ReactNode => {
           Средняя кнопка активна по умолчанию
         </Typography>
         <SegmentButtonGroup>
-          <SegmentButton onClick={action('Сталь clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton active onClick={action('Цинк clicked')}>
+          <SegmentButton active onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Чугун clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>
@@ -152,17 +151,17 @@ export const SegmentButtonGroupWithDefaultActive = (): ReactNode => {
           Последняя кнопка активна по умолчанию
         </Typography>
         <SegmentButtonGroup>
-          <SegmentButton onClick={action('Сталь clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Цинк clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton active onClick={action('Чугун clicked')}>
+          <SegmentButton active onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>
@@ -186,17 +185,17 @@ export const SegmentButtonGroupDisabled = (): ReactNode => {
           Вся группа отключена
         </Typography>
         <SegmentButtonGroup disabled>
-          <SegmentButton onClick={action('Сталь clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Цинк clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Чугун clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>
@@ -209,17 +208,17 @@ export const SegmentButtonGroupDisabled = (): ReactNode => {
           Отдельные кнопки отключены
         </Typography>
         <SegmentButtonGroup>
-          <SegmentButton onClick={action('Сталь clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton disabled onClick={action('Цинк clicked')}>
+          <SegmentButton disabled onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк (отключено)
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Чугун clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>
@@ -232,17 +231,17 @@ export const SegmentButtonGroupDisabled = (): ReactNode => {
           Комбинация: активная по умолчанию + отключена одна кнопка
         </Typography>
         <SegmentButtonGroup>
-          <SegmentButton active onClick={action('Сталь clicked')}>
+          <SegmentButton active onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton onClick={action('Цинк clicked')}>
+          <SegmentButton onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton disabled onClick={action('Чугун clicked')}>
+          <SegmentButton disabled onClick={() => {}}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун (отключено)
             </Typography>
@@ -272,35 +271,17 @@ export const SegmentButtonGroupControlled = (): ReactNode => {
         </Typography>
 
         <SegmentButtonGroup>
-          <SegmentButton
-            active={activeButton === 'steel'}
-            onClick={() => {
-              setActiveButton('steel');
-              action('Сталь clicked')();
-            }}
-          >
+          <SegmentButton active={activeButton === 'steel'} onClick={() => setActiveButton('steel')}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Сталь
             </Typography>
           </SegmentButton>
-          <SegmentButton
-            active={activeButton === 'zinc'}
-            onClick={() => {
-              setActiveButton('zinc');
-              action('Цинк clicked')();
-            }}
-          >
+          <SegmentButton active={activeButton === 'zinc'} onClick={() => setActiveButton('zinc')}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Цинк
             </Typography>
           </SegmentButton>
-          <SegmentButton
-            active={activeButton === 'iron'}
-            onClick={() => {
-              setActiveButton('iron');
-              action('Чугун clicked')();
-            }}
-          >
+          <SegmentButton active={activeButton === 'iron'} onClick={() => setActiveButton('iron')}>
             <Typography variant="Body1-Bold" color="var(--steel-90)">
               Чугун
             </Typography>

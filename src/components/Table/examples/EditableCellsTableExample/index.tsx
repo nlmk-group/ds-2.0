@@ -122,7 +122,7 @@ const EditableCellsTableExample = () => {
   });
 
   return (
-    <>
+    <Box maxWidth="1024px" flexDirection="column">
       <Box gap={16} style={{ marginBottom: '16px' }}>
         <Typography variant="Heading4" color="var(--steel-90)">
           Таблица с интерактивными элементами ввода
@@ -216,7 +216,7 @@ const EditableCellsTableExample = () => {
           </Tbody>
         </Table>
       </div>
-    </>
+    </Box>
   );
 };
 

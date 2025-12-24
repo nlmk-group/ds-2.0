@@ -184,7 +184,7 @@ export interface IMenuItemProps extends PropsWithChildren {
   /**
    * Иконка элемента меню.
    */
-  icon: TIconName;
+  icon?: TIconName | ReactNode;
 
   /**
    * Функция обработки клика по элементу меню.

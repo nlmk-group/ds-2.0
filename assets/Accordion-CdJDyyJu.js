@@ -1,0 +1,115 @@
+import{j as t}from"./jsx-runtime-BTJTZTIL.js";import{useMDXComponents as p}from"./index-D2yTtfOz.js";import"./index-DG7FY6lx.js";import{DecoratorDefault as l}from"./Decorator.stories-D7iJJ_iz.js";import{b as u,E as x,a as f,A}from"./generateUUID-CpKhmTry.js";import{r as j}from"./index-BcJSXhQi.js";import{s as m,H as b,E as e}from"./Header-DhwBuQVQ.js";import{F as L}from"./FigmaEmbed--kL_A2fK.js";import{P as v}from"./Properties-rSfIy85H.js";import{T as E}from"./Tests-B6X2FKmr.js";/* empty css               */import{ah as r}from"./TreeList-BIo8dH0F.js";import"./index-CzNzGEue.js";import"./index-WHoiTdKD.js";import"./index-D-jyRV5V.js";import"./index-D8WlRtvM.js";import"./index-DmffzHLE.js";import"./index-CaDFz05s.js";import"./index-VmJK6twV.js";import"./index-DxgC_uyg.js";import"./index-BZ5zMSTm.js";import"./index-C5rKoyII.js";import"./32-icvDJE6i.js";import{a as g}from"./argsTypes-DpooK_Kk.js";import{c as h,S as y,U as k}from"./DocsRenderer-CFRXHY34-LFjC-byd.js";import"./index-ChsGqxH_.js";import"./preview-CZLVd0OK.js";import"./iframe-C5vBzuxd.js";import"./clsx-B-dksMZM.js";import"./types-CpBSVUgC.js";import"./.jest-test-results-Pec5pZpL.js";import"./index-BevFGyV5.js";import"./index-DdXvKv-Q.js";import"./tiny-invariant-CopsF_GD.js";import"./index-CRm92gKC.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";import"./client-DQNj1uEJ.js";const n="Accordion",c="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=451-9601&t=HhCDuaOuzHu5rgyf-1",I=()=>{const[i,o]=j.useState(0),s=d=>i===d;return t.jsxs("div",{className:m.wrapper,children:[t.jsx(b,{title:n,description:`Компонент "аккордеон" предоставляет большие объемы контента в ограниченном пространстве с помощью пошагового раскрытия. Заголовок обеспечивает пользователю общий обзор содержимого, позволяя решить, какие разделы читать.
+
+        Аккордеоны могут сделать обработку информации и поиск более эффективными. Однако они скрывают контент от пользователей, и важно учесть, что пользователь может не заметить или не прочитать весь включенный контент. Если пользователь, вероятно, должен прочесть весь контент, не используйте аккордеон, так как это добавляет дополнительный клик; вместо этого используйте полноценную прокручиваемую страницу с обычными заголовками.`,isStable:!0,codeLink:`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${n}`,figmaLink:c}),t.jsx("div",{className:m.tabs,children:t.jsxs(r,{children:[t.jsx(r.Tab,{label:"Разработчику",active:s(0),onClick:()=>o(0)}),t.jsx(r.Tab,{label:"Дизайнеру",active:s(1),onClick:()=>o(1)}),t.jsx(r.Tab,{label:"Тестирование",active:s(2),onClick:()=>o(2)})]})}),i==0&&t.jsxs(t.Fragment,{children:[t.jsx(e,{description:"Аккордеон по умолчанию",code:`import { Accordion } from '@nlmk/ds-2.0';
+
+const items = [
+    {
+      id: 1,
+      title: 'First accordion item',
+      content: 'Lorem ipsum',
+      initiallyExpanded: true
+    },
+    {
+      id: 2,
+      title: '2nd accordion item',
+      content: 'Lorem ipsum'
+    },
+    {
+      id: 3,
+      title: 'Last accordion item',
+      content: 'Lorem ipsum'
+    }
+  ]
+
+export default App = () => (
+  <Accordion items={items} />
+)
+              `}),t.jsx(e,{description:`Варианты размеров аккордеона: ${Object.values(u).join(" | ")}`,code:`import { Accordion } from '@nlmk/ds-2.0';
+
+const items = [
+  {
+    id: 1,
+    title: 'First accordion item',
+    content: 'Lorem ipsum',
+    initiallyExpanded: true
+  },
+  {
+    id: 2,
+    title: '2nd accordion item',
+    content: 'Lorem ipsum'
+  },
+  {
+    id: 3,
+    title: 'Last accordion item',
+    content: 'Lorem ipsum'
+  }
+]
+
+export default App = () => (
+  <>
+  <Accordion size="m" items={items} />
+  <Accordion size="s" items={items} />
+  <Accordion size="xs" items={items} />
+  </>
+)
+              `}),t.jsx(e,{description:`Варианты иконок аккордеона: ${Object.values(x).join(" | ")}`,code:`import { Accordion } from '@nlmk/ds-2.0';
+
+const items = [
+  {
+    id: 1,
+    title: 'First accordion item',
+    content: 'Lorem ipsum',
+    initiallyExpanded: true
+  },
+  {
+    id: 2,
+    title: '2nd accordion item',
+    content: 'Lorem ipsum'
+  },
+  {
+    id: 3,
+    title: 'Last accordion item',
+    content: 'Lorem ipsum'
+  }
+]
+
+export default App = () => (
+  <>
+  <Accordion startIcon="arrow" items={items} />
+  <Accordion startIcon="plus" items={items} />
+  <Accordion startIcon={null} endIcon="arrow" items={items} />
+  <Accordion startIcon={null} endIcon="plus" items={items} />
+  </>
+)
+              `}),t.jsx(e,{description:`Цветовые варианты аккордеона: ${Object.values(f).join(" | ")}`,code:`import { Accordion } from '@nlmk/ds-2.0';
+
+const items = [
+  {
+    id: 1,
+    title: 'First accordion item',
+    content: 'Lorem ipsum',
+    initiallyExpanded: true
+  },
+  {
+    id: 2,
+    title: '2nd accordion item',
+    content: 'Lorem ipsum'
+  },
+  {
+    id: 3,
+    title: 'Last accordion item',
+    content: 'Lorem ipsum'
+  }
+]
+
+export default App = () => (
+  <>
+  <Accordion variant="default" items={items} />
+  <Accordion variant="paper" items={items} />
+  <Accordion variant="default" items={items} disabled />
+  <Accordion variant="paper" items={items} disabled />
+  </>
+)
+              `}),t.jsx(v,{argsTypes:g})]}),i==1&&t.jsx(L,{url:c}),i==2&&t.jsx(E,{componentName:n})]})};function a(i){return t.jsxs(t.Fragment,{children:[t.jsx(h,{title:"Components/Accordion/Info",component:A,parameters:{design:{type:"figma",url:"https://www.figma.com/file/cApCjzPxrt7tpXhNjyxSlR/DS2.0-accordion?node-id=1110%3A23815&mode=dev"},jest:["Accordion.test.tsx"]}}),`
+`,t.jsx(y,{of:l}),`
+`,t.jsx(k,{children:t.jsx(I,{})})]})}function pt(i={}){const{wrapper:o}={...p(),...i.components};return o?t.jsx(o,{...i,children:t.jsx(a,{...i})}):a()}export{pt as default};

@@ -16,12 +16,12 @@ export const CustomIcon = () => {
 
 export const SideBarExample = () => {
   return (
-    <Sidebar onOpenUser={() => {}} overlay currentPath={''} isLoggedIn={true} userName={'Mike'} userSurname={'S'}>
+    <Sidebar overlay currentPath="" isLoggedIn={true} userName="Mike" userSurname="S.">
       <Sidebar.MenuItem
         label="Пункт меню"
         icon={<CustomIcon />}
-        path={''}
-        key={'SideBarExampleKey'}
+        path=""
+        key="SideBarExampleKey"
         position="top"
         onClick={() => null}
       />

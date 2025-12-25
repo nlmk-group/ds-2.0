@@ -1,8 +1,6 @@
 import React, { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { SideBarExample } from './components/Sidebar/examples';
-
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
@@ -19,7 +17,6 @@ const options = [
 root.render(
   <StrictMode>
     <div className="development-block" style={{ height: 200 }}>
-      <SideBarExample />
     </div>
   </StrictMode>
 );

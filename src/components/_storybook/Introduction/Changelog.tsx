@@ -57,6 +57,24 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.26.5 - <span className={styles.date}>25.12.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                MenuItem
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Расширен тип для иконки элемента меню. Теперь можно передавать не только строку (название иконки), но
+                и JSX-элемент.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.26.4 - <span className={styles.date}>20.11.25</span>
           </Typography>
           <ul className={styles.list}>

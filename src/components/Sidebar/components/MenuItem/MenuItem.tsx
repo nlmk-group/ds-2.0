@@ -10,7 +10,7 @@ import React, {
   useRef
 } from 'react';
 
-import { Icon, Typography } from '@components/index';
+import { Icon, TIconName, Typography } from '@components/index';
 import { SidebarProperties } from '@components/Sidebar/context';
 import { ESidebarOrientationMapping } from '@components/Sidebar/enums';
 import { IMenuItemProps, ISidebarProperties, ISubmenuItemProps } from '@components/Sidebar/types';
@@ -96,7 +96,14 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
       title={label}
       data-ui-sidebar-menu-item
     >
-      <Icon name={icon} containerSize={32} htmlColor={!disabled ? 'var(--unique-white)' : 'var(--steel-60)'} />
+      {typeof icon === 'string' && (
+        <Icon
+          name={icon as TIconName}
+          containerSize={32}
+          htmlColor={!disabled ? 'var(--unique-white)' : 'var(--steel-60)'}
+        />
+      )}
+      {isValidElement(icon) && icon}
       {isExpanded && (
         <div className={styles.expanded}>
           <Typography

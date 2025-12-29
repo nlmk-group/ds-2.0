@@ -184,6 +184,7 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
         const cursorStart = input.selectionStart || 0;
         const cursorEnd = input.selectionEnd || 0;
 
+        // Полное выделение всего текста
         if (cursorStart === 0 && cursorEnd === innerMaskedValue.length) {
           e.preventDefault();
 
@@ -202,6 +203,28 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
             setTimeout(() => {
               input.setSelectionRange(0, 0);
             }, 0);
+          }
+          return;
+        }
+
+        // Частичное выделение в режиме периода - заменяем выделенные цифры на подчеркивания
+        if (withPeriod && cursorStart < cursorEnd) {
+          e.preventDefault();
+          
+          const selectedText = innerMaskedValue.substring(cursorStart, cursorEnd);
+          const hasDigits = /\d/.test(selectedText);
+          
+          if (hasDigits) {
+            // Заменяем выделенные цифры на подчеркивания, сохраняя структуру
+            let newValue = innerMaskedValue;
+            for (let i = cursorStart; i < cursorEnd; i++) {
+              if (/\d/.test(newValue[i])) {
+                newValue = newValue.substring(0, i) + '_' + newValue.substring(i + 1);
+              }
+            }
+            
+            setInnerMaskedValue(newValue);
+            cursorPosRef.current = cursorStart;
           }
           return;
         }

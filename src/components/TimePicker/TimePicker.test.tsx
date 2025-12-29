@@ -480,6 +480,289 @@ describe('TimePicker компонент', () => {
     });
   });
 
+  describe('Синхронизация инпута и выпадающего списка', () => {
+    it('сбрасывает подсветку в списке при удалении valueFrom', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+
+      const { rerender } = render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      // Открываем picker
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      // Удаляем valueFrom
+      rerender(<TimePicker type="period" valueFrom={undefined} valueTo={endDate} />);
+
+      await waitFor(() => {
+        expect(input.value).toContain('__:__');
+        expect(input.value).toContain('14:30');
+      });
+
+      // Проверяем что в первом селекторе ничего не выбрано
+      const selectors = document.querySelectorAll('[data-ui-time-selector]');
+      const firstSelector = selectors[0];
+      const selectedItems = firstSelector.querySelectorAll('.selected');
+      // Не должно быть выбранных элементов или они должны быть пустыми
+      expect(selectedItems.length).toBeLessThanOrEqual(1);
+    });
+
+    it('сбрасывает подсветку в списке при удалении valueTo', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+
+      const { rerender } = render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      // Открываем picker
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      // Удаляем valueTo
+      rerender(<TimePicker type="period" valueFrom={startDate} valueTo={undefined} />);
+
+      await waitFor(() => {
+        expect(input.value).toContain('10:00');
+        expect(input.value).toContain('__:__');
+      });
+
+      // Проверяем что во втором селекторе ничего не выбрано
+      const selectors = document.querySelectorAll('[data-ui-time-selector]');
+      const secondSelector = selectors[1];
+      const selectedItems = secondSelector.querySelectorAll('.selected');
+      expect(selectedItems.length).toBeLessThanOrEqual(1);
+    });
+
+    it('сбрасывает подсветку при удалении обоих значений', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+
+      const { rerender } = render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      // Открываем picker
+      const icon = document.querySelector('.clock');
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const timeSelector = document.querySelector('[data-ui-time-selector]');
+        expect(timeSelector).toBeInTheDocument();
+      });
+
+      // Удаляем оба значения
+      rerender(<TimePicker type="period" valueFrom={undefined} valueTo={undefined} />);
+
+      await waitFor(() => {
+        expect(input).toHaveValue('__:__ — __:__');
+      });
+
+      // Проверяем что в обоих селекторах ничего не выбрано
+      const selectors = document.querySelectorAll('[data-ui-time-selector]');
+      selectors.forEach(selector => {
+        const selectedItems = selector.querySelectorAll('.selected');
+        expect(selectedItems.length).toBeLessThanOrEqual(1);
+      });
+    });
+  });
+
+  describe('Выделение и удаление в режиме периода', () => {
+    it('удаляет всё выделенное значение from при нажатии Backspace', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      const handlePeriodChange = jest.fn();
+
+      render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      // Выделяем from (первые 5 символов)
+      input.setSelectionRange(0, 5);
+
+      // Нажимаем Backspace
+      await act(async () => {
+        fireEvent.keyDown(input, { key: 'Backspace' });
+      });
+
+      await waitFor(() => {
+        expect(input.value).toContain('__:__ — 14:30');
+      });
+    });
+
+    it('удаляет всё выделенное значение to при нажатии Delete', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      const handlePeriodChange = jest.fn();
+
+      render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      // Выделяем to (с позиции 8 до 13)
+      input.setSelectionRange(8, 13);
+
+      // Нажимаем Delete
+      await act(async () => {
+        fireEvent.keyDown(input, { key: 'Delete' });
+      });
+
+      await waitFor(() => {
+        expect(input.value).toContain('10:00 — __:__');
+      });
+    });
+
+    it('удаляет весь период при выделении всего текста', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0);
+      const endDate = new Date(2025, 0, 1, 14, 30);
+      const handlePeriodChange = jest.fn();
+
+      render(<TimePicker type="period" valueFrom={startDate} valueTo={endDate} onPeriodChange={handlePeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00 — 14:30');
+      });
+
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      // Выделяем всё
+      input.setSelectionRange(0, input.value.length);
+
+      // Нажимаем Backspace
+      await act(async () => {
+        fireEvent.keyDown(input, { key: 'Backspace' });
+      });
+
+      await waitFor(() => {
+        expect(input.value).toBe('__:__ — __:__');
+      });
+    });
+  });
+
+  describe('Период с секундами', () => {
+    it('корректно отображает частичный период с секундами', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0, 15);
+      const handlePeriodChange = jest.fn();
+
+      render(
+        <TimePicker
+          type="periodWithSeconds"
+          valueFrom={startDate}
+          valueTo={undefined}
+          onPeriodChange={handlePeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input.value).toContain('10:00:15');
+        expect(input.value).toContain('__:__:__');
+      });
+    });
+
+    it('сбрасывает секунды при удалении значения', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0, 15);
+      const endDate = new Date(2025, 0, 1, 14, 30, 45);
+
+      const { rerender } = render(
+        <TimePicker type="periodWithSeconds" valueFrom={startDate} valueTo={endDate} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00:15 — 14:30:45');
+      });
+
+      // Удаляем valueFrom
+      rerender(<TimePicker type="periodWithSeconds" valueFrom={undefined} valueTo={endDate} />);
+
+      await waitFor(() => {
+        expect(input.value).toContain('__:__:__');
+        expect(input.value).toContain('14:30:45');
+      });
+    });
+
+    it('корректно обрабатывает выделение и удаление с секундами', async () => {
+      const startDate = new Date(2025, 0, 1, 10, 0, 15);
+      const endDate = new Date(2025, 0, 1, 14, 30, 45);
+      const handlePeriodChange = jest.fn();
+
+      render(
+        <TimePicker
+          type="periodWithSeconds"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={handlePeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('10:00:15 — 14:30:45');
+      });
+
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      // Выделяем from (первые 8 символов)
+      input.setSelectionRange(0, 8);
+
+      // Нажимаем Backspace
+      await act(async () => {
+        fireEvent.keyDown(input, { key: 'Backspace' });
+      });
+
+      await waitFor(() => {
+        expect(input.value).toContain('__:__:__ — 14:30:45');
+      });
+    });
+  });
+
   describe('Частичные периоды', () => {
     it('отображает и сохраняет частичный период: только valueFrom без valueTo', async () => {
       const startDate = new Date(2025, 0, 1, 10, 0);

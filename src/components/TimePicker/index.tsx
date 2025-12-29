@@ -86,20 +86,28 @@ const TimePicker: FC<TTimePickerType> = ({
   const [selectedTimeFirst, setSelectedTimeFirst] = useState<Date | undefined>(outerValueFrom);
   const [selectedTimeSecond, setSelectedTimeSecond] = useState<Date | undefined>(outerValueTo);
 
-  const [selectedPartsFirst, setSelectedPartsFirst] = useState<{ hours?: number; minutes?: number; seconds?: number }>({
-    hours: outerValueFrom?.getHours(),
-    minutes: outerValueFrom?.getMinutes(),
-    seconds: outerValueFrom?.getSeconds()
-  });
+  const [selectedPartsFirst, setSelectedPartsFirst] = useState<{ hours?: number; minutes?: number; seconds?: number }>(
+    outerValueFrom
+      ? {
+          hours: outerValueFrom.getHours(),
+          minutes: outerValueFrom.getMinutes(),
+          seconds: outerValueFrom.getSeconds()
+        }
+      : { hours: undefined, minutes: undefined, seconds: undefined }
+  );
   const [selectedPartsSecond, setSelectedPartsSecond] = useState<{
     hours?: number;
     minutes?: number;
     seconds?: number;
-  }>({
-    hours: outerValueTo?.getHours(),
-    minutes: outerValueTo?.getMinutes(),
-    seconds: outerValueTo?.getSeconds()
-  });
+  }>(
+    outerValueTo
+      ? {
+          hours: outerValueTo.getHours(),
+          minutes: outerValueTo.getMinutes(),
+          seconds: outerValueTo.getSeconds()
+        }
+      : { hours: undefined, minutes: undefined, seconds: undefined }
+  );
 
   const { onChange: innerOnPeriodChange } = useUpdatedValues<TDateValues>(
     useMemo(() => ({ valueFrom: outerValueFrom, valueTo: outerValueTo }), [outerValueFrom, outerValueTo]),
@@ -135,21 +143,52 @@ const TimePicker: FC<TTimePickerType> = ({
       setSelectedTimeFirst(outerValueFrom);
       setSelectedTimeSecond(outerValueTo);
 
-      const newPartsFirst = {
-        hours: outerValueFrom?.getHours(),
-        minutes: outerValueFrom?.getMinutes(),
-        seconds: outerValueFrom?.getSeconds()
-      };
-      const newPartsSecond = {
-        hours: outerValueTo?.getHours(),
-        minutes: outerValueTo?.getMinutes(),
-        seconds: outerValueTo?.getSeconds()
-      };
+      // Явно сбрасываем parts если значение undefined
+      const newPartsFirst = outerValueFrom
+        ? {
+            hours: outerValueFrom.getHours(),
+            minutes: outerValueFrom.getMinutes(),
+            seconds: outerValueFrom.getSeconds()
+          }
+        : { hours: undefined, minutes: undefined, seconds: undefined };
+
+      const newPartsSecond = outerValueTo
+        ? {
+            hours: outerValueTo.getHours(),
+            minutes: outerValueTo.getMinutes(),
+            seconds: outerValueTo.getSeconds()
+          }
+        : { hours: undefined, minutes: undefined, seconds: undefined };
 
       setSelectedPartsFirst(newPartsFirst);
       setSelectedPartsSecond(newPartsSecond);
     }
   }, [value, isTimePeriodType, isTimePeriodWithSecondsType, outerValueFrom, outerValueTo]);
+
+  // Синхронизация selectedPartsFirst/Second с selectedTimeFirst/Second
+  // Это нужно когда TimePickerInput вызывает onChangeFirst/onChangeSecond напрямую
+  useEffect(() => {
+    if (isTimePeriodType || isTimePeriodWithSecondsType) {
+      const newPartsFirst = selectedTimeFirst
+        ? {
+            hours: selectedTimeFirst.getHours(),
+            minutes: selectedTimeFirst.getMinutes(),
+            seconds: selectedTimeFirst.getSeconds()
+          }
+        : { hours: undefined, minutes: undefined, seconds: undefined };
+
+      const newPartsSecond = selectedTimeSecond
+        ? {
+            hours: selectedTimeSecond.getHours(),
+            minutes: selectedTimeSecond.getMinutes(),
+            seconds: selectedTimeSecond.getSeconds()
+          }
+        : { hours: undefined, minutes: undefined, seconds: undefined };
+
+      setSelectedPartsFirst(newPartsFirst);
+      setSelectedPartsSecond(newPartsSecond);
+    }
+  }, [selectedTimeFirst, selectedTimeSecond, isTimePeriodType, isTimePeriodWithSecondsType]);
 
   useEffect(() => {
     if (isOpenOnFocus || !withIcon) {

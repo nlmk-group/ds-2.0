@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import ClickAwayListener from '@components/ClickAwayListener';
 import {
@@ -65,6 +65,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
     const [panelValue, setPanelValue] = useState((withPeriod ? valueFrom : value) || new Date());
     const [innerShiftFrom, setInnerShiftFrom] = useState(shiftFrom ?? 1);
     const [innerShiftTo, setInnerShiftTo] = useState(shiftTo ?? 1);
+    const lastClickLevelRef = useRef<TLevel | null>(null);
 
     const isChangeOnBlur = useMemo(() => {
       return (
@@ -94,6 +95,20 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
       }
     }, [value, withPeriod, withTime]);
 
+    useEffect(() => {
+      if (withPeriod) {
+        innerPeriodOnChange({
+          valueFrom,
+          valueTo
+        });
+        if (valueFrom || valueTo) {
+          setPanelValue(valueFrom || valueTo || new Date());
+        }
+        // Сбрасываем lastClickLevel при изменении пропсов извне
+        lastClickLevelRef.current = null;
+      }
+    }, [valueFrom, valueTo, withPeriod]);
+
     const period = useMemo(() => {
       if (!panelValue) {
         return '';
@@ -109,25 +124,29 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
     }, [panelValue, selectedPanel]);
 
     const handleAccept = useCallback(() => {
-      if (!innerValue || !onChange) {
-        return;
-      }
-
       if (withPeriod && onPeriodChange) {
         const valueFrom = innerPeriodValue.valueFrom;
         const valueTo = getLastValue(level, innerPeriodValue.valueTo, valueFrom, locale[language].quarters);
         const withShiftFunc = (shift: number) => (withShift ? shift : undefined);
         const [shiftFrom, shiftTo] = [withShiftFunc(innerShiftFrom), withShiftFunc(innerShiftTo)];
         onPeriodChange(valueFrom, valueTo, shiftFrom, shiftTo);
-      }
-
-      if (!withTime || !selectedTime) {
-        onChange(innerValue);
         onClose();
         return;
       }
 
-      let newValue = set(innerValue, {
+      const dateToApply = innerValue || innerPeriodValue.valueFrom;
+
+      if (!dateToApply || !onChange) {
+        return;
+      }
+
+      if (!withTime || !selectedTime) {
+        onChange(dateToApply);
+        onClose();
+        return;
+      }
+
+      let newValue = set(dateToApply, {
         hours: selectedTime.getHours(),
         minutes: selectedTime.getMinutes()
       });
@@ -145,6 +164,7 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
       innerShiftTo,
       innerValue,
       level,
+      selectedPanel,
       onChange,
       onClose,
       onPeriodChange,
@@ -163,7 +183,9 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
       (date: Date) => {
         onSelect && onSelect(date);
 
-        if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
+        if (level === selectedPanel) {
+          innerOnChange(date);
+        } else if (selectedPanel === LEVEL_MAPPING_ENUM.day) {
           innerOnChange(date);
         }
 
@@ -196,28 +218,47 @@ export const CalendarPanel = forwardRef<HTMLDivElement, ICalendarPanelProps>(
             const prevEnd = prev.valueTo;
 
             if (!prevStart && level === selectedPanel) {
+              lastClickLevelRef.current = selectedPanel;
               return {
                 valueFrom: date
               };
             }
+
             if (prevStart && !prevEnd) {
               const valueFrom = +prevStart - +date > 0 ? date : prevStart;
               const valueTo = +prevStart - +date > 0 ? prevStart : date;
+              lastClickLevelRef.current = selectedPanel;
               return {
                 valueFrom,
                 valueTo
               };
             }
+
             if (prevStart && prevEnd && level === selectedPanel) {
+              if (lastClickLevelRef.current && lastClickLevelRef.current !== selectedPanel) {
+                lastClickLevelRef.current = selectedPanel;
+                if (+date < +prevStart) {
+                  return {
+                    valueFrom: date,
+                    valueTo: prevStart
+                  };
+                }
+                return {
+                  valueFrom: prevStart,
+                  valueTo: date
+                };
+              }
+              lastClickLevelRef.current = selectedPanel;
               return {
                 valueFrom: date
               };
             }
-            return {};
+
+            return prev;
           });
         }
       },
-      [selectedPanel, level, onChange, onClose, withPeriod, withTime]
+      [selectedPanel, level, onChange, onClose, withPeriod, withTime, onSelect]
     );
 
     const dateAdjustments = {

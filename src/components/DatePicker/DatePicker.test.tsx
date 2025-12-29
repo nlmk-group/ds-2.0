@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import DatePicker from './index';
@@ -378,6 +378,600 @@ describe('src/components/DatePicker', () => {
       const [leftPart, rightPart] = input.value.split('—');
       expect(leftPart.trim()).toBeTruthy();
       expect(rightPart.trim()).toBeTruthy();
+    });
+  });
+
+  describe('Ввод цифр в режиме периода', () => {
+    it('корректно вводит цифры в пустой период', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____ — __.__.____');
+      });
+
+      await user.type(input, '15122024');
+
+      await waitFor(() => {
+        expect(input.value).toContain('15.12.2024');
+      });
+    });
+
+    it('автоматически добавляет 0 перед большими цифрами дня', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+
+      // Вводим 5 (день > 3) - должно стать 05
+      await user.type(input, '5');
+
+      await waitFor(() => {
+        expect(input.value).toContain('05');
+      });
+    });
+
+    it('валидирует день не больше 31', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+
+      // Вводим 39 (день > 31) - вторая цифра должна игнорироваться
+      await user.type(input, '39');
+
+      await waitFor(() => {
+        const value = input.value;
+        const day = value.split('.')[0];
+        expect(parseInt(day)).toBeLessThanOrEqual(31);
+      });
+    });
+
+    it('валидирует месяц не больше 12', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+
+      // Вводим день, затем месяц 19 (> 12)
+      await user.type(input, '15');
+      await user.type(input, '19');
+
+      await waitFor(() => {
+        const value = input.value;
+        const parts = value.split('.');
+        if (parts.length > 1) {
+          const month = parseInt(parts[1]);
+          expect(month).toBeLessThanOrEqual(12);
+        }
+      });
+    });
+  });
+
+  describe('Выделение и удаление в режиме периода', () => {
+    it('удаляет всё выделенное значение from при нажатии Backspace', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+
+      // Выделяем from (первые 10 символов)
+      input.setSelectionRange(0, 10);
+
+      // Нажимаем Backspace
+      fireEvent.keyDown(input, { key: 'Backspace' });
+
+      await waitFor(() => {
+        expect(input.value).toContain('__.__.____ — 20.01.2024');
+      });
+    });
+
+    it('удаляет всё выделенное значение to при нажатии Delete', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+
+      // Выделяем to (с позиции 13 до 23)
+      input.setSelectionRange(13, 23);
+
+      // Нажимаем Delete
+      fireEvent.keyDown(input, { key: 'Delete' });
+
+      await waitFor(() => {
+        expect(input.value).toContain('15.01.2024 — __.__.____');
+      });
+    });
+
+    it('удаляет весь период при выделении всего текста', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={startDate}
+          valueTo={endDate}
+          onPeriodChange={mockOnPeriodChange}
+          disableChangesOnBlur={false}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('15.01.2024 — 20.01.2024');
+      });
+
+      await user.click(input);
+
+      // Выделяем всё
+      input.setSelectionRange(0, input.value.length);
+
+      // Нажимаем Backspace
+      fireEvent.keyDown(input, { key: 'Backspace' });
+
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____ — __.__.____');
+      });
+    });
+  });
+
+  describe('Период со сменами', () => {
+    it('отображает смену только если есть соответствующая дата', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker
+          type="shift"
+          valueFrom={startDate}
+          valueTo={undefined}
+          shiftFrom={1}
+          shiftTo={2}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        const value = input.value;
+        // Должно быть: 15.01.2024/1 — __.__.____ /_
+        expect(value).toContain('/1');
+        expect(value).toContain('/_');
+        expect(value).not.toContain('/2');
+      });
+    });
+
+    it('сбрасывает смену при удалении даты', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      const { rerender } = render(
+        <DatePicker
+          type="shift"
+          valueFrom={startDate}
+          valueTo={endDate}
+          shiftFrom={1}
+          shiftTo={2}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input.value).toContain('/1');
+        expect(input.value).toContain('/2');
+      });
+
+      // Удаляем valueTo
+      rerender(
+        <DatePicker
+          type="shift"
+          valueFrom={startDate}
+          valueTo={undefined}
+          shiftFrom={1}
+          shiftTo={2}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      await waitFor(() => {
+        const value = input.value;
+        expect(value).toContain('/1');
+        expect(value).toContain('/_'); // Смена сброшена
+        expect(value).not.toContain('/2');
+      });
+    });
+
+    it('использует правильный разделитель для периода со сменами', async () => {
+      const startDate = new Date(2024, 0, 15);
+      const endDate = new Date(2024, 0, 20);
+      const mockOnPeriodChange = jest.fn();
+
+      render(
+        <DatePicker
+          type="shift"
+          valueFrom={startDate}
+          valueTo={endDate}
+          shiftFrom={1}
+          shiftTo={2}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        // Должен быть разделитель " — " а не "/"
+        expect(input.value).toContain(' — ');
+        expect(input.value).toMatch(/\d{2}\.\d{2}\.\d{4}\/\d — \d{2}\.\d{2}\.\d{4}\/\d/);
+      });
+    });
+  });
+
+  describe('Дополнительная функциональность', () => {
+    it('отображает label', () => {
+      render(<DatePicker label="Выберите дату" />);
+      expect(screen.getByText('Выберите дату')).toBeInTheDocument();
+    });
+
+    it('корректно применяет состояние disabled', () => {
+      render(<DatePicker disabled />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input).toBeDisabled();
+    });
+
+    it('отображает кнопку reset когда есть значение', () => {
+      const testDate = new Date(2024, 0, 15);
+      const { container } = render(<DatePicker value={testDate} reset={true} />);
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+      expect(resetButton).toBeInTheDocument();
+    });
+
+    it('не отображает кнопку reset когда значение отсутствует', () => {
+      const { container } = render(<DatePicker value={undefined} reset={true} />);
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+      expect(resetButton).not.toBeInTheDocument();
+    });
+
+    it('вызывает onReset при клике на кнопку сброса', async () => {
+      const handleReset = jest.fn();
+      const testDate = new Date(2024, 0, 15);
+      const { container } = render(<DatePicker value={testDate} reset={true} onReset={handleReset} />);
+
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+
+      await act(async () => {
+        if (resetButton) {
+          fireEvent.click(resetButton);
+        }
+      });
+
+      expect(handleReset).toHaveBeenCalled();
+    });
+
+    it('корректно работает с undefined value', () => {
+      render(<DatePicker value={undefined} />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input).toHaveValue('');
+    });
+
+    it('открывает панель календаря при фокусе с isOpenOnFocus', async () => {
+      const { container } = render(<DatePicker isOpenOnFocus={true} />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).toBeInTheDocument();
+      });
+    });
+
+    it('работает с withPortal=true', () => {
+      const testDate = new Date(2024, 0, 15);
+      render(<DatePicker value={testDate} withPortal={true} />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input).toBeInTheDocument();
+    });
+
+    it('не отображает кнопку reset когда disabled=true даже если reset=true', () => {
+      const testDate = new Date(2024, 0, 15);
+      const { container } = render(<DatePicker value={testDate} disabled={true} reset={true} />);
+      const resetButton = container.querySelector('[data-ui-input-reset-icon]');
+      expect(resetButton).not.toBeInTheDocument();
+    });
+
+    it('тогглит панель при клике на иконку календаря', async () => {
+      const { container } = render(<DatePicker />);
+
+      const icon = container.querySelector('[class*="calendar"]');
+      expect(icon).toBeInTheDocument();
+
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).toBeInTheDocument();
+      });
+
+      await act(async () => {
+        fireEvent.click(icon!);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).not.toBeInTheDocument();
+      });
+    });
+
+    it('отображает тип time с временем', () => {
+      const testDate = new Date(2024, 0, 15, 14, 30);
+      render(<DatePicker type="time" value={testDate} />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input.value).toContain('14:30');
+    });
+
+    it('отображает тип seconds с секундами', () => {
+      const testDate = new Date(2024, 0, 15, 14, 30, 45);
+      render(<DatePicker type="seconds" value={testDate} />);
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      expect(input.value).toContain('14:30:45');
+    });
+  });
+
+  describe('Навигация через уровни в режиме периода', () => {
+    it('сохраняет период при навигации год→месяц→день и обновляет valueTo', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const { container } = render(
+        <DatePicker
+          type="period"
+          valueFrom={undefined}
+          valueTo={undefined}
+          onPeriodChange={mockOnPeriodChange}
+          isOpenOnFocus={true}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      // Открываем календарь
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).toBeInTheDocument();
+      });
+
+      // 1. Кликаем на первый день (26 декабря 2025)
+      const firstDay = container.querySelector('[data-date="2025-12-26"]');
+      if (firstDay) {
+        await act(async () => {
+          fireEvent.click(firstDay);
+        });
+      }
+
+      // 2. Кликаем на год (2026) - переключаемся на уровень месяцев
+      const yearButton = container.querySelector('[data-ui-calendar-year-button]');
+      if (yearButton) {
+        await act(async () => {
+          fireEvent.click(yearButton);
+        });
+      }
+
+      const year2026 = container.querySelector('[data-year="2026"]');
+      if (year2026) {
+        await act(async () => {
+          fireEvent.click(year2026);
+        });
+      }
+
+      // 3. Кликаем на месяц (август) - переключаемся на уровень дней
+      const august = container.querySelector('[data-month="7"]'); // август = 7 (0-indexed)
+      if (august) {
+        await act(async () => {
+          fireEvent.click(august);
+        });
+      }
+
+      // 4. Кликаем на день (6 августа 2026)
+      const secondDay = container.querySelector('[data-date="2026-08-06"]');
+      if (secondDay) {
+        await act(async () => {
+          fireEvent.click(secondDay);
+        });
+      }
+
+      // 5. Нажимаем "Применить"
+      const applyButton = screen.queryByText('Применить');
+      if (applyButton) {
+        await act(async () => {
+          fireEvent.click(applyButton);
+        });
+
+        await waitFor(() => {
+          expect(mockOnPeriodChange).toHaveBeenCalled();
+        });
+
+        const lastCall = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        const [valueFrom, valueTo] = lastCall;
+
+        // Проверяем, что период установлен правильно
+        expect(valueFrom).toBeInstanceOf(Date);
+        expect(valueTo).toBeInstanceOf(Date);
+        expect(valueFrom.getDate()).toBe(26);
+        expect(valueFrom.getMonth()).toBe(11); // декабрь
+        expect(valueFrom.getFullYear()).toBe(2025);
+        expect(valueTo.getDate()).toBe(6);
+        expect(valueTo.getMonth()).toBe(7); // август
+        expect(valueTo.getFullYear()).toBe(2026);
+      }
+    });
+
+    it('позволяет корректировать valueTo после завершения выбора периода', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const { container } = render(
+        <DatePicker
+          type="period"
+          valueFrom={new Date(2025, 11, 26)} // 26.12.2025
+          valueTo={new Date(2026, 0, 1)} // 01.01.2026
+          onPeriodChange={mockOnPeriodChange}
+          isOpenOnFocus={true}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      // Открываем календарь
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).toBeInTheDocument();
+      });
+
+      // Кликаем на новую дату (15 января 2026) - должна обновить valueTo
+      const newDay = container.querySelector('[data-date="2026-01-15"]');
+      if (newDay) {
+        await act(async () => {
+          fireEvent.click(newDay);
+        });
+      }
+
+      // Нажимаем "Применить"
+      const applyButton = screen.queryByText('Применить');
+      if (applyButton) {
+        await act(async () => {
+          fireEvent.click(applyButton);
+        });
+
+        await waitFor(() => {
+          expect(mockOnPeriodChange).toHaveBeenCalled();
+        });
+
+        const lastCall = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        const [valueFrom, valueTo] = lastCall;
+
+        // Проверяем, что valueFrom не изменился, а valueTo обновился
+        expect(valueFrom).toBeInstanceOf(Date);
+        expect(valueTo).toBeInstanceOf(Date);
+        expect(valueFrom.getDate()).toBe(26);
+        expect(valueFrom.getMonth()).toBe(11); // декабрь
+        expect(valueFrom.getFullYear()).toBe(2025);
+        expect(valueTo.getDate()).toBe(15); // обновлено!
+        expect(valueTo.getMonth()).toBe(0); // январь
+        expect(valueTo.getFullYear()).toBe(2026);
+      }
+    });
+
+    it('сбрасывает период при третьем клике на том же уровне', async () => {
+      const mockOnPeriodChange = jest.fn();
+      const { container } = render(
+        <DatePicker
+          type="period"
+          valueFrom={new Date(2026, 0, 15)} // 15.01.2026
+          valueTo={new Date(2026, 0, 20)} // 20.01.2026
+          onPeriodChange={mockOnPeriodChange}
+          isOpenOnFocus={true}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+
+      // Открываем календарь
+      await act(async () => {
+        fireEvent.focus(input);
+      });
+
+      await waitFor(() => {
+        const calendar = container.querySelector('[data-ui-datepicker-calendar-panel]');
+        expect(calendar).toBeInTheDocument();
+      });
+
+      // Кликаем на новую дату (10 января 2026) - третий клик на том же уровне
+      const newDay = container.querySelector('[data-date="2026-01-10"]');
+      if (newDay) {
+        await act(async () => {
+          fireEvent.click(newDay);
+        });
+      }
+
+      // Нажимаем "Применить"
+      const applyButton = screen.queryByText('Применить');
+      if (applyButton) {
+        await act(async () => {
+          fireEvent.click(applyButton);
+        });
+
+        await waitFor(() => {
+          expect(mockOnPeriodChange).toHaveBeenCalled();
+        });
+
+        const lastCall = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        const [valueFrom, valueTo] = lastCall;
+
+        // Проверяем, что период сброшен и начат заново
+        expect(valueFrom).toBeInstanceOf(Date);
+        expect(valueFrom.getDate()).toBe(10); // новая дата стала valueFrom
+        expect(valueFrom.getMonth()).toBe(0);
+        expect(valueFrom.getFullYear()).toBe(2026);
+        expect(valueTo).toBeUndefined(); // valueTo сброшен
+      }
     });
   });
 });

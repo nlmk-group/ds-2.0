@@ -22,7 +22,7 @@ const timepickerStoriesParams = {
   previewTabs: { controls: { hidden: true } }
 };
 
-export const TimePickerDefault = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerDefault = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -34,18 +34,16 @@ export const TimePickerDefault = (argTypes: TTimePickerType): JSX.Element => {
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
 
-  return (
-    <TimePicker {...argTypes} value={value} reset={argTypes.reset} onChange={handleValueChange} onReset={handleReset} />
-  );
+  return <TimePicker {...argTypes} value={value} reset onChange={handleValueChange} onReset={handleReset} />;
 };
 TimePickerDefault.storyName = 'TimerPicker по умолчанию';
 
-export const TimePickerWithLabel = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerWithLabel = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -57,26 +55,19 @@ export const TimePickerWithLabel = (argTypes: TTimePickerType): JSX.Element => {
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
 
   return (
-    <TimePicker
-      value={value}
-      label="Время"
-      {...argTypes}
-      reset={true}
-      onChange={handleValueChange}
-      onReset={handleReset}
-    />
+    <TimePicker value={value} label="Время" {...argTypes} reset onChange={handleValueChange} onReset={handleReset} />
   );
 };
 TimePickerWithLabel.storyName = 'TimePicker с полем label';
 TimePickerWithLabel.parameters = timepickerStoriesParams;
 
-export const DisabledTimePicker = (argTypes: TTimePickerType): JSX.Element => {
+export const DisabledTimePicker = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -88,26 +79,19 @@ export const DisabledTimePicker = (argTypes: TTimePickerType): JSX.Element => {
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
 
   return (
-    <TimePicker
-      value={value}
-      disabled={true}
-      {...argTypes}
-      reset={true}
-      onChange={handleValueChange}
-      onReset={handleReset}
-    />
+    <TimePicker value={value} disabled={true} {...argTypes} reset onChange={handleValueChange} onReset={handleReset} />
   );
 };
 DisabledTimePicker.storyName = 'TimePicker в состоянии disabled';
 DisabledTimePicker.parameters = timepickerStoriesParams;
 
-export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerWithSeconds = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -119,7 +103,7 @@ export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element =>
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -129,7 +113,7 @@ export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element =>
       value={value}
       type="timeWithSeconds"
       {...argTypes}
-      reset={true}
+      reset
       onChange={handleValueChange}
       onReset={handleReset}
     />
@@ -138,7 +122,7 @@ export const TimePickerWithSeconds = (argTypes: TTimePickerType): JSX.Element =>
 TimePickerWithSeconds.storyName = 'TimePicker с опцией выбора секунд';
 TimePickerWithSeconds.parameters = timepickerStoriesParams;
 
-export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => {
+export const EnabledMinutesFromTo = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
   const func = (): any => {
     return 32;
@@ -157,7 +141,7 @@ export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => 
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -168,7 +152,7 @@ export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => 
       enabledMinuteFrom={func}
       enabledMinuteTo={funcOne}
       {...argTypes}
-      reset={true}
+      reset
       onChange={handleValueChange}
       onReset={handleReset}
     />
@@ -177,7 +161,7 @@ export const EnabledMinutesFromTo = (argTypes: TTimePickerType): JSX.Element => 
 EnabledMinutesFromTo.storyName = 'TimePicker с включенным ограничением по выбору минут';
 EnabledMinutesFromTo.parameters = timepickerStoriesParams;
 
-export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
+export const EnabledHoursFromTo = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
   const func = (): any => {
     return 2;
@@ -196,7 +180,7 @@ export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -207,7 +191,7 @@ export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
       enabledHourFrom={func}
       enabledHourTo={funcOne}
       {...argTypes}
-      reset={true}
+      reset
       onChange={handleValueChange}
       onReset={handleReset}
     />
@@ -216,7 +200,7 @@ export const EnabledHoursFromTo = (argTypes: TTimePickerType): JSX.Element => {
 EnabledHoursFromTo.storyName = 'TimePicker с включенным ограничением по выбору часов';
 EnabledHoursFromTo.parameters = timepickerStoriesParams;
 
-export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Element => {
+export const OpenTimePickerOnInputFocus = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -228,7 +212,7 @@ export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Eleme
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -238,7 +222,7 @@ export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Eleme
       value={value}
       isOpenOnFocus={true}
       {...argTypes}
-      reset={true}
+      reset
       onChange={handleValueChange}
       onReset={handleReset}
     />
@@ -247,7 +231,7 @@ export const OpenTimePickerOnInputFocus = (argTypes: TTimePickerType): JSX.Eleme
 OpenTimePickerOnInputFocus.storyName = 'TimePicker с опцией открытия панели при фокусе на поле ввода';
 OpenTimePickerOnInputFocus.parameters = timepickerStoriesParams;
 
-export const TimePickerWithoutIcon = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerWithoutIcon = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -259,26 +243,19 @@ export const TimePickerWithoutIcon = (argTypes: TTimePickerType): JSX.Element =>
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
 
   return (
-    <TimePicker
-      value={value}
-      withIcon={false}
-      {...argTypes}
-      reset={true}
-      onChange={handleValueChange}
-      onReset={handleReset}
-    />
+    <TimePicker value={value} withIcon={false} {...argTypes} reset onChange={handleValueChange} onReset={handleReset} />
   );
 };
 TimePickerWithoutIcon.storyName = 'TimePicker без иконки';
 TimePickerWithoutIcon.parameters = timepickerStoriesParams;
 
-export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerWithPseudo = (argTypes: any): JSX.Element => {
   const [save, setSave] = useState(false);
   const [innerValue, setInnerValue] = useState<Date | undefined>(new Date());
 
@@ -291,7 +268,7 @@ export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => 
 
   const handleReset = () => {
     setInnerValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -304,7 +281,7 @@ export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => 
         pseudo={save}
         value={innerValue}
         {...argTypes}
-        reset={true}
+        reset
         onChange={handleValueChange}
         onReset={handleReset}
       />
@@ -317,7 +294,7 @@ export const TimePickerWithPseudo = (argTypes: TTimePickerType): JSX.Element => 
 TimePickerWithPseudo.storyName = 'TimePicker с кнопкой переключения на pseudo input';
 TimePickerWithPseudo.parameters = timepickerStoriesParams;
 
-export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerWithoutPicker = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());
 
   const handleValueChange = (newValue: Date) => {
@@ -329,7 +306,7 @@ export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element 
 
   const handleReset = () => {
     setValue(undefined);
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -339,7 +316,7 @@ export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element 
       value={value}
       withPicker={false}
       {...argTypes}
-      reset={true}
+      reset
       onChange={handleValueChange}
       onReset={handleReset}
     />
@@ -348,7 +325,7 @@ export const TimePickerWithoutPicker = (argTypes: TTimePickerType): JSX.Element 
 TimePickerWithoutPicker.storyName = 'TimePicker без панели выбора времени';
 TimePickerWithoutPicker.parameters = timepickerStoriesParams;
 
-export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerPeriod = (argTypes: any): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
     valueFrom: new Date(),
     valueTo: addMinutes(new Date(), 10)
@@ -363,7 +340,7 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
 
   const handleReset = () => {
     setValues({ valueFrom: undefined, valueTo: undefined });
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -375,7 +352,7 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
       valueFrom={values.valueFrom}
       valueTo={values.valueTo}
       onPeriodChange={handlePeriodChange}
-      reset={true}
+      reset
       onReset={handleReset}
     />
   );
@@ -383,7 +360,7 @@ export const TimePickerPeriod = (argTypes: TTimePickerType): JSX.Element => {
 TimePickerPeriod.storyName = 'TimePicker с возможностью выбора периода времени';
 TimePickerPeriod.parameters = timepickerStoriesParams;
 
-export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Element => {
+export const TimePickerPeriodWithSeconds = (argTypes: any): JSX.Element => {
   const [values, setValues] = useState<{ valueFrom?: Date; valueTo?: Date }>({
     valueFrom: new Date(),
     valueTo: addMinutes(new Date(), 10)
@@ -398,7 +375,7 @@ export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Elem
 
   const handleReset = () => {
     setValues({ valueFrom: undefined, valueTo: undefined });
-    if (argTypes.onReset) {
+    if (argTypes?.onReset) {
       argTypes.onReset();
     }
   };
@@ -410,7 +387,7 @@ export const TimePickerPeriodWithSeconds = (argTypes: TTimePickerType): JSX.Elem
       valueFrom={values.valueFrom}
       valueTo={values.valueTo}
       onPeriodChange={handlePeriodChange}
-      reset={true}
+      reset
       onReset={handleReset}
     />
   );

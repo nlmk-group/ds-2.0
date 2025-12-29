@@ -58,24 +58,15 @@ const buildPostProcessPlugin = () => ({
 
     const libPath = resolve(__dirname, 'lib');
     const cssDir = resolve(libPath, 'css');
-    const fontsDir = resolve(libPath, 'fonts');
 
-    [cssDir, fontsDir].forEach(dir => {
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-    });
+    if (!fs.existsSync(cssDir)) {
+      fs.mkdirSync(cssDir, { recursive: true });
+    }
 
     const publicCssDir = resolve(__dirname, 'public/css');
     if (fs.existsSync(publicCssDir)) {
       fs.cpSync(publicCssDir, cssDir, { recursive: true });
       console.log('✅ Скопированы CSS токены и main.css');
-    }
-
-    const publicFontsDir = resolve(__dirname, 'public/fonts');
-    if (fs.existsSync(publicFontsDir)) {
-      fs.cpSync(publicFontsDir, fontsDir, { recursive: true });
-      console.log('✅ Скопированы шрифты');
     }
 
     const packageJson = {
@@ -86,8 +77,7 @@ const buildPostProcessPlugin = () => ({
           import: './index.js',
           types: './index.d.ts'
         },
-        './css/*': './css/*',
-        './fonts/*': './fonts/*'
+        './css/*': './css/*'
       }
     };
 
@@ -115,15 +105,11 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
 
     const totalSize = getDirectorySize(libPath);
     const cssSize = fs.existsSync(cssDir) ? getDirectorySize(cssDir) : 0;
-    const fontsSize = fs.existsSync(fontsDir) ? getDirectorySize(fontsDir) : 0;
 
     const componentDirs = fs
       .readdirSync(libPath, { withFileTypes: true })
       .filter(
-        item =>
-          item.isDirectory() &&
-          !['css', 'fonts', 'declaration', 'utils'].includes(item.name) &&
-          !item.name.startsWith('.')
+        item => item.isDirectory() && !['css', 'declaration', 'utils'].includes(item.name) && !item.name.startsWith('.')
       );
 
     const componentSizes = componentDirs
@@ -132,7 +118,7 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
         const size = getDirectorySize(dirPath);
         return { name: dir.name, size };
       })
-      .sort((a, b) => b.size - a.size); // Сортируем по размеру (от большего к меньшему)
+      .sort((a, b) => b.size - a.size);
 
     const componentsSize = componentSizes.reduce((sum, comp) => sum + comp.size, 0);
 
@@ -143,7 +129,6 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
     });
     console.log(`\n   Итого компонентов (${componentDirs.length} шт): ${formatSize(componentsSize)}`);
     console.log(`   CSS токены: ${formatSize(cssSize)}`);
-    console.log(`   Шрифты: ${formatSize(fontsSize)}`);
     console.log(`   ─────────────────────────────`);
     console.log(`   Общий размер: ${formatSize(totalSize)}`);
     console.log('\n✅ Сборка завершена!\n');

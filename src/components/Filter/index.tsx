@@ -165,7 +165,8 @@ const Filter: FC<IFilterProps> = ({
         ref={setPopperElement}
         style={{
           ...floatingStyles,
-          minWidth: openedMenu === 'type' ? 200 : inputRef.current?.offsetWidth,
+          minWidth: openedMenu === 'type' ? 200 : Math.min(inputRef.current?.offsetWidth || 200, 400),
+          maxWidth: openedMenu === 'value' ? 400 : undefined,
           zIndex: 1100,
           ...(withPortal && { marginTop: '0px' }),
           visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']

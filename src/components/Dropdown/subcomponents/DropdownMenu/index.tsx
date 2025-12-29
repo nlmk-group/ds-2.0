@@ -1,9 +1,9 @@
 import React, { CSSProperties, FC, useContext, useState } from 'react';
-import { useFloating, offset, flip, shift, autoUpdate, limitShift } from '@floating-ui/react';
-import { useFloatingReferenceSync } from '@components/declaration/hooks';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { DropdownContext } from '@components/Dropdown/context';
 import { ClickAwayListener, List } from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IDropdownMenuProps } from './types';
@@ -18,7 +18,7 @@ import styles from './DropdownMenu.module.scss';
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @returns {ReactNode|null} Возвращает JSX элемент или null, если меню закрыто.
  */
-const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ...props }) => {
+const DropdownMenu: FC<IDropdownMenuProps> = ({ children, ...props }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [isPositioned, setIsPositioned] = useState(false);
@@ -27,11 +27,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
 
   const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    middleware: [
-      offset(4),
-      flip({ fallbackPlacements: ['top-start'] }),
-      shift({ limiter: limitShift(), padding: 8 })
-    ],
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
     whileElementsMounted: autoUpdate
   });
 
@@ -49,7 +45,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
       visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
-    return withPortal ? { ...baseStyles, ...floatingStyles } : baseStyles;
+    return { ...baseStyles, ...floatingStyles };
   };
 
   /**
@@ -70,9 +66,7 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={buttonRef || undefined}>
       <List
         ref={el => {
-          if (withPortal) {
-            setPopperElement(el);
-          }
+          setPopperElement(el);
         }}
         className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })}
         style={getMenuStyles() as CSSProperties}

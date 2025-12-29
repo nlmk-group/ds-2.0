@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Button, IconUnit } from '@components/index';
-import { expect, fn } from '@storybook/test';
-import { userEvent, waitFor, within } from '@storybook/test';
+import { Button } from '@components/index';
+import { expect, fn } from 'storybook/test';
+import { userEvent, waitFor, within } from 'storybook/test';
 
 import styles from './Input.module.scss';
 
@@ -198,11 +198,4 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }: { args: any; c
   await userEvent.click(canvas.getByRole('button'));
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
-};
-
-export const InputWithIconUnit = (): JSX.Element => <InputDefault icon={<IconUnit unit="кг" />} />;
-InputWithIconUnit.storyName = 'Input с иконкой для единиц измерения';
-InputWithIconUnit.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
 };

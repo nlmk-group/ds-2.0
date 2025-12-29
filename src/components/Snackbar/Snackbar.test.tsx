@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Snackbar } from '@components/index';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, fireEvent, screen } from '@testing-library/react';
 
 import { ESnackbarColors, ESnackbarTypes } from './enums';
 

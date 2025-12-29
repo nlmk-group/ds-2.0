@@ -227,21 +227,20 @@ export const TreeListV1 = ({
   };
 
   const renderSwitcherIcon = (node: TNodeItem) => {
+    if (!node.children || node.children.length === 0) return null;
+
     const isExpanded = expandedKeys.includes(node.key);
-    if (node.children && node.children.length > 0) {
-      return (
-        <span
-          onClick={e => {
-            e.stopPropagation();
-            handleExpand(node.key);
-          }}
-          className={clsx(styles.switcher, isExpanded && styles['switcher-open'])}
-        >
-          ▶
-        </span>
-      );
-    }
-    return null;
+    return (
+      <span
+        onClick={e => {
+          e.stopPropagation();
+          handleExpand(node.key);
+        }}
+        className={clsx(styles.switcher, isExpanded && styles['switcher-open'])}
+      >
+        ▶
+      </span>
+    );
   };
 
   const getNodeCheckState = (node: TNodeItem): boolean | null => {

@@ -67,7 +67,11 @@ const File: FC<IFileProps> = ({
 
   const CheckedIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper-checked']} data-testid="CHECKED_ICON">
-      <Checkbox checked={checkedValue} onChange={onCheckedChange} multiple={indeterminate} />
+      <Checkbox
+        checked={checkedValue !== undefined ? checkedValue : checked}
+        onChange={onCheckedChange}
+        multiple={indeterminate}
+      />
     </div>
   );
 

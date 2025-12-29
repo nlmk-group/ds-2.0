@@ -1,8 +1,9 @@
 import React, { CSSProperties, FC, useContext, useState } from 'react';
-import { usePopper } from 'react-popper';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { DropdownContext } from '@components/Dropdown/context';
 import { ClickAwayListener, List } from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IDropdownMenuProps } from './types';
@@ -17,30 +18,20 @@ import styles from './DropdownMenu.module.scss';
  * @param {ReactNode} props.children - Элементы, которые будут отображаться в меню.
  * @returns {ReactNode|null} Возвращает JSX элемент или null, если меню закрыто.
  */
-const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ...props }) => {
+const DropdownMenu: FC<IDropdownMenuProps> = ({ children, ...props }) => {
   const { isOpen, setIsOpen, buttonRef, menuStyle } = useContext(DropdownContext);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
   const rect = buttonRef?.current?.getBoundingClientRect();
 
-  const { styles: popperStyles, attributes } = usePopper(buttonRef?.current, popperElement, {
+  const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    modifiers: [
-      {
-        name: 'flip',
-        options: {
-          fallbackPlacements: ['top-start']
-        }
-      },
-      {
-        name: 'preventOverflow',
-        options: {
-          boundary: 'clippingParents',
-          padding: 8
-        }
-      }
-    ]
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
+    whileElementsMounted: autoUpdate
   });
+
+  useFloatingReferenceSync(buttonRef, popperElement, refs, setIsPositioned);
 
   const MIN_WIDTH = 130;
 
@@ -50,10 +41,11 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
 
     const baseStyles = {
       minWidth: isSmallContent ? `${MIN_WIDTH}px` : rect?.width,
-      ...menuStyle
+      ...menuStyle,
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
-    return withPortal ? { ...baseStyles, ...popperStyles.popper } : baseStyles;
+    return { ...baseStyles, ...floatingStyles };
   };
 
   /**
@@ -74,13 +66,11 @@ const DropdownMenu: FC<IDropdownMenuProps> = ({ children, withPortal = false, ..
     <ClickAwayListener onClickAway={handleClickAway} excludeRef={buttonRef || undefined}>
       <List
         ref={el => {
-          if (withPortal) {
-            setPopperElement(el);
-          }
+          setPopperElement(el);
         }}
         className={clsx(styles.menu, { [styles['small-content']]: isSmallContent })}
         style={getMenuStyles() as CSSProperties}
-        {...(withPortal ? attributes.popper : {})}
+        data-popper-placement={placement}
         {...props}
       >
         {children}

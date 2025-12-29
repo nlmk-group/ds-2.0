@@ -13,7 +13,7 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "ES5",
-    "lib": ["es6", "dom", "es2019"],
+    "lib": ["es6", "dom", "es2019", "ES2022"],
     "outDir": "./lib",
     "jsx": "react",
     "rootDir": "./src/components/",

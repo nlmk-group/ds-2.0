@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { getDDHeightParameters } from '..';
 import { useSetDropdownHeight } from '../context';
@@ -29,8 +29,12 @@ import { useSetDropdownHeight } from '../context';
  */
 export const useOptimalHeight = (...params: Parameters<typeof getDDHeightParameters>) => {
   const setDropdownHeight = useSetDropdownHeight();
+  
+  const [items, isSearch = false, isCheckAll = false, isMultiple = true, hasChildren] = params;
 
-  const dropdownHeight = getDDHeightParameters(...params);
+  const dropdownHeight = useMemo(() => {
+    return getDDHeightParameters(items, isSearch, isCheckAll, isMultiple, hasChildren);
+  }, [items.length, isSearch, isCheckAll, isMultiple, hasChildren]);
 
   useEffect(() => {
     if (setDropdownHeight) {
@@ -39,5 +43,5 @@ export const useOptimalHeight = (...params: Parameters<typeof getDDHeightParamet
         optimalHeight: dropdownHeight.optimalHeight + 15
       });
     }
-  }, [dropdownHeight, ...params]);
+  }, [setDropdownHeight, dropdownHeight.minHeight, dropdownHeight.optimalHeight]);
 };

@@ -37,16 +37,17 @@ const getTreeOptions = (data: IComboBoxTree[]): IComboBoxTreeOption[] => {
    */
   function deepRecursiveData(data: IComboBoxTree[], parentId: string | null, level: number) {
     data.forEach(item => {
-      const children = item.children;
       const option = {
         ...item,
         parentId,
         level
       };
       treeOptions.push(option);
-      if (children && children.length > 0 && isArrayNotHaveNullOrUndefined(children)) {
-        deepRecursiveData(children, item.id, level + 1);
-      }
+
+      const children = item.children;
+      if (!children || children.length === 0 || !isArrayNotHaveNullOrUndefined(children)) return;
+
+      deepRecursiveData(children, item.id, level + 1);
     });
   }
 

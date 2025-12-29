@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { InputSlider } from '@components/index';
-import { fireEvent, render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('src/components/InputSlider', () => {
   const defaultProps = {
@@ -41,7 +41,7 @@ describe('src/components/InputSlider', () => {
   test('Renders in disabled state', () => {
     const { container } = render(<InputSlider {...defaultProps} disabled />);
     const inputs = container.querySelectorAll('input');
-    inputs.forEach(input => {
+    inputs.forEach((input: any) => {
       expect(input).toBeDisabled();
     });
   });

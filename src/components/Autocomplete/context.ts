@@ -6,9 +6,9 @@ interface AutocompleteContextProps {
   isOpen: boolean;
   disabled: boolean;
   withPortal?: boolean;
-  wrapperRef: RefObject<HTMLDivElement>;
-  targetRef: RefObject<HTMLDivElement>;
-  inputRef: RefObject<HTMLDivElement>;
+  wrapperRef: RefObject<HTMLDivElement | null>;
+  targetRef: RefObject<HTMLDivElement | null>;
+  inputRef: RefObject<HTMLInputElement | null>;
   isLoading: boolean;
   showCreateItem?: boolean;
   onCreateItem?: (value: string) => void;

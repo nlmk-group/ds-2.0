@@ -90,44 +90,24 @@ export const getSizingStyles = ({
 
   const getBadgeStyles = (): CSSProperties => {
     const [x, y] = badgeTranslate;
+    const size = isSpecialBadge ? specialBadgeSize : badgeSize;
+    const style: CSSProperties = {
+      width: `${size}px`,
+      height: `${size}px`,
+      transform: `translate(${x}%, ${y}%)`
+    };
 
-    if (isSpecialBadge) {
-      const size = specialBadgeSize;
-      const style: CSSProperties = {
-        width: `${size}px`,
-        height: `${size}px`,
-        transform: `translate(${x}%, ${y}%)`
-      };
-      if (sizeVariant === EAvatarSize.xxxl) {
-        style.transform = 'translate(5%, 0%)';
-      }
-      if (sizeVariant === EAvatarSize.xxxl && !isSpecialBadge) {
-        style.transform = 'translate(-15%, 20%)';
-      }
-      if (sizeVariant === EAvatarSize.m) {
-        style.transform = 'translate(30%, -30%)';
-      }
-
-      return style;
-    } else {
-      const size = badgeSize;
-      const style: CSSProperties = {
-        width: `${size}px`,
-        height: `${size}px`,
-        transform: `translate(${x}%, ${y}%)`
-      };
-      if (sizeVariant === EAvatarSize.xxxl) {
-        style.transform = 'translate(5%, 0%)';
-      }
-      if (sizeVariant === EAvatarSize.xxxl && !isSpecialBadge) {
-        style.transform = 'translate(-15%, 20%)';
-      }
-      if (sizeVariant === EAvatarSize.m) {
-        style.transform = 'translate(30%, -30%)';
-      }
-
-      return style;
+    if (sizeVariant === EAvatarSize.xxxl) {
+      style.transform = 'translate(5%, 0%)';
     }
+    if (sizeVariant === EAvatarSize.xxxl && !isSpecialBadge) {
+      style.transform = 'translate(-15%, 20%)';
+    }
+    if (sizeVariant === EAvatarSize.m) {
+      style.transform = 'translate(30%, -30%)';
+    }
+
+    return style;
   };
 
   return {

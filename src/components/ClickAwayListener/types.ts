@@ -13,6 +13,6 @@ export interface IClickAwayListenerProps {
   onClickAway: () => void;
   className?: string;
   style?: CSSProperties;
-  excludeRef?: RefObject<HTMLElement> | RefObject<HTMLElement>[];
+  excludeRef?: RefObject<HTMLElement | null> | RefObject<HTMLElement | null>[];
   eventType?: TClickAwayEvent;
 }

@@ -1,4 +1,4 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath, URL } from 'url';
 
@@ -32,18 +32,11 @@ export default {
     };
   },
 
-  plugins: [reactRefresh()],
+  plugins: [react()],
 
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-jest',
-    '@storybook/addon-actions',
-    '@storybook/test',
-    '@storybook/addon-interactions',
-    'storybook-dark-mode',
-    '@storybook/addon-themes',
-    '@storybook/addon-storysource'
+    '@storybook/addon-docs'
   ],
 
   framework: {

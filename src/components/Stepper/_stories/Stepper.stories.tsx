@@ -88,9 +88,10 @@ export const StepperWithInteractive = () => {
   const handleNext = () => {
     if (currentStep < BASE_STEPS.length - 1) {
       setCurrentStep(prev => prev + 1);
-    } else {
-      setIsCompleted(true);
+      return;
     }
+
+    setIsCompleted(true);
   };
   const handleReset = () => {
     setCurrentStep(0);

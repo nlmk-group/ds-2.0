@@ -2,7 +2,7 @@ import React from 'react';
 
 import ProgressBar from '@components/ProgressBar';
 import { IProgressBarProps } from '@components/ProgressBar/types';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import styles from './Progressar.module.scss';
 

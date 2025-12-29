@@ -41,7 +41,7 @@ export default App;
 | className      | string                     | -       | Дополнительный CSS-класс для tooltip                   |
 | children       | React.ReactNode            | -       | Контент, вокруг которого отображается tooltip          |
 | render         | ReactNode                  | -       | Кастомный рендер для содержимого tooltip               |
-| clickable      | boolean                    | false   | Определяет, является ли tooltip кликабельным           |
+| clickable      | boolean                    | false   | Позволяет взаимодействовать с содержимым tooltip (кликать на ссылки, кнопки). При `true` tooltip не закрывается при наведении курсора на него |
 | popupClassName | string                     | -       | Дополнительный CSS-класс для всплывающего окна tooltip |
 | isOpen         | boolean                    | -       | Флаг отображения tooltip                               |
 | delayShow      | number                     | -       | Задержка появления tooltip (в миллисекундах)           |
@@ -53,6 +53,8 @@ export default App;
 - `ETooltipBehaviorType.hover`
 - `ETooltipBehaviorType.click`
 - `ETooltipBehaviorType.focus`
+
+**Важно:** Без `clickable={true}` tooltip закроется при попытке навести курсор на его содержимое.
 
 ## Размеры tooltip
 

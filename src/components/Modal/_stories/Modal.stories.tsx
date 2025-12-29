@@ -14,8 +14,8 @@ import {
   Typography
 } from '@components/index';
 import { positions } from '@components/Select/_stories/mocks';
-import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
+import { action } from 'storybook/actions';
+import { Meta } from '@storybook/react-vite';
 
 import styles from './Modal.module.scss';
 

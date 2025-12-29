@@ -49,19 +49,21 @@ const ComboList = <T extends IComboBoxOption>({
     }
   };
   const handleMultiChange = (item: T) => {
-    if (setComboValue) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck && previousValue) {
-          const filteredValue = previousValue.filter(value => value.id !== item.id);
-          onChange?.(filteredValue);
-          return filteredValue;
-        }
-        const newValue = [...(previousValue ?? []), item];
-        onChange?.(newValue);
-        return newValue;
-      });
-    }
+    if (!setComboValue) return;
+
+    setComboValue(previousValue => {
+      const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+      if (isCheck && previousValue) {
+        const filteredValue = previousValue.filter(value => value.id !== item.id);
+        onChange?.(filteredValue);
+        return filteredValue;
+      }
+
+      const newValue = [...(previousValue ?? []), item];
+      onChange?.(newValue);
+      return newValue;
+    });
   };
 
   const renderItem = (item: T) => {

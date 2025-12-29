@@ -1,4 +1,4 @@
-import { CSSProperties, MutableRefObject, ReactNode } from 'react';
+import { CSSProperties, ReactNode, RefObject } from 'react';
 
 import { TInputProps } from '@components/Input/types';
 
@@ -12,7 +12,7 @@ export interface IAutocompleteValue {
   disabled?: boolean;
 }
 
-export interface IAutocompleteProps extends Omit<TInputProps, 'onChange'| 'color'> {
+export interface IAutocompleteProps extends Omit<TInputProps, 'onChange' | 'color'> {
   /** Изначально выбранный элемент */
   selected?: IAutocompleteValue;
 
@@ -152,12 +152,12 @@ export interface IUseScrollProps {
   /**
    * Реф контейнера со скроллом
    */
-  wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  wrapperRef: RefObject<HTMLDivElement | null>;
 
   /**
    * Реф целевого элемента для отслеживания пересечения
    */
-  targetRef: MutableRefObject<HTMLDivElement | null>;
+  targetRef: RefObject<HTMLDivElement | null>;
 
   /**
    * Колбэк, вызываемый при достижении целевого элемента

@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.27.0 - <span className={styles.date}>12.11.25</span>
+            v2.27.0 - <span className={styles.date}>29.12.25</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -53,13 +53,6 @@ export const Changelog = () => {
                 pointer-events: none
               </li>
             </li>
-          </ul>
-        </div>
-        <div className={styles.history}>
-          <Typography variant="Subheading3-Medium">
-            v2.26.5 - <span className={styles.date}>25.12.25</span>
-          </Typography>
-          <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>

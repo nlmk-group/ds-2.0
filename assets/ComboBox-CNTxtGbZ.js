@@ -1,0 +1,17 @@
+import{r as p,j as o,f as a,S as n,U as l}from"./iframe-zk5xXBtA.js";import{useMDXComponents as c}from"./index-CSMoqiIu.js";import{DecoratorDefault as x}from"./Decorator.stories-XjMTlGWF.js";import{s as m,H as d,E as b}from"./Header-BMqOixcD.js";import{F as f}from"./FigmaEmbed-Bh-YhisY.js";import{P as C}from"./Properties-BH32KsQA.js";import{T as j}from"./Tests-BiRJAIxZ.js";/* empty css               */import{T as i}from"./index-CGZqhooT.js";import{a as g,C as u}from"./argsTypes-C6Top1PU.js";import"./preload-helper-PPVm8Dsz.js";import"./index-9BCGLlQQ.js";import"./clsx-B-dksMZM.js";import"./index-D9zx9C-F.js";import"./index-6T6AONQH.js";import"./index-DjSUGs5w.js";import"./index-CBNcLMKv.js";import"./generateUUID-M57HTP56.js";import"./24-BkbQ4VQu.js";import"./IconsDirectory.module-CEwWgW3i.js";import"./index-B9FTsAqd.js";import"./sizesMapping-D8QavrGc.js";import"./index-Is2qauMo.js";import"./index-CTfBpVCI.js";import"./index-DirQniBD.js";import"./index-cDYWclvM.js";import"./index-1zUxKm4P.js";import"./32-D1ipBNS6.js";import"./24-BU8fW5nS.js";import"./24-CsxFkFpg.js";import"./24-Cg1MPBHI.js";import"./24-BGS-MQmY.js";import"./24-2PvTlRtj.js";import"./24-DyWGmQTd.js";import"./24-DrF3F4Gh.js";import"./24-DXO8B9MT.js";import"./24-CHUQ235a.js";import"./16-D0071456.js";import"./24-CzaQJmC-.js";import"./16-D1MigzhA.js";import"./16-J9oiRdzb.js";import"./16-qJIrzOil.js";import"./useFloatingReferenceSync-C6rFkWeV.js";import"./floating-ui.react-0uHpbrLG.js";import"./index-BbV7Z3ze.js";import"./colorsMapping-C6bFIk14.js";import"./sizeMappingInput-XXScYzk1.js";import"./index-DlGInOJ7.js";const s="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=594-273525",h="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ComboBox",B=()=>{const[t,r]=p.useState(0);return o.jsxs("div",{className:m.wrapper,children:[o.jsx(d,{title:"ComboBox",description:"Компонент ComboBox предоставляет расширенный функционал для создания выпадающего списка с поддержкой поиска, группировки, перетаскивания и изменения размера.",isStable:!0,codeLink:h,figmaLink:s}),o.jsx("div",{className:m.tabs,children:o.jsxs(i,{children:[o.jsx(i.Tab,{label:"Разработчику",active:t===0,onClick:()=>r(0)}),o.jsx(i.Tab,{label:"Дизайнеру",active:t===1,onClick:()=>r(1)}),o.jsx(i.Tab,{label:"Тестирование",active:t===2,onClick:()=>r(2)})]})}),t===0&&o.jsxs(o.Fragment,{children:[o.jsx(b,{description:"Базовый пример использования ComboBox с простым списком опций.",code:`import { ComboBox, ComboList } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <ComboBox label="Выберите опцию">
+    <ComboList
+      items={[
+        { id: '1', label: 'Опция 1' },
+        { id: '2', label: 'Опция 2' },
+        { id: '3', label: 'Опция 3' }
+      ]}
+      onChange={(selected) => console.log(selected)}
+      isMultiple={false}
+    />
+  </ComboBox>
+);`}),o.jsx(C,{argsTypes:g})]}),t===1&&o.jsx(f,{url:s}),t===2&&o.jsx(j,{componentName:"ComboBox"})]})};function e(t){return o.jsxs(o.Fragment,{children:[o.jsx(a,{title:"Components/ComboBox/Info",component:u,parameters:{design:{type:"figma",url:"https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=594-273525&t=gzSZWyf2gDh6EKRE-4"},jest:["ComboBox.test.tsx"]}}),`
+`,o.jsx(n,{of:x}),`
+`,o.jsx(l,{children:o.jsx(B,{})})]})}function jo(t={}){const{wrapper:r}={...c(),...t.components};return r?o.jsx(r,{...t,children:o.jsx(e,{...t})}):e()}export{jo as default};

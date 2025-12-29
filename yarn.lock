@@ -9851,6 +9851,11 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rollup-plugin-typescript-paths@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/rollup-plugin-typescript-paths/-/rollup-plugin-typescript-paths-1.5.0.tgz#81922ad686623ab1b2549ec3fb6769ba7bdbe1ec"
+  integrity sha512-zly2aiGNjYJNq5YUi6eyGrQnCYUQ8b5czOtHZIGriwG9U3Ba2F9hlSklafXCdsNulK/IlNmE0Kzj0h+fVV32pA==
+
 rollup@^4.20.0:
   version "4.27.3"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.27.3.tgz#078ecb20830c1de1f5486607f3e2f490269fb98a"

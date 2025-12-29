@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import { resolve } from 'path';
+import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
@@ -140,6 +141,13 @@ export default defineConfig({
   publicDir: isLibBuild ? false : '../public',
   logLevel: isLibBuild ? 'warn' : 'info',
 
+  resolve: {
+    alias: {
+      '@components': resolve(__dirname, 'src/components'),
+      '@root': resolve(__dirname, 'src')
+    }
+  },
+
   server: {
     open: true,
     port: 3000
@@ -160,11 +168,27 @@ export default defineConfig({
       sourcemap: true,
       minify: false,
       rollupOptions: {
+        plugins: [
+          typescriptPaths({
+            preserveExtensions: true,
+            transform: path => path.replace(/\.tsx?$/, '.js')
+          })
+        ],
         external: id => {
           if (['react', 'react-dom', 'react/jsx-runtime'].includes(id)) return true;
           if (id.startsWith('react/') || id.startsWith('react-dom/')) return true;
-          if (id.includes('node_modules') && !id.includes('.module.scss')) return true;
-          return /(_stories|\.stories\.|_storybook|\.test\.|__tests__)/.test(id);
+
+          if (/(_stories|\.stories\.|_storybook|\.test\.|__tests__)/.test(id)) return true;
+
+          if (id.startsWith('@components/') || id === '@components/index') {
+            return false;
+          }
+
+          if (!id.startsWith('.') && !id.startsWith('/') && !id.includes('src/components')) {
+            return true;
+          }
+
+          return false;
         },
         output: {
           preserveModules: true,
@@ -184,7 +208,7 @@ export default defineConfig({
   }),
 
   plugins: [
-    tsConfigPaths(),
+    ...(!isLibBuild ? [tsConfigPaths()] : []),
     ...(isLibBuild
       ? [
           cssInjectedByJsPlugin({

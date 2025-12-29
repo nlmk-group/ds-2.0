@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.27.1",
+  "version": "2.27.2",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -137,6 +137,7 @@
     "react-window": "^1.8.10",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^6.0.1",
+    "rollup-plugin-typescript-paths": "^1.5.0",
     "sass-loader": "10.1.0",
     "storybook": "^9.1.16",
     "storybook-addon-turbo-build": "2.0.1",

@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.27.0",
+  "version": "2.27.1",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -460,7 +460,6 @@
     },
     "./css/main.css": "./lib/css/main.css",
     "./css/style.css": "./lib/css/style.css",
-    "./css/*": "./lib/css/*",
-    "./fonts/*": "./lib/fonts/*"
+    "./css/*": "./lib/css/*"
   }
 }

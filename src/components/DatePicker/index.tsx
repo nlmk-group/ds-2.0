@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
 
 import { useUpdatedValues } from '@components/declaration';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 import { isEqual } from 'date-fns';
 
@@ -188,14 +189,19 @@ export const DatePicker: TDatePickerProps = ({
     }
   }, [handleClose, pseudo]);
 
-  useEffect(() => {
-    if (calendarElement) {
+  const [isPositioned, setIsPositioned] = useState(false);
+
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip(), shift()],
+    whileElementsMounted: autoUpdate
+  });
+
+  useFloatingReferenceSync(inputRef, calendarElement, refs, positioned => {
+    if (calendarElement && positioned) {
       calendarRef.current = calendarElement;
     }
-  }, [calendarElement]);
-
-  const { styles: popperStyles, attributes } = usePopper(inputRef, calendarElement, {
-    placement: 'bottom-start'
+    setIsPositioned(positioned);
   });
 
   const handleSetValues = useCallback(
@@ -217,8 +223,7 @@ export const DatePicker: TDatePickerProps = ({
         if (date && date instanceof Date && !isNaN(date.getTime())) {
           innerOnChange(date);
           outerOnChange(date);
-        }
-        else if (date === null || date === undefined) {
+        } else if (date === null || date === undefined) {
           innerOnChange(undefined);
           outerOnChange(undefined as any);
         }
@@ -266,7 +271,7 @@ export const DatePicker: TDatePickerProps = ({
       withTime={withTime}
       enabledTo={enabledTo}
       enabledFrom={enabledFrom}
-      style={popperStyles.popper}
+      style={{ ...floatingStyles, visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility'] }}
       withShift={withShift}
       withSeconds={withSeconds}
       isOpenOnFocus={isOpenOnFocus}
@@ -275,7 +280,7 @@ export const DatePicker: TDatePickerProps = ({
       onPanelChange={onPanelChange}
       onSelect={onSelect}
       infiniteTimeScroll={infiniteTimeScroll}
-      {...attributes.popper}
+      data-popper-placement={placement}
       data-ui-datepicker-calendar-panel
     />
   );

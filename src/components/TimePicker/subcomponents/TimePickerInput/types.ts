@@ -1,4 +1,7 @@
+import { RefObject } from 'react';
+
 import { IInputAdditionalProps } from '@components/Input/types';
+
 import { TEnabledHour } from '../../types';
 
 export interface ITimePickerInputProps
@@ -11,13 +14,13 @@ export interface ITimePickerInputProps
   valueFrom?: Date;
   /** Конечное значение времени для периода */
   valueTo?: Date;
-  /** Выбранное начальное время */
+  /** Выбранное время для первого пикера (для периода) */
   selectedTimeFirst?: Date;
-  /** Выбранное конечное время */
+  /** Выбранное время для второго пикера (для периода) */
   selectedTimeSecond?: Date;
-  /** Обработчик изменения первого времени */
-  onChangeFirst?: (date: Date) => void;
-  /** Обработчик изменения второго времени */
+  /** Обработчик изменения первого времени (может быть undefined при частичном сбросе) */
+  onChangeFirst?: (date: Date | undefined) => void;
+  /** Обработчик изменения второго времени (может быть undefined при частичном сбросе) */
   onChangeSecond?: (date: Date | undefined) => void;
   /** Обработчик изменения времени */
   onChange?: (date: Date) => void;
@@ -51,4 +54,8 @@ export interface ITimePickerInputProps
   withIcon?: boolean;
   /** Флаг использования всплывающего пикера */
   withPicker?: boolean;
+  /** Обработчик toggle панели */
+  onToggle?: () => void;
+  /** Ref для иконки часов */
+  iconRef?: RefObject<HTMLDivElement | null>;
 }

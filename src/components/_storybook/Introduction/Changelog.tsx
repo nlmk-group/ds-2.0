@@ -23,9 +23,36 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.26.5 - <span className={styles.date}>25.12.25</span>
+            v2.27.0 - <span className={styles.date}>29.12.25</span>
           </Typography>
           <ul className={styles.list}>
+            <li>
+              • Миграция на React 19 и обновление сборки.
+              <li className={styles['left-padding']}>
+                - Обновлена версия React до 19 для улучшения производительности и новых возможностей
+              </li>
+              <li className={styles['left-padding']}>
+                - Vite обновлен до версии 7 и улучшена конфигурация сборки библиотеки
+              </li>
+              <li className={styles['left-padding']}>
+                - Внедрен режим Preserve Module для оптимизации tree-shaking и уменьшения размера бандла
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена критическая ошибка со свойством clickable, оно не работало корректно из-за CSS-стиля
+                pointer-events: none
+              </li>
+            </li>
             <li>
               • Обновлен компонент{' '}
               <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>

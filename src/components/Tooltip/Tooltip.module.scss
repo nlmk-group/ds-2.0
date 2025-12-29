@@ -48,6 +48,10 @@
     border-radius: 4px;
     padding: 8px 12px;
 
+    &.tooltip-clickable {
+      pointer-events: auto;
+    }
+
     &.tooltip-wrapper-inverse {
       background-color: var(--steel-10);
       color: var(--steel-90);

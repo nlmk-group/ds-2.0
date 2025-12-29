@@ -11,17 +11,15 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import {
-  FILE_NAME,
-  FILES_ADD_FILE_BUTTON,
-  FILES_DEFAULT,
-  FILES_DESCRIPTION,
-  FILES_WITH_CHECKBOXES,
-  FILES_WITH_TITLE
-} from './text';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319&t=HhCDuaOuzHu5rgyf-1';
+const FILE_NAME = 'Название файла.pdf';
+const FILES_DEFAULT = 'File по умолчанию';
+const FILES_DESCRIPTION = 'File с описанием';
+const FILES_WITH_TITLE = 'AttachFiles с заголовком';
+const FILES_ADD_FILE_BUTTON = 'AttachFiles с кнопкой добавления файла';
+const FILES_WITH_CHECKBOXES = 'AttachFiles с чекбоксами';
+
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

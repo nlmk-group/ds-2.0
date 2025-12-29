@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
 import { IconUnit } from '@components/index';
-import { fireEvent, render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import { IInputAdditionalProps } from './types';
 

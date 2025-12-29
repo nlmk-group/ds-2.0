@@ -1,14 +1,10 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { withTests } from '@storybook/addon-jest';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
-
-import results from '../.jest-test-results.json';
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import { getSystemTheme } from '../src/components/Theme/utils';
 import DocsThemeContainer from './Docs';
-import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
+import { storybookLightTheme } from './storybookTheme';
 
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
@@ -26,6 +22,16 @@ div.style.cssText = `
 div.innerHTML = `<code>${name} - v.${version}</code>`;
 header?.append(div);
 
+const THEME_KEY = 'nlmk-storybook-theme';
+const savedTheme = localStorage.getItem(THEME_KEY);
+if (savedTheme) {
+  const isDark = savedTheme === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark-theme' : 'light-theme');
+} else {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', prefersDark ? 'dark-theme' : 'light-theme');
+}
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -39,20 +45,17 @@ export const parameters = {
     disable: true
   },
   layout: 'centered',
-  darkMode: {
-    dark: storybookDarkTheme,
-    light: storybookLightTheme,
-    current: getSystemTheme()
-  },
   backgrounds: {
-    default: 'default',
-    values: [
-      { name: 'default', value: 'var(--steel-10, #455161)' },
-      { name: 'info', value: 'var(--background-info, #636f7f)' },
-      { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
-    ]
+    options: {
+      default: { name: 'default', value: 'var(--steel-10, #455161)' },
+      info: { name: 'info', value: 'var(--background-info, #636f7f)' },
+      blue: { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
+    }
   },
-  docs: { container: DocsThemeContainer },
+  docs: {
+    container: DocsThemeContainer,
+    theme: storybookLightTheme
+  },
   options: {
     showPanel: true,
     panelPosition: 'bottom',
@@ -74,16 +77,6 @@ export const parameters = {
 };
 
 export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light-theme',
-      dark: 'dark-theme'
-    },
-    defaultTheme: getSystemTheme()
-  }),
-  withTests({
-    results
-  }),
   Story => (
     <BrowserRouter>
       <Story />
@@ -91,3 +84,9 @@ export const decorators = [
   )
 ];
 export const tags = ['autodocs'];
+
+export const initialGlobals = {
+  backgrounds: {
+    value: 'default'
+  }
+};

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .status {
   box-sizing: border-box;
   display: flex;
@@ -51,7 +53,7 @@ $icon-colors: (
 @each $color in $colors {
   .color-#{"" + $color} {
     &.fill-solid {
-      background-color: map-get($bg-colors, $color);
+      background-color: map.get($bg-colors, $color);
     }
   }
 }

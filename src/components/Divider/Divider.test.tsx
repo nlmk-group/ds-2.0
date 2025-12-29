@@ -29,7 +29,7 @@ describe('src/components/Divider', () => {
   test('It should render a Divider with solid borders', () => {
     render(<DividerHelper />);
     const borders = screen.getAllByTestId('BORDER');
-    borders.forEach(border => {
+    borders.forEach((border: any) => {
       expect(border.classList.contains('border-solid')).toBe(true);
     });
   });
@@ -37,7 +37,7 @@ describe('src/components/Divider', () => {
   test('It should render a Divider with dashed borders', () => {
     render(<Divider dashed>{testTitle}</Divider>);
     const borders = screen.getAllByTestId('BORDER');
-    borders.forEach(border => {
+    borders.forEach((border: any) => {
       expect(border.classList.contains('border-dashed')).toBe(true);
     });
   });

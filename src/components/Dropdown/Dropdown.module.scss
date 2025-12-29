@@ -15,10 +15,3 @@
 .wrapper {
   position: relative;
 }
-
-.button {
-  &:focus {
-    background-color: var(--brand-sapphire-30);
-    color: var(--unique-bluewhite);
-  }
-}

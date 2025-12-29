@@ -354,7 +354,7 @@ export const TableColumnList = <T extends object>({
         })
       });
 
-      return <div ref={drop} className={styles.dropZone} data-position={position} data-parent-id={parentId} />;
+      return <div ref={drop as any} className={styles.dropZone} data-position={position} data-parent-id={parentId} />;
     },
     [columnStructure, moveToStart, moveToEnd]
   );

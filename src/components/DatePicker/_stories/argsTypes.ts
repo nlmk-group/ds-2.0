@@ -196,6 +196,16 @@ export const argsTypes = {
     },
     control: { type: 'boolean' }
   },
+  locale: {
+    description: 'Локаль для форматирования дат (ru, en)',
+    table: {
+      defaultValue: {
+        summary: 'ru'
+      }
+    },
+    options: ['ru', 'en'],
+    control: { type: 'select' }
+  },
   portalContainerId: {
     description:
       'Идентификатор контейнера, в который будет рендериться календарь с помощью React Portal. По умолчанию используется "root".',
@@ -205,6 +215,18 @@ export const argsTypes = {
       }
     },
     control: { type: 'text' }
+  },
+  isOpenOnFocus: {
+    description: 'Флаг для открытия пикера при фокусе на инпуте',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
   },
   onPanelChange: {
     description: 'Callback, который будет вызван при изменении панели дней, месяца, года, квартала в календаре',

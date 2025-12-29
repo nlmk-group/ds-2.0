@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, FC, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
 
 import { ClickAwayListener, IconSelectionContains24, List, ListItem, Typography } from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import clsx from 'clsx';
 
 import { IFilterProps, IFilterTypeOption, IFilterValueOption, TMenuState } from './types';
@@ -31,6 +32,7 @@ const Filter: FC<IFilterProps> = ({
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
   const referenceElement = useMemo(() => {
     if (openedMenu === 'type') return iconRef.current;
@@ -38,32 +40,19 @@ const Filter: FC<IFilterProps> = ({
     return null;
   }, [openedMenu]);
 
-  const {
-    styles: popperStyles,
-    attributes,
-    update
-  } = usePopper(referenceElement, popperElement, {
+  const offsetValue = openedMenu === 'type' ? 16 : 8;
+
+  const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    modifiers: [
-      { name: 'flip', options: { fallbackPlacements: ['top-start'] } },
-      { name: 'preventOverflow', options: { boundary: 'clippingParents', padding: 8 } },
-      {
-        name: 'offset',
-        options: {
-          offset: openedMenu === 'type' ? [0, 16] : [0, 8]
-        }
-      }
-    ]
+    middleware: [
+      offset(offsetValue),
+      flip({ fallbackPlacements: ['top-start'] }),
+      shift({ limiter: limitShift(), padding: 8 })
+    ],
+    whileElementsMounted: autoUpdate
   });
 
-  // update() после первого же рендера меню чтобы открывалось сразу в правильном месте
-  useEffect(() => {
-    if (openedMenu && update) {
-      requestAnimationFrame(() => {
-        update();
-      });
-    }
-  }, [openedMenu, update]);
+  useFloatingReferenceSync(referenceElement, popperElement, refs, setIsPositioned);
 
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
@@ -79,7 +68,6 @@ const Filter: FC<IFilterProps> = ({
     return filterValueOptions.filter(option => option.label.toLowerCase().includes(inputValue.toLowerCase()));
   }, [filterValueOptions, inputValue]);
 
-  // --- Открытие/закрытие меню «тип» ---
   const handleIconClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setOpenedMenu(prev => (prev === 'type' ? null : 'type'));
@@ -97,7 +85,6 @@ const Filter: FC<IFilterProps> = ({
     }
   };
 
-  // --- Открытие/закрытие меню «значение» ---
   const handleFocusInput = (e: React.FocusEvent) => {
     e.stopPropagation();
     setOpenedMenu('value');
@@ -172,20 +159,20 @@ const Filter: FC<IFilterProps> = ({
         if (openedMenu === 'type') closeTypeMenu();
         if (openedMenu === 'value') closeValueMenu();
       }}
-      // Исключаем ref иконки и инпута
       excludeRef={openedMenu === 'type' ? iconRef : inputRef}
     >
       <List
-        // Это единый popperElement
         ref={setPopperElement}
         style={{
-          ...popperStyles.popper,
-          minWidth: openedMenu === 'type' ? 200 : inputRef.current?.offsetWidth,
+          ...floatingStyles,
+          minWidth: openedMenu === 'type' ? 200 : Math.min(inputRef.current?.offsetWidth || 200, 400),
+          maxWidth: openedMenu === 'value' ? 400 : undefined,
           zIndex: 1100,
-          ...(withPortal && { marginTop: '0px' })
+          ...(withPortal && { marginTop: '0px' }),
+          visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
         }}
         className={styles.menu}
-        {...attributes.popper}
+        data-popper-placement={placement}
       >
         {renderMenuContent()}
       </List>

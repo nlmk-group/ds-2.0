@@ -36,9 +36,7 @@ const calculateDropdownHeights = (
 
   if (!isMultiple) {
     const heightForSingleItem = items.length * ITEM_NOT_MULTIPLE_HEIGHT;
-
     const optimalHeightSingle = items.length > 15 ? DEFAULT_OPTIMAL_HEIGHT : heightForSingleItem;
-
     const minHeightSingle = items.length < 3 ? heightForSingleItem : DEFAULT_MIN_HEIGHT;
 
     return {
@@ -48,9 +46,7 @@ const calculateDropdownHeights = (
   }
 
   const heightForMultipleItems = items.length * currentItemHeight;
-
   const optimalHeightMultiple = items.length > 15 ? DEFAULT_OPTIMAL_HEIGHT : heightForMultipleItems;
-
   const minHeightMultiple = items.length < 3 ? heightForMultipleItems : DEFAULT_MIN_HEIGHT;
 
   return {

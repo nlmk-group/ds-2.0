@@ -1,8 +1,8 @@
 import { fixupConfigRules } from '@eslint/compat';
-import storybook from 'eslint-plugin-storybook';
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginJs from '@eslint/js';
 import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
+import storybook from 'eslint-plugin-storybook';
 import path from 'path';
 import tseslint from 'typescript-eslint';
 import { fileURLToPath } from 'url';
@@ -25,6 +25,7 @@ export default [
       'vite.config.ts',
       'src/index.tsx',
       'src/**/*.stories.tsx',
+      '*.cjs',
       // dependencies
       'lib',
       'dist',
@@ -49,10 +50,13 @@ export default [
       }
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': ['error', {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_'
-      }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_'
+        }
+      ],
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/no-shadow': 'off',
       'no-console': [

@@ -1,8 +1,9 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { cloneElement, CSSProperties, isValidElement, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Tooltip } from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import styles from '../../ComboBox.module.scss';
@@ -50,36 +51,20 @@ const ComboBoxDropdown = ({
   const wrapInputRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [isPositioned, setIsPositioned] = useState(false);
 
   const width = dropdownMinWidth ? dropdownMinWidth : dropdownOptimalWidth;
   const height = dropdownMinHeight ? dropdownMinHeight : optimalDDHeight;
   const calculateDropdownMinWidth = Math.max(width, inputRef.current?.offsetWidth || 0);
   const calculateDropdownMinHeight = Math.max(height, inputRef.current?.offsetHeight || 0);
 
-  const { styles: popperStyles, attributes } = usePopper(wrapInputRef.current, popperElement, {
+  const { refs, floatingStyles, placement } = useFloating({
     placement: 'bottom-start',
-    modifiers: [
-      {
-        name: 'flip',
-        options: {
-          fallbackPlacements: ['top-start']
-        }
-      },
-      {
-        name: 'preventOverflow',
-        options: {
-          boundary: 'clippingParents',
-          padding: 8
-        }
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4] // [горизонтальный, вертикальный] отступ в пикселях
-        }
-      }
-    ]
+    middleware: [offset(4), flip({ fallbackPlacements: ['top-start'] }), shift({ limiter: limitShift(), padding: 8 })],
+    whileElementsMounted: autoUpdate
   });
+
+  useFloatingReferenceSync(wrapInputRef, popperElement, refs, setIsPositioned);
 
   const handleOutsideClick = (event: MouseEvent) => {
     const isInputClick = wrapInputRef.current?.contains(event.target as Node) ?? false;
@@ -100,13 +85,14 @@ const ComboBoxDropdown = ({
     const baseStyles = {
       height: dropdownHeight ? dropdownHeight : calculateDropdownMinHeight,
       width: dropdownWidth ? dropdownWidth : calculateDropdownMinWidth,
-      minWidth: inputRef.current?.offsetWidth ?? calculateDropdownMinWidth
+      minWidth: inputRef.current?.offsetWidth ?? calculateDropdownMinWidth,
+      visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
     };
 
     if (withPortal) {
       return {
         ...baseStyles,
-        ...popperStyles.popper,
+        ...floatingStyles,
         ...dropdownStyle
       };
     }
@@ -141,13 +127,12 @@ const ComboBoxDropdown = ({
   );
 
   const enhancedChildren = React.Children.map(children, child => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
-        ...child.props,
+    if (isValidElement(child) && typeof child.type !== 'string') {
+      return cloneElement(child, {
         autoFocusSearch,
         autoExpandOnSearch,
         isDropdownOpen: isOpen
-      });
+      } as any);
     }
     return child;
   });
@@ -156,13 +141,13 @@ const ComboBoxDropdown = ({
     <div
       ref={el => {
         dropdownRef.current = el;
-        if (withPortal && el) {
+        if (el) {
           setPopperElement(el);
         }
       }}
       className={clsx(styles.dropdown, dropdownClassName)}
       style={getDropdownStyles() as CSSProperties}
-      {...(withPortal ? attributes.popper : {})}
+      data-popper-placement={placement}
     >
       {isResize && (
         <ResizableGrip

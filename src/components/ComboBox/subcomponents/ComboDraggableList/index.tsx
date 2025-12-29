@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react';
-import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import { Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -14,6 +16,14 @@ import { AllItemsCheckbox, InfiniteScrollTrigger, Search } from '../../subcompon
 import type { IComboBoxOption } from '../../types';
 import { reorderList } from '../../utils';
 
+const COMBO_ITEM_TYPE = 'combo-item';
+
+interface DragItem {
+  id: string;
+  index: number;
+  type: string;
+}
+
 const ComboDraggableList = <T extends IComboBoxOption>({
   items,
   onChange,
@@ -24,7 +34,7 @@ const ComboDraggableList = <T extends IComboBoxOption>({
   isMultiple = true,
   isInfinityLoading = false,
   infinityLoadingOptions,
-  droppableId
+  droppableId: _droppableId
 }: IComboDraggableListProps<T>) => {
   const setComboValue = useSetComboBoxValue();
   const comboBoxValue = useComboBoxValue();
@@ -67,29 +77,28 @@ const ComboDraggableList = <T extends IComboBoxOption>({
     }
   };
 
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) {
-      return;
-    }
-    if (result.destination.index === result.source.index) {
-      return;
-    }
-    const sourceItem = filteredSearchItems[result.source.index];
-    const destinationItem = filteredSearchItems[result.destination.index];
+  const moveItem = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      if (dragIndex === hoverIndex) return;
 
-    if (!sourceItem || !destinationItem) {
-      return;
-    }
+      const sourceItem = filteredSearchItems[dragIndex];
+      const destinationItem = filteredSearchItems[hoverIndex];
 
-    const primarySourceIndex = items.findIndex(item => item.id === sourceItem.id);
-    const primaryDestinationIndex = items.findIndex(item => item.id === destinationItem.id);
+      if (!sourceItem || !destinationItem) {
+        return;
+      }
 
-    if (primarySourceIndex === -1 || primaryDestinationIndex === -1) {
-      return;
-    }
+      const primarySourceIndex = items.findIndex(item => item.id === sourceItem.id);
+      const primaryDestinationIndex = items.findIndex(item => item.id === destinationItem.id);
 
-    onReorder?.(reorderList(items, primarySourceIndex, primaryDestinationIndex));
-  };
+      if (primarySourceIndex === -1 || primaryDestinationIndex === -1) {
+        return;
+      }
+
+      onReorder?.(reorderList(items, primarySourceIndex, primaryDestinationIndex));
+    },
+    [items, onReorder]
+  );
 
   const filteredSearchItems = useMemo(() => {
     if (searchValue) {
@@ -99,73 +108,90 @@ const ComboDraggableList = <T extends IComboBoxOption>({
     return items;
   }, [searchValue, items]);
 
-  const renderItem = (item: T, index: number) => {
-    const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
-    const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
+  const DraggableItem = useCallback(
+    ({ item, index }: { item: T; index: number }) => {
+      const ref = useRef<HTMLDivElement>(null);
+      const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
+      const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
 
-    return (
-      <Draggable key={item.id} draggableId={`${droppableId}-${item.id}`} index={index}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            className={clsx(styles['list-item'], styles['list-item--draggable'], {
-              [styles['list-item--active']]: isChecked,
-              [styles['list-item--dragging']]: snapshot.isDragging,
-              [styles['list-item--disabled']]: Boolean(item.disabled)
-            })}
-            {...provided.draggableProps}
-            style={provided.draggableProps.style}
-          >
-            <span {...provided.dragHandleProps} className={styles['drag-indicator']}>
-              <Icon name="IconDragIndicatorDotsOutlined24" />
-            </span>
-            {isMultiple && (
-              <Checkbox
-                checked={isChecked}
-                disabled={Boolean(item.disabled)}
-                label={item.label}
-                onChange={() => handleMultiChange(item)}
-                className={styles['list-item__checkbox']}
-              />
-            )}
-            {!isMultiple && (
-              <Typography
-                variant="Body1-Medium"
-                className={styles['list-item__label']}
-                onClick={() => !item.disabled && handleChange(item)}
-              >
-                {item.label}
-              </Typography>
-            )}
-            {isRenderInfinityLoadingAnchor && (
-              <InfiniteScrollTrigger
-                isVirtualize={false}
-                isLoading={isLoading}
-                infinityLoadingOptions={infinityLoadingOptions}
-              />
-            )}
-          </div>
-        )}
-      </Draggable>
-    );
-  };
+      const [{ isDragging }, drag] = useDrag({
+        type: COMBO_ITEM_TYPE,
+        item: { id: item.id, index, type: COMBO_ITEM_TYPE },
+        collect: monitor => ({
+          isDragging: monitor.isDragging()
+        })
+      });
+
+      const [{ isOver: _isOver }, drop] = useDrop({
+        accept: COMBO_ITEM_TYPE,
+        hover: (draggedItem: DragItem) => {
+          if (draggedItem.index !== index) {
+            moveItem(draggedItem.index, index);
+            draggedItem.index = index;
+          }
+        },
+        collect: monitor => ({
+          isOver: monitor.isOver()
+        })
+      });
+
+      drag(drop(ref));
+
+      return (
+        <div
+          ref={ref}
+          className={clsx(styles['list-item'], styles['list-item--draggable'], {
+            [styles['list-item--active']]: isChecked,
+            [styles['list-item--dragging']]: isDragging,
+            [styles['list-item--disabled']]: Boolean(item.disabled)
+          })}
+          style={{ opacity: isDragging ? 0.5 : 1 }}
+        >
+          <span className={styles['drag-indicator']}>
+            <Icon name="IconDragIndicatorDotsOutlined24" />
+          </span>
+          {isMultiple && (
+            <Checkbox
+              checked={isChecked}
+              disabled={Boolean(item.disabled)}
+              label={item.label}
+              onChange={() => handleMultiChange(item)}
+              className={styles['list-item__checkbox']}
+            />
+          )}
+          {!isMultiple && (
+            <Typography
+              variant="Body1-Medium"
+              className={styles['list-item__label']}
+              onClick={() => !item.disabled && handleChange(item)}
+            >
+              {item.label}
+            </Typography>
+          )}
+          {isRenderInfinityLoadingAnchor && (
+            <InfiniteScrollTrigger
+              isVirtualize={false}
+              isLoading={isLoading}
+              infinityLoadingOptions={infinityLoadingOptions}
+            />
+          )}
+        </div>
+      );
+    },
+    [comboBoxValue, isInfinityLoading, offsetItemLoadingId, isMultiple, handleMultiChange, handleChange, isLoading, infinityLoadingOptions, moveItem]
+  );
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       {isLoading && <Spinner />}
       {isSearch && <Search />}
       {isCheckAll && <AllItemsCheckbox items={filteredSearchItems} onChange={onChange} />}
-      <DragDropContext onDragEnd={handleDragEnd} enableDefaultSensors>
-        <Droppable droppableId={droppableId}>
-          {provided => (
-            <div {...provided.droppableProps} ref={provided.innerRef} className={styles['list-container']}>
-              {filteredSearchItems.map((item, index) => renderItem(item, index))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </>
+      <div className={styles['list-container']}>
+        {filteredSearchItems.map((item, index) => (
+          <DraggableItem key={item.id} item={item} index={index} />
+        ))}
+      </div>
+    </DndProvider>
   );
 };
 

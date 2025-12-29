@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $checkbox-size: 18px;
 $checkbox-icon-size: 14px;
 $checkbox-focus-size: 32px;
@@ -95,13 +97,13 @@ $checkbox-colors: (
   // Генерация стилей для разных цветовых вариантов
   @each $color, $values in $checkbox-colors {
     &[data-color="#{$color}"] {
-      border-color: map-get($values, border);
+      border-color: map.get($values, border);
       background-color: var(--steel-10);
 
       // Отмеченное состояние
       &:checked {
-        background-color: map-get($values, background);
-        border-color: map-get($values, border-checked);
+        background-color: map.get($values, background);
+        border-color: map.get($values, border-checked);
 
         ~ .checkmark {
           opacity: 1;
@@ -111,10 +113,10 @@ $checkbox-colors: (
       // Состояние disabled
       &:disabled {
         cursor: default;
-        border-color: map-get($values, border);
+        border-color: map.get($values, border);
 
         &:checked {
-          background-color: map-get($values, background);
+          background-color: map.get($values, background);
           border: none;
         }
       }

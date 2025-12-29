@@ -1,9 +1,9 @@
 import React, { createContext, FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ClickAwayListener } from '@components/index';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { ISelectOption, ISelectProps, ISelectSharedProperties } from './types';
@@ -84,9 +84,23 @@ const Select: FC<ISelectProps> = ({
   const [menuRef, setMenuRef] = useState<null | HTMLDivElement>(null);
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
-  const { styles: popperStyles, attributes } = usePopper(inputRef, menuRef, {
-    placement: 'bottom-start'
+  const { refs, floatingStyles, placement } = useFloating({
+    placement: 'bottom-start',
+    middleware: [offset(4), flip(), shift()],
+    whileElementsMounted: autoUpdate
   });
+
+  useEffect(() => {
+    if (inputRef) {
+      refs.setReference(inputRef);
+    }
+  }, [inputRef, refs]);
+
+  useEffect(() => {
+    if (menuRef) {
+      refs.setFloating(menuRef);
+    }
+  }, [menuRef, refs]);
 
   const [currentScrollPosition, setCurrentScrollPosition] = useState<number>(0);
 
@@ -122,23 +136,7 @@ const Select: FC<ISelectProps> = ({
     return getLabel(foundOption?.label || '');
   };
 
-  const handleOutsideClick = () => {
-    setIsOpen(false);
-    if (isClearSearchOnBlur) {
-      setSearchTerm('');
-    }
-    if (onBlur) {
-      onBlur();
-    }
-  };
-
-  const handleFocusClick = async () => {
-    if (onFocus) {
-      onFocus();
-    }
-
-    setIsOpen(true);
-
+  const loadOptionsIfNeeded = async () => {
     if (onOpen && typeof onOpen === 'function' && !hasLoadedOptions) {
       setLoading(true);
       try {
@@ -146,11 +144,38 @@ const Select: FC<ISelectProps> = ({
         setAsyncOptions(fetchedOptions);
         setFilteredOptions(fetchedOptions);
         setHasLoadedOptions(true);
-      } catch {
+      } catch (error) {
+        console.error('Ошибка загрузки опций:', error);
       } finally {
         setLoading(false);
       }
     }
+  };
+
+  const openDropdown = async () => {
+    if (onFocus) {
+      onFocus();
+    }
+    setIsOpen(true);
+    await loadOptionsIfNeeded();
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+    if (onBlur) {
+      onBlur();
+    }
+  };
+
+  const handleOutsideClick = () => {
+    closeDropdown();
+    if (isClearSearchOnBlur) {
+      setSearchTerm('');
+    }
+  };
+
+  const handleFocusClick = async () => {
+    await openDropdown();
   };
 
   useEffect(() => {
@@ -225,16 +250,15 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
-  const toggleDropdown: React.MouseEventHandler<HTMLButtonElement> = e => {
+  const toggleDropdown: React.MouseEventHandler<HTMLButtonElement> = async e => {
     e.preventDefault();
     e.stopPropagation();
-    if (isOpen && onBlur) {
-      onBlur();
+
+    if (isOpen) {
+      closeDropdown();
+    } else {
+      await openDropdown();
     }
-    if (!isOpen && onFocus) {
-      onFocus();
-    }
-    setIsOpen(!isOpen);
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -304,8 +328,8 @@ const Select: FC<ISelectProps> = ({
     <div
       className={clsx(withPortal ? styles.wrapper : null)}
       ref={setMenuRef}
-      style={popperStyles.popper}
-      {...attributes.popper}
+      style={floatingStyles}
+      data-popper-placement={placement}
     >
       {renderItems()}
     </div>

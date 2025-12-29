@@ -1,21 +1,20 @@
 import React, { FC, useMemo, useState } from 'react';
 
-import { locale } from '@components/DatePicker/helpers';
+import {
+  locale,
+  useIsDisabled,
+  useIsEnd,
+  useIsMid,
+  useIsSelected,
+  useIsStart,
+  useIsToday
+} from '@components/DatePicker/helpers';
 import { Day } from '@components/DatePicker/subcomponents';
 import { useLocale } from '@components/DatePicker/utils';
 
 import { IQuartersCalendarProps } from './types';
 
 import styles from './QuarterCalendar.module.scss';
-
-import {
-  useIsDisabledQuarter,
-  useIsEndQuarter,
-  useIsMidQuarter,
-  useIsSelectedQuarter,
-  useIsStartQuarter,
-  useIsTodayQuarter
-} from './helpers';
 
 export const QuartersCalendar: FC<IQuartersCalendarProps> = ({
   panelValue,
@@ -29,7 +28,7 @@ export const QuartersCalendar: FC<IQuartersCalendarProps> = ({
   onSelect
 }) => {
   const language = useLocale();
-  const isTodayQuarter = useIsTodayQuarter({ panelValue });
+  const isTodayQuarter = useIsToday('quarter', panelValue);
   const dateFrom = useMemo(() => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()), [valueFrom]);
   const dateTo = useMemo(() => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
@@ -42,32 +41,45 @@ export const QuartersCalendar: FC<IQuartersCalendarProps> = ({
     [currentHover]
   );
 
-  const isSelectedQuarter = useIsSelectedQuarter({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo,
-    selectedDate,
-    panelValue
-  });
-  const isStartQuarter = useIsStartQuarter({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom
-  });
-  const isMidQuarter = useIsMidQuarter({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isEndQuarter = useIsEndQuarter({
-    dateCurrentHover,
-    withPeriod,
-    dateTo,
-    dateFrom
-  });
-  const isDisabled = useIsDisabledQuarter(enabledFrom, enabledTo);
+  const isSelectedQuarter = useIsSelected(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo,
+      selectedDate,
+      panelValue
+    },
+    'quarter'
+  );
+  const isStartQuarter = useIsStart(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'quarter'
+  );
+  const isMidQuarter = useIsMid(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'quarter'
+  );
+  const isEndQuarter = useIsEnd(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateTo,
+      dateFrom
+    },
+    'quarter'
+  );
+  const isDisabled = useIsDisabled(enabledFrom, enabledTo, 'quarter');
 
   return (
     <div className={styles.root}>

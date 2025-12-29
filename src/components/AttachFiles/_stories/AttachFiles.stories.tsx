@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Fragment, useState } from 'react';
 
 import { AttachFiles, File } from '@components/index';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { clsx } from 'clsx';
 
 import style from '../AttachFiles.module.scss';
@@ -9,20 +9,6 @@ import styles from '@components/_storybook/styles.module.scss';
 
 import { IFileProps } from '../subcomponents/File/types';
 import argsTypes from './argsTypes';
-import {
-  FILE_NAME,
-  FILES_ADD_FILE_BUTTON,
-  FILES_CONTROL,
-  FILES_DEFAULT,
-  FILES_DESCRIPTION,
-  FILES_LEFT_ICON,
-  FILES_LIST,
-  FILES_LONG_LABEL,
-  FILES_WITH_CHECKBOXES,
-  FILES_WITH_TITLE,
-  FILES_WITHOUT_TITLE,
-  LONG_LABEL
-} from './text';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
@@ -35,10 +21,10 @@ export default {
 };
 
 const FileCollection: JSX.Element[] = [
-  <File label={FILE_NAME} />,
-  <File label={FILE_NAME} checked />,
-  <File label={FILE_NAME} tick />,
-  <File label={FILE_NAME} empty />
+  <File label="Название файла.pdf" />,
+  <File label="Название файла.pdf" checked />,
+  <File label="Название файла.pdf" tick />,
+  <File label="Название файла.pdf" empty />
 ];
 
 export const AttachFilesDefault = (argTypes: IFileProps): JSX.Element => {
@@ -49,9 +35,9 @@ export const AttachFilesDefault = (argTypes: IFileProps): JSX.Element => {
   );
 };
 
-AttachFilesDefault.storyName = FILES_DEFAULT;
+AttachFilesDefault.storyName = 'File по умолчанию';
 AttachFilesDefault.args = {
-  label: FILE_NAME
+  label: 'Название файла.pdf'
 };
 
 export const AttachFilesDescription = (argTypes: IFileProps): JSX.Element => {
@@ -62,10 +48,10 @@ export const AttachFilesDescription = (argTypes: IFileProps): JSX.Element => {
   );
 };
 
-AttachFilesDescription.storyName = FILES_DESCRIPTION;
+AttachFilesDescription.storyName = 'File с описанием';
 AttachFilesDescription.args = {
-  description: FILES_DESCRIPTION,
-  label: FILE_NAME
+  description: 'File с описанием',
+  label: 'Название файла.pdf'
 };
 
 export const AttachFilesLeftIcon = (): JSX.Element => {
@@ -78,42 +64,41 @@ export const AttachFilesLeftIcon = (): JSX.Element => {
   );
 };
 
-AttachFilesLeftIcon.storyName = FILES_LEFT_ICON;
+AttachFilesLeftIcon.storyName = 'File вариации левой иконки';
 
 export const AttachFilesControl = (argTypes: IFileProps): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, style['vertical-wrapper'])}>
       <File
-        label={FILE_NAME}
+        label="Название файла.pdf"
         removed
         removedOnClick={argTypes.removedOnClick}
-        // {...handlers}
       />
-      <File label={FILE_NAME} commented commentedOnClick={argTypes.commentedOnClick} />
-      <File label={FILE_NAME} saved savedOnClick={argTypes.savedOnClick} />
+      <File label="Название файла.pdf" commented commentedOnClick={argTypes.commentedOnClick} />
+      <File label="Название файла.pdf" saved savedOnClick={argTypes.savedOnClick} />
       <File
-        label={FILE_NAME}
+        label="Название файла.pdf"
         commented
         commentedOnClick={argTypes.commentedOnClick}
         removed
         removedOnClick={argTypes.removedOnClick}
       />
       <File
-        label={FILE_NAME}
+        label="Название файла.pdf"
         commented
         commentedOnClick={argTypes.commentedOnClick}
         saved
         savedOnClick={argTypes.savedOnClick}
       />
       <File
-        label={FILE_NAME}
+        label="Название файла.pdf"
         removed
         removedOnClick={argTypes.removedOnClick}
         saved
         savedOnClick={argTypes.savedOnClick}
       />
       <File
-        label={FILE_NAME}
+        label="Название файла.pdf"
         commented
         commentedOnClick={argTypes.commentedOnClick}
         removed
@@ -121,12 +106,12 @@ export const AttachFilesControl = (argTypes: IFileProps): JSX.Element => {
         saved
         savedOnClick={argTypes.savedOnClick}
       />
-      <File label={FILE_NAME} addFile addFileOnClick={argTypes.addFileOnClick} />
+      <File label="Название файла.pdf" addFile addFileOnClick={argTypes.addFileOnClick} />
     </div>
   );
 };
 
-AttachFilesControl.storyName = FILES_CONTROL;
+AttachFilesControl.storyName = 'File с контролами';
 AttachFilesControl.args = {
   removedOnClick: action('removedOnClick'),
   commentedOnClick: action('commentedOnClick'),
@@ -141,14 +126,14 @@ export const AttachFilesWithoutTitle = (): JSX.Element => {
         {Array(4)
           .fill(0)
           .map((index: number) => (
-            <File label={FILE_NAME} removed key={index} />
+            <File label="Название файла.pdf" removed key={index} />
           ))}
       </AttachFiles>
     </div>
   );
 };
 
-AttachFilesWithoutTitle.storyName = FILES_WITHOUT_TITLE;
+AttachFilesWithoutTitle.storyName = 'AttachFiles без заголовка';
 
 export const AttachFilesWithTitle = (): JSX.Element => {
   return (
@@ -160,12 +145,12 @@ export const AttachFilesWithTitle = (): JSX.Element => {
         gap: '16px'
       }}
     >
-      <AttachFiles title={<File label={FILE_NAME} checked />}>
+      <AttachFiles title={<File label="Название файла.pdf" checked />}>
         {FileCollection.map((FileItem: JSX.Element, index: number) => (
           <Fragment key={index}>{FileItem}</Fragment>
         ))}
       </AttachFiles>
-      <AttachFiles title={<File label={FILE_NAME} empty />}>
+      <AttachFiles title={<File label="Название файла.pdf" empty />}>
         {FileCollection.map((FileItem: JSX.Element, index: number) => (
           <Fragment key={index}>{FileItem}</Fragment>
         ))}
@@ -174,7 +159,7 @@ export const AttachFilesWithTitle = (): JSX.Element => {
   );
 };
 
-AttachFilesWithTitle.storyName = FILES_WITH_TITLE;
+AttachFilesWithTitle.storyName = 'AttachFiles с заголовком';
 
 export const AttachFilesList = (): JSX.Element => {
   return (
@@ -188,19 +173,19 @@ export const AttachFilesList = (): JSX.Element => {
   );
 };
 
-AttachFilesList.storyName = FILES_LIST;
+AttachFilesList.storyName = 'AttachFiles со списком';
 
 export const AttachFilesAddFileButton = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <AttachFiles title={<File label={FILE_NAME} checked addFile addFileOnClick={action('addFileOnClick')} />}>
+      <AttachFiles title={<File label="Название файла.pdf" checked addFile addFileOnClick={action('addFileOnClick')} />}>
         {FileCollection.map((FileItem: JSX.Element) => FileItem)}
       </AttachFiles>
     </div>
   );
 };
 
-AttachFilesAddFileButton.storyName = FILES_ADD_FILE_BUTTON;
+AttachFilesAddFileButton.storyName = 'AttachFiles с кнопкой добавления файла';
 
 export const AttachFilesWithCheckboxes = (): JSX.Element => {
   const [checked, setChecked] = useState([true, false]);
@@ -222,7 +207,7 @@ export const AttachFilesWithCheckboxes = (): JSX.Element => {
       <AttachFiles
         title={
           <File
-            label={FILE_NAME}
+            label="Название файла.pdf"
             checked
             checkedValue={checked.some(ch => ch)}
             indeterminate={checked.some(ch => !ch)}
@@ -232,11 +217,11 @@ export const AttachFilesWithCheckboxes = (): JSX.Element => {
           />
         }
       >
-        <File label={FILE_NAME} checked checkedValue={checked[0]} onCheckedChange={handleChange2} removed />
-        <File label={FILE_NAME} checked checkedValue={checked[1]} onCheckedChange={handleChange3} removed />
+        <File label="Название файла.pdf" checked checkedValue={checked[0]} onCheckedChange={handleChange2} removed />
+        <File label="Название файла.pdf" checked checkedValue={checked[1]} onCheckedChange={handleChange3} removed />
       </AttachFiles>
     </div>
   );
 };
 
-AttachFilesWithCheckboxes.storyName = FILES_WITH_CHECKBOXES;
+AttachFilesWithCheckboxes.storyName = 'AttachFiles с чекбоксами';

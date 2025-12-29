@@ -8,8 +8,8 @@ import { IUseScrollProps } from './types';
  * Хук для реализации бесконечной прокрутки с использованием IntersectionObserver
  *
  * @param {IUseScrollProps} props - Параметры хука
- * @param {MutableRefObject<HTMLDivElement | null>} props.wrapperRef - Реф контейнера со скроллом
- * @param {MutableRefObject<HTMLDivElement | null>} props.targetRef - Реф целевого элемента для отслеживания
+ * @param {RefObject<HTMLDivElement | null>} props.wrapperRef - Реф контейнера со скроллом
+ * @param {RefObject<HTMLDivElement | null>} props.targetRef - Реф целевого элемента для отслеживания
  * @param {(t?: unknown) => void} props.callback - Функция, вызываемая при достижении целевого элемента
  * @param {boolean} props.canLoadMore - Флаг возможности подгрузки данных
  * @param {boolean} props.isPortalMounted - Флаг монтирования через портал

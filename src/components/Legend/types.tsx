@@ -115,5 +115,5 @@ export interface ILegendColor {
   /**
    * Custom компонент редактирования цвета
    */
-  editColor?: FC<ILegendEditComponentProps & { ref: RefObject<HTMLDivElement> }>;
+  editColor?: FC<ILegendEditComponentProps & { ref: RefObject<HTMLDivElement | null> }>;
 }

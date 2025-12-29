@@ -31,17 +31,17 @@ interface SelectContextProps {
   /**
    * Реф инпута из корневого элемента селекта, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
    */
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement | null>;
 
   /**
    * Реф для элемента меню, нужен в том числе чтобы ClickAwayListener корректно работал с withPortal
    */
-  menuRef: RefObject<HTMLDivElement>;
+  menuRef: RefObject<HTMLDivElement | null>;
 
   /**
    * Реф для кнопки со стрелкой, нужен чтобы ClickAwayListener игнорировал клики на неё
    */
-  arrowButtonRef: RefObject<HTMLButtonElement>;
+  arrowButtonRef: RefObject<HTMLButtonElement | null>;
 
   /**
    * Ширина меню селекта

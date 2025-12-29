@@ -53,7 +53,7 @@ const Dropdown: FC<IDropdownProps> = ({
   ...buttonProps
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   /**
@@ -81,7 +81,7 @@ const Dropdown: FC<IDropdownProps> = ({
   const getDropdownMenu = () => {
     const menu = withPortal ? (
       ReactDOM.createPortal(
-        <DropdownMenu withPortal data-ui-dropdown-menu-portal>
+        <DropdownMenu data-ui-dropdown-menu-portal>
           {children}
         </DropdownMenu>,
         portalContainer
@@ -102,7 +102,7 @@ const Dropdown: FC<IDropdownProps> = ({
         <Button
           type="button"
           ref={buttonRef}
-          className={clsx(styles.button, className)}
+          className={clsx(styles.button, { [styles['button--open']]: isOpen }, className)}
           variant={variant}
           color={color}
           onClick={toggleDropdown}

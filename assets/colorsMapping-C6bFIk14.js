@@ -1,0 +1,1 @@
+var e=(r=>(r.primary="primary",r.secondary="secondary",r.disabled="disabled",r.error="error",r.success="success",r.warning="warning",r.info="info",r.inherit="inherit",r.grey="grey",r))(e||{}),a=(r=>(r.default="default",r.error="error",r.success="success",r.warning="warning",r))(a||{});export{e as a,a as c};

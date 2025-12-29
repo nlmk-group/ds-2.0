@@ -1,0 +1,1 @@
+const t=()=>{let x=Date.now()||typeof performance<"u"&&performance.now()&&performance.now()*1e3;return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,r=>{const e=(Number(x)+Math.random()*16)%16|0;return x=Math.floor(Number(x)/16),(r==="x"?e:e&3|8).toString(16)})};export{t as g};

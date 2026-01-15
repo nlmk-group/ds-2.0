@@ -23,6 +23,16 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.27.3 - <span className={styles.date}>16.01.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.27.2 - <span className={styles.date}>29.12.25</span>
           </Typography>
           <ul className={styles.list}>

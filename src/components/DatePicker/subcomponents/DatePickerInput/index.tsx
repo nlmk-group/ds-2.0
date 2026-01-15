@@ -50,7 +50,6 @@ import { CalendarSvgIcon } from '@components/Icon/IconsInternal';
 import { Input } from '@components/index';
 import clsx from 'clsx';
 import { format, isValid, parse, set } from 'date-fns';
-import { isInteger, range } from 'lodash';
 
 import { IDatePickerInputProps } from './types';
 
@@ -324,10 +323,17 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       const minuteTo = enabledMinuteTo && Number(enabledMinuteTo(new Date()));
       const withHoursRange = Boolean(enabledHourFrom || enabledHourTo || enabledHourFrom === 0);
       const withMinutesRange = Boolean(enabledMinuteFrom || enabledMinuteFrom === 0 || enabledMinuteTo);
-      const enabledHoursRange = range(hourFrom || 0, (hourTo || 23) + 1);
-      const enabledMinutesRange = range(
-        minuteFrom && isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0,
-        minuteTo && isInteger(minuteTo) && minuteTo < 60 ? minuteTo + 1 : 60
+      const enabledHoursRange = Array.from(
+        { length: (hourTo || 23) - (hourFrom || 0) + 1 },
+        (_, i) => (hourFrom || 0) + i
+      );
+      const enabledMinutesRange = Array.from(
+        {
+          length:
+            (minuteTo && Number.isInteger(minuteTo) && minuteTo < 60 ? minuteTo + 1 : 60) -
+            (minuteFrom && Number.isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0)
+        },
+        (_, i) => (minuteFrom && Number.isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0) + i
       );
       const makeEnabledTimeRangeDate = (date: Date) => {
         const isEnabledHour = date && enabledHoursRange.includes(new Date(date).getHours());

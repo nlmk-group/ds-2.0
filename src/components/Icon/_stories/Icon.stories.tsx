@@ -13,6 +13,7 @@ import React, {
 import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
+import { toStartCase } from '@components/declaration/helpers';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
@@ -144,12 +145,7 @@ export const AllIcons = (): JSX.Element => {
             <Card key={iconIndex} className={styles.card} indicatorStatus="default">
               <div className={styles.cardHeader}>
                 <Typography variant="Body1" color="var(--steel-90)">
-                  {formatIconName(icon.title)
-                    .replace(/([A-Z])/g, ' $1')
-                    .trim()
-                    .split(' ')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                    .join(' ')}
+                  {toStartCase(formatIconName(icon.title))}
                 </Typography>
               </div>
               <div className={styles.icons}>

@@ -15,7 +15,7 @@ const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story
 
 export default {
   title: 'Components/Chip/Stories',
-  component: Badge,
+  component: Chip,
   decorators: [withPadding],
   argTypes: argsTypes
 };

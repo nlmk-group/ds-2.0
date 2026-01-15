@@ -24,7 +24,6 @@ import {
 import clsx from 'clsx';
 import { format, isAfter, isValid, parse, set } from 'date-fns';
 import IMask from 'imask';
-import { range } from 'lodash';
 
 import { ITimePickerInputProps } from './types';
 
@@ -787,8 +786,8 @@ const TimePickerInput = forwardRef<HTMLInputElement | null, ITimePickerInputProp
       const minuteFrom = enabledMinuteFrom ? Number(enabledMinuteFrom(currentDate)) : 0;
       const minuteTo = enabledMinuteTo ? Number(enabledMinuteTo(currentDate)) : 59;
 
-      const enabledHoursRange = range(hourFrom, hourTo + 1);
-      const enabledMinutesRange = range(minuteFrom, minuteTo + 1);
+      const enabledHoursRange = Array.from({ length: hourTo - hourFrom + 1 }, (_, i) => hourFrom + i);
+      const enabledMinutesRange = Array.from({ length: minuteTo - minuteFrom + 1 }, (_, i) => minuteFrom + i);
 
       const makeEnabledTimeRangeDate = (date: Date) => {
         const isEnabledHour = enabledHoursRange.includes(date.getHours());

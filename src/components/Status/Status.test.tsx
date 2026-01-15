@@ -34,7 +34,7 @@ describe('src/components/Status', () => {
 
   // Check Status fill
   test('Проверка вариантов заливки фона компонента', () => {
-    fills?.map(fill => {
+    fills?.map((fill: any) => {
       const { container } = render(
         <Status icon={iconName} fill={fill}>
           {text}
@@ -47,7 +47,7 @@ describe('src/components/Status', () => {
 
   // Check Status size
   test('Проверка размера компонента', () => {
-    sizes.map(size => {
+    sizes.map((size: any) => {
       const { container } = render(
         <Status icon={iconName} size={size}>
           {text}
@@ -60,7 +60,7 @@ describe('src/components/Status', () => {
 
   // Check Status color
   test('Проверка компонента на все цветовые варианты', () => {
-    colors.map(color => {
+    colors.map((color: any) => {
       const { container } = render(
         <Status icon={iconName} color={color}>
           {text}

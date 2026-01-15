@@ -19,7 +19,6 @@ import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Box, Card, Icon, IconUnit, Input, Typography } from '@components/index';
 import { Meta } from '@storybook/react-vite';
 import { clsx } from 'clsx';
-import { startCase } from 'lodash';
 
 import styles from './Icon.module.scss';
 import globalStyles from '@components/_storybook/styles.module.scss';
@@ -145,7 +144,12 @@ export const AllIcons = (): JSX.Element => {
             <Card key={iconIndex} className={styles.card} indicatorStatus="default">
               <div className={styles.cardHeader}>
                 <Typography variant="Body1" color="var(--steel-90)">
-                  {startCase(formatIconName(icon.title))}
+                  {formatIconName(icon.title)
+                    .replace(/([A-Z])/g, ' $1')
+                    .trim()
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ')}
                 </Typography>
               </div>
               <div className={styles.icons}>

@@ -2,9 +2,19 @@ import React, { ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { breadcrumbsLinks } from '@components/Breadcrumbs/_stories/constants';
-import { Breadcrumbs, Button, Dropdown, DropdownMenuItem, Header, IconSettingsAltOutlined24 } from '@components/index';
-import { action } from 'storybook/actions';
+import {
+  Box,
+  Breadcrumbs,
+  Button,
+  Dropdown,
+  DropdownMenuItem,
+  Header,
+  IconSettingsAltOutlined24,
+  IconStarOutlined24,
+  Typography
+} from '@components/index';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import styles from './Header.stories.module.scss';
 
@@ -33,7 +43,12 @@ const dropdownOptionsComponent = (
           console.log(value);
         }}
       >
-        {value}
+        <Box display="flex" alignItems="center" gap="8px">
+          <div style={{ position: 'relative', top: '2px' }}>
+            <IconStarOutlined24 htmlColor="var(--brand-sapphire-60)" />
+          </div>
+          <Typography variant="Body1-Medium">{value}</Typography>
+        </Box>
       </DropdownMenuItem>
     ))}
   </Dropdown>
@@ -91,14 +106,7 @@ export const HeaderFavorite = (): ReactNode => {
     action('favorite clicked')(isFavorite ? 'removed from favorites' : 'added to favorites');
   };
 
-  return (
-    <Header 
-      title="Заголовок" 
-      showFavorite 
-      isFavorite={isFavorite}
-      onFavoriteClick={handleFavoriteClick} 
-    />
-  );
+  return <Header title="Заголовок" showFavorite isFavorite={isFavorite} onFavoriteClick={handleFavoriteClick} />;
 };
 
 HeaderFavorite.storyName = 'Header с кнопкой добавления в избранное';

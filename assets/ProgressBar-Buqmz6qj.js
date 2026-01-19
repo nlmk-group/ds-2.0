@@ -1,0 +1,17 @@
+import{r as p,j as r,m as n,S as d,U as c}from"./iframe-DUDunD5j.js";import{useMDXComponents as l}from"./index-CDbv5Jgm.js";import{a as g,P as x}from"./argsTypes-DbeSw0YH.js";import{DecoratorDefault as u}from"./Decorator.stories-DJdCAXEf.js";import{s,H as f,E as i}from"./Header-BrZEypuE.js";import{F as b}from"./FigmaEmbed-DovFRgvJ.js";import{P as j}from"./Properties-CcP2VO-p.js";import{T as h}from"./Tests-CSK3RYMm.js";import{T as o}from"./index-DntXJei4.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DyX2qzoz.js";import"./clsx-B-dksMZM.js";import"./index-rc7u3FmU.js";import"./index-z_YeHj0K.js";import"./index-r-uICxAh.js";import"./index-BS4wiMYT.js";import"./generateUUID-M57HTP56.js";import"./24-C5ui32Ki.js";import"./IconsDirectory.module-CEwWgW3i.js";import"./index-YMfOmFJ1.js";import"./sizesMapping-D8QavrGc.js";import"./index-BixcmxoL.js";import"./index-aoSKrGJR.js";import"./index-BE6Pvktf.js";import"./index-BjTLv_jS.js";import"./index-DdmbHqmW.js";import"./32-BB59z0Rt.js";import"./24-tbbQM-dv.js";import"./24-BLuChUkw.js";import"./24-BGpvFgfj.js";import"./24-BGrLeqpw.js";import"./24-CAewpWgK.js";import"./24-BoEjxhhs.js";import"./24-BAIQ796Q.js";import"./24-BwgIJwEH.js";import"./24-C99UGV7O.js";import"./16-CfofIm8-.js";import"./24-CoSTS1kQ.js";import"./16-DEDu0dyt.js";import"./16-BarbOM5u.js";import"./16-4gnAFB8p.js";const a="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=548-102967&t=HhCDuaOuzHu5rgyf-1",B=()=>{const[t,e]=p.useState(0);return r.jsxs("div",{className:s.wrapper,children:[r.jsx(f,{title:"ProgressBar",description:"ProgressBar представляет собой компонент, показывающий прогресс выполнения задачи или процесса. Он предоставляет наглядное представление о проценте выполнения.",isStable:!0,codeLink:"https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ProgressBar",figmaLink:a}),r.jsx("div",{className:s.tabs,children:r.jsxs(o,{children:[r.jsx(o.Tab,{label:"Разработчику",active:Number(t)===0,onClick:()=>e(0)}),r.jsx(o.Tab,{label:"Дизайнеру",active:Number(t)===1,onClick:()=>e(1)}),r.jsx(o.Tab,{label:"Тестирование",active:Number(t)===2,onClick:()=>e(2)})]})}),Number(t)===0&&r.jsxs(r.Fragment,{children:[r.jsx(i,{height:200,description:"Компонент ProgressBar имеет только одно обязательное свойство percentage, которое задается числом.",code:`import { ProgressBar } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '400px', marginTop: '50px' }}>
+    <ProgressBar percentage={60} />
+  </div>
+);
+`}),r.jsx(i,{height:200,description:"Компоненту ProgressBar можно добавить label который будет располагаться под шкалой процента.",code:`import { ProgressBar } from '@nlmk/ds-2.0';
+
+export default  App = () => (
+  <div style={{ width: '400px', marginTop: '50px' }}>
+    <ProgressBar percentage={50} label="Прогресс" />
+  </div>
+);
+`}),r.jsx(j,{argsTypes:g})]}),Number(t)===1&&r.jsx(b,{url:a}),Number(t)===2&&r.jsx(h,{componentName:"ProgressBar"})]})};function m(t){return r.jsxs(r.Fragment,{children:[r.jsx(n,{title:"Components/ProgressBar/Info",component:x,parameters:{design:{type:"figma",url:"https://www.figma.com/file/3dTe0kYNFqQO3VnjJ10jyv/DS2.0-Input?type=design&node-id=2606-251&mode=design&t=BUClvN8ropisHp5v-0"},jest:["ProgressBar.test.tsx"]}}),`
+`,r.jsx(d,{of:u}),`
+`,r.jsx(c,{children:r.jsx(B,{})})]})}function dr(t={}){const{wrapper:e}={...l(),...t.components};return e?r.jsx(e,{...t,children:r.jsx(m,{...t})}):m()}export{dr as default};

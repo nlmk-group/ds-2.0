@@ -1,0 +1,1 @@
+import{r as f}from"./iframe-DUDunD5j.js";const g=(c,r,a,u)=>{f.useEffect(()=>{const t=c&&"current"in c?c.current:c;t&&a.setReference(t)},[c,a]),f.useEffect(()=>{if(!r){u(!1);return}a.setFloating(r)},[r,a,u]),f.useLayoutEffect(()=>{r&&u(!0)},[r,u])};export{g as u};

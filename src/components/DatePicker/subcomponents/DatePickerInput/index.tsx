@@ -317,10 +317,11 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       shiftTo?: number
     ) => [any, any, any, any] = (dateFrom: Date | null = null, dateTo: Date | null = null, shiftFrom, shiftTo) => {
       const args = [shiftFrom, shiftTo];
-      const hourFrom = enabledHourFrom && Number(enabledHourFrom(new Date()));
-      const hourTo = enabledHourTo && Number(enabledHourTo(new Date()));
-      const minuteFrom = enabledMinuteFrom && Number(enabledMinuteFrom(new Date()));
-      const minuteTo = enabledMinuteTo && Number(enabledMinuteTo(new Date()));
+      const referenceDate = dateFrom || value || new Date();
+      const hourFrom = enabledHourFrom && referenceDate && Number(enabledHourFrom(referenceDate));
+      const hourTo = enabledHourTo && referenceDate && Number(enabledHourTo(referenceDate));
+      const minuteFrom = enabledMinuteFrom && referenceDate && Number(enabledMinuteFrom(referenceDate));
+      const minuteTo = enabledMinuteTo && referenceDate && Number(enabledMinuteTo(referenceDate));
       const withHoursRange = Boolean(enabledHourFrom || enabledHourTo || enabledHourFrom === 0);
       const withMinutesRange = Boolean(enabledMinuteFrom || enabledMinuteFrom === 0 || enabledMinuteTo);
 
@@ -335,15 +336,13 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         (_, i) => minuteFromValue + i
       );
       const makeEnabledTimeRangeDate = (date: Date) => {
-        const isEnabledHour = date && enabledHoursRange.includes(new Date(date).getHours());
-        const isEnabledMinute = date && enabledMinutesRange.includes(new Date(date).getMinutes());
-        return (
-          date &&
-          set(new Date(date), {
-            hours: isEnabledHour ? date && new Date(date).getHours() : enabledHoursRange[0],
-            minutes: isEnabledMinute ? date && new Date(date).getMinutes() : enabledMinutesRange[0]
-          })
-        );
+        if (!date) return null;
+        const isEnabledHour = enabledHoursRange.includes(new Date(date).getHours());
+        const isEnabledMinute = enabledMinutesRange.includes(new Date(date).getMinutes());
+        return set(new Date(date), {
+          hours: isEnabledHour ? new Date(date).getHours() : enabledHoursRange[0],
+          minutes: isEnabledMinute ? new Date(date).getMinutes() : enabledMinutesRange[0]
+        });
       };
       if (enabledFrom && !enabledTo) {
         if (!dateFrom) {

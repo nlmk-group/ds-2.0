@@ -174,3 +174,11 @@ export interface IUseScrollProps {
    */
   isPortalMounted: boolean;
 }
+
+/**
+ * Тип для дебаунсированной функции с методами cancel и flush
+ */
+export type DebouncedFunc<T extends (...args: any[]) => any> = T & {
+  cancel: () => void;
+  flush: () => void;
+};

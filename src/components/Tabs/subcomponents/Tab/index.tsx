@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 
 import { Badge, IconStarOutlined16, Typography } from '@components/index';
 import { clsx } from 'clsx';
-import _get from 'lodash/get';
 
 import { ITabProps } from './types';
 
@@ -19,8 +18,8 @@ const Tab: FC<ITabProps> = ({
   hasBadge,
   ...props
 }: ITabProps) => {
-  const { name: toolTipName } = _get(children, 'type') ?? {};
-  const { name: iconName } = _get(children, 'props.children.props') ?? {};
+  const toolTipName = (children as any)?.type?.name;
+  const iconName = (children as any)?.props?.children?.props?.name;
   return (
     <div className={clsx(styles['tab-wrapper'], active && styles['tab-active'], className)} {...props} data-ui-tab>
       <span className={clsx(styles.text, active && styles['text-active'])}>

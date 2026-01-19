@@ -13,13 +13,13 @@ import React, {
 import { FixedSizeList as List } from 'react-window';
 
 import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
+import { toStartCase } from '@components/declaration/helpers';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { IIconUnitProps } from '@components/Icon/IconUnit/types';
 import { TIconProps, TIconsObject } from '@components/Icon/types';
 import { Box, Card, Icon, IconUnit, Input, Typography } from '@components/index';
 import { Meta } from '@storybook/react-vite';
 import { clsx } from 'clsx';
-import { startCase } from 'lodash';
 
 import styles from './Icon.module.scss';
 import globalStyles from '@components/_storybook/styles.module.scss';
@@ -145,7 +145,7 @@ export const AllIcons = (): JSX.Element => {
             <Card key={iconIndex} className={styles.card} indicatorStatus="default">
               <div className={styles.cardHeader}>
                 <Typography variant="Body1" color="var(--steel-90)">
-                  {startCase(formatIconName(icon.title))}
+                  {toStartCase(formatIconName(icon.title))}
                 </Typography>
               </div>
               <div className={styles.icons}>

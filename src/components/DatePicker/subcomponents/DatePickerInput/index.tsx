@@ -323,17 +323,16 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       const minuteTo = enabledMinuteTo && Number(enabledMinuteTo(new Date()));
       const withHoursRange = Boolean(enabledHourFrom || enabledHourTo || enabledHourFrom === 0);
       const withMinutesRange = Boolean(enabledMinuteFrom || enabledMinuteFrom === 0 || enabledMinuteTo);
-      const enabledHoursRange = Array.from(
-        { length: (hourTo || 23) - (hourFrom || 0) + 1 },
-        (_, i) => (hourFrom || 0) + i
-      );
+
+      const hourFromValue = hourFrom || 0;
+      const hourToValue = hourTo || 23;
+      const minuteFromValue = minuteFrom && minuteFrom > 0 ? minuteFrom : 0;
+      const minuteToValue = minuteTo && minuteTo < 60 ? minuteTo : 59;
+
+      const enabledHoursRange = Array.from({ length: hourToValue - hourFromValue + 1 }, (_, i) => hourFromValue + i);
       const enabledMinutesRange = Array.from(
-        {
-          length:
-            (minuteTo && Number.isInteger(minuteTo) && minuteTo < 60 ? minuteTo + 1 : 60) -
-            (minuteFrom && Number.isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0)
-        },
-        (_, i) => (minuteFrom && Number.isInteger(minuteFrom) && minuteFrom > 0 ? minuteFrom : 0) + i
+        { length: minuteToValue - minuteFromValue + 1 },
+        (_, i) => minuteFromValue + i
       );
       const makeEnabledTimeRangeDate = (date: Date) => {
         const isEnabledHour = date && enabledHoursRange.includes(new Date(date).getHours());

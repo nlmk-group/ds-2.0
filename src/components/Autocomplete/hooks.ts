@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-import { IUseScrollProps } from './types';
-
-type DebouncedFunc<T extends (...args: any[]) => any> = T & {
-  cancel: () => void;
-  flush: () => void;
-};
+import { DebouncedFunc, IUseScrollProps } from './types';
 
 /**
  * Хук для реализации бесконечной прокрутки с использованием IntersectionObserver
@@ -107,9 +102,8 @@ export const useDebounce = <T extends (...args: any[]) => any>(delay: number, ca
     };
   }, []);
 
-  const result = debouncedFn as DebouncedFunc<T>;
-  result.cancel = cancel;
-  result.flush = flush;
-
-  return result;
+  return Object.assign(debouncedFn, {
+    cancel,
+    flush
+  }) as DebouncedFunc<T>;
 };

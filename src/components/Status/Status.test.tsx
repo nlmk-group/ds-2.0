@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { argsTypes } from './_stories/argsTypes';
+import { EStatusColor, EStatusFill, EStatusSize } from './enums';
 import { Status } from './index';
 
 describe('src/components/Status', () => {
@@ -34,7 +35,7 @@ describe('src/components/Status', () => {
 
   // Check Status fill
   test('Проверка вариантов заливки фона компонента', () => {
-    fills?.map((fill: any) => {
+    fills?.map((fill: EStatusFill) => {
       const { container } = render(
         <Status icon={iconName} fill={fill}>
           {text}
@@ -47,7 +48,7 @@ describe('src/components/Status', () => {
 
   // Check Status size
   test('Проверка размера компонента', () => {
-    sizes.map((size: any) => {
+    sizes.map((size: EStatusSize) => {
       const { container } = render(
         <Status icon={iconName} size={size}>
           {text}
@@ -60,7 +61,7 @@ describe('src/components/Status', () => {
 
   // Check Status color
   test('Проверка компонента на все цветовые варианты', () => {
-    colors.map((color: any) => {
+    colors.map((color: EStatusColor) => {
       const { container } = render(
         <Status icon={iconName} color={color}>
           {text}

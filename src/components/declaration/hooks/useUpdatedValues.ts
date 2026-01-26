@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Хук, который возвращает значение и функцию изменения этого значения,
@@ -16,21 +16,14 @@ export const useUpdatedValues = <T>(
   }
 
   const [value, setValue] = useState(initialValues);
-  const prevValueRef = useRef<T>(initialValues);
 
   // Эффект, который вызывается при изменении значения initialValues.
-  // Если значения отличаются, то обновляем значение состояния.
+  // Если значения отличаются от текущего value, то обновляем значение состояния.
   useEffect(() => {
-    if (!isEqualFn(prevValueRef.current, initialValues)) {
+    if (!isEqualFn(value, initialValues)) {
       setValue(initialValues);
     }
-  }, [initialValues, isEqualFn]);
-
-  // Эффект, который вызывается при изменении значения value.
-  // Обновляем значение prevValueRef.current, чтобы оно отражало текущее значение.
-  useEffect(() => {
-    prevValueRef.current = value;
-  }, [value]);
+  }, [initialValues, isEqualFn, value]);
 
   return {
     value,

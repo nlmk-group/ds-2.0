@@ -137,6 +137,7 @@
     "rimraf": "^6.0.1",
     "rollup-plugin-typescript-paths": "^1.5.0",
     "sass-loader": "10.1.0",
+    "sb-theme-switcher": "0.1.0",
     "storybook": "^10.1.11",
     "storybook-addon-turbo-build": "2.0.1",
     "style-dictionary": "3.7.1",

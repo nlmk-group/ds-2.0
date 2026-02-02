@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath, URL } from 'url';
+import { storybookLightTheme, storybookDarkTheme } from './storybookTheme.js';
 
 const dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -36,7 +37,28 @@ export default {
 
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
+    {
+      name: 'sb-theme-switcher',
+      options: {
+        themes: [
+          {
+            id: 'light',
+            title: 'Светлая',
+            class: 'light-theme',
+            storybookTheme: storybookLightTheme
+          },
+          {
+            id: 'dark',
+            title: 'Темная',
+            class: 'dark-theme',
+            storybookTheme: storybookDarkTheme
+          }
+        ],
+        defaultTheme: 'light',
+        storageKey: 'nlmk-storybook-theme'
+      }
+    }
   ],
 
   framework: {

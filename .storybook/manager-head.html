@@ -2,6 +2,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
 <link rel="shortcut icon" href="img/favicon.ico" />
+
 <style>
     :root {
         --border-bar-color: #D6DADD;
@@ -35,6 +36,33 @@
     .sidebar-container {
         border-right: 1px solid var(--border-bar-color);
     }
+
+    /* Theme-specific colors - only for icons, not text */
+    /* Light theme - icons and buttons should be dark */
+    [data-theme='light-theme'] .sidebar-subheading svg,
+    [data-theme='light-theme'] .sb-bar button svg,
+    [data-theme='light-theme'] .sidebar-header svg {
+        color: #40515E !important;
+    }
+
+    [data-theme='light-theme'] .sb-bar button,
+    [data-theme='light-theme'] button[data-action="collapse-root"],
+    [data-theme='light-theme'] .sidebar-container button {
+        color: #40515E !important;
+    }
+
+    /* Dark theme - icons and buttons should be light */
+    [data-theme='dark-theme'] .sidebar-subheading svg,
+    [data-theme='dark-theme'] .sb-bar button svg,
+    [data-theme='dark-theme'] .sidebar-header svg {
+        color: #FFFFFF !important;
+    }
+
+    [data-theme='dark-theme'] .sb-bar button,
+    [data-theme='dark-theme'] button[data-action="collapse-root"],
+    [data-theme='dark-theme'] .sidebar-container button {
+        color: #FFFFFF !important;
+    }
 </style>
 
 <!-- Yandex.Metrika counter -->
@@ -58,3 +86,73 @@
     <div><img src="https://mc.yandex.ru/watch/96439319" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
+
+<!-- sb-theme-switcher configuration -->
+<script>
+  window.__SB_THEME_SWITCHER_OPTIONS__ = {
+    themes: [
+      {
+        id: 'light',
+        title: 'Светлая',
+        class: 'light-theme',
+        color: '#ffffff',
+        storybookTheme: {
+          base: 'light',
+          colorPrimary: '#167FFB',
+          colorSecondary: '#167FFB',
+          appBg: '#FFFFFF',
+          appContentBg: '#EDEEEF',
+          appBorderColor: '#D6DADD',
+          appBorderRadius: 4,
+          fontBase: '"PTRootUIWeb", sans-serif',
+          fontCode: 'monospace',
+          textColor: '#001739',
+          textInverseColor: '#FFFFFF',
+          barTextColor: '#40515E',
+          barSelectedColor: '#167FFB',
+          barBg: '#EDEEEF',
+          inputBg: '#FFFFFF',
+          inputBorder: '#CCD1D4',
+          inputTextColor: '#909090',
+          inputBorderRadius: 4,
+          brandTitle: 'Дизайн Система NLMK',
+          brandUrl: 'https://nlmk-group.github.io/ds-2.0',
+          brandImage: 'img/logo.svg',
+          brandTarget: '_self'
+        }
+      },
+      {
+        id: 'dark',
+        title: 'Темная',
+        class: 'dark-theme',
+        color: '#455161',
+        storybookTheme: {
+          base: 'dark',
+          colorPrimary: '#2A8CFF',
+          colorSecondary: '#2A8CFF',
+          appBg: '#455161',
+          appContentBg: '#455161ff',
+          appBorderColor: '#6C7581',
+          appBorderRadius: 4,
+          fontBase: '"PTRootUIWeb", sans-serif',
+          fontCode: 'monospace',
+          textColor: '#FFFFFF',
+          textInverseColor: '#001739',
+          barTextColor: '#FFFFFF',
+          barSelectedColor: '#2A8CFF',
+          barBg: '#455161',
+          inputBg: '#455161ff',
+          inputBorder: '#7A879B',
+          inputTextColor: '#FFFFFF',
+          inputBorderRadius: 4,
+          brandTitle: 'Дизайн Система NLMK',
+          brandUrl: 'https://nlmk-group.github.io/ds-2.0',
+          brandImage: 'img/logo.svg',
+          brandTarget: '_self'
+        }
+      }
+    ],
+    defaultTheme: 'light',
+    storageKey: 'nlmk-storybook-theme'
+  };
+</script>

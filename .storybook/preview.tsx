@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+
+import { DocsContainer as StorybookDocsContainer } from '@storybook/addon-docs/blocks';
 
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import DocsThemeContainer from './Docs';
-import { storybookLightTheme } from './storybookTheme';
+import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
+
+// Hook to watch data-theme attribute
+const useTheme = () => {
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.dataset.theme ?? 'light-theme';
+  });
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    setTheme(root.dataset.theme ?? 'light-theme');
+
+    const observer = new MutationObserver(() => {
+      setTheme(root.dataset.theme ?? 'light-theme');
+    });
+    observer.observe(root, { attributeFilter: ['data-theme'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return theme;
+};
+
+// Custom DocsContainer that switches theme
+const DocsContainer = ({ children, ...props }) => {
+  const currentTheme = useTheme();
+  const theme = useMemo(() => {
+    return currentTheme.includes('dark') ? storybookDarkTheme : storybookLightTheme;
+  }, [currentTheme]);
+
+  return (
+    <StorybookDocsContainer {...props} theme={theme}>
+      {children}
+    </StorybookDocsContainer>
+  );
+};
 
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
@@ -53,7 +89,25 @@ export const parameters = {
     }
   },
   docs: {
-    container: DocsThemeContainer,
+    container: props => (
+      <DocsContainer
+        {...props}
+        themes={[
+          {
+            id: 'light',
+            title: 'Светлая',
+            class: 'light-theme',
+            storybookTheme: storybookLightTheme
+          },
+          {
+            id: 'dark',
+            title: 'Темная',
+            class: 'dark-theme',
+            storybookTheme: storybookDarkTheme
+          }
+        ]}
+      />
+    ),
     theme: storybookLightTheme
   },
   options: {

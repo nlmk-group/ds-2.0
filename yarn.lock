@@ -10000,6 +10000,11 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
+sb-theme-switcher@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/sb-theme-switcher/-/sb-theme-switcher-0.1.0.tgz#bc1cd2c5b3b6e93b9b849da05817207e5e2915b9"
+  integrity sha512-T0U/2tBc0MsR4mBUbr9lllhfRfTPdt1urR0slK8MjMgVukeby8EwGmByhP3amAKHx7oHaOqTlUjnVuYTrAMBWg==
+
 scheduler@^0.26.0:
   version "0.26.0"
   resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"

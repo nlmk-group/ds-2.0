@@ -74,8 +74,18 @@
         font-size: 16px !important;
     }
 
-    .sbdocs-wrapper {
-        background-color: var(--steel-10) !important;
+    /* Light theme text colors */
+    [data-theme='light-theme'] {
+        --text-grey-900: #001729;
+        --steel-10: #EDEEEF;
+        --unique-divider: #D6DADD;
+    }
+
+    /* Dark theme text colors */
+    [data-theme='dark-theme'] {
+        --text-grey-900: #f2f3f4;
+        --steel-10: #455161;
+        --unique-divider: #6C7581;
     }
 
     .sbdocs-title,
@@ -83,6 +93,10 @@
     .sb-anchor h3,
     .docblock-argstable-head span {
         color: var(--text-grey-900) !important;
+    }
+
+    .sbdocs-wrapper {
+        background-color: var(--steel-10) !important;
     }
 
     .css-fy9kzf,

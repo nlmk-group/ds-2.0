@@ -29,7 +29,7 @@ export const Changelog = () => {
             <li>
               • Обновлен компонент DateTime.
               <li className={styles['left-padding']}>
-                - Добавлена поддержка локализации через prop locale ('ru' | 'en')
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
               </li>
             </li>
             <li>

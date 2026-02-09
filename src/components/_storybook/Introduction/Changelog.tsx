@@ -23,6 +23,33 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.27.4 - <span className={styles.date}>09.02.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент DateTime.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale ('ru' | 'en')
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена локализация label в PseudoInput режиме
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.27.3 - <span className={styles.date}>19.01.26</span>
           </Typography>
           <ul className={styles.list}>

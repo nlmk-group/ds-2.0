@@ -46,6 +46,24 @@ export const Changelog = () => {
                 - Исправлена локализация label в PseudoInput режиме
               </li>
             </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;).
+              </li>
+              <li className={styles['left-padding']}>
+                - Кнопка сворачивания/разворачивания теперь локализована: &quot;Свернуть&quot;/&quot;Развернуть&quot; для русского и
+                &quot;Collapse&quot;/&quot;Expand&quot; для английского
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

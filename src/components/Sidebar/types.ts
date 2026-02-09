@@ -10,6 +10,12 @@ type TContentLabel = ReactNode | string;
 
 export interface ISidebarProps extends PropsWithChildren {
   /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: 'ru' | 'en';
+
+  /**
    * Ориентация бокового меню.
    * @default ${ESidebarOrientationMapping.vertical}
    */
@@ -121,6 +127,12 @@ export interface ICollapseButtonProps {
    * Функция обработки клика по кнопке сворачивания.
    */
   onClick: () => void;
+
+  /**
+   * Локаль для текстов кнопки.
+   * @default 'ru'
+   */
+  locale?: 'ru' | 'en';
 }
 
 export interface IUserControlProps extends PropsWithChildren {

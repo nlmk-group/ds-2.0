@@ -64,6 +64,46 @@ export const Changelog = () => {
                 &quot;Collapse&quot;/&quot;Expand&quot; для английского
               </li>
             </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализованы кнопки управления окном: &quot;Перейти в полноэкранный режим&quot;/&quot;Enter fullscreen mode&quot;, &quot;Выйти из полноэкранного режима&quot;/&quot;Exit fullscreen mode&quot;, &quot;Развернуть&quot;/&quot;Expand&quot;, &quot;Свернуть&quot;/&quot;Collapse&quot;, &quot;Закрыть&quot;/&quot;Close&quot;
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент ColumnSetting.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализован placeholder поиска: &quot;Поиск&quot;/&quot;Search&quot;
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

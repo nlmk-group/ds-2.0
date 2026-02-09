@@ -13,11 +13,14 @@ import {
   IconStackExpandedTriangleDown24,
   Typography
 } from '@components/index';
+import { ELocaleMapping } from '@components/declaration';
 import clsx from 'clsx';
 
 import { IColumnSettingProps } from './types';
 
 import styles from './ColumnSetting.module.scss';
+
+import { COLUMN_SETTING_TEXTS } from './constants';
 
 /**
  * Компонент элемента настроек колонки таблицы.
@@ -39,10 +42,12 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
   onExpandChange,
   dragHandleProps,
   preventEventBubbling = true,
-  className
+  className,
+  locale = ELocaleMapping.ru
 }) => {
   const isPinnedLeft = pinned === 'left';
   const isPinnedRight = pinned === 'right';
+  const texts = COLUMN_SETTING_TEXTS[locale];
 
   const handleToggleVisibility = (e: React.MouseEvent) => {
     if (preventEventBubbling) {
@@ -123,7 +128,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
           color="ghost"
           size="s"
           disabled={disabled}
-          title={visible ? 'Скрыть' : 'Показать'}
+          title={visible ? texts.hide : texts.show}
           onClick={handleToggleVisibility}
           iconButton={
             visible ? (
@@ -141,7 +146,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
               color="ghost"
               size="s"
               disabled={disabled || isPinnedRight}
-              title={isPinnedLeft ? 'Открепить слева' : 'Закрепить слева'}
+              title={isPinnedLeft ? texts.unpinLeft : texts.pinLeft}
               onClick={handleTogglePinLeft}
               iconButton={
                 isPinnedLeft ? (
@@ -157,7 +162,7 @@ const ColumnSetting: FC<IColumnSettingProps> = ({
               color="ghost"
               size="s"
               disabled={disabled || isPinnedLeft}
-              title={isPinnedRight ? 'Открепить справа' : 'Закрепить справа'}
+              title={isPinnedRight ? texts.unpinRight : texts.pinRight}
               onClick={handleTogglePinRight}
               iconButton={
                 isPinnedRight ? (

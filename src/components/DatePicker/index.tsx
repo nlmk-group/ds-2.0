@@ -15,6 +15,7 @@ import styles from './Datepicker.module.scss';
 import { defaultShiftLength, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
+import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент DatePicker для выбора даты и времени в различных форматах.
@@ -64,7 +65,7 @@ import { LocaleProvider } from './utils';
 
 export const DatePicker: TDatePickerProps = ({
   id,
-  locale = 'ru',
+  locale = ELocaleMapping.ru,
   level = 'day',
   type = 'date',
   name,

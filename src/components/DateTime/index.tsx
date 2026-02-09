@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import Typography from '@components/Typography';
+import { ELocaleMapping } from '@components/declaration';
 
 import styles from './DateTime.module.scss';
 import { IDateTimeProps } from './types';
 
-export const getDate = (currentDate: Date, locale: 'ru' | 'en' = 'ru'): string => {
+export const getDate = (currentDate: Date, locale: `${ELocaleMapping}` = ELocaleMapping.ru): string => {
   const toUpperCase = (word: string): string => {
     const firstLetter = word.charAt(0);
     const firstLetterCap = firstLetter.toUpperCase();
@@ -29,7 +30,7 @@ export const getTime = (currentDate: Date): string => {
   return `${hh < 10 ? `0${hh}` : hh}:${mm < 10 ? `0${mm}` : mm}`;
 };
 
-const DateTime = ({ locale = 'ru' }: IDateTimeProps): JSX.Element => {
+const DateTime = ({ locale = ELocaleMapping.ru }: IDateTimeProps): JSX.Element => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const refTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 

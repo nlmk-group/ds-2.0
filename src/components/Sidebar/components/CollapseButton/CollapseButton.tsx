@@ -2,12 +2,13 @@ import React, { forwardRef } from 'react';
 
 import { Icon, Typography } from '@components/index';
 import { ICollapseButtonProps } from '@components/Sidebar/types';
+import { ELocaleMapping } from '@components/declaration';
 
 import { COLLAPSE_TEXTS } from '../../constants';
 import styles from './CollapseButton.module.scss';
 
 const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(
-  ({ isExpanded, onClick, locale = 'ru' }, ref) => {
+  ({ isExpanded, onClick, locale = ELocaleMapping.ru }, ref) => {
     const texts = COLLAPSE_TEXTS[locale];
     const buttonText = isExpanded ? texts.collapse : texts.expand;
 

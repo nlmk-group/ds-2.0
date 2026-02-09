@@ -22,6 +22,7 @@ import styles from './Sidebar.module.scss';
 import { CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
+import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -53,7 +54,7 @@ const Sidebar: FC<ISidebarProps> &
   Record<'Avatar', FC<IAvatarProps>> &
   Record<'MenuItem', FC<IMenuItemProps>> &
   Record<'SubmenuItem', FC<ISubmenuItemProps>> = ({
-  locale = 'ru',
+  locale = ELocaleMapping.ru,
   variant = ESidebarVariantMapping.default,
   orientation = ESidebarOrientationMapping.vertical,
   allowFavorites = false,

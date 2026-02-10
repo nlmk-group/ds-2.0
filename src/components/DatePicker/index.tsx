@@ -12,9 +12,10 @@ import { TDatePickerProps, TDateValues, TShiftValues } from './types';
 
 import styles from './Datepicker.module.scss';
 
-import { defaultShiftLength } from './helpers';
+import { defaultShiftLength, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
+import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент DatePicker для выбора даты и времени в различных форматах.
@@ -64,7 +65,7 @@ import { LocaleProvider } from './utils';
 
 export const DatePicker: TDatePickerProps = ({
   id,
-  locale = 'ru',
+  locale = ELocaleMapping.ru,
   level = 'day',
   type = 'date',
   name,
@@ -351,10 +352,13 @@ export const DatePicker: TDatePickerProps = ({
     </div>
   );
 
+  const localeData = localeStrings[locale];
+  const pseudoLabel = withTime ? localeData.label.showtime : localeData.label.default;
+
   return (
     <LocaleProvider value={locale}>
       {pseudo ? (
-        <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
+        <PseudoInput label={pseudoLabel}>{pseudoChildren}</PseudoInput>
       ) : (
         (isOpenOnFocus && (
           <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>

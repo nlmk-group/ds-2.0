@@ -1,20 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import Typography from '@components/Typography';
+import { ELocaleMapping } from '@components/declaration';
 
 import styles from './DateTime.module.scss';
+import { IDateTimeProps } from './types';
 
-export const getDate = (currentDate: Date): string => {
+export const getDate = (currentDate: Date, locale: `${ELocaleMapping}` = ELocaleMapping.ru): string => {
   const toUpperCase = (word: string): string => {
     const firstLetter = word.charAt(0);
     const firstLetterCap = firstLetter.toUpperCase();
     const remainingLetters = word.slice(1);
     return firstLetterCap + remainingLetters;
   };
-  const weekDay = currentDate.toLocaleString('ru-RU', { weekday: 'long' });
+  
+  const localeString = locale === 'en' ? 'en-US' : 'ru-RU';
+  const weekDay = currentDate.toLocaleString(localeString, { weekday: 'long' });
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
+  
   return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}, ${toUpperCase(weekDay)}`;
 };
 
@@ -25,7 +30,7 @@ export const getTime = (currentDate: Date): string => {
   return `${hh < 10 ? `0${hh}` : hh}:${mm < 10 ? `0${mm}` : mm}`;
 };
 
-const DateTime = (): JSX.Element => {
+const DateTime = ({ locale = ELocaleMapping.ru }: IDateTimeProps): JSX.Element => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const refTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -40,7 +45,7 @@ const DateTime = (): JSX.Element => {
   return (
     <div style={{ display: 'flex', alignItems: 'center' }} data-testid="DATETIME_WRAPPER">
       <Typography variant="Body2-Medium" className={styles['date-wrapper']} data-testid="DATETIME_DATE">
-        {getDate(currentDate)}
+        {getDate(currentDate, locale)}
       </Typography>
       <Typography variant="Heading4" className={styles['time-wrapper']} data-testid="DATETIME_TIME">
         {getTime(currentDate)}

@@ -8,12 +8,14 @@ import {
   IconFullScreenOpenOutlined24
 } from '@components/Icon/IconsDirectory';
 import Typography from '@components/Typography';
+import { ELocaleMapping } from '@components/declaration';
 import clsx from 'clsx';
 
 import { TVideoWindowProps } from './types';
 
 import videoStyles from './VideoWindow.module.scss';
 
+import { VIDEO_WINDOW_TEXTS } from './constants';
 import { useDraggable } from './hooks';
 
 /**
@@ -42,12 +44,14 @@ const VideoWindow = ({
   draggableStartPosition,
   onClose,
   style,
-  className
+  className,
+  locale = ELocaleMapping.ru
 }: TVideoWindowProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const noTitle = !title;
+  const texts = VIDEO_WINDOW_TEXTS[locale];
 
   const toggleMinimize = () => {
     setIsMinimized(prev => !prev);
@@ -101,7 +105,7 @@ const VideoWindow = ({
             color="grey"
             variant="secondary"
             size="s"
-            title={isFullscreen ? 'Выйти из полноэкранного режима' : 'Перейти в полноэкранный режим'}
+            title={isFullscreen ? texts.exitFullscreen : texts.enterFullscreen}
           />
           <Button
             onClick={toggleMinimize}
@@ -109,7 +113,7 @@ const VideoWindow = ({
             color="grey"
             variant="secondary"
             size="s"
-            title={isMinimized ? 'Развернуть' : 'Свернуть'}
+            title={isMinimized ? texts.expand : texts.collapse}
           />
           <Button
             onClick={onClose}
@@ -117,7 +121,7 @@ const VideoWindow = ({
             color="grey"
             variant="secondary"
             size="s"
-            title="Закрыть"
+            title={texts.close}
           />
         </div>
       </div>

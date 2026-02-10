@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react';
 
 import { LEVEL_MAPPING_ENUM } from '@components/DatePicker/helpers/levelMappingEnum';
 import { ENABLED_HOURS_VALUES } from '@components/declaration/constants/enabledHours';
+import { ELocaleMapping } from '@components/declaration';
 import { TInputProps } from '@components/Input/types';
 
 /**
@@ -30,7 +31,7 @@ interface IDatePickerSpecificProps {
   /** ID контейнера для портала */
   portalContainerId?: string;
   /** Локаль для форматирования дат */
-  locale?: string;
+  locale?: `${ELocaleMapping}`;
   /** Минимальная доступная дата */
   enabledFrom?: Date;
   /** Максимальная доступная дата */

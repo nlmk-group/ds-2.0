@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DateTime } from '@components/index';
+import DateTime from './index';
 import { render, screen } from '@testing-library/react';
 
 import { getDate, getTime } from '.';
@@ -13,8 +13,12 @@ describe('src/components/DateTime', () => {
     expect(headerComponent).toBeInTheDocument();
   });
 
-  test('function getDate deliver correct date', () => {
-    expect(getDate(new Date(testTime))).toBe('18.10.2023, Среда');
+  test('function getDate deliver correct date (ru locale)', () => {
+    expect(getDate(new Date(testTime), 'ru')).toBe('18.10.2023, Среда');
+  });
+
+  test('function getDate deliver correct date (en locale)', () => {
+    expect(getDate(new Date(testTime), 'en')).toBe('18.10.2023, Wednesday');
   });
 
   test('function getTime deliver correct time', () => {
@@ -32,5 +36,10 @@ describe('src/components/DateTime', () => {
   test('It should render a DateTime with time', () => {
     render(<DateTime />);
     expect(screen.getByTestId('DATETIME_TIME')).toBeInTheDocument();
+  });
+
+  test('It should render a DateTime with en locale', () => {
+    render(<DateTime locale="en" />);
+    expect(screen.getByTestId('DATETIME_DATE')).toBeInTheDocument();
   });
 });

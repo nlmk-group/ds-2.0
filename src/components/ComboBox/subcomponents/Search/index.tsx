@@ -1,10 +1,12 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { Icon, Input } from '@components/index';
+import { ELocaleMapping } from '@components/declaration';
 
 import styles from './Search.module.scss';
 
-import { useSetSearchValue } from '../../context';
+import { SEARCH_TEXTS } from './constants';
+import { useSetSearchValue, useLocaleValue } from '../../context';
 import { useDebounce } from '../../hooks';
 
 interface ISearchProps {
@@ -14,9 +16,11 @@ interface ISearchProps {
 
 const Search = ({ autoFocusSearch = false, isDropdownOpen = false }: ISearchProps) => {
   const setSearchValue = useSetSearchValue();
+  const locale = useLocaleValue() || ELocaleMapping.ru;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [value, setValue] = useState('');
+  const texts = SEARCH_TEXTS[locale];
 
   const debounceValue = useDebounce(value, 200);
 
@@ -47,7 +51,7 @@ const Search = ({ autoFocusSearch = false, isDropdownOpen = false }: ISearchProp
         className={styles['search-field']}
         icon={<Icon name="IconSearchOutlined24" />}
         value={value}
-        placeholder="Поиск"
+        placeholder={texts.placeholder}
         onChange={handleSearch}
       />
     </div>

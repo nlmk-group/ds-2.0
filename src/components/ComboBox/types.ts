@@ -1,5 +1,7 @@
 import { CSSProperties, ReactNode, RefObject } from 'react';
 
+import { ELocaleMapping } from '@components/declaration';
+
 export interface IComboBoxOption {
   id: string;
   idMdm?: string;
@@ -62,6 +64,10 @@ export interface IComboBoxProps {
   portalContainerId?: string;
   autoFocusSearch?: boolean;
   autoExpandOnSearch?: boolean;
+  /** Язык для placeholder поиска
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 }
 
 export interface IComboBoxInputProps {

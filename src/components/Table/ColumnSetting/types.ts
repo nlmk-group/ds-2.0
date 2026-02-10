@@ -1,3 +1,5 @@
+import { ELocaleMapping } from '@components/declaration';
+
 export interface IColumnSettingProps {
   /**
    * Уникальный идентификатор колонки
@@ -8,6 +10,12 @@ export interface IColumnSettingProps {
    * Заголовок колонки, отображаемый в списке
    */
   title: string;
+
+  /**
+   * Язык для кнопок управления колонкой
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 
   /**
    * Флаг видимости колонки

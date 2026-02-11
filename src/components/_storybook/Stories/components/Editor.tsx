@@ -33,25 +33,15 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   useEffect(() => {
     const checkTheme = () => {
       const hasDarkStyle = !!document.getElementById('dark');
-      const bodyHasDarkClass = document.body.classList.contains('dark') || 
-                               document.body.classList.contains('theme-dark') || 
-                               document.body.classList.contains('dark-mode');
-      const htmlHasDarkClass = document.documentElement.classList.contains('dark') || 
-                               document.documentElement.classList.contains('theme-dark');
       const htmlHasDarkAttr = document.documentElement.getAttribute('data-theme');
-      const bodyHasDarkAttr = document.body.getAttribute('data-theme');
-      const hasDarkAttr = (htmlHasDarkAttr && htmlHasDarkAttr.includes('dark')) || 
-                          (bodyHasDarkAttr && bodyHasDarkAttr.includes('dark'));
-
-      const isDark = hasDarkStyle || bodyHasDarkClass || htmlHasDarkClass || hasDarkAttr;
+      const isDark = hasDarkStyle || (htmlHasDarkAttr && htmlHasDarkAttr.includes('dark'));
       setTheme(isDark ? Themes.DARK : Themes.LIGHT);
     };
 
     const observer = new MutationObserver(checkTheme);
     
     observer.observe(document.head, { childList: true, subtree: true });
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme'] });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     checkTheme();
 

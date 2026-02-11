@@ -5,7 +5,8 @@ import {
   Box, 
   Button, 
   Typography, 
-  IconContentCopyOutlined24 
+  IconContentCopyOutlined24,
+  Tooltip
 } from '@components/index';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
@@ -24,6 +25,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   const url = `${origin}${path}`;
 
   const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
+  const [isCopied, setIsCopied] = useState(false);
   const [editorCode, setEditorCode] = useState(code);
 
   useEffect(() => {
@@ -64,6 +66,8 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
     const lines = editorCode.split('\n');
     const codeWithNumbers = lines.map((line, i) => `${i + 1} ${line}`).join('\n');
     navigator.clipboard.writeText(codeWithNumbers);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
   };
 
   const openSandbox = () => {
@@ -187,7 +191,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
         >
           <div style={{ 
               display: 'flex', 
-              justifyContent: 'flex-end', 
+              justifyContent: 'space-between', 
               alignItems: 'center',
               padding: '8px', 
               borderBottom: '1px solid var(--steel-30)',
@@ -195,14 +199,15 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
               gap: '8px'
             }}>
              
-             <Button 
-                type="button" 
-                color="ghost" 
-                variant="primary" 
-                iconButton={<IconContentCopyOutlined24 />} 
-                onClick={copyToClipboard}
-                title="Copy code"
-             />
+             <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
+               <Button 
+                  type="button" 
+                  color="ghost" 
+                  variant="primary" 
+                  iconButton={<IconContentCopyOutlined24 />} 
+                  onClick={copyToClipboard}
+               />
+             </Tooltip>
 
              <Button size="s" variant="secondary" onClick={openSandbox}>
                 Open in CodeSandbox

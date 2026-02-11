@@ -123,7 +123,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             const container = document.getElementById('root');
             const root = createRoot(container);
             
-            // Minimal theme handler for sandbox with toggle simulation
             const ThemeWrapper = () => {
                  const [isDark, setIsDark] = React.useState(${theme === Themes.DARK});
                  
@@ -161,15 +160,13 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
 
   function getParameters(parameters: any) {
     return LZString.compressToBase64(JSON.stringify(parameters))
-      .replace(/\+/g, '-') // Convert '+' to '-'
-      .replace(/\//g, '_') // Convert '/' to '_'
-      .replace(/=+$/, ''); // Remove ending '='
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
   }
 
-  // Transform the dark theme CSS to be scoped to our wrapper class
   const scopedDarkTheme = darkThemeStyles.replace(/:root/g, '.dark-theme-wrapper');
 
-  // Calculate line numbers
   const lineCount = editorCode.split('\n').length;
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
 
@@ -198,7 +195,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             flexDirection: 'column'
           }}
         >
-          {/* Toolbar */}
           <div style={{ 
               display: 'flex', 
               justifyContent: 'flex-end', 
@@ -209,7 +205,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
               gap: '8px'
             }}>
              
-             {/* Copy Button */}
              <Button 
                 type="button" 
                 color="ghost" 
@@ -223,26 +218,22 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 Open in CodeSandbox
              </Button>
 
-             {/* Theme Toggle Removed */}
           </div>
 
-          {/* Content Area (Split Layout) */}
           <div style={{ display: 'flex', minHeight: height ? `${height}px` : 'auto' }}>
-            {/* Editor Area (Left) */}
             <div style={{ 
               flex: 1, 
               borderRight: '1px solid var(--steel-30)', 
               maxHeight: '600px', 
               overflow: 'auto', 
-              backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa', // Editor bg
+              backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
               display: 'flex'
             }}>
-               {/* Line Numbers */}
                <div style={{
                  padding: '10px 5px',
                  fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
                  fontSize: '14px',
-                 lineHeight: '1.5', // Must match LiveEditor line-height usually ~1.5 or 21px
+                 lineHeight: '1.5',
                  textAlign: 'right',
                  color: theme === Themes.DARK ? '#858585' : '#ccc',
                  backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
@@ -254,7 +245,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                  {lineNumbers}
                </div>
 
-               {/* Code Editor */}
                <div style={{ flex: 1 }}>
                  <LiveEditor 
                    onChange={setEditorCode}
@@ -262,14 +252,13 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                      fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
                      fontSize: 14,
                      minHeight: '100%',
-                     backgroundColor: 'transparent', // Important to let container bg show
+                     backgroundColor: 'transparent',
                      outline: 'none'
                    }} 
                  />
                </div>
             </div>
 
-            {/* Preview Area (Right) */}
             <div 
               className={clsx('preview-container', theme === Themes.DARK && 'dark-theme-wrapper')}
               style={{ 
@@ -280,10 +269,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 transition: 'background-color 0.2s ease'
               }}
             >
-               {/* 
-                 Note: We still inject scopedDarkTheme if detected.
-                 If global variables handle it, this might be redundant but safe.
-               */}
                {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
                
                <LiveError 

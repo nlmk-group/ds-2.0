@@ -11,18 +11,19 @@ import {
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
 import clsx from 'clsx';
-import LZString from 'lz-string';
+
 import { themes } from 'prism-react-renderer';
+import prettier from 'prettier/standalone';
+import parserTypescript from 'prettier/parser-typescript';
+import { copyToClipboard as copyUtils } from '@components/utils/copyToClipboard';
+import { openCodeSandbox } from './sandboxUtils';
 
 import styles from '../Stories.module.scss';
-import VERSION from './version';
 
 const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
   const scope = { ...UI, React, useState, useEffect };
 
-  const { origin, pathname } = window.parent.location;
-  const path = pathname === '/' ? '' : pathname;
-  const url = `${origin}${path}`;
+
 
   const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
   const [isCopied, setIsCopied] = useState(false);
@@ -59,105 +60,40 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
        cleanCode = cleanCode.replace(/export\s+default\s+function\s+App/, 'function App');
     }
 
-    return cleanCode + ';\nrender(<App />);';
+    try {
+      cleanCode = prettier.format(cleanCode, {
+        parser: 'typescript',
+        plugins: [parserTypescript],
+        semi: true,
+        singleQuote: true,
+        trailingComma: 'es5',
+        tabWidth: 2,
+        printWidth: 80
+      });
+    } catch (error) {
+      console.warn('Failed to format code:', error);
+    }
+
+    const result = `${cleanCode};\nrender(<App />);`;
+
+    return result;
   };
 
   const copyToClipboard = () => {
     const lines = editorCode.split('\n');
     const codeWithNumbers = lines.map((line, i) => `${i + 1} ${line}`).join('\n');
-    navigator.clipboard.writeText(codeWithNumbers);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
+    
+    copyUtils(codeWithNumbers, () => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    });
   };
 
   const openSandbox = () => {
-    const parameters = getParameters({
-      files: {
-        'package.json': {
-          content: {
-            dependencies: {
-              react: '^18.0.0',
-              'react-dom': '^18.0.0',
-              'react-scripts': '^5.0.0',
-              '@nlmk/ds-2.0': VERSION,
-              'react-router-dom': '^6.27.0'
-            }
-          }
-        },
-        'App.tsx': {
-          content: editorCode
-        },
-        'index.html': {
-          content: '<div id="root"></div>'
-        },
-        'styles.css': {
-          content: `
-            @import url('${url}/css/main.css');
-            @import url('https://fonts.cdnfonts.com/css/pt-root-ui');
-            html, body {
-                font-family: 'PT Root UI', sans-serif;
-            }
-            #root {
-              margin: 20px;
-              display: flex;
-              align-items: center;
-              gap: 20px;
-              flex-wrap: wrap;
-            }
-          `
-        },
-        'index.tsx': {
-          content: `
-            import React from 'react';
-            import { createRoot } from 'react-dom/client'; 
-            import App from './App';
-            import './styles.css';
-            import { darkThemeStyles } from './darkTheme';
-
-            const container = document.getElementById('root');
-            const root = createRoot(container);
-            
-            const ThemeWrapper = () => {
-                 const [isDark, setIsDark] = React.useState(${theme === Themes.DARK});
-                 
-                 return (
-                   <div className={isDark ? 'dark-theme-wrapper' : ''} style={{backgroundColor: isDark ? '#3c4854' : 'white', minHeight: '100vh', padding: '20px'}}>
-                      <style>{isDark ? darkThemeStyles : ''}</style>
-                      <button style={{marginBottom: 20}} onClick={() => setIsDark(!isDark)}>Toggle Theme</button>
-                      <App />
-                   </div>
-                 );
-            }
-
-            root.render(<ThemeWrapper />);
-          `
-        },
-        'darkTheme.ts': {
-           content: `export const darkThemeStyles = \`${darkThemeStyles}\`;`
-        }
-      }
-    });
-
-    const form = document.createElement('form');
-    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-    form.method = 'POST';
-    form.target = '_blank';
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'parameters';
-    input.value = parameters;
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
+    openCodeSandbox(editorCode, theme as Themes);
   };
 
-  function getParameters(parameters: any) {
-    return LZString.compressToBase64(JSON.stringify(parameters))
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/, '');
-  }
+
 
   const scopedDarkTheme = darkThemeStyles.replace(/:root/g, '.dark-theme-wrapper');
 
@@ -179,25 +115,8 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
         noInline={true} 
         theme={theme === Themes.DARK ? themes.vsDark : themes.github}
       >
-        <div 
-          style={{ 
-            border: '1px solid var(--steel-30)', 
-            borderRadius: '8px',
-            overflow: 'hidden',
-            backgroundColor: 'var(--steel-10)',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              padding: '8px', 
-              borderBottom: '1px solid var(--steel-30)',
-              backgroundColor: 'var(--steel-20)',
-              gap: '8px'
-            }}>
+        <div className={styles['editor-container']}>
+          <div className={styles.toolbar}>
              
              <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
                <Button 
@@ -215,32 +134,19 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
 
           </div>
 
-          <div style={{ display: 'flex', minHeight: height ? `${height}px` : 'auto' }}>
-            <div style={{ 
-              flex: 1, 
-              borderRight: '1px solid var(--steel-30)', 
-              maxHeight: '600px', 
-              overflow: 'auto', 
-              backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-              display: 'flex'
+          <div className={styles['content-area']} style={{ minHeight: height ? `${height}px` : 'auto' }}>
+            <div className={styles['editor-pane']} style={{ 
+              backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa'
             }}>
-               <div style={{
-                 padding: '10px 5px',
-                 fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
-                 fontSize: '14px',
-                 lineHeight: '1.5',
-                 textAlign: 'right',
+               <div className={styles['line-numbers']} style={{
                  color: theme === Themes.DARK ? '#858585' : '#ccc',
                  backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                 borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`,
-                 minWidth: '30px',
-                 userSelect: 'none',
-                 whiteSpace: 'pre'
+                 borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
                }}>
                  {lineNumbers}
                </div>
 
-               <div style={{ flex: 1 }}>
+               <div className={styles['code-editor']}>
                  <LiveEditor 
                    onChange={setEditorCode}
                    style={{ 
@@ -255,31 +161,14 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             </div>
 
             <div 
-              className={clsx('preview-container', theme === Themes.DARK && 'dark-theme-wrapper')}
+              className={clsx('preview-container', styles['preview-pane'], theme === Themes.DARK && 'dark-theme-wrapper')}
               style={{ 
-                flex: 1,
-                backgroundColor: theme === Themes.DARK ? '#3c4854' : 'var(--steel-10)',
-                position: 'relative',
-                overflow: 'auto',
-                transition: 'background-color 0.2s ease'
+                backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)'
               }}
             >
                {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
                
-               <LiveError 
-                 style={{ 
-                   color: '#ff4d4f', 
-                   backgroundColor: '#fff1f0', 
-                   border: '1px solid #ffccc7',
-                   padding: '12px',
-                   fontFamily: 'monospace',
-                   fontSize: '12px',
-                   whiteSpace: 'pre-wrap',
-                   marginBottom: '16px',
-                   borderRadius: '4px',
-                   margin: '20px'
-                 }} 
-               />
+               <LiveError className={styles['live-error']} />
                
                <LivePreview 
                   Component={Box}

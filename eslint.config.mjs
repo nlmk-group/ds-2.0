@@ -62,7 +62,7 @@ export default [
       'no-console': [
         'error',
         {
-          allow: ['error']
+          allow: ['warn', 'error']
         }
       ],
       'quotes': [

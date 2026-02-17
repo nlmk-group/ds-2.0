@@ -193,3 +193,67 @@ $sandpack-black: #21252B;
   display: flex;
   align-items: center;
 }
+
+.editor-container {
+  border: 1px solid var(--steel-30);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--steel-10);
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid var(--steel-30);
+  background-color: var(--steel-20);
+  gap: 8px;
+}
+
+.content-area {
+  display: flex;
+}
+
+.editor-pane {
+  flex: 1;
+  border-right: 1px solid var(--steel-30);
+  max-height: 600px;
+  overflow: auto;
+  display: flex;
+}
+
+.line-numbers {
+  padding: 10px 5px;
+  font-family: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: right;
+  min-width: 30px;
+  user-select: none;
+  white-space: pre;
+}
+
+.code-editor {
+  flex: 1;
+}
+
+.preview-pane {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  transition: background-color 0.2s ease;
+}
+
+.live-error {
+  font-family: monospace;
+  background-color: var(--error-red-50);
+  color: var(--error-red-600);
+  padding: 12px;
+  white-space: pre-wrap;
+  margin: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--error-red-200);
+}

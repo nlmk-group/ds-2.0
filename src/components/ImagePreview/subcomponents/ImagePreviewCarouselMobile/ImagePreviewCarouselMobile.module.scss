@@ -1,0 +1,51 @@
+$thumbWrapper: 80px;
+$thumb: 74px;
+
+
+.carousel {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  gap: 4px;
+  padding: 16px;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  width: $thumbWrapper;
+  height: $thumbWrapper;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+
+.thumb {
+  width: $thumb;
+  height: $thumb;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.active {
+  border-color: var(--steel-10);
+}

@@ -1,0 +1,53 @@
+.wrapper {
+  display: block;
+}
+
+.list {
+  --ip-thumb-w: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.thumbButton {
+  width: var(--ip-thumb-w);
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  outline: none;
+  flex: 0 0 auto;
+}
+
+.thumb {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.emptyIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hoverIcon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--unique-white);
+  z-index: 2;
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--unique-black);
+  opacity: 0.6;
+  z-index: 1;
+}

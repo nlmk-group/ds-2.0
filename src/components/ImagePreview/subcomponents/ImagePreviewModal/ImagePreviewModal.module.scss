@@ -1,0 +1,270 @@
+$carousel-width: 120px;
+$edge-offset: 12px;
+
+$modal-padding: 16px;
+$nav-btn-width: 44px;
+$nav-btn-gap: 110px;
+
+$top-actions-height: 44px;
+$meta-height: 64px;
+
+$nav-prev-offset: 24px;
+
+.backdrop {
+  background-color: var(--brand-jeans-30);
+  opacity: 60%;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: stretch;
+  padding: $modal-padding;
+  overflow: hidden;
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: $carousel-width 1fr;
+  overflow: hidden;
+}
+
+.viewer {
+  grid-column: 2 / 3;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.stageScroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.stageScrollZoomed {
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.stageScrollZoomedOverflowX {
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+
+.stageScrollZoomedOverflowY {
+  overflow-y: auto;
+  align-items: flex-start;
+}
+
+.image {
+  max-width: calc(100vw - ($modal-padding * 2) - $carousel-width - ($nav-btn-width * 2) - $nav-btn-gap);
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageZoomable {
+  cursor: zoom-in;
+}
+
+.imageZoomed {
+  max-width: none;
+  max-height: none;
+  transform: scale(var(--ip-zoom-scale, 1));
+  transform-origin: var(--ip-zoom-origin, center);
+  cursor: zoom-out;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px;
+  min-height: $meta-height;
+
+  max-height: clamp(#{$meta-height}, 22vh, 240px);
+  overflow-y: auto;
+}
+
+.metaLine {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  text-align: center;
+}
+
+.topActions {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 16px;
+  z-index: 4;
+}
+
+.navBtn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $nav-btn-width;
+  height: 64px;
+  z-index: 3;
+}
+
+.navPrev {
+  left: $carousel-width + $nav-prev-offset;
+}
+
+.navNext {
+  right: $edge-offset;
+}
+
+@media (max-width: 1000px) {
+  .modal {
+    padding: 0;
+  }
+
+  .modalContent {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer {
+    grid-column: 1 / -1;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .metaTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 96px;
+    min-height: auto;
+
+    max-height: clamp(56px, 20vh, 220px);
+    overflow: hidden;
+  }
+
+  .metaTopExpanded {
+    max-height: clamp(120px, 45vh, 520px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .meta {
+    display: none;
+  }
+
+  .metaLine {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .metaClamp2,
+  .metaClamp3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .metaClamp2 {
+    -webkit-line-clamp: 2;
+  }
+
+  .metaClamp3 {
+    -webkit-line-clamp: 3;
+  }
+
+  .metaUnclamped {
+    display: block;
+    overflow: visible;
+  }
+
+  .metaToggle {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--steel-10);
+  }
+
+  .metaTop[data-measuring='1'] .metaClamp2,
+  .metaTop[data-measuring='1'] .metaClamp3 {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+
+  .stage {
+    padding: 0;
+  }
+
+  .stageScroll {
+    padding: 0;
+  }
+
+  .stageScrollZoomed {
+    padding: 0;
+  }
+
+  .image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .topActions {
+    top: 0;
+  }
+}

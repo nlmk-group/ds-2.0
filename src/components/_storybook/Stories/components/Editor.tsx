@@ -1,13 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useRef, useReducer, useContext, useLayoutEffect, useState } from 'react';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import * as UI from '@components/index';
-import { 
-  Box, 
-  Button, 
-  Typography, 
-  IconContentCopyOutlined24,
-  Tooltip
-} from '@components/index';
+import * as ReactRouterDom from 'react-router-dom';
+import { Box, Button, Typography, IconContentCopyOutlined24, Tooltip } from '@components/index';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
 import clsx from 'clsx';
@@ -21,9 +16,27 @@ import { openCodeSandbox } from './sandboxUtils';
 import styles from '../Stories.module.scss';
 
 const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
-  const scope = { ...UI, React, useState, useEffect };
-
-
+  // Переменные доступные в live-редакторе при выполнении кода примеров.
+  // react-live компилирует код через sucrase (CJS-трансформ) и выполняет через new Function(...scopeKeys, code),
+  // поэтому всё что нужно в примерах — должно быть здесь.
+  // Порядок важен: ...UI идёт после ...ReactRouterDom, чтобы DS-компоненты (например Link)
+  // перекрывали одноимённые компоненты из react-router-dom.
+  // exports: {} — полифил для sucrase: он генерирует Object.defineProperty(exports, "__esModule", ...)
+  // но в контексте new Function переменная exports не определена без явной передачи.
+  const scope = {
+    ...ReactRouterDom,
+    ...UI,
+    React,
+    useState,
+    useEffect,
+    useRef,
+    useCallback,
+    useMemo,
+    useReducer,
+    useContext,
+    useLayoutEffect,
+    exports: {}
+  };
 
   const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
   const [isCopied, setIsCopied] = useState(false);
@@ -42,7 +55,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
     };
 
     const observer = new MutationObserver(checkTheme);
-    
+
     observer.observe(document.head, { childList: true, subtree: true });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
@@ -51,14 +64,22 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
     return () => observer.disconnect();
   }, []);
 
+  // Трансформация кода перед передачей в sucrase (react-live).
+  // Проблема: примеры написаны как ES-модули (import/export), но sucrase с трансформом "imports"
+  // компилирует их в CJS и добавляет обращения к exports — это ломается в браузере.
+  // Решение: убираем импорты (зависимости уже в scope) и нормализуем export default → const App.
+  // Все замены делаются ДО prettier, потому что prettier меняет пробелы и может сломать регексы.
   const transformCode = (code: string) => {
-    let cleanCode = code.replace(/import\s+.*?[\r\n]/g, '');
-    
-    if (cleanCode.includes('export default App =')) {
-      cleanCode = cleanCode.replace(/export\s+default\s+App\s+=\s+/, 'const App = ');
-    } else if (cleanCode.includes('export default function App')) {
-       cleanCode = cleanCode.replace(/export\s+default\s+function\s+App/, 'function App');
-    }
+    let cleanCode = code.replace(/import\s+[^\n]*\n/g, '');
+
+    // `export default App` отдельной строкой — просто реэкспорт уже объявленной переменной, удаляем
+    cleanCode = cleanCode.replace(/export\s+default\s+App\s*;?\s*$/gm, '');
+    // `export default App = () => ...` — инлайн-объявление, превращаем в const
+    cleanCode = cleanCode.replace(/export\s+default\s+App\s*=\s*/g, 'const App = ');
+    // `export default function App` — именованная функция
+    cleanCode = cleanCode.replace(/export\s+default\s+function\s+App/g, 'function App');
+    // `export default () => ...` или `export default class` — анонимный экспорт
+    cleanCode = cleanCode.replace(/export\s+default\s+(?!App\b)/g, 'const App = ');
 
     try {
       cleanCode = prettier.format(cleanCode, {
@@ -74,15 +95,13 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
       console.warn('Failed to format code:', error);
     }
 
-    const result = `${cleanCode};\nrender(<App />);`;
-
-    return result;
+    return `${cleanCode};\nrender(<App />);`;
   };
 
   const copyToClipboard = () => {
     const lines = editorCode.split('\n');
     const codeWithNumbers = lines.map((line, i) => `${i + 1} ${line}`).join('\n');
-    
+
     copyUtils(codeWithNumbers, () => {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
@@ -92,8 +111,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   const openSandbox = () => {
     openCodeSandbox(editorCode, theme as Themes);
   };
-
-
 
   const scopedDarkTheme = darkThemeStyles.replace(/:root/g, '.dark-theme-wrapper');
 
@@ -108,76 +125,76 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
         </div>
       )}
 
-      <LiveProvider 
-        code={editorCode} 
+      <LiveProvider
+        code={editorCode}
         transformCode={transformCode}
-        scope={scope} 
-        noInline={true} 
+        scope={scope}
+        noInline={true}
         theme={theme === Themes.DARK ? themes.vsDark : themes.github}
       >
         <div className={styles['editor-container']}>
           <div className={styles.toolbar}>
-             
-             <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
-               <Button 
-                  type="button" 
-                  color="ghost" 
-                  variant="primary" 
-                  iconButton={<IconContentCopyOutlined24 />} 
-                  onClick={copyToClipboard}
-               />
-             </Tooltip>
 
-             <Button size="s" variant="secondary" onClick={openSandbox}>
-                Open in CodeSandbox
-             </Button>
+            <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
+              <Button
+                type="button"
+                color="ghost"
+                variant="primary"
+                iconButton={<IconContentCopyOutlined24 />}
+                onClick={copyToClipboard}
+              />
+            </Tooltip>
+
+            <Button size="s" variant="secondary" onClick={openSandbox}>
+              Open in CodeSandbox
+            </Button>
 
           </div>
 
           <div className={styles['content-area']} style={{ minHeight: height ? `${height}px` : 'auto' }}>
-            <div className={styles['editor-pane']} style={{ 
+            <div className={styles['editor-pane']} style={{
               backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa'
             }}>
-               <div className={styles['line-numbers']} style={{
-                 color: theme === Themes.DARK ? '#858585' : '#ccc',
-                 backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                 borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
-               }}>
-                 {lineNumbers}
-               </div>
+              <div className={styles['line-numbers']} style={{
+                color: theme === Themes.DARK ? '#858585' : '#ccc',
+                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
+                borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
+              }}>
+                {lineNumbers}
+              </div>
 
-               <div className={styles['code-editor']}>
-                 <LiveEditor 
-                   onChange={setEditorCode}
-                   style={{ 
-                     fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
-                     fontSize: 14,
-                     minHeight: '100%',
-                     backgroundColor: 'transparent',
-                     outline: 'none'
-                   }} 
-                 />
-               </div>
+              <div className={styles['code-editor']}>
+                <LiveEditor
+                  onChange={setEditorCode}
+                  style={{
+                    fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
+                    fontSize: 14,
+                    minHeight: '100%',
+                    backgroundColor: 'transparent',
+                    outline: 'none'
+                  }}
+                />
+              </div>
             </div>
 
-            <div 
+            <div
               className={clsx('preview-container', styles['preview-pane'], theme === Themes.DARK && 'dark-theme-wrapper')}
-              style={{ 
+              style={{
                 backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)'
               }}
             >
-               {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
-               
-               <LiveError className={styles['live-error']} />
-               
-               <LivePreview 
-                  Component={Box}
-                  display="flex"
-                  alignItems="center"
-                  gap={20}
-                  flexWrap="wrap"
-                  st={{ margin: 20 }}
-               />
+              {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
+
+              <LiveError className={styles['live-error']} />
+
+              <LivePreview
+                Component={Box}
+                display="flex"
+                alignItems="center"
+                gap={20}
+                flexWrap="wrap"
+                st={{ margin: 20 }}
+              />
             </div>
           </div>
         </div>

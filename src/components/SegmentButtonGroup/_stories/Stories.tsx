@@ -54,19 +54,20 @@ const Stories = (): JSX.Element => {
             code={`import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
 
 export default App = () => {
+  const [active, setActive] = useState(0);
   return (
-    <SegmentButtonGroup {...argTypes}>
-      <SegmentButton onClick={action('onClick')}>
+    <SegmentButtonGroup>
+      <SegmentButton active={active === 0} onClick={() => setActive(0)}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Сталь
         </Typography>
       </SegmentButton>
-      <SegmentButton onClick={action('onClick')}>
+      <SegmentButton active={active === 1} onClick={() => setActive(1)}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Цинк
         </Typography>
       </SegmentButton>
-      <SegmentButton onClick={action('onClick')}>
+      <SegmentButton active={active === 2} onClick={() => setActive(2)}>
         <Typography variant="Body1-Bold" color="var(--steel-90)">
           Чугун
         </Typography>

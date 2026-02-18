@@ -55,28 +55,28 @@ const Stories = (): JSX.Element => {
             code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   const [count, setCount] = useState(0)
 
   return (
     <ToggleButtonGroup>
-      <Button onClick={() => setCount(count+1)}>
-        <Button.Label>
+      <ToggleButton onClick={() => setCount(count+1)}>
+        <ToggleButton.Label>
           Plus {count}
-        </Button.Label>
-      </Button>
-      <Button onClick={() => alert('Count is '+ count)}>
-        <Button.Label>
+        </ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton onClick={() => alert('Count is '+ count)}>
+        <ToggleButton.Label>
           Check result
-        </Button.Label>
-      </Button>
-      <Button onClick={() => setCount(count-1)}>
-        <Button.Label>
+        </ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton onClick={() => setCount(count-1)}>
+        <ToggleButton.Label>
           Minus {count}
-        </Button.Label>
-      </Button>
+        </ToggleButton.Label>
+      </ToggleButton>
     </ToggleButtonGroup>
   )
 }
@@ -88,34 +88,34 @@ export default App = () => {
             description={'Toggle Button с тултипами'}
             code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   return (
     <ToggleButtonGroup>
-      <Button>
-        <Button.Tooltip description='Add one to count' placement='bottom'>
-          <Button.Label>
+      <ToggleButton>
+        <ToggleButton.Tooltip description='Add one to count' placement='bottom'>
+          <ToggleButton.Label>
             Plus
-          </Button.Label>
-        </Button.Tooltip>
-      </Button>
+          </ToggleButton.Label>
+        </ToggleButton.Tooltip>
+      </ToggleButton>
 
-      <Button>
-        <Button.Tooltip description='Check count value' placement='bottom'>
-          <Button.Label>
-              Check result
-            </Button.Label>
-        </Button.Tooltip>
-      </Button>
+      <ToggleButton>
+        <ToggleButton.Tooltip description='Check count value' placement='bottom'>
+          <ToggleButton.Label>
+            Check result
+          </ToggleButton.Label>
+        </ToggleButton.Tooltip>
+      </ToggleButton>
 
-      <Button>
-        <Button.Tooltip description='Subtract one from count' placement='bottom'>
-          <Button.Label>
+      <ToggleButton>
+        <ToggleButton.Tooltip description='Subtract one from count' placement='bottom'>
+          <ToggleButton.Label>
             Minus
-          </Button.Label>
-        </Button.Tooltip>
-      </Button>
+          </ToggleButton.Label>
+        </ToggleButton.Tooltip>
+      </ToggleButton>
     </ToggleButtonGroup>
   )
 }
@@ -127,7 +127,7 @@ export default App = () => {
             description={'Toggle Button с разными размерами'}
             code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   return (
@@ -139,23 +139,23 @@ export default App = () => {
       }}
     >
       <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.m}">
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
 
       <Divider dashed />
 
       <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.s}">
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
     </div>
   )
@@ -169,34 +169,34 @@ export default App = () => {
             code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   const [count, setCount] = useState(0)
   return (
     <ToggleButtonGroup>
-      <Button onClick={() => setCount(count+1)}>
-        <Button.Icon>
+      <ToggleButton onClick={() => setCount(count+1)}>
+        <ToggleButton.Icon>
           <IconAddPlusCircleOutlined24 />
-        </Button.Icon>
-        <Button.Label>
+        </ToggleButton.Icon>
+        <ToggleButton.Label>
           Plus {count}
-        </Button.Label>
-      </Button>
-      <Button onClick={() => alert('Count is '+ count)}>
-        <Button.Icon/>
-        <Button.Label>
+        </ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton onClick={() => alert('Count is '+ count)}>
+        <ToggleButton.Icon/>
+        <ToggleButton.Label>
           Check result
-        </Button.Label>
-      </Button>
-      <Button onClick={() => setCount(count-1)}>
-        <Button.Icon>
+        </ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton onClick={() => setCount(count-1)}>
+        <ToggleButton.Icon>
           <IconDeleteMinusOutlined24 />
-        </Button.Icon>
-        <Button.Label>
+        </ToggleButton.Icon>
+        <ToggleButton.Label>
           Minus {count}
-        </Button.Label>
-      </Button>
+        </ToggleButton.Label>
+      </ToggleButton>
     </ToggleButtonGroup>
   )
 }
@@ -209,43 +209,43 @@ export default App = () => {
             code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   const [count, setCount] = useState(0)
   return (
     <ToggleButtonGroup>
-      <Button onClick={() => setCount(count+1)}>
-        <Button.Icon>
+      <ToggleButton onClick={() => setCount(count+1)}>
+        <ToggleButton.Icon>
           <IconAddPlusCircleOutlined24 />
-        </Button.Icon>
-        <Button.Label>
+        </ToggleButton.Icon>
+        <ToggleButton.Label>
           Plus
-        </Button.Label>
-        <Button.Badge>
+        </ToggleButton.Label>
+        <ToggleButton.Badge>
           {count}
-        </Button.Badge>
-      </Button>
-      <Button onClick={() => alert('Count is '+ count)}>
-        <Button.Icon/>
-        <Button.Label>
+        </ToggleButton.Badge>
+      </ToggleButton>
+      <ToggleButton onClick={() => alert('Count is '+ count)}>
+        <ToggleButton.Icon/>
+        <ToggleButton.Label>
           Check result
-        </Button.Label>
-        <Button.Badge>
+        </ToggleButton.Label>
+        <ToggleButton.Badge>
           {count}
-        </Button.Badge>
-      </Button>
-      <Button onClick={() => setCount(count-1)}>
-        <Button.Icon>
+        </ToggleButton.Badge>
+      </ToggleButton>
+      <ToggleButton onClick={() => setCount(count-1)}>
+        <ToggleButton.Icon>
           <IconDeleteMinusOutlined24 />
-        </Button.Icon>
-        <Button.Label>
+        </ToggleButton.Icon>
+        <ToggleButton.Label>
           Minus
-        </Button.Label>
-        <Button.Badge>
+        </ToggleButton.Label>
+        <ToggleButton.Badge>
           {count}
-        </Button.Badge>
-      </Button>
+        </ToggleButton.Badge>
+      </ToggleButton>
     </ToggleButtonGroup>
   )
 }
@@ -257,7 +257,7 @@ export default App = () => {
             description={'Toggle Button с разными кнопками и иконками'}
             code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
 
-const { Button } = ToggleButtonGroup;
+const { Button: ToggleButton } = ToggleButtonGroup;
 
 export default App = () => {
   return (
@@ -269,45 +269,45 @@ export default App = () => {
       }}
     >
       <ToggleButtonGroup>
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
 
       <Divider dashed />
 
-      <ToggleButtonGroup >
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+      <ToggleButtonGroup>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
 
       <Divider dashed />
 
-      <ToggleButtonGroup >
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+      <ToggleButtonGroup>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
 
       <Divider dashed />
 
-      <ToggleButtonGroup >
-        <Button onClick={() => alert('First option')}>
-          <Button.Icon/>
-        </Button>
-        <Button onClick={() => alert('Second option')}>
-          <Button.Icon/>
-        </Button>
+      <ToggleButtonGroup>
+        <ToggleButton onClick={() => alert('First option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
+        <ToggleButton onClick={() => alert('Second option')}>
+          <ToggleButton.Icon/>
+        </ToggleButton>
       </ToggleButtonGroup>
     </div>
   )

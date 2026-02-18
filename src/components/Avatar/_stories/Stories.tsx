@@ -70,11 +70,11 @@ export default App
 
 export default App = () => (
   <>
-    <Avatar src="${AVATAR_MOCK_SRC}" size="xxl" />
-    <Avatar src="${AVATAR_MOCK_SRC}" size="xl" />
-    <Avatar src="${AVATAR_MOCK_SRC}" size="l" />
-    <Avatar src="${AVATAR_MOCK_SRC}" size="m" />
-    <Avatar src="${AVATAR_MOCK_SRC}" size="s" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="2xl" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="xl" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="l" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="m" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="s" />
   </>
 )
               `}
@@ -86,7 +86,7 @@ export default App = () => (
 export default App = () => (
   <>
     <Avatar />
-    <Avatar src="${AVATAR_MOCK_SRC}" />
+    <Avatar imageSrc="${AVATAR_MOCK_SRC}" />
     <Avatar userName='Антон' userSurname='Валуев' />
   </>
 )

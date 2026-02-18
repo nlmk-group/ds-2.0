@@ -79,7 +79,7 @@ const App = () => {
   }));
 
   return (
-    <div className={styles.wrapper}>
+    <div style={{ width: '100%' }}>
       <Box flexDirection="row" width="100%" gap={16}>
         {steps.map((step, i) => (
           <Stepper

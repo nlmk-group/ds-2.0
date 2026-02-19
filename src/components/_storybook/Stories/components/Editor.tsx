@@ -199,12 +199,13 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 {lineNumbers}
               </div>
 
-              <div className={styles['code-editor']}>
+              <div className={styles['code-editor-wrapper']}>
                 <LiveEditor
                   onChange={setEditorCode}
+                  className={styles['code-editor']}
                   style={{
-                    fontFamily: '"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace',
                     fontSize: 14,
+                    lineHeight: 1.5,
                     minHeight: '100%',
                     backgroundColor: 'transparent',
                     outline: 'none'

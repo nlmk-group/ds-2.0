@@ -235,8 +235,15 @@ $sandpack-black: #21252B;
   white-space: pre;
 }
 
-.code-editor {
+.code-editor-wrapper {
   flex: 1;
+}
+
+.code-editor {
+  font-family: "Fira Mono", "DejaVu Sans Mono", "Menlo", "Consolas", monospace !important;
+  & > pre {
+    white-space: nowrap !important;
+  }
 }
 
 .preview-pane {

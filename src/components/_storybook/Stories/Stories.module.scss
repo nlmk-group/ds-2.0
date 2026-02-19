@@ -220,7 +220,6 @@ $sandpack-black: #21252B;
 .editor-pane {
   flex: 1;
   border-right: 1px solid var(--steel-30);
-  max-height: 600px;
   overflow: auto;
   display: flex;
 }
@@ -241,7 +240,10 @@ $sandpack-black: #21252B;
 }
 
 .preview-pane {
-  flex: 1;
+  display: block;
+  width: 50%;
+  min-height: 280px;
+  height: max-content;
   position: relative;
   overflow: auto;
   transition: background-color 0.2s ease;

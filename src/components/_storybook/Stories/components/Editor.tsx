@@ -1,19 +1,30 @@
-import React, { FC, useCallback, useEffect, useMemo, useRef, useReducer, useContext, useLayoutEffect, useState } from 'react';
+import React, {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState
+} from 'react';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
-import * as UI from '@components/index';
 import * as ReactRouterDom from 'react-router-dom';
-import { Box, Button, Typography, IconContentCopyOutlined24, Tooltip } from '@components/index';
+
+import * as UI from '@components/index';
+import { Box, Button, IconContentCopyOutlined24, Tooltip, Typography } from '@components/index';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
-import clsx from 'clsx';
-
-import { themes } from 'prism-react-renderer';
-import prettier from 'prettier/standalone';
-import parserTypescript from 'prettier/parser-typescript';
 import { copyToClipboard as copyUtils } from '@components/utils/copyToClipboard';
-import { openCodeSandbox } from './sandboxUtils';
+import clsx from 'clsx';
+import parserTypescript from 'prettier/parser-typescript';
+import prettier from 'prettier/standalone';
+import { themes } from 'prism-react-renderer';
 
 import styles from '../Stories.module.scss';
+
+import { openCodeSandbox } from './sandboxUtils';
 
 const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
   // Переменные доступные в live-редакторе при выполнении кода примеров.
@@ -42,11 +53,15 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   const [isCopied, setIsCopied] = useState(false);
   const [editorCode, setEditorCode] = useState(code);
 
+  const codeRef = useRef<HTMLDivElement | null>(null);
+  const previewRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     setEditorCode(code);
   }, [code]);
 
   useEffect(() => {
+    // Отслеживаем изменение темы
     const checkTheme = () => {
       const hasDarkStyle = !!document.getElementById('dark');
       const htmlHasDarkAttr = document.documentElement.getAttribute('data-theme');
@@ -63,6 +78,22 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!previewRef.current) return;
+
+    // Приравниваем высоту первого блока высоте блока-preview
+    const syncHeight = () => {
+      if (!codeRef.current) return;
+      codeRef.current.style.height = previewRef.current?.offsetHeight + 'px';
+    };
+
+    const observer = new ResizeObserver(syncHeight);
+
+    observer.observe(previewRef.current);
+
+    return () => observer.disconnect();
+  }, [previewRef.current]);
 
   // Трансформация кода перед передачей в sucrase (react-live).
   // Проблема: примеры написаны как ES-модули (import/export), но sucrase с трансформом "imports"
@@ -134,7 +165,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
       >
         <div className={styles['editor-container']}>
           <div className={styles.toolbar}>
-
             <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
               <Button
                 type="button"
@@ -148,18 +178,24 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             <Button size="s" variant="secondary" onClick={openSandbox}>
               Open in CodeSandbox
             </Button>
-
           </div>
 
           <div className={styles['content-area']} style={{ minHeight: height ? `${height}px` : 'auto' }}>
-            <div className={styles['editor-pane']} style={{
-              backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa'
-            }}>
-              <div className={styles['line-numbers']} style={{
-                color: theme === Themes.DARK ? '#858585' : '#ccc',
-                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
-              }}>
+            <div
+              className={styles['editor-pane']}
+              style={{
+                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa'
+              }}
+              ref={codeRef}
+            >
+              <div
+                className={styles['line-numbers']}
+                style={{
+                  color: theme === Themes.DARK ? '#858585' : '#ccc',
+                  backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
+                  borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
+                }}
+              >
                 {lineNumbers}
               </div>
 
@@ -178,10 +214,15 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             </div>
 
             <div
-              className={clsx('preview-container', styles['preview-pane'], theme === Themes.DARK && 'dark-theme-wrapper')}
+              className={clsx(
+                'preview-container',
+                styles['preview-pane'],
+                theme === Themes.DARK && 'dark-theme-wrapper'
+              )}
               style={{
                 backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)'
               }}
+              ref={previewRef}
             >
               {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
 

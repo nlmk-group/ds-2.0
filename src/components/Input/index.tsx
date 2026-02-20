@@ -140,7 +140,15 @@ const Input: FC<TInputProps> = ({
         />
       )}
       {label && (
-        <label className={clsx(styles.label, colorClassName)} htmlFor={id} data-ui-input-label>
+        <label
+          className={clsx(styles.label, colorClassName, {
+            [styles['label--with-icon']]: hasIcon,
+            [styles['label--with-reset']]: hasReset,
+            [styles['label--with-icons']]: hasBothIcons
+          })}
+          htmlFor={id}
+          data-ui-input-label
+        >
           <Typography variant="Body2-Medium" className={styles.typography}>
             {label}
             {required && <span className={styles.required}>*</span>}

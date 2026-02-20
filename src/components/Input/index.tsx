@@ -142,9 +142,7 @@ const Input: FC<TInputProps> = ({
       {label && (
         <label
           className={clsx(styles.label, colorClassName, {
-            [styles['label--with-icon']]: hasIcon,
-            [styles['label--with-reset']]: hasReset,
-            [styles['label--with-icons']]: hasBothIcons
+            [styles['label--with-icon']]: hasIcon
           })}
           htmlFor={id}
           data-ui-input-label

@@ -160,7 +160,7 @@ export default defineConfig({
   ...(isLibBuild && {
     build: {
       lib: {
-        entry: resolve(__dirname, 'src/components/index.tsx'),
+        entry: resolve(__dirname, 'src/components/index.ts'),
         formats: ['es'],
         fileName: () => '[name].js'
       },

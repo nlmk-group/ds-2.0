@@ -1,5 +1,6 @@
 import React, {
   FC,
+  memo,
   useCallback,
   useContext,
   useEffect,
@@ -13,10 +14,9 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import * as ReactRouterDom from 'react-router-dom';
 
 import * as UI from '@components/index';
-import { Box, Button, IconContentCopyOutlined24, Tooltip, Typography } from '@components/index';
+import { Box, Button, Typography } from '@components/index';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
-import { copyToClipboard as copyUtils } from '@components/utils/copyToClipboard';
 import clsx from 'clsx';
 import parserTypescript from 'prettier/parser-typescript';
 import prettier from 'prettier/standalone';
@@ -24,7 +24,10 @@ import { themes } from 'prism-react-renderer';
 
 import styles from '../Stories.module.scss';
 
+import CopyCodeButton from './CopyCodeButton';
 import { openCodeSandbox } from './sandboxUtils';
+
+const MemoizedLivePreview = memo(LivePreview);
 
 const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
   // Переменные доступные в live-редакторе при выполнении кода примеров.
@@ -34,23 +37,25 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   // перекрывали одноимённые компоненты из react-router-dom.
   // exports: {} — полифил для sucrase: он генерирует Object.defineProperty(exports, "__esModule", ...)
   // но в контексте new Function переменная exports не определена без явной передачи.
-  const scope = {
-    ...ReactRouterDom,
-    ...UI,
-    React,
-    useState,
-    useEffect,
-    useRef,
-    useCallback,
-    useMemo,
-    useReducer,
-    useContext,
-    useLayoutEffect,
-    exports: {}
-  };
+  const scope = useMemo(
+    () => ({
+      ...ReactRouterDom,
+      ...UI,
+      React,
+      useState,
+      useEffect,
+      useRef,
+      useCallback,
+      useMemo,
+      useReducer,
+      useContext,
+      useLayoutEffect,
+      exports: {}
+    }),
+    []
+  );
 
   const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
-  const [isCopied, setIsCopied] = useState(false);
   const [editorCode, setEditorCode] = useState(code);
 
   const codeRef = useRef<HTMLDivElement | null>(null);
@@ -129,16 +134,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
     return `${cleanCode};\nrender(<App />);`;
   };
 
-  const copyToClipboard = () => {
-    const lines = editorCode.split('\n');
-    const codeWithNumbers = lines.map((line, i) => `${i + 1} ${line}`).join('\n');
-
-    copyUtils(codeWithNumbers, () => {
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    });
-  };
-
   const openSandbox = () => {
     openCodeSandbox(editorCode, theme as Themes);
   };
@@ -165,15 +160,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
       >
         <div className={styles['editor-container']}>
           <div className={styles.toolbar}>
-            <Tooltip render={<Typography variant="Body2-Bold">{isCopied ? 'Скопировано' : 'Копировать'}</Typography>}>
-              <Button
-                type="button"
-                color="ghost"
-                variant="primary"
-                iconButton={<IconContentCopyOutlined24 />}
-                onClick={copyToClipboard}
-              />
-            </Tooltip>
+            <CopyCodeButton code={editorCode} />
 
             <Button size="s" variant="secondary" onClick={openSandbox}>
               Open in CodeSandbox
@@ -229,7 +216,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
 
               <LiveError className={styles['live-error']} />
 
-              <LivePreview
+              <MemoizedLivePreview
                 Component={Box}
                 display="flex"
                 alignItems="center"
@@ -245,4 +232,4 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   );
 };
 
-export default Editor;
+export default memo(Editor);

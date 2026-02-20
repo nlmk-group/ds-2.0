@@ -32,38 +32,40 @@ const items = [
 ];
 
 const App = () => {
-  return <ImagePreview items={items} previewImgWidth={160} />;
+  return <ImagePreview items={items} previewImgSize={160} />;
 };
 ```
 ## Props
 
-| Prop            | Type                  | Default | Description                                                                   |
-|-----------------|-----------------------|---------|-------------------------------------------------------------------------------|
-| items           | `IImageItem[]`        | -       | Массив изображений для отображения. Пустые/`null` элементы отфильтровываются. |
-| className       | string                | -       | Дополнительный CSS-класс для корневого контейнера.                            |
-| previewImgWidth | number                | -       | Фиксированная ширина миниатюры в пикселях. Также влияет на построение grid.   |
+| Prop             | Type                   | Default | Description                                                                   |
+|------------------|------------------------|---------|-------------------------------------------------------------------------------|
+| items            | `IImageItem[]`         | -       | Массив изображений для отображения. Пустые/`null` элементы отфильтровываются. |
+| className        | string                 | -       | Дополнительный CSS-класс для корневого контейнера.                            |
+| previewImgSize   | number                 | -       | Фиксированная ширина и высота миниатюры в пикселях                            |
 
 ## IImageItem
 
-| Key             | Type   | Required | Description                                                           |
-|-----------------|--------|----------|-----------------------------------------------------------------------|
-| id              | string | -        | Идентификатор элемента. Если не задан, используется индекс.           |
-| previewSrc      | string | +        | URL миниатюры (используется в сетке).                                 |
-| fullSrc         | string | +        | URL оригинала (используется в модальном окне).                        |
-| title           | string | -        | Заголовок для модального окна и/или fallback для alt.                 |
-| description     | string | -        | Описание для модального окна                                          |
-| downloadName    | string | -        | Имя файла при скачивании                                              |
-| alt             | string | -        | Alt-текст для <img>. Если не задан, используется title, иначе Фото N. |
+| Key             | Type     | Required | Description                                                                                                               |
+|-----------------|----------|----------|---------------------------------------------------------------------------------------------------------------------------|
+| id              | string   | -        | Идентификатор элемента. Если не задан, используется индекс.                                                               |
+| previewSrc      | string   | +        | URL миниатюры (используется в сетке).                                                                                     |
+| fullSrc         | string   | +        | URL оригинала (используется в модальном окне).                                                                            |
+| title           | string   | -        | Заголовок для модального окна и/или fallback для alt.                                                                     |
+| description     | string   | -        | Описание для модального окна                                                                                              |
+| previewTitle    | string   | -        | Подпись для миниатюры                                                                                                     |
+| downloadName    | string   | -        | Имя файла при скачивании                                                                                                  |
+| downloadHandler | function | -        | Кастомный метод для скачивания изображения в оригинальном размере. Если он не передан, то загрузка идет по ссылке fullSrc |
+| alt             | string   | -        | Alt-текст для <img>. Если не задан, используется title, иначе Фото N.                                                     |
 
 ## Настройка ширины миниатюр
 
-Если задан previewImgWidth:
+Если задан previewImgSize:
 
-+ миниатюры получают фиксированную ширину `(style={{ width: previewImgWidth }})`,
++ миниатюры получают фиксированную ширину `(style={{ width: previewImgSize }})`,
 
-+ grid получает gridTemplateColumns: `repeat(auto-fit, ${previewImgWidth}px) и justifyContent: start`.
++ grid получает gridTemplateColumns: `repeat(auto-fit, ${previewImgSize}px) и justifyContent: start`.
 
-Если previewImgWidth не задан:
+Если previewImgSize не задан:
 
 + используется дефолтная сетка из CSS.
 

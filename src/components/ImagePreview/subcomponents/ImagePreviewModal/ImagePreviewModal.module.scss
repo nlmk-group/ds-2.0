@@ -5,9 +5,6 @@ $modal-padding: 16px;
 $nav-btn-width: 44px;
 $nav-btn-gap: 110px;
 
-$top-actions-height: 44px;
-$meta-height: 64px;
-
 $nav-prev-offset: 24px;
 
 .backdrop {
@@ -87,7 +84,7 @@ $nav-prev-offset: 24px;
 }
 
 .image {
-  max-width: calc(100vw - ($modal-padding * 2) - $carousel-width - ($nav-btn-width * 2) - $nav-btn-gap);
+  max-width: calc(100vw - (#{$modal-padding} * 2) - #{$carousel-width} - (#{$nav-btn-width} * 2) - #{$nav-btn-gap});
   max-height: 100%;
   width: auto;
   height: auto;
@@ -120,25 +117,6 @@ $nav-prev-offset: 24px;
   transform: scale(var(--ip-zoom-scale, 1));
   transform-origin: var(--ip-zoom-origin, center);
   cursor: zoom-out;
-}
-
-.meta {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-  padding: 8px;
-  min-height: $meta-height;
-
-  max-height: clamp(#{$meta-height}, 22vh, 240px);
-  overflow-y: auto;
-}
-
-.metaLine {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  text-align: center;
 }
 
 .topActions {
@@ -179,72 +157,6 @@ $nav-prev-offset: 24px;
   .viewer {
     grid-column: 1 / -1;
     grid-template-rows: auto minmax(0, 1fr) auto;
-  }
-
-  .metaTop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 96px;
-    min-height: auto;
-
-    max-height: clamp(56px, 20vh, 220px);
-    overflow: hidden;
-  }
-
-  .metaTopExpanded {
-    max-height: clamp(120px, 45vh, 520px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .meta {
-    display: none;
-  }
-
-  .metaLine {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    white-space: normal;
-    text-align: center;
-  }
-
-  .metaClamp2,
-  .metaClamp3 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .metaClamp2 {
-    -webkit-line-clamp: 2;
-  }
-
-  .metaClamp3 {
-    -webkit-line-clamp: 3;
-  }
-
-  .metaUnclamped {
-    display: block;
-    overflow: visible;
-  }
-
-  .metaToggle {
-    border: 0;
-    background: transparent;
-    padding: 0;
-    margin-top: 2px;
-    cursor: pointer;
-    text-decoration: underline;
-    color: var(--steel-10);
-  }
-
-  .metaTop[data-measuring='1'] .metaClamp2,
-  .metaTop[data-measuring='1'] .metaClamp3 {
-    display: block;
-    overflow: visible;
-    -webkit-line-clamp: unset;
   }
 
   .stage {

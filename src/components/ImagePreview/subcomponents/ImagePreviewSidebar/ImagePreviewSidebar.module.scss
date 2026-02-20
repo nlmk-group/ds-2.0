@@ -56,6 +56,10 @@ $thumb-max: 112px;
   outline: none;
   box-sizing: border-box;
   border: 1px solid transparent;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--unique-white) 30%, transparent);
+  }
 }
 
 .carouselThumb {
@@ -69,5 +73,9 @@ $thumb-max: 112px;
 }
 
 .active {
-  border-color: var(--steel-10);
+  border-color: var(--unique-white);
+
+  &:hover {
+    border-color: var(--unique-white);
+  }
 }

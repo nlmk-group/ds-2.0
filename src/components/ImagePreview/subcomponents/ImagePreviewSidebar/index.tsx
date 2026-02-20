@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 import { Button, IconChevronArrowDownOutlined24, IconChevronArrowUpOutlined24 } from '@components/index';
@@ -13,7 +13,13 @@ interface IImagePreviewSidebarProps {
   setActiveIndex: (idx: number) => void;
 }
 
-const EPS = 2;
+const SCROLL_TOLERANCE = 2;
+
+const ITEM_MIN = 120; // .carouselItem min-height: $carousel-width (120px)
+const ITEM_PAD = 6; // .carouselItem padding: 3px => 3*2
+const ITEM_GAP = 8; // .carousel gap: 8px
+
+const SCROLL_STEP = ITEM_MIN + ITEM_PAD + ITEM_GAP;
 
 const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex, setActiveIndex }) => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -23,18 +29,11 @@ const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex
   const [canScrollUp, setCanScrollUp] = useState(false);
   const [canScrollDown, setCanScrollDown] = useState(false);
 
-  const scrollStep = useMemo(() => {
-    const itemMin = 112;
-    const pad = 6;
-    const gap = 10;
-    return itemMin + pad + gap;
-  }, []);
-
   const updateScrollState = () => {
     const el = carouselRef.current;
     if (!el) return;
 
-    const overflow = el.scrollHeight > el.clientHeight + EPS;
+    const overflow = el.scrollHeight > el.clientHeight + SCROLL_TOLERANCE;
     setIsOverflow(overflow);
 
     if (!overflow) {
@@ -46,8 +45,8 @@ const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex
     const top = el.scrollTop;
     const maxTop = el.scrollHeight - el.clientHeight;
 
-    setCanScrollUp(top > EPS); // первая картинка уже ушла вверх
-    setCanScrollDown(top < maxTop - EPS); // последняя еще не видна
+    setCanScrollUp(top > SCROLL_TOLERANCE);
+    setCanScrollDown(top < maxTop - SCROLL_TOLERANCE);
   };
 
   const scrollBy = (delta: number) => {
@@ -61,21 +60,21 @@ const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex
     const activeEl = activeBtnRef.current;
     if (!container || !activeEl) return;
 
-    const pad = 8;
+    const activeBtnPad = 8;
 
     const cRect = container.getBoundingClientRect();
     const aRect = activeEl.getBoundingClientRect();
 
-    const topOverflow = aRect.top < cRect.top + pad;
-    const bottomOverflow = aRect.bottom > cRect.bottom - pad;
+    const topOverflow = aRect.top < cRect.top + activeBtnPad;
+    const bottomOverflow = aRect.bottom > cRect.bottom - activeBtnPad;
 
     if (topOverflow) {
-      container.scrollBy({ top: aRect.top - cRect.top - pad, behavior: 'smooth' });
+      container.scrollBy({ top: aRect.top - cRect.top - activeBtnPad, behavior: 'smooth' });
       return;
     }
 
     if (bottomOverflow) {
-      container.scrollBy({ top: aRect.bottom - cRect.bottom + pad, behavior: 'smooth' });
+      container.scrollBy({ top: aRect.bottom - cRect.bottom + activeBtnPad, behavior: 'smooth' });
     }
   };
 
@@ -117,7 +116,7 @@ const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex
         <Button
           iconButton={<IconChevronArrowUpOutlined24 htmlColor="var(--steel-10)" />}
           className={clsx(styles.scrollBtn, styles.scrollUp)}
-          onClick={() => scrollBy(-scrollStep)}
+          onClick={() => scrollBy(-SCROLL_STEP)}
           aria-label="Прокрутить вверх"
           variant="secondary"
           color="ghost"
@@ -147,7 +146,7 @@ const ImagePreviewSidebar: FC<IImagePreviewSidebarProps> = ({ items, activeIndex
         <Button
           iconButton={<IconChevronArrowDownOutlined24 htmlColor="var(--steel-10)" />}
           className={clsx(styles.scrollBtn, styles.scrollDown)}
-          onClick={() => scrollBy(scrollStep)}
+          onClick={() => scrollBy(SCROLL_STEP)}
           aria-label="Прокрутить вниз"
           variant="secondary"
           color="ghost"

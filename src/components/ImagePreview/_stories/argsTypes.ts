@@ -12,7 +12,9 @@ export const argsTypes = {
                       fullSrc: string;
                       title?: string;
                       description?: string;
+                      previewTitle?: string;
                       downloadName?: string;
+                      downloadHandler?: (value: IImageItem) => void;
                       alt?: string;
                     };`
       }
@@ -27,8 +29,8 @@ export const argsTypes = {
     },
     control: { type: 'string' }
   },
-  previewImgWidth: {
-    description: 'Фиксированная ширина миниатюры в пикселях. Также влияет на построение grid-сетки.',
+  previewImgSize: {
+    description: 'Фиксированная ширина и высота миниатюры в пикселях',
     table: {
       defaultValue: { summary: '140' },
       type: { summary: 'number' }

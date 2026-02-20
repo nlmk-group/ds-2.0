@@ -14,8 +14,18 @@ import {
 
 import { IImagePreviewModalProps } from './types';
 import styles from './ImagePreviewModal.module.scss';
-import { ImagePreviewSidebar, ImagePreviewCarouselMobile } from '@components/ImagePreview/subcomponents';
-import { useIsMobile, useZoom, useImageLoad, useGalleryNavigation, useSwipeNavigation, useModalLifecycle, useMetaCollapse, useStageResetOnImageChange, useDownloadImage } from './hooks';
+import { ImagePreviewSidebar, ImagePreviewCarouselMobile, ImagePreviewMeta } from '@components/ImagePreview/subcomponents';
+import {
+  useIsMobile,
+  useZoom,
+  useImageLoad,
+  useGalleryNavigation,
+  useSwipeNavigation,
+  useModalLifecycle,
+  useMetaCollapse,
+  useStageResetOnImageChange,
+  useDownloadImage
+} from './hooks';
 
 const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, setActiveIndex, onClose }) => {
   const activeItem = items[activeIndex];
@@ -103,14 +113,20 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
         >
           <div className={styles.topActions} data-ui-image-preview-top-actions>
             <Button
-              iconButton={<IconDownloadOutlined24 htmlColor="var(--steel-10)" />}
-              onClick={download}
+              iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
+              onClick={() => {
+                if (activeItem.downloadHandler) {
+                  activeItem.downloadHandler(activeItem)
+                } else {
+                  download()
+                }
+              }}
               aria-label="Скачать"
               variant="secondary"
               color="ghost"
             />
             <Button
-              iconButton={<IconCloseOutlined24 htmlColor="var(--steel-10)" />}
+              iconButton={<IconCloseOutlined24 htmlColor="var(--unique-white)" />}
               onClick={onClose}
               aria-label="Закрыть"
               variant="secondary"
@@ -118,13 +134,13 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
             />
           </div>
 
-          {!isMobile && hasMany && (
+          {!isMobile && (
             <ImagePreviewSidebar items={items} activeIndex={activeIndex} setActiveIndex={goTo} />
           )}
 
           {!isMobile && canPrev && (
             <Button
-              iconButton={<IconChevronArrowLeftOutlined32 htmlColor="var(--steel-10)" />}
+              iconButton={<IconChevronArrowLeftOutlined32 htmlColor="var(--unique-white)" />}
               className={clsx(styles.navBtn, styles.navPrev)}
               onClick={prev}
               aria-label="Предыдущее"
@@ -135,7 +151,7 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
 
           {!isMobile && canNext && (
             <Button
-              iconButton={<IconChevronArrowRightOutlined32 htmlColor="var(--steel-10)" />}
+              iconButton={<IconChevronArrowRightOutlined32 htmlColor="var(--unique-white)" />}
               className={clsx(styles.navBtn, styles.navNext)}
               onClick={next}
               aria-label="Следующее"
@@ -144,40 +160,17 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
             />
           )}
 
-          <main className={clsx(styles.viewer, { [styles.viewerMobile]: isMobile })} data-ui-image-preview-viewer>
+          <div className={clsx(styles.viewer, { [styles.viewerMobile]: isMobile })} data-ui-image-preview-viewer>
             {isMobile && (
-              <div
-                ref={metaTopRef}
-                className={clsx(styles.metaTop, { [styles.metaTopExpanded]: isMetaExpanded })}
-                data-ui-image-preview-meta-top
-              >
-                <Typography
-                  className={clsx(styles.metaLine, isMetaExpanded ? styles.metaUnclamped : styles.metaClamp2)}
-                  variant="Body2"
-                  color="var(--steel-10)"
-                >
-                  {activeItem.title ?? ''}
-                </Typography>
-
-                <Typography
-                  className={clsx(styles.metaLine, isMetaExpanded ? styles.metaUnclamped : styles.metaClamp3)}
-                  variant="Body2"
-                  color="var(--steel-10)"
-                >
-                  {activeItem.description ?? ''}
-                </Typography>
-
-                {showMetaToggle && (
-                  <button
-                    type="button"
-                    className={styles.metaToggle}
-                    onClick={() => setIsMetaExpanded(v => !v)}
-                    aria-expanded={isMetaExpanded}
-                  >
-                    {isMetaExpanded ? 'Свернуть' : 'Показать полностью'}
-                  </button>
-                )}
-              </div>
+              <ImagePreviewMeta
+                isMobile
+                title={activeItem.title}
+                description={activeItem.description}
+                metaTopRef={metaTopRef}
+                isMetaExpanded={isMetaExpanded}
+                showMetaToggle={showMetaToggle}
+                onToggleMeta={() => setIsMetaExpanded(v => !v)}
+              />
             )}
 
             <div className={styles.stage} data-ui-image-preview-stage onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
@@ -222,20 +215,17 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
             </div>
 
             {!isMobile && (
-              <div className={styles.meta} data-ui-image-preview-meta>
-                <Typography className={styles.metaLine} variant="Body2" color="var(--steel-10)">
-                  {activeItem.title ?? ''}
-                </Typography>
-                <Typography className={styles.metaLine} variant="Body2" color="var(--steel-10)">
-                  {activeItem.description ?? ''}
-                </Typography>
-              </div>
+              <ImagePreviewMeta
+                isMobile={false}
+                title={activeItem.title}
+                description={activeItem.description}
+              />
             )}
 
-            {isMobile && hasMany && (
+            {isMobile && (
               <ImagePreviewCarouselMobile items={items} activeIndex={activeIndex} setActiveIndex={goTo} />
             )}
-          </main>
+          </div>
         </div>
       </div>
     </>

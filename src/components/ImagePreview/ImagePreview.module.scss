@@ -3,15 +3,17 @@
 }
 
 .list {
-  --ip-thumb-w: 140px;
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.item {
+  min-width: 0;
 }
 
 .thumbButton {
-  width: var(--ip-thumb-w);
   position: relative;
   padding: 0;
   border: 0;
@@ -25,6 +27,7 @@
 
 .thumb {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -50,4 +53,23 @@
   background-color: var(--unique-black);
   opacity: 0.6;
   z-index: 1;
+}
+
+.previewTooltip, .previewTooltip > div {
+  display: block !important;
+  width: 100% !important;
+}
+
+.previewTitle {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.previewPopup {
+  max-width: 250px;
 }

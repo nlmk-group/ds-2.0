@@ -9,9 +9,10 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 
-// const FIGMA_LINK =
-//   'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK =
+  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=16052-4554&m=dev';
 
 const ImagePreviewStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,7 +20,7 @@ const ImagePreviewStories = (): JSX.Element => {
   const imagePreviewDefaultCode = `import { ImagePreview } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const IMAGE_MOCK_SRC = 'https://images.unsplash.com/photo-1683343946402-85b144e8ecb6?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  const IMAGE_MOCK_SRC = 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg';
 
   const items = [
     {
@@ -28,6 +29,7 @@ const App = () => {
       fullSrc: IMAGE_MOCK_SRC,
       title: 'Этап 1',
       description: 'Название фото 1',
+      previewTitle: 'Фото',
       downloadName: 'photo-1.jpg',
       alt: 'Mock photo 1'
     }
@@ -45,25 +47,28 @@ const App = () => {
   const items = [
     {
       id: 1,
-      previewSrc: IMAGE_MOCK_SRC,
-      fullSrc: IMAGE_MOCK_SRC,
+      previewSrc: 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg',
+      fullSrc: 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg',
       title: 'Этап 1',
+      previewTitle: 'Фото 1',
       description: 'Название фото 1',
       downloadName: 'photo-1.jpg'
     },
     {
       id: 2,
-      previewSrc: IMAGE_MOCK_SRC,
-      fullSrc: IMAGE_MOCK_SRC,
+      previewSrc: 'https://career.nlmk.com/upload/uf/e92/8bhtj6z4l2dz6fymz8xxizmr9hp5hjhr/img_usa1.png',
+      fullSrc: 'https://career.nlmk.com/upload/uf/e92/8bhtj6z4l2dz6fymz8xxizmr9hp5hjhr/img_usa1.png',
       title: 'Этап 2',
+      previewTitle: 'Фото 2',
       description: 'Название фото 2',
       downloadName: 'photo-2.jpg'
     },
     {
       id: 3,
-      previewSrc: IMAGE_MOCK_SRC,
-      fullSrc: IMAGE_MOCK_SRC,
+      previewSrc: 'https://career.nlmk.com/upload/uf/c87/8ymv1h5pllf25x4y6ofpcmksgvgaobn0/img_usa2.png',
+      fullSrc: 'https://career.nlmk.com/upload/uf/c87/8ymv1h5pllf25x4y6ofpcmksgvgaobn0/img_usa2.png',
       title: 'Этап 3',
+      previewTitle: 'Фото 3',
       description: 'Название фото 3',
       downloadName: 'photo-3.jpg'
     }
@@ -88,9 +93,9 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="ImagePreview"
-        description="ImagePreview отображает превью изображений и открывает модальное окно с просмотром большого изображения, каруселью миниатюр, навигацией стрелками и скачиванием."
+        description="ImagePreview отображает список изображений-миниатюр и открывает модальное окно с просмотром большого изображения, каруселью миниатюр, навигацией и скачиванием."
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ImagePreview"
-        // figmaLink={FIGMA_LINK}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -123,7 +128,7 @@ export default App;
         </>
       )}
 
-      {/*{Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}*/}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
 
       {Number(activeTab) === 2 && <Tests componentName="ImagePreview" />}
     </div>

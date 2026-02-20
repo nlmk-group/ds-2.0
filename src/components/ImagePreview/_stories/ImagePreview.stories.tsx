@@ -29,7 +29,8 @@ const MOCK_ITEMS: IMockItem[] = [
     downloadName: 'photo.jpg',
     alt: 'Mock photo',
     titlePrefix: 'Этап',
-    descriptionPrefix: 'Название фото'
+    descriptionPrefix: 'Название фото',
+    previewTitle: 'Фотография'
   },
   {
     previewSrc: image_2,
@@ -45,7 +46,8 @@ const MOCK_ITEMS: IMockItem[] = [
     downloadName: 'photo.jpg',
     alt: 'Mock photo',
     titlePrefix: 'Этап',
-    descriptionPrefix: 'Название фото'
+    descriptionPrefix: 'Название фото',
+    previewTitle: 'Дизайн-система НЛМК – одна из первых в мире, созданная с ориентацией на сложные MES-cистемы'
   }
 ];
 
@@ -69,7 +71,7 @@ ImagePreviewDefault.args = {
   items: makeItems(MOCK_ITEMS,
     15
   ),
-  previewImgWidth: 180
+  previewImgSize: 180
 };
 
 export const ImagePreviewSingle = (argTypes: IImagePreviewProps): JSX.Element => {
@@ -85,7 +87,7 @@ ImagePreviewSingle.args = {
   items: makeItems(MOCK_ITEMS,
     1
   ),
-  previewImgWidth: 180
+  previewImgSize: 180
 };
 
 export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element => {
@@ -105,5 +107,5 @@ ImagePreviewLongTitle.args = {
     },
     1
   ),
-  previewImgWidth: 180
+  previewImgSize: 180
 };

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 
-import { ESplitterOrientation } from './enums';
+import { ESplitterOrientation } from 'components/Splitter/enums';
 
-const useSplitter = (
+export const useSplitter = (
   containerRef: RefObject<HTMLDivElement | null>,
   setTopHeight: (height: number) => void,
   orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal
@@ -47,5 +47,3 @@ const useSplitter = (
 
   return { splitterRef };
 };
-
-export default useSplitter;

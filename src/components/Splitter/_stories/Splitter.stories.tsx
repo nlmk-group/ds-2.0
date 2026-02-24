@@ -1,13 +1,13 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, {ReactNode, useEffect, useMemo, useRef, useState} from 'react';
 
 import IconLogotype from '@components/Icon/IconsInternal/Logotype';
 import {
   Box,
-  Button,
+  Button, ESplitterOrientation,
   IconAddPlusOutlined24,
   IconDoneCheckOutlined24,
   IconEyeOutlined24,
-  ImagePicture,
+  ImagePicture, Input,
   OptionItem,
   SimpleSelect,
   Typography
@@ -17,6 +17,7 @@ import style from './Splitter.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import Splitter from '..';
+import { BottomComponent, TopComponent } from "@components/Splitter/mock";
 
 const IMAGE_MOCK_SRC_MNEMO = 'img/mnemo_image_picture_mock.jpg';
 
@@ -185,3 +186,83 @@ export const SplitterVertical = (): ReactNode => {
   return <Splitter topComponent={leftComponent} bottomComponent={rightComponent} orientation="vertical" />;
 };
 SplitterVertical.storyName = 'Splitter вертикальный';
+
+export const SplitterWithSizes = (): ReactNode => (
+  <Splitter
+    topComponent={<TopComponent />}
+    bottomComponent={<BottomComponent />}
+    topComponentSize={160}
+    bottomComponentSize={320}
+  />
+);
+SplitterWithSizes.storyName = 'Горизонтальный Splitter с начальными размерами';
+
+export const VerticalSplitterWithSizes = (): ReactNode => (
+  <Splitter
+    topComponent={<TopComponent />}
+    bottomComponent={<BottomComponent />}
+    topComponentSize={700}
+    bottomComponentSize={240}
+    orientation={ESplitterOrientation.vertical}
+  />
+);
+VerticalSplitterWithSizes.storyName = 'Вертикальный Splitter с начальными размерами';
+
+export const SplitterWithHiddenBottom = (): ReactNode => {
+  const [showBottom, setShowBottom] = useState(false);
+  const [selected, setSelected] = useState('');
+  const options = [
+    { value: '1', label: 'Окатыши железорудные'},
+    { value: '2', label: 'Агломерат'},
+    { value: '3', label: 'Кварцит'},
+    { value: '4', label: 'Руда марганцевая'}
+  ];
+  const selectedRawMaterial = useMemo(() => options.find(item => item.value === selected)?.label, [selected]);
+
+  const TopComp = ({ setShowBottom, selected, setSelected }: {
+    setShowBottom: (value: boolean) => void;
+    selected: string;
+    setSelected: (value: string) => void;
+  }) => {
+
+    return (
+      <Box flexDirection="column">
+        <Typography variant="Body-Bold">Выберете сырье, чтобы открыть нижнюю панель</Typography>
+        <SimpleSelect
+          style={{ width: 300 }}
+          label="Выбрать сырье"
+          withPortal
+          value={selected}
+          onChange={value => {
+            setSelected(value as string);
+            setShowBottom(true);
+          }}
+        >
+          {options.map(item => (
+            <OptionItem key={item.value} value={item.value} label={item.label}>
+              {item.label}
+            </OptionItem>
+          ))}
+        </SimpleSelect>
+      </Box>
+    )
+  }
+
+  return (
+    <Box flexDirection="column" alignItems="flex-start" width="100%">
+      <Splitter
+        topComponent={<TopComp setShowBottom={setShowBottom} selected={selected} setSelected={setSelected} />}
+        bottomComponent={<BottomComponent rawMaterial={selectedRawMaterial} setShowBottom={setShowBottom} />}
+        topComponentSize={95}
+        bottomComponentSize={150}
+        isShowBottomComponent={showBottom}
+      />
+      <Box background="var(--steel-10)" flexDirection="column" width="calc(100% - 32px)" borderRadius={4} p={16}>
+        <Typography variant="Body-Bold">Этапы доставки</Typography>
+        <Input label="Исходящий номер уведомления" value="341809494"/>
+        <Input label="Поставщик металла / Сбытовая организация" value="ПАО НЛМК / ПАО НЛМК"/>
+      </Box>
+    </Box>
+  )
+};
+SplitterWithHiddenBottom.storyName = 'Splitter с возможностью скрытия панели';

@@ -228,7 +228,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
 
                 {(!fullSrc || imgError) && !isLoading && (
                   <div className={styles['empty-icon']}>
-                    <Typography>Не удалось загрузить изображение</Typography>
+                    <Typography color="var(--unique-white)">Не удалось загрузить изображение</Typography>
                   </div>
                 )}
               </div>

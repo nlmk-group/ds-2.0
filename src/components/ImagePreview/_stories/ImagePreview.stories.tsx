@@ -74,22 +74,6 @@ ImagePreviewDefault.args = {
   previewImgSize: 180
 };
 
-export const ImagePreviewSingle = (argTypes: IImagePreviewProps): JSX.Element => {
-  return (
-    <div className={styles.wrapper}>
-      <ImagePreview {...argTypes} />
-    </div>
-  );
-};
-
-ImagePreviewSingle.storyName = 'Вариант компонента c одним изображением';
-ImagePreviewSingle.args = {
-  items: makeItems(MOCK_ITEMS,
-    1
-  ),
-  previewImgSize: 180
-};
-
 export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
@@ -104,6 +88,26 @@ ImagePreviewLongTitle.args = {
       ...MOCK_ITEMS[0],
       titlePrefix: 'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
       descriptionPrefix: 'За четким соблюдением необходимых параметров следят томографические и рентгеновские системы: каждая марка стали охлаждается с определенной скоростью и до нужного и заранее установленного для нее предела температуры, обретая свои главные потребительские свойства: прочность, штампуемость, пластичность и потенциал получения специальных магнитных свойств.'
+    }],
+    1
+  ),
+  previewImgSize: 180
+};
+
+export const ImagePreviewNoImg = (argTypes: IImagePreviewProps): JSX.Element => {
+  return (
+    <div className={styles.wrapper}>
+      <ImagePreview {...argTypes} />
+    </div>
+  );
+};
+
+ImagePreviewNoImg.storyName = 'Вариант компонента без изображения';
+ImagePreviewNoImg.args = {
+  items: makeItems([{
+      ...MOCK_ITEMS[0],
+      previewSrc: '',
+      fullSrc: '',
     }],
     1
   ),

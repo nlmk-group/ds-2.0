@@ -59,9 +59,9 @@ const ImagePreview = ({ items, className, previewImgSize = 140 }: IImagePreviewP
                 )}
 
                 {!item.previewSrc && (
-                  <div className={styles['empty-icon']} data-testid="empty-icon">
+                  <Box data-testid="empty-icon" justifyContent="center" alignItems="center" height="100%">
                     <Icon name="IconFactory32" htmlColor="var(--steel-50)" />
-                  </div>
+                  </Box>
                 )}
 
                 {isHovered && (

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { IImageItem } from '../../types';
 import styles from './ImagePreviewCarouselMobile.module.scss';
-import { Box } from '@components/index';
+import { Box, Icon } from '@components/index';
 
 interface IImagePreviewCarouselMobileProps {
   items: IImageItem[];
@@ -52,7 +52,14 @@ const ImagePreviewCarouselMobile = ({ items, activeIndex, setActiveIndex }: IIma
             onClick={() => setActiveIndex(idx)}
             aria-label={altText}
           >
-            <img src={it.previewSrc} className={styles['thumb']} alt={altText} />
+            {it.previewSrc && (
+              <img src={it.previewSrc} className={styles['thumb']} alt={altText} />
+            )}
+            {!it.previewSrc && (
+              <Box justifyContent="center" alignItems="center" height="100%">
+                <Icon name="IconFactory32" htmlColor="var(--steel-50)" />
+              </Box>
+            )}
           </Box>
         );
       })}

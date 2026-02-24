@@ -2,7 +2,9 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 import {
+  Box,
   Button,
+  Icon,
   IconChevronArrowDownOutlined24,
   IconChevronArrowUpOutlined24
 } from '@components/index';
@@ -153,11 +155,18 @@ const ImagePreviewSidebar = ({ items, activeIndex, setActiveIndex }: IImagePrevi
             onClick={() => setActiveIndex(idx)}
             data-ui-image-preview-carousel-item
           >
-            <img
-              src={it.previewSrc}
-              className={styles['carousel-thumb']}
-              alt={it.alt ?? it.title ?? `Миниатюра ${idx + 1}`}
-            />
+            {it.previewSrc && (
+              <img
+                src={it.previewSrc}
+                className={styles['carousel-thumb']}
+                alt={it.alt ?? it.title ?? `Миниатюра ${idx + 1}`}
+              />
+            )}
+            {!it.previewSrc && (
+              <Box justifyContent="center" alignItems="center" height="100%">
+                <Icon name="IconFactory32" htmlColor="var(--steel-50)" />
+              </Box>
+            )}
           </div>
         ))}
       </div>

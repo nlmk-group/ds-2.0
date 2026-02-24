@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Icon from '@components/Icon';
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ import { ImagePreviewModal } from '@components/ImagePreview/subcomponents';
 import { clamp } from '@components/ImagePreview/utils';
 import { Box, Tooltip, Typography } from '@components/index';
 
-const ImagePreview: FC<IImagePreviewProps> = ({ items, className, previewImgSize = 140 }) => {
+const ImagePreview = ({ items, className, previewImgSize = 140 }: IImagePreviewProps) => {
   const safeItems = useMemo(() => (items ?? []).filter(Boolean), [items]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -29,51 +29,56 @@ const ImagePreview: FC<IImagePreviewProps> = ({ items, className, previewImgSize
   if (!safeItems.length) return null;
 
   return (
-    <div className={clsx(styles.wrapper, className)} data-ui-image-preview>
-      <div className={styles.list} data-ui-image-preview-grid>
+    <div className={clsx(styles['wrapper'], className)} data-ui-image-preview>
+      <Box
+        data-ui-image-preview-grid
+        flexWrap="wrap"
+        gap={40}
+        alignItems="flex-start"
+      >
         {safeItems.map((item, idx) => {
           const isHovered = hoveredIndex === idx;
 
           return (
-            <Box key={String(item.id ?? idx)} flexDirection="column" gap={8} className={styles.item}>
-              <button
+            <Box key={String(item.id ?? idx)} flexDirection="column" gap={8} className={styles['item']}>
+              <div
                 style={{ width: previewImgSize, height: previewImgSize }}
-                type="button"
-                className={styles.thumbButton}
+                className={styles['thumb-button']}
                 onClick={() => openModal(idx)}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 data-ui-image-preview-thumb
+                data-testid="ui-image-preview-thumb"
               >
                 {item.previewSrc && (
                   <img
                     src={item.previewSrc}
-                    className={styles.thumb}
+                    className={styles['thumb']}
                     alt={item.alt ?? item.title ?? `Фото ${idx + 1}`}
                   />
                 )}
 
                 {!item.previewSrc && (
-                  <div className={styles.emptyIcon}>
+                  <div className={styles['empty-icon']} data-testid="empty-icon">
                     <Icon name="IconFactory32" htmlColor="var(--steel-50)" />
                   </div>
                 )}
 
                 {isHovered && (
                   <>
-                    <div className={styles.hoverIcon}>
+                    <div className={styles['hover-icon']}>
                       <Icon name="IconZoomInOutlined24" containerSize={32} data-ui-image-preview-hover-zoom-icon />
                     </div>
-                    <div className={styles.hoverOverlay} data-ui-image-preview-hover-overlay />
+                    <div className={styles['hover-overlay']} data-ui-image-preview-hover-overlay />
                   </>
                 )}
-              </button>
+              </div>
 
               {item.previewTitle && (
                 <Box justifyContent="center" width={previewImgSize}>
-                  <Tooltip title={item.previewTitle}  className={styles.previewTooltip} popupClassName={styles.previewPopup}>
+                  <Tooltip title={item.previewTitle}  className={styles['preview-tooltip']} popupClassName={styles['preview-popup']}>
                     <Typography
-                      className={styles.previewTitle}
+                      className={styles['preview-title']}
                       color="var(--steel-90)"
                       variant="Body2-Medium"
                     >
@@ -85,7 +90,7 @@ const ImagePreview: FC<IImagePreviewProps> = ({ items, className, previewImgSize
             </Box>
           );
         })}
-      </div>
+      </Box>
 
       {isModalOpen && safeItems[activeIndex] && (
         <ImagePreviewModal

@@ -8,7 +8,7 @@ import { IImagePreviewProps } from '../types';
 import { argsTypes } from './argsTypes';
 import { Box } from "@components/index";
 import { Meta } from '@storybook/react-vite';
-import {IMockItem, makeItems} from "@components/ImagePreview/mock/helpers";
+import { IMockItem, makeItems } from "@components/ImagePreview/mock/helpers";
 
 const image_1 = 'img/image_picture_mock.jpg';
 const image_2 = 'img/image_workers.jpg';
@@ -38,7 +38,7 @@ const MOCK_ITEMS: IMockItem[] = [
     downloadName: 'photo.jpg',
     alt: 'Mock photo',
     titlePrefix: 'Этап',
-    descriptionPrefix: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur'
+    descriptionPrefix: 'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.'
   },
   {
     previewSrc: image_3,
@@ -47,7 +47,7 @@ const MOCK_ITEMS: IMockItem[] = [
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix: 'Название фото',
-    previewTitle: 'Дизайн-система НЛМК – одна из первых в мире, созданная с ориентацией на сложные MES-cистемы'
+    previewTitle: 'Горячекатаный прокат широко востребован при строительстве нефтегазопроводов'
   }
 ];
 
@@ -100,11 +100,11 @@ export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element
 
 ImagePreviewLongTitle.storyName = 'Вариант компонента c длинным заголовком и описанием';
 ImagePreviewLongTitle.args = {
-  items: makeItems({
+  items: makeItems([{
       ...MOCK_ITEMS[0],
-      titlePrefix: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur',
-      descriptionPrefix: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur'
-    },
+      titlePrefix: 'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
+      descriptionPrefix: 'За четким соблюдением необходимых параметров следят томографические и рентгеновские системы: каждая марка стали охлаждается с определенной скоростью и до нужного и заранее установленного для нее предела температуры, обретая свои главные потребительские свойства: прочность, штампуемость, пластичность и потенциал получения специальных магнитных свойств.'
+    }],
     1
   ),
   previewImgSize: 180

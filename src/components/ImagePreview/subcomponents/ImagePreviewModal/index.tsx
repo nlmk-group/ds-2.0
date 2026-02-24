@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 
@@ -9,12 +9,17 @@ import {
   IconCloseOutlined24,
   IconDownloadOutlined24,
   Spinner,
+  Tooltip,
   Typography
 } from '@components/index';
 
 import { IImagePreviewModalProps } from './types';
 import styles from './ImagePreviewModal.module.scss';
-import { ImagePreviewSidebar, ImagePreviewCarouselMobile, ImagePreviewMeta } from '@components/ImagePreview/subcomponents';
+import {
+  ImagePreviewSidebar,
+  ImagePreviewCarouselMobile,
+  ImagePreviewMeta
+} from '@components/ImagePreview/subcomponents';
 import {
   useIsMobile,
   useZoom,
@@ -27,8 +32,18 @@ import {
   useDownloadImage
 } from './hooks';
 
-const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, setActiveIndex, onClose }) => {
+const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IImagePreviewModalProps) => {
   const activeItem = items[activeIndex];
+  const {
+    fullSrc,
+    previewSrc,
+    downloadName,
+    downloadHandler,
+    title,
+    description,
+    alt
+  } = activeItem;
+
   const isMobile = useIsMobile();
 
   const { hasMany, canPrev, canNext, prev, next, goTo } = useGalleryNavigation({
@@ -51,15 +66,15 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
   useModalLifecycle({ isMobile, onClose, onPrev: prev, onNext: next });
 
   const download = useDownloadImage({
-    href: activeItem.fullSrc,
-    downloadName: activeItem.downloadName
+    href: fullSrc,
+    downloadName
   });
 
   const { metaTopRef, isMetaExpanded, setIsMetaExpanded, showMetaToggle } = useMetaCollapse({
     isMobile,
     activeIndex,
-    title: activeItem.title,
-    description: activeItem.description
+    title,
+    description
   });
 
   const { onTouchStart, onTouchEnd } = useSwipeNavigation({
@@ -76,9 +91,6 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
     toggleZoom();
   };
 
-  const fullSrc = activeItem.fullSrc;
-  const previewSrc = activeItem.previewSrc as string | undefined;
-
   useStageResetOnImageChange({
     stageScrollRef,
     activeIndex,
@@ -87,10 +99,13 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
     isZoomed
   });
 
-  const { imgError, isLoading, shownSrc, showImg, renderToken, onImgLoad, onImgError } = useImageLoad({
+  const {
+    imgError, isLoading, shownSrc, showImg, renderToken,
+    onImgLoad, onImgError
+  } = useImageLoad({
     activeIndex,
     fullSrc,
-    previewSrc,
+    previewSrc: previewSrc as string | undefined,
     isMobile,
     isZoomed,
     updateZoomLayout
@@ -98,33 +113,35 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
 
   const modal = (
     <>
-      <div className={styles.backdrop} />
+      <div className={styles['backdrop']} />
       <div
-        className={clsx(styles.modal, { [styles.modalMobile]: isMobile })}
+        className={clsx(styles['modal'], { [styles['modal-mobile']]: isMobile })}
         style={zoomImageStyles}
         role="dialog"
         aria-modal="true"
         data-ui-image-preview-modal
       >
         <div
-          className={clsx(styles.modalContent, { [styles.modalContentMobile]: isMobile })}
+          className={clsx(styles['modal-content'], { [styles['modal-content-mobile']]: isMobile })}
           onClick={e => e.stopPropagation()}
           data-ui-image-preview-modal-content
         >
-          <div className={styles.topActions} data-ui-image-preview-top-actions>
-            <Button
-              iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
-              onClick={() => {
-                if (activeItem.downloadHandler) {
-                  activeItem.downloadHandler(activeItem)
-                } else {
-                  download()
-                }
-              }}
-              aria-label="Скачать"
-              variant="secondary"
-              color="ghost"
-            />
+          <div className={styles['top-actions']} data-ui-image-preview-top-actions>
+            <Tooltip title="Скачать изображение" placement="bottom">
+              <Button
+                iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
+                onClick={() => {
+                  if (downloadHandler) {
+                    downloadHandler(activeItem);
+                  } else {
+                    download();
+                  }
+                }}
+                aria-label="Скачать"
+                variant="secondary"
+                color="ghost"
+              />
+            </Tooltip>
             <Button
               iconButton={<IconCloseOutlined24 htmlColor="var(--unique-white)" />}
               onClick={onClose}
@@ -141,7 +158,7 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
           {!isMobile && canPrev && (
             <Button
               iconButton={<IconChevronArrowLeftOutlined32 htmlColor="var(--unique-white)" />}
-              className={clsx(styles.navBtn, styles.navPrev)}
+              className={clsx(styles['nav-btn'], styles['nav-prev'])}
               onClick={prev}
               aria-label="Предыдущее"
               variant="secondary"
@@ -152,7 +169,7 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
           {!isMobile && canNext && (
             <Button
               iconButton={<IconChevronArrowRightOutlined32 htmlColor="var(--unique-white)" />}
-              className={clsx(styles.navBtn, styles.navNext)}
+              className={clsx(styles['nav-btn'], styles['nav-next'])}
               onClick={next}
               aria-label="Следующее"
               variant="secondary"
@@ -160,12 +177,15 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
             />
           )}
 
-          <div className={clsx(styles.viewer, { [styles.viewerMobile]: isMobile })} data-ui-image-preview-viewer>
+          <div
+            className={clsx(styles['viewer'], { [styles['viewer-mobile']]: isMobile })}
+            data-ui-image-preview-viewer
+          >
             {isMobile && (
               <ImagePreviewMeta
                 isMobile
-                title={activeItem.title}
-                description={activeItem.description}
+                title={title}
+                description={description}
                 metaTopRef={metaTopRef}
                 isMetaExpanded={isMetaExpanded}
                 showMetaToggle={showMetaToggle}
@@ -173,13 +193,13 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
               />
             )}
 
-            <div className={styles.stage} data-ui-image-preview-stage onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <div className={styles['stage']} data-ui-image-preview-stage onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
               <div
                 ref={stageScrollRef}
-                className={clsx(styles.stageScroll, {
-                  [styles.stageScrollZoomed]: !isMobile && isZoomed,
-                  [styles.stageScrollZoomedOverflowX]: !isMobile && isZoomed && zoomOverflow.x,
-                  [styles.stageScrollZoomedOverflowY]: !isMobile && isZoomed && zoomOverflow.y
+                className={clsx(styles['stage-scroll'], {
+                  [styles['stage-scroll-zoomed']]: !isMobile && isZoomed,
+                  [styles['stage-scroll-zoomed-overflow-x']]: !isMobile && isZoomed && zoomOverflow.x,
+                  [styles['stage-scroll-zoomed-overflow-y']]: !isMobile && isZoomed && zoomOverflow.y
                 })}
                 onWheel={onZoomBtnWheel}
               >
@@ -188,11 +208,11 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
                     key={renderToken}
                     ref={imgRef}
                     src={shownSrc}
-                    className={clsx(styles.image, {
-                      [styles.imageZoomed]: !isMobile && isZoomed,
-                      [styles.imageZoomable]: !isMobile
+                    className={clsx(styles['image'], {
+                      [styles['image-zoomed']]: !isMobile && isZoomed,
+                      [styles['image-zoomable']]: !isMobile
                     })}
-                    alt={activeItem.alt ?? activeItem.title ?? `Фото ${activeIndex + 1}`}
+                    alt={alt ?? title ?? `Фото ${activeIndex + 1}`}
                     draggable={false}
                     onClick={onImageClick}
                     onLoad={onImgLoad}
@@ -201,13 +221,13 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
                 )}
 
                 {isLoading && !imgError && (
-                  <div className={styles.spinner}>
+                  <div className={styles['spinner']}>
                     <Spinner />
                   </div>
                 )}
 
                 {(!fullSrc || imgError) && !isLoading && (
-                  <div className={styles.emptyIcon}>
+                  <div className={styles['empty-icon']}>
                     <Typography>Не удалось загрузить изображение</Typography>
                   </div>
                 )}
@@ -215,11 +235,7 @@ const ImagePreviewModal: FC<IImagePreviewModalProps> = ({ items, activeIndex, se
             </div>
 
             {!isMobile && (
-              <ImagePreviewMeta
-                isMobile={false}
-                title={activeItem.title}
-                description={activeItem.description}
-              />
+              <ImagePreviewMeta isMobile={false} title={title} description={description} />
             )}
 
             {isMobile && (

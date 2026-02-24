@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 
-import { Typography } from '@components/index';
+import { Box, Button, Typography } from '@components/index';
 
 import styles from './ImagePreviewMeta.module.scss';
 
@@ -15,7 +15,7 @@ interface ImagePreviewMetaProps {
   onToggleMeta?: () => void;
 };
 
-const ImagePreviewMeta: FC<ImagePreviewMetaProps> = ({
+const ImagePreviewMeta = ({
   isMobile,
   title,
   description,
@@ -23,16 +23,23 @@ const ImagePreviewMeta: FC<ImagePreviewMetaProps> = ({
   isMetaExpanded = false,
   showMetaToggle = false,
   onToggleMeta
-}) => {
+}: ImagePreviewMetaProps) => {
   if (isMobile) {
     return (
-      <div
+      <Box
+        flexDirection="column"
+        alignItems="center"
+        gap={6}
+        p={8}
         ref={metaTopRef}
-        className={clsx(styles.metaTop, { [styles.metaTopExpanded]: isMetaExpanded })}
+        className={clsx(styles['meta-top'], { [styles['meta-top-expanded']]: isMetaExpanded })}
         data-ui-image-preview-meta-top
       >
         <Typography
-          className={clsx(styles.metaLine, isMetaExpanded ? styles.metaUnclamped : styles.metaClamp2)}
+          className={clsx(
+            styles['meta-line'],
+            isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-2']
+          )}
           variant="Body2"
           color="var(--unique-white)"
         >
@@ -40,7 +47,10 @@ const ImagePreviewMeta: FC<ImagePreviewMetaProps> = ({
         </Typography>
 
         <Typography
-          className={clsx(styles.metaLine, isMetaExpanded ? styles.metaUnclamped : styles.metaClamp3)}
+          className={clsx(
+            styles['meta-line'],
+            isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-3']
+          )}
           variant="Body2"
           color="var(--unique-white)"
         >
@@ -48,28 +58,36 @@ const ImagePreviewMeta: FC<ImagePreviewMetaProps> = ({
         </Typography>
 
         {showMetaToggle && (
-          <button
-            type="button"
-            className={styles.metaToggle}
+          <Button
+            variant="secondary"
+            size="xs"
+            className={styles['meta-toggle']}
             onClick={onToggleMeta}
             aria-expanded={isMetaExpanded}
           >
             {isMetaExpanded ? 'Свернуть' : 'Показать полностью'}
-          </button>
+          </Button>
         )}
-      </div>
+      </Box>
     );
   }
 
   return (
-    <div className={styles.meta} data-ui-image-preview-meta>
-      <Typography className={styles.metaLine} variant="Body2" color="var(--unique-white)">
+    <Box
+      className={styles['meta']}
+      data-ui-image-preview-meta
+      flexDirection="column"
+      alignItems="stretch"
+      gap={8}
+      p={8}
+    >
+      <Typography className={styles['meta-line']} variant="Body2" color="var(--unique-white)">
         {title ?? ''}
       </Typography>
-      <Typography className={styles.metaLine} variant="Body2" color="var(--unique-white)">
+      <Typography className={styles['meta-line']} variant="Body2" color="var(--unique-white)">
         {description ?? ''}
       </Typography>
-    </div>
+    </Box>
   );
 };
 

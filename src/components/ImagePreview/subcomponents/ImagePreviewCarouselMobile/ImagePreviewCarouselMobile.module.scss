@@ -1,13 +1,10 @@
-$thumbWrapper: 80px;
+$thumb-wrapper: 80px;
 $thumb: 74px;
 
 .carousel {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  display: flex;
-  gap: 4px;
-  padding: 16px;
 
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -23,16 +20,11 @@ $thumb: 74px;
 }
 
 .item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex: 0 0 auto;
-  width: $thumbWrapper;
-  height: $thumbWrapper;
-  padding: 0;
+  width: $thumb-wrapper;
+  height: $thumb-wrapper;
   border: 1px solid transparent;
   border-radius: 4px;
-  background: transparent;
   overflow: hidden;
   scroll-snap-align: center;
 }

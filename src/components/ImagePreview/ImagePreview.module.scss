@@ -2,26 +2,15 @@
   display: block;
 }
 
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: flex-start;
-}
-
 .item {
   min-width: 0;
 }
 
-.thumbButton {
+.thumb-button {
   position: relative;
-  padding: 0;
-  border: 0;
-  background: transparent;
   cursor: pointer;
   border-radius: 4px;
   overflow: hidden;
-  outline: none;
   flex: 0 0 auto;
 }
 
@@ -32,13 +21,13 @@
   display: block;
 }
 
-.emptyIcon {
+.empty-icon {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.hoverIcon {
+.hover-icon {
   position: absolute;
   inset: 0;
   display: grid;
@@ -47,7 +36,7 @@
   z-index: 2;
 }
 
-.hoverOverlay {
+.hover-overlay {
   position: absolute;
   inset: 0;
   background-color: var(--unique-black);
@@ -55,12 +44,13 @@
   z-index: 1;
 }
 
-.previewTooltip, .previewTooltip > div {
+.preview-tooltip,
+.preview-tooltip > div {
   display: block !important;
   width: 100% !important;
 }
 
-.previewTitle {
+.preview-title {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -70,6 +60,6 @@
   text-overflow: ellipsis;
 }
 
-.previewPopup {
+.preview-popup {
   max-width: 250px;
 }

@@ -1,3 +1,5 @@
+// ImagePreviewSidebar.module.scss
+
 $carousel-width: 120px;
 $thumb-max: 112px;
 
@@ -11,18 +13,18 @@ $thumb-max: 112px;
   grid-template-rows: auto 1fr auto;
 }
 
-.scrollBtn {
+.scroll-btn {
   width: $carousel-width;
   height: 40px;
   background: var(--steel-80);
 }
 
-.scrollUp {
+.scroll-up {
   align-self: start;
   margin-bottom: 12px;
 }
 
-.scrollDown {
+.scroll-down {
   align-self: end;
   margin-top: 12px;
 }
@@ -45,15 +47,13 @@ $thumb-max: 112px;
   height: 0;
 }
 
-.carouselItem {
+.carousel-item {
   width: $carousel-width;
   min-height: $carousel-width;
   padding: 3px;
-  background: transparent;
   cursor: pointer;
   border-radius: 4px;
   overflow: hidden;
-  outline: none;
   box-sizing: border-box;
   border: 1px solid transparent;
 
@@ -62,7 +62,7 @@ $thumb-max: 112px;
   }
 }
 
-.carouselThumb {
+.carousel-thumb {
   width: $thumb-max;
   height: auto;
   min-height: $thumb-max;

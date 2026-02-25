@@ -20,13 +20,11 @@ const ImagePreviewStories = (): JSX.Element => {
   const imagePreviewDefaultCode = `import { ImagePreview } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const IMAGE_MOCK_SRC = 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg';
-
   const items = [
     {
       id: 1,
-      previewSrc: IMAGE_MOCK_SRC,
-      fullSrc: IMAGE_MOCK_SRC,
+      previewSrc: '/img/image_career.jpg',
+      fullSrc: '/img/image_career.jpg',
       title: 'Этап 1',
       description: 'Название фото 1',
       previewTitle: 'Фото',
@@ -47,8 +45,8 @@ const App = () => {
   const items = [
     {
       id: 1,
-      previewSrc: 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg',
-      fullSrc: 'https://career.nlmk.com/upload/resize_cache/uf/488/q06izhrr1k6ke2biqndkcveolj0axrnr/950_700_1/img_ru2.jpg',
+      previewSrc: '/img/image_career.jpg',
+      fullSrc: '/img/image_career.jpg',
       title: 'Этап 1',
       previewTitle: 'Фото 1',
       description: 'Название фото 1',
@@ -56,8 +54,8 @@ const App = () => {
     },
     {
       id: 2,
-      previewSrc: 'https://career.nlmk.com/upload/uf/e92/8bhtj6z4l2dz6fymz8xxizmr9hp5hjhr/img_usa1.png',
-      fullSrc: 'https://career.nlmk.com/upload/uf/e92/8bhtj6z4l2dz6fymz8xxizmr9hp5hjhr/img_usa1.png',
+      previewSrc: '/img/image_warehouse.png',
+      fullSrc: '/img/image_warehouse.png',
       title: 'Этап 2',
       previewTitle: 'Фото 2',
       description: 'Название фото 2',
@@ -65,8 +63,8 @@ const App = () => {
     },
     {
       id: 3,
-      previewSrc: 'https://career.nlmk.com/upload/uf/c87/8ymv1h5pllf25x4y6ofpcmksgvgaobn0/img_usa2.png',
-      fullSrc: 'https://career.nlmk.com/upload/uf/c87/8ymv1h5pllf25x4y6ofpcmksgvgaobn0/img_usa2.png',
+      previewSrc: '/img/image_rolled_steel_sheet.png',
+      fullSrc: '/img/image_rolled_steel_sheet.png',
       title: 'Этап 3',
       previewTitle: 'Фото 3',
       description: 'Название фото 3',

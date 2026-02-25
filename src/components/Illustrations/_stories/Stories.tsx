@@ -11,8 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=527-204395';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=527-204395';
 
 const IllustrationStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -21,7 +20,7 @@ const IllustrationStories = (): JSX.Element => {
 
 const App = () => {
   return (
-    <Illustration name="error404" size="medium" alt="Описание картинки" />
+    <Illustration name="error404" size="extra-large" alt="Описание картинки" />
   )
 };
 

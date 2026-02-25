@@ -27,11 +27,11 @@ const App = () => {
 
   return (
     <SlideToggle
-      title={'Заголовок'}
+      title={'Дополнительная информация'}
       isShow={show}
       onToggle={() => setShow(!show)}
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+      Компонент SlideToggle позволяет показывать и скрывать дополнительный контент по клику на заголовок. Полезно для аккордеонов, раскрывающихся блоков и экономии места на странице.
     </SlideToggle>
   );
 };

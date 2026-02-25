@@ -78,7 +78,7 @@ const App = () => {
   const [time, setTime] = useState<Date | undefined>(new Date());
 
   return (
-    <div style={{ overflow: 'hidden', height: '200px' }}>
+    <div style={{ overflow: 'hidden', height: '200px', paddingTop: '8px' }}>
       {/* withPortal предотвращает обрезку выпадающей панели */}
       <TimePicker
         value={time}

@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={500}
+            height={550}
             description="Базовое использование Splitter"
             code={`import React from 'react';
 import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
@@ -86,7 +86,7 @@ const SplitterExample = () => {
 
   return (
     <>
-      <div style={{ height: '200px' }}>
+      <div style={{ height: '450px' }}>
         <Splitter
           topComponent={topComponent}
           bottomComponent={bottomComponent}

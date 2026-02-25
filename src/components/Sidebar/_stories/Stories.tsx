@@ -91,11 +91,11 @@ const App = () => {
         <Sidebar.SubmenuItem path="НЛМК-США" label="НЛМК-США" onClick={() => setCurrentPath('НЛМК-США')} />
       </Sidebar.MenuItem>
       <Sidebar.MenuItem
-        path="Кастомный раздел меню"
-        label="Кастомный раздел меню"
+        path="Раздел меню"
+        label="Раздел меню"
         position="top"
         icon="IconLightningStroke32"
-        onClick={() => setCurrentPath('Кастомный раздел меню')}
+        onClick={() => setCurrentPath('Раздел меню')}
       />
       <Sidebar.MenuItem
         path="Отключенный раздел"
@@ -134,7 +134,7 @@ const SidebarStories = (): JSX.Element => {
       <Header
         title={COMPONENT_NAME}
         description={`Компонент для навигации и организации контента в интерфейсе.`}
-        isBeta
+        isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
       />

@@ -50,255 +50,72 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={200}
-            description="Типография по умолчанию"
+            height={180}
+            description="Типография по умолчанию (Body1)"
             code={`import { Typography } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <Typography>
-    Default Typography Component
+const App = () => (
+  <Typography color="var(--steel-90)">
+    Компонент Typography с вариантом по умолчанию
   </Typography>
-)
-              `}
+);
+
+export default App;`}
           />
           <Editor
-            height={400}
-            description="Элементы типографии представляют собой текст с обязательно примененными
-            стилями: размером шрифта (font-size), величиной пространства между строками
-            (line-height) и жирностью шрифта (font-weight). Также в таблице представлены
-            пояснения для целевого использования объектов типографии."
-            code={`import { Typography } from '@nlmk/ds-2.0';
+            height={850}
+            description="Все варианты типографии, сгруппированные по категориям. Варианты различаются размером (font-size), межстрочным интервалом (line-height) и насыщенностью шрифта (font-weight)."
+            code={`import { Box, Card, Typography } from '@nlmk/ds-2.0';
 
-  const rows = [
-    {
-      title: 'Heading1',
-      fontSize: 48,
-      lineHeight: 56,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading1',
-      fontSize: 32,
-      lineHeight: 40,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading2',
-      fontSize: 32,
-      lineHeight: 40,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading2',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Subheading2-Medium',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 500,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading3',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading3',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Subheading3-Medium',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 500,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading4',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Body',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 400,
-      description: ''
-    },
-    {
-      title: 'Body-Medium',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 500,
-      description: ''
-    },
-    {
-      title: 'Body-Bold',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 700,
-      description: ''
-    },
-    {
-      title: 'Body1',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 400,
-      description: 'Текст контента тонкий'
-    },
-    {
-      title: 'Body1-Medium',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 500,
-      description: 'Текст инпутов, ячеек таблиц, контента'
-    },
-    {
-      title: 'Body1Table-Medium',
-      fontSize: 16,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Текст для ячеек таблиц 40px и 32px'
-    },
-    {
-      title: 'Body1Mono-Medium',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 500,
-      description: 'Текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body1Mono-Bold',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 700,
-      description: 'Жирный текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body1-Bold',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 700,
-      description: 'Текст в кнопках, жирный текст у активных элементов'
-    },
-    {
-      title: 'Body2',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 400,
-      description: 'Текст контента тонкий'
-    },
-    {
-      title: 'Body2-Medium',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 500,
-      description: 'Текст инпутов, ячеек таблиц, контента'
-    },
-    {
-      title: 'Body2Mono-Medium',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 500,
-      description: 'Текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body2Mono-Bold',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 700,
-      description: 'Жирный текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body2-Bold',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 700,
-      description: 'Текст в кнопках, жирный текст у активных элементов'
-    },
-    {
-      title: 'Caption',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 400,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'Caption-Medium',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'Caption-Bold',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 700,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'CaptionMono',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 400,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'CaptionMono-Medium',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'CaptionMono-Bold',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 700,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'Additional-Bold',
-      fontSize: 9,
-      lineHeight: 12,
-      fontWeight: 700,
-      description: 'Жирный текст для Badge XS'
-    }
-  ];
+const SECTIONS = [
+  { title: 'Заголовки (Headings)', variants: ['Heading1', 'Heading2', 'Heading3', 'Heading4'] },
+  {
+    title: 'Подзаголовки (Subheadings)',
+    variants: ['Subheading1', 'Subheading2', 'Subheading2-Medium', 'Subheading3', 'Subheading3-Medium']
+  },
+  { title: 'Основной текст 18px (Body)', variants: ['Body', 'Body-Medium', 'Body-Bold'] },
+  {
+    title: 'Текст 16px (Body1)',
+    variants: ['Body1', 'Body1-Medium', 'Body1Table-Medium', 'Body1Mono-Medium', 'Body1Mono-Bold', 'Body1-Bold']
+  },
+  {
+    title: 'Текст 14px (Body2)',
+    variants: ['Body2', 'Body2-Medium', 'Body2Mono-Medium', 'Body2Mono-Bold', 'Body2-Bold']
+  },
+  {
+    title: 'Подписи 12px (Caption)',
+    variants: ['Caption', 'Caption-Medium', 'Caption-Bold', 'CaptionMono', 'CaptionMono-Medium', 'CaptionMono-Bold']
+  },
+  { title: 'Дополнительный (Additional)', variants: ['Additional-Bold'] }
+];
 
-export default App = () => (
-  <>
-  {rows.map(variant => (
-    <div key={variant.title}>
-      <Typography variant={variant.title} color="primary">
-        {variant.title}
-      </Typography>
-      <Typography color="primary">
-        {variant.fontSize} - {variant.lineHeight}
-      </Typography>
-      <Typography color="primary">{variant.fontWeight}</Typography>
-      <Typography color="primary">{variant.description}</Typography>
-    </div>
-  ))}
-  </>
-)
-              `}
+const sectionStyle = { marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid var(--steel-70)' };
+const sectionTitleStyle = { fontSize: 14, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--steel-60)', marginBottom: 16 };
+const labelStyle = { fontSize: 14, color: 'var(--steel-60)', fontFamily: 'monospace', minWidth: 180 };
+
+const App = () => (
+  <Box flexDirection="column" gap={0} style={{ padding: 20, background: 'var(--steel-10)', borderRadius: 10 }}>
+    {SECTIONS.map((section) => (
+      <div key={section.title} style={sectionStyle}>
+        <div style={sectionTitleStyle}>{section.title}</div>
+        <Box flexDirection="column" gap={12}>
+          {section.variants.map((variant) => (
+            <Card key={variant} orientation="horizontal" indicatorStatus="info" indicatorSize="m">
+              <Box display="flex" alignItems="center" gap={24} st={{ width: '100%' }}>
+                <span style={labelStyle}>{variant}</span>
+                <Typography variant={variant} color="var(--steel-90)">
+                  Пример текста для {variant}
+                </Typography>
+              </Box>
+            </Card>
+          ))}
+        </Box>
+      </div>
+    ))}
+  </Box>
+);
+
+export default App;`}
           />
 
           <Properties argsTypes={argsTypes} />

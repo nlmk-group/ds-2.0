@@ -3,7 +3,7 @@ import { RefObject, useLayoutEffect } from 'react';
 type Args = {
   stageScrollRef: RefObject<HTMLElement | null>;
   activeIndex: number;
-  fullSrc: string;
+  fullSrc?: string;
   isMobile: boolean;
   isZoomed: boolean;
 };

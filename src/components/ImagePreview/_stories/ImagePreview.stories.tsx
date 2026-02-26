@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import ImagePreview from '@components/ImagePreview';
 
 import styles from './ImagePreview.stories.module.scss';
 
-import {IImageItem, IImagePreviewProps} from '../types';
+import { IImageItem, IImagePreviewProps } from '../types';
 import { argsTypes } from './argsTypes';
-import { Box } from "@components/index";
+import { Box, IconFileDOCX32 } from '@components/index';
 import { Meta } from '@storybook/react-vite';
-import { IMockItem, makeItems } from "@components/ImagePreview/mock/helpers";
+import { IMockItem, makeItems } from '@components/ImagePreview/mock/helpers';
 
 const image_1 = 'img/image_picture_mock.jpg';
 const image_2 = 'img/image_workers.jpg';
@@ -30,7 +30,7 @@ const MOCK_ITEMS: IMockItem[] = [
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix: 'Название фото',
-    previewTitle: 'Фотография'
+    previewTitle: 'Фотография',
   },
   {
     previewSrc: image_2,
@@ -38,23 +38,24 @@ const MOCK_ITEMS: IMockItem[] = [
     downloadName: 'photo.jpg',
     alt: 'Mock photo',
     titlePrefix: 'Этап',
-    descriptionPrefix: 'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.'
+    descriptionPrefix:
+      'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
   },
   {
     previewSrc: image_3,
     fullSrc: image_3,
-    downloadName: 'photo.jpg',
+    downloadName: 'photo.png',
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix: 'Название фото',
-    previewTitle: 'Горячекатаный прокат широко востребован при строительстве нефтегазопроводов'
+    previewTitle: 'Горячекатаный прокат широко востребован при строительстве нефтегазопроводов',
   }
 ];
 
 export default {
   title: 'Components/ImagePreview/Stories',
   component: ImagePreview,
-  decorators: withWrapper,
+  decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof ImagePreview>;
 
@@ -66,21 +67,23 @@ export const ImagePreviewDefault = (argTypes: IImagePreviewProps): JSX.Element =
   );
 };
 
-ImagePreviewDefault.storyName = 'Вариант компонента c несколькими изображениями';
+ImagePreviewDefault.storyName = 'ImagePreview c несколькими изображениями';
 ImagePreviewDefault.args = {
-  items: makeItems(MOCK_ITEMS,
-    15
-  ),
+  items: makeItems(MOCK_ITEMS, 15),
   previewImgSize: 180
 };
 
 export const ImagePreviewCheckbox = (argTypes: IImagePreviewProps): JSX.Element => {
-  const [checkedMap, setCheckedMap] = useState<Record<string, boolean>>({});
+  const secondId = argTypes.items?.[1]?.id;
+  const [checkedMap, setCheckedMap] = useState<Record<string, boolean>>(() =>
+    secondId == null ? {} : { [String(secondId)]: true }
+  );
 
   const handleCheckbox = ({ item, checked }: { item: IImageItem; checked: boolean }) => {
     const key = String(item.id);
     setCheckedMap(prev => ({ ...prev, [key]: checked }));
   };
+
   return (
     <div className={styles.wrapper}>
       <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />
@@ -88,11 +91,9 @@ export const ImagePreviewCheckbox = (argTypes: IImagePreviewProps): JSX.Element 
   );
 };
 
-ImagePreviewCheckbox.storyName = 'Вариант компонента c чекбоксом';
+ImagePreviewCheckbox.storyName = 'ImagePreview c чекбоксом';
 ImagePreviewCheckbox.args = {
-  items: makeItems(MOCK_ITEMS.map((item, i) => ({ ...item, checkBoxController: { checked: i === 2, handleCheckbox: () => {} }})),
-    5
-  ),
+  items: makeItems(MOCK_ITEMS, 5),
   previewImgSize: 180
 };
 
@@ -104,35 +105,76 @@ export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element
   );
 };
 
-ImagePreviewLongTitle.storyName = 'Вариант компонента c длинным заголовком и описанием';
+ImagePreviewLongTitle.storyName = 'ImagePreview c длинным заголовком и описанием';
 ImagePreviewLongTitle.args = {
-  items: makeItems([{
-      ...MOCK_ITEMS[0],
-      previewTitle: 'Горячекатаный прокат НЛМК',
-      titlePrefix: 'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
-      descriptionPrefix: 'За четким соблюдением необходимых параметров следят томографические и рентгеновские системы: каждая марка стали охлаждается с определенной скоростью и до нужного и заранее установленного для нее предела температуры, обретая свои главные потребительские свойства: прочность, штампуемость, пластичность и потенциал получения специальных магнитных свойств.'
-    }],
-    1
+  items: makeItems(
+    [
+      {
+        ...MOCK_ITEMS[0],
+        previewTitle: 'Горячекатаный прокат НЛМК',
+        titlePrefix:
+          'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
+        descriptionPrefix:
+          'За четким соблюдением необходимых параметров следят томографические и рентгеновские системы: каждая марка стали охлаждается с определенной скоростью и до нужного и заранее установленного для нее предела температуры, обретая свои главные потребительские свойства: прочность, штампуемость, пластичность и потенциал получения специальных магнитных свойств.'
+      },
+      {
+        ...MOCK_ITEMS[1],
+        previewTitle: 'За четким соблюдением необходимых параметров следят томографические и рентгеновские системы'
+      }
+    ],
+    2
   ),
   previewImgSize: 180
 };
 
-export const ImagePreviewNoImg = (argTypes: IImagePreviewProps): JSX.Element => {
+export const ImagePreviewNoPreviewSrc = (argTypes: IImagePreviewProps): JSX.Element => {
+  const alreadyChecked = argTypes.items?.[0]?.id;
+  const [checkedMap, setCheckedMap] = useState<Record<string, boolean>>(() =>
+    alreadyChecked == null ? {} : { [String(alreadyChecked)]: true }
+  );
+
+  const handleCheckbox = ({ item, checked }: { item: IImageItem; checked: boolean }) => {
+    const key = String(item.id);
+    setCheckedMap(prev => ({ ...prev, [key]: checked }));
+  };
+
   return (
     <div className={styles.wrapper}>
-      <ImagePreview {...argTypes} />
+      <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />
     </div>
   );
 };
 
-ImagePreviewNoImg.storyName = 'Вариант компонента без изображения';
-ImagePreviewNoImg.args = {
-  items: makeItems([{
-      ...MOCK_ITEMS[0],
-      previewSrc: '',
-      fullSrc: '',
-    }],
-    1
+ImagePreviewNoPreviewSrc.storyName = 'ImagePreview без изображения';
+ImagePreviewNoPreviewSrc.args = {
+  items: makeItems(
+    [
+      {
+        previewSrc: '',
+        fullSrc: '',
+        previewTitle: 'name.file',
+        titlePrefix: 'Файл',
+        descriptionPrefix: 'Неграфический файл',
+      },
+      {
+        previewSrc: '',
+        fullSrc: '',
+        previewTitle: 'name.file',
+        titlePrefix: 'Файл',
+        descriptionPrefix: 'Неграфический файл',
+      },
+      {
+        previewSrc: '',
+        fullSrc: '',
+        PlaceholderSvgIcon: <IconFileDOCX32 />,
+        previewTitle: 'name-2.docx',
+        titlePrefix: 'Файл',
+        descriptionPrefix: 'Неграфический файл',
+      },
+      MOCK_ITEMS[0],
+      MOCK_ITEMS[1]
+    ],
+    5
   ),
   previewImgSize: 180
 };

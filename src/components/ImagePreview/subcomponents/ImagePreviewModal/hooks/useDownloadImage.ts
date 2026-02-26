@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 type Args = {
-  href: string;
+  href?: string;
   downloadName?: string;
 };
 

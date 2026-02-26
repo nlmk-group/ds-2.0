@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 type Params = {
   activeIndex: number;
-  fullSrc: string;
+  fullSrc?: string;
   previewSrc?: string;
   isMobile: boolean;
   isZoomed: boolean;

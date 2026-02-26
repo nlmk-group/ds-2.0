@@ -9,13 +9,28 @@
   border-radius: 8px;
   overflow: hidden;
   flex: 0 0 auto;
+  background-color: var(--mnemo-10);
+}
+
+.thumb-button--placeholder:hover {
+  background-color: var(--mnemo-20);
 }
 
 .thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+}
+
+.file {
+  width: 100%;
+  height: 100%;
+
+  & svg {
+    color: var(--mnemo-60);
+    width: 52px !important;
+    height: 56px !important;
+  }
 }
 
 .checkbox {

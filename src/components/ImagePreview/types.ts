@@ -1,13 +1,16 @@
+import type React from 'react';
+
 export interface IImageItem {
   id?: string | number;
-  previewSrc: string;
-  fullSrc: string;
+  previewSrc?: string | null;
+  fullSrc?: string;
   previewTitle?: string;
   title?: string;
   description?: string;
   downloadName?: string;
   downloadHandler?: (item: IImageItem) => void;
   alt?: string;
+  PlaceholderSvgIcon?: React.ReactElement;
 }
 
 export interface IImagePreviewProps {
@@ -16,4 +19,5 @@ export interface IImagePreviewProps {
   previewImgSize?: number;
   checkedMap?: Record<string, boolean>;
   handleCheckbox?: ({ item, checked }: { item: IImageItem; checked: boolean }) => void;
+  onPreviewClick?: (item: IImageItem) => void;
 }

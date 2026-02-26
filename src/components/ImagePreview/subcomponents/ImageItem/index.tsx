@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 
-import { Box, Checkbox, Tooltip, Typography } from '@components/index';
+import { Box, Checkbox, IconFileNoType32, Tooltip, Typography } from '@components/index';
 import styles from './ImageItem.module.scss';
 import Icon from '@components/Icon';
-import { IImageItem } from '@components/ImagePreview/types';
+import type { IImageItem } from '@components/ImagePreview/types';
 import { useTruncate } from './hooks';
+import { hasPreviewSrc } from '@components/ImagePreview/utils';
 
 interface ImageItemProps {
   image: IImageItem;
@@ -28,38 +30,53 @@ const ImageItem = ({
 }: ImageItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const { previewSrc, alt, title, previewTitle } = image;
+  const { previewSrc, alt, title, previewTitle, PlaceholderSvgIcon } = image;
+  const hasPreview = hasPreviewSrc(previewSrc);
 
   const { isTruncated, titleWrapRef, measureRef } = useTruncate(previewImgSize, previewTitle);
 
+  const fallbackAlt = alt ?? title ?? `Фото ${imageIdx + 1}`;
+
+  const renderPlaceholder = () => {
+    if (React.isValidElement(PlaceholderSvgIcon)) return PlaceholderSvgIcon;
+
+    return <IconFileNoType32 htmlColor="var(--mnemo-60)" />;
+  };
+
+  const renderThumbContent = () => {
+    if (!hasPreview) {
+      return (
+        <Box className={styles.file} data-testid="placeholder-icon" justifyContent="center" alignItems="center" height="100%">
+          {renderPlaceholder()}
+        </Box>
+      );
+    }
+
+    return <img src={String(previewSrc)} className={styles.thumb} alt={fallbackAlt} />;
+  };
+
   return (
-    <Box flexDirection="column" gap={8} className={styles.item}>
-      {showCheckbox && (
-        <Checkbox
-          className={styles.checkbox}
-          checked={checked}
-          onChange={() => onCheckedChange?.(!checked)}
-        />
+    <Box
+      flexDirection="column"
+      gap={8}
+      className={styles.item}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {((showCheckbox && isHovered) || checked) && (
+        <Checkbox className={styles.checkbox} checked={checked} onChange={() => onCheckedChange?.(!checked)} />
       )}
 
       <div
         style={{ width: previewImgSize, height: previewImgSize }}
-        className={styles['thumb-button']}
+        className={clsx(styles['thumb-button'], !hasPreview && styles['thumb-button--placeholder'])}
         onClick={() => openModal(imageIdx)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         data-ui-image-preview-thumb
         data-testid="ui-image-preview-thumb"
       >
-        {previewSrc ? (
-          <img src={previewSrc} className={styles.thumb} alt={alt ?? title ?? `Фото ${imageIdx + 1}`} />
-        ) : (
-          <Box data-testid="empty-icon" justifyContent="center" alignItems="center" height="100%">
-            <Icon name="IconFactory32" htmlColor="var(--steel-50)" />
-          </Box>
-        )}
+        {renderThumbContent()}
 
-        {isHovered && (
+        {isHovered && hasPreview && (
           <>
             <div className={styles['hover-icon']}>
               <Icon name="IconZoomInOutlined24" containerSize={32} data-ui-image-preview-hover-zoom-icon />

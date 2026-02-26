@@ -1,23 +1,44 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { IImagePreviewProps } from './types';
+import type { IImagePreviewProps } from './types';
 import { ImageItem, ImagePreviewModal } from '@components/ImagePreview/subcomponents';
-import { clamp } from '@components/ImagePreview/utils';
+import { clamp, getItemKey, hasPreviewSrc } from '@components/ImagePreview/utils';
 import { Box } from '@components/index';
 
-const getItemKey = (item: { id?: string | number }, idx: number) => String(item.id ?? idx);
-
-const ImagePreview = ({ items, className, previewImgSize = 140, checkedMap, handleCheckbox }: IImagePreviewProps) => {
+const ImagePreview = ({
+  items,
+  className,
+  previewImgSize = 140,
+  checkedMap,
+  handleCheckbox,
+  onPreviewClick
+}: IImagePreviewProps) => {
   const safeItems = useMemo(() => (items ?? []).filter(Boolean), [items]);
+
+  const imageItems = useMemo(() => safeItems.filter(i => hasPreviewSrc(i.previewSrc)), [safeItems]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    setActiveIndex(prev => clamp(prev, 0, Math.max(0, safeItems.length - 1)));
-  }, [safeItems.length]);
+    setActiveImageIndex(prev => clamp(prev, 0, Math.max(0, imageItems.length - 1)));
+  }, [imageItems.length]);
 
-  const openModal = (index: number) => {
-    setActiveIndex(clamp(index, 0, Math.max(0, safeItems.length - 1)));
+  const openModalByGlobalIndex = (globalIdx: number) => {
+    const target = safeItems[globalIdx];
+    if (!target) return;
+
+    if (!hasPreviewSrc(target.previewSrc)) {
+      onPreviewClick?.(target);
+      return;
+    }
+
+    let imgIdx = 0;
+    for (let i = 0; i < globalIdx; i += 1) {
+      if (hasPreviewSrc(safeItems[i]?.previewSrc)) imgIdx += 1;
+    }
+
+    setActiveImageIndex(clamp(imgIdx, 0, Math.max(0, imageItems.length - 1)));
     setIsModalOpen(true);
   };
 
@@ -28,27 +49,32 @@ const ImagePreview = ({ items, className, previewImgSize = 140, checkedMap, hand
   return (
     <div className={className} data-ui-image-preview>
       <Box data-ui-image-preview-grid flexWrap="wrap" gap={40} alignItems="flex-start">
-        {safeItems.map((item, idx) => {
-          const key = getItemKey(item, idx);
+        {safeItems.map((rawItem, idx) => {
+          const key = getItemKey(rawItem, idx);
           const checked = !!checkedMap?.[key];
 
           return (
             <ImageItem
               key={key}
-              image={item}
+              image={rawItem}
               imageIdx={idx}
               previewImgSize={previewImgSize}
-              openModal={openModal}
+              openModal={openModalByGlobalIndex}
               checked={checked}
-              onCheckedChange={(nextChecked) => handleCheckbox?.({ item, checked: nextChecked })}
+              onCheckedChange={nextChecked => handleCheckbox?.({ item: rawItem, checked: nextChecked })}
               showCheckbox={!!handleCheckbox}
             />
           );
         })}
       </Box>
 
-      {isModalOpen && safeItems[activeIndex] && (
-        <ImagePreviewModal items={safeItems} activeIndex={activeIndex} setActiveIndex={setActiveIndex} onClose={closeModal} />
+      {isModalOpen && imageItems.length > 0 && imageItems[activeImageIndex] && (
+        <ImagePreviewModal
+          items={imageItems}
+          activeIndex={activeImageIndex}
+          setActiveIndex={setActiveImageIndex}
+          onClose={closeModal}
+        />
       )}
     </div>
   );

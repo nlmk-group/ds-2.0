@@ -1,15 +1,12 @@
-.wrapper {
-  display: block;
-}
-
 .item {
+  position: relative;
   min-width: 0;
 }
 
 .thumb-button {
   position: relative;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -19,6 +16,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.checkbox {
+  position: absolute;
+  top: 8px;
+  right: 7px;
+  z-index: 5;
 }
 
 .hover-icon {
@@ -44,16 +48,42 @@
   width: 100% !important;
 }
 
+.preview-title-wrap {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+
 .preview-title {
   display: block;
   width: 100%;
   max-width: 100%;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .preview-popup {
   max-width: 250px;
+}
+
+.preview-measure {
+  position: fixed;
+  left: -99999px;
+  top: -99999px;
+  visibility: hidden;
+  pointer-events: none;
+
+  display: block;
+  overflow: visible;
+
+  white-space: normal;
+  word-break: break-word;
+
+  width: 0;
 }

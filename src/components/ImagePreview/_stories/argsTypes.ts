@@ -36,6 +36,23 @@ export const argsTypes = {
       type: { summary: 'number' }
     },
     control: { type: 'number', min: 1, step: 1 }
+  },
+  checkedMap: {
+    description: 'Карта выбранных элементов (источник истины снаружи). Ключ: String(item.id ?? index).',
+    table: {
+      defaultValue: { summary: 'undefined' },
+      type: { summary: 'Record<string, boolean>' }
+    },
+    control: { type: 'object' }
+  },
+  handleCheckbox: {
+    description:
+      'Единый обработчик изменения чекбокса. Вызывается с { item, checked }. Если не передан, чекбоксы не отображаются.',
+    table: {
+      defaultValue: { summary: 'undefined' },
+      type: { summary: '({ item, checked }: { item: IImageItem; checked: boolean }) => void' },
+      disable: true
+    }
   }
 };
 

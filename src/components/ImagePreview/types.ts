@@ -14,4 +14,6 @@ export interface IImagePreviewProps {
   items: IImageItem[];
   className?: string;
   previewImgSize?: number;
+  checkedMap?: Record<string, boolean>;
+  handleCheckbox?: ({ item, checked }: { item: IImageItem; checked: boolean }) => void;
 }

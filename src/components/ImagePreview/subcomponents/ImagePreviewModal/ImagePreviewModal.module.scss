@@ -7,17 +7,18 @@ $nav-btn-gap: 110px;
 $nav-prev-offset: 24px;
 
 .backdrop {
-  background-color: var(--brand-jeans-30);
-  opacity: 60%;
   position: fixed;
   inset: 0;
   z-index: 10500;
+  background-color: color-mix(in srgb, var(--brand-jeans-30) 60%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 10500;
+  z-index: 10510;
   display: grid;
   place-items: stretch;
   padding: $modal-padding;

@@ -70,10 +70,6 @@ export default  App = () => (
 
 export default  App = () => (
   <>
-    <div>
-      <SkeletonLoader width="40px" count={1} height="50px" />
-      <SkeletonLoader width="310px" count={1} height="50px" />
-    </div>
     <SkeletonLoader width="115px" count={3} height="50px" />
     <SkeletonLoader width="177px" count={2} height="50px" />
   </>

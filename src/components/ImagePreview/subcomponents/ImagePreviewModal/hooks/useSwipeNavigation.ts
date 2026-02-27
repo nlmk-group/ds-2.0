@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useRef } from 'react';
 
 type UseSwipeNavigationArgs = {
@@ -8,64 +9,66 @@ type UseSwipeNavigationArgs = {
   maxDurationMs?: number;
   minDxPx?: number;
   maxDyPx?: number;
+  allowMouse?: boolean;
 };
 
 type UseSwipeNavigationResult = {
-  onTouchStart: (e: React.TouchEvent) => void;
-  onTouchEnd: (e: React.TouchEvent) => void;
+  onPointerDown: (e: React.PointerEvent) => void;
+  onPointerUp: (e: React.PointerEvent) => void;
 };
 
 /**
- * Хук useSwipeNavigation добавляет поддержку свайп-навигации на touch-устройствах.
- * Отслеживает жест по порогам времени и смещения, и вызывает колбэки перехода вперед/назад.
+ * Хук useSwipeNavigation обрабатывает свайпы влево/вправо и вызывает колбеки навигации.
+ * Запоминает координаты pointerDown и на pointerUp проверяет пороги по времени и смещениям.
  *
  * @param {object} args - Параметры хука.
- * @param {boolean} args.enabled - Включает обработку свайпов (обычно true на mobile).
- * @param {boolean} args.hasMany - Признак, что свайп имеет смысл (больше одного элемента).
- * @param {() => void} args.onPrev - Колбэк перехода к предыдущему элементу.
- * @param {() => void} args.onNext - Колбэк перехода к следующему элементу.
- * @param {number} [args.maxDurationMs=600] - Максимальная длительность жеста, после которой свайп игнорируется.
- * @param {number} [args.minDxPx=40] - Минимальное горизонтальное смещение для распознавания свайпа.
- * @param {number} [args.maxDyPx=80] - Максимальное вертикальное смещение, чтобы отличать свайп от скролла.
+ * @param {boolean} args.enabled - Включает обработку свайпов.
+ * @param {boolean} args.hasMany - Есть ли больше одного элемента (если нет, свайпы игнорируются).
+ * @param {() => void} args.onPrev - Колбек перехода на предыдущий элемент (свайп вправо).
+ * @param {() => void} args.onNext - Колбек перехода на следующий элемент (свайп влево).
+ * @param {number} [args.maxDurationMs=600] - Максимальная длительность жеста, мс.
+ * @param {number} [args.minDxPx=40] - Минимальное горизонтальное смещение, px.
+ * @param {number} [args.maxDyPx=80] - Максимально допустимое вертикальное смещение, px.
+ * @param {boolean} [args.allowMouse=false] - Разрешить обработку mouse pointer (по умолчанию только touch).
  *
  * @returns {object} result - Результат хука.
- * @returns {(e: React.TouchEvent) => void} result.onTouchStart - Обработчик начала touch-жеста.
- * @returns {(e: React.TouchEvent) => void} result.onTouchEnd - Обработчик завершения touch-жеста.
+ * @returns {(e: React.PointerEvent) => void} result.onPointerDown - Хендлер pointerDown (начало жеста).
+ * @returns {(e: React.PointerEvent) => void} result.onPointerUp - Хендлер pointerUp (конец жеста и навигация).
  */
 
 export const useSwipeNavigation = ({
-   enabled,
-   hasMany,
-   onPrev,
-   onNext,
-   maxDurationMs = 600,
-   minDxPx = 40,
-   maxDyPx = 80
+  enabled,
+  hasMany,
+  onPrev,
+  onNext,
+  maxDurationMs = 600,
+  minDxPx = 40,
+  maxDyPx = 80,
+  allowMouse = false
 }: UseSwipeNavigationArgs): UseSwipeNavigationResult => {
-  const touchRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const ref = useRef<{ x: number; y: number; t: number; pointerId: number } | null>(null);
 
-  const onTouchStart = useCallback(
-    (e: React.TouchEvent) => {
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent) => {
       if (!enabled || !hasMany) return;
-      const t = e.touches[0];
-      if (!t) return;
-      touchRef.current = { x: t.clientX, y: t.clientY, t: Date.now() };
+      if (!allowMouse && e.pointerType !== 'touch') return;
+
+      ref.current = { x: e.clientX, y: e.clientY, t: Date.now(), pointerId: e.pointerId };
     },
-    [enabled, hasMany]
+    [enabled, hasMany, allowMouse]
   );
 
-  const onTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      if (!enabled || !hasMany || !touchRef.current) return;
+  const onPointerUp = useCallback(
+    (e: React.PointerEvent) => {
+      if (!enabled || !hasMany || !ref.current) return;
+      if (!allowMouse && e.pointerType !== 'touch') return;
+      if (e.pointerId !== ref.current.pointerId) return;
 
-      const start = touchRef.current;
-      touchRef.current = null;
+      const start = ref.current;
+      ref.current = null;
 
-      const t = e.changedTouches[0];
-      if (!t) return;
-
-      const dx = t.clientX - start.x;
-      const dy = t.clientY - start.y;
+      const dx = e.clientX - start.x;
+      const dy = e.clientY - start.y;
       const dt = Date.now() - start.t;
 
       if (dt > maxDurationMs) return;
@@ -75,8 +78,8 @@ export const useSwipeNavigation = ({
       if (dx < 0) onNext();
       else onPrev();
     },
-    [enabled, hasMany, maxDurationMs, minDxPx, maxDyPx, onNext, onPrev]
+    [enabled, hasMany, allowMouse, maxDurationMs, minDxPx, maxDyPx, onNext, onPrev]
   );
 
-  return { onTouchStart, onTouchEnd };
+  return { onPointerDown, onPointerUp };
 };

@@ -7,3 +7,4 @@ export * from './useModalLifecycle';
 export * from './useMetaCollapse';
 export * from './useStageResetOnImageChange';
 export * from './useDownloadImage';
+export * from './useIsNarrowScreen';

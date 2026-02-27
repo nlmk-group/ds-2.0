@@ -1,5 +1,6 @@
 $thumb-wrapper: 80px;
 $thumb: 74px;
+$edge: 16px;
 
 .carousel {
   width: 100%;
@@ -12,6 +13,9 @@ $thumb: 74px;
   overscroll-behavior-x: contain;
   touch-action: pan-x;
   scroll-snap-type: x mandatory;
+
+  padding: $edge 0 $edge $edge;
+  box-sizing: border-box;
 }
 
 .carousel::-webkit-scrollbar {
@@ -27,6 +31,11 @@ $thumb: 74px;
   border-radius: 4px;
   overflow: hidden;
   scroll-snap-align: center;
+  box-sizing: border-box;
+}
+
+.item:last-child {
+  margin-right: 0;
 }
 
 .thumb {

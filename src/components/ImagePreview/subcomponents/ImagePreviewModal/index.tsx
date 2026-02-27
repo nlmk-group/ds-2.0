@@ -21,7 +21,6 @@ import {
   ImagePreviewMeta
 } from '@components/ImagePreview/subcomponents';
 import {
-  useIsMobile,
   useZoom,
   useImageLoad,
   useGalleryNavigation,
@@ -29,22 +28,16 @@ import {
   useModalLifecycle,
   useMetaCollapse,
   useStageResetOnImageChange,
-  useDownloadImage
+  useDownloadImage, useIsNarrowScreen
 } from './hooks';
+
+const MAX_MOBILE_WIDTH = 1000;
 
 const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IImagePreviewModalProps) => {
   const activeItem = items[activeIndex];
-  const {
-    fullSrc,
-    previewSrc,
-    downloadName,
-    downloadHandler,
-    title,
-    description,
-    alt
-  } = activeItem;
+  const { fullSrc, previewSrc, downloadName, downloadHandler, title, description, alt } = activeItem;
 
-  const isMobile = useIsMobile();
+  const isMobile = useIsNarrowScreen(MAX_MOBILE_WIDTH);
 
   const { hasMany, canPrev, canNext, prev, next, goTo } = useGalleryNavigation({
     length: items.length,
@@ -77,11 +70,12 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
     description
   });
 
-  const { onTouchStart, onTouchEnd } = useSwipeNavigation({
+  const { onPointerDown, onPointerUp } = useSwipeNavigation({
     enabled: isMobile,
     hasMany,
     onPrev: prev,
-    onNext: next
+    onNext: next,
+    allowMouse: true
   });
 
   const onImageClick: React.MouseEventHandler<HTMLImageElement> = e => {
@@ -99,10 +93,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
     isZoomed
   });
 
-  const {
-    imgError, isLoading, shownSrc, showImg, renderToken,
-    onImgLoad, onImgError
-  } = useImageLoad({
+  const { imgError, isLoading, shownSrc, showImg, renderToken, onImgLoad, onImgError } = useImageLoad({
     activeIndex,
     fullSrc,
     previewSrc: previewSrc as string | undefined,
@@ -151,9 +142,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
             />
           </div>
 
-          {!isMobile && (
-            <ImagePreviewSidebar items={items} activeIndex={activeIndex} setActiveIndex={goTo} />
-          )}
+          {!isMobile && <ImagePreviewSidebar items={items} activeIndex={activeIndex} setActiveIndex={goTo} />}
 
           {!isMobile && canPrev && (
             <Button
@@ -177,10 +166,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
             />
           )}
 
-          <div
-            className={clsx(styles['viewer'], { [styles['viewer-mobile']]: isMobile })}
-            data-ui-image-preview-viewer
-          >
+          <div className={clsx(styles['viewer'], { [styles['viewer-mobile']]: isMobile })} data-ui-image-preview-viewer>
             {isMobile && (
               <ImagePreviewMeta
                 isMobile
@@ -193,7 +179,12 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
               />
             )}
 
-            <div className={styles['stage']} data-ui-image-preview-stage onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <div
+              className={styles['stage']}
+              data-ui-image-preview-stage
+              onPointerDown={onPointerDown}
+              onPointerUp={onPointerUp}
+            >
               <div
                 ref={stageScrollRef}
                 className={clsx(styles['stage-scroll'], {
@@ -234,13 +225,9 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
               </div>
             </div>
 
-            {!isMobile && (
-              <ImagePreviewMeta isMobile={false} title={title} description={description} />
-            )}
+            {!isMobile && <ImagePreviewMeta isMobile={false} title={title} description={description} />}
 
-            {isMobile && (
-              <ImagePreviewCarouselMobile items={items} activeIndex={activeIndex} setActiveIndex={goTo} />
-            )}
+            {isMobile && <ImagePreviewCarouselMobile items={items} activeIndex={activeIndex} setActiveIndex={goTo} />}
           </div>
         </div>
       </div>

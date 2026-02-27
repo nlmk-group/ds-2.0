@@ -16,8 +16,10 @@ const image_3 = 'img/avatar_mock.png';
 
 const withWrapper = (Story: any) => {
   return (
-    <Box className={styles.wrapper} alignItems="center" justifyContent="center">
-      <Story />
+    <Box className={styles.wrapper} justifyContent="center">
+      <div className={styles.container}>
+        <Story />
+      </div>
     </Box>
   );
 };
@@ -60,11 +62,7 @@ export default {
 } as Meta<typeof ImagePreview>;
 
 export const ImagePreviewDefault = (argTypes: IImagePreviewProps): JSX.Element => {
-  return (
-    <div className={styles.wrapper}>
-      <ImagePreview {...argTypes} />
-    </div>
-  );
+  return <ImagePreview {...argTypes} />;
 };
 
 ImagePreviewDefault.storyName = 'ImagePreview c несколькими изображениями';
@@ -84,11 +82,7 @@ export const ImagePreviewCheckbox = (argTypes: IImagePreviewProps): JSX.Element 
     setCheckedMap(prev => ({ ...prev, [key]: checked }));
   };
 
-  return (
-    <div className={styles.wrapper}>
-      <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />
-    </div>
-  );
+  return <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />;
 };
 
 ImagePreviewCheckbox.storyName = 'ImagePreview c чекбоксом';
@@ -98,11 +92,7 @@ ImagePreviewCheckbox.args = {
 };
 
 export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element => {
-  return (
-    <div className={styles.wrapper}>
-      <ImagePreview {...argTypes} />
-    </div>
-  );
+  return <ImagePreview {...argTypes} />;
 };
 
 ImagePreviewLongTitle.storyName = 'ImagePreview c длинным заголовком и описанием';
@@ -139,9 +129,9 @@ export const ImagePreviewNoPreviewSrc = (argTypes: IImagePreviewProps): JSX.Elem
   };
 
   return (
-    <div className={styles.wrapper}>
+    <Box p={24} background="var(--steel-10)" borderRadius={8}>
       <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />
-    </div>
+    </Box>
   );
 };
 
@@ -152,14 +142,14 @@ ImagePreviewNoPreviewSrc.args = {
       {
         previewSrc: '',
         fullSrc: '',
-        previewTitle: 'name.file',
+        previewTitle: 'name-1.file',
         titlePrefix: 'Файл',
         descriptionPrefix: 'Неграфический файл',
       },
       {
         previewSrc: '',
         fullSrc: '',
-        previewTitle: 'name.file',
+        previewTitle: 'name-2.file',
         titlePrefix: 'Файл',
         descriptionPrefix: 'Неграфический файл',
       },
@@ -167,7 +157,7 @@ ImagePreviewNoPreviewSrc.args = {
         previewSrc: '',
         fullSrc: '',
         PlaceholderSvgIcon: <IconFileDOCX32 />,
-        previewTitle: 'name-2.docx',
+        previewTitle: 'name-3.docx',
         titlePrefix: 'Файл',
         descriptionPrefix: 'Неграфический файл',
       },

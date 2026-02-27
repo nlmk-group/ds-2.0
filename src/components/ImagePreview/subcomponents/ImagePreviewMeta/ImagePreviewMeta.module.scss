@@ -10,6 +10,7 @@ $meta-height: 64px;
   min-height: auto;
   max-height: clamp(56px, 20vh, 220px);
   overflow: hidden;
+  padding: 40px 16px 8px;
 }
 
 .meta-top-expanded {
@@ -52,7 +53,7 @@ $meta-height: 64px;
   margin-top: 2px;
   cursor: pointer;
   text-decoration: underline;
-  color: var(--steel-10);
+  color: var(--unique-white);
 }
 
 .meta-top[data-measuring='1'] .meta-clamp-2,

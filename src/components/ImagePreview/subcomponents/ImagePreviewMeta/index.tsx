@@ -30,7 +30,6 @@ const ImagePreviewMeta = ({
         flexDirection="column"
         alignItems="center"
         gap={6}
-        p={8}
         ref={metaTopRef}
         className={clsx(styles['meta-top'], { [styles['meta-top-expanded']]: isMetaExpanded })}
         data-ui-image-preview-meta-top

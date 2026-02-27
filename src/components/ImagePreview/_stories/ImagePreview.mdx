@@ -1,0 +1,23 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import ImagePreview from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/ImagePreview/Info"
+  component={ImagePreview}
+  parameters={{
+    docs: { page: null },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1'
+    },
+    jest: ['ImagePreview.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} name="Декоратор" />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

@@ -46,6 +46,7 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup';
 export { default as SegmentButton } from './SegmentButtonGroup/SegmentButton';
 export { default as SegmentButtonGroup } from './SegmentButtonGroup';
 export { default as ImagePicture } from './ImagePicture';
+export { default as ImagePreview } from './ImagePreview';
 export { default as Modal } from './Modal';
 export { default as Sidebar } from './Sidebar';
 export { default as SlideToggle } from './SlideToggle';

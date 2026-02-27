@@ -1,0 +1,81 @@
+// ImagePreviewSidebar.module.scss
+
+$carousel-width: 120px;
+$thumb-max: 112px;
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $carousel-width;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.scroll-btn {
+  width: $carousel-width;
+  height: 40px;
+  background: var(--steel-80);
+}
+
+.scroll-up {
+  align-self: start;
+  margin-bottom: 12px;
+}
+
+.scroll-down {
+  align-self: end;
+  margin-top: 12px;
+}
+
+.carousel {
+  height: 100%;
+  overflow: auto;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding-right: 0;
+  justify-items: start;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.carousel-item {
+  width: $carousel-width;
+  min-height: $carousel-width;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--unique-white) 30%, transparent);
+  }
+}
+
+.carousel-thumb {
+  width: $thumb-max;
+  height: auto;
+  min-height: $thumb-max;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.active {
+  border-color: var(--unique-white);
+
+  &:hover {
+    border-color: var(--unique-white);
+  }
+}

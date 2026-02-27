@@ -14,11 +14,37 @@ import { argsTypes } from './argsTypes';
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const pdfPreviewEmptyCode = `import { PdfPreview } from "@nlmk/ds-2.0";
+
+const App = () => (
+  <PdfPreview
+    data={null}
+    emptyMessage="Выберите документ для предпросмотра"
+    style={{ height: "320px", width: "100%" }}
+  />
+);
+
+export default App;
+`;
+
+  const pdfPreviewLoadingCode = `import { PdfPreview } from "@nlmk/ds-2.0";
+
+const App = () => (
+  <PdfPreview
+    data={null}
+    loading
+    style={{ height: "320px", width: "100%" }}
+  />
+);
+
+export default App;
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="PdfPreview"
-        description="Компонент PdfPreview для предпросмотра PDF"
+        description="PdfPreview отображает состояние загрузки, пустое состояние и предпросмотр PDF-документа. Компонент принимает PDF-данные и поддерживает кастомные сообщения и размеры контейнера."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/PdfPreview"
       />
@@ -33,8 +59,14 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={600}
-            description="Компонент PdfPreview по умолчанию."
+            height={360}
+            description="Пустое состояние с кастомным текстом через emptyMessage."
+            code={pdfPreviewEmptyCode}
+          />
+          <Editor height={360} description="Состояние загрузки документа через loading." code={pdfPreviewLoadingCode} />
+          <Editor
+            height={1200}
+            description="Интерактивный пример загрузки и предпросмотра PDF-файла."
             code={`import { useState, useRef } from "react";
 import { PdfPreview, AttachFiles, File } from "@nlmk/ds-2.0";
 

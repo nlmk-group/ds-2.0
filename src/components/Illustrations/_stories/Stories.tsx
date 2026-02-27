@@ -13,28 +13,62 @@ import { argsTypes } from './argsTypes';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=527-204395';
 
-const IllustrationStories = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const illustrationDefaultCode = `import { Illustration } from '@nlmk/ds-2.0';
+const illustrationDefaultCode = `import { Illustration } from '@nlmk/ds-2.0';
 
 const App = () => {
   return (
-    <Illustration name="error404" size="extra-large" alt="Описание картинки" />
+    <Illustration name="error404" size="extra-large" />
   )
 };
 
 export default App;
 `;
 
+const sizeVariantsCode = `import { Illustration } from '@nlmk/ds-2.0';
+
+const App = () => {
+  return (
+    <div style={{ display: 'grid', gap: '16px' }}>
+      <Illustration name="picture-default" size="small" />
+      <Illustration name="calendar" size="medium" />
+      <Illustration name="search" size="wide" />
+    </div>
+  )
+};
+
+export default App;
+`;
+
+const customStyleCode = `import { Illustration } from '@nlmk/ds-2.0';
+
+const App = () => {
+  return (
+    <Illustration
+      name="no-image"
+      size="standard"
+      className="custom-illustration"
+      style={{
+        padding: '12px',
+        borderRadius: '12px',
+        background: 'var(--steel-10)'
+      }}
+    />
+  )
+};
+
+export default App;
+`;
+
+const IllustrationStories = (): JSX.Element => {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Illustration"
-        description="Illustration отображает картинки для визуального объяснения проблемы,
-информирования и улучшения общего впечатления от взаимодействия с приложением."
+        description="Illustration отображает графические сценарии для пустых состояний, ошибок и подсказок. Компонент поддерживает выбор изображения по имени, размер и кастомизацию контейнера. Часть иллюстраций доступна только в определенных размерах, а не во всех вариантах."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Illustration"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Illustrations"
         figmaLink={FIGMA_LINK}
       />
 
@@ -48,7 +82,9 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={400} description="Базовый Illustration." code={illustrationDefaultCode} />
+          <Editor height={400} description="Базовое отображение иллюстрации." code={illustrationDefaultCode} />
+          <Editor height={650} description="Использование разных размеров иллюстраций." code={sizeVariantsCode} />
+          <Editor height={420} description="Кастомизация контейнера через style и className." code={customStyleCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

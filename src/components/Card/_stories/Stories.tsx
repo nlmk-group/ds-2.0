@@ -11,7 +11,6 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
-import { CARD_ORIENTATION, DEFAULT_CARD } from './text';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-46302&t=HhCDuaOuzHu5rgyf-1';
 
@@ -22,7 +21,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Card"
-        description="Компонент Card является функциональным компонентом, который предназначен для отображения карточки с различными элементами интерфейса, такими как изображение, заголовок, описание, значки, селектор и группа кнопок."
+        description="Card отображает контент в структурированном контейнере с визуальным индикатором состояния. Компонент поддерживает вертикальную и горизонтальную ориентацию, а также настройку статуса и толщины индикатора."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Card"
         figmaLink={FIGMA_LINK}
@@ -40,7 +39,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={350}
-            description={DEFAULT_CARD}
+            description="Базовая карточка с контентом и индикатором состояния."
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -95,7 +94,7 @@ export default  App = () => (
 
           <Editor
             height={400}
-            description={CARD_ORIENTATION}
+            description="Сравнение вертикальной и горизонтальной ориентации карточки."
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -172,6 +171,34 @@ export default  App = () => (
           </Button>
         </div>
       </div>
+    </Card>
+  </div>
+)
+`}
+          />
+          <Editor
+            height={320}
+            description="Настройка статуса и размера индикатора, а также className."
+            code={`import { Card, Typography } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{
+    backgroundColor: 'var(--steel-10)',
+    width: 'fit-content',
+    padding: '20px',
+    display: 'flex',
+    gap: '20px'
+  }}>
+    <Card indicatorStatus="default" indicatorSize="s">
+      <Typography variant="Body1-Bold">Default</Typography>
+    </Card>
+
+    <Card indicatorStatus="info" indicatorSize="m">
+      <Typography variant="Body1-Bold">Info</Typography>
+    </Card>
+
+    <Card indicatorStatus="warning" indicatorSize="l" className="custom-card">
+      <Typography variant="Body1-Bold">Warning</Typography>
     </Card>
   </div>
 )

@@ -13,8 +13,55 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import { argsTypes } from './argsTypes';
 
 const COMPONENT_NAME = 'ErrorPage';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=287-80936';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=287-80936';
+
+const forbiddenCodeExample = `import { ErrorPage } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ minHeight: '560px' }}>
+    <ErrorPage
+      errorCode={403}
+      description="Нет доступа к разделу"
+      hint="Обратитесь к администратору для получения прав."
+    />
+  </div>
+)
+`;
+
+const notFoundCodeExample = `import { ErrorPage } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ minHeight: '560px' }}>
+    <ErrorPage
+      errorCode={404}
+      description="Страница не найдена"
+      hint="Проверьте адрес или перейдите в нужный раздел через меню."
+    />
+  </div>
+)
+`;
+
+const customTextExample = `import { ErrorPage } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ minHeight: '560px' }}>
+    <ErrorPage
+      errorCode={500}
+      description="Временная ошибка сервиса"
+      hint="Обновите страницу позже или повторите запрос."
+    />
+  </div>
+)
+`;
+
+const defaultValuesExample = `import { ErrorPage } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ minHeight: '560px' }}>
+    <ErrorPage />
+  </div>
+)
+`;
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -23,7 +70,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Error page"
-        description="Компонент ErrorPage предназначен для информирования пользователя о различных ошибках веб-приложения и предложения возможных действий для их решения с помощью настраиваемых сообщений и изображений."
+        description="ErrorPage отображает код ошибки, описание и подсказку для пользователя. Компонент поддерживает преднастроенные состояния для кодов 403 и 404, а также кастомные тексты."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -39,23 +86,27 @@ const Stories = (): JSX.Element => {
 
       {Number(activeTab) == 0 && (
         <>
+          <Editor height={700} description="Состояние ошибки доступа с кодом 403." code={forbiddenCodeExample} />
           <Editor
-            height={600}
-            description="Компонент ErrorPage разработан в разных вариантах"
-            code={`import { ErrorPage } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <ErrorPage errorCode="403" description="Нет доступа" hint="Воспользуйтесь боковым меню, чтобы перейти к нужной форме" />
-)
-`}
+            height={700}
+            description="Состояние ошибки отсутствующей страницы с кодом 404."
+            code={notFoundCodeExample}
+          />
+          <Editor
+            height={700}
+            description="Кастомизация текста ошибки и подсказки для произвольного кода."
+            code={customTextExample}
+          />
+          <Editor
+            height={700}
+            description="Отображение значений по умолчанию без передачи пропсов."
+            code={defaultValuesExample}
           />
 
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="ErrorPage" />}
     </div>
   );

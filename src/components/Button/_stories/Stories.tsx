@@ -21,7 +21,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Button"
-        description="Компонент Button представляет собой кнопку, которую можно настроить с помощью различных параметров, таких как размер, иконки, знаки и стили."
+        description="Button запускает пользовательское действие и поддерживает настройку внешнего вида через размер, цвет, вариант, иконки и бейджи. Компонент включает текстовый и icon-only режимы."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Button"
         figmaLink={FIGMA_LINK}
@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            description="Базовый компонент кнопки в трёх размерах: обычный (m) - является размером по умолчанию, высота кнопки 40px, компактный (s) - высота 32px и экстра компактный (xs) - высота 28px."
+            description="Сравнение размеров кнопки."
             code={`import { Button } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -57,53 +57,129 @@ export default App = () => (
           />
 
           <Editor
-            description="Кнопка поддерживает различные цветовые схемы и варианты отображения. Каждый цвет может быть отображен в primary или secondary варианте."
+            height={500}
+            description="Цветовые схемы и варианты отображения кнопки."
+            code={`import { Button, Box } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Box display="flex" flexDirection="column" gap={12}>
+    <Box display="flex" gap={8}>
+      <Button type="button" color="brand">Brand Primary</Button>
+      <Button type="button" color="brand" variant="secondary">Brand Secondary</Button>
+    </Box>
+
+    <Box display="flex" gap={8}>
+      <Button type="button" color="grey">Grey Primary</Button>
+      <Button type="button" color="grey" variant="secondary">Grey Secondary</Button>
+    </Box>
+
+    <Box display="flex" gap={8}>
+      <Button type="button" color="ghost">Ghost Primary</Button>
+      <Button type="button" color="ghost" variant="secondary">Ghost Secondary</Button>
+    </Box>
+
+    <Box display="flex" gap={8}>
+      <Button type="button" color="error">Error Primary</Button>
+      <Button type="button" color="error" variant="secondary">Error Secondary</Button>
+    </Box>
+
+    <Box display="flex" gap={8}>
+      <Button type="button" color="warning">Warning Primary</Button>
+      <Button type="button" color="warning" variant="secondary">Warning Secondary</Button>
+    </Box>
+
+    <Box display="flex" gap={8}>
+      <Button type="button" color="success">Success Primary</Button>
+      <Button type="button" color="success" variant="secondary">Success Secondary</Button>
+    </Box>
+  </Box>
+)`}
+          />
+          <Editor
+            description="Кнопка с иконкой в начале и в конце текста."
+            code={`import { Button, IconArrowLeftOutlined24, IconArrowRightOutlined24 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Button
+      type="button"
+      startIcon={<IconArrowLeftOutlined24 />}
+    >
+      Назад
+    </Button>
+    <Button
+      type="button"
+      endIcon={<IconArrowRightOutlined24 />}
+      variant="secondary"
+    >
+      Далее
+    </Button>
+  </>
+)`}
+          />
+          <Editor
+            description="Кнопка с бейджами в начале и в конце текста."
             code={`import { Button } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-    <Button type="button" color="brand">
-      Brand Primary
+    <Button type="button" startBadge={2}>
+      Входящие
     </Button>
-    <Button type="button" color="brand" variant="secondary">
-      Brand Secondary
-    </Button>
-
-    <Button type="button" color="grey">
-      Grey Primary
-    </Button>
-    <Button type="button" color="grey" variant="secondary">
-      Grey Secondary
-    </Button>
-
-    <Button type="button" color="ghost">
-      Ghost Primary
-    </Button>
-    <Button type="button" color="ghost" variant="secondary">
-      Ghost Secondary
-    </Button>
-
-    <Button type="button" color="error">
-      Error Primary
-    </Button>
-    <Button type="button" color="error" variant="secondary">
-      Error Secondary
-    </Button>
-
-    <Button type="button" color="warning">
-      Warning Primary
-    </Button>
-    <Button type="button" color="warning" variant="secondary">
-      Warning Secondary
-    </Button>
-
-    <Button type="button" color="success">
-      Success Primary
-    </Button>
-    <Button type="button" color="success" variant="secondary">
-      Success Secondary
+    <Button type="button" endBadge={12} variant="secondary">
+      Уведомления
     </Button>
   </>
+)`}
+          />
+          <Editor
+            description="Режим iconButton для компактных действий."
+            code={`import { Button, IconDeleteBinOutlined24, IconArticleOutlined24 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Button
+      type="button"
+      iconButton={<IconArticleOutlined24 />}
+      aria-label="Открыть"
+    />
+    <Button
+      type="button"
+      color="error"
+      variant="secondary"
+      iconButton={<IconDeleteBinOutlined24 />}
+      aria-label="Удалить"
+    />
+  </>
+)`}
+          />
+          <Editor
+            description="Состояние disabled для блокировки действия."
+            code={`import { Button } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Button type="button" disabled>
+      Недоступно
+    </Button>
+    <Button type="button" variant="secondary" color="grey" disabled>
+      Недоступно
+    </Button>
+  </>
+)`}
+          />
+          <Editor
+            description="Кастомизация кнопки через className и style."
+            code={`import { Button } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Button
+    type="button"
+    className="custom-button"
+    style={{ minWidth: 180 }}
+  >
+    Кастомная кнопка
+  </Button>
 )`}
           />
 

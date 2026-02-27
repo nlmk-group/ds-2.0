@@ -36,7 +36,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Divider"
-        description="Компонент Divider - это визуальный элемент, используемый для разделения содержимого на разных частях пользовательского интерфейса, таких как списки, сетки или разделы на странице."
+        description="Divider разделяет контент на логические блоки и поддерживает горизонтальный и вертикальный режим. Компонент настраивается через стиль линии, позицию контента и тип отображения."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Divider"
         figmaLink={FIGMA_LINK}
@@ -53,7 +53,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            description="Divider по умолчанию"
+            description="Базовый горизонтальный Divider с текстом."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -69,7 +69,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Divider с пунктирной линией"
+            description="Пунктирный Divider через dashed."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -85,7 +85,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Варианты ориентаций Divider"
+            description="Позиционирование контента: left, center и right."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -104,7 +104,7 @@ export default  App = () => (
     <br/>
     <Divider orientation="center">
       <span style={{color: "var(--steel-90)"}}>
-        Вариант ориентации Divider по середине
+        Вариант ориентации Divider по центру
       </span>
     </Divider>
   </div>
@@ -113,7 +113,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Кастомизация размера пространства"
+            description="Кастомный отступ контента через orientationSpace."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -141,7 +141,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Вертикальный Divider"
+            description="Вертикальный Divider для inline/flex-контейнера."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -151,18 +151,18 @@ export default  App = () => (
         display: 'flex'
       }}
     >
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №1
       </span>
       <Divider type="vertical" />
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №2
       </span>
       <Divider
         dashed
         type="vertical"
       />
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №3
       </span>
     </div>
@@ -173,7 +173,7 @@ export default  App = () => (
 
           <Editor
             height={400}
-            description="Типы Divider"
+            description="Комбинированные сценарии с текстом, кнопками и иконками."
             code={`import { Divider, Button, Icon, IconChemical24 } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -184,18 +184,18 @@ export default  App = () =>(
         display: 'flex'
       }}
     >
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №1
       </span>
       <Divider type="vertical" />
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №2
       </span>
       <Divider
         dashed
         type="vertical"
       />
-      <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+      <span style={{color: "var(--steel-90)"}}>
         Текст №3
       </span>
     </div>
@@ -215,7 +215,7 @@ export default  App = () =>(
           display: 'flex'
         }}
       >
-        <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+        <span style={{color: "var(--steel-90)"}}>
           Текст №1
         </span>
       </div>
@@ -241,7 +241,7 @@ export default  App = () =>(
           gap: '8px'
         }}
       >
-        <span className="_divider-content_12xmv_74" style={{color: "var(--steel-90)"}}>
+        <span style={{color: "var(--steel-90)"}}>
           Экспертиза
         </span>
         <Button type="button" color="ghost" variant="secondary">
@@ -254,7 +254,6 @@ export default  App = () =>(
 )
 `}
           />
-
           <Properties argsTypes={argsTypes} />
         </>
       )}

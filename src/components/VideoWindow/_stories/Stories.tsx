@@ -20,26 +20,87 @@ const VideoWindowStories = (): JSX.Element => {
 import { VideoWindow, Button } from '@nlmk/ds-2.0';
 
 const App = () => {
-    const [isVideoOpen, setIsVideoOpen] = useState(false);
-    
-    return (
-      <div style={{display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center'}}>
-        <Button type="button" onClick={() => setIsVideoOpen(true)}>Открыть видео</button>
-  
-        {isVideoOpen && (
-          <VideoWindow
-            videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
-            title="Демо-видео"
-            autoPlay
-            draggable
-            resizable
-            draggableStartPosition={{ x: 100, y: 100 }}
-            onClose={() => setIsVideoOpen(false)}
-          />
-        )}
-      </div>
-    );
-  };
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+      <Button type="button" onClick={() => setIsVideoOpen(true)}>
+        Открыть видео
+      </Button>
+
+      {isVideoOpen && (
+        <VideoWindow
+          videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
+          title="Демо-видео"
+          autoPlay
+          draggable
+          resizable
+          draggableStartPosition={{ x: 120, y: 120 }}
+          onClose={() => setIsVideoOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
+
+export default App;`;
+  const localeCode = `import React, { useState } from 'react';
+import { VideoWindow, Button } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+      <Button type="button" onClick={() => setIsVideoOpen(true)}>
+        Open video
+      </Button>
+
+      {isVideoOpen && (
+        <VideoWindow
+          videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
+          title="Demo video"
+          locale="en"
+          autoPlay={false}
+          onClose={() => setIsVideoOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
+
+export default App;`;
+  const customTitleCode = `import React, { useState } from 'react';
+import { VideoWindow, Button, Box, Typography, Icon } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+      <Button type="button" onClick={() => setIsVideoOpen(true)}>
+        Открыть с кастомным заголовком
+      </Button>
+
+      {isVideoOpen && (
+        <VideoWindow
+          videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
+          title={
+            <Box gap="8px" alignItems="center">
+              <Icon name="IconInfoOutlined16" htmlColor="var(--unique-white)" />
+              <Typography variant="Body1-Medium" color="var(--unique-white)">
+                Видеоурок по компоненту
+              </Typography>
+            </Box>
+          }
+          draggable
+          draggableStartPosition={{ x: 80, y: 80 }}
+          onClose={() => setIsVideoOpen(false)}
+        />
+      )}
+    </div>
+  );
+};
 
 export default App;`;
 
@@ -47,7 +108,7 @@ export default App;`;
     <div className={styles.wrapper}>
       <Header
         title="VideoWindow"
-        description="VideoWindow - компонент для отображения видеоплеера с возможностью изменения размера окна, переключения в полноэкранный режим, минимизации и закрытия."
+        description="VideoWindow отображает видео в отдельном плавающем окне с управлением размером, позицией, сворачиванием, полноэкранным режимом и локализацией элементов управления."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/VideoWindow"
         figmaLink={FIGMA_LINK}
@@ -63,7 +124,21 @@ export default App;`;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={500} description="Базовый пример использования VideoWindow" code={videoWindowDefaultCode} />
+          <Editor
+            height={400}
+            description="Базовый сценарий с `autoPlay`, `draggable`, `resizable` и закрытием окна через `onClose`."
+            code={videoWindowDefaultCode}
+          />
+          <Editor
+            height={400}
+            description="Локализация контролов окна через `locale` (пример: `en`)."
+            code={localeCode}
+          />
+          <Editor
+            height={400}
+            description="Кастомный ReactNode-заголовок через `title` и стартовая позиция окна через `draggableStartPosition`."
+            code={customTitleCode}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}

@@ -24,6 +24,84 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
+  const defaultGroupCode = `import { useState } from 'react';
+import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [active, setActive] = useState(0);
+
+  return (
+    <SegmentButtonGroup>
+      <SegmentButton buttonIndex={0} active={active === 0} onClick={() => setActive(0)}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Сталь</Typography>
+      </SegmentButton>
+      <SegmentButton buttonIndex={1} active={active === 1} onClick={() => setActive(1)}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Цинк</Typography>
+      </SegmentButton>
+      <SegmentButton buttonIndex={2} active={active === 2} onClick={() => setActive(2)}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Чугун</Typography>
+      </SegmentButton>
+    </SegmentButtonGroup>
+  );
+}
+`;
+
+  const sizeGroupCode = `import { useState } from 'react';
+import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [activeM, setActiveM] = useState(0);
+  const [activeS, setActiveS] = useState(0);
+
+  return (
+    <div style={{ display: 'grid', gap: '16px' }}>
+      <SegmentButtonGroup size="m">
+        <SegmentButton buttonIndex={0} active={activeM === 0} onClick={() => setActiveM(0)}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">Размер M</Typography>
+        </SegmentButton>
+        <SegmentButton buttonIndex={1} active={activeM === 1} onClick={() => setActiveM(1)}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">Опция</Typography>
+        </SegmentButton>
+      </SegmentButtonGroup>
+
+      <SegmentButtonGroup size="s">
+        <SegmentButton buttonIndex={0} active={activeS === 0} onClick={() => setActiveS(0)}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">Размер S</Typography>
+        </SegmentButton>
+        <SegmentButton buttonIndex={1} active={activeS === 1} onClick={() => setActiveS(1)}>
+          <Typography variant="Body1-Bold" color="var(--steel-90)">Опция</Typography>
+        </SegmentButton>
+      </SegmentButtonGroup>
+    </div>
+  );
+}
+`;
+
+  const disabledGroupCode = `import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ display: 'grid', gap: '16px' }}>
+    <SegmentButtonGroup disabled>
+      <SegmentButton buttonIndex={0}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Группа disabled</Typography>
+      </SegmentButton>
+      <SegmentButton buttonIndex={1}>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Опция</Typography>
+      </SegmentButton>
+    </SegmentButtonGroup>
+
+    <SegmentButtonGroup>
+      <SegmentButton buttonIndex={0} active>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Активная</Typography>
+      </SegmentButton>
+      <SegmentButton buttonIndex={1} disabled>
+        <Typography variant="Body1-Bold" color="var(--steel-90)">Локально disabled</Typography>
+      </SegmentButton>
+    </SegmentButtonGroup>
+  </div>
+);
+`;
+
   const isActive = (tab: TabIds) => {
     return activeTab === tab;
   };
@@ -32,7 +110,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Компонент SegmentButtonGroup - это набор кнопок, из которых пользователь может выбрать только одну."
+        description="SegmentButtonGroup объединяет переключаемые кнопки в единый контрол, где активен только один вариант. Компонент поддерживает размеры и блокировку всей группы или отдельных кнопок."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -49,33 +127,19 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={600}
-            description="SegmentButtonGroup по умолчанию"
-            code={`import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
-
-export default App = () => {
-  const [active, setActive] = useState(0);
-  return (
-    <SegmentButtonGroup>
-      <SegmentButton active={active === 0} onClick={() => setActive(0)}>
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          Сталь
-        </Typography>
-      </SegmentButton>
-      <SegmentButton active={active === 1} onClick={() => setActive(1)}>
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          Цинк
-        </Typography>
-      </SegmentButton>
-      <SegmentButton active={active === 2} onClick={() => setActive(2)}>
-        <Typography variant="Body1-Bold" color="var(--steel-90)">
-          Чугун
-        </Typography>
-      </SegmentButton>
-    </SegmentButtonGroup>
-  )
-}
-`}
+            height={420}
+            description="Базовое переключение активного сегмента."
+            code={defaultGroupCode}
+          />
+          <Editor
+            height={420}
+            description="Размеры группы сегментов через prop size."
+            code={sizeGroupCode}
+          />
+          <Editor
+            height={420}
+            description="Блокировка всей группы и отдельной кнопки."
+            code={disabledGroupCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

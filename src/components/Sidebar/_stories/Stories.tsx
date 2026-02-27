@@ -122,6 +122,40 @@ const App = () => {
 }
 export default App;`;
 
+const sidebarBurgerVariant = `import { useState } from 'react';
+import { Sidebar } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPath, setCurrentPath] = useState('dashboard');
+
+  return (
+    <div style={{ backgroundColor: 'var(--unique-background)', width: '110%', margin: '-20px' }}>
+      <Sidebar
+        orientation="vertical"
+        variant="burger"
+        currentPath={currentPath}
+        isLoggedIn={isLoggedIn}
+        defaultMenuOpen
+        overlay
+        isShowUserControl={false}
+        onLogin={() => setIsLoggedIn(true)}
+        onLogout={() => setIsLoggedIn(false)}
+      >
+        <Sidebar.Avatar imageSrc="" />
+        <Sidebar.MenuItem path="dashboard" label="Дашборд" position="top" icon="IconKovsh32" onClick={() => setCurrentPath('dashboard')} />
+        <Sidebar.MenuItem path="reports" label="Отчеты" position="top" icon="IconChartDonut32" onClick={() => setCurrentPath('reports')}>
+          <Sidebar.SubmenuItem path="daily" label="Ежедневные" onClick={() => setCurrentPath('daily')} />
+          <Sidebar.SubmenuItem path="weekly" label="Недельные" onClick={() => setCurrentPath('weekly')} />
+        </Sidebar.MenuItem>
+        <Sidebar.MenuItem path="help" label="Помощь" position="bottom" icon="IconInfoOutlined32" onClick={() => setCurrentPath('help')} />
+      </Sidebar>
+    </div>
+  );
+};
+
+export default App;`;
+
 const SidebarStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
@@ -133,7 +167,7 @@ const SidebarStories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description={`Компонент для навигации и организации контента в интерфейсе.`}
+        description="Sidebar используется для навигации по разделам приложения и поддерживает вложенные пункты меню, избранное, режимы отображения и пользовательский блок."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -148,7 +182,16 @@ const SidebarStories = (): JSX.Element => {
       </div>
       {activeTab == TabIds.dev && (
         <>
-          <Editor height={800} description="Пример Sidebar" code={sidebarDefault} />
+          <Editor
+            height={1300}
+            description="Базовый пример боковой навигации с вложенными разделами."
+            code={sidebarDefault}
+          />
+          <Editor
+            height={1300}
+            description="Режим burger с overlay и управлением видимостью пользовательского блока."
+            code={sidebarBurgerVariant}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}

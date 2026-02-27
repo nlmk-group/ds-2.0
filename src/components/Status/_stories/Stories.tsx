@@ -18,11 +18,19 @@ const FIGMA_LINK =
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const statusCustomIconCode = `import { Status, IconCloudDoneOutlined24 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Status icon={<IconCloudDoneOutlined24 htmlColor="var(--spectrum-green-50)" />} color="success">
+    Published
+  </Status>
+)`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Status"
-        description="Компонент Status используется для отображения информации о статусе какого-либо объекта. Он поддерживает различные цвета, размеры и заливку фона."
+        description="Status используется для отображения текущего состояния объекта и поддерживает цвет, заливку, размер и пользовательскую иконку."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Status"
         figmaLink={FIGMA_LINK}
@@ -40,7 +48,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={150}
-            description="Компонент Status по умолчанию."
+            description="Базовое отображение статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -49,7 +57,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Компонент Status может использовать разные цвета: default (отображается по умолчанию), error, warning, success, grey."
+            description="Цветовые состояния статуса через prop color."
             code={`import { Status } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -64,7 +72,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Компонент Status доступен в двух типах заливки фона: solid - полностью закрашенный, clear - без заливки."
+            description="Варианты заливки фона через prop fill."
             code={`import { Status } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -77,7 +85,7 @@ export default  App = () =>(
 
           <Editor
             height={230}
-            description="Компонент Status доступен в трёх размерах: s - маленький, m - средний, l - большой."
+            description="Сравнение размеров статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -87,6 +95,11 @@ export default  App = () => (
     <Status icon="IconCloudDoneOutlined24" size="l">Published</Status>
   </>
 )`}
+          />
+          <Editor
+            height={170}
+            description="Передача пользовательской иконки как JSX-элемента."
+            code={statusCustomIconCode}
           />
 
           <Properties argsTypes={argsTypes} />

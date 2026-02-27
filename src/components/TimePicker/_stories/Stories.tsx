@@ -4,6 +4,7 @@ import Editor from '@components/_storybook/Stories/components/Editor';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
+import Tests from '@components/_storybook/Stories/components/Tests';
 import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
@@ -13,8 +14,14 @@ import { argsTypes } from './argsTypes';
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-30495&t=EnvIMGos3m33avAX-1';
 const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TimePicker';
 
+enum TabIds {
+  dev,
+  design,
+  tests
+}
+
 const TimePickerStories = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
   const timepickerDefaultCode = `import { TimePicker } from '@nlmk/ds-2.0';
 import { useState } from 'react';
@@ -46,6 +53,29 @@ const App = () => {
       label="Время"
       value={time}
       onChange={setTime}
+    />
+  );
+};
+
+export default App;
+`;
+  const timepickerPeriodCode = `import { TimePicker } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const App = () => {
+  const [valueFrom, setValueFrom] = useState<Date | undefined>(new Date());
+  const [valueTo, setValueTo] = useState<Date | undefined>(new Date());
+
+  return (
+    <TimePicker
+      type="period"
+      valueFrom={valueFrom}
+      valueTo={valueTo}
+      onPeriodChange={(nextFrom, nextTo) => {
+        setValueFrom(nextFrom);
+        setValueTo(nextTo);
+      }}
+      label="Период"
     />
   );
 };
@@ -97,7 +127,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="TimePicker"
-        description="TimePicker позволяет пользователям выбирать время или период времени. Использует двухуровневую валидацию (IMask + onBlur) для предотвращения ввода невалидных значений (например, 12:95). Поддерживает различные форматы и диапазоны времени."
+        description="TimePicker используется для выбора времени и периодов времени. Поддерживает single и period режимы, валидацию ввода и рендер панели через портал."
         isStable
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
@@ -105,38 +135,44 @@ export default App;
 
       <div className={styles.tabs}>
         <Tabs>
-          <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
-          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
+          <Tabs.Tab label="Разработчику" active={activeTab === TabIds.dev} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab
+            label="Дизайнеру"
+            active={activeTab === TabIds.design}
+            onClick={() => setActiveTab(TabIds.design)}
+          />
+          <Tabs.Tab
+            label="Тестирование"
+            active={activeTab === TabIds.tests}
+            onClick={() => setActiveTab(TabIds.tests)}
+          />
         </Tabs>
       </div>
 
-      {Number(activeTab) === 0 && (
+      {activeTab === TabIds.dev && (
         <>
           <Editor
-            height={300}
-            description="Основной TimePicker с кнопкой сброса. Использует controlled подход - требует внешний state и обработчик onReset."
+            height={500}
+            description="Базовый controlled-сценарий с кнопкой сброса (`reset` + `onReset`)."
             code={timepickerDefaultCode}
           />
+          <Editor height={500} description="Одиночный выбор времени с лейблом." code={timepickerWithLabelCode} />
           <Editor
-            height={300}
-            description="TimePicker с лейблом. IMask автоматически блокирует ввод невалидных значений (например, 25:30 или 12:95)."
-            code={timepickerWithLabelCode}
+            height={500}
+            description="Режим периода через `type=period` и обработчик `onPeriodChange`."
+            code={timepickerPeriodCode}
           />
+          <Editor height={300} description="Отключенное состояние (`disabled`)." code={timepickerDisabledCode} />
           <Editor
-            height={300}
-            description="Отключенный TimePicker. Не доступен для взаимодействия."
-            code={timepickerDisabledCode}
-          />
-          <Editor
-            height={300}
-            description="TimePicker с withPortal={true}. Критично для использования в таблицах или контейнерах с overflow:hidden."
+            height={500}
+            description="Рендер выпадающей панели через портал (`withPortal`) для контейнеров с `overflow: hidden`."
             code={timepickerWithPortalCode}
           />
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {activeTab === TabIds.design && <FigmaEmbed url={FIGMA_LINK} />}
+      {activeTab === TabIds.tests && <Tests componentName="TimePicker" />}
     </div>
   );
 };

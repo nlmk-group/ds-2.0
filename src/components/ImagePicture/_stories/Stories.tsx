@@ -11,8 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -61,11 +60,33 @@ const App = () => {
 export default App;
 `;
 
+  const imgpicZoomCode = `import { ImagePicture } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
+
+  return (
+    <ImagePicture src={path} zoom={false} />
+  )
+};
+
+export default App;
+`;
+
+  const imgpicEmptyCode = `import { ImagePicture } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <ImagePicture aspectRatio="ratio-4x3" radius="radius-4px" />
+);
+
+export default App;
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="ImagePicture"
-        description="ImagePicture обеспечивает гибкую отрисовку изображений с различными соотношениями сторон и радиусами границ. Поддерживает функцию зума при наведении."
+        description="ImagePicture отображает изображение с настройкой соотношения сторон, скругления и зума при наведении. Компонент также поддерживает состояние без изображения."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ImagePicture"
         figmaLink={FIGMA_LINK}
@@ -81,15 +102,15 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            height={400}
-            description="Базовый ImagePicture. Отображает изображение с заданными параметрами."
-            code={imgpicDefaultCode}
-          />
+          <Editor height={700} description="Базовое отображение изображения." code={imgpicDefaultCode} />
 
-          <Editor height={400} description="ImagePicture с различными соотношениями сторон." code={imgpicRatioCode} />
+          <Editor height={900} description="Сравнение соотношений сторон изображения." code={imgpicRatioCode} />
 
-          <Editor height={400} description="ImagePicture с радиусом границ." code={imgpicRadiusCode} />
+          <Editor height={700} description="Скругление углов через проп radius." code={imgpicRadiusCode} />
+
+          <Editor height={700} description="Отключение зума при наведении через zoom={false}." code={imgpicZoomCode} />
+
+          <Editor height={700} description="Состояние компонента без переданного src." code={imgpicEmptyCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

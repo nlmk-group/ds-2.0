@@ -21,7 +21,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Checkbox"
-        description="Компонент Checkbox является элементом пользовательского интерфейса, который позволяет пользователю взаимодействовать с формой, выбирая или снимая выбор с определённых опций. "
+        description="Checkbox используется для выбора одного или нескольких параметров в форме. Компонент поддерживает контролируемый режим, промежуточное состояние и цветовую индикацию."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Checkbox"
         figmaLink={FIGMA_LINK}
@@ -39,7 +39,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={150}
-            description="Компонент checkbox по умолчанию."
+            description="Базовый Checkbox в неконтролируемом режиме."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -48,7 +48,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Актуальные состояния компонента checkbox."
+            description="Цветовые варианты Checkbox."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -62,7 +62,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Checkbox с установленными флагами для параметров checked, disabled, multiple и с текстом label."
+            description="Сценарии checked, disabled и multiple с подписью label."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -76,7 +76,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Ниже представлен checkbox с параметром multiple, который меняет свое состояние в зависимости от количества выбранных дочерних элементов (работает только при наличии пропса checked)."
+            description="Промежуточное состояние parent-checkbox на основе дочерних элементов."
             code={`import { useState } from 'react';
 import { Checkbox } from '@nlmk/ds-2.0';
 
@@ -117,6 +117,21 @@ export default  App = () => {
               />
     </>
 )}`}
+          />
+          <Editor
+            description="Кастомизация через colored, className и style."
+            code={`import { Checkbox } from '@nlmk/ds-2.0';
+
+export default  App = () =>(
+  <>
+    <Checkbox label="С цветовой индикацией" checked colored />
+    <Checkbox
+      label="Кастомный стиль"
+      className="custom-checkbox"
+      style={{ marginTop: 8 }}
+    />
+  </>
+)`}
           />
           <Properties argsTypes={argsTypes} />
         </>

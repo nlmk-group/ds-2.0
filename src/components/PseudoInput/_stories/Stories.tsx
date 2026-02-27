@@ -34,7 +34,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="PseudoInput - элемент, который позволяет отображать информацию."
+        description="PseudoInput отображает данные в формате, визуально похожем на input, без режима редактирования. Компонент поддерживает размеры, цвет лейбла, суффикс, бейдж и адаптацию ширины."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
@@ -51,7 +51,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={200}
-            description="PseudoInput по умолчанию. Компонент предназначен только для чтения пропсов и вывода их на экран"
+            description="Базовое отображение значения в режиме только чтения."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -62,7 +62,7 @@ export default App = () => (
               `}
           />
           <Editor
-            description="PseudoInput разных размеров. Компонент может быть отображен с увеличенным шрифтом: дефолтное значение - s (14px размер лейбла и 16px размер внутреннего текста) и большой - m (16px и 20px). Нужный параметр необходимо передать в проп size."
+            description="Сравнение доступных размеров компонента."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -95,6 +95,41 @@ export default App = () => (
     PseudoInput
   </PseudoInput>
   </>
+)
+              `}
+          />
+          <Editor
+            description="Добавление суффикса справа от значения."
+            code={`import { PseudoInput } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <PseudoInput label="Сумма" suffix="₽">
+    125 000
+  </PseudoInput>
+)
+              `}
+          />
+          <Editor
+            description="Отображение бейджа рядом со значением."
+            code={`import { PseudoInput } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <PseudoInput label="Статус" badgeChildren="NEW" color="error">
+    Новый документ
+  </PseudoInput>
+)
+              `}
+          />
+          <Editor
+            description="Растяжение компонента на всю доступную ширину через fullWidth."
+            code={`import { PseudoInput } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ width: '420px' }}>
+    <PseudoInput label="Комментарий" fullWidth>
+      Значение псевдо-поля на всю ширину контейнера
+    </PseudoInput>
+  </div>
 )
               `}
           />

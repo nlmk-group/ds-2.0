@@ -58,9 +58,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
   const [editorCode, setEditorCode] = useState(code);
 
-  const codeRef = useRef<HTMLDivElement | null>(null);
-  const previewRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     setEditorCode(code);
   }, [code]);
@@ -83,22 +80,6 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
 
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (!previewRef.current) return;
-
-    // Приравниваем высоту первого блока высоте блока-preview
-    const syncHeight = () => {
-      if (!codeRef.current) return;
-      codeRef.current.style.height = previewRef.current?.offsetHeight + 'px';
-    };
-
-    const observer = new ResizeObserver(syncHeight);
-
-    observer.observe(previewRef.current);
-
-    return () => observer.disconnect();
-  }, [previewRef.current]);
 
   // Трансформация кода перед передачей в sucrase (react-live).
   // Проблема: примеры написаны как ES-модули (import/export), но sucrase с трансформом "imports"
@@ -147,7 +128,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
     <div className={styles.wrapper} style={{ marginTop: '20px', background: 'transparent', padding: 0 }}>
       {description && (
         <div className={styles.description}>
-          <Typography>{description}</Typography>
+          <Typography variant="Subheading3-Medium">{description}</Typography>
         </div>
       )}
 
@@ -167,13 +148,15 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
             </Button>
           </div>
 
-          <div className={styles['content-area']} style={{ minHeight: height ? `${height}px` : 'auto' }}>
+          <div className={styles['content-area']}>
             <div
               className={styles['editor-pane']}
               style={{
-                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa'
+                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
+                minHeight: `${height}px`,
+                height: `${height}px`,
+                maxHeight: `${height}px`
               }}
-              ref={codeRef}
             >
               <div
                 className={styles['line-numbers']}
@@ -208,9 +191,10 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                 theme === Themes.DARK && 'dark-theme-wrapper'
               )}
               style={{
-                backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)'
+                backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)',
+                minHeight: `${height}px`,
+                height: `${height}px`
               }}
-              ref={previewRef}
             >
               {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
 

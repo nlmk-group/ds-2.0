@@ -21,7 +21,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Badge"
-        description="Компонент Badge используется для отображения меток (badges), таких как лейблы, тэги, статусы и т.д. Обычно Badge используют внутри или в непосредственной близости от другого более крупного компонента интерфейса."
+        description="Badge отображает короткую статусную метку рядом с элементом интерфейса. Компонент поддерживает цвет, размер и вариант отображения."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Badge"
         figmaLink={FIGMA_LINK}
@@ -39,7 +39,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={150}
-            description="Компонент бэйджа по умолчанию."
+            description="Базовый Badge со значениями по умолчанию."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -48,7 +48,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Badge является компоненетом с обязательно примененными стилем: цветом (color). Доступные стили: primary (отображается по умолчанию), secondary, grey, error, warning, success."
+            description="Цветовые варианты Badge: brand, grey, error, warning и success."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -63,7 +63,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Badge представлен в нескольких вариациях (стилях): solid (с заливкой) и outline (с контуром)."
+            description="Варианты отображения Badge: solid и outline."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -78,7 +78,7 @@ export default  App = () =>(
           />
 
           <Editor
-            description="Компонент Badge доступен в трёх размерах: s - маленький бэйдж с высотой 16px, m - средний бэйдж, его высота 24px и l - большой бэйдж высотой 26px."
+            description="Размеры Badge"
             code={`import { Badge } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
@@ -88,6 +88,19 @@ export default  App = () =>(
     <Badge size="s">1</Badge>
     <Badge size="xs">1</Badge>
   </>
+)`}
+          />
+          <Editor
+            description="Кастомизация Badge через className и style."
+            code={`import { Badge } from '@nlmk/ds-2.0';
+
+export default  App = () =>(
+  <Badge
+    className="custom-badge"
+    style={{ marginRight: 8 }}
+  >
+    New
+  </Badge>
 )`}
           />
           <Properties argsTypes={argsTypes} />

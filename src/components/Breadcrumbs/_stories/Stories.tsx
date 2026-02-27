@@ -27,7 +27,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Breadcrumbs"
-        description="Компонент BreadCrumbs (хлебные крошки) используется в пользовательском интерфейсе для предоставления визуальной навигационной структуры, позволяющей пользователям быстро и эффективно понимать своё местоположение в иерархии контента или приложения. BreadCrumbs представляют собой последовательность ссылок или текста, а каждый элемент в ней указывает на уровень иерархии, переходя от более общего к более специфическому контенту."
+        description="Breadcrumbs отображает путь пользователя в иерархии интерфейса и упрощает навигацию между уровнями. Компонент поддерживает адаптацию цепочки к доступной ширине контейнера."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Breadcrumbs"
         figmaLink={FIGMA_LINK}
@@ -44,7 +44,7 @@ const Stories = (): JSX.Element => {
       {activeTab === 0 && (
         <>
           <Editor
-            description="Обычное использование компонента."
+            description="Базовая цепочка навигации с компонентом Breadcrumbs.Crumb."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 import { Link, MemoryRouter } from 'react-router-dom';
 
@@ -66,7 +66,7 @@ export default App = () => (
           />
 
           <Editor
-            description="Компонент может содержать ссылки с разными target."
+            description="Использование ссылок с разными значениями target."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -80,6 +80,32 @@ export default App = () => (
           )
           .join('')}
   </Breadcrumbs>
+);`}
+          />
+          <Editor
+            description="Управление шириной контейнера через проп width."
+            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Breadcrumbs width="640px">
+      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Лист горячекатаный</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Карточка товара</a></Breadcrumbs.Crumb>
+    </Breadcrumbs>
+
+    <div style={{ marginTop: 12 }} />
+
+    <Breadcrumbs width="320px">
+      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Лист горячекатаный</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Карточка товара</a></Breadcrumbs.Crumb>
+    </Breadcrumbs>
+  </>
 );`}
           />
 

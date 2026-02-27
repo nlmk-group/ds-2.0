@@ -17,11 +17,69 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const radioDefaultCode = `import { useState } from 'react';
+import { Radio } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [checked, setChecked] = useState('yes');
+
+  const handleChange = event => {
+    setChecked(event.target.value);
+  };
+
+  return (
+    <>
+      <Radio checked={checked === 'yes'} onChange={handleChange} value="yes" label="Да" />
+      <Radio checked={checked === 'no'} onChange={handleChange} value="no" label="Нет" />
+    </>
+  );
+}
+`;
+
+  const radioColorCode = `import { useState } from 'react';
+import { Radio } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [checked, setChecked] = useState('brand');
+
+  const handleChange = event => {
+    setChecked(event.target.value);
+  };
+
+  return (
+    <div style={{ display: 'grid', gap: '12px' }}>
+      <Radio checked={checked === 'brand'} onChange={handleChange} value="brand" label="Основной" color="brand" />
+      <Radio checked={checked === 'error'} onChange={handleChange} value="error" label="Ошибка" color="error" />
+      <Radio checked={checked === 'success'} onChange={handleChange} value="success" label="Успех" color="success" />
+    </div>
+  );
+}
+`;
+
+  const radioDisabledCode = `import { useState } from 'react';
+import { Radio } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [checked, setChecked] = useState('enabled');
+
+  const handleChange = event => {
+    setChecked(event.target.value);
+  };
+
+  return (
+    <div style={{ display: 'grid', gap: '12px' }}>
+      <Radio checked={checked === 'enabled'} onChange={handleChange} value="enabled" label="Доступный вариант" />
+      <Radio checked={checked === 'disabled'} onChange={handleChange} value="disabled" label="Недоступный вариант" disabled />
+    </div>
+  );
+}
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Radio"
-        description="Компонент Radio обычно используется для выбора одного из нескольких взаимоисключающих вариантов в рамках определённой группы."
+        description="Radio используется для выбора одного значения из взаимоисключающих вариантов. Компонент поддерживает подпись, цветовые состояния и режим disabled."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Radio"
         figmaLink={FIGMA_LINK}
@@ -38,44 +96,17 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            description="Компонент radio по умолчанию."
-            code={`import { useState } from 'react';
-import { Radio } from '@nlmk/ds-2.0';
-
-export default  App = () => {
-  const [checked, setChecked] = useState('yes');
-  const handleChange = (event) => {
-    setChecked(event.target.value);
-  };
-  return (
-    <>
-      <Radio
-        checked={checked === 'yes'}
-        onChange={handleChange}
-        value="yes"
-        label="Yes"
-      />
-      <Radio
-        checked={checked === 'no'}
-        onChange={handleChange}
-        value="no"
-        label="No"
-      />
-    </>
-  )
-}`}
+            description="Базовый выбор одного значения в группе."
+            code={radioDefaultCode}
           />
 
           <Editor
-            description="Компонент может быть неактивным для пользователя (disabled)."
-            code={`import { Radio, Typography } from '@nlmk/ds-2.0';
-
-export default  App = () =>(
-  <>
-    <Radio disabled />
-    <Typography variant="Body1-Bold" color="var(--steel-90)" style={{ opacity: '0.5' }}>Я Радиокнопка</Typography>
-  </>
-)`}
+            description="Цветовые состояния radio-кнопки через prop color."
+            code={radioColorCode}
+          />
+          <Editor
+            description="Недоступный вариант в группе через disabled."
+            code={radioDisabledCode}
           />
 
           <Properties argsTypes={argsTypes} />

@@ -50,7 +50,6 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={180}
             description="Типография по умолчанию (Body1)"
             code={`import { Typography } from '@nlmk/ds-2.0';
 
@@ -63,7 +62,7 @@ const App = () => (
 export default App;`}
           />
           <Editor
-            height={850}
+            height={1700}
             description="Все варианты типографии, сгруппированные по категориям. Варианты различаются размером (font-size), межстрочным интервалом (line-height) и насыщенностью шрифта (font-weight)."
             code={`import { Box, Card, Typography } from '@nlmk/ds-2.0';
 

@@ -17,13 +17,23 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const spinnerPercentCode = `import { Spinner } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <Spinner size="xl" percent={42} />
+    <Spinner size="xl" percent={88} progressPercentage={0.88} />
+  </div>
+)
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Spinner"
-        description="Spinner — это компонент который используется в качестве индикатора загрузки."
+        description="Spinner используется как индикатор загрузки и поддерживает размеры, цвета, процент выполнения и кастомную иконку внутри."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/InputRange"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Spinner"
         figmaLink={FIGMA_LINK}
       />
 
@@ -39,7 +49,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={200}
-            description="Spinner состояние по умолчанию"
+            description="Базовое состояние индикатора загрузки."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -52,7 +62,7 @@ export default  App = () => (
 
           <Editor
             height={250}
-            description="Spinner размера medium и large"
+            description="Сравнение размеров спиннера."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -67,7 +77,7 @@ export default  App = () => (
 
           <Editor
             height={200}
-            description="Spinner с разными цветами"
+            description="Кастомизация цветов через color и bgColor."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -77,9 +87,14 @@ export default  App = () => (
 )
 `}
           />
+          <Editor
+            height={240}
+            description="Отображение процента загрузки в центре спиннера."
+            code={spinnerPercentCode}
+          />
 
           <Editor
-            description="Spinner где Icon, как children (JSX.Element)"
+            description="Использование иконки как children спиннера."
             code={`import { Spinner, IconAutoRenewReloadOutlined24 } from '@nlmk/ds-2.0';
 
 export default  App = () => (

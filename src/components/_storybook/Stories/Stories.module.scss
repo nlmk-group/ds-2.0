@@ -28,7 +28,7 @@
   zoom: 1.3;
   margin-bottom: 20px;
 
-  >div {
+  > div {
     width: auto;
   }
 }
@@ -102,7 +102,7 @@
   }
 
   .chip {
-    >div {
+    > div {
       align-items: center;
       display: flex;
       justify-content: center;
@@ -116,20 +116,20 @@
   }
 }
 
-$sandpack-gray: #A7B0C0;
-$sandpack-white: #C8CFDC;
-$sandpack-black: #21252B;
+$sandpack-gray: #a7b0c0;
+$sandpack-white: #c8cfdc;
+$sandpack-black: #21252b;
 
-@mixin border-radius($radius, $side: 'all') {
-  @if $side =='left' {
+@mixin border-radius($radius, $side: "all") {
+  @if $side == "left" {
     border-radius: $radius 0 0 $radius;
   }
 
-  @if $side =='right' {
+  @if $side == "right" {
     border-radius: 0 $radius $radius 0;
   }
 
-  @if $side =='all' {
+  @if $side == "all" {
     border-radius: $radius;
   }
 }
@@ -150,11 +150,11 @@ $sandpack-black: #21252B;
   @include border-radius(var(--circle-radius));
 
   div:first-child {
-    @include border-radius(var(--circle-radius), 'left');
+    @include border-radius(var(--circle-radius), "left");
   }
 
   div:last-child {
-    @include border-radius(var(--circle-radius), 'right');
+    @include border-radius(var(--circle-radius), "right");
   }
 }
 

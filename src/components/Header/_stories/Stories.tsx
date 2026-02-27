@@ -32,7 +32,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Header - это компонент, который отображает настраиваемый верхний колонтитул (шапку) веб-страницы или приложения."
+        description="Header отображает заголовок страницы и набор управляющих действий. Компонент поддерживает навигацию назад, сервисные кнопки, дату, уведомления, хлебные крошки и пользовательский контент."
         isBeta
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             height={180}
-            description="Header по умолчанию"
+            description="Базовый заголовок страницы."
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -59,7 +59,7 @@ export default App = () => (
           />
           <Editor
             height={200}
-            description="Header с кнопкой возвращения слева"
+            description="Возврат к предыдущему экрану через showBack и onBackClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -72,7 +72,7 @@ export default App = () => (
           />
           <Editor
             height={180}
-            description="Header с датой и временем"
+            description="Отображение текущей даты и времени через showDate."
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -81,7 +81,7 @@ export default App = () => (
           />
           <Editor
             height={180}
-            description="Header с кнопкой добавления в избранное"
+            description="Кнопка избранного с обработчиком onFavoriteClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -94,7 +94,7 @@ export default App = () => (
           />
           <Editor
             height={180}
-            description="Header с кнопкой уведомления"
+            description="Кнопка уведомлений с количеством непрочитанных элементов."
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -107,28 +107,32 @@ export default App = () => (
 )`}
           />
           <Editor
-            description="Header с хлебными крошками"
-            code={`import { Header, Breadcrumbs } from '@nlmk/ds-2.0';
+            description="Интеграция с Breadcrumbs через проп breadcrumbs."
+            code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
+
+const crumbs = [
+  { href: '/main', label: 'Главная' },
+  { href: '/catalog', label: 'Каталог' },
+  { href: '/catalog/sheet', label: 'Лист горячекатаный' }
+];
 
 export default App = () => (
   <Header 
     title='Header с хлебными крошками' 
     breadcrumbs={
-      <Breadcrumbs 
-        crumbs={[
-          { href: 'https://developer.mozilla.org/en-US/', label: 'MDN' },
-          { href: 'https://www.lipsum.com/', label: 'Lorem Ipsum' },
-          { href: 'https://www.w3schools.com/', label: 'W3 Schools' },
-          { href: 'https://css-tricks.com/', label: 'CSS Tricks' },
-          { href: 'https://www.geeksforgeeks.org/', label: 'Geeks For Geeks', active: true }
-        ]} 
-      />
+      <Breadcrumbs>
+        {crumbs.map(item => (
+          <Breadcrumbs.Crumb key={item.href}>
+            <Link to={item.href}>{item.label}</Link>
+          </Breadcrumbs.Crumb>
+        ))}
+      </Breadcrumbs>
     } 
   />
 )`}
           />
           <Editor
-            description="Header с дочерней кнопкой и хлебными крошками"
+            description="Пользовательское действие в children рядом с заголовком."
             code={`import { Header, Button, IconSettingsAltOutlined24 } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -146,7 +150,24 @@ export default App = () => (
 )`}
           />
           <Editor
-            description="Header со всеми свойствами"
+            height={220}
+            description="Сервисные действия в шапке: печать, видео и сообщения."
+            code={`import { Header } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Header
+    title="Панель действий"
+    showPrint
+    showVideo
+    showMessage
+    onPrintClick={() => console.log('Print clicked')}
+    onVideoClick={() => console.log('Video clicked')}
+    onMessageClick={() => console.log('Message clicked')}
+  />
+)`}
+          />
+          <Editor
+            description="Комплексная конфигурация Header со всеми основными возможностями."
             code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
 
 export default App = () => {

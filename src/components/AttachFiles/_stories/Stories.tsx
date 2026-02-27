@@ -13,11 +13,10 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import argsTypes from './argsTypes';
 
 const FILE_NAME = 'Название файла.pdf';
-const FILES_DEFAULT = 'File по умолчанию';
-const FILES_DESCRIPTION = 'File с описанием';
-const FILES_WITH_TITLE = 'AttachFiles с заголовком';
-const FILES_ADD_FILE_BUTTON = 'AttachFiles с кнопкой добавления файла';
-const FILES_WITH_CHECKBOXES = 'AttachFiles с чекбоксами';
+const FILES_DEFAULT = 'Файл по умолчанию';
+const FILES_DESCRIPTION = 'Файл с дополнительным описанием';
+const FILES_WITH_TITLE = 'Группа вложений';
+const FILES_WITH_CHECKBOXES = 'Выбор файлов';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319&t=HhCDuaOuzHu5rgyf-1';
 
@@ -28,10 +27,9 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="AttachFiles"
-        description="Компонент, используемый для прикрепления файла. Компонент AttachFiles
-          собирается из необходимого количества компонентов File."
+        description="AttachFiles отображает группу прикреплённых файлов в едином контейнере. Компонент поддерживает заголовок секции и используется совместно с элементами File."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/master/tree/src/components/AttachFiles"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/AttachFiles"
         figmaLink={FIGMA_LINK}
       />
 
@@ -46,7 +44,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            description="Компонент файла, представляет собой иконку с названием файла."
+            description="Базовый элемент File с названием файла."
             code={`import { File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -58,7 +56,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Компонент файл может содержать дополнительное описание. Дополнительное описание передается при помощи параметра description."
+            description="File с дополнительным описанием через свойство description."
             code={`import { File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -73,7 +71,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="В компоненте файла слева может быть использована иконка файла (по умолчанию), чекбокс (свойство: checked), иконка IconTick24 (свойство: tick) или же не быть ничего."
+            description="Варианты левого индикатора: по умолчанию, checked, tick и empty."
             code={`import { File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -88,7 +86,8 @@ export default  App = () => (
           />
 
           <Editor
-            description="В компоненте файла справа находится блок управления: до трех кнопок (удалить, загрузить, комментировать) или одна кнопка добавления файла. Добавление кнопок осуществляется при помощи свойств: removed - кнопка удаления, saved - кнопка загрузки, commented - комментировать, addFile - добавить файлы. Для каждой кнопки существует соответствующий ей обработчик события onClick: removedOnClick, savedOnClick, commentedOnClick, addFileOnClick."
+            height={500}
+            description="Варианты управляющих действий: removed, saved, commented и addFile."
             code={`import { File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -136,7 +135,7 @@ export default  App = () => (
           />
 
           <Editor
-            description="Компонент AttachFiles может быть без заголовка: несколько файлов, объединенных в один контейнер."
+            description="AttachFiles без заголовка для отображения списка вложений."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -159,7 +158,8 @@ export default  App = () => (
           />
 
           <Editor
-            description="Компонент AttachFiles может быть с заголовком. Для передачи заголовка используется свойство - title. В качестве заголовка используется компонент File в любой из возможных вариаций."
+            height={500}
+            description="AttachFiles с заголовком через свойство title."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -176,7 +176,8 @@ export default  App = () => (
           />
 
           <Editor
-            description={FILES_ADD_FILE_BUTTON}
+            height={500}
+            description="AttachFiles с кнопкой добавления файла в заголовке."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -193,7 +194,8 @@ export default  App = () => (
           />
 
           <Editor
-            description={FILES_WITH_CHECKBOXES}
+            height={400}
+            description="AttachFiles с групповым выбором: checked и indeterminate."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
 export default  App = () => (

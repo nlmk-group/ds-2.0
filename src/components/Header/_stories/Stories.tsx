@@ -149,34 +149,42 @@ export default App = () => (
             description="Header со всеми свойствами"
             code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <Header
-    title="Заголовок"
-    showDate
-    showPrint
-    showFavorite
-    showBack
-    showVideo
-    showMessage
-    showNotification
-    onPrintClick={() => console.log('Print clicked')}
-    onVideoClick={() => console.log('Video clicked')}
-    onMessageClick={() => console.log('Message clicked')}
-    onFavoriteClick={() => console.log('Favorite clicked')}
-    onBackClick={() => console.log('Back clicked')}
-    onNotificationClick={() => console.log('Notification clicked')}
-    notificationAmount={9}
-    breadcrumbs={
-      <Breadcrumbs>
-        {breadcrumbsLinks.map((link, index) => (
-          <Breadcrumbs.Crumb key={index}>
-            <Link to={link.href}>{link.label}</Link>
-          </Breadcrumbs.Crumb>
-        ))}
-      </Breadcrumbs>
-    }
-  />
-)`}
+export default App = () => {
+  const breadcrumbsLinks = [
+    { href: '/main', label: 'Главная' },
+    { href: '/settings', label: 'Настройки' },
+    { href: '/header', label: 'Header' }
+  ];
+
+  return (
+    <Header
+      title="Заголовок"
+      showDate
+      showPrint
+      showFavorite
+      showBack
+      showVideo
+      showMessage
+      showNotification
+      onPrintClick={() => console.log('Print clicked')}
+      onVideoClick={() => console.log('Video clicked')}
+      onMessageClick={() => console.log('Message clicked')}
+      onFavoriteClick={() => console.log('Favorite clicked')}
+      onBackClick={() => console.log('Back clicked')}
+      onNotificationClick={() => console.log('Notification clicked')}
+      notificationAmount={9}
+      breadcrumbs={
+        <Breadcrumbs>
+          {breadcrumbsLinks.map((link, index) => (
+            <Breadcrumbs.Crumb key={index}>
+              <Link to={link.href}>{link.label}</Link>
+            </Breadcrumbs.Crumb>
+          ))}
+        </Breadcrumbs>
+      }
+    />
+  );
+}`}
           />
           <Properties argsTypes={argsTypes} />
         </>

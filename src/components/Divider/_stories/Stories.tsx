@@ -12,7 +12,13 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const style = '{{ width: 900, padding: 30 }}';
+const style = `{{
+  width: 900,
+  padding: 30,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '12px'
+}}`;
 
 const styleVariations = `{{
     padding: '30px',

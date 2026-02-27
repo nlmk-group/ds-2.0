@@ -22,7 +22,7 @@ const Stories = (): JSX.Element => {
       <Header
         title="DragAndDrop"
         description="Компонент DragAndDrop представляет собой компонент ..."
-        isBeta
+        isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/DragAndDrop"
         figmaLink={FIGMA_LINK}
       />
@@ -47,6 +47,65 @@ export default  App = () => (
     onUpload={() => {}}
     percentUpload={0}
   />
+)`}
+          />
+
+          <Editor
+            height={340}
+            description="Статусы компонента: default, info, error."
+            code={`import { DragAndDrop } from '@nlmk/ds-2.0'
+
+export default  App = () => (
+  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+    <DragAndDrop onUpload={() => {}} statusColor="default" />
+    <DragAndDrop onUpload={() => {}} statusColor="info" />
+    <DragAndDrop onUpload={() => {}} statusColor="error" />
+  </div>
+)`}
+          />
+
+          <Editor
+            height={340}
+            description="Размеры и типы загружаемых файлов."
+            code={`import { DragAndDrop } from '@nlmk/ds-2.0'
+
+export default  App = () => (
+  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+    <DragAndDrop onUpload={() => {}} size="l" fileType="image" />
+    <DragAndDrop onUpload={() => {}} size="m" fileType="file" />
+    <DragAndDrop onUpload={() => {}} size="m" fileType="video" />
+  </div>
+)`}
+          />
+
+          <Editor
+            height={320}
+            description="Состояние загрузки и возможность отмены загрузки."
+            code={`import { DragAndDrop } from '@nlmk/ds-2.0'
+
+export default  App = () => (
+  <DragAndDrop
+    onUpload={() => {}}
+    loading
+    percentUpload={67}
+    statusColor="info"
+    title="Загрузка файла..."
+    description="report.pdf, 5.4 MB"
+    cancelUpload={() => {}}
+  />
+)`}
+          />
+
+          <Editor
+            height={260}
+            description="Компактные режимы отображения: smallText и smallIcon."
+            code={`import { DragAndDrop } from '@nlmk/ds-2.0'
+
+export default  App = () => (
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <DragAndDrop onUpload={() => {}} smallText title="Быстрая загрузка" />
+    <DragAndDrop onUpload={() => {}} smallIcon statusColor="info" />
+  </div>
 )`}
           />
 

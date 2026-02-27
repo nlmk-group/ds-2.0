@@ -20,7 +20,7 @@ const ImagePictureStories = (): JSX.Element => {
   const imgpicDefaultCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://images.unsplash.com/photo-1683343946402-85b144e8ecb6?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
 
   return (
     <ImagePicture src={path} alt="Описание изображения" />
@@ -33,7 +33,7 @@ export default App;
   const imgpicRatioCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://images.unsplash.com/photo-1683343946402-85b144e8ecb6?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
 
   return (
     <>
@@ -49,11 +49,11 @@ export default App;
   const imgpicRadiusCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://images.unsplash.com/photo-1683343946402-85b144e8ecb6?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
 
   return (
     <>
-      <ImagePicture src={path} radius='radius-small' />
+      <ImagePicture src={path} radius='radius-8px' />
     </>
   )
 };

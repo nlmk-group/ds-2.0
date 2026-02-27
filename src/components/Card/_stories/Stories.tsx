@@ -13,7 +13,6 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import argsTypes from './argsTypes';
 import { CARD_ORIENTATION, DEFAULT_CARD } from './text';
 
-
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-46302&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
@@ -45,13 +44,13 @@ const Stories = (): JSX.Element => {
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <>
+  <> 
     <div style={{
-      backgroundColor: 'var(--unique-background)',
+      backgroundColor: 'var(--steel-10)',
       width: 'fit-content',
       padding: '20px'
   }}>
-    <Card>
+    <Card indicatorStatus="info">
       <div
         style={{
           height: '200px',
@@ -101,13 +100,13 @@ export default  App = () => (
 
 export default  App = () => (
   <div style={{
-    backgroundColor: 'var(--unique-background)',
+    backgroundColor: 'var(--steel-10)',
     width: 'fit-content',
     padding: '20px',
     display: 'flex',
     gap: '20px'
   }}>
-    <Card>
+    <Card indicatorStatus="info">
     <div
         style={{
           height: '200px',
@@ -145,7 +144,7 @@ export default  App = () => (
       </div>
     </Card>
 
-    <Card orientation="horizontal">
+    <Card orientation="horizontal" indicatorStatus="info">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px'}}>
         <Typography variant='Heading3'>
           Заголовок
@@ -182,9 +181,7 @@ export default  App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="Card" />}
     </div>
   );

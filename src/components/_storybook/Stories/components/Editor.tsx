@@ -37,6 +37,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
   // перекрывали одноимённые компоненты из react-router-dom.
   // exports: {} — полифил для sucrase: он генерирует Object.defineProperty(exports, "__esModule", ...)
   // но в контексте new Function переменная exports не определена без явной передачи.
+
   const scope = useMemo(
     () => ({
       ...ReactRouterDom,

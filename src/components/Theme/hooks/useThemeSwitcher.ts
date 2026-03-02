@@ -27,14 +27,20 @@ export const useThemeSwitcher = (customTheme?: Themes) => {
   }, [customTheme]);
 
   useEffect(() => {
-    // Удаляем все элементы стилей тёмной темы (в т.ч. дубликаты от двойного маунта в React Strict Mode)
-    document.querySelectorAll('#dark').forEach((el) => el.remove());
+    const addStyle = (styles: string) => {
+      const styleSheet = document.createElement(tagName);
+      styleSheet.id = theme;
+      styleSheet.innerText = styles.replace(/\n/g, '');
+      document.head.appendChild(styleSheet);
+    };
 
     if (theme === 'dark') {
-      const styleSheet = document.createElement(tagName);
-      styleSheet.id = 'dark';
-      styleSheet.innerText = darkThemeStyles.replace(/\n/g, '');
-      document.head.appendChild(styleSheet);
+      addStyle(darkThemeStyles);
+    } else {
+      const styleElement = document.getElementById('dark');
+      if (styleElement) {
+        styleElement.remove();
+      }
     }
   }, [theme]);
 

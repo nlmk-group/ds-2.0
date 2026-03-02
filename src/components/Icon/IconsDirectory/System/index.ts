@@ -370,6 +370,7 @@ export { IconEyeOutlined16, IconEyeOutlined24, IconEyeOutlined32 } from './EyeOu
 export { IconEyeglassesFill16, IconEyeglassesFill24, IconEyeglassesFill32 } from './EyeglassesFill';
 export { IconEyeglassesOutlined16, IconEyeglassesOutlined24, IconEyeglassesOutlined32 } from './EyeglassesOutlined';
 export { IconFileDOCX16, IconFileDOCX24, IconFileDOCX32 } from './FileDOCX';
+export { IconFileHTML16, IconFileHTML24, IconFileHTML32 } from './FileHTML';
 export { IconFileNoType16, IconFileNoType24, IconFileNoType32 } from './FileNoType';
 export { IconFilePDF16, IconFilePDF24, IconFilePDF32 } from './FilePDF';
 export { IconFilePPT16, IconFilePPT24, IconFilePPT32 } from './FilePPT';

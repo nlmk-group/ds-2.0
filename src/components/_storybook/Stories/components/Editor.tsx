@@ -29,7 +29,12 @@ import { openCodeSandbox } from './sandboxUtils';
 
 const MemoizedLivePreview = memo(LivePreview);
 
-const Editor: FC<{ code: string; description?: string; height?: number }> = ({ code, description, height = 280 }) => {
+const Editor: FC<{
+  code: string;
+  description?: string;
+  height?: number;
+  previewPaneWidth?: string;
+}> = ({ code, description, height = 280, previewPaneWidth = '50%' }) => {
   // Переменные доступные в live-редакторе при выполнении кода примеров.
   // react-live компилирует код через sucrase (CJS-трансформ) и выполняет через new Function(...scopeKeys, code),
   // поэтому всё что нужно в примерах — должно быть здесь.
@@ -175,7 +180,7 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
                   onChange={setEditorCode}
                   className={styles['code-editor']}
                   style={{
-                    fontSize: 14,
+                    fontSize: 18,
                     lineHeight: 1.5,
                     minHeight: '100%',
                     backgroundColor: 'transparent',
@@ -194,7 +199,8 @@ const Editor: FC<{ code: string; description?: string; height?: number }> = ({ c
               style={{
                 backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)',
                 minHeight: `${height}px`,
-                height: `${height}px`
+                height: `${height}px`,
+                width: previewPaneWidth
               }}
             >
               {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}

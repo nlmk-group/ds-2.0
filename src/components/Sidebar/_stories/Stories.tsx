@@ -32,8 +32,7 @@ const App = () => {
   return (
     <div style={{
       backgroundColor: "var(--unique-background)",
-      width: "110%",
-      margin: "-20px"
+      width: "100%", margin: "-20px"
     }}>
      <Sidebar
       key="vertical"
@@ -130,7 +129,7 @@ const App = () => {
   const [currentPath, setCurrentPath] = useState('dashboard');
 
   return (
-    <div style={{ backgroundColor: 'var(--unique-background)', width: '110%', margin: '-20px' }}>
+    <div style={{ backgroundColor: 'var(--unique-background)', width: '100%', margin: '-20px' }}>
       <Sidebar
         orientation="vertical"
         variant="burger"
@@ -183,12 +182,12 @@ const SidebarStories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={1300}
+            height={920}
             description="Базовый пример боковой навигации с вложенными разделами."
             code={sidebarDefault}
           />
           <Editor
-            height={1300}
+            height={920}
             description="Режим burger с overlay и управлением видимостью пользовательского блока."
             code={sidebarBurgerVariant}
           />

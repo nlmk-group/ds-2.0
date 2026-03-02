@@ -15,11 +15,12 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
+  const imagePath = '/img/image_career.jpg';
 
   const imgpicDefaultCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
+  const path = '${imagePath}';
 
   return (
     <ImagePicture src={path} alt="Описание изображения" />
@@ -32,7 +33,7 @@ export default App;
   const imgpicRatioCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
+  const path = '${imagePath}';
 
   return (
     <>
@@ -48,7 +49,7 @@ export default App;
   const imgpicRadiusCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
+  const path = '${imagePath}';
 
   return (
     <>
@@ -63,7 +64,7 @@ export default App;
   const imgpicZoomCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 
 const App = () => {
-  const path = 'https://img.freepik.com/free-photo/mountains-lake_1398-1153.jpg';
+  const path = '${imagePath}';
 
   return (
     <ImagePicture src={path} zoom={false} />

@@ -13,7 +13,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import argsTypes from './argsTypes';
 
 const style = `{{
-  width: 900,
+  width: '100%',
   padding: 30,
   display: 'flex',
   flexDirection: 'column',
@@ -21,6 +21,7 @@ const style = `{{
 }}`;
 
 const styleVariations = `{{
+    width: '100%',
     padding: '30px',
     display: 'flex',
     flexDirection: 'column',
@@ -148,7 +149,10 @@ export default  App = () => (
   <div style=${style}>
     <div
       style={{
-        display: 'flex'
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}
     >
       <span style={{color: "var(--steel-90)"}}>
@@ -181,7 +185,10 @@ export default  App = () =>(
     <Divider dashed />
     <div
       style={{
-        display: 'flex'
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}
     >
       <span style={{color: "var(--steel-90)"}}>
@@ -206,7 +213,10 @@ export default  App = () =>(
     </Divider>
     <div
       style={{
-        display: 'flex'
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}
     >
       <div

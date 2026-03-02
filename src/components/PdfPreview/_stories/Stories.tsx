@@ -67,16 +67,40 @@ export default App;
           <Editor
             height={1200}
             description="Интерактивный пример загрузки и предпросмотра PDF-файла."
-            code={`import { useState, useRef } from "react";
+            code={`import { useEffect, useState, useRef } from "react";
 import { PdfPreview, AttachFiles, File } from "@nlmk/ds-2.0";
 
 const App = () => {
   const [pdfData, setPdfData] = useState(null);
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState("pdf-test.pdf");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    const preloadPdf = async () => {
+      setLoading(true);
+
+      try {
+        const response = await fetch("/docs/pdf-test.pdf");
+        if (!response.ok) throw new Error("Не удалось загрузить demo PDF");
+
+        const blob = await response.blob();
+        setPdfData(blob);
+        setFileName("pdf-test.pdf");
+        setError("");
+      } catch {
+        setPdfData(null);
+        setFileName("");
+        setError("Ошибка при загрузке demo PDF");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    preloadPdf();
+  }, []);
 
   const handleAddFileClick = () => {
     inputRef.current?.click();

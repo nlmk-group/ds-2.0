@@ -262,7 +262,7 @@ input:autofill:focus {
   }
 
   &--with-icon {
-    max-width: calc(100% - 56px); // 32px + 24px
+    max-width: calc(100% - 56px); // 32px icon area + 24px right offset
   }
 }
 

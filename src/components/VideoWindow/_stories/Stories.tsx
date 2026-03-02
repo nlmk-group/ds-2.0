@@ -23,7 +23,7 @@ const App = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center', position: 'relative', minHeight: 300 }}>
       <Button type="button" onClick={() => setIsVideoOpen(true)}>
         Открыть видео
       </Button>
@@ -36,6 +36,7 @@ const App = () => {
           draggable
           resizable
           draggableStartPosition={{ x: 120, y: 120 }}
+          style={{ position: 'absolute', left: 0, top: 56 }}
           onClose={() => setIsVideoOpen(false)}
         />
       )}
@@ -51,9 +52,9 @@ const App = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center', position: 'relative', minHeight: 300 }}>
       <Button type="button" onClick={() => setIsVideoOpen(true)}>
-        Open video
+        Открыть видео
       </Button>
 
       {isVideoOpen && (
@@ -62,6 +63,7 @@ const App = () => {
           title="Demo video"
           locale="en"
           autoPlay={false}
+          style={{ position: 'absolute', left: 0, top: 56 }}
           onClose={() => setIsVideoOpen(false)}
         />
       )}
@@ -77,7 +79,7 @@ const App = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center', position: 'relative', minHeight: 300 }}>
       <Button type="button" onClick={() => setIsVideoOpen(true)}>
         Открыть с кастомным заголовком
       </Button>
@@ -95,6 +97,7 @@ const App = () => {
           }
           draggable
           draggableStartPosition={{ x: 80, y: 80 }}
+          style={{ position: 'absolute', left: 0, top: 56 }}
           onClose={() => setIsVideoOpen(false)}
         />
       )}

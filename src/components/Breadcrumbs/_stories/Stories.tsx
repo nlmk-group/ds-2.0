@@ -52,13 +52,13 @@ export default App = () => (
 <MemoryRouter>
   <Breadcrumbs>
     ${breadcrumbsLinks
-          .map(
-            link => `
+      .map(
+        link => `
     <Breadcrumbs.Crumb>
       <Link to="${link.href}">${link.label}</Link>
     </Breadcrumbs.Crumb>`
-          )
-          .join('')}
+      )
+      .join('')}
   </Breadcrumbs>
   </MemoryRouter>
 );
@@ -72,39 +72,35 @@ export default App = () => (
 export default App = () => (
   <Breadcrumbs>
     ${targetLinks
-          .map(
-            link => `
+      .map(
+        link => `
     <Breadcrumbs.Crumb>
       <a href="${link.href}" target="${link.target}">${link.label}</a>
     </Breadcrumbs.Crumb>`
-          )
-          .join('')}
+      )
+      .join('')}
   </Breadcrumbs>
 );`}
           />
           <Editor
-            description="Управление шириной контейнера через проп width."
+            description="Сравнение ширины цепочки с разными значениями width."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-    <Breadcrumbs width="640px">
+    <Breadcrumbs>
       <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Каталог</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>
       <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Лист горячекатаный</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Карточка товара</a></Breadcrumbs.Crumb>
+    </Breadcrumbs>
+    
+    <Breadcrumbs width="100px">
+      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
     </Breadcrumbs>
 
     <div style={{ marginTop: 12 }} />
-
-    <Breadcrumbs width="320px">
-      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Каталог</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Лист горячекатаный</a></Breadcrumbs.Crumb>
-      <Breadcrumbs.Crumb><a href="#">Карточка товара</a></Breadcrumbs.Crumb>
-    </Breadcrumbs>
   </>
 );`}
           />

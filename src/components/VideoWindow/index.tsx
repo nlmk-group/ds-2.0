@@ -73,7 +73,7 @@ const VideoWindow = ({
         [videoStyles.resizable]: !isFullscreen && resizable,
         [videoStyles.active]: !isFullscreen && isActive
       })}
-      style={{ ...(draggable ? draggableData?.draggableStyle : {}), ...style }}
+      style={{ ...style, ...((draggable && !isFullscreen) ? draggableData?.draggableStyle : {}) }}
       tabIndex={0}
       onClick={() => setIsActive(true)}
       onBlur={() => setIsActive(false)}

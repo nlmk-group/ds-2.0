@@ -20,8 +20,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Avatar';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529&t=HhCDuaOuzHu5rgyf-1';
 const AVATAR_MOCK_SRC = getAvatarImageSrc();
 
 const Stories = (): JSX.Element => {
@@ -35,7 +34,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description={`Компонент Avatar представляет собой пользовательский компонент, который отображает аватар пользователя. Этот аватар может быть изображением, инициалами пользователя, иконкой профиля, а также может включать индикаторы онлайн-статуса, числовой индикатор или иконку в виде значка (badge). Компонент также поддерживает различные размеры и формы для кастомизации внешнего вида аватара.`}
+        description="Avatar отображает профиль пользователя в виде изображения, инициалов или стандартной иконки. Компонент поддерживает размеры, индикатор статуса, числовой индикатор и бейдж."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -52,8 +51,8 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={220}
-            description="Дефолтный аватар"
+            minHeight={220}
+            description="Базовый Avatar с иконкой пользователя."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
 const App = () => (
@@ -65,7 +64,7 @@ export default App
               `}
           />
           <Editor
-            description="Аватары различных размеров"
+            description="Размеры Avatar"
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -80,7 +79,7 @@ export default App = () => (
               `}
           />
           <Editor
-            description="Типы аватаров: иконка, изображение, инициалы"
+            description="Варианты контента: иконка, изображение и инициалы."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -93,19 +92,19 @@ export default App = () => (
               `}
           />
           <Editor
-            description="Формы аватаров: круг, скругленный квадрат"
+            description="Fallback при ошибке загрузки imageSrc: переход к иконке."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <>
-    <Avatar />
-    <Avatar shape="square" />
+    <Avatar imageSrc="https://invalid-image-url.png" />
+    <Avatar imageSrc="https://invalid-image-url.png" userName="Антон" userSurname="Валуев" />
   </>
 )
               `}
           />
           <Editor
-            description="Индикаторы аватаров: онлайн, оффлайн, количество"
+            description="Индикаторы состояния: online/offline и numberIndicator."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -118,7 +117,7 @@ export default App = () => (
               `}
           />
           <Editor
-            description="Бейджи аватаров: иконка, специальный бейдж (День Рождения)"
+            description="Бейдж Avatar: стандартный и специальный через badgeSpecialIcon."
             code={`import { Avatar, IconDoneCheckFilled16, IconBirthday16 } from '@nlmk/ds-2.0';
 
 export default App = () => (

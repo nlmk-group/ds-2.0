@@ -83,11 +83,38 @@ export default  App = () => {
 };
 `;
 
+  const modalCloseBehaviorCode = `import { Button, Modal, Typography } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+export default App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button type="button" onClick={() => setIsOpen(true)}>
+        Открыть модальное окно
+      </Button>
+      <Modal
+        isOpen={isOpen}
+        disableBackdropClick
+        disablePageScroll
+        onEscapeDown={() => console.log('Escape pressed')}
+        onClose={() => setIsOpen(false)}
+      >
+        <Typography color="var(--steel-90)">
+          Закрытие доступно по кнопке и клавише Escape.
+        </Typography>
+      </Modal>
+    </>
+  );
+};
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Modal"
-        description="Компонент Modal обеспечивает отображение модальных окон с возможностями перетаскивания, изменения размера и обработки закрытия."
+        description="Modal используется для отображения поверх контента страницы и поддерживает гибкую настройку поведения закрытия, перетаскивание и изменение размера."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Modal"
         figmaLink={FIGMA_LINK}
@@ -103,26 +130,26 @@ export default  App = () => {
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={350} description="Пример базового использования модального окна." code={modalDefaultCode} />
+          <Editor description="Базовое открытие и закрытие модального окна." code={modalDefaultCode} />
 
           <Editor
-            height={350}
-            description="Пример модального окна с возможностью перетаскивания."
+            description="Модальное окно с возможностью перетаскивания через isDraggable."
             code={modalDraggableCode}
           />
 
           <Editor
-            height={350}
-            description="Пример модального окна с возможностью изменения размера."
+            description="Модальное окно с возможностью изменения размера через isResizable."
             code={modalResizableCode}
+          />
+          <Editor
+            description="Настройка закрытия через disableBackdropClick, onEscapeDown и disablePageScroll."
+            code={modalCloseBehaviorCode}
           />
 
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="Modal" />}
     </div>
   );

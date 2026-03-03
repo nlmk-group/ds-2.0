@@ -27,7 +27,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Breadcrumbs"
-        description="Компонент BreadCrumbs (хлебные крошки) используется в пользовательском интерфейсе для предоставления визуальной навигационной структуры, позволяющей пользователям быстро и эффективно понимать своё местоположение в иерархии контента или приложения. BreadCrumbs представляют собой последовательность ссылок или текста, а каждый элемент в ней указывает на уровень иерархии, переходя от более общего к более специфическому контенту."
+        description="Breadcrumbs отображает путь пользователя в иерархии интерфейса и упрощает навигацию между уровнями. Компонент поддерживает адаптацию цепочки к доступной ширине контейнера."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Breadcrumbs"
         figmaLink={FIGMA_LINK}
@@ -44,7 +44,7 @@ const Stories = (): JSX.Element => {
       {activeTab === 0 && (
         <>
           <Editor
-            description="Обычное использование компонента."
+            description="Базовая цепочка навигации с компонентом Breadcrumbs.Crumb."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 import { Link, MemoryRouter } from 'react-router-dom';
 
@@ -52,13 +52,13 @@ export default App = () => (
 <MemoryRouter>
   <Breadcrumbs>
     ${breadcrumbsLinks
-          .map(
-            link => `
+      .map(
+        link => `
     <Breadcrumbs.Crumb>
       <Link to="${link.href}">${link.label}</Link>
     </Breadcrumbs.Crumb>`
-          )
-          .join('')}
+      )
+      .join('')}
   </Breadcrumbs>
   </MemoryRouter>
 );
@@ -66,20 +66,42 @@ export default App = () => (
           />
 
           <Editor
-            description="Компонент может содержать ссылки с разными target."
+            description="Использование ссылок с разными значениями target."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <Breadcrumbs>
     ${targetLinks
-          .map(
-            link => `
+      .map(
+        link => `
     <Breadcrumbs.Crumb>
       <a href="${link.href}" target="${link.target}">${link.label}</a>
     </Breadcrumbs.Crumb>`
-          )
-          .join('')}
+      )
+      .join('')}
   </Breadcrumbs>
+);`}
+          />
+          <Editor
+            description="Сравнение ширины цепочки с разными значениями width."
+            code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Breadcrumbs>
+      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
+    </Breadcrumbs>
+    
+    <Breadcrumbs width="100px">
+      <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
+    </Breadcrumbs>
+
+    <div style={{ marginTop: 12 }} />
+  </>
 );`}
           />
 

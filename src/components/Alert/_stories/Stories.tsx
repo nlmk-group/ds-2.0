@@ -21,9 +21,9 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Alert"
-        description="Компонент Alert представляет собой компонент уведомления или предупреждения. Он используется для отображения важных сообщений пользователю с цветовой кодировкой в зависимости от уровня серьёзности ситуации. Поддерживает несколько вариантов отображения: стандартный, заполненный и с обведённым контуром."
+        description="Alert отображает статусные сообщения и предупреждения в интерфейсе. Компонент подходит для информирования пользователя о результате действия, ошибке или важном системном состоянии."
         isStable
-        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/AttachFiles"
+        codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Alert"
         figmaLink={FIGMA_LINK}
       />
 
@@ -38,68 +38,94 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            description="Компонент Alert разработан в разных вариантах: успешным, с ошибкой, с предупреждением и в качестве информационного оповещения. Для собственных вариантов используйте className."
+            description="Варианты severity для Alert: success, error, warning и info."
             code={`import { Alert } from '@nlmk/ds-2.0';
+import { Box } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
-  <>
-    <Alert title="Оповещение по умолчанию" />
-    <Alert severity="error" title="Оповещение об ошибке" />
-    <Alert severity="warning" title="Оповещение предупреждения" />
-    <Alert severity="info" title="Информационное оповещение" />
-  </>
+  <Box display="flex" flexDirection="column" gap={12} width="100%">
+    <Alert title="Успешная операция" severity="success" />
+    <Alert title="Ошибка сохранения" severity="error" />
+    <Alert title="Нужно проверить данные" severity="warning" />
+    <Alert title="Системное сообщение" severity="info" />
+  </Box>
 )`}
           />
 
           <Editor
-            description="Компонент Alert можно использовать с описанием, которое можно добавить к оповещению."
+            description="Добавление контента в Alert через children."
             code={`import { Alert } from '@nlmk/ds-2.0';
 
 export default  App = () =>(
-  <>
-  <Alert
-    severity="error"
-    title="Оповещение с контентом"
-  >
-    <p>Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности прекрасно подходит для реализации существующих финансовых и административных условий.</p>
+  <Alert severity="warning" title="Проверьте перед отправкой">
+    <ul style={{ margin: 0, paddingLeft: 16 }}>
+      <li>Заполните обязательные поля</li>
+      <li>Проверьте формат даты</li>
+      <li>Убедитесь, что документ приложен</li>
+    </ul>
   </Alert>
-  </>
 )`}
           />
 
           <Editor
-            description="Компонент Alert может быть добавлен с встроенной кнопкой закрытия"
+            description="Отображение кнопки закрытия через обработчик close."
             code={`
 import { Alert } from '@nlmk/ds-2.0';
 
 const App = () => (
-  <Alert severity="info"
-    close={ () => alert('Я закрыл!') }
-    title="Оповещение с кнопкой закрытия"/>
+  <Alert
+    severity="info"
+    close={() => alert('Alert закрыт')}
+    title="Оповещение с кнопкой закрытия"
+  />
 )
 export default App
 `}
           />
 
           <Editor
-            description="Компонент Alert может быть добавлен с другими кнопками"
+            description="Добавление пользовательского действия через свойство action."
             code={`
 import { Alert, Button, IconDeleteBinOutlined24 } from '@nlmk/ds-2.0';
 
 const App = () => (
-  <Alert severity="info"
+  <Alert
+    severity="error"
     action={
-      <Button 
+      <Button
         type="button"
         color="ghost"
         variant="secondary"
         iconButton={
           <IconDeleteBinOutlined24
-            htmlColor='var(--spectrum-sky-60)' />
+            htmlColor='var(--error-red-600)'
+          />
         }
-        onClick={() => confirm('Подтвердите удаление!')} />
+        onClick={() => confirm('Подтвердите удаление')}
+      />
     }
-    title="Оповещение с кнопкой удаления" />
+    title="Оповещение с действием"
+  >
+    Запись будет удалена без возможности восстановления.
+  </Alert>
+)
+export default App
+`}
+          />
+
+          <Editor
+            description="Кастомизация внешнего вида Alert через className."
+            code={`
+import { Alert } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Alert
+    className="custom-alert"
+    severity="success"
+    title="Стилизация через className"
+  >
+    Переопределите цвета и отступы в вашем CSS-классе.
+  </Alert>
 )
 export default App
 `}

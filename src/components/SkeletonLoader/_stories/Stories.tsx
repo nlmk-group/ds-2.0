@@ -18,11 +18,22 @@ const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
+  const skeletonLoaderSizeCode = `import { SkeletonLoader } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ display: 'grid', gap: '12px' }}>
+    <SkeletonLoader width="100%" height="24px" />
+    <SkeletonLoader width="260px" height="48px" />
+    <SkeletonLoader width="140px" height="140px" />
+  </div>
+)
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="SkeletonLoader"
-        description="SkeletonLoader используется для отображения анимированных заглушек во время загрузки контента."
+        description="SkeletonLoader отображает анимированные заглушки во время загрузки данных. Компонент поддерживает настройку размера, анимации и количества элементов."
         isStable
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
@@ -39,8 +50,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={200}
-            description="Компонент лоадера по умолчанию"
+            description="Базовый skeleton-loader с анимацией wave."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -52,8 +62,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={200}
-            description="Компонент лоадера с анимацией пульсации"
+            description="Skeleton-loader с анимацией pulse."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
 export default  App = () => (
@@ -65,21 +74,18 @@ export default  App = () => (
           />
 
           <Editor
-            description="Компонент лоадера с множественными блоками"
+            description="Отображение нескольких skeleton-блоков через count."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
 export default  App = () => (
   <>
-    <div>
-      <SkeletonLoader width="40px" count={1} height="50px" />
-      <SkeletonLoader width="310px" count={1} height="50px" />
-    </div>
     <SkeletonLoader width="115px" count={3} height="50px" />
     <SkeletonLoader width="177px" count={2} height="50px" />
   </>
 )
 `}
           />
+          <Editor minHeight={400} description="Примеры разных размеров заглушек." code={skeletonLoaderSizeCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

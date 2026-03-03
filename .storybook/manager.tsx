@@ -40,7 +40,6 @@ SunIcon.displayName = 'SunIcon';
 MoonIcon.displayName = 'MoonIcon';
 
 const THEME_KEY = 'nlmk-storybook-theme';
-
 const getInitialTheme = (): boolean => {
   const saved = localStorage.getItem(THEME_KEY);
   if (saved !== null) {
@@ -114,6 +113,9 @@ const observePreviewIframe = () => {
 
 observePreviewIframe();
 
+const ADDON_ID = 'nlmk-theme-toggle';
+const TOOL_ID = `${ADDON_ID}/tool`;
+
 const ThemeToggleButton = () => {
   const [isDark, setIsDark] = useState(getInitialTheme);
 
@@ -133,6 +135,7 @@ const ThemeToggleButton = () => {
       title={toggleLabel}
       onClick={handleToggle}
       aria-label={toggleLabel}
+      id="nlmk-theme-toggle-btn"
       style={{
         background: 'transparent',
         border: 'none',
@@ -170,9 +173,6 @@ const ThemeToggleButton = () => {
     </button>
   );
 };
-
-const ADDON_ID = 'nlmk-theme-toggle';
-const TOOL_ID = `${ADDON_ID}/tool`;
 
 addons.register(ADDON_ID, () => {
   addons.add(TOOL_ID, {

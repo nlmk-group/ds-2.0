@@ -28,7 +28,7 @@
   zoom: 1.3;
   margin-bottom: 20px;
 
-  >div {
+  > div {
     width: auto;
   }
 }
@@ -48,7 +48,7 @@
 .properties {
   position: fixed;
   bottom: 20px;
-  z-index: 9999;
+  z-index: 100000;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: (0, 0, 0, 0.1) 0px 1px 3px 0px;
@@ -102,7 +102,7 @@
   }
 
   .chip {
-    >div {
+    > div {
       align-items: center;
       display: flex;
       justify-content: center;
@@ -116,20 +116,20 @@
   }
 }
 
-$sandpack-gray: #A7B0C0;
-$sandpack-white: #C8CFDC;
-$sandpack-black: #21252B;
+$sandpack-gray: #a7b0c0;
+$sandpack-white: #c8cfdc;
+$sandpack-black: #21252b;
 
-@mixin border-radius($radius, $side: 'all') {
-  @if $side =='left' {
+@mixin border-radius($radius, $side: "all") {
+  @if $side == "left" {
     border-radius: $radius 0 0 $radius;
   }
 
-  @if $side =='right' {
+  @if $side == "right" {
     border-radius: 0 $radius $radius 0;
   }
 
-  @if $side =='all' {
+  @if $side == "all" {
     border-radius: $radius;
   }
 }
@@ -150,11 +150,11 @@ $sandpack-black: #21252B;
   @include border-radius(var(--circle-radius));
 
   div:first-child {
-    @include border-radius(var(--circle-radius), 'left');
+    @include border-radius(var(--circle-radius), "left");
   }
 
   div:last-child {
-    @include border-radius(var(--circle-radius), 'right');
+    @include border-radius(var(--circle-radius), "right");
   }
 }
 
@@ -215,33 +215,48 @@ $sandpack-black: #21252B;
 
 .content-area {
   display: flex;
+  position: relative;
 }
 
 .editor-pane {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - var(--preview-pane-width, 50%));
   border-right: 1px solid var(--steel-30);
-  max-height: 600px;
   overflow: auto;
   display: flex;
 }
 
 .line-numbers {
   padding: 10px 5px;
-  font-family: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
-  font-size: 14px;
+  font-family: 'Fira Mono', 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+  font-size: 18px;
   line-height: 1.5;
   text-align: right;
   min-width: 30px;
   user-select: none;
   white-space: pre;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+}
+
+.code-editor-wrapper {
+  flex: 1;
 }
 
 .code-editor {
-  flex: 1;
+  font-family: "Fira Mono", "DejaVu Sans Mono", "Menlo", "Consolas", monospace !important;
+  & > pre {
+    white-space: nowrap !important;
+  }
 }
 
 .preview-pane {
-  flex: 1;
+  margin-left: auto;
+  min-height: var(--preview-min-height, 280px);
   position: relative;
   overflow: auto;
   transition: background-color 0.2s ease;

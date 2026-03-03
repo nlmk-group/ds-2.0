@@ -23,6 +23,97 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.28.1 - <span className={styles.date}>03.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Оптимизирован рендеринг иконок состояния
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена обертка vertical-wrapper для корректной поддержки высоты вертикальных разделителей
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено наложение длинного текста label на иконку
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено позиционирование правого значения слайдера
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Между элементами скелетона в горизонтальном ряду добавлен отступ
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании draggableStartPosition
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.28.0 - <span className={styles.date}>02.03.26</span>
           </Typography>
           <ul className={styles.list}>

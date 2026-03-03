@@ -86,19 +86,19 @@ const Stories = (): JSX.Element => {
 
       {Number(activeTab) == 0 && (
         <>
-          <Editor height={700} description="Состояние ошибки доступа с кодом 403." code={forbiddenCodeExample} />
+          <Editor minHeight={700} description="Состояние ошибки доступа с кодом 403." code={forbiddenCodeExample} />
           <Editor
-            height={700}
+            minHeight={700}
             description="Состояние ошибки отсутствующей страницы с кодом 404."
             code={notFoundCodeExample}
           />
           <Editor
-            height={700}
+            minHeight={700}
             description="Кастомизация текста ошибки и подсказки для произвольного кода."
             code={customTextExample}
           />
           <Editor
-            height={700}
+            minHeight={700}
             description="Отображение значений по умолчанию без передачи пропсов."
             code={defaultValuesExample}
           />

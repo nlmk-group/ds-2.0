@@ -104,12 +104,12 @@ const Stories = (): JSX.Element => {
       </div>
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={180} description="Базовое отображение фильтра." code={defaultFilterTipComponent} />
-          <Editor height={220} description="Состояние активности и настройка размера компонента." code={activeAndSizeFilterTipComponent} />
-          <Editor height={250} description="Переключение активности по клику на компонент." code={editableFilterTipComponent} />
-          <Editor height={320} description="Удаление фильтра через callback onDelete." code={removableFilterTipComponent} />
+          <Editor minHeight={180} description="Базовое отображение фильтра." code={defaultFilterTipComponent} />
+          <Editor minHeight={220} description="Состояние активности и настройка размера компонента." code={activeAndSizeFilterTipComponent} />
+          <Editor minHeight={250} description="Переключение активности по клику на компонент." code={editableFilterTipComponent} />
+          <Editor minHeight={320} description="Удаление фильтра через callback onDelete." code={removableFilterTipComponent} />
           <Editor
-            height={220}
+            minHeight={220}
             description="Режим только чтения и заблокированное состояние компонента."
             code={disabledAndReadonlyFilterTipComponent}
           />

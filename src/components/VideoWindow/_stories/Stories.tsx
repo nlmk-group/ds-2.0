@@ -128,17 +128,17 @@ export default App;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={400}
+            minHeight={400}
             description="Базовый сценарий с `autoPlay`, `draggable`, `resizable` и закрытием окна через `onClose`."
             code={videoWindowDefaultCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Локализация контролов окна через `locale` (пример: `en`)."
             code={localeCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Кастомный ReactNode-заголовок через `title` и стартовая позиция окна через `draggableStartPosition`."
             code={customTitleCode}
           />

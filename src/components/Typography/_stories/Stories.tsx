@@ -62,7 +62,7 @@ const App = () => (
 export default App;`}
           />
           <Editor
-            height={1700}
+            minHeight={1700}
             description="Все варианты типографии, сгруппированные по категориям. Варианты различаются размером (font-size), межстрочным интервалом (line-height) и насыщенностью шрифта (font-weight)."
             code={`import { Box, Card, Typography } from '@nlmk/ds-2.0';
 

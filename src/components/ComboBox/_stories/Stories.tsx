@@ -181,15 +181,15 @@ const Stories = (): JSX.Element => {
       {activeTab === 0 && (
         <>
           <Editor
-            height={500}
+            minHeight={500}
             description="Базовый ComboBox с одиночным выбором."
             code={basicListCode}
           />
-          <Editor height={500} description="Множественный выбор с поиском и чекбоксом «Выбрать все»." code={multipleSearchCode} />
-          <Editor height={500} description="Группированный список через ComboGroupList." code={groupedCode} />
-          <Editor height={500} description="Древовидный список через ComboTreeList." code={treeCode} />
-          <Editor height={500} description="Состояние disabled и кастомизация через style/className." code={disabledAndStylesCode} />
-          <Editor height={500} description="Управление dropdown через isResize, withPortal и размеры." code={resizeAndPortalCode} />
+          <Editor minHeight={500} description="Множественный выбор с поиском и чекбоксом «Выбрать все»." code={multipleSearchCode} />
+          <Editor minHeight={500} description="Группированный список через ComboGroupList." code={groupedCode} />
+          <Editor minHeight={500} description="Древовидный список через ComboTreeList." code={treeCode} />
+          <Editor minHeight={500} description="Состояние disabled и кастомизация через style/className." code={disabledAndStylesCode} />
+          <Editor minHeight={500} description="Управление dropdown через isResize, withPortal и размеры." code={resizeAndPortalCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

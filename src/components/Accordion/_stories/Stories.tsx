@@ -79,7 +79,6 @@ export default App = () => (
           />
 
           <Editor
-            height={500}
             description={`Варианты размера Accordion: ${Object.values(ESizesAccordion).join(' | ')}.`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
 import { Box } from '@nlmk/ds-2.0';
@@ -113,7 +112,6 @@ export default App = () => (
               `}
           />
           <Editor
-            height={500}
             description={`Настройка иконок Accordion (${Object.values(EIconsAccordion).join(
               ' | '
             )}) через startIcon и endIcon.`}
@@ -158,7 +156,6 @@ export default App = () => (
           />
 
           <Editor
-            height={500}
             description={`Варианты оформления ${Object.values(EVariantsAccordion).join(' | ')} и поведение в disabled.`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
 import { Box } from '@nlmk/ds-2.0';
@@ -189,7 +186,6 @@ export default App = () => (
           />
 
           <Editor
-            height={500}
             description="Одновременное раскрытие секций через multipleExpanded и стилизация через className."
             code={`import { Accordion } from '@nlmk/ds-2.0';
 

@@ -152,19 +152,19 @@ export default App;
       {activeTab === TabIds.dev && (
         <>
           <Editor
-            height={500}
+            minHeight={500}
             description="Базовый controlled-сценарий с кнопкой сброса (`reset` + `onReset`)."
             code={timepickerDefaultCode}
           />
-          <Editor height={500} description="Одиночный выбор времени с лейблом." code={timepickerWithLabelCode} />
+          <Editor minHeight={500} description="Одиночный выбор времени с лейблом." code={timepickerWithLabelCode} />
           <Editor
-            height={500}
+            minHeight={500}
             description="Режим периода через `type=period` и обработчик `onPeriodChange`."
             code={timepickerPeriodCode}
           />
-          <Editor height={300} description="Отключенное состояние (`disabled`)." code={timepickerDisabledCode} />
+          <Editor minHeight={300} description="Отключенное состояние (`disabled`)." code={timepickerDisabledCode} />
           <Editor
-            height={500}
+            minHeight={500}
             description="Рендер выпадающей панели через портал (`withPortal`) для контейнеров с `overflow: hidden`."
             code={timepickerWithPortalCode}
           />

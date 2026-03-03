@@ -85,7 +85,7 @@ export default  App = () => (
 )
 `}
           />
-          <Editor height={400} description="Примеры разных размеров заглушек." code={skeletonLoaderSizeCode} />
+          <Editor minHeight={400} description="Примеры разных размеров заглушек." code={skeletonLoaderSizeCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

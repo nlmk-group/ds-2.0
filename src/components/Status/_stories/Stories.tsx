@@ -47,7 +47,7 @@ export default App = () => (
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={150}
+            minHeight={150}
             description="Базовое отображение статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
@@ -84,7 +84,7 @@ export default  App = () =>(
           />
 
           <Editor
-            height={230}
+            minHeight={230}
             description="Сравнение размеров статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
@@ -97,7 +97,7 @@ export default  App = () => (
 )`}
           />
           <Editor
-            height={170}
+            minHeight={170}
             description="Передача пользовательской иконки как JSX-элемента."
             code={statusCustomIconCode}
           />

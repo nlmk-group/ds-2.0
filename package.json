@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.28.0",
+  "version": "2.28.1",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -459,6 +459,10 @@
     "./*": {
       "import": "./lib/*/index.js",
       "types": "./lib/*/index.d.ts"
+    },
+    "./lib/*": {
+      "import": "./lib/*.js",
+      "types": "./lib/*.d.ts"
     },
     "./css/main.css": "./lib/css/main.css",
     "./css/style.css": "./lib/css/style.css",

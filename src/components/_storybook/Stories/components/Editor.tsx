@@ -1,4 +1,5 @@
 import React, {
+  CSSProperties,
   FC,
   memo,
   useCallback,
@@ -32,9 +33,10 @@ const MemoizedLivePreview = memo(LivePreview);
 const Editor: FC<{
   code: string;
   description?: string;
-  height?: number;
+  minHeight?: number;
+  maxHeight?: number;
   previewPaneWidth?: string;
-}> = ({ code, description, height = 280, previewPaneWidth = '50%' }) => {
+}> = ({ code, description, minHeight = 280, maxHeight, previewPaneWidth = '50%' }) => {
   // Переменные доступные в live-редакторе при выполнении кода примеров.
   // react-live компилирует код через sucrase (CJS-трансформ) и выполняет через new Function(...scopeKeys, code),
   // поэтому всё что нужно в примерах — должно быть здесь.
@@ -154,14 +156,19 @@ const Editor: FC<{
             </Button>
           </div>
 
-          <div className={styles['content-area']}>
+          <div
+            className={styles['content-area']}
+            style={{
+              '--preview-pane-width': previewPaneWidth,
+              '--preview-min-height': `${minHeight}px`
+            } as CSSProperties}
+          >
             <div
               className={styles['editor-pane']}
               style={{
                 backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                minHeight: `${height}px`,
-                height: `${height}px`,
-                maxHeight: `${height}px`
+                minHeight: `${minHeight}px`,
+                maxHeight: maxHeight !== undefined ? `${maxHeight}px` : undefined
               }}
             >
               <div
@@ -198,8 +205,6 @@ const Editor: FC<{
               )}
               style={{
                 backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)',
-                minHeight: `${height}px`,
-                height: `${height}px`,
                 width: previewPaneWidth
               }}
             >

@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={200}
+            minHeight={200}
             description="Базовое отображение значения в режиме только чтения."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 

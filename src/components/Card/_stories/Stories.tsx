@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={350}
+            minHeight={350}
             description="Базовая карточка с контентом и индикатором состояния."
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
@@ -93,7 +93,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={400}
+            minHeight={400}
             description="Сравнение вертикальной и горизонтальной ориентации карточки."
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
@@ -177,7 +177,7 @@ export default  App = () => (
 `}
           />
           <Editor
-            height={320}
+            minHeight={320}
             description="Настройка статуса и размера индикатора, а также className."
             code={`import { Card, Typography } from '@nlmk/ds-2.0';
 

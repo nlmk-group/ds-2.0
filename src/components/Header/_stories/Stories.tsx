@@ -49,7 +49,7 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={180}
+            minHeight={180}
             description="Базовый заголовок страницы."
             code={`import { Header } from '@nlmk/ds-2.0';
 
@@ -58,7 +58,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={200}
+            minHeight={200}
             description="Возврат к предыдущему экрану через showBack и onBackClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
@@ -71,7 +71,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={180}
+            minHeight={180}
             description="Отображение текущей даты и времени через showDate."
             code={`import { Header } from '@nlmk/ds-2.0';
 
@@ -80,7 +80,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={180}
+            minHeight={180}
             description="Кнопка избранного с обработчиком onFavoriteClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
@@ -93,7 +93,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={180}
+            minHeight={180}
             description="Кнопка уведомлений с количеством непрочитанных элементов."
             code={`import { Header } from '@nlmk/ds-2.0';
 
@@ -150,7 +150,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={220}
+            minHeight={220}
             description="Сервисные действия в шапке: печать, видео и сообщения."
             code={`import { Header } from '@nlmk/ds-2.0';
 

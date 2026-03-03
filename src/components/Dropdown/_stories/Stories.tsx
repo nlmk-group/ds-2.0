@@ -181,12 +181,12 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={400} description="Базовый Dropdown со списком пунктов." code={DropdownDefaultCode} />
-          <Editor height={400} description="Dropdown в состоянии disabled." code={DropdownDisabledCode} />
-          <Editor height={400} description="Настройка кнопки через color, variant и startIcon." code={DropdownButtonFeaturesCode} />
-          <Editor height={400} description="Бейджи кнопки через startBadge и endBadge." code={DropdownBadgesCode} />
-          <Editor height={400} description="Иконка-кнопка через iconButton." code={DropdownIconButtonCode} />
-          <Editor height={400} description="Рендер меню в портале и кастомные стили кнопки/меню." code={DropdownPortalAndStylesCode} />
+          <Editor minHeight={400} description="Базовый Dropdown со списком пунктов." code={DropdownDefaultCode} />
+          <Editor minHeight={400} description="Dropdown в состоянии disabled." code={DropdownDisabledCode} />
+          <Editor minHeight={400} description="Настройка кнопки через color, variant и startIcon." code={DropdownButtonFeaturesCode} />
+          <Editor minHeight={400} description="Бейджи кнопки через startBadge и endBadge." code={DropdownBadgesCode} />
+          <Editor minHeight={400} description="Иконка-кнопка через iconButton." code={DropdownIconButtonCode} />
+          <Editor minHeight={400} description="Рендер меню в портале и кастомные стили кнопки/меню." code={DropdownPortalAndStylesCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

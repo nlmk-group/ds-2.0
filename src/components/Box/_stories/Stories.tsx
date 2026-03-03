@@ -33,7 +33,7 @@ const Stories = (): JSX.Element => {
       {activeTab === 0 && (
         <>
           <Editor
-            height={500}
+            minHeight={500}
             description="Базовая конфигурация Box через пропсы layout и визуальных стилей."
             code={`import { Box, Button, Divider } from '@nlmk/ds-2.0';
 
@@ -70,7 +70,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={260}
+            minHeight={260}
             description="Приоритет отступов: p → px/py → pt/pr/pb/pl."
             code={`import { Box } from '@nlmk/ds-2.0';
 
@@ -89,7 +89,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={260}
+            minHeight={260}
             description="Flex-layout контейнер с выравниванием и переносом элементов."
             code={`import { Box, Button } from '@nlmk/ds-2.0';
 
@@ -112,7 +112,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={240}
+            minHeight={240}
             description="Настройка размеров и визуального оформления контейнера."
             code={`import { Box } from '@nlmk/ds-2.0';
 
@@ -120,7 +120,7 @@ export default App = () => (
   <Box
     width={320}
     maxWidth="100%"
-    height={120}
+    minHeight={120}
     border="1px dashed var(--steel-50)"
     borderRadius={12}
     background="var(--spectrum-sky-10)"
@@ -133,7 +133,7 @@ export default App = () => (
 )`}
           />
           <Editor
-            height={260}
+            minHeight={260}
             description="Локальное переопределение стилей через st."
             code={`import { Box } from '@nlmk/ds-2.0';
 

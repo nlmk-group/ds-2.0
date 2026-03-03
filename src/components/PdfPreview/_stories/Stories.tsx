@@ -59,13 +59,13 @@ export default App;
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={360}
+            minHeight={360}
             description="Пустое состояние с кастомным текстом через emptyMessage."
             code={pdfPreviewEmptyCode}
           />
-          <Editor height={360} description="Состояние загрузки документа через loading." code={pdfPreviewLoadingCode} />
+          <Editor minHeight={360} description="Состояние загрузки документа через loading." code={pdfPreviewLoadingCode} />
           <Editor
-            height={1200}
+            minHeight={1200}
             description="Интерактивный пример загрузки и предпросмотра PDF-файла."
             code={`import { useEffect, useState, useRef } from "react";
 import { PdfPreview, AttachFiles, File } from "@nlmk/ds-2.0";

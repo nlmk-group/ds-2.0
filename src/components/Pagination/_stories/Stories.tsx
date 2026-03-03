@@ -91,7 +91,7 @@ export default App = () => {
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor height={200} description="Базовое переключение страниц." code={defaultPaginationCode} />
+          <Editor minHeight={200} description="Базовое переключение страниц." code={defaultPaginationCode} />
           <Editor
             description="Компактный режим с разрывами при большом количестве страниц."
             code={collapsedPaginationCode}

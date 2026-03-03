@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={150}
+            minHeight={150}
             description="Базовый Badge со значениями по умолчанию."
             code={`import { Badge } from '@nlmk/ds-2.0';
 

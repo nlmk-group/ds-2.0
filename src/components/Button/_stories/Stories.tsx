@@ -57,7 +57,7 @@ export default App = () => (
           />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="Цветовые схемы и варианты отображения кнопки."
             code={`import { Button, Box } from '@nlmk/ds-2.0';
 

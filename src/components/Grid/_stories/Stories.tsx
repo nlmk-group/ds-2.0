@@ -670,24 +670,24 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={400}
+            minHeight={400}
             description="Базовая настройка контейнера через стандартные пропсы и проп st."
             code={gridExampleCode}
           />
-          <Editor height={400} description="Колонки равной ширины в строках." code={equalWidthColumnsCode} />
-          <Editor height={400} description="Настройка ширины одной колонки внутри строки." code={settingOneColumnWidthCode} />
-          <Editor height={400} description="Колонка с переменной шириной контента." code={variableWidthContentCode} />
-          <Editor height={400} description="Колонки равной ширины с переносом на несколько строк." code={equalWidthMultiRowCode} />
-          <Editor height={400} description="Вертикальное выравнивание колонок через alignItems." code={verticalAlignmentCode} />
+          <Editor minHeight={400} description="Колонки равной ширины в строках." code={equalWidthColumnsCode} />
+          <Editor minHeight={400} description="Настройка ширины одной колонки внутри строки." code={settingOneColumnWidthCode} />
+          <Editor minHeight={400} description="Колонка с переменной шириной контента." code={variableWidthContentCode} />
+          <Editor minHeight={400} description="Колонки равной ширины с переносом на несколько строк." code={equalWidthMultiRowCode} />
+          <Editor minHeight={400} description="Вертикальное выравнивание колонок через alignItems." code={verticalAlignmentCode} />
           <Editor
-            height={400}
+            minHeight={400}
             description="Горизонтальное выравнивание колонок через justifyContent."
             code={horizontalAlignmentCode}
           />
-          <Editor height={400} description="Перенос колонок при превышении ширины строки." code={columnWrappingCode} />
-          <Editor height={400} description="Явный разрыв строки между группами колонок." code={columnBreaksCode} />
+          <Editor minHeight={400} description="Перенос колонок при превышении ширины строки." code={columnWrappingCode} />
+          <Editor minHeight={400} description="Явный разрыв строки между группами колонок." code={columnBreaksCode} />
           <Editor
-            height={400}
+            minHeight={400}
             description="Адаптивная сетка через container и size по брейкпоинтам."
             code={responsiveContainerCode}
           />

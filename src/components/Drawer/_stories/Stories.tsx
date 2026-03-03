@@ -138,12 +138,12 @@ export default  App = () => {
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={350} description="Базовый Drawer с открытием справа." code={drawerDefaultCode} />
+          <Editor minHeight={350} description="Базовый Drawer с открытием справа." code={drawerDefaultCode} />
 
-          <Editor height={350} description="Drawer с открытием слева." code={drawerLeftCode} />
-          <Editor height={400} description="Drawer с вертикальным открытием: top и bottom." code={drawerVerticalCode} />
+          <Editor minHeight={350} description="Drawer с открытием слева." code={drawerLeftCode} />
+          <Editor minHeight={400} description="Drawer с вертикальным открытием: top и bottom." code={drawerVerticalCode} />
           <Editor
-            height={380}
+            minHeight={380}
             description="Настройка поведения через overlay, disableBackdropClick и isViewCloseButton, с закрытием по Esc."
             code={drawerBehaviorCode}
           />

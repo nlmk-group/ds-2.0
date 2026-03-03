@@ -182,12 +182,12 @@ const SidebarStories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={920}
+            minHeight={920}
             description="Базовый пример боковой навигации с вложенными разделами."
             code={sidebarDefault}
           />
           <Editor
-            height={920}
+            minHeight={920}
             description="Режим burger с overlay и управлением видимостью пользовательского блока."
             code={sidebarBurgerVariant}
           />

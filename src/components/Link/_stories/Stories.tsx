@@ -99,12 +99,12 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={200}
+            minHeight={200}
             description="Базовая текстовая ссылка."
             code={linkDefaultCode}
           />
           <Editor
-            height={220}
+            minHeight={220}
             description="Заблокированная ссылка через disabled."
             code={linkDisabledCode}
           />

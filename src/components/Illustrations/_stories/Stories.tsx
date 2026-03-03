@@ -82,9 +82,9 @@ const IllustrationStories = (): JSX.Element => {
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={400} description="Базовое отображение иллюстрации." code={illustrationDefaultCode} />
-          <Editor height={650} description="Использование разных размеров иллюстраций." code={sizeVariantsCode} />
-          <Editor height={420} description="Кастомизация контейнера через style и className." code={customStyleCode} />
+          <Editor minHeight={400} description="Базовое отображение иллюстрации." code={illustrationDefaultCode} />
+          <Editor minHeight={650} description="Использование разных размеров иллюстраций." code={sizeVariantsCode} />
+          <Editor minHeight={420} description="Кастомизация контейнера через style и className." code={customStyleCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

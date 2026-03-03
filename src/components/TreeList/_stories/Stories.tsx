@@ -187,12 +187,12 @@ export default App;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={600}
+            minHeight={600}
             description="Базовый пример с `checkable`, `draggable`, обработчиками выбора и перетаскивания."
             code={treeListDefaultCode}
           />
           <Editor
-            height={600}
+            minHeight={600}
             description="Упрощенный режим выбора через `checkableSimple` с начальными выделениями и раскрытием."
             code={treeListSimpleCheckCode}
           />

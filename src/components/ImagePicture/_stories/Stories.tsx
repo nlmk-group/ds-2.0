@@ -103,15 +103,15 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={700} description="Базовое отображение изображения." code={imgpicDefaultCode} />
+          <Editor minHeight={700} description="Базовое отображение изображения." code={imgpicDefaultCode} />
 
-          <Editor height={900} description="Сравнение соотношений сторон изображения." code={imgpicRatioCode} />
+          <Editor minHeight={900} description="Сравнение соотношений сторон изображения." code={imgpicRatioCode} />
 
-          <Editor height={700} description="Скругление углов через проп radius." code={imgpicRadiusCode} />
+          <Editor minHeight={700} description="Скругление углов через проп radius." code={imgpicRadiusCode} />
 
-          <Editor height={700} description="Отключение зума при наведении через zoom={false}." code={imgpicZoomCode} />
+          <Editor minHeight={700} description="Отключение зума при наведении через zoom={false}." code={imgpicZoomCode} />
 
-          <Editor height={700} description="Состояние компонента без переданного src." code={imgpicEmptyCode} />
+          <Editor minHeight={700} description="Состояние компонента без переданного src." code={imgpicEmptyCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

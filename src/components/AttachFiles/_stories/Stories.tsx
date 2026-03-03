@@ -86,7 +86,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="Варианты управляющих действий: removed, saved, commented и addFile."
             code={`import { File } from '@nlmk/ds-2.0';
 
@@ -158,7 +158,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="AttachFiles с заголовком через свойство title."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
@@ -176,7 +176,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="AttachFiles с кнопкой добавления файла в заголовке."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
@@ -194,7 +194,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={400}
+            minHeight={400}
             description="AttachFiles с групповым выбором: checked и indeterminate."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 

@@ -48,7 +48,7 @@
 .properties {
   position: fixed;
   bottom: 20px;
-  z-index: 99999;
+  z-index: 100000;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: (0, 0, 0, 0.1) 0px 1px 3px 0px;
@@ -215,10 +215,15 @@ $sandpack-black: #21252b;
 
 .content-area {
   display: flex;
+  position: relative;
 }
 
 .editor-pane {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - var(--preview-pane-width, 50%));
   border-right: 1px solid var(--steel-30);
   overflow: auto;
   display: flex;
@@ -226,13 +231,16 @@ $sandpack-black: #21252b;
 
 .line-numbers {
   padding: 10px 5px;
-  font-family: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  font-family: 'Fira Mono', 'DejaVu Sans Mono', Menlo, Consolas, monospace;
   font-size: 18px;
   line-height: 1.5;
   text-align: right;
   min-width: 30px;
   user-select: none;
   white-space: pre;
+  position: sticky;
+  left: 0;
+  z-index: 10;
 }
 
 .code-editor-wrapper {
@@ -247,10 +255,8 @@ $sandpack-black: #21252b;
 }
 
 .preview-pane {
-  display: block;
-  width: 50%;
-  min-height: 280px;
-  height: max-content;
+  margin-left: auto;
+  min-height: var(--preview-min-height, 280px);
   position: relative;
   overflow: auto;
   transition: background-color 0.2s ease;

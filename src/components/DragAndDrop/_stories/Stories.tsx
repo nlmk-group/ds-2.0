@@ -39,7 +39,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={400}
+            minHeight={400}
             description="Базовый DragAndDrop для загрузки файла."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -52,7 +52,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={1100}
+            minHeight={1100}
             description="Статусы компонента: default, info, error."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -66,7 +66,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={800}
+            minHeight={800}
             description="Размеры и типы загружаемых файлов."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -80,7 +80,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={400}
+            minHeight={400}
             description="Состояние загрузки и возможность отмены загрузки."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -98,7 +98,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={400}
+            minHeight={400}
             description="Компактные режимы отображения: smallText и smallIcon."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -110,7 +110,7 @@ export default  App = () => (
 )`}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Настройка форматов загрузки и одиночного выбора файла."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
@@ -126,7 +126,7 @@ export default  App = () => (
 )`}
           />
           <Editor
-            height={800}
+            minHeight={800}
             description="Кастомная иконка и отключённое состояние."
             code={`import { DragAndDrop, IconUploadFile32 } from '@nlmk/ds-2.0'
 
@@ -147,7 +147,7 @@ export default  App = () => (
 )`}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Полностью кастомный контент через children."
             code={`import { DragAndDrop, Typography } from '@nlmk/ds-2.0'
 

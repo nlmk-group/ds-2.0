@@ -510,46 +510,46 @@ const AutocompleteStories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={400}
+            minHeight={400}
             description="Базовый Autocomplete с выбором элемента из локального списка."
             code={autocompleteDefaultCode}
           />
-          <Editor height={400} description="Кастомизация текста счётчика через totalText." code={withCustomTotalTextCode} />
+          <Editor minHeight={400} description="Кастомизация текста счётчика через totalText." code={withCustomTotalTextCode} />
           <Editor
-            height={400}
+            minHeight={400}
             description="Асинхронная загрузка опций через isLoading и onLoadOptions."
             code={withAsyncLoadingCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Создание нового элемента через onCreateItem и createItemText."
             code={withCreateItemCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Кастомный рендер опций через renderLabel."
             code={withCustomRenderingCode}
           />
-          <Editor height={400} description="Размеры компонента: xs, s и m." code={withSizesCode} />
-          <Editor height={400} description="Рендер dropdown через портал: withPortal и portalContainerId." code={withPortalCode} />
+          <Editor minHeight={400} description="Размеры компонента: xs, s и m." code={withSizesCode} />
+          <Editor minHeight={400} description="Рендер dropdown через портал: withPortal и portalContainerId." code={withPortalCode} />
           <Editor
-            height={400}
+            minHeight={400}
             description="Управление пустым dropdown через showEmptyDropdown."
             code={withEmptyDropdownCode}
           />
-          <Editor height={400} description="Состояния поля: disabled, readOnly, error и helperText." code={withFieldStatesCode} />
+          <Editor minHeight={400} description="Состояния поля: disabled, readOnly, error и helperText." code={withFieldStatesCode} />
           <Editor
-            height={400}
+            minHeight={400}
             description="Debounce ввода через debounceDelay и onDebouncedInputChange."
             code={withDebounceCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Кастомное пустое значение через noSelectionItem."
             code={withNoSelectionItemCode}
           />
           <Editor
-            height={400}
+            minHeight={400}
             description="Управление отображением счётчика через showTotalCount."
             code={withTotalCountVisibilityCode}
           />

@@ -48,7 +48,7 @@ export default App = () => (
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={200}
+            minHeight={200}
             description="Базовое состояние индикатора загрузки."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
@@ -61,7 +61,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={250}
+            minHeight={250}
             description="Сравнение размеров спиннера."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
@@ -76,7 +76,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={200}
+            minHeight={200}
             description="Кастомизация цветов через color и bgColor."
             code={`import { Spinner } from '@nlmk/ds-2.0';
 
@@ -88,7 +88,7 @@ export default  App = () => (
 `}
           />
           <Editor
-            height={240}
+            minHeight={240}
             description="Отображение процента загрузки в центре спиннера."
             code={spinnerPercentCode}
           />

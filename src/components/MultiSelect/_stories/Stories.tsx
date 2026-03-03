@@ -273,22 +273,22 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={500} description="Базовый мультивыбор значений." code={multiSelectDefaultCode} />
-          <Editor height={500} description="Поиск по доступным значениям через searchable." code={multiSelectSearchableCode} />
-          <Editor height={500} description="Заблокированное состояние компонента." code={multiSelectDisabledCode} />
-          <Editor height={500} description="Массовый выбор через showSelectAll." code={multiSelectSelectAllCode} />
+          <Editor minHeight={500} description="Базовый мультивыбор значений." code={multiSelectDefaultCode} />
+          <Editor minHeight={500} description="Поиск по доступным значениям через searchable." code={multiSelectSearchableCode} />
+          <Editor minHeight={500} description="Заблокированное состояние компонента." code={multiSelectDisabledCode} />
+          <Editor minHeight={500} description="Массовый выбор через showSelectAll." code={multiSelectSelectAllCode} />
           <Editor
-            height={500}
+            minHeight={500}
             description="Очистка поискового запроса после выбора через clearSearchOnSelect."
             code={multiSelectClearSearchCode}
           />
-          <Editor height={500} description="Сброс выбранных значений через reset и onReset." code={multiSelectResetCode} />
+          <Editor minHeight={500} description="Сброс выбранных значений через reset и onReset." code={multiSelectResetCode} />
           <Editor
-            height={500}
+            minHeight={500}
             description="Настройка отображения выбранных значений и рендер меню через портал."
             code={multiSelectDisplaySettingsCode}
           />
-          <Editor height={500} description="Состояние компонента без доступных опций." code={multiSelectEmptyCode} />
+          <Editor minHeight={500} description="Состояние компонента без доступных опций." code={multiSelectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

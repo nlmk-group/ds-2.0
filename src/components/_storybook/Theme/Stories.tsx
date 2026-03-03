@@ -26,7 +26,7 @@ const Stories = (): JSX.Element => {
       <>
         <Editor
           description="Хук useThemeSwitcher управляет состоянием темы и переключением тем в приложении. Он динамически добавляет и удаляет стили из заголовка документа на основе текущей темы и предоставляет функциональность для переключения тем с сохранением предпочтений пользователя в sessionStorage."
-          height={700}
+          minHeight={700}
           code={`import { Switch, Grid, Box, Button } from '@nlmk/ds-2.0';
 
 export default App = () => {

@@ -74,23 +74,23 @@ export default App = () => (
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={200}
+            minHeight={200}
             description="Базовое отображение прогресса через percentage."
             code={progressBarDefaultCode}
           />
 
           <Editor
-            height={200}
+            minHeight={200}
             description="Прогресс с подписью через label."
             code={progressBarWithLabelCode}
           />
           <Editor
-            height={260}
+            minHeight={260}
             description="Граничные значения прогресса: начало и завершение."
             code={progressBarBoundaryValuesCode}
           />
           <Editor
-            height={220}
+            minHeight={220}
             description="Ограничение значения прогресса при превышении диапазона."
             code={progressBarOverflowCode}
           />

@@ -51,7 +51,7 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            height={220}
+            minHeight={220}
             description="Базовый Avatar с иконкой пользователя."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 

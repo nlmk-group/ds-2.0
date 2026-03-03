@@ -176,7 +176,7 @@ export default  App = () => (
           />
 
           <Editor
-            height={400}
+            minHeight={400}
             description="Комбинированные сценарии с текстом, кнопками и иконками."
             code={`import { Divider, Button, Icon, IconChemical24 } from '@nlmk/ds-2.0';
 

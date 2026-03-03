@@ -153,22 +153,22 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={350}
+            minHeight={350}
             description="Базовый выбор значения в диапазоне."
             code={sliderDefaultCode}
           />
           <Editor
-            height={420}
+            minHeight={420}
             description="Позиция отображения значения через valuePosition."
             code={sliderValuePositionCode}
           />
           <Editor
-            height={350}
+            minHeight={350}
             description="Кастомный суффикс значения через valueSuffix."
             code={sliderCustomSuffixCode}
           />
           <Editor
-            height={350}
+            minHeight={350}
             description="Заблокированное состояние компонента."
             code={sliderDisabledCode}
           />

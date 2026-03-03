@@ -69,7 +69,7 @@ export default SplitterExample;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={550}
+            minHeight={550}
             description="Базовое использование Splitter в горизонтальной ориентации."
             code={`import React from 'react';
 import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
@@ -130,7 +130,7 @@ const SplitterExample = () => {
 export default SplitterExample;`}
           />
           <Editor
-            height={470}
+            minHeight={470}
             description="Вертикальная ориентация разделителя через orientation='vertical'."
             code={verticalSplitterCode}
           />

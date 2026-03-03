@@ -88,7 +88,7 @@ export default App = () => (
           />
 
           <Editor
-            height={600}
+            minHeight={600}
             description="Цветовые варианты уведомления."
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 

@@ -179,29 +179,29 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={500} description="Базовый DatePicker с выбором даты." code={datepickerDefaultCode} />
+          <Editor minHeight={500} description="Базовый DatePicker с выбором даты." code={datepickerDefaultCode} />
 
-          <Editor height={500} description="Выбор даты и времени в режиме type=time." code={datepickerTimeCode} />
+          <Editor minHeight={500} description="Выбор даты и времени в режиме type=time." code={datepickerTimeCode} />
 
-          <Editor height={500} description="Выбор периода через type=period." code={datepickerPeriodCode} />
+          <Editor minHeight={500} description="Выбор периода через type=period." code={datepickerPeriodCode} />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="Выбор времени с секундами через type=seconds."
             code={datepickerSecondsCode}
           />
 
-          <Editor height={600} description="Выбор периода со сменами через type=shift." code={datepickerShiftCode} />
+          <Editor minHeight={600} description="Выбор периода со сменами через type=shift." code={datepickerShiftCode} />
 
           <Editor
-            height={500}
+            minHeight={500}
             description="Ограничение доступного диапазона дат через enabledFrom и enabledTo."
             code={datepickerWithEnabledDateCode}
           />
 
-          <Editor height={500} description="Состояние ошибки и helperText." code={datepickerErrorCode} />
+          <Editor minHeight={500} description="Состояние ошибки и helperText." code={datepickerErrorCode} />
 
-          <Editor height={500} description="Сброс значения через reset и onReset." code={datepickerResetCode} />
+          <Editor minHeight={500} description="Сброс значения через reset и onReset." code={datepickerResetCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

@@ -7,11 +7,26 @@
   &.vertical {
     flex-direction: row;
   }
+
+  &[data-animate='true'] {
+    transition: height 0.3s ease, width 0.3s ease;
+
+    .topPane,
+    .bottomPane {
+      transition: height 0.3s ease, width 0.3s ease, opacity 0.3s ease;
+    }
+    .splitter {
+      transition: opacity 0.3s ease;
+    }
+  }
 }
 
 .topPane,
 .bottomPane {
   overflow: auto;
+  min-height: 0;
+  min-width: 0;
+  transition: none;
 }
 
 .splitter {

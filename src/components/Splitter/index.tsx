@@ -1,26 +1,12 @@
 import React, { FC } from 'react';
-
 import clsx from 'clsx';
-
-import { ISplitterProps } from './types';
 
 import styles from './Splitter.module.scss';
 
+import { ISplitterProps } from './types';
 import { ESplitterOrientation } from './enums';
 import { useSplitter, useSplitterResize } from './hooks';
 
-/**
- * Компонент Splitter разделяет экран на две части с возможностью изменения их размеров.
- *
- * @param {object} props - Свойства компонента.
- * @param {ReactNode} [props.topComponent] - Компонент для отображения в верхней/левой панели.
- * @param {ReactNode} [props.bottomComponent] - Компонент для отображения в нижней/правой панели.
- * @param {`${ESplitterOrientation}`} [props.orientation=ESplitterOrientation.horizontal] - Ориентация разделителя.
- * @param {number} [props.topComponentSize] - Размер верхней/левой панели (в пикселях).
- * @param {number} [props.bottomComponentSize] - Размер нижней/правой панели (в пикселях).
- * @param {boolean} [props.isShowBottomComponent=true] - Управление показом нижней/правой панели.
- * @returns {JSX.Element} - Компонент Splitter.
- */
 
 const Splitter: FC<ISplitterProps> = (props) => {
   const {
@@ -31,7 +17,8 @@ const Splitter: FC<ISplitterProps> = (props) => {
     containerStyle,
     topSizeStyle,
     bottomSizeStyle,
-    setTopHeight
+    setTopHeight,
+    setDidUserResize
   } = useSplitterResize(props);
 
   const {
@@ -41,7 +28,16 @@ const Splitter: FC<ISplitterProps> = (props) => {
     orientation = ESplitterOrientation.horizontal
   } = props;
 
-  const { splitterRef } = useSplitter(containerRef, setTopHeight, orientation);
+  const { splitterRef, isDragging } = useSplitter(
+    containerRef,
+    (height) => {
+      setDidUserResize(true);
+      setTopHeight(height);
+    },
+    orientation
+  );
+
+  const shouldAnimate = !isDragging;
 
   const handleElement =
     isShowBottomComponent && (
@@ -57,32 +53,28 @@ const Splitter: FC<ISplitterProps> = (props) => {
       className={clsx(styles.container, { [styles.vertical]: isVertical })}
       ref={containerRef}
       data-ui-splitter
+      data-animate={shouldAnimate ? 'true' : 'false'}
       style={containerStyle}
     >
-      <div
-        className={styles.topPane}
-        ref={topPaneRef}
-        style={topSizeStyle}
-        data-ui-splitter-top-pane
-      >
+      <div className={styles.topPane} ref={topPaneRef} style={topSizeStyle} data-ui-splitter-top-pane>
         {topComponent}
       </div>
+
       <div
         className={clsx(styles.splitter, { [styles.vertical]: isVertical })}
         ref={splitterRef}
-        style={{
-          display: isShowBottomComponent ? undefined : 'none'
-        }}
+        style={{ display: isShowBottomComponent ? undefined : 'none' }}
       >
         {handleElement}
       </div>
+
       <div
         className={styles.bottomPane}
         ref={bottomPaneRef}
         style={bottomSizeStyle}
         data-ui-splitter-bottom-pane
       >
-        {isShowBottomComponent ? bottomComponent : null}
+        {bottomComponent}
       </div>
     </div>
   );

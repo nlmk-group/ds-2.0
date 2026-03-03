@@ -1,78 +1,96 @@
-export const getSplitterStyles = (
-  bothSizesSet: boolean,
-  isVertical: boolean,
-  noSizesSet: boolean,
-  hasTopSize: boolean,
-  hasBottomSize: boolean,
-  isShowBottomComponent: boolean,
-  topHeight: number,
-  topComponentSize?: number,
-  bottomComponentSize?: number
-) => {
-  const containerStyle: React.CSSProperties = {};
-  if (bothSizesSet) {
-    if (isVertical) {
-      containerStyle.width = `${topComponentSize! + bottomComponentSize!}px`;
-    } else {
-      containerStyle.height = `${topComponentSize! + bottomComponentSize!}px`;
-    }
-  }
+import { CSSProperties } from 'react';
 
-  let topSizeStyle: React.CSSProperties = {};
-  let bottomSizeStyle: React.CSSProperties = {};
+const HANDLE_HEIGHT = 12;
 
-  if (bothSizesSet) {
-    if (isVertical) {
-      topSizeStyle = { width: `${topHeight}%` };
-      bottomSizeStyle = { width: `${100 - topHeight}%` };
-    } else {
-      topSizeStyle = { height: `${topHeight}%` };
-      bottomSizeStyle = { height: `${100 - topHeight}%` };
-    }
-  } else if (noSizesSet) {
-    if (isVertical) {
-      topSizeStyle = { width: `${topHeight}%` };
-      bottomSizeStyle = { width: `${100 - topHeight}%` };
-    } else {
-      topSizeStyle = { height: `${topHeight}%` };
-      bottomSizeStyle = { height: `${100 - topHeight}%` };
-    }
-  } else {
-    if (hasTopSize) {
-      if (isVertical) {
-        topSizeStyle = { width: `${topComponentSize}px` };
-      } else {
-        topSizeStyle = { height: `${topComponentSize}px` };
-      }
-    } else {
-      if (isVertical) {
-        topSizeStyle = { width: 'auto' };
-      } else {
-        topSizeStyle = { height: 'auto' };
-      }
+export interface IGetSplitterStylesParams {
+  bothSizesSet: boolean;
+  oneSizeSet: boolean;
+  isVertical: boolean;
+  noSizesSet: boolean;
+  isShowBottomComponent: boolean;
+  topHeight: number;
+  topComponentSize?: number;
+  bottomComponentSize?: number;
+}
+
+/**
+ * Вычисляет CSS-стили для контейнера и двух панелей сплиттера.
+ *
+ * Функция учитывает:
+ * 1. Ориентацию (Vertical/Horizontal).
+ * 2. Режим отображения (процентный или фиксированный).
+ * 3. Состояние видимости второй панели (схлопывание).
+ *
+ * @param {IGetSplitterStylesParams} params - Объект с флагами состояния и размерами.
+ * @returns {{
+ *   containerStyle: React.CSSProperties,
+ *   topSizeStyle: React.CSSProperties,
+ *   bottomSizeStyle: React.CSSProperties
+ * }} Объект со стилями для родительского контейнера и дочерних панелей.
+ *
+ */
+
+export const getSplitterStyles = ({
+  bothSizesSet,
+  oneSizeSet,
+  isVertical,
+  noSizesSet,
+  isShowBottomComponent,
+  topHeight,
+  topComponentSize = 0,
+  bottomComponentSize = 0
+}: IGetSplitterStylesParams): {
+    containerStyle: React.CSSProperties;
+    topSizeStyle: React.CSSProperties;
+    bottomSizeStyle: React.CSSProperties;
+} => {
+  const sizeProp = isVertical ? 'width' : 'height';
+
+  const getContainerStyle = (): CSSProperties => {
+    if (!isShowBottomComponent) {
+      return topComponentSize ? { [sizeProp]: topComponentSize } : {};
     }
 
-    if (hasBottomSize && isShowBottomComponent) {
-      if (isVertical) {
-        bottomSizeStyle = { width: `${bottomComponentSize}px` };
-      } else {
-        bottomSizeStyle = { height: `${bottomComponentSize}px` };
-      }
-    } else {
-      if (isVertical) {
-        bottomSizeStyle = { width: 'auto' };
-      } else {
-        bottomSizeStyle = { height: 'auto' };
-      }
+    if (bothSizesSet) {
+      const totalSize = topComponentSize + bottomComponentSize + (isVertical ? 0 : HANDLE_HEIGHT);
+      return { [sizeProp]: totalSize };
     }
-  }
 
-  if (!isShowBottomComponent) {
-    bottomSizeStyle = { ...bottomSizeStyle, display: 'none' };
-  }
+    return {};
+  };
+
+  const getPanelStyles = () => {
+    if (!isShowBottomComponent) {
+      return {
+        topSizeStyle: { [sizeProp]: '100%' } as CSSProperties,
+        bottomSizeStyle: {
+          [sizeProp]: 0,
+          opacity: 0,
+          overflow: 'hidden',
+          pointerEvents: 'none'
+        } as CSSProperties
+      };
+    }
+
+    const isPercentMode = bothSizesSet || noSizesSet || oneSizeSet;
+
+    return {
+      topSizeStyle: {
+        [sizeProp]: isPercentMode ? `${topHeight}%` : 'auto'
+      } as CSSProperties,
+      bottomSizeStyle: {
+        [sizeProp]: isPercentMode ? `${100 - topHeight}%` : 'auto',
+        opacity: 1,
+        overflow: 'auto',
+        pointerEvents: 'auto'
+      } as CSSProperties
+    };
+  };
+
+  const { topSizeStyle, bottomSizeStyle } = getPanelStyles();
 
   return {
-    containerStyle,
+    containerStyle: getContainerStyle(),
     topSizeStyle,
     bottomSizeStyle
   };

@@ -1,28 +1,31 @@
-import { useCallback, useEffect, useRef } from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import type { RefObject } from 'react';
 
-import { ESplitterOrientation } from 'components/Splitter/enums';
+import { ESplitterOrientation } from '../enums';
 
 export const useSplitter = (
   containerRef: RefObject<HTMLDivElement | null>,
   setTopHeight: (height: number) => void,
-  orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal
+  orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal,
+  onResizeStart?: () => void,
+  onResizeEnd?: () => void // Добавляем колбэк завершения
 ) => {
   const splitterRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false); // Новое состояние
   const isVertical = orientation === ESplitterOrientation.vertical;
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       const container = containerRef.current;
-      if (container) {
-        const rect = container.getBoundingClientRect();
-        if (isVertical) {
-          const newWidth = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
-          setTopHeight(newWidth);
-        } else {
-          const newHeight = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
-          setTopHeight(newHeight);
-        }
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+
+      if (isVertical) {
+        const newWidth = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
+        setTopHeight(newWidth);
+      } else {
+        const newHeight = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
+        setTopHeight(newHeight);
       }
     },
     [containerRef, setTopHeight, isVertical]
@@ -30,20 +33,24 @@ export const useSplitter = (
 
   useEffect(() => {
     const handleMouseUp = () => {
+      setIsDragging(false);
+      onResizeEnd?.();
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
 
-    const handleMouseDown = () => {
+    const handleMouseDown = (e: MouseEvent) => {
+      e.preventDefault();
+      setIsDragging(true);
+      onResizeStart?.();
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
     };
 
     const splitter = splitterRef.current;
     splitter?.addEventListener('mousedown', handleMouseDown);
-
     return () => splitter?.removeEventListener('mousedown', handleMouseDown);
-  }, [handleMouseMove]);
+  }, [handleMouseMove, onResizeStart, onResizeEnd]);
 
-  return { splitterRef };
+  return { splitterRef, isDragging };
 };

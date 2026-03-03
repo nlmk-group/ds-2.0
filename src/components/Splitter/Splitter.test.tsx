@@ -33,16 +33,13 @@ describe('Splitter Component', () => {
         isShowBottomComponent={false}
       />
     );
-    expect(
-      screen.queryByText(/Bottom Component/i)
-    ).not.toBeInTheDocument();
 
-    const splitterBar = container.querySelector('.splitter');
+    const splitterBar = container.querySelector('.splitter') as HTMLElement;
     expect(splitterBar).toHaveStyle('display: none');
 
-    const bottomPane = container.querySelector('.bottomPane');
+    const bottomPane = container.querySelector('.bottomPane') as HTMLElement;
     expect(bottomPane).toBeInTheDocument();
-    expect(bottomPane).toBeEmptyDOMElement();
+    expect(bottomPane).toHaveStyle('height: 0');
   });
 
   test('applies topComponentSize and bottomComponentSize as percent', () => {
@@ -54,8 +51,8 @@ describe('Splitter Component', () => {
         bottomComponentSize={60}
       />
     );
-    const topPane = container.querySelector('.topPane') as HTMLElement;;
-    const bottomPane = container.querySelector('.bottomPane') as HTMLElement;;
+    const topPane = container.querySelector('.topPane') as HTMLElement;
+    const bottomPane = container.querySelector('.bottomPane') as HTMLElement;
 
     expect(
       topPane?.style.height || topPane?.style.flexBasis

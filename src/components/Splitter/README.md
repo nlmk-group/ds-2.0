@@ -33,7 +33,7 @@ const VerticalApp = () => {
 | orientation           | 'horizontal' \| 'vertical' | 'horizontal' | Ориентация разделителя                           |
 | topComponentSize      | number                     | -            | Размер верхней панели                            |
 | bottomComponentSize   | number                     | -            | Размер нижней панели                             |
-| isShowBottomComponent | boolean                    | true         | Показ нижней панели                              |
+| isShowBottomComponent | boolean                    | true         | Видимость нижней панели                          |
 
 ## Стилизация
 

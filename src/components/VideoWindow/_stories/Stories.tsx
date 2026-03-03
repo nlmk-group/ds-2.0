@@ -23,7 +23,7 @@ const App = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center', position: 'relative', minHeight: 300 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center', position: 'relative', minHeight: 400 }}>
       <Button type="button" onClick={() => setIsVideoOpen(true)}>
         Открыть видео
       </Button>
@@ -35,8 +35,7 @@ const App = () => {
           autoPlay
           draggable
           resizable
-          draggableStartPosition={{ x: 120, y: 120 }}
-          style={{ position: 'absolute', left: 0, top: 56 }}
+          draggableStartPosition={{ x: 20, y: 60 }}
           onClose={() => setIsVideoOpen(false)}
         />
       )}

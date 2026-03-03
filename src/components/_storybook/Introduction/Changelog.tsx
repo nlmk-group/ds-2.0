@@ -96,6 +96,20 @@ export const Changelog = () => {
                 - Между элементами скелетона в горизонтальном ряду добавлен отступ
               </li>
             </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании draggableStartPosition
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

@@ -38,7 +38,14 @@
   flex: unset;
 }
 
+.vertical-wrapper {
+  display: flex;
+  align-self: stretch;
+  margin: 0 16px;
+}
+
 .border-vertical {
+  height: 100%;
   border-right-width: 1px;
   border-right-color: var(--steel-50);
 }

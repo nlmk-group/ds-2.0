@@ -3,9 +3,9 @@ import { CSSProperties, useEffect, useState } from 'react';
 import { TDraggableStartPosition } from './types';
 
 export const useDraggable = (isFullscreen: boolean, draggableStartPosition?: TDraggableStartPosition) => {
-  const [position, setPosition] = useState({ x: 100, y: 100 });
+  const [position, setPosition] = useState(draggableStartPosition || { x: 100, y: 100 });
   const [dragging, setDragging] = useState(false);
-  const [startPosition, setStartPosition] = useState(draggableStartPosition || { x: 0, y: 0 });
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
 
   // начало перетаскивания
   const handleMouseDown = (event: React.MouseEvent) => {

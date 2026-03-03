@@ -20,8 +20,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Accordion';
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=451-9601&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=451-9601&t=HhCDuaOuzHu5rgyf-1';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -34,9 +33,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description={`Компонент "аккордеон" предоставляет большие объемы контента в ограниченном пространстве с помощью пошагового раскрытия. Заголовок обеспечивает пользователю общий обзор содержимого, позволяя решить, какие разделы читать.
-
-        Аккордеоны могут сделать обработку информации и поиск более эффективными. Однако они скрывают контент от пользователей, и важно учесть, что пользователь может не заметить или не прочитать весь включенный контент. Если пользователь, вероятно, должен прочесть весь контент, не используйте аккордеон, так как это добавляет дополнительный клик; вместо этого используйте полноценную прокручиваемую страницу с обычными заголовками.`}
+        description="Accordion группирует контент в раскрываемые секции и помогает экономить пространство интерфейса. Используйте компонент для независимых блоков информации, которые можно просматривать по требованию."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -53,27 +50,27 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            description="Аккордеон по умолчанию"
+            description="Базовый пример Accordion с раскрытием секции при загрузке."
             code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
-    {
-      id: 1,
-      title: 'First accordion item',
-      content: 'Lorem ipsum',
-      initiallyExpanded: true
-    },
-    {
-      id: 2,
-      title: '2nd accordion item',
-      content: 'Lorem ipsum'
-    },
-    {
-      id: 3,
-      title: 'Last accordion item',
-      content: 'Lorem ipsum'
-    }
-  ]
+  {
+    id: 1,
+    title: 'Общая информация',
+    content: 'Краткое описание процесса',
+    initiallyExpanded: true
+  },
+  {
+    id: 2,
+    title: 'Требования',
+    content: 'Список обязательных условий'
+  },
+  {
+    id: 3,
+    title: 'FAQ',
+    content: 'Часто задаваемые вопросы'
+  }
+];
 
 export default App = () => (
   <Accordion items={items} />
@@ -82,101 +79,142 @@ export default App = () => (
           />
 
           <Editor
-            description={`Варианты размеров аккордеона: ${Object.values(ESizesAccordion).join(' | ')}`}
+            description={`Варианты размера Accordion: ${Object.values(ESizesAccordion).join(' | ')}.`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
+import { Box } from '@nlmk/ds-2.0';
 
 const items = [
   {
     id: 1,
-    title: 'First accordion item',
-    content: 'Lorem ipsum',
+    title: 'Панель с параметрами',
+    content: 'Описание настроек',
     initiallyExpanded: true
   },
   {
     id: 2,
-    title: '2nd accordion item',
-    content: 'Lorem ipsum'
+    title: 'Панель с логами',
+    content: 'Техническая информация'
   },
   {
     id: 3,
-    title: 'Last accordion item',
-    content: 'Lorem ipsum'
+    title: 'Панель с итогами',
+    content: 'Итоговые данные'
   }
-]
+];
 
 export default App = () => (
-  <>
-  <Accordion size="m" items={items} />
-  <Accordion size="s" items={items} />
-  <Accordion size="xs" items={items} />
-  </>
+  <Box display="flex" flexDirection="column" gap={12} width="100%">
+    <Accordion size="m" items={items} />
+    <Accordion size="s" items={items} />
+    <Accordion size="xs" items={items} />
+  </Box>
 )
               `}
           />
           <Editor
-            description={`Варианты иконок аккордеона: ${Object.values(EIconsAccordion).join(' | ')}`}
+            description={`Настройка иконок Accordion (${Object.values(EIconsAccordion).join(
+              ' | '
+            )}) через startIcon и endIcon.`}
             code={`import { Accordion } from '@nlmk/ds-2.0';
+import { Box } from '@nlmk/ds-2.0';
 
 const items = [
   {
     id: 1,
-    title: 'First accordion item',
-    content: 'Lorem ipsum',
-    initiallyExpanded: true
+    title: 'Элемент со стрелкой слева',
+    content: 'Базовый вариант иконки'
   },
   {
     id: 2,
-    title: '2nd accordion item',
-    content: 'Lorem ipsum'
+    title: 'Элемент с плюсом слева',
+    content: 'Альтернативный вариант'
+  }
+];
+
+const itemsForEndIcon = [
+  {
+    id: 11,
+    title: 'Элемент со стрелкой справа',
+    content: 'Иконка в конце заголовка'
   },
   {
-    id: 3,
-    title: 'Last accordion item',
-    content: 'Lorem ipsum'
+    id: 12,
+    title: 'Элемент с плюсом справа',
+    content: 'Иконка в конце заголовка'
   }
-]
+];
 
 export default App = () => (
-  <>
-  <Accordion startIcon="arrow" items={items} />
-  <Accordion startIcon="plus" items={items} />
-  <Accordion startIcon={null} endIcon="arrow" items={items} />
-  <Accordion startIcon={null} endIcon="plus" items={items} />
-  </>
+  <Box display="flex" flexDirection="column" gap={12} width="100%">
+    <Accordion startIcon="arrow" items={items} />
+    <Accordion startIcon="plus" items={items} />
+    <Accordion startIcon={null} endIcon="arrow" items={itemsForEndIcon} />
+    <Accordion startIcon={null} endIcon="plus" items={itemsForEndIcon} />
+  </Box>
 )
               `}
           />
 
           <Editor
-            description={`Цветовые варианты аккордеона: ${Object.values(EVariantsAccordion).join(' | ')}`}
+            description={`Варианты оформления ${Object.values(EVariantsAccordion).join(' | ')} и поведение в disabled.`}
+            code={`import { Accordion } from '@nlmk/ds-2.0';
+import { Box } from '@nlmk/ds-2.0';
+
+const items = [
+  {
+    id: 1,
+    title: 'Активный элемент',
+    content: 'Контент доступен'
+  },
+  {
+    id: 2,
+    title: 'Локально заблокированный элемент',
+    content: 'Этот пункт недоступен',
+    disabled: true
+  }
+];
+
+export default App = () => (
+  <Box display="flex" flexDirection="column" gap={12} width="100%">
+    <Accordion variant="default" items={items} />
+    <Accordion variant="paper" items={items} />
+    <Accordion variant="default" items={items} disabled />
+    <Accordion variant="paper" items={items} disabled />
+  </Box>
+)
+              `}
+          />
+
+          <Editor
+            description="Одновременное раскрытие секций через multipleExpanded и стилизация через className."
             code={`import { Accordion } from '@nlmk/ds-2.0';
 
 const items = [
   {
     id: 1,
-    title: 'First accordion item',
-    content: 'Lorem ipsum',
+    title: 'Раздел A',
+    content: 'Данные раздела A',
     initiallyExpanded: true
   },
   {
     id: 2,
-    title: '2nd accordion item',
-    content: 'Lorem ipsum'
+    title: 'Раздел B',
+    content: 'Данные раздела B',
+    initiallyExpanded: true
   },
   {
     id: 3,
-    title: 'Last accordion item',
-    content: 'Lorem ipsum'
+    title: 'Раздел C',
+    content: 'Данные раздела C'
   }
-]
+];
 
 export default App = () => (
-  <>
-  <Accordion variant="default" items={items} />
-  <Accordion variant="paper" items={items} />
-  <Accordion variant="default" items={items} disabled />
-  <Accordion variant="paper" items={items} disabled />
-  </>
+  <Accordion
+    items={items}
+    multipleExpanded
+    className="custom-accordion"
+  />
 )
               `}
           />

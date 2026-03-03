@@ -130,12 +130,47 @@ const App = () => {
 };
 
 export default App;`;
+  const treeListSimpleCheckCode = `import React from 'react';
+import { TreeList, IconFolderFilled24, IconCircleOutlined24 } from '@nlmk/ds-2.0';
+
+const data = [
+  {
+    key: 'root-1',
+    title: 'Служба главного энергетика',
+    icon: <IconFolderFilled24 />,
+    children: [
+      { key: 'root-1-1', title: 'Подстанция №1', icon: <IconCircleOutlined24 /> },
+      { key: 'root-1-2', title: 'Подстанция №2', icon: <IconCircleOutlined24 /> }
+    ]
+  },
+  {
+    key: 'root-2',
+    title: 'Служба механика',
+    icon: <IconFolderFilled24 />,
+    children: [{ key: 'root-2-1', title: 'Участок диагностики', icon: <IconCircleOutlined24 /> }]
+  }
+];
+
+const App = () => {
+  return (
+    <TreeList
+      data={data}
+      checkableSimple
+      rowHeight="xs"
+      initialExpandedKeys={['root-1']}
+      initialCheckedKeys={['root-1-1']}
+      onSelectedNode={(event) => console.log('selected node', event)}
+    />
+  );
+};
+
+export default App;`;
 
   return (
     <div className={styles.wrapper}>
       <Header
         title="TreeList"
-        description="TreeList - компонент древовидного списка, который позволяет отображать иерархические данные с возможностью выбора элементов и drag-n-drop функциональностью."
+        description="TreeList отображает иерархические данные с поддержкой выбора, раскрытия узлов и drag-and-drop. Компонент подходит для навигации по структурированным объектам."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TreeList"
         figmaLink={FIGMA_LINK}
@@ -152,9 +187,14 @@ export default App;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={500}
-            description="Базовый пример использования TreeList с чекбоксами и drag-n-drop"
+            minHeight={600}
+            description="Базовый пример с `checkable`, `draggable`, обработчиками выбора и перетаскивания."
             code={treeListDefaultCode}
+          />
+          <Editor
+            minHeight={600}
+            description="Упрощенный режим выбора через `checkableSimple` с начальными выделениями и раскрытием."
+            code={treeListSimpleCheckCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

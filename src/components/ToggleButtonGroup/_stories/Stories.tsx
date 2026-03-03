@@ -10,7 +10,6 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { EToggleButtonGroupSizeMapping } from '../enums';
 import { argsTypes } from './argsTypes';
 
 enum TabIds {
@@ -28,12 +27,128 @@ const Stories = (): JSX.Element => {
   const isActive = (tab: TabIds) => {
     return activeTab === tab;
   };
+  const defaultCode = `import { ToggleButtonGroup } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const { Button: ToggleButton } = ToggleButtonGroup;
+
+const App = () => {
+  const [selected, setSelected] = useState<'plus' | 'result' | 'minus'>('plus');
+
+  return (
+    <ToggleButtonGroup>
+      <ToggleButton active={selected === 'plus'} onClick={() => setSelected('plus')}>
+        <ToggleButton.Label>Плюс</ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton active={selected === 'result'} onClick={() => setSelected('result')}>
+        <ToggleButton.Label>Результат</ToggleButton.Label>
+      </ToggleButton>
+      <ToggleButton active={selected === 'minus'} onClick={() => setSelected('minus')}>
+        <ToggleButton.Label>Минус</ToggleButton.Label>
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
+};
+
+export default App;
+`;
+  const sizesCode = `import { ToggleButtonGroup } from '@nlmk/ds-2.0';
+
+const { Button: ToggleButton } = ToggleButtonGroup;
+
+const App = () => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <ToggleButtonGroup size="m">
+        <ToggleButton active={true}>
+          <ToggleButton.Label>Размер m</ToggleButton.Label>
+        </ToggleButton>
+        <ToggleButton>
+          <ToggleButton.Label>Опция</ToggleButton.Label>
+        </ToggleButton>
+      </ToggleButtonGroup>
+
+      <ToggleButtonGroup size="s">
+        <ToggleButton active={true}>
+          <ToggleButton.Label>Размер s</ToggleButton.Label>
+        </ToggleButton>
+        <ToggleButton>
+          <ToggleButton.Label>Опция</ToggleButton.Label>
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </div>
+  );
+};
+
+export default App;
+`;
+  const disabledCode = `import { ToggleButtonGroup } from '@nlmk/ds-2.0';
+
+const { Button: ToggleButton } = ToggleButtonGroup;
+
+const App = () => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <ToggleButtonGroup disabled={true}>
+        <ToggleButton active={true}>
+          <ToggleButton.Label>Вся группа disabled</ToggleButton.Label>
+        </ToggleButton>
+        <ToggleButton>
+          <ToggleButton.Label>Опция</ToggleButton.Label>
+        </ToggleButton>
+      </ToggleButtonGroup>
+
+      <ToggleButtonGroup>
+        <ToggleButton active={true}>
+          <ToggleButton.Label>Активная</ToggleButton.Label>
+        </ToggleButton>
+        <ToggleButton disabled={true}>
+          <ToggleButton.Label>Только эта кнопка disabled</ToggleButton.Label>
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </div>
+  );
+};
+
+export default App;
+`;
+  const iconsAndBadgesCode = `import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
+
+const { Button: ToggleButton } = ToggleButtonGroup;
+
+const App = () => {
+  return (
+    <ToggleButtonGroup>
+      <ToggleButton active={true}>
+        <ToggleButton.Icon>
+          <IconAddPlusCircleOutlined24 />
+        </ToggleButton.Icon>
+        <ToggleButton.Label>Создать</ToggleButton.Label>
+        <ToggleButton.Badge>3</ToggleButton.Badge>
+      </ToggleButton>
+      <ToggleButton>
+        <ToggleButton.Tooltip description="Проверить выбранные изменения" placement="bottom">
+          <ToggleButton.Label>Проверка</ToggleButton.Label>
+        </ToggleButton.Tooltip>
+      </ToggleButton>
+      <ToggleButton>
+        <ToggleButton.Icon>
+          <IconDeleteMinusOutlined24 />
+        </ToggleButton.Icon>
+        <ToggleButton.Label>Удалить</ToggleButton.Label>
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
+};
+
+export default App;
+`;
 
   return (
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Компонент ToggleButtonGroup - это набор кнопок, из которых пользователь может выбрать только одну."
+        description="ToggleButtonGroup объединяет переключаемые кнопки для выбора одного активного варианта. Поддерживает размеры, disabled-состояния, иконки, тултипы и бейджи."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -49,271 +164,16 @@ const Stories = (): JSX.Element => {
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor
-            height={400}
-            description={'Toggle Button по умолчанию'}
-            code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
-import { useState } from 'react';
+          <Editor description="Базовая группа переключателей с одним активным вариантом." code={defaultCode} />
 
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  const [count, setCount] = useState(0)
-
-  return (
-    <ToggleButtonGroup>
-      <ToggleButton onClick={() => setCount(count+1)}>
-        <ToggleButton.Label>
-          Plus {count}
-        </ToggleButton.Label>
-      </ToggleButton>
-      <ToggleButton onClick={() => alert('Count is '+ count)}>
-        <ToggleButton.Label>
-          Check result
-        </ToggleButton.Label>
-      </ToggleButton>
-      <ToggleButton onClick={() => setCount(count-1)}>
-        <ToggleButton.Label>
-          Minus {count}
-        </ToggleButton.Label>
-      </ToggleButton>
-    </ToggleButtonGroup>
-  )
-}
-`}
-          />
+          <Editor description="Размеры группы через `size`" code={sizesCode} />
 
           <Editor
-            height={400}
-            description={'Toggle Button с тултипами'}
-            code={`import { ToggleButtonGroup } from '@nlmk/ds-2.0';
-
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  return (
-    <ToggleButtonGroup>
-      <ToggleButton>
-        <ToggleButton.Tooltip description='Add one to count' placement='bottom'>
-          <ToggleButton.Label>
-            Plus
-          </ToggleButton.Label>
-        </ToggleButton.Tooltip>
-      </ToggleButton>
-
-      <ToggleButton>
-        <ToggleButton.Tooltip description='Check count value' placement='bottom'>
-          <ToggleButton.Label>
-            Check result
-          </ToggleButton.Label>
-        </ToggleButton.Tooltip>
-      </ToggleButton>
-
-      <ToggleButton>
-        <ToggleButton.Tooltip description='Subtract one from count' placement='bottom'>
-          <ToggleButton.Label>
-            Minus
-          </ToggleButton.Label>
-        </ToggleButton.Tooltip>
-      </ToggleButton>
-    </ToggleButtonGroup>
-  )
-}
-`}
+            description="Сценарии блокировки через `disabled` для всей группы и отдельных кнопок."
+            code={disabledCode}
           />
 
-          <Editor
-            height={400}
-            description={'Toggle Button с разными размерами'}
-            code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
-
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
-      }}
-    >
-      <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.m}">
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-
-      <Divider dashed />
-
-      <ToggleButtonGroup size="${EToggleButtonGroupSizeMapping.s}">
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </div>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={'Toggle Button с иконками'}
-            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
-import { useState } from 'react';
-
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  const [count, setCount] = useState(0)
-  return (
-    <ToggleButtonGroup>
-      <ToggleButton onClick={() => setCount(count+1)}>
-        <ToggleButton.Icon>
-          <IconAddPlusCircleOutlined24 />
-        </ToggleButton.Icon>
-        <ToggleButton.Label>
-          Plus {count}
-        </ToggleButton.Label>
-      </ToggleButton>
-      <ToggleButton onClick={() => alert('Count is '+ count)}>
-        <ToggleButton.Icon/>
-        <ToggleButton.Label>
-          Check result
-        </ToggleButton.Label>
-      </ToggleButton>
-      <ToggleButton onClick={() => setCount(count-1)}>
-        <ToggleButton.Icon>
-          <IconDeleteMinusOutlined24 />
-        </ToggleButton.Icon>
-        <ToggleButton.Label>
-          Minus {count}
-        </ToggleButton.Label>
-      </ToggleButton>
-    </ToggleButtonGroup>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={'Toggle Button с бейджами'}
-            code={`import { ToggleButtonGroup, IconAddPlusCircleOutlined24, IconDeleteMinusOutlined24 } from '@nlmk/ds-2.0';
-import { useState } from 'react';
-
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  const [count, setCount] = useState(0)
-  return (
-    <ToggleButtonGroup>
-      <ToggleButton onClick={() => setCount(count+1)}>
-        <ToggleButton.Icon>
-          <IconAddPlusCircleOutlined24 />
-        </ToggleButton.Icon>
-        <ToggleButton.Label>
-          Plus
-        </ToggleButton.Label>
-        <ToggleButton.Badge>
-          {count}
-        </ToggleButton.Badge>
-      </ToggleButton>
-      <ToggleButton onClick={() => alert('Count is '+ count)}>
-        <ToggleButton.Icon/>
-        <ToggleButton.Label>
-          Check result
-        </ToggleButton.Label>
-        <ToggleButton.Badge>
-          {count}
-        </ToggleButton.Badge>
-      </ToggleButton>
-      <ToggleButton onClick={() => setCount(count-1)}>
-        <ToggleButton.Icon>
-          <IconDeleteMinusOutlined24 />
-        </ToggleButton.Icon>
-        <ToggleButton.Label>
-          Minus
-        </ToggleButton.Label>
-        <ToggleButton.Badge>
-          {count}
-        </ToggleButton.Badge>
-      </ToggleButton>
-    </ToggleButtonGroup>
-  )
-}
-`}
-          />
-
-          <Editor
-            height={400}
-            description={'Toggle Button с разными кнопками и иконками'}
-            code={`import { ToggleButtonGroup, Divider } from '@nlmk/ds-2.0';
-
-const { Button: ToggleButton } = ToggleButtonGroup;
-
-export default App = () => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
-      }}
-    >
-      <ToggleButtonGroup>
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-
-      <Divider dashed />
-
-      <ToggleButtonGroup>
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-
-      <Divider dashed />
-
-      <ToggleButtonGroup>
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-
-      <Divider dashed />
-
-      <ToggleButtonGroup>
-        <ToggleButton onClick={() => alert('First option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-        <ToggleButton onClick={() => alert('Second option')}>
-          <ToggleButton.Icon/>
-        </ToggleButton>
-      </ToggleButtonGroup>
-    </div>
-  )
-}
-`}
-          />
+          <Editor description="Использование иконок, тултипа и бейджа в группе." code={iconsAndBadgesCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

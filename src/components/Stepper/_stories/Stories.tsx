@@ -24,38 +24,9 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
-  const isActive = (tab: TabIds) => {
-    return activeTab === tab;
-  };
-
-  return (
-    <div className={styles.wrapper}>
-      <Header
-        title={COMPONENT_NAME}
-        description={
-          'Компонент Stepper представляет из себя пользовательный компонент, который отображает текущий Step (с помощью компонента Badge), его название и линию - Divider. По нему можно кликнуть и получить его состояние и индекс.'
-        }
-        isStable
-        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
-        figmaLink={FIGMA_LINK}
-      />
-
-      <div className={styles.tabs}>
-        <Tabs>
-          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
-          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
-          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
-        </Tabs>
-      </div>
-
-      {activeTab == TabIds.dev && (
-        <>
-          <Editor
-            height={420}
-            description="Stepper в состоянии filled"
-            code={`import { Box, Stepper } from '@nlmk/ds-2.0';
-                   import React, { useState } from 'react';
-                   import {EStepState, EStepColor} from '@nlmk/ds-2.0';
+  const filledStepperCode = `import { Box, Stepper } from '@nlmk/ds-2.0';
+import React, { useState } from 'react';
+import { EStepState } from '@nlmk/ds-2.0';
 
 const App = () => {
   const [currentStep, setCurrentStep] = React.useState(1);
@@ -98,8 +69,68 @@ const App = () => {
 }
 
 export default App;
-              `}
-          />
+`;
+
+  const errorStepperCode = `import { Box, Stepper } from '@nlmk/ds-2.0';
+import React from 'react';
+import { EStepState, EStepColor } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const steps = [
+    { stepName: 'Шаг 1', state: EStepState.filled, color: EStepColor.success },
+    { stepName: 'Шаг 2', state: EStepState.filled, color: EStepColor.success },
+    { stepName: 'Шаг 3', state: EStepState.error, color: EStepColor.error },
+    { stepName: 'Шаг 4', state: EStepState.notFilled, color: EStepColor.brand }
+  ];
+
+  return (
+    <Box flexDirection="row" width="100%" gap={16}>
+      {steps.map((step, i) => (
+        <Stepper
+          currentStep={2}
+          key={i}
+          state={step.state}
+          color={step.color}
+          index={i}
+          showStep={i !== steps.length - 1}
+          stepName={step.stepName}
+        />
+      ))}
+    </Box>
+  );
+}
+
+export default App;
+`;
+
+  const isActive = (tab: TabIds) => {
+    return activeTab === tab;
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <Header
+        title={COMPONENT_NAME}
+        description={
+          'Stepper отображает последовательность шагов и их состояние в процессе выполнения. Компонент поддерживает интерактивный выбор шага и визуальные состояния успеха, ошибки и блокировки.'
+        }
+        isStable
+        codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
+        figmaLink={FIGMA_LINK}
+      />
+
+      <div className={styles.tabs}>
+        <Tabs>
+          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Дизайнеру" active={isActive(TabIds.design)} onClick={() => setActiveTab(TabIds.design)} />
+          <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
+        </Tabs>
+      </div>
+
+      {activeTab == TabIds.dev && (
+        <>
+          <Editor description="Интерактивный stepper с переходом между шагами." code={filledStepperCode} />
+          <Editor description="Состояния stepper с ошибкой и цветовым акцентом." code={errorStepperCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

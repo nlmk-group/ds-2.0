@@ -24,6 +24,26 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
+  const switchColorCode = `import { useState } from 'react'
+import { Switch } from '@nlmk/ds-2.0';
+
+export default App = () => {
+  const [brand, setBrand] = useState(true);
+  const [success, setSuccess] = useState(true);
+  const [warning, setWarning] = useState(false);
+  const [error, setError] = useState(false);
+
+  return (
+    <div style={{ display: 'grid', gap: '12px' }}>
+      <Switch checked={brand} onChange={setBrand} label="Brand" color="brand" />
+      <Switch checked={success} onChange={setSuccess} label="Success" color="success" />
+      <Switch checked={warning} onChange={setWarning} label="Warning" color="warning" />
+      <Switch checked={error} onChange={setError} label="Error" color="error" />
+    </div>
+  )
+}
+              `;
+
   const isActive = (tab: TabIds) => {
     return activeTab === tab;
   };
@@ -32,7 +52,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Switch - это компонент, который реализует функциональность переключателя, часто используемого в пользовательских интерфейсах для настройки параметров, таких как включение/выключение определенных функций приложения."
+        description="Switch используется для быстрого включения и выключения параметров. Компонент поддерживает подпись, цветовые состояния, иконки и режим disabled."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -49,7 +69,7 @@ const Stories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
-            description="Switch по умолчанию"
+            description="Базовый переключатель с управляемым состоянием."
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
@@ -66,7 +86,7 @@ export default App = () => {
               `}
           />
           <Editor
-            description="Switch в состоянии disabled"
+            description="Недоступное состояние переключателя."
             code={`import { Switch } from '@nlmk/ds-2.0';
 
 export default App = () => {
@@ -81,7 +101,7 @@ export default App = () => {
               `}
           />
           <Editor
-            description="Switch с текстом"
+            description="Использование подписи через label."
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
@@ -114,7 +134,11 @@ export default App = () => {
               `}
           />
           <Editor
-            description="Switch с иконкой"
+            description="Цветовые состояния переключателя через prop color."
+            code={switchColorCode}
+          />
+          <Editor
+            description="Переключатель с иконками для активного и неактивного состояния."
             code={`import { useState } from 'react'
 import { Switch, Icon } from '@nlmk/ds-2.0';
 

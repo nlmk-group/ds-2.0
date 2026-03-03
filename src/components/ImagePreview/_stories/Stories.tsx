@@ -107,19 +107,19 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={420}
+            minHeight={420}
             description="ImagePreview с одним изображением."
             code={imagePreviewDefaultCode}
           />
 
           <Editor
-            height={520}
+            minHeight={520}
             description="ImagePreview с несколькими изображениями: слева карусель, навигация стрелками, заголовок и описание."
             code={imagePreviewManyCode}
           />
 
           <Editor
-            height={260}
+            minHeight={260}
             description="Пустое состояние (если items пустой, компонент ничего не рисует)."
             code={imagePreviewEmptyCode}
           />

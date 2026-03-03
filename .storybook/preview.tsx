@@ -77,7 +77,7 @@ export const parameters = {
 };
 
 export const decorators = [
-  Story => (
+  (Story: React.ComponentType) => (
     <BrowserRouter>
       <Story />
     </BrowserRouter>

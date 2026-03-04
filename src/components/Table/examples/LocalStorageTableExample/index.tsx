@@ -159,61 +159,21 @@ const LocalStorageTableExample = () => {
     setColumnPinning({ left, right });
   };
 
-  const getPinnedInfo = (
-    header: Header<Person, unknown>
-  ): { styles: CSSProperties; className: string; pinnedSize?: number } | null => {
-    const leafHeaders = header.getLeafHeaders();
-    const pinnedState = table.getState().columnPinning;
-    const leftPinned = pinnedState.left || [];
-    const rightPinned = pinnedState.right || [];
-    const leftLeafs = leafHeaders.filter(h => leftPinned.includes(h.column.id));
-    const rightLeafs = leafHeaders.filter(h => rightPinned.includes(h.column.id));
-    const leafCount = leafHeaders.length;
 
-    if (leftLeafs.length > 0 && leftLeafs.length === leafCount) {
-      return {
-        styles: { position: 'sticky', left: leftLeafs[0].column.getStart('left'), zIndex: 4 },
-        className: styles.pinnedColumnLeft
-      };
+  const getHeaderPinnedStyle = (
+    header: Header<Person, unknown>,
+    side: 'left' | 'right' | 'center'
+  ): CSSProperties => {
+    const trueLeafs = header.getLeafHeaders().filter(h => !h.subHeaders || h.subHeaders.length === 0);
+    if (side === 'left') {
+      const leftOffset = trueLeafs[0]?.column.getStart('left') ?? 0;
+      return { position: 'sticky', left: leftOffset, zIndex: 4 };
     }
-
-    if (rightLeafs.length > 0 && rightLeafs.length === leafCount) {
-      return {
-        styles: {
-          position: 'sticky',
-          right: rightLeafs[rightLeafs.length - 1].column.getAfter('right'),
-          zIndex: 4
-        },
-        className: styles.pinnedColumnRight
-      };
+    if (side === 'right') {
+      const rightOffset = trueLeafs[trueLeafs.length - 1]?.column.getAfter('right') ?? 0;
+      return { position: 'sticky', right: rightOffset, zIndex: 4 };
     }
-
-    if (leftLeafs.length > 0) {
-      const pinnedSize = leftLeafs.reduce((sum, h) => sum + h.getSize(), 0);
-      return {
-        styles: { position: 'sticky', left: leftLeafs[0].column.getStart('left'), zIndex: 4, width: pinnedSize, minWidth: pinnedSize, maxWidth: pinnedSize },
-        className: styles.pinnedColumnLeft,
-        pinnedSize
-      };
-    }
-
-    if (rightLeafs.length > 0) {
-      const pinnedSize = rightLeafs.reduce((sum, h) => sum + h.getSize(), 0);
-      return {
-        styles: {
-          position: 'sticky',
-          right: rightLeafs[rightLeafs.length - 1].column.getAfter('right'),
-          zIndex: 4,
-          width: pinnedSize,
-          minWidth: pinnedSize,
-          maxWidth: pinnedSize
-        },
-        className: styles.pinnedColumnRight,
-        pinnedSize
-      };
-    }
-
-    return null;
+    return {};
   };
 
   const getCellPinnedInfo = (columnId: string): { styles: CSSProperties; className: string } | null => {
@@ -237,8 +197,52 @@ const LocalStorageTableExample = () => {
     return null;
   };
 
+  const renderHeader = (header: Header<Person, unknown>, side: 'left' | 'right' | 'center') => {
+    const columnRelativeDepth = header.depth - header.column.depth;
+    if (columnRelativeDepth > 1) return null;
+
+    let rowSpan = 1;
+    if (header.isPlaceholder) {
+      const leafs = header.getLeafHeaders();
+      rowSpan = Math.max(1, leafs[leafs.length - 1].depth - header.depth);
+    }
+    const metaRowSpan = header.column.columnDef.meta?.rowSpan;
+    if (metaRowSpan !== undefined) rowSpan = metaRowSpan;
+
+    let size = header.getSize();
+    if (header.subHeaders && header.subHeaders.length > 0) {
+      size = header.subHeaders.reduce((sum, sub) => sum + sub.getSize(), 0);
+    }
+
+    const pinnedStyle = getHeaderPinnedStyle(header, side);
+    const pinnedClassMap: Record<string, string | undefined> = {
+      left: styles.pinnedColumnLeft,
+      right: styles.pinnedColumnRight
+    };
+    const pinnedClassName = pinnedClassMap[side];
+
+    return (
+      <Top
+        key={header.id}
+        style={{ width: size, minWidth: size, maxWidth: size, ...pinnedStyle }}
+        className={pinnedClassName}
+        colSpan={header.colSpan}
+        rowSpan={rowSpan}
+        drag={side === 'center' && (!header.subHeaders || header.subHeaders.length === 0)}
+        onMouseDown={side === 'center' ? header.getResizeHandler() : undefined}
+        onTouchStart={side === 'center' ? header.getResizeHandler() : undefined}
+        title={
+          typeof header.column.columnDef.header === 'string'
+            ? header.column.columnDef.header
+            : (header.column.columnDef.meta?.title as string) || header.id
+        }
+        right={!!header.column.columnDef.meta?.isNumeric}
+      />
+    );
+  };
+
   return (
-    <Box maxWidth="1024px" flexDirection="column">
+    <Box maxWidth="1024px" flexDirection="column" gap={0}>
       <Box gap={16} style={{ marginBottom: '16px' }}>
         <Typography variant="Body1-Medium" color="var(--steel-90)">
           Настройте таблицу через панель настроек (видимость, порядок, закрепление столбцов).
@@ -276,107 +280,18 @@ const LocalStorageTableExample = () => {
           }}
         >
           <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  const columnRelativeDepth = header.depth - header.column.depth;
+            {table.getLeftHeaderGroups().map((leftGroup, rowIdx) => {
+              const centerGroup = table.getCenterHeaderGroups()[rowIdx];
+              const rightGroup = table.getRightHeaderGroups()[rowIdx];
 
-                  if (columnRelativeDepth > 1) {
-                    return null;
-                  }
-
-                  let rowSpan = 1;
-
-                  if (header.isPlaceholder) {
-                    const leafs = header.getLeafHeaders();
-                    rowSpan = Math.max(1, leafs[leafs.length - 1].depth - header.depth);
-                  }
-
-                  const metaRowSpan = header.column.columnDef.meta?.rowSpan;
-                  if (metaRowSpan !== undefined) {
-                    rowSpan = metaRowSpan;
-                  }
-
-                  let size = header.getSize();
-                  if (header.subHeaders && header.subHeaders.length > 0) {
-                    size = header.subHeaders.reduce((sum, subHeader) => sum + subHeader.getSize(), 0);
-                  }
-
-                  const pinnedInfo = getPinnedInfo(header);
-                  const pinnedState = table.getState().columnPinning;
-                  const leftPinned = pinnedState.left || [];
-                  const rightPinned = pinnedState.right || [];
-                  const leafHeaders = header.getLeafHeaders();
-                  const leftLeafs = leafHeaders.filter(h => leftPinned.includes(h.column.id));
-                  const rightLeafs = leafHeaders.filter(h => rightPinned.includes(h.column.id));
-                  const totalLeafs = leafHeaders.length;
-                  const isPartialPin =
-                    pinnedInfo?.pinnedSize !== undefined &&
-                    (leftLeafs.length > 0 || rightLeafs.length > 0) &&
-                    (leftLeafs.length < totalLeafs || rightLeafs.length < totalLeafs);
-
-                  if (isPartialPin && leftLeafs.length > 0) {
-                    const pinnedColSpan = leftLeafs.length;
-                    const unpinnedColSpan = totalLeafs - leftLeafs.length;
-                    const pinnedSize = leftLeafs.reduce((sum, h) => sum + h.getSize(), 0);
-                    const unpinnedSize = leafHeaders
-                      .filter(h => !leftPinned.includes(h.column.id))
-                      .reduce((sum, h) => sum + h.getSize(), 0);
-
-                    const title =
-                      typeof header.column.columnDef.header === 'string'
-                        ? header.column.columnDef.header
-                        : (header.column.columnDef.meta?.title as string) || header.id;
-
-                    return (
-                      <React.Fragment key={header.id}>
-                        <Top
-                          style={{
-                            width: pinnedSize,
-                            minWidth: pinnedSize,
-                            maxWidth: pinnedSize,
-                            ...pinnedInfo!.styles
-                          }}
-                          className={pinnedInfo!.className}
-                          colSpan={pinnedColSpan}
-                          rowSpan={rowSpan}
-                          drag={false}
-                          title={title}
-                        />
-                        {unpinnedColSpan > 0 && (
-                          <Top
-                            style={{ width: unpinnedSize, minWidth: unpinnedSize, maxWidth: unpinnedSize }}
-                            colSpan={unpinnedColSpan}
-                            rowSpan={rowSpan}
-                            drag={false}
-                            title={title}
-                          />
-                        )}
-                      </React.Fragment>
-                    );
-                  }
-
-                  return (
-                    <Top
-                      key={header.id}
-                      style={{ width: size, minWidth: size, maxWidth: size, ...(pinnedInfo?.styles || {}) }}
-                      className={pinnedInfo?.className}
-                      colSpan={header.colSpan}
-                      rowSpan={rowSpan}
-                      drag={!header.subHeaders || header.subHeaders.length === 0}
-                      onMouseDown={header.getResizeHandler()}
-                      onTouchStart={header.getResizeHandler()}
-                      title={
-                        typeof header.column.columnDef.header === 'string'
-                          ? header.column.columnDef.header
-                          : (header.column.columnDef.meta?.title as string) || header.id
-                      }
-                      right={!!header.column.columnDef.meta?.isNumeric}
-                    />
-                  );
-                })}
-              </Row>
-            ))}
+              return (
+                <Row key={leftGroup.id}>
+                  {leftGroup.headers.map(h => renderHeader(h, 'left'))}
+                  {centerGroup?.headers.map(h => renderHeader(h, 'center'))}
+                  {rightGroup?.headers.map(h => renderHeader(h, 'right'))}
+                </Row>
+              );
+            })}
           </Thead>
           <Tbody>
             {table.getRowModel().rows.map(row => (

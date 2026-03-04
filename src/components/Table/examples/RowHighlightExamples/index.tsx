@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
+import clsx from 'clsx';
+
 import { Box, Input, OptionItem, SimpleSelect, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
@@ -113,6 +115,7 @@ const RowHighlightExamples = () => {
               }}
               size="s"
               style={{ width: '100%' }}
+              disabled={rowId === '2'}
             />
           );
         },
@@ -310,12 +313,13 @@ const RowHighlightExamples = () => {
               <Row key={row.id}>
                 {row.getVisibleCells().map(cell => {
                   const isEditable = cell.column.columnDef.meta?.isEditable;
+                  const isDisabledCell = cell.column.id === 'quantity' && row.original.id === '2';
 
                   return (
                     <Cell
                       key={cell.id}
                       style={{ width: cell.column.getSize() }}
-                      className={isEditable ? styles.editableCell : ''}
+                      className={clsx({ [styles.editableCell]: isEditable && !isDisabledCell, [styles.disabledCell]: isDisabledCell })}
                       disableHover
                       {...(isEditable ? {} : getCellProps(cell))}
                     >

@@ -87,4 +87,12 @@
       width: 100%;
     }
   }
+
+  td.disabledCell {
+    cursor: not-allowed;
+
+    [data-ui-input] {
+      pointer-events: none;
+    }
+  }
 }

@@ -370,10 +370,14 @@ export { IconEyeOutlined16, IconEyeOutlined24, IconEyeOutlined32 } from './EyeOu
 export { IconEyeglassesFill16, IconEyeglassesFill24, IconEyeglassesFill32 } from './EyeglassesFill';
 export { IconEyeglassesOutlined16, IconEyeglassesOutlined24, IconEyeglassesOutlined32 } from './EyeglassesOutlined';
 export { IconFileDOCX16, IconFileDOCX24, IconFileDOCX32 } from './FileDOCX';
+export { IconFileEML16, IconFileEML24, IconFileEML32 } from './FileEML';
+export { IconFileHTML16, IconFileHTML24, IconFileHTML32 } from './FileHTML';
+export { IconFileImage16, IconFileImage24, IconFileImage32 } from './FileImage';
 export { IconFileNoType16, IconFileNoType24, IconFileNoType32 } from './FileNoType';
 export { IconFilePDF16, IconFilePDF24, IconFilePDF32 } from './FilePDF';
 export { IconFilePPT16, IconFilePPT24, IconFilePPT32 } from './FilePPT';
 export { IconFileSetting16, IconFileSetting24, IconFileSetting32 } from './FileSetting';
+export { IconFileVideo16, IconFileVideo24, IconFileVideo32 } from './FileVideo';
 export { IconFileXLS16, IconFileXLS24, IconFileXLS32 } from './FileXLS';
 export { IconFileZIP16, IconFileZIP24, IconFileZIP32 } from './FileZIP';
 export { IconFilterListFilled16, IconFilterListFilled24, IconFilterListFilled32 } from './FilterListFilled';

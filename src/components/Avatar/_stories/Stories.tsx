@@ -10,7 +10,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { getAvatarImageSrc } from '../utils';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { argsTypes } from './argsTypes';
 
 enum TabIds {
@@ -21,7 +21,7 @@ enum TabIds {
 
 const COMPONENT_NAME = 'Avatar';
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529&t=HhCDuaOuzHu5rgyf-1';
-const AVATAR_MOCK_SRC = getAvatarImageSrc();
+const AVATAR_MOCK_SRC = getStorybookImageSrc('/img/avatar_mock.png');
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);

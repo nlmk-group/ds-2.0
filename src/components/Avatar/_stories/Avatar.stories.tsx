@@ -7,12 +7,12 @@ import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDir
 import styles from './Avatar.module.scss';
 
 import { EAvatarSize } from '../enums';
-import { getAvatarImageSrc } from '../utils';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { argsTypes } from './argsTypes';
 
 const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
 
-const AvatarImageMock = getAvatarImageSrc();
+const AvatarImageMock = getStorybookImageSrc('/img/avatar_mock.png');
 
 export default {
   title: 'Components/Avatar/Stories',

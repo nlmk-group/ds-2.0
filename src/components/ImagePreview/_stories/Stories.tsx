@@ -10,6 +10,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 
 const FIGMA_LINK =
   'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=16052-4554&m=dev';
@@ -23,8 +24,8 @@ const App = () => {
   const items = [
     {
       id: 1,
-      previewSrc: '/img/image_career.jpg',
-      fullSrc: '/img/image_career.jpg',
+      previewSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
+      fullSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
       title: 'Этап 1',
       description: 'Название фото 1',
       previewTitle: 'Фото',
@@ -45,8 +46,8 @@ const App = () => {
   const items = [
     {
       id: 1,
-      previewSrc: '/img/image_career.jpg',
-      fullSrc: '/img/image_career.jpg',
+      previewSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
+      fullSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
       title: 'Этап 1',
       previewTitle: 'Фото 1',
       description: 'Название фото 1',
@@ -54,8 +55,8 @@ const App = () => {
     },
     {
       id: 2,
-      previewSrc: '/img/image_warehouse.png',
-      fullSrc: '/img/image_warehouse.png',
+      previewSrc: '${getStorybookImageSrc('/img/image_warehouse.png')}',
+      fullSrc: '${getStorybookImageSrc('/img/image_warehouse.png')}',
       title: 'Этап 2',
       previewTitle: 'Фото 2',
       description: 'Название фото 2',
@@ -63,8 +64,8 @@ const App = () => {
     },
     {
       id: 3,
-      previewSrc: '/img/image_rolled_steel_sheet.png',
-      fullSrc: '/img/image_rolled_steel_sheet.png',
+      previewSrc: '${getStorybookImageSrc('/img/image_rolled_steel_sheet.png')}',
+      fullSrc: '${getStorybookImageSrc('/img/image_rolled_steel_sheet.png')}',
       title: 'Этап 3',
       previewTitle: 'Фото 3',
       description: 'Название фото 3',

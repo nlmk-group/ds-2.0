@@ -10,12 +10,13 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
-  const imagePath = '/img/image_career.jpg';
+  const imagePath = getStorybookImageSrc('/img/image_career.jpg');
 
   const imgpicDefaultCode = `import { ImagePicture } from '@nlmk/ds-2.0';
 

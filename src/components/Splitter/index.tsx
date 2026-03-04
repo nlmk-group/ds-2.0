@@ -7,6 +7,15 @@ import { ISplitterProps } from './types';
 import { ESplitterOrientation } from './enums';
 import { useSplitter, useSplitterResize } from './hooks';
 
+/**
+ * Компонент Splitter разделяет экран на две части с возможностью изменения их размеров.
+ *
+ * @param {object} props - Свойства компонента.
+ * @param {ReactNode} [props.topComponent] - Компонент для отображения в верхней/левой панели.
+ * @param {ReactNode} [props.bottomComponent] - Компонент для отображения в нижней/правой панели.
+ * @param {`${ESplitterOrientation}`} [props.orientation=ESplitterOrientation.horizontal] - Ориентация разделителя.
+ * @returns {JSX.Element} - Компонент Splitter.
+ */
 
 const Splitter: FC<ISplitterProps> = (props) => {
   const {

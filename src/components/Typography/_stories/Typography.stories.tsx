@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Card } from '@components/index';
 import { ETypographyVariants } from '@components/Typography/enums';
 
 import styles from './Typography.stories.module.scss';
@@ -7,7 +8,9 @@ import styles from './Typography.stories.module.scss';
 import Typography from '../index';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
+const withPadding = (Story: () => any) => (
+  <div style={{ minHeight: 80, padding: 24 }}>{<Story />}</div>
+);
 
 export default {
   title: 'Components/Typography/Stories',
@@ -16,246 +19,98 @@ export default {
   argTypes: argsTypes
 };
 
-export const TypographyDefault = (argsTypes: any): JSX.Element => {
-  return (
-    <div className={styles.wrapper}>
-      <Typography {...argsTypes}>Default Typography Component</Typography>
-    </div>
-  );
-};
+export const TypographyDefault = (argsTypes: Record<string, unknown>): JSX.Element => (
+  <div className={styles.wrapper}>
+    <Typography {...argsTypes}>Default Typography Component</Typography>
+  </div>
+);
 TypographyDefault.storyName = 'Типография по умолчанию';
 
-export const TypographyVariants = (): JSX.Element => {
-  const rows = [
-    {
-      title: 'Heading1',
-      fontSize: 48,
-      lineHeight: 56,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading1',
-      fontSize: 32,
-      lineHeight: 40,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading2',
-      fontSize: 32,
-      lineHeight: 40,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading2',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Subheading2-Medium',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 500,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading3',
-      fontSize: 24,
-      lineHeight: 32,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Subheading3',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 400,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Subheading3-Medium',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 500,
-      description: 'Подзаголовок'
-    },
-    {
-      title: 'Heading4',
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: 700,
-      description: 'Заголовок'
-    },
-    {
-      title: 'Body',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 400,
-      description: ''
-    },
-    {
-      title: 'Body-Medium',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 500,
-      description: ''
-    },
-    {
-      title: 'Body-Bold',
-      fontSize: 18,
-      lineHeight: 24,
-      fontWeight: 700,
-      description: ''
-    },
-    {
-      title: 'Body1',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 400,
-      description: 'Текст контента тонкий'
-    },
-    {
-      title: 'Body1-Medium',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 500,
-      description: 'Текст инпутов, ячеек таблиц, контента'
-    },
-    {
-      title: 'Body1Table-Medium',
-      fontSize: 16,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Текст для ячеек таблиц 40px и 32px'
-    },
-    {
-      title: 'Body1Mono-Medium',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 500,
-      description: 'Текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body1Mono-Bold',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 700,
-      description: 'Жирный текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body1-Bold',
-      fontSize: 16,
-      lineHeight: 22,
-      fontWeight: 700,
-      description: 'Текст в кнопках, жирный текст у активных элементов'
-    },
-    {
-      title: 'Body2',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 400,
-      description: 'Текст контента тонкий'
-    },
-    {
-      title: 'Body2-Medium',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 500,
-      description: 'Текст инпутов, ячеек таблиц, контента'
-    },
-    {
-      title: 'Body2Mono-Medium',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 500,
-      description: 'Текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body2Mono-Bold',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 700,
-      description: 'Жирный текст для цифр в ячейках таблиц'
-    },
-    {
-      title: 'Body2-Bold',
-      fontSize: 14,
-      lineHeight: 18,
-      fontWeight: 700,
-      description: 'Текст в кнопках, жирный текст у активных элементов'
-    },
-    {
-      title: 'Caption',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 400,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'Caption-Medium',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'Caption-Bold',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 700,
-      description: 'Текст мелкий для подписей, шкал графиков'
-    },
-    {
-      title: 'CaptionMono',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 400,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'CaptionMono-Medium',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 500,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'CaptionMono-Bold',
-      fontSize: 12,
-      lineHeight: 16,
-      fontWeight: 700,
-      description: 'Моноширинное начертание для числовых данных'
-    },
-    {
-      title: 'Additional-Bold',
-      fontSize: 9,
-      lineHeight: 12,
-      fontWeight: 700,
-      description: 'Жирный текст для Badge XS'
-    }
-  ];
+const SECTIONS: { title: string; variants: ETypographyVariants[] }[] = [
+  {
+    title: 'Заголовки (Headings)',
+    variants: [
+      ETypographyVariants.Heading1,
+      ETypographyVariants.Heading2,
+      ETypographyVariants.Heading3,
+      ETypographyVariants.Heading4
+    ]
+  },
+  {
+    title: 'Подзаголовки (Subheadings)',
+    variants: [
+      ETypographyVariants.Subheading1,
+      ETypographyVariants.Subheading2,
+      ETypographyVariants['Subheading2-Medium'],
+      ETypographyVariants.Subheading3,
+      ETypographyVariants['Subheading3-Medium']
+    ]
+  },
+  {
+    title: 'Основной текст 18px (Body)',
+    variants: [
+      ETypographyVariants.Body,
+      ETypographyVariants['Body-Medium'],
+      ETypographyVariants['Body-Bold']
+    ]
+  },
+  {
+    title: 'Текст 16px (Body1)',
+    variants: [
+      ETypographyVariants.Body1,
+      ETypographyVariants['Body1-Medium'],
+      ETypographyVariants['Body1Table-Medium'],
+      ETypographyVariants['Body1Mono-Medium'],
+      ETypographyVariants['Body1Mono-Bold'],
+      ETypographyVariants['Body1-Bold']
+    ]
+  },
+  {
+    title: 'Текст 14px (Body2)',
+    variants: [
+      ETypographyVariants.Body2,
+      ETypographyVariants['Body2-Medium'],
+      ETypographyVariants['Body2Mono-Medium'],
+      ETypographyVariants['Body2Mono-Bold'],
+      ETypographyVariants['Body2-Bold']
+    ]
+  },
+  {
+    title: 'Подписи 12px (Caption)',
+    variants: [
+      ETypographyVariants.Caption,
+      ETypographyVariants['Caption-Medium'],
+      ETypographyVariants['Caption-Bold'],
+      ETypographyVariants.CaptionMono,
+      ETypographyVariants['CaptionMono-Medium'],
+      ETypographyVariants['CaptionMono-Bold']
+    ]
+  },
+  {
+    title: 'Дополнительный (Additional)',
+    variants: [ETypographyVariants['Additional-Bold']]
+  }
+];
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.table}>
-        {rows.map(variant => (
-          <div key={variant.title} className={styles.row}>
-            <Typography variant={variant.title as ETypographyVariants} color="var(--steel-90)">
-              {variant.title}
-            </Typography>
-            <Typography color="var(--steel-90)">
-              {variant.fontSize} - {variant.lineHeight}
-            </Typography>
-            <Typography color="var(--steel-90)">{variant.fontWeight}</Typography>
-            <Typography color="var(--steel-90)">{variant.description}</Typography>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+export const TypographyVariants = (): JSX.Element => (
+  <div className={styles.wrapper}>
+    {SECTIONS.map(section => (
+      <section key={section.title} className={styles.section}>
+        <h3 className={styles.sectionTitle}>{section.title}</h3>
+        <div className={styles.sectionContent}>
+          {section.variants.map(variant => (
+            <Card key={variant} orientation="horizontal" indicatorStatus="info" indicatorSize="m">
+              <div className={styles.variantRow}>
+                <span className={styles.variantLabel}>{variant}</span>
+                <Typography variant={variant} className={styles.variantPreview}>
+                  Пример текста для {variant}
+                </Typography>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+);
 TypographyVariants.storyName = 'Варианты типографии';

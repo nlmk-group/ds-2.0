@@ -43,9 +43,35 @@ export default App;
 const App = () => (
   <Link href="https://www.w3schools.com/"
     leftIcon={<Icon name='IconBunkerOutlined16' />}
-    rightIcon={<Icon name='IconBunkerOutlined16' />
-  }>
+    rightIcon={<Icon name='IconBunkerOutlined16' />}
+  >
     Ссылка с иконками
+  </Link>
+);
+
+export default App;
+`;
+
+  const linkWithTargetCode = `import { Link } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Link href="https://www.w3schools.com/" target="blank">
+    Открыть в новой вкладке
+  </Link>
+);
+
+export default App;
+`;
+
+  const linkPreventRedirectCode = `import { Link } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Link
+    href="https://www.w3schools.com/"
+    preventRedirect
+    onClick={() => console.log('Ссылка нажата без перехода')}
+  >
+    Ссылка без перехода
   </Link>
 );
 
@@ -56,7 +82,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="Link"
-        description="Link компонент позволяет пользователям переходить по заданным ссылкам. Он поддерживает иконки, разные размеры и состояния, такие как disabled."
+        description="Link используется для навигации по URL и поддерживает размеры, target, иконки и состояния disabled/preventRedirect."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Link"
         figmaLink={FIGMA_LINK}
@@ -73,16 +99,18 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={200}
-            description="Основная ссылка. Стандартное использование компонента Link."
+            minHeight={200}
+            description="Базовая текстовая ссылка."
             code={linkDefaultCode}
           />
           <Editor
-            height={220}
-            description="Отключенная ссылка. Пользователь не может взаимодействовать с ссылкой."
+            minHeight={220}
+            description="Заблокированная ссылка через disabled."
             code={linkDisabledCode}
           />
-          <Editor description="Ссылка с иконками с обеих сторон текста." code={linkWithIconCode} />
+          <Editor description="Ссылка с иконками слева и справа от текста." code={linkWithIconCode} />
+          <Editor description="Открытие ссылки в новой вкладке через target." code={linkWithTargetCode} />
+          <Editor description="Перехват клика без перехода через preventRedirect." code={linkPreventRedirectCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

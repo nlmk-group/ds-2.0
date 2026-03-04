@@ -213,6 +213,8 @@ export { IconCloseOutlined16, IconCloseOutlined24, IconCloseOutlined32 } from '.
 export { IconCloudDoneFilled16, IconCloudDoneFilled24, IconCloudDoneFilled32 } from './CloudDoneFilled';
 export { IconCloudDoneOutlined16, IconCloudDoneOutlined24, IconCloudDoneOutlined32 } from './CloudDoneOutlined';
 export { IconColumnFilter16, IconColumnFilter24, IconColumnFilter32 } from './ColumnFilter';
+export { IconCombineFilled16, IconCombineFilled24, IconCombineFilled32 } from './CombineFilled';
+export { IconCombineOutlined16, IconCombineOutlined24, IconCombineOutlined32 } from './CombineOutlined';
 export {
   IconCommentChatBubbleClearFilled16,
   IconCommentChatBubbleClearFilled24,

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
-// import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -630,6 +629,25 @@ const App = () => (
 export default App;
 `;
 
+const responsiveContainerCode = `import { Grid, Box } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Grid container gap={16}>
+    <Grid size={{ xs: 12, md: 8 }}>
+      <Box background="var(--spectrum-sky-40)" borderRadius="4px" px="8px" py="16px">
+        Основной блок: 12 колонок на xs, 8 колонок на md+
+      </Box>
+    </Grid>
+    <Grid size={{ xs: 12, md: 4 }}>
+      <Box background="var(--spectrum-red-30)" borderRadius="4px" px="8px" py="16px">
+        Боковой блок: 12 колонок на xs, 4 колонки на md+
+      </Box>
+    </Grid>
+  </Grid>
+);
+export default App;
+`;
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -637,7 +655,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Grid"
-        description="Компонент Grid представляет собой универсальный контейнер, используемый для позиционирования внутренних компонентов/элементов: горизонтальный или вертикальный. Он обладает различными пропсами, что делает Grid инструментом для создания структурированного и адаптивного интерфейса."
+        description="Grid используется для построения адаптивной раскладки на основе строк и колонок. Компонент поддерживает управление шириной, выравниванием, переносом и брейкпоинтами."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Grid"
       />
@@ -652,22 +670,27 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={500}
-            description="Большинство свойств стилей можно настраивать через пропсы компонента. Также все свойства доступны через пропс st."
+            minHeight={400}
+            description="Базовая настройка контейнера через стандартные пропсы и проп st."
             code={gridExampleCode}
           />
-          <Editor height={500} description="Колонки равной ширины" code={equalWidthColumnsCode} />
-          <Editor height={500} description="Установка ширины одной колонки" code={settingOneColumnWidthCode} />
-          <Editor height={500} description="Переменная ширина контента" code={variableWidthContentCode} />
+          <Editor minHeight={400} description="Колонки равной ширины в строках." code={equalWidthColumnsCode} />
+          <Editor minHeight={400} description="Настройка ширины одной колонки внутри строки." code={settingOneColumnWidthCode} />
+          <Editor minHeight={400} description="Колонка с переменной шириной контента." code={variableWidthContentCode} />
+          <Editor minHeight={400} description="Колонки равной ширины с переносом на несколько строк." code={equalWidthMultiRowCode} />
+          <Editor minHeight={400} description="Вертикальное выравнивание колонок через alignItems." code={verticalAlignmentCode} />
           <Editor
-            height={500}
-            description="Колонки равной ширины с несколькими строками"
-            code={equalWidthMultiRowCode}
+            minHeight={400}
+            description="Горизонтальное выравнивание колонок через justifyContent."
+            code={horizontalAlignmentCode}
           />
-          <Editor height={500} description="Вертикальное выравнивание" code={verticalAlignmentCode} />
-          <Editor height={500} description="Горизонтальное выравнивание" code={horizontalAlignmentCode} />
-          <Editor height={500} description="Перенос колонок" code={columnWrappingCode} />
-          <Editor height={500} description="Разрывы колонок" code={columnBreaksCode} />
+          <Editor minHeight={400} description="Перенос колонок при превышении ширины строки." code={columnWrappingCode} />
+          <Editor minHeight={400} description="Явный разрыв строки между группами колонок." code={columnBreaksCode} />
+          <Editor
+            minHeight={400}
+            description="Адаптивная сетка через container и size по брейкпоинтам."
+            code={responsiveContainerCode}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}

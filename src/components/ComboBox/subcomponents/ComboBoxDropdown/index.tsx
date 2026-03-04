@@ -1,14 +1,17 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { cloneElement, CSSProperties, isValidElement, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Tooltip } from '@components/index';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import styles from '../../ComboBox.module.scss';
 
+import { ELocaleMapping } from '@components/declaration';
+
 import { InputComboBox } from '..';
-import { useDropdownHeight, useDropdownWidth } from '../../context';
+import { useDropdownHeight, useDropdownWidth, useSetLocaleValue } from '../../context';
 import { useModal } from '../../hooks/useModal';
 import { ResizableGrip } from '../../subcomponents';
 import { IComboBoxProps } from '../../types';
@@ -36,10 +39,12 @@ const ComboBoxDropdown = ({
   withPortal = false,
   portalContainerId = 'root',
   autoFocusSearch = false,
-  autoExpandOnSearch = false
+  autoExpandOnSearch = false,
+  locale = ELocaleMapping.ru
 }: IComboBoxProps) => {
   const dropdownOptimalWidth = useDropdownWidth() ?? 150;
   const dropdownContextHeight = useDropdownHeight();
+  const setLocaleValue = useSetLocaleValue();
 
   const optimalDDHeight = dropdownContextHeight ? dropdownContextHeight.optimalHeight : 200;
   const minDDHeight = dropdownContextHeight ? dropdownContextHeight.minHeight : 150;
@@ -63,22 +68,13 @@ const ComboBoxDropdown = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (wrapInputRef.current) {
-      refs.setReference(wrapInputRef.current);
-    }
-  }, [wrapInputRef, refs]);
+  useFloatingReferenceSync(wrapInputRef, popperElement, refs, setIsPositioned);
 
   useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
+    if (setLocaleValue) {
+      setLocaleValue(locale);
     }
-  }, [popperElement, refs]);
+  }, [locale, setLocaleValue]);
 
   const handleOutsideClick = (event: MouseEvent) => {
     const isInputClick = wrapInputRef.current?.contains(event.target as Node) ?? false;
@@ -141,8 +137,8 @@ const ComboBoxDropdown = ({
   );
 
   const enhancedChildren = React.Children.map(children, child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      return React.cloneElement(child, {
+    if (isValidElement(child) && typeof child.type !== 'string') {
+      return cloneElement(child, {
         autoFocusSearch,
         autoExpandOnSearch,
         isDropdownOpen: isOpen

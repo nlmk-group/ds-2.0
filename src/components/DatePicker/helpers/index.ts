@@ -12,3 +12,4 @@ export * from './yearsPanel';
 export * from './levelMappingEnum';
 export * from './calendarFormatEnum';
 export * from './locale';
+export * from './calendar';

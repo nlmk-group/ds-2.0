@@ -1,5 +1,3 @@
-import { fn } from 'storybook/test';
-
 export const selectorOptions = [
   {
     label: 'C++',
@@ -33,12 +31,12 @@ export const descriptionExample =
 
 export const primaryButton = {
   label: 'Принять',
-  onClick: fn()
+  onClick: () => {}
 };
 
 export const secondaryButton = {
   label: 'Отменить',
-  onClick: fn()
+  onClick: () => {}
 };
 
 export const imageURL =
@@ -49,5 +47,5 @@ export const badges = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Angu
 export const selector = {
   label: 'Programming languages',
   options: selectorOptions,
-  onSelectionChange: fn()
+  onSelectionChange: () => {}
 };

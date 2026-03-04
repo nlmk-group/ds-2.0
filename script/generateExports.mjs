@@ -27,10 +27,11 @@ function getComponentsList() {
       const excludedDirs = ['_storybook', 'declaration', 'utils'];
       if (excludedDirs.includes(item.name)) return false;
 
-      const indexPath = path.join(COMPONENTS_DIR, item.name, 'index.tsx');
-      const indexPathTs = path.join(COMPONENTS_DIR, item.name, 'index.ts');
+      const baseIndexPath = path.join(COMPONENTS_DIR, item.name, 'index');
+      const indexPathTsx = `${baseIndexPath}.tsx`;
+      const indexPathTs = `${baseIndexPath}.ts`;
 
-      return fs.existsSync(indexPath) || fs.existsSync(indexPathTs);
+      return fs.existsSync(indexPathTsx) || fs.existsSync(indexPathTs);
     })
     .map(item => item.name)
     .sort();

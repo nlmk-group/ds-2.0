@@ -119,6 +119,7 @@ const Tooltip: FC<ITooltipProps> = ({
           className={clsx(
             styles['tooltip'],
             styles['tooltip-wrapper'],
+            clickable && styles['tooltip-clickable'],
             type === ETooltipType.inverse && styles['tooltip-wrapper-inverse'],
             popupClassName
           )}

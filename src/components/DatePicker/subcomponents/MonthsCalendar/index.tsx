@@ -1,21 +1,20 @@
 import React, { FC, useMemo, useState } from 'react';
 
-import { locale } from '@components/DatePicker/helpers';
+import {
+  locale,
+  useIsDisabled,
+  useIsEnd,
+  useIsMid,
+  useIsSelected,
+  useIsStart,
+  useIsToday
+} from '@components/DatePicker/helpers';
 import { Day } from '@components/DatePicker/subcomponents';
 import { useLocale } from '@components/DatePicker/utils';
 
 import { IMonthsCalendarProps } from './types';
 
 import styles from './MonthsCalendar.module.scss';
-
-import {
-  useIsDisabledMonth,
-  useIsEndMonth,
-  useIsMidMonth,
-  useIsSelectedMonth,
-  useIsStartMonth,
-  useIsTodayMonth
-} from './helpers';
 
 export const MonthsCalendar: FC<IMonthsCalendarProps> = ({
   panelValue,
@@ -29,7 +28,7 @@ export const MonthsCalendar: FC<IMonthsCalendarProps> = ({
   onSelect
 }) => {
   const language = useLocale();
-  const isTodayMonth = useIsTodayMonth({ panelValue });
+  const isTodayMonth = useIsToday('month', panelValue);
   const dateFrom = useMemo(() => valueFrom && new Date(valueFrom.getFullYear(), valueFrom.getMonth()), [valueFrom]);
   const dateTo = useMemo(() => valueTo && new Date(valueTo.getFullYear(), valueTo.getMonth()), [valueTo]);
   const [innerCurrentHover, setCurrentHover] = useState<null | Date>(null);
@@ -42,32 +41,45 @@ export const MonthsCalendar: FC<IMonthsCalendarProps> = ({
     [currentHover]
   );
 
-  const isSelectedMonth = useIsSelectedMonth({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo,
-    selectedDate,
-    panelValue
-  });
-  const isStartMonth = useIsStartMonth({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom
-  });
-  const isMidMonth = useIsMidMonth({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isEndMonth = useIsEndMonth({
-    dateCurrentHover,
-    withPeriod,
-    dateFrom,
-    dateTo
-  });
-  const isDisabled = useIsDisabledMonth(enabledFrom, enabledTo);
+  const isSelectedMonth = useIsSelected(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo,
+      selectedDate,
+      panelValue
+    },
+    'month'
+  );
+  const isStartMonth = useIsStart(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'month'
+  );
+  const isMidMonth = useIsMid(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'month'
+  );
+  const isEndMonth = useIsEnd(
+    {
+      dateCurrentHover,
+      withPeriod,
+      dateFrom,
+      dateTo
+    },
+    'month'
+  );
+  const isDisabled = useIsDisabled(enabledFrom, enabledTo, 'month');
 
   return (
     <div className={styles.root}>

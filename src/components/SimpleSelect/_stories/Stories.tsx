@@ -132,6 +132,55 @@ const App = () => {
 export default App;
 `;
 
+  const simpleSelectDisplayValueCode = `
+  import { SimpleSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
+
+${optionsExample}
+
+const App = () => {
+  const [value, setValue] = useState('steel');
+  return (
+    <SimpleSelect value={value} onChange={setValue} label="Кастомное отображение" displayValue="Выбран металл">
+      {options.map(({value, label, disabled}) => (
+        <OptionItem key={value} value={value} label={label}>
+          {label}
+        </OptionItem>
+      ))}
+    </SimpleSelect>
+  );
+};
+export default App;
+`;
+
+  const simpleSelectWithPortalCode = `
+  import { SimpleSelect, OptionItem } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
+
+${optionsExample}
+
+const App = () => {
+  const [value, setValue] = useState('');
+  return (
+    <SimpleSelect
+      value={value}
+      onChange={setValue}
+      label="Меню через портал"
+      withPortal
+      portalContainerId="root"
+      menuWidth="360px"
+    >
+      {options.map(({value, label, disabled}) => (
+        <OptionItem key={value} value={value} label={label}>
+          {label}
+        </OptionItem>
+      ))}
+    </SimpleSelect>
+  );
+};
+export default App;
+`;
+
   const simpleSelectEmptyCode = `
   import { SimpleSelect } from '@nlmk/ds-2.0';
   import { useState } from 'react';
@@ -151,7 +200,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="SimpleSelect"
-        description="SimpleSelect позволяет пользователям выбирать один элемент из списка. Он поддерживает различные настройки и стили."
+        description="SimpleSelect используется для выбора одного значения из списка и поддерживает поиск, портал, стилизацию и управление отображаемым значением."
         isStable
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
@@ -167,18 +216,22 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor description="Компонент SimpleSelect с одиночным выбором" code={simpleSelectDefaultCode} />
-          <Editor description="SimpleSelect в состоянии disabled" code={simpleSelectDisabledCode} />
-          <Editor description="Экстра компактный SimpleSelect" code={simpleSelectExtraCompactCode} />
-          <Editor description="SimpleSelect с установленным скроллом" code={simpleSelectScrollingItemsCode} />
-          <Editor description="SimpleSelect с цветом success" code={simpleSelectSuccessCode} />
-          <Editor height={200} description="Пустой SimpleSelect" code={simpleSelectEmptyCode} />
+          <Editor minHeight={400} description="Базовый выбор одного значения." code={simpleSelectDefaultCode} />
+          <Editor minHeight={400} description="Недоступное состояние компонента." code={simpleSelectDisabledCode} />
+          <Editor minHeight={400} description="Компактный размер компонента через size='xs'." code={simpleSelectExtraCompactCode} />
+          <Editor minHeight={400} description="Ограничение видимых опций через scrollingItems." code={simpleSelectScrollingItemsCode} />
+          <Editor minHeight={400} description="Цветовое состояние через color='success'." code={simpleSelectSuccessCode} />
+          <Editor
+            minHeight={400}
+            description="Кастомное отображаемое значение через displayValue."
+            code={simpleSelectDisplayValueCode}
+          />
+          <Editor minHeight={400} description="Рендер списка через портал и настройка ширины меню." code={simpleSelectWithPortalCode} />
+          <Editor minHeight={400} description="Состояние без доступных опций." code={simpleSelectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="SimpleSelect" />}
     </div>
   );

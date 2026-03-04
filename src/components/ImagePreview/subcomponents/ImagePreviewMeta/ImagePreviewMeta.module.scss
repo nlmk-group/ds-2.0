@@ -1,0 +1,70 @@
+$meta-height: 64px;
+
+.meta {
+  min-height: $meta-height;
+  max-height: clamp(#{$meta-height}, 22vh, 240px);
+  overflow-y: auto;
+}
+
+.meta-top {
+  min-height: auto;
+  max-height: clamp(56px, 20vh, 220px);
+  overflow: hidden;
+  padding: 40px 16px 8px;
+}
+
+.meta-top-expanded {
+  max-height: clamp(120px, 45vh, 520px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.meta-line {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  text-align: center;
+}
+
+.meta-clamp-2,
+.meta-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+.meta-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+
+.meta-unclamped {
+  display: block;
+  overflow: visible;
+}
+
+.meta-toggle {
+  border: 0;
+  background: transparent !important;
+  padding: 0 !important;
+  margin-top: 2px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--unique-white);
+}
+
+.meta-top[data-measuring='1'] .meta-clamp-2,
+.meta-top[data-measuring='1'] .meta-clamp-3 {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+@media (max-width: 1000px) {
+  .meta {
+    display: none;
+  }
+}

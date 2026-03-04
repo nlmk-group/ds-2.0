@@ -1,3 +1,4 @@
+// TODO: переписать код с использованием  style guide ДС.
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -77,20 +78,21 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
 
   const handleMultiChange = (item: T) => {
     const option = flatOptions.find(option => option.id === item.id);
-    if (setComboValue && option) {
-      setComboValue(previousValue => {
-        const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
-        if (isCheck && previousValue) {
-          const filteredValue = previousValue.filter(value => value.id !== item.id);
-          onChange?.(filteredValue as T[]);
-          return filteredValue;
-        }
+    if (!setComboValue || !option) return;
 
-        const newValue = [...(previousValue ?? []), option];
-        onChange?.(newValue as T[]);
-        return newValue;
-      });
-    }
+    setComboValue(previousValue => {
+      const isCheck = Boolean(previousValue?.find(value => value.id === item.id));
+
+      if (isCheck && previousValue) {
+        const filteredValue = previousValue.filter(value => value.id !== item.id);
+        onChange?.(filteredValue as T[]);
+        return filteredValue;
+      }
+
+      const newValue = [...(previousValue ?? []), option];
+      onChange?.(newValue as T[]);
+      return newValue;
+    });
   };
 
   const moveItem = useCallback(
@@ -98,11 +100,7 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
       if (dragIndex === hoverIndex) return;
 
       const newOrder = reorderList(items, dragIndex, hoverIndex);
-      if (isGroupLevel) {
-        onGroupsReorder?.(newOrder);
-      } else {
-        onReorder?.(newOrder);
-      }
+      (isGroupLevel ? onGroupsReorder : onReorder)?.(newOrder);
     },
     [onReorder, onGroupsReorder]
   );

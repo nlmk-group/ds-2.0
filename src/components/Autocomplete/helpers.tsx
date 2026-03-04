@@ -9,7 +9,7 @@ import React, { Children, cloneElement, isValidElement, ReactNode } from 'react'
  */
 export const boldString = (value: string, substr: string) => {
   if (!substr || !value) return value;
-  
+
   const regExp = new RegExp(`(${substr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
   const textArray = value.split(regExp);
   return textArray.map((part, index) =>
@@ -27,9 +27,11 @@ export const boldString = (value: string, substr: string) => {
  */
 export const boldReactElement = (element: ReactNode | string, substr: string): ReactNode => {
   if (!substr) return element;
-  
+
   if (Array.isArray(element)) {
-    return element.map((child, index) => <React.Fragment key={index}>{boldReactElement(child, substr)}</React.Fragment>);
+    return element.map((child, index) => (
+      <React.Fragment key={index}>{boldReactElement(child, substr)}</React.Fragment>
+    ));
   }
 
   if (typeof element === 'string') {
@@ -37,7 +39,9 @@ export const boldReactElement = (element: ReactNode | string, substr: string): R
   }
 
   if (isValidElement(element)) {
-    const newChildren = Children.map((element.props as any).children as ReactNode, child => boldReactElement(child, substr));
+    const newChildren = Children.map((element.props as { children?: ReactNode }).children, c =>
+      boldReactElement(c, substr)
+    );
 
     return cloneElement(element, { children: newChildren } as any);
   }

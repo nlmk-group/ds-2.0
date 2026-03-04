@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useEffect, useRef } from 'react';
+import React, { cloneElement, FC, isValidElement, MouseEvent, ReactElement, useEffect, useRef } from 'react';
 
 import { ListItem } from '@components/index';
 import clsx from 'clsx';
@@ -51,9 +51,10 @@ const OptionItem: FC<IOptionItemProps> = ({
 
   const isItemSelected = isSelected;
 
-  const enhancedChildren = React.isValidElement(children) && typeof children.type !== 'string'
-    ? React.cloneElement(children as React.ReactElement<any>, { isSelected: isItemSelected })
-    : children;
+  const enhancedChildren =
+    isValidElement(children) && typeof children.type !== 'string'
+      ? cloneElement(children as ReactElement<any>, { isSelected: isItemSelected })
+      : children;
 
   return (
     <ListItem

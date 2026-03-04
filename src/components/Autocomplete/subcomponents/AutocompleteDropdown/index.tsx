@@ -1,6 +1,7 @@
-import React, { CSSProperties, FC, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, FC, RefObject, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, Spinner, Typography } from '@components/index';
 import MenuItem from '@components/Select/subcomponents/MenuItem';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
@@ -50,22 +51,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (inputRef.current) {
-      refs.setReference(inputRef.current);
-    }
-  }, [inputRef, refs]);
-
-  useEffect(() => {
-    if (popperElement) {
-      refs.setFloating(popperElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
-    }
-  }, [popperElement, refs]);
+  useFloatingReferenceSync(inputRef, popperElement, refs, setIsPositioned);
 
   useEffect(() => {
     if (highlightedIndex < 0) return;
@@ -80,8 +66,8 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
   if (!isOpen) return null;
 
   const rect = inputRef?.current?.getBoundingClientRect();
-  const getMenuStyles = (): React.CSSProperties => {
-    const baseStyles: React.CSSProperties = {
+  const getMenuStyles = (): CSSProperties => {
+    const baseStyles: CSSProperties = {
       width: rect?.width,
       ...floatingStyles,
       visibility: (isPositioned ? 'visible' : 'hidden') as CSSProperties['visibility']
@@ -99,7 +85,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
           if (!el) return;
 
           if (wrapperRef && typeof wrapperRef === 'object') {
-            (wrapperRef as React.MutableRefObject<HTMLElement | null>).current = el;
+            (wrapperRef as RefObject<HTMLElement | null>).current = el;
           }
           setPopperElement(el);
         }}
@@ -197,7 +183,7 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         <div
           ref={el => {
             if (el && targetRef && typeof targetRef === 'object') {
-              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
+              (targetRef as RefObject<HTMLElement | null>).current = el;
             }
           }}
         />

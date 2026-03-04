@@ -20,15 +20,24 @@ import type { ISegmentButtonProps } from '../types';
  * @param {Function} [props.onClick] - Коллбэк, вызываемый при клике по кнопке.
  * @param {Function} [props.toggleButton] - Функция переключения `active` состояния кнопки.
  * @param {number} props.buttonIndex - Индекс кнопки в группе для определения её `active` состояния.
+ * @param {boolean} [props.disabled] - Флаг, отключающий конкретную кнопку.
  *
  * @returns {JSX.Element} Компонент кнопки `SegmentButton`, работающий внутри `SegmentButtonGroup`.
  */
-const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, toggleButton, buttonIndex }) => {
-  const { disabled, size, activeId } = useContext(SegmentButtonGroupContext);
+const SegmentButton: FC<ISegmentButtonProps> = ({
+  children,
+  className,
+  onClick,
+  toggleButton,
+  buttonIndex,
+  disabled: buttonDisabled
+}) => {
+  const { disabled: groupDisabled, size, activeId } = useContext(SegmentButtonGroupContext);
   const active = activeId === buttonIndex;
-  // Обработчик клика
+  const isDisabled = groupDisabled || buttonDisabled;
+
   const handleClick = (e: SyntheticEvent) => {
-    if (disabled) return;
+    if (isDisabled) return;
 
     toggleButton?.();
     onClick?.(e);
@@ -38,7 +47,7 @@ const SegmentButton: FC<ISegmentButtonProps> = ({ children, className, onClick, 
     <button
       type="button"
       onClick={handleClick}
-      disabled={disabled}
+      disabled={isDisabled}
       className={clsx(
         styles.segmentButton,
         active && styles.active,

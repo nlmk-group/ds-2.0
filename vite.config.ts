@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import { resolve } from 'path';
+import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
@@ -15,16 +16,20 @@ const isLibBuild = process.env.BUILD_MODE === 'lib';
 const getDirectorySize = (dirPath: string): number => {
   let totalSize = 0;
 
-  const files = fs.readdirSync(dirPath, { withFileTypes: true });
+  try {
+    const files = fs.readdirSync(dirPath, { withFileTypes: true });
 
-  for (const file of files) {
-    const filePath = resolve(dirPath, file.name);
+    for (const file of files) {
+      const filePath = resolve(dirPath, file.name);
 
-    if (file.isDirectory()) {
-      totalSize += getDirectorySize(filePath);
-    } else {
-      totalSize += fs.statSync(filePath).size;
+      if (file.isDirectory()) {
+        totalSize += getDirectorySize(filePath);
+      } else {
+        totalSize += fs.statSync(filePath).size;
+      }
     }
+  } catch (error) {
+    console.warn(`Не удалось прочитать директорию ${dirPath}:`, error);
   }
 
   return totalSize;
@@ -54,24 +59,15 @@ const buildPostProcessPlugin = () => ({
 
     const libPath = resolve(__dirname, 'lib');
     const cssDir = resolve(libPath, 'css');
-    const fontsDir = resolve(libPath, 'fonts');
 
-    [cssDir, fontsDir].forEach(dir => {
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-    });
+    if (!fs.existsSync(cssDir)) {
+      fs.mkdirSync(cssDir, { recursive: true });
+    }
 
     const publicCssDir = resolve(__dirname, 'public/css');
     if (fs.existsSync(publicCssDir)) {
       fs.cpSync(publicCssDir, cssDir, { recursive: true });
       console.log('✅ Скопированы CSS токены и main.css');
-    }
-
-    const publicFontsDir = resolve(__dirname, 'public/fonts');
-    if (fs.existsSync(publicFontsDir)) {
-      fs.cpSync(publicFontsDir, fontsDir, { recursive: true });
-      console.log('✅ Скопированы шрифты');
     }
 
     const packageJson = {
@@ -82,8 +78,7 @@ const buildPostProcessPlugin = () => ({
           import: './index.js',
           types: './index.d.ts'
         },
-        './css/*': './css/*',
-        './fonts/*': './fonts/*'
+        './css/*': './css/*'
       }
     };
 
@@ -111,15 +106,11 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
 
     const totalSize = getDirectorySize(libPath);
     const cssSize = fs.existsSync(cssDir) ? getDirectorySize(cssDir) : 0;
-    const fontsSize = fs.existsSync(fontsDir) ? getDirectorySize(fontsDir) : 0;
 
     const componentDirs = fs
       .readdirSync(libPath, { withFileTypes: true })
       .filter(
-        item =>
-          item.isDirectory() &&
-          !['css', 'fonts', 'declaration', 'utils'].includes(item.name) &&
-          !item.name.startsWith('.')
+        item => item.isDirectory() && !['css', 'declaration', 'utils'].includes(item.name) && !item.name.startsWith('.')
       );
 
     const componentSizes = componentDirs
@@ -128,7 +119,7 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
         const size = getDirectorySize(dirPath);
         return { name: dir.name, size };
       })
-      .sort((a, b) => b.size - a.size); // Сортируем по размеру (от большего к меньшему)
+      .sort((a, b) => b.size - a.size);
 
     const componentsSize = componentSizes.reduce((sum, comp) => sum + comp.size, 0);
 
@@ -139,7 +130,6 @@ export const darkThemeCSS = './css/dark-theme-storybook.css';
     });
     console.log(`\n   Итого компонентов (${componentDirs.length} шт): ${formatSize(componentsSize)}`);
     console.log(`   CSS токены: ${formatSize(cssSize)}`);
-    console.log(`   Шрифты: ${formatSize(fontsSize)}`);
     console.log(`   ─────────────────────────────`);
     console.log(`   Общий размер: ${formatSize(totalSize)}`);
     console.log('\n✅ Сборка завершена!\n');
@@ -150,6 +140,13 @@ export default defineConfig({
   root: isLibBuild ? undefined : 'src',
   publicDir: isLibBuild ? false : '../public',
   logLevel: isLibBuild ? 'warn' : 'info',
+
+  resolve: {
+    alias: {
+      '@components': resolve(__dirname, 'src/components'),
+      '@root': resolve(__dirname, 'src')
+    }
+  },
 
   server: {
     open: true,
@@ -171,11 +168,27 @@ export default defineConfig({
       sourcemap: true,
       minify: false,
       rollupOptions: {
+        plugins: [
+          typescriptPaths({
+            preserveExtensions: true,
+            transform: path => path.replace(/\.tsx?$/, '.js')
+          })
+        ],
         external: id => {
           if (['react', 'react-dom', 'react/jsx-runtime'].includes(id)) return true;
           if (id.startsWith('react/') || id.startsWith('react-dom/')) return true;
-          if (id.includes('node_modules') && !id.includes('.module.scss')) return true;
-          return /(_stories|\.stories\.|_storybook|\.test\.|__tests__)/.test(id);
+
+          if (/(_stories|\.stories\.|_storybook|\.test\.|__tests__)/.test(id)) return true;
+
+          if (id.startsWith('@components/') || id === '@components/index') {
+            return false;
+          }
+
+          if (!id.startsWith('.') && !id.startsWith('/') && !id.includes('src/components')) {
+            return true;
+          }
+
+          return false;
         },
         output: {
           preserveModules: true,
@@ -195,7 +208,7 @@ export default defineConfig({
   }),
 
   plugins: [
-    tsConfigPaths(),
+    ...(!isLibBuild ? [tsConfigPaths()] : []),
     ...(isLibBuild
       ? [
           cssInjectedByJsPlugin({

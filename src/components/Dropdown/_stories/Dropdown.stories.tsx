@@ -22,7 +22,7 @@ const WrapperDecorator = (Story: any) => {
     <Box
       alignItems="flex-start"
       justifyContent="center"
-      st={{ height: '300px', marginTop: '40px', borderRadius: '10px' }}
+      st={{ minHeight: '300px', marginTop: '40px', borderRadius: '10px', overflow: 'visible' }}
       className={styles.wrapper}
     >
       <Story />

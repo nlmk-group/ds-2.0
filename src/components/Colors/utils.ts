@@ -61,15 +61,11 @@ export const sortColorKeys = (a: string, b: string): number => {
     const aKey = aKeys[i];
     const bKey = bKeys[i];
 
-    if (!bKey) {
-      return 1;
-    }
+    if (!bKey) return 1;
 
     const compareValue = sortByPriority(aKey, bKey) || aKey.localeCompare(bKey);
 
-    if (compareValue) {
-      return compareValue;
-    }
+    if (compareValue) return compareValue;
   }
 
   return 0;

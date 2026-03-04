@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { cloneElement, FC } from 'react';
 
 import { Icon } from '@components/index';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ const Crumb: FC<IInternalCrumbProps> = ({ isLast = false, showSeparator = true, 
   const isTitleString = typeof title === 'string';
   return (
     <div className={clsx(styles.crumb, isLast && styles.isLast, childProps.className)} data-ui-crumb>
-      {React.cloneElement(children, {
+      {cloneElement(children, {
         'data-testid': 'LINK_HREF',
         'className': clsx(styles.link, childProps.className),
         'data-link-width': true,

@@ -22,10 +22,11 @@ export const TimeSelector: FC<ITimeSelectorProps> = ({
   innerValue,
   infiniteTimeScroll
 }) => {
-  const hoursFrom: number = enabledHourFrom ? enabledHourFrom(innerValue) : 0;
-  const hoursTo: number = enabledHourTo ? enabledHourTo(innerValue) : 23;
-  const minutesFrom: number = enabledMinuteFrom ? enabledMinuteFrom(innerValue) : 0;
-  const minutesTo: number = enabledMinuteTo ? enabledMinuteTo(innerValue) : 59;
+  const referenceDate = innerValue || value || new Date();
+  const hoursFrom: number = enabledHourFrom ? enabledHourFrom(referenceDate) : 0;
+  const hoursTo: number = enabledHourTo ? enabledHourTo(referenceDate) : 23;
+  const minutesFrom: number = enabledMinuteFrom ? enabledMinuteFrom(referenceDate) : 0;
+  const minutesTo: number = enabledMinuteTo ? enabledMinuteTo(referenceDate) : 59;
 
   const enabledHours = useMemo(() => {
     return hoursFrom <= hoursTo

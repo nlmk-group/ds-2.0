@@ -23,6 +23,315 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.28.1 - <span className={styles.date}>03.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Оптимизирован рендеринг иконок состояния
+              </li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена обертка vertical-wrapper для корректной поддержки высоты вертикальных разделителей
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено наложение длинного текста label на иконку
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено позиционирование правого значения слайдера
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Между элементами скелетона в горизонтальном ряду добавлен отступ
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании draggableStartPosition
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.0 - <span className={styles.date}>02.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePreview
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.27.4 - <span className={styles.date}>10.02.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент DateTime.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена локализация label в PseudoInput режиме
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;).
+              </li>
+              <li className={styles['left-padding']}>
+                - Кнопка сворачивания/разворачивания теперь локализована: &quot;Свернуть&quot;/&quot;Развернуть&quot; для русского и
+                &quot;Collapse&quot;/&quot;Expand&quot; для английского
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализованы кнопки управления окном: &quot;Перейти в полноэкранный режим&quot;/&quot;Enter fullscreen mode&quot;, &quot;Выйти из полноэкранного режима&quot;/&quot;Exit fullscreen mode&quot;, &quot;Развернуть&quot;/&quot;Expand&quot;, &quot;Свернуть&quot;/&quot;Collapse&quot;, &quot;Закрыть&quot;/&quot;Close&quot;
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент ColumnSetting.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализован placeholder поиска: &quot;Поиск&quot;/&quot;Search&quot;
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.27.3 - <span className={styles.date}>19.01.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.27.2 - <span className={styles.date}>29.12.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Миграция на React 19 и обновление сборки.
+              <li className={styles['left-padding']}>
+                - Обновлена версия React до 19 для улучшения производительности и новых возможностей
+              </li>
+              <li className={styles['left-padding']}>
+                - Vite обновлен до версии 7 и улучшена конфигурация сборки библиотеки
+              </li>
+              <li className={styles['left-padding']}>
+                - Внедрен режим Preserve Module для оптимизации tree-shaking и уменьшения размера бандла
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена критическая ошибка со свойством clickable, оно не работало корректно из-за CSS-стиля
+                pointer-events: none
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                MenuItem
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Расширен тип для иконки элемента меню. Теперь можно передавать не только строку (название иконки), но
+                и JSX-элемент.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.26.4 - <span className={styles.date}>20.11.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: IconCombineFilled, IconCombineOutlined
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.26.3 - <span className={styles.date}>31.10.25</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-timepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                TimePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство portalContainerId для управления контейнером портала
+              </li>
+              <li className={styles['left-padding']}>
+                - Исправлена логика отображения кнопки сброса: теперь показывается только при наличии значения для
+                сброса
+              </li>
+              <li className={styles['left-padding']}>- Обновлена документация компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-segmentbuttongroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SegmentButtonGroup
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство active для установки активной кнопки по умолчанию
+              </li>
+              <li className={styles['left-padding']}>- Добавлено свойство disabled для отключения отдельных кнопок</li>
+              <li className={styles['left-padding']}>
+                - Исправлена реактивность свойства active: теперь корректно реагирует на изменения извне
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.26.2 - <span className={styles.date}>22.10.25</span>
           </Typography>
           <ul className={styles.list}>
@@ -39,9 +348,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Добавлено автоматическое восстановление темы из sessionStorage при инициализации
               </li>
-              <li className={styles['left-padding']}>
-                - Исправлено сохранение темы после перезагрузки страницы
-              </li>
+              <li className={styles['left-padding']}>- Исправлено сохранение темы после перезагрузки страницы</li>
             </li>
           </ul>
         </div>

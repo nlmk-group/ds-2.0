@@ -1,4 +1,4 @@
-import { createContext, Dispatch, MutableRefObject, SetStateAction, useContext } from 'react';
+import { createContext, Dispatch, RefObject, SetStateAction, useContext } from 'react';
 
 import { TOptionItemSize } from '@components/OptionItem/types';
 
@@ -24,13 +24,13 @@ export interface IMultiSelectContextProps {
   setSelectedOptionsWithLabels?: (value: Array<string | number>) => void;
 
   /** Реф инпута */
-  inputRef: MutableRefObject<HTMLInputElement | null>;
+  inputRef: RefObject<HTMLInputElement | null>;
 
   /** Реф меню опций */
-  menuRef: MutableRefObject<HTMLDivElement | null>;
+  menuRef: RefObject<HTMLDivElement | null>;
 
   /** Реф для кнопки со стрелкой, нужен чтобы ClickAwayListener игнорировал клики на неё */
-  arrowButtonRef: MutableRefObject<HTMLButtonElement | null>;
+  arrowButtonRef: RefObject<HTMLButtonElement | null>;
 
   /** Ширина меню опций */
   menuWidth?: string;

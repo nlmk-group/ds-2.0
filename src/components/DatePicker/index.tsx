@@ -2,6 +2,7 @@ import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState
 import ReactDOM from 'react-dom';
 
 import { useUpdatedValues } from '@components/declaration';
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
@@ -11,9 +12,10 @@ import { TDatePickerProps, TDateValues, TShiftValues } from './types';
 
 import styles from './Datepicker.module.scss';
 
-import { defaultShiftLength } from './helpers';
+import { defaultShiftLength, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
+import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент DatePicker для выбора даты и времени в различных форматах.
@@ -63,7 +65,7 @@ import { LocaleProvider } from './utils';
 
 export const DatePicker: TDatePickerProps = ({
   id,
-  locale = 'ru',
+  locale = ELocaleMapping.ru,
   level = 'day',
   type = 'date',
   name,
@@ -196,23 +198,12 @@ export const DatePicker: TDatePickerProps = ({
     whileElementsMounted: autoUpdate
   });
 
-  useEffect(() => {
-    if (inputRef) {
-      refs.setReference(inputRef);
-    }
-  }, [inputRef, refs]);
-
-  useEffect(() => {
-    if (calendarElement) {
+  useFloatingReferenceSync(inputRef, calendarElement, refs, positioned => {
+    if (calendarElement && positioned) {
       calendarRef.current = calendarElement;
-      refs.setFloating(calendarElement);
-      requestAnimationFrame(() => {
-        setIsPositioned(true);
-      });
-    } else {
-      setIsPositioned(false);
     }
-  }, [calendarElement, refs]);
+    setIsPositioned(positioned);
+  });
 
   const handleSetValues = useCallback(
     (isBlur?: boolean) => (date: any, date2: any, shiftFrom: any, shiftTo: any) => {
@@ -361,10 +352,13 @@ export const DatePicker: TDatePickerProps = ({
     </div>
   );
 
+  const localeData = localeStrings[locale];
+  const pseudoLabel = withTime ? localeData.label.showtime : localeData.label.default;
+
   return (
     <LocaleProvider value={locale}>
       {pseudo ? (
-        <PseudoInput label={withTime ? 'Дата и время' : 'Дата'}>{pseudoChildren}</PseudoInput>
+        <PseudoInput label={pseudoLabel}>{pseudoChildren}</PseudoInput>
       ) : (
         (isOpenOnFocus && (
           <ClickAwayListener excludeRef={calendarRef} onClickAway={handleClose}>

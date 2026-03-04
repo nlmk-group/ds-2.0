@@ -1,15 +1,13 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-import { debounce, DebouncedFunc } from 'lodash';
-
-import { IUseScrollProps } from './types';
+import { DebouncedFunc, IUseScrollProps } from './types';
 
 /**
  * Хук для реализации бесконечной прокрутки с использованием IntersectionObserver
  *
  * @param {IUseScrollProps} props - Параметры хука
- * @param {MutableRefObject<HTMLDivElement | null>} props.wrapperRef - Реф контейнера со скроллом
- * @param {MutableRefObject<HTMLDivElement | null>} props.targetRef - Реф целевого элемента для отслеживания
+ * @param {RefObject<HTMLDivElement | null>} props.wrapperRef - Реф контейнера со скроллом
+ * @param {RefObject<HTMLDivElement | null>} props.targetRef - Реф целевого элемента для отслеживания
  * @param {(t?: unknown) => void} props.callback - Функция, вызываемая при достижении целевого элемента
  * @param {boolean} props.canLoadMore - Флаг возможности подгрузки данных
  * @param {boolean} props.isPortalMounted - Флаг монтирования через портал
@@ -61,20 +59,51 @@ export const useScrollPagination = ({
  * @returns {DebouncedFunc<Function>} Дебаунсированная функция
  *
  */
-export const useDebounce = <T extends (...args: any[]) => void>(
-  delay: number,
-  callback?: T
-): DebouncedFunc<(...args: Parameters<T>) => void> => {
+export const useDebounce = <T extends (...args: any[]) => any>(delay: number, callback?: T): DebouncedFunc<T> => {
   const callbackRef = useRef(callback);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     callbackRef.current = callback;
   }, [callback]);
 
-  return useCallback(
-    debounce((...args: Parameters<T>) => {
-      callbackRef.current?.(...args);
-    }, delay),
+  const debouncedFn = useCallback(
+    ((...args: any[]) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        callbackRef.current?.(...args);
+      }, delay);
+    }) as T,
     [delay]
   );
+
+  const cancel = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }, []);
+
+  const flush = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+      callbackRef.current?.();
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  return Object.assign(debouncedFn, {
+    cancel,
+    flush
+  }) as DebouncedFunc<T>;
 };

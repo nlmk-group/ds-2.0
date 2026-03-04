@@ -1,9 +1,9 @@
 import React, { createContext, FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/react';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
 import { ClickAwayListener } from '@components/index';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { ISelectOption, ISelectProps, ISelectSharedProperties } from './types';
@@ -136,23 +136,7 @@ const Select: FC<ISelectProps> = ({
     return getLabel(foundOption?.label || '');
   };
 
-  const handleOutsideClick = () => {
-    setIsOpen(false);
-    if (isClearSearchOnBlur) {
-      setSearchTerm('');
-    }
-    if (onBlur) {
-      onBlur();
-    }
-  };
-
-  const handleFocusClick = async () => {
-    if (onFocus) {
-      onFocus();
-    }
-
-    setIsOpen(true);
-
+  const loadOptionsIfNeeded = async () => {
     if (onOpen && typeof onOpen === 'function' && !hasLoadedOptions) {
       setLoading(true);
       try {
@@ -160,11 +144,38 @@ const Select: FC<ISelectProps> = ({
         setAsyncOptions(fetchedOptions);
         setFilteredOptions(fetchedOptions);
         setHasLoadedOptions(true);
-      } catch {
+      } catch (error) {
+        console.error('Ошибка загрузки опций:', error);
       } finally {
         setLoading(false);
       }
     }
+  };
+
+  const openDropdown = async () => {
+    if (onFocus) {
+      onFocus();
+    }
+    setIsOpen(true);
+    await loadOptionsIfNeeded();
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+    if (onBlur) {
+      onBlur();
+    }
+  };
+
+  const handleOutsideClick = () => {
+    closeDropdown();
+    if (isClearSearchOnBlur) {
+      setSearchTerm('');
+    }
+  };
+
+  const handleFocusClick = async () => {
+    await openDropdown();
   };
 
   useEffect(() => {
@@ -239,16 +250,15 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
-  const toggleDropdown: React.MouseEventHandler<HTMLButtonElement> = e => {
+  const toggleDropdown: React.MouseEventHandler<HTMLButtonElement> = async e => {
     e.preventDefault();
     e.stopPropagation();
-    if (isOpen && onBlur) {
-      onBlur();
+
+    if (isOpen) {
+      closeDropdown();
+    } else {
+      await openDropdown();
     }
-    if (!isOpen && onFocus) {
-      onFocus();
-    }
-    setIsOpen(!isOpen);
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {

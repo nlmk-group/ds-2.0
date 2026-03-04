@@ -38,7 +38,7 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            height={150}
+            minHeight={150}
             description="Компонент Chip по умолчанию."
             code={`import { Chip } from '@nlmk/ds-2.0';
 
@@ -76,7 +76,7 @@ export default  App = () =>(
           />
 
           <Editor
-            height={230}
+            minHeight={230}
             description="Компонент доступен в двух размерах: s - маленький чип с высотой 16px, m - средний чип, его высота 24px."
             code={`import { Chip } from '@nlmk/ds-2.0';
 

@@ -3,7 +3,6 @@ import React, { Key, useEffect, useState } from 'react';
 import Checkbox from '@components/Checkbox';
 import Typography from '@components/Typography';
 import clsx from 'clsx';
-import { isArray } from 'lodash';
 import Tree from 'rc-tree';
 import 'rc-tree/assets/index.css';
 
@@ -31,7 +30,7 @@ export const TreeListV1 = ({
   const [treeData, setTreeData] = useState(data);
   const selectable = false;
   const [checkedKeys, setCheckedKeys] = useState<TCheckedKeys>(initialCheckedKeys);
-  const keys = isArray(checkedKeys) ? checkedKeys : checkedKeys.checked;
+  const keys = Array.isArray(checkedKeys) ? checkedKeys : checkedKeys.checked;
   const [dragging, setDragging] = useState<string | null>(null);
   const [expandedKeys, setExpandedKeys] = useState<Key[]>(initialExpandedKeys);
 
@@ -227,21 +226,20 @@ export const TreeListV1 = ({
   };
 
   const renderSwitcherIcon = (node: TNodeItem) => {
+    if (!node.children || node.children.length === 0) return null;
+
     const isExpanded = expandedKeys.includes(node.key);
-    if (node.children && node.children.length > 0) {
-      return (
-        <span
-          onClick={e => {
-            e.stopPropagation();
-            handleExpand(node.key);
-          }}
-          className={clsx(styles.switcher, isExpanded && styles['switcher-open'])}
-        >
-          ▶
-        </span>
-      );
-    }
-    return null;
+    return (
+      <span
+        onClick={e => {
+          e.stopPropagation();
+          handleExpand(node.key);
+        }}
+        className={clsx(styles.switcher, isExpanded && styles['switcher-open'])}
+      >
+        ▶
+      </span>
+    );
   };
 
   const getNodeCheckState = (node: TNodeItem): boolean | null => {

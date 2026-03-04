@@ -1,12 +1,10 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import { getSystemTheme } from '../src/components/Theme/utils';
 import DocsThemeContainer from './Docs';
-import { storybookDarkTheme, storybookLightTheme } from './storybookTheme';
+import { storybookLightTheme } from './storybookTheme';
 
 const header = window.parent.document.querySelector('.sidebar-header');
 const div = document.createElement('div');
@@ -23,6 +21,16 @@ div.style.cssText = `
 `;
 div.innerHTML = `<code>${name} - v.${version}</code>`;
 header?.append(div);
+
+const THEME_KEY = 'nlmk-storybook-theme';
+const savedTheme = localStorage.getItem(THEME_KEY);
+if (savedTheme) {
+  const isDark = savedTheme === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark-theme' : 'light-theme');
+} else {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', prefersDark ? 'dark-theme' : 'light-theme');
+}
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -69,14 +77,7 @@ export const parameters = {
 };
 
 export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light-theme',
-      dark: 'dark-theme'
-    },
-    defaultTheme: getSystemTheme()
-  }),
-  Story => (
+  (Story: React.ComponentType) => (
     <BrowserRouter>
       <Story />
     </BrowserRouter>

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 
 import { AttachFiles, File } from '@components/index';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import { FILE_NAME, FILES_DESCRIPTION } from './_stories/text';
+const FILE_NAME = 'Название файла.pdf';
+const FILES_DESCRIPTION = 'File с описанием';
 
 describe('src/components/AttachFiles', () => {
   // Check render AttachFiles at DOM

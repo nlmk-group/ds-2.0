@@ -24,7 +24,7 @@ export const argsTypes = {
     control: { type: 'date' }
   },
   type: {
-    description: 'Тип пикера. Возможные варианты: time | timeWithSeconds',
+    description: 'Тип пикера. Возможные варианты: time | timeWithSeconds | period | periodWithSeconds',
     table: {
       defaultValue: {
         summary: 'time'
@@ -66,8 +66,29 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   withPortal: {
-    description: 'Оборачивать ли компонент в react портал (например, для корректного отображения в модальных окнах)',
+    description:
+      'Оборачивать ли компонент в react портал (например, для корректного отображения в модальных окнах или таблицах)',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
     control: { type: 'boolean' }
+  },
+  portalContainerId: {
+    description: 'ID контейнера для портала. По умолчанию используется "root"',
+    table: {
+      defaultValue: {
+        summary: 'root'
+      },
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
   },
   withIcon: {
     description: 'Пропс позволяет скрывать иконку в инпуте',
@@ -140,7 +161,8 @@ export const argsTypes = {
   },
   onReset: {
     description: 'Callback, который будет вызван при клике по иконке сброса',
-    action: 'изменено value'
+    action: 'сброс значения',
+    control: { type: 'action' }
   },
   reset: {
     description: 'Булевое значение для показа иконки сброса',

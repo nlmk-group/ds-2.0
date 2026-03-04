@@ -216,11 +216,48 @@ const App = () => {
 export default App;
 `;
 
+  const multiSelectDisplaySettingsCode = `
+  import { Box, Checkbox, MultiSelect, OptionItem, Typography } from '@nlmk/ds-2.0';
+  import { useState } from 'react';
+
+${optionsExample}
+
+const App = () => {
+  const [value, setValue] = useState(['steel', 'aluminum', 'nickel']);
+  return (
+    <MultiSelect
+      value={value}
+      onChange={setValue}
+      label="Настройка отображения выбранных значений"
+      valueSeparator=" | "
+      allSelectedText="Выбраны все металлы"
+      withPortal
+      portalContainerId="root"
+    >
+      {options.map((option) => (
+        <OptionItem key={option.value} value={option.value} label={option.label} disabled={option.disabled}>
+          <Box alignItems="center" gap="8px">
+            <Checkbox
+              checked={value.includes(option.value)}
+              disabled={option.disabled}
+              onChange={() => {}}
+              style={{ pointerEvents: 'none' }}
+            />
+            <Typography variant="Body1-Medium">{option.label}</Typography>
+          </Box>
+        </OptionItem>
+      ))}
+    </MultiSelect>
+  );
+};
+export default App;
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="MultiSelect"
-        description="MultiSelect позволяет пользователям выбирать несколько элементов из списка. Он поддерживает различные настройки, поиск и стили."
+        description="MultiSelect предоставляет выбор нескольких значений из списка с поддержкой поиска, массового выбора и настройки отображения выбранных элементов."
         isStable
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
@@ -236,13 +273,22 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor description="Компонент MultiSelect с мультивыбором" code={multiSelectDefaultCode} />
-          <Editor description="MultiSelect с поиском" code={multiSelectSearchableCode} />
-          <Editor description="MultiSelect в состоянии disabled" code={multiSelectDisabledCode} />
-          <Editor description="MultiSelect с кнопкой выбрать все" code={multiSelectSelectAllCode} />
-          <Editor description="MultiSelect с очисткой поиска при выборе" code={multiSelectClearSearchCode} />
-          <Editor description="MultiSelect с кнопкой сброса" code={multiSelectResetCode} />
-          <Editor height={200} description="Пустой MultiSelect" code={multiSelectEmptyCode} />
+          <Editor minHeight={500} description="Базовый мультивыбор значений." code={multiSelectDefaultCode} />
+          <Editor minHeight={500} description="Поиск по доступным значениям через searchable." code={multiSelectSearchableCode} />
+          <Editor minHeight={500} description="Заблокированное состояние компонента." code={multiSelectDisabledCode} />
+          <Editor minHeight={500} description="Массовый выбор через showSelectAll." code={multiSelectSelectAllCode} />
+          <Editor
+            minHeight={500}
+            description="Очистка поискового запроса после выбора через clearSearchOnSelect."
+            code={multiSelectClearSearchCode}
+          />
+          <Editor minHeight={500} description="Сброс выбранных значений через reset и onReset." code={multiSelectResetCode} />
+          <Editor
+            minHeight={500}
+            description="Настройка отображения выбранных значений и рендер меню через портал."
+            code={multiSelectDisplaySettingsCode}
+          />
+          <Editor minHeight={500} description="Состояние компонента без доступных опций." code={multiSelectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

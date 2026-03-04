@@ -16,3 +16,13 @@ export interface HeaderProps {
   figmaLink?: string;
   codeLink?: string;
 }
+
+export interface ICodeSandboxParameters {
+  files: Record<
+    string,
+    {
+      content: string | Record<string, any>;
+      isBinary?: boolean;
+    }
+  >;
+}

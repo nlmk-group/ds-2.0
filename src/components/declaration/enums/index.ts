@@ -4,3 +4,4 @@ export { sizesMappingInput } from './sizeMappingInput';
 export { variantsMapping } from './variantsMapping';
 export { TimeType } from './timeType';
 export { TabIds } from './tabIds';
+export { ELocaleMapping } from './localeMapping';

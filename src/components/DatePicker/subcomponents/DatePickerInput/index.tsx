@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   forwardRef,
+  KeyboardEvent,
   RefObject,
   useCallback,
   useEffect,
@@ -841,7 +842,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
           onInputBlur();
         }}
-        onKeyDown={(e: any) => {
+        onKeyDown={(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
           if ((e.key === 'Backspace' || e.key === 'Delete') && withPeriod) {
             const input = e.target as HTMLInputElement;
             const cursorStart = input.selectionStart || 0;

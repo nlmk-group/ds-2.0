@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import type { Header } from '@tanstack/react-table';
 
 import { Box, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
@@ -15,7 +16,7 @@ import {
 import styles from './LocalStorageTableExample.module.scss';
 
 import { getCellProps } from '../utils';
-import { columns, data } from './constants';
+import { columns, data, Person } from './constants';
 import { CustomSettings } from './CustomSettings';
 import { useTableSettings } from './useTableSettings';
 
@@ -158,6 +159,84 @@ const LocalStorageTableExample = () => {
     setColumnPinning({ left, right });
   };
 
+  const getPinnedInfo = (
+    header: Header<Person, unknown>
+  ): { styles: CSSProperties; className: string; pinnedSize?: number } | null => {
+    const leafHeaders = header.getLeafHeaders();
+    const pinnedState = table.getState().columnPinning;
+    const leftPinned = pinnedState.left || [];
+    const rightPinned = pinnedState.right || [];
+    const leftLeafs = leafHeaders.filter(h => leftPinned.includes(h.column.id));
+    const rightLeafs = leafHeaders.filter(h => rightPinned.includes(h.column.id));
+    const leafCount = leafHeaders.length;
+
+    if (leftLeafs.length > 0 && leftLeafs.length === leafCount) {
+      return {
+        styles: { position: 'sticky', left: leftLeafs[0].column.getStart('left'), zIndex: 4 },
+        className: styles.pinnedColumnLeft
+      };
+    }
+
+    if (rightLeafs.length > 0 && rightLeafs.length === leafCount) {
+      return {
+        styles: {
+          position: 'sticky',
+          right: rightLeafs[rightLeafs.length - 1].column.getAfter('right'),
+          zIndex: 4
+        },
+        className: styles.pinnedColumnRight
+      };
+    }
+
+    if (leftLeafs.length > 0) {
+      const pinnedSize = leftLeafs.reduce((sum, h) => sum + h.getSize(), 0);
+      return {
+        styles: { position: 'sticky', left: leftLeafs[0].column.getStart('left'), zIndex: 4, width: pinnedSize, minWidth: pinnedSize, maxWidth: pinnedSize },
+        className: styles.pinnedColumnLeft,
+        pinnedSize
+      };
+    }
+
+    if (rightLeafs.length > 0) {
+      const pinnedSize = rightLeafs.reduce((sum, h) => sum + h.getSize(), 0);
+      return {
+        styles: {
+          position: 'sticky',
+          right: rightLeafs[rightLeafs.length - 1].column.getAfter('right'),
+          zIndex: 4,
+          width: pinnedSize,
+          minWidth: pinnedSize,
+          maxWidth: pinnedSize
+        },
+        className: styles.pinnedColumnRight,
+        pinnedSize
+      };
+    }
+
+    return null;
+  };
+
+  const getCellPinnedInfo = (columnId: string): { styles: CSSProperties; className: string } | null => {
+    const col = table.getColumn(columnId);
+    if (!col) return null;
+
+    const pinned = col.getIsPinned();
+    if (pinned === 'left') {
+      return {
+        styles: { position: 'sticky', left: col.getStart('left'), zIndex: 2 },
+        className: styles.pinnedColumnLeft
+      };
+    }
+    if (pinned === 'right') {
+      return {
+        styles: { position: 'sticky', right: col.getAfter('right'), zIndex: 2 },
+        className: styles.pinnedColumnRight
+      };
+    }
+
+    return null;
+  };
+
   return (
     <Box maxWidth="1024px" flexDirection="column">
       <Box gap={16} style={{ marginBottom: '16px' }}>
@@ -196,8 +275,8 @@ const LocalStorageTableExample = () => {
             tableLayout: 'auto'
           }}
         >
-          <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
-            {table.getHeaderGroups().map((headerGroup, index) => (
+          <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
+            {table.getHeaderGroups().map((headerGroup) => (
               <Row key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   const columnRelativeDepth = header.depth - header.column.depth;
@@ -223,10 +302,65 @@ const LocalStorageTableExample = () => {
                     size = header.subHeaders.reduce((sum, subHeader) => sum + subHeader.getSize(), 0);
                   }
 
+                  const pinnedInfo = getPinnedInfo(header);
+                  const pinnedState = table.getState().columnPinning;
+                  const leftPinned = pinnedState.left || [];
+                  const rightPinned = pinnedState.right || [];
+                  const leafHeaders = header.getLeafHeaders();
+                  const leftLeafs = leafHeaders.filter(h => leftPinned.includes(h.column.id));
+                  const rightLeafs = leafHeaders.filter(h => rightPinned.includes(h.column.id));
+                  const totalLeafs = leafHeaders.length;
+                  const isPartialPin =
+                    pinnedInfo?.pinnedSize !== undefined &&
+                    (leftLeafs.length > 0 || rightLeafs.length > 0) &&
+                    (leftLeafs.length < totalLeafs || rightLeafs.length < totalLeafs);
+
+                  if (isPartialPin && leftLeafs.length > 0) {
+                    const pinnedColSpan = leftLeafs.length;
+                    const unpinnedColSpan = totalLeafs - leftLeafs.length;
+                    const pinnedSize = leftLeafs.reduce((sum, h) => sum + h.getSize(), 0);
+                    const unpinnedSize = leafHeaders
+                      .filter(h => !leftPinned.includes(h.column.id))
+                      .reduce((sum, h) => sum + h.getSize(), 0);
+
+                    const title =
+                      typeof header.column.columnDef.header === 'string'
+                        ? header.column.columnDef.header
+                        : (header.column.columnDef.meta?.title as string) || header.id;
+
+                    return (
+                      <React.Fragment key={header.id}>
+                        <Top
+                          style={{
+                            width: pinnedSize,
+                            minWidth: pinnedSize,
+                            maxWidth: pinnedSize,
+                            ...pinnedInfo!.styles
+                          }}
+                          className={pinnedInfo!.className}
+                          colSpan={pinnedColSpan}
+                          rowSpan={rowSpan}
+                          drag={false}
+                          title={title}
+                        />
+                        {unpinnedColSpan > 0 && (
+                          <Top
+                            style={{ width: unpinnedSize, minWidth: unpinnedSize, maxWidth: unpinnedSize }}
+                            colSpan={unpinnedColSpan}
+                            rowSpan={rowSpan}
+                            drag={false}
+                            title={title}
+                          />
+                        )}
+                      </React.Fragment>
+                    );
+                  }
+
                   return (
                     <Top
                       key={header.id}
-                      style={{ width: size, minWidth: size, maxWidth: size }}
+                      style={{ width: size, minWidth: size, maxWidth: size, ...(pinnedInfo?.styles || {}) }}
+                      className={pinnedInfo?.className}
                       colSpan={header.colSpan}
                       rowSpan={rowSpan}
                       drag={!header.subHeaders || header.subHeaders.length === 0}
@@ -237,7 +371,7 @@ const LocalStorageTableExample = () => {
                           ? header.column.columnDef.header
                           : (header.column.columnDef.meta?.title as string) || header.id
                       }
-                      right={header.column.columnDef.meta?.isNumeric && index !== 1}
+                      right={!!header.column.columnDef.meta?.isNumeric}
                     />
                   );
                 })}
@@ -247,14 +381,16 @@ const LocalStorageTableExample = () => {
           <Tbody>
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map((cell, index) => {
+                {row.getVisibleCells().map((cell) => {
                   const size = cell.column.getSize();
+                  const pinnedInfo = getCellPinnedInfo(cell.column.id);
 
                   return (
                     <Cell
                       key={cell.id}
-                      style={{ width: size, minWidth: size, maxWidth: size }}
-                      align={index === 0 ? 'left' : undefined}
+                      style={{ width: size, minWidth: size, maxWidth: size, ...(pinnedInfo?.styles || {}) }}
+                      className={pinnedInfo?.className}
+                      align={cell.column.columnDef.meta?.isNumeric ? 'right' : 'left'}
                       {...getCellProps(cell)}
                     />
                   );

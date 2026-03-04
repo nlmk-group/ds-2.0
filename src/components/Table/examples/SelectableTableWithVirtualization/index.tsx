@@ -119,9 +119,11 @@ const SelectableTableWithVirtualizationExample = () => {
                         width: size
                       }}
                       className={clsx({ [styles.notSortable]: !isSelectColumn })}
-                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      title={isSelectColumn ? undefined : flexRender(header.column.columnDef.header, header.getContext())}
                       right={header.column.columnDef.meta?.isNumeric && index !== 1}
-                    />
+                    >
+                      {isSelectColumn && flexRender(header.column.columnDef.header, header.getContext())}
+                    </Top>
                   );
                 })}
               </Row>

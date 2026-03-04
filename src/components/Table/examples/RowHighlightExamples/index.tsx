@@ -155,130 +155,137 @@ const RowHighlightExamples = () => {
   });
 
   return (
-    <Box gap={16} style={{ padding: '20px' }}>
-      <Box gap={8}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          1. Ховер на всей строке
-        </Typography>
-        <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
-          При наведении на любую ячейку подсвечивается вся строка
-        </Typography>
+    <Box gap={40} flexDirection="column" st={{ padding: '20px' }}>
+      <Box gap={12} flexDirection="column">
+        <Box gap={4} flexDirection="column">
+          <Typography variant="Heading4" color="var(--steel-90)">
+            1. Ховер на всей строке
+          </Typography>
+          <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
+            При наведении на любую ячейку подсвечивается вся строка
+          </Typography>
+        </Box>
+        <div className={styles.tableWrapper}>
+          <Table horizontalBorders verticalBorders className={styles.rowHoverTable}>
+            <Thead>
+              {table1.getHeaderGroups().map(headerGroup => (
+                <Row key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <Top
+                      key={header.id}
+                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      right={header.column.columnDef.meta?.isNumeric}
+                    />
+                  ))}
+                </Row>
+              ))}
+            </Thead>
+            <Tbody>
+              {table1.getRowModel().rows.map(row => (
+                <Row key={row.id}>
+                  {row.getVisibleCells().map((cell, index) => (
+                    <Cell key={cell.id} align={index === 0 ? 'left' : undefined} disableHover {...getCellProps(cell)} />
+                  ))}
+                </Row>
+              ))}
+            </Tbody>
+          </Table>
+        </div>
       </Box>
-      <div className={styles.tableWrapper}>
-        <Table horizontalBorders verticalBorders className={styles.rowHoverTable}>
-          <Thead>
-            {table1.getHeaderGroups().map(headerGroup => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <Top
-                    key={header.id}
-                    title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
-                  />
-                ))}
-              </Row>
-            ))}
-          </Thead>
-          <Tbody>
-            {table1.getRowModel().rows.map(row => (
-              <Row key={row.id}>
-                {row.getVisibleCells().map((cell, index) => (
-                  <Cell key={cell.id} align={index === 0 ? 'left' : undefined} disableHover {...getCellProps(cell)} />
-                ))}
-              </Row>
-            ))}
-          </Tbody>
-        </Table>
-      </div>
 
-      <Box gap={8}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          2. Чередование строк без ховера
-        </Typography>
-        <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
-          Четные и нечетные строки имеют разный цвет фона, ховер отключен
-        </Typography>
+      <Box gap={12} flexDirection="column">
+        <Box gap={4} flexDirection="column">
+          <Typography variant="Heading4" color="var(--steel-90)">
+            2. Чередование строк без ховера
+          </Typography>
+          <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
+            Четные и нечетные строки имеют разный цвет фона, ховер отключен
+          </Typography>
+        </Box>
+        <div className={styles.tableWrapper}>
+          <Table horizontalBorders verticalBorders className={styles.stripedTable}>
+            <Thead>
+              {table2.getHeaderGroups().map(headerGroup => (
+                <Row key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <Top
+                      key={header.id}
+                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      right={header.column.columnDef.meta?.isNumeric}
+                    />
+                  ))}
+                </Row>
+              ))}
+            </Thead>
+            <Tbody>
+              {table2.getRowModel().rows.map(row => (
+                <Row key={row.id}>
+                  {row.getVisibleCells().map((cell, index) => (
+                    <Cell key={cell.id} align={index === 0 ? 'left' : undefined} disableHover {...getCellProps(cell)} />
+                  ))}
+                </Row>
+              ))}
+            </Tbody>
+          </Table>
+        </div>
       </Box>
-      <div className={styles.tableWrapper}>
-        <Table horizontalBorders verticalBorders className={styles.stripedTable}>
-          <Thead>
-            {table2.getHeaderGroups().map(headerGroup => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <Top
-                    key={header.id}
-                    title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
-                  />
-                ))}
-              </Row>
-            ))}
-          </Thead>
-          <Tbody>
-            {table2.getRowModel().rows.map(row => (
-              <Row key={row.id}>
-                {row.getVisibleCells().map((cell, index) => (
-                  <Cell key={cell.id} align={index === 0 ? 'left' : undefined} disableHover {...getCellProps(cell)} />
-                ))}
-              </Row>
-            ))}
-          </Tbody>
-        </Table>
-      </div>
 
-      <Box gap={8}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          3. Ховер на строке и столбце одновременно
-        </Typography>
-        <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
-          При наведении на ячейку подсвечивается вся строка и весь столбец
-        </Typography>
+      <Box gap={12} flexDirection="column">
+        <Box gap={4} flexDirection="column">
+          <Typography variant="Heading4" color="var(--steel-90)">
+            3. Ховер на строке и столбце одновременно
+          </Typography>
+          <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
+            При наведении на ячейку подсвечивается вся строка и весь столбец
+          </Typography>
+        </Box>
+        <div className={styles.tableWrapper}>
+          <Table horizontalBorders verticalBorders className={styles.crosshairTable}>
+            <Thead>
+              {table3.getHeaderGroups().map(headerGroup => (
+                <Row key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <Top
+                      key={header.id}
+                      title={flexRender(header.column.columnDef.header, header.getContext())}
+                      right={header.column.columnDef.meta?.isNumeric}
+                      className={hoveredCell?.columnId === header.id ? styles.hoveredColumn : ''}
+                    />
+                  ))}
+                </Row>
+              ))}
+            </Thead>
+            <Tbody>
+              {table3.getRowModel().rows.map(row => (
+                <Row key={row.id} className={hoveredCell?.rowId === row.id ? styles.hoveredRow : ''}>
+                  {row.getVisibleCells().map((cell, index) => (
+                    <Cell
+                      key={cell.id}
+                      align={index === 0 ? 'left' : undefined}
+                      disableHover
+                      onMouseEnter={() => setHoveredCell({ rowId: row.id, columnId: cell.column.id })}
+                      onMouseLeave={() => setHoveredCell(null)}
+                      className={hoveredCell?.columnId === cell.column.id ? styles.hoveredColumn : ''}
+                      {...getCellProps(cell)}
+                    />
+                  ))}
+                </Row>
+              ))}
+            </Tbody>
+          </Table>
+        </div>
       </Box>
-      <div className={styles.tableWrapper}>
-        <Table horizontalBorders verticalBorders className={styles.crosshairTable}>
-          <Thead>
-            {table3.getHeaderGroups().map(headerGroup => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <Top
-                    key={header.id}
-                    title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric}
-                    className={hoveredCell?.columnId === header.id ? styles.hoveredColumn : ''}
-                  />
-                ))}
-              </Row>
-            ))}
-          </Thead>
-          <Tbody>
-            {table3.getRowModel().rows.map(row => (
-              <Row key={row.id} className={hoveredCell?.rowId === row.id ? styles.hoveredRow : ''}>
-                {row.getVisibleCells().map((cell, index) => (
-                  <Cell
-                    key={cell.id}
-                    align={index === 0 ? 'left' : undefined}
-                    disableHover
-                    onMouseEnter={() => setHoveredCell({ rowId: row.id, columnId: cell.column.id })}
-                    onMouseLeave={() => setHoveredCell(null)}
-                    className={hoveredCell?.columnId === cell.column.id ? styles.hoveredColumn : ''}
-                    {...getCellProps(cell)}
-                  />
-                ))}
-              </Row>
-            ))}
-          </Tbody>
-        </Table>
-      </div>
 
-      <Box gap={8}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          4. Таблица с редактируемыми ячейками
-        </Typography>
-        <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
-          Ховер на всей строке, но ячейки с инпутами имеют более насыщенный цвет
-        </Typography>
-      </Box>
-      <div className={styles.tableWrapper}>
+      <Box gap={12} flexDirection="column">
+        <Box gap={4} flexDirection="column">
+          <Typography variant="Heading4" color="var(--steel-90)">
+            4. Таблица с редактируемыми ячейками
+          </Typography>
+          <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
+            Ховер на всей строке, но ячейки с инпутами имеют более насыщенный цвет
+          </Typography>
+        </Box>
+        <div className={styles.tableWrapper}>
         <Table horizontalBorders verticalBorders className={styles.editableRowHoverTable}>
           <Thead>
             {table4.getHeaderGroups().map(headerGroup => (
@@ -328,7 +335,8 @@ const RowHighlightExamples = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+        </div>
+      </Box>
     </Box>
   );
 };

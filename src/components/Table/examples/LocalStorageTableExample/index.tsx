@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import type { Header } from '@tanstack/react-table';
 
 import { Box, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
@@ -15,7 +16,7 @@ import {
 import styles from './LocalStorageTableExample.module.scss';
 
 import { getCellProps } from '../utils';
-import { columns, data } from './constants';
+import { columns, data, Person } from './constants';
 import { CustomSettings } from './CustomSettings';
 import { useTableSettings } from './useTableSettings';
 
@@ -158,8 +159,90 @@ const LocalStorageTableExample = () => {
     setColumnPinning({ left, right });
   };
 
+
+  const getHeaderPinnedStyle = (
+    header: Header<Person, unknown>,
+    side: 'left' | 'right' | 'center'
+  ): CSSProperties => {
+    const trueLeafs = header.getLeafHeaders().filter(h => !h.subHeaders || h.subHeaders.length === 0);
+    if (side === 'left') {
+      const leftOffset = trueLeafs[0]?.column.getStart('left') ?? 0;
+      return { position: 'sticky', left: leftOffset, zIndex: 4 };
+    }
+    if (side === 'right') {
+      const rightOffset = trueLeafs[trueLeafs.length - 1]?.column.getAfter('right') ?? 0;
+      return { position: 'sticky', right: rightOffset, zIndex: 4 };
+    }
+    return {};
+  };
+
+  const getCellPinnedInfo = (columnId: string): { styles: CSSProperties; className: string } | null => {
+    const col = table.getColumn(columnId);
+    if (!col) return null;
+
+    const pinned = col.getIsPinned();
+    if (pinned === 'left') {
+      return {
+        styles: { position: 'sticky', left: col.getStart('left'), zIndex: 2 },
+        className: styles.pinnedColumnLeft
+      };
+    }
+    if (pinned === 'right') {
+      return {
+        styles: { position: 'sticky', right: col.getAfter('right'), zIndex: 2 },
+        className: styles.pinnedColumnRight
+      };
+    }
+
+    return null;
+  };
+
+  const renderHeader = (header: Header<Person, unknown>, side: 'left' | 'right' | 'center') => {
+    const columnRelativeDepth = header.depth - header.column.depth;
+    if (columnRelativeDepth > 1) return null;
+
+    let rowSpan = 1;
+    if (header.isPlaceholder) {
+      const leafs = header.getLeafHeaders();
+      rowSpan = Math.max(1, leafs[leafs.length - 1].depth - header.depth);
+    }
+    const metaRowSpan = header.column.columnDef.meta?.rowSpan;
+    if (metaRowSpan !== undefined) rowSpan = metaRowSpan;
+
+    let size = header.getSize();
+    if (header.subHeaders && header.subHeaders.length > 0) {
+      size = header.subHeaders.reduce((sum, sub) => sum + sub.getSize(), 0);
+    }
+
+    const pinnedStyle = getHeaderPinnedStyle(header, side);
+    const pinnedClassMap: Record<string, string | undefined> = {
+      left: styles.pinnedColumnLeft,
+      right: styles.pinnedColumnRight
+    };
+    const pinnedClassName = pinnedClassMap[side];
+
+    return (
+      <Top
+        key={header.id}
+        style={{ width: size, minWidth: size, maxWidth: size, ...pinnedStyle }}
+        className={pinnedClassName}
+        colSpan={header.colSpan}
+        rowSpan={rowSpan}
+        drag={side === 'center' && (!header.subHeaders || header.subHeaders.length === 0)}
+        onMouseDown={side === 'center' ? header.getResizeHandler() : undefined}
+        onTouchStart={side === 'center' ? header.getResizeHandler() : undefined}
+        title={
+          typeof header.column.columnDef.header === 'string'
+            ? header.column.columnDef.header
+            : (header.column.columnDef.meta?.title as string) || header.id
+        }
+        right={!!header.column.columnDef.meta?.isNumeric}
+      />
+    );
+  };
+
   return (
-    <Box maxWidth="1024px" flexDirection="column">
+    <Box maxWidth="1024px" flexDirection="column" gap={0}>
       <Box gap={16} style={{ marginBottom: '16px' }}>
         <Typography variant="Body1-Medium" color="var(--steel-90)">
           Настройте таблицу через панель настроек (видимость, порядок, закрепление столбцов).
@@ -196,65 +279,33 @@ const LocalStorageTableExample = () => {
             tableLayout: 'auto'
           }}
         >
-          <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
-            {table.getHeaderGroups().map((headerGroup, index) => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  const columnRelativeDepth = header.depth - header.column.depth;
+          <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
+            {table.getLeftHeaderGroups().map((leftGroup, rowIdx) => {
+              const centerGroup = table.getCenterHeaderGroups()[rowIdx];
+              const rightGroup = table.getRightHeaderGroups()[rowIdx];
 
-                  if (columnRelativeDepth > 1) {
-                    return null;
-                  }
-
-                  let rowSpan = 1;
-
-                  if (header.isPlaceholder) {
-                    const leafs = header.getLeafHeaders();
-                    rowSpan = Math.max(1, leafs[leafs.length - 1].depth - header.depth);
-                  }
-
-                  const metaRowSpan = header.column.columnDef.meta?.rowSpan;
-                  if (metaRowSpan !== undefined) {
-                    rowSpan = metaRowSpan;
-                  }
-
-                  let size = header.getSize();
-                  if (header.subHeaders && header.subHeaders.length > 0) {
-                    size = header.subHeaders.reduce((sum, subHeader) => sum + subHeader.getSize(), 0);
-                  }
-
-                  return (
-                    <Top
-                      key={header.id}
-                      style={{ width: size, minWidth: size, maxWidth: size }}
-                      colSpan={header.colSpan}
-                      rowSpan={rowSpan}
-                      drag={!header.subHeaders || header.subHeaders.length === 0}
-                      onMouseDown={header.getResizeHandler()}
-                      onTouchStart={header.getResizeHandler()}
-                      title={
-                        typeof header.column.columnDef.header === 'string'
-                          ? header.column.columnDef.header
-                          : (header.column.columnDef.meta?.title as string) || header.id
-                      }
-                      right={header.column.columnDef.meta?.isNumeric && index !== 1}
-                    />
-                  );
-                })}
-              </Row>
-            ))}
+              return (
+                <Row key={leftGroup.id}>
+                  {leftGroup.headers.map(h => renderHeader(h, 'left'))}
+                  {centerGroup?.headers.map(h => renderHeader(h, 'center'))}
+                  {rightGroup?.headers.map(h => renderHeader(h, 'right'))}
+                </Row>
+              );
+            })}
           </Thead>
           <Tbody>
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map((cell, index) => {
+                {row.getVisibleCells().map((cell) => {
                   const size = cell.column.getSize();
+                  const pinnedInfo = getCellPinnedInfo(cell.column.id);
 
                   return (
                     <Cell
                       key={cell.id}
-                      style={{ width: size, minWidth: size, maxWidth: size }}
-                      align={index === 0 ? 'left' : undefined}
+                      style={{ width: size, minWidth: size, maxWidth: size, ...(pinnedInfo?.styles || {}) }}
+                      className={pinnedInfo?.className}
+                      align={cell.column.columnDef.meta?.isNumeric ? 'right' : 'left'}
                       {...getCellProps(cell)}
                     />
                   );

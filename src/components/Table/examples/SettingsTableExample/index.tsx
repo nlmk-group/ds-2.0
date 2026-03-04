@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
+import type { Header } from '@tanstack/react-table';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
@@ -12,9 +13,10 @@ import {
 } from '@tanstack/react-table';
 
 import styles from '../Example.module.scss';
+import settingsStyles from './SettingsTableExample.module.scss';
 
 import { getCellProps } from '../utils';
-import { columns, data } from './constants';
+import { columns, data, Person } from './constants';
 import { CustomSettings } from './CustomSettings';
 
 /**
@@ -176,6 +178,51 @@ const SettingsTableExample = () => {
    * Обработчик изменения закрепления колонок из панели настроек
    * @param newPinning Объект с новыми настройками закрепления колонок
    */
+  const getPinnedInfo = (header: Header<Person, unknown>): { styles: CSSProperties; className: string } | null => {
+    const leafHeaders = header.getLeafHeaders();
+    const pinnedState = table.getState().columnPinning;
+    const leftPinned = pinnedState.left || [];
+    const rightPinned = pinnedState.right || [];
+    const leafIds = leafHeaders.map(h => h.column.id);
+
+    if (leafIds.length > 0 && leafIds.every(id => leftPinned.includes(id))) {
+      return {
+        styles: { position: 'sticky', left: leafHeaders[0].column.getStart('left'), zIndex: 4 },
+        className: settingsStyles.pinnedColumnLeft
+      };
+    }
+
+    if (leafIds.length > 0 && leafIds.every(id => rightPinned.includes(id))) {
+      return {
+        styles: { position: 'sticky', right: leafHeaders[leafHeaders.length - 1].column.getAfter('right'), zIndex: 4 },
+        className: settingsStyles.pinnedColumnRight
+      };
+    }
+
+    return null;
+  };
+
+  const getCellPinnedInfo = (columnId: string): { styles: CSSProperties; className: string } | null => {
+    const col = table.getColumn(columnId);
+    if (!col) return null;
+
+    const pinned = col.getIsPinned();
+    if (pinned === 'left') {
+      return {
+        styles: { position: 'sticky', left: col.getStart('left'), zIndex: 2 },
+        className: settingsStyles.pinnedColumnLeft
+      };
+    }
+    if (pinned === 'right') {
+      return {
+        styles: { position: 'sticky', right: col.getAfter('right'), zIndex: 2 },
+        className: settingsStyles.pinnedColumnRight
+      };
+    }
+
+    return null;
+  };
+
   const handlePinChange = (newPinning: Record<string, 'left' | 'right' | false>) => {
     const left: string[] = [];
     const right: string[] = [];
@@ -206,10 +253,10 @@ const SettingsTableExample = () => {
         onPinChange={handlePinChange}
       />
 
-      <div className={styles.tableContainer} style={{ width: '100%' }}>
-        <Table horizontalBorders verticalBorders>
-          <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
-            {table.getHeaderGroups().map((headerGroup, index) => (
+      <div className={styles.tableContainer} style={{ width: '100%', height: 'auto', maxHeight: 500 }}>
+        <Table horizontalBorders verticalBorders style={{ minWidth: 1200 }}>
+          <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
+            {table.getHeaderGroups().map((headerGroup) => (
               <Row key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   const columnRelativeDepth = header.depth - header.column.depth;
@@ -231,11 +278,13 @@ const SettingsTableExample = () => {
                   }
 
                   const size = header.column.columnDef.meta?.size || header.getSize();
+                  const pinnedInfo = getPinnedInfo(header);
 
                   return (
                     <Top
                       key={header.id}
-                      style={{ width: size }}
+                      style={{ width: size, ...(pinnedInfo?.styles || {}) }}
+                      className={pinnedInfo?.className}
                       colSpan={header.colSpan}
                       rowSpan={rowSpan}
                       drag={true}
@@ -246,7 +295,7 @@ const SettingsTableExample = () => {
                           ? header.column.columnDef.header
                           : (header.column.columnDef.meta?.title as string) || header.id
                       }
-                      right={header.column.columnDef.meta?.isNumeric && index !== 1}
+                      right={!!header.column.columnDef.meta?.isNumeric}
                     />
                   );
                 })}
@@ -256,14 +305,16 @@ const SettingsTableExample = () => {
           <Tbody>
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map((cell, index) => {
+                {row.getVisibleCells().map((cell) => {
                   const size = cell.column.columnDef.meta?.size || cell.column.getSize();
+                  const pinnedInfo = getCellPinnedInfo(cell.column.id);
 
                   return (
                     <Cell
                       key={cell.id}
-                      style={{ width: size }}
-                      align={index === 0 ? 'left' : undefined}
+                      style={{ width: size, ...(pinnedInfo?.styles || {}) }}
+                      className={pinnedInfo?.className}
+                      align={cell.column.columnDef.meta?.isNumeric ? 'right' : 'left'}
                       {...getCellProps(cell)}
                     />
                   );

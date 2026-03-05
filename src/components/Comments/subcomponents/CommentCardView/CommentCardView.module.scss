@@ -1,0 +1,12 @@
+.icon {
+  display: inline-block;
+  transition: transform 0.3s;
+
+  &.expanded {
+    transform: rotate(180deg);
+  }
+
+  &.collapsed {
+    transform: rotate(0deg);
+  }
+}

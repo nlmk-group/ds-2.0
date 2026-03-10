@@ -26,11 +26,14 @@ export const TopComponentSelect = ({
           setShowBottom(true);
         }}
       >
-        {options.map(item => (
-          <OptionItem key={item.value} value={item.value} label={item.label}>
-            {item.label}
-          </OptionItem>
-        ))}
+        {options.map(item => {
+          const { label, value } = item;
+          return (
+            <OptionItem key={value} value={value} label={label}>
+              {label}
+            </OptionItem>
+          );
+        })}
       </SimpleSelect>
     </Box>
   );

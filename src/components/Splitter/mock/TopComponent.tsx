@@ -4,6 +4,8 @@ import { Box, Cell, Row, Table, Tbody, Thead, Top, Typography } from '@component
 import { getCellProps } from '@components/Table/examples';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
+import styles from './TopComponent.module.scss';
+
 interface IData {
   id: number;
   name: string;
@@ -40,7 +42,7 @@ export const TopComponent = () => {
       <Typography variant="Body-Bold" color="var(--steel-90)">
         Требования клиента
       </Typography>
-      <div style={{ width: '100%', height: '100%', overflowY: 'auto', overflowX: 'auto' }}>
+      <div className={styles.wrapper}>
         <Table horizontalBorders verticalBorders>
           <Thead>
             {table.getHeaderGroups().map(headerGroup => (

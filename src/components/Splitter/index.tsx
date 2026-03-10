@@ -65,7 +65,7 @@ const Splitter: FC<ISplitterProps> = props => {
       className={clsx(styles.container, { [styles.vertical]: isVertical })}
       ref={containerRef}
       data-ui-splitter
-      data-animate={shouldAnimate ? 'true' : 'false'}
+      data-animate={shouldAnimate}
       style={containerStyle}
     >
       <div className={styles.topPane} ref={topPaneRef} style={topSizeStyle} data-ui-splitter-top-pane>
@@ -75,7 +75,7 @@ const Splitter: FC<ISplitterProps> = props => {
       <div
         className={clsx(styles.splitter, { [styles.vertical]: isVertical })}
         ref={splitterRef}
-        style={{ display: isShowBottomComponent ? undefined : 'none' }}
+        style={!isShowBottomComponent ? { display: 'none' } : undefined}
       >
         {handleElement}
       </div>

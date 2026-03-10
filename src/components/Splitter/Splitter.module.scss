@@ -9,11 +9,11 @@
   }
 
   &[data-animate='true'] {
-    transition: height 0.3s ease, width 0.3s ease;
+    transition: all 0.3s ease;;
 
     .topPane,
     .bottomPane {
-      transition: height 0.3s ease, width 0.3s ease, opacity 0.3s ease;
+      transition: all 0.3s ease;
     }
     .splitter {
       transition: opacity 0.3s ease;

@@ -18,13 +18,13 @@ export const useSplitter = (
       if (!container) return;
       const rect = container.getBoundingClientRect();
 
-      if (isVertical) {
-        const newWidth = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
-        setTopHeight(newWidth);
-      } else {
-        const newHeight = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
-        setTopHeight(newHeight);
-      }
+      const pos = isVertical ? e.clientX : e.clientY;
+      const start = isVertical ? rect.left : rect.top;
+      const size = isVertical ? rect.width : rect.height;
+
+      if (size <= 0) return;
+
+      setTopHeight(Math.max(0, Math.min(100, ((pos - start) / size) * 100)));
     },
     [containerRef, setTopHeight, isVertical]
   );

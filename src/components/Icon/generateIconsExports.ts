@@ -43,19 +43,19 @@ function updateIndexFiles(directory: string): void {
     .map(dirent => dirent.name);
 
   subdirectories.forEach(folderName => {
-    // Путь к index.tsx в текущей подпапке
-    const indexPath = path.join(directory, folderName, 'index.tsx');
+    // Путь к index.ts в текущей подпапке
+    const indexPath = path.join(directory, folderName, 'index.ts');
     // Базовое имя иконки (без размера)
     const iconBaseName = `Icon${folderName}`;
     // Получаем доступные размеры иконок в текущей подпапке
     const availableSizes = getAvailableIconSizes(directory, folderName);
-    // Создаём содержимое файла index.tsx, добавляя только доступные размеры иконок
+    // Создаём содержимое файла index.ts, добавляя только доступные размеры иконок
     const newContent =
       fileHeader +
       availableSizes.map(size => `export { default as ${iconBaseName}${size} } from './${size}';`).join('\n') +
       '\n';
 
-    // Перезаписываем файл index.tsx с новым содержимым
+    // Перезаписываем файл index.ts с новым содержимым
     fs.writeFileSync(indexPath, newContent, 'utf8');
     logger(`Обновлен index.ts в папке ${folderName}`);
   });
@@ -92,8 +92,8 @@ const processFolders = (): void => {
         folderExports += `export { ${exportsForFolder} } from './${iconFolder}';\n`;
       });
 
-      // Перезаписываем файла index.tsx с новым содержимым
-      fs.writeFileSync(path.join(sourceDirectory, 'index.tsx'), fileHeader + folderExports, 'utf8');
+      // Перезаписываем файла index.ts с новым содержимым
+      fs.writeFileSync(path.join(sourceDirectory, 'index.ts'), fileHeader + folderExports, 'utf8');
       logger(`Сгенерированы экспорты в index.ts для папки ${folder}`);
     } else {
       logger(`Директория ${sourceDirectory} не найдена для ${folder}`);
@@ -121,7 +121,7 @@ const processFolders = (): void => {
     .filter(part => part)
     .join(',\n');
 
-  const iconsFilePath = path.join(rootDir, 'Icon/IconsDirectory/index.tsx');
+  const iconsFilePath = path.join(rootDir, 'Icon/IconsDirectory/index.ts');
   const exportContent =
     fileHeader +
     importsExportsContent +

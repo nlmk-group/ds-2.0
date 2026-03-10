@@ -58,6 +58,7 @@ const Input: FC<TInputProps> = ({
   placeholder = '',
   required = false,
   pseudoInputStyle,
+  resetIconRef,
   ...props
 }) => {
   const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
@@ -155,6 +156,7 @@ const Input: FC<TInputProps> = ({
       )}
       {isResetIconVisible && (
         <div
+          ref={resetIconRef}
           className={clsx(styles.icon, styles.reset, hasIcon && styles['reset--with-icon'], colorClassName)}
           data-ui-input-reset-icon
           data-testid="RESET_ICON"

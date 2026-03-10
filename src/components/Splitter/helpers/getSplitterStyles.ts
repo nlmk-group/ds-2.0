@@ -40,9 +40,9 @@ export const getSplitterStyles = ({
   topComponentSize = 0,
   bottomComponentSize = 0
 }: IGetSplitterStylesParams): {
-    containerStyle: React.CSSProperties;
-    topSizeStyle: React.CSSProperties;
-    bottomSizeStyle: React.CSSProperties;
+  containerStyle: React.CSSProperties;
+  topSizeStyle: React.CSSProperties;
+  bottomSizeStyle: React.CSSProperties;
 } => {
   const sizeProp = isVertical ? 'width' : 'height';
 

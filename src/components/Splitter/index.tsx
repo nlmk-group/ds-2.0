@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+
 import clsx from 'clsx';
+
+import { ISplitterProps } from './types';
 
 import styles from './Splitter.module.scss';
 
-import { ISplitterProps } from './types';
 import { ESplitterOrientation } from './enums';
 import { useSplitter, useSplitterResize } from './hooks';
 
@@ -17,7 +19,7 @@ import { useSplitter, useSplitterResize } from './hooks';
  * @returns {JSX.Element} - Компонент Splitter.
  */
 
-const Splitter: FC<ISplitterProps> = (props) => {
+const Splitter: FC<ISplitterProps> = props => {
   const {
     containerRef,
     topPaneRef,
@@ -39,7 +41,7 @@ const Splitter: FC<ISplitterProps> = (props) => {
 
   const { splitterRef, isDragging } = useSplitter(
     containerRef,
-    (height) => {
+    height => {
       setDidUserResize(true);
       setTopHeight(height);
     },
@@ -48,14 +50,13 @@ const Splitter: FC<ISplitterProps> = (props) => {
 
   const shouldAnimate = !isDragging;
 
-  const handleElement =
-    isShowBottomComponent && (
-      <div className={styles.handle} data-ui-splitter-handle>
-        {[...Array(5)].map((_, index) => (
-          <div key={index} className={styles.dot} />
-        ))}
-      </div>
-    );
+  const handleElement = isShowBottomComponent && (
+    <div className={styles.handle} data-ui-splitter-handle>
+      {[...Array(5)].map((_, index) => (
+        <div key={index} className={styles.dot} />
+      ))}
+    </div>
+  );
 
   return (
     <div
@@ -77,12 +78,7 @@ const Splitter: FC<ISplitterProps> = (props) => {
         {handleElement}
       </div>
 
-      <div
-        className={styles.bottomPane}
-        ref={bottomPaneRef}
-        style={bottomSizeStyle}
-        data-ui-splitter-bottom-pane
-      >
+      <div className={styles.bottomPane} ref={bottomPaneRef} style={bottomSizeStyle} data-ui-splitter-bottom-pane>
         {bottomComponent}
       </div>
     </div>

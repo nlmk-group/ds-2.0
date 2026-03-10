@@ -1,15 +1,21 @@
 import React from 'react';
+
 import { Box, OptionItem, SimpleSelect, Typography } from '@components/index';
 
-export const TopComponentSelect = ({ setShowBottom, selected, setSelected, options }: {
+export const TopComponentSelect = ({
+  setShowBottom,
+  selected,
+  setSelected,
+  options
+}: {
   setShowBottom: (value: boolean) => void;
   selected: string;
   setSelected: (value: string) => void;
-  options: { value: string, label: string }[];
+  options: { value: string; label: string }[];
 }) => {
   return (
     <Box style={{ minWidth: 420, gap: 16, display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="Body-Bold">Выберете сырье, чтобы открыть нижнюю панель</Typography>
+      <Typography variant="Body-Bold">Выберите сырье, чтобы открыть нижнюю панель</Typography>
       <SimpleSelect
         style={{ width: 350 }}
         label="Выбрать сырье"
@@ -27,5 +33,5 @@ export const TopComponentSelect = ({ setShowBottom, selected, setSelected, optio
         ))}
       </SimpleSelect>
     </Box>
-  )
-}
+  );
+};

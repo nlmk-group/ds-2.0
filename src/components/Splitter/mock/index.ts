@@ -1,3 +1,3 @@
-export * from './TopComponent'
-export * from './TopComponentSelect'
-export * from './BottomComponent'
+export * from './TopComponent';
+export * from './TopComponentSelect';
+export * from './BottomComponent';

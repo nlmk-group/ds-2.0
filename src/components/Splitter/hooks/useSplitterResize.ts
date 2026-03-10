@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { ISplitterProps } from '../types';
 import { ESplitterOrientation } from '../enums';
 import { clamp, getSplitterStyles } from '../helpers';
+import { ISplitterProps } from '../types';
 
 /**
  * Хук для управления размерами Splitter-панелей.
@@ -82,14 +82,7 @@ export const useSplitterResize = (props: ISplitterProps) => {
     if (hasBottomSize) {
       setTopHeight(clamp(100 - (bottomComponentSize! / axisPx) * 100));
     }
-  }, [
-    isVertical,
-    hasTopSize,
-    hasBottomSize,
-    topComponentSize,
-    bottomComponentSize,
-    isShowBottomComponent
-  ]);
+  }, [isVertical, hasTopSize, hasBottomSize, topComponentSize, bottomComponentSize, isShowBottomComponent]);
 
   useEffect(() => {
     if (bothSizesSet) {

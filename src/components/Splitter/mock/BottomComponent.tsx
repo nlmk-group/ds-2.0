@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Box, Button, PseudoInput, Tabs } from '@components/index';
-import styles from '@components/_storybook/styles.module.scss';
 import Tab from '@components/Tabs/subcomponents/Tab';
+
+import styles from '@components/_storybook/styles.module.scss';
 
 interface BottomComponentProps {
   setShowBottom?: (value: boolean) => void;
@@ -12,7 +13,13 @@ interface BottomComponentProps {
   handleTab?: (tab: number) => void;
 }
 
-export const BottomComponent = ({ rawMaterial, setShowBottom, handleTab, buttonPlacement = 'top-right', activeTab = 1 }: BottomComponentProps) => (
+export const BottomComponent = ({
+  rawMaterial,
+  setShowBottom,
+  handleTab,
+  buttonPlacement = 'top-right',
+  activeTab = 1
+}: BottomComponentProps) => (
   <Box width={880} flexDirection="column" p={8}>
     <Box justifyContent="space-between" pt={16} pb={8}>
       <Tabs>
@@ -21,11 +28,7 @@ export const BottomComponent = ({ rawMaterial, setShowBottom, handleTab, buttonP
         <Tab label="Позиции и характеристики" active={activeTab === 3} onClick={() => handleTab?.(3)} />
       </Tabs>
       {setShowBottom && buttonPlacement === 'top-right' && (
-          <Button
-            onClick={() => setShowBottom(false)}
-          >
-            Закрыть справку
-          </Button>
+        <Button onClick={() => setShowBottom(false)}>Закрыть справку</Button>
       )}
     </Box>
     <Box flexDirection="column" gap={4}>
@@ -44,10 +47,7 @@ export const BottomComponent = ({ rawMaterial, setShowBottom, handleTab, buttonP
         5
       </PseudoInput>
       {setShowBottom && buttonPlacement === 'bottom' && (
-        <Button
-          style={{ marginTop: 20 }}
-          onClick={() => setShowBottom(false)}
-        >
+        <Button style={{ marginTop: 20 }} onClick={() => setShowBottom(false)}>
           Закрыть справку
         </Button>
       )}

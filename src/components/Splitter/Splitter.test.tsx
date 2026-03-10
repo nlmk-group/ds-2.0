@@ -27,11 +27,7 @@ describe('Splitter Component', () => {
 
   test('hides bottom component if isShowBottomComponent=false', () => {
     const { container } = render(
-      <Splitter
-        topComponent={<TopComponent />}
-        bottomComponent={<BottomComponent />}
-        isShowBottomComponent={false}
-      />
+      <Splitter topComponent={<TopComponent />} bottomComponent={<BottomComponent />} isShowBottomComponent={false} />
     );
 
     const splitterBar = container.querySelector('.splitter') as HTMLElement;
@@ -54,33 +50,21 @@ describe('Splitter Component', () => {
     const topPane = container.querySelector('.topPane') as HTMLElement;
     const bottomPane = container.querySelector('.bottomPane') as HTMLElement;
 
-    expect(
-      topPane?.style.height || topPane?.style.flexBasis
-    ).toBe('40%');
+    expect(topPane?.style.height).toBe('40%');
 
-    expect(
-      bottomPane?.style.height || bottomPane?.style.flexBasis
-    ).toBe('60%');
+    expect(bottomPane?.style.height).toBe('60%');
   });
 
   test('handle dots rendered with visible bottom component', () => {
     render(
-      <Splitter
-        topComponent={<TopComponent />}
-        bottomComponent={<BottomComponent />}
-        isShowBottomComponent={true}
-      />
+      <Splitter topComponent={<TopComponent />} bottomComponent={<BottomComponent />} isShowBottomComponent={true} />
     );
     expect(document.querySelectorAll('.dot')).toHaveLength(5);
   });
 
   test('handle dots not rendered if bottom is hidden', () => {
     render(
-      <Splitter
-        topComponent={<TopComponent />}
-        bottomComponent={<BottomComponent />}
-        isShowBottomComponent={false}
-      />
+      <Splitter topComponent={<TopComponent />} bottomComponent={<BottomComponent />} isShowBottomComponent={false} />
     );
     expect(document.querySelectorAll('.dot')).toHaveLength(0);
   });

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { Box, Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
 import { getCellProps } from '@components/Table/examples';
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 interface IData {
   id: number;
@@ -59,11 +59,7 @@ export const TopComponent = () => {
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
                 {row.getVisibleCells().map((cell, index) => (
-                  <Cell
-                    key={cell.id}
-                    align={index === 0 ? 'left' : undefined}
-                    {...getCellProps(cell)}
-                  />
+                  <Cell key={cell.id} align={index === 0 ? 'left' : undefined} {...getCellProps(cell)} />
                 ))}
               </Row>
             ))}
@@ -71,5 +67,5 @@ export const TopComponent = () => {
         </Table>
       </div>
     </Box>
-  )
+  );
 };

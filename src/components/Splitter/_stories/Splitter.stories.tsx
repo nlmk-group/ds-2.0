@@ -3,22 +3,23 @@ import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import IconLogotype from '@components/Icon/IconsInternal/Logotype';
 import {
   Box,
-  Button, ESplitterOrientation,
+  Button,
+  ESplitterOrientation,
   IconAddPlusOutlined24,
   IconDoneCheckOutlined24,
   IconEyeOutlined24,
-  ImagePicture, Input,
+  ImagePicture,
+  Input,
   OptionItem,
   SimpleSelect,
   Typography
 } from '@components/index';
+import { BottomComponent, TopComponent, TopComponentSelect } from '@components/Splitter/mock';
 
 import style from './Splitter.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
 import Splitter from '..';
-
-import { BottomComponent, TopComponent, TopComponentSelect } from "@components/Splitter/mock";
 
 const IMAGE_MOCK_SRC_MNEMO = 'img/mnemo_image_picture_mock.jpg';
 
@@ -210,34 +211,28 @@ export const VerticalSplitterWithSizes = (): ReactNode => (
 VerticalSplitterWithSizes.storyName = 'Вертикальный Splitter с начальными размерами';
 
 export const SplitterWithOneSize = (): ReactNode => {
-  return (
-    <Splitter
-      topComponent={<TopComponent />}
-      bottomComponent={<BottomComponent />}
-      topComponentSize={450}
-    />
-  )
+  return <Splitter topComponent={<TopComponent />} bottomComponent={<BottomComponent />} topComponentSize={450} />;
 };
 SplitterWithOneSize.storyName = 'Splitter с одним заданным размером';
 
 export const SplitterWithHiddenBottom = (): ReactNode => {
-  const defaultTabHeight = 130
+  const defaultTabHeight = 130;
   const [showBottom, setShowBottom] = useState(false);
   const [selected, setSelected] = useState('');
   const [bottomHeight, setBottomHeight] = useState(defaultTabHeight);
   const [activeTab, setActiveTab] = useState(1);
 
   const options = [
-    { value: '1', label: 'Окатыши железорудные'},
-    { value: '2', label: 'Агломерат'},
-    { value: '3', label: 'Кварцит'},
-    { value: '4', label: 'Руда марганцевая'}
+    { value: '1', label: 'Окатыши железорудные' },
+    { value: '2', label: 'Агломерат' },
+    { value: '3', label: 'Кварцит' },
+    { value: '4', label: 'Руда марганцевая' }
   ];
   const bottomHeightMap: Record<number, number> = {
     1: defaultTabHeight,
     2: 170,
-    3: 210,
-  }
+    3: 210
+  };
 
   const handleTab = (tab: number) => {
     setActiveTab(tab);
@@ -249,19 +244,33 @@ export const SplitterWithHiddenBottom = (): ReactNode => {
   return (
     <Box flexDirection="column" alignItems="flex-start" width="100%">
       <Splitter
-        topComponent={<TopComponentSelect setShowBottom={setShowBottom} selected={selected} setSelected={setSelected} options={options} />}
-        bottomComponent={<BottomComponent rawMaterial={selectedRawMaterial} setShowBottom={setShowBottom} handleTab={handleTab} activeTab={activeTab} />}
+        topComponent={
+          <TopComponentSelect
+            setShowBottom={setShowBottom}
+            selected={selected}
+            setSelected={setSelected}
+            options={options}
+          />
+        }
+        bottomComponent={
+          <BottomComponent
+            rawMaterial={selectedRawMaterial}
+            setShowBottom={setShowBottom}
+            handleTab={handleTab}
+            activeTab={activeTab}
+          />
+        }
         topComponentSize={95}
         bottomComponentSize={bottomHeight}
         isShowBottomComponent={showBottom}
       />
       <Box background="var(--steel-10)" flexDirection="column" width="calc(100% - 32px)" borderRadius={4} p={16}>
         <Typography variant="Body-Bold">Этапы доставки</Typography>
-        <Input label="Исходящий номер уведомления" value="341809494"/>
-        <Input label="Поставщик металла / Сбытовая организация" value="ПАО НЛМК / ПАО НЛМК"/>
+        <Input label="Исходящий номер уведомления" value="341809494" />
+        <Input label="Поставщик металла / Сбытовая организация" value="ПАО НЛМК / ПАО НЛМК" />
       </Box>
     </Box>
-  )
+  );
 };
 SplitterWithHiddenBottom.storyName = 'Splitter с возможностью скрытия панели';
 
@@ -269,24 +278,33 @@ export const VerticalSplitterWithHiddenBottom = (): ReactNode => {
   const [showBottom, setShowBottom] = useState(false);
   const [selected, setSelected] = useState('');
   const options = [
-    { value: '1', label: 'Окатыши железорудные'},
-    { value: '2', label: 'Агломерат'},
-    { value: '3', label: 'Кварцит'},
-    { value: '4', label: 'Руда марганцевая'}
+    { value: '1', label: 'Окатыши железорудные' },
+    { value: '2', label: 'Агломерат' },
+    { value: '3', label: 'Кварцит' },
+    { value: '4', label: 'Руда марганцевая' }
   ];
   const selectedRawMaterial = useMemo(() => options.find(item => item.value === selected)?.label, [selected]);
 
   return (
     <Box flexDirection="column" alignItems="flex-start" width="100%" height="100%">
       <Splitter
-        topComponent={<TopComponentSelect setShowBottom={setShowBottom} selected={selected} setSelected={setSelected} options={options} />}
-        bottomComponent={<BottomComponent rawMaterial={selectedRawMaterial} setShowBottom={setShowBottom} buttonPlacement="bottom" />}
+        topComponent={
+          <TopComponentSelect
+            setShowBottom={setShowBottom}
+            selected={selected}
+            setSelected={setSelected}
+            options={options}
+          />
+        }
+        bottomComponent={
+          <BottomComponent rawMaterial={selectedRawMaterial} setShowBottom={setShowBottom} buttonPlacement="bottom" />
+        }
         topComponentSize={580}
         bottomComponentSize={340}
         isShowBottomComponent={showBottom}
         orientation={ESplitterOrientation.vertical}
       />
     </Box>
-  )
+  );
 };
 VerticalSplitterWithHiddenBottom.storyName = 'Вертикальный Splitter с возможностью скрытия панели';

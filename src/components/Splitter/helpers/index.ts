@@ -1,2 +1,2 @@
-export * from './getSplitterStyles'
-export * from './clamp'
+export * from './getSplitterStyles';
+export * from './clamp';

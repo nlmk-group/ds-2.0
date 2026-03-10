@@ -24,6 +24,7 @@ const Splitter: FC<ISplitterProps> = props => {
     containerRef,
     topPaneRef,
     bottomPaneRef,
+    splitterRef,
     isVertical,
     containerStyle,
     topSizeStyle,
@@ -39,13 +40,14 @@ const Splitter: FC<ISplitterProps> = props => {
     orientation = ESplitterOrientation.horizontal
   } = props;
 
-  const { splitterRef, isDragging } = useSplitter(
+  const { isDragging } = useSplitter(
     containerRef,
     height => {
       setDidUserResize(true);
       setTopHeight(height);
     },
-    orientation
+    orientation,
+    splitterRef
   );
 
   const shouldAnimate = !isDragging;

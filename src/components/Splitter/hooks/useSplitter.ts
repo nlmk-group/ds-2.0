@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { RefObject } from 'react';
 
 import { ESplitterOrientation } from '../enums';
@@ -7,10 +7,8 @@ export const useSplitter = (
   containerRef: RefObject<HTMLDivElement | null>,
   setTopHeight: (height: number) => void,
   orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal,
-  onResizeStart?: () => void,
-  onResizeEnd?: () => void
+  splitterRef: RefObject<HTMLDivElement | null>
 ) => {
-  const splitterRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false); // Новое состояние
   const isVertical = orientation === ESplitterOrientation.vertical;
 
@@ -34,7 +32,6 @@ export const useSplitter = (
   useEffect(() => {
     const handleMouseUp = () => {
       setIsDragging(false);
-      onResizeEnd?.();
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
@@ -42,7 +39,6 @@ export const useSplitter = (
     const handleMouseDown = (e: MouseEvent) => {
       e.preventDefault();
       setIsDragging(true);
-      onResizeStart?.();
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
     };
@@ -50,7 +46,7 @@ export const useSplitter = (
     const splitter = splitterRef.current;
     splitter?.addEventListener('mousedown', handleMouseDown);
     return () => splitter?.removeEventListener('mousedown', handleMouseDown);
-  }, [handleMouseMove, onResizeStart, onResizeEnd]);
+  }, [handleMouseMove]);
 
   return { splitterRef, isDragging };
 };

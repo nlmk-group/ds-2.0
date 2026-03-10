@@ -29,6 +29,7 @@ import { ISplitterProps } from '../types';
  * @returns.containerRef - ref контейнера Splitter, нужен для измерений и ResizeObserver.
  * @returns.topPaneRef - ref верхней/левой панели.
  * @returns.bottomPaneRef - ref нижней/правой панели.
+ * @returns.splitterRef - ref ручки разделителя.
  * @returns.isVertical - `true`, если ориентация вертикальная (разделение по ширине), иначе `false`.
  * @returns.topHeight - Текущий размер верхней/левой панели в процентах (0..100).
  * @returns.setTopHeight - Setter для `topHeight` (используется при ресайзе).
@@ -52,6 +53,7 @@ export const useSplitterResize = (props: ISplitterProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const topPaneRef = useRef<HTMLDivElement>(null);
   const bottomPaneRef = useRef<HTMLDivElement>(null);
+  const splitterRef = useRef<HTMLDivElement>(null);
 
   const [topHeight, setTopHeight] = useState<number>(48);
   const [didUserResize, setDidUserResize] = useState(false);
@@ -127,13 +129,15 @@ export const useSplitterResize = (props: ISplitterProps) => {
     isShowBottomComponent,
     topHeight,
     topComponentSize,
-    bottomComponentSize
+    bottomComponentSize,
+    splitterRef
   });
 
   return {
     containerRef,
     topPaneRef,
     bottomPaneRef,
+    splitterRef,
     isVertical,
     topHeight,
     setTopHeight,

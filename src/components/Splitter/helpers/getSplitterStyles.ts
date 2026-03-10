@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, RefObject } from 'react';
 
 const HANDLE_HEIGHT = 12;
 
@@ -9,6 +9,7 @@ export interface IGetSplitterStylesParams {
   noSizesSet: boolean;
   isShowBottomComponent: boolean;
   topHeight: number;
+  splitterRef: RefObject<HTMLDivElement | null>;
   topComponentSize?: number;
   bottomComponentSize?: number;
 }
@@ -37,6 +38,7 @@ export const getSplitterStyles = ({
   noSizesSet,
   isShowBottomComponent,
   topHeight,
+  splitterRef,
   topComponentSize = 0,
   bottomComponentSize = 0
 }: IGetSplitterStylesParams): {
@@ -44,6 +46,9 @@ export const getSplitterStyles = ({
   topSizeStyle: React.CSSProperties;
   bottomSizeStyle: React.CSSProperties;
 } => {
+  const handleHeight =
+    splitterRef.current?.querySelector<HTMLElement>('[data-ui-splitter-handle]')?.offsetHeight ?? HANDLE_HEIGHT;
+
   const sizeProp = isVertical ? 'width' : 'height';
 
   const getContainerStyle = (): CSSProperties => {
@@ -52,7 +57,7 @@ export const getSplitterStyles = ({
     }
 
     if (bothSizesSet) {
-      const totalSize = topComponentSize + bottomComponentSize + (isVertical ? 0 : HANDLE_HEIGHT);
+      const totalSize = topComponentSize + bottomComponentSize + (isVertical ? 0 : handleHeight);
       return { [sizeProp]: totalSize };
     }
 
@@ -66,7 +71,6 @@ export const getSplitterStyles = ({
         bottomSizeStyle: {
           [sizeProp]: 0,
           opacity: 0,
-          overflow: 'hidden',
           pointerEvents: 'none'
         } as CSSProperties
       };

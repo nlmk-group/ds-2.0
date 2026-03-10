@@ -140,7 +140,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="Comments"
-        description="Comments отображает дерево комментариев с ответами, редактированием, удалением, пользовательскими действиями, раскрытием веток и добавлением комментариев."
+        description="Comments отображает список комментариев с поддержкой вложенных ответов, редактирования, раскрытия веток, обновления списка и добавления новых комментариев."
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Comments"
         // figmaLink={FIGMA_LINK}
       />

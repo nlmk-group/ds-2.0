@@ -20,106 +20,111 @@ export interface IInputProps
    * Уникальный идентификатор инпута
    */
   id?: string;
-  
+
   /**
    * Значение инпута
    */
   value?: string;
-  
+
   /**
    * Флаг отключения инпута
    * @default false
    */
   disabled?: boolean;
-  
+
   /**
    * Текст метки (label) инпута
    */
   label?: string;
-  
+
   /**
    * Имя инпута для идентификации в формах
    */
   name?: string;
-  
+
   /**
    * Флаг многострочного режима (textarea)
    * @default false
    */
   multiline?: boolean;
-  
+
   /**
    * Флаг псевдо-инпута (нередактируемое поле)
    * @default false
    */
   pseudo?: boolean;
-  
+
   /**
    * Иконка инпута
    */
   icon?: ReactNode;
-  
+
   /**
    * Вспомогательный текст под инпутом
    */
   helperText?: ReactNode;
-  
+
   /**
    * Флаг возможности изменения размера (для textarea)
    * @default false
    */
   resize?: boolean;
-  
+
   /**
    * Флаг наличия кнопки сброса
    * @default false
    */
   reset?: boolean;
-  
+
   /**
    * Обработчик изменения значения
    */
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  
+
   /**
    * Обработчик сброса значения
    */
   onReset?: () => void;
-  
+
   /**
    * Обработчик потери фокуса
    */
   onBlur?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  
+
   /**
    * Размер инпута
    * @default 'm'
    */
   size?: `${EInputSizes}`;
-  
+
   /**
    * Цвет инпута для индикации состояния
    * @default 'default'
    */
   color?: `${EInputColors}`;
-  
+
   /**
    * Флаг цветного фона (светло-желтый)
    * @default false
    */
   colored?: boolean;
-  
+
   /**
    * Реф для доступа к DOM-элементу инпута
    */
   inputRef?: Ref<HTMLInputElement | HTMLTextAreaElement>;
-  
+
+  /**
+   * Реф для доступа к DOM-элементу иконки сброса (reset)
+   */
+  resetIconRef?: Ref<HTMLDivElement>;
+
   /**
    * Флаг обязательного поля
    * @default false
    */
   required?: boolean;
-  
+
   /**
    * Инлайн стили для PseudoInput режима
    */

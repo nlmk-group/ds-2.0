@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC } from 'react';
 
 import clsx from 'clsx';
 
@@ -7,7 +7,7 @@ import { ISplitterProps } from './types';
 import styles from './Splitter.module.scss';
 
 import { ESplitterOrientation } from './enums';
-import useSplitter from './hooks';
+import { useSplitter, useSplitterResize } from './hooks';
 
 /**
  * Компонент Splitter разделяет экран на две части с возможностью изменения их размеров.
@@ -18,21 +18,41 @@ import useSplitter from './hooks';
  * @param {`${ESplitterOrientation}`} [props.orientation=ESplitterOrientation.horizontal] - Ориентация разделителя.
  * @returns {JSX.Element} - Компонент Splitter.
  */
-const Splitter: FC<ISplitterProps> = ({
-  topComponent,
-  bottomComponent,
-  orientation = ESplitterOrientation.horizontal
-}) => {
-  const [topHeight, setTopHeight] = useState(48);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isVertical = orientation === ESplitterOrientation.vertical;
-  const { splitterRef } = useSplitter(containerRef, setTopHeight, orientation);
 
-  const sizeStyle = isVertical ? { width: `${topHeight}%` } : { height: `${topHeight}%` };
+const Splitter: FC<ISplitterProps> = props => {
+  const {
+    containerRef,
+    topPaneRef,
+    bottomPaneRef,
+    splitterRef,
+    isVertical,
+    containerStyle,
+    topSizeStyle,
+    bottomSizeStyle,
+    setTopHeight,
+    setDidUserResize
+  } = useSplitterResize(props);
 
-  const bottomSizeStyle = isVertical ? { width: `${100 - topHeight}%` } : { height: `${100 - topHeight}%` };
+  const {
+    topComponent,
+    bottomComponent,
+    isShowBottomComponent = true,
+    orientation = ESplitterOrientation.horizontal
+  } = props;
 
-  const handleElement = (
+  const { isDragging } = useSplitter(
+    containerRef,
+    height => {
+      setDidUserResize(true);
+      setTopHeight(height);
+    },
+    orientation,
+    splitterRef
+  );
+
+  const shouldAnimate = !isDragging;
+
+  const handleElement = isShowBottomComponent && (
     <div className={styles.handle} data-ui-splitter-handle>
       {[...Array(5)].map((_, index) => (
         <div key={index} className={styles.dot} />
@@ -41,14 +61,26 @@ const Splitter: FC<ISplitterProps> = ({
   );
 
   return (
-    <div className={clsx(styles.container, { [styles.vertical]: isVertical })} ref={containerRef} data-ui-splitter>
-      <div className={styles.topPane} style={sizeStyle} data-ui-splitter-top-pane>
+    <div
+      className={clsx(styles.container, { [styles.vertical]: isVertical })}
+      ref={containerRef}
+      data-ui-splitter
+      data-animate={shouldAnimate}
+      style={containerStyle}
+    >
+      <div className={styles.topPane} ref={topPaneRef} style={topSizeStyle} data-ui-splitter-top-pane>
         {topComponent}
       </div>
-      <div className={clsx(styles.splitter, { [styles.vertical]: isVertical })} ref={splitterRef}>
+
+      <div
+        className={clsx(styles.splitter, { [styles.vertical]: isVertical })}
+        ref={splitterRef}
+        style={!isShowBottomComponent ? { display: 'none' } : undefined}
+      >
         {handleElement}
       </div>
-      <div className={styles.bottomPane} style={bottomSizeStyle} data-ui-splitter-bottom-pane>
+
+      <div className={styles.bottomPane} ref={bottomPaneRef} style={bottomSizeStyle} data-ui-splitter-bottom-pane>
         {bottomComponent}
       </div>
     </div>

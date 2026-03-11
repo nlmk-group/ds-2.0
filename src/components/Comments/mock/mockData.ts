@@ -81,5 +81,3 @@ export const mockCommentsOnlyView = [
     ]
   }
 ];
-
-export const mockComments: IComment[] = [mockCommentWithReplies, mockComment];

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { ICommentFormData } from '@components/Comments/types';
 import { Button, Grid, Input } from '@components/index';
+import clsx from 'clsx';
 
 import styles from './CommentCardEdit.module.scss';
 
@@ -30,6 +31,7 @@ export const CommentCardEdit = ({
 
   const handleSave = () => {
     const trimmed = content.trim();
+
     if (trimmed && onSave) {
       onSave({ content: trimmed, commentId });
       setContent('');
@@ -48,12 +50,12 @@ export const CommentCardEdit = ({
         width: '100%',
         flexDirection: 'column'
       }}
-      className={isReply ? styles.form : ''}
+      className={clsx({ [styles.form]: isReply })}
     >
       <Grid.Row st={{ width: '100%', paddingTop: 5 }}>
         <Input
           disabled={isLoading}
-          label={'Комментарий'}
+          label="Комментарий"
           multiline
           className={styles.textarea}
           value={content}
@@ -61,10 +63,10 @@ export const CommentCardEdit = ({
         />
       </Grid.Row>
       <Grid.Row st={{ gap: 16, justifyContent: 'flex-end' }}>
-        <Button size={'m'} onClick={handleSave}>
+        <Button size="m" onClick={handleSave}>
           Сохранить
         </Button>
-        <Button size={'m'} variant={'secondary'} onClick={handleCancel}>
+        <Button size="m" variant="secondary" onClick={handleCancel}>
           Отменить
         </Button>
       </Grid.Row>

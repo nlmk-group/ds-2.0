@@ -6,14 +6,7 @@ export const argsTypes = {
       defaultValue: { summary: '[]' },
       type: {
         summary: 'IComment[]',
-        detail: `export interface ICommentActionItem {
-  value: string;
-  label: string;
-  onClick: (commentId: string) => void;
-  disabled?: boolean;
-}
-
-export interface ICommentBuiltInActions {
+        detail: `export interface ICommentBuiltInActions {
   onEdit?: (data: ICommentFormData) => void;
   onDelete?: (commentId: string) => void;
 }
@@ -27,6 +20,13 @@ export interface ICommentLink {
   url: string;
 }
 
+export interface ICommentActionProps {
+  value: string;
+  label: string;
+  onClick: (commentId: string) => void;
+  disabled?: boolean;
+}
+
 export interface IComment {
   id: string;
   author: string;
@@ -36,9 +36,9 @@ export interface IComment {
   replies: IComment[];
   parentId?: string;
   badge?: ICommentBadge;
-  builtInActions?: ICommentBuiltInActions;
-  customActions?: ICommentActionItem[];
   commentLink?: ICommentLink;
+  builtInActions?: ICommentBuiltInActions;
+  customActions?: ICommentActionProps[];
 }
 
 export interface ICommentFormData {
@@ -48,13 +48,30 @@ export interface ICommentFormData {
 
 export interface ICommentsProps {
   comments: IComment[];
+  children: React.ReactNode;
   handleAddRootComment?: (data: ICommentFormData) => void;
   handleAddReply?: (parentId: string, data: ICommentFormData) => void;
-  onRefresh?: () => void;
+  handleRefresh?: () => void;
+  isLoading?: boolean;
+  className?: string;
+}
+
+export interface ICommentItemProps {
+  children: React.ReactNode;
 }`
       }
     },
     control: { type: 'object' }
+  },
+  children: {
+    description:
+      'Шаблон отображения одного комментария. Ожидается использование compound API через Comments.Item и вложенные слоты.',
+    table: {
+      type: {
+        summary: 'React.ReactNode'
+      },
+      disable: true
+    }
   },
   handleAddRootComment: {
     description: 'Колбэк добавления корневого комментария.',
@@ -74,16 +91,6 @@ export interface ICommentsProps {
       disable: true
     }
   },
-  onRefresh: {
-    description: 'Колбэк для обновления списка комментариев после действий.',
-    table: {
-      type: {
-        summary: '() => void'
-      },
-      disable: true
-    }
-  },
-
   handleRefresh: {
     description: 'Колбэк для обновления списка комментариев.',
     table: {

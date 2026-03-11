@@ -1,57 +1,43 @@
 import React from 'react';
 
-import { CommentCard, CommentCardEdit, CommentReplies } from '@components/Comments/subcomponents';
+import { useComments } from '@components/Comments/hooks';
+import {
+  CommentActionsSlot,
+  CommentAuthor,
+  CommentBadge,
+  CommentCardEdit,
+  CommentContent,
+  CommentItem,
+  CommentLink,
+  CommentMeta
+} from '@components/Comments/subcomponents';
+import { IComment, ICommentFormData, ICommentItemProps, ICommentsProps } from '@components/Comments/types';
 import { Box, Button, Icon, IconAutoRenewReloadOutlined24, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
-import { ICommentsProps } from 'components/Comments/types';
 
 import s from './Comments.module.scss';
 
-import { useComments } from './hooks';
+type CommentsComponent = React.FC<ICommentsProps> & {
+  Item: React.FC<ICommentItemProps>;
+  Link: typeof CommentLink;
+  Badge: typeof CommentBadge;
+  Author: typeof CommentAuthor;
+  CommentMeta: typeof CommentMeta;
+  Content: typeof CommentContent;
+  Actions: typeof CommentActionsSlot;
+};
 
-/**
- * Компонент списка комментариев с поддержкой:
- * - отображения корневых комментариев и вложенных ответов
- * - редактирования комментария
- * - открытия формы ответа
- * - раскрытия и сворачивания веток ответов
- * - обновления списка комментариев
- * - состояния загрузки
- * - добавления нового корневого комментария
- *
- * Внутреннее состояние компонента управляется хуком `useComments`.
- * При `isLoading=true` вместо списка отображается спиннер, а локальные
- * состояния редактирования, ответа и раскрытых веток могут быть сброшены
- * в зависимости от реализации хука.
- *
- * @param {ICommentsProps} props Свойства компонента.
- * @param {IComment[]} props.comments Массив корневых комментариев.
- * @param {(data: ICommentFormData) => void} [props.handleAddRootComment]
- * Колбэк добавления нового корневого комментария.
- * Если передан, под списком отображается форма создания комментария.
- * @param {(parentId: string, data: ICommentFormData) => void} [props.handleAddReply]
- * Колбэк добавления ответа на комментарий.
- * Если передан, становится доступна форма ответа для комментариев.
- * @param {() => void} [props.handleRefresh]
- * Колбэк обновления списка комментариев.
- * Если передан, в верхней части компонента отображается кнопка «Обновить».
- * @param {boolean} [props.isLoading=false]
- * Флаг состояния загрузки.
- * При `true` список комментариев заменяется индикатором загрузки.
- * @param {string} [props.className]
- * Дополнительный CSS-класс для корневого контейнера компонента.
- *
- * @returns {JSX.Element} Разметка компонента Comments.
- */
+const CommentsTemplateItem: React.FC<ICommentItemProps> = ({ children }) => <>{children}</>;
 
-const Comments = ({
+const CommentsRoot: React.FC<ICommentsProps> = ({
   comments,
+  children,
   handleAddRootComment,
   handleAddReply,
   handleRefresh,
   className,
   isLoading = false
-}: ICommentsProps) => {
+}) => {
   const {
     editingCommentId,
     replyingToCommentId,
@@ -62,8 +48,94 @@ const Comments = ({
     toggleReplies
   } = useComments(isLoading);
 
-  const handleCancel = (commentId: string) => {
-    cancelEdit(commentId);
+  const itemTemplate = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.type === CommentsTemplateItem
+  ) as React.ReactElement<ICommentItemProps> | undefined;
+
+  if (!itemTemplate) {
+    throw new Error('Comments requires <Comments.Item> as child');
+  }
+
+  const renderCommentTree = (items: IComment[], isReply = false): React.ReactNode => {
+    return (
+      <Box width="100%" flexDirection="column" gap={20}>
+        {items.map(comment => {
+          const { id } = comment;
+          const onReplySave = handleAddReply ? (data: ICommentFormData) => handleAddReply(data) : undefined;
+
+          return (
+            <CommentItem
+              key={id}
+              comment={comment}
+              isReply={isReply}
+              isEditing={editingCommentId === id}
+              isExpanded={expandedReplies.has(id)}
+              isReplying={replyingToCommentId === id}
+              hasActiveReply={replyingToCommentId !== null}
+              canReply={!!handleAddReply}
+              toggleEditComment={() => toggleEditComment(id)}
+              handleReplyBlock={() => replyToComment(id)}
+              onToggleReplies={() => toggleReplies(id)}
+              onCancel={() => cancelEdit(id)}
+              onReplySave={onReplySave}
+              itemTemplate={itemTemplate}
+              renderReplies={renderCommentTree}
+            />
+          );
+        })}
+      </Box>
+    );
+  };
+
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <Box
+          width="100%"
+          height="100%"
+          justifyContent="center"
+          alignItems="center"
+          className={s.loader}
+          data-ui-comments-loader
+        >
+          <Spinner />
+        </Box>
+      );
+    }
+
+    if (comments.length > 0) {
+      return (
+        <Box
+          width="100%"
+          height="100%"
+          pl={handleRefresh ? 32 : 0}
+          flexDirection="column"
+          gap={20}
+          className={s.comments}
+          data-ui-comments-list
+        >
+          {renderCommentTree(comments)}
+        </Box>
+      );
+    }
+
+    return (
+      <Box
+        width="100%"
+        height="100%"
+        justifyContent="center"
+        alignItems="center"
+        className={s.comments}
+        data-ui-comments-empty
+      >
+        <Box gap={0} alignItems="center" height={120}>
+          <Icon name="IconCancelOutlined16" htmlColor="var(--steel-70)" />
+          <Typography variant="Body1-Medium" color="var(--steel-70)">
+            Комментариев пока нет
+          </Typography>
+        </Box>
+      </Box>
+    );
   };
 
   return (
@@ -87,95 +159,7 @@ const Comments = ({
         </Button>
       )}
 
-      {isLoading ? (
-        <Box
-          width="100%"
-          height="100%"
-          justifyContent="center"
-          alignItems="center"
-          className={s.loader}
-          data-ui-comments-loader
-        >
-          <Spinner />
-        </Box>
-      ) : (
-        <Box
-          width="100%"
-          height="100%"
-          pl={handleRefresh ? 32 : 0}
-          flexDirection="column"
-          gap={20}
-          className={s.comments}
-          data-ui-comments-list
-        >
-          {comments.length > 0 ? (
-            comments.map(comment => {
-              const { id, replies } = comment;
-              const showParentReplies = expandedReplies.has(id);
-
-              return (
-                <div key={id} data-ui-comments-item>
-                  <CommentCard
-                    comment={comment}
-                    isExpanded={showParentReplies}
-                    isEditing={editingCommentId === id}
-                    toggleEditComment={() => toggleEditComment(id)}
-                    handleReplyBlock={() => replyToComment(id)}
-                    onSave={handleAddReply ? data => handleAddReply(id, data) : undefined}
-                    onCancel={() => handleCancel(id)}
-                    onToggleReplies={() => toggleReplies(id)}
-                    replyingToCommentId={replyingToCommentId}
-                  />
-
-                  {replyingToCommentId === id && handleAddReply && (
-                    <div className={s.editor} data-ui-comments-reply-editor>
-                      <CommentCardEdit
-                        commentId={id}
-                        isReply
-                        onSave={data => handleAddReply(id, data)}
-                        onCancel={() => handleCancel(id)}
-                      />
-                    </div>
-                  )}
-
-                  {showParentReplies && replies.length > 0 && (
-                    <div data-ui-comments-replies>
-                      <CommentReplies
-                        replies={replies}
-                        isExpanded={showParentReplies}
-                        toggleEditComment={toggleEditComment}
-                        handleReplyBlock={replyToComment}
-                        onSave={handleAddReply}
-                        onCancel={handleCancel}
-                        onToggleReplies={toggleReplies}
-                        editingCommentId={editingCommentId}
-                        replyingToCommentId={replyingToCommentId}
-                        expandedReplies={expandedReplies}
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          ) : (
-            <Box
-              width="100%"
-              height="100%"
-              justifyContent="center"
-              alignItems="center"
-              className={s.comments}
-              data-ui-comments-empty
-            >
-              <Box gap={0} alignItems="center" height={120}>
-                <Icon name="IconCancelOutlined16" htmlColor="var(--steel-70)" />
-                <Typography variant="Body1-Medium" color="var(--steel-70)">
-                  Комментариев пока нет
-                </Typography>
-              </Box>
-            </Box>
-          )}
-        </Box>
-      )}
+      {renderContent()}
 
       {handleAddRootComment && (
         <div data-ui-comments-root-editor>
@@ -185,5 +169,17 @@ const Comments = ({
     </Box>
   );
 };
+
+export const Comments = CommentsRoot as CommentsComponent;
+
+Comments.Item = CommentsTemplateItem;
+Comments.Item.displayName = 'Comments.Item';
+
+Comments.Link = CommentLink;
+Comments.Badge = CommentBadge;
+Comments.Author = CommentAuthor;
+Comments.CommentMeta = CommentMeta;
+Comments.Content = CommentContent;
+Comments.Actions = CommentActionsSlot;
 
 export default Comments;

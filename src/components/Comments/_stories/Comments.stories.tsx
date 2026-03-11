@@ -41,17 +41,26 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Comments>;
 
-export const CommentsTread = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
+export const CommentsThread = (argTypes: ICommentsProps): JSX.Element => {
+  return (
+    <Comments {...argTypes}>
+      <Comments.Item>
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
+  );
 };
 
-CommentsTread.storyName = 'Comments: комментарий с вложенными ответами';
-CommentsTread.args = {
+CommentsThread.storyName = 'Comments: комментарий с вложенными ответами';
+CommentsThread.args = {
   comments: [mockCommentWithReplies],
   handleAddRootComment: () => {},
   handleAddReply: () => {}
 };
-CommentsTread.decorators = [withWrapper];
+CommentsThread.decorators = [withWrapper];
 
 export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +73,18 @@ export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
     }, 1000);
   };
 
-  return <Comments {...argTypes} isLoading={isLoading} handleRefresh={handleRefresh} />;
+  return (
+    <Comments {...argTypes} isLoading={isLoading} handleRefresh={handleRefresh}>
+      <Comments.Item>
+        <Comments.Link />
+        <Comments.Badge />
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
+  );
 };
 
 CommentsRefresh.storyName = 'Comments: комментарии с обновлением';
@@ -76,7 +96,17 @@ CommentsRefresh.args = {
 CommentsRefresh.decorators = [withFixedHeightWrapper];
 
 export const CommentsOnlyView = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
+  return (
+    <Comments {...argTypes}>
+      <Comments.Item>
+        <Comments.Link />
+        <Comments.Badge />
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+      </Comments.Item>
+    </Comments>
+  );
 };
 
 CommentsOnlyView.storyName = 'Comments: комментарии только для просмотра';
@@ -86,15 +116,24 @@ CommentsOnlyView.args = {
 CommentsOnlyView.decorators = [withWrapper];
 
 export const CommentsBadge = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
+  return (
+    <Comments {...argTypes}>
+      <Comments.Item>
+        <Comments.Link />
+        <Comments.Badge />
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
+  );
 };
 
-CommentsBadge.storyName = 'Comments: шапка комментария с бейджем и ссылкой';
 CommentsBadge.args = {
   comments: [
     {
       ...mockComment,
-      badge: { label: 'Клиент' },
       commentLink: { label: 'Задача «Получение недостающей информации от потребителя»', url: '/' },
       replies: [
         {
@@ -114,18 +153,7 @@ CommentsBadge.args = {
   ]
 };
 CommentsBadge.decorators = [withWrapper];
-
-export const CommentsEditor = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
-};
-
-CommentsEditor.storyName = 'Comments c полем для добавления комментария';
-CommentsEditor.args = {
-  comments: [mockComment, { ...mockComment, id: '4' }],
-  handleAddRootComment: () => {},
-  handleAddReply: () => {}
-};
-CommentsEditor.decorators = [withWrapper];
+CommentsBadge.storyName = 'Comments: шапка комментария с бейджем и ссылкой';
 
 export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   const [commentChanged, setCommentChanged] = useState<ICommentFormData | null>(null);
@@ -140,20 +168,51 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
     setCommentDeleted(commentId);
   };
 
-  const onCustomAction = (commentId: string) => {
+  const onCustomAction = (_commentId: string) => {
     setShowAlert(true);
+  };
+
+  const updateCommentById = (
+    comments: IComment[],
+    commentId: string,
+    updater: (comment: IComment) => IComment
+  ): IComment[] => {
+    return comments.map(comment => {
+      if (comment.id === commentId) {
+        return updater(comment);
+      }
+
+      if (comment.replies.length > 0) {
+        return {
+          ...comment,
+          replies: updateCommentById(comment.replies, commentId, updater)
+        };
+      }
+
+      return comment;
+    });
+  };
+
+  const removeCommentById = (comments: IComment[], commentId: string): IComment[] => {
+    return comments
+      .filter(comment => comment.id !== commentId)
+      .map(comment => ({
+        ...comment,
+        replies: removeCommentById(comment.replies, commentId)
+      }));
   };
 
   const mockedComments: IComment[] = [
     {
       ...mockComment,
+      badge: { label: 'Клиент' },
       builtInActions: {
         onEdit,
         onDelete
       },
       customActions: [
         {
-          value: 'report',
+          value: 'custom-action',
           label: 'Кастомное действие',
           onClick: onCustomAction
         }
@@ -171,40 +230,67 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
       },
       customActions: [
         {
-          value: 'report',
+          value: 'custom-action',
           label: 'Кастомное действие',
+          onClick: onCustomAction,
+          disabled: true
+        },
+        {
+          value: 'report',
+          label: 'Пожаловаться',
           onClick: onCustomAction
         }
       ],
-      replies: []
+      replies: [
+        {
+          id: '4-1',
+          parentId: '4',
+          author: 'Сидоров Алексей Петрович',
+          content: 'Согласен, особенно это актуально для объектов с повышенными требованиями к прочности и надежности.',
+          createdAt: '2024-11-12T08:30:00Z',
+          builtInActions: {
+            onEdit,
+            onDelete
+          },
+          customActions: [],
+          replies: []
+        }
+      ]
     }
   ];
 
   const [comments, setComments] = useState(mockedComments);
 
   useEffect(() => {
-    if (commentChanged) {
-      const updated = comments.map(comment => {
-        if (comment.id === commentChanged.commentId) {
-          return { ...comment, content: commentChanged.content };
-        }
-        return comment;
-      });
-      setComments(updated);
-      setCommentChanged(null);
+    if (!commentChanged?.commentId) {
+      return;
     }
+
+    const { commentId, content } = commentChanged;
+
+    setComments(prev =>
+      updateCommentById(prev, commentId, comment => ({
+        ...comment,
+        content
+      }))
+    );
+
+    setCommentChanged(null);
   }, [commentChanged]);
 
   useEffect(() => {
-    if (commentDeleted) {
-      const updated = comments.filter(item => item.id !== commentDeleted);
-      setComments(updated);
-      setCommentDeleted(null);
+    if (!commentDeleted) {
+      return;
     }
+
+    setComments(prev => removeCommentById(prev, commentDeleted));
+    setCommentDeleted(null);
   }, [commentDeleted]);
 
   useEffect(() => {
-    if (!showAlert) return;
+    if (!showAlert) {
+      return;
+    }
 
     const timeoutId = setTimeout(() => {
       setShowAlert(false);
@@ -218,7 +304,16 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
       <Box style={{ position: 'relative', width: '100%', height: '100%' }}>
         {showAlert && <Alert title="Действие успешно выполнено" severity="success" className={styles.alert} />}
       </Box>
-      <Comments {...argTypes} comments={comments} />
+
+      <Comments {...argTypes} comments={comments}>
+        <Comments.Item>
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
     </>
   );
 };
@@ -228,9 +323,17 @@ CommentsActions.args = {
   handleAddRootComment: () => {}
 };
 CommentsActions.decorators = [withWrapper];
-
 export const CommentsEmpty = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
+  return (
+    <Comments {...argTypes}>
+      <Comments.Item>
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
+  );
 };
 
 CommentsEmpty.storyName = 'Comments: нет комментариев';

@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
-// import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-// const FIGMA_LINK = 'https://www.figma.com/';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=16343-15080&p=f&m=dev';
 
 const CommentsStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
   const commentsDefaultCode = `import React from 'react';
-import { Comments, Box } from '@nlmk/ds-2.0';
+import { Box, Comments } from '@nlmk/ds-2.0';
 
 const comments = [
   {
@@ -33,10 +33,19 @@ const App = () => {
   return (
     <Box p={8} background="var(--steel-10)" borderRadius={4}>
       <Comments
-      comments={comments}
-      handleAddRootComment={() => {}}
-      handleAddReply={() => {}}
-    />
+        comments={comments}
+        handleAddRootComment={() => {}}
+        handleAddReply={() => {}}
+      >
+        <Comments.Item>
+          <Comments.Link />
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
     </Box>
   );
 };
@@ -45,7 +54,11 @@ export default App;
 `;
 
   const commentsLongThreadCode = `import React from 'react';
-import { Comments, Box } from '@nlmk/ds-2.0';
+import { Box, Comments } from '@nlmk/ds-2.0';
+
+const onReport = commentId => {
+  console.log('report', commentId);
+};
 
 const comments = [
   {
@@ -62,9 +75,18 @@ const comments = [
       {
         value: 'report',
         label: 'Пожаловаться',
-        onClick: () => {}
+        onClick: onReport
       }
     ],
+    commentLink: {
+      label: 'Связанный документ',
+      url: 'https://example.com'
+    },
+    badge: {
+      label: 'В работе',
+      color: 'warning',
+      variant: 'filled'
+    },
     replies: [
       {
         id: '1-1',
@@ -75,13 +97,6 @@ const comments = [
           onEdit: () => {},
           onDelete: () => {}
         },
-        customActions: [
-          {
-            value: 'report',
-            label: 'Пожаловаться',
-            onClick: () => {}
-          }
-        ],
         replies: [
           {
             id: '1-1-1',
@@ -92,13 +107,6 @@ const comments = [
               onEdit: () => {},
               onDelete: () => {}
             },
-            customActions: [
-              {
-                value: 'report',
-                label: 'Пожаловаться',
-                onClick: () => {}
-              }
-            ],
             replies: []
           }
         ]
@@ -116,7 +124,7 @@ const comments = [
           {
             value: 'report',
             label: 'Пожаловаться',
-            onClick: () => {}
+            onClick: onReport
           }
         ],
         replies: []
@@ -127,12 +135,21 @@ const comments = [
 
 const App = () => {
   return (
-    <Box p={8} background="var(--steel-10)" borderRadius={4}>
+    <Box p={8} background="var(--steel-10)" borderRadius={4} width="100%">
       <Comments
-      comments={comments}
-      handleAddRootComment={() => {}}
-      handleAddReply={() => {}}
-    />
+        comments={comments}
+        handleAddRootComment={() => {}}
+        handleAddReply={() => {}}
+      >
+        <Comments.Item>
+          <Comments.Link />
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
     </Box>
   );
 };
@@ -146,13 +163,13 @@ export default App;
         title="Comments"
         description="Comments отображает список комментариев с поддержкой вложенных ответов, редактирования, раскрытия веток, обновления списка и добавления новых комментариев."
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Comments"
-        // figmaLink={FIGMA_LINK}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={activeTab === 0} onClick={() => setActiveTab(0)} />
-          {/*<Tabs.Tab label="Дизайнеру" active={activeTab === 1} onClick={() => setActiveTab(1)} />*/}
+          <Tabs.Tab label="Дизайнеру" active={activeTab === 1} onClick={() => setActiveTab(1)} />
           <Tabs.Tab label="Тестирование" active={activeTab === 2} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
@@ -163,7 +180,7 @@ export default App;
 
           <Editor
             minHeight={640}
-            description="Пример: длинная ветка комментариев с вложенными ответами и действиями."
+            description="Пример: длинная ветка комментариев с вложенными ответами и кастомными действиями из данных комментария."
             code={commentsLongThreadCode}
           />
 
@@ -171,7 +188,7 @@ export default App;
         </>
       )}
 
-      {/* {activeTab === 1 && <FigmaEmbed url={FIGMA_LINK} />} */}
+      {activeTab === 1 && <FigmaEmbed url={FIGMA_LINK} />}
 
       {activeTab === 2 && <Tests componentName="Comments" />}
     </div>

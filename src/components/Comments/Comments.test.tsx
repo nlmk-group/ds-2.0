@@ -2,7 +2,7 @@ import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { IComment } from './types';
+import { IComment, ICommentsProps } from './types';
 
 import Comments from './index';
 
@@ -32,16 +32,31 @@ const comments: IComment[] = [
   }
 ];
 
+const renderComments = (props: Partial<ICommentsProps> = {}) => {
+  return render(
+    <Comments comments={comments} {...props}>
+      <Comments.Item>
+        <Comments.Link />
+        <Comments.Badge />
+        <Comments.Author />
+        <Comments.CommentMeta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
+  );
+};
+
 describe('Comments', () => {
   test('рендерит корневые комментарии', () => {
-    render(<Comments comments={comments} />);
+    renderComments();
 
     expect(screen.getByText('Root comment 1')).toBeInTheDocument();
     expect(screen.getByText('Root comment 2')).toBeInTheDocument();
   });
 
   test('не показывает кнопку обновления без handleRefresh', () => {
-    render(<Comments comments={comments} />);
+    renderComments();
 
     expect(screen.queryByRole('button', { name: /обновить/i })).not.toBeInTheDocument();
   });
@@ -49,23 +64,78 @@ describe('Comments', () => {
   test('показывает кнопку обновления и вызывает handleRefresh по клику', () => {
     const handleRefresh = jest.fn();
 
-    render(<Comments comments={comments} handleRefresh={handleRefresh} />);
+    renderComments({ handleRefresh });
 
-    const button = screen.getByRole('button', { name: /обновить/i });
-    fireEvent.click(button);
+    fireEvent.click(screen.getByRole('button', { name: /обновить/i }));
 
     expect(handleRefresh).toHaveBeenCalledTimes(1);
   });
 
   test('показывает форму добавления корневого комментария, если передан handleAddRootComment', () => {
-    render(<Comments comments={comments} handleAddRootComment={jest.fn()} />);
+    renderComments({ handleAddRootComment: jest.fn() });
 
-    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByLabelText('Комментарий')).toBeInTheDocument();
   });
 
   test('не показывает форму добавления корневого комментария, если handleAddRootComment не передан', () => {
-    render(<Comments comments={comments} />);
+    renderComments();
 
-    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Комментарий')).not.toBeInTheDocument();
+  });
+
+  test('показывает пустое состояние, если комментариев нет', () => {
+    render(
+      <Comments comments={[]}>
+        <Comments.Item>
+          <Comments.Link />
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
+    );
+
+    expect(screen.getByText('Комментариев пока нет')).toBeInTheDocument();
+  });
+
+  test('показывает loader при isLoading=true', () => {
+    const { container } = renderComments({ isLoading: true });
+
+    expect(container.querySelector('[data-ui-comments-loader]')).toBeInTheDocument();
+    expect(screen.queryByText('Root comment 1')).not.toBeInTheDocument();
+  });
+
+  test('скрывает комментарии во время загрузки', () => {
+    const { rerender } = render(
+      <Comments comments={comments}>
+        <Comments.Item>
+          <Comments.Link />
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
+    );
+
+    expect(screen.getByText('Root comment 1')).toBeInTheDocument();
+
+    rerender(
+      <Comments comments={comments} isLoading>
+        <Comments.Item>
+          <Comments.Link />
+          <Comments.Badge />
+          <Comments.Author />
+          <Comments.CommentMeta />
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
+    );
+
+    expect(screen.queryByText('Root comment 1')).not.toBeInTheDocument();
   });
 });

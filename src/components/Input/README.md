@@ -42,6 +42,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | color | customInputColors | 'default' | Цвет инпута |
 | className | string | - | Дополнительный CSS класс |
 | inputRef | Ref<HTMLInputElement \| HTMLTextAreaElement> | - | Реф для доступа к DOM-элементу инпута |
+| resetIconRef | Ref<HTMLDivElement> | - | Реф для доступа к DOM-элементу иконки сброса (reset) |
 | colored | boolean | false | Флаг цветного фона |
 | required | boolean | - | Атрибут, который указывает, что данное поле является обязательным для заполнения |
 

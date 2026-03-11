@@ -17,7 +17,7 @@ const CommentsStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
   const commentsDefaultCode = `import React from 'react';
-import { Comments } from '@nlmk/ds-2.0';
+import { Comments, Box } from '@nlmk/ds-2.0';
 
 const comments = [
   {
@@ -31,11 +31,13 @@ const comments = [
 
 const App = () => {
   return (
-    <Comments
+    <Box p={8} background="var(--steel-10)" borderRadius={4}>
+      <Comments
       comments={comments}
       handleAddRootComment={() => {}}
       handleAddReply={() => {}}
     />
+    </Box>
   );
 };
 
@@ -43,7 +45,7 @@ export default App;
 `;
 
   const commentsLongThreadCode = `import React from 'react';
-import { Comments } from '@nlmk/ds-2.0';
+import { Comments, Box } from '@nlmk/ds-2.0';
 
 const comments = [
   {
@@ -125,11 +127,13 @@ const comments = [
 
 const App = () => {
   return (
-    <Comments
+    <Box p={8} background="var(--steel-10)" borderRadius={4}>
+      <Comments
       comments={comments}
       handleAddRootComment={() => {}}
       handleAddReply={() => {}}
     />
+    </Box>
   );
 };
 

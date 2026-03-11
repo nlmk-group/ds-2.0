@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { EBadgeColors } from '@components/Badge/enums';
-import {
-  mockComment,
-  mockComments,
-  mockCommentsOnlyView,
-  mockCommentWithReplies
-} from '@components/Comments/mock/mockData';
+import { mockComment, mockCommentsOnlyView, mockCommentWithReplies } from '@components/Comments/mock/mockData';
 import { IComment, ICommentFormData, ICommentsProps } from '@components/Comments/types';
 import { Alert, Box, Comments, Typography } from '@components/index';
 import { Meta } from '@storybook/react-vite';
@@ -15,45 +10,30 @@ import styles from './Comments.stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const withWrapper = (Story: any) => {
-  return (
-    <Box className={styles.wrapper} justifyContent="center">
-      <Box
-        p={16}
-        background="var(--steel-10)"
-        borderRadius={8}
-        flexDirection="column"
-        gap={20}
-        alignItems="flex-start"
-        width="100%"
-        height="100%"
-      >
-        <Typography variant="Heading4">Комментарии</Typography>
-        <Story />
+const createWrapper =
+  (height = '100%') =>
+  (Story: any) => {
+    return (
+      <Box className={styles.wrapper} justifyContent="center">
+        <Box
+          p={16}
+          background="var(--steel-10)"
+          borderRadius={8}
+          flexDirection="column"
+          gap={20}
+          alignItems="flex-start"
+          width="100%"
+          height={height}
+        >
+          <Typography variant="Heading4">Комментарии</Typography>
+          <Story />
+        </Box>
       </Box>
-    </Box>
-  );
-};
+    );
+  };
 
-const withRefreshWrapper = (Story: any) => {
-  return (
-    <Box className={styles.wrapper} justifyContent="center">
-      <Box
-        p={16}
-        background="var(--steel-10)"
-        borderRadius={8}
-        flexDirection="column"
-        gap={20}
-        alignItems="flex-start"
-        width="100%"
-        height="700px"
-      >
-        <Typography variant="Heading4">Комментарии</Typography>
-        <Story />
-      </Box>
-    </Box>
-  );
-};
+const withWrapper = createWrapper();
+const withFixedHeightWrapper = createWrapper('700px');
 
 export default {
   title: 'Components/Comments/Stories',
@@ -61,17 +41,17 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Comments>;
 
-export const CommentsDefault = (argTypes: ICommentsProps): JSX.Element => {
+export const CommentsTread = (argTypes: ICommentsProps): JSX.Element => {
   return <Comments {...argTypes} />;
 };
 
-CommentsDefault.storyName = 'Comments: комментарии с вложенными ответами';
-CommentsDefault.args = {
-  comments: mockComments,
+CommentsTread.storyName = 'Comments: комментарий с вложенными ответами';
+CommentsTread.args = {
+  comments: [mockCommentWithReplies],
   handleAddRootComment: () => {},
   handleAddReply: () => {}
 };
-CommentsDefault.decorators = [withWrapper];
+CommentsTread.decorators = [withWrapper];
 
 export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +73,7 @@ CommentsRefresh.args = {
   handleAddRootComment: () => {},
   handleAddReply: () => {}
 };
-CommentsRefresh.decorators = [withRefreshWrapper];
+CommentsRefresh.decorators = [withFixedHeightWrapper];
 
 export const CommentsOnlyView = (argTypes: ICommentsProps): JSX.Element => {
   return <Comments {...argTypes} />;
@@ -147,22 +127,11 @@ CommentsEditor.args = {
 };
 CommentsEditor.decorators = [withWrapper];
 
-export const CommentsTread = (argTypes: ICommentsProps): JSX.Element => {
-  return <Comments {...argTypes} />;
-};
-
-CommentsTread.storyName = 'Comments: комментарий с ответами';
-CommentsTread.args = {
-  comments: [mockCommentWithReplies],
-  handleAddRootComment: () => {},
-  handleAddReply: () => {}
-};
-CommentsTread.decorators = [withWrapper];
-
 export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   const [commentChanged, setCommentChanged] = useState<ICommentFormData | null>(null);
   const [commentDeleted, setCommentDeleted] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false);
+
   const onEdit = (data: ICommentFormData) => {
     setCommentChanged(data);
   };
@@ -210,6 +179,7 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
       replies: []
     }
   ];
+
   const [comments, setComments] = useState(mockedComments);
 
   useEffect(() => {
@@ -245,7 +215,7 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
 
   return (
     <>
-      <Box style={{ position: 'relative', paddingTop: '32', width: '100%', height: '100%' }}>
+      <Box style={{ position: 'relative', width: '100%', height: '100%' }}>
         {showAlert && <Alert title="Действие успешно выполнено" severity="success" className={styles.alert} />}
       </Box>
       <Comments {...argTypes} comments={comments} />

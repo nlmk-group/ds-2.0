@@ -3,8 +3,9 @@ import React from 'react';
 import { CommentCard, CommentCardEdit } from '@components/Comments/subcomponents';
 import { IComment, ICommentFormData } from '@components/Comments/types';
 import { Box } from '@components/index';
+import clsx from 'clsx';
 
-import s from './CommentReplies.module.scss';
+import styles from './CommentReplies.module.scss';
 
 interface CommentRepliesProps {
   replies: IComment[];
@@ -34,43 +35,49 @@ export const CommentReplies = ({
   if (replies.length === 0) {
     return null;
   }
-
   return (
-    <div className={`${s.container} ${isExpanded ? s.comment_replies_expanded : s.comment_replies_collapsed}`}>
+    <div
+      className={clsx(styles.container, {
+        [styles.comment_replies_expanded]: isExpanded,
+        [styles.comment_replies_collapsed]: !isExpanded
+      })}
+    >
       <Box gap={20} flexDirection={'column'}>
         {replies.map(reply => {
-          const showReplies = expandedReplies.has(reply.id);
+          const { id, replies: nestedReplies } = reply;
+          const showReplies = expandedReplies.has(id);
+
           return (
-            <div key={reply.id} className={s.reply}>
+            <div key={id} className={styles.reply}>
               <CommentCard
                 comment={reply}
                 isReply={true}
                 isExpanded={showReplies}
-                isEditing={editingCommentId === reply.id}
-                toggleEditComment={() => toggleEditComment(reply.id)}
-                handleReplyBlock={() => handleReplyBlock(reply.id)}
-                onSave={onSave ? data => onSave(reply.id, data) : undefined}
-                onCancel={() => onCancel(reply.id)}
-                onToggleReplies={() => onToggleReplies(reply.id)}
+                isEditing={editingCommentId === id}
+                toggleEditComment={() => toggleEditComment(id)}
+                handleReplyBlock={() => handleReplyBlock(id)}
+                onSave={onSave ? data => onSave(id, data) : undefined}
+                onCancel={() => onCancel(id)}
+                onToggleReplies={() => onToggleReplies(id)}
                 replyingToCommentId={replyingToCommentId}
               />
 
-              {replyingToCommentId === reply.id && onSave && (
-                <div className={s.form}>
+              {replyingToCommentId === id && onSave && (
+                <div className={styles.form}>
                   <CommentCardEdit
-                    commentId={reply.id}
+                    commentId={id}
                     initialContent=""
                     isReply={true}
-                    onSave={data => onSave(reply.id, data)}
-                    onCancel={() => onCancel(reply.id)}
+                    onSave={data => onSave(id, data)}
+                    onCancel={() => onCancel(id)}
                   />
                 </div>
               )}
 
-              {showReplies && reply.replies.length > 0 && (
+              {showReplies && nestedReplies.length > 0 && (
                 <CommentReplies
-                  replies={reply.replies}
-                  isExpanded={expandedReplies.has(reply.id)}
+                  replies={nestedReplies}
+                  isExpanded={showReplies}
                   toggleEditComment={toggleEditComment}
                   handleReplyBlock={handleReplyBlock}
                   onSave={onSave}

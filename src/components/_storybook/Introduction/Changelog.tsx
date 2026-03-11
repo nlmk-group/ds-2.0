@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.28.3 - <span className={styles.date}>05.03.26</span>
+            v2.28.3 - <span className={styles.date}>11.03.26</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -37,6 +37,22 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>
                 - Добавлен параметр isShowBottomComponent для возможности скрывать/показывать нижнюю панель
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Кнопка сброса теперь корректно работает при поиске и выборе значения: очищает строку поиска при сбросе
+                и (опционально) при выборе, а клики по иконке сброса не считаются кликом вне компонента
+                (ClickAwayListener игнорирует reset)
               </li>
             </li>
           </ul>
@@ -72,10 +88,7 @@ export const Changelog = () => {
               >
                 Checkbox
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Оптимизирован рендеринг иконок состояния
-              </li>
+              .<li className={styles['left-padding']}>- Оптимизирован рендеринг иконок состояния</li>
             </li>
             <li>
               • Изменен компонент{' '}
@@ -100,10 +113,7 @@ export const Changelog = () => {
               >
                 Input
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Исправлено наложение длинного текста label на иконку
-              </li>
+              .<li className={styles['left-padding']}>- Исправлено наложение длинного текста label на иконку</li>
             </li>
             <li>
               • Исправлен компонент{' '}
@@ -114,10 +124,7 @@ export const Changelog = () => {
               >
                 InputSlider
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Исправлено позиционирование правого значения слайдера
-              </li>
+              .<li className={styles['left-padding']}>- Исправлено позиционирование правого значения слайдера</li>
             </li>
             <li>
               • Исправлен компонент{' '}
@@ -144,7 +151,8 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании draggableStartPosition
+                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании
+                draggableStartPosition
               </li>
             </li>
           </ul>
@@ -186,10 +194,7 @@ export const Changelog = () => {
               >
                 DatePicker
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Исправлена локализация label в PseudoInput режиме
-              </li>
+              .<li className={styles['left-padding']}>- Исправлена локализация label в PseudoInput режиме</li>
             </li>
             <li>
               • Обновлен компонент{' '}
@@ -205,8 +210,8 @@ export const Changelog = () => {
                 - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;).
               </li>
               <li className={styles['left-padding']}>
-                - Кнопка сворачивания/разворачивания теперь локализована: &quot;Свернуть&quot;/&quot;Развернуть&quot; для русского и
-                &quot;Collapse&quot;/&quot;Expand&quot; для английского
+                - Кнопка сворачивания/разворачивания теперь локализована: &quot;Свернуть&quot;/&quot;Развернуть&quot;
+                для русского и &quot;Collapse&quot;/&quot;Expand&quot; для английского
               </li>
             </li>
             <li>
@@ -223,7 +228,10 @@ export const Changelog = () => {
                 - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
               </li>
               <li className={styles['left-padding']}>
-                - Локализованы кнопки управления окном: &quot;Перейти в полноэкранный режим&quot;/&quot;Enter fullscreen mode&quot;, &quot;Выйти из полноэкранного режима&quot;/&quot;Exit fullscreen mode&quot;, &quot;Развернуть&quot;/&quot;Expand&quot;, &quot;Свернуть&quot;/&quot;Collapse&quot;, &quot;Закрыть&quot;/&quot;Close&quot;
+                - Локализованы кнопки управления окном: &quot;Перейти в полноэкранный режим&quot;/&quot;Enter fullscreen
+                mode&quot;, &quot;Выйти из полноэкранного режима&quot;/&quot;Exit fullscreen mode&quot;,
+                &quot;Развернуть&quot;/&quot;Expand&quot;, &quot;Свернуть&quot;/&quot;Collapse&quot;,
+                &quot;Закрыть&quot;/&quot;Close&quot;
               </li>
             </li>
             <li>
@@ -256,9 +264,7 @@ export const Changelog = () => {
             v2.27.3 - <span className={styles.date}>19.01.26</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.
-            </li>
+            <li>• Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.</li>
           </ul>
         </div>
         <div className={styles.history}>

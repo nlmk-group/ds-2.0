@@ -29,6 +29,7 @@ import styles from './Input.module.scss';
  * @param {customInputColors} [props.color=customInputColors.default] - Цвет инпута.
  * @param {string} [props.className] - Дополнительный CSS класс.
  * @param {Ref<HTMLInputElement | HTMLTextAreaElement>} [props.inputRef] - Реф для доступа к DOM-элементу инпута.
+ * @param {Ref<HTMLDivElement>} [props.resetIconRef] - Реф для доступа к DOM-элементу иконки сброса (reset).
  * @param {boolean} [props.colored=false] - Флаг цветного фона.
  * @param {string} [props.placeholder=''] - Текст плейсхолдера. Скрывается при наличии label и отсутствии фокуса.
  * @param {boolean} [props.required=false] - Флаг обязательности заполнения.

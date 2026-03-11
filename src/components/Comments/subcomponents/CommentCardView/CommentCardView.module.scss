@@ -1,3 +1,35 @@
+.card {
+  position: relative;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  flex-direction: column;
+  gap: 4px !important;
+}
+
+.contentWithActions {
+  width: calc(100% - 72px) !important;
+}
+
+.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72px;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .icon {
   display: inline-block;
   transition: transform 0.3s;

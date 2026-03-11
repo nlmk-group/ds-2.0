@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ICommentFormData } from '@components/Comments/types';
 import { Button, Grid, Input } from '@components/index';
 
-import s from './CommentCardEdit.module.scss';
+import styles from './CommentCardEdit.module.scss';
 
 interface CommentCardEditProps {
   commentId?: string;
@@ -29,8 +29,9 @@ export const CommentCardEdit = ({
   }, [initialContent]);
 
   const handleSave = () => {
-    if (content.trim() && onSave) {
-      onSave({ content: content.trim(), commentId });
+    const trimmed = content.trim();
+    if (trimmed && onSave) {
+      onSave({ content: trimmed, commentId });
       setContent('');
     }
   };
@@ -47,15 +48,14 @@ export const CommentCardEdit = ({
         width: '100%',
         flexDirection: 'column'
       }}
-      className={isReply ? s.form : ''}
+      className={isReply ? styles.form : ''}
     >
       <Grid.Row st={{ width: '100%', paddingTop: 5 }}>
         <Input
           disabled={isLoading}
           label={'Комментарий'}
-          multiline={true}
-          className={s.textarea}
-          style={{ height: 102, width: '100%' }}
+          multiline
+          className={styles.textarea}
           value={content}
           onChange={e => setContent(e.target.value)}
         />

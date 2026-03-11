@@ -36,11 +36,14 @@ export const CommentActions = ({
           Удалить
         </DropdownMenuItem>
       )}
-      {customActions.map(action => (
-        <DropdownMenuItem key={action.value} onClick={action.onClick} value={action.value} disabled={action.disabled}>
-          {action.label}
-        </DropdownMenuItem>
-      ))}
+      {customActions.map(action => {
+        const { value, disabled, label, onClick } = action;
+        return (
+          <DropdownMenuItem key={value} onClick={onClick} value={value} disabled={disabled}>
+            {label}
+          </DropdownMenuItem>
+        );
+      })}
     </Dropdown>
   );
 };

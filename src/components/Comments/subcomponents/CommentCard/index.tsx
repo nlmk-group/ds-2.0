@@ -28,15 +28,16 @@ export const CommentCard = ({
   onToggleReplies,
   replyingToCommentId
 }: CommentCardProps) => {
-  if (isEditing && comment.builtInActions?.onEdit) {
+  const { id, content, builtInActions } = comment;
+  if (isEditing && builtInActions?.onEdit) {
     return (
       <CommentCardEdit
-        commentId={comment.id}
-        initialContent={comment.content}
+        commentId={id}
+        initialContent={content}
         isReply={isReply}
         onSave={data => {
           toggleEditComment();
-          if (comment.builtInActions?.onEdit) comment.builtInActions.onEdit(data);
+          builtInActions.onEdit?.(data);
         }}
         onCancel={onCancel}
       />

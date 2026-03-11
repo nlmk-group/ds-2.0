@@ -26,11 +26,14 @@ const VerticalApp = () => {
 
 ## Props
 
-| Prop            | Type                       | Default      | Description                                      |
-| --------------- | -------------------------- | ------------ | ------------------------------------------------ |
-| topComponent    | ReactNode                  | -            | Компонент для отображения в верхней/левой панели |
-| bottomComponent | ReactNode                  | -            | Компонент для отображения в нижней/правой панели |
-| orientation     | 'horizontal' \| 'vertical' | 'horizontal' | Ориентация разделителя                           |
+| Prop                  | Type                       | Default      | Description                                      |
+|-----------------------|----------------------------|--------------|--------------------------------------------------|
+| topComponent          | ReactNode                  | -            | Компонент для отображения в верхней/левой панели |
+| bottomComponent       | ReactNode                  | -            | Компонент для отображения в нижней/правой панели |
+| orientation           | 'horizontal' \| 'vertical' | 'horizontal' | Ориентация разделителя                           |
+| topComponentSize      | number                     | -            | Размер верхней панели                            |
+| bottomComponentSize   | number                     | -            | Размер нижней панели                             |
+| isShowBottomComponent | boolean                    | true         | Видимость нижней панели                          |
 
 ## Стилизация
 

@@ -39,6 +39,8 @@ export interface IInputAdditionalProps {
   colored?: boolean;
   /** Инлайн стили для PseudoInput режима */
   pseudoInputStyle?: CSSProperties;
+  /** Реф для кнопки сброса */
+  resetIconRef?: Ref<HTMLDivElement>;
 }
 
 export type TInputProps = IInputAdditionalProps &

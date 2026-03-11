@@ -98,6 +98,10 @@ const SimpleSelect: FC<ISelectProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const arrowButtonRef = useRef<HTMLButtonElement>(null);
+  const resetIconRef = useRef<HTMLDivElement>(null);
+  const canResetSelected = value !== undefined && value !== null && value !== '';
+  const canResetSearch = searchable && isOpen && searchTerm.length > 0;
+  const canReset = reset && (canResetSelected || canResetSearch);
   id = useMemo(() => `Select-${(id && id.toString()) || generateUUID()}`, [id]);
 
   if (scrollingItems < 1) {
@@ -139,6 +143,11 @@ const SimpleSelect: FC<ISelectProps> = ({
 
   const handleOptionChange = (optionValue: string | number) => {
     setSelectedLabel(findOptionLabel(optionValue));
+
+    if (clearSearchOnSelect) {
+      setSearchTerm('');
+    }
+
     setIsOpen(false);
     setFocusedIndex(-1);
     inputRef.current?.blur();
@@ -220,6 +229,7 @@ const SimpleSelect: FC<ISelectProps> = ({
         inputRef,
         menuRef,
         arrowButtonRef,
+        resetIconRef,
         menuWidth,
         withPortal,
         portalContainerId,
@@ -250,8 +260,10 @@ const SimpleSelect: FC<ISelectProps> = ({
           pseudo={pseudo}
           color={color}
           colored={colored}
-          reset={reset && !!value}
+          resetIconRef={resetIconRef}
+          reset={canReset}
           onReset={() => {
+            setSearchTerm('');
             if (onReset) {
               onReset();
               onChange?.('');

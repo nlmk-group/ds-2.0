@@ -152,6 +152,15 @@ const argsTypes = {
       }
     }
   },
+  resetIconRef: {
+    description:
+      'Ref для доступа к DOM-элементу иконки сброса (reset). Может использоваться, например, чтобы исключить клики по ней из ClickAwayListener.',
+    table: {
+      type: {
+        summary: 'Ref<HTMLDivElement>'
+      }
+    }
+  },
   name: {
     description: 'Имя инпута, используется для идентификации в формах',
     control: { type: 'text' }
@@ -172,7 +181,7 @@ const argsTypes = {
     description: 'Свойство, позволяющее отображать компонент как PseudoInput (не редактируемое поле)',
     table: {
       defaultValue: {
-        summary: 'false' 
+        summary: 'false'
       },
       type: {
         summary: 'boolean'

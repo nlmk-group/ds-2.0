@@ -39,7 +39,7 @@ const renderComments = (props: Partial<ICommentsProps> = {}) => {
         <Comments.Link />
         <Comments.Badge />
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -90,7 +90,7 @@ describe('Comments', () => {
           <Comments.Link />
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -114,7 +114,7 @@ describe('Comments', () => {
           <Comments.Link />
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -129,7 +129,7 @@ describe('Comments', () => {
           <Comments.Link />
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>

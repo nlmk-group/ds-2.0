@@ -66,7 +66,7 @@ export interface ICommentsProps {
   className?: string;
 }
 
-export interface ICommentItemProps {
+export interface ICommentProps {
   children: React.ReactNode;
 }
 

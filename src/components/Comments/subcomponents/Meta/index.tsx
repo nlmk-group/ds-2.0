@@ -4,7 +4,7 @@ import { formatDate } from '@components/Comments/helpers';
 import { useCommentContext } from '@components/Comments/hooks';
 import { Typography } from '@components/index';
 
-export const CommentMeta = () => {
+export const Meta = () => {
   const {
     comment: { createdAt, updatedAt }
   } = useCommentContext();
@@ -23,4 +23,4 @@ export const CommentMeta = () => {
   );
 };
 
-CommentMeta.displayName = 'Comments.CommentMeta';
+Meta.displayName = 'Comments.Meta';

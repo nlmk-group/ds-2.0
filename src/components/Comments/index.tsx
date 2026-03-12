@@ -2,32 +2,32 @@ import React from 'react';
 
 import { useComments } from '@components/Comments/hooks';
 import {
-  CommentActionsSlot,
-  CommentAuthor,
-  CommentBadge,
-  CommentCardEdit,
-  CommentContent,
-  CommentItem,
+  ActionsSlot,
+  Author,
+  Badge,
+  CardEdit,
+  Comment,
   CommentLink,
-  CommentMeta
+  Content,
+  Meta
 } from '@components/Comments/subcomponents';
-import { IComment, ICommentFormData, ICommentItemProps, ICommentsProps } from '@components/Comments/types';
+import { IComment, ICommentFormData, ICommentProps, ICommentsProps } from '@components/Comments/types';
 import { Box, Button, Icon, IconAutoRenewReloadOutlined24, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
 
 import s from './Comments.module.scss';
 
 type CommentsComponent = React.FC<ICommentsProps> & {
-  Item: React.FC<ICommentItemProps>;
+  Item: React.FC<ICommentProps>;
   Link: typeof CommentLink;
-  Badge: typeof CommentBadge;
-  Author: typeof CommentAuthor;
-  CommentMeta: typeof CommentMeta;
-  Content: typeof CommentContent;
-  Actions: typeof CommentActionsSlot;
+  Badge: typeof Badge;
+  Author: typeof Author;
+  Meta: typeof Meta;
+  Content: typeof Content;
+  Actions: typeof ActionsSlot;
 };
 
-const CommentsTemplateItem: React.FC<ICommentItemProps> = ({ children }) => <>{children}</>;
+const CommentsTemplateItem: React.FC<ICommentProps> = ({ children }) => <>{children}</>;
 
 const CommentsRoot: React.FC<ICommentsProps> = ({
   comments,
@@ -50,7 +50,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
 
   const itemTemplate = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === CommentsTemplateItem
-  ) as React.ReactElement<ICommentItemProps> | undefined;
+  ) as React.ReactElement<ICommentProps> | undefined;
 
   if (!itemTemplate) {
     throw new Error('Comments requires <Comments.Item> as child');
@@ -64,7 +64,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
           const onReplySave = handleAddReply ? (data: ICommentFormData) => handleAddReply(data) : undefined;
 
           return (
-            <CommentItem
+            <Comment
               key={id}
               comment={comment}
               isReply={isReply}
@@ -163,7 +163,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
 
       {handleAddRootComment && (
         <div data-ui-comments-root-editor>
-          <CommentCardEdit isReply={false} onSave={handleAddRootComment} isLoading={isLoading} />
+          <CardEdit isReply={false} onSave={handleAddRootComment} isLoading={isLoading} />
         </div>
       )}
     </Box>
@@ -176,10 +176,10 @@ Comments.Item = CommentsTemplateItem;
 Comments.Item.displayName = 'Comments.Item';
 
 Comments.Link = CommentLink;
-Comments.Badge = CommentBadge;
-Comments.Author = CommentAuthor;
-Comments.CommentMeta = CommentMeta;
-Comments.Content = CommentContent;
-Comments.Actions = CommentActionsSlot;
+Comments.Badge = Badge;
+Comments.Author = Author;
+Comments.Meta = Meta;
+Comments.Content = Content;
+Comments.Actions = ActionsSlot;
 
 export default Comments;

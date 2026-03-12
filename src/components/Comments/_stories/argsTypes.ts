@@ -11,7 +11,7 @@ export const argsTypes = {
   onDelete?: (commentId: string) => void;
 }
 
-export interface ICommentBadge extends Pick<IBadgeProps, 'color' | 'variant'> {
+export interface IBadge extends Pick<IBadgeProps, 'color' | 'variant'> {
   label: string;
 }
 
@@ -35,7 +35,7 @@ export interface IComment {
   updatedAt?: string;
   replies: IComment[];
   parentId?: string;
-  badge?: ICommentBadge;
+  badge?: IBadge;
   commentLink?: ICommentLink;
   builtInActions?: ICommentBuiltInActions;
   customActions?: ICommentActionProps[];
@@ -56,7 +56,7 @@ export interface ICommentsProps {
   className?: string;
 }
 
-export interface ICommentItemProps {
+export interface ICommentProps {
   children: React.ReactNode;
 }`
       }

@@ -3,7 +3,7 @@ import React from 'react';
 import { IComment, ICommentActionProps } from '@components/Comments/types';
 import { Dropdown, DropdownMenuItem, Icon } from '@components/index';
 
-interface CommentActionsMenuProps {
+interface ActionsMenuProps {
   comment: IComment;
   builtInEdit?: boolean;
   builtInDelete?: boolean;
@@ -12,14 +12,14 @@ interface CommentActionsMenuProps {
   actions?: ICommentActionProps[];
 }
 
-export const CommentActionsMenu = ({
+export const ActionsMenu = ({
   comment,
   builtInEdit = false,
   builtInDelete = false,
   onEdit,
   onDelete,
   actions = []
-}: CommentActionsMenuProps) => {
+}: ActionsMenuProps) => {
   const hasActions = builtInEdit || builtInDelete || actions.length > 0;
 
   if (!hasActions) {

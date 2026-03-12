@@ -46,7 +46,7 @@ export const CommentsThread = (argTypes: ICommentsProps): JSX.Element => {
     <Comments {...argTypes}>
       <Comments.Item>
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -79,7 +79,7 @@ export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
         <Comments.Link />
         <Comments.Badge />
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -102,7 +102,7 @@ export const CommentsOnlyView = (argTypes: ICommentsProps): JSX.Element => {
         <Comments.Link />
         <Comments.Badge />
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
       </Comments.Item>
     </Comments>
@@ -122,7 +122,7 @@ export const CommentsBadge = (argTypes: ICommentsProps): JSX.Element => {
         <Comments.Link />
         <Comments.Badge />
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -309,7 +309,7 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
         <Comments.Item>
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -328,7 +328,7 @@ export const CommentsEmpty = (argTypes: ICommentsProps): JSX.Element => {
     <Comments {...argTypes}>
       <Comments.Item>
         <Comments.Author />
-        <Comments.CommentMeta />
+        <Comments.Meta />
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>

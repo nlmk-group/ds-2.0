@@ -41,7 +41,7 @@ const App = () => {
           <Comments.Link />
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -145,7 +145,7 @@ const App = () => {
           <Comments.Link />
           <Comments.Badge />
           <Comments.Author />
-          <Comments.CommentMeta />
+          <Comments.Meta />
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>

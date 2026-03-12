@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useCommentContext } from '@components/Comments/hooks';
-import { Badge } from '@components/index';
+import { Badge as BadgeComponent } from '@components/index';
 
-export const CommentBadge = () => {
+export const Badge = () => {
   const {
     comment: { badge }
   } = useCommentContext();
@@ -13,10 +13,10 @@ export const CommentBadge = () => {
   }
 
   return (
-    <Badge color={badge.color} variant={badge.variant}>
+    <BadgeComponent color={badge.color} variant={badge.variant}>
       {badge.label}
-    </Badge>
+    </BadgeComponent>
   );
 };
 
-CommentBadge.displayName = 'Comments.Badge';
+Badge.displayName = 'Comments.Badge';

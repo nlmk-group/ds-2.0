@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useCommentContext } from '@components/Comments/hooks';
-import { CommentActionsMenu } from '@components/Comments/subcomponents';
+import { ActionsMenu } from '@components/Comments/subcomponents';
 
-export const CommentActionsSlot: React.FC = () => {
+export const ActionsSlot: React.FC = () => {
   const { comment, toggleEditComment } = useCommentContext();
   const { id, builtInActions, customActions = [] } = comment;
 
@@ -14,7 +14,7 @@ export const CommentActionsSlot: React.FC = () => {
   }
 
   return (
-    <CommentActionsMenu
+    <ActionsMenu
       comment={comment}
       builtInEdit={!!builtInActions?.onEdit}
       builtInDelete={!!builtInActions?.onDelete}

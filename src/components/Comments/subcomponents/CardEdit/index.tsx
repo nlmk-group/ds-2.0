@@ -4,9 +4,9 @@ import { ICommentFormData } from '@components/Comments/types';
 import { Button, Grid, Input } from '@components/index';
 import clsx from 'clsx';
 
-import styles from './CommentCardEdit.module.scss';
+import styles from './CardEdit.module.scss';
 
-interface CommentCardEditProps {
+interface CardEditProps {
   commentId?: string;
   initialContent?: string;
   isReply?: boolean;
@@ -15,14 +15,14 @@ interface CommentCardEditProps {
   isLoading?: boolean;
 }
 
-export const CommentCardEdit = ({
+export const CardEdit = ({
   initialContent = '',
   isReply = false,
   onSave,
   onCancel,
   commentId,
   isLoading = false
-}: CommentCardEditProps) => {
+}: CardEditProps) => {
   const [content, setContent] = useState(initialContent);
 
   useEffect(() => {

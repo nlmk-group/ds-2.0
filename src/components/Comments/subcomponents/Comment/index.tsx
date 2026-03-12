@@ -1,21 +1,14 @@
 import React from 'react';
 
 import { CommentProvider } from '@components/Comments/hooks';
-import { CommentCardEdit } from '@components/Comments/subcomponents';
-import {
-  CommentActionsSlot,
-  CommentAuthor,
-  CommentBadge,
-  CommentContent,
-  CommentLink,
-  CommentMeta
-} from '@components/Comments/subcomponents';
-import { IComment, ICommentContextValue, ICommentFormData, ICommentItemProps } from '@components/Comments/types';
+import { CardEdit } from '@components/Comments/subcomponents';
+import { ActionsSlot, Author, Badge, CommentLink, Content, Meta } from '@components/Comments/subcomponents';
+import { IComment, ICommentContextValue, ICommentFormData, ICommentProps } from '@components/Comments/types';
 import clsx from 'clsx';
 
-import styles from './CommentItem.module.scss';
+import styles from 'components/Comments/subcomponents/Comment/Comment.module.scss';
 
-interface CommentItemInternalProps {
+interface CommentInternalProps {
   comment: IComment;
   isReply: boolean;
   isEditing: boolean;
@@ -28,11 +21,11 @@ interface CommentItemInternalProps {
   onToggleReplies: () => void;
   onCancel: () => void;
   onReplySave?: (data: ICommentFormData) => void;
-  itemTemplate: React.ReactElement<ICommentItemProps>;
+  itemTemplate: React.ReactElement<ICommentProps>;
   renderReplies: (replies: IComment[], isReply: boolean) => React.ReactNode;
 }
 
-export const CommentItem = ({
+export const Comment = ({
   comment,
   isReply,
   isEditing,
@@ -47,7 +40,7 @@ export const CommentItem = ({
   itemTemplate,
   renderReplies,
   hasActiveReply
-}: CommentItemInternalProps) => {
+}: CommentInternalProps) => {
   const contextValue: ICommentContextValue = {
     comment,
     isReply,
@@ -68,12 +61,12 @@ export const CommentItem = ({
   const templateChildren = React.Children.toArray(itemTemplate.props.children).filter(React.isValidElement);
 
   const linkSlot = templateChildren.find(child => child.type === CommentLink);
-  const badgeSlot = templateChildren.find(child => child.type === CommentBadge);
-  const authorSlot = templateChildren.find(child => child.type === CommentAuthor);
-  const metaSlot = templateChildren.find(child => child.type === CommentMeta);
-  const contentSlot = templateChildren.find(child => child.type === CommentContent);
+  const badgeSlot = templateChildren.find(child => child.type === Badge);
+  const authorSlot = templateChildren.find(child => child.type === Author);
+  const metaSlot = templateChildren.find(child => child.type === Meta);
+  const contentSlot = templateChildren.find(child => child.type === Content);
 
-  const actionsSlot = templateChildren.find(child => React.isValidElement(child) && child.type === CommentActionsSlot);
+  const actionsSlot = templateChildren.find(child => React.isValidElement(child) && child.type === ActionsSlot);
 
   const hasActions =
     !!actionsSlot &&
@@ -89,7 +82,7 @@ export const CommentItem = ({
         data-ui-comments-item
       >
         {isEditing && builtInActions?.onEdit ? (
-          <CommentCardEdit
+          <CardEdit
             commentId={id}
             initialContent={initialContent}
             isReply={isReply}
@@ -121,7 +114,7 @@ export const CommentItem = ({
 
         {isReplying && onReplySave && (
           <div className={styles.editor} data-ui-comments-reply-editor>
-            <CommentCardEdit
+            <CardEdit
               commentId={id}
               isReply
               onSave={data => {

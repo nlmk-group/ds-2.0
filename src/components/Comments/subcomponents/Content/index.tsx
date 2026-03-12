@@ -5,9 +5,9 @@ import { useCommentContext } from '@components/Comments/hooks';
 import { Button, Grid, Icon, Typography } from '@components/index';
 import clsx from 'clsx';
 
-import styles from './CommentContent.module.scss';
+import styles from 'components/Comments/subcomponents/Content/Content.module.scss';
 
-export const CommentContent = () => {
+export const Content = () => {
   const {
     comment: { replies, content },
     canReply,

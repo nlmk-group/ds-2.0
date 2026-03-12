@@ -2,7 +2,14 @@
 
 ## Версия компонента 1.0
 
-Компонент Comments отображает список комментариев с поддержкой вложенных ответов, редактирования, раскрытия веток, обновления списка и добавления новых комментариев.
+`Comments` отображает список комментариев с поддержкой:
+- вложенных ответов
+- редактирования
+- удаления
+- раскрытия и сворачивания веток
+- обновления списка
+- добавления новых комментариев
+- композиции через compound pattern
 
 ## Использование
 
@@ -43,13 +50,20 @@ const App = () => {
       handleAddRootComment={data => {
         console.log('Добавить корневой комментарий', data);
       }}
-      handleAddReply={(parentId, data) => {
-        console.log('Добавить ответ', parentId, data);
+      handleAddReply={data => {
+        console.log('Добавить ответ', data);
       }}
       handleRefresh={() => {
         console.log('Обновить комментарии');
       }}
-    />
+    >
+      <Comments.Item>
+        <Comments.Author />
+        <Comments.Meta />
+        <Comments.Content />
+        <Comments.Actions />
+      </Comments.Item>
+    </Comments>
   );
 };
 ```
@@ -59,12 +73,60 @@ const App = () => {
 | Prop                  | Type                                                | Default | Description                                                                          |
 |-----------------------|-----------------------------------------------------|---------|--------------------------------------------------------------------------------------|
 | comments              | `IComment[]`                                        | -       | Массив корневых комментариев. Вложенность задается через поле replies.               |
+| children              | React.ReactNode                                     | -       | Шаблон комментария. Должен содержать Comments.Item.                                  |
 | handleAddRootComment  | (data: ICommentFormData) => void                    | -       | Метод добавления нового корневого комментария.                                       |
 | handleAddReply        | (parentId: string, data: ICommentFormData) => void  | -       | Метод добавления ответа к комментарию.                                               |
 | handleRefresh         | () => void                                          | -       | Метод обновления списка комментариев. Если передан, отображается кнопка обновления.  |
 | isLoading             | boolean                                             | false   | Состояние загрузки. При true вместо списка отображается спиннер.                     |
 | className             | string                                              | -       | Дополнительный CSS-класс для корневого контейнера.                                   |
 
+## Вложенные подкомпоненты
+`Comments.Item`
+
+Контейнер шаблона одного комментария.
+
+```jsx
+<Comments.Item>
+<Comments.Author />
+<Comments.Meta />
+<Comments.Content />
+<Comments.Actions />
+</Comments.Item>
+```
+
+`Comments.Author`
+
+Отображает автора комментария.
+
+`Comments.Meta`
+
+Отображает метаинформацию комментария, например дату создания, дату обновления, бейдж и ссылку, если они переданы в данных комментария.
+
+`Comments.Content`
+
+Отображает текст комментария.
+
+`Comments.Actions`
+
+Отображает действия комментария:
+
+встроенные действия `onEdit` и `onDelete`
+
+кастомные действия из `customActions`
+
+кнопку ответа, если передан `handleAddReply`
+
+`Comments.Badge`
+
+Отображает бейдж комментария.
+
+Обычно используется внутри кастомного шаблона, если требуется явно управлять расположением бейджа.
+
+`Comments.Link`
+
+Отображает ссылку комментария.
+
+Обычно используется внутри кастомного шаблона, если требуется явно управлять расположением ссылки.
 
 ## IComment
 
@@ -79,7 +141,7 @@ const App = () => {
 | parentId        | string                    | -        | Идентификатор родительского комментария для ответа.                   |
 | badge           | `ICommentBadge`           | -        | Бейдж, отображаемый рядом с комментарием.                             |
 | builtInActions  | `ICommentBuiltInActions`  | -        | Встроенные действия комментария, например редактирование и удаление.  |
-| customActions   | `ICommentActionItem[]`    | -        | Кастомные действия комментария.                                       |
+| customActions   | `ICommentActionProps[]`   | -        | Кастомные действия комментария.                                       |
 | commentLink     | `ICommentLink`            | -        | Ссылка, связанная с комментарием.                                     |
 
 ## ICommentFormData
@@ -104,7 +166,7 @@ const App = () => {
 | onEdit    | (data: ICommentFormData) => void  | -        | Обработчик редактирования комментария  |
 | onDelete  | (commentId: string) => void       | -        | Обработчик удаления комментария        |
 
-## ICommentActionItem
+## ICommentActionProps
 
 | Key       | Type                         | Required | Description                             |
 |-----------|------------------------------|----------|-----------------------------------------|
@@ -132,7 +194,55 @@ const App = () => {
 
 Если передан `handleAddReply`, у комментариев появляется возможность открыть форму ответа.
 
+Если у комментария передан `builtInActions.onEdit`, для него доступно редактирование.
+
+Если у комментария передан `builtInActions.onDelete`, для него доступно удаление.
+
+Если у комментария передан `customActions`, они отображаются в блоке действий.
+
 Состояния редактирования, ответа и раскрытия вложенных комментариев управляются внутренним хуком `useComments`.
+
+Для корректной работы Comments внутри `children` должен быть передан `Comments.Item`. Если шаблон не передан, компонент выбросит ошибку.
+
+## Пример с действиями
+
+```jsx
+  const comments = [
+    {
+      id: '1',
+      author: 'Иван Петров',
+      content: 'Комментарий с действиями',
+      createdAt: '2026-03-10T10:00:00Z',
+      replies: [],
+      builtInActions: {
+        onEdit: data => {
+          console.log('Редактировать комментарий', data);
+        },
+        onDelete: commentId => {
+          console.log('Удалить комментарий', commentId);
+        }
+      },
+      customActions: [
+        {
+          value: 'report',
+          label: 'Кастомное действие',
+          onClick: commentId => {
+            console.log('Кастомное действие', commentId);
+          }
+        }
+      ]
+    }
+  ];
+  
+  <Comments comments={comments}>
+    <Comments.Item>
+      <Comments.Author />
+      <Comments.Meta />
+      <Comments.Content />
+      <Comments.Actions />
+    </Comments.Item>
+  </Comments>;
+```
 
 ## Стилизация
 
@@ -169,21 +279,6 @@ const App = () => {
 
 /* Список комментариев */
 [data-ui-comments-list] {
-  /* ваши стили */
-}
-
-/* Элемент комментария */
-[data-ui-comments-item] {
-  /* ваши стили */
-}
-
-/* Блок ответов */
-[data-ui-comments-replies] {
-  /* ваши стили */
-}
-
-/* Форма ответа */
-[data-ui-comments-reply-editor] {
   /* ваши стили */
 }
 

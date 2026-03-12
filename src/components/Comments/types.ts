@@ -1,14 +1,8 @@
 import React from 'react';
 
-import { IBadgeProps } from '@root/src/components';
-
 export interface ICommentBuiltInActions {
   onEdit?: (data: ICommentFormData) => void;
   onDelete?: (commentId: string) => void;
-}
-
-export interface ICommentBadge extends Pick<IBadgeProps, 'color' | 'variant'> {
-  label: string;
 }
 
 export interface ICommentLink {
@@ -23,32 +17,21 @@ export interface ICommentActionProps {
   disabled?: boolean;
 }
 
-export interface IComment {
+export interface ICommentBase<TData = unknown> {
   id: string;
   author: string;
   content: string;
   createdAt: string;
   updatedAt?: string;
-  replies: IComment[];
   parentId?: string;
-  badge?: ICommentBadge;
-  link?: ICommentLink;
-  builtInActions?: ICommentBuiltInActions;
-  customActions?: ICommentActionProps[];
-}
-
-export interface IComment {
-  id: string;
-  author: string;
-  content: string;
-  createdAt: string;
-  updatedAt?: string;
-  replies: IComment[];
-  parentId?: string;
-  badge?: ICommentBadge;
   commentLink?: ICommentLink;
   builtInActions?: ICommentBuiltInActions;
   customActions?: ICommentActionProps[];
+  data?: TData;
+}
+
+export interface IComment<TData = unknown> extends ICommentBase<TData> {
+  replies: IComment<TData>[];
 }
 
 export interface ICommentFormData {
@@ -56,8 +39,8 @@ export interface ICommentFormData {
   commentId?: string;
 }
 
-export interface ICommentsProps {
-  comments: IComment[];
+export interface ICommentsProps<TData = unknown> {
+  comments: IComment<TData>[];
   children: React.ReactNode;
   handleAddRootComment?: (data: ICommentFormData) => void;
   handleAddReply?: (data: ICommentFormData) => void;
@@ -70,8 +53,21 @@ export interface ICommentProps {
   children: React.ReactNode;
 }
 
-export interface ICommentContextValue {
-  comment: IComment;
+export interface ICommentHeaderProps {
+  children: React.ReactNode;
+}
+
+export interface ICommentHeaderExtraRenderArgs<TData = unknown> {
+  comment: IComment<TData>;
+  data: TData;
+}
+
+export interface ICommentHeaderExtraProps<TData = unknown> {
+  children: (args: ICommentHeaderExtraRenderArgs<TData>) => React.ReactNode;
+}
+
+export interface ICommentContextValue<TData = unknown> {
+  comment: IComment<TData>;
   isReply: boolean;
   isEditing: boolean;
   isExpanded: boolean;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { EBadgeColors } from '@components/Badge/enums';
 import { mockComment, mockCommentsOnlyView, mockCommentWithReplies } from '@components/Comments/mock/mockData';
 import { IComment, ICommentFormData, ICommentsProps } from '@components/Comments/types';
-import { Alert, Box, Comments, Typography } from '@components/index';
+import { Alert, Badge, Box, Comments, Icon, Tooltip, Typography } from '@components/index';
 import { Meta } from '@storybook/react-vite';
 
 import styles from './Comments.stories.module.scss';
@@ -41,12 +41,20 @@ export default {
   argTypes: argsTypes
 } as Meta<typeof Comments>;
 
-export const CommentsThread = (argTypes: ICommentsProps): JSX.Element => {
+type CommentExtraData = {
+  isClientAuthor: boolean;
+  sourceSystem: 'crm' | 'portal';
+  isImportant: boolean;
+};
+
+export const CommentsThread = (argTypes: ICommentsProps<CommentExtraData>): JSX.Element => {
   return (
     <Comments {...argTypes}>
       <Comments.Item>
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.Author />
+          <Comments.Meta />
+        </Comments.Header>
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -56,7 +64,61 @@ export const CommentsThread = (argTypes: ICommentsProps): JSX.Element => {
 
 CommentsThread.storyName = 'Comments: комментарий с вложенными ответами';
 CommentsThread.args = {
-  comments: [mockCommentWithReplies],
+  comments: [
+    {
+      id: '3',
+      author: 'Новиков Алексей Михайлович',
+      content:
+        'Прокат НЛМК представлен тремя продуктовыми линейками:\n' +
+        '— премиальный прокат с полиуретановым покрытием — идеальный выбор для кровельных материалов и отделки объектов бизнес-класса.',
+      createdAt: '2024-11-12T05:00:00Z',
+      updatedAt: '2024-11-12T08:00:00Z',
+      builtInActions: {
+        onEdit: () => {},
+        onDelete: () => {}
+      },
+      replies: [
+        {
+          id: '1-1',
+          author: 'Иванов Иван Иванович',
+          content: 'Согласен с вашим мнением. Действительно, современные тенденции требуют пересмотра подходов.',
+          createdAt: '2024-11-12T01:00:00Z',
+          builtInActions: {
+            onEdit: () => {},
+            onDelete: () => {}
+          },
+          replies: [
+            {
+              id: '1-1-1',
+              author: 'Сидоров Сидор Сидорович',
+              content: 'Полностью поддерживаю! Нужно учитывать все аспекты.',
+              createdAt: '2024-11-12T02:00:00Z',
+              builtInActions: {
+                onEdit: () => {},
+                onDelete: () => {}
+              },
+              replies: []
+            }
+          ]
+        },
+        {
+          id: '1-2',
+          author: 'Козлова Анна Петровна',
+          content: 'Интересная точка зрения. Хотелось бы узнать больше деталей по этому вопросу.',
+          createdAt: '2024-11-12T01:30:00Z',
+          builtInActions: {
+            onEdit: () => {},
+            onDelete: () => {}
+          },
+          replies: []
+        }
+      ],
+      data: {
+        isClientAuthor: true,
+        sourceSystem: 'crm'
+      }
+    }
+  ],
   handleAddRootComment: () => {},
   handleAddReply: () => {}
 };
@@ -76,10 +138,10 @@ export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
   return (
     <Comments {...argTypes} isLoading={isLoading} handleRefresh={handleRefresh}>
       <Comments.Item>
-        <Comments.Link />
-        <Comments.Badge />
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.Author />
+          <Comments.Meta />
+        </Comments.Header>
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -99,10 +161,10 @@ export const CommentsOnlyView = (argTypes: ICommentsProps): JSX.Element => {
   return (
     <Comments {...argTypes}>
       <Comments.Item>
-        <Comments.Link />
-        <Comments.Badge />
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.Author />
+          <Comments.Meta />
+        </Comments.Header>
         <Comments.Content />
       </Comments.Item>
     </Comments>
@@ -119,10 +181,31 @@ export const CommentsBadge = (argTypes: ICommentsProps): JSX.Element => {
   return (
     <Comments {...argTypes}>
       <Comments.Item>
-        <Comments.Link />
-        <Comments.Badge />
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.HeaderExtra<CommentExtraData>>
+            {({ data }) =>
+              data?.sourceSystem && (
+                <Badge color="warning" variant="outline">
+                  {data?.sourceSystem}
+                </Badge>
+              )
+            }
+          </Comments.HeaderExtra>
+          <Comments.HeaderExtra<CommentExtraData>>
+            {({ data }) => data?.isClientAuthor && <Badge>Клиент</Badge>}
+          </Comments.HeaderExtra>
+          <Comments.Author />
+          <Comments.Meta />
+          <Comments.HeaderExtra<CommentExtraData>>
+            {({ data }) =>
+              data?.isImportant && (
+                <Tooltip title="Важный комментарий">
+                  <Icon name="IconAttentionWarningAlertErrorOutlined24" htmlColor="var(--spectrum-red-60)" />
+                </Tooltip>
+              )
+            }
+          </Comments.HeaderExtra>
+        </Comments.Header>
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -131,6 +214,7 @@ export const CommentsBadge = (argTypes: ICommentsProps): JSX.Element => {
 };
 
 CommentsBadge.args = {
+  handleAddRootComment: () => {},
   comments: [
     {
       ...mockComment,
@@ -143,17 +227,23 @@ CommentsBadge.args = {
           createdAt: '2024-11-12T02:00:00Z',
           replies: []
         }
-      ]
+      ],
+      data: {
+        isImportant: true
+      }
     },
     {
       ...mockComment,
       id: '4',
-      badge: { label: 'Служба поддержки', color: EBadgeColors.warning }
+      data: {
+        isClientAuthor: true,
+        sourceSystem: 'Портал продаж'
+      }
     }
   ]
 };
 CommentsBadge.decorators = [withWrapper];
-CommentsBadge.storyName = 'Comments: шапка комментария с бейджем и ссылкой';
+CommentsBadge.storyName = 'Comments: шапка комментария с кастомными элементами';
 
 export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   const [commentChanged, setCommentChanged] = useState<ICommentFormData | null>(null);
@@ -205,7 +295,6 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   const mockedComments: IComment[] = [
     {
       ...mockComment,
-      badge: { label: 'Клиент' },
       builtInActions: {
         onEdit,
         onDelete
@@ -307,9 +396,10 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
 
       <Comments {...argTypes} comments={comments}>
         <Comments.Item>
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -323,12 +413,15 @@ CommentsActions.args = {
   handleAddRootComment: () => {}
 };
 CommentsActions.decorators = [withWrapper];
+
 export const CommentsEmpty = (argTypes: ICommentsProps): JSX.Element => {
   return (
     <Comments {...argTypes}>
       <Comments.Item>
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.Author />
+          <Comments.Meta />
+        </Comments.Header>
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>

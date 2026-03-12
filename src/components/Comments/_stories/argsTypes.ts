@@ -1,18 +1,14 @@
 export const argsTypes = {
   comments: {
     description:
-      'Массив корневых комментариев для компонента Comments. Вложенность задается через replies. createdAt/updatedAt ожидаются в строковом формате, например ISO.',
+      'Массив корневых комментариев для компонента Comments. Вложенность задается через replies. createdAt/updatedAt ожидаются в строковом формате, например ISO. Дополнительные данные для кастомизации шапки можно передавать через generic-поле data.',
     table: {
       defaultValue: { summary: '[]' },
       type: {
-        summary: 'IComment[]',
+        summary: 'IComment<TData = unknown>[]',
         detail: `export interface ICommentBuiltInActions {
   onEdit?: (data: ICommentFormData) => void;
   onDelete?: (commentId: string) => void;
-}
-
-export interface IBadge extends Pick<IBadgeProps, 'color' | 'variant'> {
-  label: string;
 }
 
 export interface ICommentLink {
@@ -27,18 +23,18 @@ export interface ICommentActionProps {
   disabled?: boolean;
 }
 
-export interface IComment {
+export interface IComment<TData = unknown> {
   id: string;
   author: string;
   content: string;
   createdAt: string;
   updatedAt?: string;
-  replies: IComment[];
+  replies: IComment<TData>[];
   parentId?: string;
-  badge?: IBadge;
   commentLink?: ICommentLink;
   builtInActions?: ICommentBuiltInActions;
   customActions?: ICommentActionProps[];
+  data?: TData;
 }
 
 export interface ICommentFormData {
@@ -46,11 +42,11 @@ export interface ICommentFormData {
   commentId?: string;
 }
 
-export interface ICommentsProps {
-  comments: IComment[];
+export interface ICommentsProps<TData = unknown> {
+  comments: IComment<TData>[];
   children: React.ReactNode;
   handleAddRootComment?: (data: ICommentFormData) => void;
-  handleAddReply?: (parentId: string, data: ICommentFormData) => void;
+  handleAddReply?: (data: ICommentFormData) => void;
   handleRefresh?: () => void;
   isLoading?: boolean;
   className?: string;
@@ -58,6 +54,19 @@ export interface ICommentsProps {
 
 export interface ICommentProps {
   children: React.ReactNode;
+}
+
+export interface ICommentHeaderProps {
+  children: React.ReactNode;
+}
+
+export interface ICommentHeaderExtraRenderArgs<TData = unknown> {
+  comment: IComment<TData>;
+  data?: TData;
+}
+
+export interface ICommentHeaderExtraProps<TData = unknown> {
+  children: (args: ICommentHeaderExtraRenderArgs<TData>) => React.ReactNode;
 }`
       }
     },
@@ -65,7 +74,7 @@ export interface ICommentProps {
   },
   children: {
     description:
-      'Шаблон отображения одного комментария. Ожидается использование compound API через Comments.Item и вложенные слоты.',
+      'Шаблон отображения одного комментария. Ожидается использование compound API через Comments.Item. Шапка описывается через Comments.Header, а кастомные элементы внутри шапки через Comments.HeaderExtra.',
     table: {
       type: {
         summary: 'React.ReactNode'
@@ -86,7 +95,7 @@ export interface ICommentProps {
     description: 'Колбэк добавления ответа к комментарию.',
     table: {
       type: {
-        summary: '(parentId: string, data: ICommentFormData) => void'
+        summary: '(data: ICommentFormData) => void'
       },
       disable: true
     }

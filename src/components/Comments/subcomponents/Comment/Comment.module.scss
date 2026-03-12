@@ -19,13 +19,8 @@
   box-sizing: border-box;
 }
 
-.actions + .main,
-.main:has(+ .actions) {
+.mainWithActions {
   width: calc(100% - 72px);
-}
-
-.link {
-  margin-bottom: 4px;
 }
 
 .header {

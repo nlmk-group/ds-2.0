@@ -38,10 +38,10 @@ const App = () => {
         handleAddReply={() => {}}
       >
         <Comments.Item>
-          <Comments.Link />
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -54,7 +54,12 @@ export default App;
 `;
 
   const commentsLongThreadCode = `import React from 'react';
-import { Box, Comments } from '@nlmk/ds-2.0';
+import { Badge, Box, Comments } from '@nlmk/ds-2.0';
+
+type CommentExtraData = {
+  isClientAuthor: boolean;
+  sourceSystem: 'crm' | 'portal';
+};
 
 const onReport = commentId => {
   console.log('report', commentId);
@@ -87,6 +92,10 @@ const comments = [
       color: 'warning',
       variant: 'filled'
     },
+    data: {
+      isClientAuthor: true,
+      sourceSystem: 'crm'
+    },
     replies: [
       {
         id: '1-1',
@@ -97,6 +106,10 @@ const comments = [
           onEdit: () => {},
           onDelete: () => {}
         },
+        data: {
+          isClientAuthor: false,
+          sourceSystem: 'portal'
+        },
         replies: [
           {
             id: '1-1-1',
@@ -106,6 +119,10 @@ const comments = [
             builtInActions: {
               onEdit: () => {},
               onDelete: () => {}
+            },
+            data: {
+              isClientAuthor: false,
+              sourceSystem: 'portal'
             },
             replies: []
           }
@@ -127,6 +144,10 @@ const comments = [
             onClick: onReport
           }
         ],
+        data: {
+          isClientAuthor: true,
+          sourceSystem: 'crm'
+        },
         replies: []
       }
     ]
@@ -136,16 +157,23 @@ const comments = [
 const App = () => {
   return (
     <Box p={8} background="var(--steel-10)" borderRadius={4} width="100%">
-      <Comments
+      <Comments<CommentExtraData>
         comments={comments}
         handleAddRootComment={() => {}}
         handleAddReply={() => {}}
       >
         <Comments.Item>
-          <Comments.Link />
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Badge />
+
+            <Comments.HeaderExtra<CommentExtraData>>
+              {({ data }) => data?.isClientAuthor && <Badge>Клиент</Badge>}
+            </Comments.HeaderExtra>
+
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
+
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -180,7 +208,7 @@ export default App;
 
           <Editor
             minHeight={640}
-            description="Пример: длинная ветка комментариев с вложенными ответами и кастомными действиями из данных комментария."
+            description="Пример: длинная ветка комментариев с вложенными ответами, кастомными действиями и дополнительными элементами в шапке."
             code={commentsLongThreadCode}
           />
 

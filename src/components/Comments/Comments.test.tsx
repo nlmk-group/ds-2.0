@@ -36,10 +36,10 @@ const renderComments = (props: Partial<ICommentsProps> = {}) => {
   return render(
     <Comments comments={comments} {...props}>
       <Comments.Item>
-        <Comments.Link />
-        <Comments.Badge />
-        <Comments.Author />
-        <Comments.Meta />
+        <Comments.Header>
+          <Comments.Author />
+          <Comments.Meta />
+        </Comments.Header>
         <Comments.Content />
         <Comments.Actions />
       </Comments.Item>
@@ -87,10 +87,10 @@ describe('Comments', () => {
     render(
       <Comments comments={[]}>
         <Comments.Item>
-          <Comments.Link />
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -111,10 +111,10 @@ describe('Comments', () => {
     const { rerender } = render(
       <Comments comments={comments}>
         <Comments.Item>
-          <Comments.Link />
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>
@@ -126,10 +126,10 @@ describe('Comments', () => {
     rerender(
       <Comments comments={comments} isLoading>
         <Comments.Item>
-          <Comments.Link />
-          <Comments.Badge />
-          <Comments.Author />
-          <Comments.Meta />
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
           <Comments.Content />
           <Comments.Actions />
         </Comments.Item>

@@ -1,35 +1,41 @@
 import React from 'react';
 
 import { useComments } from '@components/Comments/hooks';
+import { ActionsSlot, Author, CardEdit, Comment, Content, Meta } from '@components/Comments/subcomponents';
 import {
-  ActionsSlot,
-  Author,
-  Badge,
-  CardEdit,
-  Comment,
-  CommentLink,
-  Content,
-  Meta
-} from '@components/Comments/subcomponents';
-import { IComment, ICommentFormData, ICommentProps, ICommentsProps } from '@components/Comments/types';
+  IComment,
+  ICommentFormData,
+  ICommentHeaderExtraProps,
+  ICommentHeaderProps,
+  ICommentProps,
+  ICommentsProps
+} from '@components/Comments/types';
 import { Box, Button, Icon, IconAutoRenewReloadOutlined24, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
 
 import s from './Comments.module.scss';
 
-type CommentsComponent = React.FC<ICommentsProps> & {
-  Item: React.FC<ICommentProps>;
-  Link: typeof CommentLink;
-  Badge: typeof Badge;
+type HeaderComponent = (props: ICommentHeaderProps) => JSX.Element;
+type HeaderExtraComponent = <TData = unknown>(props: ICommentHeaderExtraProps<TData>) => JSX.Element;
+type ItemComponent = (props: ICommentProps) => JSX.Element;
+
+type CommentsComponent = (<TData = unknown>(props: ICommentsProps<TData>) => JSX.Element) & {
+  Item: ItemComponent;
+  Header: HeaderComponent;
+  HeaderExtra: HeaderExtraComponent;
   Author: typeof Author;
   Meta: typeof Meta;
   Content: typeof Content;
   Actions: typeof ActionsSlot;
 };
 
-const CommentsTemplateItem: React.FC<ICommentProps> = ({ children }) => <>{children}</>;
+const CommentsTemplateItem = ({ children }: ICommentProps): JSX.Element => <>{children}</>;
 
-const CommentsRoot: React.FC<ICommentsProps> = ({
+const CommentsHeader = ({ children }: ICommentHeaderProps): JSX.Element => <>{children}</>;
+
+const CommentsHeaderExtra = <TData,>(_props: ICommentHeaderExtraProps<TData>): React.ReactElement | null => null;
+
+const CommentsRoot = <TData,>({
   comments,
   children,
   handleAddRootComment,
@@ -37,7 +43,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
   handleRefresh,
   className,
   isLoading = false
-}) => {
+}: ICommentsProps<TData>): JSX.Element => {
   const {
     editingCommentId,
     replyingToCommentId,
@@ -56,7 +62,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
     throw new Error('Comments requires <Comments.Item> as child');
   }
 
-  const renderCommentTree = (items: IComment[], isReply = false): React.ReactNode => {
+  const renderCommentTree = (items: IComment<TData>[], isReply = false): React.ReactNode => {
     return (
       <Box width="100%" flexDirection="column" gap={20}>
         {items.map(comment => {
@@ -64,7 +70,7 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
           const onReplySave = handleAddReply ? (data: ICommentFormData) => handleAddReply(data) : undefined;
 
           return (
-            <Comment
+            <Comment<TData>
               key={id}
               comment={comment}
               isReply={isReply}
@@ -172,11 +178,9 @@ const CommentsRoot: React.FC<ICommentsProps> = ({
 
 export const Comments = CommentsRoot as CommentsComponent;
 
-Comments.Item = CommentsTemplateItem;
-Comments.Item.displayName = 'Comments.Item';
-
-Comments.Link = CommentLink;
-Comments.Badge = Badge;
+Comments.Item = CommentsTemplateItem as ItemComponent;
+Comments.Header = CommentsHeader as HeaderComponent;
+Comments.HeaderExtra = CommentsHeaderExtra as HeaderExtraComponent;
 Comments.Author = Author;
 Comments.Meta = Meta;
 Comments.Content = Content;

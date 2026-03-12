@@ -10,62 +10,65 @@
 - обновления списка
 - добавления новых комментариев
 - композиции через compound pattern
+- кастомизации шапки комментария через `Comments.HeaderExtra`
 
 ## Использование
 
 ```jsx
-import React from 'react';
-import Comments from '@nlmk/ds-2.0';
-
-const comments = [
-  {
-    id: '1',
-    author: 'Иван Петров',
-    content: 'Первый комментарий',
-    createdAt: '2026-03-10T10:00:00Z',
-    replies: [
-      {
-        id: '1-1',
-        author: 'Анна Смирнова',
-        content: 'Ответ на первый комментарий',
-        createdAt: '2026-03-10T10:15:00Z',
-        parentId: '1',
-        replies: []
-      }
-    ]
-  },
-  {
-    id: '2',
-    author: 'Мария Иванова',
-    content: 'Второй комментарий',
-    createdAt: '2026-03-10T11:00:00Z',
-    replies: []
-  }
-];
-
-const App = () => {
-  return (
-    <Comments
-      comments={comments}
-      handleAddRootComment={data => {
-        console.log('Добавить корневой комментарий', data);
-      }}
-      handleAddReply={data => {
-        console.log('Добавить ответ', data);
-      }}
-      handleRefresh={() => {
-        console.log('Обновить комментарии');
-      }}
-    >
-      <Comments.Item>
-        <Comments.Author />
-        <Comments.Meta />
-        <Comments.Content />
-        <Comments.Actions />
-      </Comments.Item>
-    </Comments>
-  );
-};
+  import React from 'react';
+  import Comments from '@nlmk/ds-2.0';
+  
+  const comments = [
+    {
+      id: '1',
+      author: 'Иван Петров',
+      content: 'Первый комментарий',
+      createdAt: '2026-03-10T10:00:00Z',
+      replies: [
+        {
+          id: '1-1',
+          author: 'Анна Смирнова',
+          content: 'Ответ на первый комментарий',
+          createdAt: '2026-03-10T10:15:00Z',
+          parentId: '1',
+          replies: []
+        }
+      ]
+    },
+    {
+      id: '2',
+      author: 'Мария Иванова',
+      content: 'Второй комментарий',
+      createdAt: '2026-03-10T11:00:00Z',
+      replies: []
+    }
+  ];
+  
+  const App = () => {
+    return (
+      <Comments
+        comments={comments}
+        handleAddRootComment={data => {
+          console.log('Добавить корневой комментарий', data);
+        }}
+        handleAddReply={data => {
+          console.log('Добавить ответ', data);
+        }}
+        handleRefresh={() => {
+          console.log('Обновить комментарии');
+        }}
+      >
+        <Comments.Item>
+          <Comments.Header>
+            <Comments.Author />
+            <Comments.Meta />
+          </Comments.Header>
+          <Comments.Content />
+          <Comments.Actions />
+        </Comments.Item>
+      </Comments>
+    );
+  };
 ```
 
 ## Props
@@ -116,33 +119,21 @@ const App = () => {
 
 кнопку ответа, если передан `handleAddReply`
 
-`Comments.Badge`
-
-Отображает бейдж комментария.
-
-Обычно используется внутри кастомного шаблона, если требуется явно управлять расположением бейджа.
-
-`Comments.Link`
-
-Отображает ссылку комментария.
-
-Обычно используется внутри кастомного шаблона, если требуется явно управлять расположением ссылки.
-
 ## IComment
 
-| Key             | Type                      | Required | Description                                                           |
-|-----------------|---------------------------|----------|-----------------------------------------------------------------------|
-| id              | string                    | +        | Идентификатор комментария.                                            |
-| author          | string                    | +        | Имя автора комментария.                                               |
-| content         | string                    | +        | Текст комментария.                                                    |
-| createdAt       | string                    | +        | Дата создания комментария. Ожидается строка, например в ISO-формате.  |
-| updatedAt       | string                    | -        | Дата последнего обновления комментария.                               |
-| replies         | `IComment[]`              | +        | Массив вложенных ответов.                                             |
-| parentId        | string                    | -        | Идентификатор родительского комментария для ответа.                   |
-| badge           | `ICommentBadge`           | -        | Бейдж, отображаемый рядом с комментарием.                             |
-| builtInActions  | `ICommentBuiltInActions`  | -        | Встроенные действия комментария, например редактирование и удаление.  |
-| customActions   | `ICommentActionProps[]`   | -        | Кастомные действия комментария.                                       |
-| commentLink     | `ICommentLink`            | -        | Ссылка, связанная с комментарием.                                     |
+| Key            | Type                     | Required | Description                                                          |
+|----------------|--------------------------|----------|----------------------------------------------------------------------|
+| id             | string                   | +        | Идентификатор комментария.                                           |
+| author         | string                   | +        | Имя автора комментария.                                              |
+| content        | string                   | +        | Текст комментария.                                                   |
+| createdAt      | string                   | +        | Дата создания комментария. Ожидается строка, например в ISO-формате. |
+| updatedAt      | string                   | -        | Дата последнего обновления комментария.                              |
+| replies        | `IComment[]`             | +        | Массив вложенных ответов.                                            |
+| parentId       | string                   | -        | Идентификатор родительского комментария для ответа.                  |
+| builtInActions | `ICommentBuiltInActions` | -        | Встроенные действия комментария, например редактирование и удаление. |
+| customActions  | `ICommentActionProps[]`  | -        | Кастомные действия комментария.                                      |
+| commentLink    | `ICommentLink`           | -        | Ссылка, связанная с комментарием.                                    |
+| data           | `TData`                  | -        | Дополнительные данные для кастомизации шапки комментария.            |
 
 ## ICommentFormData
 
@@ -150,14 +141,6 @@ const App = () => {
 |------------|---------------------------|----------|-----------------------------------------------|
 | content    | string                    | +        | Текст комментария или ответа.                 |
 | commentId  | string                    | -        | Идентификатор комментария при редактировании  |
-
-## ICommentBadge
-
-| Key      | Type                      | Required | Description                  |
-|----------|---------------------------|----------|------------------------------|
-| label    | string                    | +        | Текст бейджа.                |
-| color    | `IBadgeProps['color']`    | -        | Цвет бейджа.                 |
-| variant  | `IBadgeProps['variant']`  | -        | Вариант отображения бейджа.  |
 
 ## ICommentBuiltInActions
 

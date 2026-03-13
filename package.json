@@ -456,6 +456,10 @@
       "import": "./lib/VideoWindow/index.js",
       "types": "./lib/VideoWindow/index.d.ts"
     },
+    "./declaration": {
+      "import": "./lib/declaration/index.js",
+      "types": "./lib/declaration/index.d.ts"
+    },
     "./*": {
       "import": "./lib/*/index.js",
       "types": "./lib/*/index.d.ts"

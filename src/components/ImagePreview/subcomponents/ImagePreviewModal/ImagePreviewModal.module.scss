@@ -6,10 +6,14 @@ $nav-btn-width: 44px;
 $nav-btn-gap: 110px;
 $nav-prev-offset: 24px;
 
+$z-backdrop: 10500;
+$z-modal: 10510;
+$z-tooltip: 10520;
+
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 10500;
+  z-index: $z-backdrop;
   background-color: color-mix(in srgb, var(--brand-jeans-30) 60%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -18,7 +22,7 @@ $nav-prev-offset: 24px;
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 10510;
+  z-index: $z-modal;
   display: grid;
   place-items: stretch;
   padding: $modal-padding;
@@ -146,7 +150,7 @@ $nav-prev-offset: 24px;
 }
 
 .tooltip {
-  z-index: 20000 !important;
+  z-index: $z-tooltip !important;
 }
 
 @media (max-width: 1000px) {

@@ -118,7 +118,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
           data-ui-image-preview-modal-content
         >
           <div className={styles['top-actions']} data-ui-image-preview-top-actions>
-            <Tooltip title="Скачать изображение" placement="bottom">
+            <Tooltip title="Скачать изображение" placement="bottom" popupClassName={styles.tooltip}>
               <Button
                 iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
                 onClick={() => {

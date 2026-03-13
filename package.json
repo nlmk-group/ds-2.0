@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.28.3",
+  "version": "2.28.4",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -455,6 +455,10 @@
     "./VideoWindow": {
       "import": "./lib/VideoWindow/index.js",
       "types": "./lib/VideoWindow/index.d.ts"
+    },
+    "./declaration": {
+      "import": "./lib/declaration/index.js",
+      "types": "./lib/declaration/index.d.ts"
     },
     "./*": {
       "import": "./lib/*/index.js",

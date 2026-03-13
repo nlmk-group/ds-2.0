@@ -23,6 +23,23 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.28.4 - <span className={styles.date}>13.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link href="./?path=/docs/components-imagepreview-info--docs" target="blank" className={styles['link-changelog']}>
+                ImagePreview
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено отображение тултипа внутри модального окна просмотра изображений
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.28.3 - <span className={styles.date}>11.03.26</span>
           </Typography>
           <ul className={styles.list}>

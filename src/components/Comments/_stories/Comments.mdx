@@ -1,0 +1,23 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import Comments from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/Comments/Info"
+  component={Comments}
+  parameters={{
+    docs: { page: null },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/'
+    },
+    jest: ['Comments.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} name="Декоратор" />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

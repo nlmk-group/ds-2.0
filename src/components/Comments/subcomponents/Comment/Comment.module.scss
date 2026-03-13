@@ -1,0 +1,58 @@
+.root {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.reply {
+  margin-left: 40px;
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.actions + .main,
+.main:has(+ .actions) {
+  width: calc(100% - 72px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.content {
+  width: 100%;
+}
+
+.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editor {
+  margin-top: 16px;
+  margin-left: 40px;
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+}
+
+.replies {
+  margin-top: 16px;
+  width: 100%;
+}

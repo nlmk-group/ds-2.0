@@ -145,6 +145,10 @@ $nav-prev-offset: 24px;
   right: $edge-offset;
 }
 
+.tooltip {
+  z-index: 20000 !important;
+}
+
 @media (max-width: 1000px) {
   .modal {
     padding: 0;

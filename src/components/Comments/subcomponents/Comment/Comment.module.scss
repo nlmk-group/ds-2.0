@@ -1,12 +1,21 @@
-.root {
+@mixin fullWidthBox {
   width: 100%;
   box-sizing: border-box;
 }
 
-.reply {
+@mixin threadBlock {
   margin-left: 40px;
-  width: calc(100% - 40px);
   box-sizing: border-box;
+}
+
+$actionsWidth: 72px;
+
+.root {
+  @include fullWidthBox;
+}
+
+.reply {
+  @include threadBlock;
 }
 
 .card {
@@ -15,12 +24,11 @@
 }
 
 .main {
-  width: 100%;
-  box-sizing: border-box;
+  @include fullWidthBox;
 }
 
 .mainWithActions {
-  width: calc(100% - 72px);
+  width: calc(100% - $actionsWidth);
 }
 
 .header {
@@ -39,16 +47,14 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 72px;
+  width: $actionsWidth;
   display: flex;
   justify-content: flex-end;
 }
 
 .editor {
+  @include threadBlock;
   margin-top: 16px;
-  margin-left: 40px;
-  width: calc(100% - 40px);
-  box-sizing: border-box;
 }
 
 .replies {

@@ -71,6 +71,7 @@ export { default as Legend } from './Legend';
 export { default as PdfPreview } from './PdfPreview';
 export { default as Filter } from './Filter';
 export { default as VideoWindow } from './VideoWindow';
+export { default as Comments } from './Comments';
 export * from './ComboBox';
 export * from './Table';
 export * from './Table/Cell/types';

@@ -21,7 +21,7 @@ export const Content = () => {
 
   return (
     <Grid.Column st={{ gap: 8 }}>
-      <Typography variant="Body1-Medium">{content}</Typography>
+      <Typography variant="Body1-Medium" className={styles.content}>{content}</Typography>
 
       {canReply && (
         <Grid.Column st={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>

@@ -167,9 +167,9 @@ const CommentsRoot = <TData,>({
       {renderContent()}
 
       {handleAddRootComment && (
-        <div data-ui-comments-root-editor className={s.editor}>
+        <Box data-ui-comments-root-editor className={s.editor} pl={handleRefresh ? 32 : 0}>
           <CardEdit isReply={false} onSave={handleAddRootComment} isLoading={isLoading} />
-        </div>
+        </Box>
       )}
     </Box>
   );

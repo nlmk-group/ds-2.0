@@ -23,6 +23,27 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.29.1 - <span className={styles.date}>12.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-comments-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Comments
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено отображение текста комментария с переносом строки
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.29.0 - <span className={styles.date}>12.03.26</span>
           </Typography>
           <ul className={styles.list}>

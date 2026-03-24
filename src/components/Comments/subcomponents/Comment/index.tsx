@@ -109,7 +109,7 @@ export const Comment = <TData,>({
   return (
     <CommentProvider value={contextValue}>
       <div
-        className={clsx({
+        className={clsx(styles.comment, {
           [styles.reply]: isReply,
           [styles.root]: !isReply
         })}
@@ -130,7 +130,7 @@ export const Comment = <TData,>({
           <div className={styles.card}>
             <div className={clsx(styles.main, { [styles.mainWithActions]: hasActions })}>
               {hasHeader && (
-                <div className={styles.header}>
+                <Box flexDirection="column" gap={8} className={styles.header}>
                   {commentLink && (
                     <div>
                       <Link href={commentLink.url} target="_blank" size="body1">
@@ -144,7 +144,7 @@ export const Comment = <TData,>({
                       {headerMain}
                     </Box>
                   )}
-                </div>
+                </Box>
               )}
 
               {contentSlot && <div className={styles.content}>{contentSlot}</div>}

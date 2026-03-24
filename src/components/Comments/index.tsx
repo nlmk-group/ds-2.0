@@ -131,7 +131,6 @@ const CommentsRoot = <TData,>({
         height="100%"
         justifyContent="center"
         alignItems="center"
-        className={s.comments}
         data-ui-comments-empty
       >
         <Box gap={0} alignItems="center" height={120}>
@@ -168,9 +167,9 @@ const CommentsRoot = <TData,>({
       {renderContent()}
 
       {handleAddRootComment && (
-        <div data-ui-comments-root-editor>
+        <Box data-ui-comments-root-editor className={s.editor} pl={handleRefresh ? 32 : 0}>
           <CardEdit isReply={false} onSave={handleAddRootComment} isLoading={isLoading} />
-        </div>
+        </Box>
       )}
     </Box>
   );

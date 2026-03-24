@@ -187,7 +187,7 @@ const Editor: FC<{
                   onChange={setEditorCode}
                   className={styles['code-editor']}
                   style={{
-                    fontSize: 18,
+                    fontSize: 16,
                     lineHeight: 1.5,
                     minHeight: '100%',
                     backgroundColor: 'transparent',

@@ -85,7 +85,7 @@ const comments = [
     ],
     commentLink: {
       label: 'Связанный документ',
-      url: 'https://example.com'
+      url: 'https://it.nlmk.com/ru/'
     },
     badge: {
       label: 'В работе',

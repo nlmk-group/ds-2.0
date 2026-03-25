@@ -61,8 +61,7 @@ export const argsTypes = {
   },
 
   onPreviewClick: {
-    description:
-      'Обработчик клика по неграфическому файлу/элементу без открытия модального окна. Вызывается с item.',
+    description: 'Обработчик клика по неграфическому файлу/элементу без открытия модального окна. Вызывается с item.',
     table: {
       defaultValue: { summary: 'undefined' },
       type: { summary: '(item: IImageItem) => void' },

@@ -56,8 +56,8 @@ $meta-height: 64px;
   color: var(--unique-white);
 }
 
-.meta-top[data-measuring='1'] .meta-clamp-2,
-.meta-top[data-measuring='1'] .meta-clamp-3 {
+.meta-top[data-measuring="1"] .meta-clamp-2,
+.meta-top[data-measuring="1"] .meta-clamp-3 {
   display: block;
   overflow: visible;
   -webkit-line-clamp: unset;

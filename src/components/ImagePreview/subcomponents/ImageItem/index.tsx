@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 
-import { Box, Checkbox, IconFileNoType32, Tooltip, Typography } from '@components/index';
-import styles from './ImageItem.module.scss';
 import Icon from '@components/Icon';
 import type { IImageItem } from '@components/ImagePreview/types';
-import { useTruncate } from './hooks';
 import { hasPreviewSrc } from '@components/ImagePreview/utils';
+import { Box, Checkbox, IconFileNoType32, Tooltip, Typography } from '@components/index';
+import clsx from 'clsx';
+
+import styles from './ImageItem.module.scss';
+
+import { useTruncate } from './hooks';
 
 interface ImageItemProps {
   image: IImageItem;
@@ -46,7 +48,13 @@ const ImageItem = ({
   const renderThumbContent = () => {
     if (!hasPreview) {
       return (
-        <Box className={styles.file} data-testid="placeholder-icon" justifyContent="center" alignItems="center" height="100%">
+        <Box
+          className={styles.file}
+          data-testid="placeholder-icon"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
           {renderPlaceholder()}
         </Box>
       );

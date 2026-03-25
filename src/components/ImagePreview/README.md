@@ -9,7 +9,6 @@
 ```jsx
 import React from 'react';
 import ImagePreview from '@nlmk/ds-2.0';
-
 const items = [
   {
     id: 1,
@@ -30,48 +29,56 @@ const items = [
     alt: 'Фото 2'
   }
 ];
-
 const App = () => {
   return <ImagePreview items={items} previewImgSize={160} />;
 };
 ```
+
 ## Props
 
-| Prop           | Type                    | Default | Description                                                                                               |
-|----------------|-------------------------|---------|-----------------------------------------------------------------------------------------------------------|
-| items          | `IImageItem[]`          | -       | Массив изображений для отображения. Пустые/`null` элементы отфильтровываются.                             |
-| className      | string                  | -       | Дополнительный CSS-класс для корневого контейнера.                                                        |
-| previewImgSize | number                  | 140     | Фиксированная ширина и высота миниатюры в пикселях                                                        |
-| checkedMap     | Record<string, boolean> | -       | Коллекция состояний чекбокса                                                                              |
-| handleCheckbox | function                | -       | Метод для обработки состояния чекбокса. Если метод передан, по наведению на карточку отображается чекбокс |
-| onPreviewClick | function                | -       | Дополнительный метод для обработки клика по карточке с миниатюрой, если у нее нет previewSrc              |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| items | `IImageItem[]` | - | Массив изображений для отображения. Пустые/`null` элементы отфильтровываются. |
+| className | string | - | Дополнительный CSS-класс для корневого контейнера. |
+| previewImgSize | number | 140 | Фиксированная ширина и высота миниатюры в пикселях |
+| checkedMap | Record<string, boolean> | - | Коллекция состояний чекбокса |
+| handleCheckbox | function | - | Метод для обработки состояния чекбокса. Если метод передан, по наведению на карточку отображается чекбокс |
+| onPreviewClick | function | - | Дополнительный метод для обработки клика по карточке с миниатюрой, если у нее нет previewSrc |
+| showDownloadButton | boolean | true | Показывает кнопку скачивания в модальном окне предпросмотра |
+| classNameModal | string | - | Дополнительный CSS-класс для контейнера модального окна |
+| portalContainerId | string | - | id DOM-контейнера, в который будет смонтирован портал модального окна |
+| zoomDisabled | boolean | false | Отключает zoom изображения в модальном окне |
 
 ## IImageItem
 
-| Key                | Type         | Required | Description                                                                                                                 |
-|--------------------|--------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| id                 | string       | -        | Идентификатор элемента. Если не задан, используется индекс.                                                                 |
-| previewSrc         | string       | -        | URL миниатюры (используется в сетке). Если previewSrc не передан, рисуется заглушка, модальное окно не открывается по клику |
-| fullSrc            | string       | -        | URL оригинала (используется в модальном окне).                                                                              |
-| title              | string       | -        | Заголовок для модального окна и/или fallback для alt.                                                                       |
-| description        | string       | -        | Описание для модального окна                                                                                                |
-| previewTitle       | string       | -        | Подпись для миниатюры                                                                                                       |
-| downloadName       | string       | -        | Имя файла при скачивании                                                                                                    |
-| downloadHandler    | function     | -        | Кастомный метод для скачивания изображения в оригинальном размере. Если он не передан, то загрузка идет по ссылке fullSrc   |
-| alt                | string       | -        | Alt-текст для <img>. Если не задан, используется title, иначе Фото N.                                                       |
-| PlaceholderSvgIcon | ReactElement | -        | Иконка svg, которая показывается, если нет previewSrc. Иначе будет показана IconFileNoType32                                |
+| Key | Type | Required | Description |
+| --- | --- | --- | --- |
+| id | string | - | Идентификатор элемента. Если не задан, используется индекс. |
+| previewSrc | string | - | URL миниатюры (используется в сетке). Если previewSrc не передан, рисуется заглушка, модальное окно не открывается по клику |
+| fullSrc | string | - | URL оригинала (используется в модальном окне). |
+| title | string | - | Заголовок для модального окна и/или fallback для alt. |
+| description | string | - | Описание для модального окна |
+| previewTitle | string | - | Подпись для миниатюры |
+| downloadName | string | - | Имя файла при скачивании |
+| downloadHandler | function | - | Кастомный метод для скачивания изображения в оригинальном размере. Если он не передан, то загрузка идет по ссылке fullSrc |
+| alt | string | - | Alt-текст для <img>. Если не задан, используется title, иначе Фото N. |
+| PlaceholderSvgIcon | ReactElement | - | Иконка svg, которая показывается, если нет previewSrc. Иначе будет показана IconFileNoType32 |
+| showDownloadButton | boolean | true | Показывает кнопку скачивания в модальном окне предпросмотра |
+| classNameModal | string | - | Дополнительный CSS-класс для контейнера модального окна |
+| portalContainerId | string | - | id DOM-контейнера, в который будет смонтирован портал модального окна |
+| zoomDisabled | boolean | false | Отключает zoom изображения в модальном окне |
 
 ## Настройка ширины миниатюр
 
 Если задан previewImgSize:
 
-+ миниатюры получают фиксированную ширину `(style={{ width: previewImgSize }})`,
+- миниатюры получают фиксированную ширину `(style={{ width: previewImgSize }})`,
 
-+ grid получает gridTemplateColumns: `repeat(auto-fit, ${previewImgSize}px) и justifyContent: start`.
+- grid получает gridTemplateColumns: `repeat(auto-fit, ${previewImgSize}px) и justifyContent: start`.
 
 Если previewImgSize не задан:
 
-+ используется дефолтная сетка из CSS.
+- используется дефолтная сетка из CSS.
 
 ## Стилизация
 
@@ -94,6 +101,7 @@ const App = () => {
 Можно переопределять стили, передав собственный className на корневой контейнер.
 
 ## Data-атрибуты
+
 Для удобной кастомизации доступны data-атрибуты:
 
 ```css

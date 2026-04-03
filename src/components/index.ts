@@ -71,6 +71,7 @@ export { default as PdfPreview } from './PdfPreview';
 export { default as Filter } from './Filter';
 export { default as VideoWindow } from './VideoWindow';
 export { default as Comments } from './Comments';
+export { default as ImagePreview } from './ImagePreview';
 export * from './ComboBox';
 export * from './Table';
 export * from './ImagePreview';

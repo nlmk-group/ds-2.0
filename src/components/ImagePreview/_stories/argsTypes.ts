@@ -9,7 +9,7 @@ export const argsTypes = {
         detail: `type IImageItem = {
   id?: string | number;
   previewSrc?: string | null;
-  fullSrc: string;
+  fullSrc?: string;
   previewTitle?: string;
   title?: string;
   description?: string;
@@ -61,12 +61,47 @@ export const argsTypes = {
   },
 
   onPreviewClick: {
-    description:
-      'Обработчик клика по неграфическому файлу/элементу без открытия модального окна. Вызывается с item.',
+    description: 'Обработчик клика по неграфическому файлу/элементу без открытия модального окна. Вызывается с item.',
     table: {
       defaultValue: { summary: 'undefined' },
       type: { summary: '(item: IImageItem) => void' },
       disable: true
     }
+  },
+
+  showDownloadButton: {
+    description: 'Показывает кнопку скачивания в модальном окне.',
+    table: {
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' }
+    },
+    control: { type: 'boolean' }
+  },
+
+  classNameModal: {
+    description: 'Дополнительный CSS-класс для контейнера модального окна.',
+    table: {
+      defaultValue: { summary: 'undefined' },
+      type: { summary: 'string' }
+    },
+    control: { type: 'string' }
+  },
+
+  portalContainerId: {
+    description: 'id DOM-контейнера, в который будет смонтирован портал модального окна.',
+    table: {
+      defaultValue: { summary: 'undefined' },
+      type: { summary: 'string' }
+    },
+    control: { type: 'string' }
+  },
+
+  zoomDisabled: {
+    description: 'Отключает zoom изображения в модальном окне.',
+    table: {
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' }
+    },
+    control: { type: 'boolean' }
   }
 };

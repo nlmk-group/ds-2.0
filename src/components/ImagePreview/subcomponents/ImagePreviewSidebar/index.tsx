@@ -1,16 +1,11 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+import { Box, Button, Icon, IconChevronArrowDownOutlined24, IconChevronArrowUpOutlined24 } from '@components/index';
 import clsx from 'clsx';
-import {
-  Box,
-  Button,
-  Icon,
-  IconChevronArrowDownOutlined24,
-  IconChevronArrowUpOutlined24
-} from '@components/index';
+
+import styles from './ImagePreviewSidebar.module.scss';
 
 import { IImageItem } from '../../types';
-import styles from './ImagePreviewSidebar.module.scss';
 
 interface IImagePreviewSidebarProps {
   items: IImageItem[];
@@ -125,13 +120,8 @@ const ImagePreviewSidebar = ({ items, activeIndex, setActiveIndex }: IImagePrevi
     <aside className={styles['sidebar']} data-ui-image-preview-sidebar>
       {isOverflow && canScrollUp && (
         <Button
-          iconButton={
-            <IconChevronArrowUpOutlined24 htmlColor="var(--steel-10)" />
-          }
-          className={clsx(
-            styles['scroll-btn'],
-            styles['scroll-up']
-          )}
+          iconButton={<IconChevronArrowUpOutlined24 htmlColor="var(--steel-10)" />}
+          className={clsx(styles['scroll-btn'], styles['scroll-up'])}
           onClick={() => scrollBy(-SCROLL_STEP)}
           aria-label="Прокрутить вверх"
           variant="secondary"
@@ -139,19 +129,12 @@ const ImagePreviewSidebar = ({ items, activeIndex, setActiveIndex }: IImagePrevi
         />
       )}
 
-      <div
-        ref={carouselRef}
-        className={styles['carousel']}
-        data-ui-image-preview-carousel
-      >
+      <div ref={carouselRef} className={styles['carousel']} data-ui-image-preview-carousel>
         {items.map((it, idx) => (
           <div
             key={String(it.id ?? idx)}
             ref={idx === activeIndex ? activeBtnRef : null}
-            className={clsx(
-              styles['carousel-item'],
-              { [styles['active']]: idx === activeIndex }
-            )}
+            className={clsx(styles['carousel-item'], { [styles['active']]: idx === activeIndex })}
             onClick={() => setActiveIndex(idx)}
             data-ui-image-preview-carousel-item
           >
@@ -173,13 +156,8 @@ const ImagePreviewSidebar = ({ items, activeIndex, setActiveIndex }: IImagePrevi
 
       {isOverflow && canScrollDown && (
         <Button
-          iconButton={
-            <IconChevronArrowDownOutlined24 htmlColor="var(--steel-10)" />
-          }
-          className={clsx(
-            styles['scroll-btn'],
-            styles['scroll-down']
-          )}
+          iconButton={<IconChevronArrowDownOutlined24 htmlColor="var(--steel-10)" />}
+          className={clsx(styles['scroll-btn'], styles['scroll-down'])}
           onClick={() => scrollBy(SCROLL_STEP)}
           aria-label="Прокрутить вниз"
           variant="secondary"

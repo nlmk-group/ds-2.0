@@ -23,6 +23,26 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.29.2 - <span className={styles.date}>06.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-imagepreview-info--docs" target="blank" className={styles['link-changelog']}>
+                ImagePreview
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена возможность использовать модальное окно просмотра изображений ImagePreviewModal независимо от ImagePreview
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлены новые параметры для настройки поведения ImagePreview (скрытие кнопки для загрузки в модальном окне, наличие зума в модальном окне, ccs класс для модального окна)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.29.1 - <span className={styles.date}>23.03.26</span>
           </Typography>
           <ul className={styles.list}>

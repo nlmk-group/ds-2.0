@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-import ImagePreview from '@components/ImagePreview';
+import { ImagePreview, ImagePreviewModal } from '@components/ImagePreview';
+import { IMockItem, makeItems } from '@components/ImagePreview/mock/helpers';
+import { Box, Button, IconFileDOCX32 } from '@components/index';
+import { Meta } from '@storybook/react-vite';
 
 import styles from './ImagePreview.stories.module.scss';
 
-import { IImageItem, IImagePreviewProps } from '../types';
+import { IImageItem, IImagePreviewModalProps, IImagePreviewProps } from '../types';
 import { argsTypes } from './argsTypes';
-import { Box, IconFileDOCX32 } from '@components/index';
-import { Meta } from '@storybook/react-vite';
-import { IMockItem, makeItems } from '@components/ImagePreview/mock/helpers';
 
 const image_1 = 'img/image_picture_mock.jpg';
 const image_2 = 'img/image_workers.jpg';
@@ -32,7 +32,7 @@ const MOCK_ITEMS: IMockItem[] = [
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix: 'Название фото',
-    previewTitle: 'Фотография',
+    previewTitle: 'Фотография'
   },
   {
     previewSrc: image_2,
@@ -41,7 +41,7 @@ const MOCK_ITEMS: IMockItem[] = [
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix:
-      'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.',
+      'Горячекатаный прокат НЛМК является основой для всех дальнейших переделов, и его качество гарантируется тщательно отработанной технологией производства. Основные потребительские достоинства горячекатаной стали заложены в структуре металла и на 60% зависят от поступающего полуфабриката — слябов НЛМК, которые закладывают химический состав, чистоту металла и качество поверхности.'
   },
   {
     previewSrc: image_3,
@@ -50,7 +50,7 @@ const MOCK_ITEMS: IMockItem[] = [
     alt: 'Mock photo',
     titlePrefix: 'Этап',
     descriptionPrefix: 'Название фото',
-    previewTitle: 'Горячекатаный прокат широко востребован при строительстве нефтегазопроводов',
+    previewTitle: 'Горячекатаный прокат широко востребован при строительстве нефтегазопроводов'
   }
 ];
 
@@ -144,14 +144,14 @@ ImagePreviewNoPreviewSrc.args = {
         fullSrc: '',
         previewTitle: 'name-1.file',
         titlePrefix: 'Файл',
-        descriptionPrefix: 'Неграфический файл',
+        descriptionPrefix: 'Неграфический файл'
       },
       {
         previewSrc: '',
         fullSrc: '',
         previewTitle: 'name-2.file',
         titlePrefix: 'Файл',
-        descriptionPrefix: 'Неграфический файл',
+        descriptionPrefix: 'Неграфический файл'
       },
       {
         previewSrc: '',
@@ -159,7 +159,7 @@ ImagePreviewNoPreviewSrc.args = {
         PlaceholderSvgIcon: <IconFileDOCX32 />,
         previewTitle: 'name-3.docx',
         titlePrefix: 'Файл',
-        descriptionPrefix: 'Неграфический файл',
+        descriptionPrefix: 'Неграфический файл'
       },
       MOCK_ITEMS[0],
       MOCK_ITEMS[1]
@@ -168,3 +168,59 @@ ImagePreviewNoPreviewSrc.args = {
   ),
   previewImgSize: 180
 };
+
+const ModalStory = ({
+  items,
+  activeIndex: initialActiveIndex = 0,
+  showDownloadButton = true,
+  classNameModal,
+  portalContainerId,
+  zoomDisabled
+}: Partial<IImagePreviewModalProps> & { items: IImageItem[] }) => {
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+
+  return (
+    <Box p={24}>
+      {!open && (
+        <Button onClick={() => setOpen(true)} variant="primary">
+          Открыть модальное окно
+        </Button>
+      )}
+
+      {open && (
+        <ImagePreviewModal
+          items={items}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          onClose={() => setOpen(false)}
+          showDownloadButton={showDownloadButton}
+          classNameModal={classNameModal}
+          portalContainerId={portalContainerId}
+          zoomDisabled={zoomDisabled}
+        />
+      )}
+    </Box>
+  );
+};
+
+export const ImagePreviewModalDefault = (): JSX.Element => {
+  return <ModalStory items={makeItems(MOCK_ITEMS, 5)} />;
+};
+ImagePreviewModalDefault.storyName = 'ImagePreviewModal по умолчанию';
+
+export const ImagePreviewModalZoomDisabled = (): JSX.Element => {
+  return <ModalStory items={makeItems(MOCK_ITEMS, 3)} zoomDisabled />;
+};
+ImagePreviewModalZoomDisabled.storyName = 'ImagePreviewModal без зума';
+
+export const ImagePreviewModalSingle = (): JSX.Element => {
+  return (
+    <ModalStory
+      items={makeItems([MOCK_ITEMS[0]], 1)}
+      showDownloadButton={false}
+      classNameModal={styles['hide-sidebar']}
+    />
+  );
+};
+ImagePreviewModalSingle.storyName = 'ImagePreviewModal с одной картинкой без кнопки для загрузки изображения';

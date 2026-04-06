@@ -1,7 +1,7 @@
 import React from 'react';
-import clsx from 'clsx';
 
 import { Box, Button, Typography } from '@components/index';
+import clsx from 'clsx';
 
 import styles from './ImagePreviewMeta.module.scss';
 
@@ -13,7 +13,7 @@ interface ImagePreviewMetaProps {
   isMetaExpanded?: boolean;
   showMetaToggle?: boolean;
   onToggleMeta?: () => void;
-};
+}
 
 const ImagePreviewMeta = ({
   isMobile,
@@ -35,10 +35,7 @@ const ImagePreviewMeta = ({
         data-ui-image-preview-meta-top
       >
         <Typography
-          className={clsx(
-            styles['meta-line'],
-            isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-2']
-          )}
+          className={clsx(styles['meta-line'], isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-2'])}
           variant="Body2"
           color="var(--unique-white)"
         >
@@ -46,10 +43,7 @@ const ImagePreviewMeta = ({
         </Typography>
 
         <Typography
-          className={clsx(
-            styles['meta-line'],
-            isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-3']
-          )}
+          className={clsx(styles['meta-line'], isMetaExpanded ? styles['meta-unclamped'] : styles['meta-clamp-3'])}
           variant="Body2"
           color="var(--unique-white)"
         >

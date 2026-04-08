@@ -71,6 +71,8 @@ export default App = () => (
             description="Использование с Header: панель показывается по клику на кнопку уведомлений и закрывается по клику снаружи через ClickAwayListener."
             code={`import { useEffect, useRef, useState } from 'react';
 import { ClickAwayListener, Header, NotificationPanel } from '@nlmk/ds-2.0';
+// dropdown-wrapper класс из NotificationPanel.module.scss:
+// .dropdown-wrapper { position: absolute; top: 100%; right: 0; margin-top: 4px; z-index: 1100; }
 
 const items = [
   { label: 'Требуется сделать', count: 2, badgeColor: 'error', active: true },
@@ -96,10 +98,12 @@ export default App = () => {
         onNotificationClick={() => setOpen((prev) => !prev)}
       />
       {open && (
-        <ClickAwayListener onClickAway={() => setOpen(false)} excludeRef={notifButtonRef}>
-          <div style={{ position: 'absolute', top: 60, right: 24, zIndex: 100 }}>
-            <NotificationPanel items={items} onItemClick={(v) => console.log(v)} />
-          </div>
+        <ClickAwayListener
+          onClickAway={() => setOpen(false)}
+          excludeRef={notifButtonRef}
+          className="dropdown-wrapper"
+        >
+          <NotificationPanel items={items} onItemClick={(v) => console.log(v)} />
         </ClickAwayListener>
       )}
     </div>

@@ -15,7 +15,7 @@ import { NotificationItem } from './subcomponents';
  * Может использоваться как выпадающая панель из кнопки уведомлений в Header или как содержимое Drawer/Dialog.
  * @component
  * @param {Object} props - Свойства компонента NotificationPanel.
- * @param {INotificationItem[]} props.items - Список категорий уведомлений.
+ * @param {INotificationItemData[]} props.items - Список категорий уведомлений.
  * @param {Function} [props.onItemClick] - Обработчик клика по элементу.
  * @param {string} [props.title='Уведомления'] - Заголовок панели.
  * @param {string} [props.className] - Дополнительный CSS класс.

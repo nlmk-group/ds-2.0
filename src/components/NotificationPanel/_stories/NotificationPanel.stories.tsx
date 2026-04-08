@@ -19,6 +19,7 @@ import { NotificationCard } from '../subcomponents';
 
 import styles from '@components/_storybook/styles.module.scss';
 
+import panelStyles from '../NotificationPanel.module.scss';
 import { INotificationPanelProps } from '../types';
 import { argsTypes } from './argsTypes';
 
@@ -94,7 +95,7 @@ export const NotificationPanelWithHeader = () => {
   ];
 
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
+    <Box st={{ position: 'relative', width: '100%' }}>
       <Header
         title="Заголовок страницы"
         showNotification
@@ -102,13 +103,15 @@ export const NotificationPanelWithHeader = () => {
         onNotificationClick={() => setShowPanel((prev) => !prev)}
       />
       {showPanel && (
-        <ClickAwayListener onClickAway={() => setShowPanel(false)} excludeRef={notifButtonRef}>
-          <div style={{ position: 'absolute', top: '60px', right: '24px', zIndex: 100 }}>
-            <NotificationPanel items={items} onItemClick={(value) => console.log('Click:', value)} />
-          </div>
+        <ClickAwayListener
+          onClickAway={() => setShowPanel(false)}
+          excludeRef={notifButtonRef}
+          className={panelStyles['dropdown-wrapper']}
+        >
+          <NotificationPanel items={items} onItemClick={(value) => console.log('Click:', value)} />
         </ClickAwayListener>
       )}
-    </div>
+    </Box>
   );
 };
 
@@ -116,12 +119,12 @@ NotificationPanelWithHeader.storyName = 'Использование с Header';
 
 export const StandaloneNotificationItems = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '270px' }}>
+    <Box flexDirection="column" gap={4} maxWidth={270}>
       <NotificationItem label="Требуется сделать" count={2} active onClick={(v) => console.log(v)} />
       <NotificationItem label="Важно ознакомиться" count={7} onClick={(v) => console.log(v)} />
       <NotificationItem label="Для информации" count={150} badgeColor={EBadgeColors.brand} onClick={(v) => console.log(v)} />
       <NotificationItem label="Без уведомлений" count={0} />
-    </div>
+    </Box>
   );
 };
 
@@ -157,15 +160,9 @@ export const NotificationPanelInDrawer = () => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [unreadOnly, setUnreadOnly] = React.useState(true);
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const notifButtonRef = React.useRef<HTMLElement | null>(null);
-
-  React.useEffect(() => {
-    const el = document.querySelector('[data-testid="HEADER_NOTIFICATION"]');
-    if (el) notifButtonRef.current = el.parentElement as HTMLElement;
-  }, []);
 
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '600px' }}>
+    <Box st={{ position: 'relative', width: '100%' }}>
       <Header
         title="Заголовок страницы"
         showNotification
@@ -173,10 +170,10 @@ export const NotificationPanelInDrawer = () => {
         onNotificationClick={() => setIsOpen((prev) => !prev)}
       />
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position="right" width="820px">
-        <div style={{ padding: '32px 48px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <Box flexDirection="column" gap={32} p="32px 48px" color="var(--steel-90)">
           <Typography variant="Heading2">Уведомления</Typography>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <Box flexDirection="column" gap={24}>
             <Tabs>
               {tabItems.map((item, index) => (
                 <Tabs.Tab
@@ -191,43 +188,43 @@ export const NotificationPanelInDrawer = () => {
               ))}
             </Tabs>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div />
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Switch checked={unreadOnly} onChange={() => setUnreadOnly((prev) => !prev)} />
-                <Typography variant="Body1-Medium">Только непрочитанные</Typography>
-              </div>
-            </div>
-          </div>
+            <Box alignItems="center" justifyContent="flex-end" gap={8}>
+              <Switch checked={unreadOnly} onChange={() => setUnreadOnly((prev) => !prev)} />
+              <Typography variant="Body1-Medium">Только непрочитанные</Typography>
+            </Box>
+          </Box>
 
           {mockNotifications.map((group, groupIdx) => (
             <React.Fragment key={group.id}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px 0' }}>
-                  <Badge color={EBadgeColors.brand} variant="solid" size="l">
-                    {group.category}
-                  </Badge>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Box flexDirection="column" gap={24}>
+                <Box flexDirection="column" gap={8} py={12}>
+                  <Box>
+                    <Badge color={EBadgeColors.brand} variant="solid" size="l">
+                      {group.category}
+                    </Badge>
+                  </Box>
+                  <Box alignItems="center" justifyContent="space-between">
+                    <Box alignItems="center" gap={8}>
                       {group.unread && (
-                        <div
-                          style={{
+                        <Box
+                          st={{
                             width: 8,
                             height: 8,
+                            minWidth: 8,
                             borderRadius: '50%',
                             background: 'var(--brand-sapphire-50)'
                           }}
                         />
                       )}
-                      <Typography variant="Subheading3-Medium" style={{ color: 'var(--brand-sapphire-50)' }}>
+                      <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">
                         {group.title}
                       </Typography>
-                    </div>
+                    </Box>
                     <Button type="button" size="xs" variant="secondary" color="brand">
                       Отметить все как прочитанные
                     </Button>
-                  </div>
-                </div>
+                  </Box>
+                </Box>
 
                 <NotificationCard
                   title={group.title}
@@ -237,14 +234,14 @@ export const NotificationPanelInDrawer = () => {
                   expanded={expandedId === group.id}
                   onExpand={() => setExpandedId(expandedId === group.id ? null : group.id)}
                 />
-              </div>
+              </Box>
               {groupIdx < mockNotifications.length - 1 && <Divider />}
             </React.Fragment>
           ))}
-        </div>
+        </Box>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
-NotificationPanelInDrawer.storyName = 'Расширенный режим (Drawer)';
+NotificationPanelInDrawer.storyName = 'Использование с Drawer';

@@ -1,5 +1,6 @@
 .card {
   background: var(--steel-10);
+  color: var(--steel-90);
   border: 1px solid var(--steel-40);
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(39, 74, 127, 0.1);
@@ -21,10 +22,6 @@
   background: var(--brand-sapphire-50);
 }
 
-.timestamp {
-  color: var(--steel-60);
-}
-
 .body {
   display: flex;
   flex-direction: column;
@@ -32,12 +29,7 @@
   padding: 0 16px 16px;
 }
 
-.title {
-  color: var(--steel-90);
-}
-
 .text {
-  color: var(--steel-90);
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;

@@ -1,0 +1,22 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import NotificationPanel from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/NotificationPanel/Info"
+  component={NotificationPanel}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: ''
+    },
+    jest: ['NotificationPanel.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

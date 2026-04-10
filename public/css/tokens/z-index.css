@@ -1,0 +1,11 @@
+:root {
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sidebar: 1000;
+  --z-drawer: 1000;
+  --z-modal: 1100;
+  --z-modal-stacked: 1200;
+  --z-portal: 1300;
+  --z-tooltip: 1400;
+}

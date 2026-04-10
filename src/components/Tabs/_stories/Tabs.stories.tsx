@@ -6,6 +6,7 @@ import { Tabs, Typography } from '@components/index';
 import style from './Tabs.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from '../enums';
 import { ITabProps } from '../subcomponents/Tab/types';
 import argsTypes from './argsTypes';
 
@@ -154,3 +155,101 @@ export const TabsScrollable = (args: ITabProps) => {
 };
 
 TabsScrollable.storyName = 'Табы с возможностью скролла';
+
+export const TabsVerticalLeft = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab
+          label="Спам"
+          active={activeTab === 2}
+          onClick={() => setActiveTab(2)}
+          hasBadge
+          badgeChildren="91"
+          badgeColor={EBadgeColors.brand}
+        />
+        <Tabs.Tab label="Черновики" active={activeTab === 3} onClick={() => setActiveTab(3)} />
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Спам', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalLeft.storyName = 'Вертикальные табы (слева)';
+
+export const TabsVerticalRight = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.right}>
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Черновики" active={activeTab === 2} onClick={() => setActiveTab(2)} />
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalRight.storyName = 'Вертикальные табы (справа)';
+
+export const TabsVerticalIndicatorBottom = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs
+        orientation={ETabsOrientation.vertical}
+        tabPosition={ETabsTabPosition.left}
+        indicatorPosition={ETabsIndicatorPosition.bottom}
+      >
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Черновики" active={activeTab === 2} onClick={() => setActiveTab(2)} />
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalIndicatorBottom.storyName = 'Вертикальные табы (индикатор снизу)';
+
+export const TabsVerticalLongLabels = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const items = [
+    'Входящие сообщения и уведомления',
+    'Мои папки и документы',
+    'Спам и нежелательная почта',
+    'Черновики'
+  ];
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left} maxTabWidth={180}>
+        {items.map((label, index) => (
+          <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
+        ))}
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {items[activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalLongLabels.storyName = 'Вертикальные табы (длинные названия)';

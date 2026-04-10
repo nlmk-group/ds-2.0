@@ -1,5 +1,7 @@
 import { EBadgeColors } from '@components/Badge/enums';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from '../enums';
+
 const argsTypes = {
   children: {
     description: 'Вложенные элементы, которые будут отображаться в табах',
@@ -10,11 +12,50 @@ const argsTypes = {
     control: { type: 'text' }
   },
   scrollable: {
-    description: 'Флаг, указывающий, разрешено ли горизонтальное скроллирование вкладок',
+    description: 'Флаг, указывающий, разрешено ли скроллирование вкладок',
     control: { type: 'boolean' },
     table: {
       defaultValue: {
         summary: false
+      }
+    }
+  },
+  orientation: {
+    description: `Ориентация табов – <b>${Object.values(ETabsOrientation).join(' | ')}</b>`,
+    options: Object.values(ETabsOrientation),
+    control: { type: 'select' },
+    table: {
+      defaultValue: {
+        summary: ETabsOrientation.horizontal
+      }
+    }
+  },
+  tabPosition: {
+    description: `Позиция панели табов (для вертикального режима) – <b>${Object.values(ETabsTabPosition).join(' | ')}</b>`,
+    options: Object.values(ETabsTabPosition),
+    control: { type: 'select' },
+    table: {
+      defaultValue: {
+        summary: ETabsTabPosition.left
+      }
+    }
+  },
+  indicatorPosition: {
+    description: `Позиция активного индикатора – <b>${Object.values(ETabsIndicatorPosition).join(' | ')}</b>`,
+    options: Object.values(ETabsIndicatorPosition),
+    control: { type: 'select' },
+    table: {
+      defaultValue: {
+        summary: 'auto'
+      }
+    }
+  },
+  maxTabWidth: {
+    description: 'Максимальная ширина таба в вертикальном режиме (px)',
+    control: { type: 'number' },
+    table: {
+      defaultValue: {
+        summary: 200
       }
     }
   },

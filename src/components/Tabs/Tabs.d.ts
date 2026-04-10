@@ -3,15 +3,17 @@ import { FC, PropsWithChildren } from 'react';
 import { TIconProps } from '@components/Icon/types';
 import { ITooltipProps } from '@components/Tooltip/types';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
+
 /**
  * Свойства компонента вкладки (Tab).
  * Интерфейс, описывающий свойства, принимаемые компонентом вкладки.
  */
 export interface ITabProps extends PropsWithChildren<any> {
-  /** Текстовая метка вкладки */
+  /** Текс��овая метк�� вкладки */
   label: string;
 
-  /** Флаг, указывающий, является ли вкладка активной */
+  /** Фл��г, указывающий, является л�� вкладка активной */
   active?: boolean;
 
   /** Дочерний элемент, представляющий содержимое вкладки */
@@ -20,39 +22,58 @@ export interface ITabProps extends PropsWithChildren<any> {
   /** Флаг, указывающий, нужно ли отображать значок (бейдж) на вкладке */
   hasBadge?: boolean;
 
-  /** Содержимое значка (бейджа) */
+  /** Содерж��мое значка (бейджа) */
   badgeChildren?: string | number;
 
   /** Дополнительный CSS класс для стилизации вкладки */
   className?: string;
 
-  /** Цвет значка (бейджа) */
+  /** Цвет значка (бейдж��) */
   badgeColor?: EBadgeColors;
 
-  /** Флаг, указывающий, есть ли у вкладки иконка */
+  /** Флаг, указывающий, есть ли у вкладки иконк�� */
   hasIcon?: boolean;
+
+  /** Ориентация табо�� (передаётся из родительского Tabs) */
+  orientation?: ETabsOrientation;
+
+  /** По��иция активного и��дикатора (передаётся из родительского Tabs) */
+  indicatorPosition?: ETabsIndicatorPosition;
 }
 
 /**
  * Свойства компонента Tabs.
- * Интерфейс, описывающий свойства, принимаемые компонентом Tabs.
+ * Интерфейс, описыв��ющий свойства, п��инимаемые компонентом Tabs.
  */
 export interface ITabsProps {
-  /** Дочерние элементы, представляющие содержимое вкладок */
+  /** Дочерние элементы, представляющие содержим��е вкладок */
   children: JSX.Element | JSX.Element[];
 
-  /** Дополнительный CSS класс для стилизации компонента вкладок */
+  /** ��ополнительный CSS класс для стилизации компонента вкладок */
   className?: string;
 
-  /** Флаг, указывающий, должны ли вкладки быть прокручиваемыми */
+  /** Флаг, указы��ающий, должны ли вкладки быть прокручиваемыми */
   scrollable?: boolean;
+
+  /** Ориентация табов (горизонтальная или вертикальная) */
+  orientation?: ETabsOrientation;
+
+  /** Позиция п��нели табов относительно контента (для вертикального режима) */
+  tabPosition?: ETabsTabPosition;
+
+  /** ��озиция активного индикатора */
+  indicatorPosition?: ETabsIndicatorPosition;
+
+  /** Максимальна�� ширина таба в вертикальном режиме (px) */
+  maxTabWidth?: number;
 }
 
 /**
- * Компонент Tabs предоставляет вкладки с возможностью прокрутки.
+ * Компонент Tabs предоставляет вкладки с возмож��остью прокрутки.
+ * Поддерживает горизонтальную и вертикальную ориентацию.
  */
-declare const Tabs: FC<ITabs> & {
-  Tab: FC<ITab>;
+declare const Tabs: FC<ITabsProps> & {
+  Tab: FC<ITabProps>;
   Tooltip: FC<ITooltipProps>;
   Icon: FC<TIconProps>;
 };

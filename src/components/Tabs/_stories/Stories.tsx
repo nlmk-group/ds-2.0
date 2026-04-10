@@ -82,11 +82,75 @@ const App = () => {
 export default App;
 `;
 
+  const verticalTabsCode = `import { Tabs, Typography } from '@nlmk/ds-2.0';
+import { ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['Входящие', 'Мои папки', 'Спам', 'Черновики'];
+
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
+        {tabs.map((label, index) => (
+          <Tabs.Tab
+            key={label}
+            label={label}
+            active={activeTab === index}
+            onClick={() => setActiveTab(index)}
+          />
+        ))}
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {tabs[activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+`;
+
+  const verticalTabsRightCode = `import { Tabs, Typography } from '@nlmk/ds-2.0';
+import { ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['Входящие', 'Мои папки', 'Черновики'];
+
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.right}>
+        {tabs.map((label, index) => (
+          <Tabs.Tab
+            key={label}
+            label={label}
+            active={activeTab === index}
+            onClick={() => setActiveTab(index)}
+          />
+        ))}
+      </Tabs>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {tabs[activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="Tabs"
-        description="Tabs — компонент навигации по связанным разделам интерфейса. Поддерживает compound pattern, бейджи, иконки и горизонтальную прокрутку."
+        description="Tabs — компонент навигации по связанным разделам интерфейса. Поддерживает compound pattern, бейджи, иконки, горизонтальную прокрутку и вертикальную ориентацию."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Tabs"
         figmaLink={FIGMA_LINK}
@@ -109,6 +173,14 @@ export default App;
           <Editor
             description="Прокручиваемый режим через `scrollable` для большого количества вкладок."
             code={scrollableTabsCode}
+          />
+          <Editor
+            description="Вертикальные табы с расположением слева от контента."
+            code={verticalTabsCode}
+          />
+          <Editor
+            description="Вертикальные табы с расположением справа от контента."
+            code={verticalTabsRightCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

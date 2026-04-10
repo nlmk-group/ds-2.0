@@ -20,6 +20,17 @@
   }
 }
 
+.tab-wrapper--vertical {
+  width: 100%;
+  height: auto;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-bottom: none;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  box-sizing: border-box;
+}
+
 .tooltip {
   height: 16px;
   cursor: pointer;
@@ -37,8 +48,26 @@
   }
 }
 
+.text--vertical {
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+}
+
+.label--vertical {
+  overflow: hidden;
+  min-width: 0;
+  display: block;
+}
+
+.label-text--vertical {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .tab-active {
-  border-bottom: 2px solid var(--brand-sapphire-60);
   cursor: text;
   transition: all ease-in-out 0.4s;
   &:hover {
@@ -57,6 +86,19 @@
       color: var(--steel-90);
     }
   }
+}
+
+/* Позиции индикатора */
+.tab-indicator--bottom {
+  border-bottom: 2px solid var(--brand-sapphire-60);
+}
+
+.tab-indicator--left {
+  border-left: 2px solid var(--brand-sapphire-60);
+}
+
+.tab-indicator--right {
+  border-right: 2px solid var(--brand-sapphire-60);
 }
 
 .badge {

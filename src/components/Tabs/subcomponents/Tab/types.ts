@@ -2,6 +2,8 @@ import { PropsWithChildren } from 'react';
 
 import { EBadgeColors } from '@components/Badge/enums';
 
+import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
+
 export interface ITabProps extends PropsWithChildren<any> {
   /** Текстовая метка вкладки */
   label: string;
@@ -26,4 +28,10 @@ export interface ITabProps extends PropsWithChildren<any> {
 
   /** Флаг, указывающий, есть ли у вкладки иконка */
   hasIcon?: boolean;
+
+  /** Ориентация табов (передаётся из родительского Tabs) */
+  orientation?: `${ETabsOrientation}`;
+
+  /** Позиция активного индикатора (передаётся из родительского Tabs) */
+  indicatorPosition?: `${ETabsIndicatorPosition}`;
 }

@@ -214,6 +214,38 @@ export default App;
           <Editor minHeight={200} description="Многострочный режим с ручным изменением размера." code={inputTextareaResizeCode} />
 
           <Editor
+            minHeight={200}
+            description="Иконка слева внутри инпута через startIcon."
+            code={`import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Input
+    label="Поиск"
+    startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+    placeholder="Введите запрос"
+  />
+)`}
+          />
+
+          <Editor
+            minHeight={220}
+            description="Иконка-подсказка рядом с label через helpIcon. Принимает ReactNode — оберните иконку в Tooltip."
+            code={`import { Input, IconHelpOutlined16, Tooltip } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Input
+    label="Email"
+    helpIcon={
+      <Tooltip description="Введите корпоративную почту вида name@nlmk.com">
+        <IconHelpOutlined16 />
+      </Tooltip>
+    }
+    placeholder="name@nlmk.com"
+  />
+)`}
+          />
+
+          <Editor
             minHeight={350}
             description="Переключение в pseudo-режим через проп pseudo."
             code={inputWithPseudoCode}

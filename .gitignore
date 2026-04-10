@@ -32,3 +32,8 @@ tokens.json
 # JSON
 tokens.json
 typographyTokens.json
+
+# AI tools
+.claude
+CLAUDE.md
+GEMINI.md

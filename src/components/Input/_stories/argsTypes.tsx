@@ -1,12 +1,19 @@
 import React from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
-import { IconSearchOutlined16, IconSearchOutlined24, IconSearchOutlined32 } from '@root/src/components';
+import { IconHelpOutlined16, IconSearchOutlined16, IconSearchOutlined24, IconSearchOutlined32 } from '@root/src/components';
 
 const iconOptions = {
+  none: undefined,
   IconSearchOutlined32: <IconSearchOutlined32 />,
   IconSearchOutlined24: <IconSearchOutlined24 />,
   IconSearchOutlined16: <IconSearchOutlined16 />
+};
+
+const startIconOptions = {
+  none: undefined,
+  IconSearchOutlined24: <IconSearchOutlined24 htmlColor="var(--steel-70)" />,
+  IconSearchOutlined16: <IconSearchOutlined16 htmlColor="var(--steel-70)" />
 };
 
 const argsTypes = {
@@ -58,6 +65,38 @@ const argsTypes = {
     options: Object.keys(iconOptions),
     control: { type: 'select' },
     mapping: iconOptions
+  },
+  startIcon: {
+    description: 'Иконка слева внутри инпута. Не отображается в multiline-режиме.',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    options: Object.keys(startIconOptions),
+    control: { type: 'select' },
+    mapping: startIconOptions
+  },
+  helpIcon: {
+    description:
+      'Иконка-подсказка рядом с label. Принимает ReactNode — например, иконку обёрнутую в Tooltip. Работает только при наличии label.',
+    table: {
+      defaultValue: {
+        summary: ''
+      },
+      type: {
+        summary: 'ReactNode'
+      }
+    },
+    options: ['none', 'IconHelpOutlined16'],
+    control: { type: 'select' },
+    mapping: {
+      none: undefined,
+      IconHelpOutlined16: <IconHelpOutlined16 />
+    }
   },
   size: {
     description: 'Свойство, позволяющее регулировать высоту инпута',

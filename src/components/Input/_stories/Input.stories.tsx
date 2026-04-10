@@ -1,7 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Button } from '@components/index';
+import {
+  Button,
+  IconHelpOutlined16,
+  IconSearchOutlined24,
+  Tooltip
+} from '@components/index';
 import { expect, fn } from 'storybook/test';
 import { userEvent, waitFor, within } from 'storybook/test';
 
@@ -198,4 +203,72 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }: { args: any; c
   await userEvent.click(canvas.getByRole('button'));
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
+};
+
+export const InputWithStartIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input
+      label="Поиск"
+      value={value}
+      startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+      placeholder="Введите запрос"
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
+InputWithStartIcon.storyName = 'Input с иконкой слева';
+InputWithStartIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputWithHelpIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input
+      label="Email"
+      value={value}
+      helpIcon={
+        <Tooltip description="Введите корпоративную почту">
+          <IconHelpOutlined16 />
+        </Tooltip>
+      }
+      placeholder="name@nlmk.com"
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
+InputWithHelpIcon.storyName = 'Input с подсказкой на label';
+InputWithHelpIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputWithAllIcons = (): JSX.Element => {
+  const [value, setValue] = useState('Поисковый запрос');
+
+  return (
+    <Input
+      label="Поиск"
+      value={value}
+      startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+      icon={<IconSearchOutlined24 />}
+      helpIcon={
+        <Tooltip description="Введите ключевое слово для поиска">
+          <IconHelpOutlined16 />
+        </Tooltip>
+      }
+      reset
+      onChange={(e) => setValue(e.target.value)}
+      onReset={() => setValue('')}
+    />
+  );
+};
+InputWithAllIcons.storyName = 'Input со всеми иконками';
+InputWithAllIcons.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };

@@ -17,7 +17,9 @@ import styles from './Input.module.scss';
  * @param {boolean} [props.disabled=false] - Флаг отключения инпута.
  * @param {string} [props.label] - Текст метки (label) инпута.
  * @param {boolean} [props.pseudo=false] - Флаг псевдо-инпута.
- * @param {ReactNode} [props.icon] - Иконка инпута.
+ * @param {ReactNode} [props.icon] - Иконка инпута (справа).
+ * @param {ReactNode} [props.startIcon] - Иконка слева внутри инпута.
+ * @param {ReactNode} [props.helpIcon] - Иконка-подсказка рядом с label (например, знак вопроса с тултипом).
  * @param {boolean} [props.multiline=false] - Флаг многострочного режима.
  * @param {boolean} [props.resize=false] - Флаг возможности изменения размера (для textarea).
  * @param {ReactNode} [props.helperText] - Вспомогательный текст.
@@ -44,6 +46,8 @@ const Input: FC<TInputProps> = ({
   label,
   pseudo = false,
   icon,
+  startIcon,
+  helpIcon,
   multiline = false,
   resize = false,
   helperText,
@@ -87,6 +91,7 @@ const Input: FC<TInputProps> = ({
   const colorClassName = styles[color];
   const isResetIconVisible = reset && onReset && value && value.length > 0 && !disabled && !resize;
   const isCustomIconVisible = icon && !multiline;
+  const isStartIconVisible = startIcon && !multiline;
 
   const hasBothIcons = isResetIconVisible && isCustomIconVisible;
   const hasIcon = isCustomIconVisible;
@@ -126,7 +131,8 @@ const Input: FC<TInputProps> = ({
             {
               [styles['textfield--with-icon']]: hasIcon,
               [styles['textfield--with-reset']]: hasReset,
-              [styles['textfield--with-icons']]: hasBothIcons
+              [styles['textfield--with-icons']]: hasBothIcons,
+              [styles['textfield--with-start-icon']]: isStartIconVisible
             },
             colorClassName,
             colored && styles.colored
@@ -141,10 +147,16 @@ const Input: FC<TInputProps> = ({
           {...props}
         />
       )}
+      {isStartIconVisible && (
+        <div className={clsx(styles['start-icon'])} data-ui-input-start-icon>
+          {startIcon}
+        </div>
+      )}
       {label && (
         <label
           className={clsx(styles.label, colorClassName, {
-            [styles['label--with-icon']]: hasIcon
+            [styles['label--with-icon']]: hasIcon,
+            [styles['label--with-start-icon']]: isStartIconVisible
           })}
           htmlFor={id}
           data-ui-input-label
@@ -153,6 +165,11 @@ const Input: FC<TInputProps> = ({
             {label}
             {required && <span className={styles.required}>*</span>}
           </Typography>
+          {helpIcon && (
+            <span className={styles['help-icon']} data-ui-input-help-icon>
+              {helpIcon}
+            </span>
+          )}
         </label>
       )}
       {isResetIconVisible && (

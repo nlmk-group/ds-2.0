@@ -30,7 +30,9 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | placeholder | string | - | Текст плейсхолдера |
 | pseudo | boolean | false | Флаг псевдо-инпута |
 | pseudoInputStyle | CSSProperties | - | Инлайн стили для PseudoInput режима |
-| icon | ReactNode | - | Иконка инпута |
+| icon | ReactNode | - | Иконка справа внутри инпута |
+| startIcon | ReactNode | - | Иконка слева внутри инпута |
+| helpIcon | ReactNode | - | Иконка-подсказка рядом с label (например, знак вопроса с Tooltip) |
 | multiline | boolean | false | Флаг многострочного режима |
 | resize | boolean | false | Флаг возможности изменения размера (для textarea) |
 | helperText | ReactNode | - | Вспомогательный текст |
@@ -58,6 +60,39 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 - `error`
 - `warning`
 - `success`
+
+## Иконка слева (startIcon)
+
+```jsx
+import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+<Input
+  label="Поиск"
+  startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+  placeholder="Введите запрос"
+/>
+```
+
+**Примечание**: `startIcon` не отображается в multiline-режиме.
+
+## Иконка-подсказка (helpIcon)
+
+Иконка рендерится рядом с текстом label. Принимает любой ReactNode — оберните в Tooltip для показа подсказки при наведении:
+
+```jsx
+import { Input, IconHelpOutlined16, Tooltip } from '@nlmk/ds-2.0';
+
+<Input
+  label="Email"
+  helpIcon={
+    <Tooltip description="Введите корпоративную почту">
+      <IconHelpOutlined16 />
+    </Tooltip>
+  }
+/>
+```
+
+**Примечание**: `helpIcon` работает только при наличии `label`.
 
 ## Псевдо-режим
 
@@ -136,6 +171,16 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 
 /* Стилизация кастомной иконки */
 [data-ui-input-custom-icon] {
+  /* стили */
+}
+
+/* Стилизация иконки слева */
+[data-ui-input-start-icon] {
+  /* стили */
+}
+
+/* Стилизация иконки-подсказки у label */
+[data-ui-input-help-icon] {
   /* стили */
 }
 ```

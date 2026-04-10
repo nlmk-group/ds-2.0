@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   overflow: visible;
-  z-index: 1001;
+  z-index: var(--z-raised);
 }
 
 .scrollable {

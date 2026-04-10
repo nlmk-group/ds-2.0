@@ -10,6 +10,7 @@
 @import './tokens/desktop/color/main-color-light.css';
 @import './tokens/light-tokens.css';
 @import './tokens/typography-tokens.css';
+@import './tokens/z-index.css';
 
 * {
   -webkit-font-smoothing: antialiased;

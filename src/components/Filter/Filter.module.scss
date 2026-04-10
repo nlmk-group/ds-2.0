@@ -26,7 +26,7 @@
   flex-direction: column;
   max-height: 248px;
   overflow-y: auto;
-  z-index: 1100;
+  z-index: var(--z-portal);
   right: unset;
 }
 

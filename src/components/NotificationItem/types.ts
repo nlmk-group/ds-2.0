@@ -1,8 +1,8 @@
-import { HTMLAttributes } from 'react';
+import { CSSProperties, HTMLAttributes } from 'react';
 
 import { EBadgeColors } from '@components/Badge/enums';
 
-export interface INotificationItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
+export interface INotificationItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'style'> {
   /**
    * Текст категории уведомлений
    */
@@ -40,4 +40,9 @@ export interface INotificationItemProps extends Omit<HTMLAttributes<HTMLDivEleme
    * Дополнительный CSS класс
    */
   className?: string;
+
+  /**
+   * Inline стили
+   */
+  style?: CSSProperties;
 }

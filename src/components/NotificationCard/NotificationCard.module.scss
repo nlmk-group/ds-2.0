@@ -1,10 +1,14 @@
 .card {
   background: var(--steel-10);
   color: var(--steel-90);
-  border: 1px solid var(--steel-40);
   border-radius: 8px;
-  box-shadow: 0 4px 24px rgba(39, 74, 127, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--brand-sapphire-10);
+  }
 }
 
 .header {
@@ -15,35 +19,39 @@
 }
 
 .unread-dot {
-  width: 6px;
-  height: 6px;
-  min-width: 6px;
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
   border-radius: 50%;
-  background: var(--brand-sapphire-50);
+  background: var(--spectrum-red-40);
 }
 
 .body {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 4px;
   padding: 0 16px 16px;
 }
 
-.text {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-
-  &-expanded {
-    -webkit-line-clamp: unset;
-    line-clamp: unset;
-  }
+.title {
+  width: 100%;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.text {
+  width: 100%;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.text-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  text-overflow: ellipsis;
+}
+
+.toggle {
+  align-self: flex-end;
 }

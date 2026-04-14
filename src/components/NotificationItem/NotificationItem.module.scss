@@ -12,12 +12,9 @@
     background: var(--steel-30);
   }
 
-  &-active {
+  &-active,
+  &-active:hover {
     background: var(--brand-sapphire-10);
-
-    &:hover {
-      background: var(--brand-sapphire-10);
-    }
   }
 }
 

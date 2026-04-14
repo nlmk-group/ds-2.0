@@ -11,23 +11,15 @@ import styles from './NotificationItem.module.scss';
 
 const MAX_DISPLAY_COUNT = 99;
 
-const formatCount = (count: number): string => {
-  return count > MAX_DISPLAY_COUNT ? '99+' : count.toString();
-};
+const formatCount = (count: number): string =>
+  count > MAX_DISPLAY_COUNT ? `${MAX_DISPLAY_COUNT}+` : String(count);
 
 /**
- * Компонент NotificationItem отображает элемент списка уведомлений с текстом категории и бейджем-счётчиком.
- * Может использоваться как часть NotificationPanel или самостоятельно в Dialog/Drawer.
+ * Строка категории уведомлений — текст слева, счётчик-бейдж справа. Кликабельна, доступна
+ * с клавиатуры (Enter/Space). Чаще всего используется как кирпичик для собственной выпадающей
+ * панели, которая появляется при наведении на колокольчик в Header. Подойдёт и как самостоятельный
+ * элемент в любых списках — внутри Drawer, Dialog или собственного layout.
  * @component
- * @param {Object} props - Свойства компонента NotificationItem.
- * @param {string} props.label - Текст категории уведомлений.
- * @param {number} [props.count=0] - Количество уведомлений.
- * @param {EBadgeColors} [props.badgeColor=EBadgeColors.error] - Цвет бейджа.
- * @param {boolean} [props.active=false] - Активный элемент (подсветка).
- * @param {string} [props.value] - Уникальное значение элемента.
- * @param {Function} [props.onClick] - Обработчик клика.
- * @param {string} [props.className] - Дополнительный CSS класс.
- * @returns {JSX.Element} Компонент NotificationItem.
  */
 const NotificationItem: FC<INotificationItemProps> = ({
   label,
@@ -47,7 +39,7 @@ const NotificationItem: FC<INotificationItemProps> = ({
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === 'Enter' || e.code === 'Space') {
         e.preventDefault();
         onClick?.(resolvedValue);
       }

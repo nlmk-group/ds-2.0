@@ -10,14 +10,18 @@ import { IDrawerProps } from '../types';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => {
-  return <Story />;
+  return (
+    <Box className={styles.wrapper} alignItems="center" justifyContent="center">
+      <Story />
+    </Box>
+  );
 };
 
 export default {
   title: 'Components/Drawer/Stories',
   component: Drawer,
   decorators: [withWrapper],
-  argTypes: argsTypes
+  argTypes: argsTypes,
 } as Meta<typeof Drawer>;
 
 export const DrawerDefault = (args: IDrawerProps): ReactNode => {
@@ -53,6 +57,15 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
   );
 };
 DrawerDefault.storyName = 'Drawer по умолчанию';
+DrawerDefault.args = {
+  position: 'right',
+  width: 'var(--drawer-default-width)',
+  height: 'var(--drawer-default-height)',
+  disableBackdropClick: false,
+  isViewCloseButton: true,
+  overlay: true,
+  clickAwayEventType: 'click'
+};
 
 export const DrawerLeft = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,6 +102,10 @@ export const DrawerLeft = (args: IDrawerProps): ReactNode => {
 DrawerLeft.storyName = 'Drawer слева';
 DrawerLeft.args = {
   position: 'left'
+};
+DrawerLeft.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 
 export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
@@ -128,6 +145,10 @@ export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
 DrawerWithoutCloseButton.storyName = 'Drawer без крестика';
 DrawerWithoutCloseButton.args = {
   isViewCloseButton: false
+};
+DrawerWithoutCloseButton.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };
 
 export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
@@ -183,3 +204,7 @@ export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   );
 };
 DrawerWithProfile.storyName = 'Drawer с примером профиля';
+DrawerWithProfile.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};

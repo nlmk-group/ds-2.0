@@ -6,7 +6,7 @@ import { Tabs, Typography } from '@components/index';
 import style from './Tabs.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
-import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from '../enums';
+import { ETabsOrientation, ETabsTabPosition } from '../enums';
 import { ITabProps } from '../subcomponents/Tab/types';
 import argsTypes from './argsTypes';
 
@@ -203,30 +203,6 @@ export const TabsVerticalRight = () => {
 };
 
 TabsVerticalRight.storyName = 'Вертикальные табы (справа)';
-
-export const TabsVerticalIndicatorBottom = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  return (
-    <div style={{ display: 'flex', gap: '16px' }}>
-      <Tabs
-        orientation={ETabsOrientation.vertical}
-        tabPosition={ETabsTabPosition.left}
-        indicatorPosition={ETabsIndicatorPosition.bottom}
-      >
-        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
-        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
-        <Tabs.Tab label="Черновики" active={activeTab === 2} onClick={() => setActiveTab(2)} />
-      </Tabs>
-      <div style={{ padding: '8px' }}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          {['Входящие', 'Мои папки', 'Черновики'][activeTab]}
-        </Typography>
-      </div>
-    </div>
-  );
-};
-
-TabsVerticalIndicatorBottom.storyName = 'Вертикальные табы (индикатор снизу)';
 
 export const TabsVerticalLongLabels = () => {
   const [activeTab, setActiveTab] = useState(0);

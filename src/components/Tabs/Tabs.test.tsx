@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs } from '@components/index';
 import { render } from '@testing-library/react';
 
-import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
+import { ETabsOrientation, ETabsTabPosition } from './enums';
 
 describe('src/components/Tabs', () => {
   test('It should render an Tabs', () => {
@@ -39,15 +39,26 @@ describe('src/components/Tabs', () => {
     expect(tabsContainer.className).toContain('position-right');
   });
 
-  test('It should render vertical Tabs with custom indicator position', () => {
+  test('Vertical tabs (left) use right-side indicator automatically', () => {
     const { container } = render(
-      <Tabs orientation={ETabsOrientation.vertical} indicatorPosition={ETabsIndicatorPosition.bottom}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
         <Tabs.Tab label="Tab 1" active />
       </Tabs>
     );
     const activeTab = container.querySelector('[data-ui-tab]');
-    expect(activeTab).toBeInTheDocument();
-    expect(activeTab?.className).toContain('indicator--bottom');
+    expect(activeTab?.className).toContain('indicator--right');
+    expect(activeTab?.className).not.toContain('indicator--bottom');
+  });
+
+  test('Vertical tabs (right) use left-side indicator automatically', () => {
+    const { container } = render(
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.right}>
+        <Tabs.Tab label="Tab 1" active />
+      </Tabs>
+    );
+    const activeTab = container.querySelector('[data-ui-tab]');
+    expect(activeTab?.className).toContain('indicator--left');
+    expect(activeTab?.className).not.toContain('indicator--bottom');
   });
 
   test('It should render vertical Tabs with maxTabWidth', () => {

@@ -27,7 +27,6 @@ import { ITabProps } from './subcomponents/Tab/types';
  * @param {boolean} [props.scrollable] - Включает возможность прокрутки вкладо��.
  * @param {ETabsOrientation} [props.orientation] - Ориентация табов.
  * @param {ETabsTabPosition} [props.tabPosition] - Позиция панели табов (для вертикального режима).
- * @param {ETabsIndicatorPosition} [props.indicatorPosition] - По��иция активного индикатора.
  * @param {number} [props.maxTabWidth] - Максимальная ширина таба в вертикальном режиме (px).
  * @returns {JSX.Element} - Компонент Tabs.
  */
@@ -41,12 +40,12 @@ const Tabs: FC<ITabsProps> &
   scrollable,
   orientation = ETabsOrientation.horizontal,
   tabPosition = ETabsTabPosition.left,
-  indicatorPosition: indicatorPositionProp,
-  maxTabWidth = 200
+  maxTabWidth
 }) => {
   const isVertical = orientation === ETabsOrientation.vertical;
+  const hasFixedWidth = isVertical && typeof maxTabWidth === 'number';
 
-  const resolvedIndicatorPosition = indicatorPositionProp ?? getDefaultIndicatorPosition(orientation, tabPosition);
+  const resolvedIndicatorPosition = getDefaultIndicatorPosition(orientation, tabPosition);
 
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolledLeft, setIsScrolledLeft] = useState(true);
@@ -98,7 +97,9 @@ const Tabs: FC<ITabsProps> &
     return child;
   });
 
-  const containerStyle = isVertical ? { '--tabs-max-tab-width': `${maxTabWidth}px` } as React.CSSProperties : undefined;
+  const containerStyle = hasFixedWidth
+    ? ({ '--tabs-max-tab-width': `${maxTabWidth}px` } as React.CSSProperties)
+    : undefined;
 
   return (
     <div
@@ -138,7 +139,8 @@ const Tabs: FC<ITabsProps> &
             styles['tabs-wrapper'],
             {
               [styles['tabs-wrapper__scrollable']]: showHorizontalScroll,
-              [styles['tabs-wrapper--vertical']]: isVertical
+              [styles['tabs-wrapper--vertical']]: isVertical,
+              [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth
             }
           )}
         >

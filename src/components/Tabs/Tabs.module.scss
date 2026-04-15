@@ -67,15 +67,20 @@
 
 .tabs-wrapper--vertical {
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-end;
   border-bottom: none;
   border-right: 1px solid var(--steel-50);
-  gap: 0;
-  width: var(--tabs-max-tab-width, 200px);
-  min-width: var(--tabs-max-tab-width, 200px);
+  gap: 16px;
 
   .tabs-container--position-right & {
+    align-items: flex-start;
     border-right: none;
     border-left: 1px solid var(--steel-50);
   }
+}
+
+.tabs-wrapper--vertical-fixed {
+  align-items: stretch;
+  width: var(--tabs-max-tab-width);
+  min-width: var(--tabs-max-tab-width);
 }

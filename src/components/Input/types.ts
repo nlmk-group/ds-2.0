@@ -21,8 +21,6 @@ export interface IInputAdditionalProps {
   icon?: ReactNode;
   /** Иконка слева внутри инпута */
   startIcon?: ReactNode;
-  /** Иконка-подсказка рядом с label (например, знак вопроса с тултипом) */
-  helpIcon?: ReactNode;
   /** Вспомогательный текст */
   helperText?: ReactNode;
   /** Флаг возможности изменения размера (для textarea) */

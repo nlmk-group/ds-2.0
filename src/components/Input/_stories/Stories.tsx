@@ -228,20 +228,19 @@ export default App = () => (
           />
 
           <Editor
-            minHeight={220}
-            description="Иконка-подсказка рядом с label через helpIcon. Принимает ReactNode — оберните иконку в Tooltip."
-            code={`import { Input, IconHelpOutlined16, Tooltip } from '@nlmk/ds-2.0';
+            minHeight={240}
+            description="Иконка-подсказка справа от инпута. Размещается во flex-обёртке как сосед, без отдельного пропа."
+            code={`import { Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <Input
-    label="Email"
-    helpIcon={
-      <Tooltip description="Введите корпоративную почту вида name@nlmk.com">
-        <IconHelpOutlined16 />
-      </Tooltip>
-    }
-    placeholder="name@nlmk.com"
-  />
+  <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', maxWidth: 320 }}>
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <Input label="Email" placeholder="name@nlmk.com" />
+    </div>
+    <Tooltip description="Введите корпоративную почту вида name@nlmk.com">
+      <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+    </Tooltip>
+  </div>
 )`}
           />
 

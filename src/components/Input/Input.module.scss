@@ -243,8 +243,6 @@ input:autofill:focus {
 
 .label {
   position: absolute;
-  display: inline-flex;
-  align-items: center;
   padding: 10px 0;
   left: 16px;
   top: 1px;
@@ -303,14 +301,6 @@ input:autofill:focus {
   color: var(--steel-70);
   background: transparent;
   cursor: text;
-}
-
-.help-icon {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 2px;
-  pointer-events: auto;
-  color: inherit;
 }
 
 .reset {

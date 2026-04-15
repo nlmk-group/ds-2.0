@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { customInputColors } from '@components/declaration';
 import {
   Button,
-  IconHelpOutlined16,
+  IconInfoOutlined24,
   IconSearchOutlined24,
   Tooltip
 } from '@components/index';
@@ -224,25 +224,27 @@ InputWithStartIcon.parameters = {
   previewTabs: { controls: { hidden: true } }
 };
 
-export const InputWithHelpIcon = (): JSX.Element => {
+export const InputWithExternalHelpIcon = (): JSX.Element => {
   const [value, setValue] = useState('');
 
   return (
-    <Input
-      label="Email"
-      value={value}
-      helpIcon={
-        <Tooltip description="Введите корпоративную почту">
-          <IconHelpOutlined16 />
-        </Tooltip>
-      }
-      placeholder="name@nlmk.com"
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', maxWidth: 320 }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <Input
+          label="Email"
+          value={value}
+          placeholder="name@nlmk.com"
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </div>
+      <Tooltip description="Введите корпоративную почту">
+        <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+      </Tooltip>
+    </div>
   );
 };
-InputWithHelpIcon.storyName = 'Input с подсказкой на label';
-InputWithHelpIcon.parameters = {
+InputWithExternalHelpIcon.storyName = 'Input с иконкой-подсказкой справа';
+InputWithExternalHelpIcon.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
@@ -256,11 +258,6 @@ export const InputWithAllIcons = (): JSX.Element => {
       value={value}
       startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
       icon={<IconSearchOutlined24 />}
-      helpIcon={
-        <Tooltip description="Введите ключевое слово для поиска">
-          <IconHelpOutlined16 />
-        </Tooltip>
-      }
       reset
       onChange={(e) => setValue(e.target.value)}
       onReset={() => setValue('')}

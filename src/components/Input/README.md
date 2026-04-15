@@ -32,7 +32,6 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | pseudoInputStyle | CSSProperties | - | Инлайн стили для PseudoInput режима |
 | icon | ReactNode | - | Иконка справа внутри инпута |
 | startIcon | ReactNode | - | Иконка слева внутри инпута |
-| helpIcon | ReactNode | - | Иконка-подсказка рядом с label (например, знак вопроса с Tooltip) |
 | multiline | boolean | false | Флаг многострочного режима |
 | resize | boolean | false | Флаг возможности изменения размера (для textarea) |
 | helperText | ReactNode | - | Вспомогательный текст |
@@ -74,25 +73,6 @@ import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
 ```
 
 **Примечание**: `startIcon` не отображается в multiline-режиме.
-
-## Иконка-подсказка (helpIcon)
-
-Иконка рендерится рядом с текстом label. Принимает любой ReactNode — оберните в Tooltip для показа подсказки при наведении:
-
-```jsx
-import { Input, IconHelpOutlined16, Tooltip } from '@nlmk/ds-2.0';
-
-<Input
-  label="Email"
-  helpIcon={
-    <Tooltip description="Введите корпоративную почту">
-      <IconHelpOutlined16 />
-    </Tooltip>
-  }
-/>
-```
-
-**Примечание**: `helpIcon` работает только при наличии `label`.
 
 ## Псевдо-режим
 
@@ -176,11 +156,6 @@ import { Input, IconHelpOutlined16, Tooltip } from '@nlmk/ds-2.0';
 
 /* Стилизация иконки слева */
 [data-ui-input-start-icon] {
-  /* стили */
-}
-
-/* Стилизация иконки-подсказки у label */
-[data-ui-input-help-icon] {
   /* стили */
 }
 ```

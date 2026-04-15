@@ -19,7 +19,6 @@ import styles from './Input.module.scss';
  * @param {boolean} [props.pseudo=false] - Флаг псевдо-инпута.
  * @param {ReactNode} [props.icon] - Иконка инпута (справа).
  * @param {ReactNode} [props.startIcon] - Иконка слева внутри инпута.
- * @param {ReactNode} [props.helpIcon] - Иконка-подсказка рядом с label (например, знак вопроса с тултипом).
  * @param {boolean} [props.multiline=false] - Флаг многострочного режима.
  * @param {boolean} [props.resize=false] - Флаг возможности изменения размера (для textarea).
  * @param {ReactNode} [props.helperText] - Вспомогательный текст.
@@ -47,7 +46,6 @@ const Input: FC<TInputProps> = ({
   pseudo = false,
   icon,
   startIcon,
-  helpIcon,
   multiline = false,
   resize = false,
   helperText,
@@ -165,11 +163,6 @@ const Input: FC<TInputProps> = ({
             {label}
             {required && <span className={styles.required}>*</span>}
           </Typography>
-          {helpIcon && (
-            <span className={styles['help-icon']} data-ui-input-help-icon>
-              {helpIcon}
-            </span>
-          )}
         </label>
       )}
       {isResetIconVisible && (

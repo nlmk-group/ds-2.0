@@ -151,7 +151,7 @@ export default App = () => {
   );
 }`;
 
-const modalWithTabsCode = `import { Modal, Button, Tabs, Typography, Box, Input, Switch, Divider } from '@nlmk/ds-2.0';
+const modalWithTabsCode = `import { Modal, Button, Tabs, Typography, Box, Input, Switch } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [open, setOpen] = useState(false);
@@ -180,16 +180,14 @@ export default App = () => {
             </div>
             <Input label="Email" placeholder="ivan@nlmk.com" />
             <Input label="Должность" placeholder="Инженер-металлург" />
-            <Divider />
             <Switch
               checked={notifications}
               onChange={() => setNotifications(!notifications)}
               label="Получать уведомления на email"
             />
-            <Divider />
-            <Box display="flex" gap={12} justifyContent="flex-end">
-              <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
+            <Box display="flex" gap={12} justifyContent="flex-start">
               <Button onClick={() => setOpen(false)}>Сохранить</Button>
+              <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
             </Box>
           </Box>
         </Box>
@@ -198,7 +196,7 @@ export default App = () => {
   );
 }`;
 
-const modalOverDrawerCode = `import { Modal, Drawer, Button, Typography, Box, Input, Divider, Chip } from '@nlmk/ds-2.0';
+const modalOverDrawerCode = `import { Modal, Drawer, Button, Typography, Box, Input, Chip } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -256,10 +254,9 @@ export default App = () => {
             <Input label="Исполнитель" value="Петров И.А." />
             <Input label="Комментарий" placeholder="Добавьте комментарий..." multiline />
           </Box>
-          <Divider />
-          <Box display="flex" gap={12} justifyContent="flex-end">
-            <Button variant="secondary" onClick={() => setModalOpen(false)}>Отмена</Button>
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setModalOpen(false)}>Сохранить</Button>
+            <Button variant="secondary" onClick={() => setModalOpen(false)}>Отмена</Button>
           </Box>
         </Box>
       </Modal>
@@ -267,7 +264,7 @@ export default App = () => {
   );
 }`;
 
-const stackedModalsCode = `import { Modal, Button, Typography, Box, Divider } from '@nlmk/ds-2.0';
+const stackedModalsCode = `import { Modal, Button, Typography, Box } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [firstOpen, setFirstOpen] = useState(false);
@@ -328,15 +325,14 @@ export default App = () => {
               <Typography variant="Body1-Medium" color="secondary">Цена</Typography>
               <Typography variant="Body1-Bold">48 200 \\u20BD/т</Typography>
             </Box>
-            <Divider />
             <Box display="flex" justifyContent="space-between" width="100%">
               <Typography variant="Body1-Medium" color="secondary">На складе</Typography>
               <Typography variant="Body1-Bold">12 500 т</Typography>
             </Box>
           </Box>
-          <Box display="flex" gap={12} justifyContent="flex-end">
-            <Button variant="secondary" onClick={() => setSecondOpen(false)}>Отмена</Button>
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setSecondOpen(false)}>Заказать</Button>
+            <Button variant="secondary" onClick={() => setSecondOpen(false)}>Отмена</Button>
           </Box>
         </Box>
       </Modal>
@@ -344,12 +340,26 @@ export default App = () => {
   );
 }`;
 
-const selectInModalCode = `import { Modal, Button, SimpleSelect, OptionItem, Typography, Box, Input, Divider } from '@nlmk/ds-2.0';
+const selectInModalCode = `import { Modal, Button, SimpleSelect, OptionItem, Typography, Box, Input } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [open, setOpen] = useState(false);
   const [city, setCity] = useState('');
   const [dept, setDept] = useState('');
+
+  const cities = [
+    { value: 'lipetsk', label: 'Липецк' },
+    { value: 'starooskol', label: 'Старый Оскол' },
+    { value: 'ekb', label: 'Екатеринбург' },
+    { value: 'kaluga', label: 'Калуга' },
+  ];
+
+  const departments = [
+    { value: 'aglo', label: 'Аглодоменное' },
+    { value: 'steel', label: 'Сталеплавильное' },
+    { value: 'prokat', label: 'Прокатное' },
+    { value: 'energy', label: 'Энергетическое' },
+  ];
 
   return (
     <Box display="flex" flexDirection="column" gap={12} width="100%">
@@ -372,10 +382,11 @@ export default App = () => {
               onChange={(val) => setCity(val)}
               withPortal
             >
-              <OptionItem value="lipetsk">Липецк</OptionItem>
-              <OptionItem value="starooskol">Старый Оскол</OptionItem>
-              <OptionItem value="ekb">Екатеринбург</OptionItem>
-              <OptionItem value="kaluga">Калуга</OptionItem>
+              {cities.map(({ value, label }) => (
+                <OptionItem key={value} value={value} label={label}>
+                  <Typography variant="Body1-Medium">{label}</Typography>
+                </OptionItem>
+              ))}
             </SimpleSelect>
             <SimpleSelect
               label="Подразделение"
@@ -383,16 +394,16 @@ export default App = () => {
               onChange={(val) => setDept(val)}
               withPortal
             >
-              <OptionItem value="aglo">Аглодоменное</OptionItem>
-              <OptionItem value="steel">Сталеплавильное</OptionItem>
-              <OptionItem value="prokat">Прокатное</OptionItem>
-              <OptionItem value="energy">Энергетическое</OptionItem>
+              {departments.map(({ value, label }) => (
+                <OptionItem key={value} value={value} label={label}>
+                  <Typography variant="Body1-Medium">{label}</Typography>
+                </OptionItem>
+              ))}
             </SimpleSelect>
           </Box>
-          <Divider />
-          <Box display="flex" gap={12} justifyContent="flex-end">
-            <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setOpen(false)}>Добавить</Button>
+            <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
           </Box>
         </Box>
       </Modal>
@@ -400,11 +411,18 @@ export default App = () => {
   );
 }`;
 
-const datePickerInModalCode = `import { Modal, Button, DatePicker, SimpleSelect, OptionItem, Input, Typography, Box, Divider } from '@nlmk/ds-2.0';
+const datePickerInModalCode = `import { Modal, Button, DatePicker, SimpleSelect, OptionItem, Input, Typography, Box } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [open, setOpen] = useState(false);
   const [priority, setPriority] = useState('');
+
+  const priorities = [
+    { value: 'critical', label: 'Критический' },
+    { value: 'high', label: 'Высокий' },
+    { value: 'medium', label: 'Средний' },
+    { value: 'low', label: 'Низкий' },
+  ];
 
   return (
     <Box display="flex" flexDirection="column" gap={12} width="100%">
@@ -423,18 +441,18 @@ export default App = () => {
               onChange={(val) => setPriority(val)}
               withPortal
             >
-              <OptionItem value="critical">Критический</OptionItem>
-              <OptionItem value="high">Высокий</OptionItem>
-              <OptionItem value="medium">Средний</OptionItem>
-              <OptionItem value="low">Низкий</OptionItem>
+              {priorities.map(({ value, label }) => (
+                <OptionItem key={value} value={value} label={label}>
+                  <Typography variant="Body1-Medium">{label}</Typography>
+                </OptionItem>
+              ))}
             </SimpleSelect>
             <DatePicker onChange={() => {}} withPortal />
             <Input label="Описание" placeholder="Подробное описание задачи..." multiline />
           </Box>
-          <Divider />
-          <Box display="flex" gap={12} justifyContent="flex-end">
-            <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setOpen(false)}>Создать</Button>
+            <Button variant="secondary" onClick={() => setOpen(false)}>Отмена</Button>
           </Box>
         </Box>
       </Modal>
@@ -527,7 +545,7 @@ export default App = () => {
           <Typography variant="Body1-Medium">
             Модалка (--z-modal: 1100) перекрывает Sidebar (--z-sidebar: 1000) и его подменю.
           </Typography>
-          <Box display="flex" gap={12} justifyContent="flex-end">
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setModalOpen(false)}>Закрыть</Button>
           </Box>
         </Box>
@@ -578,6 +596,18 @@ const dropdownCode = `import { SimpleSelect, OptionItem, Dropdown, DropdownMenuI
 export default App = () => {
   const [value, setValue] = useState('');
 
+  const options = [
+    { value: 'opt1', label: 'Вариант 1' },
+    { value: 'opt2', label: 'Вариант 2' },
+    { value: 'opt3', label: 'Вариант 3' },
+  ];
+
+  const actions = [
+    { value: 'action1', label: 'Действие 1' },
+    { value: 'action2', label: 'Действие 2' },
+    { value: 'action3', label: 'Действие 3' },
+  ];
+
   return (
     <Box display="flex" flexDirection="column" gap={16} width="100%">
       <Typography variant="Body2-Medium" color="secondary">
@@ -586,22 +616,26 @@ export default App = () => {
       <Box display="flex" gap={24} alignItems="flex-start" flexWrap="wrap">
         <Box st={{ width: '220px' }}>
           <SimpleSelect label="Выбор" value={value} onChange={(val) => setValue(val)}>
-            <OptionItem value="opt1">Вариант 1</OptionItem>
-            <OptionItem value="opt2">Вариант 2</OptionItem>
-            <OptionItem value="opt3">Вариант 3</OptionItem>
+            {options.map(({ value, label }) => (
+              <OptionItem key={value} value={value} label={label}>
+                <Typography variant="Body1-Medium">{label}</Typography>
+              </OptionItem>
+            ))}
           </SimpleSelect>
         </Box>
         <Dropdown buttonChildren="Dropdown" menuStyle={{ minWidth: '180px' }}>
-          <DropdownMenuItem value="action1" onClick={() => {}}>Действие 1</DropdownMenuItem>
-          <DropdownMenuItem value="action2" onClick={() => {}}>Действие 2</DropdownMenuItem>
-          <DropdownMenuItem value="action3" onClick={() => {}}>Действие 3</DropdownMenuItem>
+          {actions.map(({ value, label }) => (
+            <DropdownMenuItem key={value} value={value} onClick={() => {}}>
+              <Typography variant="Body1-Medium">{label}</Typography>
+            </DropdownMenuItem>
+          ))}
         </Dropdown>
       </Box>
     </Box>
   );
 }`;
 
-const stackedModalWithSelectCode = `import { Modal, Button, SimpleSelect, OptionItem, Input, Typography, Box, Divider, Chip } from '@nlmk/ds-2.0';
+const stackedModalWithSelectCode = `import { Modal, Button, SimpleSelect, OptionItem, Input, Typography, Box, Chip } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [firstOpen, setFirstOpen] = useState(false);
@@ -612,6 +646,13 @@ export default App = () => {
     { id: 'INC-401', title: 'Перегрев подшипника на конвейере Л2', severity: 'error' },
     { id: 'INC-402', title: 'Отклонение температуры в печи #5', severity: 'warning' },
     { id: 'INC-403', title: 'Повышенная вибрация редуктора', severity: 'warning' },
+  ];
+
+  const assignees = [
+    { value: 'ivanov', label: 'Иванов А.С. — мастер участка' },
+    { value: 'petrov', label: 'Петров И.А. — механик' },
+    { value: 'sidorov', label: 'Сидоров К.В. — энергетик' },
+    { value: 'kozlov', label: 'Козлов Д.М. — начальник смены' },
   ];
 
   return (
@@ -663,17 +704,17 @@ export default App = () => {
               onChange={(val) => setAssignee(val)}
               withPortal
             >
-              <OptionItem value="ivanov">Иванов А.С. — мастер участка</OptionItem>
-              <OptionItem value="petrov">Петров И.А. — механик</OptionItem>
-              <OptionItem value="sidorov">Сидоров К.В. — энергетик</OptionItem>
-              <OptionItem value="kozlov">Козлов Д.М. — начальник смены</OptionItem>
+              {assignees.map(({ value, label }) => (
+                <OptionItem key={value} value={value} label={label}>
+                  <Typography variant="Body1-Medium">{label}</Typography>
+                </OptionItem>
+              ))}
             </SimpleSelect>
             <Input label="Комментарий" placeholder="Инструкции для исполнителя..." multiline />
           </Box>
-          <Divider />
-          <Box display="flex" gap={12} justifyContent="flex-end">
-            <Button variant="secondary" onClick={() => setSecondOpen(false)}>Отмена</Button>
+          <Box display="flex" gap={12} justifyContent="flex-start">
             <Button onClick={() => setSecondOpen(false)}>Назначить</Button>
+            <Button variant="secondary" onClick={() => setSecondOpen(false)}>Отмена</Button>
           </Box>
         </Box>
       </Modal>
@@ -681,7 +722,7 @@ export default App = () => {
   );
 }`;
 
-const complexCode = `import { Drawer, Modal, Button, SimpleSelect, OptionItem, Tooltip, Input, Typography, Box, Divider, Chip } from '@nlmk/ds-2.0';
+const complexCode = `import { Drawer, Modal, Button, SimpleSelect, OptionItem, Tooltip, Input, Typography, Box, Chip } from '@nlmk/ds-2.0';
 
 export default App = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -692,6 +733,12 @@ export default App = () => {
     { name: 'Конвейер Л-1', status: 'Норма', color: 'success' },
     { name: 'Печь #5', status: 'Внимание', color: 'warning' },
     { name: 'Прокатный стан #3', status: 'Авария', color: 'error' },
+  ];
+
+  const shifts = [
+    { value: '1', label: 'Смена 1 (08:00–20:00)' },
+    { value: '2', label: 'Смена 2 (20:00–08:00)' },
+    { value: '3', label: 'Внеплановый ремонт' },
   ];
 
   return (
@@ -743,18 +790,19 @@ export default App = () => {
               onChange={(val) => setShift(val)}
               withPortal
             >
-              <OptionItem value="1">Смена 1 (08:00–20:00)</OptionItem>
-              <OptionItem value="2">Смена 2 (20:00–08:00)</OptionItem>
-              <OptionItem value="3">Внеплановый ремонт</OptionItem>
+              {shifts.map(({ value, label }) => (
+                <OptionItem key={value} value={value} label={label}>
+                  <Typography variant="Body1-Medium">{label}</Typography>
+                </OptionItem>
+              ))}
             </SimpleSelect>
             <Input label="Описание неисправности" placeholder="Опишите проблему..." multiline />
           </Box>
-          <Divider />
-          <Box display="flex" gap={12} justifyContent="flex-end" alignItems="center">
+          <Box display="flex" gap={12} justifyContent="flex-start" alignItems="center">
+            <Button onClick={() => setModalOpen(false)}>Отправить заявку</Button>
             <Tooltip title="Заявка будет направлена начальнику смены и механику" placement="top">
               <Button variant="secondary">Кому уйдёт?</Button>
             </Tooltip>
-            <Button onClick={() => setModalOpen(false)}>Отправить заявку</Button>
           </Box>
         </Box>
       </Modal>

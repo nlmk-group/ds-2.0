@@ -22,6 +22,7 @@ const Tab: FC<ITabProps> = ({
   hasBadge,
   orientation = ETabsOrientation.horizontal,
   indicatorPosition = ETabsIndicatorPosition.bottom,
+  fixedWidth = false,
   ...props
 }: ITabProps) => {
   const isTooltipChild = (children as any)?.type === DSTooltip;
@@ -32,10 +33,10 @@ const Tab: FC<ITabProps> = ({
   const [isOverflowed, setIsOverflowed] = useState(false);
 
   useEffect(() => {
-    if (isVertical && labelRef.current) {
+    if (isVertical && fixedWidth && labelRef.current) {
       setIsOverflowed(labelRef.current.scrollWidth > labelRef.current.clientWidth);
     }
-  }, [label, isVertical]);
+  }, [label, isVertical, fixedWidth]);
 
   const indicatorClass = `tab-indicator--${indicatorPosition}`;
 
@@ -45,7 +46,7 @@ const Tab: FC<ITabProps> = ({
       data-ui-tab-label
       className={clsx(isVertical && styles['label--vertical'])}
     >
-      <span ref={labelRef} className={clsx(isVertical && styles['label-text--vertical'])}>
+      <span ref={labelRef} className={clsx(isVertical && styles['label-text--vertical'], isVertical && fixedWidth && styles['label-text--vertical-fixed'])}>
         {label}
       </span>
     </Typography>
@@ -64,7 +65,7 @@ const Tab: FC<ITabProps> = ({
       data-ui-tab
     >
       <span className={clsx(styles.text, active && styles['text-active'], isVertical && styles['text--vertical'])}>
-        {isVertical && isOverflowed ? (
+        {isVertical && fixedWidth && isOverflowed ? (
           <DSTooltip
             render={<Typography variant="Caption-Medium">{label}</Typography>}
           >

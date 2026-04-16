@@ -39,6 +39,9 @@ export interface ITabProps extends PropsWithChildren<any> {
 
   /** Позиция активного индикатора (передаётся из родительского Tabs) */
   indicatorPosition?: ETabsIndicatorPosition;
+
+  /** Флаг фиксированной ширины таба (передаётся из родительского Tabs при maxTabWidth) */
+  fixedWidth?: boolean;
 }
 
 /**

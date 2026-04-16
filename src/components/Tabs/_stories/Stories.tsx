@@ -71,11 +71,13 @@ const App = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <Tabs scrollable={true}>
-      {tabLabels.map((label, index) => (
-        <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
-      ))}
-    </Tabs>
+    <div style={{ maxWidth: 480, padding: '0 48px', marginLeft: -20, marginRight: -20 }}>
+      <Tabs scrollable={true}>
+        {tabLabels.map((label, index) => (
+          <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
+        ))}
+      </Tabs>
+    </div>
   );
 };
 
@@ -101,7 +103,7 @@ const App = () => {
           />
         ))}
       </Tabs>
-      <div style={{ padding: '8px' }}>
+      <div style={{ padding: '8px', width: 200 }}>
         <Typography variant="Heading4" color="var(--steel-90)">
           {tabs[activeTab]}
         </Typography>
@@ -122,6 +124,11 @@ const App = () => {
 
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
+      <div style={{ padding: '8px', width: 200 }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {tabs[activeTab]}
+        </Typography>
+      </div>
       <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.right}>
         {tabs.map((label, index) => (
           <Tabs.Tab
@@ -132,11 +139,6 @@ const App = () => {
           />
         ))}
       </Tabs>
-      <div style={{ padding: '8px' }}>
-        <Typography variant="Heading4" color="var(--steel-90)">
-          {tabs[activeTab]}
-        </Typography>
-      </div>
     </div>
   );
 };

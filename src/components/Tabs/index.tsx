@@ -91,7 +91,8 @@ const Tabs: FC<ITabsProps> &
     if (isValidElement<ITabProps>(child) && child.type === Tab) {
       return React.cloneElement(child, {
         orientation,
-        indicatorPosition: resolvedIndicatorPosition
+        indicatorPosition: resolvedIndicatorPosition,
+        fixedWidth: hasFixedWidth
       });
     }
     return child;

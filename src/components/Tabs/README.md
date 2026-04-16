@@ -28,8 +28,7 @@ export default App;
 
 ```jsx
 import React, { useState } from 'react';
-import { Tabs } from '@nlmk/ds-2.0';
-import { ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
+import { Tabs, ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -60,7 +59,7 @@ export default App;
 | orientation       | ETabsOrientation       | 'horizontal'   | Ориентация табов (горизонтальная или вертикальная).                          |
 | tabPosition       | ETabsTabPosition       | 'left'         | Позиция панели табов относительно контента (для вертикального режима).       |
 | indicatorPosition | ETabsIndicatorPosition | auto           | Позиция активного индикатора. По умолчанию зависит от ориентации.           |
-| maxTabWidth       | number                 | 200            | Максимальная ширина таба в вертикальном режиме (px).                        |
+| maxTabWidth       | number                 | -              | Максимальная ширина таба в вертикальном режиме (px). Без этого пропа длинный текст переносится на новые строки. С этим пропом — обрезается ellipsis в одну строку с tooltip при наведении. |
 
 ### Tab
 

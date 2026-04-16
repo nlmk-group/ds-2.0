@@ -56,6 +56,7 @@ const Tab: FC<ITabProps> = ({
     <div
       className={clsx(
         styles['tab-wrapper'],
+        indicatorPosition === ETabsIndicatorPosition.top && styles['tab-wrapper--top'],
         active && styles['tab-active'],
         active && styles[indicatorClass],
         isVertical && styles['tab-wrapper--vertical'],

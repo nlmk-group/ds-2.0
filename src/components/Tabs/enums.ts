@@ -16,6 +16,8 @@ export enum ETabsTabPosition {
 
 /** Позиция активного индикатора. По умолчанию зависит от ориентации: horizontal → bottom, vertical+left → right, vertical+right → left */
 export enum ETabsIndicatorPosition {
+  /** Сверху */
+  top = 'top',
   /** Снизу (по умолчанию для горизонтальных табов) */
   bottom = 'bottom',
   /** Слева (по умолчанию для vertical + tabPosition=right) */

@@ -156,6 +156,27 @@ export const TabsScrollable = (args: ITabProps) => {
 
 TabsScrollable.storyName = 'Табы с возможностью скролла';
 
+export const TabsTopIndicator = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Спам', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+      <Tabs indicatorPosition="top">
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Спам" active={activeTab === 2} onClick={() => setActiveTab(2)} />
+        <Tabs.Tab label="Черновики" active={activeTab === 3} onClick={() => setActiveTab(3)} />
+      </Tabs>
+    </div>
+  );
+};
+
+TabsTopIndicator.storyName = 'Табы с индикатором сверху';
+
 export const TabsVerticalLeft = () => {
   const [activeTab, setActiveTab] = useState(0);
   return (

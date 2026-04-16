@@ -8,7 +8,7 @@ import Tooltip from '@components/Tooltip';
 import { ITooltipProps } from '@components/Tooltip/types';
 import clsx from 'clsx';
 
-import { ETabsOrientation, ETabsTabPosition } from './enums';
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
 import { getDefaultIndicatorPosition } from './helpers';
 import { ITabsProps } from './types';
 
@@ -40,12 +40,14 @@ const Tabs: FC<ITabsProps> &
   scrollable,
   orientation = ETabsOrientation.horizontal,
   tabPosition = ETabsTabPosition.left,
-  maxTabWidth
+  maxTabWidth,
+  indicatorPosition
 }) => {
   const isVertical = orientation === ETabsOrientation.vertical;
   const hasFixedWidth = isVertical && typeof maxTabWidth === 'number';
 
-  const resolvedIndicatorPosition = getDefaultIndicatorPosition(orientation, tabPosition);
+  const resolvedIndicatorPosition = indicatorPosition || getDefaultIndicatorPosition(orientation, tabPosition);
+  const isTopIndicator = resolvedIndicatorPosition === ETabsIndicatorPosition.top;
 
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolledLeft, setIsScrolledLeft] = useState(true);
@@ -141,7 +143,8 @@ const Tabs: FC<ITabsProps> &
             {
               [styles['tabs-wrapper__scrollable']]: showHorizontalScroll,
               [styles['tabs-wrapper--vertical']]: isVertical,
-              [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth
+              [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth,
+              [styles['tabs-wrapper--top']]: isTopIndicator
             }
           )}
         >

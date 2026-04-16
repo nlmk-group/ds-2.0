@@ -1,6 +1,6 @@
 import { EBadgeColors } from '@components/Badge/enums';
 
-import { ETabsOrientation, ETabsTabPosition } from '../enums';
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from '../enums';
 
 const argsTypes = {
   children: {
@@ -37,6 +37,16 @@ const argsTypes = {
     table: {
       defaultValue: {
         summary: ETabsTabPosition.left
+      }
+    }
+  },
+  indicatorPosition: {
+    description: `Позиция активного индикатора – <b>${Object.values(ETabsIndicatorPosition).join(' | ')}</b>`,
+    options: Object.values(ETabsIndicatorPosition),
+    control: { type: 'select' },
+    table: {
+      defaultValue: {
+        summary: ETabsIndicatorPosition.bottom
       }
     }
   },

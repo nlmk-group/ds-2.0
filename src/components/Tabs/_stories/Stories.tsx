@@ -84,6 +84,37 @@ const App = () => {
 export default App;
 `;
 
+  const topIndicatorCode = `import { useState } from 'react';
+import { Tabs, Typography } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['Входящие', 'Мои папки', 'Спам', 'Черновики'];
+
+  return (
+    <>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {tabs[activeTab]}
+        </Typography>
+      </div>
+      <Tabs indicatorPosition="top">
+        {tabs.map((label, index) => (
+          <Tabs.Tab
+            key={label}
+            label={label}
+            active={activeTab === index}
+            onClick={() => setActiveTab(index)}
+          />
+        ))}
+      </Tabs>
+    </>
+  );
+};
+
+export default App;
+`;
+
   const verticalTabsCode = `import { useState } from 'react';
 import { Tabs, Typography, ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
 
@@ -169,6 +200,10 @@ export default App;
           <Editor
             description="Базовое использование: переключение активной вкладки, бейдж и подсказка с иконкой."
             code={defaultTabsCode}
+          />
+          <Editor
+            description="Индикатор активной вкладки сверху через indicatorPosition='top'."
+            code={topIndicatorCode}
           />
           <Editor
             description="Прокручиваемый режим через `scrollable` для большого количества вкладок."

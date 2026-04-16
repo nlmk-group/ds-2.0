@@ -1,4 +1,4 @@
-import { ETabsOrientation, ETabsTabPosition } from './enums';
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
 
 export interface ITabsProps {
   /** Дочерние элементы, представляющие содержимое вкладок */
@@ -18,4 +18,7 @@ export interface ITabsProps {
 
   /** Максимальная ширина таба в вертикальном режиме (px). При установке включает режим фиксированной ширины колонки с ellipsis у длинных лейблов */
   maxTabWidth?: number;
+
+  /** Позиция активного индикатора. По умолчанию: horizontal → bottom, vertical+left → right, vertical+right → left */
+  indicatorPosition?: `${ETabsIndicatorPosition}`;
 }

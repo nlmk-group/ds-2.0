@@ -12,7 +12,7 @@ const argsTypes = {
     control: { type: 'text' }
   },
   scrollable: {
-    description: 'Флаг, указывающий, разрешено ли скроллирование вкладок',
+    description: 'Флаг, указывающий, разрешено ли скроллирование вкладок (горизонтальное и вертикальное)',
     control: { type: 'boolean' },
     table: {
       defaultValue: {

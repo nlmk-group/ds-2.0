@@ -88,16 +88,18 @@
 }
 
 /* Позиции индикатора */
+$indicator-border: 2px solid var(--brand-sapphire-60);
+
 .tab-indicator--bottom {
-  border-bottom: 2px solid var(--brand-sapphire-60);
+  border-bottom: $indicator-border;
 }
 
 .tab-indicator--left {
-  border-left: 2px solid var(--brand-sapphire-60);
+  border-left: $indicator-border;
 }
 
 .tab-indicator--right {
-  border-right: 2px solid var(--brand-sapphire-60);
+  border-right: $indicator-border;
 }
 
 .badge {

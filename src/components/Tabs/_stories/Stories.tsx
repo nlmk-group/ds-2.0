@@ -82,9 +82,8 @@ const App = () => {
 export default App;
 `;
 
-  const verticalTabsCode = `import { Tabs, Typography } from '@nlmk/ds-2.0';
-import { ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
-import { useState } from 'react';
+  const verticalTabsCode = `import { useState } from 'react';
+import { Tabs, Typography, ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -114,9 +113,8 @@ const App = () => {
 export default App;
 `;
 
-  const verticalTabsRightCode = `import { Tabs, Typography } from '@nlmk/ds-2.0';
-import { ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
-import { useState } from 'react';
+  const verticalTabsRightCode = `import { useState } from 'react';
+import { Tabs, Typography, ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(0);

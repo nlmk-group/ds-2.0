@@ -72,7 +72,7 @@ $border-active: 4px solid var(--brand-sapphire-50);
   right: 0;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 9999;
+  z-index: var(--z-modal);
   background: var(--steel-90);
   display: flex;
   flex-direction: column;

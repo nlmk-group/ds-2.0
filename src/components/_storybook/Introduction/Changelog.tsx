@@ -23,6 +23,36 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.30.0 - <span className={styles.date}>16.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен проп startIcon для размещения иконки слева внутри инпута
+              </li>
+            </li>
+            <li>
+              • Добавлена{' '}
+              <Link href="./?path=/docs/tokens-z-index-info--docs" target="blank" className={styles['link-changelog']}>
+                система z-index токенов
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Введены CSS-переменные для управления z-index: --z-base, --z-raised, --z-dropdown, --z-sticky, --z-sidebar, --z-drawer, --z-modal, --z-modal-stacked, --z-portal, --z-tooltip
+              </li>
+              <li className={styles['left-padding']}>
+                - Компоненты переведены на использование z-index токенов
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.29.2 - <span className={styles.date}>06.04.26</span>
           </Typography>
           <ul className={styles.list}>

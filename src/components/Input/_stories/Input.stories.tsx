@@ -230,7 +230,7 @@ export const InputWithExternalHelpIcon = (): JSX.Element => {
 
   return (
     <Box display="flex" alignItems="center" gap={8} width="100%" maxWidth={320}>
-      <Box st={{ flex: 1, minWidth: 0 }}>
+      <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
         <Input
           label="Email"
           value={value}
@@ -248,6 +248,33 @@ export const InputWithExternalHelpIcon = (): JSX.Element => {
 };
 InputWithExternalHelpIcon.storyName = 'Input с иконкой-подсказкой справа';
 InputWithExternalHelpIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputMultilineWithExternalHelpIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Box display="flex" alignItems="flex-start" gap={8} width="100%" maxWidth={320}>
+      <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
+        <Input
+          multiline
+          label="Label"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Box>
+      <Box display="flex" st={{ lineHeight: 0 }}>
+        <Tooltip description="Подсказка к полю ввода">
+          <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+        </Tooltip>
+      </Box>
+    </Box>
+  );
+};
+InputMultilineWithExternalHelpIcon.storyName = 'Textarea с иконкой-подсказкой справа';
+InputMultilineWithExternalHelpIcon.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

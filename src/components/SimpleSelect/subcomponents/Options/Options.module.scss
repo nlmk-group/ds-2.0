@@ -1,6 +1,6 @@
 .options {
   overflow-y: auto;
-  z-index: 100000;
+  z-index: var(--z-portal);
   margin-top: 0;
 }
 

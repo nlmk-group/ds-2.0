@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
 import {
+  Box,
   Button,
   IconInfoOutlined24,
   IconSearchOutlined24,
@@ -228,19 +229,21 @@ export const InputWithExternalHelpIcon = (): JSX.Element => {
   const [value, setValue] = useState('');
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', maxWidth: 320 }}>
-      <div style={{ flex: 1, minWidth: 0 }}>
+    <Box display="flex" alignItems="center" gap={8} width="100%" maxWidth={320}>
+      <Box st={{ flex: 1, minWidth: 0 }}>
         <Input
           label="Email"
           value={value}
-          placeholder="name@nlmk.com"
+          placeholder="steel@nlmk.com"
           onChange={(e) => setValue(e.target.value)}
         />
-      </div>
-      <Tooltip description="Введите корпоративную почту">
-        <IconInfoOutlined24 htmlColor="var(--steel-70)" />
-      </Tooltip>
-    </div>
+      </Box>
+      <Box display="flex" st={{ lineHeight: 0 }}>
+        <Tooltip description="Введите корпоративную почту">
+          <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+        </Tooltip>
+      </Box>
+    </Box>
   );
 };
 InputWithExternalHelpIcon.storyName = 'Input с иконкой-подсказкой справа';

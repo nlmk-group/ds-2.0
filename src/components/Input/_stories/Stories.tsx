@@ -229,18 +229,20 @@ export default App = () => (
 
           <Editor
             minHeight={240}
-            description="Иконка-подсказка справа от инпута. Размещается во flex-обёртке как сосед, без отдельного пропа."
-            code={`import { Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
+            description="Иконка-подсказка справа от инпута. Размещается рядом с компонентом через flex-контейнер Box."
+            code={`import { Box, Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', maxWidth: 320 }}>
-    <div style={{ flex: 1, minWidth: 0 }}>
-      <Input label="Email" placeholder="name@nlmk.com" />
-    </div>
-    <Tooltip description="Введите корпоративную почту вида name@nlmk.com">
-      <IconInfoOutlined24 htmlColor="var(--steel-70)" />
-    </Tooltip>
-  </div>
+  <Box display="flex" alignItems="center" gap={8} width="100%" maxWidth={320}>
+    <Box st={{ flex: 1, minWidth: 0 }}>
+      <Input label="Email" placeholder="steel@nlmk.com" />
+    </Box>
+    <Box display="flex" st={{ lineHeight: 0 }}>
+      <Tooltip description="Введите корпоративную почту вида steel@nlmk.com">
+        <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+      </Tooltip>
+    </Box>
+  </Box>
 )`}
           />
 

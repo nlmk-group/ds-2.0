@@ -1,7 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import { Button } from '@components/index';
+import {
+  Box,
+  Button,
+  IconInfoOutlined24,
+  IconSearchOutlined24,
+  Tooltip
+} from '@components/index';
 import { expect, fn } from 'storybook/test';
 import { userEvent, waitFor, within } from 'storybook/test';
 
@@ -198,4 +204,98 @@ InputPseudoDefaultChecking.play = async ({ args, canvasElement }: { args: any; c
   await userEvent.click(canvas.getByRole('button'));
   args.onChange();
   await waitFor(() => expect(args.onChange).toHaveBeenCalled());
+};
+
+export const InputWithStartIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input
+      label="Поиск"
+      value={value}
+      startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+      placeholder="Введите запрос"
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
+InputWithStartIcon.storyName = 'Input с иконкой слева';
+InputWithStartIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputWithExternalHelpIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Box display="flex" alignItems="center" gap={8} width="100%" maxWidth={320}>
+      <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
+        <Input
+          label="Email"
+          value={value}
+          placeholder="steel@nlmk.com"
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Box>
+      <Box display="flex" st={{ lineHeight: 0 }}>
+        <Tooltip description="Введите корпоративную почту">
+          <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+        </Tooltip>
+      </Box>
+    </Box>
+  );
+};
+InputWithExternalHelpIcon.storyName = 'Input с иконкой-подсказкой справа';
+InputWithExternalHelpIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputMultilineWithExternalHelpIcon = (): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <Box display="flex" alignItems="flex-start" gap={8} width="100%" maxWidth={320}>
+      <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
+        <Input
+          multiline
+          label="Label"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Box>
+      <Box display="flex" st={{ lineHeight: 0 }}>
+        <Tooltip description="Подсказка к полю ввода">
+          <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+        </Tooltip>
+      </Box>
+    </Box>
+  );
+};
+InputMultilineWithExternalHelpIcon.storyName = 'Textarea с иконкой-подсказкой справа';
+InputMultilineWithExternalHelpIcon.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const InputWithAllIcons = (): JSX.Element => {
+  const [value, setValue] = useState('Поисковый запрос');
+
+  return (
+    <Input
+      label="Поиск"
+      value={value}
+      startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+      icon={<IconSearchOutlined24 />}
+      reset
+      onChange={(e) => setValue(e.target.value)}
+      onReset={() => setValue('')}
+    />
+  );
+};
+InputWithAllIcons.storyName = 'Input со всеми иконками';
+InputWithAllIcons.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
 };

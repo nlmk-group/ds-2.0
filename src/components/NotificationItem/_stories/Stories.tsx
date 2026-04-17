@@ -33,6 +33,7 @@ const Stories = (): JSX.Element => {
       <Header
         title={COMPONENT_NAME}
         description="Строка категории уведомлений — текст слева, счётчик-бейдж справа. Кликабельна, доступна с клавиатуры. Чаще всего используется как кирпичик для собственной выпадающей панели, которая появляется при наведении на колокольчик в Header. Подойдёт и как самостоятельный элемент в любых списках — внутри Drawer, Dialog или собственного layout."
+        isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
       />

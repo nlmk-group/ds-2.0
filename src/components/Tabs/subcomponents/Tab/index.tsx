@@ -46,7 +46,7 @@ const Tab: FC<ITabProps> = ({
       data-ui-tab-label
       className={clsx(isVertical && styles['label--vertical'])}
     >
-      <span ref={labelRef} className={clsx(isVertical && styles['label-text--vertical'], isVertical && fixedWidth && styles['label-text--vertical-fixed'])}>
+      <span ref={labelRef} className={clsx(isVertical && styles['label-text--vertical'])}>
         {label}
       </span>
     </Typography>
@@ -65,7 +65,7 @@ const Tab: FC<ITabProps> = ({
       {...props}
       data-ui-tab
     >
-      <span className={clsx(styles.text, active && styles['text-active'], isVertical && styles['text--vertical'])}>
+      <span className={clsx(styles.text, active && styles['text-active'], isVertical && styles['text--vertical'], isVertical && fixedWidth && styles['text--vertical-fixed'])}>
         {isVertical && fixedWidth && isOverflowed ? (
           <DSTooltip
             render={<Typography variant="Caption-Medium">{label}</Typography>}

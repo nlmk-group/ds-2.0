@@ -71,7 +71,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div style={{ maxWidth: 480, padding: '0 48px', marginLeft: -20, marginRight: -20 }}>
+    <div style={{ maxWidth: 480, padding: '0 48px', marginInline: -20 }}>
       <Tabs scrollable={true}>
         {tabLabels.map((label, index) => (
           <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />

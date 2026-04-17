@@ -3,6 +3,8 @@ import { FC, PropsWithChildren } from 'react';
 import { TIconProps } from '@components/Icon/types';
 import { ITooltipProps } from '@components/Tooltip/types';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
+
 /**
  * Свойства компонента вкладки (Tab).
  * Интерфейс, описывающий свойства, принимаемые компонентом вкладки.
@@ -31,6 +33,15 @@ export interface ITabProps extends PropsWithChildren<any> {
 
   /** Флаг, указывающий, есть ли у вкладки иконка */
   hasIcon?: boolean;
+
+  /** Ориентация табов (передаётся из родительского Tabs) */
+  orientation?: ETabsOrientation;
+
+  /** Позиция активного индикатора (передаётся из родительского Tabs) */
+  indicatorPosition?: ETabsIndicatorPosition;
+
+  /** Флаг фиксированной ширины таба (передаётся из родительского Tabs при maxTabWidth) */
+  fixedWidth?: boolean;
 }
 
 /**
@@ -46,13 +57,26 @@ export interface ITabsProps {
 
   /** Флаг, указывающий, должны ли вкладки быть прокручиваемыми */
   scrollable?: boolean;
+
+  /** Ориентация табов (горизонтальная или вертикальная) */
+  orientation?: ETabsOrientation;
+
+  /** Позиция панели табов относительно контента (для вертикального режима) */
+  tabPosition?: ETabsTabPosition;
+
+  /** Максимальная ширина таба в вертикальном режиме (px). При установке включает режим фиксированной ширины колонки с ellipsis у длинных лейблов */
+  maxTabWidth?: number;
+
+  /** Позиция активного индикатора. По умолчанию: horizontal → bottom, vertical+left → right, vertical+right → left */
+  indicatorPosition?: ETabsIndicatorPosition;
 }
 
 /**
  * Компонент Tabs предоставляет вкладки с возможностью прокрутки.
+ * Поддерживает горизонтальную и вертикальную ориентацию.
  */
-declare const Tabs: FC<ITabs> & {
-  Tab: FC<ITab>;
+declare const Tabs: FC<ITabsProps> & {
+  Tab: FC<ITabProps>;
   Tooltip: FC<ITooltipProps>;
   Icon: FC<TIconProps>;
 };

@@ -1,22 +1,6 @@
 import { EClickAwayEvent } from '@components/ClickAwayListener/types';
 
 export const argsTypes = {
-  isOpen: {
-    description: 'Определяет, открыт ли Drawer',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      },
-      type: {
-        summary: 'boolean'
-      }
-    },
-    control: { type: 'boolean' }
-  },
-  onClose: {
-    description: 'Callback, вызываемый при закрытии Drawer',
-    action: 'закрыт Drawer'
-  },
   position: {
     description: 'Позиция отображения Drawer',
     table: {
@@ -33,10 +17,6 @@ export const argsTypes = {
   },
   overlayClassName: {
     description: 'Дополнительный класс для оверлея Drawer',
-    control: { type: 'text' }
-  },
-  children: {
-    description: 'Содержимое Drawer',
     control: { type: 'text' }
   },
   width: {
@@ -56,6 +36,14 @@ export const argsTypes = {
       type: {
         summary: 'boolean'
       }
+    },
+    control: { type: 'boolean' }
+  },
+  isViewCloseButton: {
+    description: 'Отображает кнопку закрытия Drawer',
+    table: {
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' }
     },
     control: { type: 'boolean' }
   },

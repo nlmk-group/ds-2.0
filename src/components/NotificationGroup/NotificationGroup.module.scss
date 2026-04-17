@@ -1,0 +1,101 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 24px;
+  transition: padding-bottom 0.3s ease;
+}
+
+.group-open {
+  padding-bottom: 8px;
+}
+
+.stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: -24px;
+  transition: margin-bottom 0.3s ease;
+}
+
+.stack-open {
+  align-items: flex-start;
+  margin-bottom: -8px;
+}
+
+.stack-close {
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.front {
+  width: 100%;
+  position: relative;
+}
+
+.front-close {
+  z-index: 3;
+  margin-bottom: -24px;
+}
+
+.rest-wrap {
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.rest-wrap-open {
+  opacity: 1;
+}
+
+.rest-wrap-settled {
+  overflow: visible;
+}
+
+.rest-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.rest {
+  width: 100%;
+}
+
+.peek {
+  background: var(--steel-10);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  height: 32px;
+  margin-bottom: -24px;
+}
+
+.peek-1 {
+  width: calc(100% - 16px);
+  z-index: 2;
+}
+
+.peek-2 {
+  width: calc(100% - 32px);
+  z-index: 1;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: -24px;
+  position: relative;
+  z-index: 4;
+  transition: margin-bottom 0.3s ease;
+}
+
+.toggle-wrapper-open {
+  margin-bottom: -8px;
+}

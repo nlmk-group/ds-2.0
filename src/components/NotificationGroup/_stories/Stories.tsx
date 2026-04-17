@@ -170,8 +170,7 @@ export default App = () => {
                     <Badge color="brand" variant="solid" size="l">{group.category}</Badge>
                   </Box>
                   <Box alignItems="center" justifyContent="space-between">
-                    <Box alignItems="center" gap={8}>
-                      {group.unread && <Box st={{ width: 8, height: 8, minWidth: 8, flexShrink: 0, borderRadius: '50%', background: 'var(--brand-sapphire-60)' }} />}
+                    <Box alignItems="center">
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
                     </Box>
                     <Button type="button" size="xs" variant="primary" color="ghost">Отметить все как прочитанные</Button>

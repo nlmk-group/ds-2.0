@@ -226,18 +226,7 @@ export const NotificationGroupInDrawer = () => {
                     </Badge>
                   </Box>
                   <Box alignItems="center" justifyContent="space-between">
-                    <Box alignItems="center" gap={8}>
-                      {group.unread && (
-                        <Box
-                          st={{
-                            width: 8,
-                            height: 8,
-                            minWidth: 8,
-                            borderRadius: '50%',
-                            background: 'var(--brand-sapphire-60)'
-                          }}
-                        />
-                      )}
+                    <Box alignItems="center">
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">
                         {group.title}
                       </Typography>

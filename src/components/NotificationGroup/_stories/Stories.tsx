@@ -102,7 +102,7 @@ export default App = () => (
           />
           <Editor
             minHeight={500}
-            description="Главный прод-кейс: Drawer «История уведомлений» с табами, свитчем «Только непрочитанные», категориями-группами. Каждая категория оборачивает карточки в NotificationGroup для колоды/раскрытия."
+            description="Группа из 3 карточек-уведомлений в свёрнутом виде (колода). Клик по тумблеру раскрывает."
             code={`import { useState } from 'react';
 import { Badge, Box, Button, Drawer, Header, NotificationCard, NotificationGroup, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
 

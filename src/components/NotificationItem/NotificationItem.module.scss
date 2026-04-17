@@ -8,6 +8,10 @@
   background: var(--steel-10);
   transition: background-color 0.2s ease;
 
+  [data-ui-badge] {
+    cursor: inherit;
+  }
+
   &:hover {
     background: var(--steel-30);
   }

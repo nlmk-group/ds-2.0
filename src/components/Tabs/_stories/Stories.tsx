@@ -67,12 +67,15 @@ const tabLabels = [
   'Логи'
 ];
 
+// Прокрутка работает автоматически: компонент через ResizeObserver
+// отслеживает переполнение и сам показывает стрелки навигации.
+// Проп scrollable передавать НЕ нужно.
 const App = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div style={{ maxWidth: 480, padding: '0 48px', marginInline: -20 }}>
-      <Tabs scrollable={true}>
+      <Tabs>
         {tabLabels.map((label, index) => (
           <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
         ))}
@@ -206,7 +209,7 @@ export default App;
             code={topIndicatorCode}
           />
           <Editor
-            description="Прокручиваемый режим через `scrollable` для большого количества вкладок."
+            description="Автоматическая прокрутка со стрелками навигации при переполнении контейнера. Работает через ResizeObserver без дополнительных пропов."
             code={scrollableTabsCode}
           />
           <Editor

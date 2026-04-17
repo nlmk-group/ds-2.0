@@ -50,14 +50,14 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={260}
-            description="Базовая карточка с длинным текстом уведомления АСУ НЛМК. Кнопка «Показать больше» появляется автоматически, если текст обрезается в preview."
+            description="Базовая карточка с длинным текстом уведомления. Кнопка «Показать больше» появляется автоматически, если текст обрезается в preview."
             code={`import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
 export default App = () => (
   <Box st={{ maxWidth: 772 }}>
     <NotificationCard
-      title="Отклонение химсостава плавки №4512"
-      body="Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3. Фактическое значение 0,42% при нормативе 0,35–0,40%. Технологу ЛПЦ-2 требуется принять решение о корректировке режима продувки и подтвердить возможность дальнейшего передела металла до окончания смены."
+      title="Планирование графика отпусков на следующий год"
+      body="Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования — до 30 апреля."
       timestamp="сегодня, 14:13"
       unread
     />
@@ -72,8 +72,8 @@ export default App = () => (
 export default App = () => (
   <Box st={{ maxWidth: 772 }}>
     <NotificationCard
-      title="Конвертер К-3 выведен на рабочий режим"
-      body="Плавка принята ОТК."
+      title="Заявка на отпуск одобрена"
+      body="Руководитель согласовал ваш отпуск с 12 по 25 мая."
       timestamp="сегодня, 14:13"
     />
   </Box>
@@ -81,31 +81,31 @@ export default App = () => (
           />
           <Editor
             minHeight={500}
-            description="Использование внутри Drawer «История уведомлений» АСУ НЛМК: табы по категориям, свитч «Только непрочитанные», группы с заголовком и NotificationCard внутри."
+            description="Использование внутри Drawer «История уведомлений»: табы по категориям, свитч «Только непрочитанные», группы с заголовком и NotificationCard внутри."
             code={`import { useState } from 'react';
 import { Badge, Box, Button, Drawer, Header, NotificationCard, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
 
 const tabItems = [
-  { label: 'Контроль качества', count: 4, badgeColor: 'error' },
-  { label: 'Технологические процессы', count: 12, badgeColor: 'error' },
-  { label: 'Производственные задания', count: 99, badgeColor: 'brand' }
+  { label: 'Требуется сделать', count: 2, badgeColor: 'error' },
+  { label: 'Важно ознакомиться', count: 7, badgeColor: 'error' },
+  { label: 'Для информации', count: 115, badgeColor: 'brand' }
 ];
 
 const groups = [
   {
     id: '1',
-    category: 'Контроль качества',
-    title: 'Отклонения по плавкам и прокату требуют внимания технолога',
+    category: 'График отпусков',
+    title: 'Планирование графика отпусков на следующий год',
     unread: true,
-    body: 'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3. Фактическое значение 0,42% при нормативе 0,35–0,40%. Технологу ЛПЦ-2 требуется принять решение о корректировке режима продувки.',
+    body: 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования — до 30 апреля.',
     timestamp: 'сегодня, 14:13'
   },
   {
     id: '2',
-    category: 'Технологические процессы',
-    title: 'Плановые ремонты и сервисные работы',
+    category: 'Обучение',
+    title: 'Новый корпоративный курс доступен для записи',
     unread: true,
-    body: 'Сервис «Производственный план» уведомляет о плановой остановке стана горячей прокатки 2000 с 18.04.2026 на 72 часа для замены опорных валков. Объём выпуска перераспределён на ЛПЦ-2.',
+    body: 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.',
     timestamp: 'сегодня, 11:45'
   }
 ];
@@ -117,7 +117,7 @@ export default App = () => {
 
   return (
     <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="АСУ НЛМК" showNotification notificationAmount={115} onNotificationClick={() => setIsOpen((p) => !p)} />
+      <Header title="Портал сотрудника" showNotification notificationAmount={115} onNotificationClick={() => setIsOpen((p) => !p)} />
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position="right" width="820px">
         <Box flexDirection="column" gap={32} st={{ padding: '32px 32px 48px' }} color="var(--steel-90)">
           <Typography variant="Heading2">Уведомления</Typography>
@@ -144,7 +144,7 @@ export default App = () => {
                   </Box>
                   <Box alignItems="center" justifyContent="space-between">
                     <Box alignItems="center" gap={8}>
-                      {group.unread && <Box st={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--spectrum-red-40)' }} />}
+                      {group.unread && <Box st={{ width: 8, height: 8, minWidth: 8, flexShrink: 0, borderRadius: '50%', background: 'var(--spectrum-red-60)' }} />}
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
                     </Box>
                     <Button type="button" size="xs" variant="secondary" color="brand">Отметить все как прочитанные</Button>
@@ -172,8 +172,8 @@ export default App = () => {
   return (
     <Box st={{ maxWidth: 772 }}>
       <NotificationCard
-        title="Плановый ремонт прокатного стана 2000"
-        body="Сервис «Производственный план» уведомляет о плановой остановке стана горячей прокатки 2000 с 18.04.2026 на 72 часа для замены опорных валков. Объём выпуска на период ремонта перераспределён на ЛПЦ-2."
+        title="Новый корпоративный курс доступен для записи"
+        body="Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля."
         timestamp="сегодня, 14:13"
         expanded={expanded}
         onExpandedChange={setExpanded}

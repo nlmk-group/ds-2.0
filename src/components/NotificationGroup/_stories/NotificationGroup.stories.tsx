@@ -40,30 +40,30 @@ export default {
 };
 
 const body1 =
-  'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3. Фактическое значение 0,42% при нормативе 0,35–0,40%. Технологу ЛПЦ-2 требуется принять решение о корректировке режима продувки и подтвердить возможность дальнейшего передела металла.';
+  'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования.';
 const body2 =
-  'Сервис «Производственный план» уведомляет о плановой остановке стана горячей прокатки 2000 с 18.04.2026 на 72 часа для замены опорных валков. Объём выпуска на период ремонта перераспределён на ЛПЦ-2.';
+  'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.';
 const body3 =
-  'Технологический регламент для стали S355J2 обновлён. Изменены требования к ударной вязкости при −40°C и микроструктуре после термической обработки. Ознакомьтесь с новой редакцией и подтвердите.';
+  'Бухгалтерия сформировала справку 2-НДФЛ за 2025 год. Документ доступен для скачивания в личном кабинете. Электронная подпись действительна в течение 30 дней.';
 const body4 =
-  'Датчики доменной печи №6 зафиксировали превышение температуры футеровки на горизонте +9,2 м. Сработала предупредительная сигнализация. Требуется внеплановый осмотр бригадой ремонтной службы.';
+  'Ваша заявка на удалённую работу 15 апреля одобрена руководителем. Не забудьте заранее подготовить доступ к корпоративным сервисам через VPN.';
 
 const cards = [
   <NotificationCard
     key="1"
-    title="Отклонение химсостава плавки №4512"
+    title="Планирование графика отпусков на следующий год"
     body={body1}
     timestamp="сегодня, 14:13"
     unread
   />,
   <NotificationCard
     key="2"
-    title="Плановый ремонт прокатного стана 2000"
+    title="Новый корпоративный курс доступен для записи"
     body={body2}
     timestamp="сегодня, 12:00"
     unread
   />,
-  <NotificationCard key="3" title="Обновление регламента стали S355J2" body={body3} timestamp="вчера, 18:30" />
+  <NotificationCard key="3" title="Справка 2-НДФЛ за 2025 год готова" body={body3} timestamp="вчера, 18:30" />
 ];
 
 export const DefaultNotificationGroup = (argTypes: INotificationGroupProps) => {
@@ -103,14 +103,14 @@ export const NotificationGroupTwo = () => {
     <Box st={{ maxWidth: 772, width: '100%' }}>
       <NotificationGroup>
         <NotificationCard
-          title="Превышение температуры кладки"
+          title="Заявка на удалённую работу одобрена"
           body={body4}
           timestamp="сегодня, 14:13"
           unread
         />
         <NotificationCard
-          title="Смена опорных валков"
-          body="Требуется согласование времени остановки стана."
+          title="Подтвердите участие в тренинге"
+          body="Требуется подтверждение участия в тренинге по тайм-менеджменту 22 апреля."
           timestamp="сегодня, 12:00"
         />
       </NotificationGroup>
@@ -121,49 +121,34 @@ export const NotificationGroupTwo = () => {
 NotificationGroupTwo.storyName = 'NotificationGroup из 2 карточек';
 NotificationGroupTwo.parameters = { controls: { disable: true } };
 
+const vacationBody =
+  'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования — до 30 апреля.';
+
 const mockNotificationGroups = [
   {
     id: '1',
-    category: 'Контроль качества',
-    title: 'Отклонения по плавкам и прокату требуют внимания технолога',
+    category: 'График отпусков',
+    title: 'Планирование графика отпусков на следующий год',
     unread: true,
     cards: [
       {
-        title: 'Отклонение химсостава плавки №4512',
-        body: body1,
+        title: 'Планирование графика отпусков на следующий календарный год',
+        body: vacationBody,
         timestamp: 'сегодня, 14:13',
         unread: true
-      },
-      {
-        title: 'Несоответствие толщины листа в партии П-8897',
-        body: 'Контролёр ОТК ЛПЦ-2 зафиксировал отклонение толщины листа в партии П-8897 на ±0,3 мм от допуска. Требуется решение по переделу или отгрузке как некондиции.',
-        timestamp: 'сегодня, 12:00',
-        unread: true
-      },
-      {
-        title: 'Обновление регламента стали S355J2',
-        body: body3,
-        timestamp: 'вчера, 18:30',
-        unread: false
       }
     ]
   },
   {
     id: '2',
-    category: 'Технологические процессы',
-    title: 'Плановые ремонты и сервисные работы',
+    category: 'График отпусков',
+    title: 'Планирование графика отпусков на следующий год сотрудника',
     unread: true,
     cards: [
       {
-        title: 'Плановый ремонт прокатного стана 2000',
-        body: body2,
-        timestamp: 'сегодня, 11:45',
-        unread: true
-      },
-      {
-        title: 'Утверждение графика ППР на май 2026',
-        body: 'Главный механик направил на согласование график планово-предупредительных ремонтов по всем цехам на май 2026. Требуется согласование до 25.04.2026.',
-        timestamp: 'вчера, 16:20',
+        title: 'Планирование графика отпусков на следующий календарный год',
+        body: vacationBody,
+        timestamp: 'сегодня, 14:13',
         unread: true
       }
     ]
@@ -171,9 +156,9 @@ const mockNotificationGroups = [
 ];
 
 const tabItems = [
-  { label: 'Контроль качества', count: 4, badgeColor: EBadgeColors.error },
-  { label: 'Технологические процессы', count: 12, badgeColor: EBadgeColors.error },
-  { label: 'Производственные задания', count: 99, badgeColor: EBadgeColors.brand }
+  { label: 'Требуется сделать', count: 2, badgeColor: EBadgeColors.error },
+  { label: 'Важно ознакомиться', count: 7, badgeColor: EBadgeColors.error },
+  { label: 'Для информации', count: 115, badgeColor: EBadgeColors.brand }
 ];
 
 export const NotificationGroupInDrawer = () => {
@@ -184,7 +169,7 @@ export const NotificationGroupInDrawer = () => {
   return (
     <Box st={{ position: 'relative', width: '100%' }}>
       <Header
-        title="АСУ НЛМК"
+        title="Портал сотрудника"
         showNotification
         notificationAmount={115}
         onNotificationClick={() => setIsOpen((prev) => !prev)}
@@ -193,7 +178,7 @@ export const NotificationGroupInDrawer = () => {
         <Box flexDirection="column" gap={32} st={{ padding: '32px 32px 48px' }} color="var(--steel-90)">
           <Typography variant="Heading2">Уведомления</Typography>
 
-          <Box flexDirection="column" gap={24}>
+          <Box flexDirection="column" gap={16}>
             <Tabs>
               {tabItems.map((item, index) => (
                 <Tabs.Tab
@@ -232,7 +217,7 @@ export const NotificationGroupInDrawer = () => {
                             height: 8,
                             minWidth: 8,
                             borderRadius: '50%',
-                            background: 'var(--spectrum-red-40)'
+                            background: 'var(--spectrum-red-60)'
                           }}
                         />
                       )}

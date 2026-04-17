@@ -28,7 +28,7 @@ export default {
 };
 
 const longBody =
-  'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3. Фактическое значение 0,42% при нормативе 0,35–0,40%. Технологу ЛПЦ-2 требуется принять решение о корректировке режима продувки и подтвердить возможность дальнейшего передела металла до окончания смены.';
+  'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования — до 30 апреля.';
 
 export const DefaultNotificationCard = (argTypes: INotificationCardProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(argTypes.expanded ?? false);
@@ -55,7 +55,7 @@ export const DefaultNotificationCard = (argTypes: INotificationCardProps) => {
 
 DefaultNotificationCard.storyName = 'NotificationCard по умолчанию';
 DefaultNotificationCard.args = {
-  title: 'Отклонение химсостава плавки №4512',
+  title: 'Планирование графика отпусков на следующий год',
   body: longBody,
   timestamp: 'сегодня, 14:13',
   unread: true,
@@ -66,8 +66,8 @@ export const NotificationCardShort = () => {
   return (
     <Box st={{ maxWidth: 772, width: '100%' }}>
       <NotificationCard
-        title="Конвертер К-3 выведен на рабочий режим"
-        body="Плавка принята ОТК."
+        title="Заявка на отпуск одобрена"
+        body="Руководитель согласовал ваш отпуск с 12 по 25 мая."
         timestamp="сегодня, 14:13"
       />
     </Box>
@@ -81,7 +81,7 @@ export const NotificationCardExpanded = () => {
   return (
     <Box st={{ maxWidth: 772, width: '100%' }}>
       <NotificationCard
-        title="Плановый ремонт прокатного стана 2000"
+        title="Новый корпоративный курс доступен для записи"
         body={longBody}
         timestamp="сегодня, 14:13"
         unread
@@ -98,7 +98,7 @@ export const NotificationCardRead = () => {
   return (
     <Box st={{ maxWidth: 772, width: '100%' }}>
       <NotificationCard
-        title="Обновление технологической инструкции ТИ-ЛПЦ-15"
+        title="Справка 2-НДФЛ за 2025 год готова"
         body={longBody}
         timestamp="вчера, 10:00"
       />

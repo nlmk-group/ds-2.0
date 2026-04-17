@@ -50,14 +50,14 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={280}
-            description="Сборка hover-панели уведомлений АСУ НЛМК: Header с кнопкой-колокольчиком, hover-детект через DOM, курсор-pointer на колокольчике и счётчике, список NotificationItem внутри. Основной кейс использования компонента."
+            description="Сборка hover-панели уведомлений: Header с кнопкой-колокольчиком, hover-детект через DOM, курсор-pointer на колокольчике и счётчике, список NotificationItem внутри. Основной кейс использования компонента."
             code={`import { useCallback, useEffect, useRef, useState } from 'react';
 import { Box, Header, NotificationItem, Typography } from '@nlmk/ds-2.0';
 
 const items = [
-  { label: 'Контроль качества', count: 4, badgeColor: 'error' },
-  { label: 'Технологические процессы', count: 12, badgeColor: 'error' },
-  { label: 'Производственные задания', count: 99, badgeColor: 'brand' }
+  { label: 'Требуется сделать', count: 2, badgeColor: 'error' },
+  { label: 'Важно ознакомиться', count: 7, badgeColor: 'error' },
+  { label: 'Для информации', count: 115, badgeColor: 'brand' }
 ];
 
 export default App = () => {
@@ -94,7 +94,7 @@ export default App = () => {
 
   return (
     <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="АСУ НЛМК" showNotification notificationAmount={115} />
+      <Header title="Портал сотрудника" showNotification notificationAmount={115} />
       {open && (
         <div ref={panelRef} style={{ position: 'absolute', top: '100%', right: 0, zIndex: 1100 }}>
           <Box
@@ -134,9 +134,9 @@ export default App = () => {
 
 export default App = () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 270 }}>
-    <NotificationItem label="Контроль качества" count={4} active onClick={(v) => console.log(v)} />
-    <NotificationItem label="Технологические процессы" count={12} onClick={(v) => console.log(v)} />
-    <NotificationItem label="Производственные задания" count={150} badgeColor="brand" />
+    <NotificationItem label="Отпуска и отгулы" count={4} active onClick={(v) => console.log(v)} />
+    <NotificationItem label="Обучение и развитие" count={12} onClick={(v) => console.log(v)} />
+    <NotificationItem label="Корпоративные новости" count={150} badgeColor="brand" />
     <NotificationItem label="Прокатное производство" count={0} />
   </div>
 )`}

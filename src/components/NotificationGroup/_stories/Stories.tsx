@@ -50,19 +50,19 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={320}
-            description="Группа из 3 карточек-уведомлений АСУ НЛМК в свёрнутом виде (колода). Клик по тумблеру раскрывает."
+            description="Группа из 3 карточек-уведомлений в свёрнутом виде (колода). Клик по тумблеру раскрывает."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
-const body1 = 'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3.';
-const body2 = 'Сервис «Производственный план» уведомляет о плановой остановке стана горячей прокатки 2000 с 18.04.2026 на 72 часа.';
-const body3 = 'Технологический регламент для стали S355J2 обновлён. Изменены требования к ударной вязкости при −40°C.';
+const body1 = 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга.';
+const body2 = 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00.';
+const body3 = 'Бухгалтерия сформировала справку 2-НДФЛ за 2025 год. Документ доступен для скачивания в личном кабинете.';
 
 export default App = () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup>
-      <NotificationCard title="Отклонение химсостава плавки №4512" body={body1} timestamp="сегодня, 14:13" unread />
-      <NotificationCard title="Плановый ремонт прокатного стана 2000" body={body2} timestamp="сегодня, 12:00" unread />
-      <NotificationCard title="Обновление регламента стали S355J2" body={body3} timestamp="вчера, 18:30" />
+      <NotificationCard title="Планирование графика отпусков на следующий год" body={body1} timestamp="сегодня, 14:13" unread />
+      <NotificationCard title="Новый корпоративный курс доступен для записи" body={body2} timestamp="сегодня, 12:00" unread />
+      <NotificationCard title="Справка 2-НДФЛ за 2025 год готова" body={body3} timestamp="вчера, 18:30" />
     </NotificationGroup>
   </Box>
 )`}
@@ -72,16 +72,16 @@ export default App = () => (
             description="Та же группа сразу в раскрытом виде. Карточки 2..N появляются с slide-down анимацией 0.3s."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
-const body1 = 'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3.';
-const body2 = 'Сервис «Производственный план» уведомляет о плановой остановке стана горячей прокатки 2000 с 18.04.2026 на 72 часа.';
-const body3 = 'Технологический регламент для стали S355J2 обновлён. Изменены требования к ударной вязкости при −40°C.';
+const body1 = 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга.';
+const body2 = 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00.';
+const body3 = 'Бухгалтерия сформировала справку 2-НДФЛ за 2025 год. Документ доступен для скачивания в личном кабинете.';
 
 export default App = () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup defaultOpen>
-      <NotificationCard title="Отклонение химсостава плавки №4512" body={body1} timestamp="сегодня, 14:13" unread />
-      <NotificationCard title="Плановый ремонт прокатного стана 2000" body={body2} timestamp="сегодня, 12:00" unread />
-      <NotificationCard title="Обновление регламента стали S355J2" body={body3} timestamp="вчера, 18:30" />
+      <NotificationCard title="Планирование графика отпусков на следующий год" body={body1} timestamp="сегодня, 14:13" unread />
+      <NotificationCard title="Новый корпоративный курс доступен для записи" body={body2} timestamp="сегодня, 12:00" unread />
+      <NotificationCard title="Справка 2-НДФЛ за 2025 год готова" body={body3} timestamp="вчера, 18:30" />
     </NotificationGroup>
   </Box>
 )`}
@@ -94,42 +94,42 @@ export default App = () => (
 export default App = () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup>
-      <NotificationCard title="Превышение температуры кладки доменной печи" body="Датчики доменной печи №6 зафиксировали превышение температуры футеровки." timestamp="сегодня, 14:13" unread />
-      <NotificationCard title="Смена опорных валков" body="Требуется согласование времени остановки стана." timestamp="сегодня, 12:00" />
+      <NotificationCard title="Заявка на отпуск ожидает согласования" body="Анна Иванова отправила заявку на отпуск с 12 по 25 мая. Требуется ваше согласование." timestamp="сегодня, 14:13" unread />
+      <NotificationCard title="Подтвердите участие в тренинге" body="Требуется подтверждение участия в тренинге по тайм-менеджменту 22 апреля." timestamp="сегодня, 12:00" />
     </NotificationGroup>
   </Box>
 )`}
           />
           <Editor
             minHeight={500}
-            description="Главный прод-кейс: Drawer «История уведомлений» АСУ НЛМК с табами, свитчем «Только непрочитанные», категориями-группами. Каждая категория оборачивает карточки в NotificationGroup для колоды/раскрытия."
+            description="Главный прод-кейс: Drawer «История уведомлений» с табами, свитчем «Только непрочитанные», категориями-группами. Каждая категория оборачивает карточки в NotificationGroup для колоды/раскрытия."
             code={`import { useState } from 'react';
 import { Badge, Box, Button, Drawer, Header, NotificationCard, NotificationGroup, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
 
 const tabItems = [
-  { label: 'Контроль качества', count: 4, badgeColor: 'error' },
-  { label: 'Технологические процессы', count: 12, badgeColor: 'error' },
-  { label: 'Производственные задания', count: 99, badgeColor: 'brand' }
+  { label: 'Требуется сделать', count: 2, badgeColor: 'error' },
+  { label: 'Важно ознакомиться', count: 7, badgeColor: 'error' },
+  { label: 'Для информации', count: 115, badgeColor: 'brand' }
 ];
 
 const groups = [
   {
     id: '1',
-    category: 'Контроль качества',
-    title: 'Отклонения по плавкам и прокату требуют внимания технолога',
+    category: 'График отпусков',
+    title: 'Планирование графика отпусков на следующий год',
     unread: true,
     cards: [
-      { title: 'Отклонение химсостава плавки №4512', body: 'Сервис «Контроль качества» сообщает об отклонении содержания углерода в плавке №4512 на конвертере К-3. Фактическое значение 0,42% при нормативе 0,35–0,40%.', timestamp: 'сегодня, 14:13', unread: true },
-      { title: 'Несоответствие толщины листа П-8897', body: 'Контролёр ОТК ЛПЦ-2 зафиксировал отклонение толщины листа в партии П-8897 на ±0,3 мм от допуска.', timestamp: 'сегодня, 12:00', unread: true }
+      { title: 'Планирование графика отпусков на следующий календарный год', body: 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке.', timestamp: 'сегодня, 14:13', unread: true },
+      { title: 'Заявка на отпуск ожидает согласования', body: 'Анна Иванова отправила заявку на отпуск с 12 по 25 мая. Требуется ваше согласование до 10 апреля.', timestamp: 'сегодня, 12:00', unread: true }
     ]
   },
   {
     id: '2',
-    category: 'Технологические процессы',
-    title: 'Плановые ремонты и сервисные работы',
+    category: 'Обучение',
+    title: 'Новый корпоративный курс доступен для записи',
     unread: true,
     cards: [
-      { title: 'Плановый ремонт прокатного стана 2000', body: 'Остановка стана горячей прокатки 2000 с 18.04.2026 на 72 часа для замены опорных валков.', timestamp: 'сегодня, 11:45', unread: true }
+      { title: 'Запись на курс «Эффективное общение в команде»', body: 'Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.', timestamp: 'сегодня, 11:45', unread: true }
     ]
   }
 ];
@@ -141,7 +141,7 @@ export default App = () => {
 
   return (
     <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="АСУ НЛМК" showNotification notificationAmount={115} onNotificationClick={() => setIsOpen((p) => !p)} />
+      <Header title="Портал сотрудника" showNotification notificationAmount={115} onNotificationClick={() => setIsOpen((p) => !p)} />
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position="right" width="820px">
         <Box flexDirection="column" gap={32} st={{ padding: '32px 32px 48px' }} color="var(--steel-90)">
           <Typography variant="Heading2">Уведомления</Typography>
@@ -168,7 +168,7 @@ export default App = () => {
                   </Box>
                   <Box alignItems="center" justifyContent="space-between">
                     <Box alignItems="center" gap={8}>
-                      {group.unread && <Box st={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--spectrum-red-40)' }} />}
+                      {group.unread && <Box st={{ width: 8, height: 8, minWidth: 8, flexShrink: 0, borderRadius: '50%', background: 'var(--spectrum-red-60)' }} />}
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
                     </Box>
                     <Button type="button" size="xs" variant="secondary" color="brand">Отметить все как прочитанные</Button>

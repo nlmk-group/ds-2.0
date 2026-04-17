@@ -39,18 +39,18 @@ export const DefaultNotificationItem = (argTypes: INotificationItemProps) => {
 
 DefaultNotificationItem.storyName = 'NotificationItem по умолчанию';
 DefaultNotificationItem.args = {
-  label: 'Контроль качества',
+  label: 'Отпуска и отгулы',
   count: 4,
   badgeColor: EBadgeColors.error,
-  active: true
+  active: false
 };
 
 export const NotificationItemEmpty = () => {
   return (
     <Box flexDirection="column" gap={4} maxWidth={270}>
-      <NotificationItem label="Конвертерное производство" count={0} />
-      <NotificationItem label="Доменное производство" count={0} />
-      <NotificationItem label="Прокатное производство" count={0} />
+      <NotificationItem label="Обучение и развитие" count={0} />
+      <NotificationItem label="Заявки и обращения" count={0} />
+      <NotificationItem label="Корпоративные новости" count={0} />
     </Box>
   );
 };
@@ -113,14 +113,14 @@ export const NotificationItemWithHeader = () => {
   }, []);
 
   const items = [
-    { label: 'Контроль качества', count: 4, badgeColor: EBadgeColors.error },
-    { label: 'Технологические процессы', count: 12, badgeColor: EBadgeColors.error },
-    { label: 'Производственные задания', count: 999, badgeColor: EBadgeColors.brand }
+    { label: 'Требуется сделать', count: 2, badgeColor: EBadgeColors.error },
+    { label: 'Важно ознакомиться', count: 7, badgeColor: EBadgeColors.error },
+    { label: 'Для информации', count: 115, badgeColor: EBadgeColors.brand }
   ];
 
   return (
     <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="АСУ НЛМК" showNotification notificationAmount={115} />
+      <Header title="Портал сотрудника" showNotification notificationAmount={115} />
       {showPanel && (
         <div ref={panelRef} style={{ position: 'absolute', top: '100%', right: 0, zIndex: 1100 }}>
           <Box

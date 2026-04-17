@@ -24,6 +24,11 @@ export default {
   argTypes: argsTypes,
 } as Meta<typeof Drawer>;
 
+const hiddenControlsParams = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
 export const DrawerDefault = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -103,10 +108,7 @@ DrawerLeft.storyName = 'Drawer слева';
 DrawerLeft.args = {
   position: 'left'
 };
-DrawerLeft.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
+DrawerLeft.parameters = hiddenControlsParams;
 
 export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -146,10 +148,7 @@ DrawerWithoutCloseButton.storyName = 'Drawer без крестика';
 DrawerWithoutCloseButton.args = {
   isViewCloseButton: false
 };
-DrawerWithoutCloseButton.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
+DrawerWithoutCloseButton.parameters = hiddenControlsParams;
 
 export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
@@ -204,7 +203,4 @@ export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   );
 };
 DrawerWithProfile.storyName = 'Drawer с примером профиля';
-DrawerWithProfile.parameters = {
-  controls: { disable: true },
-  previewTabs: { controls: { hidden: true } }
-};
+DrawerWithProfile.parameters = hiddenControlsParams;

@@ -143,7 +143,7 @@ export const NotificationItemWithHeader = () => {
                 label={item.label}
                 count={item.count}
                 badgeColor={item.badgeColor}
-                onClick={(value) => console.log('Click:', value, idx)}
+                onClick={(value: string) => console.log('Click:', value, idx)}
               />
             ))}
           </Box>

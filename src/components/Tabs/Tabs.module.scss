@@ -5,9 +5,29 @@
   z-index: var(--z-raised);
 }
 
+.tabs-container--vertical {
+  display: flex;
+  width: auto;
+}
+
+.tabs-container--position-right {
+  flex-direction: row-reverse;
+}
+
 .scrollable {
   width: 100%;
   overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.scrollable--vertical {
+  overflow-y: auto;
+  overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -43,4 +63,30 @@
   &__scrollable {
     width: max-content;
   }
+}
+
+.tabs-wrapper--top {
+  border-bottom: none;
+  border-top: 1px solid var(--steel-50);
+}
+
+.tabs-wrapper--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  border-bottom: none;
+  border-right: 1px solid var(--steel-50);
+  gap: 0;
+  min-width: 120px;
+  max-width: 280px;
+
+  .tabs-container--position-right & {
+    border-right: none;
+    border-left: 1px solid var(--steel-50);
+  }
+}
+
+.tabs-wrapper--vertical-fixed {
+  width: var(--tabs-max-tab-width);
+  min-width: var(--tabs-max-tab-width);
+  max-width: var(--tabs-max-tab-width);
 }

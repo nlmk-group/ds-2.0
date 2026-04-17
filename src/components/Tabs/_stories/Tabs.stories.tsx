@@ -6,6 +6,7 @@ import { Tabs, Typography } from '@components/index';
 import style from './Tabs.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
 
+import { ETabsOrientation, ETabsTabPosition } from '../enums';
 import { ITabProps } from '../subcomponents/Tab/types';
 import argsTypes from './argsTypes';
 
@@ -120,7 +121,7 @@ const tabItems: TabItem[] = [
 export const TabsScrollable = (args: ITabProps) => {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className={styles['wrapper--small']}>
+    <div className={style['scrollable-wrapper']}>
       <Tabs scrollable>
         {tabItems.map(item => (
           <Tabs.Tab
@@ -154,3 +155,124 @@ export const TabsScrollable = (args: ITabProps) => {
 };
 
 TabsScrollable.storyName = 'Табы с возможностью скролла';
+
+export const TabsTopIndicator = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div>
+      <div style={{ padding: '8px' }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Спам', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+      <Tabs indicatorPosition="top">
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Спам" active={activeTab === 2} onClick={() => setActiveTab(2)} />
+        <Tabs.Tab label="Черновики" active={activeTab === 3} onClick={() => setActiveTab(3)} />
+      </Tabs>
+    </div>
+  );
+};
+
+TabsTopIndicator.storyName = 'Табы с индикатором сверху';
+
+export const TabsVerticalLeft = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab
+          label="Спам"
+          active={activeTab === 2}
+          onClick={() => setActiveTab(2)}
+          hasBadge
+          badgeChildren="91"
+          badgeColor={EBadgeColors.brand}
+        />
+        <Tabs.Tab label="Черновики" active={activeTab === 3} onClick={() => setActiveTab(3)} />
+      </Tabs>
+      <div style={{ padding: '8px', width: 200 }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Спам', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalLeft.storyName = 'Вертикальные табы слева от контента';
+
+export const TabsVerticalRight = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <div style={{ padding: '8px', width: 200 }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {['Входящие', 'Мои папки', 'Черновики'][activeTab]}
+        </Typography>
+      </div>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.right}>
+        <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
+        <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
+        <Tabs.Tab label="Черновики" active={activeTab === 2} onClick={() => setActiveTab(2)} />
+      </Tabs>
+    </div>
+  );
+};
+
+TabsVerticalRight.storyName = 'Вертикальные табы справа от контента';
+
+export const TabsVerticalWrap = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const items = [
+    'Входящие сообщения и уведомления',
+    'Мои папки и документы',
+    'Спам и нежелательная почта',
+    'Черновики'
+  ];
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
+        {items.map((label, index) => (
+          <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
+        ))}
+      </Tabs>
+      <div style={{ padding: '8px', width: 280 }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {items[activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalWrap.storyName = 'Вертикальные табы с переносом длинного текста';
+
+export const TabsVerticalEllipsis = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const items = [
+    'Входящие сообщения и уведомления',
+    'Мои папки и документы',
+    'Спам и нежелательная почта',
+    'Черновики'
+  ];
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left} maxTabWidth={180}>
+        {items.map((label, index) => (
+          <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
+        ))}
+      </Tabs>
+      <div style={{ padding: '8px', width: 280 }}>
+        <Typography variant="Heading4" color="var(--steel-90)">
+          {items[activeTab]}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+TabsVerticalEllipsis.storyName = 'Вертикальные табы (ellipsis с maxTabWidth)';

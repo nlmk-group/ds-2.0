@@ -4,6 +4,7 @@ import { EBadgeColors } from '@components/Badge/enums';
 import { Tabs } from '@components/index';
 import { render } from '@testing-library/react';
 
+import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
 import Tab from '.';
 
 describe('src/components/Tab', () => {
@@ -42,7 +43,30 @@ describe('src/components/Tab', () => {
         </Tabs.Tooltip>
       </Tabs.Tab>
     );
-    const tabComponent = container.getElementsByClassName('tooltip')[0];
+    const tabComponent = container.querySelector('[data-ui-tab-tooltip]');
     expect(tabComponent).toBeInTheDocument();
+  });
+
+  // Check render vertical tab
+  test('It should render a vertical Tab', () => {
+    const { container } = render(
+      <Tab label="Hello World!" orientation={ETabsOrientation.vertical} />
+    );
+    const tabComponent = container.getElementsByTagName('div')[0];
+    expect(tabComponent.className).toContain('vertical');
+  });
+
+  // Check render vertical active tab with right indicator
+  test('It should render a vertical active Tab with right indicator', () => {
+    const { container } = render(
+      <Tab
+        label="Hello World!"
+        active
+        orientation={ETabsOrientation.vertical}
+        indicatorPosition={ETabsIndicatorPosition.right}
+      />
+    );
+    const tabComponent = container.getElementsByTagName('div')[0];
+    expect(tabComponent.className).toContain('indicator--right');
   });
 });

@@ -3,10 +3,11 @@
   color: var(--steel-90);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
     background: var(--brand-sapphire-10);
+    box-shadow: none;
   }
 }
 
@@ -46,8 +47,8 @@
 .text-clamped {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   text-overflow: ellipsis;
 }
 

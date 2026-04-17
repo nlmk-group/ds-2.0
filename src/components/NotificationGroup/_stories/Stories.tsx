@@ -120,7 +120,8 @@ const groups = [
     unread: true,
     cards: [
       { title: 'Планирование графика отпусков на следующий календарный год', body: 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке.', timestamp: 'сегодня, 14:13', unread: true },
-      { title: 'Заявка на отпуск ожидает согласования', body: 'Анна Иванова отправила заявку на отпуск с 12 по 25 мая. Требуется ваше согласование до 10 апреля.', timestamp: 'сегодня, 12:00', unread: true }
+      { title: 'Заявка на отпуск ожидает согласования', body: 'Анна Иванова отправила заявку на отпуск с 12 по 25 мая. Требуется ваше согласование до 10 апреля.', timestamp: 'сегодня, 12:00', unread: true },
+      { title: 'Напоминание о сроках согласования', body: 'До окончания срока согласования графика отпусков осталось 5 рабочих дней.', timestamp: 'вчера, 10:00' }
     ]
   },
   {
@@ -129,7 +130,9 @@ const groups = [
     title: 'Новый корпоративный курс доступен для записи',
     unread: true,
     cards: [
-      { title: 'Запись на курс «Эффективное общение в команде»', body: 'Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.', timestamp: 'сегодня, 11:45', unread: true }
+      { title: 'Запись на курс «Эффективное общение в команде»', body: 'Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.', timestamp: 'сегодня, 11:45', unread: true },
+      { title: 'Подтверждение участия в тренинге', body: 'Пожалуйста, подтвердите участие в тренинге по тайм-менеджменту 22 апреля.', timestamp: 'сегодня, 11:00', unread: true },
+      { title: 'Обновлён каталог курсов', body: 'В каталоге корпоративного обучения появились новые программы по soft skills.', timestamp: '14 апреля, 18:30' }
     ]
   }
 ];
@@ -159,7 +162,7 @@ export default App = () => {
             </Box>
           </Box>
 
-          <Box flexDirection="column" gap={32} st={{ padding: '0 16px 16px' }}>
+          <Box flexDirection="column" gap={32}>
             {groups.map((group) => (
               <Box key={group.id} flexDirection="column" gap={16}>
                 <Box flexDirection="column" gap={8} py={12}>
@@ -171,7 +174,7 @@ export default App = () => {
                       {group.unread && <Box st={{ width: 8, height: 8, minWidth: 8, flexShrink: 0, borderRadius: '50%', background: 'var(--spectrum-red-60)' }} />}
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
                     </Box>
-                    <Button type="button" size="xs" variant="secondary" color="brand">Отметить все как прочитанные</Button>
+                    <Button type="button" size="xs" variant="primary" color="ghost">Отметить все как прочитанные</Button>
                   </Box>
                 </Box>
                 <NotificationGroup>

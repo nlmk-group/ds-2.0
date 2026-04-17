@@ -61,7 +61,7 @@ describe('src/components/NotificationCard', () => {
   });
 
   test('Проверка отсутствия кнопки при коротком тексте', () => {
-    setOverflow(66, 66);
+    setOverflow(44, 44);
     render(<NotificationCard {...cardProps} />);
     expect(screen.queryByText('Показать больше')).not.toBeInTheDocument();
     expect(screen.queryByText('Свернуть')).not.toBeInTheDocument();

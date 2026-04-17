@@ -10,13 +10,13 @@ import styles from './NotificationCard.module.scss';
 
 const DEFAULT_SHOW_MORE_LABEL = 'Показать больше';
 const DEFAULT_HIDE_LABEL = 'Свернуть';
-const MAX_LINES = 3;
-const FALLBACK_LINE_HEIGHT = 22; // Body1 line-height — используется только если getComputedStyle не смог измерить
+const MAX_LINES = 2;
+const FALLBACK_LINE_HEIGHT = 22;
 
 /**
  * Большая карточка уведомления для истории в Drawer или Dialog.
  * Содержит заголовок, текст и время, красной точкой помечает непрочитанные.
- * Длинный текст автоматически сворачивается до трёх строк — кнопка «Показать больше / Свернуть»
+ * Длинный текст автоматически сворачивается до двух строк — кнопка «Показать больше / Свернуть»
  * появляется только если текст действительно обрезается, и раскрывает содержимое плавной анимацией в обе стороны.
  * Высота свёрнутого состояния считается динамически от реального line-height текста
  * (без хардкода), переключение line-clamp синхронизировано с max-height transition через transitionend.
@@ -49,9 +49,6 @@ const NotificationCard: FC<INotificationCardProps> = ({
     if (!el) return;
 
     const measure = () => {
-      // line-height читаем с <span> Typography — у .text-обёртки своего шрифта нет.
-      // В jsdom/старых браузерах getComputedStyle может вернуть 'normal' или пусто —
-      // тогда остаётся fallback FALLBACK_LINE_HEIGHT.
       const target = (el.querySelector('span') as HTMLElement | null) ?? el;
       const lh = parseFloat(getComputedStyle(target).lineHeight);
       if (Number.isFinite(lh) && lh > 0) {
@@ -66,9 +63,6 @@ const NotificationCard: FC<INotificationCardProps> = ({
     return () => observer.disconnect();
   }, [body]);
 
-  // Line-clamp даёт визуальный ellipsis в свёрнутом состоянии, но ломает max-height анимацию.
-  // При раскрытии снимаем clamp СРАЗУ (синхронно до paint), чтобы анимация прошла без скачка.
-  // При сворачивании возвращаем clamp только после окончания transition (через onTransitionEnd).
   useLayoutEffect(() => {
     if (expanded) setClampActive(false);
   }, [expanded]);

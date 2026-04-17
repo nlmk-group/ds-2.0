@@ -136,6 +136,17 @@ const mockNotificationGroups = [
         body: vacationBody,
         timestamp: 'сегодня, 14:13',
         unread: true
+      },
+      {
+        title: 'Напоминание о согласовании графика',
+        body: 'Напоминаем, что до окончания срока согласования графика отпусков на 2026 год осталось 5 рабочих дней. Пожалуйста, не забудьте подтвердить даты.',
+        timestamp: 'вчера, 10:00',
+        unread: true
+      },
+      {
+        title: 'Обновление регламента согласования',
+        body: 'Обновлён регламент согласования графика отпусков: теперь подтверждение возможно в том числе из мобильного приложения.',
+        timestamp: '14 апреля, 18:30'
       }
     ]
   },
@@ -149,6 +160,12 @@ const mockNotificationGroups = [
         title: 'Планирование графика отпусков на следующий календарный год',
         body: vacationBody,
         timestamp: 'сегодня, 14:13',
+        unread: true
+      },
+      {
+        title: 'Запрос на перенос дат отпуска',
+        body: 'Сотрудник Соколов А.В. запросил перенос отпуска с июля на сентябрь. Пожалуйста, согласуйте или отклоните запрос в сервисе.',
+        timestamp: 'сегодня, 11:42',
         unread: true
       }
     ]
@@ -199,7 +216,7 @@ export const NotificationGroupInDrawer = () => {
             </Box>
           </Box>
 
-          <Box flexDirection="column" gap={32} st={{ padding: '0 16px 16px' }}>
+          <Box flexDirection="column" gap={32}>
             {mockNotificationGroups.map((group) => (
               <Box key={group.id} flexDirection="column" gap={16}>
                 <Box flexDirection="column" gap={8} py={12}>
@@ -225,7 +242,7 @@ export const NotificationGroupInDrawer = () => {
                         {group.title}
                       </Typography>
                     </Box>
-                    <Button type="button" size="xs" variant="secondary" color="brand">
+                    <Button type="button" size="xs" variant="primary" color="ghost">
                       Отметить все как прочитанные
                     </Button>
                   </Box>

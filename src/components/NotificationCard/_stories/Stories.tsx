@@ -135,7 +135,7 @@ export default App = () => {
             </Box>
           </Box>
 
-          <Box flexDirection="column" gap={32} st={{ padding: '0 16px 16px' }}>
+          <Box flexDirection="column" gap={32}>
             {groups.map((group) => (
               <Box key={group.id} flexDirection="column" gap={16}>
                 <Box flexDirection="column" gap={8} py={12}>
@@ -147,7 +147,7 @@ export default App = () => {
                       {group.unread && <Box st={{ width: 8, height: 8, minWidth: 8, flexShrink: 0, borderRadius: '50%', background: 'var(--spectrum-red-60)' }} />}
                       <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
                     </Box>
-                    <Button type="button" size="xs" variant="secondary" color="brand">Отметить все как прочитанные</Button>
+                    <Button type="button" size="xs" variant="primary" color="ghost">Отметить все как прочитанные</Button>
                   </Box>
                 </Box>
                 <NotificationCard title={group.title} body={group.body} timestamp={group.timestamp} unread={group.unread} />

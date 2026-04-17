@@ -23,6 +23,29 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.30.1 - <span className={styles.date}>17.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена вертикальная ориентация табов через проп orientation
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп tabPosition для размещения вертикальной панели табов (left / right)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп maxTabWidth для ограничения ширины таба в вертикальном режиме с ellipsis и тултипом на overflow
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.30.0 - <span className={styles.date}>16.04.26</span>
           </Typography>
           <ul className={styles.list}>

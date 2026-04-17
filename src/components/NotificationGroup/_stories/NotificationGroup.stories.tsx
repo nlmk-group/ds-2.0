@@ -234,7 +234,7 @@ export const NotificationGroupInDrawer = () => {
                             height: 8,
                             minWidth: 8,
                             borderRadius: '50%',
-                            background: 'var(--spectrum-red-60)'
+                            background: 'var(--brand-sapphire-60)'
                           }}
                         />
                       )}

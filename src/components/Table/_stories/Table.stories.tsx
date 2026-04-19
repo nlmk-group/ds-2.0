@@ -3,6 +3,7 @@ import React from 'react';
 import {
   EditableCellsTableExample,
   ExpandableTableExample,
+  FilterableMultiselectTableExample,
   FilterableTableExample,
   GroupHeaderTableWithResizeExample,
   GroupingHeaderTableExample,
@@ -64,6 +65,13 @@ VirtualizedTableWithHorizontalVirtualization.parameters = {
 export const FilterableTable = () => <FilterableTableExample />;
 FilterableTable.storyName = 'Таблица с фильтрами, сортировкой и возможностью изменения ширины столбцов';
 FilterableTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const FilterableMultiselectTable = () => <FilterableMultiselectTableExample />;
+FilterableMultiselectTable.storyName = 'Таблица с фильтрами мультивыбора';
+FilterableMultiselectTable.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

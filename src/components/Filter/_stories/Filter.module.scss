@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+}
+
+.variants {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.variant-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-label {
+  color: var(--steel-70);
+}

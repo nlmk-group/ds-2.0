@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={320}
-            description="Группа из 3 карточек-уведомлений в свёрнутом виде (колода). Клик по тумблеру раскрывает."
+            description="NotificationGroup со свойствами по умолчанию."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
 const body1 = 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга.';
@@ -69,7 +69,7 @@ export default App = () => (
           />
           <Editor
             minHeight={400}
-            description="Та же группа сразу в раскрытом виде. Карточки 2..N появляются с slide-down анимацией 0.3s."
+            description="NotificationGroup раскрытый по умолчанию."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
 const body1 = 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга.';
@@ -88,7 +88,7 @@ export default App = () => (
           />
           <Editor
             minHeight={320}
-            description="Группа из 2 карточек — один peek-слой в свёрнутом виде."
+            description="NotificationGroup из 2 карточек."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -102,7 +102,7 @@ export default App = () => (
           />
           <Editor
             minHeight={500}
-            description="Группа из 3 карточек-уведомлений в свёрнутом виде (колода). Клик по тумблеру раскрывает."
+            description="NotificationGroup в Drawer."
             code={`import { useState } from 'react';
 import { Badge, Box, Button, Drawer, Header, NotificationCard, NotificationGroup, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
 

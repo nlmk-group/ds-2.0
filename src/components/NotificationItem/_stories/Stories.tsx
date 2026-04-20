@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={280}
-            description="Сборка hover-панели уведомлений: Header с кнопкой-колокольчиком, hover-детект через DOM, курсор-pointer на колокольчике и счётчике, список NotificationItem внутри. Основной кейс использования компонента."
+            description="Сборка панели с Header."
             code={`import { useCallback, useEffect, useRef, useState } from 'react';
 import { Box, Header, NotificationItem, Typography } from '@nlmk/ds-2.0';
 
@@ -129,7 +129,7 @@ export default App = () => {
           />
           <Editor
             minHeight={200}
-            description="NotificationItem как самостоятельный элемент в произвольном layout."
+            description="NotificationItem по умолчанию."
             code={`import { NotificationItem } from '@nlmk/ds-2.0';
 
 export default App = () => (

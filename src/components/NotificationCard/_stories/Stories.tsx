@@ -50,7 +50,7 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={260}
-            description="Базовая карточка с длинным текстом уведомления. Кнопка «Показать больше» появляется автоматически, если текст обрезается в preview."
+            description="NotificationCard по умолчанию."
             code={`import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -66,7 +66,7 @@ export default App = () => (
           />
           <Editor
             minHeight={200}
-            description="Короткий текст — кнопка «Показать больше» не появляется."
+            description="Пример с коротким текстом."
             code={`import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
 export default App = () => (
@@ -81,7 +81,7 @@ export default App = () => (
           />
           <Editor
             minHeight={500}
-            description="Использование внутри Drawer «История уведомлений»: табы по категориям, свитч «Только непрочитанные», группы с заголовком и NotificationCard внутри."
+            description="NotificationCard в Drawer."
             code={`import { useState } from 'react';
 import { Badge, Box, Button, Drawer, Header, NotificationCard, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
 

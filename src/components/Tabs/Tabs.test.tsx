@@ -5,6 +5,14 @@ import { render } from '@testing-library/react';
 
 import { ETabsOrientation, ETabsTabPosition } from './enums';
 
+class ResizeObserverMock {
+  observe = jest.fn();
+  unobserve = jest.fn();
+  disconnect = jest.fn();
+}
+
+(global as unknown as { ResizeObserver: typeof ResizeObserverMock }).ResizeObserver = ResizeObserverMock;
+
 describe('src/components/Tabs', () => {
   test('It should render an Tabs', () => {
     const { container } = render(

@@ -20,6 +20,15 @@
   &:hover [data-ui-textfield]:not(:disabled):not(:focus) {
     border-color: transparent;
   }
+
+  &:not(.disabled):hover [data-ui-input-custom-icon] {
+    color: var(--steel-70);
+  }
+
+  &.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
 }
 
 .counter {

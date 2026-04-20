@@ -48,8 +48,11 @@ const Filter: FC<IFilterProps> = ({
   };
 
   const isMulti = mode === 'multiselect';
+  const disabled = Boolean(inputProps.disabled);
+  const isFiltered = isMulti ? effectiveSelected.length > 0 : Boolean(inputValue);
 
   const [openedMenu, setOpenedMenu] = useState<TMenuState>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const iconRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
@@ -92,6 +95,7 @@ const Filter: FC<IFilterProps> = ({
   }, [filterValueOptions, inputValue]);
 
   const handleIconClick = (e: React.MouseEvent) => {
+    if (disabled) return;
     e.stopPropagation();
     setOpenedMenu(prev => (prev === 'type' ? null : 'type'));
   };
@@ -112,8 +116,13 @@ const Filter: FC<IFilterProps> = ({
   };
 
   const handleFocusInput = (e: React.FocusEvent) => {
+    if (disabled) return;
     e.stopPropagation();
+    setIsFocused(true);
     setOpenedMenu('value');
+  };
+  const handleBlurInput = () => {
+    setIsFocused(false);
   };
   const closeValueMenu = () => {
     if (openedMenu === 'value') {
@@ -150,7 +159,12 @@ const Filter: FC<IFilterProps> = ({
     onFilterChange?.(undefined, filterType);
   };
 
-  const iconStyle: CSSProperties = { display: 'flex', alignItems: 'center' };
+  const isIconHighlighted = !disabled && (isFocused || openedMenu !== null || isFiltered);
+  const iconStyle: CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    color: isIconHighlighted ? 'var(--brand-sapphire-60)' : undefined
+  };
 
   const renderMenuContent = () => {
     if (openedMenu === 'type') {
@@ -245,17 +259,22 @@ const Filter: FC<IFilterProps> = ({
   const showCounter = isMulti && effectiveSelected.length > 0 && !inputValue;
 
   return (
-    <div className={clsx(styles.filter, className)} ref={inputRef} onClick={e => e.stopPropagation()}>
+    <div
+      className={clsx(styles.filter, { [styles.disabled]: disabled }, className)}
+      ref={inputRef}
+      onClick={e => e.stopPropagation()}
+    >
       <FilterInput
         {...inputProps}
         placeholder={showCounter ? '' : inputProps.placeholder}
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        reset
+        reset={!disabled}
         onReset={handleReset}
         forceReset={isMulti && effectiveSelected.length > 0}
         onFocus={handleFocusInput}
+        onBlur={handleBlurInput}
         icon={
           <div ref={iconRef} onClick={handleIconClick} style={iconStyle}>
             {currentFilterOption.icon}

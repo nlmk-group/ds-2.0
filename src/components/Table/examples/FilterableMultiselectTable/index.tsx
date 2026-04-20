@@ -138,7 +138,7 @@ const FilterableMultiselectTableExample = () => {
                           header.column.setFilterValue(next.length ? next : undefined);
                         }}
                         placeholder="Фильтр"
-                        withPortal
+                        withPortal={false}
                       />
                     )}
                   </Top>

@@ -1,0 +1,66 @@
+import { EBadgeColors } from '@components/Badge/enums';
+
+export const argsTypes = {
+  label: {
+    description: 'Текст категории уведомлений',
+    table: {
+      type: {
+        summary: 'string'
+      }
+    },
+    control: { type: 'text' }
+  },
+  count: {
+    description: 'Количество уведомлений',
+    table: {
+      defaultValue: { summary: '0' },
+      type: { summary: 'number' }
+    },
+    control: { type: 'number' }
+  },
+  badgeColor: {
+    description: 'Цвет бейджа',
+    table: {
+      defaultValue: { summary: 'error' },
+      type: { summary: 'EBadgeColors' }
+    },
+    control: { type: 'select' },
+    options: Object.values(EBadgeColors)
+  },
+  active: {
+    description: 'Активный элемент (подсветка)',
+    table: {
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' }
+    },
+    control: { type: 'boolean' }
+  },
+  value: {
+    description: 'Уникальное значение элемента (по умолчанию — label)',
+    table: {
+      type: { summary: 'string' }
+    },
+    control: { type: 'text' }
+  },
+  onClick: {
+    description: 'Обработчик клика',
+    table: {
+      type: { summary: '(value: string) => void' }
+    },
+    action: 'onClick'
+  },
+  className: {
+    description: 'Дополнительный CSS класс',
+    table: {
+      type: { summary: 'string' }
+    },
+    control: { type: 'text' }
+  },
+  style: {
+    description: 'Inline стили',
+    table: {
+      type: { summary: 'CSSProperties' }
+    },
+    control: { type: 'object' }
+  }
+};

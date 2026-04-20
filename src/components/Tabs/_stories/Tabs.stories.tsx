@@ -122,7 +122,7 @@ export const TabsScrollable = (args: ITabProps) => {
   const [activeTab, setActiveTab] = useState(0);
   return (
     <div className={style['scrollable-wrapper']}>
-      <Tabs scrollable>
+      <Tabs>
         {tabItems.map(item => (
           <Tabs.Tab
             {...args}
@@ -154,7 +154,7 @@ export const TabsScrollable = (args: ITabProps) => {
   );
 };
 
-TabsScrollable.storyName = 'Табы с возможностью скролла';
+TabsScrollable.storyName = 'Табы с автоматическим скроллом при переполнении';
 
 export const TabsTopIndicator = () => {
   const [activeTab, setActiveTab] = useState(0);

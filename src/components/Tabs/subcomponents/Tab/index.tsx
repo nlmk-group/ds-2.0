@@ -46,9 +46,13 @@ const Tab: FC<ITabProps> = ({
       data-ui-tab-label
       className={clsx(isVertical && styles['label--vertical'])}
     >
-      <span ref={labelRef} className={clsx(isVertical && styles['label-text--vertical'])}>
-        {label}
-      </span>
+      {isVertical ? (
+        <span ref={labelRef} className={styles['label-text--vertical']}>
+          {label}
+        </span>
+      ) : (
+        label
+      )}
     </Typography>
   );
 

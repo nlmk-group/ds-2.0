@@ -1,0 +1,22 @@
+import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import NotificationCard from '..';
+import { DecoratorDefault } from '../../_storybook/Decorator.stories';
+import Stories from './Stories';
+
+<Meta
+  title="Components/NotificationCard/Info"
+  component={NotificationCard}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=16720-15828'
+    },
+    jest: ['NotificationCard.test.tsx']
+  }}
+/>
+
+<Story of={DecoratorDefault} />
+
+<Unstyled>
+  <Stories />
+</Unstyled>

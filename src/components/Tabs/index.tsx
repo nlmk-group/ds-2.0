@@ -50,8 +50,10 @@ const Tabs: FC<ITabsProps> &
   const isTopIndicator = resolvedIndicatorPosition === ETabsIndicatorPosition.top;
 
   const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const tabsWrapperRef = useRef<HTMLDivElement>(null);
   const [isScrolledLeft, setIsScrolledLeft] = useState(true);
   const [isScrolledRight, setIsScrolledRight] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
   const scrollAmount = 200;
 
@@ -67,27 +69,37 @@ const Tabs: FC<ITabsProps> &
     }
   };
 
-  const handleScroll = () => {
-    if (tabsContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = tabsContainerRef.current;
-      const maxScrollLeft = scrollWidth - clientWidth;
+  const updateScrollState = () => {
+    const container = tabsContainerRef.current;
+    if (!container) return;
 
-      setIsScrolledLeft(scrollLeft <= 0);
-      setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
-    }
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    const maxScrollLeft = scrollWidth - clientWidth;
+
+    setIsOverflowing(scrollWidth > clientWidth);
+    setIsScrolledLeft(scrollLeft <= 0);
+    setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
   };
 
   useEffect(() => {
-    handleScroll();
+    if (isVertical) return;
 
-    window.addEventListener('resize', handleScroll);
+    updateScrollState();
 
-    return () => {
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
+    const container = tabsContainerRef.current;
+    const wrapper = tabsWrapperRef.current;
+    if (!container || !wrapper) return;
 
-  const showHorizontalScroll = scrollable && !isVertical;
+    const observer = new ResizeObserver(updateScrollState);
+    observer.observe(container);
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
+  }, [isVertical, children]);
+
+  // Горизонтальный скролл включается автоматически при переполнении,
+  // либо принудительно через prop scrollable (для обратной совместимости).
+  const showHorizontalScroll = !isVertical && (isOverflowing || scrollable === true);
 
   const childrenWithProps = React.Children.map(children, child => {
     if (isValidElement<ITabProps>(child) && child.type === Tab) {
@@ -130,18 +142,19 @@ const Tabs: FC<ITabsProps> &
       )}
       <div
         className={clsx({
-          [styles.scrollable]: showHorizontalScroll,
+          [styles.scrollable]: !isVertical,
           [styles['scrollable--vertical']]: isVertical && scrollable
         })}
-        onScroll={!isVertical ? handleScroll : undefined}
+        onScroll={!isVertical ? updateScrollState : undefined}
         ref={!isVertical ? tabsContainerRef : undefined}
         data-ui-tabs
       >
         <div
+          ref={!isVertical ? tabsWrapperRef : undefined}
           className={clsx(
             styles['tabs-wrapper'],
             {
-              [styles['tabs-wrapper__scrollable']]: showHorizontalScroll,
+              [styles['tabs-wrapper__scrollable']]: !isVertical,
               [styles['tabs-wrapper--vertical']]: isVertical,
               [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth,
               [styles['tabs-wrapper--top']]: isTopIndicator

@@ -100,6 +100,15 @@ export * from './Modal/types';
 
 export { default as MultiSelect } from './MultiSelect';
 
+export { default as NotificationCard } from './NotificationCard';
+export * from './NotificationCard/types';
+
+export { default as NotificationGroup } from './NotificationGroup';
+export * from './NotificationGroup/types';
+
+export { default as NotificationItem } from './NotificationItem';
+export * from './NotificationItem/types';
+
 export { default as OptionItem } from './OptionItem';
 export * from './OptionItem/types';
 

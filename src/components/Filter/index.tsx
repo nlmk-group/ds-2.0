@@ -158,7 +158,10 @@ const Filter: FC<IFilterProps> = ({
         <ListItem
           key={opt.value}
           onClick={() => handleSelectFilterType(opt)}
-          className={clsx({ [styles.disabled]: opt.disabled })}
+          className={clsx({
+            [styles.disabled]: opt.disabled,
+            [styles.selected]: opt.value === filterType
+          })}
           data-ui-list-item
         >
           <div className={styles.menuItem}>

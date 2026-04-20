@@ -54,12 +54,16 @@
   }
 
   &.disabled {
-    opacity: 50%;
+    opacity: 45%;
     cursor: default;
   }
 
   &.selected {
     background-color: var(--brand-sapphire-10);
+
+    &:hover {
+      background-color: var(--brand-sapphire-20);
+    }
   }
 }
 
@@ -75,6 +79,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--brand-sapphire-60);
 }
 
 .noMatches {

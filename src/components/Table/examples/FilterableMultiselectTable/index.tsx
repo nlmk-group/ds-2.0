@@ -23,7 +23,7 @@ const multiselectFilterOperations = [
   {
     value: 'one_of',
     label: 'Один из',
-    icon: <IconMultipleChoice24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconMultipleChoice24 />
   }
 ];
 

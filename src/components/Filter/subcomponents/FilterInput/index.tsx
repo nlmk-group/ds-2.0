@@ -48,7 +48,7 @@ const FilterInput: FC<IFilterInputProps> = ({
       )}
       {isResetIconVisible && (
         <div className={styles.reset} data-ui-input-reset-icon data-testid="RESET_ICON" onClick={onReset}>
-          <Icon htmlColor="var(--steel-70)" containerSize={16} name="IconCloseOutlined16" />
+          <Icon htmlColor="var(--brand-sapphire-60)" containerSize={16} name="IconCloseOutlined16" />
         </div>
       )}
     </div>

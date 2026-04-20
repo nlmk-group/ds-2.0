@@ -18,6 +18,8 @@ import { clsx } from 'clsx';
 
 import styles from '../Example.module.scss';
 
+import { getCellProps } from '../utils';
+
 export interface CommonTableProps<T> extends Omit<TableOptions<T>, 'getCoreRowModel'> {
   data: T[];
   columns: ColumnDef<T>[];
@@ -98,9 +100,13 @@ const CommonTable = <T,>({
               {table.getRowModel().rows.map(row => (
                 <Row key={row.id}>
                   {row.getVisibleCells().map(cell => (
-                    <Cell align="right" key={cell.id} size={size} width={cell.column.getSize()}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </Cell>
+                    <Cell
+                      align="right"
+                      key={cell.id}
+                      size={size}
+                      width={cell.column.getSize()}
+                      {...getCellProps(cell)}
+                    />
                   ))}
                 </Row>
               ))}

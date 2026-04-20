@@ -4,3 +4,9 @@ node_modules
 build
 coverage
 storybook-static
+
+# Type declaration files
+*.d.ts
+
+# Files using TS 4.9+ `satisfies` operator (prettier 2.3.2 doesn't support it)
+src/components/Status/_stories/argsTypes.ts

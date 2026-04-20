@@ -1,6 +1,7 @@
 import React, { CSSProperties, FC, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import {
   Box,
   Checkbox,
@@ -11,7 +12,6 @@ import {
   Typography
 } from '@components/index';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
-import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import clsx from 'clsx';
 
 import { IFilterProps, IFilterTypeOption, IFilterValueOption, TMenuState } from './types';

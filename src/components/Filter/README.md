@@ -5,6 +5,7 @@
 Компонент Filter используется для фильтрации данных по выбранному типу и значению. Позволяет пользователю выбрать тип фильтра (например, "содержит", "равно" и т.д.) и ввести или выбрать значение для фильтрации. Поддерживает выпадающие списки для выбора типа и значения, а также интеграцию с порталами для рендеринга меню вне текущей иерархии DOM.
 
 Поддерживает два режима:
+
 - `autocomplete` (по умолчанию) — одиночный выбор: клик по опции подставляет её в инпут и закрывает меню.
 - `multiselect` — мультивыбор: каждая опция рендерится с чекбоксом, клик по опции toggles значение в `selectedValues`, меню остаётся открытым.
 
@@ -31,7 +32,7 @@ const filterValueOptions = [
   onFilterChange={(value, filterType) => {
     // обработка фильтрации
   }}
-/>
+/>;
 ```
 
 ### Режим multiselect
@@ -65,21 +66,21 @@ Uncontrolled-вариант:
 
 ## Props
 
-| Prop                    | Type                                                        | Default           | Description                                                                                           |
-|-------------------------|-------------------------------------------------------------|-------------------|-------------------------------------------------------------------------------------------------------|
-| filterTypeOptions       | `IFilterTypeOption[]`                                       | —                 | Массив опций для "типов фильтра" (при клике на иконку)                                               |
-| filterValueOptions      | `IFilterValueOption[]`                                      | —                 | Массив опций для "значений" (при фокусе на инпут)                                                    |
-| onFilterChange          | `(value: string \| undefined, filterType: string) => void`  | —                 | Вызывается при изменении value или типа. В `multiselect` параметр `value` всегда `undefined`.        |
-| defaultValue            | `string`                                                    | `""`              | Начальное текстовое значение в инпуте                                                                 |
-| defaultFilterType       | `string`                                                    | первый из options | Начальный тип фильтра (если не задан, берётся первый из filterTypeOptions)                            |
-| withPortal              | `boolean`                                                   | `false`           | Рендерить меню через портал                                                                            |
-| portalContainerId       | `string`                                                    | `"root"`          | ID DOM-элемента для портала                                                                            |
-| mode                    | `'autocomplete' \| 'multiselect'`                           | `'autocomplete'`  | Режим работы фильтра                                                                                   |
-| selectedValues          | `string[]`                                                  | —                 | **Controlled**: массив выбранных значений (для `multiselect`)                                          |
-| defaultSelectedValues   | `string[]`                                                  | `[]`              | **Uncontrolled**: начальный массив выбранных значений (для `multiselect`)                              |
-| onSelectedValuesChange  | `(values: string[]) => void`                                | —                 | Коллбэк при toggle значения в режиме `multiselect`                                                     |
-| className               | `string`                                                    | —                 | Кастомный CSS-класс для корневого элемента                                                             |
-| ...inputProps           | `InputHTMLAttributes<HTMLInputElement>` (кроме defaultValue, onChange) | —    | Любые остальные props для input                                                                        |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| filterTypeOptions | `IFilterTypeOption[]` | — | Массив опций для "типов фильтра" (при клике на иконку) |
+| filterValueOptions | `IFilterValueOption[]` | — | Массив опций для "значений" (при фокусе на инпут) |
+| onFilterChange | `(value: string \| undefined, filterType: string) => void` | — | Вызывается при изменении value или типа. В `multiselect` параметр `value` всегда `undefined`. |
+| defaultValue | `string` | `""` | Начальное текстовое значение в инпуте |
+| defaultFilterType | `string` | первый из options | Начальный тип фильтра (если не задан, берётся первый из filterTypeOptions) |
+| withPortal | `boolean` | `false` | Рендерить меню через портал |
+| portalContainerId | `string` | `"root"` | ID DOM-элемента для портала |
+| mode | `'autocomplete' \| 'multiselect'` | `'autocomplete'` | Режим работы фильтра |
+| selectedValues | `string[]` | — | **Controlled**: массив выбранных значений (для `multiselect`) |
+| defaultSelectedValues | `string[]` | `[]` | **Uncontrolled**: начальный массив выбранных значений (для `multiselect`) |
+| onSelectedValuesChange | `(values: string[]) => void` | — | Коллбэк при toggle значения в режиме `multiselect` |
+| className | `string` | — | Кастомный CSS-класс для корневого элемента |
+| ...inputProps | `InputHTMLAttributes<HTMLInputElement>` (кроме defaultValue, onChange) | — | Любые остальные props для input |
 
 ### Типы опций
 
@@ -198,16 +199,16 @@ const [selected, setSelected] = useState<string[]>([]);
 
 ## Props
 
-| Prop     | Type                                                 | Default   | Description                        |
-|----------|------------------------------------------------------|-----------|------------------------------------|
-| value    | `string`                                             | —         | Значение input                     |
-| label    | `string`                                             | —         | Лейбл для поля                     |
-| icon     | `ReactNode`                                          | —         | Кастомная иконка слева             |
-| reset    | `boolean`                                            | `false`   | Показывать иконку сброса           |
-| onReset  | `() => void`                                         | —         | Коллбэк для сброса значения        |
-| inputRef | `Ref<HTMLInputElement>`                              | —         | Внешний ref для input              |
-| forceReset | `boolean`                                          | `false`   | Принудительно показать иконку сброса, даже если `value` пустое |
-| ...props | `InputHTMLAttributes<HTMLInputElement>` (кроме ref)  | —         | Любые остальные props для input    |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | `string` | — | Значение input |
+| label | `string` | — | Лейбл для поля |
+| icon | `ReactNode` | — | Кастомная иконка слева |
+| reset | `boolean` | `false` | Показывать иконку сброса |
+| onReset | `() => void` | — | Коллбэк для сброса значения |
+| inputRef | `Ref<HTMLInputElement>` | — | Внешний ref для input |
+| forceReset | `boolean` | `false` | Принудительно показать иконку сброса, даже если `value` пустое |
+| ...props | `InputHTMLAttributes<HTMLInputElement>` (кроме ref) | — | Любые остальные props для input |
 
 ## Стилизация
 

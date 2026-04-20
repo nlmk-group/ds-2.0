@@ -11,12 +11,14 @@
   gap: 24px;
 }
 
-.variant-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.variant {
+  &-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.variant-label {
-  color: var(--steel-70);
+  &-label {
+    color: var(--steel-70);
+  }
 }

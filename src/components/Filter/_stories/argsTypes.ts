@@ -13,7 +13,7 @@ export const argsTypes = {
     action: 'onFilterChange'
   },
   defaultValue: {
-    description: 'Начальное текстовое значение в инпуте',
+    description: 'Значение в инпуте по умолчанию',
     control: { type: 'text' }
   },
   defaultFilterType: {

@@ -222,7 +222,11 @@ describe('Filter Component', () => {
 
   test('поиск фильтрует filterValueOptions в обоих режимах', () => {
     render(
-      <Filter filterTypeOptions={filterTypeOptions} filterValueOptions={filterValueOptions} defaultFilterType="contains" />
+      <Filter
+        filterTypeOptions={filterTypeOptions}
+        filterValueOptions={filterValueOptions}
+        defaultFilterType="contains"
+      />
     );
 
     const input = screen.getByRole('textbox') as HTMLInputElement;

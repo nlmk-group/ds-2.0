@@ -26,9 +26,7 @@ const filterTypeOptions = [
   { value: 'starts_with', label: 'Начинается с', icon: <IconStartingContains24 /> }
 ];
 
-const multiFilterTypeOptions = [
-  { value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }
-];
+const multiFilterTypeOptions = [{ value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }];
 
 const filterValueOptions = [
   { value: 'cancelled', label: 'Аннулировано' },
@@ -52,20 +50,14 @@ const hiddenControlsParams = {
 };
 
 export const FilterDefault = (args: IFilterProps): JSX.Element => {
-  return (
-    <Filter
-      {...args}
-      filterTypeOptions={filterTypeOptions}
-      filterValueOptions={filterValueOptions}
-    />
-  );
+  return <Filter {...args} filterTypeOptions={filterTypeOptions} filterValueOptions={filterValueOptions} />;
 };
 FilterDefault.storyName = 'Filter по умолчанию';
 FilterDefault.args = {
   defaultValue: '',
   defaultFilterType: 'contains',
   mode: 'autocomplete',
-  placeholder: 'Поиск ...',
+  placeholder: 'Поиск',
   withPortal: false
 };
 
@@ -113,7 +105,7 @@ export const FilterVariants = (): JSX.Element => {
           filterTypeOptions={filterTypeOptions}
           filterValueOptions={filterValueOptions}
           defaultFilterType="contains"
-          placeholder="Поиск ..."
+          placeholder="Поиск"
         />
       </div>
 

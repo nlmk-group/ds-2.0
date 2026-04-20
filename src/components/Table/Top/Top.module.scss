@@ -8,15 +8,8 @@ $default-padding: 4px 8px;
 
   border-bottom: 1px solid var(--unique-divider);
 
-  // Добавляем индикатор активного фильтра
-  &.filtered::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    border-bottom: 2px solid var(--brand-sapphire-60);
-    margin-bottom: 1px;
+  &.filtered {
+    border-bottom-color: var(--brand-sapphire-60);
   }
 
   &.disabled {

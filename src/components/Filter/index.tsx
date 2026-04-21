@@ -199,17 +199,21 @@ const Filter: FC<IFilterProps> = ({
               data-ui-list-item
             >
               {isMulti ? (
-                <Box alignItems="center" gap="8px">
+                <Box alignItems="center" gap="8px" width="100%">
                   <Checkbox
                     checked={isSelected}
                     disabled={opt.disabled}
                     onChange={() => {}}
                     style={{ pointerEvents: 'none' }}
                   />
-                  <Typography variant="Body1-Medium">{opt.label}</Typography>
+                  <Typography variant="Body1-Medium" className={styles.optionLabel}>
+                    {opt.label}
+                  </Typography>
                 </Box>
               ) : (
-                <Typography variant="Body1-Medium">{opt.label}</Typography>
+                <Typography variant="Body1-Medium" className={styles.optionLabel}>
+                  {opt.label}
+                </Typography>
               )}
             </ListItem>
           );

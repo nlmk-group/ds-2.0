@@ -25,6 +25,23 @@ const inRange = (pos: ICellPos, r: IRange) =>
   pos.colIdx >= r.startCol &&
   pos.colIdx <= r.endCol;
 
+const getFarCorner = (range: IRange, source: ICellPos): ICellPos => ({
+  rowIdx: source.rowIdx === range.startRow ? range.endRow : range.startRow,
+  colIdx: source.colIdx === range.startCol ? range.endCol : range.startCol
+});
+
+const getHandleCornerClass = (range: IRange | null, source: ICellPos | null): string => {
+  if (!range || !source) return styles.fillHandleBottomRight;
+  const isSingleRow = range.startRow === range.endRow;
+  const isSingleCol = range.startCol === range.endCol;
+  const atTop = !isSingleRow && source.rowIdx === range.endRow;
+  const atLeft = !isSingleCol && source.colIdx === range.endCol;
+  if (atTop && atLeft) return styles.fillHandleTopLeft;
+  if (atTop) return styles.fillHandleTopRight;
+  if (atLeft) return styles.fillHandleBottomLeft;
+  return styles.fillHandleBottomRight;
+};
+
 const FillCellTableExample: FC = () => {
   const [data, setData] = useState<IPlanRow[]>(initialData);
   const [selected, setSelected] = useState<ICellPos | null>(null);
@@ -109,13 +126,28 @@ const FillCellTableExample: FC = () => {
               {DAY_KEYS.map((key, colIdx) => {
                 const pos: ICellPos = { rowIdx, colIdx };
                 const isSelected = selected?.rowIdx === rowIdx && selected?.colIdx === colIdx;
-                const highlighted = dragRange ? inRange(pos, dragRange) : false;
+                const inside = dragRange ? inRange(pos, dragRange) : false;
+                const showSelectedOutline = isSelected;
+                const showRangeEdges = inside;
+                const showRangeTint = inside && !isSelected;
+                const farCorner = dragRange && selected ? getFarCorner(dragRange, selected) : null;
+                const isFarCornerCell = !!farCorner && rowIdx === farCorner.rowIdx && colIdx === farCorner.colIdx;
+                const showHandle = (!dragRange && isSelected) || isFarCornerCell;
+                const handleCornerClass = getHandleCornerClass(dragRange, selected);
                 return (
                   <td
                     key={key as string}
                     data-fill-row={rowIdx}
                     data-fill-col={colIdx}
-                    className={clsx(styles.cell, isSelected && styles.selected, highlighted && styles.inRange)}
+                    className={clsx(
+                      styles.cell,
+                      showSelectedOutline && styles.selected,
+                      showRangeTint && styles.inRange,
+                      showRangeEdges && rowIdx === dragRange!.startRow && styles.rangeTop,
+                      showRangeEdges && rowIdx === dragRange!.endRow && styles.rangeBottom,
+                      showRangeEdges && colIdx === dragRange!.startCol && styles.rangeLeft,
+                      showRangeEdges && colIdx === dragRange!.endCol && styles.rangeRight
+                    )}
                     style={{
                       padding: '12px 16px',
                       borderBottom: '1px solid var(--steel-20)',
@@ -126,7 +158,9 @@ const FillCellTableExample: FC = () => {
                     <Typography variant="Body1Table-Medium" color="var(--steel-90)">
                       {r[key] as number}
                     </Typography>
-                    {isSelected && <span className={styles.fillHandle} onMouseDown={handleFillMouseDown} />}
+                    {showHandle && (
+                      <span className={clsx(styles.fillHandle, handleCornerClass)} onMouseDown={handleFillMouseDown} />
+                    )}
                   </td>
                 );
               })}

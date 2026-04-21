@@ -77,7 +77,7 @@ const SwapCellsTableExample: FC = () => {
               <Top title="Станок" style={{ width: 180 }} />
               <Top title="Смена" style={{ width: 100 }} />
               <Top title="Оператор" style={{ width: 180 }} />
-              <Top title="Заказ" style={{ width: 200 }} />
+              <Top title="Заказ (столбец с интерактивными ячейками)" style={{ width: 200 }} />
             </Row>
           </Thead>
           <Tbody>

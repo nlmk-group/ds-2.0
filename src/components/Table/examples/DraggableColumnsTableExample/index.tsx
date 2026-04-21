@@ -33,7 +33,8 @@ interface IDraggableHeaderProps {
 const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, columnOrder, setColumnOrder, index }) => {
   const ref = useRef<HTMLTableCellElement>(null);
   const resizingRef = useRef(false);
-  const columnId = header.column.id;
+  const { column } = header;
+  const columnId = column.id;
 
   const [{ isDragging }, drag, preview] = useDrag({
     type: DRAG_TYPE,
@@ -84,8 +85,8 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, columnOrder, setCo
         ref.current = node;
         drag(node);
       }}
-      title={flexRender(header.column.columnDef.header, header.getContext())}
-      right={header.column.columnDef.meta?.isNumeric && index !== 0}
+      title={flexRender(column.columnDef.header, header.getContext())}
+      right={column.columnDef.meta?.isNumeric && index !== 0}
       drag
       onMouseDown={resizeMouseDown}
       onTouchStart={resizeTouchStart}

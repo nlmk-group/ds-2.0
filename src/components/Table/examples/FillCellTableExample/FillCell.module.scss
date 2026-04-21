@@ -7,25 +7,70 @@
 .cell {
   position: relative;
   user-select: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 0 solid var(--brand-sapphire-50);
+    opacity: 0.5;
+    z-index: 2;
+  }
 }
 
 .selected {
   outline: 2px solid var(--brand-sapphire-50);
   outline-offset: -2px;
+  z-index: 1;
 }
 
 .inRange {
-  background-color: color-mix(in srgb, var(--brand-sapphire-50) 15%, transparent);
+  background-color: color-mix(in srgb, var(--brand-sapphire-50) 10%, transparent);
+}
+
+.rangeTop::before {
+  border-top-width: 2px;
+}
+
+.rangeBottom::before {
+  border-bottom-width: 2px;
+}
+
+.rangeLeft::before {
+  border-left-width: 2px;
+}
+
+.rangeRight::before {
+  border-right-width: 2px;
 }
 
 .fillHandle {
   position: absolute;
-  right: -4px;
-  bottom: -4px;
   width: 8px;
   height: 8px;
   background: var(--brand-sapphire-50);
   border: 1px solid var(--background-white);
   cursor: crosshair;
-  z-index: 2;
+  z-index: 3;
+}
+
+.fillHandleTopLeft {
+  top: -4px;
+  left: -4px;
+}
+
+.fillHandleTopRight {
+  top: -4px;
+  right: -4px;
+}
+
+.fillHandleBottomLeft {
+  bottom: -4px;
+  left: -4px;
+}
+
+.fillHandleBottomRight {
+  bottom: -4px;
+  right: -4px;
 }

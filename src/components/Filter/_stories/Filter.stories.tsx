@@ -23,10 +23,10 @@ const withWrapper = (Story: () => JSX.Element) => (
 const filterTypeOptions = [
   { value: 'contains', label: 'Содержит', icon: <IconSelectionContains24 /> },
   { value: 'equals', label: 'Равно', icon: <IconEqualsSign24 /> },
-  { value: 'starts_with', label: 'Начинается с', icon: <IconStartingContains24 /> }
+  { value: 'startsWith', label: 'Начинается с', icon: <IconStartingContains24 /> }
 ];
 
-const multiFilterTypeOptions = [{ value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }];
+const multiFilterTypeOptions = [{ value: 'oneOf', label: 'Один из', icon: <IconMultipleChoice24 /> }];
 
 const filterValueOptions = [
   { value: 'cancelled', label: 'Аннулировано' },
@@ -98,7 +98,7 @@ export const FilterVariants = (): JSX.Element => {
   return (
     <div className={styles.variants}>
       <div className={styles['variant-row']}>
-        <Typography variant="Caption-Medium" className={styles['variant-label']}>
+        <Typography variant="Caption-Medium" color="var(--steel-70)">
           Autocomplete
         </Typography>
         <Filter
@@ -110,7 +110,7 @@ export const FilterVariants = (): JSX.Element => {
       </div>
 
       <div className={styles['variant-row']}>
-        <Typography variant="Caption-Medium" className={styles['variant-label']}>
+        <Typography variant="Caption-Medium" color="var(--steel-70)">
           Multiselect
         </Typography>
         <Filter

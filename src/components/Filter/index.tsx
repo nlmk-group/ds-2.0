@@ -48,8 +48,12 @@ const Filter: FC<IFilterProps> = ({
   };
 
   const isMulti = mode === 'multiselect';
-  const disabled = Boolean(inputProps.disabled);
-  const isFiltered = isMulti ? effectiveSelected.length > 0 : Boolean(inputValue);
+  const disabled = !!inputProps.disabled;
+
+  const hasSelectedItems = effectiveSelected.length > 0;
+  const hasInputValue = !!inputValue;
+
+  const isFiltered = isMulti ? hasSelectedItems : hasInputValue;
 
   const [openedMenu, setOpenedMenu] = useState<TMenuState>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -132,10 +136,10 @@ const Filter: FC<IFilterProps> = ({
   const handleSelectValueOption = (opt: IFilterValueOption) => {
     if (opt.disabled) return;
     if (isMulti) {
-      const next = effectiveSelected.includes(opt.value)
-        ? effectiveSelected.filter(v => v !== opt.value)
-        : [...effectiveSelected, opt.value];
-      updateSelected(next);
+      const set = new Set(effectiveSelected);
+      if (set.has(opt.value)) set.delete(opt.value);
+      else set.add(opt.value);
+      updateSelected(Array.from(set));
       return;
     }
     setInputValue(opt.label);
@@ -160,11 +164,6 @@ const Filter: FC<IFilterProps> = ({
   };
 
   const isIconHighlighted = !disabled && (isFocused || openedMenu !== null || isFiltered);
-  const iconStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    color: isIconHighlighted ? 'var(--brand-sapphire-60)' : undefined
-  };
 
   const renderMenuContent = () => {
     if (openedMenu === 'type') {
@@ -276,7 +275,11 @@ const Filter: FC<IFilterProps> = ({
         onFocus={handleFocusInput}
         onBlur={handleBlurInput}
         icon={
-          <div ref={iconRef} onClick={handleIconClick} style={iconStyle}>
+          <div
+            ref={iconRef}
+            onClick={handleIconClick}
+            className={clsx(styles.iconWrapper, { [styles.active]: isIconHighlighted })}
+          >
             {currentFilterOption.icon}
           </div>
         }

@@ -43,6 +43,15 @@
   user-select: none;
 }
 
+.iconWrapper {
+  display: flex;
+  align-items: center;
+
+  &.active {
+    color: var(--brand-sapphire-60);
+  }
+}
+
 .menu {
   display: flex;
   flex-direction: column;

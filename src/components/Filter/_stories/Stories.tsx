@@ -49,7 +49,7 @@ export default App;
 import { useState } from 'react';
 
 const filterTypeOptions = [
-  { value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }
+  { value: 'oneOf', label: 'Один из', icon: <IconMultipleChoice24 /> }
 ];
 
 const filterValueOptions = [
@@ -81,7 +81,7 @@ export default App;
   const multiselectUncontrolledCode = `import { Filter, IconMultipleChoice24 } from '@nlmk/ds-2.0';
 
 const filterTypeOptions = [
-  { value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }
+  { value: 'oneOf', label: 'Один из', icon: <IconMultipleChoice24 /> }
 ];
 
 const filterValueOptions = [

@@ -11,7 +11,7 @@ describe('Filter Component', () => {
     { value: 'equals', label: 'Равно', icon: <IconEqualsSign24 /> }
   ];
 
-  const multiTypeOptions = [{ value: 'one_of', label: 'Один из', icon: <IconMultipleChoice24 /> }];
+  const multiTypeOptions = [{ value: 'oneOf', label: 'Один из', icon: <IconMultipleChoice24 /> }];
 
   const filterValueOptions = [
     { value: 'new', label: 'Новое' },

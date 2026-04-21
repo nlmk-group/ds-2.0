@@ -1,0 +1,31 @@
+.tableContainer {
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--unique-divider);
+}
+
+.cell {
+  position: relative;
+  user-select: none;
+}
+
+.selected {
+  outline: 2px solid var(--brand-sapphire-50);
+  outline-offset: -2px;
+}
+
+.inRange {
+  background-color: color-mix(in srgb, var(--brand-sapphire-50) 15%, transparent);
+}
+
+.fillHandle {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--brand-sapphire-50);
+  border: 1px solid var(--background-white);
+  cursor: crosshair;
+  z-index: 2;
+}

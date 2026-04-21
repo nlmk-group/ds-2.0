@@ -1,8 +1,12 @@
 import React from 'react';
 
 import {
+  CrossTableCellTransferExample,
+  DraggableColumnsTableExample,
+  DraggableRowsTableExample,
   EditableCellsTableExample,
   ExpandableTableExample,
+  FillCellTableExample,
   FilterableTableExample,
   GroupHeaderTableWithResizeExample,
   GroupingHeaderTableExample,
@@ -16,6 +20,7 @@ import {
   SettingsTableExample,
   SortableTableExample,
   SortingPaginationExample,
+  SwapCellsTableExample,
   TableWithStickyHeader,
   TableWithTanStackExample,
   VirtualizedTableWithDynamicRowHeightExample,
@@ -163,6 +168,41 @@ EditableCellsTable.parameters = {
 export const RowHighlight = () => <RowHighlightExamples />;
 RowHighlight.storyName = 'Варианты подсветки строк';
 RowHighlight.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const DraggableRowsTable = () => <DraggableRowsTableExample />;
+DraggableRowsTable.storyName = 'Таблица с dnd строк';
+DraggableRowsTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const DraggableColumnsTable = () => <DraggableColumnsTableExample />;
+DraggableColumnsTable.storyName = 'Таблица с dnd столбцов';
+DraggableColumnsTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const FillCellTable = () => <FillCellTableExample />;
+FillCellTable.storyName = 'Таблица с автозаполнением ячеек';
+FillCellTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const SwapCellsTable = () => <SwapCellsTableExample />;
+SwapCellsTable.storyName = 'Таблица с обменом значений между ячейками';
+SwapCellsTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
+
+export const CrossTableCellTransfer = () => <CrossTableCellTransferExample />;
+CrossTableCellTransfer.storyName = 'Перенос значений между двумя таблицами';
+CrossTableCellTransfer.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

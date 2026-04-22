@@ -4,6 +4,7 @@ export { default as SortableTableExample } from './SortingTable';
 export { default as VirtualizedTableWithDynamicRowHeightExample } from './VirtualizedTableWithDynamicRowHeight';
 export { default as VirtualizedTableWithHorizontalVirtualizationExample } from './VirtualizedTableColumns';
 export { default as FilterableTableExample } from './FilteringTable';
+export { default as FilterableMultiselectTableExample } from './FilterableMultiselectTable';
 export { default as ExpandableTableExample } from './ExpandableTable';
 export { default as GroupingHeaderTableExample } from './GroupingHeaderTable';
 export { default as GroupHeaderTableWithResizeExample } from './GroupHeaderTableWithResize';

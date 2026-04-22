@@ -7,6 +7,7 @@ import {
   EditableCellsTableExample,
   ExpandableTableExample,
   FillCellTableExample,
+  FilterableMultiselectTableExample,
   FilterableTableExample,
   GroupHeaderTableWithResizeExample,
   GroupingHeaderTableExample,
@@ -62,6 +63,13 @@ VirtualizedTableWithHorizontalVirtualization.parameters = hiddenControlsParams;
 export const FilterableTable = () => <FilterableTableExample />;
 FilterableTable.storyName = 'Таблица с фильтрами, сортировкой и возможностью изменения ширины столбцов';
 FilterableTable.parameters = hiddenControlsParams;
+
+export const FilterableMultiselectTable = () => <FilterableMultiselectTableExample />;
+FilterableMultiselectTable.storyName = 'Таблица с фильтрами мультивыбора';
+FilterableMultiselectTable.parameters = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const SortableTable = () => <SortableTableExample />;
 SortableTable.storyName = 'Таблица с сортировкой и возможностью изменения ширины столбцов';

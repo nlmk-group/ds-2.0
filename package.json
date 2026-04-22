@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.31.0",
+  "version": "2.31.1",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -20,6 +20,7 @@
     "convert:dark-theme-tokens": "node script/creatingDarkThemeConst.js",
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
+    "lint:fix": "eslint ./src --fix && prettier --write ./src",
     "clean": "rimraf lib && rimraf cache",
     "build": "BUILD_MODE=lib vite build",
     "packing": "yarn build && npm publish",

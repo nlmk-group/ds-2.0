@@ -19,6 +19,11 @@ export { default as LocalStorageTableExample } from './LocalStorageTableExample'
 export { default as PinnedColumnsTableExample } from './PinnedColumnsTableExample';
 export { default as EditableCellsTableExample } from './EditableCellsTableExample';
 export { default as RowHighlightExamples } from './RowHighlightExamples';
+export { default as DraggableRowsTableExample } from './DraggableRowsTableExample';
+export { default as DraggableColumnsTableExample } from './DraggableColumnsTableExample';
+export { default as FillCellTableExample } from './FillCellTableExample';
+export { default as SwapCellsTableExample } from './SwapCellsTableExample';
+export { default as CrossTableCellTransferExample } from './CrossTableCellTransferExample';
 export * from './utils';
 export * from './constants';
 export * from './types';

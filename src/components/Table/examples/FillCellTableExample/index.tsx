@@ -118,7 +118,7 @@ const FillCellTableExample: FC = () => {
         <Tbody>
           {data.map((r, rowIdx) => (
             <Row key={r.id}>
-              <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--steel-20)' }}>
+              <td style={{ padding: '12px 16px' }}>
                 <Typography variant="Body1Table-Medium" color="var(--steel-90)">
                   {r.brigade}
                 </Typography>
@@ -150,7 +150,6 @@ const FillCellTableExample: FC = () => {
                     )}
                     style={{
                       padding: '12px 16px',
-                      borderBottom: '1px solid var(--steel-20)',
                       textAlign: 'right'
                     }}
                     onClick={() => setSelected(pos)}

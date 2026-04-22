@@ -17,6 +17,7 @@ const FilterInput: FC<IFilterInputProps> = ({
   onReset,
   className,
   inputRef,
+  forceReset = false,
   ...props
 }) => {
   const defaultRef = useRef<HTMLInputElement>(null);
@@ -26,7 +27,7 @@ const FilterInput: FC<IFilterInputProps> = ({
   const hasResetFeature = reset && onReset;
   const hasValue = Boolean(value && value.length > 0);
   const isEnabled = !props.disabled;
-  const isResetIconVisible = hasResetFeature && hasValue && isEnabled;
+  const isResetIconVisible = hasResetFeature && (hasValue || forceReset) && isEnabled;
 
   const isCustomIconVisible = Boolean(icon);
 
@@ -47,7 +48,7 @@ const FilterInput: FC<IFilterInputProps> = ({
       )}
       {isResetIconVisible && (
         <div className={styles.reset} data-ui-input-reset-icon data-testid="RESET_ICON" onClick={onReset}>
-          <Icon htmlColor="var(--steel-70)" containerSize={24} name="IconCloseOutlined24" />
+          <Icon htmlColor="var(--brand-sapphire-60)" containerSize={16} name="IconCloseOutlined16" />
         </div>
       )}
     </div>

@@ -11,6 +11,7 @@ export interface IComboBoxOption {
   hasLineBreak?: boolean;
   disabled?: boolean;
   tooltipDescription?: string;
+  description?: string;
 }
 
 export interface IComboBoxGroupOption extends IComboBoxOption {

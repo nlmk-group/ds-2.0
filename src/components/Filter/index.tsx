@@ -1,9 +1,17 @@
 import React, { CSSProperties, FC, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { ClickAwayListener, IconSelectionContains24, List, ListItem, Typography } from '@components/index';
-import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import { useFloatingReferenceSync } from '@components/declaration/hooks';
+import {
+  Box,
+  Checkbox,
+  ClickAwayListener,
+  IconSelectionContains24,
+  List,
+  ListItem,
+  Typography
+} from '@components/index';
+import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IFilterProps, IFilterTypeOption, IFilterValueOption, TMenuState } from './types';
@@ -21,12 +29,34 @@ const Filter: FC<IFilterProps> = ({
   withPortal = false,
   portalContainerId = 'root',
   className,
+  mode = 'autocomplete',
+  selectedValues,
+  defaultSelectedValues,
+  onSelectedValuesChange,
   ...inputProps
 }) => {
   const [inputValue, setInputValue] = useState(defaultValue);
   const [filterType, setFilterType] = useState(defaultFilterType || filterTypeOptions[0]?.value || '');
 
+  const [internalSelected, setInternalSelected] = useState<string[]>(defaultSelectedValues ?? []);
+  const isSelectedControlled = selectedValues !== undefined;
+  const effectiveSelected = isSelectedControlled ? (selectedValues as string[]) : internalSelected;
+
+  const updateSelected = (next: string[]) => {
+    if (!isSelectedControlled) setInternalSelected(next);
+    onSelectedValuesChange?.(next);
+  };
+
+  const isMulti = mode === 'multiselect';
+  const disabled = !!inputProps.disabled;
+
+  const hasSelectedItems = effectiveSelected.length > 0;
+  const hasInputValue = !!inputValue;
+
+  const isFiltered = isMulti ? hasSelectedItems : hasInputValue;
+
   const [openedMenu, setOpenedMenu] = useState<TMenuState>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const iconRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
@@ -69,6 +99,7 @@ const Filter: FC<IFilterProps> = ({
   }, [filterValueOptions, inputValue]);
 
   const handleIconClick = (e: React.MouseEvent) => {
+    if (disabled) return;
     e.stopPropagation();
     setOpenedMenu(prev => (prev === 'type' ? null : 'type'));
   };
@@ -78,16 +109,24 @@ const Filter: FC<IFilterProps> = ({
     }
   };
   const handleSelectFilterType = (opt: IFilterTypeOption) => {
-    if (!opt.disabled) {
-      setFilterType(opt.value);
-      setOpenedMenu(null);
+    if (opt.disabled) return;
+    setFilterType(opt.value);
+    setOpenedMenu(null);
+    if (isMulti) {
+      onFilterChange?.(undefined, opt.value);
+    } else {
       onFilterChange?.(inputValue || undefined, opt.value);
     }
   };
 
   const handleFocusInput = (e: React.FocusEvent) => {
+    if (disabled) return;
     e.stopPropagation();
+    setIsFocused(true);
     setOpenedMenu('value');
+  };
+  const handleBlurInput = () => {
+    setIsFocused(false);
   };
   const closeValueMenu = () => {
     if (openedMenu === 'value') {
@@ -95,15 +134,21 @@ const Filter: FC<IFilterProps> = ({
     }
   };
   const handleSelectValueOption = (opt: IFilterValueOption) => {
-    if (!opt.disabled) {
-      setInputValue(opt.label);
-      setOpenedMenu(null);
-      onFilterChange?.(opt.label, filterType);
+    if (opt.disabled) return;
+    if (isMulti) {
+      const set = new Set(effectiveSelected);
+      if (set.has(opt.value)) set.delete(opt.value);
+      else set.add(opt.value);
+      updateSelected(Array.from(set));
+      return;
     }
+    setInputValue(opt.label);
+    setOpenedMenu(null);
+    onFilterChange?.(opt.label, filterType);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isMulti) {
       onFilterChange?.(inputValue || undefined, filterType);
       setOpenedMenu(null);
     }
@@ -111,8 +156,14 @@ const Filter: FC<IFilterProps> = ({
 
   const handleReset = () => {
     setInputValue('');
+    if (isMulti) {
+      updateSelected([]);
+      return;
+    }
     onFilterChange?.(undefined, filterType);
   };
+
+  const isIconHighlighted = !disabled && (isFocused || openedMenu !== null || isFiltered);
 
   const renderMenuContent = () => {
     if (openedMenu === 'type') {
@@ -120,7 +171,10 @@ const Filter: FC<IFilterProps> = ({
         <ListItem
           key={opt.value}
           onClick={() => handleSelectFilterType(opt)}
-          className={clsx({ [styles.disabled]: opt.disabled })}
+          className={clsx({
+            [styles.disabled]: opt.disabled,
+            [styles.selected]: opt.value === filterType
+          })}
           data-ui-list-item
         >
           <div className={styles.menuItem}>
@@ -132,16 +186,38 @@ const Filter: FC<IFilterProps> = ({
     }
     if (openedMenu === 'value') {
       if (filteredValueOptions.length) {
-        return filteredValueOptions.map(opt => (
-          <ListItem
-            key={opt.value}
-            onClick={() => handleSelectValueOption(opt)}
-            className={clsx({ [styles.disabled]: opt.disabled })}
-            data-ui-list-item
-          >
-            <Typography variant="Body1-Medium">{opt.label}</Typography>
-          </ListItem>
-        ));
+        return filteredValueOptions.map(opt => {
+          const isSelected = isMulti && effectiveSelected.includes(opt.value);
+          return (
+            <ListItem
+              key={opt.value}
+              onClick={() => handleSelectValueOption(opt)}
+              className={clsx({
+                [styles.disabled]: opt.disabled,
+                [styles.selected]: isSelected
+              })}
+              data-ui-list-item
+            >
+              {isMulti ? (
+                <Box alignItems="center" gap="8px" width="100%">
+                  <Checkbox
+                    checked={isSelected}
+                    disabled={opt.disabled}
+                    onChange={() => {}}
+                    style={{ pointerEvents: 'none' }}
+                  />
+                  <Typography variant="Body1-Medium" className={styles.optionLabel}>
+                    {opt.label}
+                  </Typography>
+                </Box>
+              ) : (
+                <Typography variant="Body1-Medium" className={styles.optionLabel}>
+                  {opt.label}
+                </Typography>
+              )}
+            </ListItem>
+          );
+        });
       } else {
         return (
           <ListItem className={styles.noMatches} data-ui-list-item>
@@ -165,6 +241,7 @@ const Filter: FC<IFilterProps> = ({
         ref={setPopperElement}
         style={{
           ...floatingStyles,
+          width: openedMenu === 'type' ? 'fit-content' : undefined,
           minWidth: openedMenu === 'type' ? 200 : Math.min(inputRef.current?.offsetWidth || 200, 400),
           maxWidth: openedMenu === 'value' ? 400 : undefined,
           zIndex: 1100,
@@ -182,22 +259,40 @@ const Filter: FC<IFilterProps> = ({
   const portalTarget = withPortal ? portalContainer : null;
   const renderedMenu = portalTarget ? createPortal(menu, portalTarget) : menu;
 
+  const showCounter = isMulti && effectiveSelected.length > 0 && !inputValue;
+
   return (
-    <div className={clsx(styles.filter, className)} ref={inputRef} onClick={e => e.stopPropagation()}>
+    <div
+      className={clsx(styles.filter, { [styles.disabled]: disabled }, className)}
+      ref={inputRef}
+      onClick={e => e.stopPropagation()}
+    >
       <FilterInput
         {...inputProps}
+        placeholder={showCounter ? '' : inputProps.placeholder}
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        reset
+        reset={!disabled}
         onReset={handleReset}
+        forceReset={isMulti && effectiveSelected.length > 0}
         onFocus={handleFocusInput}
+        onBlur={handleBlurInput}
         icon={
-          <div ref={iconRef} onClick={handleIconClick} style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            ref={iconRef}
+            onClick={handleIconClick}
+            className={clsx(styles.iconWrapper, { [styles.active]: isIconHighlighted })}
+          >
             {currentFilterOption.icon}
           </div>
         }
       />
+      {showCounter && (
+        <div className={styles.counter}>
+          <Typography variant="Body1-Medium">Выбрано: {effectiveSelected.length}</Typography>
+        </div>
+      )}
 
       {renderedMenu}
     </div>

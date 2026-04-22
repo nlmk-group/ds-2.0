@@ -70,35 +70,71 @@ const ComboList = <T extends IComboBoxOption>({
     const isChecked = Boolean(comboBoxValue?.find(value => value.id === item.id));
     const isRenderInfinityLoadingAnchor = isInfinityLoading && item.id === offsetItemLoadingId;
 
+    const hasDescription = Boolean(item.description);
+
     return (
       <div
         key={item.id}
         className={clsx(styles.listItem, {
           [styles.listItemActive]: isChecked,
-          [styles.listItemDisabled]: Boolean(item?.disabled)
+          [styles.listItemDisabled]: Boolean(item?.disabled),
+          [styles.listItemWithDescription]: hasDescription
         })}
       >
-        {(isMultiple || isSingleChoiceCheckbox) && (
-          <Checkbox
-            checked={isChecked}
-            disabled={Boolean(item?.disabled)}
-            label={item.label}
-            onChange={isSingleChoiceCheckbox ? () => handleChange(item) : () => handleMultiChange(item)}
-            className={styles.listItemCheckbox}
-          />
-        )}
+        {(isMultiple || isSingleChoiceCheckbox) &&
+          (hasDescription ? (
+            <Box className={styles.listItemCheckboxWithDescription} gap={8} alignItems="center">
+              <Checkbox
+                checked={isChecked}
+                disabled={Boolean(item?.disabled)}
+                onChange={isSingleChoiceCheckbox ? () => handleChange(item) : () => handleMultiChange(item)}
+                className={styles.listItemCheckbox}
+              />
+              <Box flexDirection="column" gap={4} className={styles.listItemTextColumn}>
+                <Typography variant="Body1-Medium" className={styles.listItemLabel}>
+                  {item.label}
+                </Typography>
+                <Typography
+                  variant="Body2-Medium"
+                  color="var(--steel-70)"
+                  className={styles.listItemDescription}
+                >
+                  {item.description}
+                </Typography>
+              </Box>
+            </Box>
+          ) : (
+            <Checkbox
+              checked={isChecked}
+              disabled={Boolean(item?.disabled)}
+              label={item.label}
+              onChange={isSingleChoiceCheckbox ? () => handleChange(item) : () => handleMultiChange(item)}
+              className={styles.listItemCheckbox}
+            />
+          ))}
 
         {!isMultiple && !isSingleChoiceCheckbox && (
           <Box className={styles.listItemLabelWrapper} gap={8} onClick={() => !item?.disabled && handleChange(item)}>
-            <Typography
-              variant="Body1-Medium"
-              className={clsx(styles.listItemLabel, {
-                [styles.labelBreak]: item.hasLineBreak,
-                [styles.listItemTextDisabled]: Boolean(item?.disabled)
-              })}
-            >
-              {item.label}
-            </Typography>
+            <Box flexDirection="column" gap={4} className={styles.listItemTextColumn}>
+              <Typography
+                variant="Body1-Medium"
+                className={clsx(styles.listItemLabel, {
+                  [styles.labelBreak]: item.hasLineBreak,
+                  [styles.listItemTextDisabled]: Boolean(item?.disabled)
+                })}
+              >
+                {item.label}
+              </Typography>
+              {hasDescription && (
+                <Typography
+                  variant="Body2-Medium"
+                  color="var(--steel-70)"
+                  className={styles.listItemDescription}
+                >
+                  {item.description}
+                </Typography>
+              )}
+            </Box>
             {isChecked && (
               <Box className={styles.listItemDone} color="primary">
                 <Icon color="primary" name="IconDoneCheckOutlined24" />

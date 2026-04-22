@@ -63,6 +63,37 @@ export default function App() {
 
 ---
 
+## Формат опции (IComboBoxOption)
+
+Элементы списка, передаваемые в `items` у `ComboList` / `ComboGroupList` / `ComboTreeList`, имеют следующие поля:
+
+| Поле                | Type     | Description                                                                                 |
+|---------------------|----------|---------------------------------------------------------------------------------------------|
+| id                  | string   | Уникальный идентификатор опции.                                                              |
+| label               | string   | Основной текст опции (отображается как первая строка).                                       |
+| description         | string   | Дополнительный текст (sublabel), отображается второй строкой под label. В мультиселекте чекбокс центрируется по вертикали относительно блока label + description. |
+| disabled            | boolean  | Делает опцию недоступной для выбора.                                                         |
+| hasLineBreak        | boolean  | Разрешает перенос строки у длинного label.                                                   |
+| tooltipDescription  | string   | Текст тултипа при наведении на опцию.                                                        |
+| name                | string   | Опциональное имя опции.                                                                       |
+| shortName           | string   | Короткое имя (используется при `displayEnumerated`).                                          |
+| idMdm               | string   | Внешний идентификатор.                                                                        |
+
+### Пример с sublabel
+
+```jsx
+const items = [
+  { id: '1', label: 'Сталь 3', description: 'Ст3сп ГОСТ 380-2005' },
+  { id: '2', label: 'Сталь 20', description: 'Ст20 ГОСТ 1050-2013' }
+];
+
+<ComboBox label="Выбор с описанием">
+  <ComboList items={items} isMultiple={false} />
+</ComboBox>
+```
+
+---
+
 ## Другие варианты использования
 
 ### Группировка опций

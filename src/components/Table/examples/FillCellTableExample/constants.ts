@@ -1,17 +1,4 @@
-export interface IPlanRow {
-  id: string;
-  brigade: string;
-  mon: number;
-  tue: number;
-  wed: number;
-  thu: number;
-  fri: number;
-  sat: number;
-  sun: number;
-}
-
-export const DAY_KEYS: (keyof IPlanRow)[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-export const DAY_LABELS: Record<string, string> = {
+export const DAY_LABELS = {
   mon: 'Пн',
   tue: 'Вт',
   wed: 'Ср',
@@ -19,7 +6,16 @@ export const DAY_LABELS: Record<string, string> = {
   fri: 'Пт',
   sat: 'Сб',
   sun: 'Вс'
-};
+} as const;
+
+export type TDayKey = keyof typeof DAY_LABELS;
+
+export const DAY_KEYS = Object.keys(DAY_LABELS) as TDayKey[];
+
+export type IPlanRow = {
+  id: string;
+  brigade: string;
+} & Record<TDayKey, number>;
 
 export const initialData: IPlanRow[] = [
   { id: 'b1', brigade: 'Бригада №1', mon: 60, tue: 60, wed: 60, thu: 60, fri: 60, sat: 40, sun: 0 },

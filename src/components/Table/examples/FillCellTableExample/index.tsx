@@ -77,12 +77,12 @@ const FillCellTableExample: FC = () => {
           dragSource.current = null;
           if (!current || !src) return null;
           if (current.startRow === current.endRow && current.startCol === current.endCol) return null;
-          const srcValue = data[src.rowIdx][DAY_KEYS[src.colIdx]] as number;
+          const srcValue = data[src.rowIdx][DAY_KEYS[src.colIdx]];
           setData(prev => {
             const next = prev.map(r => ({ ...r }));
             for (let rIdx = current.startRow; rIdx <= current.endRow; rIdx++) {
               for (let cIdx = current.startCol; cIdx <= current.endCol; cIdx++) {
-                (next[rIdx] as any)[DAY_KEYS[cIdx]] = srcValue;
+                next[rIdx][DAY_KEYS[cIdx]] = srcValue;
               }
             }
             return next;
@@ -111,7 +111,7 @@ const FillCellTableExample: FC = () => {
           <Row>
             <Top title="Бригада" style={{ width: 160 }} />
             {DAY_KEYS.map(k => (
-              <Top key={k as string} title={DAY_LABELS[k as string]} style={{ width: 80 }} />
+              <Top key={k} title={DAY_LABELS[k]} style={{ width: 80 }} />
             ))}
           </Row>
         </Thead>
@@ -136,7 +136,7 @@ const FillCellTableExample: FC = () => {
                 const handleCornerClass = getHandleCornerClass(dragRange, selected);
                 return (
                   <td
-                    key={key as string}
+                    key={key}
                     data-fill-row={rowIdx}
                     data-fill-col={colIdx}
                     className={clsx(
@@ -155,7 +155,7 @@ const FillCellTableExample: FC = () => {
                     onClick={() => setSelected(pos)}
                   >
                     <Typography variant="Body1Table-Medium" color="var(--steel-90)">
-                      {r[key] as number}
+                      {r[key]}
                     </Typography>
                     {showHandle && (
                       <span className={clsx(styles.fillHandle, handleCornerClass)} onMouseDown={handleFillMouseDown} />

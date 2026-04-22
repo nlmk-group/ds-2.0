@@ -43,10 +43,13 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, moveRow }) => {
       const offset = monitor.getClientOffset();
       if (!offset) return;
       const hoverY = offset.y - rect.top;
-      if (item.index < index && hoverY < midY) return;
-      if (item.index > index && hoverY > midY) return;
-      moveRow(item.index, index);
-      item.index = index;
+      const draggedIndex = item.index;
+      const targetIndex = index;
+      const hasNotCrossedMiddle =
+        (draggedIndex < targetIndex && hoverY < midY) || (draggedIndex > targetIndex && hoverY > midY);
+      if (hasNotCrossedMiddle) return;
+      moveRow(draggedIndex, targetIndex);
+      item.index = targetIndex;
     }
   });
 

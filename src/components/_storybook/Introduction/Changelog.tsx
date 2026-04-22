@@ -23,11 +23,41 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.1 - <span className={styles.date}>22.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-filter-info--docs" target="blank" className={styles['link-changelog']}>
+                Filter
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен multiselect-режим
+              </li>
+              <li className={styles['left-padding']}>
+                - Обновлены стили компонента
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-combobox-info--docs" target="blank" className={styles['link-changelog']}>
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен проп description у ComboBoxOption
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.0 - <span className={styles.date}>20.04.26</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Добавлен компонент{' '}
+              • Добавлены компоненты{' '}
               <Link
                 href="./?path=/docs/components-notificationcard-info--docs"
                 target="blank"
@@ -35,10 +65,7 @@ export const Changelog = () => {
               >
                 NotificationCard
               </Link>
-              .
-            </li>
-            <li>
-              • Добавлен компонент{' '}
+              ,{' '}
               <Link
                 href="./?path=/docs/components-notificationgroup-info--docs"
                 target="blank"
@@ -46,10 +73,7 @@ export const Changelog = () => {
               >
                 NotificationGroup
               </Link>
-              .
-            </li>
-            <li>
-              • Добавлен компонент{' '}
+              ,{' '}
               <Link
                 href="./?path=/docs/components-notificationitem-info--docs"
                 target="blank"

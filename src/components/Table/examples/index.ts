@@ -21,6 +21,10 @@ export { default as EditableCellsTableExample } from './EditableCellsTableExampl
 export { default as RowHighlightExamples } from './RowHighlightExamples';
 export { default as DraggableRowsTableExample } from './DraggableRowsTableExample';
 export { default as DraggableColumnsTableExample } from './DraggableColumnsTableExample';
+export { default as DraggableRowsIndicatorRDndExample } from './DraggableRowsIndicatorRDndExample';
+export { default as DraggableRowsIndicatorDndKitExample } from './DraggableRowsIndicatorDndKitExample';
+export { default as DraggableColumnsIndicatorRDndExample } from './DraggableColumnsIndicatorRDndExample';
+export { default as DraggableColumnsIndicatorDndKitExample } from './DraggableColumnsIndicatorDndKitExample';
 export { default as FillCellTableExample } from './FillCellTableExample';
 export { default as SwapCellsTableExample } from './SwapCellsTableExample';
 export { default as CrossTableCellTransferExample } from './CrossTableCellTransferExample';

@@ -1,5 +1,4 @@
-import { FC, ReactElement, ReactNode } from 'react';
-import { IFile } from './subcomponents/File/types';
+import { FC, ReactNode } from 'react';
 
 /**
  * Свойства компонента AttachFiles.
@@ -8,8 +7,8 @@ import { IFile } from './subcomponents/File/types';
 export interface IAttachFilesProps {
   /** Дополнительный CSS-класс */
   className?: string;
-  /** Заголовок для секции прикреплённых файлов */
-  title?: ReactElement<IFile, any>;
+  /** Заголовок секции прикреплённых файлов */
+  title?: ReactNode;
   /** Дочерние элементы (список файлов) */
   children?: ReactNode[] | ReactNode;
 }

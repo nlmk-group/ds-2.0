@@ -241,6 +241,10 @@
       "import": "./lib/ComboBox/index.js",
       "types": "./lib/ComboBox/index.d.ts"
     },
+    "./Comments": {
+      "import": "./lib/Comments/index.js",
+      "types": "./lib/Comments/index.d.ts"
+    },
     "./DatePicker": {
       "import": "./lib/DatePicker/index.js",
       "types": "./lib/DatePicker/index.d.ts"
@@ -297,6 +301,10 @@
       "import": "./lib/ImagePicture/index.js",
       "types": "./lib/ImagePicture/index.d.ts"
     },
+    "./ImagePreview": {
+      "import": "./lib/ImagePreview/index.js",
+      "types": "./lib/ImagePreview/index.d.ts"
+    },
     "./Input": {
       "import": "./lib/Input/index.js",
       "types": "./lib/Input/index.d.ts"
@@ -332,6 +340,18 @@
     "./MultiSelect": {
       "import": "./lib/MultiSelect/index.js",
       "types": "./lib/MultiSelect/index.d.ts"
+    },
+    "./NotificationCard": {
+      "import": "./lib/NotificationCard/index.js",
+      "types": "./lib/NotificationCard/index.d.ts"
+    },
+    "./NotificationGroup": {
+      "import": "./lib/NotificationGroup/index.js",
+      "types": "./lib/NotificationGroup/index.d.ts"
+    },
+    "./NotificationItem": {
+      "import": "./lib/NotificationItem/index.js",
+      "types": "./lib/NotificationItem/index.d.ts"
     },
     "./OptionItem": {
       "import": "./lib/OptionItem/index.js",

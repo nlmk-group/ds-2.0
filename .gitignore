@@ -35,5 +35,6 @@ typographyTokens.json
 
 # AI tools
 .claude
+/docs
 CLAUDE.md
 GEMINI.md

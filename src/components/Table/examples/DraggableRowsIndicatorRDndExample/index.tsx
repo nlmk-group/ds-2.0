@@ -1,25 +1,26 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDragLayer, useDrop } from 'react-dnd';
 import { getEmptyImage, HTML5Backend } from 'react-dnd-html5-backend';
 import clsx from 'clsx';
 
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, Row as TableRow, useReactTable } from '@tanstack/react-table';
 
+import { getCellProps } from '..';
 import { columns, initialData } from './constants';
 import { IOperationRow } from './types';
 
 import styles from './DraggableRowsIndicator.module.scss';
 
 const DRAG_TYPE = 'operation-row-indicator-rdnd';
-const HANDLE_COL_WIDTH = 40;
 
 interface IDragItem {
   id: string;
   index: number;
-  rowData: IOperationRow;
   width: number;
   height: number;
+  initialLeft: number;
+  initialTop: number;
 }
 
 interface IIndicator {
@@ -29,14 +30,15 @@ interface IIndicator {
 }
 
 interface IDraggableRowProps {
-  row: any;
+  row: TableRow<IOperationRow>;
   index: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
   onHover: (indicator: IIndicator) => void;
   onDrop: (sourceIndex: number) => void;
+  onDragEnd: () => void;
 }
 
-const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHover, onDrop }) => {
+const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHover, onDrop, onDragEnd }) => {
   const ref = useRef<HTMLTableRowElement>(null);
 
   const [{ isDragging }, drag, preview] = useDrag({
@@ -46,11 +48,13 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
       return {
         id: row.id,
         index,
-        rowData: row.original,
         width: rect.width,
-        height: rect.height
+        height: rect.height,
+        initialLeft: rect.left,
+        initialTop: rect.top
       };
     },
+    end: () => onDragEnd(),
     collect: monitor => ({ isDragging: monitor.isDragging() })
   });
 
@@ -60,8 +64,9 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
 
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
-    hover: (_item: IDragItem, monitor) => {
+    hover: (item: IDragItem, monitor) => {
       if (!ref.current || !containerRef.current) return;
+      if (item.index === index) return;
       const rowRect = ref.current.getBoundingClientRect();
       const containerRect = containerRef.current.getBoundingClientRect();
       const offset = monitor.getClientOffset();
@@ -90,57 +95,72 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
           <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
         </span>
       </Cell>
-      {row.getVisibleCells().map((cell: any, colIdx: number) => {
-        const value = cell.getValue();
-        const isNumeric = cell.column.columnDef.meta?.isNumeric;
-        const text = value instanceof Date ? value.toLocaleDateString() : String(value);
-        return (
-          <Cell
-            key={cell.id}
-            align={colIdx === 0 ? 'left' : undefined}
-            {...(isNumeric ? { number: Number(value) } : { text })}
-          />
-        );
-      })}
+      {row.getVisibleCells().map((cell, colIdx) => (
+        <Cell
+          key={cell.id}
+          align={colIdx === 0 ? 'left' : undefined}
+          {...getCellProps(cell)}
+          style={{ width: cell.column.getSize() }}
+        />
+      ))}
     </Row>
   );
 };
 
-const DragPreviewLayer: FC = () => {
-  const { isDragging, item, currentOffset, initialSourceOffset, initialClientOffset } = useDragLayer(monitor => ({
+interface IDragPreviewLayerProps {
+  rows: TableRow<IOperationRow>[];
+}
+
+const DragPreviewLayer: FC<IDragPreviewLayerProps> = ({ rows }) => {
+  const { isDragging, item, delta } = useDragLayer(monitor => ({
     isDragging: monitor.isDragging() && monitor.getItemType() === DRAG_TYPE,
     item: monitor.getItem() as IDragItem | null,
-    currentOffset: monitor.getClientOffset(),
-    initialSourceOffset: monitor.getInitialSourceClientOffset(),
-    initialClientOffset: monitor.getInitialClientOffset()
+    delta: monitor.getDifferenceFromInitialOffset()
   }));
 
-  if (!isDragging || !item || !currentOffset || !initialClientOffset || !initialSourceOffset) return null;
+  useEffect(() => {
+    if (!isDragging) return;
+    const prevent = (e: DragEvent) => e.preventDefault();
+    window.addEventListener('dragover', prevent);
+    return () => window.removeEventListener('dragover', prevent);
+  }, [isDragging]);
 
-  const offsetX = initialClientOffset.x - initialSourceOffset.x;
-  const offsetY = initialClientOffset.y - initialSourceOffset.y;
-  const left = currentOffset.x - offsetX;
-  const top = currentOffset.y - offsetY;
+  if (!isDragging || !item || !delta) return null;
+  const row = rows.find(r => r.id === item.id);
+  if (!row) return null;
+
+  const left = item.initialLeft + delta.x;
+  const top = item.initialTop + delta.y;
 
   return (
-    <div className={styles.dragPreview} style={{ width: item.width, height: item.height, transform: `translate(${left}px, ${top}px)` }}>
-      <div className={styles.previewCell} style={{ width: HANDLE_COL_WIDTH, justifyContent: 'center' }}>
-        <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
-      </div>
-      {columns.map((col, idx) => {
-        const accessor = (col as { accessorKey: keyof IOperationRow }).accessorKey;
-        const value = item.rowData[accessor];
-        const isNumeric = col.meta?.isNumeric;
-        return (
-          <div
-            key={String(accessor)}
-            className={clsx(styles.previewCell, isNumeric && idx !== 0 && styles.right)}
-            style={{ width: col.size }}
-          >
-            {String(value)}
-          </div>
-        );
-      })}
+    <div
+      className={styles.dragPreview}
+      style={{ width: item.width, height: item.height, transform: `translate(${left}px, ${top}px)` }}
+    >
+      <Table
+        horizontalBorders
+        verticalBorders
+        className={styles.dragPreviewTable}
+        style={{ tableLayout: 'fixed', width: item.width }}
+      >
+        <Tbody>
+          <Row>
+            <Cell style={{ width: 40 }}>
+              <span className={styles.handle}>
+                <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
+              </span>
+            </Cell>
+            {row.getVisibleCells().map((cell, colIdx) => (
+              <Cell
+                key={cell.id}
+                align={colIdx === 0 ? 'left' : undefined}
+                {...getCellProps(cell)}
+                style={{ width: cell.column.getSize() }}
+              />
+            ))}
+          </Row>
+        </Tbody>
+      </Table>
     </div>
   );
 };
@@ -148,35 +168,39 @@ const DragPreviewLayer: FC = () => {
 const DraggableRowsIndicatorRDndExample: FC = () => {
   const [data, setData] = useState<IOperationRow[]>(initialData);
   const [indicator, setIndicator] = useState<IIndicator | null>(null);
+  const indicatorRef = useRef<IIndicator | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleHover = useCallback((next: IIndicator) => {
+  const updateIndicator = (next: IIndicator | null) => {
+    indicatorRef.current = next;
     setIndicator(prev => {
+      if (!next) return null;
       if (prev && prev.targetIndex === next.targetIndex && prev.position === next.position) return prev;
       return next;
     });
-  }, []);
+  };
 
-  const handleDrop = useCallback(
-    (sourceIndex: number) => {
-      setIndicator(current => {
-        if (!current) return null;
-        const { targetIndex, position } = current;
-        let insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
-        if (insertIndex > sourceIndex) insertIndex -= 1;
-        if (insertIndex !== sourceIndex) {
-          setData(prev => {
-            const next = [...prev];
-            const [moved] = next.splice(sourceIndex, 1);
-            next.splice(insertIndex, 0, moved);
-            return next;
-          });
-        }
-        return null;
-      });
-    },
-    []
-  );
+  const handleHover = (next: IIndicator) => updateIndicator(next);
+
+  const handleDrop = (sourceIndex: number) => {
+    const ind = indicatorRef.current;
+    if (ind) {
+      const { targetIndex, position } = ind;
+      let insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
+      if (insertIndex > sourceIndex) insertIndex -= 1;
+      if (insertIndex !== sourceIndex) {
+        setData(prev => {
+          const next = [...prev];
+          const [moved] = next.splice(sourceIndex, 1);
+          next.splice(insertIndex, 0, moved);
+          return next;
+        });
+      }
+    }
+    updateIndicator(null);
+  };
+
+  const handleDragEnd = () => updateIndicator(null);
 
   const table = useReactTable({
     data,
@@ -187,12 +211,12 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div ref={containerRef} className={styles.tableContainer} onDragLeave={() => setIndicator(null)}>
+      <div ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders>
           <Thead>
             {table.getHeaderGroups().map(hg => (
               <Row key={hg.id}>
-                <Top title="" style={{ width: HANDLE_COL_WIDTH }} />
+                <Top title="" style={{ width: 40 }} />
                 {hg.headers.map((header, idx) => (
                   <Top
                     key={header.id}
@@ -213,13 +237,14 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
                 containerRef={containerRef}
                 onHover={handleHover}
                 onDrop={handleDrop}
+                onDragEnd={handleDragEnd}
               />
             ))}
           </Tbody>
         </Table>
         {indicator && <div className={styles.insertLine} style={{ top: indicator.lineY }} />}
       </div>
-      <DragPreviewLayer />
+      <DragPreviewLayer rows={table.getRowModel().rows} />
     </DndProvider>
   );
 };

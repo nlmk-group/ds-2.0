@@ -19,8 +19,6 @@ export { default as LocalStorageTableExample } from './LocalStorageTableExample'
 export { default as PinnedColumnsTableExample } from './PinnedColumnsTableExample';
 export { default as EditableCellsTableExample } from './EditableCellsTableExample';
 export { default as RowHighlightExamples } from './RowHighlightExamples';
-export { default as DraggableRowsTableExample } from './DraggableRowsTableExample';
-export { default as DraggableColumnsTableExample } from './DraggableColumnsTableExample';
 export { default as DraggableRowsIndicatorRDndExample } from './DraggableRowsIndicatorRDndExample';
 export { default as DraggableRowsIndicatorDndKitExample } from './DraggableRowsIndicatorDndKitExample';
 export { default as DraggableColumnsIndicatorRDndExample } from './DraggableColumnsIndicatorRDndExample';

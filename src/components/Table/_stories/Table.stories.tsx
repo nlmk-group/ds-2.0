@@ -4,10 +4,8 @@ import {
   CrossTableCellTransferExample,
   DraggableColumnsIndicatorDndKitExample,
   DraggableColumnsIndicatorRDndExample,
-  DraggableColumnsTableExample,
   DraggableRowsIndicatorDndKitExample,
   DraggableRowsIndicatorRDndExample,
-  DraggableRowsTableExample,
   EditableCellsTableExample,
   ExpandableTableExample,
   FillCellTableExample,
@@ -131,14 +129,6 @@ EditableCellsTable.parameters = hiddenControlsParams;
 export const RowHighlight = () => <RowHighlightExamples />;
 RowHighlight.storyName = 'Варианты подсветки строк';
 RowHighlight.parameters = hiddenControlsParams;
-
-export const DraggableRowsTable = () => <DraggableRowsTableExample />;
-DraggableRowsTable.storyName = 'Таблица с dnd строк';
-DraggableRowsTable.parameters = hiddenControlsParams;
-
-export const DraggableColumnsTable = () => <DraggableColumnsTableExample />;
-DraggableColumnsTable.storyName = 'Таблица с dnd столбцов';
-DraggableColumnsTable.parameters = hiddenControlsParams;
 
 export const DraggableRowsTableIndicatorRDnd = () => <DraggableRowsIndicatorRDndExample />;
 DraggableRowsTableIndicatorRDnd.storyName = 'Таблица с dnd строк (react-dnd)';

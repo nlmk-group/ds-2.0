@@ -23,17 +23,19 @@
   background: var(--brand-sapphire-60);
   pointer-events: none;
   z-index: 2;
+  transform: translateX(-50%);
 }
 
 .dragPreview {
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  background: var(--steel-30);
   border: 2px solid var(--brand-sapphire-60);
-  opacity: 0.8;
+  background: var(--steel-30);
+  opacity: 0.85;
   pointer-events: none;
   box-sizing: border-box;
-  color: var(--steel-90);
-  font: var(--16-Body-Medium);
+  overflow: hidden;
+}
+
+.dragPreviewTable {
+  width: 100% !important;
+  height: 100%;
 }

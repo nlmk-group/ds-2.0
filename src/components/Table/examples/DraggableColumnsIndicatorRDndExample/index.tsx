@@ -1,7 +1,6 @@
 import React, { FC, MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDragLayer, useDrop } from 'react-dnd';
 import { getEmptyImage, HTML5Backend } from 'react-dnd-html5-backend';
-import clsx from 'clsx';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
@@ -25,6 +24,8 @@ interface IDragItem {
   headerLabel: string;
   width: number;
   height: number;
+  initialLeft: number;
+  initialTop: number;
 }
 
 interface IIndicator {
@@ -39,9 +40,17 @@ interface IDraggableHeaderProps {
   index: number;
   onHover: (indicator: IIndicator) => void;
   onDrop: (sourceId: string) => void;
+  onDragEnd: () => void;
 }
 
-const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, index, onHover, onDrop }) => {
+const DraggableHeader: FC<IDraggableHeaderProps> = ({
+  header,
+  containerRef,
+  index,
+  onHover,
+  onDrop,
+  onDragEnd
+}) => {
   const ref = useRef<HTMLTableCellElement>(null);
   const resizingRef = useRef(false);
   const { column } = header;
@@ -52,9 +61,17 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, inde
     type: DRAG_TYPE,
     item: (): IDragItem => {
       const rect = ref.current!.getBoundingClientRect();
-      return { columnId, headerLabel: headerText, width: rect.width, height: rect.height };
+      return {
+        columnId,
+        headerLabel: headerText,
+        width: rect.width,
+        height: rect.height,
+        initialLeft: rect.left,
+        initialTop: rect.top
+      };
     },
     canDrag: () => !resizingRef.current,
+    end: () => onDragEnd(),
     collect: monitor => ({ isDragging: monitor.isDragging() })
   });
 
@@ -64,8 +81,9 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, inde
 
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
-    hover: (_item: IDragItem, monitor) => {
+    hover: (item: IDragItem, monitor) => {
       if (!ref.current || !containerRef.current) return;
+      if (item.columnId === columnId) return;
       const rect = ref.current.getBoundingClientRect();
       const offset = monitor.getClientOffset();
       if (!offset) return;
@@ -112,31 +130,46 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, inde
       drag
       onMouseDown={resizeMouseDown}
       onTouchStart={resizeTouchStart}
-      className={clsx(styles.header, isDragging && styles.ghost)}
-      style={{ width: header.getSize() }}
+      style={{
+        width: header.getSize(),
+        cursor: 'grab',
+        opacity: isDragging ? 0.5 : 1
+      }}
     />
   );
 };
 
 const DragPreviewLayer: FC = () => {
-  const { isDragging, item, currentOffset, initialSourceOffset, initialClientOffset } = useDragLayer(monitor => ({
+  const { isDragging, item, delta } = useDragLayer(monitor => ({
     isDragging: monitor.isDragging() && monitor.getItemType() === DRAG_TYPE,
     item: monitor.getItem() as IDragItem | null,
-    currentOffset: monitor.getClientOffset(),
-    initialSourceOffset: monitor.getInitialSourceClientOffset(),
-    initialClientOffset: monitor.getInitialClientOffset()
+    delta: monitor.getDifferenceFromInitialOffset()
   }));
 
-  if (!isDragging || !item || !currentOffset || !initialClientOffset || !initialSourceOffset) return null;
+  useEffect(() => {
+    if (!isDragging) return;
+    const prevent = (e: DragEvent) => e.preventDefault();
+    window.addEventListener('dragover', prevent);
+    return () => window.removeEventListener('dragover', prevent);
+  }, [isDragging]);
 
-  const offsetX = initialClientOffset.x - initialSourceOffset.x;
-  const offsetY = initialClientOffset.y - initialSourceOffset.y;
-  const left = currentOffset.x - offsetX;
-  const top = currentOffset.y - offsetY;
+  if (!isDragging || !item || !delta) return null;
+
+  const left = item.initialLeft + delta.x;
+  const top = item.initialTop + delta.y;
 
   return (
-    <div className={styles.dragPreview} style={{ width: item.width, height: item.height, transform: `translate(${left}px, ${top}px)` }}>
-      {item.headerLabel}
+    <div
+      className={styles.dragPreview}
+      style={{ width: item.width, height: item.height, transform: `translate(${left}px, ${top}px)` }}
+    >
+      <Table className={styles.dragPreviewTable}>
+        <Thead>
+          <Row>
+            <Top title={item.headerLabel} style={{ width: item.width }} />
+          </Row>
+        </Thead>
+      </Table>
     </div>
   );
 };
@@ -145,20 +178,24 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(initialColumns.map(c => c.id as string));
   const [columnResizeMode] = useState<ColumnResizeMode>('onChange');
   const [indicator, setIndicator] = useState<IIndicator | null>(null);
+  const indicatorRef = useRef<IIndicator | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleHover = (next: IIndicator) => {
+  const updateIndicator = (next: IIndicator | null) => {
+    indicatorRef.current = next;
     setIndicator(prev => {
+      if (!next) return null;
       if (prev && prev.overColumnId === next.overColumnId && prev.position === next.position) return prev;
       return next;
     });
   };
 
+  const handleHover = (next: IIndicator) => updateIndicator(next);
+
   const handleDrop = (sourceId: string) => {
-    setIndicator(current => {
-      if (!current) return null;
-      const { overColumnId, position } = current;
-      if (sourceId === overColumnId) return null;
+    const ind = indicatorRef.current;
+    if (ind && sourceId !== ind.overColumnId) {
+      const { overColumnId, position } = ind;
       setColumnOrder(order => {
         const fromIdx = order.indexOf(sourceId);
         const toIdx = order.indexOf(overColumnId);
@@ -171,9 +208,11 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
         next.splice(insertIdx, 0, moved);
         return next;
       });
-      return null;
-    });
+    }
+    updateIndicator(null);
   };
+
+  const handleDragEnd = () => updateIndicator(null);
 
   const table = useReactTable({
     data: initialData,
@@ -188,11 +227,7 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div
-        ref={containerRef}
-        className={styles.tableContainer}
-        onDragLeave={() => setIndicator(null)}
-      >
+      <div ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders style={{ tableLayout: 'fixed', width: table.getCenterTotalSize() }}>
           <Thead>
             {table.getHeaderGroups().map(hg => (
@@ -205,6 +240,7 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
                     index={idx}
                     onHover={handleHover}
                     onDrop={handleDrop}
+                    onDragEnd={handleDragEnd}
                   />
                 ))}
               </Row>

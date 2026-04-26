@@ -39,9 +39,10 @@ interface IDraggableHeaderProps {
   header: Header<IShiftRow, unknown>;
   isActive: boolean;
   index: number;
+  headerRefs: React.MutableRefObject<Map<string, HTMLTableCellElement>>;
 }
 
-const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index }) => {
+const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index, headerRefs }) => {
   const resizingRef = useRef(false);
   const { column } = header;
   const columnId = column.id;
@@ -55,6 +56,11 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index })
   const composedRef = (node: HTMLTableCellElement | null) => {
     setDragRef(node);
     setDropRef(node);
+    if (node) {
+      headerRefs.current.set(columnId, node);
+    } else {
+      headerRefs.current.delete(columnId);
+    }
   };
 
   const resizeMouseDown = (e: MouseEvent) => {
@@ -93,9 +99,21 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index })
   );
 };
 
-const DragOverlayPreview: FC<{ label: string; width: number; height: number }> = ({ label, width, height }) => (
+interface IDragOverlayPreviewProps {
+  label: string;
+  width: number;
+  height: number;
+}
+
+const DragOverlayPreview: FC<IDragOverlayPreviewProps> = ({ label, width, height }) => (
   <div className={styles.dragPreview} style={{ width, height }}>
-    {label}
+    <Table className={styles.dragPreviewTable}>
+      <Thead>
+        <Row>
+          <Top title={label} style={{ width }} />
+        </Row>
+      </Thead>
+    </Table>
   </div>
 );
 
@@ -104,21 +122,32 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
   const [columnResizeMode] = useState<ColumnResizeMode>('onChange');
   const [activeId, setActiveId] = useState<string | null>(null);
   const [indicator, setIndicator] = useState<IIndicator | null>(null);
+  const indicatorRef = useRef<IIndicator | null>(null);
   const sourceSize = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const headerRefs = useRef<Map<string, HTMLTableCellElement>>(new Map());
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }));
 
   const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(String(event.active.id));
-    const rect = event.active.rect.current.initial;
-    if (rect) sourceSize.current = { width: rect.width, height: rect.height };
+    const id = String(event.active.id);
+    setActiveId(id);
+    const node = headerRefs.current.get(id);
+    if (node) {
+      const rect = node.getBoundingClientRect();
+      sourceSize.current = { width: rect.width, height: rect.height };
+    }
+  };
+
+  const updateIndicator = (next: IIndicator | null) => {
+    indicatorRef.current = next;
+    setIndicator(next);
   };
 
   const handleDragMove = (event: DragMoveEvent) => {
     const { active, over } = event;
-    if (!over || !active.rect.current.translated || !containerRef.current) {
-      setIndicator(null);
+    if (!over || over.id === active.id || !active.rect.current.translated || !containerRef.current) {
+      updateIndicator(null);
       return;
     }
     const activeRect = active.rect.current.translated;
@@ -129,17 +158,17 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
     const containerRect = containerRef.current.getBoundingClientRect();
     const lineX =
       position === 'before' ? overRect.left - containerRect.left : overRect.left + overRect.width - containerRect.left;
-    setIndicator({ overColumnId: String(over.id), position, lineX });
+    updateIndicator({ overColumnId: String(over.id), position, lineX });
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active } = event;
-    const currentIndicator = indicator;
+    const ind = indicatorRef.current;
     setActiveId(null);
-    setIndicator(null);
-    if (!currentIndicator) return;
+    updateIndicator(null);
+    if (!ind) return;
     const sourceId = String(active.id);
-    const { overColumnId, position } = currentIndicator;
+    const { overColumnId, position } = ind;
     if (sourceId === overColumnId) return;
     setColumnOrder(order => {
       const fromIdx = order.indexOf(sourceId);
@@ -157,7 +186,7 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
 
   const handleDragCancel = () => {
     setActiveId(null);
-    setIndicator(null);
+    updateIndicator(null);
   };
 
   const table = useReactTable({
@@ -194,6 +223,7 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
                     header={header}
                     isActive={header.column.id === activeId}
                     index={idx}
+                    headerRefs={headerRefs}
                   />
                 ))}
               </Row>

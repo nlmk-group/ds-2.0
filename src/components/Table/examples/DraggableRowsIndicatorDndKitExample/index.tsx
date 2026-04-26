@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
   DndContext,
-  DragOverlay,
-  DragMoveEvent,
   DragEndEvent,
+  DragMoveEvent,
+  DragOverlay,
   DragStartEvent,
   PointerSensor,
   pointerWithin,
@@ -15,7 +15,7 @@ import {
   useSensor,
   useSensors
 } from '@dnd-kit/core';
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, Row as TableRow, useReactTable } from '@tanstack/react-table';
 
 import { columns, initialData } from './constants';
 import { IOperationRow } from './types';
@@ -31,17 +31,23 @@ interface IIndicator {
 }
 
 interface IDraggableRowProps {
-  row: any;
+  row: TableRow<IOperationRow>;
   isActive: boolean;
+  rowRefs: React.MutableRefObject<Map<string, HTMLTableRowElement>>;
 }
 
-const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive }) => {
+const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive, rowRefs }) => {
   const { setNodeRef: setDragRef, attributes, listeners } = useDraggable({ id: row.id });
   const { setNodeRef: setDropRef } = useDroppable({ id: row.id });
 
   const composedRef = (node: HTMLTableRowElement | null) => {
     setDragRef(node);
     setDropRef(node);
+    if (node) {
+      rowRefs.current.set(row.id, node);
+    } else {
+      rowRefs.current.delete(row.id);
+    }
   };
 
   return (
@@ -51,7 +57,7 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive }) => {
           <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
         </span>
       </Cell>
-      {row.getVisibleCells().map((cell: any, colIdx: number) => {
+      {row.getVisibleCells().map((cell, colIdx) => {
         const value = cell.getValue();
         const isNumeric = cell.column.columnDef.meta?.isNumeric;
         const text = value instanceof Date ? value.toLocaleDateString() : String(value);
@@ -60,6 +66,7 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive }) => {
             key={cell.id}
             align={colIdx === 0 ? 'left' : undefined}
             {...(isNumeric ? { number: Number(value) } : { text })}
+            style={{ width: cell.column.getSize() }}
           />
         );
       })}
@@ -67,29 +74,38 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive }) => {
   );
 };
 
-const DragOverlayPreview: FC<{ rowData: IOperationRow; width: number; height: number }> = ({
-  rowData,
-  width,
-  height
-}) => (
+interface IDragOverlayPreviewProps {
+  row: TableRow<IOperationRow>;
+  width: number;
+  height: number;
+}
+
+const DragOverlayPreview: FC<IDragOverlayPreviewProps> = ({ row, width, height }) => (
   <div className={styles.dragPreview} style={{ width, height }}>
-    <div className={styles.previewCell} style={{ width: HANDLE_COL_WIDTH, justifyContent: 'center' }}>
-      <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
-    </div>
-    {columns.map((col, idx) => {
-      const accessor = (col as { accessorKey: keyof IOperationRow }).accessorKey;
-      const value = rowData[accessor];
-      const isNumeric = col.meta?.isNumeric;
-      return (
-        <div
-          key={String(accessor)}
-          className={clsx(styles.previewCell, isNumeric && idx !== 0 && styles.right)}
-          style={{ width: col.size }}
-        >
-          {String(value)}
-        </div>
-      );
-    })}
+    <Table horizontalBorders verticalBorders className={styles.dragPreviewTable}>
+      <Tbody>
+        <Row>
+          <Cell>
+            <span className={styles.handle}>
+              <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
+            </span>
+          </Cell>
+          {row.getVisibleCells().map((cell, colIdx) => {
+            const value = cell.getValue();
+            const isNumeric = cell.column.columnDef.meta?.isNumeric;
+            const text = value instanceof Date ? value.toLocaleDateString() : String(value);
+            return (
+              <Cell
+                key={cell.id}
+                align={colIdx === 0 ? 'left' : undefined}
+                {...(isNumeric ? { number: Number(value) } : { text })}
+                style={{ width: cell.column.getSize() }}
+              />
+            );
+          })}
+        </Row>
+      </Tbody>
+    </Table>
   </div>
 );
 
@@ -97,21 +113,32 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
   const [data, setData] = useState<IOperationRow[]>(initialData);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [indicator, setIndicator] = useState<IIndicator | null>(null);
+  const indicatorRef = useRef<IIndicator | null>(null);
   const sourceSize = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<Map<string, HTMLTableRowElement>>(new Map());
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }));
 
   const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(String(event.active.id));
-    const node = event.active.rect.current.initial;
-    if (node) sourceSize.current = { width: node.width, height: node.height };
+    const id = String(event.active.id);
+    setActiveId(id);
+    const node = rowRefs.current.get(id);
+    if (node) {
+      const rect = node.getBoundingClientRect();
+      sourceSize.current = { width: rect.width, height: rect.height };
+    }
+  };
+
+  const updateIndicator = (next: IIndicator | null) => {
+    indicatorRef.current = next;
+    setIndicator(next);
   };
 
   const handleDragMove = (event: DragMoveEvent) => {
     const { active, over } = event;
-    if (!over || !active.rect.current.translated || !containerRef.current) {
-      setIndicator(null);
+    if (!over || over.id === active.id || !active.rect.current.translated || !containerRef.current) {
+      updateIndicator(null);
       return;
     }
     const activeRect = active.rect.current.translated;
@@ -122,18 +149,19 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
     const containerRect = containerRef.current.getBoundingClientRect();
     const lineY =
       position === 'before' ? overRect.top - containerRect.top : overRect.top + overRect.height - containerRect.top;
-    setIndicator({ overId: String(over.id), position, lineY });
+    updateIndicator({ overId: String(over.id), position, lineY });
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
+    const { active } = event;
+    const ind = indicatorRef.current;
     setActiveId(null);
-    setIndicator(null);
-    if (!over || !indicator) return;
+    updateIndicator(null);
+    if (!ind) return;
     const sourceIndex = data.findIndex(d => d.id === active.id);
-    const targetIndex = data.findIndex(d => d.id === over.id);
+    const targetIndex = data.findIndex(d => d.id === ind.overId);
     if (sourceIndex === -1 || targetIndex === -1) return;
-    let insertIndex = indicator.position === 'before' ? targetIndex : targetIndex + 1;
+    let insertIndex = ind.position === 'before' ? targetIndex : targetIndex + 1;
     if (insertIndex > sourceIndex) insertIndex -= 1;
     if (insertIndex === sourceIndex) return;
     setData(prev => {
@@ -146,7 +174,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
 
   const handleDragCancel = () => {
     setActiveId(null);
-    setIndicator(null);
+    updateIndicator(null);
   };
 
   const table = useReactTable({
@@ -156,7 +184,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
     getCoreRowModel: getCoreRowModel()
   });
 
-  const activeRow = activeId ? data.find(d => d.id === activeId) : null;
+  const activeRow = activeId ? table.getRowModel().rows.find(r => r.id === activeId) : null;
 
   return (
     <DndContext
@@ -168,7 +196,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
       onDragCancel={handleDragCancel}
     >
       <div ref={containerRef} className={styles.tableContainer}>
-        <Table horizontalBorders verticalBorders>
+        <Table horizontalBorders verticalBorders style={{ width: '100%' }}>
           <Thead>
             {table.getHeaderGroups().map(hg => (
               <Row key={hg.id}>
@@ -186,7 +214,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
           </Thead>
           <Tbody>
             {table.getRowModel().rows.map(row => (
-              <DraggableRow key={row.id} row={row} isActive={row.id === activeId} />
+              <DraggableRow key={row.id} row={row} isActive={row.id === activeId} rowRefs={rowRefs} />
             ))}
           </Tbody>
         </Table>
@@ -194,7 +222,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
       </div>
       <DragOverlay dropAnimation={null}>
         {activeRow ? (
-          <DragOverlayPreview rowData={activeRow} width={sourceSize.current.width} height={sourceSize.current.height} />
+          <DragOverlayPreview row={activeRow} width={sourceSize.current.width} height={sourceSize.current.height} />
         ) : null}
       </DragOverlay>
     </DndContext>

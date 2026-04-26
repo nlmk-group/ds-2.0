@@ -33,30 +33,19 @@
   background: var(--brand-sapphire-60);
   pointer-events: none;
   z-index: 2;
+  transform: translateY(-50%);
 }
 
 .dragPreview {
-  display: flex;
-  align-items: stretch;
-  background: var(--steel-30);
   border: 2px solid var(--brand-sapphire-60);
-  opacity: 0.8;
+  background: var(--steel-30);
+  opacity: 0.85;
   pointer-events: none;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.previewCell {
-  display: flex;
-  align-items: center;
-  padding: 4px 8px;
-  box-sizing: border-box;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: var(--steel-90);
-  font: var(--16-Body-Medium);
-
-  &.right {
-    justify-content: flex-end;
-  }
+.dragPreviewTable {
+  width: 100% !important;
+  height: 100%;
 }

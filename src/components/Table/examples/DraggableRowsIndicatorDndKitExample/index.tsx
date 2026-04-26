@@ -17,6 +17,7 @@ import {
 } from '@dnd-kit/core';
 import { flexRender, getCoreRowModel, Row as TableRow, useReactTable } from '@tanstack/react-table';
 
+import { getCellProps } from '..';
 import { columns, initialData } from './constants';
 import { IOperationRow } from './types';
 
@@ -57,19 +58,14 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive, rowRefs }) => {
           <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
         </span>
       </Cell>
-      {row.getVisibleCells().map((cell, colIdx) => {
-        const value = cell.getValue();
-        const isNumeric = cell.column.columnDef.meta?.isNumeric;
-        const text = value instanceof Date ? value.toLocaleDateString() : String(value);
-        return (
-          <Cell
-            key={cell.id}
-            align={colIdx === 0 ? 'left' : undefined}
-            {...(isNumeric ? { number: Number(value) } : { text })}
-            style={{ width: cell.column.getSize() }}
-          />
-        );
-      })}
+      {row.getVisibleCells().map((cell, colIdx) => (
+        <Cell
+          key={cell.id}
+          align={colIdx === 0 ? 'left' : undefined}
+          {...getCellProps(cell)}
+          style={{ width: cell.column.getSize() }}
+        />
+      ))}
     </Row>
   );
 };
@@ -90,19 +86,14 @@ const DragOverlayPreview: FC<IDragOverlayPreviewProps> = ({ row, width, height }
               <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
             </span>
           </Cell>
-          {row.getVisibleCells().map((cell, colIdx) => {
-            const value = cell.getValue();
-            const isNumeric = cell.column.columnDef.meta?.isNumeric;
-            const text = value instanceof Date ? value.toLocaleDateString() : String(value);
-            return (
-              <Cell
-                key={cell.id}
-                align={colIdx === 0 ? 'left' : undefined}
-                {...(isNumeric ? { number: Number(value) } : { text })}
-                style={{ width: cell.column.getSize() }}
-              />
-            );
-          })}
+          {row.getVisibleCells().map((cell, colIdx) => (
+            <Cell
+              key={cell.id}
+              align={colIdx === 0 ? 'left' : undefined}
+              {...getCellProps(cell)}
+              style={{ width: cell.column.getSize() }}
+            />
+          ))}
         </Row>
       </Tbody>
     </Table>

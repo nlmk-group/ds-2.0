@@ -20,11 +20,11 @@ export default App;
 
 ## Props
 
-| Prop      | Type                     | Default | Description                               |
-| --------- | ------------------------ | ------- | ----------------------------------------- |
-| className | string                   | -       | Дополнительный CSS-класс                  |
-| title     | ReactElement<IFile, any> | -       | Заголовок для секции прикреплённых файлов |
-| children  | ReactNode[] \| ReactNode | -       | Дочерние элементы (список файлов)         |
+| Prop      | Type                     | Default | Description                                              |
+| --------- | ------------------------ | ------- | -------------------------------------------------------- |
+| className | string                   | -       | Дополнительный CSS-класс                                 |
+| title     | ReactNode                | -       | Заголовок секции прикреплённых файлов (любой JSX)        |
+| children  | ReactNode[] \| ReactNode | -       | Дочерние элементы (список файлов)                        |
 
 ## Стилизация
 

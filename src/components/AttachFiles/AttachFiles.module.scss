@@ -1,8 +1,11 @@
 .list-center {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  padding: 12px 12px 16px 16px;
   border: 1px solid var(--unique-divider);
   border-radius: 4px;
+  background-color: var(--steel-10);
 }
 
 .vertical-wrapper {
@@ -16,6 +19,5 @@
 }
 
 .list-with-title {
-  padding: 0 16px 16px 32px;
-  background-color: var(--steel-10);
+  padding-left: 16px;
 }

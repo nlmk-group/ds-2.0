@@ -56,11 +56,11 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index, h
   const composedRef = (node: HTMLTableCellElement | null) => {
     setDragRef(node);
     setDropRef(node);
-    if (node) {
-      headerRefs.current.set(columnId, node);
-    } else {
+    if (!node) {
       headerRefs.current.delete(columnId);
+      return;
     }
+    headerRefs.current.set(columnId, node);
   };
 
   const resizeMouseDown = (e: MouseEvent) => {
@@ -151,13 +151,15 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
       return;
     }
     const activeRect = active.rect.current.translated;
-    const overRect = over.rect;
-    const activeCenterX = activeRect.left + activeRect.width / 2;
-    const midX = overRect.left + overRect.width / 2;
-    const position: 'before' | 'after' = activeCenterX < midX ? 'before' : 'after';
+    const hoveredRect = over.rect;
     const containerRect = containerRef.current.getBoundingClientRect();
+    const activeCenterX = activeRect.left + activeRect.width / 2;
+    const hoveredMiddleX = hoveredRect.left + hoveredRect.width / 2;
+    const position: 'before' | 'after' = activeCenterX < hoveredMiddleX ? 'before' : 'after';
     const lineX =
-      position === 'before' ? overRect.left - containerRect.left : overRect.left + overRect.width - containerRect.left;
+      position === 'before'
+        ? hoveredRect.left - containerRect.left
+        : hoveredRect.left + hoveredRect.width - containerRect.left;
     updateIndicator({ overColumnId: String(over.id), position, lineX });
   };
 

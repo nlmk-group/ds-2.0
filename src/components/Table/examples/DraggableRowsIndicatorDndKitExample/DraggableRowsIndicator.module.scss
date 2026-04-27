@@ -27,8 +27,7 @@
 
 .insertLine {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   height: 2px;
   background: var(--brand-sapphire-60);
   pointer-events: none;

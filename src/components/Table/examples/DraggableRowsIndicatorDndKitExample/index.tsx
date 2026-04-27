@@ -44,11 +44,11 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, isActive, rowRefs }) => {
   const composedRef = (node: HTMLTableRowElement | null) => {
     setDragRef(node);
     setDropRef(node);
-    if (node) {
-      rowRefs.current.set(row.id, node);
-    } else {
+    if (!node) {
       rowRefs.current.delete(row.id);
+      return;
     }
+    rowRefs.current.set(row.id, node);
   };
 
   return (
@@ -133,13 +133,15 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
       return;
     }
     const activeRect = active.rect.current.translated;
-    const overRect = over.rect;
-    const activeCenterY = activeRect.top + activeRect.height / 2;
-    const midY = overRect.top + overRect.height / 2;
-    const position: 'before' | 'after' = activeCenterY < midY ? 'before' : 'after';
+    const hoveredRect = over.rect;
     const containerRect = containerRef.current.getBoundingClientRect();
+    const activeCenterY = activeRect.top + activeRect.height / 2;
+    const hoveredMiddleY = hoveredRect.top + hoveredRect.height / 2;
+    const position: 'before' | 'after' = activeCenterY < hoveredMiddleY ? 'before' : 'after';
     const lineY =
-      position === 'before' ? overRect.top - containerRect.top : overRect.top + overRect.height - containerRect.top;
+      position === 'before'
+        ? hoveredRect.top - containerRect.top
+        : hoveredRect.top + hoveredRect.height - containerRect.top;
     updateIndicator({ overId: String(over.id), position, lineY });
   };
 

@@ -44,15 +44,8 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
   const [{ isDragging }, drag, preview] = useDrag({
     type: DRAG_TYPE,
     item: (): IDragItem => {
-      const rect = ref.current!.getBoundingClientRect();
-      return {
-        id: row.id,
-        index,
-        width: rect.width,
-        height: rect.height,
-        initialLeft: rect.left,
-        initialTop: rect.top
-      };
+      const { width, height, left: initialLeft, top: initialTop } = ref.current!.getBoundingClientRect();
+      return { id: row.id, index, width, height, initialLeft, initialTop };
     },
     end: () => onDragEnd(),
     collect: monitor => ({ isDragging: monitor.isDragging() })
@@ -65,15 +58,15 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
     hover: (item: IDragItem, monitor) => {
-      if (!ref.current || !containerRef.current) return;
-      if (item.index === index) return;
-      const rowRect = ref.current.getBoundingClientRect();
+      if (!ref.current || !containerRef.current || item.index === index) return;
+      const pointerOffset = monitor.getClientOffset();
+      if (!pointerOffset) return;
+      const hoveredRect = ref.current.getBoundingClientRect();
       const containerRect = containerRef.current.getBoundingClientRect();
-      const offset = monitor.getClientOffset();
-      if (!offset) return;
-      const midY = rowRect.top + rowRect.height / 2;
-      const position: 'before' | 'after' = offset.y < midY ? 'before' : 'after';
-      const lineY = position === 'before' ? rowRect.top - containerRect.top : rowRect.bottom - containerRect.top;
+      const hoveredMiddleY = hoveredRect.top + hoveredRect.height / 2;
+      const position: 'before' | 'after' = pointerOffset.y < hoveredMiddleY ? 'before' : 'after';
+      const lineY =
+        position === 'before' ? hoveredRect.top - containerRect.top : hoveredRect.bottom - containerRect.top;
       onHover({ targetIndex: index, position, lineY });
     },
     drop: (item: IDragItem) => {
@@ -184,18 +177,20 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
 
   const handleDrop = (sourceIndex: number) => {
     const ind = indicatorRef.current;
-    if (ind) {
-      const { targetIndex, position } = ind;
-      let insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
-      if (insertIndex > sourceIndex) insertIndex -= 1;
-      if (insertIndex !== sourceIndex) {
-        setData(prev => {
-          const next = [...prev];
-          const [moved] = next.splice(sourceIndex, 1);
-          next.splice(insertIndex, 0, moved);
-          return next;
-        });
-      }
+    if (!ind) {
+      updateIndicator(null);
+      return;
+    }
+    const { targetIndex, position } = ind;
+    let insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
+    if (insertIndex > sourceIndex) insertIndex -= 1;
+    if (insertIndex !== sourceIndex) {
+      setData(prev => {
+        const next = [...prev];
+        const [moved] = next.splice(sourceIndex, 1);
+        next.splice(insertIndex, 0, moved);
+        return next;
+      });
     }
     updateIndicator(null);
   };

@@ -60,15 +60,8 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({
   const [{ isDragging }, drag, preview] = useDrag({
     type: DRAG_TYPE,
     item: (): IDragItem => {
-      const rect = ref.current!.getBoundingClientRect();
-      return {
-        columnId,
-        headerLabel: headerText,
-        width: rect.width,
-        height: rect.height,
-        initialLeft: rect.left,
-        initialTop: rect.top
-      };
+      const { width, height, left: initialLeft, top: initialTop } = ref.current!.getBoundingClientRect();
+      return { columnId, headerLabel: headerText, width, height, initialLeft, initialTop };
     },
     canDrag: () => !resizingRef.current,
     end: () => onDragEnd(),
@@ -82,15 +75,15 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
     hover: (item: IDragItem, monitor) => {
-      if (!ref.current || !containerRef.current) return;
-      if (item.columnId === columnId) return;
-      const rect = ref.current.getBoundingClientRect();
-      const offset = monitor.getClientOffset();
-      if (!offset) return;
-      const midX = rect.left + rect.width / 2;
-      const position: 'before' | 'after' = offset.x < midX ? 'before' : 'after';
+      if (!ref.current || !containerRef.current || item.columnId === columnId) return;
+      const pointerOffset = monitor.getClientOffset();
+      if (!pointerOffset) return;
+      const hoveredRect = ref.current.getBoundingClientRect();
       const containerRect = containerRef.current.getBoundingClientRect();
-      const lineX = position === 'before' ? rect.left - containerRect.left : rect.right - containerRect.left;
+      const hoveredMiddleX = hoveredRect.left + hoveredRect.width / 2;
+      const position: 'before' | 'after' = pointerOffset.x < hoveredMiddleX ? 'before' : 'after';
+      const lineX =
+        position === 'before' ? hoveredRect.left - containerRect.left : hoveredRect.right - containerRect.left;
       onHover({ overColumnId: columnId, position, lineX });
     },
     drop: (item: IDragItem) => onDrop(item.columnId)
@@ -194,21 +187,23 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
 
   const handleDrop = (sourceId: string) => {
     const ind = indicatorRef.current;
-    if (ind && sourceId !== ind.overColumnId) {
-      const { overColumnId, position } = ind;
-      setColumnOrder(order => {
-        const fromIdx = order.indexOf(sourceId);
-        const toIdx = order.indexOf(overColumnId);
-        if (fromIdx === -1 || toIdx === -1) return order;
-        let insertIdx = position === 'before' ? toIdx : toIdx + 1;
-        if (insertIdx > fromIdx) insertIdx -= 1;
-        if (insertIdx === fromIdx) return order;
-        const next = [...order];
-        const [moved] = next.splice(fromIdx, 1);
-        next.splice(insertIdx, 0, moved);
-        return next;
-      });
+    if (!ind || sourceId === ind.overColumnId) {
+      updateIndicator(null);
+      return;
     }
+    const { overColumnId, position } = ind;
+    setColumnOrder(order => {
+      const fromIdx = order.indexOf(sourceId);
+      const toIdx = order.indexOf(overColumnId);
+      if (fromIdx === -1 || toIdx === -1) return order;
+      let insertIdx = position === 'before' ? toIdx : toIdx + 1;
+      if (insertIdx > fromIdx) insertIdx -= 1;
+      if (insertIdx === fromIdx) return order;
+      const next = [...order];
+      const [moved] = next.splice(fromIdx, 1);
+      next.splice(insertIdx, 0, moved);
+      return next;
+    });
     updateIndicator(null);
   };
 

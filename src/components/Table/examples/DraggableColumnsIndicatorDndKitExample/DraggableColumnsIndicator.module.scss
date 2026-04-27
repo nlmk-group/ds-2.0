@@ -1,0 +1,40 @@
+.tableContainer {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--unique-divider);
+}
+
+.header {
+  cursor: grab;
+  touch-action: none;
+
+  &.ghost {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.insertLine {
+  position: absolute;
+  inset-block: 0;
+  width: 2px;
+  background: var(--brand-sapphire-60);
+  pointer-events: none;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.dragPreview {
+  border: 2px solid var(--brand-sapphire-60);
+  background: var(--steel-30);
+  opacity: 0.85;
+  pointer-events: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dragPreviewTable {
+  width: 100% !important;
+  height: 100%;
+}

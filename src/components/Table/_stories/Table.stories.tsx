@@ -2,8 +2,10 @@ import React from 'react';
 
 import {
   CrossTableCellTransferExample,
-  DraggableColumnsTableExample,
-  DraggableRowsTableExample,
+  DraggableColumnsIndicatorDndKitExample,
+  DraggableColumnsIndicatorRDndExample,
+  DraggableRowsIndicatorDndKitExample,
+  DraggableRowsIndicatorRDndExample,
   EditableCellsTableExample,
   ExpandableTableExample,
   FillCellTableExample,
@@ -128,13 +130,21 @@ export const RowHighlight = () => <RowHighlightExamples />;
 RowHighlight.storyName = 'Варианты подсветки строк';
 RowHighlight.parameters = hiddenControlsParams;
 
-export const DraggableRowsTable = () => <DraggableRowsTableExample />;
-DraggableRowsTable.storyName = 'Таблица с dnd строк';
-DraggableRowsTable.parameters = hiddenControlsParams;
+export const DraggableRowsTableIndicatorRDnd = () => <DraggableRowsIndicatorRDndExample />;
+DraggableRowsTableIndicatorRDnd.storyName = 'Таблица с dnd строк (react-dnd)';
+DraggableRowsTableIndicatorRDnd.parameters = hiddenControlsParams;
 
-export const DraggableColumnsTable = () => <DraggableColumnsTableExample />;
-DraggableColumnsTable.storyName = 'Таблица с dnd столбцов';
-DraggableColumnsTable.parameters = hiddenControlsParams;
+export const DraggableRowsTableIndicatorDndKit = () => <DraggableRowsIndicatorDndKitExample />;
+DraggableRowsTableIndicatorDndKit.storyName = 'Таблица с dnd строк (dnd-kit)';
+DraggableRowsTableIndicatorDndKit.parameters = hiddenControlsParams;
+
+export const DraggableColumnsTableIndicatorRDnd = () => <DraggableColumnsIndicatorRDndExample />;
+DraggableColumnsTableIndicatorRDnd.storyName = 'Таблица с dnd столбцов (react-dnd)';
+DraggableColumnsTableIndicatorRDnd.parameters = hiddenControlsParams;
+
+export const DraggableColumnsTableIndicatorDndKit = () => <DraggableColumnsIndicatorDndKitExample />;
+DraggableColumnsTableIndicatorDndKit.storyName = 'Таблица с dnd столбцов (dnd-kit)';
+DraggableColumnsTableIndicatorDndKit.parameters = hiddenControlsParams;
 
 export const FillCellTable = () => <FillCellTableExample />;
 FillCellTable.storyName = 'Таблица с автозаполнением ячеек';

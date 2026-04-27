@@ -49,7 +49,7 @@ export default App;
 | statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                             |
 | withIcon      | boolean              | true      | Показывать иконку в dragNDrop            |
 | customIcon    | JSX.Element          | null      | Пользовательская иконка                  |
-| size          | `${EDnDSizes}`       | l (= M)   | Размер dragNDrop. `M`/`S` — Figma-нэйминг, `l`/`m` — legacy-алиасы (deprecated) |
+| size          | `${EDnDSizes}`       | M         | Размер dragNDrop. `M` и `S`; `l` и `m` — алиасы |
 | multiple      | boolean              | true      | Разрешить множество файлов               |
 | loading       | boolean              | false     | Показать индикатор загрузки              |
 | percentUpload | number               | 0         | Процент выполнения загрузки              |
@@ -73,14 +73,14 @@ export default App;
 - `EDnDStatusColor.info`
 - `EDnDStatusColor.error`
 
-## Размеры (Figma-нэйминг и legacy-алиасы)
+## Размеры
 
-С версии 3.2 нейминг приведён к Figma. Старые ключи (`l`/`m`) оставлены как `@deprecated` и будут удалены в ближайших версиях.
+Нейминг соответствует Figma. У каждого размера есть алиас в нижнем регистре:
 
-- `EDnDSizes.M` (новый, Figma «Big») / `EDnDSizes.l` (legacy)
-- `EDnDSizes.S` (новый, Figma «Middle») / `EDnDSizes.m` (legacy)
+- `EDnDSizes.M` — Big (алиас: `EDnDSizes.l`)
+- `EDnDSizes.S` — Middle (алиас: `EDnDSizes.m`)
 
-То же касается helper-enum'ов: `EDnDTitleSizeHelper`, `EDnDDescriptionSizeHelper`, `EDnDSpinnerSizeHelper`, `EDnDPercentageSizeHelper`, `EDnDSpinnerWidthHelper` — у каждого есть `M`/`S` (новые) и `l`/`m` (deprecated).
+Так же организованы helper-enum'ы: `EDnDTitleSizeHelper`, `EDnDDescriptionSizeHelper`, `EDnDSpinnerSizeHelper`, `EDnDPercentageSizeHelper`, `EDnDSpinnerWidthHelper` — у каждого есть `M`/`S` и алиасы `l`/`m`.
 
 ## Стилизация
 

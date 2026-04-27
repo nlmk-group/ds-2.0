@@ -75,17 +75,13 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   size: {
-    description:
-      'Необязательное свойство. Размер компонента. Доступны Figma-нэйминг (`M`/`S`) и legacy-алиасы (`l`/`m`) — ключи дают одинаковый рантайм.',
+    description: 'Размер компонента – <b>M | S</b>',
     table: {
-      defaultValue: {
-        summary: EDnDSizes.M
-      },
-      type: {
-        summary: Array.from(new Set(Object.values(EDnDSizes))).join(' | ')
-      }
+      defaultValue: { summary: 'M' },
+      type: { summary: 'string' }
     },
-    options: Array.from(new Set(Object.values(EDnDSizes))),
+    options: ['M', 'S'],
+    mapping: { M: EDnDSizes.M, S: EDnDSizes.S },
     control: { type: 'select' }
   },
   withIcon: {

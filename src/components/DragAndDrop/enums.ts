@@ -1,17 +1,15 @@
 /* eslint-disable @typescript-eslint/no-duplicate-enum-values --
-   M/S — намеренные Figma-алиасы для l/m с тем же runtime-значением,
-   чтобы переход на новый нейминг был обратно совместимым. */
+   l/m — алиасы для M/S. */
 export enum EDnDSizes {
-  /** @deprecated Используйте `M` (соответствует Figma 'm', Big). Будет удалён в ближайших версиях. */
-  l = 'l',
-  /** @deprecated Используйте `S` (соответствует Figma 's', Middle). Будет удалён в ближайших версиях. */
-  m = 'm',
   /** Big — основной размер (Figma 'm'). */
   M = 'l',
   /** Middle — средний размер (Figma 's'). */
-  S = 'm'
+  S = 'm',
+  /** Алиас для M. */
+  l = 'l',
+  /** Алиас для S. */
+  m = 'm'
 }
-/* eslint-enable @typescript-eslint/no-duplicate-enum-values */
 
 export enum EDnDFileType {
   file = 'file',
@@ -31,50 +29,48 @@ export enum EDnDIconType {
   video = 'IconUploadVideo32'
 }
 
-/* eslint-disable @typescript-eslint/no-duplicate-enum-values --
-   M/S — намеренные Figma-алиасы для l/m в helper-enum'ах. */
 export enum EDnDTitleSizeHelper {
-  /** @deprecated Используйте `M`. Будет удалён в ближайших версиях. */
-  l = 'Heading3',
-  /** @deprecated Используйте `S`. Будет удалён в ближайших версиях. */
-  m = 'Heading4',
   M = 'Heading3',
-  S = 'Heading4'
+  S = 'Heading4',
+  /** Алиас для M. */
+  l = 'Heading3',
+  /** Алиас для S. */
+  m = 'Heading4'
 }
 
 export enum EDnDDescriptionSizeHelper {
-  /** @deprecated Используйте `M`. Будет удалён в ближайших версиях. */
-  l = 'Body1-Medium',
-  /** @deprecated Используйте `S`. Будет удалён в ближайших версиях. */
-  m = 'Body2-Medium',
   M = 'Body1-Medium',
-  S = 'Body2-Medium'
+  S = 'Body2-Medium',
+  /** Алиас для M. */
+  l = 'Body1-Medium',
+  /** Алиас для S. */
+  m = 'Body2-Medium'
 }
 
 export enum EDnDSpinnerSizeHelper {
-  /** @deprecated Используйте `M`. Будет удалён в ближайших версиях. */
-  l = '2xl',
-  /** @deprecated Используйте `S`. Будет удалён в ближайших версиях. */
-  m = 'xl',
   M = '2xl',
-  S = 'xl'
+  S = 'xl',
+  /** Алиас для M. */
+  l = '2xl',
+  /** Алиас для S. */
+  m = 'xl'
 }
 
 export enum EDnDPercentageSizeHelper {
-  /** @deprecated Используйте `M`. Будет удалён в ближайших версиях. */
-  l = 'Heading3',
-  /** @deprecated Используйте `S`. Будет удалён в ближайших версиях. */
-  m = 'Body1-Medium',
   M = 'Heading3',
-  S = 'Body1-Medium'
+  S = 'Body1-Medium',
+  /** Алиас для M. */
+  l = 'Heading3',
+  /** Алиас для S. */
+  m = 'Body1-Medium'
 }
 
 export enum EDnDSpinnerWidthHelper {
-  /** @deprecated Используйте `M`. Будет удалён в ближайших версиях. */
-  l = '96px',
-  /** @deprecated Используйте `S`. Будет удалён в ближайших версиях. */
-  m = '56px',
   M = '96px',
-  S = '56px'
+  S = '56px',
+  /** Алиас для M. */
+  l = '96px',
+  /** Алиас для S. */
+  m = '56px'
 }
 /* eslint-enable @typescript-eslint/no-duplicate-enum-values */

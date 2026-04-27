@@ -67,7 +67,7 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
       style={{ height: '24px', display: 'flex', alignItems: 'center' }}
     >
       {loading ? (
-        <UploadIcon smallIcon showSpinner={false} size={EDnDSizes.m} percentUpload={percentUpload} />
+        <UploadIcon smallIcon showSpinner={false} size={EDnDSizes.S} percentUpload={percentUpload} />
       ) : (
         customIcon || iconHelper()
       )}

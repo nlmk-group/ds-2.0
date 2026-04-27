@@ -410,7 +410,6 @@ export default function DebounceExample() {
 }
 `;
 
-
 const withNoSelectionItemCode = `
 import { Autocomplete } from '@nlmk/ds-2.0';
 import { useState } from 'react';
@@ -485,7 +484,6 @@ export default function TotalCountVisibilityExample() {
 }
 `;
 
-
 const AutocompleteStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -514,7 +512,11 @@ const AutocompleteStories = (): JSX.Element => {
             description="Базовый Autocomplete с выбором элемента из локального списка."
             code={autocompleteDefaultCode}
           />
-          <Editor minHeight={400} description="Кастомизация текста счётчика через totalText." code={withCustomTotalTextCode} />
+          <Editor
+            minHeight={400}
+            description="Кастомизация текста счётчика через totalText."
+            code={withCustomTotalTextCode}
+          />
           <Editor
             minHeight={400}
             description="Асинхронная загрузка опций через isLoading и onLoadOptions."
@@ -531,13 +533,21 @@ const AutocompleteStories = (): JSX.Element => {
             code={withCustomRenderingCode}
           />
           <Editor minHeight={400} description="Размеры компонента: xs, s и m." code={withSizesCode} />
-          <Editor minHeight={400} description="Рендер dropdown через портал: withPortal и portalContainerId." code={withPortalCode} />
+          <Editor
+            minHeight={400}
+            description="Рендер dropdown через портал: withPortal и portalContainerId."
+            code={withPortalCode}
+          />
           <Editor
             minHeight={400}
             description="Управление пустым dropdown через showEmptyDropdown."
             code={withEmptyDropdownCode}
           />
-          <Editor minHeight={400} description="Состояния поля: disabled, readOnly, error и helperText." code={withFieldStatesCode} />
+          <Editor
+            minHeight={400}
+            description="Состояния поля: disabled, readOnly, error и helperText."
+            code={withFieldStatesCode}
+          />
           <Editor
             minHeight={400}
             description="Debounce ввода через debounceDelay и onDebouncedInputChange."

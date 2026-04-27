@@ -8,10 +8,12 @@
 
 ```jsx
 import React from 'react';
+
 import DragAndDrop from '@nlmk/ds-2.0';
+
 const App = () => {
   const handleUpload = files => {
-     // Обработка загруженных файлов
+    // Обработка загруженных файлов
     console.log(files);
   };
   const handleCancelUpload = () => {

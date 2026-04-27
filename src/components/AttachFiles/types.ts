@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
-import { IFileProps } from './subcomponents/File/types'
+
+import { IFileProps } from './subcomponents/File/types';
 
 export interface IAttachFilesProps {
   className?: string;

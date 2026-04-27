@@ -3,6 +3,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 import { ITbodyProps } from './types';
+
 import styles from './Tbody.module.scss';
 
 const Tbody = ({ children, className, style, ...rest }: ITbodyProps) => {

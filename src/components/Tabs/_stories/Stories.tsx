@@ -212,14 +212,8 @@ export default App;
             description="Автоматическая прокрутка со стрелками навигации при переполнении контейнера. Работает через ResizeObserver без дополнительных пропов."
             code={scrollableTabsCode}
           />
-          <Editor
-            description="Вертикальные табы с расположением слева от контента."
-            code={verticalTabsCode}
-          />
-          <Editor
-            description="Вертикальные табы с расположением справа от контента."
-            code={verticalTabsRightCode}
-          />
+          <Editor description="Вертикальные табы с расположением слева от контента." code={verticalTabsCode} />
+          <Editor description="Вертикальные табы с расположением справа от контента." code={verticalTabsRightCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

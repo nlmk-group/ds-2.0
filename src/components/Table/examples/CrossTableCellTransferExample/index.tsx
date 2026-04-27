@@ -1,13 +1,13 @@
 import React, { FC, useCallback, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import clsx from 'clsx';
 
 import { Cell, Divider, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
-
-import { defectCodes, IDefectCode, initialJournal, IJournalRow } from './constants';
+import clsx from 'clsx';
 
 import styles from './CrossTable.module.scss';
+
+import { defectCodes, IDefectCode, IJournalRow, initialJournal } from './constants';
 
 const DRAG_TYPE = 'defect-code';
 

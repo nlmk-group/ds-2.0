@@ -218,15 +218,31 @@ export default App;
         <>
           <Editor minHeight={400} description="Базовый выбор одного значения." code={simpleSelectDefaultCode} />
           <Editor minHeight={400} description="Недоступное состояние компонента." code={simpleSelectDisabledCode} />
-          <Editor minHeight={400} description="Компактный размер компонента через size='xs'." code={simpleSelectExtraCompactCode} />
-          <Editor minHeight={400} description="Ограничение видимых опций через scrollingItems." code={simpleSelectScrollingItemsCode} />
-          <Editor minHeight={400} description="Цветовое состояние через color='success'." code={simpleSelectSuccessCode} />
+          <Editor
+            minHeight={400}
+            description="Компактный размер компонента через size='xs'."
+            code={simpleSelectExtraCompactCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Ограничение видимых опций через scrollingItems."
+            code={simpleSelectScrollingItemsCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Цветовое состояние через color='success'."
+            code={simpleSelectSuccessCode}
+          />
           <Editor
             minHeight={400}
             description="Кастомное отображаемое значение через displayValue."
             code={simpleSelectDisplayValueCode}
           />
-          <Editor minHeight={400} description="Рендер списка через портал и настройка ширины меню." code={simpleSelectWithPortalCode} />
+          <Editor
+            minHeight={400}
+            description="Рендер списка через портал и настройка ширины меню."
+            code={simpleSelectWithPortalCode}
+          />
           <Editor minHeight={400} description="Состояние без доступных опций." code={simpleSelectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>

@@ -192,8 +192,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         if (!valueFromFormatted && !valueToFormatted) {
           newValue = '';
         } else {
-          const shiftFromValue = valueFromFormatted ? shiftFrom ?? '_' : '_';
-          const shiftToValue = valueToFormatted ? shiftTo ?? '_' : '_';
+          const shiftFromValue = valueFromFormatted ? (shiftFrom ?? '_') : '_';
+          const shiftToValue = valueToFormatted ? (shiftTo ?? '_') : '_';
           const periodSeparator = ' — ';
 
           let formattedValue = '';
@@ -662,8 +662,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         let newValue = '';
 
         if (withShift) {
-          const shiftFromValue = valueFromFormatted ? shiftFrom ?? '_' : '_';
-          const shiftToValue = valueToFormatted ? shiftTo ?? '_' : '_';
+          const shiftFromValue = valueFromFormatted ? (shiftFrom ?? '_') : '_';
+          const shiftToValue = valueToFormatted ? (shiftTo ?? '_') : '_';
           newValue = `${valueFromFormatted || emptyMask}/${shiftFromValue}${periodSeparator}${
             valueToFormatted || emptyMask
           }/${shiftToValue}`;

@@ -1,13 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { customInputColors } from '@components/declaration';
-import {
-  Box,
-  Button,
-  IconInfoOutlined24,
-  IconSearchOutlined24,
-  Tooltip
-} from '@components/index';
+import { Box, Button, IconInfoOutlined24, IconSearchOutlined24, Tooltip } from '@components/index';
 import { expect, fn } from 'storybook/test';
 import { userEvent, waitFor, within } from 'storybook/test';
 
@@ -215,7 +209,7 @@ export const InputWithStartIcon = (): JSX.Element => {
       value={value}
       startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
       placeholder="Введите запрос"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
     />
   );
 };
@@ -231,12 +225,7 @@ export const InputWithExternalHelpIcon = (): JSX.Element => {
   return (
     <Box display="flex" alignItems="center" gap={8} width="100%" maxWidth={320}>
       <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
-        <Input
-          label="Email"
-          value={value}
-          placeholder="steel@nlmk.com"
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <Input label="Email" value={value} placeholder="steel@nlmk.com" onChange={e => setValue(e.target.value)} />
       </Box>
       <Box display="flex" st={{ lineHeight: 0 }}>
         <Tooltip description="Введите корпоративную почту">
@@ -258,12 +247,7 @@ export const InputMultilineWithExternalHelpIcon = (): JSX.Element => {
   return (
     <Box display="flex" alignItems="flex-start" gap={8} width="100%" maxWidth={320}>
       <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
-        <Input
-          multiline
-          label="Label"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <Input multiline label="Label" value={value} onChange={e => setValue(e.target.value)} />
       </Box>
       <Box display="flex" st={{ lineHeight: 0 }}>
         <Tooltip description="Подсказка к полю ввода">
@@ -289,7 +273,7 @@ export const InputWithAllIcons = (): JSX.Element => {
       startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
       icon={<IconSearchOutlined24 />}
       reset
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       onReset={() => setValue('')}
     />
   );

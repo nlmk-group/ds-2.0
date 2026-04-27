@@ -126,13 +126,7 @@ const CommentsRoot = <TData,>({
     }
 
     return (
-      <Box
-        width="100%"
-        height="100%"
-        justifyContent="center"
-        alignItems="center"
-        data-ui-comments-empty
-      >
+      <Box width="100%" height="100%" justifyContent="center" alignItems="center" data-ui-comments-empty>
         <Box gap={0} alignItems="center" height={120}>
           <Icon name="IconCancelOutlined16" htmlColor="var(--steel-70)" />
           <Typography variant="Body1-Medium" color="var(--steel-70)">

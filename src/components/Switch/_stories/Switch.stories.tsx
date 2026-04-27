@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
 import { IconStarOutlined16, Switch } from '@components/index';
-import { action } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import styles from '@components/_storybook/styles.module.scss';
 

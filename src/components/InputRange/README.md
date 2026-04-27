@@ -6,7 +6,9 @@
 
 ```jsx
 import React, { useState } from 'react';
+
 import InputRange from '@your-package/input-range';
+
 const App = () => {
   const [range, setRange] = useState({ min: 20, max: 80 });
   const handleRangeChange = newRange => {

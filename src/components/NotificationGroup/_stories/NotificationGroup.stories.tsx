@@ -102,12 +102,7 @@ export const NotificationGroupTwo = () => {
   return (
     <Box st={{ maxWidth: 772, width: '100%' }}>
       <NotificationGroup>
-        <NotificationCard
-          title="Заявка на удалённую работу одобрена"
-          body={body4}
-          timestamp="сегодня, 14:13"
-          unread
-        />
+        <NotificationCard title="Заявка на удалённую работу одобрена" body={body4} timestamp="сегодня, 14:13" unread />
         <NotificationCard
           title="Подтвердите участие в тренинге"
           body="Требуется подтверждение участия в тренинге по тайм-менеджменту 22 апреля."
@@ -189,7 +184,7 @@ export const NotificationGroupInDrawer = () => {
         title="Портал сотрудника"
         showNotification
         notificationAmount={115}
-        onNotificationClick={() => setIsOpen((prev) => !prev)}
+        onNotificationClick={() => setIsOpen(prev => !prev)}
       />
       <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position="right" width="820px">
         <Box flexDirection="column" gap={32} st={{ padding: '32px 32px 48px' }} color="var(--steel-90)">
@@ -211,13 +206,13 @@ export const NotificationGroupInDrawer = () => {
             </Tabs>
 
             <Box alignItems="center" justifyContent="flex-end" gap={8}>
-              <Switch checked={unreadOnly} onChange={() => setUnreadOnly((prev) => !prev)} />
+              <Switch checked={unreadOnly} onChange={() => setUnreadOnly(prev => !prev)} />
               <Typography variant="Body1-Medium">Только непрочитанные</Typography>
             </Box>
           </Box>
 
           <Box flexDirection="column" gap={32}>
-            {mockNotificationGroups.map((group) => (
+            {mockNotificationGroups.map(group => (
               <Box key={group.id} flexDirection="column" gap={16}>
                 <Box flexDirection="column" gap={8} py={12}>
                   <Box>

@@ -26,8 +26,8 @@ export const useIsSelected = (
           if (dateFrom && dateTo) {
             return Boolean(
               (isBefore(normalizedDayAsDate, dateTo) && isAfter(normalizedDayAsDate, dateFrom)) ||
-                isEqual(dateTo, normalizedDayAsDate) ||
-                isEqual(dateFrom, normalizedDayAsDate)
+              isEqual(dateTo, normalizedDayAsDate) ||
+              isEqual(dateFrom, normalizedDayAsDate)
             );
           }
           if (dateFrom && !dateTo && dateCurrentHover) {
@@ -46,8 +46,8 @@ export const useIsSelected = (
               numberedDateTo &&
               numberedDayAsDate > numberedDateFrom &&
               numberedDayAsDate < numberedDateTo) ||
-              (numberedDateTo && numberedDayAsDate === numberedDateTo) ||
-              (numberedDateFrom && numberedDayAsDate === numberedDateFrom)
+            (numberedDateTo && numberedDayAsDate === numberedDateTo) ||
+            (numberedDateFrom && numberedDayAsDate === numberedDateFrom)
           );
         }
 
@@ -60,8 +60,8 @@ export const useIsSelected = (
             normalizedDateTo &&
             isBefore(normalizedDayAsDate, normalizedDateTo) &&
             isAfter(normalizedDayAsDate, normalizedDateFrom)) ||
-            (normalizedDateTo && isEqual(normalizedDateTo, normalizedDayAsDate)) ||
-            (normalizedDateFrom && isEqual(normalizedDateFrom, normalizedDayAsDate))
+          (normalizedDateTo && isEqual(normalizedDateTo, normalizedDayAsDate)) ||
+          (normalizedDateFrom && isEqual(normalizedDateFrom, normalizedDayAsDate))
         );
       }
 
@@ -74,14 +74,14 @@ export const useIsSelected = (
         }
         return Boolean(
           normalizedSelectedDate &&
-            isEqual(
-              new Date(
-                normalizedSelectedDate.getFullYear(),
-                normalizedSelectedDate.getMonth(),
-                normalizedSelectedDate.getDate()
-              ),
-              normalizedDayAsDate
-            )
+          isEqual(
+            new Date(
+              normalizedSelectedDate.getFullYear(),
+              normalizedSelectedDate.getMonth(),
+              normalizedSelectedDate.getDate()
+            ),
+            normalizedDayAsDate
+          )
         );
       }
 

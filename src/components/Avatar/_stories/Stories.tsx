@@ -6,11 +6,11 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { argsTypes } from './argsTypes';
 
 enum TabIds {

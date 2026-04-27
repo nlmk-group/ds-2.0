@@ -71,7 +71,9 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const hasChildren = Children.count(children) > 0;
 
   const childrenIds = Children.toArray(submenu)
-    .filter((child): child is ReactElement<ISubmenuItemProps> => isValidElement(child) && !(child.props as any).disabled)
+    .filter(
+      (child): child is ReactElement<ISubmenuItemProps> => isValidElement(child) && !(child.props as any).disabled
+    )
     .map(child => (child.props as any).id)
     .filter((id): id is string => id !== undefined);
 

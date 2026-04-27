@@ -1,4 +1,5 @@
 # Typography Component
+
 ## Версия компонента v3.0
 
 Typography компонент используется для стилизованного отображения текста. Он поддерживает различные варианты типографики, позволяет настраивать цвет и применять дополнительные стили.
@@ -6,20 +7,17 @@ Typography компонент используется для стилизова
 ## Использование
 
 ```jsx
-import { Typography, ETypographyVariants } from '@nlmk/ds-2.0';
+import { ETypographyVariants, Typography } from '@nlmk/ds-2.0';
 
-<Typography
-  variant={ETypographyVariants.Heading1}
-  color="blue"
->
+<Typography variant={ETypographyVariants.Heading1} color="blue">
   Заголовок
-</Typography>
+</Typography>;
 ```
 
 ## Props
 
 | Prop      | Type                   | Default                   | Description                     |
-|-----------|------------------------|---------------------------|---------------------------------|
+| --------- | ---------------------- | ------------------------- | ------------------------------- |
 | variant   | ETypographyVariants    | ETypographyVariants.Body1 | Вариант типографики             |
 | children  | React.ReactNode        | -                         | Текстовое содержимое            |
 | className | string                 | -                         | Дополнительный CSS класс        |

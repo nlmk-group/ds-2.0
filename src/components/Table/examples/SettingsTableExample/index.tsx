@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from 'react';
-import type { Header } from '@tanstack/react-table';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import type { Header } from '@tanstack/react-table';
 import {
   ColumnFiltersState,
   ColumnOrderState,
@@ -256,7 +256,7 @@ const SettingsTableExample = () => {
       <div className={styles.tableContainer} style={{ width: '100%', height: 'auto', maxHeight: 500 }}>
         <Table horizontalBorders verticalBorders style={{ minWidth: 1200 }}>
           <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <Row key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   const columnRelativeDepth = header.depth - header.column.depth;
@@ -305,7 +305,7 @@ const SettingsTableExample = () => {
           <Tbody>
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map((cell) => {
+                {row.getVisibleCells().map(cell => {
                   const size = cell.column.columnDef.meta?.size || cell.column.getSize();
                   const pinnedInfo = getCellPinnedInfo(cell.column.id);
 

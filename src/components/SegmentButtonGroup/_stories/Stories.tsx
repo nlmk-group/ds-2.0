@@ -126,21 +126,9 @@ export default App = () => (
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor
-            minHeight={420}
-            description="Базовое переключение активного сегмента."
-            code={defaultGroupCode}
-          />
-          <Editor
-            minHeight={420}
-            description="Размеры группы сегментов через prop size."
-            code={sizeGroupCode}
-          />
-          <Editor
-            minHeight={420}
-            description="Блокировка всей группы и отдельной кнопки."
-            code={disabledGroupCode}
-          />
+          <Editor minHeight={420} description="Базовое переключение активного сегмента." code={defaultGroupCode} />
+          <Editor minHeight={420} description="Размеры группы сегментов через prop size." code={sizeGroupCode} />
+          <Editor minHeight={420} description="Блокировка всей группы и отдельной кнопки." code={disabledGroupCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

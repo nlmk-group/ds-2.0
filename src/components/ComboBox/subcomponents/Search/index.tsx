@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { Icon, Input } from '@components/index';
 import { ELocaleMapping } from '@components/declaration';
+import { Icon, Input } from '@components/index';
 
 import styles from './Search.module.scss';
 
-import { SEARCH_TEXTS } from './constants';
-import { useSetSearchValue, useLocaleValue } from '../../context';
+import { useLocaleValue, useSetSearchValue } from '../../context';
 import { useDebounce } from '../../hooks';
+import { SEARCH_TEXTS } from './constants';
 
 interface ISearchProps {
   autoFocusSearch?: boolean;

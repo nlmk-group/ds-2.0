@@ -28,10 +28,10 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
         return (
           <Button
             type="button"
-            variant="primary"
+            variant="secondary"
             size="m"
-            color="error"
-            iconButton={<IconAttentionWarningAlertErrorOutlined24 />}
+            color="ghost"
+            iconButton={<IconAttentionWarningAlertErrorOutlined24 htmlColor={'var(--spectrum-red-60)'} />}
             data-ui-dnd-small-icon
           />
         );

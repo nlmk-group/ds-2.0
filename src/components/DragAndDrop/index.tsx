@@ -134,7 +134,7 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
         className={clsx(
           styles['label-file-upload'],
           loading ? styles['label-loading'] : styles[`label-${statusColor}`],
-          smallIcon && EDnDStatusColor.default && styles['label-s-default'],
+          smallIcon && statusColor === EDnDStatusColor.default && styles['label-s-default'],
           dragActive && styles[`label-${EDnDStatusColor.info}`],
           smallText ? styles[`label-file-upload-s`] : styles[`label-file-upload-${size}`],
           smallIcon && styles['label-file-upload-small-icon']

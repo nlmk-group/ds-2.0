@@ -10,12 +10,10 @@ import { EDnDDescriptionSizeHelper, EDnDIconType, EDnDSizes, EDnDTitleSizeHelper
 import { IDefaultDnDProps } from '../types';
 import UploadIcon from './UploadIcon';
 
-const getButtonVariant = (loading: boolean) => {
-  if (loading) {
-    return 'secondary';
-  }
-  return 'primary';
-};
+const getButtonStyle = (loading: boolean) =>
+  loading
+    ? ({ variant: 'secondary', color: 'grey' } as const)
+    : ({ variant: 'primary' } as const);
 
 const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
   disabled,
@@ -68,14 +66,14 @@ const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
         )}
         {btnLabel.length > 0 && size === EDnDSizes.l && (
           <div className={styles['btn-wrapper']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button type="button" size="m" variant={getButtonVariant(loading)} onClick={onButtonClick} data-ui-dnd-button>
+            <Button type="button" size="m" {...getButtonStyle(loading)} onClick={onButtonClick} data-ui-dnd-button>
               {btnLabel}
             </Button>
           </div>
         )}
         {btnLabel.length > 0 && size === EDnDSizes.m && (
           <div className={styles['btn-wrapper-medium']} style={{ pointerEvents: disabled ? 'none' : 'all' }}>
-            <Button type="button" size="s" variant={getButtonVariant(loading)} onClick={onButtonClick} data-ui-dnd-button>
+            <Button type="button" size="s" {...getButtonStyle(loading)} onClick={onButtonClick} data-ui-dnd-button>
               {btnLabel}
             </Button>
           </div>

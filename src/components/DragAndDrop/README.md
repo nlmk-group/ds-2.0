@@ -1,6 +1,6 @@
 # Компонент DragAndDrop
 
-## Версия компонента 3.1
+## Версия компонента 3.2
 
 Компонент Drag&Drop предоставляет функциональность перетаскивания и загрузки файлов с возможностью настройки и выгрузки.
 
@@ -49,7 +49,7 @@ export default App;
 | statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                             |
 | withIcon      | boolean              | true      | Показывать иконку в dragNDrop            |
 | customIcon    | JSX.Element          | null      | Пользовательская иконка                  |
-| size          | `${EDnDSizes}`       | l         | Размер dragNDrop                         |
+| size          | `${EDnDSizes}`       | l (= M)   | Размер dragNDrop. `M`/`S` — Figma-нэйминг, `l`/`m` — legacy-алиасы (deprecated) |
 | multiple      | boolean              | true      | Разрешить множество файлов               |
 | loading       | boolean              | false     | Показать индикатор загрузки              |
 | percentUpload | number               | 0         | Процент выполнения загрузки              |
@@ -73,17 +73,14 @@ export default App;
 - `EDnDStatusColor.info`
 - `EDnDStatusColor.error`
 
-## Размеры Title
+## Размеры (Figma-нэйминг и legacy-алиасы)
 
-- `EDnDTitleSizeHelper.l`
-- `EDnDTitleSizeHelper.m`
-- `EDnDTitleSizeHelper.s`
+С версии 3.2 нейминг приведён к Figma. Старые ключи (`l`/`m`) оставлены как `@deprecated` и будут удалены в ближайших версиях.
 
-## Размеры Description
+- `EDnDSizes.M` (новый, Figma «Big») / `EDnDSizes.l` (legacy)
+- `EDnDSizes.S` (новый, Figma «Middle») / `EDnDSizes.m` (legacy)
 
-- `EDnDDescriptionSizeHelper.l`
-- `EDnDDescriptionSizeHelper.m`
-- `EDnDDescriptionSizeHelper.s`
+То же касается helper-enum'ов: `EDnDTitleSizeHelper`, `EDnDDescriptionSizeHelper`, `EDnDSpinnerSizeHelper`, `EDnDPercentageSizeHelper`, `EDnDSpinnerWidthHelper` — у каждого есть `M`/`S` (новые) и `l`/`m` (deprecated).
 
 ## Стилизация
 

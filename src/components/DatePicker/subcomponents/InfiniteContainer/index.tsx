@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { Day } from '@components/DatePicker/subcomponents';
+import { generateUUID } from '@components/declaration';
 
 import { IInfiniteContainerProps, TValue } from './types';
-import { generateUUID } from '@components/declaration';
 
 export const InfiniteContainer: FC<IInfiniteContainerProps> = ({
   values,
@@ -27,7 +27,7 @@ export const InfiniteContainer: FC<IInfiniteContainerProps> = ({
 
   useEffect(() => {
     const createBlock = () =>
-      (values ?? []).map((value) => ({
+      (values ?? []).map(value => ({
         ...value,
         id: generateUUID()
       }));

@@ -2,11 +2,10 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import Grid from './index';
 import { Box } from '..';
+import Grid from './index';
 
 describe('src/components/Grid', () => {
-  
   // Check render grid at DOM
   test('It must be present in the DOM', () => {
     const { container } = render(
@@ -48,7 +47,9 @@ describe('src/components/Grid', () => {
       <Grid>
         <Grid.Row>
           {testArr.map((val: string) => (
-            <Box key={val} data-testid='grid-item'>{val}</Box>
+            <Box key={val} data-testid="grid-item">
+              {val}
+            </Box>
           ))}
         </Grid.Row>
       </Grid>

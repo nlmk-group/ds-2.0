@@ -63,13 +63,9 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 ## Иконка слева (startIcon)
 
 ```jsx
-import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+import { IconSearchOutlined24, Input } from '@nlmk/ds-2.0';
 
-<Input
-  label="Поиск"
-  startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
-  placeholder="Введите запрос"
-/>
+<Input label="Поиск" startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />} placeholder="Введите запрос" />;
 ```
 
 **Примечание**: `startIcon` не отображается в multiline-режиме.

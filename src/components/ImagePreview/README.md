@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import ImagePreview from '@nlmk/ds-2.0';
+
 const items = [
   {
     id: 1,

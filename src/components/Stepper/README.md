@@ -8,7 +8,9 @@
 
 ```jsx
 import React, { useState } from 'react';
+
 import { EStepColor, EStepState, Stepper } from '@nlmk/ds-2.0';
+
 const [currentStep, setCurrentStep] = useState(1);
 <Stepper
   currentStep={currentStep}

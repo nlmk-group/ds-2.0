@@ -1,4 +1,4 @@
-import { ETabsOrientation, ETabsTabPosition, ETabsIndicatorPosition } from './enums';
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
 
 /** Вычисление позиции индикатора по умолчанию */
 export function getDefaultIndicatorPosition(
@@ -8,7 +8,5 @@ export function getDefaultIndicatorPosition(
   if (orientation === ETabsOrientation.horizontal) {
     return ETabsIndicatorPosition.bottom;
   }
-  return tabPosition === ETabsTabPosition.left
-    ? ETabsIndicatorPosition.right
-    : ETabsIndicatorPosition.left;
+  return tabPosition === ETabsTabPosition.left ? ETabsIndicatorPosition.right : ETabsIndicatorPosition.left;
 }

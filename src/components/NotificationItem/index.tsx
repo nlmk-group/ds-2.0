@@ -11,8 +11,7 @@ import styles from './NotificationItem.module.scss';
 
 const MAX_DISPLAY_COUNT = 99;
 
-const formatCount = (count: number): string =>
-  count > MAX_DISPLAY_COUNT ? `${MAX_DISPLAY_COUNT}+` : String(count);
+const formatCount = (count: number): string => (count > MAX_DISPLAY_COUNT ? `${MAX_DISPLAY_COUNT}+` : String(count));
 
 /**
  * Строка категории уведомлений — текст слева, счётчик-бейдж справа. Кликабельна, доступна

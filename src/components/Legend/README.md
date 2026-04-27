@@ -6,7 +6,9 @@
 
 ```jsx
 import { useState } from 'react';
+
 import { Legend } from '@nlmk/ds-2.0';
+
 const color = { default: 'var(--spectrum-red-20)', hover: 'var(--spectrum-red-30)', active: 'var(--spectrum-red-10)' };
 const colorList = [
   { default: 'var(--spectrum-red-20)', hover: 'var(--spectrum-red-30)', active: 'var(--spectrum-red-10)' },

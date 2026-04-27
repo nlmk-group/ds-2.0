@@ -63,7 +63,11 @@ export default App;
             description="Пустое состояние с кастомным текстом через emptyMessage."
             code={pdfPreviewEmptyCode}
           />
-          <Editor minHeight={360} description="Состояние загрузки документа через loading." code={pdfPreviewLoadingCode} />
+          <Editor
+            minHeight={360}
+            description="Состояние загрузки документа через loading."
+            code={pdfPreviewLoadingCode}
+          />
           <Editor
             minHeight={1200}
             description="Интерактивный пример загрузки и предпросмотра PDF-файла."

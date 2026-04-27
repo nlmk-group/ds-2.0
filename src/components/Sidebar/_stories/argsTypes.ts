@@ -101,7 +101,7 @@ export const argsTypes = {
       }
     }
   },
-  
+
   isShowUserControl: {
     description: 'Флаг для отображения управления пользователем',
     table: {

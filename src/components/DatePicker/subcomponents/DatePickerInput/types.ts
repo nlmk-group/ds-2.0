@@ -2,7 +2,7 @@ import { TLevel } from '@components/DatePicker/types';
 import { ENABLED_HOURS_VALUES } from '@components/declaration';
 import { TInputProps } from '@components/Input/types';
 
-type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
+type TEnabledHour = (typeof ENABLED_HOURS_VALUES)[number];
 
 export type TOverrideInputProps = {
   value?: Date;

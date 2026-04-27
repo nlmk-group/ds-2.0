@@ -193,25 +193,41 @@ export default App;
 
           <Editor minHeight={200} description="Поле с меткой через label." code={inputWithLabelCode} />
 
-          <Editor minHeight={200} description="Метка и вспомогательный текст через helperText." code={inputWithHelperCode} />
+          <Editor
+            minHeight={200}
+            description="Метка и вспомогательный текст через helperText."
+            code={inputWithHelperCode}
+          />
 
           <Editor minHeight={200} description="Заблокированное состояние поля." code={inputDisabledCode} />
 
           <Editor minHeight={200} description="Состояние ошибки через color=error." code={inputErrorCode} />
 
-          <Editor minHeight={200} description="Предупреждающее состояние через color=warning." code={inputWarningCode} />
+          <Editor
+            minHeight={200}
+            description="Предупреждающее состояние через color=warning."
+            code={inputWarningCode}
+          />
 
           <Editor minHeight={200} description="Состояние успеха через color=success." code={inputSuccessCode} />
 
           <Editor minHeight={260} description="Иконка и кнопка сброса значения." code={inputWithIconAndResetCode} />
 
-          <Editor minHeight={240} description="Размеры Input и обязательное поле через required." code={inputSizeAndRequiredCode} />
+          <Editor
+            minHeight={240}
+            description="Размеры Input и обязательное поле через required."
+            code={inputSizeAndRequiredCode}
+          />
 
           <Editor minHeight={220} description="Цветной фон поля через colored." code={inputColoredCode} />
 
           <Editor minHeight={200} description="Многострочный режим textarea." code={inputTextareaCode} />
 
-          <Editor minHeight={200} description="Многострочный режим с ручным изменением размера." code={inputTextareaResizeCode} />
+          <Editor
+            minHeight={200}
+            description="Многострочный режим с ручным изменением размера."
+            code={inputTextareaResizeCode}
+          />
 
           <Editor
             minHeight={200}

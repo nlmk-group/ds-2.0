@@ -1,4 +1,4 @@
-import {ReactNode, SyntheticEvent} from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 
 export interface IModalProps {
   isOpen: boolean;

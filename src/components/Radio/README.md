@@ -9,26 +9,21 @@ Radio компонент используется для создания кас
 ```jsx
 import { Radio } from '@nlmk/ds-2.0';
 
-<Radio
-  value="option1"
-  checked={selectedValue === 'option1'}
-  onChange={handleChange}
-  label="Опция 1"
-/>
+<Radio value="option1" checked={selectedValue === 'option1'} onChange={handleChange} label="Опция 1" />;
 ```
 
 ## Props
 
-| Prop      | Type                                           | Default            | Description                                        |
-|-----------|------------------------------------------------|--------------------|----------------------------------------------------|
-| value     | string                                         | -                  | Значение радио-кнопки                              |
-| checked   | boolean                                        | -                  | Флаг, указывающий, выбрана ли радио-кнопка         |
-| disabled  | boolean                                        | false              | Флаг, указывающий, отключена ли радио-кнопка       |
-| onChange  | (event: ChangeEvent<HTMLInputElement>) => void | -                  | Функция обработки изменения состояния радио-кнопки |
-| label     | string                                         | ''                 | Текст метки радио-кнопки                           |
-| color     | ERadioColors                                   | ERadioColors.brand | Цветовой вариант компонента                        |
-| className | string                                         | -                  | Дополнительный CSS класс                           |
-| style     | CSSProperties                                  | -                  | Inline стили для кастомизации компонента           |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | string | - | Значение радио-кнопки |
+| checked | boolean | - | Флаг, указывающий, выбрана ли радио-кнопка |
+| disabled | boolean | false | Флаг, указывающий, отключена ли радио-кнопка |
+| onChange | (event: ChangeEvent<HTMLInputElement>) => void | - | Функция обработки изменения состояния радио-кнопки |
+| label | string | '' | Текст метки радио-кнопки |
+| color | ERadioColors | ERadioColors.brand | Цветовой вариант компонента |
+| className | string | - | Дополнительный CSS класс |
+| style | CSSProperties | - | Inline стили для кастомизации компонента |
 
 ## Примечания
 
@@ -67,7 +62,7 @@ import { Radio } from '@nlmk/ds-2.0';
 
 /* Стилизация label */
 [data-ui-radio-label] {
-  color: #E5E5E5;
+  color: #e5e5e5;
 }
 
 /* Стилизация текста */

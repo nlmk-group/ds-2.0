@@ -1,23 +1,22 @@
 import React, { useMemo, useState } from 'react';
 
-import { Cell, Filter, Row, Table, Tbody, Thead, Top } from '@components/index';
 import { IconMultipleChoice24 } from '@components/Icon/IconsDirectory';
+import { Cell, Filter, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
   ColumnDef,
   ColumnFiltersState,
-  flexRender,
   FilterFn,
+  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable
 } from '@tanstack/react-table';
 
-import { TData } from '../FilteringTable/types';
-
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '../utils';
 import { data as sharedData } from '../FilteringTable/constants';
+import { TData } from '../FilteringTable/types';
+import { getCellProps } from '../utils';
 
 const multiselectFilterOperations = [
   {

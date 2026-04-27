@@ -139,7 +139,7 @@ export const LegendSeveralViewIcon = (): JSX.Element => {
           color={{
             default: 'shlack',
             viewColor: ({ className }) => (
-              <div className={className} style={{ height: '24px', width: '24px'  }}>
+              <div className={className} style={{ height: '24px', width: '24px' }}>
                 <Icon name="IconLotok24" htmlColor="var(--mnemo-40)" />
               </div>
             )
@@ -150,7 +150,7 @@ export const LegendSeveralViewIcon = (): JSX.Element => {
           color={{
             default: 'pk',
             viewColor: ({ className }) => (
-              <div className={className} style={{ height: '24px', width: '24px'  }}>
+              <div className={className} style={{ height: '24px', width: '24px' }}>
                 <Icon name="IconDplayersFilled24" htmlColor="var(--mnemo-50)" />
               </div>
             )

@@ -37,19 +37,13 @@ const AdvancedExample = () => {
 const CallbackExample = () => {
   const [page, setPage] = useState(1);
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = newPage => {
     setPage(newPage);
     // Дополнительная логика, например, загрузка данных
     fetchData(newPage);
   };
 
-  return (
-    <Pagination
-      currentPage={page}
-      maxPageCount={10}
-      onPageChange={handlePageChange}
-    />
-  );
+  return <Pagination currentPage={page} maxPageCount={10} onPageChange={handlePageChange} />;
 };
 ```
 

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 
+import { EBadgeSizes } from '@components/Badge/enums';
 import { customInputColors } from '@components/declaration';
 import { Badge, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -10,7 +11,6 @@ import styles from './PseudoInput.module.scss';
 
 import { EPseudoInputSizes } from './enums';
 import { Suffix } from './subcomponents/Suffix';
-import { EBadgeSizes } from '@components/Badge/enums';
 
 /**
  * Компонент PseudoInput для отображения текста с меткой в стиле input.

@@ -83,7 +83,9 @@ import { Select } from '@nlmk/ds-2.0';
 
 ```jsx
 import React, { useState } from 'react';
+
 import { Select } from '@nlmk/ds-2.0';
+
 const BasicExample = () => {
   const [selected, setSelected] = useState('');
   const options = [
@@ -99,7 +101,9 @@ const BasicExample = () => {
 
 ```jsx
 import React, { useState } from 'react';
+
 import { Select } from '@nlmk/ds-2.0';
+
 const MultipleSearchExample = () => {
   const [selected, setSelected] = useState([]);
   const options = [
@@ -173,7 +177,9 @@ const AsyncExample = () => {
 
 ```jsx
 import React, { useState } from 'react';
+
 import { Select } from '@nlmk/ds-2.0';
+
 const StyledExample = () => {
   const [selected, setSelected] = useState('');
   const options = [
@@ -199,7 +205,9 @@ const StyledExample = () => {
 
 ```jsx
 import React, { useState } from 'react';
+
 import { Select } from '@nlmk/ds-2.0';
+
 const MultilineExample = () => {
   const [selected, setSelected] = useState('');
   const options = [
@@ -223,7 +231,9 @@ const MultilineExample = () => {
 
 ```jsx
 import React, { useState } from 'react';
+
 import { Select } from '@nlmk/ds-2.0';
+
 const ResetExample = () => {
   const [selected, setSelected] = useState('');
   const options = [
@@ -232,13 +242,7 @@ const ResetExample = () => {
     { value: '3', label: 'Option 3' }
   ];
   return (
-    <Select
-      options={options}
-      selected={selected}
-      onSelectionChange={setSelected}
-      label="Выберите опцию"
-      reset={true}
-    />
+    <Select options={options} selected={selected} onSelectionChange={setSelected} label="Выберите опцию" reset={true} />
   );
 };
 ```

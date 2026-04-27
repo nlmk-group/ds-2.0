@@ -10,7 +10,9 @@
 
 ```jsx
 import React from 'react';
+
 import { TreeList } from '@nlmk/ds-2.0';
+
 const treeData = [
   {
     key: '1',

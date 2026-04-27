@@ -97,11 +97,7 @@ NotificationCardExpanded.parameters = { controls: { disable: true } };
 export const NotificationCardRead = () => {
   return (
     <Box st={{ maxWidth: 772, width: '100%' }}>
-      <NotificationCard
-        title="Справка 2-НДФЛ за 2025 год готова"
-        body={longBody}
-        timestamp="вчера, 10:00"
-      />
+      <NotificationCard title="Справка 2-НДФЛ за 2025 год готова" body={longBody} timestamp="вчера, 10:00" />
     </Box>
   );
 };

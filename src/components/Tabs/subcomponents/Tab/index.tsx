@@ -6,10 +6,11 @@ import DSTooltip from '@components/Tooltip';
 import Typography from '@components/Typography';
 import { clsx } from 'clsx';
 
-import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
 import { ITabProps } from './types';
 
 import styles from './Tab.module.scss';
+
+import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
 
 const Tab: FC<ITabProps> = ({
   label,
@@ -69,13 +70,16 @@ const Tab: FC<ITabProps> = ({
       {...props}
       data-ui-tab
     >
-      <span className={clsx(styles.text, active && styles['text-active'], isVertical && styles['text--vertical'], isVertical && fixedWidth && styles['text--vertical-fixed'])}>
+      <span
+        className={clsx(
+          styles.text,
+          active && styles['text-active'],
+          isVertical && styles['text--vertical'],
+          isVertical && fixedWidth && styles['text--vertical-fixed']
+        )}
+      >
         {isVertical && fixedWidth && isOverflowed ? (
-          <DSTooltip
-            render={<Typography variant="Caption-Medium">{label}</Typography>}
-          >
-            {labelContent}
-          </DSTooltip>
+          <DSTooltip render={<Typography variant="Caption-Medium">{label}</Typography>}>{labelContent}</DSTooltip>
         ) : (
           labelContent
         )}

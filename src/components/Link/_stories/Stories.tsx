@@ -98,16 +98,8 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            minHeight={200}
-            description="Базовая текстовая ссылка."
-            code={linkDefaultCode}
-          />
-          <Editor
-            minHeight={220}
-            description="Заблокированная ссылка через disabled."
-            code={linkDisabledCode}
-          />
+          <Editor minHeight={200} description="Базовая текстовая ссылка." code={linkDefaultCode} />
+          <Editor minHeight={220} description="Заблокированная ссылка через disabled." code={linkDisabledCode} />
           <Editor description="Ссылка с иконками слева и справа от текста." code={linkWithIconCode} />
           <Editor description="Открытие ссылки в новой вкладке через target." code={linkWithTargetCode} />
           <Editor description="Перехват клика без перехода через preventRedirect." code={linkPreventRedirectCode} />

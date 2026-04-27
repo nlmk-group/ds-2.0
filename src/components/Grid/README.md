@@ -21,25 +21,25 @@ export default App;
 
 ## Props
 
-| Prop           | Type                           | Default               | Description                                                                 |
-| -------------- | ------------------------------ | --------------------- | --------------------------------------------------------------------------- |
-| children       | ReactNode                      | -                     | Дочерние элементы для отображения внутри Grid                               |
-| className      | string                         | -                     | Дополнительные CSS-классы                                                   |
-| background     | string                         | -                     | Цвет фона контейнера                                                        |
-| color          | string                         | 'var(--steel-90)'     | Цвет текста                                                                 |
-| height         | string \| number               | -                     | Высота контейнера                                                           |
-| width          | string \| number               | -                     | Ширина контейнера                                                           |
-| maxWidth       | string \| number               | -                     | Максимальная ширина контейнера                                              |
-| gap            | string \| number               | '24px'                | Промежуток между дочерними элементами                                       |
-| border         | string                         | -                     | CSS свойство border                                                         |
-| borderRadius   | string \| number               | -                     | Радиус скругления углов                                                     |
-| display        | CSSProperties['display']       | 'flex'                | CSS свойство display                                                        |
-| flexDirection  | CSSProperties['flexDirection'] | -                     | Направление flex контейнера                                                 |
-| justifyContent | CSSProperties['justifyContent']| -                     | Выравнивание по главной оси                                                 |
-| alignItems     | CSSProperties['alignItems']    | -                     | Выравнивание по поперечной оси                                              |
-| flexWrap       | CSSProperties['flexWrap']      | -                     | Перенос flex элементов                                                      |
-| st             | CSSProperties                  | -                     | Дополнительные inline стили (наивысший приоритет)                           |
-| p, px, py, pt, pr, pb, pl | string \| number    | -                     | Система отступов (см. [Box](../Box/README.md))                              |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| children | ReactNode | - | Дочерние элементы для отображения внутри Grid |
+| className | string | - | Дополнительные CSS-классы |
+| background | string | - | Цвет фона контейнера |
+| color | string | 'var(--steel-90)' | Цвет текста |
+| height | string \| number | - | Высота контейнера |
+| width | string \| number | - | Ширина контейнера |
+| maxWidth | string \| number | - | Максимальная ширина контейнера |
+| gap | string \| number | '24px' | Промежуток между дочерними элементами |
+| border | string | - | CSS свойство border |
+| borderRadius | string \| number | - | Радиус скругления углов |
+| display | CSSProperties['display'] | 'flex' | CSS свойство display |
+| flexDirection | CSSProperties['flexDirection'] | - | Направление flex контейнера |
+| justifyContent | CSSProperties['justifyContent'] | - | Выравнивание по главной оси |
+| alignItems | CSSProperties['alignItems'] | - | Выравнивание по поперечной оси |
+| flexWrap | CSSProperties['flexWrap'] | - | Перенос flex элементов |
+| st | CSSProperties | - | Дополнительные inline стили (наивысший приоритет) |
+| p, px, py, pt, pr, pb, pl | string \| number | - | Система отступов (см. [Box](../Box/README.md)) |
 
 ## Варианты использования
 
@@ -57,7 +57,7 @@ import Grid from '@nlmk/ds-2.0';
       <div>Правая колонка</div>
     </Grid.Column>
   </Grid.Row>
-</Grid>
+</Grid>;
 ```
 
 ### Несколько строк и колонок разной ширины
@@ -107,9 +107,7 @@ import Grid from '@nlmk/ds-2.0';
 Используйте проп `st` для передачи inline-стилей с наивысшим приоритетом:
 
 ```jsx
-<Grid st={{ backgroundColor: 'red', padding: '20px' }}>
-  Контент
-</Grid>
+<Grid st={{ backgroundColor: 'red', padding: '20px' }}>Контент</Grid>
 ```
 
 ### 3. Data-атрибуты
@@ -117,11 +115,11 @@ import Grid from '@nlmk/ds-2.0';
 Для удобной кастомизации компонент предоставляет следующие data-атрибуты:
 
 ```css
-[data-testid="grid-row"] {
+[data-testid='grid-row'] {
   /* Стили для строки Grid */
 }
 
-[data-testid="grid-column"] {
+[data-testid='grid-column'] {
   /* Стили для колонки Grid */
 }
 ```

@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from 'react';
 
-import clsx from 'clsx';
-
 import { Box, Input, OptionItem, SimpleSelect, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import clsx from 'clsx';
 
 import styles from './RowHighlightExamples.module.scss';
 
@@ -289,56 +288,59 @@ const RowHighlightExamples = () => {
           </Typography>
         </Box>
         <div className={styles.tableWrapper}>
-        <Table horizontalBorders verticalBorders className={styles.editableRowHoverTable}>
-          <Thead>
-            {table4.getHeaderGroups().map(headerGroup => (
-              <Row key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <Top
-                    key={header.id}
-                    style={{ width: header.getSize() }}
-                    title={
-                      typeof header.column.columnDef.header === 'string'
-                        ? header.column.columnDef.header
-                        : (header.column.columnDef.meta?.title as string) || header.id
-                    }
-                    right={header.column.columnDef.meta?.isNumeric}
-                  />
-                ))}
-              </Row>
-            ))}
-          </Thead>
-          <Tbody>
-            {table4.getRowModel().rows.map(row => (
-              <Row key={row.id}>
-                {row.getVisibleCells().map(cell => {
-                  const isEditable = cell.column.columnDef.meta?.isEditable;
-                  const isDisabledCell = cell.column.id === 'quantity' && row.original.id === '2';
+          <Table horizontalBorders verticalBorders className={styles.editableRowHoverTable}>
+            <Thead>
+              {table4.getHeaderGroups().map(headerGroup => (
+                <Row key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <Top
+                      key={header.id}
+                      style={{ width: header.getSize() }}
+                      title={
+                        typeof header.column.columnDef.header === 'string'
+                          ? header.column.columnDef.header
+                          : (header.column.columnDef.meta?.title as string) || header.id
+                      }
+                      right={header.column.columnDef.meta?.isNumeric}
+                    />
+                  ))}
+                </Row>
+              ))}
+            </Thead>
+            <Tbody>
+              {table4.getRowModel().rows.map(row => (
+                <Row key={row.id}>
+                  {row.getVisibleCells().map(cell => {
+                    const isEditable = cell.column.columnDef.meta?.isEditable;
+                    const isDisabledCell = cell.column.id === 'quantity' && row.original.id === '2';
 
-                  return (
-                    <Cell
-                      key={cell.id}
-                      style={{ width: cell.column.getSize() }}
-                      className={clsx({ [styles.editableCell]: isEditable && !isDisabledCell, [styles.disabledCell]: isDisabledCell })}
-                      disableHover
-                      {...(isEditable ? {} : getCellProps(cell))}
-                    >
-                      {(() => {
-                        if (isEditable) {
-                          if (typeof cell.column.columnDef.cell === 'function') {
-                            return cell.column.columnDef.cell(cell.getContext());
+                    return (
+                      <Cell
+                        key={cell.id}
+                        style={{ width: cell.column.getSize() }}
+                        className={clsx({
+                          [styles.editableCell]: isEditable && !isDisabledCell,
+                          [styles.disabledCell]: isDisabledCell
+                        })}
+                        disableHover
+                        {...(isEditable ? {} : getCellProps(cell))}
+                      >
+                        {(() => {
+                          if (isEditable) {
+                            if (typeof cell.column.columnDef.cell === 'function') {
+                              return cell.column.columnDef.cell(cell.getContext());
+                            }
+                            return null;
                           }
-                          return null;
-                        }
-                        return getCellProps(cell).children;
-                      })()}
-                    </Cell>
-                  );
-                })}
-              </Row>
-            ))}
-          </Tbody>
-        </Table>
+                          return getCellProps(cell).children;
+                        })()}
+                      </Cell>
+                    );
+                  })}
+                </Row>
+              ))}
+            </Tbody>
+          </Table>
         </div>
       </Box>
     </Box>

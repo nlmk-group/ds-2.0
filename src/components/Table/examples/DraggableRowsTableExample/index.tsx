@@ -1,16 +1,17 @@
 import React, { FC, useCallback, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import clsx from 'clsx';
 
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import clsx from 'clsx';
 
-import { getCellProps } from '..';
-import { columns, initialData } from './constants';
 import { IOperationRow } from './types';
 
 import styles from './DraggableRows.module.scss';
+
+import { getCellProps } from '..';
+import { columns, initialData } from './constants';
 
 const DRAG_TYPE = 'operation-row';
 

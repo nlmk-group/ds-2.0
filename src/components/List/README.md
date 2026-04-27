@@ -26,11 +26,11 @@ export default Example;
 
 ## Props
 
-| Prop      | Type                        | Default | Description                                 |
-|-----------|-----------------------------|---------|---------------------------------------------|
-| children  | ReactNode                   | -       | Содержимое списка (элементы списка)         |
-| className | string                      | -       | Дополнительный CSS-класс                    |
-| ...props  | HTMLAttributes<HTMLDivElement> | -    | Любые другие props для div-контейнера       |
+| Prop      | Type                           | Default | Description                           |
+| --------- | ------------------------------ | ------- | ------------------------------------- |
+| children  | ReactNode                      | -       | Содержимое списка (элементы списка)   |
+| className | string                         | -       | Дополнительный CSS-класс              |
+| ...props  | HTMLAttributes<HTMLDivElement> | -       | Любые другие props для div-контейнера |
 
 ---
 
@@ -85,14 +85,14 @@ export default Example;
 
 ### Основные props Scrollbar
 
-| Prop       | Type        | Default         | Description                                                                 |
-|------------|-------------|----------------|-----------------------------------------------------------------------------|
-| children   | ReactNode   | —              | Контент, который будет отображаться внутри скролл-контейнера                |
-| className  | string      | —              | Дополнительный CSS-класс для корневого элемента                             |
-| style      | CSSProperties | —            | Inline-стили для корневого элемента                                         |
-| overflowX  | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'hidden' | Управляет горизонтальной прокруткой                                         |
-| overflowY  | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto'   | Управляет вертикальной прокруткой                                           |
-| overflow   | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto'   | Управляет общей прокруткой (перезаписывает overflowX/overflowY, если задан) |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| children | ReactNode | — | Контент, который будет отображаться внутри скролл-контейнера |
+| className | string | — | Дополнительный CSS-класс для корневого элемента |
+| style | CSSProperties | — | Inline-стили для корневого элемента |
+| overflowX | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'hidden' | Управляет горизонтальной прокруткой |
+| overflowY | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto' | Управляет вертикальной прокруткой |
+| overflow | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto' | Управляет общей прокруткой (перезаписывает overflowX/overflowY, если задан) |
 
 ### Пример использования Scrollbar внутри List
 
@@ -112,7 +112,7 @@ import Scrollbar from '@nlmk/ds-2.0';
 
 <Scrollbar style={{ height: 200 }}>
   <div>Контент с прокруткой</div>
-</Scrollbar>
+</Scrollbar>;
 ```
 
 Подробнее о Scrollbar смотрите в [README.md компонента Scrollbar](../Scrollbar/README.md).

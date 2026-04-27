@@ -84,7 +84,9 @@ $track-bg-colors-off: (
   height: 20px;
   width: 20px;
   border-radius: var(--circle-radius);
-  transition: background 0.3s, transform 0.3s;
+  transition:
+    background 0.3s,
+    transform 0.3s;
   z-index: 1;
 }
 
@@ -95,7 +97,9 @@ $track-bg-colors-off: (
   height: 32px;
   width: 32px;
   border-radius: var(--circle-radius);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
   z-index: 0;
 
   &.focus-active {

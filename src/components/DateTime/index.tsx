@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import Typography from '@components/Typography';
 import { ELocaleMapping } from '@components/declaration';
+import Typography from '@components/Typography';
+
+import { IDateTimeProps } from './types';
 
 import styles from './DateTime.module.scss';
-import { IDateTimeProps } from './types';
 
 export const getDate = (currentDate: Date, locale: `${ELocaleMapping}` = ELocaleMapping.ru): string => {
   const toUpperCase = (word: string): string => {
@@ -13,13 +14,13 @@ export const getDate = (currentDate: Date, locale: `${ELocaleMapping}` = ELocale
     const remainingLetters = word.slice(1);
     return firstLetterCap + remainingLetters;
   };
-  
+
   const localeString = locale === 'en' ? 'en-US' : 'ru-RU';
   const weekDay = currentDate.toLocaleString(localeString, { weekday: 'long' });
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
-  
+
   return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}, ${toUpperCase(weekDay)}`;
 };
 

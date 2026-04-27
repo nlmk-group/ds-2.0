@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { InputSlider } from '@components/index';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 describe('src/components/InputSlider', () => {
   const defaultProps = {

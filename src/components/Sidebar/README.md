@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import { Sidebar } from '@nlmk/ds-2.0';
+
 const App = () => (
   <Sidebar
     variant="burger"

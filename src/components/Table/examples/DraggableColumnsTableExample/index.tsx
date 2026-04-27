@@ -1,4 +1,4 @@
-import React, { FC, TouchEvent, MouseEvent, useRef, useState } from 'react';
+import React, { FC, MouseEvent, TouchEvent, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -12,10 +12,10 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
+import styles from './DraggableColumns.module.scss';
+
 import { getCellProps } from '..';
 import { initialColumns, initialData, IShiftRow } from './constants';
-
-import styles from './DraggableColumns.module.scss';
 
 const DRAG_TYPE = 'shift-column';
 

@@ -24,10 +24,10 @@ export default App;
 
 ## Props
 
-| Prop     | Type                         | Default | Description                                                        |
-|----------|------------------------------|---------|--------------------------------------------------------------------|
-| children | ReactNode                    | -       | Элементы, которые будут отрисованы внутри портала                  |
-| node     | Element \| DocumentFragment  | -       | DOM-узел, в который будет отрисован портал                         |
+| Prop     | Type                        | Default | Description                                       |
+| -------- | --------------------------- | ------- | ------------------------------------------------- |
+| children | ReactNode                   | -       | Элементы, которые будут отрисованы внутри портала |
+| node     | Element \| DocumentFragment | -       | DOM-узел, в который будет отрисован портал        |
 
 ---
 
@@ -36,16 +36,14 @@ export default App;
 ### Использование с модальным окном
 
 ```jsx
-
 const modalRoot = document.getElementById('modal-root');
 
-const Modal = ({ open, children }) => (
+const Modal = ({ open, children }) =>
   open ? (
     <Portal node={modalRoot}>
       <div className="modal">{children}</div>
     </Portal>
-  ) : null
-);
+  ) : null;
 
 export default Modal;
 ```
@@ -67,4 +65,5 @@ export default Modal;
 ---
 
 ### Внешние зависимости
+
 - ReactDOM (ReactDOM.createPortal)

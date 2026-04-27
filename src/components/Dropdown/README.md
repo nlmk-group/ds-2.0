@@ -52,6 +52,7 @@ import { Dropdown, DropdownMenuItem, IconSearchOutlined24 } from '@nlmk/ds-2.0';
 
 ```jsx
 import { Box, Dropdown, DropdownMenuItem, IconCancelOutlined24, IconChevronArrowRightOutlined24 } from '@nlmk/ds-2.0';
+
 <Dropdown buttonChildren="Dropdown button">
   {positionsCustom.map(({ value, disabled }) => (
     <DropdownMenuItem key={value} value={value} disabled={disabled}>

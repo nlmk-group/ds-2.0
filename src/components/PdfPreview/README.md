@@ -8,7 +8,9 @@ PdfPreview — это функциональный компонент в React, 
 
 ```jsx
 import React, { useEffect, useState } from 'react';
+
 import { PdfPreview } from './PdfPreview';
+
 export const Example = () => {
   const [pdfData, setPdfData] = useState(null);
   const [loading, setLoading] = useState(true);

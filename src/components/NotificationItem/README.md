@@ -7,14 +7,14 @@
 ## Использование
 
 ```jsx
-import { NotificationItem, EBadgeColors } from '@nlmk/ds-2.0';
+import { EBadgeColors, NotificationItem } from '@nlmk/ds-2.0';
 
 <NotificationItem
   label="Требуется сделать"
   count={2}
   badgeColor={EBadgeColors.error}
   active
-  onClick={(value) => console.log(value)}
+  onClick={value => console.log(value)}
 />;
 ```
 
@@ -22,6 +22,7 @@ import { NotificationItem, EBadgeColors } from '@nlmk/ds-2.0';
 
 ```jsx
 import { useEffect, useRef, useState } from 'react';
+
 import { ClickAwayListener, Header, NotificationItem, Typography } from '@nlmk/ds-2.0';
 
 const items = [
@@ -45,13 +46,13 @@ export default function App() {
         title="Страница"
         showNotification
         notificationAmount={108}
-        onNotificationClick={() => setOpen((prev) => !prev)}
+        onNotificationClick={() => setOpen(prev => !prev)}
       />
       {open && (
         <ClickAwayListener onClickAway={() => setOpen(false)} excludeRef={notifButtonRef}>
           <div style={{ position: 'absolute', top: '100%', right: 0, marginTop: 4, zIndex: 1100 }}>
-            {items.map((item) => (
-              <NotificationItem key={item.label} {...item} onClick={(v) => console.log(v)} />
+            {items.map(item => (
+              <NotificationItem key={item.label} {...item} onClick={v => console.log(v)} />
             ))}
           </div>
         </ClickAwayListener>
@@ -63,16 +64,16 @@ export default function App() {
 
 ## Props
 
-| Prop       | Type                          | Default             | Description                                        |
-| ---------- | ----------------------------- | ------------------- | -------------------------------------------------- |
-| label      | string                        | -                   | Текст категории уведомлений                        |
-| count      | number                        | 0                   | Количество уведомлений (бейдж скрыт при 0)         |
-| badgeColor | EBadgeColors                  | EBadgeColors.error  | Цвет бейджа-счётчика                               |
-| active     | boolean                       | false               | Активное состояние (визуальная подсветка)          |
-| value      | string                        | label               | Уникальное значение, передаваемое в onClick        |
-| onClick    | (value: string) => void       | -                   | Обработчик клика                                   |
-| className  | string                        | -                   | Дополнительный CSS класс                           |
-| style      | CSSProperties                 | -                   | Inline стили                                       |
+| Prop       | Type                    | Default            | Description                                 |
+| ---------- | ----------------------- | ------------------ | ------------------------------------------- |
+| label      | string                  | -                  | Текст категории уведомлений                 |
+| count      | number                  | 0                  | Количество уведомлений (бейдж скрыт при 0)  |
+| badgeColor | EBadgeColors            | EBadgeColors.error | Цвет бейджа-счётчика                        |
+| active     | boolean                 | false              | Активное состояние (визуальная подсветка)   |
+| value      | string                  | label              | Уникальное значение, передаваемое в onClick |
+| onClick    | (value: string) => void | -                  | Обработчик клика                            |
+| className  | string                  | -                  | Дополнительный CSS класс                    |
+| style      | CSSProperties           | -                  | Inline стили                                |
 
 ## Поведение
 

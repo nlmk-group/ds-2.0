@@ -118,4 +118,3 @@ export const getSizingStyles = ({
     badgeStyles: getBadgeStyles()
   };
 };
-

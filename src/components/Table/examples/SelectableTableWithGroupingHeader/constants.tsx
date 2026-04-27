@@ -75,7 +75,7 @@ export const columns: ColumnDef<ISelectionWithGrouping>[] = [
         header: 'Факт',
         meta: {
           isNumeric: true,
-          isLastInGroup: true 
+          isLastInGroup: true
         }
       })
     ]

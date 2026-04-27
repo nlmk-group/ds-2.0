@@ -110,9 +110,7 @@ export default  App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="Spinner" />}
     </div>
   );

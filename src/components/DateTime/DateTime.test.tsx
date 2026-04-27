@@ -1,9 +1,9 @@
 import React from 'react';
 
-import DateTime from './index';
 import { render, screen } from '@testing-library/react';
 
 import { getDate, getTime } from '.';
+import DateTime from './index';
 
 describe('src/components/DateTime', () => {
   const testTime = '2023-10-18T14:33:03.372Z';

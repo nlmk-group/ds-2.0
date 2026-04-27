@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Box, IconSelectionContains24, OptionItem, SimpleSelect, Typography } from '@components/index';
-import { action } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import styles from './SimpleSelect.module.scss';
 

@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import Divider from '@your-package/divider';
+
 const App = () => (
   <div>
     <Divider type="horizontal" orientation="center" dashed={true}>

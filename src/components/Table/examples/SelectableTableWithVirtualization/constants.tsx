@@ -13,7 +13,7 @@ export const data: ISelectionWithVirtualization[] = Array.from({ length: 1000 },
   const name = rawMaterials[Math.floor(Math.random() * rawMaterials.length)];
   const enterprise = enterpriseNames[Math.floor(Math.random() * enterpriseNames.length)];
   const plan = Math.floor(Math.random() * 1000) + 100; // Планы от 100 до 1000
-  const date = new Date(Date.now() + i * 3600_000)
+  const date = new Date(Date.now() + i * 3600_000);
 
   return {
     id: i + 1,

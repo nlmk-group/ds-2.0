@@ -67,7 +67,6 @@ import { Checkbox, ECheckboxColors } from '@nlmk/ds-2.0';
   /* стили */
 }
 
-
 /* Стилизация инпута */
 [data-ui-checkbox-input] {
   /* стили */

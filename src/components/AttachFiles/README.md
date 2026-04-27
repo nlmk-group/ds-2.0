@@ -6,7 +6,9 @@
 
 ```jsx
 import React from 'react';
+
 import AttachFiles from '@your-package/attach-files';
+
 const App = () => {
   return (
     <AttachFiles title={<h3>Прикреплённые файлы</h3>} className="custom-attach-files">

@@ -1,5 +1,4 @@
 import React, { FC, MouseEvent, TouchEvent, useRef, useState } from 'react';
-import clsx from 'clsx';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
@@ -23,11 +22,12 @@ import {
   Header,
   useReactTable
 } from '@tanstack/react-table';
+import clsx from 'clsx';
+
+import styles from './DraggableColumnsIndicator.module.scss';
 
 import { getCellProps } from '..';
 import { initialColumns, initialData, IShiftRow } from './constants';
-
-import styles from './DraggableColumnsIndicator.module.scss';
 
 interface IIndicator {
   overColumnId: string;
@@ -47,7 +47,11 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, isActive, index, h
   const { column } = header;
   const columnId = column.id;
 
-  const { setNodeRef: setDragRef, attributes, listeners } = useDraggable({
+  const {
+    setNodeRef: setDragRef,
+    attributes,
+    listeners
+  } = useDraggable({
     id: columnId,
     disabled: resizingRef.current
   });
@@ -203,7 +207,7 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
   });
 
   const activeHeader = activeId ? initialColumns.find(c => c.id === activeId) : null;
-  const activeLabel = activeHeader && typeof activeHeader.header === 'string' ? activeHeader.header : activeId ?? '';
+  const activeLabel = activeHeader && typeof activeHeader.header === 'string' ? activeHeader.header : (activeId ?? '');
 
   return (
     <DndContext

@@ -2,6 +2,7 @@ import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState
 import ReactDOM from 'react-dom';
 
 import { useUpdatedValues } from '@components/declaration';
+import { ELocaleMapping } from '@components/declaration';
 import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
@@ -15,7 +16,6 @@ import styles from './Datepicker.module.scss';
 import { defaultShiftLength, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
-import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент DatePicker для выбора даты и времени в различных форматах.

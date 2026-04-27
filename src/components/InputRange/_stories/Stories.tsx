@@ -105,18 +105,9 @@ export default App = () => {
 
       {Number(activeTab) == 0 && (
         <>
-          <Editor
-            description="Базовый выбор диапазона значений."
-            code={basicInputRangeCode}
-          />
-          <Editor
-            description="Позиция значений у ползунка через thumbValuePosition."
-            code={thumbValuePositionCode}
-          />
-          <Editor
-            description="Диапазон с крупным шагом изменения через step."
-            code={stepInputRangeCode}
-          />
+          <Editor description="Базовый выбор диапазона значений." code={basicInputRangeCode} />
+          <Editor description="Позиция значений у ползунка через thumbValuePosition." code={thumbValuePositionCode} />
+          <Editor description="Диапазон с крупным шагом изменения через step." code={stepInputRangeCode} />
 
           <Editor
             description="Заблокированное состояние компонента."
@@ -149,9 +140,7 @@ export default App = () => {
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="InputRange" />}
     </div>
   );

@@ -24,18 +24,18 @@ import Snackbar from './Snackbar';
 
 ## Props
 
-| Название         | Тип             | По умолчанию | Описание                                                                                                                        |
-|------------------|-----------------|--------------|---------------------------------------------------------------------------------------------------------------------------------|
-| color            | ESnackbarColors | 'sky'        | Цвет фона Snackbar                                                                                                              |
-| type             | ESnackbarType   | 'fill'       | Вариант отображения Snackbar                                                                                                    |
-| onClose          | () => void      | -            | Функция закрытия Snackbar                                                                                                       |
-| actionButton     | () => void      | -            | Функция, вызываемая при нажатии на кнопку действия                                                                              |
-| actionText       | string          | ''           | Текст кнопки действия                                                                                                           |
-| children         | ReactNode       | -            | Содержимое Snackbar                                                                                                             |
-| autoHideDuration | number          | 0            | Время автоматического скрытия в миллисекундах. Если установлено в 0 или не указано, Snackbar не будет автоматически скрываться. |
-| className        | string          | -            | Дополнительный CSS класс                                                                                                        |
-| style            | CSSProperties   | -            | Inline стили для компонента                                                                                                     |
-| showCountdown    | boolean         | false        | Отображение таймера с момента появления Snackbar                                                                                |
+| Название | Тип | По умолчанию | Описание |
+| --- | --- | --- | --- |
+| color | ESnackbarColors | 'sky' | Цвет фона Snackbar |
+| type | ESnackbarType | 'fill' | Вариант отображения Snackbar |
+| onClose | () => void | - | Функция закрытия Snackbar |
+| actionButton | () => void | - | Функция, вызываемая при нажатии на кнопку действия |
+| actionText | string | '' | Текст кнопки действия |
+| children | ReactNode | - | Содержимое Snackbar |
+| autoHideDuration | number | 0 | Время автоматического скрытия в миллисекундах. Если установлено в 0 или не указано, Snackbar не будет автоматически скрываться. |
+| className | string | - | Дополнительный CSS класс |
+| style | CSSProperties | - | Inline стили для компонента |
+| showCountdown | boolean | false | Отображение таймера с момента появления Snackbar |
 
 ## Цвета (ESnackbarColors)
 
@@ -122,9 +122,7 @@ import Snackbar from './Snackbar';
 Можно передать объект стилей через проп `style`:
 
 ```jsx
-<Snackbar style={{ marginBottom: '16px' }}>
-  Styled snackbar
-</Snackbar>
+<Snackbar style={{ marginBottom: '16px' }}>Styled snackbar</Snackbar>
 ```
 
 ## Состояния

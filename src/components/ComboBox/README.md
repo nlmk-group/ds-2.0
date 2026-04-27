@@ -10,6 +10,7 @@
 
 ```jsx
 import React from 'react';
+
 import ComboBox from './ComboBox';
 
 const options = [
@@ -20,11 +21,7 @@ const options = [
 
 export default function App() {
   return (
-    <ComboBox
-      label="Выберите опцию"
-      initialValue={[options[0]]}
-      tooltipDescription="Выберите один из вариантов"
-    />
+    <ComboBox label="Выберите опцию" initialValue={[options[0]]} tooltipDescription="Выберите один из вариантов" />
   );
 }
 ```
@@ -33,33 +30,33 @@ export default function App() {
 
 ## Props
 
-| Prop                | Type                              | Default   | Description                                                                                 |
-|---------------------|-----------------------------------|-----------|---------------------------------------------------------------------------------------------|
-| label               | string                            | —         | Заголовок (лейбл) для поля ComboBox.                                                        |
-| isDisabled          | boolean                           | false     | Отключает ввод и взаимодействие с ComboBox.                                                 |
-| isResize            | boolean                           | false     | Разрешить изменение размера выпадающего списка пользователем.                               |
-| dropdownWidth       | string \| number                  | —         | Ширина выпадающего списка.                                                                  |
-| dropdownHeight      | string \| number                  | —         | Высота выпадающего списка.                                                                  |
-| dropdownMinHeight   | number                            | —         | Минимальная высота дропдауна в пикселях.                                                    |
-| dropdownMinWidth    | number                            | —         | Минимальная ширина дропдауна в пикселях.                                                    |
-| inputMinWidth       | number                            | —         | Минимальная ширина инпута ComboBox в пикселях.                                              |
-| initialValue        | IComboBoxOption[]                 | []        | Список начально выбранных опций.                                                            |
-| children            | ReactNode                         | —         | Дополнительное содержимое внутри ComboBox (например, кастомный рендеринг опций).            |
-| displayEnumerated   | boolean                           | false     | Показывать ли нумерацию для каждой опции.                                                   |
-| displayChildCount   | boolean                           | false     | Показывать ли количество дочерних элементов (для дерева или групп).                         |
-| tooltipDescription  | IComboBoxOption[] \| string       | —         | Кастомная подсказка (tooltip) для поля (можно строкой или массивом опций).                  |
-| countOnlyLevel      | number                            | —         | Показывать количество детей только для заданного уровня вложенности. При значении -1 считает только листовые элементы. |
-| color               | string                            | —         | Основной цвет (тема) — влияет на стиль поля/выпадающего списка при наличии поддержки.        |
-| className           | string                            | —         | Дополнительный css-класс для корневого элемента ComboBox.                                   |
-| style               | CSSProperties                     | —         | Inline-стили для корневого элемента ComboBox.                                               |
-| dropdownClassName   | string                            | —         | Css-класс для контейнера выпадающего списка.                                                |
-| dropdownStyle       | CSSProperties                     | —         | Inline-стили для выпадающего списка.                                                        |
-| inputClassName      | string                            | —         | Класс для поля ввода (input).                                                               |
-| inputStyle          | CSSProperties                     | —         | Inline-стили для поля ввода.                                                                |
-| withPortal          | boolean                           | false     | Рендерить ли выпадающий список через портал (`portalContainerId`).                          |
-| portalContainerId   | string                            | —         | Если используется портал, id DOM-элемента-контейнера для выпадающего списка.                |
-| autoFocusSearch     | boolean                           | false     | Автоматический фокус на поле поиска при открытии выпадающего списка.                         |
-| autoExpandOnSearch  | boolean                           | false     | Автоматическое раскрытие дерева элементов при поиске (для ComboTreeList).                   |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| label | string | — | Заголовок (лейбл) для поля ComboBox. |
+| isDisabled | boolean | false | Отключает ввод и взаимодействие с ComboBox. |
+| isResize | boolean | false | Разрешить изменение размера выпадающего списка пользователем. |
+| dropdownWidth | string \| number | — | Ширина выпадающего списка. |
+| dropdownHeight | string \| number | — | Высота выпадающего списка. |
+| dropdownMinHeight | number | — | Минимальная высота дропдауна в пикселях. |
+| dropdownMinWidth | number | — | Минимальная ширина дропдауна в пикселях. |
+| inputMinWidth | number | — | Минимальная ширина инпута ComboBox в пикселях. |
+| initialValue | IComboBoxOption[] | [] | Список начально выбранных опций. |
+| children | ReactNode | — | Дополнительное содержимое внутри ComboBox (например, кастомный рендеринг опций). |
+| displayEnumerated | boolean | false | Показывать ли нумерацию для каждой опции. |
+| displayChildCount | boolean | false | Показывать ли количество дочерних элементов (для дерева или групп). |
+| tooltipDescription | IComboBoxOption[] \| string | — | Кастомная подсказка (tooltip) для поля (можно строкой или массивом опций). |
+| countOnlyLevel | number | — | Показывать количество детей только для заданного уровня вложенности. При значении -1 считает только листовые элементы. |
+| color | string | — | Основной цвет (тема) — влияет на стиль поля/выпадающего списка при наличии поддержки. |
+| className | string | — | Дополнительный css-класс для корневого элемента ComboBox. |
+| style | CSSProperties | — | Inline-стили для корневого элемента ComboBox. |
+| dropdownClassName | string | — | Css-класс для контейнера выпадающего списка. |
+| dropdownStyle | CSSProperties | — | Inline-стили для выпадающего списка. |
+| inputClassName | string | — | Класс для поля ввода (input). |
+| inputStyle | CSSProperties | — | Inline-стили для поля ввода. |
+| withPortal | boolean | false | Рендерить ли выпадающий список через портал (`portalContainerId`). |
+| portalContainerId | string | — | Если используется портал, id DOM-элемента-контейнера для выпадающего списка. |
+| autoFocusSearch | boolean | false | Автоматический фокус на поле поиска при открытии выпадающего списка. |
+| autoExpandOnSearch | boolean | false | Автоматическое раскрытие дерева элементов при поиске (для ComboTreeList). |
 
 ---
 
@@ -67,17 +64,17 @@ export default function App() {
 
 Элементы списка, передаваемые в `items` у `ComboList` / `ComboGroupList` / `ComboTreeList`, имеют следующие поля:
 
-| Поле                | Type     | Description                                                                                 |
-|---------------------|----------|---------------------------------------------------------------------------------------------|
-| id                  | string   | Уникальный идентификатор опции.                                                              |
-| label               | string   | Основной текст опции (отображается как первая строка).                                       |
-| description         | string   | Дополнительный текст (sublabel), отображается второй строкой под label. В мультиселекте чекбокс центрируется по вертикали относительно блока label + description. |
-| disabled            | boolean  | Делает опцию недоступной для выбора.                                                         |
-| hasLineBreak        | boolean  | Разрешает перенос строки у длинного label.                                                   |
-| tooltipDescription  | string   | Текст тултипа при наведении на опцию.                                                        |
-| name                | string   | Опциональное имя опции.                                                                       |
-| shortName           | string   | Короткое имя (используется при `displayEnumerated`).                                          |
-| idMdm               | string   | Внешний идентификатор.                                                                        |
+| Поле | Type | Description |
+| --- | --- | --- |
+| id | string | Уникальный идентификатор опции. |
+| label | string | Основной текст опции (отображается как первая строка). |
+| description | string | Дополнительный текст (sublabel), отображается второй строкой под label. В мультиселекте чекбокс центрируется по вертикали относительно блока label + description. |
+| disabled | boolean | Делает опцию недоступной для выбора. |
+| hasLineBreak | boolean | Разрешает перенос строки у длинного label. |
+| tooltipDescription | string | Текст тултипа при наведении на опцию. |
+| name | string | Опциональное имя опции. |
+| shortName | string | Короткое имя (используется при `displayEnumerated`). |
+| idMdm | string | Внешний идентификатор. |
 
 ### Пример с sublabel
 
@@ -89,7 +86,7 @@ const items = [
 
 <ComboBox label="Выбор с описанием">
   <ComboList items={items} isMultiple={false} />
-</ComboBox>
+</ComboBox>;
 ```
 
 ---
@@ -123,13 +120,8 @@ const items = [
 ### Использование портала
 
 ```jsx
-<ComboBox
-  label="Через портал"
-  withPortal={true}
-  portalContainerId="my-portal-root"
-/>
+<ComboBox label="Через портал" withPortal={true} portalContainerId="my-portal-root" />
 ```
-
 
 ---
 
@@ -146,15 +138,15 @@ ComboBox поддерживает кастомизацию через:
 
 ## Дополнительная информация
 
-- **Контекстные хуки**:  
-  - `useDropdownHeight` / `useSetDropdownHeight` — управление высотой дропдауна  
-  - `useDropdownWidth` / `useSetDropdownWidth` — управление шириной дропдауна  
-  - `useComboBoxValue` / `useSetComboBoxValue` — выбранные значения  
+- **Контекстные хуки**:
+  - `useDropdownHeight` / `useSetDropdownHeight` — управление высотой дропдауна
+  - `useDropdownWidth` / `useSetDropdownWidth` — управление шириной дропдауна
+  - `useComboBoxValue` / `useSetComboBoxValue` — выбранные значения
   - `useSearchValue` / `useSetSearchValue` — значение поиска
 
-- **Расширение**:  
-  - Используйте проп `children` для вставки пользовательского содержимого  
-  - Включите возможность изменения размера с помощью `isResize={true}`  
+- **Расширение**:
+  - Используйте проп `children` для вставки пользовательского содержимого
+  - Включите возможность изменения размера с помощью `isResize={true}`
   - Группируйте опции или стройте дерево, используя соответствующие интерфейсы
 
 ---

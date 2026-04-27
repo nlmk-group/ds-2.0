@@ -94,11 +94,7 @@ const ComboList = <T extends IComboBoxOption>({
                 <Typography variant="Body1-Medium" className={styles.listItemLabel}>
                   {item.label}
                 </Typography>
-                <Typography
-                  variant="Body2-Medium"
-                  color="var(--steel-70)"
-                  className={styles.listItemDescription}
-                >
+                <Typography variant="Body2-Medium" color="var(--steel-70)" className={styles.listItemDescription}>
                   {item.description}
                 </Typography>
               </Box>
@@ -126,11 +122,7 @@ const ComboList = <T extends IComboBoxOption>({
                 {item.label}
               </Typography>
               {hasDescription && (
-                <Typography
-                  variant="Body2-Medium"
-                  color="var(--steel-70)"
-                  className={styles.listItemDescription}
-                >
+                <Typography variant="Body2-Medium" color="var(--steel-70)" className={styles.listItemDescription}>
                   {item.description}
                 </Typography>
               )}

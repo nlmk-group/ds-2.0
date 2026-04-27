@@ -28,26 +28,26 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-filter-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-filter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 Filter
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Добавлен multiselect-режим
-              </li>
-              <li className={styles['left-padding']}>
-                - Обновлены стили компонента
-              </li>
+              .<li className={styles['left-padding']}>- Добавлен multiselect-режим</li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
             </li>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-combobox-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 ComboBox
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Добавлен проп description у ComboBoxOption
-              </li>
+              .<li className={styles['left-padding']}>- Добавлен проп description у ComboBoxOption</li>
             </li>
           </ul>
         </div>
@@ -103,7 +103,8 @@ export const Changelog = () => {
                 - Добавлен проп tabPosition для размещения вертикальной панели табов (left / right)
               </li>
               <li className={styles['left-padding']}>
-                - Добавлен проп maxTabWidth для ограничения ширины таба в вертикальном режиме с ellipsis и тултипом на overflow
+                - Добавлен проп maxTabWidth для ограничения ширины таба в вертикальном режиме с ellipsis и тултипом на
+                overflow
               </li>
             </li>
           </ul>
@@ -115,7 +116,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-input-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 Input
               </Link>
               .
@@ -130,11 +135,10 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Введены CSS-переменные для управления z-index: --z-base, --z-raised, --z-dropdown, --z-sticky, --z-sidebar, --z-drawer, --z-modal, --z-modal-stacked, --z-portal, --z-tooltip
+                - Введены CSS-переменные для управления z-index: --z-base, --z-raised, --z-dropdown, --z-sticky,
+                --z-sidebar, --z-drawer, --z-modal, --z-modal-stacked, --z-portal, --z-tooltip
               </li>
-              <li className={styles['left-padding']}>
-                - Компоненты переведены на использование z-index токенов
-              </li>
+              <li className={styles['left-padding']}>- Компоненты переведены на использование z-index токенов</li>
             </li>
           </ul>
         </div>
@@ -145,15 +149,21 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-imagepreview-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 ImagePreview
               </Link>
               .
               <li className={styles['left-padding']}>
-                - Добавлена возможность использовать модальное окно просмотра изображений ImagePreviewModal независимо от ImagePreview
+                - Добавлена возможность использовать модальное окно просмотра изображений ImagePreviewModal независимо
+                от ImagePreview
               </li>
               <li className={styles['left-padding']}>
-                - Добавлены новые параметры для настройки поведения ImagePreview (скрытие кнопки для загрузки в модальном окне, наличие зума в модальном окне, ccs класс для модального окна)
+                - Добавлены новые параметры для настройки поведения ImagePreview (скрытие кнопки для загрузки в
+                модальном окне, наличие зума в модальном окне, ccs класс для модального окна)
               </li>
             </li>
           </ul>
@@ -173,9 +183,7 @@ export const Changelog = () => {
                 Comments
               </Link>
               .
-              <li className={styles['left-padding']}>
-                - Исправлено отображение текста комментария с переносом строки
-              </li>
+              <li className={styles['left-padding']}>- Исправлено отображение текста комментария с переносом строки</li>
             </li>
           </ul>
         </div>
@@ -203,7 +211,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Исправлен компонент{' '}
-              <Link href="./?path=/docs/components-imagepreview-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 ImagePreview
               </Link>
               .
@@ -220,7 +232,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-splitter-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 Splitter
               </Link>
               .

@@ -61,7 +61,7 @@ function getDayCountInMonth(year: number, month: number) {
  */
 function getNumOfFirstDay(year: number, month: number, isFirstDayMonday: boolean) {
   const day = new Date(year, month - 1).getDay();
-  const firstDayMonday = day ? day - 1 : 6
+  const firstDayMonday = day ? day - 1 : 6;
   return isFirstDayMonday ? firstDayMonday : day;
 }
 

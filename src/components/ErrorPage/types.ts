@@ -1,4 +1,4 @@
-import { error403, error404, Default } from './components';
+import { Default, error403, error404 } from './components';
 
 export const errorImagesByCode = {
   404: error404,

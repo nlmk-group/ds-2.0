@@ -12,10 +12,10 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
+import styles from './DraggableColumnsIndicator.module.scss';
+
 import { getCellProps } from '..';
 import { initialColumns, initialData, IShiftRow } from './constants';
-
-import styles from './DraggableColumnsIndicator.module.scss';
 
 const DRAG_TYPE = 'shift-column-indicator-rdnd';
 
@@ -43,14 +43,7 @@ interface IDraggableHeaderProps {
   onDragEnd: () => void;
 }
 
-const DraggableHeader: FC<IDraggableHeaderProps> = ({
-  header,
-  containerRef,
-  index,
-  onHover,
-  onDrop,
-  onDragEnd
-}) => {
+const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, index, onHover, onDrop, onDragEnd }) => {
   const ref = useRef<HTMLTableCellElement>(null);
   const resizingRef = useRef(false);
   const { column } = header;

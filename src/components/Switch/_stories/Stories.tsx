@@ -133,10 +133,7 @@ export default App = () => {
 }
               `}
           />
-          <Editor
-            description="Цветовые состояния переключателя через prop color."
-            code={switchColorCode}
-          />
+          <Editor description="Цветовые состояния переключателя через prop color." code={switchColorCode} />
           <Editor
             description="Переключатель с иконками для активного и неактивного состояния."
             code={`import { useState } from 'react'

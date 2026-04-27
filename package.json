@@ -21,6 +21,7 @@
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
     "lint:fix": "eslint ./src --fix && prettier --write ./src",
+    "lint:staged": "lint-staged",
     "clean": "rimraf lib && rimraf cache",
     "build": "BUILD_MODE=lib vite build",
     "packing": "yarn build && npm publish",
@@ -47,8 +48,18 @@
     "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
   },
   "pre-commit": [
-    "lint"
+    "lint:staged",
+    "check-types"
   ],
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.scss": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
     "clsx": "^2.1.1",
@@ -97,7 +108,7 @@
     "@testing-library/jest-dom": "6.1.6",
     "@testing-library/react": "^15.0.0",
     "@testing-library/user-event": "14.5.2",
-    "@trivago/prettier-plugin-sort-imports": "4.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/flat": "^5.0.2",
     "@types/jest": "26.0.24",
     "@types/react": "^19.0.0",
@@ -128,10 +139,11 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "27.0.6",
     "jest-runner-eslint": "2.0.0",
+    "lint-staged": "^15.2.10",
     "lz-string": "^1.5.0",
     "node-fetch": "3.2.10",
     "pre-commit": "1.2.2",
-    "prettier": "2.3.2",
+    "prettier": "^3.8.3",
     "prism-react-renderer": "^2.4.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",

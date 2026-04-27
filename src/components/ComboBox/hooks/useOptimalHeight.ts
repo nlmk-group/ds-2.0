@@ -29,7 +29,7 @@ import { useSetDropdownHeight } from '../context';
  */
 export const useOptimalHeight = (...params: Parameters<typeof getDDHeightParameters>) => {
   const setDropdownHeight = useSetDropdownHeight();
-  
+
   const [items, isSearch = false, isCheckAll = false, isMultiple = true, hasChildren] = params;
 
   const dropdownHeight = useMemo(() => {

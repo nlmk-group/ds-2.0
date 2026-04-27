@@ -1,5 +1,4 @@
 import React, { FC, useRef, useState } from 'react';
-import clsx from 'clsx';
 
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
 import {
@@ -16,12 +15,14 @@ import {
   useSensors
 } from '@dnd-kit/core';
 import { flexRender, getCoreRowModel, Row as TableRow, useReactTable } from '@tanstack/react-table';
+import clsx from 'clsx';
 
-import { getCellProps } from '..';
-import { columns, initialData } from './constants';
 import { IOperationRow } from './types';
 
 import styles from './DraggableRowsIndicator.module.scss';
+
+import { getCellProps } from '..';
+import { columns, initialData } from './constants';
 
 const HANDLE_COL_WIDTH = 40;
 

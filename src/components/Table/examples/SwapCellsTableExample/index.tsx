@@ -1,13 +1,13 @@
 import React, { FC, useCallback, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import clsx from 'clsx';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
-
-import { initialData, IMachineRow } from './constants';
+import clsx from 'clsx';
 
 import styles from './SwapCells.module.scss';
+
+import { IMachineRow, initialData } from './constants';
 
 const DRAG_TYPE = 'machine-order';
 

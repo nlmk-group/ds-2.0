@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import ErrorPage from '@your-package/error-page';
+
 const App = () => {
   return (
     <ErrorPage

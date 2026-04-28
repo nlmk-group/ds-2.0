@@ -26,11 +26,7 @@ const AttachFiles: FC<IAttachFilesProps> = ({ title, children, className }) => {
       <div data-ui-attach-files-title data-testid="ATTACHFILES_TITLE">
         {title}
       </div>
-      <div
-        data-ui-attach-files-list
-        className={clsx(title && styles['list-with-title'])}
-        data-testid="ATTACHFILES_LIST"
-      >
+      <div data-ui-attach-files-list data-testid="ATTACHFILES_LIST">
         {children}
       </div>
     </div>

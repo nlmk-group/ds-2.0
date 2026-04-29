@@ -19,7 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'SegmentButtonGroup';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-92301&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-92301';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);

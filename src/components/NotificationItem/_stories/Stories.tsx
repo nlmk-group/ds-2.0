@@ -19,7 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'NotificationItem';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434&p=f';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);

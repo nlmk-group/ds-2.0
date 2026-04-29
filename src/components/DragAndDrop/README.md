@@ -41,27 +41,27 @@ export default App;
 
 ## Props
 
-| Prop          | Type                 | Default   | Description                              |
-| ------------- | -------------------- | --------- | ---------------------------------------- |
-| className     | string               | -         | Дополнительный CSS-класс                 |
-| title         | string               | ReactNode | Заголовок                                |
-| description   | string               | ReactNode | Описание для dragNDrop                   |
-| btnLabel      | string               | -         | Текст кнопки для выбора файлов           |
-| fileType      | `${EDndFileType}`    | image     | Тип загружаемых файлов                   |
-| statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                             |
-| withIcon      | boolean              | true      | Показывать иконку в dragNDrop            |
-| customIcon    | JSX.Element          | null      | Пользовательская иконка                  |
+| Prop          | Type                 | Default   | Description                                     |
+| ------------- | -------------------- | --------- | ----------------------------------------------- |
+| className     | string               | -         | Дополнительный CSS-класс                        |
+| title         | string               | ReactNode | Заголовок                                       |
+| description   | string               | ReactNode | Описание для dragNDrop                          |
+| btnLabel      | string               | -         | Текст кнопки для выбора файлов                  |
+| fileType      | `${EDndFileType}`    | image     | Тип загружаемых файлов                          |
+| statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                                    |
+| withIcon      | boolean              | true      | Показывать иконку в dragNDrop                   |
+| customIcon    | JSX.Element          | null      | Пользовательская иконка                         |
 | size          | `${EDnDSizes}`       | M         | Размер dragNDrop. `M` и `S`; `l` и `m` — алиасы |
-| multiple      | boolean              | true      | Разрешить множество файлов               |
-| loading       | boolean              | false     | Показать индикатор загрузки              |
-| percentUpload | number               | 0         | Процент выполнения загрузки              |
-| smallText     | boolean              | false     | Использовать маленький текст             |
-| smallIcon     | boolean              | false     | Использовать маленькую иконку            |
-| disabled      | boolean              | false     | Отключить область перетаскивания         |
-| accept        | string               | -         | Допустимые MIME-типы файлов              |
-| onUpload      | () => void           | -         | Функция для обработки загруженных файлов |
-| cancelUpload  | () => void           | null      | Функция для отмены загрузки              |
-| children      | ReactNode            | null      | Кастомный контент внутри dragNDrop       |
+| multiple      | boolean              | true      | Разрешить множество файлов                      |
+| loading       | boolean              | false     | Показать индикатор загрузки                     |
+| percentUpload | number               | 0         | Процент выполнения загрузки                     |
+| smallText     | boolean              | false     | Использовать маленький текст                    |
+| smallIcon     | boolean              | false     | Использовать маленькую иконку                   |
+| disabled      | boolean              | false     | Отключить область перетаскивания                |
+| accept        | string               | -         | Допустимые MIME-типы файлов                     |
+| onUpload      | () => void           | -         | Функция для обработки загруженных файлов        |
+| cancelUpload  | () => void           | null      | Функция для отмены загрузки                     |
+| children      | ReactNode            | null      | Кастомный контент внутри dragNDrop              |
 
 ## Типы файлов
 

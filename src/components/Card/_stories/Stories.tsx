@@ -12,7 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-46302&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-46302';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -43,7 +43,7 @@ const Stories = (): JSX.Element => {
             code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
 
 export default  App = () => (
-  <> 
+  <>
     <div style={{
       backgroundColor: 'var(--steel-10)',
       width: 'fit-content',

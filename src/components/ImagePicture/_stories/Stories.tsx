@@ -12,7 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-79131';
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

@@ -11,9 +11,7 @@ import { IDefaultDnDProps } from '../types';
 import UploadIcon from './UploadIcon';
 
 const getButtonStyle = (loading: boolean) =>
-  loading
-    ? ({ variant: 'secondary', color: 'grey' } as const)
-    : ({ variant: 'primary' } as const);
+  loading ? ({ variant: 'secondary', color: 'grey' } as const) : ({ variant: 'primary' } as const);
 
 const DefaultDragAndDrop: FC<IDefaultDnDProps> = ({
   disabled,

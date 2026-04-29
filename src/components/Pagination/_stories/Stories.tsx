@@ -19,9 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Pagination';
-
-const FIGMA_LINK =
-  'https://www.figma.com/design/IcmRCuwp4SBPQ9hzGpO6zn/NLMK-UI-(Community)?node-id=597-207701&t=v8qKXVprY9DM1T14-1';
+const FIGMA_LINK = 'https://www.figma.com/design/oPDzwafb5EpQ3M7vckuG5x/NLMK-Table?node-id=7107-38250';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -79,6 +77,7 @@ export default App = () => {
         description="Pagination используется для постраничной навигации и поддерживает как переключение страниц, так и настройку количества элементов на странице."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>

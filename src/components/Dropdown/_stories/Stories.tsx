@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-11112&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-11112';
 
 const DropdownStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

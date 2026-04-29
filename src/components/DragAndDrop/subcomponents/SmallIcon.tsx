@@ -28,10 +28,10 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
         return (
           <Button
             type="button"
-            variant="primary"
+            variant="secondary"
             size="m"
-            color="error"
-            iconButton={<IconAttentionWarningAlertErrorOutlined24 />}
+            color="ghost"
+            iconButton={<IconAttentionWarningAlertErrorOutlined24 htmlColor={'var(--spectrum-red-60)'} />}
             data-ui-dnd-small-icon
           />
         );
@@ -67,7 +67,7 @@ const SmallIcon: FC<ISmallIconProps> = ({ loading, percentUpload, statusColor, c
       style={{ height: '24px', display: 'flex', alignItems: 'center' }}
     >
       {loading ? (
-        <UploadIcon smallIcon showSpinner={false} size={EDnDSizes.m} percentUpload={percentUpload} />
+        <UploadIcon smallIcon showSpinner={false} size={EDnDSizes.S} percentUpload={percentUpload} />
       ) : (
         customIcon || iconHelper()
       )}

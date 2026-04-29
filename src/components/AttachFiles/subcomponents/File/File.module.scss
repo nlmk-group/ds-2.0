@@ -1,12 +1,12 @@
 @mixin icon-center {
-  width: 24px;
+  width: 32px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .wrapper {
-  padding: 16px;
-  gap: 4px;
+  padding: 8px 16px;
   border-radius: 4px;
   background: var(--steel-10);
   transition: 0.5s;
@@ -18,8 +18,7 @@
 
 .container-info {
   display: flex;
-  min-height: 40px;
-  gap: 8px;
+  min-height: 32px;
   align-items: center;
 }
 
@@ -27,7 +26,7 @@
   flex: 1;
   color: var(--steel-90);
   margin-right: 16px;
-  padding: 0 4px;
+  padding: 5px;
 }
 
 .long-title-wrapper {
@@ -45,25 +44,21 @@
   flex-direction: row;
   gap: 16px;
   margin: auto 0 auto auto;
+  align-items: center;
 }
 
 .description {
   color: var(--steel-70);
-  margin-top: 4px;
-  margin-left: 4px;
+  padding-block: 0 12px;
+  padding-left: 4px;
 }
 
 .description-space-helper {
-  margin-left: 38px;
+  padding-left: 37px;
 }
 
 .icon-wrapper {
   @include icon-center;
-}
-
-.icon-wrapper-checked {
-  @include icon-center;
-  padding: 8px 0;
 }
 
 .control-btn {
@@ -74,7 +69,5 @@
 }
 
 .add-file-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  margin-left: auto;
 }

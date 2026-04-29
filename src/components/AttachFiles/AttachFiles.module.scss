@@ -1,8 +1,10 @@
 .list-center {
   display: flex;
   flex-direction: column;
+  padding: 12px 12px 12px 16px;
   border: 1px solid var(--unique-divider);
   border-radius: 4px;
+  background-color: var(--steel-10);
 }
 
 .vertical-wrapper {
@@ -13,9 +15,4 @@
 
 .wrapper {
   background: var(--unique-background);
-}
-
-.list-with-title {
-  padding: 0 16px 16px 32px;
-  background-color: var(--steel-10);
 }

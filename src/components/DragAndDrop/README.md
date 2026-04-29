@@ -1,6 +1,6 @@
 # Компонент DragAndDrop
 
-## Версия компонента 3.1
+## Версия компонента 3.2
 
 Компонент Drag&Drop предоставляет функциональность перетаскивания и загрузки файлов с возможностью настройки и выгрузки.
 
@@ -51,7 +51,7 @@ export default App;
 | statusColor   | `${EDndStatusColor}` | default   | Цвет статуса                             |
 | withIcon      | boolean              | true      | Показывать иконку в dragNDrop            |
 | customIcon    | JSX.Element          | null      | Пользовательская иконка                  |
-| size          | `${EDnDSizes}`       | l         | Размер dragNDrop                         |
+| size          | `${EDnDSizes}`       | M         | Размер dragNDrop. `M` и `S`; `l` и `m` — алиасы |
 | multiple      | boolean              | true      | Разрешить множество файлов               |
 | loading       | boolean              | false     | Показать индикатор загрузки              |
 | percentUpload | number               | 0         | Процент выполнения загрузки              |
@@ -75,17 +75,14 @@ export default App;
 - `EDnDStatusColor.info`
 - `EDnDStatusColor.error`
 
-## Размеры Title
+## Размеры
 
-- `EDnDTitleSizeHelper.l`
-- `EDnDTitleSizeHelper.m`
-- `EDnDTitleSizeHelper.s`
+Нейминг соответствует Figma. У каждого размера есть алиас в нижнем регистре:
 
-## Размеры Description
+- `EDnDSizes.M` — Big (алиас: `EDnDSizes.l`)
+- `EDnDSizes.S` — Middle (алиас: `EDnDSizes.m`)
 
-- `EDnDDescriptionSizeHelper.l`
-- `EDnDDescriptionSizeHelper.m`
-- `EDnDDescriptionSizeHelper.s`
+Так же организованы helper-enum'ы: `EDnDTitleSizeHelper`, `EDnDDescriptionSizeHelper`, `EDnDSpinnerSizeHelper`, `EDnDPercentageSizeHelper`, `EDnDSpinnerWidthHelper` — у каждого есть `M`/`S` и алиасы `l`/`m`.
 
 ## Стилизация
 

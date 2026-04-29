@@ -64,7 +64,7 @@
 
 .label-loading.label-loading {
   border-color: var(--steel-60);
-  background-color: var(--steel-10);
+  background-color: transparent;
   border-width: 1px;
 }
 
@@ -81,7 +81,12 @@
 }
 
 .label-info {
-  @include bg-border-icon-helper(2px, var(--brand-sapphire-60), var(--brand-sapphire-10), var(--brand-sapphire-50));
+  @include bg-border-icon-helper(
+    2px,
+    var(--brand-sapphire-60),
+    color-mix(in srgb, var(--brand-sapphire-10) 75%, transparent),
+    var(--brand-sapphire-50)
+  );
 }
 
 .label-error {
@@ -114,7 +119,6 @@
 
 .icon-l {
   height: 96px;
-  margin-top: 10px;
   margin-bottom: 24px;
   & > div {
     @include height-width-helper(96px);
@@ -126,7 +130,6 @@
 
 .icon-m {
   height: 56px;
-  margin-top: 10px;
   margin-bottom: 16px;
   & > div {
     @include height-width-helper(56px);
@@ -148,8 +151,7 @@
 }
 .title-default.title-loading,
 .title-info.title-loading,
-.title-error.title-loading,
-.title-warning.title-loading {
+.title-error.title-loading {
   @include title-helper(var(--steel-90));
 }
 .title-default {
@@ -164,10 +166,6 @@
   @include title-helper(var(--spectrum-red-60));
 }
 
-.title-warning {
-  @include title-helper(var(--spectrum-yellow-60));
-}
-
 .small-title-default {
   @include title-helper(var(--steel-90));
 }
@@ -178,10 +176,6 @@
 
 .small-title-error {
   @include title-helper(var(--spectrum-red-60));
-}
-
-.small-title-warning {
-  @include title-helper(var(--spectrum-yellow-60));
 }
 
 .text-color {

@@ -23,6 +23,54 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.2 - <span className={styles.date}>30.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлены отступы у вертикального Divider</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-attachfiles-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                AttachFiles
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Тип пропа title изменён на ReactNode — теперь принимает любой JSX
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-draganddrop-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DragAndDrop
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые значения размеров M и S (старые l, m помечены deprecated)
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.1 - <span className={styles.date}>22.04.26</span>
           </Typography>
           <ul className={styles.list}>

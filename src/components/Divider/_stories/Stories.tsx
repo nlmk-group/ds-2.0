@@ -28,7 +28,7 @@ const styleVariations = `{{
     gap: '24px'
 }}`;
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=533-6991&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=533-6991';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

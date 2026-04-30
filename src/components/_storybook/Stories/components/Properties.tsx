@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import ArgumentsTable from '@components/_storybook/ArgumentsTable';
 import { TArgsType } from '@components/_storybook/ArgumentsTable/types';
-import { Button, Icon } from '@components/index';
+import { Button, ClickAwayListener, Icon } from '@components/index';
 
 import styles from '../Stories.module.scss';
 
@@ -10,7 +10,7 @@ const Properties: FC<{ argsTypes?: TArgsType }> = ({ argsTypes = {} }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={styles.properties}>
+    <ClickAwayListener className={styles.properties} onClickAway={() => isOpen && setIsOpen(false)}>
       <Button
         type="button"
         variant="secondary"
@@ -27,7 +27,7 @@ const Properties: FC<{ argsTypes?: TArgsType }> = ({ argsTypes = {} }) => {
           <ArgumentsTable args={argsTypes} />
         </div>
       )}
-    </div>
+    </ClickAwayListener>
   );
 };
 

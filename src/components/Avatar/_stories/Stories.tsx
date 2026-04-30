@@ -20,7 +20,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Avatar';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529';
 const AVATAR_MOCK_SRC = getStorybookImageSrc('/img/avatar_mock.png');
 
 const Stories = (): JSX.Element => {

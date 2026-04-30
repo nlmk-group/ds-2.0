@@ -1,6 +1,4 @@
-# NotificationItem Component
-
-## Версия компонента v1.0
+# Компонен NotificationItem
 
 Компонент `NotificationItem` отображает элемент списка уведомлений с текстом категории и бейджем-счётчиком. Используется для сборки hover-панели уведомлений в паре с `Header` и `ClickAwayListener`, либо как самостоятельный элемент внутри `Dialog`/`Drawer`.
 

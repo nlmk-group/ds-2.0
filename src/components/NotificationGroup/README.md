@@ -1,6 +1,6 @@
-# NotificationGroup Component
+# Компонент NotificationGroup
 
-## Версия компонента v1.0
+## Версия компонента 3.0
 
 Компонент `NotificationGroup` — группа больших карточек уведомлений с двумя видами:
 

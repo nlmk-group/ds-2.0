@@ -4,8 +4,8 @@ import { EBadgeColors } from '@components/Badge/enums';
 import { Tabs } from '@components/index';
 import { render } from '@testing-library/react';
 
-import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
 import Tab from '.';
+import { ETabsIndicatorPosition, ETabsOrientation } from '../../enums';
 
 describe('src/components/Tab', () => {
   // Check render tab at DOM
@@ -49,9 +49,7 @@ describe('src/components/Tab', () => {
 
   // Check render vertical tab
   test('It should render a vertical Tab', () => {
-    const { container } = render(
-      <Tab label="Hello World!" orientation={ETabsOrientation.vertical} />
-    );
+    const { container } = render(<Tab label="Hello World!" orientation={ETabsOrientation.vertical} />);
     const tabComponent = container.getElementsByTagName('div')[0];
     expect(tabComponent.className).toContain('vertical');
   });

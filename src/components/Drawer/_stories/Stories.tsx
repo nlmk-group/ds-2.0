@@ -11,6 +11,8 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=286-1924';
+
 const DrawerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -126,6 +128,7 @@ export default  App = () => {
         description="Drawer отображает выдвижную панель поверх интерфейса для вспомогательных действий и контента. Компонент поддерживает позиционирование, управление размерами и гибкую настройку сценариев закрытия."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Drawer"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -141,7 +144,11 @@ export default  App = () => {
           <Editor minHeight={350} description="Базовый Drawer с открытием справа." code={drawerDefaultCode} />
 
           <Editor minHeight={350} description="Drawer с открытием слева." code={drawerLeftCode} />
-          <Editor minHeight={400} description="Drawer с вертикальным открытием: top и bottom." code={drawerVerticalCode} />
+          <Editor
+            minHeight={400}
+            description="Drawer с вертикальным открытием: top и bottom."
+            code={drawerVerticalCode}
+          />
           <Editor
             minHeight={380}
             description="Настройка поведения через overlay, disableBackdropClick и isViewCloseButton, с закрытием по Esc."
@@ -151,9 +158,7 @@ export default  App = () => {
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=286-1924&p=f" />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="Drawer" />}
     </div>
   );

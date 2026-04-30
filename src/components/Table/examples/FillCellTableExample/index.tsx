@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-import clsx from 'clsx';
 
 import { Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
-
-import { DAY_KEYS, DAY_LABELS, initialData, IPlanRow } from './constants';
+import clsx from 'clsx';
 
 import styles from './FillCell.module.scss';
+
+import { DAY_KEYS, DAY_LABELS, initialData, IPlanRow } from './constants';
 
 interface ICellPos {
   rowIdx: number;
@@ -20,10 +20,7 @@ interface IRange {
 }
 
 const inRange = (pos: ICellPos, r: IRange) =>
-  pos.rowIdx >= r.startRow &&
-  pos.rowIdx <= r.endRow &&
-  pos.colIdx >= r.startCol &&
-  pos.colIdx <= r.endCol;
+  pos.rowIdx >= r.startRow && pos.rowIdx <= r.endRow && pos.colIdx >= r.startCol && pos.colIdx <= r.endCol;
 
 const getFarCorner = (range: IRange, source: ICellPos): ICellPos => ({
   rowIdx: source.rowIdx === range.startRow ? range.endRow : range.startRow,

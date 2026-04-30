@@ -187,12 +187,19 @@ export enum EDnDFileType {
   video = 'video'
 }
 
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values --
+   l/m — алиасы для M/S. */
 export enum EDnDSizes {
-  /** Размер l */
+  /** Big — основной размер (Figma 'm'). */
+  M = 'l',
+  /** Middle — средний размер (Figma 's'). */
+  S = 'm',
+  /** Алиас для M. */
   l = 'l',
-  /** Размер m */
+  /** Алиас для S. */
   m = 'm'
 }
+/* eslint-enable @typescript-eslint/no-duplicate-enum-values */
 /**
  * Перечисление цветов статусов.
  * Описывает возможные значения цветов статусов для компонента Drag and Drop.
@@ -219,16 +226,19 @@ export enum EDnDIconType {
   video = 'IconUploadVideo32'
 }
 
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values --
+   l/m — алиасы для M/S. */
 /**
  * Перечисление размеров заголовков.
  * Описывает возможные значения размеров заголовков для компонента Drag and Drop.
  */
 export enum EDnDTitleSizeHelper {
-  /** Заголовок уровня Heading3 */
+  M = 'Heading3',
+  S = 'Heading4',
+  /** Алиас для M. */
   l = 'Heading3',
-  /** Заголовок уровня Heading4 */
-  m = 'Heading4',
-
+  /** Алиас для S. */
+  m = 'Heading4'
 }
 
 /**
@@ -236,11 +246,12 @@ export enum EDnDTitleSizeHelper {
  * Описывает возможные значения размеров описаний для компонента Drag and Drop.
  */
 export enum EDnDDescriptionSizeHelper {
-  /** Описание уровня Body1-Medium */
+  M = 'Body1-Medium',
+  S = 'Body2-Medium',
+  /** Алиас для M. */
   l = 'Body1-Medium',
-  /** Описание уровня Body2-Medium */
-  m = 'Body2-Medium',
-
+  /** Алиас для S. */
+  m = 'Body2-Medium'
 }
 
 /**
@@ -248,11 +259,12 @@ export enum EDnDDescriptionSizeHelper {
  * Описывает возможные значения размеров спиннеров для компонента Drag and Drop.
  */
 export enum EDnDSpinnerSizeHelper {
-  /** Размер 2xl для спиннера */
+  M = '2xl',
+  S = 'xl',
+  /** Алиас для M. */
   l = '2xl',
-  /** Размер xl для спиннера */
-  m = 'xl',
-
+  /** Алиас для S. */
+  m = 'xl'
 }
 
 /**
@@ -260,11 +272,12 @@ export enum EDnDSpinnerSizeHelper {
  * Описывает возможные значения размеров процентов для компонента Drag and Drop.
  */
 export enum EDnDPercentageSizeHelper {
-  /** Размер процентов Heading3 */
+  M = 'Heading3',
+  S = 'Body1-Medium',
+  /** Алиас для M. */
   l = 'Heading3',
-  /** Размер процентов Body1-Medium */
-  m = 'Body1-Medium',
-
+  /** Алиас для S. */
+  m = 'Body1-Medium'
 }
 
 /**
@@ -272,9 +285,11 @@ export enum EDnDPercentageSizeHelper {
  * Описывает возможные значения ширины спиннеров для компонента Drag and Drop.
  */
 export enum EDnDSpinnerWidthHelper {
-  /** Ширина спиннера 96px */
+  M = '96px',
+  S = '56px',
+  /** Алиас для M. */
   l = '96px',
-  /** Ширина спиннера 56px */
-  m = '56px',
-
+  /** Алиас для S. */
+  m = '56px'
 }
+/* eslint-enable @typescript-eslint/no-duplicate-enum-values */

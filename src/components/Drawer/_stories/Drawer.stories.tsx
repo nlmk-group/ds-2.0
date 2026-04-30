@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
 import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
-import { action } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import styles from './Drawer.module.scss';
 
@@ -21,7 +21,7 @@ export default {
   title: 'Components/Drawer/Stories',
   component: Drawer,
   decorators: [withWrapper],
-  argTypes: argsTypes,
+  argTypes: argsTypes
 } as Meta<typeof Drawer>;
 
 const hiddenControlsParams = {

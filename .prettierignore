@@ -4,9 +4,16 @@ node_modules
 build
 coverage
 storybook-static
+lib
+dist
+.yalc
 
 # Type declaration files
 *.d.ts
 
-# Files using TS 4.9+ `satisfies` operator (prettier 2.3.2 doesn't support it)
+# Files using TS 4.9+ `satisfies` operator
 src/components/Status/_stories/argsTypes.ts
+
+# Auto-генерируется через `yarn generateIconsExports`
+src/components/Icon/IconsDirectory/index.ts
+src/components/Icon/IconsDirectory/System/index.ts

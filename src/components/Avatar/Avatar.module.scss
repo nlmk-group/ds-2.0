@@ -45,7 +45,9 @@ $white: var(--unique-white);
   position: absolute;
   right: 0;
   bottom: 0;
-  box-shadow: 0 2px 5px rgba(103, 110, 118, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 5px rgba(103, 110, 118, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.12);
   z-index: var(--z-raised);
 }
 .number-indicator {
@@ -53,7 +55,9 @@ $white: var(--unique-white);
   position: absolute;
   left: 60%;
   top: 60%;
-  box-shadow: 0 2px 5px rgba(103, 110, 118, 0.08), 0 1px 1px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 5px rgba(103, 110, 118, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.12);
   z-index: var(--z-raised);
 }
 

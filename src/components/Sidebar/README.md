@@ -1,6 +1,6 @@
 # Компонент Sidebar
 
-## Версия компонента v3.0
+## Версия компонента 3.1
 
 Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения
 
@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import { Sidebar } from '@nlmk/ds-2.0';
+
 const App = () => (
   <Sidebar
     variant="burger"

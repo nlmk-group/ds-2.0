@@ -12,7 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=45-1167&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=45-1167';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -212,14 +212,8 @@ export default App;
             description="Автоматическая прокрутка со стрелками навигации при переполнении контейнера. Работает через ResizeObserver без дополнительных пропов."
             code={scrollableTabsCode}
           />
-          <Editor
-            description="Вертикальные табы с расположением слева от контента."
-            code={verticalTabsCode}
-          />
-          <Editor
-            description="Вертикальные табы с расположением справа от контента."
-            code={verticalTabsRightCode}
-          />
+          <Editor description="Вертикальные табы с расположением слева от контента." code={verticalTabsCode} />
+          <Editor description="Вертикальные табы с расположением справа от контента." code={verticalTabsRightCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

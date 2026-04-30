@@ -1,6 +1,6 @@
-# Dropdown
+# Компонент Dropdown
 
-## Версия компонента v3.2
+## Версия компонента 3.2
 
 Компонент Dropdown предоставляет удобный способ создания интерактивных выпадающих меню с настраиваемыми кнопками и элементами меню.
 
@@ -52,6 +52,7 @@ import { Dropdown, DropdownMenuItem, IconSearchOutlined24 } from '@nlmk/ds-2.0';
 
 ```jsx
 import { Box, Dropdown, DropdownMenuItem, IconCancelOutlined24, IconChevronArrowRightOutlined24 } from '@nlmk/ds-2.0';
+
 <Dropdown buttonChildren="Dropdown button">
   {positionsCustom.map(({ value, disabled }) => (
     <DropdownMenuItem key={value} value={value} disabled={disabled}>

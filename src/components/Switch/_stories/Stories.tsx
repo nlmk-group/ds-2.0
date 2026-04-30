@@ -19,7 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Switch';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-42988&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-42988';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -133,10 +133,7 @@ export default App = () => {
 }
               `}
           />
-          <Editor
-            description="Цветовые состояния переключателя через prop color."
-            code={switchColorCode}
-          />
+          <Editor description="Цветовые состояния переключателя через prop color." code={switchColorCode} />
           <Editor
             description="Переключатель с иконками для активного и неактивного состояния."
             code={`import { useState } from 'react'

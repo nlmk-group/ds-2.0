@@ -11,8 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=417-86981&p=f&t=pOZSSeIHfpaoa1eT-0';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=417-86981';
 
 const TreeListStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -31,19 +30,19 @@ const defaultTreeData = [
         title: 'Конвертерный цех',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-0-0-0', 
+          {
+            key: '0-0-0-0',
             title: 'Конвертер №1',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-0-0-1', 
+          {
+            key: '0-0-0-1',
             title: 'МНЛЗ №3 (заблокировано)',
             icon: <IconWarningFilled24 />,
             disabled: true // Полная блокировка узла
           },
-          { 
-            key: '0-0-0-2', 
+          {
+            key: '0-0-0-2',
             title: 'Установка ковш-печь (нельзя перетаскивать)',
             icon: <IconCircleOutlined24 />,
             disableDraggable: true // Запрет только на перетаскивание
@@ -55,13 +54,13 @@ const defaultTreeData = [
         title: 'Электросталеплавильный цех',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-0-1-0', 
+          {
+            key: '0-0-1-0',
             title: 'ДСП №1',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-0-1-1', 
+          {
+            key: '0-0-1-1',
             title: 'Агрегат печь-ковш',
             icon: <IconCircleOutlined24 />
           }
@@ -79,13 +78,13 @@ const defaultTreeData = [
         title: 'Цех горячей прокатки',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-1-0-0', 
+          {
+            key: '0-1-0-0',
             title: 'Стан 2000',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-1-0-1', 
+          {
+            key: '0-1-0-1',
             title: 'Методические печи',
             icon: <IconCircleOutlined24 />
           }
@@ -110,7 +109,7 @@ const App = () => {
   const onDragStart = (e) => {
     console.log('Событие начала перетаскивания: ',  e.event)
   }
-  
+
   const onDragEnd = (e) => {
     console.log('Событие конца перетаскивания: ', e.event)
   }

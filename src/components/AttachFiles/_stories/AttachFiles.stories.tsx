@@ -1,8 +1,8 @@
 import React, { ChangeEvent, Fragment, useState } from 'react';
 
 import { AttachFiles, File } from '@components/index';
-import { action } from 'storybook/actions';
 import { clsx } from 'clsx';
+import { action } from 'storybook/actions';
 
 import style from '../AttachFiles.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
@@ -10,7 +10,7 @@ import styles from '@components/_storybook/styles.module.scss';
 import { IFileProps } from '../subcomponents/File/types';
 import argsTypes from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
 
 export default {
   title: 'Components/AttachFiles/Stories',
@@ -69,11 +69,7 @@ AttachFilesLeftIcon.storyName = 'File вариации левой иконки';
 export const AttachFilesControl = (argTypes: IFileProps): JSX.Element => {
   return (
     <div className={clsx(styles.wrapper, style['vertical-wrapper'])}>
-      <File
-        label="Название файла.pdf"
-        removed
-        removedOnClick={argTypes.removedOnClick}
-      />
+      <File label="Название файла.pdf" removed removedOnClick={argTypes.removedOnClick} />
       <File label="Название файла.pdf" commented commentedOnClick={argTypes.commentedOnClick} />
       <File label="Название файла.pdf" saved savedOnClick={argTypes.savedOnClick} />
       <File
@@ -178,7 +174,9 @@ AttachFilesList.storyName = 'AttachFiles со списком';
 export const AttachFilesAddFileButton = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <AttachFiles title={<File label="Название файла.pdf" checked addFile addFileOnClick={action('addFileOnClick')} />}>
+      <AttachFiles
+        title={<File label="Название файла.pdf" checked addFile addFileOnClick={action('addFileOnClick')} />}
+      >
         {FileCollection.map((FileItem: JSX.Element) => FileItem)}
       </AttachFiles>
     </div>

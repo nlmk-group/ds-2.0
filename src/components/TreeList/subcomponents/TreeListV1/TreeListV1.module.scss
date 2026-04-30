@@ -197,6 +197,8 @@
 }
 
 .custom-rc-tree
-  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container):has([data-checked="true"]) {
+  :global(.rc-tree-node-selected):not(.rc-tree-treenode.drop-target):not(.rc-tree-treenode.drop-container):has(
+    [data-checked="true"]
+  ) {
   background-color: var(--brand-sapphire-20) !important;
 }

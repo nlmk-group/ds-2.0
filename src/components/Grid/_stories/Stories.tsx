@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Editor from '@components/_storybook/Stories/components/Editor';
+import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
@@ -10,6 +11,8 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
+
+const FIGMA_LINK = 'https://www.figma.com/design/UrNaiI72SjVg0aHW6NYVCi/NLMK-Grid?node-id=207-40301';
 
 const gridExampleCode = `import { Grid, Box } from '@nlmk/ds-2.0';
 
@@ -658,12 +661,14 @@ const Stories = (): JSX.Element => {
         description="Grid используется для построения адаптивной раскладки на основе строк и колонок. Компонент поддерживает управление шириной, выравниванием, переносом и брейкпоинтами."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Grid"
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
         <Tabs>
           <Tabs.Tab label="Разработчику" active={0 === Number(activeTab)} onClick={() => setActiveTab(0)} />
-          <Tabs.Tab label="Тестирование" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Дизайнеру" active={1 === Number(activeTab)} onClick={() => setActiveTab(1)} />
+          <Tabs.Tab label="Тестирование" active={2 === Number(activeTab)} onClick={() => setActiveTab(2)} />
         </Tabs>
       </div>
 
@@ -675,16 +680,36 @@ const Stories = (): JSX.Element => {
             code={gridExampleCode}
           />
           <Editor minHeight={400} description="Колонки равной ширины в строках." code={equalWidthColumnsCode} />
-          <Editor minHeight={400} description="Настройка ширины одной колонки внутри строки." code={settingOneColumnWidthCode} />
-          <Editor minHeight={400} description="Колонка с переменной шириной контента." code={variableWidthContentCode} />
-          <Editor minHeight={400} description="Колонки равной ширины с переносом на несколько строк." code={equalWidthMultiRowCode} />
-          <Editor minHeight={400} description="Вертикальное выравнивание колонок через alignItems." code={verticalAlignmentCode} />
+          <Editor
+            minHeight={400}
+            description="Настройка ширины одной колонки внутри строки."
+            code={settingOneColumnWidthCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Колонка с переменной шириной контента."
+            code={variableWidthContentCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Колонки равной ширины с переносом на несколько строк."
+            code={equalWidthMultiRowCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Вертикальное выравнивание колонок через alignItems."
+            code={verticalAlignmentCode}
+          />
           <Editor
             minHeight={400}
             description="Горизонтальное выравнивание колонок через justifyContent."
             code={horizontalAlignmentCode}
           />
-          <Editor minHeight={400} description="Перенос колонок при превышении ширины строки." code={columnWrappingCode} />
+          <Editor
+            minHeight={400}
+            description="Перенос колонок при превышении ширины строки."
+            code={columnWrappingCode}
+          />
           <Editor minHeight={400} description="Явный разрыв строки между группами колонок." code={columnBreaksCode} />
           <Editor
             minHeight={400}
@@ -694,7 +719,8 @@ const Stories = (): JSX.Element => {
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && <Tests componentName="Grid" />}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
+      {Number(activeTab) === 2 && <Tests componentName="Grid" />}
     </div>
   );
 };

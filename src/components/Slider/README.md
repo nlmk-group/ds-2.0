@@ -1,7 +1,5 @@
 # Компонент Slider
 
-## Версия компонента 3.0
-
 Компонент **Slider** предоставляет низкоуровневый интерфейс для создания слайдеров (ползунков) с возможностью кастомизации. Используется для выбора одного или двух значений в заданном диапазоне, например, для фильтрации или задания параметров.
 
 ---
@@ -9,13 +7,12 @@
 ## Базовый пример использования
 
 ```jsx
-
 const Example = () => {
   const [minValue, setMinValue] = useState(10);
   const [maxValue, setMaxValue] = useState(90);
 
-  const handleMinChange = (e) => setMinValue(Number(e.target.value));
-  const handleMaxChange = (e) => setMaxValue(Number(e.target.value));
+  const handleMinChange = e => setMinValue(Number(e.target.value));
+  const handleMaxChange = e => setMaxValue(Number(e.target.value));
 
   const min = 0;
   const max = 100;
@@ -27,20 +24,8 @@ const Example = () => {
   return (
     <Slider.Wrapper>
       <Slider.InputWrapper>
-        <Slider.Input
-          value={minValue}
-          min={min}
-          max={max}
-          step={step}
-          onChange={handleMinChange}
-        />
-        <Slider.Input
-          value={maxValue}
-          min={min}
-          max={max}
-          step={step}
-          onChange={handleMaxChange}
-        />
+        <Slider.Input value={minValue} min={min} max={max} step={step} onChange={handleMinChange} />
+        <Slider.Input value={maxValue} min={min} max={max} step={step} onChange={handleMaxChange} />
       </Slider.InputWrapper>
       <Slider.ControlWrapper>
         <Slider.Control position={minRangePos} value={minValue} />
@@ -60,53 +45,53 @@ export default Example;
 
 ### Slider.Wrapper
 
-| Prop      | Type              | Default | Description                        |
-|-----------|-------------------|---------|------------------------------------|
-| children  | ReactNode         | -       | Вложенные элементы                 |
+| Prop     | Type      | Default | Description        |
+| -------- | --------- | ------- | ------------------ |
+| children | ReactNode | -       | Вложенные элементы |
 
 ### Slider.InputWrapper
 
-| Prop      | Type              | Default | Description                        |
-|-----------|-------------------|---------|------------------------------------|
-| children  | ReactNode         | -       | Вложенные элементы                 |
+| Prop     | Type      | Default | Description        |
+| -------- | --------- | ------- | ------------------ |
+| children | ReactNode | -       | Вложенные элементы |
 
 ### Slider.ControlWrapper
 
-| Prop      | Type              | Default | Description                        |
-|-----------|-------------------|---------|------------------------------------|
-| children  | ReactNode         | -       | Вложенные элементы                 |
+| Prop     | Type      | Default | Description        |
+| -------- | --------- | ------- | ------------------ |
+| children | ReactNode | -       | Вложенные элементы |
 
 ### Slider.Input
 
-| Prop      | Type                                                        | Default | Description                                 |
-|-----------|-------------------------------------------------------------|---------|---------------------------------------------|
-| value     | number                                                      | -       | Текущее значение                            |
-| min       | number                                                      | -       | Минимальное значение                        |
-| max       | number                                                      | -       | Максимальное значение                       |
-| step      | number                                                      | 1       | Шаг изменения значения                      |
-| onChange  | (e: ChangeEvent<HTMLInputElement>) => void                  | -       | Обработчик изменения                        |
-| disabled  | boolean                                                     | false   | Отключает ввод                              |
-| setHover  | (value: boolean) => void                                    | -       | Коллбэк для отслеживания наведения          |
-| ...props  | Все стандартные props input[type="range"]                   |         |                                             |
+| Prop     | Type                                       | Default | Description                        |
+| -------- | ------------------------------------------ | ------- | ---------------------------------- |
+| value    | number                                     | -       | Текущее значение                   |
+| min      | number                                     | -       | Минимальное значение               |
+| max      | number                                     | -       | Максимальное значение              |
+| step     | number                                     | 1       | Шаг изменения значения             |
+| onChange | (e: ChangeEvent<HTMLInputElement>) => void | -       | Обработчик изменения               |
+| disabled | boolean                                    | false   | Отключает ввод                     |
+| setHover | (value: boolean) => void                   | -       | Коллбэк для отслеживания наведения |
+| ...props | Все стандартные props input[type="range"]  |         |                                    |
 
 ### Slider.Control
 
-| Prop                | Type                                         | Default   | Description                                         |
-|---------------------|----------------------------------------------|-----------|-----------------------------------------------------|
-| position            | number                                       | -         | Позиция ползунка в процентах (0-100)                |
-| value               | number                                       | -         | Значение, отображаемое над ползунком                |
-| showValue           | boolean                                      | true      | Показывать ли значение                              |
-| disabled            | boolean                                      | false     | Отключает ползунок                                  |
-| hover               | boolean                                      | false     | Состояние наведения                                 |
-| thumbValuePosition  | 'top' \| 'bottom' \| 'none'                  | 'top'     | Положение значения относительно ползунка            |
+| Prop               | Type                        | Default | Description                              |
+| ------------------ | --------------------------- | ------- | ---------------------------------------- |
+| position           | number                      | -       | Позиция ползунка в процентах (0-100)     |
+| value              | number                      | -       | Значение, отображаемое над ползунком     |
+| showValue          | boolean                     | true    | Показывать ли значение                   |
+| disabled           | boolean                     | false   | Отключает ползунок                       |
+| hover              | boolean                     | false   | Состояние наведения                      |
+| thumbValuePosition | 'top' \| 'bottom' \| 'none' | 'top'   | Положение значения относительно ползунка |
 
 ### Slider.Rail
 
-| Prop        | Type      | Default | Description                                 |
-|-------------|-----------|---------|---------------------------------------------|
-| minPosition | number    | -       | Левая граница rail в процентах (0-100)      |
-| maxPosition | number    | -       | Правая граница rail в процентах (0-100)     |
-| disabled    | boolean   | false   | Отключает rail                              |
+| Prop        | Type    | Default | Description                             |
+| ----------- | ------- | ------- | --------------------------------------- |
+| minPosition | number  | -       | Левая граница rail в процентах (0-100)  |
+| maxPosition | number  | -       | Правая граница rail в процентах (0-100) |
+| disabled    | boolean | false   | Отключает rail                          |
 
 ---
 

@@ -1,6 +1,6 @@
-# Input Component
+# Компонент Input
 
-## Версия компонента v3.2
+## Версия компонента 3.2
 
 Input компонент используется для создания текстовых полей ввода различных стилей и размеров. Он поддерживает однострочный и многострочный режимы, а также дополнительные элементы, такие как иконки и вспомогательный текст.
 
@@ -63,13 +63,9 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 ## Иконка слева (startIcon)
 
 ```jsx
-import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+import { IconSearchOutlined24, Input } from '@nlmk/ds-2.0';
 
-<Input
-  label="Поиск"
-  startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
-  placeholder="Введите запрос"
-/>
+<Input label="Поиск" startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />} placeholder="Введите запрос" />;
 ```
 
 **Примечание**: `startIcon` не отображается в multiline-режиме.

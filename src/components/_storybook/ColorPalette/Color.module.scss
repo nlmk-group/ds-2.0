@@ -6,12 +6,11 @@
 
   .color-item {
     margin-bottom: 20px;
-    & > div  {
+    & > div {
       gap: 20px;
       & > div {
         margin-top: 0;
       }
     }
-
   }
 }

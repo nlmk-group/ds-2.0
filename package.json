@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.31.1",
+  "version": "2.31.2",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -21,6 +21,7 @@
     "start": "yarn convert:dark-theme-tokens && vite",
     "lint": "eslint ./src && yarn check-types",
     "lint:fix": "eslint ./src --fix && prettier --write ./src",
+    "lint:staged": "lint-staged",
     "clean": "rimraf lib && rimraf cache",
     "build": "BUILD_MODE=lib vite build",
     "packing": "yarn build && npm publish",
@@ -47,8 +48,18 @@
     "chromatic:windows": "yarn storybook:build:windows && npx chromatic --project-token=chpt_aea96cf2943eaa5 --exit-zero-on-changes -d storybook-static/"
   },
   "pre-commit": [
-    "lint"
+    "lint:staged",
+    "check-types"
   ],
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.scss": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
     "clsx": "^2.1.1",
@@ -85,6 +96,7 @@
     "@babel/preset-react": "7.14.5",
     "@babel/preset-typescript": "7.15.0",
     "@codesandbox/sandpack-react": "^2.9.0",
+    "@dnd-kit/core": "^6.3.1",
     "@eslint/compat": "^1.2.3",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-typescript": "^11.0.0",
@@ -96,7 +108,7 @@
     "@testing-library/jest-dom": "6.1.6",
     "@testing-library/react": "^15.0.0",
     "@testing-library/user-event": "14.5.2",
-    "@trivago/prettier-plugin-sort-imports": "4.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/flat": "^5.0.2",
     "@types/jest": "26.0.24",
     "@types/react": "^19.0.0",
@@ -127,10 +139,11 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "27.0.6",
     "jest-runner-eslint": "2.0.0",
+    "lint-staged": "^15.2.10",
     "lz-string": "^1.5.0",
     "node-fetch": "3.2.10",
     "pre-commit": "1.2.2",
-    "prettier": "2.3.2",
+    "prettier": "^3.8.3",
     "prism-react-renderer": "^2.4.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -241,6 +254,10 @@
       "import": "./lib/ComboBox/index.js",
       "types": "./lib/ComboBox/index.d.ts"
     },
+    "./Comments": {
+      "import": "./lib/Comments/index.js",
+      "types": "./lib/Comments/index.d.ts"
+    },
     "./DatePicker": {
       "import": "./lib/DatePicker/index.js",
       "types": "./lib/DatePicker/index.d.ts"
@@ -297,6 +314,10 @@
       "import": "./lib/ImagePicture/index.js",
       "types": "./lib/ImagePicture/index.d.ts"
     },
+    "./ImagePreview": {
+      "import": "./lib/ImagePreview/index.js",
+      "types": "./lib/ImagePreview/index.d.ts"
+    },
     "./Input": {
       "import": "./lib/Input/index.js",
       "types": "./lib/Input/index.d.ts"
@@ -332,6 +353,18 @@
     "./MultiSelect": {
       "import": "./lib/MultiSelect/index.js",
       "types": "./lib/MultiSelect/index.d.ts"
+    },
+    "./NotificationCard": {
+      "import": "./lib/NotificationCard/index.js",
+      "types": "./lib/NotificationCard/index.d.ts"
+    },
+    "./NotificationGroup": {
+      "import": "./lib/NotificationGroup/index.js",
+      "types": "./lib/NotificationGroup/index.d.ts"
+    },
+    "./NotificationItem": {
+      "import": "./lib/NotificationItem/index.js",
+      "types": "./lib/NotificationItem/index.d.ts"
     },
     "./OptionItem": {
       "import": "./lib/OptionItem/index.js",

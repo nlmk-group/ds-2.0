@@ -1,6 +1,6 @@
-# Stepper Component
+# Компонент Stepper
 
-## Версия компонента v3.2
+## Версия компонента 3.2
 
 Компонент Stepper используется для отображения последовательности шагов, например, в форме или процессе регистрации. Он поддерживает различные состояния шагов и позволяет пользователям легко ориентироваться между ними.
 
@@ -8,7 +8,9 @@
 
 ```jsx
 import React, { useState } from 'react';
+
 import { EStepColor, EStepState, Stepper } from '@nlmk/ds-2.0';
+
 const [currentStep, setCurrentStep] = useState(1);
 <Stepper
   currentStep={currentStep}

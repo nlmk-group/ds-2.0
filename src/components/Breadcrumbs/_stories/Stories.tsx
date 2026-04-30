@@ -14,7 +14,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 import argsTypes from './argsTypes';
 import { breadcrumbsLinks, targetLinks } from './constants';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-37818&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-37818';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -93,7 +93,7 @@ export default App = () => (
       <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>
       <Breadcrumbs.Crumb><a href="#">Металлопрокат</a></Breadcrumbs.Crumb>
     </Breadcrumbs>
-    
+
     <Breadcrumbs width="100px">
       <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>
       <Breadcrumbs.Crumb><a href="#">Каталог продукции</a></Breadcrumbs.Crumb>

@@ -1,6 +1,6 @@
 # Компонент Divider
 
-## Версия компонент 3.0
+## Версия компонента 3.0
 
 Компонент Divider отображает разделитель с возможностью настройки типа, ориентации и стиля.
 
@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import Divider from '@your-package/divider';
+
 const App = () => (
   <div>
     <Divider type="horizontal" orientation="center" dashed={true}>

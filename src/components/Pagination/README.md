@@ -1,6 +1,6 @@
-# Pagination Component
+# Компонент Pagination
 
-## Версия компонента v3.0
+## Версия компонента 3.0
 
 Компонент Pagination предназначен для постраничной навигации. Поддерживает два режима отображения (простой и сложный), возможность выбора количества элементов на странице и различные варианты кастомизации.
 
@@ -37,19 +37,13 @@ const AdvancedExample = () => {
 const CallbackExample = () => {
   const [page, setPage] = useState(1);
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = newPage => {
     setPage(newPage);
     // Дополнительная логика, например, загрузка данных
     fetchData(newPage);
   };
 
-  return (
-    <Pagination
-      currentPage={page}
-      maxPageCount={10}
-      onPageChange={handlePageChange}
-    />
-  );
+  return <Pagination currentPage={page} maxPageCount={10} onPageChange={handlePageChange} />;
 };
 ```
 

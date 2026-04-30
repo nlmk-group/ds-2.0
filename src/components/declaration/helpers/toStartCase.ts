@@ -1,16 +1,16 @@
 /**
  * Преобразует строку в Start Case формат (каждое слово с заглавной буквы)
  * Аналог lodash startCase
- * 
+ *
  * Поддерживает различные форматы:
  * - camelCase / PascalCase
  * - kebab-case / snake_case
  * - Множественные пробелы
  * - Аббревиатуры (ID, XML и т.д.)
- * 
+ *
  * @param str - Исходная строка
  * @returns Строка в формате Start Case
- * 
+ *
  * @example
  * toStartCase('helloWorld') // 'Hello World'
  * toStartCase('HelloWorld') // 'Hello World'
@@ -23,7 +23,5 @@
 export const toStartCase = (str: string): string => {
   const words = str.match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g);
   if (!words) return '';
-  return words
-    .map(w => w[0].toUpperCase() + w.slice(1).toLowerCase())
-    .join(' ');
+  return words.map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 };

@@ -1,6 +1,6 @@
 # Компонент Tabs
 
-## Версия компонента 4.0
+## Версия компонента 3.1
 
 Функциональный компонент Tabs который предоставляет вкладки с возможностью прокрутки, поддерживает горизонтальную и вертикальную ориентацию, а также включает в себя дополнительный компонент Tab
 
@@ -16,6 +16,7 @@
 
 ```jsx
 import React from 'react';
+
 import Tabs from '@nlmk/ds-2.0';
 
 const App = () => {
@@ -34,7 +35,8 @@ export default App;
 
 ```jsx
 import React, { useState } from 'react';
-import { Tabs, ETabsOrientation, ETabsTabPosition } from '@nlmk/ds-2.0';
+
+import { ETabsOrientation, ETabsTabPosition, Tabs } from '@nlmk/ds-2.0';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -57,44 +59,44 @@ export default App;
 
 ### Tabs
 
-| Prop              | Type                   | Default        | Description                                                                 |
-| ----------------- | ---------------------- | -------------- | --------------------------------------------------------------------------- |
-| children          | JSX.Element \| JSX.Element[] | -        | Дочерние элементы (вкладки).                                                |
-| className         | string                 | -              | Дополнительный CSS-класс.                                                   |
-| scrollable        | boolean                | false          | Принудительное включение прокрутки со стрелками. По умолчанию можно не передавать — компонент сам отслеживает переполнение через ResizeObserver и автоматически показывает стрелки навигации, когда табы не помещаются в контейнер. Явное значение `true` форсит поведение (нужно для узких контейнеров с overflow, где автодетект может не сработать). |
-| orientation       | ETabsOrientation       | 'horizontal'   | Ориентация табов (горизонтальная или вертикальная).                          |
-| tabPosition       | ETabsTabPosition       | 'left'         | Позиция панели табов относительно контента (для вертикального режима).       |
-| indicatorPosition | ETabsIndicatorPosition | auto           | Позиция активного индикатора. По умолчанию зависит от ориентации.           |
-| maxTabWidth       | number                 | -              | Максимальная ширина таба в вертикальном режиме (px). Без этого пропа длинный текст переносится на новые строки. С этим пропом — обрезается ellipsis в одну строку с tooltip при наведении. |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| children | JSX.Element \| JSX.Element[] | - | Дочерние элементы (вкладки). |
+| className | string | - | Дополнительный CSS-класс. |
+| scrollable | boolean | false | Принудительное включение прокрутки со стрелками. По умолчанию можно не передавать — компонент сам отслеживает переполнение через ResizeObserver и автоматически показывает стрелки навигации, когда табы не помещаются в контейнер. Явное значение `true` форсит поведение (нужно для узких контейнеров с overflow, где автодетект может не сработать). |
+| orientation | ETabsOrientation | 'horizontal' | Ориентация табов (горизонтальная или вертикальная). |
+| tabPosition | ETabsTabPosition | 'left' | Позиция панели табов относительно контента (для вертикального режима). |
+| indicatorPosition | ETabsIndicatorPosition | auto | Позиция активного индикатора. По умолчанию зависит от ориентации. |
+| maxTabWidth | number | - | Максимальная ширина таба в вертикальном режиме (px). Без этого пропа длинный текст переносится на новые строки. С этим пропом — обрезается ellipsis в одну строку с tooltip при наведении. |
 
 ### Tab
 
-| Prop          | Type          | Default | Description                            |
-| ------------- | ------------- | ------- | -------------------------------------- |
-| label         | string        | -       | Текстовая метка вкладки.               |
-| active        | boolean       | false   | Флаг активной вкладки.                 |
-| children      | JSX.Element   | -       | Дочерний элемент (tooltip).            |
-| hasBadge      | boolean       | false   | Отображать бейдж.                      |
-| badgeChildren | string/number | -       | Содержимое бейджа.                     |
-| badgeColor    | EBadgeColors  | -       | Цвет бейджа.                           |
-| hasIcon       | boolean       | false   | Отображать иконку.                     |
-| className     | string        | -       | Дополнительный CSS-класс.              |
+| Prop          | Type          | Default | Description                 |
+| ------------- | ------------- | ------- | --------------------------- |
+| label         | string        | -       | Текстовая метка вкладки.    |
+| active        | boolean       | false   | Флаг активной вкладки.      |
+| children      | JSX.Element   | -       | Дочерний элемент (tooltip). |
+| hasBadge      | boolean       | false   | Отображать бейдж.           |
+| badgeChildren | string/number | -       | Содержимое бейджа.          |
+| badgeColor    | EBadgeColors  | -       | Цвет бейджа.                |
+| hasIcon       | boolean       | false   | Отображать иконку.          |
+| className     | string        | -       | Дополнительный CSS-класс.   |
 
 ## Enum-значения
 
 ### ETabsOrientation
 
-| Значение     | Описание                              |
-| ------------ | ------------------------------------- |
-| horizontal   | Горизонтальное расположение (по умолчанию) |
-| vertical     | Вертикальное расположение             |
+| Значение   | Описание                                   |
+| ---------- | ------------------------------------------ |
+| horizontal | Горизонтальное расположение (по умолчанию) |
+| vertical   | Вертикальное расположение                  |
 
 ### ETabsTabPosition
 
-| Значение | Описание                     |
-| -------- | ---------------------------- |
-| left     | Табы слева от контента       |
-| right    | Табы справа от контента      |
+| Значение | Описание                |
+| -------- | ----------------------- |
+| left     | Табы слева от контента  |
+| right    | Табы справа от контента |
 
 ### ETabsIndicatorPosition
 

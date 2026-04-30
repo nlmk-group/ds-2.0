@@ -8,12 +8,12 @@ import Tooltip from '@components/Tooltip';
 import { ITooltipProps } from '@components/Tooltip/types';
 import clsx from 'clsx';
 
-import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
-import { getDefaultIndicatorPosition } from './helpers';
 import { ITabsProps } from './types';
 
 import styles from './Tabs.module.scss';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
+import { getDefaultIndicatorPosition } from './helpers';
 import Tab from './subcomponents/Tab';
 import { ITabProps } from './subcomponents/Tab/types';
 
@@ -151,15 +151,12 @@ const Tabs: FC<ITabsProps> &
       >
         <div
           ref={!isVertical ? tabsWrapperRef : undefined}
-          className={clsx(
-            styles['tabs-wrapper'],
-            {
-              [styles['tabs-wrapper__scrollable']]: !isVertical,
-              [styles['tabs-wrapper--vertical']]: isVertical,
-              [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth,
-              [styles['tabs-wrapper--top']]: isTopIndicator
-            }
-          )}
+          className={clsx(styles['tabs-wrapper'], {
+            [styles['tabs-wrapper__scrollable']]: !isVertical,
+            [styles['tabs-wrapper--vertical']]: isVertical,
+            [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth,
+            [styles['tabs-wrapper--top']]: isTopIndicator
+          })}
         >
           {childrenWithProps}
         </div>
@@ -179,7 +176,6 @@ const Tabs: FC<ITabsProps> &
     </div>
   );
 };
-
 
 Tabs.Tab = Tab;
 Tabs.Tooltip = Tooltip;

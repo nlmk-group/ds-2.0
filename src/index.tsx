@@ -16,7 +16,6 @@ const options = [
 
 root.render(
   <StrictMode>
-    <div className="development-block" style={{ height: 200 }}>
-    </div>
+    <div className="development-block" style={{ height: 200 }}></div>
   </StrictMode>
 );

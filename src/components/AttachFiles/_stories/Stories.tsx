@@ -18,7 +18,7 @@ const FILES_DESCRIPTION = 'Файл с дополнительным описан
 const FILES_WITH_TITLE = 'Группа вложений';
 const FILES_WITH_CHECKBOXES = 'Выбор файлов';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=403-5319';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

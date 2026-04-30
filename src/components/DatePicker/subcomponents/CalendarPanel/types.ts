@@ -2,7 +2,7 @@ import { CALENDAR_FORMAT_ENUM } from '@components/DatePicker/helpers';
 import { TLevel } from '@components/DatePicker/types';
 import { ENABLED_HOURS_VALUES } from '@components/declaration';
 
-type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
+type TEnabledHour = (typeof ENABLED_HOURS_VALUES)[number];
 
 export interface ICalendarPanelProps {
   type: `${CALENDAR_FORMAT_ENUM}`;

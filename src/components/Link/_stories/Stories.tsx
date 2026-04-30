@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=302-6485&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=302-6485';
 
 const LinkStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -98,16 +98,8 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            minHeight={200}
-            description="Базовая текстовая ссылка."
-            code={linkDefaultCode}
-          />
-          <Editor
-            minHeight={220}
-            description="Заблокированная ссылка через disabled."
-            code={linkDisabledCode}
-          />
+          <Editor minHeight={200} description="Базовая текстовая ссылка." code={linkDefaultCode} />
+          <Editor minHeight={220} description="Заблокированная ссылка через disabled." code={linkDisabledCode} />
           <Editor description="Ссылка с иконками слева и справа от текста." code={linkWithIconCode} />
           <Editor description="Открытие ссылки в новой вкладке через target." code={linkWithTargetCode} />
           <Editor description="Перехват клика без перехода через preventRedirect." code={linkPreventRedirectCode} />

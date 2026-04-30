@@ -19,7 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Header';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -33,7 +33,7 @@ const Stories = (): JSX.Element => {
       <Header
         title={COMPONENT_NAME}
         description="Header отображает заголовок страницы и набор управляющих действий. Компонент поддерживает навигацию назад, сервисные кнопки, дату, уведомления, хлебные крошки и пользовательский контент."
-        isBeta
+        isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
       />
@@ -63,10 +63,10 @@ export default App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <Header 
-    title='Header с кнопкой возвращения слева' 
-    showBack 
-    onBackClick={() => console.log('Back clicked')} 
+  <Header
+    title='Header с кнопкой возвращения слева'
+    showBack
+    onBackClick={() => console.log('Back clicked')}
   />
 )`}
           />
@@ -85,9 +85,9 @@ export default App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <Header 
-    title='Header с кнопкой добавления в избранное' 
-    showFavorite 
+  <Header
+    title='Header с кнопкой добавления в избранное'
+    showFavorite
     onFavoriteClick={() => console.log('Favorite clicked')}
   />
 )`}
@@ -98,11 +98,11 @@ export default App = () => (
             code={`import { Header } from '@nlmk/ds-2.0';
 
 export default App = () => (
-  <Header 
-    title='Header с кнопкой уведомления' 
-    showNotification 
-    onNotificationClick={() => console.log('Notification clicked')} 
-    notificationAmount={9} 
+  <Header
+    title='Header с кнопкой уведомления'
+    showNotification
+    onNotificationClick={() => console.log('Notification clicked')}
+    notificationAmount={9}
   />
 )`}
           />
@@ -117,8 +117,8 @@ const crumbs = [
 ];
 
 export default App = () => (
-  <Header 
-    title='Header с хлебными крошками' 
+  <Header
+    title='Header с хлебными крошками'
     breadcrumbs={
       <Breadcrumbs>
         {crumbs.map(item => (
@@ -127,7 +127,7 @@ export default App = () => (
           </Breadcrumbs.Crumb>
         ))}
       </Breadcrumbs>
-    } 
+    }
   />
 )`}
           />
@@ -137,11 +137,11 @@ export default App = () => (
 
 export default App = () => (
   <Header title='Header с дочерней кнопкой и хлебными крошками'>
-    <Button 
-      type="button" 
-      style={{ marginRight: '25px' }} 
-      color="grey" 
-      variant="secondary" 
+    <Button
+      type="button"
+      style={{ marginRight: '25px' }}
+      color="grey"
+      variant="secondary"
       startIcon={<IconSettingsAltOutlined24 />}
     >
       Настройки

@@ -19,8 +19,6 @@ import { Box, Button, Typography } from '@components/index';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
 import clsx from 'clsx';
-import parserTypescript from 'prettier/parser-typescript';
-import prettier from 'prettier/standalone';
 import { themes } from 'prism-react-renderer';
 
 import styles from '../Stories.module.scss';
@@ -106,20 +104,6 @@ const Editor: FC<{
     // `export default () => ...` или `export default class` — анонимный экспорт
     cleanCode = cleanCode.replace(/export\s+default\s+(?!App\b)/g, 'const App = ');
 
-    try {
-      cleanCode = prettier.format(cleanCode, {
-        parser: 'typescript',
-        plugins: [parserTypescript],
-        semi: true,
-        singleQuote: true,
-        trailingComma: 'es5',
-        tabWidth: 2,
-        printWidth: 80
-      });
-    } catch (error) {
-      console.warn('Failed to format code:', error);
-    }
-
     return `${cleanCode};\nrender(<App />);`;
   };
 
@@ -158,10 +142,12 @@ const Editor: FC<{
 
           <div
             className={styles['content-area']}
-            style={{
-              '--preview-pane-width': previewPaneWidth,
-              '--preview-min-height': `${minHeight}px`
-            } as CSSProperties}
+            style={
+              {
+                '--preview-pane-width': previewPaneWidth,
+                '--preview-min-height': `${minHeight}px`
+              } as CSSProperties
+            }
           >
             <div
               className={styles['editor-pane']}

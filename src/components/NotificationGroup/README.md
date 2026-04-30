@@ -1,6 +1,6 @@
-# NotificationGroup Component
+# Компонент NotificationGroup
 
-## Версия компонента v1.0
+## Версия компонента 3.0
 
 Компонент `NotificationGroup` — группа больших карточек уведомлений с двумя видами:
 
@@ -52,14 +52,14 @@ import { Box, Button, Drawer, NotificationCard, NotificationGroup, Typography } 
 
 ## Props
 
-| Prop         | Type                        | Default | Description                                        |
-| ------------ | --------------------------- | ------- | -------------------------------------------------- |
-| children     | ReactNode                   | -       | Карточки уведомлений (обычно `NotificationCard`)   |
-| defaultOpen  | boolean                     | false   | Стартовое состояние раскрытия (uncontrolled режим) |
-| open         | boolean                     | -       | Состояние раскрытия (controlled режим)             |
-| onOpenChange | (open: boolean) => void     | -       | Коллбек при смене состояния раскрытия              |
-| className    | string                      | -       | Дополнительный CSS класс                           |
-| style        | CSSProperties               | -       | Inline стили                                       |
+| Prop         | Type                    | Default | Description                                        |
+| ------------ | ----------------------- | ------- | -------------------------------------------------- |
+| children     | ReactNode               | -       | Карточки уведомлений (обычно `NotificationCard`)   |
+| defaultOpen  | boolean                 | false   | Стартовое состояние раскрытия (uncontrolled режим) |
+| open         | boolean                 | -       | Состояние раскрытия (controlled режим)             |
+| onOpenChange | (open: boolean) => void | -       | Коллбек при смене состояния раскрытия              |
+| className    | string                  | -       | Дополнительный CSS класс                           |
+| style        | CSSProperties           | -       | Inline стили                                       |
 
 ## Поведение
 

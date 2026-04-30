@@ -32,7 +32,7 @@ export interface IFilterTipProps {
   /**
    * Размер FilterTip
    */
-  size?: `${EFilterTipSize}`
+  size?: `${EFilterTipSize}`;
   /**
    * Дополнительный CSS класс
    */

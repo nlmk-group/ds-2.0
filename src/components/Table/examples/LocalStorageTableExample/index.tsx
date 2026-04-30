@@ -1,8 +1,8 @@
 import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
-import type { Header } from '@tanstack/react-table';
 
 import { Box, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import type { Header } from '@tanstack/react-table';
 import {
   ColumnOrderState,
   ColumnPinningState,
@@ -159,11 +159,7 @@ const LocalStorageTableExample = () => {
     setColumnPinning({ left, right });
   };
 
-
-  const getHeaderPinnedStyle = (
-    header: Header<Person, unknown>,
-    side: 'left' | 'right' | 'center'
-  ): CSSProperties => {
+  const getHeaderPinnedStyle = (header: Header<Person, unknown>, side: 'left' | 'right' | 'center'): CSSProperties => {
     const trueLeafs = header.getLeafHeaders().filter(h => !h.subHeaders || h.subHeaders.length === 0);
     if (side === 'left') {
       const leftOffset = trueLeafs[0]?.column.getStart('left') ?? 0;
@@ -296,7 +292,7 @@ const LocalStorageTableExample = () => {
           <Tbody>
             {table.getRowModel().rows.map(row => (
               <Row key={row.id}>
-                {row.getVisibleCells().map((cell) => {
+                {row.getVisibleCells().map(cell => {
                   const size = cell.column.getSize();
                   const pinnedInfo = getCellPinnedInfo(cell.column.id);
 

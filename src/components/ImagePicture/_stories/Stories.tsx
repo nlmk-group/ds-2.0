@@ -5,14 +5,14 @@ import FigmaEmbed from '@components/_storybook/Stories/components/FigmaEmbed';
 import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
-import { getStorybookImageSrc } from '@components/_storybook/utils';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-7913&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-79131';
 
 const ImagePictureStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -110,7 +110,11 @@ export default App;
 
           <Editor minHeight={700} description="Скругление углов через проп radius." code={imgpicRadiusCode} />
 
-          <Editor minHeight={700} description="Отключение зума при наведении через zoom={false}." code={imgpicZoomCode} />
+          <Editor
+            minHeight={700}
+            description="Отключение зума при наведении через zoom={false}."
+            code={imgpicZoomCode}
+          />
 
           <Editor minHeight={700} description="Состояние компонента без переданного src." code={imgpicEmptyCode} />
 

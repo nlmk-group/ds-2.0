@@ -35,14 +35,6 @@ const Divider: FC<IDividerProps> = ({
     return <VerticalBorder className={className} dashed={dashed} />;
   }
 
-  if (!children) {
-    return (
-      <div data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
-        <HorizontalBorder isSmall={orientation === EDividerOrientation.left} dashed={dashed} />
-      </div>
-    );
-  }
-
   return (
     <div data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
       <HorizontalBorder
@@ -50,12 +42,16 @@ const Divider: FC<IDividerProps> = ({
         dashed={dashed}
         orientationSpace={orientationSpace}
       />
-      <div className={styles['child-wrapper']}>{children}</div>
-      <HorizontalBorder
-        isSmall={orientation === EDividerOrientation.right}
-        dashed={dashed}
-        orientationSpace={orientationSpace}
-      />
+      {children && (
+        <>
+          <div className={styles['child-wrapper']}>{children}</div>
+          <HorizontalBorder
+            isSmall={orientation === EDividerOrientation.right}
+            dashed={dashed}
+            orientationSpace={orientationSpace}
+          />
+        </>
+      )}
     </div>
   );
 };

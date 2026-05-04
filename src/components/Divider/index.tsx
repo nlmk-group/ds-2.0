@@ -36,7 +36,7 @@ const Divider: FC<IDividerProps> = ({
   }
 
   return (
-    <div data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
+    <div role="separator" data-testid="WRAPPER" className={clsx(className, styles.wrapper)}>
       <HorizontalBorder
         isSmall={orientation === EDividerOrientation.left}
         dashed={dashed}

@@ -13,6 +13,8 @@ const VerticalBorder: FC<IVerticalBorder> = ({ className, dashed = false }) => (
       styles['border-vertical'],
       dashed ? styles['border-vertical-dashed'] : styles['border-vertical-solid']
     )}
+    role="separator"
+    aria-orientation="vertical"
     data-ui-vertical-divider
     data-testid="VERTICAL_DIVIDER"
   />

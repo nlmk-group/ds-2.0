@@ -77,9 +77,4 @@ export default App;
 [data-ui-horizontal-divider-border] {
   /* Ваши стили */
 }
-
-/* Линия вертикального разделителя */
-[data-ui-vertical-divider-border] {
-  /* Ваши стили */
-}
 ```

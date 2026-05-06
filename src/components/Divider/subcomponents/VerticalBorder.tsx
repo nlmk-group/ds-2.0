@@ -11,7 +11,7 @@ const VerticalBorder: FC<IVerticalBorder> = ({ className, dashed = false }) => (
     className={clsx(
       className,
       styles['border-vertical'],
-      dashed ? styles['border-vertical-dashed'] : styles['border-vertical-solid']
+      styles[dashed ? 'border-vertical-dashed' : 'border-vertical-solid']
     )}
     role="separator"
     aria-orientation="vertical"

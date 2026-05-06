@@ -33,14 +33,9 @@
   border-bottom-style: dashed;
 }
 
-.vertical-wrapper {
-  height: inherit;
-  min-height: 24px;
-  margin: 0;
-  display: flex;
-}
-
 .border-vertical {
+  align-self: stretch;
+  min-height: 24px;
   border-right-width: 1px;
   border-right-color: var(--steel-50);
 }

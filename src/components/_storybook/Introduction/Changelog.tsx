@@ -23,6 +23,25 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.3 - <span className={styles.date}>06.05.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Убрана лишняя обёртка у вертикального Divider</li>
+              <li className={styles['left-padding']}>- Добавлены ARIA-атрибуты для доступности</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.2 - <span className={styles.date}>30.04.26</span>
           </Typography>
           <ul className={styles.list}>

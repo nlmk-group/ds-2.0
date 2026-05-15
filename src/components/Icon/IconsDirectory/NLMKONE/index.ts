@@ -58,6 +58,7 @@ export { IconGoalsMap24 } from './GoalsMap';
 export { IconHRAnalytics24 } from './HRAnalytics';
 export { IconHRApplicationForms24 } from './HRApplicationForms';
 export { IconHRGuide24 } from './HRGuide';
+export { IconHealthCenter24 } from './HealthCenter';
 export { IconHealthInsurance24 } from './HealthInsurance';
 export { IconHealthProgram24 } from './HealthProgram';
 export { IconHealthWeekCalendar24 } from './HealthWeekCalendar';

@@ -1589,6 +1589,7 @@ export type TIconName =
   | 'IconHRAnalytics24'
   | 'IconHRApplicationForms24'
   | 'IconHRGuide24'
+  | 'IconHealthCenter24'
   | 'IconHealthInsurance24'
   | 'IconHealthProgram24'
   | 'IconHealthWeekCalendar24'

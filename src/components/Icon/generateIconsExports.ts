@@ -1,6 +1,8 @@
 import fs from 'fs';
+import { fileURLToPath } from 'node:url';
 import path from 'path';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Корневая директория
 const rootDir = path.resolve(__dirname, '..');
 // Папки, которые нужно обработать

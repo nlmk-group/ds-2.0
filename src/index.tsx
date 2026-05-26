@@ -1,7 +1,7 @@
 import React, { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { SelectExm } from './components/Select/example';
+import { SelectExm } from './components/Select/examples';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

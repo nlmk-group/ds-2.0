@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SegmentButtonGroup } from '@components/index';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ESegmentButtonGroupSizes } from './enums';
 import SegmentButton from './SegmentButton';
@@ -60,7 +60,9 @@ describe('SegmentButtonGroup Component', () => {
   test('button with active prop is active on initial render', () => {
     render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
         <SegmentButton buttonIndex={1}>Button 2</SegmentButton>
       </SegmentButtonGroup>
     );
@@ -72,9 +74,15 @@ describe('SegmentButtonGroup Component', () => {
   test('only first button is active when multiple buttons have active prop', () => {
     render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
-        <SegmentButton buttonIndex={1} active>Button 2</SegmentButton>
-        <SegmentButton buttonIndex={2} active>Button 3</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
+        <SegmentButton buttonIndex={1} active>
+          Button 2
+        </SegmentButton>
+        <SegmentButton buttonIndex={2} active>
+          Button 3
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const buttons = screen.getAllByTestId('SEGMENT_BUTTON');
@@ -86,20 +94,22 @@ describe('SegmentButtonGroup Component', () => {
   test('can toggle active state from initially active button', () => {
     render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
         <SegmentButton buttonIndex={1}>Button 2</SegmentButton>
       </SegmentButtonGroup>
     );
     const buttons = screen.getAllByTestId('SEGMENT_BUTTON');
-    
+
     // Initially first button is active
     expect(buttons[0].classList.contains('active')).toBe(true);
-    
+
     // Click on second button
     fireEvent.click(buttons[1]);
     expect(buttons[0].classList.contains('active')).toBe(false);
     expect(buttons[1].classList.contains('active')).toBe(true);
-    
+
     // Click back on first button
     fireEvent.click(buttons[0]);
     expect(buttons[0].classList.contains('active')).toBe(true);
@@ -109,18 +119,20 @@ describe('SegmentButtonGroup Component', () => {
   test('clicking on initially active button deactivates it', () => {
     render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const button = screen.getByTestId('SEGMENT_BUTTON');
-    
+
     // Initially active
     expect(button.classList.contains('active')).toBe(true);
-    
+
     // Click to deactivate
     fireEvent.click(button);
     expect(button.classList.contains('active')).toBe(false);
-    
+
     // Click again to activate
     fireEvent.click(button);
     expect(button.classList.contains('active')).toBe(true);
@@ -129,24 +141,28 @@ describe('SegmentButtonGroup Component', () => {
   test('active prop changes from parent trigger re-render', () => {
     const { rerender } = render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
         <SegmentButton buttonIndex={1}>Button 2</SegmentButton>
       </SegmentButtonGroup>
     );
     const buttons = screen.getAllByTestId('SEGMENT_BUTTON');
-    
+
     // Initially first button is active
     expect(buttons[0].classList.contains('active')).toBe(true);
     expect(buttons[1].classList.contains('active')).toBe(false);
-    
+
     // Parent changes active to second button
     rerender(
       <SegmentButtonGroup>
         <SegmentButton buttonIndex={0}>{btnText}</SegmentButton>
-        <SegmentButton buttonIndex={1} active>Button 2</SegmentButton>
+        <SegmentButton buttonIndex={1} active>
+          Button 2
+        </SegmentButton>
       </SegmentButtonGroup>
     );
-    
+
     const updatedButtons = screen.getAllByTestId('SEGMENT_BUTTON');
     expect(updatedButtons[0].classList.contains('active')).toBe(false);
     expect(updatedButtons[1].classList.contains('active')).toBe(true);
@@ -155,21 +171,23 @@ describe('SegmentButtonGroup Component', () => {
   test('removing active prop deactivates button', () => {
     const { rerender } = render(
       <SegmentButtonGroup>
-        <SegmentButton buttonIndex={0} active>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} active>
+          {btnText}
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const button = screen.getByTestId('SEGMENT_BUTTON');
-    
+
     // Initially active
     expect(button.classList.contains('active')).toBe(true);
-    
+
     // Parent removes active prop
     rerender(
       <SegmentButtonGroup>
         <SegmentButton buttonIndex={0}>{btnText}</SegmentButton>
       </SegmentButtonGroup>
     );
-    
+
     const updatedButton = screen.getByTestId('SEGMENT_BUTTON');
     expect(updatedButton.classList.contains('active')).toBe(false);
   });
@@ -201,7 +219,9 @@ describe('SegmentButtonGroup Component', () => {
     render(
       <SegmentButtonGroup>
         <SegmentButton buttonIndex={0}>{btnText}</SegmentButton>
-        <SegmentButton buttonIndex={1} disabled>Button 2</SegmentButton>
+        <SegmentButton buttonIndex={1} disabled>
+          Button 2
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const buttons = screen.getAllByTestId('SEGMENT_BUTTON');
@@ -226,7 +246,9 @@ describe('SegmentButtonGroup Component', () => {
   test('group disabled has priority over individual button enabled state', () => {
     render(
       <SegmentButtonGroup disabled>
-        <SegmentButton buttonIndex={0} disabled={false}>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} disabled={false}>
+          {btnText}
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const button = screen.getByTestId('SEGMENT_BUTTON');
@@ -236,7 +258,9 @@ describe('SegmentButtonGroup Component', () => {
   test('individual disabled works independently from group', () => {
     render(
       <SegmentButtonGroup disabled={false}>
-        <SegmentButton buttonIndex={0} disabled>{btnText}</SegmentButton>
+        <SegmentButton buttonIndex={0} disabled>
+          {btnText}
+        </SegmentButton>
       </SegmentButtonGroup>
     );
     const button = screen.getByTestId('SEGMENT_BUTTON');

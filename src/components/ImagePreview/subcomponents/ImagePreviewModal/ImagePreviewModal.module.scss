@@ -6,9 +6,9 @@ $nav-btn-width: 44px;
 $nav-btn-gap: 110px;
 $nav-prev-offset: 24px;
 
-$z-backdrop: 10500;
-$z-modal: 10510;
-$z-tooltip: 10520;
+$z-backdrop: var(--z-modal);
+$z-modal: var(--z-modal);
+$z-tooltip: var(--z-tooltip);
 
 .backdrop {
   position: fixed;

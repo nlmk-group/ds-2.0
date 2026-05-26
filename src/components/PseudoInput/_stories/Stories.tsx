@@ -20,7 +20,6 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'PseudoInput';
-
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=569-321721';
 
 const Stories = (): JSX.Element => {
@@ -37,6 +36,7 @@ const Stories = (): JSX.Element => {
         description="PseudoInput отображает данные в формате, визуально похожем на input, без режима редактирования. Компонент поддерживает размеры, цвет лейбла, суффикс, бейдж и адаптацию ширины."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>

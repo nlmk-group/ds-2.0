@@ -10,7 +10,7 @@
   border-radius: 4px;
   min-height: 170px;
   max-height: 300px;
-  z-index: 1100;
+  z-index: var(--z-portal);
   top: 100%;
   left: 0;
   right: 0;

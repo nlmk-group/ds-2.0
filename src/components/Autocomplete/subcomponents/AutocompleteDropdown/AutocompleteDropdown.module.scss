@@ -6,7 +6,7 @@
   padding: 8px 0;
   max-height: 240px;
   overflow: auto;
-  z-index: calc(infinity);
+  z-index: var(--z-portal);
 }
 
 .menu-item {

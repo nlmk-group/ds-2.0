@@ -1,8 +1,8 @@
 // TODO: переписать код с использованием  style guide ДС.
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { Box, Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -263,7 +263,18 @@ const ComboDraggableGroupList = <T extends IGroupDraggableOption>({
         </div>
       );
     },
-    [comboBoxValue, isInfinityLoading, offsetItemLoadingId, isMultiple, handleMultiChange, handleChange, isLoading, infinityLoadingOptions, isVirtualize, moveItem]
+    [
+      comboBoxValue,
+      isInfinityLoading,
+      offsetItemLoadingId,
+      isMultiple,
+      handleMultiChange,
+      handleChange,
+      isLoading,
+      infinityLoadingOptions,
+      isVirtualize,
+      moveItem
+    ]
   );
 
   const DraggableList = ({ items, parentId }: { items: T[]; parentId?: string }) => (

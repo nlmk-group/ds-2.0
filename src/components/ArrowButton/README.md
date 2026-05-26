@@ -1,4 +1,4 @@
-# ArrowButton Component
+# Компонент ArrowButton
 
 ## Описание
 

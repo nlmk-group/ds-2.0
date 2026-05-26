@@ -129,5 +129,5 @@ export const useZoom = (isMobile: boolean, activeIndex: number) => {
     zoomImageStyles,
     onZoomBtnWheel,
     toggleZoom
-  }
-}
+  };
+};

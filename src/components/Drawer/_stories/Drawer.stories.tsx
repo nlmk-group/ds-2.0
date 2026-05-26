@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
 import { Avatar, Box, Button, Drawer, IconEditPenOutlined24, Input, Typography } from '@components/index';
-import { action } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import styles from './Drawer.module.scss';
 
@@ -10,7 +10,11 @@ import { IDrawerProps } from '../types';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => {
-  return <Story />;
+  return (
+    <Box className={styles.wrapper} alignItems="center" justifyContent="center">
+      <Story />
+    </Box>
+  );
 };
 
 export default {
@@ -19,6 +23,11 @@ export default {
   decorators: [withWrapper],
   argTypes: argsTypes
 } as Meta<typeof Drawer>;
+
+const hiddenControlsParams = {
+  controls: { disable: true },
+  previewTabs: { controls: { hidden: true } }
+};
 
 export const DrawerDefault = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +62,15 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
   );
 };
 DrawerDefault.storyName = 'Drawer по умолчанию';
+DrawerDefault.args = {
+  position: 'right',
+  width: 'var(--drawer-default-width)',
+  height: 'var(--drawer-default-height)',
+  disableBackdropClick: false,
+  isViewCloseButton: true,
+  overlay: true,
+  clickAwayEventType: 'click'
+};
 
 export const DrawerLeft = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,6 +108,7 @@ DrawerLeft.storyName = 'Drawer слева';
 DrawerLeft.args = {
   position: 'left'
 };
+DrawerLeft.parameters = hiddenControlsParams;
 
 export const DrawerWithoutCloseButton = (args: IDrawerProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -129,6 +148,7 @@ DrawerWithoutCloseButton.storyName = 'Drawer без крестика';
 DrawerWithoutCloseButton.args = {
   isViewCloseButton: false
 };
+DrawerWithoutCloseButton.parameters = hiddenControlsParams;
 
 export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
@@ -183,3 +203,4 @@ export const DrawerWithProfile = (args: IDrawerProps): JSX.Element => {
   );
 };
 DrawerWithProfile.storyName = 'Drawer с примером профиля';
+DrawerWithProfile.parameters = hiddenControlsParams;

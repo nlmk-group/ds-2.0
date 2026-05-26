@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DragAndDrop } from '@components/index';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './DragAndDrop.module.scss';
 
@@ -184,14 +184,14 @@ describe('src/components/DragAndDrop', () => {
 
   describe('src/components/DragAndDrop/UploadIcon', () => {
     test('It should render a UploadIcon', () => {
-      const { container } = render(<UploadIcon size={EDnDSizes.l} percentUpload={0} />);
+      const { container } = render(<UploadIcon size={EDnDSizes.M} percentUpload={0} />);
       const uploadIcon = container.getElementsByTagName('div')[0];
       expect(uploadIcon).toBeInTheDocument();
     });
 
     test('It should render a UploadIcon', () => {
       const percent = 15;
-      render(<UploadIcon size={EDnDSizes.l} percentUpload={percent} />);
+      render(<UploadIcon size={EDnDSizes.M} percentUpload={percent} />);
       expect(screen.getByTestId('PERCENT')).toHaveTextContent(`${percent}%`);
     });
 

@@ -1,14 +1,13 @@
 import React, { cloneElement, CSSProperties, isValidElement, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { ELocaleMapping } from '@components/declaration';
 import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Tooltip } from '@components/index';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import styles from '../../ComboBox.module.scss';
-
-import { ELocaleMapping } from '@components/declaration';
 
 import { InputComboBox } from '..';
 import { useDropdownHeight, useDropdownWidth, useSetLocaleValue } from '../../context';

@@ -20,6 +20,7 @@ const App = () => (
 
 export default App;
 ```
+
 ## Другие варианты использования
 
 ### Принудительная прокрутка по горизонтали
@@ -42,14 +43,14 @@ export default App;
 
 ## Props
 
-| Prop       | Type        | Default         | Description                                                                 |
-|------------|-------------|----------------|-----------------------------------------------------------------------------|
-| children   | ReactNode   | —              | Контент, который будет отображаться внутри скролл-контейнера                |
-| className  | string      | —              | Дополнительный CSS-класс для корневого элемента                             |
-| style      | CSSProperties | —            | Inline-стили для корневого элемента                                         |
-| overflowX  | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'hidden' | Управляет горизонтальной прокруткой                                         |
-| overflowY  | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto'   | Управляет вертикальной прокруткой                                           |
-| overflow   | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto'   | Управляет общей прокруткой (перезаписывает overflowX/overflowY, если задан) |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| children | ReactNode | — | Контент, который будет отображаться внутри скролл-контейнера |
+| className | string | — | Дополнительный CSS-класс для корневого элемента |
+| style | CSSProperties | — | Inline-стили для корневого элемента |
+| overflowX | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'hidden' | Управляет горизонтальной прокруткой |
+| overflowY | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto' | Управляет вертикальной прокруткой |
+| overflow | 'visible' \| 'hidden' \| 'scroll' \| 'auto' | 'auto' | Управляет общей прокруткой (перезаписывает overflowX/overflowY, если задан) |
 
 ---
 

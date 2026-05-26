@@ -8,8 +8,8 @@
     flex-direction: row;
   }
 
-  &[data-animate='true'] {
-    transition: all 0.3s ease;;
+  &[data-animate="true"] {
+    transition: all 0.3s ease;
 
     .topPane,
     .bottomPane {

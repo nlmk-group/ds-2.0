@@ -22,6 +22,6 @@ const findChildIds = (id: string, options: IComboBoxTreeOption[]): string[] => {
     }, []);
 
   return [id, ...childIds];
-}
+};
 
 export default findChildIds;

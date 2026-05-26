@@ -1,8 +1,8 @@
 import Cell from './Cell';
+import ColumnSetting from './ColumnSetting';
 import { basicFilterFunctions, tableCustomFilterFn, tableFilterOperations } from './constants';
 import Row from './Row';
 import Table from './Table';
-import ColumnSetting from './ColumnSetting';
 import Tbody from './Tbody';
 import Tfooter from './Tfooter';
 import Thead from './Thead';
@@ -21,4 +21,3 @@ export {
   tableCustomFilterFn,
   basicFilterFunctions
 };
-

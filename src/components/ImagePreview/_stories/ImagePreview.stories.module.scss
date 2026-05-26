@@ -10,3 +10,10 @@
   min-height: 60vh;
   padding: 30px;
 }
+
+.hide-sidebar {
+  [data-ui-image-preview-sidebar],
+  [data-ui-image-preview-carousel-mobile] {
+    display: none;
+  }
+}

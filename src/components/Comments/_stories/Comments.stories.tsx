@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { EBadgeColors } from '@components/Badge/enums';
-import { mockComment, mockCommentsOnlyView, mockCommentWithReplies } from '@components/Comments/mock/mockData';
+import { mockComment, mockCommentsOnlyView } from '@components/Comments/mock/mockData';
 import { IComment, ICommentFormData, ICommentsProps } from '@components/Comments/types';
 import { Alert, Badge, Box, Comments, Icon, Tooltip, Typography } from '@components/index';
 import { Meta } from '@storybook/react-vite';

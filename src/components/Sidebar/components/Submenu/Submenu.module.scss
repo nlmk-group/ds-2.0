@@ -6,7 +6,7 @@
 .submenu {
   background: var(--steel-10);
   position: absolute;
-  z-index: 10001;
+  z-index: var(--z-sidebar);
   display: flex;
   flex-direction: column;
   width: var(--submenu-width);

@@ -1,9 +1,9 @@
+import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { ReactNode } from 'react'
 
 interface PortalProps {
-  children: ReactNode,
-  node: Element | DocumentFragment,
+  children: ReactNode;
+  node: Element | DocumentFragment;
 }
 
 const Portal: React.FC<PortalProps> = ({ children, node }) => {

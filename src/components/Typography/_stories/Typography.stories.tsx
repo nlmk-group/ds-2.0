@@ -8,9 +8,7 @@ import styles from './Typography.stories.module.scss';
 import Typography from '../index';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => (
-  <div style={{ minHeight: 80, padding: 24 }}>{<Story />}</div>
-);
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80, padding: 24 }}>{<Story />}</div>;
 
 export default {
   title: 'Components/Typography/Stories',
@@ -48,11 +46,7 @@ const SECTIONS: { title: string; variants: ETypographyVariants[] }[] = [
   },
   {
     title: 'Основной текст 18px (Body)',
-    variants: [
-      ETypographyVariants.Body,
-      ETypographyVariants['Body-Medium'],
-      ETypographyVariants['Body-Bold']
-    ]
+    variants: [ETypographyVariants.Body, ETypographyVariants['Body-Medium'], ETypographyVariants['Body-Bold']]
   },
   {
     title: 'Текст 16px (Body1)',

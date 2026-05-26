@@ -708,9 +708,7 @@ describe('TimePicker компонент', () => {
       const startDate = new Date(2025, 0, 1, 10, 0, 15);
       const endDate = new Date(2025, 0, 1, 14, 30, 45);
 
-      const { rerender } = render(
-        <TimePicker type="periodWithSeconds" valueFrom={startDate} valueTo={endDate} />
-      );
+      const { rerender } = render(<TimePicker type="periodWithSeconds" valueFrom={startDate} valueTo={endDate} />);
 
       const input = screen.getByRole('textbox') as HTMLInputElement;
       await waitFor(() => {

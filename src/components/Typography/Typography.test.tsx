@@ -14,9 +14,7 @@ describe('src/components/Typography', () => {
   });
 
   test('Applies correct classes based on variant', () => {
-    const { container } = render(
-      <Typography variant={ETypographyVariants.Heading1}>{text}</Typography>
-    );
+    const { container } = render(<Typography variant={ETypographyVariants.Heading1}>{text}</Typography>);
     expect(container.firstChild).toHaveClass('typography--variant-Heading1');
   });
 

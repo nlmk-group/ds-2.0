@@ -24,10 +24,9 @@ export interface IFileProps extends PropsWithChildren<any> {
   tick?: boolean;
 }
 
-export interface IDragAndDropProps
-  extends PropsWithChildren<{
-    children?: ReactNode;
-  }> {
+export interface IDragAndDropProps extends PropsWithChildren<{
+  children?: ReactNode;
+}> {
   className?: string;
   title?: string | ReactNode;
   description?: string | ReactNode;

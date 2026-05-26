@@ -1,6 +1,6 @@
 import { ENABLED_HOURS_VALUES } from '@components/declaration';
 
-type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
+type TEnabledHour = (typeof ENABLED_HOURS_VALUES)[number];
 
 export interface ITimeSelectorProps {
   selectedTime?: Date;

@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, { FC, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { Tooltip as ReactTooltip, TooltipRefProps } from 'react-tooltip';
 

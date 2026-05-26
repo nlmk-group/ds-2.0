@@ -236,7 +236,7 @@ export const Contributing = () => {
           </ul>
         </div>
 
-        <Divider/>
+        <Divider />
 
         <Typography variant="Heading2">🔍 Процесс ревью</Typography>
 

@@ -33,19 +33,9 @@
   border-bottom-style: dashed;
 }
 
-.small-border {
-  width: 24px;
-  flex: unset;
-}
-
-.vertical-wrapper {
-  display: flex;
-  align-self: stretch;
-  margin: 0 16px;
-}
-
 .border-vertical {
-  height: 100%;
+  align-self: stretch;
+  min-height: 24px;
   border-right-width: 1px;
   border-right-color: var(--steel-50);
 }

@@ -7,7 +7,6 @@ import { ITitle } from './types';
 import styles from './ContentExample.module.scss';
 
 const TitleHelper: FC<ITitle> = ({ title, href = '', checkAction = null, checked = false }) => {
-
   const Header = () => (
     <Typography variant="Heading3" className={styles['title-typography-helper']}>
       {title}

@@ -19,7 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'SegmentButtonGroup';
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-92301&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-92301';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -126,21 +126,9 @@ export default App = () => (
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor
-            minHeight={420}
-            description="Базовое переключение активного сегмента."
-            code={defaultGroupCode}
-          />
-          <Editor
-            minHeight={420}
-            description="Размеры группы сегментов через prop size."
-            code={sizeGroupCode}
-          />
-          <Editor
-            minHeight={420}
-            description="Блокировка всей группы и отдельной кнопки."
-            code={disabledGroupCode}
-          />
+          <Editor minHeight={420} description="Базовое переключение активного сегмента." code={defaultGroupCode} />
+          <Editor minHeight={420} description="Размеры группы сегментов через prop size." code={sizeGroupCode} />
+          <Editor minHeight={420} description="Блокировка всей группы и отдельной кнопки." code={disabledGroupCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

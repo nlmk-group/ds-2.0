@@ -64,3 +64,23 @@
   white-space: pre-line;
   max-width: calc(100% - 65px);
 }
+
+.listItemWithDescription {
+  min-height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.listItemTextColumn {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.listItemCheckboxWithDescription {
+  width: 100%;
+}
+
+.listItemDescription {
+  margin: 0;
+  line-height: 18px;
+}

@@ -20,54 +20,54 @@ export const tableFilterOperations = [
   {
     value: 'contains',
     label: 'Содержит',
-    icon: <IconSelectionContains24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconSelectionContains24 />
   },
   {
     value: 'not_contains',
     label: 'Не содержит',
-    icon: <IconExceptionContains24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconExceptionContains24 />
   },
   {
     value: 'starts_with',
     label: 'Начинается с...',
-    icon: <IconStartingContains24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconStartingContains24 />
   },
   {
     value: 'ends_with',
     label: 'Заканчивается на...',
-    icon: <IconFinishingContains24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconFinishingContains24 />
   },
   {
     value: 'equals',
     label: 'Равно',
-    icon: <IconEqualsSign24 htmlColor="var(--brand-sapphire-60)" />,
+    icon: <IconEqualsSign24 />,
     disabled: true
   },
   {
     value: 'not_equals',
     label: 'Не равно',
-    icon: <IconNotEqualSign24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconNotEqualSign24 />
   },
   {
     value: 'greater',
     label: 'Больше',
-    icon: <IconGreater24 htmlColor="var(--brand-sapphire-60)" />,
+    icon: <IconGreater24 />,
     disabled: true
   },
   {
     value: 'greater_or_equal',
     label: 'Больше или равно',
-    icon: <IconGreaterOrEqual24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconGreaterOrEqual24 />
   },
   {
     value: 'less',
     label: 'Меньше',
-    icon: <IconLess24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconLess24 />
   },
   {
     value: 'less_or_equal',
     label: 'Меньше или равно',
-    icon: <IconLessOrEqual24 htmlColor="var(--brand-sapphire-60)" />
+    icon: <IconLessOrEqual24 />
   }
 ];
 export const basicFilterFunctions: Record<string, FilterFn<TData>> = {

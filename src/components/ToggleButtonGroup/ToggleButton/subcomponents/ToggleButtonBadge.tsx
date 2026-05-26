@@ -17,7 +17,7 @@ const ToggleButtonBadge: FC<IBadgeProps> = props => {
   const newProps = {
     ...props,
     variant: props.variant || 'solid',
-    color: props.color || 'brand'    
+    color: props.color || 'brand'
   };
 
   return (

@@ -4,8 +4,10 @@ import { IInputAdditionalProps } from '@components/Input/types';
 
 import { TEnabledHour } from '../../types';
 
-export interface ITimePickerInputProps
-  extends Pick<IInputAdditionalProps, 'colored' | 'label' | 'reset' | 'onReset' | 'disabled'> {
+export interface ITimePickerInputProps extends Pick<
+  IInputAdditionalProps,
+  'colored' | 'label' | 'reset' | 'onReset' | 'disabled'
+> {
   /** Дополнительный CSS класс */
   className?: string;
   /** Выбранное значение времени */

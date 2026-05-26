@@ -12,7 +12,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=502-2809&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=502-2809';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -105,18 +105,9 @@ export default App = () => {
 
       {Number(activeTab) == 0 && (
         <>
-          <Editor
-            description="Базовый выбор диапазона значений."
-            code={basicInputRangeCode}
-          />
-          <Editor
-            description="Позиция значений у ползунка через thumbValuePosition."
-            code={thumbValuePositionCode}
-          />
-          <Editor
-            description="Диапазон с крупным шагом изменения через step."
-            code={stepInputRangeCode}
-          />
+          <Editor description="Базовый выбор диапазона значений." code={basicInputRangeCode} />
+          <Editor description="Позиция значений у ползунка через thumbValuePosition." code={thumbValuePositionCode} />
+          <Editor description="Диапазон с крупным шагом изменения через step." code={stepInputRangeCode} />
 
           <Editor
             description="Заблокированное состояние компонента."
@@ -149,9 +140,7 @@ export default App = () => {
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) == 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) == 2 && <Tests componentName="InputRange" />}
     </div>
   );

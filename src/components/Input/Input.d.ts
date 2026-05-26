@@ -55,9 +55,14 @@ export interface IInputProps
   pseudo?: boolean;
 
   /**
-   * Иконка инпута
+   * Иконка инпута (справа)
    */
   icon?: ReactNode;
+
+  /**
+   * Иконка слева внутри инпута. Не отображается в multiline-режиме.
+   */
+  startIcon?: ReactNode;
 
   /**
    * Вспомогательный текст под инпутом

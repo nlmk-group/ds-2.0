@@ -41,6 +41,6 @@ const InfiniteScrollTrigger = ({ isVirtualize, isLoading, infinityLoadingOptions
     }
   };
   return <div ref={addIntersectionObserver} />;
-}
+};
 
 export default InfiniteScrollTrigger;

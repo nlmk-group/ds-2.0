@@ -48,8 +48,8 @@ export const StepperWithSteps = () => {
       step.state === EStepState.disabled
         ? EStepState.disabled
         : step.index <= currentStep
-        ? EStepState.filled
-        : EStepState.notFilled
+          ? EStepState.filled
+          : EStepState.notFilled
   }));
 
   return (
@@ -140,8 +140,8 @@ export const StepperWithError = () => {
       step.state === EStepState.disabled
         ? EStepState.disabled
         : step.index <= currentStep
-        ? EStepState.filled
-        : EStepState.notFilled
+          ? EStepState.filled
+          : EStepState.notFilled
   }));
 
   return (

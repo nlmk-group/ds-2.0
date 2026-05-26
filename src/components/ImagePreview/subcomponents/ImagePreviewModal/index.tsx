@@ -1,7 +1,12 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import clsx from 'clsx';
 
+import {
+  ImagePreviewCarouselMobile,
+  ImagePreviewMeta,
+  ImagePreviewSidebar
+} from '@components/ImagePreview/subcomponents';
+import { IImagePreviewModalProps } from '@components/ImagePreview/types';
 import {
   Button,
   IconChevronArrowLeftOutlined32,
@@ -12,32 +17,40 @@ import {
   Tooltip,
   Typography
 } from '@components/index';
+import clsx from 'clsx';
 
-import { IImagePreviewModalProps } from './types';
 import styles from './ImagePreviewModal.module.scss';
+
 import {
-  ImagePreviewSidebar,
-  ImagePreviewCarouselMobile,
-  ImagePreviewMeta
-} from '@components/ImagePreview/subcomponents';
-import {
-  useZoom,
-  useImageLoad,
+  useDownloadImage,
   useGalleryNavigation,
-  useSwipeNavigation,
-  useModalLifecycle,
+  useImageLoad,
+  useIsNarrowScreen,
   useMetaCollapse,
+  useModalLifecycle,
   useStageResetOnImageChange,
-  useDownloadImage, useIsNarrowScreen
+  useSwipeNavigation,
+  useZoom
 } from './hooks';
 
 const MAX_MOBILE_WIDTH = 1000;
 
-const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IImagePreviewModalProps) => {
+const ImagePreviewModal = ({
+  items,
+  activeIndex,
+  setActiveIndex,
+  onClose,
+  classNameModal,
+  portalContainerId,
+  zoomDisabled = false,
+  showDownloadButton = true
+}: IImagePreviewModalProps) => {
   const activeItem = items[activeIndex];
   const { fullSrc, previewSrc, downloadName, downloadHandler, title, description, alt } = activeItem;
 
   const isMobile = useIsNarrowScreen(MAX_MOBILE_WIDTH);
+
+  const portalTarget = portalContainerId ? document.getElementById(portalContainerId) : document.body;
 
   const { hasMany, canPrev, canNext, prev, next, goTo } = useGalleryNavigation({
     length: items.length,
@@ -79,7 +92,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
   });
 
   const onImageClick: React.MouseEventHandler<HTMLImageElement> = e => {
-    if (isMobile) return;
+    if (isMobile || zoomDisabled) return;
     e.preventDefault();
     e.stopPropagation();
     toggleZoom();
@@ -106,7 +119,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
     <>
       <div className={styles['backdrop']} />
       <div
-        className={clsx(styles['modal'], { [styles['modal-mobile']]: isMobile })}
+        className={clsx(styles['modal'], { [styles['modal-mobile']]: isMobile }, classNameModal)}
         style={zoomImageStyles}
         role="dialog"
         aria-modal="true"
@@ -118,21 +131,23 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
           data-ui-image-preview-modal-content
         >
           <div className={styles['top-actions']} data-ui-image-preview-top-actions>
-            <Tooltip title="Скачать изображение" placement="bottom" popupClassName={styles.tooltip}>
-              <Button
-                iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
-                onClick={() => {
-                  if (downloadHandler) {
-                    downloadHandler(activeItem);
-                  } else {
-                    download();
-                  }
-                }}
-                aria-label="Скачать"
-                variant="secondary"
-                color="ghost"
-              />
-            </Tooltip>
+            {showDownloadButton && (
+              <Tooltip title="Скачать изображение" placement="bottom" popupClassName={styles.tooltip}>
+                <Button
+                  iconButton={<IconDownloadOutlined24 htmlColor="var(--unique-white)" />}
+                  onClick={() => {
+                    if (downloadHandler) {
+                      downloadHandler(activeItem);
+                    } else {
+                      download();
+                    }
+                  }}
+                  aria-label="Скачать"
+                  variant="secondary"
+                  color="ghost"
+                />
+              </Tooltip>
+            )}
             <Button
               iconButton={<IconCloseOutlined24 htmlColor="var(--unique-white)" />}
               onClick={onClose}
@@ -201,7 +216,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
                     src={shownSrc}
                     className={clsx(styles['image'], {
                       [styles['image-zoomed']]: !isMobile && isZoomed,
-                      [styles['image-zoomable']]: !isMobile
+                      [styles['image-zoomable']]: !isMobile && !zoomDisabled
                     })}
                     alt={alt ?? title ?? `Фото ${activeIndex + 1}`}
                     draggable={false}
@@ -234,7 +249,7 @@ const ImagePreviewModal = ({ items, activeIndex, setActiveIndex, onClose }: IIma
     </>
   );
 
-  return createPortal(modal, document.body);
+  return createPortal(modal, portalTarget ?? document.body);
 };
 
 export default ImagePreviewModal;

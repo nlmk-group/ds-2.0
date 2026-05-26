@@ -14,14 +14,16 @@ describe('src/components/Pagination', () => {
   });
 
   test('renders without crashing', () => {
-    render(<Pagination
-      currentPage={1}
-      setCurrentPage={setCurrentPageMock}
-      elementsPerPage={10}
-      setElementsPerPage={setElementsPerPageMock}
-      withSelect
-      maxPageCount={5}
-    />);
+    render(
+      <Pagination
+        currentPage={1}
+        setCurrentPage={setCurrentPageMock}
+        elementsPerPage={10}
+        setElementsPerPage={setElementsPerPageMock}
+        withSelect
+        maxPageCount={5}
+      />
+    );
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('Отображать')).toBeInTheDocument();
     expect(setCurrentPageMock).not.toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { useSetDropdownWidth } from '../context';
 import { getItemMaxWidth } from '..';
+import { useSetDropdownWidth } from '../context';
 
 /**
  * Хук для автоматического расчета и установки оптимальной ширины выпадающего списка Combobox

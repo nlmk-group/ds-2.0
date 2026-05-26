@@ -1,11 +1,12 @@
 {
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
     "singleQuote": true,
     "jsxSingleQuote": false,
     "tabWidth": 2,
     "printWidth": 120,
     "semi": true,
     "arrowParens": "avoid",
-    "jsxBracketSameLine": false,
+    "bracketSameLine": false,
     "trailingComma": "none",
     "importOrder": ["^react(.*)", "<THIRD_PARTY_MODULES>", "^./components/(.*)$", "^./types", "^./*.*.scss", "^[./]" ],
     "importOrderSeparation": true,

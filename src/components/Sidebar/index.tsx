@@ -11,6 +11,7 @@ import React, {
 } from 'react';
 
 import { IAvatarProps } from '@components/Avatar/types';
+import { ELocaleMapping } from '@components/declaration';
 import { LogoSvgIcon } from '@components/Icon/IconsInternal';
 import { Avatar, Button, ClickAwayListener, Icon, Scrollbar, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -22,7 +23,6 @@ import styles from './Sidebar.module.scss';
 import { CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
-import { ELocaleMapping } from '@components/declaration';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -237,7 +237,9 @@ const Sidebar: FC<ISidebarProps> &
             </div>
           )}
           <div className={styles.head}>
-            {isVertical && isBurger && <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} locale={locale} />}
+            {isVertical && isBurger && (
+              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} locale={locale} />
+            )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
                 <div
@@ -288,7 +290,12 @@ const Sidebar: FC<ISidebarProps> &
           </Scrollbar>
 
           {isVertical && !isBurger && (
-            <CollapseButton ref={collapseButtonRef} isExpanded={isExpanded} onClick={() => setExpanded(val => !val)} locale={locale} />
+            <CollapseButton
+              ref={collapseButtonRef}
+              isExpanded={isExpanded}
+              onClick={() => setExpanded(val => !val)}
+              locale={locale}
+            />
           )}
         </div>
 

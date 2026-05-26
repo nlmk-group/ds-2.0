@@ -5,10 +5,7 @@ export type IMockItem = Omit<IImageItem, 'id' | 'title' | 'description'> & {
   descriptionPrefix?: string;
 };
 
-export const makeItems = (
-  bases: IMockItem[],
-  count: number
-): IMockItem[] => {
+export const makeItems = (bases: IMockItem[], count: number): IMockItem[] => {
   if (!bases.length || count <= 0) return [];
 
   return Array.from({ length: count }, (_, i) => {

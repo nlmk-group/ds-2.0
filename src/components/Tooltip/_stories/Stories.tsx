@@ -23,7 +23,7 @@ const style = `{{
   color: 'var(--steel-90)'
 }}`;
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=560-4267&t=EnvIMGos3m33avAX-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=560-4267';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);

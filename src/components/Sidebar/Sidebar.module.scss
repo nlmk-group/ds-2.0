@@ -19,7 +19,7 @@
   top: 0;
   width: 64px;
   transition: width 0.3s;
-  z-index: 10001;
+  z-index: var(--z-sidebar);
 
   &-vertical {
     height: 100vh;
@@ -40,7 +40,7 @@
 
 .menu {
   position: relative;
-  z-index: 100000;
+  z-index: calc(var(--z-sidebar) + 1);
   background: var(--brand-jeans-20);
   flex-shrink: 0;
   justify-content: space-between;
@@ -165,7 +165,7 @@
   right: 0;
   bottom: 0;
   display: flex;
-  z-index: 10001;
+  z-index: var(--z-sidebar);
   align-items: center;
   justify-content: center;
   background-color: var(--brand-jeans-30);

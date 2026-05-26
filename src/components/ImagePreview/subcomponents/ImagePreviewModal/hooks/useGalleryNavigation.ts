@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
+
 import { clamp } from '@components/ImagePreview/utils';
 
 type UseGalleryNavigationArgs = {
@@ -35,9 +36,9 @@ type UseGalleryNavigationResult = {
  */
 
 export const useGalleryNavigation = ({
-   length,
-   activeIndex,
-   setActiveIndex
+  length,
+  activeIndex,
+  setActiveIndex
 }: UseGalleryNavigationArgs): UseGalleryNavigationResult => {
   const activeIndexRef = useRef(activeIndex);
   const lengthRef = useRef(length);

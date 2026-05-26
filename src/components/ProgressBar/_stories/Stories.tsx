@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=548-102967&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=548-102967';
 
 const ProgressBarStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -79,11 +79,7 @@ export default App = () => (
             code={progressBarDefaultCode}
           />
 
-          <Editor
-            minHeight={200}
-            description="Прогресс с подписью через label."
-            code={progressBarWithLabelCode}
-          />
+          <Editor minHeight={200} description="Прогресс с подписью через label." code={progressBarWithLabelCode} />
           <Editor
             minHeight={260}
             description="Граничные значения прогресса: начало и завершение."
@@ -97,9 +93,7 @@ export default App = () => (
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="ProgressBar" />}
     </div>
   );

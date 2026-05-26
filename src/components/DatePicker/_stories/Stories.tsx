@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-30495&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=407-30529';
 
 const DatePickerStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -164,7 +164,7 @@ export default App;
       <Header
         title="DatePicker"
         description="DatePicker предназначен для выбора даты и времени в одном поле ввода. Компонент поддерживает режимы date/time/seconds, выбор периода и смен, ограничения диапазона и локализацию."
-        isBeta
+        isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/DatePicker"
         figmaLink={FIGMA_LINK}
       />

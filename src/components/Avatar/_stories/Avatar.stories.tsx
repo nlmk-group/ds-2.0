@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { getStorybookImageSrc } from '@components/_storybook/utils';
 import Avatar from '@components/Avatar';
 import { IAvatarProps } from '@components/Avatar/types';
 import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDirectory';
@@ -7,10 +8,9 @@ import { IconBirthday16, IconDoneCheckFilled16 } from '@components/Icon/IconsDir
 import styles from './Avatar.module.scss';
 
 import { EAvatarSize } from '../enums';
-import { getStorybookImageSrc } from '@components/_storybook/utils';
 import { argsTypes } from './argsTypes';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story/>}</div>;
+const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
 
 const AvatarImageMock = getStorybookImageSrc('/img/avatar_mock.png');
 

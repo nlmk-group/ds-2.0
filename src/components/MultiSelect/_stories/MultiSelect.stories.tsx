@@ -22,7 +22,7 @@ const options = [
 ];
 
 const OptionWithCheckbox: React.FC<{
-  option: typeof options[0];
+  option: (typeof options)[0];
   isSelected?: boolean;
 }> = ({ option, isSelected = false }) => (
   <Box alignItems="center" gap="8px">

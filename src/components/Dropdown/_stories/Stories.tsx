@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-11112&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=248-11112';
 
 const DropdownStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -183,16 +183,22 @@ export default App;
         <>
           <Editor minHeight={400} description="Базовый Dropdown со списком пунктов." code={DropdownDefaultCode} />
           <Editor minHeight={400} description="Dropdown в состоянии disabled." code={DropdownDisabledCode} />
-          <Editor minHeight={400} description="Настройка кнопки через color, variant и startIcon." code={DropdownButtonFeaturesCode} />
+          <Editor
+            minHeight={400}
+            description="Настройка кнопки через color, variant и startIcon."
+            code={DropdownButtonFeaturesCode}
+          />
           <Editor minHeight={400} description="Бейджи кнопки через startBadge и endBadge." code={DropdownBadgesCode} />
           <Editor minHeight={400} description="Иконка-кнопка через iconButton." code={DropdownIconButtonCode} />
-          <Editor minHeight={400} description="Рендер меню в портале и кастомные стили кнопки/меню." code={DropdownPortalAndStylesCode} />
+          <Editor
+            minHeight={400}
+            description="Рендер меню в портале и кастомные стили кнопки/меню."
+            code={DropdownPortalAndStylesCode}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="Dropdown" />}
     </div>
   );

@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react';
 
 import { LEVEL_MAPPING_ENUM } from '@components/DatePicker/helpers/levelMappingEnum';
-import { ENABLED_HOURS_VALUES } from '@components/declaration/constants/enabledHours';
 import { ELocaleMapping } from '@components/declaration';
+import { ENABLED_HOURS_VALUES } from '@components/declaration/constants/enabledHours';
 import { TInputProps } from '@components/Input/types';
 
 /**
@@ -13,7 +13,7 @@ export type TLevel = `${LEVEL_MAPPING_ENUM}`;
 /**
  * Допустимые значения для минимального/максимального часа
  */
-export type TEnabledHour = typeof ENABLED_HOURS_VALUES[number];
+export type TEnabledHour = (typeof ENABLED_HOURS_VALUES)[number];
 
 /**
  * Свойства инпута, которые переопределяют стандартные

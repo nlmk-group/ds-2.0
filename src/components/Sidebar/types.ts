@@ -1,7 +1,7 @@
 import { CSSProperties, Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from 'react';
 
-import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { ELocaleMapping } from '@components/declaration';
+import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 

@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import ImagePreview from './index';
 import type { IImageItem } from './types';
+
+import ImagePreview from './ImagePreview';
 
 jest.mock('@components/ImagePreview/subcomponents', () => {
   const actual = jest.requireActual('@components/ImagePreview/subcomponents');
@@ -120,15 +122,7 @@ describe('ImagePreview', () => {
   });
 
   test('maps global index to image index correctly when opening modal', () => {
-    render(
-      <ImagePreview
-        items={[
-          mkItem(10),
-          mkItem(11, { previewSrc: null }),
-          mkItem(12)
-        ]}
-      />
-    );
+    render(<ImagePreview items={[mkItem(10), mkItem(11, { previewSrc: null }), mkItem(12)]} />);
 
     const thumbs = screen.getAllByTestId('ui-image-preview-thumb');
     fireEvent.click(thumbs[2]);

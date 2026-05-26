@@ -1,7 +1,9 @@
-import LZString from 'lz-string';
 import { Themes } from '@components/Theme/types';
 import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
+import LZString from 'lz-string';
+
 import { ICodeSandboxParameters } from './types';
+
 import VERSION from './version';
 
 const getParameters = (parameters: ICodeSandboxParameters) => {
@@ -17,26 +19,26 @@ export const openCodeSandbox = (code: string, theme: Themes = Themes.LIGHT) => {
   const url = `${origin}${path}`;
 
   const parameters = getParameters({
-      files: {
-        'package.json': {
-          content: {
-            dependencies: {
-              react: '^19.0.0',
-              'react-dom': '^19.0.0',
-              'react-scripts': '^5.0.0',
-              '@nlmk/ds-2.0': VERSION,
-              'react-router-dom': '^6.27.0'
-            }
+    files: {
+      'package.json': {
+        content: {
+          dependencies: {
+            'react': '^19.0.0',
+            'react-dom': '^19.0.0',
+            'react-scripts': '^5.0.0',
+            '@nlmk/ds-2.0': VERSION,
+            'react-router-dom': '^6.27.0'
           }
-        },
-        'App.tsx': {
-          content: code
-        },
-        'index.html': {
-          content: '<div id="root"></div>'
-        },
-        'styles.css': {
-          content: `
+        }
+      },
+      'App.tsx': {
+        content: code
+      },
+      'index.html': {
+        content: '<div id="root"></div>'
+      },
+      'styles.css': {
+        content: `
             @import url('${url}/css/main.css');
             @import url('https://fonts.cdnfonts.com/css/pt-root-ui');
             html, body {
@@ -50,9 +52,9 @@ export const openCodeSandbox = (code: string, theme: Themes = Themes.LIGHT) => {
               flex-wrap: wrap;
             }
           `
-        },
-        'index.tsx': {
-          content: `
+      },
+      'index.tsx': {
+        content: `
             import React from 'react';
             import { createRoot } from 'react-dom/client'; 
             import App from './App';
@@ -76,26 +78,26 @@ export const openCodeSandbox = (code: string, theme: Themes = Themes.LIGHT) => {
 
             root.render(<ThemeWrapper />);
           `
-        },
-        'darkTheme.ts': {
-           content: `export const darkThemeStyles = \`${darkThemeStyles}\`;`
-        }
+      },
+      'darkTheme.ts': {
+        content: `export const darkThemeStyles = \`${darkThemeStyles}\`;`
       }
-    });
+    }
+  });
 
-    // Используем скрытую форму для отправки POST-запроса в CodeSandbox.
-    // Это позволяет передать большой объем данных (параметры), который не поместится в URL при GET-запросе.
-    // Ссылка открывается в новой вкладке (_blank).
-    const form = document.createElement('form');
-    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-    form.method = 'POST';
-    form.target = '_blank';
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'parameters';
-    input.value = parameters;
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
+  // Используем скрытую форму для отправки POST-запроса в CodeSandbox.
+  // Это позволяет передать большой объем данных (параметры), который не поместится в URL при GET-запросе.
+  // Ссылка открывается в новой вкладке (_blank).
+  const form = document.createElement('form');
+  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+  form.method = 'POST';
+  form.target = '_blank';
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'parameters';
+  input.value = parameters;
+  form.appendChild(input);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
 };

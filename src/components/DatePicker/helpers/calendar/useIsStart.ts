@@ -30,8 +30,8 @@ export const useIsStart = ({ withPeriod, dateFrom, dateCurrentHover }: UseCalend
             (numberedDateFrom &&
               numberedDateFrom < numberedDateCurrentHover &&
               numberedDateFrom === numberedDayAsDate) ||
-              ((!numberedDateFrom || numberedDateCurrentHover < numberedDateFrom) &&
-                numberedDateCurrentHover === numberedDayAsDate)
+            ((!numberedDateFrom || numberedDateCurrentHover < numberedDateFrom) &&
+              numberedDateCurrentHover === numberedDayAsDate)
           );
         }
         return Boolean(numberedDateFrom && numberedDateFrom === numberedDayAsDate);
@@ -41,7 +41,7 @@ export const useIsStart = ({ withPeriod, dateFrom, dateCurrentHover }: UseCalend
         if (dateCurrentHover) {
           return Boolean(
             (withPeriod && dateFrom && isBefore(dateFrom, dateCurrentHover) && isEqual(dateFrom, dayAsDate)) ||
-              ((!dateFrom || isBefore(dateCurrentHover, dateFrom)) && isEqual(dateCurrentHover, dayAsDate))
+            ((!dateFrom || isBefore(dateCurrentHover, dateFrom)) && isEqual(dateCurrentHover, dayAsDate))
           );
         }
         return Boolean(withPeriod && dateFrom && isEqual(dateFrom, dayAsDate));
@@ -59,8 +59,8 @@ export const useIsStart = ({ withPeriod, dateFrom, dateCurrentHover }: UseCalend
       if (numberedDateCurrentHover) {
         return Boolean(
           (numberedDateFrom && numberedDateFrom < numberedDateCurrentHover && numberedDateFrom === numberedDayAsDate) ||
-            ((!numberedDateFrom || numberedDateCurrentHover < numberedDateFrom) &&
-              numberedDateCurrentHover === numberedDayAsDate)
+          ((!numberedDateFrom || numberedDateCurrentHover < numberedDateFrom) &&
+            numberedDateCurrentHover === numberedDayAsDate)
         );
       }
       return Boolean(numberedDateFrom && numberedDateFrom === numberedDayAsDate);

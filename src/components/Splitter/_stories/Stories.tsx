@@ -76,10 +76,10 @@ import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
 
 const SplitterExample = () => {
   const topComponent = (
-    <Box 
+    <Box
       alignItems="flex-start"
       gap="16px"
-      style={{ 
+      style={{
         height: '100%',
         padding: '16px',
         background: 'var(--unique-background)'
@@ -89,17 +89,17 @@ const SplitterExample = () => {
         Информация
       </Typography>
       <Typography variant="Body1-Medium" color="var(--steel-90)">
-        Верхняя панель со скроллом при необходимости. 
+        Верхняя панель со скроллом при необходимости.
         Разделитель можно перетаскивать для изменения размеров панелей.
       </Typography>
     </Box>
   );
 
   const bottomComponent = (
-    <Box 
+    <Box
       alignItems="flex-start"
       gap="16px"
-      style={{ 
+      style={{
         height: '100%',
         padding: '16px',
         background: 'var(--unique-background)'
@@ -109,7 +109,7 @@ const SplitterExample = () => {
         Информация
       </Typography>
       <Typography variant="Body1-Medium" color="var(--steel-90)">
-        Нижняя панель со скроллом при необходимости. 
+        Нижняя панель со скроллом при необходимости.
         Разделитель можно перетаскивать для изменения размеров панелей.
       </Typography>
     </Box>

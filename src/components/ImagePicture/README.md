@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import ImagePicture from '@nlmk/ds-2.0';
+
 const App = () => {
   return (
     <ImagePicture
@@ -25,14 +27,14 @@ const App = () => {
 
 ## Props
 
-| Prop            | Type                                      | Default                             | Description                               |
-| --------------- | ----------------------------------------- | ----------------------------------- | ----------------------------------------- |
-| src             | string                                    | -                                   | URL изображения для отображения.          |
-| aspectRatio     | `${ImagePictureRatios}`                   | `ImagePictureRatios['ratio-1x1']`   | Разрешение изображения                    |
-| radius          | `${ImagePictureRadius}`                   | `ImagePictureRadius['radius-none']` | Радиус закругления углов                  |
-| className       | string                                    | -                                   | Дополнительный CSS-класс                  |
-| zoom            | boolean                                   | true                                | Включает эффект зумирования при наведении |
-| ...restImgProps | React.ImgHTMLAttributes<HTMLImageElement> | -                                   | Props элемента <img>                      |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| src | string | - | URL изображения для отображения. |
+| aspectRatio | `${ImagePictureRatios}` | `ImagePictureRatios['ratio-1x1']` | Разрешение изображения |
+| radius | `${ImagePictureRadius}` | `ImagePictureRadius['radius-none']` | Радиус закругления углов |
+| className | string | - | Дополнительный CSS-класс |
+| zoom | boolean | true | Включает эффект зумирования при наведении |
+| ...restImgProps | React.ImgHTMLAttributes<HTMLImageElement> | - | Props элемента <img> |
 
 ## Варианты разрешения изображения
 

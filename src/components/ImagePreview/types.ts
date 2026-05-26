@@ -20,4 +20,19 @@ export interface IImagePreviewProps {
   checkedMap?: Record<string, boolean>;
   handleCheckbox?: ({ item, checked }: { item: IImageItem; checked: boolean }) => void;
   onPreviewClick?: (item: IImageItem) => void;
+  showDownloadButton?: boolean;
+  classNameModal?: string;
+  portalContainerId?: string;
+  zoomDisabled?: boolean;
+}
+
+export interface IImagePreviewModalProps {
+  items: IImageItem[];
+  activeIndex: number;
+  setActiveIndex: (idx: number) => void;
+  onClose: () => void;
+  showDownloadButton?: boolean;
+  classNameModal?: string;
+  portalContainerId?: string;
+  zoomDisabled?: boolean;
 }

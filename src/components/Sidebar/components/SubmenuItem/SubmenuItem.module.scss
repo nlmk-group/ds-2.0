@@ -114,13 +114,17 @@
   background: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
   pointer-events: none;
 
   &--visible {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.3s ease, visibility 0s;
+    transition:
+      opacity 0.3s ease,
+      visibility 0s;
     pointer-events: auto;
   }
 }

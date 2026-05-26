@@ -1,13 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, isValidElement, useEffect, useRef, useState } from 'react';
 
+import Button from '@components/Button';
+import Icon from '@components/Icon';
+import { IconChevronArrowLeftOutlined24, IconChevronArrowRightOutlined24 } from '@components/Icon/IconsDirectory';
 import { TIconProps } from '@components/Icon/types';
-import {
-  Button,
-  Icon,
-  IconChevronArrowLeftOutlined24,
-  IconChevronArrowRightOutlined24,
-  Tooltip
-} from '@components/index';
+import Tooltip from '@components/Tooltip';
 import { ITooltipProps } from '@components/Tooltip/types';
 import clsx from 'clsx';
 
@@ -15,31 +12,50 @@ import { ITabsProps } from './types';
 
 import styles from './Tabs.module.scss';
 
+import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './enums';
+import { getDefaultIndicatorPosition } from './helpers';
 import Tab from './subcomponents/Tab';
 import { ITabProps } from './subcomponents/Tab/types';
 
 /**
- * Компонент Tabs предоставляет вкладки с возможностью прокрутки.
+ * Компонент Tabs предоставляет вкладки с возможностью прокр��тки.
+ * Поддерживает горизонтальную и вертикальную ориентацию.
  *
  * @param {object} props - Свойства компонента Tabs.
- * @param {JSX.Element | JSX.Element[]} props.children - Дочерние элементы (вкладки).
+ * @param {JSX.Element | JSX.Element[]} props.children - Дочерние элементы (вкл��дки).
  * @param {string} [props.className] - Дополнительный CSS-класс.
- * @param {boolean} [props.scrollable] - Включает возможность прокрутки вкладок.
+ * @param {boolean} [props.scrollable] - Включает возможность прокрутки вкладо��.
+ * @param {ETabsOrientation} [props.orientation] - Ориентация табов.
+ * @param {ETabsTabPosition} [props.tabPosition] - Позиция панели табов (для вертикального режима).
+ * @param {number} [props.maxTabWidth] - Максимальная ширина таба в вертикальном режиме (px).
  * @returns {JSX.Element} - Компонент Tabs.
- 
-*/
+ */
 
 const Tabs: FC<ITabsProps> &
   Record<'Tab', FC<ITabProps>> &
   Record<'Tooltip', FC<ITooltipProps>> &
-  Record<'Icon', FC<TIconProps>> = ({ children, className, scrollable }) => {
+  Record<'Icon', FC<TIconProps>> = ({
+  children,
+  className,
+  scrollable,
+  orientation = ETabsOrientation.horizontal,
+  tabPosition = ETabsTabPosition.left,
+  maxTabWidth,
+  indicatorPosition
+}) => {
+  const isVertical = orientation === ETabsOrientation.vertical;
+  const hasFixedWidth = isVertical && typeof maxTabWidth === 'number';
+
+  const resolvedIndicatorPosition = indicatorPosition || getDefaultIndicatorPosition(orientation, tabPosition);
+  const isTopIndicator = resolvedIndicatorPosition === ETabsIndicatorPosition.top;
+
   const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const tabsWrapperRef = useRef<HTMLDivElement>(null);
   const [isScrolledLeft, setIsScrolledLeft] = useState(true);
   const [isScrolledRight, setIsScrolledRight] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
   const scrollAmount = 200;
-  // TODO: обсудить решение
-  // const scrollAmount = tabsContainerRef.current?.clientWidth || 200;
 
   const scrollLeft = () => {
     if (tabsContainerRef.current) {
@@ -53,29 +69,66 @@ const Tabs: FC<ITabsProps> &
     }
   };
 
-  const handleScroll = () => {
-    if (tabsContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = tabsContainerRef.current;
-      const maxScrollLeft = scrollWidth - clientWidth;
+  const updateScrollState = () => {
+    const container = tabsContainerRef.current;
+    if (!container) return;
 
-      setIsScrolledLeft(scrollLeft <= 0);
-      setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
-    }
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    const maxScrollLeft = scrollWidth - clientWidth;
+
+    setIsOverflowing(scrollWidth > clientWidth);
+    setIsScrolledLeft(scrollLeft <= 0);
+    setIsScrolledRight(scrollLeft >= maxScrollLeft - 1);
   };
 
   useEffect(() => {
-    handleScroll();
+    if (isVertical) return;
 
-    window.addEventListener('resize', handleScroll);
+    updateScrollState();
 
-    return () => {
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
+    const container = tabsContainerRef.current;
+    const wrapper = tabsWrapperRef.current;
+    if (!container || !wrapper) return;
+
+    const observer = new ResizeObserver(updateScrollState);
+    observer.observe(container);
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
+  }, [isVertical, children]);
+
+  // Горизонтальный скролл включается автоматически при переполнении,
+  // либо принудительно через prop scrollable (для обратной совместимости).
+  const showHorizontalScroll = !isVertical && (isOverflowing || scrollable === true);
+
+  const childrenWithProps = React.Children.map(children, child => {
+    if (isValidElement<ITabProps>(child) && child.type === Tab) {
+      return React.cloneElement(child, {
+        orientation,
+        indicatorPosition: resolvedIndicatorPosition,
+        fixedWidth: hasFixedWidth
+      });
+    }
+    return child;
+  });
+
+  const containerStyle = hasFixedWidth
+    ? ({ '--tabs-max-tab-width': `${maxTabWidth}px` } as React.CSSProperties)
+    : undefined;
 
   return (
-    <div className={clsx(styles['tabs-container'], className)}>
-      {scrollable && !isScrolledLeft && (
+    <div
+      className={clsx(
+        styles['tabs-container'],
+        {
+          [styles['tabs-container--vertical']]: isVertical,
+          [styles[`tabs-container--position-${tabPosition}`]]: isVertical
+        },
+        className
+      )}
+      style={containerStyle}
+    >
+      {showHorizontalScroll && !isScrolledLeft && (
         <Button
           type="button"
           color="ghost"
@@ -88,16 +141,27 @@ const Tabs: FC<ITabsProps> &
         />
       )}
       <div
-        className={clsx({ [styles.scrollable]: scrollable })}
-        onScroll={handleScroll}
-        ref={tabsContainerRef}
+        className={clsx({
+          [styles.scrollable]: !isVertical,
+          [styles['scrollable--vertical']]: isVertical && scrollable
+        })}
+        onScroll={!isVertical ? updateScrollState : undefined}
+        ref={!isVertical ? tabsContainerRef : undefined}
         data-ui-tabs
       >
-        <div className={clsx(styles['tabs-wrapper'], { [styles['tabs-wrapper__scrollable']]: scrollable })}>
-          {children}
+        <div
+          ref={!isVertical ? tabsWrapperRef : undefined}
+          className={clsx(styles['tabs-wrapper'], {
+            [styles['tabs-wrapper__scrollable']]: !isVertical,
+            [styles['tabs-wrapper--vertical']]: isVertical,
+            [styles['tabs-wrapper--vertical-fixed']]: hasFixedWidth,
+            [styles['tabs-wrapper--top']]: isTopIndicator
+          })}
+        >
+          {childrenWithProps}
         </div>
       </div>
-      {scrollable && !isScrolledRight && (
+      {showHorizontalScroll && !isScrolledRight && (
         <Button
           type="button"
           color="ghost"

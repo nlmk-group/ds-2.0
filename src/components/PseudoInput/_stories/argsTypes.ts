@@ -1,7 +1,7 @@
+import { EBadgeColors } from '@components/Badge/enums';
 import { customInputColors, variantsMapping } from '@components/declaration';
 
 import { EPseudoInputSizes } from '../enums';
-import { EBadgeColors } from '@components/Badge/enums';
 
 export const argsTypes = {
   label: {

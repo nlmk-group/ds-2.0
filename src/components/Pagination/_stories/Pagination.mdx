@@ -1,9 +1,20 @@
 import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+
 import Pagination from '..';
 import { DecoratorDefault } from '../../_storybook/Decorator.stories';
 import Stories from './Stories';
 
-<Meta title="Components/Pagination/Info" component={Pagination} />
+<Meta
+  title="Components/Pagination/Info"
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/oPDzwafb5EpQ3M7vckuG5x/NLMK-Table?node-id=7107-38250'
+    },
+    jest: ['Pagination.test.tsx']
+  }}
+  component={Pagination}
+/>
 
 <Story of={DecoratorDefault} />
 

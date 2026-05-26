@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=496-18891&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=496-18891';
 
 const InputSliderStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -152,11 +152,7 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor
-            minHeight={350}
-            description="Базовый выбор значения в диапазоне."
-            code={sliderDefaultCode}
-          />
+          <Editor minHeight={350} description="Базовый выбор значения в диапазоне." code={sliderDefaultCode} />
           <Editor
             minHeight={420}
             description="Позиция отображения значения через valuePosition."
@@ -167,11 +163,7 @@ export default App;
             description="Кастомный суффикс значения через valueSuffix."
             code={sliderCustomSuffixCode}
           />
-          <Editor
-            minHeight={350}
-            description="Заблокированное состояние компонента."
-            code={sliderDisabledCode}
-          />
+          <Editor minHeight={350} description="Заблокированное состояние компонента." code={sliderDisabledCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

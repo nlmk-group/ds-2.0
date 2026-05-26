@@ -17,8 +17,10 @@ export interface IInputAdditionalProps {
   multiline?: boolean;
   /** Флаг псевдо-инпута */
   pseudo?: boolean;
-  /** Иконка инпута */
+  /** Иконка инпута (справа) */
   icon?: ReactNode;
+  /** Иконка слева внутри инпута */
+  startIcon?: ReactNode;
   /** Вспомогательный текст */
   helperText?: ReactNode;
   /** Флаг возможности изменения размера (для textarea) */

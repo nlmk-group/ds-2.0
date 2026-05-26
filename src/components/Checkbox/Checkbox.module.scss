@@ -8,22 +8,22 @@ $checkbox-colors: (
   brand: (
     border: var(--steel-60),
     border-checked: var(--brand-sapphire-60),
-    background: var(--brand-sapphire-60),
+    background: var(--brand-sapphire-60)
   ),
   error: (
     border: var(--spectrum-red-50),
     border-checked: var(--spectrum-red-50),
-    background: var(--spectrum-red-50),
+    background: var(--spectrum-red-50)
   ),
   warning: (
     border: var(--spectrum-yellow-50),
     border-checked: var(--spectrum-yellow-50),
-    background: var(--spectrum-yellow-50),
+    background: var(--spectrum-yellow-50)
   ),
   success: (
     border: var(--spectrum-green-50),
     border-checked: var(--spectrum-green-50),
-    background: var(--spectrum-green-50),
+    background: var(--spectrum-green-50)
   )
 );
 

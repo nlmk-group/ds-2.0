@@ -20,13 +20,7 @@ type Args = {
  * @param {boolean} args.isZoomed - Признак активного зума (при true сброс не выполняется).
  */
 
-export const useStageResetOnImageChange = ({
-   stageScrollRef,
-   activeIndex,
-   fullSrc,
-   isMobile,
-   isZoomed
-}: Args) => {
+export const useStageResetOnImageChange = ({ stageScrollRef, activeIndex, fullSrc, isMobile, isZoomed }: Args) => {
   useLayoutEffect(() => {
     const el = stageScrollRef.current;
     if (!el) return;

@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
+
+import { Box, Icon } from '@components/index';
 import clsx from 'clsx';
 
-import { IImageItem } from '../../types';
 import styles from './ImagePreviewCarouselMobile.module.scss';
-import { Box, Icon } from '@components/index';
+
+import { IImageItem } from '../../types';
 
 interface IImagePreviewCarouselMobileProps {
   items: IImageItem[];
@@ -23,21 +25,14 @@ const ImagePreviewCarouselMobile = ({ items, activeIndex, setActiveIndex }: IIma
     const cRect = container.getBoundingClientRect();
     const aRect = activeEl.getBoundingClientRect();
 
-    const delta =
-      aRect.left + aRect.width / 2 - (cRect.left + cRect.width / 2);
+    const delta = aRect.left + aRect.width / 2 - (cRect.left + cRect.width / 2);
     const nextLeft = container.scrollLeft + delta;
 
     container.scrollTo({ left: nextLeft, behavior: 'smooth' });
   }, [activeIndex]);
 
   return (
-    <Box
-      gap={4}
-      p={16}
-      ref={containerRef}
-      className={styles['carousel']}
-      data-ui-image-preview-carousel-mobile
-    >
+    <Box gap={4} p={16} ref={containerRef} className={styles['carousel']} data-ui-image-preview-carousel-mobile>
       {items.map((it, idx) => {
         const altText = it.alt ?? it.title ?? `Миниатюра ${idx + 1}`;
         return (
@@ -52,9 +47,7 @@ const ImagePreviewCarouselMobile = ({ items, activeIndex, setActiveIndex }: IIma
             onClick={() => setActiveIndex(idx)}
             aria-label={altText}
           >
-            {it.previewSrc && (
-              <img src={it.previewSrc} className={styles['thumb']} alt={altText} />
-            )}
+            {it.previewSrc && <img src={it.previewSrc} className={styles['thumb']} alt={altText} />}
             {!it.previewSrc && (
               <Box justifyContent="center" alignItems="center" height="100%">
                 <Icon name="IconFactory32" htmlColor="var(--steel-50)" />

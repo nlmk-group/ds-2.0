@@ -52,5 +52,5 @@ export const useTruncate = (previewImgSize: number, previewTitle?: string) => {
     isTruncated,
     titleWrapRef,
     measureRef
-  }
-}
+  };
+};

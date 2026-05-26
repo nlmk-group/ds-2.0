@@ -6,8 +6,8 @@ import {
   IconCloseOutlined24,
   IconCommentChatBubbleFullOutlined24,
   IconDownloadOutlined24,
-  IconInsertDriveFileOutlined24,
-  IconTaskOutlined24
+  IconInsertDriveFileOutlined32,
+  IconTaskOutlined32
 } from '@components/index';
 import { Typography } from '@components/index';
 import { clsx } from 'clsx';
@@ -61,12 +61,12 @@ const File: FC<IFileProps> = ({
 }) => {
   const TickIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="TICK_ICON">
-      <IconTaskOutlined24 htmlColor={'var(--brand-sapphire-60)'} />
+      <IconTaskOutlined32 htmlColor={'var(--brand-sapphire-60)'} />
     </div>
   );
 
   const CheckedIcon = (): JSX.Element => (
-    <div className={styles['icon-wrapper-checked']} data-testid="CHECKED_ICON">
+    <div className={styles['icon-wrapper']} data-testid="CHECKED_ICON">
       <Checkbox
         checked={checkedValue !== undefined ? checkedValue : checked}
         onChange={onCheckedChange}
@@ -77,7 +77,7 @@ const File: FC<IFileProps> = ({
 
   const DefaultIcon = (): JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="DEFAULT_ICON">
-      <IconInsertDriveFileOutlined24 htmlColor={'var(--brand-sapphire-60)'} />
+      <IconInsertDriveFileOutlined32 htmlColor={'var(--steel-70)'} />
     </div>
   );
 
@@ -105,7 +105,7 @@ const File: FC<IFileProps> = ({
                 color="ghost"
                 variant="secondary"
                 onClick={commentedOnClick}
-                iconButton={<IconCommentChatBubbleFullOutlined24 />}
+                iconButton={<IconCommentChatBubbleFullOutlined24 htmlColor={'var(--steel-70)'} />}
                 data-ui-file-comment-button
               />
             </div>
@@ -117,7 +117,7 @@ const File: FC<IFileProps> = ({
                 color="ghost"
                 variant="secondary"
                 onClick={savedOnClick}
-                iconButton={<IconDownloadOutlined24 />}
+                iconButton={<IconDownloadOutlined24 htmlColor={'var(--brand-sapphire-60)'} />}
                 data-ui-file-download-button
               />
             </div>
@@ -129,7 +129,7 @@ const File: FC<IFileProps> = ({
                 color="ghost"
                 variant="secondary"
                 onClick={removedOnClick}
-                iconButton={<IconCloseOutlined24 />}
+                iconButton={<IconCloseOutlined24 htmlColor={'var(--steel-70)'} />}
                 data-ui-file-close-button
               />
             </div>

@@ -104,7 +104,7 @@ const FilterableTableExample = () => {
                         filterTypeOptions={tableFilterOperations}
                         filterValueOptions={getSelectOptionsForColumn(header.column.id)}
                         placeholder="Поиск ..."
-                        withPortal
+                        withPortal={false}
                         onFilterChange={(value, filterType) => {
                           if (!value || !filterType) {
                             header.column.setFilterValue(undefined);

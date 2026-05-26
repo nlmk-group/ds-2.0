@@ -95,19 +95,10 @@ export default App = () => {
 
       {Number(activeTab) == 0 && (
         <>
-          <Editor
-            description="Базовый выбор одного значения в группе."
-            code={radioDefaultCode}
-          />
+          <Editor description="Базовый выбор одного значения в группе." code={radioDefaultCode} />
 
-          <Editor
-            description="Цветовые состояния radio-кнопки через prop color."
-            code={radioColorCode}
-          />
-          <Editor
-            description="Недоступный вариант в группе через disabled."
-            code={radioDisabledCode}
-          />
+          <Editor description="Цветовые состояния radio-кнопки через prop color." code={radioColorCode} />
+          <Editor description="Недоступный вариант в группе через disabled." code={radioDisabledCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

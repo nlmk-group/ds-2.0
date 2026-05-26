@@ -9,3 +9,9 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.scrollable-wrapper {
+  max-width: 480px;
+  padding: 0 48px;
+  position: relative;
+}

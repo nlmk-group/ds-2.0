@@ -6,7 +6,9 @@
 
 ```jsx
 import React, { useState } from 'react';
+
 import Switch from '@nlmk/ds-2.0';
+
 const App = () => {
   const [checked, setChecked] = useState(false);
   const handleChange = (event, newChecked) => {

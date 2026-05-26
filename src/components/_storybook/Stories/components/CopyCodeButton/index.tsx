@@ -1,7 +1,8 @@
 import { FC, useCallback, useState } from 'react';
-import { copyToClipboard as copyUtils } from '@components/utils/copyToClipboard';
-import { Button, IconContentCopyOutlined24, Tooltip, Typography } from '@components/index';
 import React from 'react';
+
+import { Button, IconContentCopyOutlined24, Tooltip, Typography } from '@components/index';
+import { copyToClipboard as copyUtils } from '@components/utils/copyToClipboard';
 
 const CopyCodeButton: FC<{ code: string }> = ({ code }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -11,7 +12,6 @@ const CopyCodeButton: FC<{ code: string }> = ({ code }) => {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     });
-
   }, [code]);
 
   return (

@@ -34,4 +34,3 @@ export interface ITooltipProps {
   /** Определяет следование за позицией курсора **/
   float?: boolean;
 }
-

@@ -9,7 +9,15 @@ import { SelectSharedProperties } from '..';
 import { getLabel } from '../helpers';
 import { IMenuItem, ISelectSharedProperties } from '../types';
 
-const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, subLabel, multilineOption = false }) => {
+const MenuItem: FC<IMenuItem> = ({
+  label,
+  value,
+  disabled,
+  iconLeft,
+  iconRight,
+  subLabel,
+  multilineOption = false
+}) => {
   const { multiple, highlightSelected, withoutCheckbox, selectedValues, handleSelect, handleTypographyClick } =
     useContext<ISelectSharedProperties>(SelectSharedProperties);
 
@@ -20,10 +28,10 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
 
   const selectedCondition = (): boolean => {
     if (multiple) {
-      return selectedValues?.includes(value)
+      return selectedValues?.includes(value);
     }
-    return selectedValues === value
-  }
+    return selectedValues === value;
+  };
 
   return (
     <ListItem
@@ -44,10 +52,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
         <div className={styles['left-wrapper']}>
           {iconLeft && (
             <div
-              className={clsx(
-                styles['icon-wrapper'],
-                selectedCondition() && styles['icon-selected']
-              )}
+              className={clsx(styles['icon-wrapper'], selectedCondition() && styles['icon-selected'])}
               data-testid="left-icon"
             >
               {iconLeft}
@@ -63,7 +68,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
           )}
         </div>
       )}
-      <div className={isFullWidthLabel ?  styles['text-container-item-full-width'] : styles['text-container-item']}>
+      <div className={isFullWidthLabel ? styles['text-container-item-full-width'] : styles['text-container-item']}>
         <div className={clsx(styles.content, { [styles.content__multiline]: multilineOption })}>
           <Typography
             variant="Body1-Medium"
@@ -91,10 +96,7 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled, iconLeft, iconRight, 
       <div className={styles['right-wrapper']}>
         {hasRightElement && (
           <div
-            className={clsx(
-              styles['icon-wrapper'],
-              selectedCondition() && styles['icon-selected']
-            )}
+            className={clsx(styles['icon-wrapper'], selectedCondition() && styles['icon-selected'])}
             data-testid="right-icon"
           >
             {iconRight}

@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 
+import { ELocaleMapping } from '@components/declaration';
 import {
   Button,
   IconDragIndicatorDotsFilled24,
-  IconEyeOffFilled24,
   IconEyeFilled24,
+  IconEyeOffFilled24,
   IconPushPinFilled24,
   IconPushPinOutlined24,
   IconRightColumnArrowFilled24,
@@ -13,7 +14,6 @@ import {
   IconStackExpandedTriangleDown24,
   Typography
 } from '@components/index';
-import { ELocaleMapping } from '@components/declaration';
 import clsx from 'clsx';
 
 import { IColumnSettingProps } from './types';

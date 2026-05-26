@@ -274,7 +274,11 @@ export default App;
       {Number(activeTab) === 0 && (
         <>
           <Editor minHeight={500} description="Базовый мультивыбор значений." code={multiSelectDefaultCode} />
-          <Editor minHeight={500} description="Поиск по доступным значениям через searchable." code={multiSelectSearchableCode} />
+          <Editor
+            minHeight={500}
+            description="Поиск по доступным значениям через searchable."
+            code={multiSelectSearchableCode}
+          />
           <Editor minHeight={500} description="Заблокированное состояние компонента." code={multiSelectDisabledCode} />
           <Editor minHeight={500} description="Массовый выбор через showSelectAll." code={multiSelectSelectAllCode} />
           <Editor
@@ -282,7 +286,11 @@ export default App;
             description="Очистка поискового запроса после выбора через clearSearchOnSelect."
             code={multiSelectClearSearchCode}
           />
-          <Editor minHeight={500} description="Сброс выбранных значений через reset и onReset." code={multiSelectResetCode} />
+          <Editor
+            minHeight={500}
+            description="Сброс выбранных значений через reset и onReset."
+            code={multiSelectResetCode}
+          />
           <Editor
             minHeight={500}
             description="Настройка отображения выбранных значений и рендер меню через портал."

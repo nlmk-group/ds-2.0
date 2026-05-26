@@ -23,6 +23,253 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.4 - <span className={styles.date}>15.05.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена новая иконка: IconHealthCenter</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.3 - <span className={styles.date}>06.05.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Убрана лишняя обёртка у вертикального Divider</li>
+              <li className={styles['left-padding']}>- Добавлены ARIA-атрибуты для доступности</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.2 - <span className={styles.date}>30.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлены отступы у вертикального Divider</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-attachfiles-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                AttachFiles
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Тип пропа title изменён на ReactNode — теперь принимает любой JSX
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-draganddrop-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DragAndDrop
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые значения размеров M и S (старые l, m помечены deprecated)
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.1 - <span className={styles.date}>22.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-filter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Filter
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен multiselect-режим</li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен проп description у ComboBoxOption</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.0 - <span className={styles.date}>20.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены компоненты{' '}
+              <Link
+                href="./?path=/docs/components-notificationcard-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationCard
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-notificationgroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationGroup
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-notificationitem-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationItem
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.30.1 - <span className={styles.date}>17.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена вертикальная ориентация табов через проп orientation
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп tabPosition для размещения вертикальной панели табов (left / right)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп maxTabWidth для ограничения ширины таба в вертикальном режиме с ellipsis и тултипом на
+                overflow
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.30.0 - <span className={styles.date}>16.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен проп startIcon для размещения иконки слева внутри инпута
+              </li>
+            </li>
+            <li>
+              • Добавлена{' '}
+              <Link href="./?path=/docs/tokens-z-index-info--docs" target="blank" className={styles['link-changelog']}>
+                система z-index токенов
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Введены CSS-переменные для управления z-index: --z-base, --z-raised, --z-dropdown, --z-sticky,
+                --z-sidebar, --z-drawer, --z-modal, --z-modal-stacked, --z-portal, --z-tooltip
+              </li>
+              <li className={styles['left-padding']}>- Компоненты переведены на использование z-index токенов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.29.2 - <span className={styles.date}>06.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePreview
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена возможность использовать модальное окно просмотра изображений ImagePreviewModal независимо
+                от ImagePreview
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлены новые параметры для настройки поведения ImagePreview (скрытие кнопки для загрузки в
+                модальном окне, наличие зума в модальном окне, ccs класс для модального окна)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.29.1 - <span className={styles.date}>23.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-comments-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Comments
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Исправлено отображение текста комментария с переносом строки</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.29.0 - <span className={styles.date}>12.03.26</span>
           </Typography>
           <ul className={styles.list}>
@@ -45,7 +292,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Исправлен компонент{' '}
-              <Link href="./?path=/docs/components-imagepreview-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 ImagePreview
               </Link>
               .
@@ -62,7 +313,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-splitter-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 Splitter
               </Link>
               .

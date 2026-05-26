@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Button from '@components/Button';
+import { ELocaleMapping } from '@components/declaration';
 import {
   IconASIImplementationOutlined24,
   IconCloseOutlined24,
@@ -8,7 +9,6 @@ import {
   IconFullScreenOpenOutlined24
 } from '@components/Icon/IconsDirectory';
 import Typography from '@components/Typography';
-import { ELocaleMapping } from '@components/declaration';
 import clsx from 'clsx';
 
 import { TVideoWindowProps } from './types';
@@ -73,7 +73,7 @@ const VideoWindow = ({
         [videoStyles.resizable]: !isFullscreen && resizable,
         [videoStyles.active]: !isFullscreen && isActive
       })}
-      style={{ ...style, ...((draggable && !isFullscreen) ? draggableData?.draggableStyle : {}) }}
+      style={{ ...style, ...(draggable && !isFullscreen ? draggableData?.draggableStyle : {}) }}
       tabIndex={0}
       onClick={() => setIsActive(true)}
       onBlur={() => setIsActive(false)}

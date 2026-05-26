@@ -8,7 +8,7 @@ import Typography from '@components/Typography';
 
 import s from './SelectExm.module.scss';
 
-import Select from '..';
+import Select from '../index';
 import { TSelected } from '../types';
 import { selectExampleItems } from './constants';
 
@@ -58,13 +58,13 @@ export const SelectExm = () => {
                 title="Заполняется отделом технического контроля для ввода предварительного качества по углям. Используется в формах MES и отчетах по дозировке, пока не придут данные из ИС Лаборатории"
               />
             </Grid>
-            <p>Test text 1</p>
-            <p>Test text 2</p>
-            <p>Test text 3</p>
-            <p>Test text 4</p>
+            <p>Массовая доля влаги, W</p>
+            <p>Массовая доля золы, A</p>
+            <p>Массовая доля общей серы, St</p>
+            <p>Выход летучих веществ, V</p>
           </SlideToggle>
           <SlideToggle
-            title="Показатели качества"
+            title="Предварительные показатели качества"
             defaultOpen
             className={s.row}
             after={
@@ -89,10 +89,10 @@ export const SelectExm = () => {
                 title="Заполняется отделом технического контроля для ввода предварительного качества по углям. Используется в формах MES и отчетах по дозировке, пока не придут данные из ИС Лаборатории"
               />
             </Grid>
-            <p>Test text 1</p>
-            <p>Test text 2</p>
-            <p>Test text 3</p>
-            <p>Test text 4</p>
+            <p>Низшая теплота сгорания, Qir</p>
+            <p>Массовая доля углерода, C</p>
+            <p>Массовая доля водорода, H</p>
+            <p>Массовая доля азота, N</p>
           </SlideToggle>
         </div>
       </div>

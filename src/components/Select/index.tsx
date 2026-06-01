@@ -191,11 +191,12 @@ const Select: FC<ISelectProps> = ({
   };
 
   useEffect(() => {
+    if (!withPortal) return;
     document.addEventListener('wheel', handleOutsideScroll, { capture: true });
     return () => {
       document.removeEventListener('wheel', handleOutsideScroll, { capture: true } as AddEventListenerOptions);
     };
-  }, [handleOutsideScroll]);
+  }, [handleOutsideScroll, withPortal]);
 
   useEffect(() => {
     if (!onOpen) {

@@ -18,6 +18,14 @@
     outline: inherit;
     cursor: inherit;
     padding: 0;
+
+    &-stretch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-container {

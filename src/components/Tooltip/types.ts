@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { ETooltipBehaviorType, ETooltipPlacementType, ETooltipSizes, ETooltipType } from './enums';
 
@@ -27,10 +27,14 @@ export interface ITooltipProps {
   clickable?: boolean;
   /** Флаг отображения тултипа */
   isOpen?: boolean;
-  /** Задержка появления тултипа **/
+  /** Задержка появления тултипа */
   delayShow?: number;
-  /** Задержка исчезания тултипа **/
+  /** Задержка исчезания тултипа */
   delayHide?: number;
-  /** Определяет следование за позицией курсора **/
+  /** Определяет следование за позицией курсора */
   float?: boolean;
+  /** Inline-стили для области-триггера тултипа */
+  style?: CSSProperties;
+  /** Флаг, делает область, на которую можно навести/кликнуть для показа тултипа, растянутой на весь размер родительского контейнера */
+  stretch?: boolean;
 }

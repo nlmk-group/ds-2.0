@@ -1,0 +1,56 @@
+import{r as d,j as t,m as A,S as v,U as x}from"./iframe-C2j-UzJI.js";import{useMDXComponents as g}from"./index-CnUiOmhK.js";import{A as f}from"./index-D--QrFHf.js";import{DecoratorDefault as u}from"./Decorator.stories-DBUaiF2k.js";import{s,H as j,E as i}from"./Header-CS8Ul-7Z.js";import{F as b}from"./FigmaEmbed-BXpMjOC7.js";import{P as h,T as S}from"./Tests-BzXlcuiS.js";/* empty css               */import{g as k}from"./utils-BWsSlcHq.js";import{T as p}from"./index-j_056LZh.js";import{a as I}from"./argsTypes-CzOeLcgo.js";import"./preload-helper-PPVm8Dsz.js";import"./index-Cgs4mkOo.js";import"./clsx-B-dksMZM.js";import"./IconsDirectory.module-CEwWgW3i.js";import"./32-BI8xtbsU.js";import"./32-CJ0o-VIC.js";import"./24-CuDIHvWX.js";import"./24-Cva_JBwh.js";import"./24-KVke6soD.js";import"./24-BrI2by3D.js";import"./24-B5ODlOpD.js";import"./24-OjUQZVfT.js";import"./24-CeOxJPqx.js";import"./24-CHP3BsWo.js";import"./24-CKMbmC7d.js";import"./16-049IwUhX.js";import"./24-nYvLFNAE.js";import"./24-fUQbig4h.js";import"./16-BMa1J7tj.js";import"./16-SQC_C9px.js";import"./16-BuZexhOR.js";import"./16-DPV7Mbm7.js";import"./16-ChsbLgyw.js";import"./index-P9-ONPUI.js";import"./index-B6CIWydZ.js";import"./index-BI-uMOwr.js";import"./index-EKbY0pty.js";import"./index-D3z7S9ph.js";import"./index-D9e0IWV-.js";import"./index-yGzPLeeo.js";import"./index-Cm_Ba9v7.js";import"./index-CtJ4Gng-.js";import"./index-DQwYpJV-.js";import"./index-Cdr1B_yf.js";import"./colorsMapping-C6bFIk14.js";import"./index-DRJdSF_u.js";import"./sizeMappingInput-XXScYzk1.js";import"./generateUUID-M57HTP56.js";import"./index-DubnQ8iR.js";import"./useFloatingReferenceSync-B9wLGTQm.js";import"./index-DniZBuyb.js";import"./index-mz-Fux1b.js";import"./types-TdnjS80C.js";import"./index-DJNN3joX.js";import"./MenuItem-2rBr_5IO.js";import"./floating-ui.react-B-hVAgIp.js";import"./sizesMapping-D8QavrGc.js";import"./index-BlB3gbyn.js";import"./index-BxD8CrGk.js";import"./index-CNN_3_D-.js";import"./index-DKRZUTnz.js";import"./index-BIghOfGk.js";import"./index-BCWSZamI.js";import"./index-dafhDTNg.js";import"./index-DBzDQ-ch.js";import"./index-AnGV7slG.js";import"./index-Dw3c2VVg.js";import"./localeMapping-Cf4j9Ek8.js";import"./hook-DZ9AfOMR.js";import"./index-ClEzh6W5.js";import"./index-BpckL99B.js";import"./index-DxVRZIMU.js";import"./index-BYk4kF2r.js";import"./index-p4R0JKbs.js";import"./index-DX43l6l8.js";import"./index-BYjJWpD4.js";import"./index-D_f15RZF.js";import"./index-dHWQfCU4.js";import"./index-B9O-LOtF.js";import"./index-B8k0jrF3.js";import"./index-EikiiVfW.js";import"./index-jAVg74ZN.js";import"./index-DhCmc_-U.js";import"./index-DGfhABU5.js";import"./index-CrdTlCOS.js";import"./index-Cjmo6ss0.js";import"./index-mFyay1Jh.js";import"./index-CWWsFxD8.js";import"./index-CFvqY2-I.js";import"./index-CLjZt-U5.js";import"./index-DxU2rFyU.js";import"./index-BztNwpqP.js";import"./index-C3s3_K12.js";import"./index-BPEi8AAc.js";import"./index-nrqGK399.js";import"./index-D_AdWthx.js";import"./index-CC1rooLK.js";import"./inheritsLoose-D3Az7yH5.js";import"./index-DqweFzDp.js";import"./index-BP9NHWE2.js";import"./index-DTAmrxZ5.js";import"./index-Cia1E6ra.js";import"./index-C7GKKkXm.js";import"./index-D5Omujth.js";import"./index-CzeiuUcG.js";import"./index-CBv4Ru4y.js";import"./index-CCMQkG81.js";import"./index-BmhtsoHO.js";import"./ComboBox-DginoVkT.js";import"./index-B_pht6vj.js";import"./constants-C_zUGLqh.js";import"./TreeList-CmR72Klg.js";import"./copyToClipboard-DB_KM_BY.js";const e="Avatar",n="https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529",m=k("/img/avatar_mock.png"),N=()=>{const[r,o]=d.useState(0),a=l=>r===l;return t.jsxs("div",{className:s.wrapper,children:[t.jsx(j,{title:e,description:"Avatar отображает профиль пользователя в виде изображения, инициалов или стандартной иконки. Компонент поддерживает размеры, индикатор статуса, числовой индикатор и бейдж.",isStable:!0,codeLink:`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${e}`,figmaLink:n}),t.jsx("div",{className:s.tabs,children:t.jsxs(p,{children:[t.jsx(p.Tab,{label:"Разработчику",active:a(0),onClick:()=>o(0)}),t.jsx(p.Tab,{label:"Дизайнеру",active:a(1),onClick:()=>o(1)}),t.jsx(p.Tab,{label:"Тестирование",active:a(2),onClick:()=>o(2)})]})}),r==0&&t.jsxs(t.Fragment,{children:[t.jsx(i,{minHeight:220,description:"Базовый Avatar с иконкой пользователя.",code:`import { Avatar } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <>
+    <Avatar />
+  </>
+)
+export default App
+              `}),t.jsx(i,{description:"Размеры Avatar",code:`import { Avatar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Avatar imageSrc="${m}" size="2xl" />
+    <Avatar imageSrc="${m}" size="xl" />
+    <Avatar imageSrc="${m}" size="l" />
+    <Avatar imageSrc="${m}" size="m" />
+    <Avatar imageSrc="${m}" size="s" />
+  </>
+)
+              `}),t.jsx(i,{description:"Варианты контента: иконка, изображение и инициалы.",code:`import { Avatar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Avatar />
+    <Avatar imageSrc="${m}" />
+    <Avatar userName='Антон' userSurname='Валуев' />
+  </>
+)
+              `}),t.jsx(i,{description:"Fallback при ошибке загрузки imageSrc: переход к иконке.",code:`import { Avatar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Avatar imageSrc="https://invalid-image-url.png" />
+    <Avatar imageSrc="https://invalid-image-url.png" userName="Антон" userSurname="Валуев" />
+  </>
+)
+              `}),t.jsx(i,{description:"Индикаторы состояния: online/offline и numberIndicator.",code:`import { Avatar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Avatar online />
+    <Avatar online={false} />
+    <Avatar numberIndicator={8} />
+  </>
+)
+              `}),t.jsx(i,{description:"Бейдж Avatar: стандартный и специальный через badgeSpecialIcon.",code:`import { Avatar, IconDoneCheckFilled16, IconBirthday16 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <>
+    <Avatar badgeIconName={<IconDoneCheckFilled16 htmlColor="white" />} />
+    <Avatar badgeIconName={<IconBirthday16 htmlColor="white" />} badgeSpecialIcon />
+  </>
+)
+              `}),t.jsx(h,{argsTypes:I})]}),r==1&&t.jsx(b,{url:n}),r==2&&t.jsx(S,{componentName:e})]})};function c(r){return t.jsxs(t.Fragment,{children:[t.jsx(A,{title:"Components/Avatar/Info",component:f,parameters:{design:{type:"figma",url:"https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=410-50529"},jest:["Avatar.test.tsx"]}}),`
+`,t.jsx(v,{of:u}),`
+`,t.jsx(x,{children:t.jsx(N,{})})]})}function Fr(r={}){const{wrapper:o}={...g(),...r.components};return o?t.jsx(o,{...r,children:t.jsx(c,{...r})}):c()}export{Fr as default};

@@ -30,6 +30,8 @@ export const TooltipPortal: FC<ITooltipProps> = ({ children, ...props }) => {
  * @param {() => React.ReactNode} [props.render] - Кастомный рендер функции для содержимого тултипа.
  * @param {boolean} [props.clickable=false] - Определяет, является ли тултип кликабельным.
  * @param {string} [props.popupClassName] - Дополнительный CSS-класс для всплывающего окна тултипа.
+ * @param {boolean} [props.stretch=false] - Делает область, на которую можно навести/кликнуть для показа тултипа, растянутой на весь размер родительского контейнера
+ * @param {React.CSSProperties} [props.style] - Инлайн-стили, применяемые к области-триггеру, вокруг которой отображается тултип.
  * @returns {JSX.Element} - Компонент Tooltip.
  */
 
@@ -48,7 +50,9 @@ const Tooltip: FC<ITooltipProps> = ({
   isOpen,
   delayShow = 150,
   delayHide = 150,
-  float = false
+  float = false,
+  style,
+  stretch
 }) => {
   const tooltipRef = React.useRef<TooltipRefProps>(null);
 
@@ -99,14 +103,15 @@ const Tooltip: FC<ITooltipProps> = ({
   }
 
   return (
-    <div className={clsx(styles.tooltip, className)}>
+    <div className={clsx(styles.tooltip, stretch && styles['tooltip-target-stretch'], className)}>
       <div
-        className={styles['tooltip-target']}
+        className={clsx(styles['tooltip-target'], stretch && styles['tooltip-target-stretch'])}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={handleClick}
         data-ui-tooltip
         data-tooltip-id={tooltipId}
+        style={style}
       >
         {children}
       </div>

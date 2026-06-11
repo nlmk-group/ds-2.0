@@ -23,6 +23,40 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.5 - <span className={styles.date}>11.06.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство stretch — растягивает область наведения на весь контейнер
+              </li>
+              <li className={styles['left-padding']}>- Добавлено свойство style — инлайн-стили области наведения</li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено позиционирование списка в модальном окне</li>
+              <li className={styles['left-padding']}>- Исправлено закрытие списка при скролле вне селекта</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.4 - <span className={styles.date}>15.05.26</span>
           </Typography>
           <ul className={styles.list}>

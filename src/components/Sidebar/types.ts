@@ -270,6 +270,12 @@ export interface ISidebarProperties {
    * Функция сворачивания бокового меню.
    */
   collapseSidebar: () => void;
+
+  /**
+   * Флаг мобильного (адаптивного) режима — влияет на стили вложенных элементов.
+   * @default false
+   */
+  isMobile?: boolean;
 }
 
 export interface ISubmenuProperties {
@@ -366,6 +372,69 @@ export interface ISubmenuItemProps extends PropsWithChildren {
    * Флаг, указывающий, что элемент подменю отключен.
    */
   disabled?: boolean;
+}
+
+export interface IMobileMenuProps {
+  /**
+   * Кастомный логотип. Если не передан — стандартный.
+   */
+  logo?: ReactNode;
+
+  /**
+   * Системное имя (имя компании) в шапке drawer.
+   */
+  systemName?: string;
+
+  /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
+
+  /**
+   * Флаг авторизации (для кнопки exit/login в шапке).
+   */
+  isLoggedIn?: boolean;
+
+  /**
+   * Колбэк входа в аккаунт.
+   */
+  onLogin?: () => void;
+
+  /**
+   * Колбэк выхода из аккаунта.
+   */
+  onLogout?: () => void;
+
+  /**
+   * Колбэк клика по логотипу.
+   */
+  onClickLogo?: () => void;
+
+  /**
+   * Готовый узел UserControl.
+   */
+  userControl: ReactNode;
+
+  /**
+   * Пункты верхней секции.
+   */
+  topSectionItems: ReactNode;
+
+  /**
+   * Пункты нижней секции.
+   */
+  bottomSectionItems: ReactNode;
+
+  /**
+   * Активный пункт (заголовок раскрытого подменю) или null.
+   */
+  activeItem: string | null;
+
+  /**
+   * Узлы подменю активного пункта (для drill-down).
+   */
+  submenuItems: ReactNode;
 }
 
 export interface IComponentWithType extends FC<ISidebarProps> {

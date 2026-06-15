@@ -251,3 +251,25 @@ SidebarWithCustomLogo.args = {
   userSurname: 'Иванов',
   systemName: 'НЛМК'
 };
+
+export const SidebarAdaptiveMobile = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
+};
+SidebarAdaptiveMobile.storyName = 'Адаптивный Sidebar';
+// Канвас этой истории открывается в мобильном вьюпорте (< 650px),
+// поэтому Sidebar сразу рендерится в адаптивном режиме (бургер + drawer).
+SidebarAdaptiveMobile.parameters = {
+  viewport: {
+    options: {
+      mobile: { name: 'Mobile (390×844)', styles: { width: '390px', height: '844px' } }
+    }
+  }
+};
+SidebarAdaptiveMobile.globals = {
+  viewport: { value: 'mobile', isRotated: false }
+};
+SidebarAdaptiveMobile.args = {
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};

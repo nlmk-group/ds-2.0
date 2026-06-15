@@ -35,7 +35,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
-  const { allowFavorites, currentPath, orientation, collapseSidebar } =
+  const { allowFavorites, currentPath, orientation, collapseSidebar, isMobile } =
     useContext<ISidebarProperties>(SidebarProperties);
   const {
     showFavorites,
@@ -95,6 +95,13 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
 
   const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveSubMenuItem);
 
+  let textColor = 'var(--steel-90)';
+  if (isMobile) {
+    textColor = 'var(--unique-white)';
+  } else if (isActivePath && !disabled) {
+    textColor = 'var(--unique-bluewhite)';
+  }
+
   const handleClick = () => {
     if (disabled) {
       return;
@@ -123,7 +130,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
     }
   }, [isActivePath]);
   return (
-    <div className={styles['submenu-item']}>
+    <div className={clsx(styles['submenu-item'], { [styles['submenu-item-mobile']]: isMobile })}>
       <div
         className={clsx(styles.wrapper, {
           [styles['wrapper-active']]: isActivePath,
@@ -144,7 +151,8 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
                 setIsHoveredIcon(false);
               }}
               className={clsx(styles['favorite-button'], {
-                [styles['favorite-button--visible']]: (isHovered || (isFavorite && isChildFavorite)) && !disabled
+                [styles['favorite-button--visible']]:
+                  (isHovered || isMobile || (isFavorite && isChildFavorite)) && !disabled
               })}
               type="button"
               color="ghost"
@@ -156,23 +164,22 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
                 isHoveredIcon || (isFavorite && isChildFavorite) ? (
                   <IconStarFilled32 htmlColor="var(--spectrum-yellow-60)" />
                 ) : (
-                  <IconStarOutlined32 htmlColor="var(--brand-sapphire-60)" />
+                  <IconStarOutlined32 htmlColor={isMobile ? 'var(--unique-white)' : 'var(--brand-sapphire-60)'} />
                 )
               }
             />
           )}
           <div className={styles.title} onClick={handleClick}>
-            <Typography
-              variant="Body1-Medium"
-              color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
-              className={styles.text}
-              title={label}
-            >
+            <Typography variant="Body1-Medium" color={textColor} className={styles.text} title={label}>
               {content || label}
             </Typography>
             {submenu && isVertical && (
               <div className={clsx(styles.icon, { [styles[`icon-rotated`]]: isSubmenuVisible })}>
-                <Icon htmlColor={'var(--brand-sapphire-60)'} containerSize={24} name="IconChevronArrowDownOutlined24" />
+                <Icon
+                  htmlColor={isMobile ? 'var(--unique-white)' : 'var(--brand-sapphire-60)'}
+                  containerSize={24}
+                  name="IconChevronArrowDownOutlined24"
+                />
               </div>
             )}
           </div>

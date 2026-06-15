@@ -1,0 +1,96 @@
+// Размеры из макета `Sidebar adaptive 3.0`
+.drawer {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 100%;
+  background: var(--brand-jeans-20);
+}
+
+.collapseRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: none;
+  background: var(--brand-jeans-20);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--brand-jeans-10);
+  }
+}
+
+.collapseIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.backTitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 4px;
+  background: var(--brand-jeans-30);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.companyName {
+  flex: 1;
+  opacity: 0.5;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.companyAction {
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+// Тело drill-down: пункты идут сверху вниз без распирания по высоте
+.drillBody {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.topSection,
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+}

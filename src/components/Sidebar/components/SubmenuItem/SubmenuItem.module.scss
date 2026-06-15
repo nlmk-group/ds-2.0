@@ -9,6 +9,27 @@
   margin-top: 8px;
 }
 
+// Мобильный (адаптивный) режим: элемент рендерится в тёмном 240px drawer
+.submenu-item-mobile {
+  width: 100%;
+
+  .wrapper:hover {
+    background: var(--brand-jeans-10);
+  }
+
+  .wrapper-active {
+    background: var(--brand-jeans-30);
+
+    &:hover {
+      background: var(--brand-jeans-30);
+    }
+  }
+
+  .wrapper-disabled {
+    background: transparent;
+  }
+}
+
 .head {
   display: flex;
   height: 48px;

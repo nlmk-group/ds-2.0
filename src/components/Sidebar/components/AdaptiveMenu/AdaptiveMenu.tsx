@@ -5,24 +5,24 @@ import { LogoSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, Scrollbar, Typography } from '@components/index';
 import clsx from 'clsx';
 
-import styles from './MobileMenu.module.scss';
+import styles from './AdaptiveMenu.module.scss';
 
 import { SidebarProperties, SubmenuProperties } from '../../context';
 import { useFavorites } from '../../hooks';
-import { IMobileMenuProps, ISidebarProperties } from '../../types';
+import { IAdaptiveMenuProps, ISidebarProperties } from '../../types';
 
 /**
- * MobileMenu — содержимое развёрнутого мобильного drawer Sidebar.
+ * AdaptiveMenu — содержимое развёрнутого адаптивного drawer Sidebar.
  *
  * На верхнем уровне рендерит строку закрытия, бар компании, UserControl и секции
  * пунктов. При активном пункте (`activeItem`) переключается в drill-down: показывает
  * содержимое подменю и строку «назад». Состояние favorites переиспользует useFavorites
  * и пробрасывается через SubmenuProperties (как в десктопном Submenu).
  *
- * @param {IMobileMenuProps} props - Свойства мобильного меню.
- * @returns {JSX.Element} - Мобильный drawer.
+ * @param {IAdaptiveMenuProps} props - Свойства адаптивного меню.
+ * @returns {JSX.Element} - Адаптивный drawer.
  */
-const MobileMenu: FC<IMobileMenuProps> = ({
+const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
   logo,
   systemName,
   locale = ELocaleMapping.ru,
@@ -50,12 +50,12 @@ const MobileMenu: FC<IMobileMenuProps> = ({
 
   if (activeItem) {
     return (
-      <div className={styles.drawer} data-ui-sidebar-mobile-menu>
+      <div className={styles.drawer} data-ui-sidebar-adaptive-menu>
         <button
           type="button"
           className={styles.collapseRow}
           onClick={() => setActiveItem(null)}
-          data-ui-sidebar-mobile-back
+          data-ui-sidebar-adaptive-back
         >
           <span className={styles.collapseIcon}>
             <Icon name="IconChevronArrowLeftOutlined24" containerSize={24} htmlColor="var(--unique-white)" />
@@ -90,7 +90,7 @@ const MobileMenu: FC<IMobileMenuProps> = ({
   }
 
   return (
-    <div className={styles.drawer} data-ui-sidebar-mobile-menu>
+    <div className={styles.drawer} data-ui-sidebar-adaptive-menu>
       <button type="button" className={styles.collapseRow} onClick={collapseSidebar} data-ui-sidebar-collapse-button>
         <span className={styles.collapseIcon}>
           <Icon name="IconChevronArrowLeftOutlined24" containerSize={24} htmlColor="var(--unique-white)" />
@@ -146,6 +146,6 @@ const MobileMenu: FC<IMobileMenuProps> = ({
   );
 };
 
-MobileMenu.displayName = 'MobileMenu';
+AdaptiveMenu.displayName = 'AdaptiveMenu';
 
-export default MobileMenu;
+export default AdaptiveMenu;

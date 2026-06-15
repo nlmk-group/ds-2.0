@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { useIsMobile } from './useIsMobile';
+import { useIsAdaptive } from './useIsAdaptive';
 
 const mockMatchMedia = (matches: boolean) => {
   Object.defineProperty(window, 'matchMedia', {
@@ -19,16 +19,16 @@ const mockMatchMedia = (matches: boolean) => {
   });
 };
 
-describe('useIsMobile', () => {
+describe('useIsAdaptive', () => {
   test('возвращает true когда media query совпадает', () => {
     mockMatchMedia(true);
-    const { result } = renderHook(() => useIsMobile());
+    const { result } = renderHook(() => useIsAdaptive());
     expect(result.current).toBe(true);
   });
 
   test('возвращает false когда media query не совпадает', () => {
     mockMatchMedia(false);
-    const { result } = renderHook(() => useIsMobile());
+    const { result } = renderHook(() => useIsAdaptive());
     expect(result.current).toBe(false);
   });
 });

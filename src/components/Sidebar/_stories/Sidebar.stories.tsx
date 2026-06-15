@@ -252,21 +252,21 @@ SidebarWithCustomLogo.args = {
   systemName: 'НЛМК'
 };
 
-export const SidebarAdaptiveMobile = (argTypes: ISidebarProps): ReactNode => {
+export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
 };
-SidebarAdaptiveMobile.storyName = 'Адаптивный Sidebar';
-SidebarAdaptiveMobile.parameters = {
+SidebarAdaptive.storyName = 'Адаптивный Sidebar';
+SidebarAdaptive.parameters = {
   viewport: {
     options: {
-      mobile: { name: 'Mobile (390×844)', styles: { width: '390px', height: '844px' } }
+      tablet: { name: 'Tablet (800×1340)', styles: { width: '800px', height: '1340px' } }
     }
   }
 };
-SidebarAdaptiveMobile.globals = {
-  viewport: { value: 'mobile', isRotated: false }
+SidebarAdaptive.globals = {
+  viewport: { value: 'tablet', isRotated: false }
 };
-SidebarAdaptiveMobile.args = {
+SidebarAdaptive.args = {
   userName: 'Иван',
   userSurname: 'Иванов',
   systemName: 'НЛМК'

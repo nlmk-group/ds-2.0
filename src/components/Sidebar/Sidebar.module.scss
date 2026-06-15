@@ -1,4 +1,4 @@
-$sidebar-mobile-breakpoint: 650px;
+$sidebar-adaptive-breakpoint: 800px;
 
 @mixin column {
   display: flex;
@@ -176,7 +176,7 @@ $sidebar-mobile-breakpoint: 650px;
   will-change: opacity;
 }
 
-.mobileRoot {
+.adaptiveRoot {
   position: fixed;
   top: 0;
   left: 0;
@@ -184,7 +184,7 @@ $sidebar-mobile-breakpoint: 650px;
   z-index: var(--z-sidebar);
 }
 
-@media (max-width: $sidebar-mobile-breakpoint) {
+@media (max-width: $sidebar-adaptive-breakpoint) {
   .burger {
     width: 48px;
     height: 48px;

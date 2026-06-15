@@ -20,10 +20,10 @@ import { IComponentWithType, IMenuItemProps, ISidebarProps, ISubmenuItemProps } 
 
 import styles from './Sidebar.module.scss';
 
-import { CollapseButton, MenuItem, MobileMenu, Submenu, SubmenuItem, UserControl } from './components';
+import { AdaptiveMenu, CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
-import { useIsMobile } from './hooks';
+import { useIsAdaptive } from './hooks';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -79,11 +79,11 @@ const Sidebar: FC<ISidebarProps> &
 }) => {
   const isBurger = variant === ESidebarVariantMapping.burger;
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
-  const isMobile = useIsMobile();
+  const isAdaptive = useIsAdaptive();
 
   const [isExpanded, setExpanded] = useState(() => {
     if (defaultMenuOpen) return true;
-    if (isMobile) return false;
+    if (isAdaptive) return false;
     return !isVertical && !isBurger;
   });
   const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -180,7 +180,7 @@ const Sidebar: FC<ISidebarProps> &
     return (
       <UserControl
         isExpanded={isExpanded}
-        isVertical={isMobile || isVertical}
+        isVertical={isAdaptive || isVertical}
         isLoggedIn={isLoggedIn}
         userName={userName}
         userSurname={userSurname}
@@ -193,14 +193,14 @@ const Sidebar: FC<ISidebarProps> &
     );
   };
 
-  if ((isMobile || isBurger) && !isExpanded)
+  if ((isAdaptive || isBurger) && !isExpanded)
     return (
       <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
         <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
       </div>
     );
 
-  if (isMobile)
+  if (isAdaptive)
     return (
       <SidebarProperties.Provider
         value={{
@@ -215,11 +215,11 @@ const Sidebar: FC<ISidebarProps> &
           currentPath,
           collapseSidebar,
           onChangeFavorites,
-          isMobile: true
+          isAdaptive: true
         }}
       >
-        <ClickAwayListener onClickAway={collapseSidebar} className={clsx(styles.mobileRoot, className)} style={style}>
-          <MobileMenu
+        <ClickAwayListener onClickAway={collapseSidebar} className={clsx(styles.adaptiveRoot, className)} style={style}>
+          <AdaptiveMenu
             logo={logo}
             systemName={systemName}
             locale={locale}

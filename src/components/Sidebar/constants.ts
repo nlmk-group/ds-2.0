@@ -10,7 +10,8 @@ export const COLLAPSE_TEXTS = {
 } as const;
 
 /**
- * Брейкпоинт (px), ниже которого Sidebar переключается в мобильный режим.
- * Держать синхронно с $sidebar-mobile-breakpoint в Sidebar.module.scss.
+ * Брейкпоинт (px), на котором и ниже Sidebar переключается в адаптивный режим.
+ * Текущее значение соответствует планшетному гриду NLMK (800px). Держать синхронно с
+ * $sidebar-adaptive-breakpoint в Sidebar.module.scss.
  */
-export const SIDEBAR_MOBILE_BREAKPOINT = 650;
+export const SIDEBAR_ADAPTIVE_BREAKPOINT = 800;

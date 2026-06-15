@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { SIDEBAR_MOBILE_BREAKPOINT } from '../constants';
+import { SIDEBAR_ADAPTIVE_BREAKPOINT } from '../constants';
 
 /**
- * Хук useIsMobile определяет, находится ли вьюпорт в мобильном режиме
+ * Хук useIsAdaptive определяет, находится ли вьюпорт в адаптивном режиме
  * (ширина <= breakpoint) через window.matchMedia и реактивно обновляется
  * при изменении ширины окна.
  *
- * @param {number} [breakpoint=SIDEBAR_MOBILE_BREAKPOINT] - Порог ширины в px.
- * @returns {boolean} isMobile - true, если вьюпорт уже порога, иначе false.
+ * @param {number} [breakpoint=SIDEBAR_ADAPTIVE_BREAKPOINT] - Порог ширины в px.
+ * @returns {boolean} isAdaptive - true, если вьюпорт уже порога, иначе false.
  */
-export const useIsMobile = (breakpoint: number = SIDEBAR_MOBILE_BREAKPOINT): boolean => {
+export const useIsAdaptive = (breakpoint: number = SIDEBAR_ADAPTIVE_BREAKPOINT): boolean => {
   const query = `(max-width: ${breakpoint}px)`;
 
-  const [isMobile, setIsMobile] = useState(() => {
+  const [isAdaptive, setIsAdaptive] = useState(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return false;
     return window.matchMedia(query).matches;
   });
@@ -22,7 +22,7 @@ export const useIsMobile = (breakpoint: number = SIDEBAR_MOBILE_BREAKPOINT): boo
     if (typeof window === 'undefined' || !window.matchMedia) return;
 
     const mql = window.matchMedia(query);
-    const onChange = () => setIsMobile(mql.matches);
+    const onChange = () => setIsAdaptive(mql.matches);
 
     onChange();
 
@@ -39,5 +39,5 @@ export const useIsMobile = (breakpoint: number = SIDEBAR_MOBILE_BREAKPOINT): boo
     return () => legacy.removeListener(onChange);
   }, [query]);
 
-  return isMobile;
+  return isAdaptive;
 };

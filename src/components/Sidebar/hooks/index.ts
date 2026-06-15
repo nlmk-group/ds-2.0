@@ -1,2 +1,2 @@
 export * from './useFavorites';
-export * from './useIsMobile';
+export * from './useIsAdaptive';

@@ -272,10 +272,10 @@ export interface ISidebarProperties {
   collapseSidebar: () => void;
 
   /**
-   * Флаг мобильного (адаптивного) режима — влияет на стили вложенных элементов.
+   * Флаг адаптивного режима — влияет на стили вложенных элементов.
    * @default false
    */
-  isMobile?: boolean;
+  isAdaptive?: boolean;
 }
 
 export interface ISubmenuProperties {
@@ -374,7 +374,7 @@ export interface ISubmenuItemProps extends PropsWithChildren {
   disabled?: boolean;
 }
 
-export interface IMobileMenuProps {
+export interface IAdaptiveMenuProps {
   /**
    * Кастомный логотип. Если не передан — стандартный.
    */

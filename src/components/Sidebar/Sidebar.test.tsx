@@ -4,12 +4,12 @@ import { fireEvent, render } from '@testing-library/react';
 
 import Sidebar from './index';
 
-const mockMatchMedia = (isMobile: boolean) => {
+const mockMatchMedia = (isAdaptive: boolean) => {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     configurable: true,
     value: (query: string) => ({
-      matches: isMobile,
+      matches: isAdaptive,
       media: query,
       onchange: null,
       addEventListener: jest.fn(),
@@ -35,14 +35,14 @@ describe('Sidebar адаптив', () => {
     mockMatchMedia(false);
   });
 
-  test('на мобайле в свёрнутом виде рендерит бургер-триггер', () => {
+  test('в адаптивном режиме в свёрнутом виде рендерит бургер-триггер', () => {
     mockMatchMedia(true);
     const { container } = render(<Sidebar currentPath="" />);
     expect(container.querySelector('[data-ui-sidebar-burger]')).toBeInTheDocument();
     expect(container.querySelector('[data-ui-sidebar-top-section]')).not.toBeInTheDocument();
   });
 
-  test('на мобайле после тапа по бургеру открывается drawer с пунктами', () => {
+  test('в адаптивном режиме после тапа по бургеру открывается drawer с пунктами', () => {
     mockMatchMedia(true);
     const { container } = render(
       <Sidebar currentPath="/a" systemName="ACME">
@@ -50,11 +50,11 @@ describe('Sidebar адаптив', () => {
       </Sidebar>
     );
     fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
-    expect(container.querySelector('[data-ui-sidebar-mobile-menu]')).toBeInTheDocument();
+    expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).toBeInTheDocument();
     expect(container.querySelector('[data-ui-sidebar-top-section]')).toBeInTheDocument();
   });
 
-  test('на мобайле тап по пункту с детьми открывает drill-down и возвращает назад', () => {
+  test('в адаптивном режиме тап по пункту с детьми открывает drill-down и возвращает назад', () => {
     mockMatchMedia(true);
     const { container, getByText, queryByText } = render(
       <Sidebar currentPath="/x">
@@ -66,14 +66,14 @@ describe('Sidebar адаптив', () => {
     fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
     fireEvent.click(getByText('Родитель'));
     expect(getByText('Ребёнок')).toBeInTheDocument();
-    expect(container.querySelector('[data-ui-sidebar-mobile-back]')).toBeInTheDocument();
+    expect(container.querySelector('[data-ui-sidebar-adaptive-back]')).toBeInTheDocument();
 
-    fireEvent.click(container.querySelector('[data-ui-sidebar-mobile-back]')!);
+    fireEvent.click(container.querySelector('[data-ui-sidebar-adaptive-back]')!);
     expect(queryByText('Ребёнок')).not.toBeInTheDocument();
     expect(getByText('Родитель')).toBeInTheDocument();
   });
 
-  test('на мобайле в drill-down доступен интерактив избранного', () => {
+  test('в адаптивном режиме в drill-down доступен интерактив избранного', () => {
     mockMatchMedia(true);
     const { container, getByText } = render(
       <Sidebar currentPath="/x" allowFavorites onChangeFavorites={() => {}}>
@@ -89,7 +89,7 @@ describe('Sidebar адаптив', () => {
     expect(getByText('Ребёнок')).toBeInTheDocument();
   });
 
-  test('на мобайле horizontal схлопывается в вертикальный бургер-drawer', () => {
+  test('в адаптивном режиме horizontal схлопывается в вертикальный бургер-drawer', () => {
     mockMatchMedia(true);
     const { container } = render(
       <Sidebar currentPath="/a" orientation="horizontal">
@@ -98,6 +98,6 @@ describe('Sidebar адаптив', () => {
     );
     expect(container.querySelector('[data-ui-sidebar-burger]')).toBeInTheDocument();
     fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
-    expect(container.querySelector('[data-ui-sidebar-mobile-menu]')).toBeInTheDocument();
+    expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).toBeInTheDocument();
   });
 });

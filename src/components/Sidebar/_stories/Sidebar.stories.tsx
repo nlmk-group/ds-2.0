@@ -256,8 +256,6 @@ export const SidebarAdaptiveMobile = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
 };
 SidebarAdaptiveMobile.storyName = 'Адаптивный Sidebar';
-// Канвас этой истории открывается в мобильном вьюпорте (< 650px),
-// поэтому Sidebar сразу рендерится в адаптивном режиме (бургер + drawer).
 SidebarAdaptiveMobile.parameters = {
   viewport: {
     options: {

@@ -1,4 +1,3 @@
-// Размеры из макета `Sidebar adaptive 3.0`
 .drawer {
   display: flex;
   flex-direction: column;
@@ -80,7 +79,6 @@
   overflow-x: hidden;
 }
 
-// Тело drill-down: пункты идут сверху вниз без распирания по высоте
 .drillBody {
   display: flex;
   flex-direction: column;

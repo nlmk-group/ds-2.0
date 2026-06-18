@@ -20,9 +20,10 @@ import { IComponentWithType, IMenuItemProps, ISidebarProps, ISubmenuItemProps } 
 
 import styles from './Sidebar.module.scss';
 
-import { CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
+import { AdaptiveMenu, CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
+import { useIsAdaptive } from './hooks';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -78,9 +79,11 @@ const Sidebar: FC<ISidebarProps> &
 }) => {
   const isBurger = variant === ESidebarVariantMapping.burger;
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
+  const isAdaptive = useIsAdaptive();
 
   const [isExpanded, setExpanded] = useState(() => {
     if (defaultMenuOpen) return true;
+    if (isAdaptive) return false;
     return !isVertical && !isBurger;
   });
   const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -177,7 +180,7 @@ const Sidebar: FC<ISidebarProps> &
     return (
       <UserControl
         isExpanded={isExpanded}
-        isVertical={isVertical}
+        isVertical={isAdaptive || isVertical}
         isLoggedIn={isLoggedIn}
         userName={userName}
         userSurname={userSurname}
@@ -190,11 +193,57 @@ const Sidebar: FC<ISidebarProps> &
     );
   };
 
-  if (isBurger && !isExpanded)
+  if ((isAdaptive || isBurger) && !isExpanded)
     return (
       <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
         <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
       </div>
+    );
+
+  if (isAdaptive)
+    return (
+      <SidebarProperties.Provider
+        value={{
+          isExpanded,
+          activeItem,
+          allowFavorites,
+          orientation: ESidebarOrientationMapping.vertical,
+          setSubmenuItems,
+          setActiveItem,
+          isScrollingDueToClick,
+          setIsScrollingDueToClick,
+          currentPath,
+          collapseSidebar,
+          onChangeFavorites
+        }}
+      >
+        <ClickAwayListener onClickAway={collapseSidebar} className={clsx(styles.adaptiveRoot, className)} style={style}>
+          <AdaptiveMenu
+            logo={logo}
+            systemName={systemName}
+            locale={locale}
+            isLoggedIn={isLoggedIn}
+            onLogin={onLogin}
+            onLogout={onLogout}
+            onClickLogo={onClickLogo}
+            userControl={renderUserControl()}
+            topSectionItems={topSectionItems}
+            bottomSectionItems={bottomSectionItems}
+          />
+
+          {overlay && Boolean(activeItem) && (
+            <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+          )}
+
+          <Submenu
+            title={activeItem ?? ''}
+            isOpen={Boolean(activeItem)}
+            orientation={ESidebarOrientationMapping.vertical}
+          >
+            {submenuItems}
+          </Submenu>
+        </ClickAwayListener>
+      </SidebarProperties.Provider>
     );
 
   return (

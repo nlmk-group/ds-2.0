@@ -1,3 +1,5 @@
+$sidebar-adaptive-breakpoint: 800px;
+
 @mixin column {
   display: flex;
   flex-direction: column;
@@ -172,4 +174,19 @@
   opacity: 0;
   animation: fadeIn 0.3s linear forwards;
   will-change: opacity;
+}
+
+.adaptiveRoot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: var(--z-sidebar);
+}
+
+@media (max-width: $sidebar-adaptive-breakpoint) {
+  .burger {
+    width: 48px;
+    height: 48px;
+  }
 }

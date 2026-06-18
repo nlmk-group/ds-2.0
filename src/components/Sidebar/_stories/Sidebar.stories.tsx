@@ -251,3 +251,23 @@ SidebarWithCustomLogo.args = {
   userSurname: 'Иванов',
   systemName: 'НЛМК'
 };
+
+export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
+};
+SidebarAdaptive.storyName = 'Адаптивный Sidebar';
+SidebarAdaptive.parameters = {
+  viewport: {
+    options: {
+      tablet: { name: 'Tablet (800×1340)', styles: { width: '800px', height: '1340px' } }
+    }
+  }
+};
+SidebarAdaptive.globals = {
+  viewport: { value: 'tablet', isRotated: false }
+};
+SidebarAdaptive.args = {
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};

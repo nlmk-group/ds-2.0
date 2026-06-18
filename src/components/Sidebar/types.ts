@@ -270,12 +270,6 @@ export interface ISidebarProperties {
    * Функция сворачивания бокового меню.
    */
   collapseSidebar: () => void;
-
-  /**
-   * Флаг адаптивного режима — влияет на стили вложенных элементов.
-   * @default false
-   */
-  isAdaptive?: boolean;
 }
 
 export interface ISubmenuProperties {
@@ -425,16 +419,6 @@ export interface IAdaptiveMenuProps {
    * Пункты нижней секции.
    */
   bottomSectionItems: ReactNode;
-
-  /**
-   * Активный пункт (заголовок раскрытого подменю) или null.
-   */
-  activeItem: string | null;
-
-  /**
-   * Узлы подменю активного пункта (для drill-down).
-   */
-  submenuItems: ReactNode;
 }
 
 export interface IComponentWithType extends FC<ISidebarProps> {

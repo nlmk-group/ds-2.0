@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { ELocaleMapping } from '@components/declaration';
 import { LogoSvgIcon } from '@components/Icon/IconsInternal';
@@ -7,17 +7,15 @@ import clsx from 'clsx';
 
 import styles from './AdaptiveMenu.module.scss';
 
-import { SidebarProperties, SubmenuProperties } from '../../context';
-import { useFavorites } from '../../hooks';
+import { SidebarProperties } from '../../context';
 import { IAdaptiveMenuProps, ISidebarProperties } from '../../types';
 
 /**
  * AdaptiveMenu — содержимое развёрнутого адаптивного drawer Sidebar.
  *
- * На верхнем уровне рендерит строку закрытия, бар компании, UserControl и секции
- * пунктов. При активном пункте (`activeItem`) переключается в drill-down: показывает
- * содержимое подменю и строку «назад». Состояние favorites переиспользует useFavorites
- * и пробрасывается через SubmenuProperties (как в десктопном Submenu).
+ * Рендерит строку закрытия, бар компании, UserControl и секции пунктов. Раскрытие
+ * подменю работает как в десктопной версии — через fly-out <Submenu>, который
+ * рендерится в самом Sidebar, поэтому собственной логики подменю здесь нет.
  *
  * @param {IAdaptiveMenuProps} props - Свойства адаптивного меню.
  * @returns {JSX.Element} - Адаптивный drawer.
@@ -32,62 +30,13 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
   onClickLogo,
   userControl,
   topSectionItems,
-  bottomSectionItems,
-  activeItem,
-  submenuItems
+  bottomSectionItems
 }) => {
-  const { collapseSidebar, setActiveItem, onChangeFavorites } = useContext<ISidebarProperties>(SidebarProperties);
-  const { handleFavorites, checkIsFavorite, checkChildIsFavorite, favorites } = useFavorites();
-  const [submenuActiveItem, setSubmenuActiveItem] = useState<string | null>(null);
-
-  useEffect(() => {
-    onChangeFavorites(favorites);
-  }, [favorites]);
+  const { collapseSidebar } = useContext<ISidebarProperties>(SidebarProperties);
 
   const actionIconName = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
   const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
   const handleAction = isLoggedIn ? onLogout : onLogin;
-
-  if (activeItem) {
-    return (
-      <div className={styles.drawer} data-ui-sidebar-adaptive-menu>
-        <button
-          type="button"
-          className={styles.collapseRow}
-          onClick={() => setActiveItem(null)}
-          data-ui-sidebar-adaptive-back
-        >
-          <span className={styles.collapseIcon}>
-            <Icon name="IconChevronArrowLeftOutlined24" containerSize={24} htmlColor="var(--unique-white)" />
-          </span>
-          <Typography
-            variant="Body1-Medium"
-            color="var(--unique-white)"
-            className={styles.backTitle}
-            title={activeItem}
-          >
-            {activeItem}
-          </Typography>
-        </button>
-
-        <Scrollbar className={styles.drillBody}>
-          <SubmenuProperties.Provider
-            value={{
-              showFavorites: false,
-              activeItem: submenuActiveItem,
-              handleFavorites,
-              checkChildIsFavorite,
-              checkIsFavorite,
-              setActiveItem: setSubmenuActiveItem,
-              setSubmenuItems: () => {}
-            }}
-          >
-            {submenuItems}
-          </SubmenuProperties.Provider>
-        </Scrollbar>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.drawer} data-ui-sidebar-adaptive-menu>

@@ -54,9 +54,9 @@ describe('Sidebar адаптив', () => {
     expect(container.querySelector('[data-ui-sidebar-top-section]')).toBeInTheDocument();
   });
 
-  test('в адаптивном режиме тап по пункту с детьми открывает drill-down и возвращает назад', () => {
+  test('в адаптивном режиме тап по пункту с детьми открывает fly-out подменю (как на десктопе)', () => {
     mockMatchMedia(true);
-    const { container, getByText, queryByText } = render(
+    const { container, getByText } = render(
       <Sidebar currentPath="/x">
         <Sidebar.MenuItem label="Родитель" path="/p" icon="IconStarFilled24" position="top">
           <Sidebar.SubmenuItem label="Ребёнок" path="/p/child" />
@@ -65,27 +65,7 @@ describe('Sidebar адаптив', () => {
     );
     fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
     fireEvent.click(getByText('Родитель'));
-    expect(getByText('Ребёнок')).toBeInTheDocument();
-    expect(container.querySelector('[data-ui-sidebar-adaptive-back]')).toBeInTheDocument();
-
-    fireEvent.click(container.querySelector('[data-ui-sidebar-adaptive-back]')!);
-    expect(queryByText('Ребёнок')).not.toBeInTheDocument();
-    expect(getByText('Родитель')).toBeInTheDocument();
-  });
-
-  test('в адаптивном режиме в drill-down доступен интерактив избранного', () => {
-    mockMatchMedia(true);
-    const { container, getByText } = render(
-      <Sidebar currentPath="/x" allowFavorites onChangeFavorites={() => {}}>
-        <Sidebar.MenuItem label="Родитель" path="/p" icon="IconStarFilled24" position="top">
-          <Sidebar.SubmenuItem label="Ребёнок" path="/p/child" />
-        </Sidebar.MenuItem>
-      </Sidebar>
-    );
-    fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
-    fireEvent.click(getByText('Родитель'));
-    // в drill-down у SubmenuItem есть кнопка-звезда избранного
-    expect(container.querySelectorAll('button').length).toBeGreaterThan(1);
+    expect(container.querySelector('[data-ui-sidebar-submenu]')).toBeInTheDocument();
     expect(getByText('Ребёнок')).toBeInTheDocument();
   });
 

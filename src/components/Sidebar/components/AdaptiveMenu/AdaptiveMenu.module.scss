@@ -30,12 +30,6 @@
   flex-shrink: 0;
 }
 
-.backTitle {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .company {
   display: flex;
   align-items: center;
@@ -74,14 +68,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.drillBody {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;

@@ -214,8 +214,7 @@ const Sidebar: FC<ISidebarProps> &
           setIsScrollingDueToClick,
           currentPath,
           collapseSidebar,
-          onChangeFavorites,
-          isAdaptive: true
+          onChangeFavorites
         }}
       >
         <ClickAwayListener onClickAway={collapseSidebar} className={clsx(styles.adaptiveRoot, className)} style={style}>
@@ -230,9 +229,19 @@ const Sidebar: FC<ISidebarProps> &
             userControl={renderUserControl()}
             topSectionItems={topSectionItems}
             bottomSectionItems={bottomSectionItems}
-            activeItem={activeItem}
-            submenuItems={submenuItems}
           />
+
+          {overlay && Boolean(activeItem) && (
+            <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+          )}
+
+          <Submenu
+            title={activeItem ?? ''}
+            isOpen={Boolean(activeItem)}
+            orientation={ESidebarOrientationMapping.vertical}
+          >
+            {submenuItems}
+          </Submenu>
         </ClickAwayListener>
       </SidebarProperties.Provider>
     );

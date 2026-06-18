@@ -178,6 +178,7 @@ export { IconFullScreenOpenFilled16, IconFullScreenOpenFilled24, IconFullScreenO
 export { IconFullScreenOpenOutlined16, IconFullScreenOpenOutlined24, IconFullScreenOpenOutlined32 } from './FullScreenOpenOutlined';
 export { IconFunctionOutlined16, IconFunctionOutlined24, IconFunctionOutlined32 } from './FunctionOutlined';
 export { IconGraphChartTimeline16, IconGraphChartTimeline24, IconGraphChartTimeline32 } from './GraphChartTimeline';
+export { IconGuideOutlined16, IconGuideOutlined24, IconGuideOutlined32 } from './GuideOutlined';
 export { IconHandPanToolPalmsFilled16, IconHandPanToolPalmsFilled24, IconHandPanToolPalmsFilled32 } from './HandPanToolPalmsFilled';
 export { IconHandPanToolPalmsOutlined16, IconHandPanToolPalmsOutlined24, IconHandPanToolPalmsOutlined32 } from './HandPanToolPalmsOutlined';
 export { IconHeartFilled16, IconHeartFilled24, IconHeartFilled32 } from './HeartFilled';
@@ -235,6 +236,7 @@ export { IconNotificationsBellOffFilled16, IconNotificationsBellOffFilled24, Ico
 export { IconNotificationsBellOutlined16, IconNotificationsBellOutlined24, IconNotificationsBellOutlined32 } from './NotificationsBellOutlined';
 export { IconNumbersOutlined16, IconNumbersOutlined24, IconNumbersOutlined32 } from './NumbersOutlined';
 export { IconParentalLeaveFilled16, IconParentalLeaveFilled24, IconParentalLeaveFilled32 } from './ParentalLeaveFilled';
+export { IconPauseCircleOutlined16, IconPauseCircleOutlined24, IconPauseCircleOutlined32 } from './PauseCircleOutlined';
 export { IconPauseFilled16, IconPauseFilled24, IconPauseFilled32 } from './PauseFilled';
 export { IconPennantFilled16, IconPennantFilled24, IconPennantFilled32 } from './PennantFilled';
 export { IconPennantOutlined16, IconPennantOutlined24, IconPennantOutlined32 } from './PennantOutlined';

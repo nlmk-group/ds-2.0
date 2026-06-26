@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "adaptive" as *;
 
 $radio-wrapper-size: 32px;
 $radio-circle-size: 20px;
@@ -33,6 +34,15 @@ $radio-colors: (
 
 .radio {
   display: flex;
+
+  @include touch {
+    min-height: 44px;
+    align-items: center;
+
+    input[type="radio"] {
+      @include touch-target;
+    }
+  }
 
   // Миксин для установки размеров круга радио-кнопки
   @mixin radio-circle($size) {

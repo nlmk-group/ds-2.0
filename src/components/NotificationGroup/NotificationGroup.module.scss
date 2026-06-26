@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .group {
   display: flex;
   flex-direction: column;
@@ -100,4 +102,11 @@
 
 .toggle-wrapper-open {
   margin-bottom: -8px;
+}
+
+@include touch {
+  .toggle-wrapper {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }

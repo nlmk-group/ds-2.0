@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .arrow {
   height: 24px;
   width: 24px;
@@ -21,5 +23,12 @@
     path {
       fill: var(--steel-70);
     }
+  }
+
+  @include touch {
+    @include touch-target;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }

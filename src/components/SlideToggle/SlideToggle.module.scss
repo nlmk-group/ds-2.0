@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .slide-toggle-wrapper {
   position: relative;
   &-compact {
@@ -21,6 +23,14 @@
 
   &-compact {
     height: 30px;
+  }
+
+  @include touch {
+    &-default,
+    &-compact {
+      height: auto;
+      min-height: 44px;
+    }
   }
 }
 

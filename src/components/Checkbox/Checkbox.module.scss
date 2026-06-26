@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "adaptive" as *;
 
 $checkbox-size: 18px;
 $checkbox-icon-size: 14px;
@@ -80,6 +81,12 @@ $checkbox-colors: (
   justify-content: center;
   position: relative;
   box-sizing: border-box;
+
+  @include touch {
+    @include touch-target;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .checkbox {

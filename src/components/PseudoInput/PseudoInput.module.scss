@@ -42,10 +42,14 @@ $children-offset: 2px;
 .suffix {
   display: flex;
   gap: 8px;
+  min-width: 0;
 
   [data-ui-pseudo-input-children] {
     position: relative;
     top: -$children-offset;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .s & [data-ui-pseudo-input-children] {

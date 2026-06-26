@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin height-width-helper($val) {
   height: $val;
   width: $val;
@@ -263,5 +265,12 @@
 .small-text-button.small-text-button {
   &:hover {
     background-color: transparent;
+  }
+}
+
+@include touch {
+  .btn-wrapper,
+  .btn-wrapper-medium {
+    @include touch-target;
   }
 }

@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin icon-center {
   width: 32px;
   display: flex;
@@ -70,4 +72,17 @@
 
 .add-file-btn {
   margin-left: auto;
+}
+
+@include touch {
+  .icon-wrapper {
+    @include touch-target;
+  }
+
+  .control-btn {
+    button {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
 }

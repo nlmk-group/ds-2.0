@@ -29,7 +29,7 @@
     &-default,
     &-compact {
       height: auto;
-      min-height: 44px;
+      min-height: $touch-target;
     }
   }
 }

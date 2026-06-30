@@ -356,7 +356,7 @@
 @include touch {
   .compact,
   .extra-compact {
-    min-height: 44px;
+    min-height: $touch-target;
   }
 
   .icon-button-compact,

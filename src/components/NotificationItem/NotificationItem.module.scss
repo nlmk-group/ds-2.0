@@ -24,7 +24,7 @@
   }
 
   @include touch {
-    min-height: 44px;
+    min-height: $touch-target;
     align-items: center;
   }
 }

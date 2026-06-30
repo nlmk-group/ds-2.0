@@ -106,7 +106,6 @@
 
 @include touch {
   .toggle-wrapper {
-    min-width: 44px;
-    min-height: 44px;
+    @include touch-target;
   }
 }

@@ -49,7 +49,7 @@
   @include touch {
     &--medium,
     &--small {
-      min-height: 44px;
+      min-height: $touch-target;
     }
   }
 }

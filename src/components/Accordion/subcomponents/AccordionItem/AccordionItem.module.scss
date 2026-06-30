@@ -112,12 +112,6 @@
     .content {
       padding: 4px 16px 8px 16px;
     }
-
-    @include touch {
-      .header {
-        min-height: 44px;
-      }
-    }
   }
 
   &.xs {
@@ -126,10 +120,13 @@
     .content {
       padding: 2px 16px 4px 16px;
     }
+  }
 
+  &.s,
+  &.xs {
     @include touch {
       .header {
-        min-height: 44px;
+        min-height: $touch-target;
       }
     }
   }

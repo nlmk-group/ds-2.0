@@ -36,7 +36,7 @@ $radio-colors: (
   display: flex;
 
   @include touch {
-    min-height: 44px;
+    min-height: $touch-target;
     align-items: center;
 
     input[type="radio"] {

@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .item {
   display: flex;
   align-items: center;
@@ -19,6 +21,11 @@
   &-active,
   &-active:hover {
     background: var(--brand-sapphire-10);
+  }
+
+  @include touch {
+    min-height: $touch-target;
+    align-items: center;
   }
 }
 

@@ -1,0 +1,22 @@
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+
+$touch-target: 44px;
+
+@mixin down($bp) {
+  @media (max-width: #{$bp - 1px}) {
+    @content;
+  }
+}
+
+@mixin touch {
+  @media (any-pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin touch-target($size: $touch-target) {
+  min-width: $size;
+  min-height: $size;
+}

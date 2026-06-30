@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin content-helper($bg, $color) {
   background: $bg;
   color: $color;
@@ -15,6 +17,12 @@
   gap: 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  @include down($bp-lg) {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
 
   &-indication:before {
     content: "";
@@ -103,6 +111,10 @@
   align-items: center;
   gap: 8px;
   .close {
+    @include touch {
+      @include touch-target;
+    }
+
     &:hover {
       background-color: unset;
     }
@@ -128,6 +140,10 @@
 
   .action {
     padding: 0;
+    @include touch {
+      @include touch-target;
+    }
+
     &:hover {
       background-color: unset;
     }

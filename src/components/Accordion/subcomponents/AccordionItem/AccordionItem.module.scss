@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin padding($top-bottom, $left-right) {
   .header {
     padding: $top-bottom $left-right;
@@ -117,6 +119,15 @@
 
     .content {
       padding: 2px 16px 4px 16px;
+    }
+  }
+
+  &.s,
+  &.xs {
+    @include touch {
+      .header {
+        min-height: $touch-target;
+      }
     }
   }
 }

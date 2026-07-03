@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin standard-helper($bg, $color) {
   background: $bg;
   color: $color;
@@ -60,5 +62,18 @@
         background-color: unset;
       }
     }
+  }
+}
+
+@include down($bp-lg) {
+  .wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@include touch {
+  .content .action-wrapper .close {
+    @include touch-target;
   }
 }

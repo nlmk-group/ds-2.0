@@ -1,0 +1,12 @@
+.wrapper {
+  background-color: var(--unique-background);
+  padding: 30px;
+  border-radius: 10px;
+  width: 900px !important;
+}
+
+.alert {
+  position: absolute;
+  top: -50px;
+  right: 0;
+}

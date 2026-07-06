@@ -75,16 +75,13 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   size: {
-    description: 'Необязательное свойство. Размер компонента.',
+    description: 'Размер компонента – <b>M | S</b>',
     table: {
-      defaultValue: {
-        summary: EDnDSizes.l
-      },
-      type: {
-        summary: Object.values(EDnDSizes).join(' | ')
-      }
+      defaultValue: { summary: 'M' },
+      type: { summary: 'string' }
     },
-    options: Object.values(EDnDSizes),
+    options: ['M', 'S'],
+    mapping: { M: EDnDSizes.M, S: EDnDSizes.S },
     control: { type: 'select' }
   },
   withIcon: {

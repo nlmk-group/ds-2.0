@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
 import { IconStarOutlined24, ToggleButtonGroup, Typography } from '@components/index';
-import { action } from 'storybook/actions';
 import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import style from './ToggleButtonGroup.module.scss';
 

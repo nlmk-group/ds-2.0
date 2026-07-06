@@ -1,5 +1,6 @@
 import { CSSProperties, Dispatch, FC, PropsWithChildren, ReactNode, SetStateAction } from 'react';
 
+import { ELocaleMapping } from '@components/declaration';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
@@ -9,6 +10,12 @@ type ChangeFavoritesHandler = (v: string[]) => void;
 type TContentLabel = ReactNode | string;
 
 export interface ISidebarProps extends PropsWithChildren {
+  /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
+
   /**
    * Ориентация бокового меню.
    * @default ${ESidebarOrientationMapping.vertical}
@@ -121,6 +128,12 @@ export interface ICollapseButtonProps {
    * Функция обработки клика по кнопке сворачивания.
    */
   onClick: () => void;
+
+  /**
+   * Локаль для текстов кнопки.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 }
 
 export interface IUserControlProps extends PropsWithChildren {

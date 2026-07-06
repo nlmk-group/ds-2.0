@@ -19,9 +19,7 @@ enum TabIds {
 }
 
 const COMPONENT_NAME = 'Pagination';
-
-const FIGMA_LINK =
-  'https://www.figma.com/design/IcmRCuwp4SBPQ9hzGpO6zn/NLMK-UI-(Community)?node-id=597-207701&t=v8qKXVprY9DM1T14-1';
+const FIGMA_LINK = 'https://www.figma.com/design/oPDzwafb5EpQ3M7vckuG5x/NLMK-Table?node-id=7107-38250';
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
@@ -30,13 +28,56 @@ const Stories = (): JSX.Element => {
     return activeTab === tab;
   };
 
+  const defaultPaginationCode = `import { Pagination } from '@nlmk/ds-2.0';
+import React, { useState } from 'react';
+
+export default App = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  return <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25} />;
+};
+`;
+
+  const collapsedPaginationCode = `import { Pagination } from '@nlmk/ds-2.0';
+import React, { useState } from 'react';
+
+export default App = () => {
+  const [currentPage, setCurrentPage] = useState(12);
+
+  return <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25} />;
+};
+`;
+
+  const paginationWithSelectCode = `import { Pagination } from '@nlmk/ds-2.0';
+import React, { useState } from 'react';
+
+export default App = () => {
+  const [currentPage, setCurrentPage] = useState(3);
+  const [pageSize, setPageSize] = useState(20);
+
+  return (
+    <Pagination
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+      maxPageCount={40}
+      withSelect
+      elementsPerPage={pageSize}
+      setElementsPerPage={setPageSize}
+      itemsLabel="строк"
+      pageSizes={[10, 20, 50, 100]}
+    />
+  );
+};
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Pagination - элемент, нужный для навигации по страницам сайта."
+        description="Pagination используется для постраничной навигации и поддерживает как переключение страниц, так и настройку количества элементов на странице."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
+        figmaLink={FIGMA_LINK}
       />
 
       <div className={styles.tabs}>
@@ -49,36 +90,15 @@ const Stories = (): JSX.Element => {
 
       {activeTab == TabIds.dev && (
         <>
+          <Editor minHeight={200} description="Базовое переключение страниц." code={defaultPaginationCode} />
           <Editor
-            height={200}
-            description="Pagination по умолчанию. Компонент предназначен только для переключения страниц"
-            code={`import { Pagination } from '@nlmk/ds-2.0';
-import React, { useState } from 'react';
-
-export default App = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  return (
-    <>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25}/>
-    </>
-    )
-            }
-              `}
+            description="Компактный режим с разрывами при большом количестве страниц."
+            code={collapsedPaginationCode}
           />
           <Editor
-            description="Pagination с разрывом. Компонент скрывает элементы для своей компактности."
-            code={`import { Pagination } from '@nlmk/ds-2.0';
-import React, { useState } from 'react';
-
-export default App = () => {
-  const [currentPage, setCurrentPage] = useState(7);
-  return (
-    <>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25}/>
-    </>
-            )
-            }
-              `}
+            description="Пагинация с выбором количества элементов через withSelect."
+            code={paginationWithSelectCode}
+            previewPaneWidth="60%"
           />
           <Properties argsTypes={argsTypes} />
         </>

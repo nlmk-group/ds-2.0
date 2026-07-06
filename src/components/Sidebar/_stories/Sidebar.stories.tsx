@@ -125,11 +125,11 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
         <Sidebar.SubmenuItem path="НЛМК-США" label="НЛМК-США" onClick={() => setCurrentPath('НЛМК-США')} />
       </Sidebar.MenuItem>
       <Sidebar.MenuItem
-        path="Кастомный раздел меню"
-        label="Кастомный раздел меню"
+        path="Раздел меню"
+        label="Раздел меню"
         position="top"
         icon="IconLightningStroke32"
-        onClick={() => setCurrentPath('Кастомный раздел меню')}
+        onClick={() => setCurrentPath('Раздел меню')}
       />
       <Sidebar.MenuItem
         path="Отключенный раздел"

@@ -1,6 +1,6 @@
-# ErrorPage Component
+# Компонент ErrorPage
 
-## Версия компонента v3.0
+## Версия компонента 3.0
 
 Компонент ErrorPage страницу ошибки с кодом ошибки, описанием и подсказкой для пользователя.
 
@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import ErrorPage from '@your-package/error-page';
+
 const App = () => {
   return (
     <ErrorPage

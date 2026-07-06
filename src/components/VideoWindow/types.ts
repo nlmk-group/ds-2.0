@@ -1,5 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 
+import { ELocaleMapping } from '@components/declaration';
+
 /**
  * Тип, описывающий начальную позицию окна при перетаскивании
  */
@@ -34,4 +36,8 @@ export type TVideoWindowProps = {
   draggable?: boolean;
   /** Начальная позиция окна при перетаскивании */
   draggableStartPosition?: TDraggableStartPosition;
+  /** Язык для кнопок управления окном
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 };

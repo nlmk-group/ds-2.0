@@ -1,4 +1,5 @@
 import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+
 import Header from '..';
 import { DecoratorDefault } from '../../_storybook/Decorator.stories';
 import Stories from './Stories';
@@ -7,6 +8,10 @@ import Stories from './Stories';
   title="Components/Header/Info"
   component={Header}
   parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=315-23434'
+    },
     jest: ['Header.test.tsx']
   }}
 />

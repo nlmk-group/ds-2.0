@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Select } from '@components/index';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { sizesMappingInput } from '@components/declaration';
+import { Select } from '@components/index';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 describe('Select Component', () => {
   const options = [
@@ -11,19 +11,10 @@ describe('Select Component', () => {
     { value: '3', label: 'Option 3' }
   ];
 
-  const optionWithIcon = [
-    { value: '1', label: 'Option 1', iconRight: <div>Right</div>, iconLeft: <div>Left</div> }
-  ];
+  const optionWithIcon = [{ value: '1', label: 'Option 1', iconRight: <div>Right</div>, iconLeft: <div>Left</div> }];
 
   test('renders Select component and opens options on focus', async () => {
-    render(
-      <Select
-        options={options}
-        label="Select Label"
-        selected={[]}
-        onSelectionChange={jest.fn()}
-      />
-    );
+    render(<Select options={options} label="Select Label" selected={[]} onSelectionChange={jest.fn()} />);
 
     const selectInput = screen.getByTestId('select-input');
     expect(selectInput).toBeInTheDocument();
@@ -77,14 +68,7 @@ describe('Select Component', () => {
   });
 
   test('closes the options list when an option is clicked', async () => {
-    render(
-      <Select
-        options={options}
-        label="Select Label"
-        selected={[]}
-        onSelectionChange={jest.fn()}
-      />
-    );
+    render(<Select options={options} label="Select Label" selected={[]} onSelectionChange={jest.fn()} />);
 
     fireEvent.focus(screen.getByTestId('select-input'));
 
@@ -96,14 +80,7 @@ describe('Select Component', () => {
   });
 
   test('displays no options message when options are empty', () => {
-    render(
-      <Select
-        options={[]}
-        label="Select Label"
-        selected={[]}
-        onSelectionChange={jest.fn()}
-      />
-    );
+    render(<Select options={[]} label="Select Label" selected={[]} onSelectionChange={jest.fn()} />);
 
     fireEvent.focus(screen.getByTestId('select-input'));
 
@@ -111,16 +88,8 @@ describe('Select Component', () => {
   });
 
   test('It should render an option with left icon', () => {
-    const optionWithIcon = [
-      { value: '1', label: 'Option 1', iconLeft: <div>Left</div> }
-    ];
-    render(
-      <Select
-        options={optionWithIcon}
-        selected={''}
-        onSelectionChange={jest.fn()}
-      />
-    );
+    const optionWithIcon = [{ value: '1', label: 'Option 1', iconLeft: <div>Left</div> }];
+    render(<Select options={optionWithIcon} selected={''} onSelectionChange={jest.fn()} />);
     const selectInput = screen.getByTestId('select-input');
 
     fireEvent.focus(selectInput);
@@ -130,13 +99,7 @@ describe('Select Component', () => {
   });
 
   test('It should render an option with right icon', () => {
-    render(
-      <Select
-        options={optionWithIcon}
-        selected={''}
-        onSelectionChange={jest.fn()}
-      />
-    );
+    render(<Select options={optionWithIcon} selected={''} onSelectionChange={jest.fn()} />);
     const selectInput = screen.getByTestId('select-input');
 
     fireEvent.focus(selectInput);
@@ -147,44 +110,23 @@ describe('Select Component', () => {
 
   describe('While rendering stealthy select', () => {
     test('It should render an stealthy select', () => {
-      render(
-        <Select
-          options={optionWithIcon}
-          stealthy
-          selected={''}
-          onSelectionChange={jest.fn()}
-        />
-      );
+      render(<Select options={optionWithIcon} stealthy selected={''} onSelectionChange={jest.fn()} />);
       const selectInconspicuous = screen.getByTestId('select-inconspicuous');
       expect(selectInconspicuous).toBeInTheDocument();
     });
 
     Object.values(sizesMappingInput).forEach((size: sizesMappingInput) => {
       test(`It should render an stealthy select with ${size} size`, () => {
-        render(
-          <Select
-            options={optionWithIcon}
-            stealthy
-            size={size}
-            selected={''}
-            onSelectionChange={jest.fn()}
-          />
-        );
+        render(<Select options={optionWithIcon} stealthy size={size} selected={''} onSelectionChange={jest.fn()} />);
         const selectInconspicuous = screen.getByTestId('select-inconspicuous');
         expect(selectInconspicuous.classList.contains(`inconspicuous-${size}`)).toBe(true);
       });
     });
 
     test('It should render an stealthy select with label', () => {
-      const testLabel = 'Hello World'
+      const testLabel = 'Hello World';
       render(
-        <Select
-          options={optionWithIcon}
-          stealthy
-          label={testLabel}
-          selected={''}
-          onSelectionChange={jest.fn()}
-        />
+        <Select options={optionWithIcon} stealthy label={testLabel} selected={''} onSelectionChange={jest.fn()} />
       );
       const selectInconspicuous = screen.getByTestId('select-inconspicuous');
       expect(selectInconspicuous).toHaveTextContent(testLabel);
@@ -192,50 +134,30 @@ describe('Select Component', () => {
 
     test('It should render an stealthy select with chosen option', () => {
       const testLabel = 'Hello World';
-      const testVal = 'test'
-      const testOptions = [
-        { value: testVal, label: testLabel }
-      ]
-      render(
-        <Select
-          options={testOptions}
-          stealthy
-          selected={testVal}
-          onSelectionChange={jest.fn()}
-        />
-      );
+      const testVal = 'test';
+      const testOptions = [{ value: testVal, label: testLabel }];
+      render(<Select options={testOptions} stealthy selected={testVal} onSelectionChange={jest.fn()} />);
       const selectInconspicuous = screen.getByTestId('select-inconspicuous');
       expect(selectInconspicuous).toHaveTextContent(testLabel);
     });
 
     test('It should render an stealthy select with chosen option multiple', () => {
-      const testLabelOne = 'Hello World'
-      const testLabelTwo = 'Aloha World'
+      const testLabelOne = 'Hello World';
+      const testLabelTwo = 'Aloha World';
       const testOptions = [
         { value: 'test1', label: testLabelOne },
         { value: 'test2', label: testLabelTwo }
-      ]
+      ];
       render(
-        <Select
-          options={testOptions}
-          stealthy
-          selected={['test1', 'test2']}
-          onSelectionChange={jest.fn()}
-          multiple
-        />
+        <Select options={testOptions} stealthy selected={['test1', 'test2']} onSelectionChange={jest.fn()} multiple />
       );
       const selectInconspicuous = screen.getByTestId('select-inconspicuous');
       expect(selectInconspicuous).toHaveTextContent(`${testLabelOne}, ${testLabelTwo}`);
     });
 
-    test('It should render an stealthy select with chosen option and it\'s icons', () => {
+    test("It should render an stealthy select with chosen option and it's icons", () => {
       render(
-        <Select
-          options={optionWithIcon}
-          stealthy
-          selected={optionWithIcon[0].value}
-          onSelectionChange={jest.fn()}
-        />
+        <Select options={optionWithIcon} stealthy selected={optionWithIcon[0].value} onSelectionChange={jest.fn()} />
       );
       expect(screen.getByTestId('inconspicuous-left-icon')).toBeInTheDocument();
       expect(screen.getByTestId('inconspicuous-right-icon')).toBeInTheDocument();
@@ -276,12 +198,7 @@ describe('Select Component', () => {
 
   test('It should render multiple Select with option to select all', () => {
     render(
-      <Select
-        options={optionWithIcon}
-        multiple
-        selected={optionWithIcon[0].value}
-        onSelectionChange={jest.fn()}
-      />
+      <Select options={optionWithIcon} multiple selected={optionWithIcon[0].value} onSelectionChange={jest.fn()} />
     );
 
     const selectInput = screen.getByTestId('select-input');
@@ -338,7 +255,7 @@ describe('Select Component', () => {
       { value: 'test1', label: testLabelOne },
       { value: 'test2', label: testLabelTwo }
     ];
-    const selectedArr = ['test1', 'test2']
+    const selectedArr = ['test1', 'test2'];
     render(
       <Select
         options={testOptions}
@@ -354,17 +271,8 @@ describe('Select Component', () => {
 
   test('It should render with badge amount', () => {
     const testLabel = 'Hello World';
-    const testOptions = [
-      { value: 'test1', label: 'Test', subLabel: testLabel }
-    ];
-    render(
-      <Select
-        selected={''}
-        onSelectionChange={jest.fn()}
-        options={testOptions}
-        multiple
-      />
-    );
+    const testOptions = [{ value: 'test1', label: 'Test', subLabel: testLabel }];
+    render(<Select selected={''} onSelectionChange={jest.fn()} options={testOptions} multiple />);
     const selectInput = screen.getByTestId('select-input');
 
     fireEvent.focus(selectInput);
@@ -372,4 +280,3 @@ describe('Select Component', () => {
     expect(subLabel).toHaveTextContent(testLabel);
   });
 });
-

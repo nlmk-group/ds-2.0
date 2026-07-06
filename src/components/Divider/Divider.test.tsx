@@ -72,7 +72,7 @@ describe('src/components/Divider', () => {
 
   test('It should render a vertical dashed Divider', () => {
     render(<Divider dashed type={EDividerType.vertical} />);
-    expect(screen.getByTestId('VERTICAL_DIVIDER_BORDER').classList.contains('border-vertical-dashed')).toBe(true);
+    expect(screen.getByTestId('VERTICAL_DIVIDER').classList.contains('border-vertical-dashed')).toBe(true);
   });
 
   describe('While adding custom class', () => {

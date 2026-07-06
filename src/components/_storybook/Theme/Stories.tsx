@@ -26,13 +26,36 @@ const Stories = (): JSX.Element => {
       <>
         <Editor
           description="Хук useThemeSwitcher управляет состоянием темы и переключением тем в приложении. Он динамически добавляет и удаляет стили из заголовка документа на основе текущей темы и предоставляет функциональность для переключения тем с сохранением предпочтений пользователя в sessionStorage."
-          height={700}
-          code={`import { Switch, useThemeSwitcher, Grid, Box, Button } from '@nlmk/ds-2.0';
+          minHeight={700}
+          code={`import { Switch, Grid, Box, Button } from '@nlmk/ds-2.0';
 
-export default  App = () => {
-  const { theme, toggleTheme } = useThemeSwitcher();
-  const isDark = theme === 'dark';
-  const themeLabel = isDark ? 'Темная тема' : 'Светлая тема';
+export default App = () => {
+  const THEME_KEY = 'nlmk-storybook-theme';
+
+  const getIsDark = () =>
+    document.documentElement.getAttribute('data-theme')?.includes('dark') ?? false;
+
+  const [isDark, setIsDark] = useState(getIsDark);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => setIsDark(getIsDark()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
+  const handleToggle = () => {
+    const btn = (
+      window.parent?.document?.getElementById('nlmk-theme-toggle-btn') ||
+      window.parent?.document?.querySelector('[title*="тему"]')
+    ) as HTMLButtonElement | null;
+    if (btn) {
+      btn.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    } else {
+      const newIsDark = !isDark;
+      localStorage.setItem(THEME_KEY, newIsDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', newIsDark ? 'dark-theme' : 'light-theme');
+    }
+  };
 
   const boxes = [
     { background: 'var(--spectrum-red-40)' },
@@ -43,7 +66,7 @@ export default  App = () => {
 
   return (
     <>
-      <Switch checked={isDark} onChange={toggleTheme} label={themeLabel} />
+      <Switch checked={isDark} onChange={handleToggle} label={isDark ? 'Тёмная тема' : 'Светлая тема'} />
       <Grid width="100%" height="50vh">
         {boxes.map((box, index) => (
           <Box

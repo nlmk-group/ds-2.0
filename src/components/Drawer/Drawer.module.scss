@@ -5,7 +5,8 @@
   height: 100%;
   background-color: color-mix(in srgb, var(--brand-jeans-30) 60%, transparent);
   display: flex;
-  z-index: 1000;
+  z-index: var(--z-drawer);
+  isolation: isolate;
   animation: fadeIn 0.3s ease-in-out forwards;
 
   &Backdrop {

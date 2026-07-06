@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 600px;
+  height: 800px;
+}
+
+.parentBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  background: red;
+}
+
+.textLeft {
+  [data-ui-tooltip] {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}

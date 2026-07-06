@@ -40,7 +40,7 @@ export const periodMaskByLevel = (quarter: string) =>
     month: periodMonthMask,
     quarter: periodQuarterMask(quarter),
     year: periodYearMask
-  } as const);
+  }) as const;
 
 export const periodInnerMaskByLevel = (quarter: string) =>
   ({
@@ -48,7 +48,7 @@ export const periodInnerMaskByLevel = (quarter: string) =>
     month: monthAndYearInnerMask,
     quarter: quarterAndYearInnerMask(quarter),
     year: onlyYearInnerMask
-  } as const);
+  }) as const;
 
 export const periodMaskByLeveWithOneDate = (quarter: string) =>
   ({
@@ -56,4 +56,4 @@ export const periodMaskByLeveWithOneDate = (quarter: string) =>
     month: monthAndYearMask,
     quarter: quarterAndYearMask(quarter),
     year: onlyYearMask
-  } as const);
+  }) as const;

@@ -29,10 +29,7 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = ({
 
   const handleEvent = (e: MouseEvent | TouchEvent) => {
     const excludeRefs = Array.isArray(excludeRef) ? excludeRef : [excludeRef];
-    if (
-      node.current?.contains(e.target as Node) ||
-      excludeRefs.some((ref) => ref?.current?.contains(e.target as Node))
-    ) {
+    if (node.current?.contains(e.target as Node) || excludeRefs.some(ref => ref?.current?.contains(e.target as Node))) {
       // Внутри элемента или исключенного элемента, игнорируем
       return;
     }

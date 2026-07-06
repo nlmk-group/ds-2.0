@@ -14,7 +14,7 @@ const HorizontalBorder: FC<IHorizontalBorder> = ({ isSmall, dashed = false, orie
     data-testid="BORDER_WRAPPER"
   >
     <div
-      className={clsx(styles['border-horizontal'], dashed ? styles['border-dashed'] : styles['border-solid'])}
+      className={clsx(styles['border-horizontal'], styles[dashed ? 'border-dashed' : 'border-solid'])}
       data-ui-horizontal-divider-border
       data-testid="BORDER"
     />

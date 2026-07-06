@@ -1,4 +1,4 @@
-import React, { createContext, FC, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
+import React, { createContext, FC, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
@@ -85,6 +85,7 @@ const Select: FC<ISelectProps> = ({
   const portalContainer = document.getElementById(portalContainerId) as HTMLElement;
 
   const { refs, floatingStyles, placement } = useFloating({
+    strategy: 'fixed',
     placement: 'bottom-start',
     middleware: [offset(4), flip(), shift()],
     whileElementsMounted: autoUpdate
@@ -174,9 +175,28 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
+  const handleOutsideScroll = useCallback(
+    (e: WheelEvent) => {
+      if (!isOpen) return;
+      const target = e.target as Node | null;
+      if (!target) return;
+      if (containerRef.current?.contains(target) || listRef.current?.contains(target)) return;
+      handleOutsideClick();
+    },
+    [isOpen]
+  );
+
   const handleFocusClick = async () => {
     await openDropdown();
   };
+
+  useEffect(() => {
+    if (!withPortal) return;
+    document.addEventListener('wheel', handleOutsideScroll, { capture: true });
+    return () => {
+      document.removeEventListener('wheel', handleOutsideScroll, { capture: true } as AddEventListenerOptions);
+    };
+  }, [handleOutsideScroll, withPortal]);
 
   useEffect(() => {
     if (!onOpen) {
@@ -223,7 +243,6 @@ const Select: FC<ISelectProps> = ({
       const newSelected = checked
         ? (selected as string[]).filter(selectedValue => selectedValue !== value)
         : [...(selected as string[]), value];
-
       onSelectionChange(newSelected);
     } else {
       setIsOpen(false);

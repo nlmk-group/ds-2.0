@@ -27,7 +27,7 @@ export const useIsEnd = (
         if (dateCurrentHover) {
           return Boolean(
             ((!dateFrom || isBefore(dateFrom, dateCurrentHover)) && isEqual(dateCurrentHover, dayAsDate)) ||
-              (dateFrom && isBefore(dateCurrentHover, dateFrom) && isEqual(dateFrom, dayAsDate))
+            (dateFrom && isBefore(dateCurrentHover, dateFrom) && isEqual(dateFrom, dayAsDate))
           );
         }
         return Boolean(dateTo && isEqual(dateTo, dayAsDate));
@@ -48,7 +48,7 @@ export const useIsEnd = (
         return Boolean(
           ((!numberedDateFrom || numberedDateFrom < numberedDateCurrentHover) &&
             numberedDateCurrentHover === numberedDayAsDate) ||
-            (numberedDateFrom && numberedDateCurrentHover < numberedDateFrom && numberedDateFrom === numberedDayAsDate)
+          (numberedDateFrom && numberedDateCurrentHover < numberedDateFrom && numberedDateFrom === numberedDayAsDate)
         );
       }
       return Boolean(numberedDateTo && numberedDateTo === numberedDayAsDate);

@@ -27,7 +27,7 @@ export const useIsMid = (
         if (dateCurrentHover) {
           return Boolean(
             (isAfter(dayAsDate, dateFrom) && isBefore(dayAsDate, dateCurrentHover)) ||
-              (isBefore(dayAsDate, dateFrom) && isAfter(dayAsDate, dateCurrentHover))
+            (isBefore(dayAsDate, dateFrom) && isAfter(dayAsDate, dateCurrentHover))
           );
         }
         return Boolean(dateTo && isBefore(dayAsDate, dateTo) && isAfter(dayAsDate, dateFrom));
@@ -44,14 +44,14 @@ export const useIsMid = (
           return Boolean(
             (numberedDayAsDateWithQuarter > numberedDateFromWithQuarter &&
               numberedDayAsDateWithQuarter < numberedDateCurrentHoverWithQuarter) ||
-              (numberedDayAsDateWithQuarter < numberedDateFromWithQuarter &&
-                numberedDayAsDateWithQuarter > numberedDateCurrentHoverWithQuarter)
+            (numberedDayAsDateWithQuarter < numberedDateFromWithQuarter &&
+              numberedDayAsDateWithQuarter > numberedDateCurrentHoverWithQuarter)
           );
         }
         return Boolean(
           numberedDateToWithQuarter &&
-            numberedDayAsDateWithQuarter < numberedDateToWithQuarter &&
-            numberedDayAsDateWithQuarter > numberedDateFromWithQuarter
+          numberedDayAsDateWithQuarter < numberedDateToWithQuarter &&
+          numberedDayAsDateWithQuarter > numberedDateFromWithQuarter
         );
       }
 
@@ -64,14 +64,14 @@ export const useIsMid = (
         return Boolean(
           (isAfter(normalizedDayAsDate, normalizedDateFrom) &&
             isBefore(normalizedDayAsDate, normalizedDateCurrentHover)) ||
-            (isBefore(normalizedDayAsDate, normalizedDateFrom) &&
-              isAfter(normalizedDayAsDate, normalizedDateCurrentHover))
+          (isBefore(normalizedDayAsDate, normalizedDateFrom) &&
+            isAfter(normalizedDayAsDate, normalizedDateCurrentHover))
         );
       }
       return Boolean(
         normalizedDateTo &&
-          isBefore(normalizedDayAsDate, normalizedDateTo) &&
-          isAfter(normalizedDayAsDate, normalizedDateFrom)
+        isBefore(normalizedDayAsDate, normalizedDateTo) &&
+        isAfter(normalizedDayAsDate, normalizedDateFrom)
       );
     },
     [dateCurrentHover, withPeriod, dateFrom, dateTo, level]

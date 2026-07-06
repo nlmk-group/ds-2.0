@@ -11,8 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=417-86981&p=f&t=pOZSSeIHfpaoa1eT-0';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=417-86981';
 
 const TreeListStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -31,19 +30,19 @@ const defaultTreeData = [
         title: 'Конвертерный цех',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-0-0-0', 
+          {
+            key: '0-0-0-0',
             title: 'Конвертер №1',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-0-0-1', 
+          {
+            key: '0-0-0-1',
             title: 'МНЛЗ №3 (заблокировано)',
             icon: <IconWarningFilled24 />,
             disabled: true // Полная блокировка узла
           },
-          { 
-            key: '0-0-0-2', 
+          {
+            key: '0-0-0-2',
             title: 'Установка ковш-печь (нельзя перетаскивать)',
             icon: <IconCircleOutlined24 />,
             disableDraggable: true // Запрет только на перетаскивание
@@ -55,13 +54,13 @@ const defaultTreeData = [
         title: 'Электросталеплавильный цех',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-0-1-0', 
+          {
+            key: '0-0-1-0',
             title: 'ДСП №1',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-0-1-1', 
+          {
+            key: '0-0-1-1',
             title: 'Агрегат печь-ковш',
             icon: <IconCircleOutlined24 />
           }
@@ -79,13 +78,13 @@ const defaultTreeData = [
         title: 'Цех горячей прокатки',
         icon: <IconFolderFilled24 />,
         children: [
-          { 
-            key: '0-1-0-0', 
+          {
+            key: '0-1-0-0',
             title: 'Стан 2000',
             icon: <IconCircleOutlined24 />
           },
-          { 
-            key: '0-1-0-1', 
+          {
+            key: '0-1-0-1',
             title: 'Методические печи',
             icon: <IconCircleOutlined24 />
           }
@@ -110,7 +109,7 @@ const App = () => {
   const onDragStart = (e) => {
     console.log('Событие начала перетаскивания: ',  e.event)
   }
-  
+
   const onDragEnd = (e) => {
     console.log('Событие конца перетаскивания: ', e.event)
   }
@@ -130,12 +129,47 @@ const App = () => {
 };
 
 export default App;`;
+  const treeListSimpleCheckCode = `import React from 'react';
+import { TreeList, IconFolderFilled24, IconCircleOutlined24 } from '@nlmk/ds-2.0';
+
+const data = [
+  {
+    key: 'root-1',
+    title: 'Служба главного энергетика',
+    icon: <IconFolderFilled24 />,
+    children: [
+      { key: 'root-1-1', title: 'Подстанция №1', icon: <IconCircleOutlined24 /> },
+      { key: 'root-1-2', title: 'Подстанция №2', icon: <IconCircleOutlined24 /> }
+    ]
+  },
+  {
+    key: 'root-2',
+    title: 'Служба механика',
+    icon: <IconFolderFilled24 />,
+    children: [{ key: 'root-2-1', title: 'Участок диагностики', icon: <IconCircleOutlined24 /> }]
+  }
+];
+
+const App = () => {
+  return (
+    <TreeList
+      data={data}
+      checkableSimple
+      rowHeight="xs"
+      initialExpandedKeys={['root-1']}
+      initialCheckedKeys={['root-1-1']}
+      onSelectedNode={(event) => console.log('selected node', event)}
+    />
+  );
+};
+
+export default App;`;
 
   return (
     <div className={styles.wrapper}>
       <Header
         title="TreeList"
-        description="TreeList - компонент древовидного списка, который позволяет отображать иерархические данные с возможностью выбора элементов и drag-n-drop функциональностью."
+        description="TreeList отображает иерархические данные с поддержкой выбора, раскрытия узлов и drag-and-drop. Компонент подходит для навигации по структурированным объектам."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/TreeList"
         figmaLink={FIGMA_LINK}
@@ -152,9 +186,14 @@ export default App;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={500}
-            description="Базовый пример использования TreeList с чекбоксами и drag-n-drop"
+            minHeight={600}
+            description="Базовый пример с `checkable`, `draggable`, обработчиками выбора и перетаскивания."
             code={treeListDefaultCode}
+          />
+          <Editor
+            minHeight={600}
+            description="Упрощенный режим выбора через `checkableSimple` с начальными выделениями и раскрытием."
+            code={treeListSimpleCheckCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

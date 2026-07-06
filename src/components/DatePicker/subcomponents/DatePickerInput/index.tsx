@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   forwardRef,
+  KeyboardEvent,
   RefObject,
   useCallback,
   useEffect,
@@ -191,8 +192,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         if (!valueFromFormatted && !valueToFormatted) {
           newValue = '';
         } else {
-          const shiftFromValue = valueFromFormatted ? shiftFrom ?? '_' : '_';
-          const shiftToValue = valueToFormatted ? shiftTo ?? '_' : '_';
+          const shiftFromValue = valueFromFormatted ? (shiftFrom ?? '_') : '_';
+          const shiftToValue = valueToFormatted ? (shiftTo ?? '_') : '_';
           const periodSeparator = ' — ';
 
           let formattedValue = '';
@@ -661,8 +662,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         let newValue = '';
 
         if (withShift) {
-          const shiftFromValue = valueFromFormatted ? shiftFrom ?? '_' : '_';
-          const shiftToValue = valueToFormatted ? shiftTo ?? '_' : '_';
+          const shiftFromValue = valueFromFormatted ? (shiftFrom ?? '_') : '_';
+          const shiftToValue = valueToFormatted ? (shiftTo ?? '_') : '_';
           newValue = `${valueFromFormatted || emptyMask}/${shiftFromValue}${periodSeparator}${
             valueToFormatted || emptyMask
           }/${shiftToValue}`;
@@ -841,7 +842,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
           onInputBlur();
         }}
-        onKeyDown={(e: any) => {
+        onKeyDown={(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
           if ((e.key === 'Backspace' || e.key === 'Delete') && withPeriod) {
             const input = e.target as HTMLInputElement;
             const cursorStart = input.selectionStart || 0;

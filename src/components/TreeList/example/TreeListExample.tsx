@@ -18,13 +18,13 @@ export const TreeListExample = (): JSX.Element => {
 
   const onDragStart = (e: TDragEvent) => {
     // eslint-disable-next-line no-console
-    console.log('Drag start event: ',  e.event)
-  }
+    console.log('Drag start event: ', e.event);
+  };
 
   const onDragEnd = (e: TDragEvent) => {
     // eslint-disable-next-line no-console
-    console.log('Drag end event; ', e.event)
-  }
+    console.log('Drag end event; ', e.event);
+  };
 
   return (
     <TreeList

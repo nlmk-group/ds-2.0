@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=548-102967&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=548-102967';
 
 const ProgressBarStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,11 +34,30 @@ export default  App = () => (
 );
 `;
 
+  const progressBarBoundaryValuesCode = `import { ProgressBar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ width: '400px', marginTop: '50px', display: 'grid', gap: '16px' }}>
+    <ProgressBar percentage={0} label="Начало процесса" />
+    <ProgressBar percentage={100} label="Процесс завершен" />
+  </div>
+);
+`;
+
+  const progressBarOverflowCode = `import { ProgressBar } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ width: '400px', marginTop: '50px' }}>
+    <ProgressBar percentage={135} label="Значение ограничивается 100%" />
+  </div>
+);
+`;
+
   return (
     <div className={styles.wrapper}>
       <Header
         title="ProgressBar"
-        description="ProgressBar представляет собой компонент, показывающий прогресс выполнения задачи или процесса. Он предоставляет наглядное представление о проценте выполнения."
+        description="ProgressBar отображает процент выполнения процесса и текущее состояние прогресса. Компонент поддерживает подпись и автоматически ограничивает значение диапазоном от 0 до 100."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/ProgressBar"
         figmaLink={FIGMA_LINK}
@@ -55,22 +74,26 @@ export default  App = () => (
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            height={200}
-            description="Компонент ProgressBar имеет только одно обязательное свойство percentage, которое задается числом."
+            minHeight={200}
+            description="Базовое отображение прогресса через percentage."
             code={progressBarDefaultCode}
           />
 
+          <Editor minHeight={200} description="Прогресс с подписью через label." code={progressBarWithLabelCode} />
           <Editor
-            height={200}
-            description="Компоненту ProgressBar можно добавить label который будет располагаться под шкалой процента."
-            code={progressBarWithLabelCode}
+            minHeight={260}
+            description="Граничные значения прогресса: начало и завершение."
+            code={progressBarBoundaryValuesCode}
+          />
+          <Editor
+            minHeight={220}
+            description="Ограничение значения прогресса при превышении диапазона."
+            code={progressBarOverflowCode}
           />
           <Properties argsTypes={argsTypes} />
         </>
       )}
-      {Number(activeTab) === 1 && (
-        <FigmaEmbed url={FIGMA_LINK} />
-      )}
+      {Number(activeTab) === 1 && <FigmaEmbed url={FIGMA_LINK} />}
       {Number(activeTab) === 2 && <Tests componentName="ProgressBar" />}
     </div>
   );

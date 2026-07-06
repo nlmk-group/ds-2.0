@@ -1,6 +1,4 @@
-# PdfPreview Component
-
-## Версия компонента v3.0
+# Компонент PdfPreview
 
 PdfPreview — это функциональный компонент в React, который показывает предварительный просмотр PDF-файла. Он работает с данными PDF, умеет обрабатывать загрузку файла и выводит сообщения об ошибках, если что-то пошло не так. Компонент очень гибкий, так что вы можете настроить, как он выглядит и ведёт себя.
 
@@ -8,7 +6,9 @@ PdfPreview — это функциональный компонент в React, 
 
 ```jsx
 import React, { useEffect, useState } from 'react';
+
 import { PdfPreview } from './PdfPreview';
+
 export const Example = () => {
   const [pdfData, setPdfData] = useState(null);
   const [loading, setLoading] = useState(true);

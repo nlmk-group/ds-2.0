@@ -11,4 +11,3 @@ export * from './useIsStart';
 export * from './useIsMid';
 export * from './useIsEnd';
 export * from './useIsSelected';
-

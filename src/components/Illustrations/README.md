@@ -8,7 +8,9 @@
 
 ```jsx
 import React from 'react';
+
 import { Illustration } from '@nlmk/ds-2.0';
+
 const App = () => {
   return (
     <Illustration name="error404" size="extra-large" alt="Пример изображения" style={{ border: '1px solid red' }} />

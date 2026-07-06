@@ -25,6 +25,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
     isOpen,
     inputRef,
     arrowButtonRef,
+    resetIconRef,
     menuWidth,
     withPortal,
     menuRef,
@@ -103,7 +104,7 @@ const Options: FC<IOptionsProps> = ({ children }) => {
   };
 
   const menu = (
-    <ClickAwayListener onClickAway={handleClickAway} excludeRef={[inputRef, arrowButtonRef]}>
+    <ClickAwayListener onClickAway={handleClickAway} excludeRef={[inputRef, arrowButtonRef, resetIconRef]}>
       <List
         ref={el => {
           if (!el) return;

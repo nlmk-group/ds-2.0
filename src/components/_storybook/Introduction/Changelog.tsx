@@ -23,12 +23,588 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.27.3 - <span className={styles.date}>19.01.26</span>
+            v2.31.6 - <span className={styles.date}>18.06.26</span>
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: IconGuideOutlined, IconPauseCircleOutlined
+              </li>
             </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.5 - <span className={styles.date}>11.06.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-tooltip-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Tooltip
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлено свойство stretch — растягивает область наведения на весь контейнер
+              </li>
+              <li className={styles['left-padding']}>- Добавлено свойство style — инлайн-стили области наведения</li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-select-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Select
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено позиционирование списка в модальном окне</li>
+              <li className={styles['left-padding']}>- Исправлено закрытие списка при скролле вне селекта</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.4 - <span className={styles.date}>15.05.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлена новая иконка: IconHealthCenter</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.3 - <span className={styles.date}>06.05.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Убрана лишняя обёртка у вертикального Divider</li>
+              <li className={styles['left-padding']}>- Добавлены ARIA-атрибуты для доступности</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.2 - <span className={styles.date}>30.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлены отступы у вертикального Divider</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-attachfiles-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                AttachFiles
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Тип пропа title изменён на ReactNode — теперь принимает любой JSX
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-draganddrop-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DragAndDrop
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые значения размеров M и S (старые l, m помечены deprecated)
+              </li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.1 - <span className={styles.date}>22.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-filter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Filter
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен multiselect-режим</li>
+              <li className={styles['left-padding']}>- Обновлены стили компонента</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен проп description у ComboBoxOption</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.31.0 - <span className={styles.date}>20.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлены компоненты{' '}
+              <Link
+                href="./?path=/docs/components-notificationcard-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationCard
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-notificationgroup-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationGroup
+              </Link>
+              ,{' '}
+              <Link
+                href="./?path=/docs/components-notificationitem-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                NotificationItem
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.30.1 - <span className={styles.date}>17.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-tabs-info--docs" target="blank" className={styles['link-changelog']}>
+                Tabs
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена вертикальная ориентация табов через проп orientation
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп tabPosition для размещения вертикальной панели табов (left / right)
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен проп maxTabWidth для ограничения ширины таба в вертикальном режиме с ellipsis и тултипом на
+                overflow
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.30.0 - <span className={styles.date}>16.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен проп startIcon для размещения иконки слева внутри инпута
+              </li>
+            </li>
+            <li>
+              • Добавлена{' '}
+              <Link href="./?path=/docs/tokens-z-index-info--docs" target="blank" className={styles['link-changelog']}>
+                система z-index токенов
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Введены CSS-переменные для управления z-index: --z-base, --z-raised, --z-dropdown, --z-sticky,
+                --z-sidebar, --z-drawer, --z-modal, --z-modal-stacked, --z-portal, --z-tooltip
+              </li>
+              <li className={styles['left-padding']}>- Компоненты переведены на использование z-index токенов</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.29.2 - <span className={styles.date}>06.04.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePreview
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена возможность использовать модальное окно просмотра изображений ImagePreviewModal независимо
+                от ImagePreview
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлены новые параметры для настройки поведения ImagePreview (скрытие кнопки для загрузки в
+                модальном окне, наличие зума в модальном окне, ccs класс для модального окна)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.29.1 - <span className={styles.date}>23.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-comments-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Comments
+              </Link>
+              .
+              <li className={styles['left-padding']}>- Исправлено отображение текста комментария с переносом строки</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.29.0 - <span className={styles.date}>12.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-comments-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Comments
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.4 - <span className={styles.date}>13.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePreview
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлено отображение тултипа внутри модального окна просмотра изображений
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.3 - <span className={styles.date}>11.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-splitter-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Splitter
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены параметры topComponentSize и bottomComponentSize для установки начального размера панелей
+              </li>
+              <li className={styles['left-padding']}>
+                - Добавлен параметр isShowBottomComponent для возможности скрывать/показывать нижнюю панель
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-simpleselect--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SimpleSelect
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Кнопка сброса теперь корректно работает при поиске и выборе значения: очищает строку поиска при сбросе
+                и (опционально) при выборе, а клики по иконке сброса не считаются кликом вне компонента
+                (ClickAwayListener игнорирует reset)
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.2 - <span className={styles.date}>04.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: IconFileEML, IconFileHTML, IconFileImage, IconFileVideo
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.1 - <span className={styles.date}>03.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-checkbox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Checkbox
+              </Link>
+              .<li className={styles['left-padding']}>- Оптимизирован рендеринг иконок состояния</li>
+            </li>
+            <li>
+              • Изменен компонент{' '}
+              <Link
+                href="./?path=/docs/components-divider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Divider
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена обертка vertical-wrapper для корректной поддержки высоты вертикальных разделителей
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-input-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Input
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено наложение длинного текста label на иконку</li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-inputslider-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                InputSlider
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено позиционирование правого значения слайдера</li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-skeletonloader-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                SkeletonLoader
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Между элементами скелетона в горизонтальном ряду добавлен отступ
+              </li>
+            </li>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Исправлена работа перетаскивания (draggable): окно корректно следует за курсором при использовании
+                draggableStartPosition
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.28.0 - <span className={styles.date}>02.03.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Добавлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-imagepreview-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ImagePreview
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.27.4 - <span className={styles.date}>10.02.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент DateTime.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлена локализация label в PseudoInput режиме</li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;).
+              </li>
+              <li className={styles['left-padding']}>
+                - Кнопка сворачивания/разворачивания теперь локализована: &quot;Свернуть&quot;/&quot;Развернуть&quot;
+                для русского и &quot;Collapse&quot;/&quot;Expand&quot; для английского
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-videowindow-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                VideoWindow
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализованы кнопки управления окном: &quot;Перейти в полноэкранный режим&quot;/&quot;Enter fullscreen
+                mode&quot;, &quot;Выйти из полноэкранного режима&quot;/&quot;Exit fullscreen mode&quot;,
+                &quot;Развернуть&quot;/&quot;Expand&quot;, &quot;Свернуть&quot;/&quot;Collapse&quot;,
+                &quot;Закрыть&quot;/&quot;Close&quot;
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент ColumnSetting.
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-combobox-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                ComboBox
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлена поддержка локализации через prop locale (&apos;ru&apos; | &apos;en&apos;)
+              </li>
+              <li className={styles['left-padding']}>
+                - Локализован placeholder поиска: &quot;Поиск&quot;/&quot;Search&quot;
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.27.3 - <span className={styles.date}>19.01.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>• Удалена зависимость lodash. Все функции lodash заменены на нативные JavaScript методы.</li>
           </ul>
         </div>
         <div className={styles.history}>

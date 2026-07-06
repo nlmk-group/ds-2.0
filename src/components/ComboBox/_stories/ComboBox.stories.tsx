@@ -240,6 +240,40 @@ const tooltipItems: IComboBoxOption[] = [
   { id: 't3', label: 'Подсказка 3: Примечание' }
 ];
 
+const optionsWithDescription: IComboBoxOption[] = [
+  {
+    id: '1',
+    label: 'Сталь 3',
+    description: 'Ст3сп ГОСТ 380-2005'
+  },
+  {
+    id: '2',
+    label: 'Сталь 20',
+    description: 'Ст20 ГОСТ 1050-2013'
+  },
+  {
+    id: '3',
+    label: 'Сталь 45',
+    description: 'Ст45 ГОСТ 1050-2013'
+  },
+  {
+    id: '4',
+    label: 'СЧ 15',
+    description: 'Серый чугун ГОСТ 1412-85'
+  },
+  {
+    id: '5',
+    label: 'АЛ2',
+    description: 'Литейный алюминиевый сплав',
+    disabled: true
+  },
+  {
+    id: '6',
+    label: 'БрА9Ж3Л',
+    description: 'Бронза алюминиевая ГОСТ 493-79'
+  }
+];
+
 export const BasicSingleSelect = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
@@ -411,3 +445,23 @@ export const TreeViewWithLeafCountExample = () => {
   );
 };
 TreeViewWithLeafCountExample.storyName = 'Древовидный список - листовые элементы';
+
+export const SingleSelectWithDescriptionExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Выбор с описанием">
+      <ComboList items={optionsWithDescription} onChange={setSelected} isMultiple={false} />
+    </ComboBox>
+  );
+};
+SingleSelectWithDescriptionExample.storyName = 'Пункты с sublabel (одиночный выбор)';
+
+export const MultipleSelectWithDescriptionExample = () => {
+  const [selected, setSelected] = useState<IComboBoxOption[]>([]);
+  return (
+    <ComboBox label="Множественный выбор с описанием">
+      <ComboList items={optionsWithDescription} onChange={setSelected} isMultiple isSearch isCheckAll />
+    </ComboBox>
+  );
+};
+MultipleSelectWithDescriptionExample.storyName = 'Пункты с sublabel (множественный выбор)';

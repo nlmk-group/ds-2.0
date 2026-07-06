@@ -6,7 +6,7 @@
   height: 100%;
   background-color: var(--brand-jeans-30);
   opacity: 60%;
-  z-index: 10001;
+  z-index: var(--z-modal);
 }
 
 .modalWrapper {
@@ -18,7 +18,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10001;
+  z-index: var(--z-modal);
+  isolation: isolate;
   pointer-events: none;
 }
 

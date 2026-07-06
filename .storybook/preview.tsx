@@ -119,7 +119,7 @@ export const parameters = {
     storySort: {
       order: [
         'Introduction',
-        ['Welcome', 'Changelog', '*'],
+        ['Welcome', 'Changelog', '*', 'Z-Index'],
         'Table',
         'Components',
         ['*', ['Info', 'Overview', 'Stories']]
@@ -131,7 +131,7 @@ export const parameters = {
 };
 
 export const decorators = [
-  Story => (
+  (Story: React.ComponentType) => (
     <BrowserRouter>
       <Story />
     </BrowserRouter>

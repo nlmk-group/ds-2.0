@@ -11,8 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
 
-const FIGMA_LINK =
-  'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=557-223626&t=HhCDuaOuzHu5rgyf-1';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=557-224168&m=dev';
 
 const InputStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -98,6 +97,51 @@ export default App = () => (
 );
 `;
 
+  const inputWithIconAndResetCode = `import { useState } from 'react';
+import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [value, setValue] = useState('Поисковый запрос');
+
+  return (
+    <Input
+      label="Поиск"
+      value={value}
+      icon={<IconSearchOutlined24 />}
+      reset
+      onChange={e => setValue(e.target.value)}
+      onReset={() => setValue('')}
+    />
+  );
+};
+
+export default App;
+`;
+
+  const inputSizeAndRequiredCode = `import { Input } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <div style={{ display: 'grid', gap: '12px' }}>
+    <Input size="m" label="Размер m" required />
+    <Input size="s" label="Размер s" />
+    <Input size="xs" label="Размер xs" />
+  </div>
+);
+`;
+
+  const inputColoredCode = `import { Input } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Input
+    label="Input с цветным фоном"
+    value="Текст в поле"
+    helperText="Подходит для выделения важных полей."
+    colored
+    readOnly
+  />
+);
+`;
+
   const inputWithPseudoCode = `import { useState, SetStateAction } from 'react';
 import { Input, Button } from '@nlmk/ds-2.0';
 
@@ -128,7 +172,7 @@ export default App;
     <div className={styles.wrapper}>
       <Header
         title="Input"
-        description="Компонент Input позволяет пользователям вводить текстовую информацию. Он поддерживает различные варианты, включая лейблы, иконки, многострочный ввод и различные стили."
+        description="Input используется для ввода текстовых данных в форме. Компонент поддерживает состояния валидации, размеры, иконки, многострочный режим, сброс значения и pseudo-режим."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Input"
         figmaLink={FIGMA_LINK}
@@ -144,27 +188,101 @@ export default App;
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={200} description="Input по умолчанию" code={inputDefaultCode} />
+          <Editor minHeight={200} description="Базовое поле ввода." code={inputDefaultCode} />
 
-          <Editor height={200} description="Input с лейблом" code={inputWithLabelCode} />
-
-          <Editor height={200} description="Input с лейблом и вспомогательным текстом" code={inputWithHelperCode} />
-
-          <Editor height={200} description="Input в состоянии disabled" code={inputDisabledCode} />
-
-          <Editor height={200} description="Input в состоянии error" code={inputErrorCode} />
-
-          <Editor height={200} description="Input в состоянии warning" code={inputWarningCode} />
-
-          <Editor height={200} description="Input в состоянии success" code={inputSuccessCode} />
-
-          <Editor height={200} description="Textarea по умолчанию" code={inputTextareaCode} />
-
-          <Editor height={200} description="Textarea со свойством ресайз" code={inputTextareaResizeCode} />
+          <Editor minHeight={200} description="Поле с меткой через label." code={inputWithLabelCode} />
 
           <Editor
-            height={350}
-            description="Возможно реализовать переключение компонента Input в PseudoInput с помощью пропса pseudo"
+            minHeight={200}
+            description="Метка и вспомогательный текст через helperText."
+            code={inputWithHelperCode}
+          />
+
+          <Editor minHeight={200} description="Заблокированное состояние поля." code={inputDisabledCode} />
+
+          <Editor minHeight={200} description="Состояние ошибки через color=error." code={inputErrorCode} />
+
+          <Editor
+            minHeight={200}
+            description="Предупреждающее состояние через color=warning."
+            code={inputWarningCode}
+          />
+
+          <Editor minHeight={200} description="Состояние успеха через color=success." code={inputSuccessCode} />
+
+          <Editor minHeight={260} description="Иконка и кнопка сброса значения." code={inputWithIconAndResetCode} />
+
+          <Editor
+            minHeight={240}
+            description="Размеры Input и обязательное поле через required."
+            code={inputSizeAndRequiredCode}
+          />
+
+          <Editor minHeight={220} description="Цветной фон поля через colored." code={inputColoredCode} />
+
+          <Editor minHeight={200} description="Многострочный режим textarea." code={inputTextareaCode} />
+
+          <Editor
+            minHeight={200}
+            description="Многострочный режим с ручным изменением размера."
+            code={inputTextareaResizeCode}
+          />
+
+          <Editor
+            minHeight={200}
+            description="Иконка слева внутри инпута через startIcon."
+            code={`import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Input
+    label="Поиск"
+    startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
+    placeholder="Введите запрос"
+  />
+)`}
+          />
+
+          <Editor
+            minHeight={240}
+            description="Иконка-подсказка справа от инпута. Размещается рядом с компонентом через flex-контейнер Box."
+            code={`import { Box, Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Box display="flex" alignItems="center" gap={8} width={320}>
+    <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
+      <Input label="Email" placeholder="steel@nlmk.com" />
+    </Box>
+    <Box display="flex" st={{ lineHeight: 0 }}>
+      <Tooltip description="Введите корпоративную почту вида steel@nlmk.com">
+        <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+      </Tooltip>
+    </Box>
+  </Box>
+)`}
+          />
+
+          <Editor
+            minHeight={280}
+            description="Иконка-подсказка справа от textarea. Иконка выровнена по верхнему краю через alignItems flex-start."
+            code={`import { Box, Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
+
+export default App = () => (
+  <Box display="flex" alignItems="flex-start" gap={8} width={320}>
+    <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
+      <Input multiline label="Label" />
+    </Box>
+    <Box display="flex" st={{ lineHeight: 0 }}>
+      <Tooltip description="Подсказка к полю ввода">
+        <IconInfoOutlined24 htmlColor="var(--steel-70)" />
+      </Tooltip>
+    </Box>
+  </Box>
+)`}
+          />
+
+          <Editor
+            minHeight={350}
+            description="Переключение в pseudo-режим через проп pseudo."
             code={inputWithPseudoCode}
           />
 

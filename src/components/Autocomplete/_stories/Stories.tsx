@@ -11,7 +11,7 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
-const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=557-223626';
+const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=569-321918';
 const CODE_LINK = 'https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Autocomplete';
 
 const autocompleteDefaultCode = `
@@ -58,12 +58,12 @@ export default function WithCreateItemExample() {
   const [selectedItem, setSelectedItem] = useState();
 
   const handleCreateItem = (value) => {
-    const newItem = { 
-      id: items.length + 1, 
-      value: value.toLowerCase().replace(/\\s+/g, '_'), 
-      label: value 
+    const newItem = {
+      id: items.length + 1,
+      value: value.toLowerCase().replace(/\\s+/g, '_'),
+      label: value
     };
-    
+
     setItems(prev => [...prev, newItem]);
     setSelectedItem(newItem);
   };
@@ -138,10 +138,10 @@ export default function AsyncLoadingExample() {
 
   const handleLoadOptions = (query) => {
     setIsLoading(true);
-    
+
     // Имитация запроса к API
     setTimeout(() => {
-      const filteredItems = defaultOptions.filter(item => 
+      const filteredItems = defaultOptions.filter(item =>
         item.label?.toLowerCase().includes(query.toLowerCase())
       );
       setItems(filteredItems);
@@ -150,9 +150,9 @@ export default function AsyncLoadingExample() {
   };
 
   return (
-    <Autocomplete 
-      items={items} 
-      nameGetter={item => item.label || ''} 
+    <Autocomplete
+      items={items}
+      nameGetter={item => item.label || ''}
       onChange={setSelected}
       selected={selected}
       isLoading={isLoading}
@@ -199,9 +199,9 @@ export default function CustomRenderingExample() {
   };
 
   return (
-    <Autocomplete 
-      items={options} 
-      nameGetter={item => item.label || ''} 
+    <Autocomplete
+      items={options}
+      nameGetter={item => item.label || ''}
       onChange={setSelected}
       selected={selected}
       renderLabel={renderCustomLabel}
@@ -227,25 +227,25 @@ const options = [
 export default function SizesExample() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={() => {}}
         size="xs"
         label="Размер XS"
       />
-      
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={() => {}}
         size="s"
         label="Размер S"
       />
-      
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={() => {}}
         size="m"
         label="Размер M (по умолчанию)"
@@ -277,9 +277,9 @@ export default function PortalExample() {
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', height: '200px' }}>
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={setSelected}
         selected={selected}
         withPortal={true}
@@ -305,21 +305,21 @@ const options = [
 
 export default function EmptyDropdownExample() {
   const [selected, setSelected] = useState();
-  
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={setSelected}
         showEmptyDropdown={true}
         label="С отображением пустого дропдауна (по умолчанию)"
         noResultsText="Ничего не найдено"
       />
-      
-      <Autocomplete 
-        items={options} 
-        nameGetter={item => item.label || ''} 
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
         onChange={setSelected}
         showEmptyDropdown={false}
         label="Без отображения пустого дропдауна"
@@ -327,6 +327,161 @@ export default function EmptyDropdownExample() {
     </div>
   );
 };
+`;
+
+const withFieldStatesCode = `
+import { Autocomplete } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const options = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' }
+];
+
+export default function FieldStatesExample() {
+  const [selected, setSelected] = useState(options[0]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="Отключённое поле"
+        disabled={true}
+      />
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="Режим только чтение"
+        readOnly={true}
+      />
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="Поле с ошибкой"
+        error={true}
+        helperText="Выберите значение из списка"
+      />
+    </div>
+  );
+}
+`;
+
+const withDebounceCode = `
+import { Autocomplete } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const options = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' }
+];
+
+export default function DebounceExample() {
+  const [selected, setSelected] = useState();
+  const [query, setQuery] = useState('');
+
+  return (
+    <div>
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="Debounce для ввода"
+        debounceDelay={1200}
+        onDebouncedInputChange={setQuery}
+        placeholder="Введите значение"
+      />
+      <div style={{ marginTop: '8px', color: 'var(--steel-70)', fontSize: '12px' }}>
+        Последний debounced-запрос: {query || '—'}
+      </div>
+    </div>
+  );
+}
+`;
+
+const withNoSelectionItemCode = `
+import { Autocomplete } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const options = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' }
+];
+
+const noSelectionItem = {
+  id: -1,
+  value: 'all',
+  label: 'Все подразделения'
+};
+
+export default function NoSelectionItemExample() {
+  const [selected, setSelected] = useState(noSelectionItem);
+
+  return (
+    <div>
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        selected={selected}
+        onChange={item => setSelected(item || noSelectionItem)}
+        noSelectionItem={noSelectionItem}
+        label="Кастомное пустое значение"
+      />
+      <div style={{ marginTop: '8px', color: 'var(--steel-70)', fontSize: '12px' }}>
+        Текущее значение: {selected?.label || '—'}
+      </div>
+    </div>
+  );
+}
+`;
+
+const withTotalCountVisibilityCode = `
+import { Autocomplete } from '@nlmk/ds-2.0';
+import { useState } from 'react';
+
+const options = [
+  { id: 1, value: 'blast_furnace', label: 'Доменная печь' },
+  { id: 2, value: 'converter', label: 'Конвертер' },
+  { id: 3, value: 'rolling_mill', label: 'Прокатный стан' }
+];
+
+export default function TotalCountVisibilityExample() {
+  const [selected, setSelected] = useState();
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="С отображением счётчика"
+        showTotalCount={true}
+      />
+
+      <Autocomplete
+        items={options}
+        nameGetter={item => item.label || ''}
+        onChange={setSelected}
+        selected={selected}
+        label="Без отображения счётчика"
+        showTotalCount={false}
+      />
+    </div>
+  );
+}
 `;
 
 const AutocompleteStories = (): JSX.Element => {
@@ -337,7 +492,7 @@ const AutocompleteStories = (): JSX.Element => {
       <Header
         title="Autocomplete"
         isStable
-        description="Компонент Autocomplete используется для предоставления функции автозаполнения на основе введенного текста, позволяя пользователю выбирать из предложенных вариантов."
+        description="Autocomplete помогает выбирать значение из списка с поиском по вводу. Компонент поддерживает локальную и асинхронную загрузку данных, создание новых элементов и гибкую настройку отображения списка."
         codeLink={CODE_LINK}
         figmaLink={FIGMA_LINK}
       />
@@ -352,19 +507,62 @@ const AutocompleteStories = (): JSX.Element => {
 
       {Number(activeTab) === 0 && (
         <>
-          <Editor height={200} description="Autocomplete по умолчанию" code={autocompleteDefaultCode} />
-          <Editor height={200} description="Autocomplete с кастомным текстом 'Total'" code={withCustomTotalTextCode} />
-          <Editor height={200} description="Autocomplete с асинхронной загрузкой данных" code={withAsyncLoadingCode} />
-          <Editor height={200} description="Autocomplete с созданием нового элемента" code={withCreateItemCode} />
           <Editor
-            height={200}
-            description="Autocomplete с кастомным рендерингом опций"
+            minHeight={400}
+            description="Базовый Autocomplete с выбором элемента из локального списка."
+            code={autocompleteDefaultCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Кастомизация текста счётчика через totalText."
+            code={withCustomTotalTextCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Асинхронная загрузка опций через isLoading и onLoadOptions."
+            code={withAsyncLoadingCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Создание нового элемента через onCreateItem и createItemText."
+            code={withCreateItemCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Кастомный рендер опций через renderLabel."
             code={withCustomRenderingCode}
           />
-          <Editor height={200} description="Autocomplete с разными размерами" code={withSizesCode} />
-          <Editor height={200} description="Autocomplete с рендерингом через портал" code={withPortalCode} />
-          <Editor height={200} description="Autocomplete с настройкой пустого дропдауна" code={withEmptyDropdownCode} />
-
+          <Editor minHeight={400} description="Размеры компонента: xs, s и m." code={withSizesCode} />
+          <Editor
+            minHeight={400}
+            description="Рендер dropdown через портал: withPortal и portalContainerId."
+            code={withPortalCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Управление пустым dropdown через showEmptyDropdown."
+            code={withEmptyDropdownCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Состояния поля: disabled, readOnly, error и helperText."
+            code={withFieldStatesCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Debounce ввода через debounceDelay и onDebouncedInputChange."
+            code={withDebounceCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Кастомное пустое значение через noSelectionItem."
+            code={withNoSelectionItemCode}
+          />
+          <Editor
+            minHeight={400}
+            description="Управление отображением счётчика через showTotalCount."
+            code={withTotalCountVisibilityCode}
+          />
           <Properties argsTypes={argsTypes} />
         </>
       )}

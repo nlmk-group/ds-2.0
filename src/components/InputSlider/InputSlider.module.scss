@@ -6,6 +6,9 @@
 }
 .right {
   position: absolute;
+  left: calc(100% + 32px);
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--steel-90);
 }
 

@@ -1,3 +1,13 @@
+.pinnedColumnLeft {
+  background-color: var(--steel-10);
+  border-right: 1px solid var(--steel-40);
+}
+
+.pinnedColumnRight {
+  background-color: var(--steel-10);
+  border-left: 1px solid var(--steel-40);
+}
+
 // Стили для основной таблицы
 .tableContainer {
   width: 1200px;

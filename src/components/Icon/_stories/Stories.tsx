@@ -21,6 +21,51 @@ enum TabIds {
 
 const COMPONENT_NAME = 'Icon';
 
+const defaultIconCode = `import { Icon } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Icon
+    name="IconTackleCrane24"
+    color="primary"
+    containerSize={32}
+  />
+)
+
+export default App;
+`;
+
+const inheritColorCode = `import { Icon } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Icon
+    name="IconSearchOutlined24"
+    color="inherit"
+    htmlColor="#0B74DE"
+  />
+)
+
+export default App;
+`;
+
+const badgeIconCode = `import { Badge, Icon } from '@nlmk/ds-2.0';
+
+const App = () => (
+  <Icon
+    name="IconAddPlusCircleFilled32"
+    badge={<Badge size="s" color="error">9</Badge>}
+  />
+)
+
+export default App;
+`;
+
+const standaloneIconCode = `import { IconSearchOutlined24 } from '@nlmk/ds-2.0';
+
+const App = () => <IconSearchOutlined24 htmlColor="#1B7F5F" />;
+
+export default App;
+`;
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
@@ -32,7 +77,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Компонент иконок, который можно использовать как самостоятельно, так и внутри других компонентов"
+        description="Icon отображает иконки по имени из библиотеки и поддерживает цвет, контейнер и бейдж. Также иконки можно использовать как отдельные React-компоненты."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
@@ -40,29 +85,20 @@ const Stories = (): JSX.Element => {
         <Typography variant="Heading2" color="var(--steel-90)">
           Иконки
         </Typography>
-        <p>Существует 2 разных способа добавить иконку в проект:</p>
+        <p>Существует два способа добавить иконку в проект:</p>
 
         <ol>
-          <li>Использовать компонент Icon</li>
-          <li>Использовать каждую кастомизированную иконку, как отдельный компонент</li>
+          <li>Использовать компонент Icon.</li>
+          <li>Использовать отдельный компонент конкретной иконки.</li>
         </ol>
 
         <Typography variant="Heading2" color="var(--steel-90)">
           Примеры
         </Typography>
         <p>
-          Компонент Icon - каждая иконка данного компонента имеет контейнер (размер контейнера по умолчанию равен
-          размеру иконки). Важно: загрузка иконки осуществляется по её имени в соответствии с макетом figma.
-          <br />
-          Для кастомизированных иконок доступны свойства:
+          Компонент Icon рендерит иконку в контейнере, размер которого по умолчанию совпадает с размером иконки.
+          Название иконки должно соответствовать имени в макете Figma.
         </p>
-
-        <ul>
-          <li>name - название иконки, соответствующее макету Figma;</li>
-          <li>color - цвет иконки, согласно макету;</li>
-          <li>htmlColor - цвет иконки, задаваемый пользователем;</li>
-          <li>containerSize - размер контейнера иконки (по умолчанию равен размеру иконки)</li>
-        </ul>
       </div>
 
       <div className={styles.tabs}>
@@ -74,21 +110,10 @@ const Stories = (): JSX.Element => {
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor
-            description="Компонент Icon по умолчанию"
-            code={`import { Icon } from '@nlmk/ds-2.0';
-
-const App = () => (
-  <Icon
-    name={'IconTackleCrane24'}
-    color="primary"
-    containerSize={32}
-  />
-)
-
-export default App;
-`}
-          />
+          <Editor description="Базовое отображение иконки через компонент Icon." code={defaultIconCode} />
+          <Editor description="Пользовательский цвет через color=inherit и htmlColor." code={inheritColorCode} />
+          <Editor description="Отображение бейджа поверх иконки через prop badge." code={badgeIconCode} />
+          <Editor description="Использование иконки как отдельного React-компонента." code={standaloneIconCode} />
           <br />
           <Typography color="var(--steel-90)" variant="Heading3">
             Все доступные иконки

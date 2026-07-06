@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "adaptive" as *;
 
 $variants: brand, error, warning, success;
 $track-colors: (
@@ -69,6 +70,10 @@ $track-bg-colors-off: (
   flex-shrink: 0;
   vertical-align: middle;
   cursor: pointer;
+
+  @include touch {
+    min-height: $touch-target;
+  }
 }
 
 .track {
@@ -84,7 +89,9 @@ $track-bg-colors-off: (
   height: 20px;
   width: 20px;
   border-radius: var(--circle-radius);
-  transition: background 0.3s, transform 0.3s;
+  transition:
+    background 0.3s,
+    transform 0.3s;
   z-index: 1;
 }
 
@@ -95,7 +102,9 @@ $track-bg-colors-off: (
   height: 32px;
   width: 32px;
   border-radius: var(--circle-radius);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
   z-index: 0;
 
   &.focus-active {

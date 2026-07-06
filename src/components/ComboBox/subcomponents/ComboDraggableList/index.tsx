@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { Checkbox, Icon, Spinner, Typography } from '@components/index';
 import clsx from 'clsx';
@@ -178,7 +178,17 @@ const ComboDraggableList = <T extends IComboBoxOption>({
         </div>
       );
     },
-    [comboBoxValue, isInfinityLoading, offsetItemLoadingId, isMultiple, handleMultiChange, handleChange, isLoading, infinityLoadingOptions, moveItem]
+    [
+      comboBoxValue,
+      isInfinityLoading,
+      offsetItemLoadingId,
+      isMultiple,
+      handleMultiChange,
+      handleChange,
+      isLoading,
+      infinityLoadingOptions,
+      moveItem
+    ]
   );
 
   return (

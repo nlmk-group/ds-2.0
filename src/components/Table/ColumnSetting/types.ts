@@ -1,3 +1,5 @@
+import { ELocaleMapping } from '@components/declaration';
+
 export interface IColumnSettingProps {
   /**
    * Уникальный идентификатор колонки
@@ -8,6 +10,12 @@ export interface IColumnSettingProps {
    * Заголовок колонки, отображаемый в списке
    */
   title: string;
+
+  /**
+   * Язык для кнопок управления колонкой
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 
   /**
    * Флаг видимости колонки
@@ -64,13 +72,13 @@ export interface IColumnSettingProps {
    */
   dragHandleProps?: React.DOMAttributes<HTMLDivElement>;
 
-/**
- * Флаг для предотвращения всплытия событий клика от кнопок компонента.
- * Если установлен в true, вызывает e.stopPropagation() в обработчиках
- * событий кнопок, что предотвращает закрытие родительских компонентов
- * (например, Drawer) при взаимодействии с кнопками настроек колонок.
- * @default true
- */
+  /**
+   * Флаг для предотвращения всплытия событий клика от кнопок компонента.
+   * Если установлен в true, вызывает e.stopPropagation() в обработчиках
+   * событий кнопок, что предотвращает закрытие родительских компонентов
+   * (например, Drawer) при взаимодействии с кнопками настроек колонок.
+   * @default true
+   */
   preventEventBubbling?: boolean;
 
   /**

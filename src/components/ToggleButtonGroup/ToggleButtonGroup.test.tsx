@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IconStarOutlined24, ToggleButtonGroup } from '@components/index';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import styles from './ToggleButtonGroup.module.scss';
 

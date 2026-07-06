@@ -2,7 +2,7 @@ import React from 'react';
 
 import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { OptionItem, SimpleSelect, Typography } from '@components/index';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 describe('SimpleSelect Component', () => {
   const options = [
@@ -394,5 +394,33 @@ describe('SimpleSelect Component', () => {
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('readonly');
+  });
+
+  test('clicking reset icon does not trigger clickAway when clearing search (dropdown stays open)', async () => {
+    render(
+      <SimpleSelect value="" onChange={jest.fn()} label="Test SimpleSelect" reset searchable>
+        {options.map(({ value, label }) => (
+          <OptionItem key={value} value={value} label={label}>
+            <Typography variant="Body1-Medium">{label}</Typography>
+          </OptionItem>
+        ))}
+      </SimpleSelect>
+    );
+
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    fireEvent.focus(input);
+    fireEvent.change(input, { target: { value: 'st' } });
+
+    await waitFor(() => {
+      expect(screen.getByText(options[0].label)).toBeInTheDocument();
+    });
+
+    const resetButton = await screen.findByTestId('RESET_ICON');
+    fireEvent.click(resetButton);
+
+    await waitFor(() => {
+      expect(input.value).toBe('');
+      expect(screen.getByText(options[0].label)).toBeInTheDocument();
+    });
   });
 });

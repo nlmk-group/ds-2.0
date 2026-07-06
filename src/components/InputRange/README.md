@@ -1,12 +1,16 @@
 # Компонент InputRange
 
+## Версия компонента 3.0
+
 Компонент InputRange предоставляет интерфейс двойного ползунка для выбора диапазона значений в указанном диапазоне.
 
 ## Использование
 
 ```jsx
 import React, { useState } from 'react';
+
 import InputRange from '@your-package/input-range';
+
 const App = () => {
   const [range, setRange] = useState({ min: 20, max: 80 });
   const handleRangeChange = newRange => {

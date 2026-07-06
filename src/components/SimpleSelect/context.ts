@@ -44,6 +44,11 @@ interface SelectContextProps {
   arrowButtonRef: RefObject<HTMLButtonElement | null>;
 
   /**
+   * Реф для кнопки сброса значения, нужен чтобы ClickAwayListener игнорировал клики на неё
+   */
+  resetIconRef: RefObject<HTMLDivElement | null>;
+
+  /**
    * Ширина меню селекта
    */
   menuWidth?: string;

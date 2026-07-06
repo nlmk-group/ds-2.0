@@ -1,5 +1,7 @@
 import React, { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
 
+import { ELocaleMapping } from '@components/declaration';
+
 import { IContextProviderProps } from './types';
 
 function getContext<T = string>(defaultState?: T) {
@@ -42,15 +44,18 @@ const DropdownHeight = getContext<{ minHeight: number; optimalHeight: number }>(
 const DropdownWidth = getContext<number>();
 const ComboBoxValue = getContext<{ id: string; label: string; [key: string]: any }[]>([]);
 const SearchValue = getContext<string>('');
+const LocaleValue = getContext<`${ELocaleMapping}`>(ELocaleMapping.ru);
 
 export const Provider = compose([
   DropdownHeight.Provider,
   DropdownWidth.Provider,
   ComboBoxValue.Provider,
-  SearchValue.Provider
+  SearchValue.Provider,
+  LocaleValue.Provider
 ]);
 
 export const { useState: useDropdownHeight, useSetState: useSetDropdownHeight } = DropdownHeight;
 export const { useState: useDropdownWidth, useSetState: useSetDropdownWidth } = DropdownWidth;
 export const { useState: useComboBoxValue, useSetState: useSetComboBoxValue } = ComboBoxValue;
 export const { useState: useSearchValue, useSetState: useSetSearchValue } = SearchValue;
+export const { useState: useLocaleValue, useSetState: useSetLocaleValue } = LocaleValue;

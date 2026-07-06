@@ -5,7 +5,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   title: {
-    description: 'Свойство для отображения заголовка компонента AttachFile(JSX.Element)',
+    description: 'Заголовок секции AttachFiles — принимает ReactNode',
     control: { type: 'text' }
   },
   label: {

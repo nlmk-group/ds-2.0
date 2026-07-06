@@ -1,6 +1,6 @@
-# Input Component
+# Компонент Input
 
-## Версия компонента v3.2
+## Версия компонента 3.2
 
 Input компонент используется для создания текстовых полей ввода различных стилей и размеров. Он поддерживает однострочный и многострочный режимы, а также дополнительные элементы, такие как иконки и вспомогательный текст.
 
@@ -30,7 +30,8 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | placeholder | string | - | Текст плейсхолдера |
 | pseudo | boolean | false | Флаг псевдо-инпута |
 | pseudoInputStyle | CSSProperties | - | Инлайн стили для PseudoInput режима |
-| icon | ReactNode | - | Иконка инпута |
+| icon | ReactNode | - | Иконка справа внутри инпута |
+| startIcon | ReactNode | - | Иконка слева внутри инпута |
 | multiline | boolean | false | Флаг многострочного режима |
 | resize | boolean | false | Флаг возможности изменения размера (для textarea) |
 | helperText | ReactNode | - | Вспомогательный текст |
@@ -42,6 +43,7 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 | color | customInputColors | 'default' | Цвет инпута |
 | className | string | - | Дополнительный CSS класс |
 | inputRef | Ref<HTMLInputElement \| HTMLTextAreaElement> | - | Реф для доступа к DOM-элементу инпута |
+| resetIconRef | Ref<HTMLDivElement> | - | Реф для доступа к DOM-элементу иконки сброса (reset) |
 | colored | boolean | false | Флаг цветного фона |
 | required | boolean | - | Атрибут, который указывает, что данное поле является обязательным для заполнения |
 
@@ -57,6 +59,16 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 - `error`
 - `warning`
 - `success`
+
+## Иконка слева (startIcon)
+
+```jsx
+import { IconSearchOutlined24, Input } from '@nlmk/ds-2.0';
+
+<Input label="Поиск" startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />} placeholder="Введите запрос" />;
+```
+
+**Примечание**: `startIcon` не отображается в multiline-режиме.
 
 ## Псевдо-режим
 
@@ -135,6 +147,11 @@ import { customInputColors, Input, sizesMappingInput } from '@nlmk/ds-2.0';
 
 /* Стилизация кастомной иконки */
 [data-ui-input-custom-icon] {
+  /* стили */
+}
+
+/* Стилизация иконки слева */
+[data-ui-input-start-icon] {
   /* стили */
 }
 ```

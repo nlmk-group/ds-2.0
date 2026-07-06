@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { IComboBoxOption, IComboBoxTreeOption } from './types';
 
@@ -218,9 +218,7 @@ describe('src/components/ComboBox', () => {
     });
 
     it('должен корректно обрабатывать единственный элемент при countOnlyLevel=-1', () => {
-      const value: IComboBoxTreeOption[] = [
-        { id: '1', label: 'Единственный элемент', level: 1, parentId: null }
-      ];
+      const value: IComboBoxTreeOption[] = [{ id: '1', label: 'Единственный элемент', level: 1, parentId: null }];
 
       render(
         <Provider>
@@ -322,73 +320,64 @@ describe('src/components/ComboBox', () => {
     });
   });
 
-describe('initialValue', () => {
-  const mockInputRef = { current: null };
-  const mockOnFocusSearchInput = jest.fn();
-  const mockOnOpenClick = jest.fn();
-  const mockOnCloseClick = jest.fn();
+  describe('initialValue', () => {
+    const mockInputRef = { current: null };
+    const mockOnFocusSearchInput = jest.fn();
+    const mockOnOpenClick = jest.fn();
+    const mockOnCloseClick = jest.fn();
 
-  const defaultProps = {
-    inputRef: mockInputRef,
-    isDisabled: false,
-    isOpen: false,
-    label: 'Тестовый лейбл',
-    onFocusSearchInput: mockOnFocusSearchInput,
-    onOpenClick: mockOnOpenClick,
-    onCloseClick: mockOnCloseClick
-  };
+    const defaultProps = {
+      inputRef: mockInputRef,
+      isDisabled: false,
+      isOpen: false,
+      label: 'Тестовый лейбл',
+      onFocusSearchInput: mockOnFocusSearchInput,
+      onOpenClick: mockOnOpenClick,
+      onCloseClick: mockOnCloseClick
+    };
 
-  const testOptions: IComboBoxOption[] = [
-    { id: '1', label: 'Опция 1' },
-    { id: '2', label: 'Опция 2' }
-  ];
+    const testOptions: IComboBoxOption[] = [
+      { id: '1', label: 'Опция 1' },
+      { id: '2', label: 'Опция 2' }
+    ];
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('должен устанавливать initialValue при монтировании', () => {
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} initialValue={[testOptions[0]]} />
+        </Provider>
+      );
+
+      const input = screen.getByDisplayValue('Опция 1');
+      expect(input).toBeInTheDocument();
+    });
+
+    it('должен устанавливать несколько значений в initialValue', () => {
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} initialValue={testOptions} />
+        </Provider>
+      );
+
+      const input = screen.getByDisplayValue('Выбрано 2');
+      expect(input).toBeInTheDocument();
+    });
+
+    it('не должен устанавливать значение при пустом initialValue', () => {
+      render(
+        <Provider>
+          <InputComboBox {...defaultProps} initialValue={[]} />
+        </Provider>
+      );
+
+      const input = screen.getByDisplayValue('');
+      expect(input).toBeInTheDocument();
+    });
   });
-
-  it('должен устанавливать initialValue при монтировании', () => {
-    render(
-      <Provider>
-        <InputComboBox 
-          {...defaultProps} 
-          initialValue={[testOptions[0]]} 
-        />
-      </Provider>
-    );
-
-    const input = screen.getByDisplayValue('Опция 1');
-    expect(input).toBeInTheDocument();
-  });
-
-  it('должен устанавливать несколько значений в initialValue', () => {
-    render(
-      <Provider>
-        <InputComboBox 
-          {...defaultProps} 
-          initialValue={testOptions} 
-        />
-      </Provider>
-    );
-
-    const input = screen.getByDisplayValue('Выбрано 2');
-    expect(input).toBeInTheDocument();
-  });
-
-  it('не должен устанавливать значение при пустом initialValue', () => {
-    render(
-      <Provider>
-        <InputComboBox 
-          {...defaultProps} 
-          initialValue={[]} 
-        />
-      </Provider>
-    );
-
-    const input = screen.getByDisplayValue('');
-    expect(input).toBeInTheDocument();
-  });
-});
 
   describe('Функции автофокуса и автораскрытия', () => {
     beforeEach(() => {

@@ -118,10 +118,3 @@ export const getSizingStyles = ({
     badgeStyles: getBadgeStyles()
   };
 };
-
-export const getAvatarImageSrc = () => {
-  const avatarImageMock = '/img/avatar_mock.png';
-  const { origin, pathname } = window.parent.location;
-  const path = pathname === '/' ? '' : pathname;
-  return `${origin}${path}${avatarImageMock}`;
-};

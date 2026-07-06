@@ -80,12 +80,7 @@ const Dropdown: FC<IDropdownProps> = ({
 
   const getDropdownMenu = () => {
     const menu = withPortal ? (
-      ReactDOM.createPortal(
-        <DropdownMenu data-ui-dropdown-menu-portal>
-          {children}
-        </DropdownMenu>,
-        portalContainer
-      )
+      ReactDOM.createPortal(<DropdownMenu data-ui-dropdown-menu-portal>{children}</DropdownMenu>, portalContainer)
     ) : (
       <DropdownMenu data-ui-dropdown-menu>{children}</DropdownMenu>
     );

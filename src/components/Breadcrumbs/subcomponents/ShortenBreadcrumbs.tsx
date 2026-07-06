@@ -42,7 +42,7 @@ const ShortenBreadcrumbs: FC<IShortenBreadcrumbsProps> = ({ crumbs }) => {
               {otherElementsArray.map((item: ReactElement, index: number) => {
                 const itemProps = item.props as any;
                 return (
-                  <ListItem key={index} className={clsx(styles.option)} data-ui-crumbs-list-item>
+                  <ListItem key={index} className={styles.option} data-ui-crumbs-list-item>
                     {cloneElement(item, {
                       children: cloneElement(itemProps.children, {
                         className: clsx(styles.link, itemProps.children.props.className)

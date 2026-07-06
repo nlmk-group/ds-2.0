@@ -23,16 +23,16 @@ export default App;
 
 ## Props
 
-| Prop             | Type                    | Default                      | Description                                                 |
-| ---------------- | ----------------------- | ---------------------------- | ----------------------------------------------------------- |
-| items            | TAccordionItem[]        | -                            | Массив элементов аккордеона                                 |
-| variant          | `${EVariantsAccordion}` | `EVariantsAccordion.default` | Вариант внешнего вида аккордеона                            |
-| startIcon        | `${EIconsAccordion}`    | `EIconsAccordion.arrow`      | Иконка в начале заголовка                                   |
-| endIcon          | ReactNode               | null                         | Иконка в конце заголовка                                    |
-| size             | `${ESizesAccordion}`    | `ESizesAccordion.m`          | Размер аккордеона                                           |
-| multipleExpanded | boolean                 | false                        | Разрешает одновременное разворачивание нескольких элементов |
-| className        | string                  | -                            | Дополнительный CSS-класс                                    |
-| disabled         | boolean                 | false                        | Отключает аккордеон                                         |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| items | TAccordionItem[] | - | Массив элементов аккордеона |
+| variant | `${EVariantsAccordion}` | `EVariantsAccordion.default` | Вариант внешнего вида аккордеона |
+| startIcon | `${EIconsAccordion}` | `EIconsAccordion.arrow` | Иконка в начале заголовка |
+| endIcon | ReactNode | null | Иконка в конце заголовка |
+| size | `${ESizesAccordion}` | `ESizesAccordion.m` | Размер аккордеона |
+| multipleExpanded | boolean | false | Разрешает одновременное разворачивание нескольких элементов |
+| className | string | - | Дополнительный CSS-класс |
+| disabled | boolean | false | Отключает аккордеон |
 
 ## Варианты Accordion
 

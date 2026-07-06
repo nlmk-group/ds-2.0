@@ -8,9 +8,9 @@ import styles from '@components/_storybook/styles.module.scss';
 import { sizeMapping, targetMapping } from '../enums';
 import { ILink } from '../types';
 import { argsTypes } from './argsTypes';
-import {DEFAULT_LINK, LINK_DISABLE, LINK_ICON, LINK_ONCLICK, LINK_SIZES, LINK_TARGET} from './text';
+import { DEFAULT_LINK, LINK_DISABLE, LINK_ICON, LINK_ONCLICK, LINK_SIZES, LINK_TARGET } from './text';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story/>}</div>;
+const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
 
 export default {
   title: 'Components/Link/Stories',
@@ -119,6 +119,6 @@ LinkCallback.args = {
   href: 'https://www.w3schools.com/',
   onClick: (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    alert('Обработка клика по ссылке')
+    alert('Обработка клика по ссылке');
   }
 };

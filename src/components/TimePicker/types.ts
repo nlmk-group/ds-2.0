@@ -1,7 +1,7 @@
 import { ENABLED_HOURS_VALUES } from '@components/declaration';
 import { IInputAdditionalProps } from '@components/Input/types';
 
-export type TEnabledHour = typeof ENABLED_HOURS_VALUES[number] | undefined;
+export type TEnabledHour = (typeof ENABLED_HOURS_VALUES)[number] | undefined;
 
 export enum ETimePickerType {
   time = 'time',
@@ -10,8 +10,10 @@ export enum ETimePickerType {
   periodWithSeconds = 'periodWithSeconds'
 }
 
-export interface TTimePickerType
-  extends Omit<IInputAdditionalProps, 'value' | 'onChange' | 'onReset' | 'id' | 'onBlur'> {
+export interface TTimePickerType extends Omit<
+  IInputAdditionalProps,
+  'value' | 'onChange' | 'onReset' | 'id' | 'onBlur'
+> {
   /** Уникальный идентификатор компонента */
   id?: number | string;
   /** Тип пикера времени */

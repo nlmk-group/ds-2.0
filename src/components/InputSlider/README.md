@@ -1,12 +1,16 @@
 # Компонент InputSlider
 
+## Версия компонента 3.0
+
 Компонент InputSlider предоставляет интерфейс ползунка для выбора числового значения в указанном диапазоне
 
 ## Использование
 
 ```jsx
 import React, { useState } from 'react';
+
 import InputSlider from '@your-package/input-slider';
+
 const App = () => {
   const [value, setValue] = useState(50);
   const handleChange = newValue => {

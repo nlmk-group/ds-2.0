@@ -212,7 +212,7 @@ export default App = () => {
           <Editor description="Экстра компактный Select" code={selectExtraCompactCode} />
           <Editor description="Select с установленным скроллом" code={selectScrollingItemsCode} />
           <Editor description="Select с цветом success" code={selectSuccessCode} />
-          <Editor height={200} description="Пустой Select" code={selectEmptyCode} />
+          <Editor minHeight={200} description="Пустой Select" code={selectEmptyCode} />
           <Properties argsTypes={argsTypes} />
         </>
       )}

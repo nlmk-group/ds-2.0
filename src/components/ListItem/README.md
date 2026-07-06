@@ -1,7 +1,5 @@
 # Компонент ListItem
 
-## Версия компонента 3.0
-
 Компонент **ListItem** используется для отображения отдельного элемента в вертикальном списке. Обычно применяется внутри компонентов List, Select, Autocomplete, Dropdown и других, где требуется стилизованный элемент списка с поддержкой кастомизации и событий.
 
 ---
@@ -9,13 +7,11 @@
 ## Базовый пример использования
 
 ```jsx
-
-const Example = () => (
-  <ListItem>Пункт списка</ListItem>
-);
+const Example = () => <ListItem>Пункт списка</ListItem>;
 
 export default Example;
 ```
+
 ## Другие варианты использования
 
 ### С кастомными стилями и обработчиком событий
@@ -35,18 +31,17 @@ export default Example;
   <ListItem disabled>Опция 3 (disabled)</ListItem>
 </List>
 ```
+
 ---
 
 ## Props
 
-| Prop       | Type                          | Default | Description                                      |
-|------------|-------------------------------|---------|--------------------------------------------------|
-| children   | ReactNode                     | —       | Содержимое элемента списка                       |
-| className  | string                        | —       | Дополнительный CSS-класс                         |
-| title      | string                        | —       | Атрибут title для всплывающей подсказки          |
-| ...props   | HTMLAttributes<HTMLDivElement> | —       | Любые другие props для div-контейнера            |
-
-
+| Prop      | Type                           | Default | Description                             |
+| --------- | ------------------------------ | ------- | --------------------------------------- |
+| children  | ReactNode                      | —       | Содержимое элемента списка              |
+| className | string                         | —       | Дополнительный CSS-класс                |
+| title     | string                         | —       | Атрибут title для всплывающей подсказки |
+| ...props  | HTMLAttributes<HTMLDivElement> | —       | Любые другие props для div-контейнера   |
 
 ---
 

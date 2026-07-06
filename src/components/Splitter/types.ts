@@ -9,4 +9,10 @@ export interface ISplitterProps {
   bottomComponent?: ReactNode;
   /** Ориентация разделителя */
   orientation?: `${ESplitterOrientation}`;
+  /** Размер верхней панели */
+  topComponentSize?: number;
+  /** Размер нижней панели */
+  bottomComponentSize?: number;
+  /** Показ нижней панели */
+  isShowBottomComponent?: boolean;
 }

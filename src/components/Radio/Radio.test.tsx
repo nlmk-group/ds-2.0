@@ -35,10 +35,8 @@ describe('src/components/Radio', () => {
 
   test('Проверка значения свойства label', () => {
     const testLabel = 'Hello world!';
-    render(
-      <Radio label={testLabel} />
-    );
+    render(<Radio label={testLabel} />);
 
     expect(screen.getByTestId('radio-label')).toHaveTextContent(testLabel);
-  })
+  });
 });

@@ -182,6 +182,28 @@ $sidebar-adaptive-breakpoint: 800px;
   left: 0;
   height: 100vh;
   z-index: var(--z-sidebar);
+
+  &-enter {
+    transform: translateX(-100%);
+  }
+
+  &-enter-active {
+    transform: translateX(0);
+    transition: transform 0.3s;
+  }
+
+  &-exit {
+    transform: translateX(0);
+  }
+
+  &-exit-active {
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+}
+
+.adaptiveContent {
+  height: 100%;
 }
 
 @media (max-width: $sidebar-adaptive-breakpoint) {

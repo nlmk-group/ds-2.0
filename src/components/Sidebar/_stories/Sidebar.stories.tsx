@@ -24,15 +24,19 @@ export default {
 
 const CustomLogoSvgIcon = () => {
   return (
-    <svg width="40" height="22" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M5.68528 7.19816H7.69202V9.66439H9.83252V7.19816H11.8405V13.9305H9.83252V11.2643H7.69202V13.9305H5.68528V7.19816ZM18.9982 7.19816V13.9305H17.0552V8.79503H15.7853V10.7275C15.7853 11.5945 15.7184 12.6613 15.1834 13.261C14.6479 13.9274 13.6448 14.1273 12.508 13.9274V12.2639C13.5779 12.4644 13.8454 12.064 13.8454 10.7306V7.19816H18.9982ZM20.6706 7.19816H22.6767L23.8141 11.1977L24.9509 7.19816H26.9577L27.8939 13.9305H26.0184L25.5503 10.332L24.4785 13.9305H23.1411L22.0724 10.332L21.6043 13.9311H19.7313L20.6706 7.19816ZM28.6294 7.19816H30.6362V9.93094L32.5767 7.19816H34.7853L32.2393 10.5313L34.8466 13.9305H32.4399L30.6337 11.1977V13.9305H28.627L28.6294 7.19816Z"
-        fill="var(--brand-sapphire-30)"
-      />
-      <path
-        d="M20 0C7.95951 0 0 4.3321 0 10.7306C0 17.0631 7.95951 21.4624 20 21.4624C32.1067 21.4624 40 17.0606 40 10.7306C40 4.3321 32.1055 0 20 0ZM20 20.4622C8.69632 20.4622 1.13804 16.53 1.13804 10.7306C1.13681 4.86521 8.69509 0.999575 20 0.999575C31.3706 0.999575 38.862 4.86521 38.862 10.7306C38.862 16.53 31.3706 20.4622 20 20.4622Z"
-        fill="var(--brand-sapphire-30)"
-      />
+    <svg width="40" height="24" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="1" width="38" height="22" rx="4" fill="var(--brand-sapphire-30)" />
+      <text
+        x="20"
+        y="16.5"
+        textAnchor="middle"
+        fontSize="11"
+        fontWeight="700"
+        fontFamily="inherit"
+        fill="var(--unique-white)"
+      >
+        DS
+      </text>
     </svg>
   );
 };
@@ -256,10 +260,20 @@ export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
 };
 SidebarAdaptive.storyName = 'Адаптивный Sidebar';
+
+const TABLET_WIDTH = 800;
+const TABLET_HEIGHT = 1340;
+
 SidebarAdaptive.parameters = {
   viewport: {
     options: {
-      tablet: { name: 'Tablet (800×1340)', styles: { width: '800px', height: '1340px' } }
+      tablet: {
+        name: `Tablet (${TABLET_WIDTH}×${TABLET_HEIGHT})`,
+        styles: {
+          width: `${TABLET_WIDTH}px`,
+          height: `${TABLET_HEIGHT}px`
+        }
+      }
     }
   }
 };

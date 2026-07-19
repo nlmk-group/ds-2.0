@@ -34,9 +34,17 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
 }) => {
   const { collapseSidebar } = useContext<ISidebarProperties>(SidebarProperties);
 
-  const actionIconName = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
-  const actionTitle = isLoggedIn ? 'Выйти' : 'Войти';
-  const handleAction = isLoggedIn ? onLogout : onLogin;
+  const actionProps = isLoggedIn
+    ? {
+        iconName: 'IconExitOutlined24' as const,
+        title: 'Выйти',
+        onClick: onLogout
+      }
+    : {
+        iconName: 'IconEnterOutlined24' as const,
+        title: 'Войти',
+        onClick: onLogin
+      };
 
   return (
     <div className={styles.drawer} data-ui-sidebar-adaptive-menu>
@@ -67,16 +75,16 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
             {systemName}
           </Typography>
         )}
-        {handleAction && (
+        {actionProps.onClick && (
           <Button
             type="button"
             size="s"
             color="ghost"
             variant="secondary"
-            onClick={handleAction}
+            onClick={actionProps.onClick}
             className={styles.companyAction}
-            iconButton={<Icon name={actionIconName} htmlColor="var(--unique-white)" />}
-            title={actionTitle}
+            iconButton={<Icon name={actionProps.iconName} htmlColor="var(--unique-white)" />}
+            title={actionProps.title}
             data-ui-sidebar-action-button
           />
         )}

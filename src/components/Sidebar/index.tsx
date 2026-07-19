@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState
 } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import { IAvatarProps } from '@components/Avatar/types';
 import { ELocaleMapping } from '@components/declaration';
@@ -92,6 +93,7 @@ const Sidebar: FC<ISidebarProps> &
   const scrollRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
+  const adaptiveRootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -193,12 +195,11 @@ const Sidebar: FC<ISidebarProps> &
     );
   };
 
-  if ((isAdaptive || isBurger) && !isExpanded)
-    return (
-      <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
-        <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
-      </div>
-    );
+  const burgerTrigger = (
+    <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
+      <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
+    </div>
+  );
 
   if (isAdaptive)
     return (
@@ -217,34 +218,52 @@ const Sidebar: FC<ISidebarProps> &
           onChangeFavorites
         }}
       >
-        <ClickAwayListener onClickAway={collapseSidebar} className={clsx(styles.adaptiveRoot, className)} style={style}>
-          <AdaptiveMenu
-            logo={logo}
-            systemName={systemName}
-            locale={locale}
-            isLoggedIn={isLoggedIn}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onClickLogo={onClickLogo}
-            userControl={renderUserControl()}
-            topSectionItems={topSectionItems}
-            bottomSectionItems={bottomSectionItems}
-          />
+        {!isExpanded && burgerTrigger}
+        <CSSTransition
+          in={isExpanded}
+          nodeRef={adaptiveRootRef}
+          timeout={300}
+          classNames={{
+            enter: styles['adaptiveRoot-enter'],
+            enterActive: styles['adaptiveRoot-enter-active'],
+            exit: styles['adaptiveRoot-exit'],
+            exitActive: styles['adaptiveRoot-exit-active']
+          }}
+          unmountOnExit
+        >
+          <div ref={adaptiveRootRef} className={clsx(styles.adaptiveRoot, className)} style={style}>
+            <ClickAwayListener onClickAway={collapseSidebar} className={styles.adaptiveContent}>
+              <AdaptiveMenu
+                logo={logo}
+                systemName={systemName}
+                locale={locale}
+                isLoggedIn={isLoggedIn}
+                onLogin={onLogin}
+                onLogout={onLogout}
+                onClickLogo={onClickLogo}
+                userControl={renderUserControl()}
+                topSectionItems={topSectionItems}
+                bottomSectionItems={bottomSectionItems}
+              />
 
-          {overlay && Boolean(activeItem) && (
-            <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
-          )}
+              {overlay && Boolean(activeItem) && (
+                <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+              )}
 
-          <Submenu
-            title={activeItem ?? ''}
-            isOpen={Boolean(activeItem)}
-            orientation={ESidebarOrientationMapping.vertical}
-          >
-            {submenuItems}
-          </Submenu>
-        </ClickAwayListener>
+              <Submenu
+                title={activeItem ?? ''}
+                isOpen={Boolean(activeItem)}
+                orientation={ESidebarOrientationMapping.vertical}
+              >
+                {submenuItems}
+              </Submenu>
+            </ClickAwayListener>
+          </div>
+        </CSSTransition>
       </SidebarProperties.Provider>
     );
+
+  if (isBurger && !isExpanded) return burgerTrigger;
 
   return (
     <SidebarProperties.Provider

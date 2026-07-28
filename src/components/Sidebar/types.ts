@@ -117,7 +117,7 @@ export interface ISidebarProps extends PropsWithChildren {
    */
   style?: CSSProperties;
   /**
-   * Флаг, указывающий, что меню будет открываться и закрываться по вручную.
+   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
    */
   manualExpansion?: boolean;
 }

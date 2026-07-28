@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -333,4 +335,14 @@ input:autofill:focus {
 }
 .required {
   color: var(--spectrum-red-60);
+}
+
+@include touch {
+  .reset,
+  .icon,
+  .start-icon {
+    @include touch-target;
+    align-items: center;
+    justify-content: center;
+  }
 }

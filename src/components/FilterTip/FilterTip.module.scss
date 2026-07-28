@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin hoverBG($bg-color) {
   &:not(&--disabled) {
     &:hover {
@@ -43,6 +45,13 @@
     cursor: default;
     opacity: 0.5;
   }
+
+  @include touch {
+    &--medium,
+    &--small {
+      min-height: $touch-target;
+    }
+  }
 }
 
 .cancel-button {
@@ -55,6 +64,10 @@
     background-color: inherit;
     &:hover:not(:disabled) {
       background: initial;
+    }
+
+    @include touch {
+      @include touch-target;
     }
   }
 }

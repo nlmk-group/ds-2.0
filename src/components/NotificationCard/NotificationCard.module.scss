@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .card {
   background: var(--steel-10);
   color: var(--steel-90);
@@ -56,4 +58,10 @@
 
 .toggle {
   align-self: flex-end;
+}
+
+@include touch {
+  .toggle {
+    @include touch-target;
+  }
 }

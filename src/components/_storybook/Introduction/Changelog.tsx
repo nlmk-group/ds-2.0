@@ -23,6 +23,23 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.31.6 - <span className={styles.date}>18.06.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+                Icon
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлены новые иконки: IconGuideOutlined, IconPauseCircleOutlined
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.5 - <span className={styles.date}>11.06.26</span>
           </Typography>
           <ul className={styles.list}>

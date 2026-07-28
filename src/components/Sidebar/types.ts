@@ -116,6 +116,10 @@ export interface ISidebarProps extends PropsWithChildren {
    * Inline стили для компонента.
    */
   style?: CSSProperties;
+  /**
+   * Флаг, указывающий, что меню будет открываться и закрываться по вручную.
+   */
+  manualExpansion?: boolean;
 }
 
 export interface ICollapseButtonProps {
@@ -123,7 +127,6 @@ export interface ICollapseButtonProps {
    * Флаг, указывающий, развернуто ли меню.
    */
   isExpanded?: boolean;
-
   /**
    * Функция обработки клика по кнопке сворачивания.
    */
@@ -270,6 +273,16 @@ export interface ISidebarProperties {
    * Функция сворачивания бокового меню.
    */
   collapseSidebar: () => void;
+
+  /**
+   * Функция закрытия только подменю.
+   */
+  closeSubmenu: () => void;
+
+  /**
+   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+   */
+  manualExpansion: boolean;
 }
 
 export interface ISubmenuProperties {

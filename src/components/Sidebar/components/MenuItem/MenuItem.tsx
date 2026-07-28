@@ -31,7 +31,8 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
     setSubmenuItems,
     setActiveItem,
     setIsScrollingDueToClick,
-    collapseSidebar
+    collapseSidebar,
+    manualExpansion
   } = useContext<ISidebarProperties>(SidebarProperties);
   const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
@@ -81,7 +82,9 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
       setSubmenuItems(submenu);
     } else {
       setActiveItem(null);
-      collapseSidebar();
+      if (!manualExpansion) {
+        collapseSidebar();
+      }
     }
     if (!hasChildren && onClick && typeof onClick === 'function') {
       onClick();

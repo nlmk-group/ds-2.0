@@ -72,6 +72,7 @@ const Sidebar: FC<ISidebarProps> &
   defaultMenuOpen = false,
   overlay = false,
   logo,
+  manualExpansion = false,
   isShowUserControl = true,
   className,
   style
@@ -135,9 +136,27 @@ const Sidebar: FC<ISidebarProps> &
     ) as ReactElement[];
   };
 
-  const collapseSidebar = () => {
+  const closeSubmenu = () => {
     setActiveItem(null);
+    setSubmenuItems(null);
+  };
+
+  const collapseSidebar = () => {
+    closeSubmenu();
     setExpanded(false);
+  };
+
+  const handleExpand = () => {
+    setExpanded(true);
+  };
+
+  const handleCollapse = () => {
+    collapseSidebar();
+  };
+
+  const handleToggleExpansion = () => {
+    setActiveItem(null);
+    setExpanded(val => !val);
   };
 
   const menuItems = useMemo(() => filterChildrenByComponentType(children, 'MenuItem'), [children]);
@@ -192,7 +211,7 @@ const Sidebar: FC<ISidebarProps> &
 
   if (isBurger && !isExpanded)
     return (
-      <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
+      <div data-ui-sidebar-burger className={styles.burger} onClick={handleExpand}>
         <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
       </div>
     );
@@ -210,11 +229,19 @@ const Sidebar: FC<ISidebarProps> &
         setIsScrollingDueToClick,
         currentPath,
         collapseSidebar,
-        onChangeFavorites
+        closeSubmenu,
+        onChangeFavorites,
+        manualExpansion
       }}
     >
       <ClickAwayListener
-        onClickAway={() => setActiveItem(null)}
+        onClickAway={() => {
+          if (manualExpansion) {
+            closeSubmenu();
+            return;
+          }
+          collapseSidebar();
+        }}
         excludeRef={collapseButtonRef}
         className={clsx(
           styles.root,
@@ -231,14 +258,14 @@ const Sidebar: FC<ISidebarProps> &
             <div
               data-ui-sidebar-burger
               className={clsx(styles.burger, styles['burger-expanded'])}
-              onClick={collapseSidebar}
+              onClick={handleCollapse}
             >
               <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
             </div>
           )}
           <div className={styles.head}>
             {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} locale={locale} />
+              <CollapseButton isExpanded={isExpanded} onClick={handleToggleExpansion} locale={locale} />
             )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
@@ -293,14 +320,24 @@ const Sidebar: FC<ISidebarProps> &
             <CollapseButton
               ref={collapseButtonRef}
               isExpanded={isExpanded}
-              onClick={() => setExpanded(val => !val)}
+              onClick={handleToggleExpansion}
               locale={locale}
             />
           )}
         </div>
 
         {overlay && Boolean(activeItem) && (
-          <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+          <div
+            className={styles.overlay}
+            onClick={() => {
+              if (manualExpansion) {
+                closeSubmenu();
+                return;
+              }
+              collapseSidebar();
+            }}
+            data-ui-sidebar-overlay
+          />
         )}
 
         <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>

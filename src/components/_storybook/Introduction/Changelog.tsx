@@ -23,6 +23,31 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.32.0 - <span className={styles.date}>30.07.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Добавлен адаптивный режим: на ширине экрана меньше 768px меню сворачивается в бургер и открывается
+                выезжающей панелью
+              </li>
+              <li className={styles['left-padding']}>
+                - В адаптивном режиме горизонтальная ориентация отображается как вертикальная панель
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.31.6 - <span className={styles.date}>18.06.26</span>
           </Typography>
           <ul className={styles.list}>

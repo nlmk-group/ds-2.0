@@ -368,6 +368,59 @@ export interface ISubmenuItemProps extends PropsWithChildren {
   disabled?: boolean;
 }
 
+export interface IAdaptiveMenuProps {
+  /**
+   * Кастомный логотип. Если не передан — стандартный.
+   */
+  logo?: ReactNode;
+
+  /**
+   * Системное имя (имя компании) в шапке drawer.
+   */
+  systemName?: string;
+
+  /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
+
+  /**
+   * Флаг авторизации (для кнопки exit/login в шапке).
+   */
+  isLoggedIn?: boolean;
+
+  /**
+   * Колбэк входа в аккаунт.
+   */
+  onLogin?: () => void;
+
+  /**
+   * Колбэк выхода из аккаунта.
+   */
+  onLogout?: () => void;
+
+  /**
+   * Колбэк клика по логотипу.
+   */
+  onClickLogo?: () => void;
+
+  /**
+   * Готовый узел UserControl.
+   */
+  userControl: ReactNode;
+
+  /**
+   * Пункты верхней секции.
+   */
+  topSectionItems: ReactNode;
+
+  /**
+   * Пункты нижней секции.
+   */
+  bottomSectionItems: ReactNode;
+}
+
 export interface IComponentWithType extends FC<ISidebarProps> {
   /**
    * Тип компонента.

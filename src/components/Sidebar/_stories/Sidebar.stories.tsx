@@ -6,6 +6,7 @@ import { ISidebarProps } from '@components/Sidebar/types';
 
 import styles from './Sidebar.module.scss';
 
+import { SIDEBAR_ADAPTIVE_BREAKPOINT } from '../constants';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
@@ -261,7 +262,7 @@ export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
 };
 SidebarAdaptive.storyName = 'Адаптивный Sidebar';
 
-const TABLET_WIDTH = 800;
+const TABLET_WIDTH = SIDEBAR_ADAPTIVE_BREAKPOINT;
 const TABLET_HEIGHT = 1340;
 
 SidebarAdaptive.parameters = {

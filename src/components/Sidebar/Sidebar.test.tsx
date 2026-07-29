@@ -1,25 +1,9 @@
 import React from 'react';
 
+import { mockMatchMedia } from '@components/declaration/mocks/matchMediaMock';
 import { fireEvent, render } from '@testing-library/react';
 
 import Sidebar from './index';
-
-const mockMatchMedia = (isAdaptive: boolean) => {
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    configurable: true,
-    value: (query: string) => ({
-      matches: isAdaptive,
-      media: query,
-      onchange: null,
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      dispatchEvent: jest.fn()
-    })
-  });
-};
 
 describe('src/components/Sidebar', () => {
   const { container } = render(<Sidebar onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} currentPath="" />);

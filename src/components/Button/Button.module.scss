@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 @mixin buttonBase {
   display: flex;
   align-items: center;
@@ -348,5 +350,17 @@
 
   svg {
     color: var(--spectrum-green-60);
+  }
+}
+
+@include touch {
+  .compact,
+  .extra-compact {
+    min-height: $touch-target;
+  }
+
+  .icon-button-compact,
+  .icon-button-extra-compact {
+    @include touch-target;
   }
 }

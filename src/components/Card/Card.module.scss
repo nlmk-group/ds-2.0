@@ -1,3 +1,5 @@
+@use "adaptive" as *;
+
 .wrapper {
   display: flex;
   border-radius: 4px;
@@ -18,6 +20,19 @@
 .card-vertical {
   gap: 24px;
   width: 385px;
+}
+
+@include down($bp-lg) {
+  .card-vertical {
+    width: 100%;
+    max-width: 385px;
+  }
+}
+
+@include down($bp-md) {
+  .wrapper-horizontal {
+    flex-direction: column;
+  }
 }
 
 .card-horizontal {

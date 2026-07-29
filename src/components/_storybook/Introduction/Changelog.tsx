@@ -44,6 +44,17 @@ export const Changelog = () => {
                 - В адаптивном режиме горизонтальная ориентация отображается как вертикальная панель
               </li>
             </li>
+            <li>
+              • Добавлена адаптивность под сенсорные экраны.
+              <li className={styles['left-padding']}>
+                - На устройствах с сенсорным вводом интерактивные элементы получили минимальную область нажатия 44px
+              </li>
+              <li className={styles['left-padding']}>
+                - Затронуты компоненты: Accordion, Alert, ArrowButton, AttachFiles, Button, Card, Checkbox, DragAndDrop,
+                FilterTip, Input, ListItem, NotificationCard, NotificationGroup, NotificationItem, PseudoInput, Radio,
+                SegmentButtonGroup, SlideToggle, Snackbar, Switch
+              </li>
+            </li>
           </ul>
         </div>
         <div className={styles.history}>

@@ -45,6 +45,7 @@ import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMap
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
  * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
  * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
+ * @param {boolean} [props.manualExpansion=false] - Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
  * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
  * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
@@ -88,7 +89,6 @@ const Sidebar: FC<ISidebarProps> &
   const [submenuItems, setSubmenuItems] = useState<ReactNode | ReactNode[]>(null);
   const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const positionRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -138,7 +138,6 @@ const Sidebar: FC<ISidebarProps> &
 
   const closeSubmenu = () => {
     setActiveItem(null);
-    setSubmenuItems(null);
   };
 
   const collapseSidebar = () => {
@@ -148,10 +147,6 @@ const Sidebar: FC<ISidebarProps> &
 
   const handleExpand = () => {
     setExpanded(true);
-  };
-
-  const handleCollapse = () => {
-    collapseSidebar();
   };
 
   const handleToggleExpansion = () => {
@@ -253,12 +248,12 @@ const Sidebar: FC<ISidebarProps> &
         )}
         style={style}
       >
-        <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
+        <div className={clsx(styles.menu, styles[`menu-${orientation}`])}>
           {!isVertical && isBurger && (
             <div
               data-ui-sidebar-burger
               className={clsx(styles.burger, styles['burger-expanded'])}
-              onClick={handleCollapse}
+              onClick={collapseSidebar}
             >
               <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
             </div>
@@ -327,17 +322,7 @@ const Sidebar: FC<ISidebarProps> &
         </div>
 
         {overlay && Boolean(activeItem) && (
-          <div
-            className={styles.overlay}
-            onClick={() => {
-              if (manualExpansion) {
-                closeSubmenu();
-                return;
-              }
-              collapseSidebar();
-            }}
-            data-ui-sidebar-overlay
-          />
+          <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
         )}
 
         <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>

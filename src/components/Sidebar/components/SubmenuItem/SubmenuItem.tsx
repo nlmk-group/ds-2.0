@@ -106,14 +106,16 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
       if (!hasChildren) {
         closeSubmenu();
         setIsSubmenuVisible(false);
+
+        if (onClick && typeof onClick === 'function') {
+          onClick();
+        }
+
+        if (!manualExpansion) {
+          collapseSidebar();
+        }
       } else {
         setActiveItem(isActive ? null : label);
-      }
-      if (!hasChildren && onClick && typeof onClick === 'function') {
-        onClick();
-      }
-      if (!hasChildren && !manualExpansion) {
-        collapseSidebar();
       }
     }
   };
@@ -123,10 +125,11 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
    * внутренних элементов subMenuItem если его path активен
    */
   useEffect(() => {
-    if (!manualExpansion) {
+    if (isActivePath) {
       setIsSubmenuVisible(isActivePath);
     }
-  }, [isActivePath, manualExpansion]);
+  }, [isActivePath]);
+
   return (
     <div className={styles['submenu-item']}>
       <div

@@ -28,7 +28,11 @@ export const Changelog = () => {
           <ul className={styles.list}>
             <li>
               • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-icon-info--docs" target="blank" className={styles['link-changelog']}>
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
                 SideBar
               </Link>
               .

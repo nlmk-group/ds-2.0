@@ -64,7 +64,10 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
     return false;
   };
 
-  const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveChild);
+  const hasActiveDescendant = Children.toArray(children).some(hasActiveChild);
+  const isActivePath = hasChildren
+    ? isActive || (!activeItem && hasActiveDescendant)
+    : !activeItem && path === currentPath;
 
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();

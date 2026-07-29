@@ -50,6 +50,7 @@ export default App;
 | currentPath | string | - | Текущий путь (URL) для определения активного элемента |
 | defaultMenuOpen | boolean | false | Флаг начального состояния меню (развернуто/свернуто) |
 | overlay | boolean | false | Флаг отображения оверлея при открытом подменю |
+| manualExpansion | boolean | false | Развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю |
 | logo | ReactNode | LogoSvgIcon | Кастомный логотип для отображения |
 | isShowUserControl | boolean | true | Флаг для отображения управления пользователем |
 | className | string | - | Дополнительный класс для стилизации компонента |

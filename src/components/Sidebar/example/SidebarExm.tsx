@@ -32,6 +32,42 @@ export const SidebarExm = () => {
           <p>Контент для просмотра недельной отчетности.</p>
         </>
       ),
+      projects: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Проекты</h2>
+          <p>Общий раздел для навигации по проектам и командам.</p>
+        </>
+      ),
+      activeProjects: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Активные проекты</h2>
+          <p>Список проектов, которые сейчас находятся в работе.</p>
+        </>
+      ),
+      archivedProjects: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Архив проектов</h2>
+          <p>Завершенные или приостановленные проекты.</p>
+        </>
+      ),
+      teams: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Команды</h2>
+          <p>Раздел с командами, задействованными в проектах.</p>
+        </>
+      ),
+      developmentTeam: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Команда разработки</h2>
+          <p>Информация о специалистах, отвечающих за реализацию проектов.</p>
+        </>
+      ),
+      analyticsTeam: (
+        <>
+          <h2 style={{ marginTop: 0 }}>Команда аналитики</h2>
+          <p>Информация о команде, которая занимается анализом требований и данных.</p>
+        </>
+      ),
       settings: (
         <>
           <h2 style={{ marginTop: 0 }}>Настройки</h2>
@@ -52,7 +88,7 @@ export const SidebarExm = () => {
     <div
       style={{
         backgroundColor: 'var(--unique-background)',
-        minHeight: '100vh',
+        minHeight: '80vh',
         width: '100%',
         display: 'flex'
       }}
@@ -88,6 +124,37 @@ export const SidebarExm = () => {
         >
           <Sidebar.SubmenuItem path="daily" label="Ежедневные" onClick={() => setCurrentPath('daily')} />
           <Sidebar.SubmenuItem path="weekly" label="Недельные" onClick={() => setCurrentPath('weekly')} />
+        </Sidebar.MenuItem>
+
+        <Sidebar.MenuItem
+          path="projects"
+          label="Проекты"
+          position="top"
+          icon="IconFolderOutlined32"
+          onClick={() => setCurrentPath('projects')}
+        >
+          <Sidebar.SubmenuItem
+            path="activeProjects"
+            label="Активные"
+            onClick={() => setCurrentPath('activeProjects')}
+          />
+          <Sidebar.SubmenuItem path="teams" label="Команды" onClick={() => setCurrentPath('teams')}>
+            <Sidebar.SubmenuItem
+              path="developmentTeam"
+              label="Разработка"
+              onClick={() => setCurrentPath('developmentTeam')}
+            />
+            <Sidebar.SubmenuItem
+              path="analyticsTeam"
+              label="Аналитика"
+              onClick={() => setCurrentPath('analyticsTeam')}
+            />
+          </Sidebar.SubmenuItem>
+          <Sidebar.SubmenuItem
+            path="archivedProjects"
+            label="Архив"
+            onClick={() => setCurrentPath('archivedProjects')}
+          />
         </Sidebar.MenuItem>
 
         <Sidebar.MenuItem

@@ -155,6 +155,32 @@ const App = () => {
 
 export default App;`;
 
+const sidebarManualExpansion = `import { useState } from 'react';
+import { Sidebar } from '@nlmk/ds-2.0';
+
+const App = () => {
+  const [currentPath, setCurrentPath] = useState('dashboard');
+
+  return (
+    <div style={{ backgroundColor: 'var(--unique-background)', width: '100%', margin: '-20px' }}>
+      <Sidebar
+        orientation="vertical"
+        currentPath={currentPath}
+        defaultMenuOpen
+        manualExpansion
+      >
+        <Sidebar.MenuItem path="dashboard" label="Дашборд" position="top" icon="IconKovsh32" onClick={() => setCurrentPath('dashboard')} />
+        <Sidebar.MenuItem path="reports" label="Отчеты" position="top" icon="IconChartDonut32" onClick={() => setCurrentPath('reports')}>
+          <Sidebar.SubmenuItem path="daily" label="Ежедневные" onClick={() => setCurrentPath('daily')} />
+          <Sidebar.SubmenuItem path="weekly" label="Недельные" onClick={() => setCurrentPath('weekly')} />
+        </Sidebar.MenuItem>
+      </Sidebar>
+    </div>
+  );
+};
+
+export default App;`;
+
 const SidebarStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
@@ -190,6 +216,11 @@ const SidebarStories = (): JSX.Element => {
             minHeight={920}
             description="Режим burger с overlay и управлением видимостью пользовательского блока."
             code={sidebarBurgerVariant}
+          />
+          <Editor
+            minHeight={620}
+            description="Режим manualExpansion: развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю."
+            code={sidebarManualExpansion}
           />
           <Properties argsTypes={argsTypes} />
         </>

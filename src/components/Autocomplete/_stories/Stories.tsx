@@ -36,6 +36,7 @@ export default function App() {
   return (
     <Autocomplete
       items={options}
+      selected={selected}
       onChange={setSelected}
       nameGetter={item => item.label || ''}
       label="Autocomplete по умолчанию"
@@ -105,6 +106,7 @@ export default function CustomTotalTextExample() {
   return (
     <Autocomplete
       items={options}
+      selected={selected}
       onChange={setSelected}
       nameGetter={item => item.label || ''}
       totalText="Найдено:"
@@ -304,14 +306,16 @@ const options = [
 ];
 
 export default function EmptyDropdownExample() {
-  const [selected, setSelected] = useState();
+  const [selectedWithEmpty, setSelectedWithEmpty] = useState();
+  const [selectedWithoutEmpty, setSelectedWithoutEmpty] = useState();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <Autocomplete
         items={options}
         nameGetter={item => item.label || ''}
-        onChange={setSelected}
+        selected={selectedWithEmpty}
+        onChange={setSelectedWithEmpty}
         showEmptyDropdown={true}
         label="С отображением пустого дропдауна (по умолчанию)"
         noResultsText="Ничего не найдено"
@@ -320,7 +324,8 @@ export default function EmptyDropdownExample() {
       <Autocomplete
         items={options}
         nameGetter={item => item.label || ''}
-        onChange={setSelected}
+        selected={selectedWithoutEmpty}
+        onChange={setSelectedWithoutEmpty}
         showEmptyDropdown={false}
         label="Без отображения пустого дропдауна"
       />

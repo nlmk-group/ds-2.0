@@ -3,3 +3,4 @@ export { default as UserControl } from './UserControl/UserControl';
 export { default as MenuItem } from './MenuItem/MenuItem';
 export { default as Submenu } from './Submenu/Submenu';
 export { default as SubmenuItem } from './SubmenuItem/SubmenuItem';
+export { default as AdaptiveMenu } from './AdaptiveMenu/AdaptiveMenu';

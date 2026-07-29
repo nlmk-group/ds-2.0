@@ -1,0 +1,86 @@
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center {
+  @include flex-align-center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer {
+  @include flex-column;
+  width: 240px;
+  height: 100%;
+  background: var(--brand-jeans-20);
+}
+
+.collapseRow {
+  @include flex-align-center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: none;
+  background: var(--brand-jeans-20);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--brand-jeans-10);
+  }
+}
+
+.collapseIcon {
+  @include flex-center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.company {
+  @include flex-align-center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 4px;
+  background: var(--brand-jeans-30);
+}
+
+.logo {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.companyName {
+  flex: 1;
+  opacity: 0.5;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.companyAction {
+  flex-shrink: 0;
+}
+
+.body {
+  @include flex-column;
+  justify-content: space-between;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.topSection,
+.bottomSection {
+  @include flex-column;
+}

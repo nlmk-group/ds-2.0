@@ -6,6 +6,7 @@ import { ISidebarProps } from '@components/Sidebar/types';
 
 import styles from './Sidebar.module.scss';
 
+import { SIDEBAR_ADAPTIVE_BREAKPOINT } from '../constants';
 import { argsTypes } from './argsTypes';
 
 const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
@@ -247,6 +248,36 @@ export const SidebarWithCustomLogo = (argTypes: ISidebarProps): ReactNode => {
 };
 SidebarWithCustomLogo.storyName = 'Sidebar с пользовательским компонентом logo';
 SidebarWithCustomLogo.args = {
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};
+
+export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
+};
+SidebarAdaptive.storyName = 'Адаптивный Sidebar';
+
+const TABLET_WIDTH = SIDEBAR_ADAPTIVE_BREAKPOINT;
+const TABLET_HEIGHT = 1340;
+
+SidebarAdaptive.parameters = {
+  viewport: {
+    options: {
+      tablet: {
+        name: `Tablet (${TABLET_WIDTH}×${TABLET_HEIGHT})`,
+        styles: {
+          width: `${TABLET_WIDTH}px`,
+          height: `${TABLET_HEIGHT}px`
+        }
+      }
+    }
+  }
+};
+SidebarAdaptive.globals = {
+  viewport: { value: 'tablet', isRotated: false }
+};
+SidebarAdaptive.args = {
   userName: 'Иван',
   userSurname: 'Иванов',
   systemName: 'НЛМК'

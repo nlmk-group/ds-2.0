@@ -10,8 +10,8 @@ export const COLLAPSE_TEXTS = {
 } as const;
 
 /**
- * Брейкпоинт (px), на котором и ниже Sidebar переключается в адаптивный режим.
- * Текущее значение соответствует планшетному гриду NLMK (800px). Держать синхронно с
- * $sidebar-adaptive-breakpoint в Sidebar.module.scss.
+ * Брейкпоинт (px), ниже которого Sidebar переключается в адаптивный режим.
+ * Значение и семантика «строго меньше» повторяют $bp-md и миксин down()
+ * из src/components/_adaptive.scss.
  */
-export const SIDEBAR_ADAPTIVE_BREAKPOINT = 800;
+export const SIDEBAR_ADAPTIVE_BREAKPOINT = 768;

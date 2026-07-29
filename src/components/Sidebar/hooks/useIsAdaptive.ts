@@ -2,7 +2,7 @@ import { useCallback, useSyncExternalStore } from 'react';
 
 import { SIDEBAR_ADAPTIVE_BREAKPOINT } from '../constants';
 
-const getMediaQuery = (breakpoint: number): string => `(max-width: ${breakpoint}px)`;
+const getMediaQuery = (breakpoint: number): string => `(max-width: ${breakpoint - 1}px)`;
 
 const getSnapshot = (breakpoint: number): boolean => {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -32,11 +32,11 @@ const subscribe = (breakpoint: number, onStoreChange: () => void): (() => void) 
 
 /**
  * Хук useIsAdaptive определяет, находится ли вьюпорт в адаптивном режиме
- * (ширина <= breakpoint) через window.matchMedia и реактивно обновляется
- * при изменении ширины окна.
+ * (ширина < breakpoint) через window.matchMedia и реактивно обновляется
+ * при изменении ширины окна. Граница совпадает с SCSS-миксином down().
  *
  * @param {number} [breakpoint=SIDEBAR_ADAPTIVE_BREAKPOINT] - Порог ширины в px.
- * @returns {boolean} true, если ширина вьюпорта меньше или равна порогу, иначе false.
+ * @returns {boolean} true, если ширина вьюпорта меньше порога, иначе false.
  */
 export const useIsAdaptive = (breakpoint: number = SIDEBAR_ADAPTIVE_BREAKPOINT): boolean => {
   const subscribeToMediaQuery = useCallback(

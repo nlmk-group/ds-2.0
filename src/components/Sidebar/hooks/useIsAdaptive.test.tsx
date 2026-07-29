@@ -1,5 +1,5 @@
 import { mockMatchMedia } from '@components/declaration/mocks/matchMediaMock';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 
 import { useIsAdaptive } from './useIsAdaptive';
 
@@ -14,5 +14,15 @@ describe('useIsAdaptive', () => {
     mockMatchMedia(false);
     const { result } = renderHook(() => useIsAdaptive());
     expect(result.current).toBe(false);
+  });
+
+  test('реагирует на изменение media query без перемонтирования', () => {
+    const media = mockMatchMedia(false);
+    const { result } = renderHook(() => useIsAdaptive());
+    expect(result.current).toBe(false);
+
+    act(() => media.setMatches(true));
+
+    expect(result.current).toBe(true);
   });
 });

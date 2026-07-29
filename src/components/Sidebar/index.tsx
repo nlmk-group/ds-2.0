@@ -22,6 +22,7 @@ import { IComponentWithType, IMenuItemProps, ISidebarProps, ISubmenuItemProps } 
 import styles from './Sidebar.module.scss';
 
 import { AdaptiveMenu, CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
+import { COLLAPSE_TEXTS } from './constants';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 import { useIsAdaptive } from './hooks';
@@ -87,6 +88,7 @@ const Sidebar: FC<ISidebarProps> &
     if (isAdaptive) return false;
     return !isVertical && !isBurger;
   });
+  const prevIsAdaptiveRef = useRef(isAdaptive);
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [submenuItems, setSubmenuItems] = useState<ReactNode | ReactNode[]>(null);
   const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
@@ -94,6 +96,26 @@ const Sidebar: FC<ISidebarProps> &
   const positionRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
   const adaptiveRootRef = useRef<HTMLDivElement>(null);
+
+  // Только на смене режима, иначе эффект затрёт defaultMenuOpen при монтировании
+  useEffect(() => {
+    if (prevIsAdaptiveRef.current === isAdaptive) return;
+    prevIsAdaptiveRef.current = isAdaptive;
+    setExpanded(isAdaptive ? false : !isVertical && !isBurger);
+    setActiveItem(null);
+    setSubmenuItems(null);
+  }, [isAdaptive, isVertical, isBurger]);
+
+  useEffect(() => {
+    if (!isAdaptive || !isExpanded) return;
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [isAdaptive, isExpanded]);
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -196,9 +218,18 @@ const Sidebar: FC<ISidebarProps> &
   };
 
   const burgerTrigger = (
-    <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
+    <button
+      type="button"
+      data-ui-sidebar-burger
+      className={clsx(styles.burger, className)}
+      style={style}
+      onClick={() => setExpanded(true)}
+      aria-expanded={false}
+      aria-label={COLLAPSE_TEXTS[locale].expand}
+      title={COLLAPSE_TEXTS[locale].expand}
+    >
       <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
-    </div>
+    </button>
   );
 
   if (isAdaptive)
@@ -231,8 +262,13 @@ const Sidebar: FC<ISidebarProps> &
           }}
           unmountOnExit
         >
-          <div ref={adaptiveRootRef} className={clsx(styles.adaptiveRoot, className)} style={style}>
-            <ClickAwayListener onClickAway={collapseSidebar} className={styles.adaptiveContent}>
+          <div ref={adaptiveRootRef} className={styles.adaptiveRoot}>
+            <div className={styles.adaptiveScrim} data-ui-sidebar-adaptive-scrim />
+            <ClickAwayListener
+              onClickAway={collapseSidebar}
+              className={clsx(styles.adaptiveContent, className)}
+              style={style}
+            >
               <AdaptiveMenu
                 logo={logo}
                 systemName={systemName}

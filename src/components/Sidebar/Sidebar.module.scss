@@ -1,4 +1,4 @@
-$sidebar-adaptive-breakpoint: 800px;
+@use "adaptive" as *;
 
 @mixin column {
   display: flex;
@@ -62,6 +62,8 @@ $sidebar-adaptive-breakpoint: 800px;
   @include cell;
   width: 64px;
   justify-content: center;
+  padding: 0;
+  border: none;
   background: var(--brand-jeans-20);
 
   &:hover {
@@ -178,35 +180,69 @@ $sidebar-adaptive-breakpoint: 800px;
 
 .adaptiveRoot {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
+  inset: 0;
   z-index: var(--z-sidebar);
 
   &-enter {
-    transform: translateX(-100%);
+    .adaptiveScrim {
+      opacity: 0;
+    }
+
+    .adaptiveContent {
+      transform: translateX(-100%);
+    }
   }
 
   &-enter-active {
-    transform: translateX(0);
-    transition: transform 0.3s;
+    .adaptiveScrim {
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .adaptiveContent {
+      transform: translateX(0);
+      transition: transform 0.3s;
+    }
   }
 
   &-exit {
-    transform: translateX(0);
+    .adaptiveScrim {
+      opacity: 0.6;
+    }
+
+    .adaptiveContent {
+      transform: translateX(0);
+    }
   }
 
   &-exit-active {
-    transform: translateX(-100%);
-    transition: transform 0.3s;
+    .adaptiveScrim {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .adaptiveContent {
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
   }
 }
 
+.adaptiveScrim {
+  position: absolute;
+  inset: 0;
+  background-color: var(--brand-jeans-30);
+  opacity: 0.6;
+  will-change: opacity;
+}
+
 .adaptiveContent {
+  position: relative;
+  width: fit-content;
   height: 100%;
 }
 
-@media (max-width: $sidebar-adaptive-breakpoint) {
+@include down($bp-md) {
   .burger {
     width: 48px;
     height: 48px;

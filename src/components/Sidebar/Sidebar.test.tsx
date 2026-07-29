@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { mockMatchMedia } from '@components/declaration/mocks/matchMediaMock';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 
 import Sidebar from './index';
 
@@ -63,5 +63,35 @@ describe('Sidebar адаптив', () => {
     expect(container.querySelector('[data-ui-sidebar-burger]')).toBeInTheDocument();
     fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
     expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).toBeInTheDocument();
+  });
+
+  test('при переходе на адаптивную ширину развёрнутое меню не превращается в открытый drawer', async () => {
+    const media = mockMatchMedia(false);
+    const { container } = render(
+      <Sidebar currentPath="/a" defaultMenuOpen>
+        <Sidebar.MenuItem label="Раздел" path="/a" icon="IconStarFilled24" />
+      </Sidebar>
+    );
+    expect(container.querySelector('[data-ui-sidebar-top-section]')).toBeInTheDocument();
+
+    act(() => media.setMatches(true));
+
+    expect(container.querySelector('[data-ui-sidebar-burger]')).toBeInTheDocument();
+    await waitFor(() => expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).not.toBeInTheDocument());
+  });
+
+  test('при возврате на десктопную ширину drawer закрывается', () => {
+    const media = mockMatchMedia(true);
+    const { container } = render(
+      <Sidebar currentPath="/a">
+        <Sidebar.MenuItem label="Раздел" path="/a" icon="IconStarFilled24" />
+      </Sidebar>
+    );
+    fireEvent.click(container.querySelector('[data-ui-sidebar-burger]')!);
+    expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).toBeInTheDocument();
+
+    act(() => media.setMatches(false));
+
+    expect(container.querySelector('[data-ui-sidebar-adaptive-menu]')).not.toBeInTheDocument();
   });
 });

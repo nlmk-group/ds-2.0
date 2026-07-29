@@ -7,6 +7,7 @@ import clsx from 'clsx';
 
 import styles from './AdaptiveMenu.module.scss';
 
+import { COLLAPSE_TEXTS } from '../../constants';
 import { SidebarProperties } from '../../context';
 import { IAdaptiveMenuProps, ISidebarProperties } from '../../types';
 
@@ -53,7 +54,7 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
           <Icon name="IconChevronArrowLeftOutlined24" containerSize={24} htmlColor="var(--unique-white)" />
         </span>
         <Typography variant="Body1-Medium" color="var(--unique-white)">
-          {locale === ELocaleMapping.ru ? 'Свернуть' : 'Collapse'}
+          {COLLAPSE_TEXTS[locale].collapse}
         </Typography>
       </button>
 

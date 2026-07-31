@@ -23,6 +23,23 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.32.1 - <span className={styles.date}>31.07.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Cell
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен data-атрибут `data-ui-cell-content`.</li>
+              <li className={styles['left-padding']}>
+                - Удален элемент `div`, который служил лишней оберткой для кастомного контента ячейки.
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.32.0 - <span className={styles.date}>30.07.26</span>
           </Typography>
           <ul className={styles.list}>

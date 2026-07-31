@@ -59,3 +59,10 @@
   top: 0;
   z-index: 10;
 }
+
+// стили по дата атрибутам ячейки Cell
+.fullWidthCell {
+  [data-ui-cell-content] {
+    padding: 0;
+  }
+}

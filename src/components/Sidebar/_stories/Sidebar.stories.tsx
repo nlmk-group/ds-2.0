@@ -282,3 +282,13 @@ SidebarAdaptive.args = {
   userSurname: 'Иванов',
   systemName: 'НЛМК'
 };
+
+export const SidebarManualExpansion = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} defaultMenuOpen manualExpansion />;
+};
+SidebarManualExpansion.storyName = 'Sidebar сворачивается только по кнопке, а клик вне меню закрывает только подменю';
+SidebarManualExpansion.args = {
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};

@@ -48,6 +48,7 @@ import { useIsAdaptive } from './hooks';
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
  * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
  * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
+ * @param {boolean} [props.manualExpansion=false] - Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
  * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
  * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
@@ -75,6 +76,7 @@ const Sidebar: FC<ISidebarProps> &
   defaultMenuOpen = false,
   overlay = false,
   logo,
+  manualExpansion = false,
   isShowUserControl = true,
   className,
   style
@@ -93,7 +95,6 @@ const Sidebar: FC<ISidebarProps> &
   const [submenuItems, setSubmenuItems] = useState<ReactNode | ReactNode[]>(null);
   const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const positionRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
   const adaptiveRootRef = useRef<HTMLDivElement>(null);
 
@@ -162,9 +163,18 @@ const Sidebar: FC<ISidebarProps> &
     ) as ReactElement[];
   };
 
-  const collapseSidebar = () => {
+  const closeSubmenu = () => {
     setActiveItem(null);
+  };
+
+  const collapseSidebar = () => {
+    closeSubmenu();
     setExpanded(false);
+  };
+
+  const handleToggleExpansion = () => {
+    setActiveItem(null);
+    setExpanded(val => !val);
   };
 
   const menuItems = useMemo(() => filterChildrenByComponentType(children, 'MenuItem'), [children]);
@@ -246,7 +256,9 @@ const Sidebar: FC<ISidebarProps> &
           setIsScrollingDueToClick,
           currentPath,
           collapseSidebar,
-          onChangeFavorites
+          onChangeFavorites,
+          closeSubmenu,
+          manualExpansion
         }}
       >
         {!isExpanded && burgerTrigger}
@@ -283,7 +295,7 @@ const Sidebar: FC<ISidebarProps> &
               />
 
               {overlay && Boolean(activeItem) && (
-                <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+                <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
               )}
 
               <Submenu
@@ -314,11 +326,23 @@ const Sidebar: FC<ISidebarProps> &
         setIsScrollingDueToClick,
         currentPath,
         collapseSidebar,
-        onChangeFavorites
+        closeSubmenu,
+        onChangeFavorites,
+        manualExpansion
       }}
     >
       <ClickAwayListener
-        onClickAway={() => setActiveItem(null)}
+        // TODO(DESIGNSYS-2536): дефолтное сворачивание по клику вне меню — обкатать на проектах.
+        // Известный риск: при orientation="horizontal" + variant="default" кнопки возврата на экране нет
+        // (обе CollapseButton под isVertical), после сворачивания панель остаётся 64px.
+        // Если до 01.01.2027 замечаний не придёт — убрать TODO и оставить поведение как есть.
+        onClickAway={() => {
+          if (manualExpansion) {
+            closeSubmenu();
+            return;
+          }
+          collapseSidebar();
+        }}
         excludeRef={collapseButtonRef}
         className={clsx(
           styles.root,
@@ -330,7 +354,7 @@ const Sidebar: FC<ISidebarProps> &
         )}
         style={style}
       >
-        <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
+        <div className={clsx(styles.menu, styles[`menu-${orientation}`])}>
           {!isVertical && isBurger && (
             <div
               data-ui-sidebar-burger
@@ -342,7 +366,7 @@ const Sidebar: FC<ISidebarProps> &
           )}
           <div className={styles.head}>
             {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} locale={locale} />
+              <CollapseButton isExpanded={isExpanded} onClick={handleToggleExpansion} locale={locale} />
             )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
@@ -397,14 +421,14 @@ const Sidebar: FC<ISidebarProps> &
             <CollapseButton
               ref={collapseButtonRef}
               isExpanded={isExpanded}
-              onClick={() => setExpanded(val => !val)}
+              onClick={handleToggleExpansion}
               locale={locale}
             />
           )}
         </div>
 
         {overlay && Boolean(activeItem) && (
-          <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+          <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
         )}
 
         <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>

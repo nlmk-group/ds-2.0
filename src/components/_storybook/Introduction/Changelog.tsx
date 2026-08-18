@@ -37,6 +37,9 @@ export const Changelog = () => {
               </Link>
               .
               <li className={styles['left-padding']}>
+                - Добавлена функциональность ручного открытия и закрытия бокового меню, свойство - manualExpansion
+              </li>
+              <li className={styles['left-padding']}>
                 - Добавлен адаптивный режим: на ширине экрана меньше 768px меню сворачивается в бургер и открывается
                 выезжающей панелью
               </li>

@@ -33,7 +33,7 @@ const Cell: FC<ICellProps> = ({
 
   const renderContent = () => {
     if (children) {
-      return <div className={styles.main}>{children}</div>;
+      return children;
     }
 
     if (text !== undefined || number !== undefined) {
@@ -65,7 +65,9 @@ const Cell: FC<ICellProps> = ({
       onClick={handleClick}
       {...props}
     >
-      <div className={styles.content}>{renderContent()}</div>
+      <div data-ui-cell-content className={styles.content}>
+        {renderContent()}
+      </div>
     </td>
   );
 };

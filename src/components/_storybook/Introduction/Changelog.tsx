@@ -23,7 +23,7 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
-            v2.32.0 - <span className={styles.date}>30.07.26</span>
+            v2.32.0 - <span className={styles.date}>18.08.26</span>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -45,6 +45,16 @@ export const Changelog = () => {
               </li>
               <li className={styles['left-padding']}>
                 - В адаптивном режиме горизонтальная ориентация отображается как вертикальная панель
+              </li>
+            </li>
+            <li>
+              • Обновлен компонент{' '}
+              <Link href="./?path=/docs/table-stories--docs" target="blank" className={styles['link-changelog']}>
+                Cell
+              </Link>
+              .<li className={styles['left-padding']}>- Добавлен data-атрибут data-ui-cell-content</li>
+              <li className={styles['left-padding']}>
+                - Удален лишний элемент div, оборачивавший кастомный контент ячейки
               </li>
             </li>
             <li>

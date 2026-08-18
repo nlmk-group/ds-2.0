@@ -102,21 +102,22 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
     if (submenu && isVertical) {
       setSubmenuItems(submenu);
       setIsSubmenuVisible(prev => !prev);
-    } else {
-      if (!hasChildren) {
-        closeSubmenu();
-        setIsSubmenuVisible(false);
+      return;
+    }
+    if (hasChildren) {
+      setActiveItem(isActive ? null : label);
+      return;
+    }
 
-        if (onClick && typeof onClick === 'function') {
-          onClick();
-        }
+    closeSubmenu();
+    setIsSubmenuVisible(false);
 
-        if (!manualExpansion) {
-          collapseSidebar();
-        }
-      } else {
-        setActiveItem(isActive ? null : label);
-      }
+    if (onClick && typeof onClick === 'function') {
+      onClick();
+    }
+
+    if (!manualExpansion) {
+      collapseSidebar();
     }
   };
 

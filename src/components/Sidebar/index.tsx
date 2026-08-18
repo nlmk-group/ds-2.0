@@ -332,7 +332,17 @@ const Sidebar: FC<ISidebarProps> &
       }}
     >
       <ClickAwayListener
-        onClickAway={closeSubmenu}
+        // TODO(DESIGNSYS-2536): дефолтное сворачивание по клику вне меню — обкатать на проектах.
+        // Известный риск: при orientation="horizontal" + variant="default" кнопки возврата на экране нет
+        // (обе CollapseButton под isVertical), после сворачивания панель остаётся 64px.
+        // Если до 01.01.2027 замечаний не придёт — убрать TODO и оставить поведение как есть.
+        onClickAway={() => {
+          if (manualExpansion) {
+            closeSubmenu();
+            return;
+          }
+          collapseSidebar();
+        }}
         excludeRef={collapseButtonRef}
         className={clsx(
           styles.root,

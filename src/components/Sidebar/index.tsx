@@ -295,7 +295,7 @@ const Sidebar: FC<ISidebarProps> &
               />
 
               {overlay && Boolean(activeItem) && (
-                <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+                <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
               )}
 
               <Submenu
@@ -332,13 +332,7 @@ const Sidebar: FC<ISidebarProps> &
       }}
     >
       <ClickAwayListener
-        onClickAway={() => {
-          if (manualExpansion) {
-            closeSubmenu();
-            return;
-          }
-          collapseSidebar();
-        }}
+        onClickAway={closeSubmenu}
         excludeRef={collapseButtonRef}
         className={clsx(
           styles.root,

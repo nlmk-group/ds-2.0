@@ -1,6 +1,7 @@
-import { FC, PropsWithChildren } from 'react';
+import { CSSProperties, FC, PropsWithChildren, ReactNode } from 'react';
 
 import { IAvatarProps } from '@components/Avatar/types';
+import { ELocaleMapping } from '@components/declaration';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 
 // Перечисления
@@ -37,11 +38,21 @@ export enum ESidebarPositionMapping {
 
 // Интерфейсы
 
+type ChangeFavoritesHandler = (v: string[]) => void;
+
+type TContentLabel = ReactNode | string;
+
 /**
  * Свойства компонента Sidebar.
  * Интерфейс, описывающий свойства, принимаемые компонентом Sidebar.
  */
 export interface ISidebarProps extends PropsWithChildren {
+  /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
+
   /**
    * Ориентация бокового меню.
    * @default ${ESidebarOrientationMapping.vertical}
@@ -142,6 +153,10 @@ export interface ISidebarProps extends PropsWithChildren {
    * Inline стили для компонента.
    */
   style?: CSSProperties;
+  /**
+   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+   */
+  manualExpansion?: boolean;
 }
 
 /**
@@ -152,11 +167,16 @@ export interface ICollapseButtonProps {
    * Флаг, указывающий, развернуто ли меню.
    */
   isExpanded?: boolean;
-
   /**
    * Функция обработки клика по кнопке сворачивания.
    */
   onClick: () => void;
+
+  /**
+   * Локаль для текстов кнопки.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
 }
 
 /**
@@ -219,9 +239,14 @@ export interface IMenuItemProps extends PropsWithChildren {
   label: string;
 
   /**
+   * Текстовая или кастомная метка для отображения элемента подменю (используется label по умолчанию)
+   */
+  content?: TContentLabel;
+
+  /**
    * Иконка элемента меню.
    */
-  icon: TIconName;
+  icon?: TIconName | JSX.Element;
 
   /**
    * Функция обработки клика по элементу меню.
@@ -272,6 +297,11 @@ export interface ISubmenuItemProps extends PropsWithChildren {
    * Текстовая метка элемента подменю.
    */
   label: string;
+
+  /**
+   * Текстовая или кастомная метка для отображения элемента подменю (используется label по умолчанию)
+   */
+  content?: TContentLabel;
 
   /**
    * URL изображения элемента подменю.

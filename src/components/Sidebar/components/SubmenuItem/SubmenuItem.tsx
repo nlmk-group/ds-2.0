@@ -35,7 +35,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
-  const { allowFavorites, currentPath, orientation, collapseSidebar } =
+  const { allowFavorites, currentPath, orientation, collapseSidebar, closeSubmenu, manualExpansion } =
     useContext<ISidebarProperties>(SidebarProperties);
   const {
     showFavorites,
@@ -102,14 +102,22 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
     if (submenu && isVertical) {
       setSubmenuItems(submenu);
       setIsSubmenuVisible(prev => !prev);
-    } else {
+      return;
+    }
+    if (hasChildren) {
       setActiveItem(isActive ? null : label);
-      if (!hasChildren && onClick && typeof onClick === 'function') {
-        onClick();
-      }
-      if (!hasChildren) {
-        collapseSidebar();
-      }
+      return;
+    }
+
+    closeSubmenu();
+    setIsSubmenuVisible(false);
+
+    if (onClick && typeof onClick === 'function') {
+      onClick();
+    }
+
+    if (!manualExpansion) {
+      collapseSidebar();
     }
   };
 
@@ -119,9 +127,10 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
    */
   useEffect(() => {
     if (isActivePath) {
-      setIsSubmenuVisible(true);
+      setIsSubmenuVisible(isActivePath);
     }
   }, [isActivePath]);
+
   return (
     <div className={styles['submenu-item']}>
       <div

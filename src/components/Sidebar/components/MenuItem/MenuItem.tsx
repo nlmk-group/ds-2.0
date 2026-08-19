@@ -31,7 +31,8 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
     setSubmenuItems,
     setActiveItem,
     setIsScrollingDueToClick,
-    collapseSidebar
+    collapseSidebar,
+    manualExpansion
   } = useContext<ISidebarProperties>(SidebarProperties);
   const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
@@ -63,7 +64,11 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
     return false;
   };
 
-  const isActivePath = path === currentPath || Children.toArray(children).some(hasActiveChild);
+  const hasActiveDescendant = Children.toArray(children).some(hasActiveChild);
+
+  const isActivePath = hasChildren
+    ? isActive || (!activeItem && hasActiveDescendant)
+    : !activeItem && path === currentPath;
 
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();
@@ -81,7 +86,9 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
       setSubmenuItems(submenu);
     } else {
       setActiveItem(null);
-      collapseSidebar();
+      if (!manualExpansion) {
+        collapseSidebar();
+      }
     }
     if (!hasChildren && onClick && typeof onClick === 'function') {
       onClick();

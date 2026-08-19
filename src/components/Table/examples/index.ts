@@ -26,6 +26,7 @@ export { default as DraggableColumnsIndicatorDndKitExample } from './DraggableCo
 export { default as FillCellTableExample } from './FillCellTableExample';
 export { default as SwapCellsTableExample } from './SwapCellsTableExample';
 export { default as CrossTableCellTransferExample } from './CrossTableCellTransferExample';
+export * from './TableWithCustomCellExample';
 export * from './utils';
 export * from './constants';
 export * from './types';

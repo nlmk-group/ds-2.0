@@ -93,6 +93,20 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
 
+  manualExpansion: {
+    description:
+      'Флаг, указывающий, что развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю',
+    table: {
+      defaultValue: {
+        summary: 'false'
+      },
+      type: {
+        summary: 'boolean'
+      }
+    },
+    control: { type: 'boolean' }
+  },
+
   logo: {
     description: 'Кастомный логотип для отображения',
     table: {

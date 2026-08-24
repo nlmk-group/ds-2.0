@@ -56,7 +56,13 @@ export default {
           }
         ],
         defaultTheme: 'light',
-        storageKey: 'nlmk-storybook-theme'
+        storageKey: 'nlmk-storybook-theme',
+        // С 1.0.0 подписи в тулбаре по умолчанию английские
+        labels: {
+          switchTheme: 'Переключить тему',
+          selectTheme: 'Выбрать тему',
+          switchToTheme: 'Переключить на тему {theme}'
+        }
       }
     }
   ],

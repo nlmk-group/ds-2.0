@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { DocsContainer } from 'sb-theme-switcher';
+import { DocsContainer } from 'sb-theme-switcher/docs';
 
 import { name, version } from '../package.json';
 import '../public/css/main.css';

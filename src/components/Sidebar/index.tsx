@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState
 } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import { IAvatarProps } from '@components/Avatar/types';
 import { ELocaleMapping } from '@components/declaration';
@@ -20,9 +21,11 @@ import { IComponentWithType, IMenuItemProps, ISidebarProps, ISubmenuItemProps } 
 
 import styles from './Sidebar.module.scss';
 
-import { CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
+import { AdaptiveMenu, CollapseButton, MenuItem, Submenu, SubmenuItem, UserControl } from './components';
+import { COLLAPSE_TEXTS } from './constants';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
+import { useIsAdaptive } from './hooks';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -45,6 +48,7 @@ import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMap
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
  * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
  * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
+ * @param {boolean} [props.manualExpansion=false] - Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
  * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
  * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
@@ -72,23 +76,47 @@ const Sidebar: FC<ISidebarProps> &
   defaultMenuOpen = false,
   overlay = false,
   logo,
+  manualExpansion = false,
   isShowUserControl = true,
   className,
   style
 }) => {
   const isBurger = variant === ESidebarVariantMapping.burger;
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
+  const isAdaptive = useIsAdaptive();
 
   const [isExpanded, setExpanded] = useState(() => {
     if (defaultMenuOpen) return true;
+    if (isAdaptive) return false;
     return !isVertical && !isBurger;
   });
+  const prevIsAdaptiveRef = useRef(isAdaptive);
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [submenuItems, setSubmenuItems] = useState<ReactNode | ReactNode[]>(null);
   const [isScrollingDueToClick, setIsScrollingDueToClick] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const positionRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
+  const adaptiveRootRef = useRef<HTMLDivElement>(null);
+
+  // Только на смене режима, иначе эффект затрёт defaultMenuOpen при монтировании
+  useEffect(() => {
+    if (prevIsAdaptiveRef.current === isAdaptive) return;
+    prevIsAdaptiveRef.current = isAdaptive;
+    setExpanded(isAdaptive ? false : !isVertical && !isBurger);
+    setActiveItem(null);
+    setSubmenuItems(null);
+  }, [isAdaptive, isVertical, isBurger]);
+
+  useEffect(() => {
+    if (!isAdaptive || !isExpanded) return;
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [isAdaptive, isExpanded]);
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -135,9 +163,18 @@ const Sidebar: FC<ISidebarProps> &
     ) as ReactElement[];
   };
 
-  const collapseSidebar = () => {
+  const closeSubmenu = () => {
     setActiveItem(null);
+  };
+
+  const collapseSidebar = () => {
+    closeSubmenu();
     setExpanded(false);
+  };
+
+  const handleToggleExpansion = () => {
+    setActiveItem(null);
+    setExpanded(val => !val);
   };
 
   const menuItems = useMemo(() => filterChildrenByComponentType(children, 'MenuItem'), [children]);
@@ -177,7 +214,7 @@ const Sidebar: FC<ISidebarProps> &
     return (
       <UserControl
         isExpanded={isExpanded}
-        isVertical={isVertical}
+        isVertical={isAdaptive || isVertical}
         isLoggedIn={isLoggedIn}
         userName={userName}
         userSurname={userSurname}
@@ -190,12 +227,91 @@ const Sidebar: FC<ISidebarProps> &
     );
   };
 
-  if (isBurger && !isExpanded)
+  const burgerTrigger = (
+    <button
+      type="button"
+      data-ui-sidebar-burger
+      className={clsx(styles.burger, className)}
+      style={style}
+      onClick={() => setExpanded(true)}
+      aria-expanded={false}
+      aria-label={COLLAPSE_TEXTS[locale].expand}
+      title={COLLAPSE_TEXTS[locale].expand}
+    >
+      <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
+    </button>
+  );
+
+  if (isAdaptive)
     return (
-      <div data-ui-sidebar-burger className={styles.burger} onClick={() => setExpanded(true)}>
-        <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
-      </div>
+      <SidebarProperties.Provider
+        value={{
+          isExpanded,
+          activeItem,
+          allowFavorites,
+          orientation: ESidebarOrientationMapping.vertical,
+          setSubmenuItems,
+          setActiveItem,
+          isScrollingDueToClick,
+          setIsScrollingDueToClick,
+          currentPath,
+          collapseSidebar,
+          onChangeFavorites,
+          closeSubmenu,
+          manualExpansion
+        }}
+      >
+        {!isExpanded && burgerTrigger}
+        <CSSTransition
+          in={isExpanded}
+          nodeRef={adaptiveRootRef}
+          timeout={300}
+          classNames={{
+            enter: styles['adaptiveRoot-enter'],
+            enterActive: styles['adaptiveRoot-enter-active'],
+            exit: styles['adaptiveRoot-exit'],
+            exitActive: styles['adaptiveRoot-exit-active']
+          }}
+          unmountOnExit
+        >
+          <div ref={adaptiveRootRef} className={styles.adaptiveRoot}>
+            <div className={styles.adaptiveScrim} data-ui-sidebar-adaptive-scrim />
+            <ClickAwayListener
+              onClickAway={collapseSidebar}
+              className={clsx(styles.adaptiveContent, className)}
+              style={style}
+            >
+              <AdaptiveMenu
+                logo={logo}
+                systemName={systemName}
+                locale={locale}
+                isLoggedIn={isLoggedIn}
+                onLogin={onLogin}
+                onLogout={onLogout}
+                onClickLogo={onClickLogo}
+                userControl={renderUserControl()}
+                topSectionItems={topSectionItems}
+                bottomSectionItems={bottomSectionItems}
+              />
+
+              {overlay && Boolean(activeItem) && (
+                <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
+              )}
+
+              <Submenu
+                title={activeItem ?? ''}
+                isOpen={Boolean(activeItem)}
+                orientation={ESidebarOrientationMapping.vertical}
+              >
+                {submenuItems}
+              </Submenu>
+            </ClickAwayListener>
+          </div>
+        </CSSTransition>
+      </SidebarProperties.Provider>
     );
+
+  if (isBurger && !isExpanded) return burgerTrigger;
 
   return (
     <SidebarProperties.Provider
@@ -210,11 +326,23 @@ const Sidebar: FC<ISidebarProps> &
         setIsScrollingDueToClick,
         currentPath,
         collapseSidebar,
-        onChangeFavorites
+        closeSubmenu,
+        onChangeFavorites,
+        manualExpansion
       }}
     >
       <ClickAwayListener
-        onClickAway={() => setActiveItem(null)}
+        // TODO(DESIGNSYS-2536): дефолтное сворачивание по клику вне меню — обкатать на проектах.
+        // Известный риск: при orientation="horizontal" + variant="default" кнопки возврата на экране нет
+        // (обе CollapseButton под isVertical), после сворачивания панель остаётся 64px.
+        // Если до 01.01.2027 замечаний не придёт — убрать TODO и оставить поведение как есть.
+        onClickAway={() => {
+          if (manualExpansion) {
+            closeSubmenu();
+            return;
+          }
+          collapseSidebar();
+        }}
         excludeRef={collapseButtonRef}
         className={clsx(
           styles.root,
@@ -226,7 +354,7 @@ const Sidebar: FC<ISidebarProps> &
         )}
         style={style}
       >
-        <div className={clsx(styles.menu, styles[`menu-${orientation}`])} ref={positionRef}>
+        <div className={clsx(styles.menu, styles[`menu-${orientation}`])}>
           {!isVertical && isBurger && (
             <div
               data-ui-sidebar-burger
@@ -238,7 +366,7 @@ const Sidebar: FC<ISidebarProps> &
           )}
           <div className={styles.head}>
             {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={collapseSidebar} locale={locale} />
+              <CollapseButton isExpanded={isExpanded} onClick={handleToggleExpansion} locale={locale} />
             )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>
@@ -293,14 +421,14 @@ const Sidebar: FC<ISidebarProps> &
             <CollapseButton
               ref={collapseButtonRef}
               isExpanded={isExpanded}
-              onClick={() => setExpanded(val => !val)}
+              onClick={handleToggleExpansion}
               locale={locale}
             />
           )}
         </div>
 
         {overlay && Boolean(activeItem) && (
-          <div className={styles.overlay} onClick={() => setActiveItem(null)} data-ui-sidebar-overlay />
+          <div className={styles.overlay} onClick={closeSubmenu} data-ui-sidebar-overlay />
         )}
 
         <Submenu title={activeItem ?? ''} isOpen={Boolean(activeItem)} orientation={orientation}>

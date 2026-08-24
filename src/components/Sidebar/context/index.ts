@@ -17,7 +17,9 @@ export const SidebarProperties = createContext<ISidebarProperties>({
   isScrollingDueToClick: false,
   setIsScrollingDueToClick: () => {},
   currentPath: '',
-  collapseSidebar: () => {}
+  collapseSidebar: () => {},
+  closeSubmenu: () => {},
+  manualExpansion: false
 });
 
 /**

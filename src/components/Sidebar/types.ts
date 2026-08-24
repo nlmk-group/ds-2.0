@@ -116,6 +116,10 @@ export interface ISidebarProps extends PropsWithChildren {
    * Inline стили для компонента.
    */
   style?: CSSProperties;
+  /**
+   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+   */
+  manualExpansion?: boolean;
 }
 
 export interface ICollapseButtonProps {
@@ -123,7 +127,6 @@ export interface ICollapseButtonProps {
    * Флаг, указывающий, развернуто ли меню.
    */
   isExpanded?: boolean;
-
   /**
    * Функция обработки клика по кнопке сворачивания.
    */
@@ -270,6 +273,16 @@ export interface ISidebarProperties {
    * Функция сворачивания бокового меню.
    */
   collapseSidebar: () => void;
+
+  /**
+   * Функция закрытия только подменю.
+   */
+  closeSubmenu: () => void;
+
+  /**
+   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+   */
+  manualExpansion: boolean;
 }
 
 export interface ISubmenuProperties {
@@ -366,6 +379,59 @@ export interface ISubmenuItemProps extends PropsWithChildren {
    * Флаг, указывающий, что элемент подменю отключен.
    */
   disabled?: boolean;
+}
+
+export interface IAdaptiveMenuProps {
+  /**
+   * Кастомный логотип. Если не передан — стандартный.
+   */
+  logo?: ReactNode;
+
+  /**
+   * Системное имя (имя компании) в шапке drawer.
+   */
+  systemName?: string;
+
+  /**
+   * Локаль для текстов интерфейса.
+   * @default 'ru'
+   */
+  locale?: `${ELocaleMapping}`;
+
+  /**
+   * Флаг авторизации (для кнопки exit/login в шапке).
+   */
+  isLoggedIn?: boolean;
+
+  /**
+   * Колбэк входа в аккаунт.
+   */
+  onLogin?: () => void;
+
+  /**
+   * Колбэк выхода из аккаунта.
+   */
+  onLogout?: () => void;
+
+  /**
+   * Колбэк клика по логотипу.
+   */
+  onClickLogo?: () => void;
+
+  /**
+   * Готовый узел UserControl.
+   */
+  userControl: ReactNode;
+
+  /**
+   * Пункты верхней секции.
+   */
+  topSectionItems: ReactNode;
+
+  /**
+   * Пункты нижней секции.
+   */
+  bottomSectionItems: ReactNode;
 }
 
 export interface IComponentWithType extends FC<ISidebarProps> {

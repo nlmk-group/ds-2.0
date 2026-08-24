@@ -21,6 +21,8 @@
 .control {
   display: flex;
   align-items: center;
+  // Блок закреплён над прокручиваемой областью — не сжимается вместе с меню
+  flex-shrink: 0;
 
   &[data-vertical="true"] {
     flex-direction: column;

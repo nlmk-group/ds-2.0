@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { DocsContainer } from 'sb-theme-switcher/docs';
+
 import { name, version } from '../package.json';
 import '../public/css/main.css';
-import DocsThemeContainer from './Docs';
 import { storybookLightTheme } from './storybookTheme';
 
 const header = window.parent.document.querySelector('.sidebar-header');
@@ -21,16 +22,6 @@ div.style.cssText = `
 `;
 div.innerHTML = `<code>${name} - v.${version}</code>`;
 header?.append(div);
-
-const THEME_KEY = 'nlmk-storybook-theme';
-const savedTheme = localStorage.getItem(THEME_KEY);
-if (savedTheme) {
-  const isDark = savedTheme === 'dark';
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark-theme' : 'light-theme');
-} else {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.setAttribute('data-theme', prefersDark ? 'dark-theme' : 'light-theme');
-}
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -53,7 +44,8 @@ export const parameters = {
     }
   },
   docs: {
-    container: DocsThemeContainer,
+    // Темы берутся автоматически из опций аддона sb-theme-switcher (main.js)
+    container: DocsContainer,
     theme: storybookLightTheme
   },
   options: {

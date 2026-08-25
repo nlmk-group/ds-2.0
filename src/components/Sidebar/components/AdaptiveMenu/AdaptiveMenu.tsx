@@ -91,7 +91,6 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
         )}
       </div>
 
-      {/* Вне Scrollbar: иначе при прокрутке аватар наезжает на бар компании и обрезается им */}
       {userControl}
 
       <Scrollbar className={styles.body}>

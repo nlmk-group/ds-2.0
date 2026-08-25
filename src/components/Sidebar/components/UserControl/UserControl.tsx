@@ -18,7 +18,6 @@ const UserControl: FC<IUserControlProps> = ({
   onLogout
 }) => {
   const fullName = [userName, userSurname].filter(Boolean).join(' ');
-  // Sidebar отдаёт сюда результат фильтрации детей — это всегда массив, поэтому `??` не отработает на пустом
   const avatar = Children.count(children) > 0 ? children : <Avatar size="s" />;
   const icon = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
   const title = isLoggedIn ? 'Выйти' : 'Войти';

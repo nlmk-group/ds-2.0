@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { Children, FC } from 'react';
 
 import { Avatar, Button, Icon, Typography } from '@components/index';
 
@@ -18,6 +18,8 @@ const UserControl: FC<IUserControlProps> = ({
   onLogout
 }) => {
   const fullName = [userName, userSurname].filter(Boolean).join(' ');
+  // Sidebar отдаёт сюда результат фильтрации детей — это всегда массив, поэтому `??` не отработает на пустом
+  const avatar = Children.count(children) > 0 ? children : <Avatar size="s" />;
   const icon = isLoggedIn ? 'IconExitOutlined24' : 'IconEnterOutlined24';
   const title = isLoggedIn ? 'Выйти' : 'Войти';
   const handler = isLoggedIn ? onLogout : onLogin;
@@ -25,10 +27,10 @@ const UserControl: FC<IUserControlProps> = ({
   return (
     <div className={styles.control} data-vertical={isVertical} data-expanded={isExpanded} data-ui-sidebar-user-control>
       {isLoggedIn && (
-        <button type="button" className={styles['user-button']} onClick={onOpenUser} title={fullName}>
-          <div className={styles['avatar-wrapper']}>{children ?? <Avatar size="s" />}</div>
+        <button type="button" className={styles['user-button']} onClick={onOpenUser} title={fullName || undefined}>
+          <div className={styles['avatar-wrapper']}>{avatar}</div>
 
-          {isExpanded && isVertical && (
+          {isExpanded && isVertical && Boolean(fullName) && (
             <Typography variant="Body1-Medium" color="var(--unique-white)" className={styles.username} title={fullName}>
               {fullName}
             </Typography>

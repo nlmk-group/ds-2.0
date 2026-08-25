@@ -181,6 +181,54 @@ const App = () => {
 
 export default App;`;
 
+const sidebarScrollableMenu = `import { useState } from 'react';
+import { Sidebar } from '@nlmk/ds-2.0';
+
+const menuItems = Array.from({ length: 14 }, (_, index) => ({
+  path: 'section-' + (index + 1),
+  label: 'Раздел меню ' + (index + 1)
+}));
+
+const App = () => {
+  const [currentPath, setCurrentPath] = useState('section-1');
+
+  return (
+    <div style={{ backgroundColor: 'var(--unique-background)', width: '100%', margin: '-20px' }}>
+      <Sidebar
+        orientation="vertical"
+        currentPath={currentPath}
+        defaultMenuOpen
+        isLoggedIn
+        userName="Иван"
+        userSurname="Иванов"
+        systemName="НЛМК"
+        onOpenUser={() => {}}
+      >
+        <Sidebar.Avatar size="s" imageSrc="" />
+        {menuItems.map(item => (
+          <Sidebar.MenuItem
+            key={item.path}
+            path={item.path}
+            label={item.label}
+            position="top"
+            icon="IconKovsh32"
+            onClick={() => setCurrentPath(item.path)}
+          />
+        ))}
+        <Sidebar.MenuItem
+          path="resources"
+          label="Ресурсы"
+          position="bottom"
+          icon="IconInfoOutlined32"
+          onClick={() => setCurrentPath('resources')}
+        />
+      </Sidebar>
+    </div>
+  );
+};
+
+export default App;`;
+
 const SidebarStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
 
@@ -221,6 +269,11 @@ const SidebarStories = (): JSX.Element => {
             minHeight={620}
             description="Режим manualExpansion: развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю."
             code={sidebarManualExpansion}
+          />
+          <Editor
+            minHeight={920}
+            description="Длинное меню: пользовательский блок закреплён под шапкой, прокручиваются только пункты меню."
+            code={sidebarScrollableMenu}
           />
           <Properties argsTypes={argsTypes} />
         </>

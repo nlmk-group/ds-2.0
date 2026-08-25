@@ -55,7 +55,6 @@ export default {
             storybookTheme: storybookDarkTheme
           }
         ],
-        defaultTheme: 'light',
         storageKey: 'nlmk-storybook-theme',
         labels: {
           switchTheme: 'Переключить тему',

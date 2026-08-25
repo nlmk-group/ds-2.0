@@ -23,6 +23,30 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.32.1 - <span className={styles.date}>24.08.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Обновлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-sidebar-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                Sidebar
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Пользовательский блок закреплен под шапкой: при прокрутке длинного меню аватар больше не обрезается
+              </li>
+              <li className={styles['left-padding']}>
+                - Аватар по умолчанию отображается, если Sidebar.Avatar не передан
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.32.0 - <span className={styles.date}>18.08.26</span>
           </Typography>
           <ul className={styles.list}>

@@ -91,9 +91,10 @@ const AdaptiveMenu: FC<IAdaptiveMenuProps> = ({
         )}
       </div>
 
+      {userControl}
+
       <Scrollbar className={styles.body}>
         <div className={styles.topSection} data-ui-sidebar-top-section>
-          {userControl}
           {topSectionItems}
         </div>
         <div className={styles.bottomSection} data-ui-sidebar-bottom-section>

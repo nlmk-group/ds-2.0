@@ -21,6 +21,7 @@
 .control {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 
   &[data-vertical="true"] {
     flex-direction: column;

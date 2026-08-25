@@ -401,7 +401,6 @@ const Sidebar: FC<ISidebarProps> &
             </div>
           </div>
 
-          {/* Вне Scrollbar: иначе при прокрутке аватар наезжает на шапку и обрезается ей */}
           {isVertical && renderUserControl()}
 
           <Scrollbar className={clsx(styles.body, styles[`body-${orientation}`], styles.scrollbar)} ref={scrollRef}>

@@ -152,7 +152,7 @@ export const SplitterImages = (): ReactNode => {
 
   return <Splitter bottomComponent={bottomComponent} topComponent={topComponent} />;
 };
-SplitterImages.storyName = 'Splitter c логотипами';
+SplitterImages.storyName = 'Splitter с логотипами';
 
 export const SplitterVertical = (): ReactNode => {
   const leftComponent = (
@@ -197,7 +197,7 @@ export const SplitterWithSizes = (): ReactNode => (
     bottomComponentSize={320}
   />
 );
-SplitterWithSizes.storyName = 'Горизонтальный Splitter с начальными размерами';
+SplitterWithSizes.storyName = 'Splitter горизонтальный с начальными размерами';
 
 export const VerticalSplitterWithSizes = (): ReactNode => (
   <Splitter
@@ -208,7 +208,7 @@ export const VerticalSplitterWithSizes = (): ReactNode => (
     orientation={ESplitterOrientation.vertical}
   />
 );
-VerticalSplitterWithSizes.storyName = 'Вертикальный Splitter с начальными размерами';
+VerticalSplitterWithSizes.storyName = 'Splitter вертикальный с начальными размерами';
 
 export const SplitterWithOneSize = (): ReactNode => {
   return <Splitter topComponent={<TopComponent />} bottomComponent={<BottomComponent />} topComponentSize={450} />;
@@ -307,4 +307,4 @@ export const VerticalSplitterWithHiddenBottom = (): ReactNode => {
     </Box>
   );
 };
-VerticalSplitterWithHiddenBottom.storyName = 'Вертикальный Splitter с возможностью скрытия панели';
+VerticalSplitterWithHiddenBottom.storyName = 'Splitter вертикальный с возможностью скрытия панели';

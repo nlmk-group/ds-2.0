@@ -42,7 +42,7 @@ export const ImagePictureDefault = (argTypes: IImagePicture): JSX.Element => {
     </div>
   );
 };
-ImagePictureDefault.storyName = 'Варианты компонента ImagePicture';
+ImagePictureDefault.storyName = 'Варианты ImagePicture';
 ImagePictureDefault.args = {
   src: IMAGE_MOCK_SRC,
   alt: 'Mock image'

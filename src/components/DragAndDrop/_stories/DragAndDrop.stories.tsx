@@ -62,7 +62,7 @@ export const dndDefault = (argTypes: IDragAndDropProps): ReactNode => {
     />
   );
 };
-dndDefault.storyName = 'DragNDrop по умолчанию';
+dndDefault.storyName = 'DragAndDrop по умолчанию';
 
 export const dndSizes = (argTypes: IDragAndDropProps): ReactNode => {
   return (
@@ -73,7 +73,7 @@ export const dndSizes = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndSizes.storyName = 'Размеры DragNDrop';
+dndSizes.storyName = 'Размеры DragAndDrop';
 dndSizes.args = {
   onUpload: action('OnUpload')
 };
@@ -87,7 +87,7 @@ export const dndFileTypes = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndFileTypes.storyName = 'DragNDrop с различными типами файлов';
+dndFileTypes.storyName = 'DragAndDrop с различными типами файлов';
 dndFileTypes.args = {
   onUpload: action('OnUpload')
 };
@@ -99,7 +99,7 @@ export const dndCustomAccept = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndCustomAccept.storyName = 'DragNDrop, принимающий определенный тип файлов';
+dndCustomAccept.storyName = 'DragAndDrop, принимающий определенный тип файлов';
 dndCustomAccept.args = {
   onUpload: action('OnUpload'),
   accept: '.pdf',
@@ -119,7 +119,7 @@ export const dndStatuses = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndStatuses.storyName = 'DragNDrop различные статусы';
+dndStatuses.storyName = 'DragAndDrop различные статусы';
 dndStatuses.args = {
   onUpload: action('OnUpload'),
   cancelUpload: action('onCancelUpload')
@@ -143,7 +143,7 @@ export const dndLoading = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndLoading.storyName = 'DragNDrop в состоянии Loading';
+dndLoading.storyName = 'DragAndDrop в состоянии Loading';
 dndLoading.args = {
   onUpload: action('OnUpload'),
   cancelUpload: action('onCancelUpload')
@@ -160,7 +160,7 @@ export const dndSmallIcon = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndSmallIcon.storyName = 'DragNDrop в состоянии SmallIcon';
+dndSmallIcon.storyName = 'DragAndDrop в состоянии SmallIcon';
 dndSmallIcon.args = {
   onUpload: action('OnUpload'),
   smallIcon: true
@@ -177,7 +177,7 @@ export const dndSmallText = (argTypes: IDragAndDropProps): ReactNode => {
     </div>
   );
 };
-dndSmallText.storyName = 'DragNDrop в состоянии SmallText';
+dndSmallText.storyName = 'DragAndDrop в состоянии SmallText';
 dndSmallText.args = {
   onUpload: action('OnUpload'),
   smallText: true
@@ -186,7 +186,7 @@ dndSmallText.args = {
 export const dndCustomIcon = (argTypes: IDragAndDropProps): ReactNode => {
   return <DragAndDrop customIcon={<Icon name="IconUploadOutlined24" />} {...argTypes} />;
 };
-dndCustomIcon.storyName = 'DragNDrop с кастомной иконкой';
+dndCustomIcon.storyName = 'DragAndDrop с кастомной иконкой';
 
 export const dndCustom = (argTypes: IDragAndDropProps): ReactNode => {
   return (
@@ -198,4 +198,4 @@ export const dndCustom = (argTypes: IDragAndDropProps): ReactNode => {
     </DragAndDrop>
   );
 };
-dndCustom.storyName = 'DragNDrop кастомный';
+dndCustom.storyName = 'DragAndDrop кастомный';

@@ -80,7 +80,7 @@ export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-ModalDefault.storyName = 'Модальное окно по умолчанию';
+ModalDefault.storyName = 'Modal по умолчанию';
 
 export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
@@ -196,7 +196,7 @@ export const DraggableModal = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-DraggableModal.storyName = 'Перетаскиваемое модальное окно';
+DraggableModal.storyName = 'Modal с перетаскиванием';
 DraggableModal.args = { isDraggable: true };
 
 export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
@@ -265,5 +265,5 @@ export const ResizableModal = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-ResizableModal.storyName = 'Модальное окно изменяемого размера';
+ResizableModal.storyName = 'Modal с изменяемым размером';
 ResizableModal.args = { isResizable: true };

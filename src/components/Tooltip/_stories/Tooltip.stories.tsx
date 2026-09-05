@@ -43,7 +43,7 @@ export const TooltipDefault = (argsTypes: Args): JSX.Element => {
   );
 };
 
-TooltipDefault.storyName = 'Тултип по умолчанию';
+TooltipDefault.storyName = 'Tooltip по умолчанию';
 
 export const TooltipWithOpacity = (argsTypes: Args): JSX.Element => {
   return (
@@ -56,7 +56,7 @@ export const TooltipWithOpacity = (argsTypes: Args): JSX.Element => {
     </div>
   );
 };
-TooltipWithOpacity.storyName = 'Тултип c кастомным стилем';
+TooltipWithOpacity.storyName = 'Tooltip с кастомным стилем';
 
 export const TooltipWrappedDisabled = (argsTypes: Args): JSX.Element => {
   return (
@@ -71,7 +71,7 @@ export const TooltipWrappedDisabled = (argsTypes: Args): JSX.Element => {
     </div>
   );
 };
-TooltipWrappedDisabled.storyName = 'Тултип обернутый вокруг disabled элемента';
+TooltipWrappedDisabled.storyName = 'Tooltip вокруг disabled элемента';
 
 export const TooltipPlacements = (argsTypes: Args): JSX.Element => {
   return (
@@ -169,7 +169,7 @@ export const TooltipPlacements = (argsTypes: Args): JSX.Element => {
     </div>
   );
 };
-TooltipPlacements.storyName = 'Варианты расположения тултипа';
+TooltipPlacements.storyName = 'Варианты расположения Tooltip';
 
 export const TooltipBehaviors = (argsTypes: Args): JSX.Element => {
   return (
@@ -194,7 +194,7 @@ export const TooltipBehaviors = (argsTypes: Args): JSX.Element => {
     </div>
   );
 };
-TooltipBehaviors.storyName = 'Варианты поведения тултипа';
+TooltipBehaviors.storyName = 'Варианты поведения Tooltip';
 
 export const TooltipWithCustom = (argsTypes: Args): JSX.Element => {
   const renderCustom = () => {
@@ -332,7 +332,7 @@ export const TooltipWithCustom = (argsTypes: Args): JSX.Element => {
     </div>
   );
 };
-TooltipWithCustom.storyName = 'Тултип с кастомным элементом внутри';
+TooltipWithCustom.storyName = 'Tooltip с кастомным элементом внутри';
 
 export const TooltipWithManualOpen = () => {
   const [isOpen, setOpen] = useState(false);
@@ -352,4 +352,4 @@ export const TooltipWithManualOpen = () => {
     </div>
   );
 };
-TooltipWithManualOpen.storyName = 'Тултип с ручным открытием';
+TooltipWithManualOpen.storyName = 'Tooltip с ручным открытием';

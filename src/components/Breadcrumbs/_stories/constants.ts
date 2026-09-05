@@ -1,8 +1,8 @@
 import { targetMapping } from './enums';
 
-export const BASIC_COMPONENT_USE = 'Обычное использование компонента';
-export const CUSTOM_WIDTH = 'Компонент с заданной шириной';
-export const DIFFERENT_TARGET = 'Компонент с разными target';
+export const BASIC_COMPONENT_USE = 'Breadcrumbs по умолчанию';
+export const CUSTOM_WIDTH = 'Breadcrumbs с заданной шириной';
+export const DIFFERENT_TARGET = 'Breadcrumbs с разными target';
 
 export const breadcrumbsLinks = [
   { href: '/about', label: 'О компании' },

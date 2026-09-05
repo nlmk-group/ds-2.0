@@ -20,7 +20,7 @@ export default {
 export const ErrorPageDefault = (argTypes: ErrorPageProps) => {
   return <ErrorPage {...argTypes} />;
 };
-ErrorPageDefault.storyName = 'Страница ошибки по умолчанию';
+ErrorPageDefault.storyName = 'ErrorPage по умолчанию';
 ErrorPageDefault.args = {
   description: 'Произошла ошибка',
   hint: 'Попробуйте обновить страницу'
@@ -29,7 +29,7 @@ ErrorPageDefault.args = {
 export const ErrorPage403 = (argTypes: ErrorPageProps) => {
   return <ErrorPage {...argTypes} />;
 };
-ErrorPage403.storyName = 'Страница ошибки 403';
+ErrorPage403.storyName = 'ErrorPage 403';
 ErrorPage403.args = {
   errorCode: 403,
   description: 'Нет доступа',
@@ -39,7 +39,7 @@ ErrorPage403.args = {
 export const ErrorPage404 = (argTypes: ErrorPageProps) => {
   return <ErrorPage {...argTypes} />;
 };
-ErrorPage404.storyName = 'Страница ошибки 404';
+ErrorPage404.storyName = 'ErrorPage 404';
 ErrorPage404.args = {
   errorCode: 404,
   description: 'Страница не найдена',
@@ -49,7 +49,7 @@ ErrorPage404.args = {
 export const ErrorPageOthers = (argTypes: ErrorPageProps) => {
   return <ErrorPage {...argTypes} />;
 };
-ErrorPageOthers.storyName = 'Страница любой другой ошибки';
+ErrorPageOthers.storyName = 'ErrorPage для остальных ошибок';
 ErrorPageOthers.args = {
   errorCode: 500,
   description: 'Внутренняя ошибка сервера',

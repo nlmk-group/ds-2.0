@@ -54,7 +54,7 @@ export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerWithIcon.storyName = 'Spinner где Icon, как children (JSX.Element)';
+SpinnerWithIcon.storyName = 'Spinner с кастомной иконкой';
 
 export const SpinnerWithPercent = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -72,7 +72,7 @@ export const SpinnerWithPercent = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerWithPercent.storyName = 'Spinner c процентом';
+SpinnerWithPercent.storyName = 'Spinner с процентом';
 
 export const SpinnerStretchedContainer = (args: ISpinnerProps): JSX.Element => {
   return (

@@ -128,7 +128,7 @@ export const StepperWithInteractive = () => {
     </div>
   );
 };
-StepperWithInteractive.storyName = 'Пример Stepper с интерактивным сценарием';
+StepperWithInteractive.storyName = 'Stepper с интерактивным сценарием';
 StepperWithInteractive.parameters = { controls: { disable: true } };
 
 export const StepperWithError = () => {

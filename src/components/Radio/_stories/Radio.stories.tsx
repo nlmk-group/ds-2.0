@@ -39,7 +39,7 @@ export const RadioDefault = ({ checked: initialChecked, ...args }: IRadioProps):
   );
 };
 
-RadioDefault.storyName = 'Переключение Radio по умолчанию';
+RadioDefault.storyName = 'Radio по умолчанию';
 RadioDefault.args = {
   value: 'option 1',
   label: 'Липецк',

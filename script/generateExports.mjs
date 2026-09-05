@@ -76,7 +76,6 @@ function generateExports(components) {
       exports[`./css/${file}`] = `./lib/css/${file}`;
     });
 
-  exports['./fonts/*'] = './lib/fonts/*';
 
   return exports;
 }

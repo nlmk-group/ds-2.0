@@ -498,7 +498,6 @@
     "./css/tokens/desktop/color/main-color-dark.css": "./lib/css/tokens/desktop/color/main-color-dark.css",
     "./css/tokens/light-tokens.css": "./lib/css/tokens/light-tokens.css",
     "./css/tokens/typography-tokens.css": "./lib/css/tokens/typography-tokens.css",
-    "./css/tokens/z-index.css": "./lib/css/tokens/z-index.css",
-    "./fonts/*": "./lib/fonts/*"
+    "./css/tokens/z-index.css": "./lib/css/tokens/z-index.css"
   }
 }

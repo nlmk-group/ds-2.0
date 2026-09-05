@@ -14,4 +14,8 @@
     /* snackbar-indicator */
     --ac-snackbar-blue-bg: #167ffb;
     --ac-snackbar-orange-bg: #f97b0f;
+    /* перенесено из old-colour-shadow.css — используется Scrollbar */
+    --grey-300: #b3b9bf;
+    /* перенесено из main-color-light.css — используется Card/ContentExample */
+    --assigned-colors-button-main-text: #ffffff;
 }

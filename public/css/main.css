@@ -2,6 +2,7 @@
    light-tokens.css и typography-tokens.css — источник истины палитры DS 2.0
    и обязаны идти после остальных. Не сортировать по алфавиту. */
 @import './temp-variables.css';
+@import './tokens/legacy-light.css';
 @import './tokens/light-tokens.css';
 @import './tokens/typography-tokens.css';
 @import './tokens/z-index.css';

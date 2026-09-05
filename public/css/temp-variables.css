@@ -18,4 +18,8 @@
     --grey-300: #b3b9bf;
     /* перенесено из main-color-light.css — используется Card/ContentExample */
     --assigned-colors-button-main-text: #ffffff;
+    /* перенесено из main-typography.css — используется Breadcrumbs */
+    --body1-mono-medium-font-size: 16px;
+    --body1-mono-medium-line-height: 22px;
+    --body1-mono-medium-font-weight: 500;
 }

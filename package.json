@@ -495,7 +495,8 @@
     "./css/main.css": "./lib/css/main.css",
     "./css/temp-variables.css": "./lib/css/temp-variables.css",
     "./css/tokens/dark-tokens.css": "./lib/css/tokens/dark-tokens.css",
-    "./css/tokens/desktop/color/main-color-dark.css": "./lib/css/tokens/desktop/color/main-color-dark.css",
+    "./css/tokens/legacy-dark.css": "./lib/css/tokens/legacy-dark.css",
+    "./css/tokens/legacy-light.css": "./lib/css/tokens/legacy-light.css",
     "./css/tokens/light-tokens.css": "./lib/css/tokens/light-tokens.css",
     "./css/tokens/typography-tokens.css": "./lib/css/tokens/typography-tokens.css",
     "./css/tokens/z-index.css": "./lib/css/tokens/z-index.css"

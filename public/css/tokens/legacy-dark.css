@@ -1,0 +1,29 @@
+/* Поддерживается РУКАМИ, генератором не перезаписывается.
+   Токены старой палитры, которых нет в Figma-источнике (tokens.json), но которые
+   ещё используют компоненты: Select (deprecated), обвязка Storybook, примеры Table.
+   Файл должен только сокращаться — по мере ухода потребителей удаляйте строки.
+   Светлое и тёмное значения живут парой: legacy-light.css / legacy-dark.css. */
+:root {
+  --ac-icon-blue: #279cff;
+  --ac-icon-grey: #b3b9bf;
+  --ac-input-default-bg: #475363;
+  --ac-input-disabled-bg: #4e6273;
+  --ac-select-item-activehover-bg: #435464;
+  --ac-select-item-activehover-label: #f2f3f4;
+  --ac-select-item-default-label: #f2f3f4;
+  --ac-select-item-hover-bg: #5d6c7a;
+  --ac-select-item-hover-label: #f2f3f4;
+  --ac-select-item-selected-bg: #50606f;
+  --ac-select-item-selected-label: #f2f3f4;
+  --background-blue: #4c5f73;
+  --background-default: #3c4854;
+  --error-red-200: #d48b88;
+  --error-red-50: #f5dddc;
+  --error-red-600: #a11c2b;
+  --primary-blue-400: #43abff;
+  --primary-blue-600: #2a8cff;
+  --success-green-400: #7FCE80;
+  --text-grey-400: #788996;
+  --text-grey-500: #8f9ca6;
+  --text-grey-600: #b3b9bf;
+}

@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // TODO: когда заменим все токены, необходимо переписать скрипт
-const oldTokensPath = path.join(__dirname, '../public/css/tokens/desktop/color/main-color-dark.css');
+const oldTokensPath = path.join(__dirname, '../public/css/tokens/legacy-dark.css');
 const newTokensPath = path.join(__dirname, '../public/css/tokens/dark-tokens.css');
 
 // Пути для выходных файлов

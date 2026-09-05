@@ -493,9 +493,4 @@
   --text-decoration-none: none;
   --text-decoration-underline: underline;
   --paragraph-indent-0: 0px;
-
-  /* перенесено из main-typography.css — используется Breadcrumbs */
-  --body1-mono-medium-font-size: 16px;
-  --body1-mono-medium-line-height: 22px;
-  --body1-mono-medium-font-weight: 500;
 }

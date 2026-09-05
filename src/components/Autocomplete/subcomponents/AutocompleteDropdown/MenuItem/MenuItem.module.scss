@@ -1,0 +1,14 @@
+/* Правила перенесены из Select.module.scss: только те, что реально применялись
+   к строке в выпадающем списке Autocomplete. Остальные там вложены в .select
+   и на разметку Autocomplete не действовали. */
+.text-container {
+  width: 100%;
+}
+
+.right-wrapper {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 auto auto;
+}

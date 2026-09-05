@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 
 import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, Spinner, Typography } from '@components/index';
-import MenuItem from '@components/Select/subcomponents/MenuItem';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
@@ -14,6 +13,7 @@ import styles from './AutocompleteDropdown.module.scss';
 import { AutocompleteContext } from '../../context';
 import { boldReactElement, boldString } from '../../helpers';
 import AutocompleteItem from '../AutocompleteItem';
+import MenuItem from './MenuItem';
 
 const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style }) => {
   const {

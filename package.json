@@ -247,10 +247,6 @@
       "import": "./lib/ClickAwayListener/index.js",
       "types": "./lib/ClickAwayListener/index.d.ts"
     },
-    "./Colors": {
-      "import": "./lib/Colors/index.js",
-      "types": "./lib/Colors/index.d.ts"
-    },
     "./ComboBox": {
       "import": "./lib/ComboBox/index.js",
       "types": "./lib/ComboBox/index.d.ts"
@@ -491,20 +487,18 @@
       "import": "./lib/VideoWindow/index.js",
       "types": "./lib/VideoWindow/index.d.ts"
     },
-    "./declaration": {
-      "import": "./lib/declaration/index.js",
-      "types": "./lib/declaration/index.d.ts"
-    },
     "./*": {
       "import": "./lib/*/index.js",
       "types": "./lib/*/index.d.ts"
     },
-    "./lib/*": {
-      "import": "./lib/*.js",
-      "types": "./lib/*.d.ts"
-    },
+    "./css/dark-theme-storybook.css": "./lib/css/dark-theme-storybook.css",
     "./css/main.css": "./lib/css/main.css",
-    "./css/style.css": "./lib/css/style.css",
-    "./css/*": "./lib/css/*"
+    "./css/temp-variables.css": "./lib/css/temp-variables.css",
+    "./css/tokens/dark-tokens.css": "./lib/css/tokens/dark-tokens.css",
+    "./css/tokens/legacy-dark.css": "./lib/css/tokens/legacy-dark.css",
+    "./css/tokens/legacy-light.css": "./lib/css/tokens/legacy-light.css",
+    "./css/tokens/light-tokens.css": "./lib/css/tokens/light-tokens.css",
+    "./css/tokens/typography-tokens.css": "./lib/css/tokens/typography-tokens.css",
+    "./css/tokens/z-index.css": "./lib/css/tokens/z-index.css"
   }
 }

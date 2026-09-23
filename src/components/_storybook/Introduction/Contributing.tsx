@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import { Divider, Icon, Link, Typography } from '@components/index';
 
 import styles from './Welcome.module.scss';
+
+import { CopyWrapper } from '../components/CopyWrapper';
 
 export const Contributing = () => {
   return (

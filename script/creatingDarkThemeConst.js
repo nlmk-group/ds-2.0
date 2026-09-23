@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // TODO: когда заменим все токены, необходимо переписать скрипт
-const oldTokensPath = path.join(__dirname, '../public/css/tokens/desktop/color/main-color-dark.css');
+const oldTokensPath = path.join(__dirname, '../public/css/tokens/legacy-dark.css');
 const newTokensPath = path.join(__dirname, '../public/css/tokens/dark-tokens.css');
 
 // Пути для выходных файлов
@@ -22,6 +22,7 @@ try {
 
   // Извлекаем содержимое из :root блоков и объединяем
   const cleanStyles = combinedStyles
+    .replace(/\/\*[\s\S]*?\*\//g, '') // вырезаем CSS-комментарии, чтобы они не попадали в выходные файлы
     .replace(/:root\s*{([^}]*)}/g, '$1') // извлекаем содержимое :root
     .replace(/\s/g, ' '); // убираем излишние пробелы и переносы строк
 

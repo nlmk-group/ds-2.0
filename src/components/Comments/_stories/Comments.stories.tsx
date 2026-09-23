@@ -61,7 +61,7 @@ export const CommentsThread = (argTypes: ICommentsProps<CommentExtraData>): JSX.
   );
 };
 
-CommentsThread.storyName = 'Comments: комментарий с вложенными ответами';
+CommentsThread.storyName = 'Comments с вложенными ответами';
 CommentsThread.args = {
   comments: [
     {
@@ -148,7 +148,7 @@ export const CommentsRefresh = (argTypes: ICommentsProps): JSX.Element => {
   );
 };
 
-CommentsRefresh.storyName = 'Comments: комментарии с обновлением';
+CommentsRefresh.storyName = 'Comments с обновлением';
 CommentsRefresh.args = {
   comments: [mockComment, { ...mockComment, id: '4' }],
   handleAddRootComment: () => {},
@@ -170,7 +170,7 @@ export const CommentsOnlyView = (argTypes: ICommentsProps): JSX.Element => {
   );
 };
 
-CommentsOnlyView.storyName = 'Comments: комментарии только для просмотра';
+CommentsOnlyView.storyName = 'Comments только для просмотра';
 CommentsOnlyView.args = {
   comments: mockCommentsOnlyView
 };
@@ -242,7 +242,7 @@ CommentsBadge.args = {
   ]
 };
 CommentsBadge.decorators = [withWrapper];
-CommentsBadge.storyName = 'Comments: шапка комментария с кастомными элементами';
+CommentsBadge.storyName = 'Comments с кастомной шапкой комментария';
 
 export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   const [commentChanged, setCommentChanged] = useState<ICommentFormData | null>(null);
@@ -407,7 +407,7 @@ export const CommentsActions = (argTypes: ICommentsProps): JSX.Element => {
   );
 };
 
-CommentsActions.storyName = 'Comments: действия комментария';
+CommentsActions.storyName = 'Comments с действиями над комментарием';
 CommentsActions.args = {
   handleAddRootComment: () => {}
 };
@@ -428,7 +428,7 @@ export const CommentsEmpty = (argTypes: ICommentsProps): JSX.Element => {
   );
 };
 
-CommentsEmpty.storyName = 'Comments: нет комментариев';
+CommentsEmpty.storyName = 'Comments в пустом состоянии';
 CommentsEmpty.args = {
   comments: [],
   handleAddRootComment: () => {}

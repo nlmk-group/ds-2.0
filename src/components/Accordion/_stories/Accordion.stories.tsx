@@ -39,7 +39,7 @@ export const AccordionDefault = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-AccordionDefault.storyName = 'Аккордеон по умолчанию';
+AccordionDefault.storyName = 'Accordion по умолчанию';
 AccordionDefault.args = {
   items: ACCORDION_ITEMS_MOCK
 };
@@ -53,7 +53,7 @@ export const AccordionSizes = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-AccordionSizes.storyName = 'Варианты размеров аккордеона';
+AccordionSizes.storyName = 'Варианты размеров Accordion';
 
 export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
   return (
@@ -67,7 +67,7 @@ export const AccordionIcons = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-AccordionIcons.storyName = 'Варианты аккордеона с иконками';
+AccordionIcons.storyName = 'Варианты Accordion с иконками';
 
 export const AccordionPaper = (argTypes: IAccordionProps): JSX.Element => {
   return (
@@ -76,7 +76,7 @@ export const AccordionPaper = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-AccordionPaper.storyName = 'Paper аккордеон';
+AccordionPaper.storyName = 'Accordion в варианте paper';
 AccordionPaper.args = {
   items: ACCORDION_ITEMS_MOCK
 };
@@ -88,7 +88,7 @@ export const FoldedAccordion = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-FoldedAccordion.storyName = 'Аккордеон с мультивложенностью';
+FoldedAccordion.storyName = 'Accordion с мультивложенностью';
 FoldedAccordion.args = {
   items: FOLDED_ACCORDION_ITEMS_MOCK
 };
@@ -100,7 +100,7 @@ export const MultiExpandedAccordion = (argTypes: IAccordionProps): JSX.Element =
     </div>
   );
 };
-MultiExpandedAccordion.storyName = 'Аккордеон с возможностью раскрытия нескольких секций';
+MultiExpandedAccordion.storyName = 'Accordion с возможностью раскрытия нескольких секций';
 MultiExpandedAccordion.args = {
   items: ACCORDION_MULTI_EXPANDED_MOCK
 };

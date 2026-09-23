@@ -41,7 +41,7 @@ export const TimePickerDefault = (argTypes: any): JSX.Element => {
 
   return <TimePicker {...argTypes} value={value} reset onChange={handleValueChange} onReset={handleReset} />;
 };
-TimePickerDefault.storyName = 'TimerPicker по умолчанию';
+TimePickerDefault.storyName = 'TimePicker по умолчанию';
 
 export const TimePickerWithLabel = (argTypes: any): JSX.Element => {
   const [value, setValue] = useState<Date | undefined>(new Date());

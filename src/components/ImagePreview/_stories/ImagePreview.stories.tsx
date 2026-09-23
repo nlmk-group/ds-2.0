@@ -65,7 +65,7 @@ export const ImagePreviewDefault = (argTypes: IImagePreviewProps): JSX.Element =
   return <ImagePreview {...argTypes} />;
 };
 
-ImagePreviewDefault.storyName = 'ImagePreview c несколькими изображениями';
+ImagePreviewDefault.storyName = 'ImagePreview с несколькими изображениями';
 ImagePreviewDefault.args = {
   items: makeItems(MOCK_ITEMS, 15),
   previewImgSize: 180
@@ -85,7 +85,7 @@ export const ImagePreviewCheckbox = (argTypes: IImagePreviewProps): JSX.Element 
   return <ImagePreview {...argTypes} checkedMap={checkedMap} handleCheckbox={handleCheckbox} />;
 };
 
-ImagePreviewCheckbox.storyName = 'ImagePreview c чекбоксом';
+ImagePreviewCheckbox.storyName = 'ImagePreview с чекбоксом';
 ImagePreviewCheckbox.args = {
   items: makeItems(MOCK_ITEMS, 5),
   previewImgSize: 180
@@ -95,7 +95,7 @@ export const ImagePreviewLongTitle = (argTypes: IImagePreviewProps): JSX.Element
   return <ImagePreview {...argTypes} />;
 };
 
-ImagePreviewLongTitle.storyName = 'ImagePreview c длинным заголовком и описанием';
+ImagePreviewLongTitle.storyName = 'ImagePreview с длинным заголовком и описанием';
 ImagePreviewLongTitle.args = {
   items: makeItems(
     [

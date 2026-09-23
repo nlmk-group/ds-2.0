@@ -35,7 +35,7 @@ export const DefaultBtnGroup = (argTypes: IToggleButtonGroupProps): ReactNode =>
   );
 };
 
-DefaultBtnGroup.storyName = 'Toggle Button по умолчанию';
+DefaultBtnGroup.storyName = 'ToggleButtonGroup по умолчанию';
 
 export const BtnGroupTooltip = (argTypes: IToggleButtonGroupProps): ReactNode => {
   return (
@@ -73,7 +73,7 @@ export const BtnGroupTooltip = (argTypes: IToggleButtonGroupProps): ReactNode =>
   );
 };
 
-BtnGroupTooltip.storyName = 'Toggle Button с тултипами';
+BtnGroupTooltip.storyName = 'ToggleButtonGroup с тултипами';
 
 export const BtnGroupSizes = (argTypes: IToggleButtonGroupProps): ReactNode => {
   return (
@@ -101,7 +101,7 @@ export const BtnGroupSizes = (argTypes: IToggleButtonGroupProps): ReactNode => {
   );
 };
 
-BtnGroupSizes.storyName = 'Toggle Button с разными размерами';
+BtnGroupSizes.storyName = 'ToggleButtonGroup с разными размерами';
 
 export const BtnGroupIcon = (argTypes: IToggleButtonGroupProps): ReactNode => {
   return (
@@ -128,7 +128,7 @@ export const BtnGroupIcon = (argTypes: IToggleButtonGroupProps): ReactNode => {
   );
 };
 
-BtnGroupIcon.storyName = 'Toggle Button с иконками';
+BtnGroupIcon.storyName = 'ToggleButtonGroup с иконками';
 
 export const BtnGroupIconBadge = (argTypes: IToggleButtonGroupProps): ReactNode => {
   return (
@@ -150,4 +150,4 @@ export const BtnGroupIconBadge = (argTypes: IToggleButtonGroupProps): ReactNode 
   );
 };
 
-BtnGroupIconBadge.storyName = 'Toggle Button с бейджами';
+BtnGroupIconBadge.storyName = 'ToggleButtonGroup с бейджами';

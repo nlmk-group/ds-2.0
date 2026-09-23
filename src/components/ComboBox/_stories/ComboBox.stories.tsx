@@ -282,7 +282,7 @@ export const BasicSingleSelect = () => {
     </ComboBox>
   );
 };
-BasicSingleSelect.storyName = 'Базовый выбор одного элемента';
+BasicSingleSelect.storyName = 'ComboBox по умолчанию';
 export const BasicSingleSelectWithInitialValue = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
@@ -291,7 +291,7 @@ export const BasicSingleSelectWithInitialValue = () => {
     </ComboBox>
   );
 };
-BasicSingleSelectWithInitialValue.storyName = 'Базовый выбор одного элемента с начальным значением';
+BasicSingleSelectWithInitialValue.storyName = 'ComboBox с начальным значением';
 export const MultipleSelectWithInitialValue = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (
@@ -300,7 +300,7 @@ export const MultipleSelectWithInitialValue = () => {
     </ComboBox>
   );
 };
-MultipleSelectWithInitialValue.storyName = 'Множественный выбор с начальным значением';
+MultipleSelectWithInitialValue.storyName = 'ComboBox с множественным выбором и начальным значением';
 
 export const MultipleSelectWithSearchAndCheckAll = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -310,7 +310,7 @@ export const MultipleSelectWithSearchAndCheckAll = () => {
     </ComboBox>
   );
 };
-MultipleSelectWithSearchAndCheckAll.storyName = 'Множественный выбор с поиском';
+MultipleSelectWithSearchAndCheckAll.storyName = 'ComboBox с множественным выбором и поиском';
 
 export const DraggableListExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -332,7 +332,7 @@ export const DraggableListExample = () => {
     </ComboBox>
   );
 };
-DraggableListExample.storyName = 'Перетаскиваемый список';
+DraggableListExample.storyName = 'ComboBox с перетаскиванием элементов';
 
 export const GroupedOptionsExample = () => {
   const [selected, setSelected] = useState<IComboBoxGroupOption[]>([]);
@@ -342,7 +342,7 @@ export const GroupedOptionsExample = () => {
     </ComboBox>
   );
 };
-GroupedOptionsExample.storyName = 'Группировка опций';
+GroupedOptionsExample.storyName = 'ComboBox с группировкой опций';
 
 export const TreeViewExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -352,7 +352,7 @@ export const TreeViewExample = () => {
     </ComboBox>
   );
 };
-TreeViewExample.storyName = 'Древовидный список';
+TreeViewExample.storyName = 'ComboBox с древовидным списком';
 
 export const TreeViewWithMaxLevelExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -362,7 +362,7 @@ export const TreeViewWithMaxLevelExample = () => {
     </ComboBox>
   );
 };
-TreeViewWithMaxLevelExample.storyName = 'Древовидный список с ограничением уровня вложенности';
+TreeViewWithMaxLevelExample.storyName = 'ComboBox с древовидным списком и ограничением вложенности';
 
 export const ResizableDropdownExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -379,7 +379,7 @@ export const ResizableDropdownExample = () => {
     </ComboBox>
   );
 };
-ResizableDropdownExample.storyName = 'Изменяемый размер выпадающего списка';
+ResizableDropdownExample.storyName = 'ComboBox с изменяемым размером выпадающего списка';
 
 export const TooltipDescriptionExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -414,7 +414,7 @@ export const TreeViewWithSimpleCheckboxesExample = () => {
     </ComboBox>
   );
 };
-TreeViewWithSimpleCheckboxesExample.storyName = 'Древовидный список с независимыми чекбоксами';
+TreeViewWithSimpleCheckboxesExample.storyName = 'ComboBox с древовидным списком и независимыми чекбоксами';
 
 export const TreeViewWithAutoFeaturesExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -430,7 +430,7 @@ export const TreeViewWithAutoFeaturesExample = () => {
     </ComboBox>
   );
 };
-TreeViewWithAutoFeaturesExample.storyName = 'Древовидный список с автофокусом и автораскрытием';
+TreeViewWithAutoFeaturesExample.storyName = 'ComboBox с древовидным списком, автофокусом и автораскрытием';
 
 export const TreeViewWithLeafCountExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -444,7 +444,7 @@ export const TreeViewWithLeafCountExample = () => {
     </ComboBox>
   );
 };
-TreeViewWithLeafCountExample.storyName = 'Древовидный список - листовые элементы';
+TreeViewWithLeafCountExample.storyName = 'ComboBox с древовидным списком и счётчиком листовых элементов';
 
 export const SingleSelectWithDescriptionExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -454,7 +454,7 @@ export const SingleSelectWithDescriptionExample = () => {
     </ComboBox>
   );
 };
-SingleSelectWithDescriptionExample.storyName = 'Пункты с sublabel (одиночный выбор)';
+SingleSelectWithDescriptionExample.storyName = 'ComboBox с sublabel в пунктах (одиночный выбор)';
 
 export const MultipleSelectWithDescriptionExample = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
@@ -464,4 +464,4 @@ export const MultipleSelectWithDescriptionExample = () => {
     </ComboBox>
   );
 };
-MultipleSelectWithDescriptionExample.storyName = 'Пункты с sublabel (множественный выбор)';
+MultipleSelectWithDescriptionExample.storyName = 'ComboBox с sublabel в пунктах (множественный выбор)';

@@ -109,7 +109,7 @@ export const GridEqualWidthColumns = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-GridEqualWidthColumns.storyName = 'Колонки равной ширины';
+GridEqualWidthColumns.storyName = 'Grid с колонками равной ширины';
 GridEqualWidthColumns.args = {
   background: 'var(--steel-50)'
 };
@@ -154,7 +154,7 @@ export const SettingOneColumnWidth = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-SettingOneColumnWidth.storyName = 'Установка ширины одной колонки';
+SettingOneColumnWidth.storyName = 'Grid с заданной шириной одной колонки';
 SettingOneColumnWidth.args = {
   background: 'var(--steel-50)'
 };
@@ -199,7 +199,7 @@ export const VariableWidthContent = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-VariableWidthContent.storyName = 'Переменная ширина контента';
+VariableWidthContent.storyName = 'Grid с переменной шириной контента';
 VariableWidthContent.args = {
   background: 'var(--steel-50)',
   justifyContent: 'center'
@@ -234,7 +234,7 @@ export const EqualWidthMultiRow = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-EqualWidthMultiRow.storyName = 'Колонки равной ширины с несколькими строками';
+EqualWidthMultiRow.storyName = 'Grid с колонками равной ширины в несколько строк';
 EqualWidthMultiRow.args = {
   background: 'var(--steel-50)'
 };
@@ -296,7 +296,7 @@ export const VerticalAlignment = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-VerticalAlignment.storyName = 'Вертикальное выравнивание';
+VerticalAlignment.storyName = 'Grid с вертикальным выравниванием';
 VerticalAlignment.args = {
   background: 'var(--steel-50)'
 };
@@ -343,7 +343,7 @@ export const HorizontalAlignment = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-HorizontalAlignment.storyName = 'Горизонтальное выравнивание';
+HorizontalAlignment.storyName = 'Grid с горизонтальным выравниванием';
 HorizontalAlignment.args = {
   background: 'var(--steel-50)'
 };
@@ -379,7 +379,7 @@ export const ColumnWrapping = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-ColumnWrapping.storyName = 'Перенос колонок';
+ColumnWrapping.storyName = 'Grid с переносом колонок';
 ColumnWrapping.args = {
   background: 'var(--steel-50)'
 };
@@ -413,7 +413,7 @@ export const ColumnBreaks = (argTypes: IBox): JSX.Element => {
     </Grid>
   );
 };
-ColumnBreaks.storyName = 'Разрывы колонок';
+ColumnBreaks.storyName = 'Grid с разрывами колонок';
 ColumnBreaks.args = {
   background: 'var(--steel-50)'
 };
@@ -461,7 +461,7 @@ export const GridWithSizeProp = (argTypes: IBox): JSX.Element => {
   );
 };
 
-GridWithSizeProp.storyName = 'Grid c использованием bootstrap параметра size';
+GridWithSizeProp.storyName = 'Grid с использованием bootstrap параметра size';
 
 export const GridBootstrapResponsive = (argTypes: IBox): JSX.Element => {
   return (
@@ -505,7 +505,7 @@ export const GridBootstrapResponsive = (argTypes: IBox): JSX.Element => {
   );
 };
 
-GridBootstrapResponsive.storyName = 'Адаптивная сетка';
+GridBootstrapResponsive.storyName = 'Grid адаптивный';
 GridBootstrapResponsive.args = {
   background: 'var(--steel-50)'
 };

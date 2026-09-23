@@ -77,7 +77,7 @@ PseudoInputColors.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
-PseudoInputColors.storyName = 'PseudoInputStates в разных состояниях';
+PseudoInputColors.storyName = 'PseudoInput с разными цветами лейбла';
 
 export const PseudoInputWithSuffixAndBadge = (): JSX.Element => {
   const suffix = (

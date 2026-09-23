@@ -105,7 +105,7 @@ export const TabsDefault = (args: ITabProps): JSX.Element => {
     </div>
   );
 };
-TabsDefault.storyName = 'Дефолтные табы';
+TabsDefault.storyName = 'Tabs по умолчанию';
 
 const tabItems: TabItem[] = [
   { value: 0, label: 'Входящие' },
@@ -154,7 +154,7 @@ export const TabsScrollable = (args: ITabProps) => {
   );
 };
 
-TabsScrollable.storyName = 'Табы с автоматическим скроллом при переполнении';
+TabsScrollable.storyName = 'Tabs с автоматическим скроллом при переполнении';
 
 export const TabsTopIndicator = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -175,7 +175,7 @@ export const TabsTopIndicator = () => {
   );
 };
 
-TabsTopIndicator.storyName = 'Табы с индикатором сверху';
+TabsTopIndicator.storyName = 'Tabs с индикатором сверху';
 
 export const TabsVerticalLeft = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -203,7 +203,7 @@ export const TabsVerticalLeft = () => {
   );
 };
 
-TabsVerticalLeft.storyName = 'Вертикальные табы слева от контента';
+TabsVerticalLeft.storyName = 'Tabs вертикальные слева от контента';
 
 export const TabsVerticalRight = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -223,7 +223,7 @@ export const TabsVerticalRight = () => {
   );
 };
 
-TabsVerticalRight.storyName = 'Вертикальные табы справа от контента';
+TabsVerticalRight.storyName = 'Tabs вертикальные справа от контента';
 
 export const TabsVerticalWrap = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -249,7 +249,7 @@ export const TabsVerticalWrap = () => {
   );
 };
 
-TabsVerticalWrap.storyName = 'Вертикальные табы с переносом длинного текста';
+TabsVerticalWrap.storyName = 'Tabs вертикальные с переносом длинного текста';
 
 export const TabsVerticalEllipsis = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -275,4 +275,4 @@ export const TabsVerticalEllipsis = () => {
   );
 };
 
-TabsVerticalEllipsis.storyName = 'Вертикальные табы (ellipsis с maxTabWidth)';
+TabsVerticalEllipsis.storyName = 'Tabs вертикальные (ellipsis с maxTabWidth)';

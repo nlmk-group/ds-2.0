@@ -187,7 +187,7 @@ SidebarDefault.args = {
 export const VerticalBurgerSidebar = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault variant="burger" {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
 };
-VerticalBurgerSidebar.storyName = 'Вертикальный бургер';
+VerticalBurgerSidebar.storyName = 'Sidebar вертикальный с бургер-меню';
 VerticalBurgerSidebar.args = {
   userName: 'Иван',
   userSurname: 'Иванов',
@@ -205,7 +205,7 @@ export const SidebarHorizontal = (argTypes: ISidebarProps): ReactNode => {
     />
   );
 };
-SidebarHorizontal.storyName = 'Горизонтальный сайдбар';
+SidebarHorizontal.storyName = 'Sidebar горизонтальный';
 SidebarHorizontal.args = {
   userName: 'Иван',
   userSurname: 'Иванов',
@@ -224,7 +224,7 @@ export const HorizontalBurgerSidebar = (argTypes: ISidebarProps): ReactNode => {
     />
   );
 };
-HorizontalBurgerSidebar.storyName = 'Горизонтальный бургер';
+HorizontalBurgerSidebar.storyName = 'Sidebar горизонтальный с бургер-меню';
 HorizontalBurgerSidebar.args = {
   userName: 'Иван',
   userSurname: 'Иванов',
@@ -256,7 +256,7 @@ SidebarWithCustomLogo.args = {
 export const SidebarAdaptive = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault {...argTypes} onOpenUser={() => {}} onLogout={() => {}} onLogin={() => {}} />;
 };
-SidebarAdaptive.storyName = 'Адаптивный Sidebar';
+SidebarAdaptive.storyName = 'Sidebar адаптивный';
 
 const TABLET_WIDTH = SIDEBAR_ADAPTIVE_BREAKPOINT;
 const TABLET_HEIGHT = 1340;

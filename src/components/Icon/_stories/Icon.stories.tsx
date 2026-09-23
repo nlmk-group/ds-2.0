@@ -60,7 +60,7 @@ export const IconComponent = (argsTypes: TIconProps): JSX.Element => {
   );
 };
 
-IconComponent.storyName = 'Компонент Icon по умолчанию';
+IconComponent.storyName = 'Icon по умолчанию';
 IconComponent.args = {
   name: 'IconTuneControlOutlined32',
   color: 'primary',
@@ -208,7 +208,7 @@ export const AllIcons = (): JSX.Element => {
     </div>
   );
 };
-AllIcons.storyName = 'Все доступные иконки';
+AllIcons.storyName = 'Icon, все доступные иконки';
 AllIcons.parameters = {
   controls: {
     disable: true
@@ -222,7 +222,7 @@ export const IconUnitComponent = (argsTypes: IIconUnitProps): JSX.Element => {
     </Box>
   );
 };
-IconUnitComponent.storyName = 'Компонент иконки для единиц измерения';
+IconUnitComponent.storyName = 'IconUnit для единиц измерения';
 IconUnitComponent.args = { unit: 'кг' };
 IconUnitComponent.parameters = {
   controls: {

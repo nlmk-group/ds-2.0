@@ -18,12 +18,12 @@ export default {
 export const SkeletonLoaderDefault = (argTypes: ISkeletonLoadingProps): JSX.Element => {
   return <SkeletonLoader width="900px" {...argTypes} />;
 };
-SkeletonLoaderDefault.storyName = 'Skeleton loader состояние по умолчанию';
+SkeletonLoaderDefault.storyName = 'SkeletonLoader по умолчанию';
 
 export const SkeletonLoaderPulseAnimation = (argsTypes: ISkeletonLoadingProps): JSX.Element => {
   return <SkeletonLoaderDefault {...argsTypes} />;
 };
-SkeletonLoaderPulseAnimation.storyName = 'Skeleton loader c анимацией пульсации';
+SkeletonLoaderPulseAnimation.storyName = 'SkeletonLoader с анимацией пульсации';
 SkeletonLoaderPulseAnimation.args = { animation: 'pulse' };
 
 export const SkeletonLoaderMulti = (argTypes: ISkeletonLoadingProps): JSX.Element => {
@@ -43,7 +43,7 @@ export const SkeletonLoaderMulti = (argTypes: ISkeletonLoadingProps): JSX.Elemen
     </div>
   );
 };
-SkeletonLoaderMulti.storyName = 'Skeleton loader с множественными блоками';
+SkeletonLoaderMulti.storyName = 'SkeletonLoader с множественными блоками';
 
 export const SkeletonLoaderMultiPulseAnimation = (argTypes: ISkeletonLoadingProps): JSX.Element => {
   const skeletonArgs = { height: '50px', animation: ESkeletonAnimation.pulse, ...argTypes };
@@ -62,4 +62,4 @@ export const SkeletonLoaderMultiPulseAnimation = (argTypes: ISkeletonLoadingProp
     </div>
   );
 };
-SkeletonLoaderMultiPulseAnimation.storyName = 'Skeleton loader с множественными блоками и анимацией пульсации';
+SkeletonLoaderMultiPulseAnimation.storyName = 'SkeletonLoader с множественными блоками и анимацией пульсации';

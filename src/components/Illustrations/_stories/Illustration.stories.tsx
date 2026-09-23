@@ -22,7 +22,7 @@ export const defaultIllustration = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-defaultIllustration.storyName = 'Иллюстрация по умолчанию';
+defaultIllustration.storyName = 'Illustration по умолчанию';
 defaultIllustration.args = {
   size: EPictureSizes.Medium,
   name: 'error404'
@@ -49,7 +49,7 @@ export const Small = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-Small.storyName = 'Иллюстрация 100x100 (Small)';
+Small.storyName = 'Illustration 100x100 (Small)';
 Small.args = {
   size: EPictureSizes.Small,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Small])[0]
@@ -61,7 +61,7 @@ export const Medium = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-Medium.storyName = 'Иллюстрация 200x200 (Medium)';
+Medium.storyName = 'Illustration 200x200 (Medium)';
 Medium.args = {
   size: EPictureSizes.Medium,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Medium])[0]
@@ -73,7 +73,7 @@ export const Wide = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-Wide.storyName = 'Иллюстрация 300x164 (Wide)';
+Wide.storyName = 'Illustration 300x164 (Wide)';
 Wide.args = {
   size: EPictureSizes.Wide,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Wide])[0]
@@ -85,7 +85,7 @@ export const Standard = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-Standard.storyName = 'Иллюстрация 300x200 (Standard)';
+Standard.storyName = 'Illustration 300x200 (Standard)';
 Standard.args = {
   size: EPictureSizes.Standard,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Standard])[0]
@@ -97,7 +97,7 @@ export const Tall = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-Tall.storyName = 'Иллюстрация 300x232 (Tall)';
+Tall.storyName = 'Illustration 300x232 (Tall)';
 Tall.args = {
   size: EPictureSizes.Tall,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Tall])[0]
@@ -109,7 +109,7 @@ export const ExtraLarge = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-ExtraLarge.storyName = 'Иллюстрация 460x340 (ExtraLarge)';
+ExtraLarge.storyName = 'Illustration 460x340 (ExtraLarge)';
 ExtraLarge.args = {
   size: EPictureSizes.ExtraLarge,
   name: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.ExtraLarge])[0]

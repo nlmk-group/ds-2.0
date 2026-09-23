@@ -70,12 +70,9 @@ function generateExports(components) {
       return entry.name.endsWith('.css') ? [path.relative(cssRoot, full).split(path.sep).join('/')] : [];
     });
 
-  collectCss(cssRoot)
-    .sort()
-    .forEach(file => {
-      exports[`./css/${file}`] = `./lib/css/${file}`;
-    });
-
+  for (const file of collectCss(cssRoot).sort()) {
+    exports[`./css/${file}`] = `./lib/css/${file}`;
+  }
 
   return exports;
 }

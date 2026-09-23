@@ -18,7 +18,6 @@ const MenuItem: FC<IMenuItem> = ({ label, value, disabled }) => (
         <Typography variant="Body1-Medium">{label}</Typography>
       </div>
     </div>
-    <div className={styles['right-wrapper']} />
   </ListItem>
 );
 

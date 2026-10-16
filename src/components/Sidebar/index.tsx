@@ -5,10 +5,12 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState
 } from 'react';
+import { flushSync } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import { IAvatarProps } from '@components/Avatar/types';
@@ -48,7 +50,8 @@ import { useIsAdaptive } from './hooks';
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
  * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
  * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
- * @param {boolean} [props.manualExpansion=false] - Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+ * @param {boolean} [props.manualExpansion=false] - Управление по кнопке; при keyboardNavigation доступно закрытие по Esc.
+ * @param {boolean} [props.keyboardNavigation=false] - Навигация стрелками, активация по Enter и закрытие по Esc.
  * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
  * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
@@ -77,6 +80,7 @@ const Sidebar: FC<ISidebarProps> &
   overlay = false,
   logo,
   manualExpansion = false,
+  keyboardNavigation = false,
   isShowUserControl = true,
   className,
   style
@@ -97,6 +101,145 @@ const Sidebar: FC<ISidebarProps> &
   const scrollRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
   const adaptiveRootRef = useRef<HTMLDivElement>(null);
+  const keyboardRootRef = useRef<HTMLDivElement>(null);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const pendingFocus = useRef<'expandedTrigger' | 'trigger' | 'parent' | null>(null);
+  const submenuParentRef = useRef<HTMLElement | null>(null);
+  const itemSelector = '[data-ui-sidebar-menu-item], [data-ui-sidebar-submenu-item]';
+  const triggerSelector = '[data-ui-sidebar-collapse-button], [data-ui-sidebar-burger]';
+
+  const availableItems = (root: HTMLElement, selector = itemSelector) =>
+    Array.from(root.querySelectorAll<HTMLElement>(selector)).filter(item => {
+      if (item.getAttribute('aria-disabled') === 'true' || item.closest('[hidden], [inert], [aria-hidden="true"]'))
+        return false;
+      for (let node: HTMLElement | null = item; node && node !== root; node = node.parentElement) {
+        const style = window.getComputedStyle(node);
+        if (style.display === 'none' || style.visibility === 'hidden') return false;
+      }
+      return true;
+    });
+
+  const focusItem = (item?: HTMLElement) => {
+    item?.focus();
+    item?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+  };
+
+  useLayoutEffect(() => {
+    if (!keyboardNavigation || !keyboardRootRef.current) return;
+    // Menu items are the focus targets; links in custom content must not add a second Tab stop.
+    const links = Array.from(keyboardRootRef.current.querySelectorAll<HTMLAnchorElement>('a[href]'))
+      .filter(link => link.closest(itemSelector))
+      .map(link => ({ link, tabIndex: link.getAttribute('tabindex') }));
+    links.forEach(({ link }) => link.setAttribute('tabindex', '-1'));
+    return () => {
+      links.forEach(({ link, tabIndex }) => {
+        if (tabIndex === null) link.removeAttribute('tabindex');
+        else link.setAttribute('tabindex', tabIndex);
+      });
+    };
+  });
+
+  useLayoutEffect(() => {
+    if (!keyboardNavigation || !pendingFocus.current) return;
+    if (pendingFocus.current === 'parent' && !activeItem && isExpanded) {
+      focusItem(submenuParentRef.current || undefined);
+      pendingFocus.current = null;
+    }
+    if (pendingFocus.current === 'trigger' && !isExpanded) {
+      focusItem(burgerRef.current || collapseButtonRef.current || undefined);
+      pendingFocus.current = null;
+    } else if (pendingFocus.current === 'expandedTrigger' && isExpanded && keyboardRootRef.current) {
+      focusItem(availableItems(keyboardRootRef.current, triggerSelector)[0]);
+      pendingFocus.current = null;
+    }
+  });
+
+  const withKeyboardNavigation = (content: ReactElement) => {
+    if (!keyboardNavigation) return content;
+    return (
+      <div
+        ref={keyboardRootRef}
+        className={styles.keyboardNavigation}
+        onKeyDown={event => {
+          if (event.defaultPrevented) return;
+          const eventTarget = event.target as HTMLElement;
+          if (eventTarget.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')) return;
+          const target =
+            event.key.startsWith('Arrow') && eventTarget.closest('a[href]')
+              ? eventTarget.closest<HTMLElement>(itemSelector) || eventTarget
+              : eventTarget;
+          if (event.key === 'Escape' && isExpanded) {
+            event.preventDefault();
+            pendingFocus.current = 'trigger';
+            collapseSidebar();
+            return;
+          }
+          // Native controls and nested interactive content retain their own keyboard behavior.
+          const isTrigger = target.matches(triggerSelector);
+          const isFavorites = target.matches('[data-ui-sidebar-favorites]');
+          if (!target.matches(itemSelector) && !isTrigger && !isFavorites) return;
+          const inSubmenu = isFavorites || target.matches('[data-ui-sidebar-submenu-item]');
+          const vertical = inSubmenu || isAdaptive || isVertical;
+          const openKey = vertical ? 'ArrowRight' : 'ArrowDown';
+          const closeKey = vertical ? 'ArrowLeft' : 'ArrowUp';
+          if (!isTrigger && event.key === closeKey) {
+            event.preventDefault();
+            if (target.getAttribute('aria-expanded') === 'true') {
+              flushSync(() => target.click());
+              focusItem(target);
+            } else if (inSubmenu) {
+              const group = target.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
+              const parentGroup = group?.parentElement?.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
+              const parent =
+                parentGroup?.querySelector<HTMLElement>('[data-ui-sidebar-submenu-item]') ||
+                availableItems(event.currentTarget, '[data-ui-sidebar-menu-item]').find(
+                  item => item.title === activeItem
+                );
+              if (parent?.getAttribute('aria-expanded') === 'true') {
+                flushSync(() => parent.click());
+              }
+              focusItem(parent);
+            }
+            return;
+          }
+          if (!isTrigger && !isFavorites && (event.key === 'Enter' || event.key === openKey)) {
+            const isArrow = event.key === openKey;
+            if (isArrow && !target.hasAttribute('aria-expanded')) return;
+            event.preventDefault();
+            const wasExpanded = target.getAttribute('aria-expanded') === 'true';
+            if (!isArrow || !wasExpanded) flushSync(() => target.click());
+            if (target.getAttribute('aria-expanded') === 'true' && (isArrow || !wasExpanded)) {
+              const submenu = target.matches('[data-ui-sidebar-menu-item]')
+                ? event.currentTarget.querySelector<HTMLElement>('[data-ui-sidebar-submenu]')
+                : target.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
+              if (submenu) {
+                focusItem(
+                  availableItems(submenu, '[data-ui-sidebar-submenu-item]').find(item => item !== target) ||
+                    availableItems(submenu, '[data-ui-sidebar-favorites]')[0]
+                );
+              }
+            }
+            return;
+          }
+          const previous = vertical ? 'ArrowUp' : 'ArrowLeft';
+          const next = vertical ? 'ArrowDown' : 'ArrowRight';
+          if (event.key !== previous && event.key !== next) return;
+          event.preventDefault();
+          const root = inSubmenu ? target.closest<HTMLElement>('[data-ui-sidebar-submenu]') : event.currentTarget;
+          if (!root) return;
+          const selector = inSubmenu
+            ? '[data-ui-sidebar-favorites], [data-ui-sidebar-submenu-item]'
+            : `[data-ui-sidebar-menu-item], ${triggerSelector}`;
+          const items = availableItems(root, selector);
+          const index = items.indexOf(target);
+          if (index < 0) return;
+          focusItem(items[Math.max(0, Math.min(items.length - 1, index + (event.key === next ? 1 : -1)))]);
+        }}
+      >
+        {content}
+      </div>
+    );
+  };
 
   // Только на смене режима, иначе эффект затрёт defaultMenuOpen при монтировании
   useEffect(() => {
@@ -164,15 +307,35 @@ const Sidebar: FC<ISidebarProps> &
   };
 
   const closeSubmenu = () => {
+    if (
+      keyboardNavigation &&
+      pendingFocus.current !== 'trigger' &&
+      document.activeElement?.closest('[data-ui-sidebar-submenu]') &&
+      keyboardRootRef.current?.contains(document.activeElement)
+    ) {
+      submenuParentRef.current =
+        Array.from(keyboardRootRef.current.querySelectorAll<HTMLElement>('[data-ui-sidebar-menu-item]')).find(
+          item => item.title === activeItem
+        ) || null;
+      pendingFocus.current = 'parent';
+    }
     setActiveItem(null);
   };
 
   const collapseSidebar = () => {
+    if (keyboardNavigation && keyboardRootRef.current?.contains(document.activeElement)) {
+      pendingFocus.current = 'trigger';
+    }
     closeSubmenu();
     setExpanded(false);
   };
 
   const handleToggleExpansion = () => {
+    if (keyboardNavigation && isExpanded) {
+      collapseSidebar();
+      return;
+    }
+    if (keyboardNavigation && !isExpanded) pendingFocus.current = 'expandedTrigger';
     setActiveItem(null);
     setExpanded(val => !val);
   };
@@ -230,10 +393,14 @@ const Sidebar: FC<ISidebarProps> &
   const burgerTrigger = (
     <button
       type="button"
+      ref={burgerRef}
       data-ui-sidebar-burger
       className={clsx(styles.burger, className)}
       style={style}
-      onClick={() => setExpanded(true)}
+      onClick={() => {
+        if (keyboardNavigation) pendingFocus.current = 'expandedTrigger';
+        setExpanded(true);
+      }}
       aria-expanded={false}
       aria-label={COLLAPSE_TEXTS[locale].expand}
       title={COLLAPSE_TEXTS[locale].expand}
@@ -243,7 +410,7 @@ const Sidebar: FC<ISidebarProps> &
   );
 
   if (isAdaptive)
-    return (
+    return withKeyboardNavigation(
       <SidebarProperties.Provider
         value={{
           isExpanded,
@@ -258,7 +425,8 @@ const Sidebar: FC<ISidebarProps> &
           collapseSidebar,
           onChangeFavorites,
           closeSubmenu,
-          manualExpansion
+          manualExpansion,
+          keyboardNavigation
         }}
       >
         {!isExpanded && burgerTrigger}
@@ -274,7 +442,11 @@ const Sidebar: FC<ISidebarProps> &
           }}
           unmountOnExit
         >
-          <div ref={adaptiveRootRef} className={styles.adaptiveRoot}>
+          <div
+            ref={adaptiveRootRef}
+            className={styles.adaptiveRoot}
+            inert={keyboardNavigation && !isExpanded ? true : undefined}
+          >
             <div className={styles.adaptiveScrim} data-ui-sidebar-adaptive-scrim />
             <ClickAwayListener
               onClickAway={collapseSidebar}
@@ -311,9 +483,9 @@ const Sidebar: FC<ISidebarProps> &
       </SidebarProperties.Provider>
     );
 
-  if (isBurger && !isExpanded) return burgerTrigger;
+  if ((isBurger || (keyboardNavigation && !isVertical)) && !isExpanded) return withKeyboardNavigation(burgerTrigger);
 
-  return (
+  return withKeyboardNavigation(
     <SidebarProperties.Provider
       value={{
         isExpanded,
@@ -328,7 +500,8 @@ const Sidebar: FC<ISidebarProps> &
         collapseSidebar,
         closeSubmenu,
         onChangeFavorites,
-        manualExpansion
+        manualExpansion,
+        keyboardNavigation
       }}
     >
       <ClickAwayListener
@@ -355,18 +528,26 @@ const Sidebar: FC<ISidebarProps> &
         style={style}
       >
         <div className={clsx(styles.menu, styles[`menu-${orientation}`])}>
-          {!isVertical && isBurger && (
-            <div
+          {!isVertical && (isBurger || keyboardNavigation) && (
+            <button
+              type="button"
               data-ui-sidebar-burger
               className={clsx(styles.burger, styles['burger-expanded'])}
               onClick={collapseSidebar}
+              aria-label={COLLAPSE_TEXTS[locale].collapse}
+              aria-expanded={true}
             >
               <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
-            </div>
+            </button>
           )}
           <div className={styles.head}>
             {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={handleToggleExpansion} locale={locale} />
+              <CollapseButton
+                ref={collapseButtonRef}
+                isExpanded={isExpanded}
+                onClick={handleToggleExpansion}
+                locale={locale}
+              />
             )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>

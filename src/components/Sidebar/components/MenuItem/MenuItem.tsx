@@ -32,7 +32,8 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
     setActiveItem,
     setIsScrollingDueToClick,
     collapseSidebar,
-    manualExpansion
+    manualExpansion,
+    keyboardNavigation
   } = useContext<ISidebarProperties>(SidebarProperties);
   const targetRef = useRef<HTMLDivElement>(null);
   const isActive = activeItem === label;
@@ -102,6 +103,11 @@ const MenuItem: IMenuItemComponent = ({ label, content, children, path, icon, on
       ref={targetRef}
       title={label}
       data-ui-sidebar-menu-item
+      tabIndex={keyboardNavigation && !disabled ? 0 : undefined}
+      role={keyboardNavigation ? 'button' : undefined}
+      aria-disabled={keyboardNavigation ? disabled : undefined}
+      aria-expanded={keyboardNavigation && hasChildren ? isActive : undefined}
+      data-sidebar-current={path === currentPath || hasActiveDescendant ? true : undefined}
     >
       {typeof icon === 'string' && (
         <Icon

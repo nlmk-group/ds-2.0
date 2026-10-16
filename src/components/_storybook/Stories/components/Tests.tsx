@@ -1,14 +1,18 @@
 import React, { FC } from 'react';
 
 import { Chip, Typography } from '@components/index';
-// Add TS disable error comment for import file from under the root direction
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import data from '@root/.jest-test-results.json';
 
 import styles from '../Stories.module.scss';
 
+const reports = import.meta.glob<{
+  testResults: { name: string; assertionResults: { title: string; status: string }[] }[];
+}>('/.jest-test-results.json', { eager: true, import: 'default' });
+
 const Tests: FC<{ componentName: string }> = ({ componentName }) => {
+  const data = reports['/.jest-test-results.json'];
+  if (!data) {
+    return <Typography variant="Body1-Bold">Результаты тестов не сгенерированы</Typography>;
+  }
   const { testResults } = data;
   const currentComponentTest = testResults.find(({ name }: { name: string }) => name.includes(componentName));
 

@@ -179,6 +179,7 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
 };
 SidebarDefault.storyName = 'Sidebar по умолчанию';
 SidebarDefault.args = {
+  keyboardNavigation: false,
   userName: 'Иван',
   userSurname: 'Иванов',
   systemName: 'НЛМК'
@@ -286,8 +287,20 @@ SidebarAdaptive.args = {
 export const SidebarManualExpansion = (argTypes: ISidebarProps): ReactNode => {
   return <SidebarDefault {...argTypes} defaultMenuOpen manualExpansion />;
 };
-SidebarManualExpansion.storyName = 'Sidebar сворачивается только по кнопке, а клик вне меню закрывает только подменю';
+SidebarManualExpansion.storyName = 'Sidebar с ручным раскрытием';
 SidebarManualExpansion.args = {
+  userName: 'Иван',
+  userSurname: 'Иванов',
+  systemName: 'НЛМК'
+};
+
+export const SidebarKeyboardNavigation = (argTypes: ISidebarProps): ReactNode => {
+  return <SidebarDefault {...argTypes} />;
+};
+SidebarKeyboardNavigation.storyName = 'Sidebar с клавиатурной навигацией';
+SidebarKeyboardNavigation.args = {
+  keyboardNavigation: true,
+  manualExpansion: true,
   userName: 'Иван',
   userSurname: 'Иванов',
   systemName: 'НЛМК'

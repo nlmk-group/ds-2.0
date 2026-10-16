@@ -19,7 +19,8 @@ export const SidebarProperties = createContext<ISidebarProperties>({
   currentPath: '',
   collapseSidebar: () => {},
   closeSubmenu: () => {},
-  manualExpansion: false
+  manualExpansion: false,
+  keyboardNavigation: false
 });
 
 /**

@@ -14,7 +14,7 @@ import { ISidebarProperties, ISubmenuProps } from '../../types';
 const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
-  const { allowFavorites, onChangeFavorites } = useContext<ISidebarProperties>(SidebarProperties);
+  const { allowFavorites, onChangeFavorites, keyboardNavigation } = useContext<ISidebarProperties>(SidebarProperties);
   const { handleFavorites, checkIsFavorite, checkChildIsFavorite, favorites } = useFavorites();
   const [showFavorites, setShowFavorites] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -79,18 +79,37 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
         className={clsx(styles.submenu, styles[`submenu-${orientation}`], { [styles['submenu-fluid']]: !isVertical })}
         ref={nodeRef}
         data-ui-sidebar-submenu
+        aria-hidden={keyboardNavigation && !isOpen ? true : undefined}
+        inert={keyboardNavigation && !isOpen ? true : undefined}
       >
         <div className={styles.top}>
           <Typography variant="Body-Bold" color="var(--steel-90)" className={styles.title}>
             {title}
           </Typography>
           {allowFavorites && (
-            <Switch
+            <div
               className={styles['switch-position']}
-              checked={showFavorites}
-              onChange={() => setShowFavorites(prev => !prev)}
-              label="Избранное"
-            />
+              data-ui-sidebar-favorites
+              tabIndex={keyboardNavigation ? 0 : undefined}
+              role={keyboardNavigation ? 'switch' : undefined}
+              aria-label={keyboardNavigation ? 'Избранное' : undefined}
+              aria-checked={keyboardNavigation ? showFavorites : undefined}
+              onKeyDown={
+                keyboardNavigation
+                  ? event => {
+                      if (event.defaultPrevented || event.target !== event.currentTarget) return;
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setShowFavorites(prev => !prev);
+                      }
+                    }
+                  : undefined
+              }
+            >
+              <div aria-hidden={keyboardNavigation ? true : undefined}>
+                <Switch checked={showFavorites} onChange={() => setShowFavorites(prev => !prev)} label="Избранное" />
+              </div>
+            </div>
           )}
         </div>
         <SubmenuProperties.Provider

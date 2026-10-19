@@ -34,6 +34,14 @@ export const dateFormatByLevel = {
   year: onlyYearFormat
 } as const;
 
+/** Сдвиг цифр уровня относительно DD.MM.YYYY: у MM.YYYY нет дня, у YYYY и квартала нет дня и месяца */
+export const dateDigitOffsetByLevel = {
+  day: 0,
+  month: 2,
+  quarter: 4,
+  year: 4
+} as const;
+
 export const periodMaskByLevel = (quarter: string) =>
   ({
     day: periodDefaultMask,

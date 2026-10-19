@@ -13,6 +13,7 @@ import React, {
 import { useIMask } from 'react-imask';
 
 import {
+  dateDigitOffsetByLevel,
   dateFormat,
   dateFormatByLevel,
   dateFormatWithoutYear,
@@ -929,20 +930,15 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
               // Определяем позицию в дате (для валидации)
               // Для формата DD.MM.YYYY: позиции 0,1 - день, 3,4 - месяц, 6,7,8,9 - год
               const separator = withShift ? '/' : ' — ';
-              const separatorIndex = currentValue.indexOf(separator);
+              // Правая дата начинается после левой даты, её смены ("/_") и разделителя.
+              // indexOf(separator) не подходит: в режиме смен первым найдётся "/" смены левой даты
+              const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
+              const dateStart = targetPos < rightDateStart ? 0 : rightDateStart;
+              const posInDate = targetPos - dateStart;
 
-              let posInDate: number;
-              if (targetPos < separatorIndex) {
-                // Левая дата
-                posInDate = targetPos;
-              } else {
-                // Правая дата - вычитаем длину левой части с разделителем
-                posInDate = targetPos - separatorIndex - separator.length;
-              }
-
-              // Нормализуем позицию относительно формата даты (убираем точки)
-              const dotsBeforePos = currentValue.substring(0, targetPos).split('.').length - 1;
-              const normalizedPos = posInDate - dotsBeforePos;
+              // Нормализуем позицию относительно формата DD.MM.YYYY (убираем точки текущей даты)
+              const dotsBeforePos = currentValue.substring(dateStart, targetPos).split('.').length - 1;
+              const normalizedPos = posInDate - dotsBeforePos + dateDigitOffsetByLevel[level];
 
               // Валидация для дня (позиции 0-1)
               if (normalizedPos === 0 && parseInt(e.key) > 3) {

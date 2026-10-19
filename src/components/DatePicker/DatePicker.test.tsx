@@ -430,6 +430,82 @@ describe('src/components/DatePicker', () => {
         }
       });
     });
+
+    it.each([
+      { digits: '0110202620102026', expected: '01.10.2026 — 20.10.2026' },
+      { digits: '1501199920011999', expected: '15.01.1999 — 20.01.1999' }
+    ])('вводит вторую дату без искажения года: $expected', async ({ digits, expected }) => {
+      render(<DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await user.type(input, digits);
+
+      await waitFor(() => {
+        expect(input.value).toBe(expected);
+      });
+    });
+
+    it('добавляет 0 перед большими цифрами дня и месяца второй даты', async () => {
+      render(<DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+
+      // Во второй дате вводим день 5 и месяц 4 - должно стать 05.04
+      await user.type(input, '01102026' + '54');
+
+      await waitFor(() => {
+        expect(input.value).toBe('01.10.2026 — 05.04.____');
+      });
+    });
+
+    it('передаёт в onPeriodChange введённую вручную вторую дату', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await user.type(input, '0110202620102026');
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+      await waitFor(() => {
+        const [valueFrom, valueTo] = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        expect(valueFrom).toEqual(new Date(2026, 9, 1));
+        expect(valueTo).toEqual(new Date(2026, 9, 20));
+      });
+    });
+
+    it('на уровне month проверяет месяц и не искажает год', async () => {
+      render(
+        <DatePicker type="period" level="month" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      // Месяц 5 должен стать 05, месяц 6 - 06
+      await user.type(input, '52026' + '62026');
+
+      await waitFor(() => {
+        expect(input.value).toBe('05.2026 — 06.2026');
+      });
+    });
+
+    it('на уровне year не применяет к году проверки дня и месяца', async () => {
+      render(
+        <DatePicker type="period" level="year" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await user.type(input, '2026' + '2027');
+
+      await waitFor(() => {
+        expect(input.value).toBe('2026 — 2027');
+      });
+    });
   });
 
   describe('Выделение и удаление в режиме периода', () => {
@@ -622,6 +698,18 @@ describe('src/components/DatePicker', () => {
         // Должен быть разделитель " — " а не "/"
         expect(input.value).toContain(' — ');
         expect(input.value).toMatch(/\d{2}\.\d{2}\.\d{4}\/\d — \d{2}\.\d{2}\.\d{4}\/\d/);
+      });
+    });
+
+    it('вводит вручную обе даты и смены в пустой период', async () => {
+      render(<DatePicker type="shift" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await user.type(input, '01102026' + '1' + '20102026' + '2');
+
+      await waitFor(() => {
+        expect(input.value).toBe('01.10.2026/1/20.10.2026/2');
       });
     });
   });

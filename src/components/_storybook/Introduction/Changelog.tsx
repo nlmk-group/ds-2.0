@@ -35,16 +35,9 @@ export const Changelog = () => {
               >
                 DatePicker
               </Link>
-              .
-              <li className={styles['left-padding']}>
-                - Ручной ввод второй даты периода больше не искажает год (2026 вместо 0202)
-              </li>
-              <li className={styles['left-padding']}>
-                - Ручной ввод периода на уровнях month и year не искажает год, месяц проверяется
-              </li>
-              <li className={styles['left-padding']}>
-                - Период со сменами: пустая маска разделяет даты через «—», введённое значение сохраняется по Enter
-              </li>
+              .<li className={styles['left-padding']}>- Исправлено искажение года при ручном вводе периода</li>
+              <li className={styles['left-padding']}>- Исправлен ввод периода в режимах выбора месяца и года</li>
+              <li className={styles['left-padding']}>- Исправлен ввод периода со сменами</li>
             </li>
           </ul>
         </div>

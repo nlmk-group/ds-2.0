@@ -23,6 +23,33 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.32.2 - <span className={styles.date}>19.10.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .
+              <li className={styles['left-padding']}>
+                - Ручной ввод второй даты периода больше не искажает год (2026 вместо 0202)
+              </li>
+              <li className={styles['left-padding']}>
+                - Ручной ввод периода на уровнях month и year не искажает год, месяц проверяется
+              </li>
+              <li className={styles['left-padding']}>
+                - Период со сменами: пустая маска разделяет даты через «—», введённое значение сохраняется по Enter
+              </li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.32.1 - <span className={styles.date}>24.08.26</span>
           </Typography>
           <ul className={styles.list}>

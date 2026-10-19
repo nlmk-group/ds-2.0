@@ -129,7 +129,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
     const getEmptyMaskForPeriod = useCallback(() => {
       const emptyMask = getEmptyMask();
-      const separator = withShift ? '/' : ' — ';
+      // Даты разделяются так же, как в заполненном значении: смены - через "/", даты - через " — "
+      const separator = ' — ';
 
       if (withShift) {
         return `${emptyMask}/_${separator}${emptyMask}/_`;
@@ -929,9 +930,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
               // Определяем позицию в дате (для валидации)
               // Для формата DD.MM.YYYY: позиции 0,1 - день, 3,4 - месяц, 6,7,8,9 - год
-              const separator = withShift ? '/' : ' — ';
-              // Правая дата начинается после левой даты, её смены ("/_") и разделителя.
-              // indexOf(separator) не подходит: в режиме смен первым найдётся "/" смены левой даты
+              const separator = ' — ';
+              // Правая дата начинается после левой даты, её смены ("/_") и разделителя
               const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
               const dateStart = targetPos < rightDateStart ? 0 : rightDateStart;
               const posInDate = targetPos - dateStart;

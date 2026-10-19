@@ -706,10 +706,35 @@ describe('src/components/DatePicker', () => {
 
       const input = screen.getByRole('textbox') as HTMLInputElement;
       await user.click(input);
+
+      // Пустая маска разделяет даты так же, как заполненное значение
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____/_ — __.__.____/_');
+      });
+
       await user.type(input, '01102026' + '1' + '20102026' + '2');
 
       await waitFor(() => {
-        expect(input.value).toBe('01.10.2026/1/20.10.2026/2');
+        expect(input.value).toBe('01.10.2026/1 — 20.10.2026/2');
+      });
+    });
+
+    it('передаёт в onPeriodChange введённые вручную даты и смены', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(<DatePicker type="shift" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await user.type(input, '01102026' + '1' + '20102026' + '2');
+      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+      await waitFor(() => {
+        const [valueFrom, valueTo, shiftFrom, shiftTo] =
+          mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+        expect(valueFrom).toEqual(new Date(2026, 9, 1));
+        expect(valueTo).toEqual(new Date(2026, 9, 20));
+        expect(shiftFrom).toBe(1);
+        expect(shiftTo).toBe(2);
       });
     });
   });

@@ -6,7 +6,6 @@ import React, {
   RefObject,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState
@@ -58,6 +57,17 @@ import { IDatePickerInputProps } from './types';
 
 import styles from './DatePickerInput.module.scss';
 
+const PERIOD_SEPARATOR = ' — ';
+
+const replaceAt = (str: string, pos: number, chars: string) =>
+  str.substring(0, pos) + chars + str.substring(pos + chars.length);
+
+const clearDigits = (str: string, from: number, to: number) =>
+  str.substring(0, from) + str.substring(from, to).replace(/[0-9]/g, '_') + str.substring(to);
+
+const isValidPair = (first: string, second: string, isDay: boolean) =>
+  !(first === '0' && second === '0') && !(isDay ? first === '3' && +second > 1 : first === '1' && +second > 2);
+
 export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerInputProps>(
   (
     {
@@ -102,7 +112,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     const [focused, setFocused] = React.useState(false);
     const _inputRef = useRef<HTMLInputElement>(null);
     const prevValueRef = useRef<string>('');
-    const cursorPosRef = useRef<number | null>(null);
     const isEnterPressedRef = useRef<boolean>(false);
 
     const getEmptyMaskForLevel = useCallback(() => {
@@ -129,13 +138,8 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     }, [level, language]);
 
     const getEmptyMaskForPeriod = useCallback(() => {
-      const emptyMask = getEmptyMask();
-      const separator = ' — ';
-
-      if (withShift) {
-        return `${emptyMask}/_${separator}${emptyMask}/_`;
-      }
-      return `${emptyMask}${separator}${emptyMask}`;
+      const emptyDate = withShift ? `${getEmptyMask()}/_` : getEmptyMask();
+      return `${emptyDate}${PERIOD_SEPARATOR}${emptyDate}`;
     }, [getEmptyMask, withShift]);
 
     const onInputFocus = () => {
@@ -685,17 +689,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       }
     }, [valueFrom, valueTo, level, withShift, shiftFrom, shiftTo, getEmptyMask]);
 
-    useLayoutEffect(() => {
-      if (cursorPosRef.current !== null) {
-        const inputElement = (maskRef.current as any)?.input || maskRef.current;
-        if (inputElement) {
-          const pos = cursorPosRef.current;
-          inputElement.setSelectionRange(pos, pos);
-          cursorPosRef.current = null;
-        }
-      }
-    });
-
     const isPartFullyEmpty = useCallback((part: string): boolean => {
       if (!part) return true;
       const digitsOnly = part.replace(/[^0-9_]/g, '');
@@ -715,58 +708,29 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
     const insertPeriodDigits = useCallback(
       (value: string, selectionStart: number, selectionEnd: number, digits: string) => {
         const template = getEmptyMaskForPeriod();
-        const separator = ' — ';
-        const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
-        const replaceAt = (str: string, pos: number, char: string) =>
-          str.substring(0, pos) + char + str.substring(pos + 1);
+        const rightDateStart = template.indexOf(PERIOD_SEPARATOR) + PERIOD_SEPARATOR.length;
+        const isWholePeriod = digits.length === template.split('_').length - 1;
         const getNextPos = (pos: number) => {
-          let nextPos = pos;
-          while (nextPos < template.length && template[nextPos] !== '_') {
-            nextPos++;
-          }
-          return nextPos;
+          const nextPos = template.indexOf('_', pos);
+          return nextPos === -1 ? template.length : nextPos;
         };
-        const isValidPair = (first: string, second: string, isDay: boolean) =>
-          !(first === '0' && second === '0') && !(isDay ? first === '3' && +second > 1 : first === '1' && +second > 2);
 
-        let result = value.length < template.length ? value + template.substring(value.length) : value;
-        let caret = selectionStart;
+        let result = isWholePeriod
+          ? template
+          : clearDigits(value + template.substring(value.length), selectionStart, selectionEnd);
+        let caret = isWholePeriod ? 0 : selectionStart;
 
-        if (digits.length === template.split('_').length - 1) {
-          result = template;
-          caret = 0;
-        } else {
-          for (let i = selectionStart; i < selectionEnd; i++) {
-            if (/[0-9]/.test(result[i])) {
-              result = replaceAt(result, i, '_');
+        const findEmptySlot = (from: number) => {
+          for (let i = from; i < template.length; i++) {
+            if (template[i] === '_' && result[i] === '_') {
+              return i;
             }
           }
-        }
+        };
 
         for (const digit of digits) {
-          let targetPos = -1;
-
-          if (caret < template.length && template[caret] === '_') {
-            targetPos = caret;
-          } else {
-            for (let i = caret; i < template.length; i++) {
-              if (template[i] === '_' && result[i] === '_') {
-                targetPos = i;
-                break;
-              }
-            }
-
-            if (targetPos === -1) {
-              for (let i = 0; i < caret; i++) {
-                if (template[i] === '_' && result[i] === '_') {
-                  targetPos = i;
-                  break;
-                }
-              }
-            }
-          }
-
-          if (targetPos === -1) {
+          const targetPos = template[caret] === '_' ? caret : (findEmptySlot(caret) ?? findEmptySlot(0));
+          if (targetPos === undefined) {
             break;
           }
 
@@ -774,9 +738,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           const dotsBeforePos = template.substring(dateStart, targetPos).split('.').length - 1;
           const normalizedPos = targetPos - dateStart - dotsBeforePos + dateDigitOffsetByLevel[level];
           const isDay = normalizedPos < 2;
+          const isFirstDigit = normalizedPos === 0 || normalizedPos === 2;
 
-          if ((normalizedPos === 0 && +digit > 3) || (normalizedPos === 2 && +digit > 1)) {
-            result = replaceAt(replaceAt(result, targetPos, '0'), targetPos + 1, digit);
+          if (isFirstDigit && +digit > (isDay ? 3 : 1)) {
+            result = replaceAt(result, targetPos, `0${digit}`);
             caret = getNextPos(targetPos + 2);
             continue;
           }
@@ -787,7 +752,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
           result = replaceAt(result, targetPos, digit);
 
-          if ((normalizedPos === 0 || normalizedPos === 2) && !isValidPair(digit, result[targetPos + 1], isDay)) {
+          if (isFirstDigit && !isValidPair(digit, result[targetPos + 1], isDay)) {
             result = replaceAt(result, targetPos + 1, '_');
           }
 
@@ -796,11 +761,15 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
         return { value: result, caret };
       },
-      [getEmptyMask, getEmptyMaskForPeriod, level, withShift]
+      [getEmptyMaskForPeriod, level]
     );
 
     const applyPeriodInput = useCallback(
       (input: HTMLInputElement, { value, caret }: { value: string; caret: number }) => {
+        if (input.readOnly) {
+          return;
+        }
+
         input.value = value;
         input.setSelectionRange(caret, caret);
         setInnerMaskedValue(value);
@@ -809,35 +778,47 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       []
     );
 
+    const typePeriodDigits = (input: HTMLInputElement, digits: string) =>
+      applyPeriodInput(
+        input,
+        insertPeriodDigits(innerMaskedValue, input.selectionStart || 0, input.selectionEnd || 0, digits)
+      );
+
     const handleChange = useCallback(
       (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const newValue = e.target.value;
+        const input = e.target as HTMLInputElement;
+        const newValue = input.value;
         const prevValue = prevValueRef.current;
 
-        if (withPeriod) {
-          let changeStart = 0;
-          while (
-            changeStart < prevValue.length &&
-            changeStart < newValue.length &&
-            prevValue[changeStart] === newValue[changeStart]
-          ) {
-            changeStart++;
-          }
-
-          let prevEnd = prevValue.length;
-          let newEnd = newValue.length;
-          while (prevEnd > changeStart && newEnd > changeStart && prevValue[prevEnd - 1] === newValue[newEnd - 1]) {
-            prevEnd--;
-            newEnd--;
-          }
-
-          const digits = newValue.substring(changeStart, newEnd).replace(/[^0-9]/g, '');
-          applyPeriodInput(e.target as HTMLInputElement, insertPeriodDigits(prevValue, changeStart, prevEnd, digits));
+        if (!withPeriod) {
+          setInnerMaskedValue(newValue);
+          prevValueRef.current = newValue;
           return;
         }
 
-        setInnerMaskedValue(newValue);
-        prevValueRef.current = newValue;
+        const suffix = newValue.substring(input.selectionEnd ?? newValue.length);
+        const isCaretInside = suffix !== '' && prevValue.endsWith(suffix);
+        const keptLength = isCaretInside ? suffix.length : 0;
+        let prevEnd = prevValue.length - keptLength;
+        let newEnd = newValue.length - keptLength;
+
+        let changeStart = 0;
+        while (changeStart < prevEnd && changeStart < newEnd && prevValue[changeStart] === newValue[changeStart]) {
+          changeStart++;
+        }
+
+        while (
+          !isCaretInside &&
+          prevEnd > changeStart &&
+          newEnd > changeStart &&
+          prevValue[prevEnd - 1] === newValue[newEnd - 1]
+        ) {
+          prevEnd--;
+          newEnd--;
+        }
+
+        const digits = newValue.substring(changeStart, newEnd).replace(/[^0-9]/g, '');
+        applyPeriodInput(input, insertPeriodDigits(prevValue, changeStart, prevEnd, digits));
       },
       [applyPeriodInput, insertPeriodDigits, withPeriod]
     );
@@ -919,19 +900,16 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
 
           e.preventDefault();
-          const input = e.target as HTMLInputElement;
           const digits = e.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');
 
           if (digits) {
-            applyPeriodInput(
-              input,
-              insertPeriodDigits(innerMaskedValue, input.selectionStart || 0, input.selectionEnd || 0, digits)
-            );
+            typePeriodDigits(e.target as HTMLInputElement, digits);
           }
         }}
         onKeyDown={(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+          const input = e.target as HTMLInputElement;
+
           if ((e.key === 'Backspace' || e.key === 'Delete') && withPeriod) {
-            const input = e.target as HTMLInputElement;
             const cursorStart = input.selectionStart || 0;
             const cursorEnd = input.selectionEnd || 0;
 
@@ -946,21 +924,11 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             if (cursorStart < cursorEnd) {
               e.preventDefault();
 
-              const selectedText = innerMaskedValue.substring(cursorStart, cursorEnd);
-              const hasDigits = /\d/.test(selectedText);
-
-              if (hasDigits) {
-                // Заменяем выделенные цифры на подчеркивания, сохраняя структуру
-                let newValue = innerMaskedValue;
-                for (let i = cursorStart; i < cursorEnd; i++) {
-                  if (/\d/.test(newValue[i])) {
-                    newValue = newValue.substring(0, i) + '_' + newValue.substring(i + 1);
-                  }
-                }
-
-                setInnerMaskedValue(newValue);
-                prevValueRef.current = newValue;
-                cursorPosRef.current = cursorStart;
+              if (/\d/.test(innerMaskedValue.substring(cursorStart, cursorEnd))) {
+                applyPeriodInput(input, {
+                  value: clearDigits(innerMaskedValue, cursorStart, cursorEnd),
+                  caret: cursorStart
+                });
               }
               return;
             }
@@ -969,12 +937,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           // Обработка ввода цифр в режиме периода
           if (/^[0-9]$/.test(e.key) && withPeriod) {
             e.preventDefault();
-
-            const input = e.target as HTMLInputElement;
-            applyPeriodInput(
-              input,
-              insertPeriodDigits(innerMaskedValue, input.selectionStart || 0, input.selectionEnd || 0, e.key)
-            );
+            typePeriodDigits(input, e.key);
             return;
           }
 

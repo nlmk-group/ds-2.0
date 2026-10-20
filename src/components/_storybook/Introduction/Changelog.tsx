@@ -44,6 +44,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - При уходе из поля без изменений onChange и onPeriodChange больше не вызываются
               </li>
+              <li className={styles['left-padding']}>- Поле с readOnly больше не меняется при вводе и вставке</li>
             </li>
           </ul>
         </div>

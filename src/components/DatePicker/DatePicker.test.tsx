@@ -20,6 +20,13 @@ jest.mock('date-fns', () => ({
   }
 }));
 
+const typeWithoutKeydown = (input: HTMLInputElement, pos: number, char: string) => {
+  const setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+  setValue?.call(input, input.value.slice(0, pos) + char + input.value.slice(pos));
+  input.setSelectionRange(pos + 1, pos + 1);
+  fireEvent.input(input);
+};
+
 describe('src/components/DatePicker', () => {
   const user = userEvent.setup();
 
@@ -857,12 +864,62 @@ describe('src/components/DatePicker', () => {
         expect(input.value).toBe('__.__.____ — __.__.____');
       });
 
-      input.setSelectionRange(0, 0);
-      fireEvent.change(input, { target: { value: '1__.__.____ — __.__.____' } });
-      input.setSelectionRange(1, 1);
-      fireEvent.change(input, { target: { value: '19_.__.____ — __.__.____' } });
+      typeWithoutKeydown(input, 0, '1');
+      typeWithoutKeydown(input, 1, '9');
 
       expect(input.value).toBe('19.__.____ — __.__.____');
+    });
+
+    it.each([
+      { name: 'год', pos: 6 },
+      { name: 'день', pos: 0 },
+      { name: 'месяц', pos: 3 }
+    ])('не меняет $name при вводе без нажатия клавиши той же цифры, что под курсором', async ({ pos }) => {
+      const input = await renderFilledPeriod();
+      await user.click(input);
+
+      typeWithoutKeydown(input, pos, input.value[pos]);
+
+      expect(input.value).toBe('19.10.2026 — 21.10.2026');
+      expect(input.selectionStart).toBe(pos + 1);
+    });
+
+    it('не меняет поле readOnly при вставке', async () => {
+      render(
+        <DatePicker
+          type="period"
+          readOnly
+          valueFrom={new Date(2026, 9, 19)}
+          valueTo={new Date(2026, 9, 21)}
+          onPeriodChange={jest.fn()}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      input.setSelectionRange(0, input.value.length);
+      await user.paste('01.11.2026 — 30.11.2026');
+
+      expect(input.value).toBe('19.10.2026 — 21.10.2026');
+    });
+
+    it('не меняет поле readOnly при вводе цифр и удалении', async () => {
+      render(
+        <DatePicker
+          type="period"
+          readOnly
+          valueFrom={new Date(2026, 9, 19)}
+          valueTo={new Date(2026, 9, 21)}
+          onPeriodChange={jest.fn()}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.type(input, '25', { initialSelectionStart: 13, initialSelectionEnd: 13 });
+      input.setSelectionRange(0, input.value.length);
+      fireEvent.keyDown(input, { key: 'Backspace' });
+
+      expect(input.value).toBe('19.10.2026 — 21.10.2026');
     });
   });
 

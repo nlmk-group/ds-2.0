@@ -111,7 +111,7 @@ export const DatePicker: TDatePickerProps = ({
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [calendarElement, setCalendarElement] = useState<null | HTMLDivElement>(null);
   const calendarRef = useRef<null | HTMLDivElement>(null);
-  const [_toggle, setToggle] = useState(false);
+  const [syncCount, setSyncCount] = useState(0);
 
   id = useMemo(() => `DatePicker-${id?.toString() ?? performance.now().toString().split('.').join('')}`, [id]);
 
@@ -173,14 +173,17 @@ export const DatePicker: TDatePickerProps = ({
 
   const outerValue = useMemo(() => {
     return value && new Date(value);
-  }, [value, _toggle]);
+  }, [value, syncCount]);
+
+  const inputValueFrom = useMemo(() => valueFrom && new Date(valueFrom), [valueFrom, syncCount]);
+  const inputValueTo = useMemo(() => valueTo && new Date(valueTo), [valueTo, syncCount]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
 
   const handleReset = useCallback(() => {
-    setToggle(s => !s);
+    setSyncCount(count => count + 1);
     setOpen(false);
   }, []);
 
@@ -219,7 +222,7 @@ export const DatePicker: TDatePickerProps = ({
         } else {
           onPeriodChange(date || undefined, date2 || undefined);
         }
-        setToggle(s => !s);
+        setSyncCount(count => count + 1);
       } else if (outerOnChange) {
         if (date && date instanceof Date && !isNaN(date.getTime())) {
           innerOnChange(date);
@@ -269,7 +272,7 @@ export const DatePicker: TDatePickerProps = ({
 
       if (!disableChangesOnBlur && isSameValue(date, date2, newShiftFrom, newShiftTo)) {
         inputRef?.blur();
-        setToggle(s => !s);
+        setSyncCount(count => count + 1);
         setOpen(false);
         return;
       }
@@ -353,8 +356,8 @@ export const DatePicker: TDatePickerProps = ({
         enabledMinuteFrom={enabledMinuteFrom}
         enabledMinuteTo={enabledMinuteTo}
         withPeriod={withPeriod}
-        valueFrom={valueFrom}
-        valueTo={valueTo}
+        valueFrom={inputValueFrom}
+        valueTo={inputValueTo}
         shiftFrom={shiftFrom}
         shiftTo={shiftTo}
         shiftLength={shiftLength}

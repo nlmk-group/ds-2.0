@@ -254,7 +254,9 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           return oneDateMask;
         }
         if (focused && valueFrom && valueTo && isEqualDatesAfterLevel(level, valueFrom, valueTo)) {
-          setInnerMaskedValue(`${valueFromFormatted} — ${periodInnerMask}`);
+          const equalDatesValue = `${valueFromFormatted} — ${periodInnerMask}`;
+          setInnerMaskedValue(equalDatesValue);
+          prevValueRef.current = equalDatesValue;
           return periodMask;
         } else {
           return periodMask;
@@ -797,24 +799,13 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }
 
         const suffix = newValue.substring(input.selectionEnd ?? newValue.length);
-        const isCaretInside = suffix !== '' && prevValue.endsWith(suffix);
-        const keptLength = isCaretInside ? suffix.length : 0;
-        let prevEnd = prevValue.length - keptLength;
-        let newEnd = newValue.length - keptLength;
+        const keptLength = prevValue.endsWith(suffix) ? suffix.length : 0;
+        const prevEnd = prevValue.length - keptLength;
+        const newEnd = newValue.length - keptLength;
 
         let changeStart = 0;
         while (changeStart < prevEnd && changeStart < newEnd && prevValue[changeStart] === newValue[changeStart]) {
           changeStart++;
-        }
-
-        while (
-          !isCaretInside &&
-          prevEnd > changeStart &&
-          newEnd > changeStart &&
-          prevValue[prevEnd - 1] === newValue[newEnd - 1]
-        ) {
-          prevEnd--;
-          newEnd--;
         }
 
         const digits = newValue.substring(changeStart, newEnd).replace(/[^0-9]/g, '');

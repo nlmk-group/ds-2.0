@@ -41,6 +41,9 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>
                 - Исправлены вставка периода и ввод поверх выделенного или заполненного значения
               </li>
+              <li className={styles['left-padding']}>
+                - При уходе из поля без изменений onChange и onPeriodChange больше не вызываются
+              </li>
             </li>
           </ul>
         </div>

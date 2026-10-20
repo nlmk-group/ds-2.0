@@ -122,6 +122,103 @@ describe('src/components/DatePicker', () => {
     });
   });
 
+  describe('Уход из поля без изменений', () => {
+    it('не вызывает onPeriodChange, если период не менялся', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={new Date(2026, 9, 19, 14, 35)}
+          valueTo={new Date(2026, 9, 21)}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      fireEvent.blur(input);
+
+      expect(mockOnPeriodChange).not.toHaveBeenCalled();
+    });
+
+    it('не вызывает onPeriodChange при уходе из пустого периода', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={mockOnPeriodChange} />
+      );
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      fireEvent.blur(input);
+
+      expect(mockOnPeriodChange).not.toHaveBeenCalled();
+    });
+
+    it('не вызывает onPeriodChange со сменами, если ничего не менялось', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker
+          type="shift"
+          valueFrom={new Date(2026, 9, 19)}
+          valueTo={new Date(2026, 9, 21)}
+          shiftFrom={1}
+          shiftTo={2}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      fireEvent.blur(input);
+
+      expect(mockOnPeriodChange).not.toHaveBeenCalled();
+    });
+
+    it('вызывает onPeriodChange, если период изменили', async () => {
+      const mockOnPeriodChange = jest.fn();
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={new Date(2026, 9, 19)}
+          valueTo={new Date(2026, 9, 21)}
+          onPeriodChange={mockOnPeriodChange}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.type(input, '25102026', { initialSelectionStart: 13, initialSelectionEnd: 23 });
+      fireEvent.blur(input);
+
+      const [valueFrom, valueTo] = mockOnPeriodChange.mock.calls[mockOnPeriodChange.mock.calls.length - 1];
+      expect(valueFrom).toEqual(new Date(2026, 9, 19));
+      expect(valueTo).toEqual(new Date(2026, 9, 25));
+    });
+
+    it('не вызывает onChange, если дата не менялась', async () => {
+      const mockOnChange = jest.fn();
+      render(<DatePicker value={new Date(2026, 9, 19, 14, 35)} onChange={mockOnChange} />);
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      fireEvent.blur(input);
+
+      expect(mockOnChange).not.toHaveBeenCalled();
+    });
+
+    it('вызывает onChange, если дату изменили', async () => {
+      const mockOnChange = jest.fn();
+      render(<DatePicker value={new Date(2026, 9, 19)} onChange={mockOnChange} />);
+
+      const input = screen.getByRole('textbox');
+      await user.click(input);
+      await user.clear(input);
+      await user.type(input, '25.10.2026');
+      fireEvent.blur(input);
+
+      expect(mockOnChange).toHaveBeenLastCalledWith(new Date(2026, 9, 25));
+    });
+  });
+
   describe('Отображение маски при фокусе', () => {
     it('показывает пустую маску при фокусе на пустом инпуте', async () => {
       const mockOnChange = jest.fn();

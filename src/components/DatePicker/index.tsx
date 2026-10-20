@@ -7,13 +7,13 @@ import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
-import { isEqual } from 'date-fns';
+import { isEqual, isSameMinute, isSameSecond } from 'date-fns';
 
 import { TDatePickerProps, TDateValues, TShiftValues } from './types';
 
 import styles from './Datepicker.module.scss';
 
-import { defaultShiftLength, locale as localeStrings } from './helpers';
+import { defaultShiftLength, isEqualDatesAfterLevel, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
 
@@ -239,12 +239,44 @@ export const DatePicker: TDatePickerProps = ({
     setOpen(true);
   }, [restInputProps.onFocus]);
 
-  const handleBlur = useCallback(
-    (date?: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => {
-      restInputProps.onBlur?.();
-      handleSetValues(true)(date, date2, shiftFrom, shiftTo);
+  const isSameDate = useCallback(
+    (a?: Date | null, b?: Date | null) => {
+      if (!a || !b) {
+        return !a && !b;
+      }
+      if (withTime) {
+        return withSeconds ? isSameSecond(a, b) : isSameMinute(a, b);
+      }
+      return isEqualDatesAfterLevel(level, a, b);
     },
-    [restInputProps.onBlur, handleSetValues]
+    [level, withSeconds, withTime]
+  );
+
+  const isSameValue = useCallback(
+    (date?: Date | null, date2?: Date | null, newShiftFrom?: number, newShiftTo?: number) => {
+      if (!withPeriod) {
+        return isSameDate(date, value);
+      }
+      const isSameShift = (newShiftFrom || undefined) === shiftFrom && (newShiftTo || undefined) === shiftTo;
+      return isSameDate(date, valueFrom) && isSameDate(date2, valueTo) && (!withShift || isSameShift);
+    },
+    [isSameDate, shiftFrom, shiftTo, value, valueFrom, valueTo, withPeriod, withShift]
+  );
+
+  const handleBlur = useCallback(
+    (date?: Date | null, date2?: Date | null, newShiftFrom?: number, newShiftTo?: number) => {
+      restInputProps.onBlur?.();
+
+      if (!disableChangesOnBlur && isSameValue(date, date2, newShiftFrom, newShiftTo)) {
+        inputRef?.blur();
+        setToggle(s => !s);
+        setOpen(false);
+        return;
+      }
+
+      handleSetValues(true)(date, date2, newShiftFrom, newShiftTo);
+    },
+    [restInputProps.onBlur, disableChangesOnBlur, isSameValue, inputRef, handleSetValues]
   );
 
   const renderCalendarPanel = () => (

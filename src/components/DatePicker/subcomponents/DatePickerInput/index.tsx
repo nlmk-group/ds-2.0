@@ -1,5 +1,6 @@
 import React, {
   ChangeEvent,
+  ClipboardEvent,
   forwardRef,
   KeyboardEvent,
   RefObject,
@@ -712,65 +713,148 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       [isPartFullyEmpty]
     );
 
+    // Записывает цифры в маску периода так же, как ввод с клавиатуры: цифры в выделении стираются,
+    // каждая цифра встаёт на позицию курсора поверх прежней, курсор переходит к следующей позиции
+    const insertPeriodDigits = useCallback(
+      (value: string, selectionStart: number, selectionEnd: number, digits: string) => {
+        const template = getEmptyMaskForPeriod();
+        const separator = ' — ';
+        // Правая дата начинается после левой даты, её смены ("/_") и разделителя
+        const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
+        const replaceAt = (str: string, pos: number, char: string) =>
+          str.substring(0, pos) + char + str.substring(pos + 1);
+        const getNextPos = (pos: number) => {
+          let nextPos = pos;
+          while (nextPos < template.length && template[nextPos] !== '_') {
+            nextPos++;
+          }
+          return nextPos;
+        };
+        // День не больше 31, месяц не больше 12, не 00
+        const isValidPair = (first: string, second: string, isDay: boolean) =>
+          !(first === '0' && second === '0') && !(isDay ? first === '3' && +second > 1 : first === '1' && +second > 2);
+
+        let result = value.length < template.length ? value + template.substring(value.length) : value;
+        let caret = selectionStart;
+
+        if (digits.length === template.split('_').length - 1) {
+          // Целый период заменяет всё значение, где бы ни стоял курсор
+          result = template;
+          caret = 0;
+        } else {
+          for (let i = selectionStart; i < selectionEnd; i++) {
+            if (/[0-9]/.test(result[i])) {
+              result = replaceAt(result, i, '_');
+            }
+          }
+        }
+
+        for (const digit of digits) {
+          // Позиция для ввода: под курсором, иначе первая свободная после курсора, иначе первая свободная с начала
+          let targetPos = -1;
+
+          if (caret < template.length && template[caret] === '_') {
+            targetPos = caret;
+          } else {
+            for (let i = caret; i < template.length; i++) {
+              if (template[i] === '_' && result[i] === '_') {
+                targetPos = i;
+                break;
+              }
+            }
+
+            if (targetPos === -1) {
+              for (let i = 0; i < caret; i++) {
+                if (template[i] === '_' && result[i] === '_') {
+                  targetPos = i;
+                  break;
+                }
+              }
+            }
+          }
+
+          if (targetPos === -1) {
+            break;
+          }
+
+          // Нормализуем позицию относительно формата DD.MM.YYYY: 0-1 - день, 2-3 - месяц
+          const dateStart = targetPos < rightDateStart ? 0 : rightDateStart;
+          const dotsBeforePos = template.substring(dateStart, targetPos).split('.').length - 1;
+          const normalizedPos = targetPos - dateStart - dotsBeforePos + dateDigitOffsetByLevel[level];
+          const isDay = normalizedPos < 2;
+
+          // Первая цифра дня больше 3 или месяца больше 1 - добавляем 0 перед ней
+          if ((normalizedPos === 0 && +digit > 3) || (normalizedPos === 2 && +digit > 1)) {
+            result = replaceAt(replaceAt(result, targetPos, '0'), targetPos + 1, digit);
+            caret = getNextPos(targetPos + 2);
+            continue;
+          }
+
+          // Вторая цифра дня или месяца должна давать допустимое число вместе с первой
+          if ((normalizedPos === 1 || normalizedPos === 3) && !isValidPair(result[targetPos - 1], digit, isDay)) {
+            continue;
+          }
+
+          result = replaceAt(result, targetPos, digit);
+
+          // Новая первая цифра могла сделать прежнюю вторую недопустимой (3 поверх "19") - стираем вторую
+          if ((normalizedPos === 0 || normalizedPos === 2) && !isValidPair(digit, result[targetPos + 1], isDay)) {
+            result = replaceAt(result, targetPos + 1, '_');
+          }
+
+          caret = getNextPos(targetPos + 1);
+        }
+
+        return { value: result, caret };
+      },
+      [getEmptyMask, getEmptyMaskForPeriod, level, withShift]
+    );
+
+    // Значение и курсор выставляются прямо в поле: раз в поле уже новое значение, React его не перезапишет
+    // и курсор останется на месте, даже если значение не изменилось и перерисовки не будет
+    const applyPeriodInput = useCallback(
+      (input: HTMLInputElement, { value, caret }: { value: string; caret: number }) => {
+        input.value = value;
+        input.setSelectionRange(caret, caret);
+        setInnerMaskedValue(value);
+        prevValueRef.current = value;
+      },
+      []
+    );
+
     const handleChange = useCallback(
       (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const newValue = e.target.value;
         const prevValue = prevValueRef.current;
 
-        if (withPeriod && prevValue && newValue.length < prevValue.length) {
-          let deleteStart = -1;
-          let deleteEnd = -1;
-
-          for (let i = 0; i < prevValue.length; i++) {
-            if (i >= newValue.length || newValue[i] !== prevValue[i]) {
-              deleteStart = i;
-              break;
-            }
+        if (withPeriod) {
+          // Сюда доходит то, что не обработано в onKeyDown и onPaste: удаление без выделения, вырезание,
+          // перетаскивание, экранная клавиатура. Находим изменённый участок и применяем его как ввод цифр
+          let changeStart = 0;
+          while (
+            changeStart < prevValue.length &&
+            changeStart < newValue.length &&
+            prevValue[changeStart] === newValue[changeStart]
+          ) {
+            changeStart++;
           }
 
-          if (deleteStart >= 0) {
-            let prevIdx = prevValue.length - 1;
-            let newIdx = newValue.length - 1;
-
-            while (prevIdx > deleteStart && newIdx >= deleteStart) {
-              if (prevValue[prevIdx] !== newValue[newIdx]) {
-                break;
-              }
-              prevIdx--;
-              newIdx--;
-            }
-
-            deleteEnd = prevIdx + 1;
-
-            let result = prevValue;
-            let hasDigitDeleted = false;
-
-            for (let i = deleteStart; i < deleteEnd; i++) {
-              if (/[0-9]/.test(result[i])) {
-                result = result.substring(0, i) + '_' + result.substring(i + 1);
-                hasDigitDeleted = true;
-              }
-            }
-
-            if (hasDigitDeleted) {
-              cursorPosRef.current = deleteStart;
-            } else {
-              const input = e.target as HTMLInputElement;
-              setTimeout(() => {
-                input.setSelectionRange(deleteStart, deleteStart);
-              }, 0);
-            }
-
-            setInnerMaskedValue(result);
-            prevValueRef.current = result;
-            return;
+          let prevEnd = prevValue.length;
+          let newEnd = newValue.length;
+          while (prevEnd > changeStart && newEnd > changeStart && prevValue[prevEnd - 1] === newValue[newEnd - 1]) {
+            prevEnd--;
+            newEnd--;
           }
+
+          const digits = newValue.substring(changeStart, newEnd).replace(/[^0-9]/g, '');
+          applyPeriodInput(e.target as HTMLInputElement, insertPeriodDigits(prevValue, changeStart, prevEnd, digits));
+          return;
         }
 
         setInnerMaskedValue(newValue);
         prevValueRef.current = newValue;
       },
-      [withPeriod]
+      [applyPeriodInput, insertPeriodDigits, withPeriod]
     );
 
     const hasValue = withPeriod ? Boolean(valueFrom || valueTo) : Boolean(value);
@@ -844,6 +928,23 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
           onInputBlur();
         }}
+        onPaste={(e: ClipboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+          if (!withPeriod) {
+            return;
+          }
+
+          // Вставка в период идёт через ту же запись цифр, что и ввод с клавиатуры
+          e.preventDefault();
+          const input = e.target as HTMLInputElement;
+          const digits = e.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');
+
+          if (digits) {
+            applyPeriodInput(
+              input,
+              insertPeriodDigits(innerMaskedValue, input.selectionStart || 0, input.selectionEnd || 0, digits)
+            );
+          }
+        }}
         onKeyDown={(e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
           if ((e.key === 'Backspace' || e.key === 'Delete') && withPeriod) {
             const input = e.target as HTMLInputElement;
@@ -853,12 +954,7 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             // Полное выделение всего текста
             if (cursorStart === 0 && cursorEnd === innerMaskedValue.length) {
               e.preventDefault();
-              const emptyMask = getEmptyMaskForPeriod();
-              setInnerMaskedValue(emptyMask);
-              prevValueRef.current = emptyMask;
-              setTimeout(() => {
-                input.setSelectionRange(0, 0);
-              }, 0);
+              applyPeriodInput(input, { value: getEmptyMaskForPeriod(), caret: 0 });
               return;
             }
 
@@ -891,131 +987,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             e.preventDefault();
 
             const input = e.target as HTMLInputElement;
-            const cursorPos = input.selectionStart || 0;
-
-            const template = getEmptyMaskForPeriod();
-
-            // Находим первую доступную позицию для ввода
-            let targetPos = -1;
-
-            // Сначала проверяем текущую позицию
-            if (cursorPos < template.length && template[cursorPos] === '_') {
-              targetPos = cursorPos;
-            } else {
-              // Ищем вперёд от курсора
-              for (let i = cursorPos; i < template.length; i++) {
-                if (template[i] === '_' && innerMaskedValue[i] === '_') {
-                  targetPos = i;
-                  break;
-                }
-              }
-
-              // Если не нашли, ищем с начала
-              if (targetPos === -1) {
-                for (let i = 0; i < cursorPos; i++) {
-                  if (template[i] === '_' && innerMaskedValue[i] === '_') {
-                    targetPos = i;
-                    break;
-                  }
-                }
-              }
-            }
-
-            if (targetPos !== -1) {
-              let currentValue = innerMaskedValue;
-              if (currentValue.length < template.length) {
-                currentValue = currentValue + template.substring(currentValue.length);
-                setInnerMaskedValue(currentValue);
-              }
-
-              // Определяем позицию в дате (для валидации)
-              // Для формата DD.MM.YYYY: позиции 0,1 - день, 3,4 - месяц, 6,7,8,9 - год
-              const separator = ' — ';
-              // Правая дата начинается после левой даты, её смены ("/_") и разделителя
-              const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
-              const dateStart = targetPos < rightDateStart ? 0 : rightDateStart;
-              const posInDate = targetPos - dateStart;
-
-              // Нормализуем позицию относительно формата DD.MM.YYYY (убираем точки текущей даты)
-              const dotsBeforePos = currentValue.substring(dateStart, targetPos).split('.').length - 1;
-              const normalizedPos = posInDate - dotsBeforePos + dateDigitOffsetByLevel[level];
-
-              // Валидация для дня (позиции 0-1)
-              if (normalizedPos === 0 && parseInt(e.key) > 3) {
-                // Первая цифра дня > 3, добавляем 0 перед ней
-                const nextPos = targetPos + 1;
-                if (currentValue[nextPos] === '_') {
-                  const newValue =
-                    currentValue.substring(0, targetPos) + '0' + e.key + currentValue.substring(targetPos + 2);
-                  let nextCursorPos = targetPos + 2;
-                  while (nextCursorPos < template.length && template[nextCursorPos] !== '_') {
-                    nextCursorPos++;
-                  }
-                  cursorPosRef.current = nextCursorPos;
-                  setInnerMaskedValue(newValue);
-                  prevValueRef.current = newValue;
-                  return;
-                }
-              }
-
-              if (normalizedPos === 1) {
-                // Вторая цифра дня - проверяем первую
-                const firstDayDigit = currentValue[targetPos - 1];
-                if (firstDayDigit === '3' && parseInt(e.key) > 1) {
-                  // День не может быть больше 31
-                  return;
-                }
-                if (firstDayDigit === '0' && e.key === '0') {
-                  // День не может быть 00
-                  return;
-                }
-              }
-
-              // Валидация для месяца (позиции 2-3 после нормализации)
-              if (normalizedPos === 2 && parseInt(e.key) > 1) {
-                // Первая цифра месяца > 1, добавляем 0 перед ней
-                const nextPos = targetPos + 1;
-                if (currentValue[nextPos] === '_') {
-                  const newValue =
-                    currentValue.substring(0, targetPos) + '0' + e.key + currentValue.substring(targetPos + 2);
-                  let nextCursorPos = targetPos + 2;
-                  while (nextCursorPos < template.length && template[nextCursorPos] !== '_') {
-                    nextCursorPos++;
-                  }
-                  cursorPosRef.current = nextCursorPos;
-                  setInnerMaskedValue(newValue);
-                  prevValueRef.current = newValue;
-                  return;
-                }
-              }
-
-              if (normalizedPos === 3) {
-                // Вторая цифра месяца - проверяем первую
-                const firstMonthDigit = currentValue[targetPos - 1];
-                if (firstMonthDigit === '1' && parseInt(e.key) > 2) {
-                  // Месяц не может быть больше 12
-                  return;
-                }
-                if (firstMonthDigit === '0' && e.key === '0') {
-                  // Месяц не может быть 00
-                  return;
-                }
-              }
-
-              // Вставляем цифру
-              const newValue = currentValue.substring(0, targetPos) + e.key + currentValue.substring(targetPos + 1);
-
-              // Находим следующую позицию для курсора
-              let nextPos = targetPos + 1;
-              while (nextPos < template.length && template[nextPos] !== '_') {
-                nextPos++;
-              }
-
-              cursorPosRef.current = nextPos;
-              setInnerMaskedValue(newValue);
-              prevValueRef.current = newValue;
-            }
-
+            applyPeriodInput(
+              input,
+              insertPeriodDigits(innerMaskedValue, input.selectionStart || 0, input.selectionEnd || 0, e.key)
+            );
             return;
           }
 

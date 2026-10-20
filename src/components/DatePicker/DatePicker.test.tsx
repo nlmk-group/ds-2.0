@@ -609,6 +609,171 @@ describe('src/components/DatePicker', () => {
     });
   });
 
+  describe('Ввод поверх значения и вставка в режиме периода', () => {
+    const renderFilledPeriod = async () => {
+      render(
+        <DatePicker
+          type="period"
+          valueFrom={new Date(2026, 9, 19)}
+          valueTo={new Date(2026, 9, 21)}
+          onPeriodChange={jest.fn()}
+        />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('19.10.2026 — 21.10.2026');
+      });
+      return input;
+    };
+
+    it('заменяет весь период при вводе после выделения всего текста', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.type(input, '2', { initialSelectionStart: 0, initialSelectionEnd: input.value.length });
+      expect(input.value).toBe('2_.__.____ — __.__.____');
+
+      await user.type(input, '210202625102026', { skipClick: true });
+      expect(input.value).toBe('22.10.2026 — 25.10.2026');
+    });
+
+    it('сдвигает курсор, когда введённая цифра совпадает с прежней', async () => {
+      const input = await renderFilledPeriod();
+
+      // Первая цифра "2" совпадает с прежней, вторая должна попасть на место "1"
+      await user.type(input, '25', { initialSelectionStart: 13, initialSelectionEnd: 13 });
+
+      expect(input.value).toBe('19.10.2026 — 25.10.2026');
+    });
+
+    it('добавляет 0 перед большой цифрой дня поверх заполненной даты', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.type(input, '511', { initialSelectionStart: 0, initialSelectionEnd: 0 });
+
+      expect(input.value).toBe('05.11.2026 — 21.10.2026');
+    });
+
+    it('очищает вторую цифру дня, если она стала недопустимой', async () => {
+      const input = await renderFilledPeriod();
+
+      // 3 поверх "19" дала бы день 39
+      await user.type(input, '3', { initialSelectionStart: 0, initialSelectionEnd: 0 });
+
+      expect(input.value).toBe('3_.10.2026 — 21.10.2026');
+    });
+
+    it('добавляет 0 перед большой цифрой месяца поверх заполненной даты', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.type(input, '3', { initialSelectionStart: 3, initialSelectionEnd: 3 });
+
+      expect(input.value).toBe('19.03.2026 — 21.10.2026');
+    });
+
+    it('не возвращает курсор в начало после быстрого ввода в очищенное поле', async () => {
+      const fastUser = userEvent.setup({ delay: null });
+      const input = await renderFilledPeriod();
+
+      await user.click(input);
+      input.setSelectionRange(0, input.value.length);
+      fireEvent.keyDown(input, { key: 'Backspace' });
+      await fastUser.type(input, '221', { skipClick: true });
+      await act(() => new Promise(resolve => setTimeout(resolve, 0)));
+
+      expect(input.value).toBe('22.1_.____ — __.__.____');
+      expect(input.selectionStart).toBe(4);
+    });
+
+    it('вставляет целый период в очищенное поле', async () => {
+      render(<DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____ — __.__.____');
+      });
+
+      await user.paste('19.10.2026 — 21.10.2026');
+
+      expect(input.value).toBe('19.10.2026 — 21.10.2026');
+    });
+
+    it('вставляет целый период поверх заполненного значения', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.click(input);
+      input.setSelectionRange(5, 5);
+      await user.paste('01.11.2026 — 30.11.2026');
+
+      expect(input.value).toBe('01.11.2026 — 30.11.2026');
+    });
+
+    it('вставляет дату поверх выделенной второй даты', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.click(input);
+      input.setSelectionRange(13, 23);
+      await user.paste('25.10.2026');
+
+      expect(input.value).toBe('19.10.2026 — 25.10.2026');
+    });
+
+    it('вставляет цифры без точек с позиции курсора', async () => {
+      render(
+        <DatePicker type="period" valueFrom={new Date(2026, 9, 19)} valueTo={undefined} onPeriodChange={jest.fn()} />
+      );
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await waitFor(() => {
+        expect(input).toHaveValue('19.10.2026 — __.__.____');
+      });
+      await user.click(input);
+      input.setSelectionRange(13, 13);
+      await user.paste('25102026');
+
+      expect(input.value).toBe('19.10.2026 — 25.10.2026');
+    });
+
+    it('после выделения всего текста вставляет одну дату в начало', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.click(input);
+      input.setSelectionRange(0, input.value.length);
+      await user.paste('25.10.2026');
+
+      expect(input.value).toBe('25.10.2026 — __.__.____');
+    });
+
+    it('не меняет значение при вставке текста без цифр', async () => {
+      const input = await renderFilledPeriod();
+
+      await user.click(input);
+      input.setSelectionRange(13, 23);
+      await user.paste('дата');
+
+      expect(input.value).toBe('19.10.2026 — 21.10.2026');
+    });
+
+    it('принимает ввод без нажатия клавиши, как с экранной клавиатуры', async () => {
+      render(<DatePicker type="period" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____ — __.__.____');
+      });
+
+      // Браузер сам вставляет символ в позицию курсора и сообщает только новое значение
+      input.setSelectionRange(0, 0);
+      fireEvent.change(input, { target: { value: '1__.__.____ — __.__.____' } });
+      input.setSelectionRange(1, 1);
+      fireEvent.change(input, { target: { value: '19_.__.____ — __.__.____' } });
+
+      expect(input.value).toBe('19.__.____ — __.__.____');
+    });
+  });
+
   describe('Период со сменами', () => {
     it('отображает смену только если есть соответствующая дата', async () => {
       const startDate = new Date(2024, 0, 15);
@@ -736,6 +901,20 @@ describe('src/components/DatePicker', () => {
         expect(shiftFrom).toBe(1);
         expect(shiftTo).toBe(2);
       });
+    });
+
+    it('вставляет целый период со сменами в очищенное поле', async () => {
+      render(<DatePicker type="shift" valueFrom={undefined} valueTo={undefined} onPeriodChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      await user.click(input);
+      await waitFor(() => {
+        expect(input.value).toBe('__.__.____/_ — __.__.____/_');
+      });
+
+      await user.paste('17.10.2026/1 — 25.10.2026/2');
+
+      expect(input.value).toBe('17.10.2026/1 — 25.10.2026/2');
     });
   });
 

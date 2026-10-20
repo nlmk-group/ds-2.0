@@ -38,6 +38,9 @@ export const Changelog = () => {
               .<li className={styles['left-padding']}>- Исправлено искажение года при ручном вводе периода</li>
               <li className={styles['left-padding']}>- Исправлен ввод периода в режимах выбора месяца и года</li>
               <li className={styles['left-padding']}>- Исправлен ввод периода со сменами</li>
+              <li className={styles['left-padding']}>
+                - Исправлены вставка периода и ввод поверх выделенного или заполненного значения
+              </li>
             </li>
           </ul>
         </div>

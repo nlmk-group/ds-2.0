@@ -452,7 +452,6 @@ describe('src/components/DatePicker', () => {
       const input = screen.getByRole('textbox') as HTMLInputElement;
       await user.click(input);
 
-      // Во второй дате вводим день 5 и месяц 4 - должно стать 05.04
       await user.type(input, '01102026' + '54');
 
       await waitFor(() => {
@@ -485,7 +484,6 @@ describe('src/components/DatePicker', () => {
 
       const input = screen.getByRole('textbox') as HTMLInputElement;
       await user.click(input);
-      // Месяц 5 должен стать 05, месяц 6 - 06
       await user.type(input, '52026' + '62026');
 
       await waitFor(() => {
@@ -640,7 +638,6 @@ describe('src/components/DatePicker', () => {
     it('сдвигает курсор, когда введённая цифра совпадает с прежней', async () => {
       const input = await renderFilledPeriod();
 
-      // Первая цифра "2" совпадает с прежней, вторая должна попасть на место "1"
       await user.type(input, '25', { initialSelectionStart: 13, initialSelectionEnd: 13 });
 
       expect(input.value).toBe('19.10.2026 — 25.10.2026');
@@ -657,7 +654,6 @@ describe('src/components/DatePicker', () => {
     it('очищает вторую цифру дня, если она стала недопустимой', async () => {
       const input = await renderFilledPeriod();
 
-      // 3 поверх "19" дала бы день 39
       await user.type(input, '3', { initialSelectionStart: 0, initialSelectionEnd: 0 });
 
       expect(input.value).toBe('3_.10.2026 — 21.10.2026');
@@ -764,7 +760,6 @@ describe('src/components/DatePicker', () => {
         expect(input.value).toBe('__.__.____ — __.__.____');
       });
 
-      // Браузер сам вставляет символ в позицию курсора и сообщает только новое значение
       input.setSelectionRange(0, 0);
       fireEvent.change(input, { target: { value: '1__.__.____ — __.__.____' } });
       input.setSelectionRange(1, 1);
@@ -872,7 +867,6 @@ describe('src/components/DatePicker', () => {
       const input = screen.getByRole('textbox') as HTMLInputElement;
       await user.click(input);
 
-      // Пустая маска разделяет даты так же, как заполненное значение
       await waitFor(() => {
         expect(input.value).toBe('__.__.____/_ — __.__.____/_');
       });

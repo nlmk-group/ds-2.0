@@ -130,7 +130,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
 
     const getEmptyMaskForPeriod = useCallback(() => {
       const emptyMask = getEmptyMask();
-      // Даты разделяются так же, как в заполненном значении: смены - через "/", даты - через " — "
       const separator = ' — ';
 
       if (withShift) {
@@ -713,13 +712,10 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       [isPartFullyEmpty]
     );
 
-    // Записывает цифры в маску периода так же, как ввод с клавиатуры: цифры в выделении стираются,
-    // каждая цифра встаёт на позицию курсора поверх прежней, курсор переходит к следующей позиции
     const insertPeriodDigits = useCallback(
       (value: string, selectionStart: number, selectionEnd: number, digits: string) => {
         const template = getEmptyMaskForPeriod();
         const separator = ' — ';
-        // Правая дата начинается после левой даты, её смены ("/_") и разделителя
         const rightDateStart = getEmptyMask().length + (withShift ? 2 : 0) + separator.length;
         const replaceAt = (str: string, pos: number, char: string) =>
           str.substring(0, pos) + char + str.substring(pos + 1);
@@ -730,7 +726,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
           }
           return nextPos;
         };
-        // День не больше 31, месяц не больше 12, не 00
         const isValidPair = (first: string, second: string, isDay: boolean) =>
           !(first === '0' && second === '0') && !(isDay ? first === '3' && +second > 1 : first === '1' && +second > 2);
 
@@ -738,7 +733,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         let caret = selectionStart;
 
         if (digits.length === template.split('_').length - 1) {
-          // Целый период заменяет всё значение, где бы ни стоял курсор
           result = template;
           caret = 0;
         } else {
@@ -750,7 +744,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         }
 
         for (const digit of digits) {
-          // Позиция для ввода: под курсором, иначе первая свободная после курсора, иначе первая свободная с начала
           let targetPos = -1;
 
           if (caret < template.length && template[caret] === '_') {
@@ -777,27 +770,23 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             break;
           }
 
-          // Нормализуем позицию относительно формата DD.MM.YYYY: 0-1 - день, 2-3 - месяц
           const dateStart = targetPos < rightDateStart ? 0 : rightDateStart;
           const dotsBeforePos = template.substring(dateStart, targetPos).split('.').length - 1;
           const normalizedPos = targetPos - dateStart - dotsBeforePos + dateDigitOffsetByLevel[level];
           const isDay = normalizedPos < 2;
 
-          // Первая цифра дня больше 3 или месяца больше 1 - добавляем 0 перед ней
           if ((normalizedPos === 0 && +digit > 3) || (normalizedPos === 2 && +digit > 1)) {
             result = replaceAt(replaceAt(result, targetPos, '0'), targetPos + 1, digit);
             caret = getNextPos(targetPos + 2);
             continue;
           }
 
-          // Вторая цифра дня или месяца должна давать допустимое число вместе с первой
           if ((normalizedPos === 1 || normalizedPos === 3) && !isValidPair(result[targetPos - 1], digit, isDay)) {
             continue;
           }
 
           result = replaceAt(result, targetPos, digit);
 
-          // Новая первая цифра могла сделать прежнюю вторую недопустимой (3 поверх "19") - стираем вторую
           if ((normalizedPos === 0 || normalizedPos === 2) && !isValidPair(digit, result[targetPos + 1], isDay)) {
             result = replaceAt(result, targetPos + 1, '_');
           }
@@ -810,8 +799,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
       [getEmptyMask, getEmptyMaskForPeriod, level, withShift]
     );
 
-    // Значение и курсор выставляются прямо в поле: раз в поле уже новое значение, React его не перезапишет
-    // и курсор останется на месте, даже если значение не изменилось и перерисовки не будет
     const applyPeriodInput = useCallback(
       (input: HTMLInputElement, { value, caret }: { value: string; caret: number }) => {
         input.value = value;
@@ -828,8 +815,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
         const prevValue = prevValueRef.current;
 
         if (withPeriod) {
-          // Сюда доходит то, что не обработано в onKeyDown и onPaste: удаление без выделения, вырезание,
-          // перетаскивание, экранная клавиатура. Находим изменённый участок и применяем его как ввод цифр
           let changeStart = 0;
           while (
             changeStart < prevValue.length &&
@@ -933,7 +918,6 @@ export const DatePickerInput = forwardRef<HTMLInputElement | null, IDatePickerIn
             return;
           }
 
-          // Вставка в период идёт через ту же запись цифр, что и ввод с клавиатуры
           e.preventDefault();
           const input = e.target as HTMLInputElement;
           const digits = e.clipboardData.getData('text/plain').replace(/[^0-9]/g, '');

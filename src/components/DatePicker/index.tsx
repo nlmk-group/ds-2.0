@@ -172,11 +172,11 @@ export const DatePicker: TDatePickerProps = ({
   );
 
   const outerValue = useMemo(() => {
-    return value && new Date(value);
+    return value ? new Date(value) : undefined;
   }, [value, syncCount]);
 
-  const inputValueFrom = useMemo(() => valueFrom && new Date(valueFrom), [valueFrom, syncCount]);
-  const inputValueTo = useMemo(() => valueTo && new Date(valueTo), [valueTo, syncCount]);
+  const inputValueFrom = useMemo(() => (valueFrom ? new Date(valueFrom) : undefined), [valueFrom, syncCount]);
+  const inputValueTo = useMemo(() => (valueTo ? new Date(valueTo) : undefined), [valueTo, syncCount]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -261,7 +261,9 @@ export const DatePicker: TDatePickerProps = ({
         return isSameDate(date, value);
       }
       const isSameShift = (newShiftFrom || undefined) === shiftFrom && (newShiftTo || undefined) === shiftTo;
-      return isSameDate(date, valueFrom) && isSameDate(date2, valueTo) && (!withShift || isSameShift);
+      const isSamePeriod = isSameDate(date, valueFrom) && isSameDate(date2, valueTo);
+
+      return isSamePeriod && (!withShift || isSameShift);
     },
     [isSameDate, shiftFrom, shiftTo, value, valueFrom, valueTo, withPeriod, withShift]
   );

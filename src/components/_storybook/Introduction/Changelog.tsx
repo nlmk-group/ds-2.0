@@ -23,6 +23,33 @@ export const Changelog = () => {
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
+            v2.32.2 - <span className={styles.date}>20.10.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <li>
+              • Исправлен компонент{' '}
+              <Link
+                href="./?path=/docs/components-datepicker-info--docs"
+                target="blank"
+                className={styles['link-changelog']}
+              >
+                DatePicker
+              </Link>
+              .<li className={styles['left-padding']}>- Исправлено искажение года при ручном вводе периода</li>
+              <li className={styles['left-padding']}>- Исправлен ввод периода в режимах выбора месяца и года</li>
+              <li className={styles['left-padding']}>- Исправлен ввод периода со сменами</li>
+              <li className={styles['left-padding']}>
+                - Исправлены вставка периода и ввод поверх выделенного или заполненного значения
+              </li>
+              <li className={styles['left-padding']}>
+                - При уходе из поля без изменений onChange и onPeriodChange больше не вызываются
+              </li>
+              <li className={styles['left-padding']}>- Поле с readOnly больше не меняется при вводе и вставке</li>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
             v2.32.1 - <span className={styles.date}>24.08.26</span>
           </Typography>
           <ul className={styles.list}>

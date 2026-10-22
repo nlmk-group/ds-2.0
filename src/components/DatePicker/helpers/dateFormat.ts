@@ -34,6 +34,13 @@ export const dateFormatByLevel = {
   year: onlyYearFormat
 } as const;
 
+export const dateDigitOffsetByLevel = {
+  day: 0,
+  month: 2,
+  quarter: 4,
+  year: 4
+} as const;
+
 export const periodMaskByLevel = (quarter: string) =>
   ({
     day: periodDefaultMask,

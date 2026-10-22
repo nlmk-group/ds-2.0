@@ -7,13 +7,13 @@ import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { ClickAwayListener, PseudoInput } from '@components/index';
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
-import { isEqual } from 'date-fns';
+import { isEqual, isSameMinute, isSameSecond } from 'date-fns';
 
 import { TDatePickerProps, TDateValues, TShiftValues } from './types';
 
 import styles from './Datepicker.module.scss';
 
-import { defaultShiftLength, locale as localeStrings } from './helpers';
+import { defaultShiftLength, isEqualDatesAfterLevel, locale as localeStrings } from './helpers';
 import { CalendarPanel, DatePickerInput } from './subcomponents';
 import { LocaleProvider } from './utils';
 
@@ -111,7 +111,7 @@ export const DatePicker: TDatePickerProps = ({
   const [inputRef, setInputRef] = useState<null | HTMLInputElement>(null);
   const [calendarElement, setCalendarElement] = useState<null | HTMLDivElement>(null);
   const calendarRef = useRef<null | HTMLDivElement>(null);
-  const [_toggle, setToggle] = useState(false);
+  const [syncCount, setSyncCount] = useState(0);
 
   id = useMemo(() => `DatePicker-${id?.toString() ?? performance.now().toString().split('.').join('')}`, [id]);
 
@@ -172,15 +172,18 @@ export const DatePicker: TDatePickerProps = ({
   );
 
   const outerValue = useMemo(() => {
-    return value && new Date(value);
-  }, [value, _toggle]);
+    return value ? new Date(value) : undefined;
+  }, [value, syncCount]);
+
+  const inputValueFrom = useMemo(() => (valueFrom ? new Date(valueFrom) : undefined), [valueFrom, syncCount]);
+  const inputValueTo = useMemo(() => (valueTo ? new Date(valueTo) : undefined), [valueTo, syncCount]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
 
   const handleReset = useCallback(() => {
-    setToggle(s => !s);
+    setSyncCount(count => count + 1);
     setOpen(false);
   }, []);
 
@@ -219,7 +222,7 @@ export const DatePicker: TDatePickerProps = ({
         } else {
           onPeriodChange(date || undefined, date2 || undefined);
         }
-        setToggle(s => !s);
+        setSyncCount(count => count + 1);
       } else if (outerOnChange) {
         if (date && date instanceof Date && !isNaN(date.getTime())) {
           innerOnChange(date);
@@ -239,12 +242,46 @@ export const DatePicker: TDatePickerProps = ({
     setOpen(true);
   }, [restInputProps.onFocus]);
 
-  const handleBlur = useCallback(
-    (date?: Date | null, date2?: Date | null, shiftFrom?: number, shiftTo?: number) => {
-      restInputProps.onBlur?.();
-      handleSetValues(true)(date, date2, shiftFrom, shiftTo);
+  const isSameDate = useCallback(
+    (a?: Date | null, b?: Date | null) => {
+      if (!a || !b) {
+        return !a && !b;
+      }
+      if (withTime) {
+        return withSeconds ? isSameSecond(a, b) : isSameMinute(a, b);
+      }
+      return isEqualDatesAfterLevel(level, a, b);
     },
-    [restInputProps.onBlur, handleSetValues]
+    [level, withSeconds, withTime]
+  );
+
+  const isSameValue = useCallback(
+    (date?: Date | null, date2?: Date | null, newShiftFrom?: number, newShiftTo?: number) => {
+      if (!withPeriod) {
+        return isSameDate(date, value);
+      }
+      const isSameShift = (newShiftFrom || undefined) === shiftFrom && (newShiftTo || undefined) === shiftTo;
+      const isSamePeriod = isSameDate(date, valueFrom) && isSameDate(date2, valueTo);
+
+      return isSamePeriod && (!withShift || isSameShift);
+    },
+    [isSameDate, shiftFrom, shiftTo, value, valueFrom, valueTo, withPeriod, withShift]
+  );
+
+  const handleBlur = useCallback(
+    (date?: Date | null, date2?: Date | null, newShiftFrom?: number, newShiftTo?: number) => {
+      restInputProps.onBlur?.();
+
+      if (!disableChangesOnBlur && isSameValue(date, date2, newShiftFrom, newShiftTo)) {
+        inputRef?.blur();
+        setSyncCount(count => count + 1);
+        setOpen(false);
+        return;
+      }
+
+      handleSetValues(true)(date, date2, newShiftFrom, newShiftTo);
+    },
+    [restInputProps.onBlur, disableChangesOnBlur, isSameValue, inputRef, handleSetValues]
   );
 
   const renderCalendarPanel = () => (
@@ -321,8 +358,8 @@ export const DatePicker: TDatePickerProps = ({
         enabledMinuteFrom={enabledMinuteFrom}
         enabledMinuteTo={enabledMinuteTo}
         withPeriod={withPeriod}
-        valueFrom={valueFrom}
-        valueTo={valueTo}
+        valueFrom={inputValueFrom}
+        valueTo={inputValueTo}
         shiftFrom={shiftFrom}
         shiftTo={shiftTo}
         shiftLength={shiftLength}

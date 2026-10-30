@@ -179,7 +179,9 @@ const Sidebar: FC<ISidebarProps> &
           const isFavorites = target.matches('[data-ui-sidebar-favorites]');
           if (!target.matches(itemSelector) && !isTrigger && !isFavorites) return;
           const inSubmenu = isFavorites || target.matches('[data-ui-sidebar-submenu-item]');
-          const vertical = inSubmenu || isAdaptive || isVertical;
+          const group = target.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
+          const parentGroup = group?.parentElement?.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
+          const vertical = isAdaptive || isVertical || Boolean(parentGroup);
           const openKey = vertical ? 'ArrowRight' : 'ArrowDown';
           const closeKey = vertical ? 'ArrowLeft' : 'ArrowUp';
           if (!isTrigger && event.key === closeKey) {
@@ -188,8 +190,6 @@ const Sidebar: FC<ISidebarProps> &
               flushSync(() => target.click());
               focusItem(target);
             } else if (inSubmenu) {
-              const group = target.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
-              const parentGroup = group?.parentElement?.closest<HTMLElement>('[data-ui-sidebar-submenu-item-group]');
               const parent =
                 parentGroup?.querySelector<HTMLElement>('[data-ui-sidebar-submenu-item]') ||
                 availableItems(event.currentTarget, '[data-ui-sidebar-menu-item]').find(
@@ -225,12 +225,18 @@ const Sidebar: FC<ISidebarProps> &
           const next = vertical ? 'ArrowDown' : 'ArrowRight';
           if (event.key !== previous && event.key !== next) return;
           event.preventDefault();
-          const root = inSubmenu ? target.closest<HTMLElement>('[data-ui-sidebar-submenu]') : event.currentTarget;
+          const root = inSubmenu
+            ? (!isAdaptive && !isVertical && parentGroup) || target.closest<HTMLElement>('[data-ui-sidebar-submenu]')
+            : event.currentTarget;
           if (!root) return;
           const selector = inSubmenu
             ? '[data-ui-sidebar-favorites], [data-ui-sidebar-submenu-item]'
             : `[data-ui-sidebar-menu-item], ${triggerSelector}`;
-          const items = availableItems(root, selector);
+          const items = availableItems(root, selector).filter(item => {
+            if (vertical || !inSubmenu) return true;
+            const itemGroup = item.closest('[data-ui-sidebar-submenu-item-group]');
+            return !itemGroup?.parentElement?.closest('[data-ui-sidebar-submenu-item-group]');
+          });
           const index = items.indexOf(target);
           if (index < 0) return;
           focusItem(items[Math.max(0, Math.min(items.length - 1, index + (event.key === next ? 1 : -1)))]);

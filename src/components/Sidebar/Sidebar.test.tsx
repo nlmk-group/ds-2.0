@@ -218,8 +218,9 @@ describe('Sidebar keyboardNavigation', () => {
       getItem('Parent').focus();
       await user.keyboard('{Enter}');
       expect(getItem('Child')).toHaveFocus();
-      const previous = 'ArrowUp';
-      const next = 'ArrowDown';
+      const vertical = orientation === 'vertical' || adaptive;
+      const previous = vertical ? 'ArrowUp' : 'ArrowLeft';
+      const next = vertical ? 'ArrowDown' : 'ArrowRight';
       await user.keyboard(`{${previous}}`);
       const favorites = screen.getByRole('switch', { name: 'Избранное' });
       expect(favorites).toHaveFocus();
@@ -230,7 +231,7 @@ describe('Sidebar keyboardNavigation', () => {
       expect(screen.getByText('Раздел избранного пуст')).toBeInTheDocument();
       await user.keyboard(`{${next}}`);
       expect(favorites).toHaveFocus();
-      const close = 'ArrowLeft';
+      const close = vertical ? 'ArrowLeft' : 'ArrowUp';
       const open = orientation === 'vertical' || adaptive ? 'ArrowRight' : 'ArrowDown';
       await user.keyboard(`{${close}}`);
       expect(getItem('Parent')).toHaveFocus();
@@ -354,9 +355,13 @@ describe('Sidebar keyboardNavigation', () => {
       expect(getItem('Linked child')).toHaveFocus();
       expect(screen.getByRole('link', { name: 'Child link' })).toHaveAttribute('tabindex', '-1');
       screen.getByRole('link', { name: 'Child link' }).focus();
-      await user.keyboard('{ArrowDown}');
+      await user.keyboard('{ArrowLeft}');
+      expect(getItem('Linked child')).toHaveFocus();
+      await user.keyboard('{ArrowRight}');
       expect(getItem('Last child')).toHaveFocus();
-      await user.keyboard('{ArrowUp}');
+      await user.keyboard('{ArrowRight}');
+      expect(getItem('Last child')).toHaveFocus();
+      await user.keyboard('{ArrowLeft}');
       expect(getItem('Linked child')).toHaveFocus();
       expect(onClick).not.toHaveBeenCalled();
     }
@@ -503,12 +508,12 @@ describe('Sidebar keyboardNavigation', () => {
       fireEvent.keyDown(getItem('Parent'), { key: 'Enter' });
       await waitFor(() => expect(getItem('Nested')).toHaveFocus());
       expect(getItem('Disabled child')).toHaveAttribute('aria-disabled', 'true');
-      const previous = 'ArrowUp';
-      const next = 'ArrowDown';
+      const previous = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
+      const next = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
       fireEvent.keyDown(getItem('Nested'), { key: previous });
       expect(getItem('Nested')).toHaveFocus();
       fireEvent.keyDown(getItem('Nested'), { key: next });
-      const nextItem = getItem(orientation === 'vertical' ? 'Last child' : 'Leaf');
+      const nextItem = getItem('Last child');
       expect(nextItem).toHaveFocus();
       fireEvent.keyDown(nextItem, { key: previous });
       expect(getItem('Nested')).toHaveFocus();
@@ -550,25 +555,100 @@ describe('Sidebar keyboardNavigation', () => {
         </Sidebar>
       );
       const open = orientation === 'vertical' ? 'ArrowRight' : 'ArrowDown';
-      const close = 'ArrowLeft';
+      const close = orientation === 'vertical' ? 'ArrowLeft' : 'ArrowUp';
       getItem('Parent').focus();
       fireEvent.keyDown(getItem('Parent'), { key: open });
       expect(getItem('Nested')).toHaveFocus();
-      fireEvent.keyDown(getItem('Nested'), { key: 'ArrowRight' });
+      fireEvent.keyDown(getItem('Nested'), { key: open });
+      expect(getItem('Child')).toHaveFocus();
+      fireEvent.keyDown(getItem('Child'), { key: 'ArrowDown' });
+      expect(getItem('Child')).toHaveFocus();
+      fireEvent.keyDown(getItem('Child'), { key: 'ArrowUp' });
+      expect(getItem('Nested')).toHaveFocus();
+      fireEvent.keyDown(getItem('Nested'), { key: open });
       expect(getItem('Child')).toHaveFocus();
       fireEvent.keyDown(getItem('Child'), { key: 'ArrowRight' });
       expect(onClick).not.toHaveBeenCalled();
-      fireEvent.keyDown(getItem('Child'), { key: close });
+      fireEvent.keyDown(getItem('Child'), { key: 'ArrowLeft' });
       expect(getItem('Nested')).toHaveFocus();
       expect(getItem('Nested')).toHaveAttribute('aria-expanded', 'false');
       expect(getItem('Child').closest('[aria-hidden="true"]')).not.toBeNull();
-      fireEvent.keyDown(getItem('Nested'), { key: 'ArrowRight' });
+      fireEvent.keyDown(getItem('Nested'), { key: open });
       expect(getItem('Child')).toHaveFocus();
-      fireEvent.keyDown(getItem('Child'), { key: close });
+      fireEvent.keyDown(getItem('Child'), { key: 'ArrowLeft' });
       fireEvent.keyDown(getItem('Nested'), { key: close });
       expect(getItem('Parent')).toHaveFocus();
       expect(getItem('Parent')).toHaveAttribute('aria-expanded', 'false');
       expect(onClick).not.toHaveBeenCalled();
+    }
+  );
+
+  test('horizontal sections use horizontal arrows while their children use vertical arrows', () => {
+    render(
+      <Sidebar currentPath="" defaultMenuOpen keyboardNavigation orientation="horizontal">
+        <Sidebar.MenuItem label="Parent" path="parent" position="top">
+          <Sidebar.SubmenuItem label="Section one" path="one">
+            <Sidebar.SubmenuItem label="First child" path="first" />
+            <Sidebar.SubmenuItem label="Disabled child" path="disabled" disabled />
+            <Sidebar.SubmenuItem label="Second child" path="second" />
+          </Sidebar.SubmenuItem>
+          <Sidebar.SubmenuItem label="Section two" path="two">
+            <Sidebar.SubmenuItem label="Other child" path="other" />
+          </Sidebar.SubmenuItem>
+        </Sidebar.MenuItem>
+      </Sidebar>
+    );
+    getItem('Parent').focus();
+    fireEvent.keyDown(getItem('Parent'), { key: 'ArrowDown' });
+    expect(getItem('Section one')).toHaveFocus();
+    fireEvent.keyDown(getItem('Section one'), { key: 'ArrowRight' });
+    expect(getItem('Section two')).toHaveFocus();
+    fireEvent.keyDown(getItem('Section two'), { key: 'ArrowLeft' });
+    expect(getItem('Section one')).toHaveFocus();
+    fireEvent.keyDown(getItem('Section one'), { key: 'ArrowDown' });
+    expect(getItem('First child')).toHaveFocus();
+    fireEvent.keyDown(getItem('First child'), { key: 'ArrowDown' });
+    expect(getItem('Second child')).toHaveFocus();
+    fireEvent.keyDown(getItem('Second child'), { key: 'ArrowDown' });
+    expect(getItem('Second child')).toHaveFocus();
+    fireEvent.keyDown(getItem('Second child'), { key: 'ArrowUp' });
+    expect(getItem('First child')).toHaveFocus();
+    fireEvent.keyDown(getItem('First child'), { key: 'ArrowUp' });
+    expect(getItem('Section one')).toHaveFocus();
+    fireEvent.keyDown(getItem('Section one'), { key: 'ArrowRight' });
+    expect(getItem('Section two')).toHaveFocus();
+  });
+
+  test.each([
+    ['vertical', false],
+    ['horizontal', true]
+  ] as const)(
+    '%s adaptive=%s: vertical submenu arrows continue past disabled trailing children',
+    (orientation, adaptive) => {
+      mockMatchMedia(adaptive);
+      render(
+        <Sidebar currentPath="" defaultMenuOpen keyboardNavigation orientation={orientation}>
+          <Sidebar.MenuItem label="Parent" path="parent" position="top">
+            <Sidebar.SubmenuItem label="Section" path="section">
+              <Sidebar.SubmenuItem label="Nested section" path="nested">
+                <Sidebar.SubmenuItem label="Child" path="child" />
+                <Sidebar.SubmenuItem label="Disabled child" path="disabled-child" disabled />
+              </Sidebar.SubmenuItem>
+              <Sidebar.SubmenuItem label="Disabled sibling" path="disabled-sibling" disabled />
+            </Sidebar.SubmenuItem>
+            <Sidebar.SubmenuItem label="Next section" path="next" />
+          </Sidebar.MenuItem>
+        </Sidebar>
+      );
+      getItem('Parent').focus();
+      fireEvent.keyDown(getItem('Parent'), { key: 'Enter' });
+      fireEvent.keyDown(getItem('Section'), { key: 'Enter' });
+      fireEvent.keyDown(getItem('Nested section'), { key: 'Enter' });
+      expect(getItem('Child')).toHaveFocus();
+      fireEvent.keyDown(getItem('Child'), { key: 'ArrowDown' });
+      expect(getItem('Next section')).toHaveFocus();
+      fireEvent.keyDown(getItem('Next section'), { key: 'ArrowUp' });
+      expect(getItem('Child')).toHaveFocus();
     }
   );
 

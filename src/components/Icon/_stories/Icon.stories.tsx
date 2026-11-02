@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 import { FixedSizeList as List } from 'react-window';
 
-import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
+import { CopyWrapper } from '@components/_storybook/components/CopyWrapper';
 import { toStartCase } from '@components/declaration/helpers';
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { IIconUnitProps } from '@components/Icon/IconUnit/types';

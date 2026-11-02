@@ -39,7 +39,7 @@ export const parameters = {
   backgrounds: {
     options: {
       default: { name: 'default', value: 'var(--steel-10, #455161)' },
-      info: { name: 'info', value: 'var(--background-info, #636f7f)' },
+      info: { name: 'info', value: 'var(--brand-sapphire-10, #d5e8fd)' },
       blue: { name: 'blue', value: 'var(--background-blue, #4c5f73)' }
     }
   },

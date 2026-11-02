@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
 import { FigmaLogoSvgIcon, GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
 import { Button, Icon, Link, Typography } from '@components/index';
 // Add TS disable error comment for import file from under the root direction
@@ -10,6 +9,8 @@ import { version } from '@root/package.json';
 import clsx from 'clsx';
 
 import styles from './Welcome.module.scss';
+
+import { CopyWrapper } from '../components/CopyWrapper';
 
 const FooterSection: FC<{
   title: string;

@@ -60,11 +60,19 @@ function generateExports(components) {
     types: './lib/*/index.d.ts'
   };
 
-  exports['./css/main.css'] = './lib/css/main.css';
-  exports['./css/style.css'] = './lib/css/style.css';
-  exports['./css/*'] = './lib/css/*';
+  // Явный список CSS вместо wildcard: удаление или переименование файла токенов
+  // становится видимым ломающим изменением, а не молчаливым 404 у потребителя.
+  const cssRoot = path.resolve(__dirname, '../public/css');
+  const collectCss = dir =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) return collectCss(full);
+      return entry.name.endsWith('.css') ? [path.relative(cssRoot, full).split(path.sep).join('/')] : [];
+    });
 
-  exports['./fonts/*'] = './lib/fonts/*';
+  for (const file of collectCss(cssRoot).sort()) {
+    exports[`./css/${file}`] = `./lib/css/${file}`;
+  }
 
   return exports;
 }

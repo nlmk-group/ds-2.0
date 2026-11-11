@@ -93,9 +93,19 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
 
+  keyboardNavigation: {
+    description:
+      'Навигация стрелками по доступным пунктам, активация по Enter, сворачивание по Esc с возвратом фокуса на кнопку открытия',
+    table: {
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' }
+    },
+    control: { type: 'boolean' }
+  },
+
   manualExpansion: {
     description:
-      'Флаг, указывающий, что развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю',
+      'Развернутый сайдбар сворачивается по кнопке (также по Esc при keyboardNavigation), а клик вне меню закрывает только подменю',
     table: {
       defaultValue: {
         summary: 'false'

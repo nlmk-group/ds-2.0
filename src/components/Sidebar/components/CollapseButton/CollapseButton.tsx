@@ -20,6 +20,8 @@ const CollapseButton = forwardRef<HTMLButtonElement, ICollapseButtonProps>(
         className={styles.collapse}
         onClick={onClick}
         title={buttonText}
+        aria-label={buttonText}
+        aria-expanded={Boolean(isExpanded)}
         data-ui-sidebar-collapse-button
       >
         <div className={styles.arrow} data-expanded={isExpanded}>

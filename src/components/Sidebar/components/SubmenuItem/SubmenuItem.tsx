@@ -35,8 +35,16 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredIcon, setIsHoveredIcon] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
-  const { allowFavorites, currentPath, orientation, collapseSidebar, closeSubmenu, manualExpansion } =
-    useContext<ISidebarProperties>(SidebarProperties);
+  const [isHorizontalCollapsed, setIsHorizontalCollapsed] = useState(false);
+  const {
+    allowFavorites,
+    currentPath,
+    orientation,
+    collapseSidebar,
+    closeSubmenu,
+    manualExpansion,
+    keyboardNavigation
+  } = useContext<ISidebarProperties>(SidebarProperties);
   const {
     showFavorites,
     activeItem,
@@ -69,6 +77,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   const isActive = label === activeItem;
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
   const hasChildren = Children.count(children) > 0;
+  const isChildrenExpanded = isVertical ? isSubmenuVisible : !(keyboardNavigation && isHorizontalCollapsed);
 
   const childrenIds = Children.toArray(submenu)
     .filter(
@@ -105,6 +114,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
       return;
     }
     if (hasChildren) {
+      if (keyboardNavigation) setIsHorizontalCollapsed(prev => !prev);
       setActiveItem(isActive ? null : label);
       return;
     }
@@ -132,7 +142,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
   }, [isActivePath]);
 
   return (
-    <div className={styles['submenu-item']}>
+    <div className={styles['submenu-item']} data-ui-sidebar-submenu-item-group>
       <div
         className={clsx(styles.wrapper, {
           [styles['wrapper-active']]: isActivePath,
@@ -170,7 +180,15 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
               }
             />
           )}
-          <div className={styles.title} onClick={handleClick}>
+          <div
+            className={styles.title}
+            onClick={handleClick}
+            data-ui-sidebar-submenu-item
+            tabIndex={keyboardNavigation && !disabled ? 0 : undefined}
+            role={keyboardNavigation ? 'button' : undefined}
+            aria-disabled={keyboardNavigation ? Boolean(disabled) : undefined}
+            aria-expanded={keyboardNavigation && hasChildren ? isChildrenExpanded : undefined}
+          >
             <Typography
               variant="Body1-Medium"
               color={isActivePath && !disabled ? 'var(--unique-bluewhite)' : 'var(--steel-90)'}
@@ -193,7 +211,7 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
         )}
       </div>
       <CSSTransition
-        in={isSubmenuVisible || !isVertical}
+        in={isChildrenExpanded}
         nodeRef={nodeRef}
         timeout={300}
         classNames={{
@@ -204,7 +222,12 @@ const SubmenuItem: FC<ISubmenuItemProps> = ({
         }}
         unmountOnExit
       >
-        <div className={clsx(styles.submenu, { [styles['submenu-hidden']]: isVertical })} ref={nodeRef}>
+        <div
+          className={clsx(styles.submenu, { [styles['submenu-hidden']]: isVertical })}
+          ref={nodeRef}
+          inert={keyboardNavigation && !isChildrenExpanded ? true : undefined}
+          aria-hidden={keyboardNavigation && !isChildrenExpanded ? true : undefined}
+        >
           {showFavorites ? favoritesChildren : submenu}
         </div>
       </CSSTransition>

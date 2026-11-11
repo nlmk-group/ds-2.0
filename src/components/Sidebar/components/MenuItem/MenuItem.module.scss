@@ -13,8 +13,21 @@
     background: var(--brand-jeans-10);
   }
 
+  &[tabindex="0"]:focus-visible {
+    outline: 2px solid var(--brand-sapphire-40);
+    outline-offset: -2px;
+  }
+
   &-active {
     background: var(--brand-jeans-10);
+
+    &:hover:not(.menu-disabled) {
+      background: var(--brand-sapphire-50);
+
+      &[tabindex="0"]:focus-visible {
+        outline-color: var(--brand-sapphire-30);
+      }
+    }
   }
 
   &-disabled {

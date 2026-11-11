@@ -448,11 +448,7 @@ const Sidebar: FC<ISidebarProps> &
           }}
           unmountOnExit
         >
-          <div
-            ref={adaptiveRootRef}
-            className={styles.adaptiveRoot}
-            inert={keyboardNavigation && !isExpanded ? true : undefined}
-          >
+          <div ref={adaptiveRootRef} className={styles.adaptiveRoot} inert={keyboardNavigation && !isExpanded}>
             <div className={styles.adaptiveScrim} data-ui-sidebar-adaptive-scrim />
             <ClickAwayListener
               onClickAway={collapseSidebar}

@@ -20,6 +20,7 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const isVertical = orientation === ESidebarOrientationMapping.vertical;
+  const isKeyboardHidden = keyboardNavigation && !isOpen;
 
   const favoritesChildren = useMemo(
     () =>
@@ -79,8 +80,8 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
         className={clsx(styles.submenu, styles[`submenu-${orientation}`], { [styles['submenu-fluid']]: !isVertical })}
         ref={nodeRef}
         data-ui-sidebar-submenu
-        aria-hidden={keyboardNavigation && !isOpen ? true : undefined}
-        inert={keyboardNavigation && !isOpen ? true : undefined}
+        aria-hidden={isKeyboardHidden ? true : undefined}
+        inert={isKeyboardHidden ? true : undefined}
       >
         <div className={styles.top}>
           <Typography variant="Body-Bold" color="var(--steel-90)" className={styles.title}>

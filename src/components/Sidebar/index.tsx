@@ -127,10 +127,12 @@ const Sidebar: FC<ISidebarProps> &
   useLayoutEffect(() => {
     if (!keyboardNavigation || !keyboardRootRef.current) return;
     // Menu items are the focus targets; links in custom content must not add a second Tab stop.
-    const links = Array.from(keyboardRootRef.current.querySelectorAll<HTMLAnchorElement>('a[href]'))
-      .filter(link => link.closest(itemSelector))
-      .map(link => ({ link, tabIndex: link.getAttribute('tabindex') }));
-    links.forEach(({ link }) => link.setAttribute('tabindex', '-1'));
+    const links: Array<{ link: HTMLAnchorElement; tabIndex: string | null }> = [];
+    keyboardRootRef.current.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(link => {
+      if (!link.closest(itemSelector)) return;
+      links.push({ link, tabIndex: link.getAttribute('tabindex') });
+      link.tabIndex = -1;
+    });
     return () => {
       links.forEach(({ link, tabIndex }) => {
         if (tabIndex === null) link.removeAttribute('tabindex');

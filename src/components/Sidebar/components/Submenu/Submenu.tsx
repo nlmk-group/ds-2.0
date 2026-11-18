@@ -11,6 +11,8 @@ import { ESidebarOrientationMapping } from '../../enums';
 import { useFavorites } from '../../hooks';
 import { ISidebarProperties, ISubmenuProps } from '../../types';
 
+const SPACE_KEY = ' ';
+
 const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -101,7 +103,7 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
                 keyboardNavigation
                   ? event => {
                       if (event.defaultPrevented || event.target !== event.currentTarget) return;
-                      if (event.key === 'Enter' || event.key === ' ') {
+                      if (event.key === 'Enter' || event.key === SPACE_KEY) {
                         event.preventDefault();
                         setShowFavorites(prev => !prev);
                       }

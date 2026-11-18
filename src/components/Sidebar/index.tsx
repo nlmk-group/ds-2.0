@@ -142,15 +142,16 @@ const Sidebar: FC<ISidebarProps> &
   });
 
   useLayoutEffect(() => {
-    if (!keyboardNavigation || !pendingFocus.current) return;
-    if (pendingFocus.current === 'parent' && !activeItem && isExpanded) {
+    const target = pendingFocus.current;
+    if (!keyboardNavigation || !target) return;
+
+    if (target === 'parent' && !activeItem && isExpanded) {
       focusItem(submenuParentRef.current || undefined);
       pendingFocus.current = null;
-    }
-    if (pendingFocus.current === 'trigger' && !isExpanded) {
+    } else if (target === 'trigger' && !isExpanded) {
       focusItem(burgerRef.current || collapseButtonRef.current || undefined);
       pendingFocus.current = null;
-    } else if (pendingFocus.current === 'expandedTrigger' && isExpanded && keyboardRootRef.current) {
+    } else if (target === 'expandedTrigger' && isExpanded && keyboardRootRef.current) {
       focusItem(availableItems(keyboardRootRef.current, triggerSelector)[0]);
       pendingFocus.current = null;
     }

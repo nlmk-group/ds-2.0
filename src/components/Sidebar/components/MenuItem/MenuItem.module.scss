@@ -1,3 +1,5 @@
+@use "../../mixins" as *;
+
 .menu {
   min-height: 64px;
   width: 100%;
@@ -13,8 +15,20 @@
     background: var(--brand-jeans-10);
   }
 
+  &[tabindex="0"] {
+    @include focus-ring;
+  }
+
   &-active {
     background: var(--brand-jeans-10);
+
+    &:hover:not(.menu-disabled) {
+      background: var(--brand-sapphire-50);
+
+      &[tabindex="0"]:focus-visible {
+        outline-color: var(--brand-sapphire-30);
+      }
+    }
   }
 
   &-disabled {

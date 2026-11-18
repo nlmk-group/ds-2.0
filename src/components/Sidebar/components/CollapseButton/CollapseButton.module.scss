@@ -1,3 +1,5 @@
+@use "../../mixins" as *;
+
 :root {
   --collapse-button-height: 64px;
   --collapse-button-max-width: 256px;
@@ -23,10 +25,7 @@
     background-color: var(--brand-jeans-10);
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--brand-jeans-10);
-    outline-offset: -2px;
-  }
+  @include focus-ring;
 
   &-text {
     color: var(--unique-white);

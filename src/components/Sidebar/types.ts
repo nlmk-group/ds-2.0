@@ -117,9 +117,14 @@ export interface ISidebarProps extends PropsWithChildren {
    */
   style?: CSSProperties;
   /**
-   * Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+   * Меню открывается и закрывается по кнопке; при keyboardNavigation также закрывается по Esc.
    */
   manualExpansion?: boolean;
+  /**
+   * Включает навигацию стрелками, активацию по Enter и закрытие по Esc.
+   * @default false
+   */
+  keyboardNavigation?: boolean;
 }
 
 export interface ICollapseButtonProps {
@@ -219,6 +224,7 @@ export interface IMenuItemProps extends PropsWithChildren {
 }
 
 export interface ISidebarProperties {
+  keyboardNavigation: boolean;
   /**
    * Флаг, указывающий, развернуто ли меню.
    */

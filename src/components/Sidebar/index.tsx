@@ -26,6 +26,7 @@ import { COLLAPSE_TEXTS } from './constants';
 import { SidebarProperties } from './context';
 import { ESidebarOrientationMapping, ESidebarPositionMapping, ESidebarVariantMapping } from './enums';
 import { useIsAdaptive } from './hooks';
+import useKeyboardNavigation from './hooks/useKeyboardNavigation';
 
 /**
  * Компонент Sidebar предоставляет интерфейс бокового меню с возможностью настройки элементов, ориентации и поведения.
@@ -48,7 +49,8 @@ import { useIsAdaptive } from './hooks';
  * @param {boolean} [props.overlay=false] - Флаг отображения оверлея при открытом подменю.
  * @param {ReactNode} [props.logo] - Кастомный логотип. Если не передан, используется стандартный.
  * @param {boolean} [props.isShowUserControl=true] - Флаг для отображения управления пользователем.
- * @param {boolean} [props.manualExpansion=false] - Флаг, указывающий, что меню должно открываться и закрываться только по кнопке.
+ * @param {boolean} [props.manualExpansion=false] - Управление по кнопке; при keyboardNavigation доступно закрытие по Esc.
+ * @param {boolean} [props.keyboardNavigation=false] - Навигация стрелками, активация по Enter и закрытие по Esc.
  * @param {string} [props.className] - Дополнительный класс для стилизации компонента.
  * @param {React.CSSProperties} [props.style] - Инлайн-стили для компонента.
  * @returns {JSX.Element} - Компонент Sidebar.
@@ -77,6 +79,7 @@ const Sidebar: FC<ISidebarProps> &
   overlay = false,
   logo,
   manualExpansion = false,
+  keyboardNavigation = false,
   isShowUserControl = true,
   className,
   style
@@ -97,6 +100,28 @@ const Sidebar: FC<ISidebarProps> &
   const scrollRef = useRef<HTMLDivElement>(null);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
   const adaptiveRootRef = useRef<HTMLDivElement>(null);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const { keyboardRootRef, pendingFocus, submenuParentRef, handleKeyDown } = useKeyboardNavigation({
+    keyboardNavigation,
+    isAdaptive,
+    isVertical,
+    isExpanded,
+    activeItem,
+    getTrigger: () => burgerRef.current || collapseButtonRef.current
+  });
+
+  const withKeyboardNavigation = (content: ReactElement) => {
+    if (!keyboardNavigation) return content;
+    return (
+      <div
+        ref={keyboardRootRef}
+        className={styles.keyboardNavigation}
+        onKeyDown={event => handleKeyDown(event, collapseSidebar)}
+      >
+        {content}
+      </div>
+    );
+  };
 
   // Только на смене режима, иначе эффект затрёт defaultMenuOpen при монтировании
   useEffect(() => {
@@ -164,15 +189,35 @@ const Sidebar: FC<ISidebarProps> &
   };
 
   const closeSubmenu = () => {
+    if (
+      keyboardNavigation &&
+      pendingFocus.current !== 'trigger' &&
+      document.activeElement?.closest('[data-ui-sidebar-submenu]') &&
+      keyboardRootRef.current?.contains(document.activeElement)
+    ) {
+      submenuParentRef.current =
+        Array.from(keyboardRootRef.current.querySelectorAll<HTMLElement>('[data-ui-sidebar-menu-item]')).find(
+          item => item.title === activeItem
+        ) || null;
+      pendingFocus.current = 'parent';
+    }
     setActiveItem(null);
   };
 
   const collapseSidebar = () => {
+    if (keyboardNavigation && keyboardRootRef.current?.contains(document.activeElement)) {
+      pendingFocus.current = 'trigger';
+    }
     closeSubmenu();
     setExpanded(false);
   };
 
   const handleToggleExpansion = () => {
+    if (keyboardNavigation && isExpanded) {
+      collapseSidebar();
+      return;
+    }
+    if (keyboardNavigation && !isExpanded) pendingFocus.current = 'expandedTrigger';
     setActiveItem(null);
     setExpanded(val => !val);
   };
@@ -230,10 +275,14 @@ const Sidebar: FC<ISidebarProps> &
   const burgerTrigger = (
     <button
       type="button"
+      ref={burgerRef}
       data-ui-sidebar-burger
       className={clsx(styles.burger, className)}
       style={style}
-      onClick={() => setExpanded(true)}
+      onClick={() => {
+        if (keyboardNavigation) pendingFocus.current = 'expandedTrigger';
+        setExpanded(true);
+      }}
       aria-expanded={false}
       aria-label={COLLAPSE_TEXTS[locale].expand}
       title={COLLAPSE_TEXTS[locale].expand}
@@ -243,7 +292,7 @@ const Sidebar: FC<ISidebarProps> &
   );
 
   if (isAdaptive)
-    return (
+    return withKeyboardNavigation(
       <SidebarProperties.Provider
         value={{
           isExpanded,
@@ -258,7 +307,8 @@ const Sidebar: FC<ISidebarProps> &
           collapseSidebar,
           onChangeFavorites,
           closeSubmenu,
-          manualExpansion
+          manualExpansion,
+          keyboardNavigation
         }}
       >
         {!isExpanded && burgerTrigger}
@@ -274,7 +324,7 @@ const Sidebar: FC<ISidebarProps> &
           }}
           unmountOnExit
         >
-          <div ref={adaptiveRootRef} className={styles.adaptiveRoot}>
+          <div ref={adaptiveRootRef} className={styles.adaptiveRoot} inert={keyboardNavigation && !isExpanded}>
             <div className={styles.adaptiveScrim} data-ui-sidebar-adaptive-scrim />
             <ClickAwayListener
               onClickAway={collapseSidebar}
@@ -311,9 +361,9 @@ const Sidebar: FC<ISidebarProps> &
       </SidebarProperties.Provider>
     );
 
-  if (isBurger && !isExpanded) return burgerTrigger;
+  if ((isBurger || (keyboardNavigation && !isVertical)) && !isExpanded) return withKeyboardNavigation(burgerTrigger);
 
-  return (
+  return withKeyboardNavigation(
     <SidebarProperties.Provider
       value={{
         isExpanded,
@@ -328,7 +378,8 @@ const Sidebar: FC<ISidebarProps> &
         collapseSidebar,
         closeSubmenu,
         onChangeFavorites,
-        manualExpansion
+        manualExpansion,
+        keyboardNavigation
       }}
     >
       <ClickAwayListener
@@ -355,18 +406,26 @@ const Sidebar: FC<ISidebarProps> &
         style={style}
       >
         <div className={clsx(styles.menu, styles[`menu-${orientation}`])}>
-          {!isVertical && isBurger && (
-            <div
+          {!isVertical && (isBurger || keyboardNavigation) && (
+            <button
+              type="button"
               data-ui-sidebar-burger
               className={clsx(styles.burger, styles['burger-expanded'])}
               onClick={collapseSidebar}
+              aria-label={COLLAPSE_TEXTS[locale].collapse}
+              aria-expanded={true}
             >
               <Icon name="IconMenuBurgerOutlined32" containerSize={32} htmlColor="var(--unique-white)" />
-            </div>
+            </button>
           )}
           <div className={styles.head}>
             {isVertical && isBurger && (
-              <CollapseButton isExpanded={isExpanded} onClick={handleToggleExpansion} locale={locale} />
+              <CollapseButton
+                ref={collapseButtonRef}
+                isExpanded={isExpanded}
+                onClick={handleToggleExpansion}
+                locale={locale}
+              />
             )}
             <div className={clsx(styles.top, { [styles['top-expanded']]: isExpanded })}>
               <div className={styles['top-left']}>

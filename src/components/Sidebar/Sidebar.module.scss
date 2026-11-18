@@ -1,4 +1,5 @@
 @use "adaptive" as *;
+@use "./mixins" as *;
 
 @mixin column {
   display: flex;
@@ -74,10 +75,7 @@
     background: var(--brand-jeans-20);
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--brand-sapphire-40);
-    outline-offset: -2px;
-  }
+  @include focus-ring;
 }
 
 .head {

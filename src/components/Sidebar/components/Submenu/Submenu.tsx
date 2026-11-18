@@ -91,10 +91,12 @@ const Submenu: FC<ISubmenuProps> = ({ isOpen, title, orientation, children }) =>
             <div
               className={styles['switch-position']}
               data-ui-sidebar-favorites
-              tabIndex={keyboardNavigation ? 0 : undefined}
-              role={keyboardNavigation ? 'switch' : undefined}
-              aria-label={keyboardNavigation ? 'Избранное' : undefined}
-              aria-checked={keyboardNavigation ? showFavorites : undefined}
+              {...(keyboardNavigation && {
+                'tabIndex': 0,
+                'role': 'switch',
+                'aria-label': 'Избранное',
+                'aria-checked': showFavorites
+              })}
               onKeyDown={
                 keyboardNavigation
                   ? event => {

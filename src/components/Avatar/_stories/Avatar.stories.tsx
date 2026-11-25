@@ -72,7 +72,7 @@ export const AvatarDefault = (argsTypes: IAvatarProps): JSX.Element => {
     </div>
   );
 };
-AvatarDefault.storyName = 'Дефолтный аватар';
+AvatarDefault.storyName = 'Avatar по умолчанию';
 
 export const DefaultAvatarsWithSizes = (argsTypes: IAvatarProps): JSX.Element => {
   return (
@@ -81,7 +81,7 @@ export const DefaultAvatarsWithSizes = (argsTypes: IAvatarProps): JSX.Element =>
     </div>
   );
 };
-DefaultAvatarsWithSizes.storyName = 'Дефолтные аватары различных размеров';
+DefaultAvatarsWithSizes.storyName = 'Avatar с разными размерами';
 
 export const AvatarOnline = (argsTypes: IAvatarProps): JSX.Element => {
   return (
@@ -90,7 +90,7 @@ export const AvatarOnline = (argsTypes: IAvatarProps): JSX.Element => {
     </div>
   );
 };
-AvatarOnline.storyName = 'Аватар в режиме онлайн';
+AvatarOnline.storyName = 'Avatar в режиме онлайн';
 AvatarOnline.args = {
   online: true
 };
@@ -102,7 +102,7 @@ export const AvatarOffline = (argsTypes: IAvatarProps): JSX.Element => {
     </div>
   );
 };
-AvatarOffline.storyName = 'Аватар в режиме оффлайн';
+AvatarOffline.storyName = 'Avatar в режиме оффлайн';
 AvatarOffline.args = {
   online: false
 };
@@ -114,7 +114,7 @@ export const AvatarWithNumber = (argsTypes: IAvatarProps): JSX.Element => {
     </div>
   );
 };
-AvatarWithNumber.storyName = 'Аватар c индикатором количества';
+AvatarWithNumber.storyName = 'Avatar с индикатором количества';
 AvatarWithNumber.args = {
   numberIndicator: 8
 };
@@ -140,7 +140,7 @@ export const AvatarWithDefaultBadge = (argsTypes: IAvatarProps): JSX.Element => 
     </div>
   );
 };
-AvatarWithDefaultBadge.storyName = 'Аватар c дефолтным бейджем';
+AvatarWithDefaultBadge.storyName = 'Avatar с бейджем по умолчанию';
 AvatarWithDefaultBadge.args = {
   badgeIconName: <IconDoneCheckFilled16 htmlColor="var(--unique-white)" />
 };
@@ -152,7 +152,7 @@ export const AvatarWithSpecialBadge = (argsTypes: IAvatarProps): JSX.Element => 
     </div>
   );
 };
-AvatarWithSpecialBadge.storyName = 'Аватар cо специальным бейджем';
+AvatarWithSpecialBadge.storyName = 'Avatar со специальным бейджем';
 AvatarWithSpecialBadge.args = {
   badgeIconName: <IconBirthday16 htmlColor="var(--unique-white)" />,
   badgeSpecialIcon: true

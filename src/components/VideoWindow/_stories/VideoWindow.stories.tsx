@@ -107,7 +107,7 @@ VideoWindowWithAutoPlay.args = {
   videoUrl: 'https://nlmk.com/upload/iblock/f27/fusion_short_rus.mp4',
   title: 'Видео с автозапуском'
 };
-VideoWindowWithAutoPlay.storyName = 'VideoWindow c автозапуском';
+VideoWindowWithAutoPlay.storyName = 'VideoWindow с автозапуском';
 VideoWindowWithAutoPlay.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }

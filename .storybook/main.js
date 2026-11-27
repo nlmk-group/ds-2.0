@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { mergeConfig } from 'vite';
 import { fileURLToPath, URL } from 'url';
 import { storybookLightTheme, storybookDarkTheme } from './storybookTheme.js';
 
@@ -13,8 +14,7 @@ export default {
     if (process.env.NODE_ENV === 'production') {
       config.build.chunkSizeWarningLimit = 2400;
     }
-    return {
-      ...config,
+    return mergeConfig(config, {
       base: './',
       build: {
         sourcemap: false,
@@ -30,7 +30,7 @@ export default {
           'path': 'path-browserify'
         }
       }
-    };
+    });
   },
 
   plugins: [react()],

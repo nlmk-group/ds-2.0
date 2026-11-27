@@ -1,0 +1,38 @@
+<script>
+  (() => {
+    let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    try {
+      const saved = localStorage.getItem('nlmk-storybook-theme');
+      const savedClass = localStorage.getItem('nlmk-storybook-theme-class');
+      if (saved === 'light' || saved === 'dark') dark = saved === 'dark';
+      else if (savedClass) dark = savedClass === 'dark-theme';
+    } catch {
+      // Embedded previews may have no storage access.
+    }
+    document.documentElement.dataset.theme = dark ? 'dark-theme' : 'light-theme';
+  })();
+</script>
+<link rel="preload" href="fonts/PT_Root_Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="css/pt-root-ui.css" />
+<style>
+  :focus,
+  :has(> [tabindex]:focus-visible),
+  input:focus-visible + [data-ui-switch-controller] {
+    outline: none !important;
+  }
+
+  :root {
+    color-scheme: light;
+    --sb-loading-bg: #fff;
+    --brand-sapphire-60: #1952b6;
+    --steel-40: #e4e6e8;
+    background-color: var(--sb-loading-bg);
+  }
+
+  :root[data-theme='dark-theme'] {
+    color-scheme: dark;
+    --sb-loading-bg: #455161;
+    --brand-sapphire-60: #619eff;
+    --steel-40: #5e6d7e;
+  }
+</style>

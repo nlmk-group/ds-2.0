@@ -3,6 +3,10 @@
   border-right: 1px solid var(--steel-40);
 }
 
+tr > :has(+ .pinnedColumnRight) {
+  border-right-width: 0;
+}
+
 .pinnedColumnRight {
   background-color: var(--steel-10);
   border-left: 1px solid var(--steel-40);
@@ -10,7 +14,8 @@
 
 // Стили для основной таблицы
 .tableContainer {
-  width: 1200px;
+  box-sizing: border-box;
+  width: 100%;
   max-width: 100%;
   max-height: 400px;
   overflow: auto;
@@ -81,7 +86,6 @@
 
 .dropZone {
   cursor: pointer;
-  transition: all 0.2s;
   position: relative;
 }
 

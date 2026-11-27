@@ -1,3 +1,13 @@
 .text {
   text-align: center;
 }
+
+.content {
+  min-width: 0;
+  max-width: 100%;
+
+  > svg {
+    max-width: 100%;
+    height: auto;
+  }
+}

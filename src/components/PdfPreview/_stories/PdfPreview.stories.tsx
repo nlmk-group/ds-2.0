@@ -95,7 +95,7 @@ export const PdfPreviewWithAttachFiles = (args: TPdfPreviewProps): JSX.Element =
   );
 };
 
-PdfPreviewWithAttachFiles.storyName = 'Отображение PDF';
+PdfPreviewWithAttachFiles.storyName = 'Просмотр PDF · PdfPreview';
 PdfPreviewWithAttachFiles.args = {
   errorMessage: 'Ошибка предпросмотра PDF'
 };

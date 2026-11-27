@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from 'react';
 
-import { Typography } from '@components/index';
+import Typography from '@components/Typography';
 import clsx from 'clsx';
 
 import { ECellSize, ECellState, ECellStatus, ICellProps } from './types';
@@ -59,6 +59,7 @@ const Cell: FC<ICellProps> = ({
         styles[size],
         styles[color],
         styles[state],
+        !isDisabled && onClick && styles.clickable,
         disableHover && styles.disableHover,
         className
       )}

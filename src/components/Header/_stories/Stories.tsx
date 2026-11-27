@@ -53,7 +53,7 @@ const Stories = (): JSX.Element => {
             description="Базовый заголовок страницы."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header title="Header по умолчанию" />
 )`}
           />
@@ -62,7 +62,7 @@ export default App = () => (
             description="Возврат к предыдущему экрану через showBack и onBackClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header
     title='Header с кнопкой возвращения слева'
     showBack
@@ -75,7 +75,7 @@ export default App = () => (
             description="Отображение текущей даты и времени через showDate."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header title='Header с датой и временем' showDate />
 )`}
           />
@@ -84,7 +84,7 @@ export default App = () => (
             description="Кнопка избранного с обработчиком onFavoriteClick."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header
     title='Header с кнопкой добавления в избранное'
     showFavorite
@@ -97,7 +97,7 @@ export default App = () => (
             description="Кнопка уведомлений с количеством непрочитанных элементов."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header
     title='Header с кнопкой уведомления'
     showNotification
@@ -116,14 +116,14 @@ const crumbs = [
   { href: '/catalog/sheet', label: 'Лист горячекатаный' }
 ];
 
-export default App = () => (
+export default () => (
   <Header
     title='Header с хлебными крошками'
     breadcrumbs={
       <Breadcrumbs>
         {crumbs.map(item => (
           <Breadcrumbs.Crumb key={item.href}>
-            <Link to={item.href}>{item.label}</Link>
+            <Link href={item.href}>{item.label}</Link>
           </Breadcrumbs.Crumb>
         ))}
       </Breadcrumbs>
@@ -135,7 +135,7 @@ export default App = () => (
             description="Пользовательское действие в children рядом с заголовком."
             code={`import { Header, Button, IconSettingsAltOutlined24 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header title='Header с дочерней кнопкой и хлебными крошками'>
     <Button
       type="button"
@@ -154,7 +154,7 @@ export default App = () => (
             description="Сервисные действия в шапке: печать, видео и сообщения."
             code={`import { Header } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Header
     title="Панель действий"
     showPrint
@@ -167,10 +167,11 @@ export default App = () => (
 )`}
           />
           <Editor
-            description="Комплексная конфигурация Header со всеми основными возможностями."
+            stacked
+            description="Шапка страницы с навигацией, датой и действиями."
             code={`import { Header, Breadcrumbs, Link } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const breadcrumbsLinks = [
     { href: '/main', label: 'Главная' },
     { href: '/settings', label: 'Настройки' },
@@ -198,7 +199,7 @@ export default App = () => {
         <Breadcrumbs>
           {breadcrumbsLinks.map((link, index) => (
             <Breadcrumbs.Crumb key={index}>
-              <Link to={link.href}>{link.label}</Link>
+              <Link href={link.href}>{link.label}</Link>
             </Breadcrumbs.Crumb>
           ))}
         </Breadcrumbs>

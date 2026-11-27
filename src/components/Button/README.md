@@ -29,6 +29,7 @@ import { Button, EButtonColor, EButtonSize, EButtonVariant } from '@nlmk/ds-2.0'
 | variant    | EButtonVariant   | EButtonVariant.primary | Вариант стиля кнопки     |
 | color      | EButtonColor     | EButtonColor.brand     | Цветовая схема кнопки    |
 | size       | EButtonSize      | EButtonSize.m          | Размер кнопки            |
+| loading    | boolean          | false                  | Показывает спиннер 16 px и блокирует кнопку на время операции. |
 | startIcon  | ReactNode        | -                      | Иконка в начале кнопки   |
 | endIcon    | ReactNode        | -                      | Иконка в конце кнопки    |
 | startBadge | string \| number | -                      | Бейдж в начале кнопки    |

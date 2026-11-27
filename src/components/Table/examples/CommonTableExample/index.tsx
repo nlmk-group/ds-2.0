@@ -61,7 +61,10 @@ const SortingPaginationExample: FC = () => {
       withPagination
       pagination={{ pageCount, pageSizes: [10, 15] }}
       onPageChange={setCurrentPageNumber}
-      onPageSizeChange={setPageSize}
+      onPageSizeChange={size => {
+        setPageSize(size);
+        setCurrentPageNumber(1);
+      }}
       onSortingChange={handleSortingChange}
       state={state}
     />

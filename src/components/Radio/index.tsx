@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import { generateUUID } from '@components/declaration';
 import { Typography } from '@components/index';
 import clsx from 'clsx';
 
@@ -26,6 +25,8 @@ import { ERadioColors } from './enums';
  */
 
 export const Radio: FC<IRadioProps> = ({
+  name,
+  id,
   checked,
   disabled,
   value,
@@ -35,7 +36,8 @@ export const Radio: FC<IRadioProps> = ({
   className,
   style
 }) => {
-  const radioID = generateUUID();
+  const generatedId = React.useId();
+  const radioID = id ?? generatedId;
   return (
     <div className={clsx(styles.radio, className)} style={style} data-ui-radio>
       <input
@@ -45,7 +47,7 @@ export const Radio: FC<IRadioProps> = ({
         defaultChecked={!onChange ? checked : undefined}
         value={value}
         onChange={onChange}
-        name={radioID}
+        name={name ?? radioID}
         id={radioID}
         data-ui-radio-input
         data-color={color}

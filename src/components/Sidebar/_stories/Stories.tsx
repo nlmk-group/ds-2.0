@@ -256,21 +256,25 @@ const SidebarStories = (): JSX.Element => {
       {activeTab == TabIds.dev && (
         <>
           <Editor
+            stacked
             minHeight={920}
             description="Базовый пример боковой навигации с вложенными разделами."
             code={sidebarDefault}
           />
           <Editor
+            stacked
             minHeight={920}
             description="Режим burger с overlay и управлением видимостью пользовательского блока."
             code={sidebarBurgerVariant}
           />
           <Editor
+            stacked
             minHeight={620}
             description="Режим manualExpansion: развернутый сайдбар сворачивается только по кнопке, а клик вне меню закрывает только подменю."
             code={sidebarManualExpansion}
           />
           <Editor
+            stacked
             minHeight={920}
             description="Длинное меню: пользовательский блок закреплён под шапкой, прокручиваются только пункты меню."
             code={sidebarScrollableMenu}

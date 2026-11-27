@@ -3,6 +3,10 @@ import { ChangeEvent, CSSProperties } from 'react';
 import { ERadioColors } from './enums';
 
 export type IRadioProps = {
+  /** Общее имя вариантов одной группы. */
+  name?: string;
+  /** Идентификатор поля для внешней подписи. */
+  id?: string;
   /**
    * Значение радио-кнопки
    */

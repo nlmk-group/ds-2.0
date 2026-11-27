@@ -20,26 +20,26 @@ const Stories = (): JSX.Element => {
   const radioDefaultCode = `import { useState } from 'react';
 import { Radio } from '@nlmk/ds-2.0';
 
-export default App = () => {
-  const [checked, setChecked] = useState('yes');
-
-  const handleChange = event => {
-    setChecked(event.target.value);
-  };
+export default function ShiftSelector() {
+  const [shift, setShift] = useState('day');
+  const selectShift = (event: React.ChangeEvent<HTMLInputElement>) => setShift(event.target.value);
 
   return (
-    <>
-      <Radio checked={checked === 'yes'} onChange={handleChange} value="yes" label="Да" />
-      <Radio checked={checked === 'no'} onChange={handleChange} value="no" label="Нет" />
-    </>
+    <fieldset style={{
+      display: 'grid', gap: 8, margin: 0, padding: '8px 16px 16px',
+      border: '1px solid var(--unique-divider)', borderRadius: 4
+    }}>
+      <legend style={{ paddingInline: 4 }}>Рабочая смена</legend>
+      <Radio name="shift" value="day" label="Дневная" checked={shift === 'day'} onChange={selectShift} />
+      <Radio name="shift" value="night" label="Ночная" checked={shift === 'night'} onChange={selectShift} />
+    </fieldset>
   );
-}
-`;
+}`;
 
   const radioColorCode = `import { useState } from 'react';
 import { Radio } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [checked, setChecked] = useState('brand');
 
   const handleChange = event => {
@@ -48,9 +48,9 @@ export default App = () => {
 
   return (
     <div style={{ display: 'grid', gap: '12px' }}>
-      <Radio checked={checked === 'brand'} onChange={handleChange} value="brand" label="Основной" color="brand" />
-      <Radio checked={checked === 'error'} onChange={handleChange} value="error" label="Ошибка" color="error" />
-      <Radio checked={checked === 'success'} onChange={handleChange} value="success" label="Успех" color="success" />
+      <Radio name="status" checked={checked === 'brand'} onChange={handleChange} value="brand" label="Основной" color="brand" />
+      <Radio name="status" checked={checked === 'error'} onChange={handleChange} value="error" label="Ошибка" color="error" />
+      <Radio name="status" checked={checked === 'success'} onChange={handleChange} value="success" label="Успех" color="success" />
     </div>
   );
 }
@@ -59,7 +59,7 @@ export default App = () => {
   const radioDisabledCode = `import { useState } from 'react';
 import { Radio } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [checked, setChecked] = useState('enabled');
 
   const handleChange = event => {
@@ -68,8 +68,8 @@ export default App = () => {
 
   return (
     <div style={{ display: 'grid', gap: '12px' }}>
-      <Radio checked={checked === 'enabled'} onChange={handleChange} value="enabled" label="Доступный вариант" />
-      <Radio checked={checked === 'disabled'} onChange={handleChange} value="disabled" label="Недоступный вариант" disabled />
+      <Radio name="availability" checked={checked === 'enabled'} onChange={handleChange} value="enabled" label="Доступный вариант" />
+      <Radio name="availability" checked={checked === 'disabled'} onChange={handleChange} value="disabled" label="Недоступный вариант" disabled />
     </div>
   );
 }
@@ -95,7 +95,10 @@ export default App = () => {
 
       {Number(activeTab) == 0 && (
         <>
-          <Editor description="Базовый выбор одного значения в группе." code={radioDefaultCode} />
+          <Editor
+            description="Выбор рабочей смены. Оба варианта используют одно значение в состоянии формы."
+            code={radioDefaultCode}
+          />
 
           <Editor description="Цветовые состояния radio-кнопки через prop color." code={radioColorCode} />
           <Editor description="Недоступный вариант в группе через disabled." code={radioDisabledCode} />

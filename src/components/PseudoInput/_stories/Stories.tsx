@@ -54,8 +54,8 @@ const Stories = (): JSX.Element => {
             description="Базовое отображение значения в режиме только чтения."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <PseudoInput label="Label">
+export default () => (
+  <PseudoInput label="Наименование">
     PseudoInput
   </PseudoInput>
 )
@@ -65,12 +65,12 @@ export default App = () => (
             description="Сравнение доступных размеров компонента."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-  <PseudoInput label="Label" size="m">
+  <PseudoInput label="Наименование" size="m">
     PseudoInput
   </PseudoInput>
-  <PseudoInput label="Label" size="s">
+  <PseudoInput label="Наименование" size="s">
     PseudoInput
   </PseudoInput>
   </>
@@ -83,15 +83,15 @@ export default App = () => (
             ).join(' | ')} для отображения состояний компонента`}
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-  <PseudoInput label="Label" labelColor="error">
+  <PseudoInput label="Наименование" labelColor="error">
     PseudoInput
   </PseudoInput>
-  <PseudoInput label="Label" labelColor="warning">
+  <PseudoInput label="Наименование" labelColor="warning">
     PseudoInput
   </PseudoInput>
-  <PseudoInput label="Label" labelColor="success">
+  <PseudoInput label="Наименование" labelColor="success">
     PseudoInput
   </PseudoInput>
   </>
@@ -102,7 +102,7 @@ export default App = () => (
             description="Добавление суффикса справа от значения."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <PseudoInput label="Сумма" suffix="₽">
     125 000
   </PseudoInput>
@@ -113,7 +113,7 @@ export default App = () => (
             description="Отображение бейджа рядом со значением."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <PseudoInput label="Статус" badgeChildren="NEW" color="error">
     Новый документ
   </PseudoInput>
@@ -124,8 +124,8 @@ export default App = () => (
             description="Растяжение компонента на всю доступную ширину через fullWidth."
             code={`import { PseudoInput } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <div style={{ width: '420px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 420px)' }}>
     <PseudoInput label="Комментарий" fullWidth>
       Значение псевдо-поля на всю ширину контейнера
     </PseudoInput>

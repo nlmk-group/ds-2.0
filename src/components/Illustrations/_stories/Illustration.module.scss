@@ -16,3 +16,9 @@
   justify-content: center;
   gap: 30px;
 }
+
+.wrapper > div,
+.wrapper svg {
+  max-width: 100%;
+  height: auto;
+}

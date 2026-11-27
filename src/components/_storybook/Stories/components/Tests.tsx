@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Chip, Typography } from '@components/index';
+import { Badge, Typography } from '@components/index';
 
 import styles from '../Stories.module.scss';
 
@@ -25,9 +25,9 @@ const Tests: FC<{ componentName: string }> = ({ componentName }) => {
             {title}
           </Typography>
           <div className={styles.chip}>
-            <Chip color="success" variant="solid">
+            <Badge color="success" variant="solid">
               {status}
-            </Chip>
+            </Badge>
           </div>
         </div>
       ))}

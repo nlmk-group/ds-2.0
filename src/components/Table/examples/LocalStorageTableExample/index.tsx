@@ -2,6 +2,7 @@ import React, { CSSProperties, useEffect, useMemo, useRef, useState } from 'reac
 
 import { Box, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import type { Header } from '@tanstack/react-table';
 import {
   ColumnOrderState,
@@ -238,17 +239,11 @@ const LocalStorageTableExample = () => {
   };
 
   return (
-    <Box maxWidth="1024px" flexDirection="column" gap={0}>
-      <Box gap={16} style={{ marginBottom: '16px' }}>
-        <Typography variant="Body1-Medium" color="var(--steel-90)">
-          Настройте таблицу через панель настроек (видимость, порядок, закрепление столбцов).
+    <Box width="100%" flexDirection="column" gap={16}>
+      <Box display="flex" flexWrap="wrap" gap={12} justifyContent="space-between" alignItems="center">
+        <Typography variant="Body1-Medium">
+          Выберите столбцы и их порядок. Настройки сохранятся при следующем открытии.
         </Typography>
-        <Typography variant="Body1-Medium" color="var(--steel-90)">
-          Настройки автоматически сохраняются в localStorage и восстанавливаются при перезагрузке страницы.
-        </Typography>
-      </Box>
-
-      <Box gap={8} style={{ marginBottom: '16px' }} justifyContent="flex-end">
         <CustomSettings
           columns={columns}
           visibleColumns={columnVisibility}
@@ -262,7 +257,7 @@ const LocalStorageTableExample = () => {
         />
       </Box>
 
-      <div ref={tableContainerRef} className={styles.tableContainer}>
+      <Scrollbar ref={tableContainerRef} className={styles.tableContainer}>
         <Table
           horizontalBorders
           verticalBorders
@@ -310,7 +305,7 @@ const LocalStorageTableExample = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </Box>
   );
 };

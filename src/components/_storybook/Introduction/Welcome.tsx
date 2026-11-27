@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 
-import { CopyWrapper } from '@components/Colors/subcomponents/CopyWrapper';
+import CopyCodeButton from '@components/_storybook/Stories/components/CopyCodeButton';
+import Card from '@components/Card';
 import { FigmaLogoSvgIcon, GitHubSvgIcon, StarSvgIcon, WebSvgIcon } from '@components/Icon/IconsInternal';
-import { Button, Icon, Link, Typography } from '@components/index';
+import Link from '@components/Link';
+import Typography from '@components/Typography';
 // Add TS disable error comment for import file from under the root direction
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -10,29 +12,19 @@ import { version } from '@root/package.json';
 import clsx from 'clsx';
 
 import styles from './Welcome.module.scss';
+import buttonStyles from '@components/Button/Button.module.scss';
 
 const FooterSection: FC<{
   title: string;
   description: string | JSX.Element;
-  buttonText?: string;
-}> = ({ title, description, buttonText }) => {
-  return (
-    <div className={styles['footer-section']}>
-      <Typography className={styles['footer-header']} variant="Subheading3-Medium">
-        {title}
-      </Typography>
-      <Typography variant="Body1">{description}</Typography>
-      {buttonText && (
-        <>
-          <br />
-          <Button type="button" variant="secondary">
-            {buttonText}
-          </Button>
-        </>
-      )}
-    </div>
-  );
-};
+}> = ({ title, description }) => (
+  <Card className={styles['footer-section']}>
+    <Typography className={styles['footer-header']} variant="Heading4">
+      {title}
+    </Typography>
+    {description}
+  </Card>
+);
 
 export const Footer: FC = () => {
   return (
@@ -41,33 +33,21 @@ export const Footer: FC = () => {
         title="Подключение"
         description={
           <ul className={styles.npm}>
-            <li>
-              <CopyWrapper copy={'npm install @nlmk/ds-2.0'} placement="bottom">
-                <code className={styles.code}>
-                  <div>npm install @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
-                </code>
-              </CopyWrapper>
-            </li>
-            <li>
-              <CopyWrapper copy={'yarn add @nlmk/ds-2.0'} placement="bottom">
-                <code className={styles.code}>
-                  <div>yarn add @nlmk/ds-2.0</div>
-                  <Icon containerSize={16} name="IconContentCopyOutlined24" color="inherit" />
-                </code>
-              </CopyWrapper>
-            </li>
+            {['npm install @nlmk/ds-2.0', 'yarn add @nlmk/ds-2.0'].map(command => (
+              <li key={command}>
+                <CopyCodeButton code={command} label="Копировать команду" copiedLabel="Скопировано">
+                  <code className={styles.code}>{command}</code>
+                </CopyCodeButton>
+              </li>
+            ))}
           </ul>
         }
       />
       <FooterSection
-        title={`Версия: v${version}`}
+        title={`Версия v${version}`}
         description={
           <>
-            <Typography variant="Body1">
-              Добавлен базовый набор компонентов, как конструктор для вашего проекта.
-            </Typography>
-            <br />
+            <Typography variant="Body1">Изменения компонентов и исправления в этом выпуске.</Typography>
             <Link href="./?path=/docs/introduction-changelog--docs" target="_blank">
               История изменений
             </Link>
@@ -79,9 +59,8 @@ export const Footer: FC = () => {
         description={
           <>
             <Typography variant="Body1">
-              Приносите свои изменения, мы с радостью их расмотрим и примем внутрь дизайн-системы 😊.
+              Как предложить изменение, подготовить компонент и отправить его на ревью.
             </Typography>
-            <br />
             <Link href="./?path=/docs/introduction-contributing--docs" target="_blank">
               Руководство
             </Link>
@@ -112,24 +91,28 @@ export const WelcomePage = () => {
           </Typography>
           <div className={clsx(styles['description-buttons'], styles['description-buttons--primary'])}>
             <Link href="https://www.npmjs.com/package/@nlmk/ds-2.0" target="_blank" className={styles.links}>
-              <Button type="button" startIcon={<StarSvgIcon />}>
+              <span className={clsx(buttonStyles.button, buttonStyles['brand-primary'], styles.resource)}>
+                <StarSvgIcon />
                 NPM
-              </Button>
+              </span>
             </Link>
             <Link href="https://github.com/nlmk-group/ds-2.0" target="_blank" className={styles.links}>
-              <Button type="button" startIcon={<GitHubSvgIcon />}>
-                Github
-              </Button>
+              <span className={clsx(buttonStyles.button, buttonStyles['brand-primary'], styles.resource)}>
+                <GitHubSvgIcon />
+                GitHub
+              </span>
             </Link>
             <Link href="https://ds.nlmk.com/" target="_blank" className={styles.links}>
-              <Button type="button" startIcon={<WebSvgIcon />}>
+              <span className={clsx(buttonStyles.button, buttonStyles['brand-primary'], styles.resource)}>
+                <WebSvgIcon />
                 ДС
-              </Button>
+              </span>
             </Link>
             <Link href="https://www.figma.com/@nlmk" target="_blank" className={styles.links}>
-              <Button type="button" startIcon={<FigmaLogoSvgIcon />}>
+              <span className={clsx(buttonStyles.button, buttonStyles['brand-primary'], styles.resource)}>
+                <FigmaLogoSvgIcon />
                 UI-Kit
-              </Button>
+              </span>
             </Link>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 
-import { Typography } from '@components/index';
+import Spinner from '@components/Spinner';
+import Typography from '@components/Typography';
 import { ETypographyVariants } from '@components/Typography/enums';
 import { clsx } from 'clsx';
 
@@ -35,6 +36,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       children,
       variant = EButtonVariant.primary,
       color = EButtonColor.brand,
+      loading = false,
       startIcon,
       endIcon,
       startBadge = null,
@@ -46,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       ...props
     },
     ref
-  ): JSX.Element => {
+  ): React.JSX.Element => {
     const config = {
       size: {
         [EButtonSize.m]: {
@@ -73,22 +75,36 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     const classes = clsx(
       className,
       styles.button,
+      loading && styles.loading,
       styles[`${color}-${variant}`],
       iconButton && styles['icon-button'],
       config.size[size].buttonClass,
       iconButton && config.size[size].iconButtonClass
     );
 
+    const indicator = loading && (
+      <span className={styles.indicator} aria-hidden="true">
+        <Spinner size="s" color="currentColor" bgColor="transparent" />
+      </span>
+    );
+    const buttonProps = {
+      ...props,
+      'disabled': loading || props.disabled,
+      'aria-busy': loading || props['aria-busy']
+    };
+
     if (iconButton) {
       return (
-        <button ref={ref} className={classes} style={style} {...props} data-ui-icon-button>
+        <button ref={ref} className={classes} style={style} {...buttonProps} data-ui-icon-button>
           {iconButton}
+          {indicator}
         </button>
       );
     }
 
     return (
-      <button ref={ref} className={classes} style={style} {...props} data-ui-button>
+      <button ref={ref} className={classes} style={style} {...buttonProps} data-ui-button>
+        {indicator}
         {startBadge != null && (
           <span className={getIconClass(EButtonNodesPosition.left)} data-ui-button-badge-left>
             <ButtonBadge badge={startBadge} size={size} />

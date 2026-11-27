@@ -1,10 +1,13 @@
+@use "../Input/select-cursor" as select;
+
 .fullWidth {
   width: 100%;
 }
 
 .input {
+  @include select.field;
+
   input {
-    cursor: pointer;
     caret-color: transparent;
   }
 
@@ -14,6 +17,11 @@
 }
 
 .inputIcon {
+  cursor: pointer;
+
+  input:disabled ~ * & {
+    cursor: default;
+  }
   display: flex;
 
   svg {
@@ -80,6 +88,7 @@
 }
 
 .listItemDisabled {
+  cursor: default;
   background-color: var(--steel-10);
   opacity: 0.5;
 }

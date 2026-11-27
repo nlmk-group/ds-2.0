@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   ColumnResizeMode,
   flexRender,
@@ -12,7 +13,7 @@ import {
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const SortableTableExample = () => {
@@ -38,16 +39,15 @@ const SortableTableExample = () => {
   });
 
   const totalWidth = table.getCenterTotalSize();
-  const containerWidth = '100%';
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={styles.tableContainer}>
       <Table
         horizontalBorders
         verticalBorders
         style={{
           tableLayout: 'fixed',
-          width: Math.max(totalWidth, typeof containerWidth === 'string' ? 800 : containerWidth)
+          width: totalWidth
         }}
       >
         <Thead>
@@ -105,7 +105,7 @@ const SortableTableExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

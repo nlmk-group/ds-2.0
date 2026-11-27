@@ -7,7 +7,7 @@ $checkbox-focus-size: 32px;
 
 $checkbox-colors: (
   brand: (
-    border: var(--steel-60),
+    border: var(--steel-70),
     border-checked: var(--brand-sapphire-60),
     background: var(--brand-sapphire-60)
   ),
@@ -149,7 +149,7 @@ $checkbox-colors: (
   svg {
     width: $checkbox-icon-size;
     height: $checkbox-icon-size;
-    color: var(--unique-white);
+    color: inherit;
   }
 }
 

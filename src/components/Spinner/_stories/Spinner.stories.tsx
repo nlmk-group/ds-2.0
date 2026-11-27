@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconAutoRenewReloadOutlined24, Spinner } from '@components/index';
+import { Box, IconAutoRenewReloadOutlined24, Spinner, Typography } from '@components/index';
 
 import style from './Spinner.stories.module.scss';
 import styles from '@components/_storybook/styles.module.scss';
@@ -25,7 +25,7 @@ export const SpinnerDefault = (args: ISpinnerProps): JSX.Element => {
     </div>
   );
 };
-SpinnerDefault.storyName = 'Spinner по умолчанию';
+SpinnerDefault.storyName = 'Индикатор загрузки · Spinner';
 
 export const SpinnerMSize = (args: ISpinnerProps): JSX.Element => {
   return (
@@ -36,14 +36,19 @@ export const SpinnerMSize = (args: ISpinnerProps): JSX.Element => {
 };
 SpinnerMSize.storyName = 'Spinner размера medium';
 
-export const SpinnerChangeColor = (args: ISpinnerProps): JSX.Element => {
-  return (
-    <div>
-      <Spinner bgColor="#ff6e40" color="#1e3d59" />
-    </div>
-  );
+export const SpinnerChangeColor = (args: ISpinnerProps): JSX.Element => (
+  <Box role="status" flexDirection="column" alignItems="center" gap={16}>
+    <Spinner {...args} />
+    <Typography variant="Body1-Medium">Готовим сменный отчёт…</Typography>
+  </Box>
+);
+SpinnerChangeColor.storyName = 'Цвет дуги и дорожки';
+SpinnerChangeColor.args = {
+  size: 'xl',
+  progressPercentage: 0.35,
+  color: 'var(--brand-sapphire-60)',
+  bgColor: 'var(--brand-sapphire-20)'
 };
-SpinnerChangeColor.storyName = 'Spinner с разными цветами';
 
 export const SpinnerWithIcon = (args: ISpinnerProps): JSX.Element => {
   return (

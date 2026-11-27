@@ -284,7 +284,7 @@ const SimpleSelect: FC<ISelectProps> = ({
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={clsx(styles.select__input, styles['input-helper'])}
+          className={styles['input-helper']}
           style={inputStyle}
           data-ui-select-input
           data-testid="select-input"

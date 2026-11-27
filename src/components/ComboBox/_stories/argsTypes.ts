@@ -45,6 +45,7 @@ const argsTypes = {
     defaultValue: []
   },
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Содержимое выпадающего списка (например, список опций)',
     control: { type: 'object' }
   },

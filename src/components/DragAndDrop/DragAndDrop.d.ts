@@ -10,7 +10,7 @@ import { EDnDFileType, EDnDStatusColor } from './enums';
  */
 export interface IFileProps extends PropsWithChildren<{ any }> {
   /** Дочерний элемент */
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   /** Заголовок файла */
   title?: string;
   /** Метка файла */
@@ -69,7 +69,7 @@ export interface IDragAndDropProps extends PropsWithChildren<{ children?: ReactN
   /** Показывать ли иконку в области перетаскивания */
   withIcon?: boolean;
   /** Пользовательская иконка */
-  customIcon?: JSX.Element;
+  customIcon?: React.JSX.Element;
   /** Размер области перетаскивания */
   size?: `${sizesDnD}`;
   /** Разрешить множество файлов */
@@ -144,7 +144,7 @@ export interface IDefaultDnDProps {
   /** Показывать ли иконку */
   withIcon: boolean;
   /** Пользовательская иконка */
-  customIcon: JSX.Element | null;
+  customIcon: React.JSX.Element | null;
   /** Тип загружаемых файлов */
   fileType: `${EDnDFileType}`;
   /** Заголовок для области перетаскивания */
@@ -171,7 +171,7 @@ export interface ISmallIconProps {
   /** Цвет статуса */
   statusColor: `${EDnDStatusColor}`;
   /** Пользовательская иконка */
-  customIcon: JSX.Element | null;
+  customIcon: React.JSX.Element | null;
 }
 
 /**

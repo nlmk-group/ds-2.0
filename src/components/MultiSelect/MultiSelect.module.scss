@@ -1,3 +1,8 @@
+@use "../Input/select-cursor" as select;
+
 .multiSelect {
   position: relative;
+  > [data-ui-input] {
+    @include select.field;
+  }
 }

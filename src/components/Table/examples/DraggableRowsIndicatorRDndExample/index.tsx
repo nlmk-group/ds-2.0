@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDragLayer, useDrop } from 'react-dnd';
 import { getEmptyImage, HTML5Backend } from 'react-dnd-html5-backend';
+import { createPortal } from 'react-dom';
 
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { flexRender, getCoreRowModel, Row as TableRow, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 
@@ -10,7 +12,7 @@ import { IOperationRow } from './types';
 
 import styles from './DraggableRowsIndicator.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, initialData } from './constants';
 
 const DRAG_TYPE = 'operation-row-indicator-rdnd';
@@ -22,6 +24,7 @@ interface IDragItem {
   height: number;
   initialLeft: number;
   initialTop: number;
+  cellWidths: number[];
 }
 
 interface IIndicator {
@@ -34,19 +37,28 @@ interface IDraggableRowProps {
   row: TableRow<IOperationRow>;
   index: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
-  onHover: (indicator: IIndicator) => void;
+  onHover: (indicator: IIndicator | null) => void;
+  onMove: (from: number, to: number) => void;
   onDrop: (sourceIndex: number) => void;
   onDragEnd: () => void;
 }
 
-const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHover, onDrop, onDragEnd }) => {
+const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHover, onDrop, onMove, onDragEnd }) => {
   const ref = useRef<HTMLTableRowElement>(null);
 
   const [{ isDragging }, drag, preview] = useDrag({
     type: DRAG_TYPE,
     item: (): IDragItem => {
       const { width, height, left: initialLeft, top: initialTop } = ref.current!.getBoundingClientRect();
-      return { id: row.id, index, width, height, initialLeft, initialTop };
+      return {
+        id: row.id,
+        index,
+        width,
+        height,
+        initialLeft,
+        initialTop,
+        cellWidths: Array.from(ref.current!.cells, cell => cell.getBoundingClientRect().width)
+      };
     },
     end: () => onDragEnd(),
     collect: monitor => ({ isDragging: monitor.isDragging() })
@@ -59,7 +71,11 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
     hover: (item: IDragItem, monitor) => {
-      if (!ref.current || !containerRef.current || item.index === index) return;
+      if (!ref.current || !containerRef.current) return;
+      if (item.index === index) {
+        onHover(null);
+        return;
+      }
       const pointerOffset = monitor.getClientOffset();
       if (!pointerOffset) return;
       const hoveredRect = ref.current.getBoundingClientRect();
@@ -68,7 +84,11 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
       const position: 'before' | 'after' = pointerOffset.y < hoveredMiddleY ? 'before' : 'after';
       const lineY =
         position === 'before' ? hoveredRect.top - containerRect.top : hoveredRect.bottom - containerRect.top;
-      onHover({ targetIndex: index, position, lineY });
+      onHover({
+        targetIndex: index,
+        position,
+        lineY: lineY + containerRef.current.scrollTop - containerRef.current.clientTop
+      });
     },
     drop: (item: IDragItem) => {
       onDrop(item.index);
@@ -80,14 +100,21 @@ const DraggableRow: FC<IDraggableRowProps> = ({ row, index, containerRef, onHove
   return (
     <Row ref={ref} className={clsx(styles.row, isDragging && styles.ghost)}>
       <Cell>
-        <span
+        <button
+          type="button"
+          aria-label={`Переместить строку «${row.original.operation}»`}
+          onKeyDown={event => {
+            if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+            event.preventDefault();
+            onMove(index, index + (event.key === 'ArrowUp' ? -1 : 1));
+          }}
           ref={node => {
             drag(node);
           }}
           className={styles.handle}
         >
           <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
-        </span>
+        </button>
       </Cell>
       {row.getVisibleCells().map((cell, colIdx) => (
         <Cell
@@ -112,21 +139,14 @@ const DragPreviewLayer: FC<IDragPreviewLayerProps> = ({ rows }) => {
     delta: monitor.getDifferenceFromInitialOffset()
   }));
 
-  useEffect(() => {
-    if (!isDragging) return;
-    const prevent = (e: DragEvent) => e.preventDefault();
-    window.addEventListener('dragover', prevent);
-    return () => window.removeEventListener('dragover', prevent);
-  }, [isDragging]);
-
   if (!isDragging || !item || !delta) return null;
   const row = rows.find(r => r.id === item.id);
   if (!row) return null;
 
-  const left = item.initialLeft + delta.x;
+  const left = item.initialLeft;
   const top = item.initialTop + delta.y;
 
-  return (
+  return createPortal(
     <div
       className={styles.dragPreview}
       style={{ width: item.width, height: item.height, transform: `translate(${left}px, ${top}px)` }}
@@ -139,7 +159,7 @@ const DragPreviewLayer: FC<IDragPreviewLayerProps> = ({ rows }) => {
       >
         <Tbody>
           <Row>
-            <Cell style={{ width: 40 }}>
+            <Cell style={{ width: item.cellWidths[0] }}>
               <span className={styles.handle}>
                 <Icon name="IconDragIndicatorDotsOutlined24" containerSize={24} />
               </span>
@@ -149,13 +169,14 @@ const DragPreviewLayer: FC<IDragPreviewLayerProps> = ({ rows }) => {
                 key={cell.id}
                 align={colIdx === 0 ? 'left' : undefined}
                 {...getCellProps(cell)}
-                style={{ width: cell.column.getSize() }}
+                style={{ width: item.cellWidths[colIdx + 1] }}
               />
             ))}
           </Row>
         </Tbody>
       </Table>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -169,12 +190,21 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
     indicatorRef.current = next;
     setIndicator(prev => {
       if (!next) return null;
-      if (prev && prev.targetIndex === next.targetIndex && prev.position === next.position) return prev;
+      if (prev && prev.targetIndex === next.targetIndex && prev.position === next.position && prev.lineY === next.lineY)
+        return prev;
       return next;
     });
   };
 
-  const handleHover = (next: IIndicator) => updateIndicator(next);
+  const moveRow = (source: number, target: number) => {
+    setData(previous => {
+      if (source === target || target < 0 || target >= previous.length) return previous;
+      const next = [...previous];
+      const [moved] = next.splice(source, 1);
+      next.splice(target, 0, moved);
+      return next;
+    });
+  };
 
   const handleDrop = (sourceIndex: number) => {
     const ind = indicatorRef.current;
@@ -185,14 +215,7 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
     const { targetIndex, position } = ind;
     let insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
     if (insertIndex > sourceIndex) insertIndex -= 1;
-    if (insertIndex !== sourceIndex) {
-      setData(prev => {
-        const next = [...prev];
-        const [moved] = next.splice(sourceIndex, 1);
-        next.splice(insertIndex, 0, moved);
-        return next;
-      });
-    }
+    moveRow(sourceIndex, insertIndex);
     updateIndicator(null);
   };
 
@@ -207,7 +230,7 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div ref={containerRef} className={styles.tableContainer}>
+      <Scrollbar ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders>
           <Thead>
             {table.getHeaderGroups().map(hg => (
@@ -231,7 +254,8 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
                 row={row}
                 index={idx}
                 containerRef={containerRef}
-                onHover={handleHover}
+                onHover={updateIndicator}
+                onMove={moveRow}
                 onDrop={handleDrop}
                 onDragEnd={handleDragEnd}
               />
@@ -239,7 +263,7 @@ const DraggableRowsIndicatorRDndExample: FC = () => {
           </Tbody>
         </Table>
         {indicator && <div className={styles.insertLine} style={{ top: indicator.lineY }} />}
-      </div>
+      </Scrollbar>
       <DragPreviewLayer rows={table.getRowModel().rows} />
     </DndProvider>
   );

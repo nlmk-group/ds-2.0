@@ -4,7 +4,7 @@ $default-padding: 4px 8px;
   position: relative;
   box-sizing: border-box;
   background: var(--steel-10);
-  cursor: pointer;
+  cursor: default;
 
   border-bottom: 1px solid var(--unique-divider);
 
@@ -108,8 +108,6 @@ $default-padding: 4px 8px;
   height: 100%;
   cursor: col-resize;
   z-index: 1;
-  will-change: background-color;
-  transition: background-color 0.15s ease;
 
   &:hover {
     background-color: var(--unique-divider);
@@ -117,4 +115,8 @@ $default-padding: 4px 8px;
   &:active {
     background-color: var(--brand-sapphire-60);
   }
+}
+
+.clickable {
+  cursor: pointer;
 }

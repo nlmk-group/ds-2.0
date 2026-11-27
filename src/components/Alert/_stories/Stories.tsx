@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
             code={`import { Alert } from '@nlmk/ds-2.0';
 import { Box } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <Box display="flex" flexDirection="column" gap={12} width="100%">
     <Alert title="Успешная операция" severity="success" />
     <Alert title="Ошибка сохранения" severity="error" />
@@ -56,7 +56,7 @@ export default  App = () =>(
             description="Добавление контента в Alert через children."
             code={`import { Alert } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <Alert severity="warning" title="Проверьте перед отправкой">
     <ul style={{ margin: 0, paddingLeft: 16 }}>
       <li>Заполните обязательные поля</li>

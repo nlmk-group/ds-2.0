@@ -26,7 +26,7 @@ export const InputRangeDefault = (argsTypes: IInputRangeProps): JSX.Element => {
   return <InputRange {...argsTypes} value={value} onChange={handleValuesChange} />;
 };
 
-InputRangeDefault.storyName = 'InputRange по умолчанию';
+InputRangeDefault.storyName = 'Выбор диапазона · InputRange';
 InputRangeDefault.args = {
   min: 20,
   max: 80,

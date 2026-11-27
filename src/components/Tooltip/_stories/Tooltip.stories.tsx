@@ -43,7 +43,7 @@ export const TooltipDefault = (argsTypes: Args): JSX.Element => {
   );
 };
 
-TooltipDefault.storyName = 'Тултип по умолчанию';
+TooltipDefault.storyName = 'Всплывающая подсказка · Tooltip';
 
 export const TooltipWithOpacity = (argsTypes: Args): JSX.Element => {
   return (
@@ -346,7 +346,7 @@ export const TooltipWithManualOpen = () => {
           </Button>
         </Tooltip>
         <Button type="button" variant="secondary" onClick={() => setOpen(!isOpen)}>
-          Нажми на меня для переключения тултипа!
+          {isOpen ? 'Скрыть подсказку' : 'Показать подсказку'}
         </Button>
       </div>
     </div>

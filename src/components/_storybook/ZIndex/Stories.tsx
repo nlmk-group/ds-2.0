@@ -101,7 +101,7 @@ const Stories = (): JSX.Element => {
 
 const tokenScaleCode = `import { Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const tokens = [
     { name: '--z-base', value: 1, desc: 'Внутренняя раскладка', color: 'var(--steel-50)' },
     { name: '--z-raised', value: 10, desc: 'Tabs, sticky, Avatar', color: 'var(--steel-60)' },
@@ -153,7 +153,7 @@ export default App = () => {
 
 const modalWithTabsCode = `import { Modal, Button, Tabs, Typography, Box, Input, Switch } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState(true);
 
@@ -164,7 +164,7 @@ export default App = () => {
       </Typography>
       <Button onClick={() => setOpen(true)}>Настройки профиля</Button>
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <Box display="flex" flexDirection="column" width="100%" st={{ minWidth: '480px' }}>
+        <Box display="flex" flexDirection="column" width="100%" st={{ minWidth: 'min(100%, 480px)' }}>
           <Typography variant="Heading3" st={{ padding: '0 0 20px' }}>
             Настройки профиля
           </Typography>
@@ -196,9 +196,9 @@ export default App = () => {
   );
 }`;
 
-const modalOverDrawerCode = `import { Modal, Drawer, Button, Typography, Box, Input, Chip } from '@nlmk/ds-2.0';
+const modalOverDrawerCode = `import { Modal, Drawer, Button, Typography, Box, Input, Badge } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -224,18 +224,15 @@ export default App = () => {
           <Typography variant="Heading3">Задачи смены</Typography>
           <Box display="flex" flexDirection="column" gap={8} width="100%">
             {tasks.map((t) => (
-              <Box
+              <button
+                type="button"
                 key={t.name}
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-                width="100%"
-                st={{ padding: '12px 16px', borderRadius: '8px', background: 'var(--steel-20)', cursor: 'pointer', boxSizing: 'border-box' }}
+                style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', border: 0, borderRadius: 8, background: 'var(--steel-20)', cursor: 'pointer' }}
                 onClick={() => setModalOpen(true)}
               >
                 <Typography variant="Body1-Medium" st={{ flex: 1, minWidth: 0 }}>{t.name}</Typography>
-                <span style={{ flexShrink: 0, marginLeft: '12px' }}><Chip color={t.color} size="s">{t.status}</Chip></span>
-              </Box>
+                <span style={{ flexShrink: 0, marginLeft: '12px' }}><Badge color={t.color} size="s">{t.status}</Badge></span>
+              </button>
             ))}
           </Box>
           <Typography variant="Caption" color="secondary">
@@ -244,10 +241,10 @@ export default App = () => {
         </Box>
       </Drawer>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: '460px' }}>
+        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: 'min(100%, 460px)' }}>
           <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
             <Typography variant="Heading3" st={{ flex: 1, minWidth: 0 }}>Детали задачи</Typography>
-            <span style={{ flexShrink: 0, marginLeft: '12px' }}><Chip color="warning" size="s">В работе</Chip></span>
+            <span style={{ flexShrink: 0, marginLeft: '12px' }}><Badge color="warning" size="s">В работе</Badge></span>
           </Box>
           <Box display="flex" flexDirection="column" gap={16} width="100%">
             <Input label="Задача" value="Проверка прокатного стана #3" />
@@ -266,7 +263,7 @@ export default App = () => {
 
 const stackedModalsCode = `import { Modal, Button, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [firstOpen, setFirstOpen] = useState(false);
   const [secondOpen, setSecondOpen] = useState(false);
 
@@ -286,17 +283,14 @@ export default App = () => {
         isOpen={firstOpen}
         onClose={() => { setFirstOpen(false); setSecondOpen(false); }}
       >
-        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: '500px' }}>
+        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: 'min(100%, 500px)' }}>
           <Typography variant="Heading3">Каталог продукции</Typography>
           <Box display="flex" flexDirection="column" gap={8} width="100%">
             {materials.map((m) => (
-              <Box
+              <button
                 key={m.name}
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-                width="100%"
-                st={{ padding: '14px 16px', borderRadius: '8px', background: 'var(--steel-20)', cursor: 'pointer', boxSizing: 'border-box' }}
+                type="button"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', border: 0, borderRadius: 8, background: 'var(--steel-20)', cursor: 'pointer' }}
                 onClick={() => setSecondOpen(true)}
               >
                 <Box display="flex" flexDirection="column" gap={2}>
@@ -304,7 +298,7 @@ export default App = () => {
                   <Typography variant="Caption" color="secondary">Склад: {m.qty}</Typography>
                 </Box>
                 <Typography variant="Body1-Bold">{m.price}</Typography>
-              </Box>
+              </button>
             ))}
           </Box>
           <Typography variant="Caption" color="secondary">
@@ -313,7 +307,7 @@ export default App = () => {
         </Box>
       </Modal>
       <Modal isOpen={secondOpen} onClose={() => setSecondOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: '420px' }}>
+        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: 'min(100%, 420px)' }}>
           <Box display="flex" flexDirection="column" gap={4}>
             <Typography variant="Heading3">Оформление заказа</Typography>
             <Typography variant="Body2-Medium" color="secondary">Сталь 09Г2С</Typography>
@@ -342,7 +336,7 @@ export default App = () => {
 
 const selectInModalCode = `import { Modal, Button, SimpleSelect, OptionItem, Typography, Box, Input } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [open, setOpen] = useState(false);
   const [city, setCity] = useState('');
   const [dept, setDept] = useState('');
@@ -368,7 +362,7 @@ export default App = () => {
       </Typography>
       <Button onClick={() => setOpen(true)}>Добавить сотрудника</Button>
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: '480px' }}>
+        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: 'min(100%, 480px)' }}>
           <Typography variant="Heading3">Новый сотрудник</Typography>
           <Box display="flex" flexDirection="column" gap={16} width="100%">
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', width: '100%' }}>
@@ -413,7 +407,7 @@ export default App = () => {
 
 const datePickerInModalCode = `import { Modal, Button, DatePicker, SimpleSelect, OptionItem, Input, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [open, setOpen] = useState(false);
   const [priority, setPriority] = useState('');
 
@@ -431,7 +425,7 @@ export default App = () => {
       </Typography>
       <Button onClick={() => setOpen(true)}>Создать задачу</Button>
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: '480px' }}>
+        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: 'min(100%, 480px)' }}>
           <Typography variant="Heading3">Новая задача</Typography>
           <Box display="flex" flexDirection="column" gap={16} width="100%">
             <Input label="Название" placeholder="Описание задачи..." />
@@ -462,7 +456,7 @@ export default App = () => {
 
 const tooltipCode = `import { Tooltip, Button, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   return (
     <Box display="flex" flexDirection="column" gap={20} width="100%">
       <Typography variant="Body2-Medium" color="secondary">
@@ -488,7 +482,7 @@ export default App = () => {
 
 const sidebarCode = `import { Sidebar, Modal, Button, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
 
@@ -540,7 +534,7 @@ export default App = () => {
         <Button onClick={() => setModalOpen(true)}>Открыть Modal поверх Sidebar</Button>
       </Box>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: '380px' }}>
+        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: 'min(100%, 380px)' }}>
           <Typography variant="Heading3">Modal поверх Sidebar</Typography>
           <Typography variant="Body1-Medium">
             Модалка (--z-modal: 1100) перекрывает Sidebar (--z-sidebar: 1000) и его подменю.
@@ -556,7 +550,7 @@ export default App = () => {
 
 const drawerCode = `import { Drawer, Button, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [leftOpen, setLeftOpen] = useState(false);
   const [rightOpen, setRightOpen] = useState(false);
 
@@ -593,7 +587,7 @@ export default App = () => {
 
 const dropdownCode = `import { SimpleSelect, OptionItem, Dropdown, DropdownMenuItem, Typography, Box } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [value, setValue] = useState('');
 
   const options = [
@@ -623,7 +617,7 @@ export default App = () => {
             ))}
           </SimpleSelect>
         </Box>
-        <Dropdown buttonChildren="Dropdown" menuStyle={{ minWidth: '180px' }}>
+        <Dropdown buttonChildren="Dropdown" menuStyle={{ minWidth: 'min(100%, 180px)' }}>
           {actions.map(({ value, label }) => (
             <DropdownMenuItem key={value} value={value} onClick={() => {}}>
               <Typography variant="Body1-Medium">{label}</Typography>
@@ -635,9 +629,9 @@ export default App = () => {
   );
 }`;
 
-const stackedModalWithSelectCode = `import { Modal, Button, SimpleSelect, OptionItem, Input, Typography, Box, Chip } from '@nlmk/ds-2.0';
+const stackedModalWithSelectCode = `import { Modal, Button, SimpleSelect, OptionItem, Input, Typography, Box, Badge } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [firstOpen, setFirstOpen] = useState(false);
   const [secondOpen, setSecondOpen] = useState(false);
   const [assignee, setAssignee] = useState('');
@@ -665,7 +659,7 @@ export default App = () => {
         isOpen={firstOpen}
         onClose={() => { setFirstOpen(false); setSecondOpen(false); }}
       >
-        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: '500px' }}>
+        <Box display="flex" flexDirection="column" gap={16} width="100%" st={{ minWidth: 'min(100%, 500px)' }}>
           <Typography variant="Heading3">Активные инциденты</Typography>
           <Box display="flex" flexDirection="column" gap={8} width="100%">
             {incidents.map((inc) => (
@@ -678,7 +672,7 @@ export default App = () => {
                 st={{ padding: '12px 16px', borderRadius: '8px', background: 'var(--steel-20)', cursor: 'pointer', boxSizing: 'border-box' }}
                 onClick={() => setSecondOpen(true)}
               >
-                <span style={{ flexShrink: 0 }}><Chip color={inc.severity} size="s">{inc.id}</Chip></span>
+                <span style={{ flexShrink: 0 }}><Badge color={inc.severity} size="s">{inc.id}</Badge></span>
                 <Typography variant="Body1-Medium">{inc.title}</Typography>
               </Box>
             ))}
@@ -686,7 +680,7 @@ export default App = () => {
         </Box>
       </Modal>
       <Modal isOpen={secondOpen} onClose={() => setSecondOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: '460px' }}>
+        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: 'min(100%, 460px)' }}>
           <Typography variant="Heading3">Назначить ответственного</Typography>
           <Box display="flex" flexDirection="column" gap={16} width="100%">
             <Box
@@ -722,9 +716,9 @@ export default App = () => {
   );
 }`;
 
-const complexCode = `import { Drawer, Modal, Button, SimpleSelect, OptionItem, Tooltip, Input, Typography, Box, Chip } from '@nlmk/ds-2.0';
+const complexCode = `import { Drawer, Modal, Button, SimpleSelect, OptionItem, Tooltip, Input, Typography, Box, Badge } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [shift, setShift] = useState('');
@@ -767,7 +761,7 @@ export default App = () => {
                 onClick={() => setModalOpen(true)}
               >
                 <Typography variant="Body1-Medium" st={{ flex: 1, minWidth: 0 }}>{eq.name}</Typography>
-                <span style={{ flexShrink: 0, marginLeft: '12px' }}><Chip color={eq.color} size="s">{eq.status}</Chip></span>
+                <span style={{ flexShrink: 0, marginLeft: '12px' }}><Badge color={eq.color} size="s">{eq.status}</Badge></span>
               </Box>
             ))}
           </Box>
@@ -777,10 +771,10 @@ export default App = () => {
         </Box>
       </Drawer>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: '460px' }}>
+        <Box display="flex" flexDirection="column" gap={20} width="100%" st={{ minWidth: 'min(100%, 460px)' }}>
           <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
             <Typography variant="Heading3" st={{ flex: 1, minWidth: 0 }}>Заявка на ремонт</Typography>
-            <span style={{ flexShrink: 0, marginLeft: '12px' }}><Chip color="error" size="s">Срочно</Chip></span>
+            <span style={{ flexShrink: 0, marginLeft: '12px' }}><Badge color="error" size="s">Срочно</Badge></span>
           </Box>
           <Box display="flex" flexDirection="column" gap={16} width="100%">
             <Input label="Оборудование" value="Прокатный стан #3" />

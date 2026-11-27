@@ -1,0 +1,11 @@
+@mixin field {
+  input[readonly]:enabled,
+  input[readonly]:enabled ~ label {
+    cursor: pointer;
+  }
+
+  &:has(input:disabled),
+  input:disabled ~ label {
+    cursor: default;
+  }
+}

@@ -79,7 +79,6 @@
 }
 
 .tab-active {
-  cursor: text;
   transition: all ease-in-out 0.4s;
   &:hover {
     > span {
@@ -92,7 +91,6 @@
     }
   }
   .text-active {
-    cursor: text;
     &:hover {
       color: var(--steel-90);
     }
@@ -130,4 +128,9 @@ $indicator-border: 2px solid var(--brand-sapphire-60);
 .icon {
   margin-top: 4px;
   pointer-events: none;
+}
+
+.tab-wrapper:focus-visible {
+  outline: 2px solid var(--brand-sapphire-60);
+  outline-offset: -2px;
 }

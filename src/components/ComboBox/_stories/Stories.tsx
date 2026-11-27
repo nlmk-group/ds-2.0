@@ -23,7 +23,7 @@ const items = [
   { id: '3', label: 'Опция 3' }
 ];
 
-export default App = () => (
+export default () => (
   <ComboBox label="Одиночный выбор">
     <ComboList
       items={items}
@@ -42,7 +42,7 @@ const items = [
   { id: '4', label: 'Арматура' }
 ];
 
-export default App = () => (
+export default () => (
   <ComboBox label="Множественный выбор">
     <ComboList
       items={items}
@@ -63,7 +63,7 @@ const items = [
   { id: '4', label: 'Труба 60x60', groupId: 'pipes', groupLabel: 'Трубы' }
 ];
 
-export default App = () => (
+export default () => (
   <ComboBox label="Группированный список">
     <ComboGroupList
       items={items}
@@ -95,7 +95,7 @@ const items = [
   }
 ];
 
-export default App = () => (
+export default () => (
   <ComboBox label="Древовидный список" autoExpandOnSearch>
     <ComboTreeList
       items={items}
@@ -114,7 +114,7 @@ const items = [
   { id: '2', label: 'Пункт 2' }
 ];
 
-export default App = () => (
+export default () => (
   <>
     <ComboBox label="Отключённый ComboBox" isDisabled>
       <ComboList items={items} />
@@ -142,7 +142,7 @@ const items = [
   { id: '3', label: 'Пункт 3' }
 ];
 
-export default App = () => (
+export default () => (
   <div style={{ height: 260, overflow: 'hidden' }}>
     <ComboBox
       label="Resize и портал"

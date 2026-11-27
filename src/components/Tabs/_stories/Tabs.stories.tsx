@@ -48,7 +48,7 @@ export const TabDefault = (args: ITabProps): JSX.Element => {
   );
 };
 
-TabDefault.storyName = 'Один таб с наглядными контролами';
+TabDefault.storyName = 'Вкладки · Tabs';
 TabDefault.args = {
   hasBadge: true,
   hasIcon: true,
@@ -180,7 +180,7 @@ TabsTopIndicator.storyName = 'Табы с индикатором сверху';
 export const TabsVerticalLeft = () => {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
       <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
         <Tabs.Tab label="Входящие" active={activeTab === 0} onClick={() => setActiveTab(0)} />
         <Tabs.Tab label="Мои папки" active={activeTab === 1} onClick={() => setActiveTab(1)} />
@@ -208,7 +208,7 @@ TabsVerticalLeft.storyName = 'Вертикальные табы слева от 
 export const TabsVerticalRight = () => {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
       <div style={{ padding: '8px', width: 200 }}>
         <Typography variant="Heading4" color="var(--steel-90)">
           {['Входящие', 'Мои папки', 'Черновики'][activeTab]}
@@ -234,7 +234,7 @@ export const TabsVerticalWrap = () => {
     'Черновики'
   ];
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
       <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left}>
         {items.map((label, index) => (
           <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />
@@ -260,7 +260,7 @@ export const TabsVerticalEllipsis = () => {
     'Черновики'
   ];
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
       <Tabs orientation={ETabsOrientation.vertical} tabPosition={ETabsTabPosition.left} maxTabWidth={180}>
         {items.map((label, index) => (
           <Tabs.Tab key={label} label={label} active={activeTab === index} onClick={() => setActiveTab(index)} />

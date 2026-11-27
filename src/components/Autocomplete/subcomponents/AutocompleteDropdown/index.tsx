@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 
 import { useFloatingReferenceSync } from '@components/declaration/hooks';
 import { Box, ClickAwayListener, Icon, Spinner, Typography } from '@components/index';
-import MenuItem from '@components/Select/subcomponents/MenuItem';
 import { autoUpdate, flip, limitShift, offset, shift, useFloating } from '@floating-ui/react';
 import clsx from 'clsx';
 
@@ -170,15 +169,15 @@ const AutocompleteDropdown: FC<IAutocompleteDropdownProps> = ({ className, style
         )}
 
         {isLoading && (
-          <MenuItem
-            label={
-              <Box data-testid="AUTOCOMPLETE_LOADING" justifyContent="center" data-ui-autocomplete-loading>
-                <Spinner />
-              </Box>
-            }
-            value=""
-            disabled
-          />
+          <Box
+            role="status"
+            aria-label="Загрузка"
+            data-testid="AUTOCOMPLETE_LOADING"
+            justifyContent="center"
+            data-ui-autocomplete-loading
+          >
+            <Spinner />
+          </Box>
         )}
         <div
           ref={el => {

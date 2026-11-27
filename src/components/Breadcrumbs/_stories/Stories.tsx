@@ -48,7 +48,7 @@ const Stories = (): JSX.Element => {
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 import { Link, MemoryRouter } from 'react-router-dom';
 
-export default App = () => (
+export default () => (
 <MemoryRouter>
   <Breadcrumbs>
     ${breadcrumbsLinks
@@ -69,7 +69,7 @@ export default App = () => (
             description="Использование ссылок с разными значениями target."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Breadcrumbs>
     ${targetLinks
       .map(
@@ -86,7 +86,7 @@ export default App = () => (
             description="Сравнение ширины цепочки с разными значениями width."
             code={`import { Breadcrumbs } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Breadcrumbs>
       <Breadcrumbs.Crumb><a href="#">Главная</a></Breadcrumbs.Crumb>

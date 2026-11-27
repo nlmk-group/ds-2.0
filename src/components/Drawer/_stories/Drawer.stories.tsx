@@ -61,7 +61,7 @@ export const DrawerDefault = (args: IDrawerProps): ReactNode => {
     </div>
   );
 };
-DrawerDefault.storyName = 'Drawer по умолчанию';
+DrawerDefault.storyName = 'Выдвижная панель · Drawer';
 DrawerDefault.args = {
   position: 'right',
   width: 'var(--drawer-default-width)',

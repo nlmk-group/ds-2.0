@@ -16,6 +16,7 @@ export enum ESwitchColors {
  * Интерфейс, описывающий свойства, принимаемые компонентом Switch.
  */
 export interface ISwitchProps {
+  'aria-label'?: string;
   /** Дополнительный CSS-класс */
   className?: string;
   /** Состояние переключателя */

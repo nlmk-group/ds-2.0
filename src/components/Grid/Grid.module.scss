@@ -2,16 +2,18 @@
 
 .grid {
   display: block;
+  box-sizing: border-box;
+  min-width: 0;
 
   &.container {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
     width: 100%;
-    margin: calc(var(--gap, 0px) / -2);
+    margin: calc(var(--grid-gap, 0px) / -2);
 
-    .grid {
-      padding: calc(var(--gap, 0px) / 2);
+    > .grid {
+      padding: calc(var(--grid-gap, 0px) / 2);
     }
   }
 

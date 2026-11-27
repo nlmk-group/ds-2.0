@@ -27,7 +27,7 @@ export const BadgeDefault = (argsTypes: IBadgeProps): JSX.Element => {
     </div>
   );
 };
-BadgeDefault.storyName = 'Badge по умолчанию';
+BadgeDefault.storyName = 'Метка · Badge';
 BadgeDefault.args = {
   children: '1'
 };

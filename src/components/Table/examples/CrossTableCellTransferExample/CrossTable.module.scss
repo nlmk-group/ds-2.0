@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 24px;
   padding: 8px 0;
 }
@@ -9,13 +10,15 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 0 0 auto;
+  flex: 1 1 440px;
+  min-width: 0;
 }
 
 .tableContainer {
   border: 1px solid var(--unique-divider);
 
-  width: fit-content;
+  overflow: auto;
+  border-radius: 4px;
 }
 
 .caption {
@@ -26,8 +29,6 @@
   cursor: grab;
   user-select: none;
   padding: 12px 16px;
-
-  transition: background-color 0.15s;
 
   &:hover {
     background: var(--steel-10);
@@ -44,7 +45,6 @@
   outline: 1px dashed var(--steel-40);
   outline-offset: -4px;
   min-width: 140px;
-  transition: background-color 0.3s;
 }
 
 .dropTargetOver {

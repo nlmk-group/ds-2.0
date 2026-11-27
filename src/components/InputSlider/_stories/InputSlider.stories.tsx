@@ -25,7 +25,7 @@ export const InputSliderDefault = (argsTypes: IInputSliderProps): JSX.Element =>
   return <InputSlider {...argsTypes} value={value} onChange={handleValuesChange} />;
 };
 
-InputSliderDefault.storyName = 'InputSlider по умолчанию';
+InputSliderDefault.storyName = 'Ползунок · InputSlider';
 InputSliderDefault.args = {
   min: 20,
   max: 80,

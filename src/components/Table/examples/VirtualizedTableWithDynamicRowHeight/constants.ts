@@ -11,37 +11,37 @@ export const columns: ColumnDef<IVirtualizedData>[] = [
   },
   {
     accessorKey: 'firstName',
-    header: 'First Name'
+    header: 'Имя'
   },
   {
     accessorKey: 'lastName',
-    header: 'Last Name'
+    header: 'Фамилия'
   },
   {
     accessorKey: 'age',
-    header: 'Age',
-    size: 50,
+    header: 'Возраст',
+    size: 88,
     meta: { isNumeric: true }
   },
   {
     accessorKey: 'visits',
-    header: 'Visits',
-    size: 50,
+    header: 'Визиты',
+    size: 88,
     meta: { isNumeric: true }
   },
   {
     accessorKey: 'status',
-    header: 'Status'
+    header: 'Статус'
   },
   {
     accessorKey: 'progress',
-    header: 'Progress',
-    size: 80,
+    header: 'Прогресс, %',
+    size: 112,
     meta: { isNumeric: true }
   },
   {
     accessorKey: 'createdAt',
-    header: 'Created At',
+    header: 'Дата создания',
     cell: info => info.getValue<Date>().toLocaleString(),
     size: 180
   }
@@ -49,11 +49,11 @@ export const columns: ColumnDef<IVirtualizedData>[] = [
 
 export const data: IVirtualizedData[] = Array.from({ length: 1000 }, (_, i) => ({
   id: i + 1,
-  firstName: 'Name ' + (i + 1),
-  lastName: 'Last ' + (i + 1),
+  firstName: ['Анна', 'Иван', 'Мария', 'Алексей'][i % 4],
+  lastName: ['Волкова', 'Орлов', 'Соколова', 'Морозов'][i % 4],
   age: 20 + (i % 40),
-  visits: Math.floor(Math.random() * 1000),
-  status: i % 3 === 0 ? 'error' : 'ok',
+  visits: (i * 37) % 1000,
+  status: i % 3 === 0 ? 'На проверке' : 'Подтверждён',
   progress: i % 100,
   createdAt: new Date(Date.now() - i * 3600_000)
 }));

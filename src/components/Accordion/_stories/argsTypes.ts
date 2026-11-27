@@ -2,7 +2,7 @@ import { EIconsAccordion, ESizesAccordion, EVariantsAccordion } from '../enums';
 
 export const argsTypes = {
   size: {
-    description: 'Размер',
+    description: 'Задаёт размер заголовков секций.',
     table: {
       defaultValue: {
         summary: ESizesAccordion.m

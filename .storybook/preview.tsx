@@ -1,27 +1,36 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { DocsContainer } from 'sb-theme-switcher/docs';
+import type { ArgTypesEnhancer } from 'storybook/internal/types';
 
-import { name, version } from '../package.json';
 import '../public/css/main.css';
+import { isStyleProp } from '../src/components/_storybook/ArgumentsTable/isStyleProp';
+import PreviewSkeleton from '../src/components/_storybook/PreviewSkeleton';
 import { storybookLightTheme } from './storybookTheme';
 
-const header = window.parent.document.querySelector('.sidebar-header');
-const div = document.createElement('div');
-div.style.cssText = `
-  font-size: 12px;
-  position: fixed;
-  background: #e8e8e8;
-  border-radius: 2px;
-  padding: 3px;
-  bottom: 10px;
-  z-index: 9;
-  color: dimgrey;
-  left: 10px;
-`;
-div.innerHTML = `<code>${name} - v.${version}</code>`;
-header?.append(div);
+type DocsModule = typeof import('sb-theme-switcher/docs');
+let docsModule: DocsModule | undefined;
+const loadDocs = () =>
+  import('sb-theme-switcher/docs').then(module => {
+    docsModule = module;
+    return { default: module.DocsContainer };
+  });
+const LazyDocsContainer = React.lazy(loadDocs);
+if (new URLSearchParams(window.location.search).get('viewMode') === 'docs') {
+  void loadDocs().catch(() => {
+    /* React retries the import when rendering documentation. */
+  });
+}
+
+export const argTypesEnhancers: ArgTypesEnhancer[] = [
+  ({ argTypes, title }) =>
+    Object.fromEntries(
+      Object.entries(argTypes).map(([key, arg]) => [
+        key,
+        isStyleProp(key, arg, title.split('/')[1]) ? { ...arg, control: false, table: { ...arg.table, disable: true } } : arg
+      ])
+    )
+];
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -45,7 +54,15 @@ export const parameters = {
   },
   docs: {
     // Темы берутся автоматически из опций аддона sb-theme-switcher (main.js)
-    container: DocsContainer,
+    container: (props: React.ComponentProps<DocsModule['DocsContainer']>) =>
+      docsModule ? (
+        <docsModule.DocsContainer {...props} />
+      ) : (
+        <React.Suspense fallback={<PreviewSkeleton kind="docs" />}>
+          <LazyDocsContainer {...props} />
+        </React.Suspense>
+      ),
+    source: { type: 'code' },
     theme: storybookLightTheme
   },
   options: {

@@ -4,6 +4,10 @@ on:
     branches:
       - main # запускаем только при push в main
 
+concurrency:
+  group: storybook-pages
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -23,6 +27,19 @@ jobs:
           yarn
           yarn storybook:build
           touch ./storybook-static/.nojekyll
+
+      - name: Read previously deployed assets
+        uses: actions/checkout@v5
+        with:
+          ref: gh-pages
+          path: previous-pages
+          sparse-checkout: |
+            assets
+            asset-files.json
+          sparse-checkout-cone-mode: false
+
+      - name: Retain lazy chunks for open tabs
+        run: node script/retain-storybook-assets.mjs storybook-static previous-pages
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

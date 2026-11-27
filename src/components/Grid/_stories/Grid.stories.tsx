@@ -35,7 +35,7 @@ export const GridDefault = (argTypes: IBox): JSX.Element => {
   );
 };
 
-GridDefault.storyName = 'Grid по умолчанию';
+GridDefault.storyName = 'Сетка · Grid';
 GridDefault.args = {
   background: 'var(--steel-50)'
 };
@@ -303,7 +303,7 @@ VerticalAlignment.args = {
 
 export const HorizontalAlignment = (argTypes: IBox): JSX.Element => {
   return (
-    <Grid borderRadius="4px" {...argTypes}>
+    <Grid flexDirection="column" borderRadius="4px" {...argTypes}>
       <Row borderRadius="4px" background="var(--spectrum-red-30)" justifyContent="center">
         <Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
           <Box st={{ flex: '1' }} px="8px" py="16px" borderRadius="4px" background="var(--spectrum-sky-40)">

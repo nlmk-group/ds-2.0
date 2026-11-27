@@ -85,7 +85,7 @@ const Autocomplete = ({
   className,
   style,
   ...inputProps
-}: IAutocompleteProps): JSX.Element => {
+}: IAutocompleteProps): React.JSX.Element => {
   const [selectedItems, setSelectedItems] = useState<IAutocompleteValue[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [currentItems, setCurrentItems] = useState<Array<IAutocompleteValue>>(items ?? []);

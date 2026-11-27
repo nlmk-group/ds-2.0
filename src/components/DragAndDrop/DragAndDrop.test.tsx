@@ -84,8 +84,8 @@ describe('src/components/DragAndDrop', () => {
   test('It should call function onUploadMockCallBack onClick', () => {
     const { container } = render(<DragAndDrop onUpload={onUploadMockCallBack} />);
     const dndComponent = container.getElementsByTagName('input')[0];
-    const file = new File(['test file content'], 'test.txt', {
-      type: 'text/plain'
+    const file = new File(['test file content'], 'test.png', {
+      type: 'image/png'
     });
     fireEvent.change(dndComponent, { target: { files: [file] } });
     expect(onUploadMockCallBack).toHaveBeenCalledTimes(1);
@@ -150,11 +150,10 @@ describe('src/components/DragAndDrop', () => {
       fireEvent.click(btn);
       expect(cancelUploadCallBack).toHaveBeenCalledTimes(1);
     });
-    test('It should render Dnd that cannot be clicked', () => {
+    test('It disables file selection during an upload', () => {
       const { container } = render(<ComponentHelper />);
 
-      const dndComponent = container.getElementsByTagName('form')[0];
-      expect(dndComponent).toHaveStyle(`pointer-events: none`);
+      expect(container.querySelector('input[type=file]')).toBeDisabled();
     });
   });
 

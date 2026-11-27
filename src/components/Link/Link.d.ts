@@ -29,8 +29,8 @@ export type ILink = PropsWithChildren<{
   size?: keyof typeof sizeMapping;
   target?: keyof typeof targetMapping;
   disabled?: boolean;
-  leftIcon?: JSX.Element | ReactNode;
-  rightIcon?: JSX.Element | ReactNode;
+  leftIcon?: React.JSX.Element | ReactNode;
+  rightIcon?: React.JSX.Element | ReactNode;
 }>
 
 declare const Link: FC<ILink>;

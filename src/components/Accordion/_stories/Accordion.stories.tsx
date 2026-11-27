@@ -39,7 +39,7 @@ export const AccordionDefault = (argTypes: IAccordionProps): JSX.Element => {
     </div>
   );
 };
-AccordionDefault.storyName = 'Аккордеон по умолчанию';
+AccordionDefault.storyName = 'Аккордеон · Accordion';
 AccordionDefault.args = {
   items: ACCORDION_ITEMS_MOCK
 };

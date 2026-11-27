@@ -24,7 +24,7 @@ export const StatusDefault = (props: IStatusProps): JSX.Element => {
     </div>
   );
 };
-StatusDefault.storyName = 'Status по умолчанию';
+StatusDefault.storyName = 'Статус · Status';
 StatusDefault.args = {
   children: 'Published',
   icon: 'IconCloudDoneOutlined24'

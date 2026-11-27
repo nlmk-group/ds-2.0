@@ -2,6 +2,7 @@ import { EDividerOrientation, EDividerType } from '../enums';
 
 const argsTypes = {
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Содержимое, которое будет отображаться на разделителе, например текст или иконка.',
     control: { type: 'ReactNode' }
   },

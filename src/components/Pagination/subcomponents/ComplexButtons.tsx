@@ -26,7 +26,12 @@ const ComplexButtons = memo(({ maxPageCount, currentPage, setCurrentPage }: ICom
   );
 
   const renderPageButton = (page: number, isSelected: boolean) => (
-    <div onClick={() => setCurrentPage(page)} className={clsx(styles.btn, isSelected && styles.selected)} role="button">
+    <button
+      onClick={() => setCurrentPage(page)}
+      className={clsx(styles.btn, isSelected && styles.selected)}
+      type="button"
+      aria-current={isSelected ? 'page' : undefined}
+    >
       <Typography
         variant={ETypographyVariants['Body1Mono-Medium']}
         color="var(--steel-90)"
@@ -34,7 +39,7 @@ const ComplexButtons = memo(({ maxPageCount, currentPage, setCurrentPage }: ICom
       >
         {page}
       </Typography>
-    </div>
+    </button>
   );
 
   if (noSpread) {

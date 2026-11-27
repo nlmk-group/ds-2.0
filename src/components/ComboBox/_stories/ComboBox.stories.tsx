@@ -282,7 +282,7 @@ export const BasicSingleSelect = () => {
     </ComboBox>
   );
 };
-BasicSingleSelect.storyName = 'Базовый выбор одного элемента';
+BasicSingleSelect.storyName = 'Комбинированный список · ComboBox';
 export const BasicSingleSelectWithInitialValue = () => {
   const [selected, setSelected] = useState<IComboBoxOption[]>([]);
   return (

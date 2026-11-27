@@ -2,6 +2,7 @@ import { sizeMapping, targetMapping } from '../enums';
 
 export const argsTypes = {
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Содержимое внутри ссылки, например, текст.',
     control: { type: 'ReactNode' }
   },
@@ -50,11 +51,13 @@ export const argsTypes = {
     options: Object.values(targetMapping),
     control: { type: 'select' }
   },
-  iconLeft: {
+  leftIcon: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Необязательное свойство. Иконка или элемент, который будет отображаться слева от текста ссылки',
     control: { type: 'boolean' }
   },
-  iconRight: {
+  rightIcon: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Необязательное свойство. Иконка или элемент, который будет отображаться справа от текста ссылки.',
     control: { type: 'boolean' }
   },

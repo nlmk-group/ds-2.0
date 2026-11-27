@@ -2,6 +2,7 @@
   background-color: var(--unique-background);
   padding: 30px;
   border-radius: 10px;
-  width: 900px;
+  box-sizing: border-box;
+  width: min(900px, 100%);
   min-height: 60vh;
 }

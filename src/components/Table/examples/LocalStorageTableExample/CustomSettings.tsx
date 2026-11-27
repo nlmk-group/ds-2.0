@@ -2,16 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import {
-  Badge,
-  Box,
-  Button,
-  Drawer,
-  IconSearchOutlined24,
-  IconSettingOutlined24,
-  Input,
-  Typography
-} from '@components/index';
+import { Box, Button, Drawer, IconSearchOutlined24, IconSettingOutlined24, Input, Typography } from '@components/index';
 
 import { ICustomSettingsProps } from './types';
 
@@ -440,13 +431,12 @@ export const CustomSettings = <T extends object>({
           variant="secondary"
           color="ghost"
           size="s"
-          iconButton={<IconSettingOutlined24 color="primary" />}
+          startIcon={<IconSettingOutlined24 color="primary" />}
           onClick={() => handleToggleDrawer(true)}
-          title="Настройки таблицы"
-        />
-        <Badge size="m" style={{ height: '24px' }}>
-          {changesCount}
-        </Badge>
+          endBadge={changesCount || undefined}
+        >
+          Настроить столбцы
+        </Button>
       </Box>
 
       <Drawer

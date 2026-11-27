@@ -33,13 +33,17 @@
   width: 100%;
   background: transparent;
   position: relative;
-  border-top: 1px solid var(--steel-50);
+  flex: 0 0 12px;
+  cursor: row-resize;
+  touch-action: none;
+  user-select: none;
+  background: linear-gradient(var(--steel-50), var(--steel-50)) center / 100% 1px no-repeat;
 
   &.vertical {
     width: auto;
     height: 100%;
-    border-top: none;
-    border-left: 1px solid var(--steel-50);
+    cursor: col-resize;
+    background-size: 1px 100%;
   }
 
   .handle {
@@ -64,7 +68,7 @@
     }
 
     &:active {
-      cursor: grab;
+      cursor: inherit;
     }
 
     .dot {
@@ -89,7 +93,7 @@
     }
 
     &:active {
-      cursor: grab;
+      cursor: inherit;
     }
   }
 }

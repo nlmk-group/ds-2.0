@@ -3,6 +3,9 @@ import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { EButtonColor, EButtonSize, EButtonVariant } from './enums';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Показывает компактный индикатор и блокирует повторное нажатие. */
+  loading?: boolean;
+
   /**
    * Контент для бейджа кнопки в начале кнопки
    */

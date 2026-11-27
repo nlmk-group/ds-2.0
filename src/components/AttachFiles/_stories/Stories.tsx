@@ -6,11 +6,11 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs } from '@components/index';
+import { File, Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import argsTypes from './argsTypes';
+import argsTypes, { fileArgs } from './argsTypes';
 
 const FILE_NAME = 'Название файла.pdf';
 const FILES_DEFAULT = 'Файл по умолчанию';
@@ -47,7 +47,7 @@ const Stories = (): JSX.Element => {
             description="Базовый элемент File с названием файла."
             code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <File label="${FILES_DEFAULT}" />
   </>
@@ -59,7 +59,7 @@ export default  App = () => (
             description="File с дополнительным описанием через свойство description."
             code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <File
       description="${FILES_DESCRIPTION}"
@@ -74,7 +74,7 @@ export default  App = () => (
             description="Варианты левого индикатора: по умолчанию, checked, tick и empty."
             code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <File label="${FILE_NAME}" />
     <File label="${FILE_NAME}" checked />
@@ -86,12 +86,13 @@ export default  App = () => (
           />
 
           <Editor
+            stacked
             minHeight={500}
             description="Варианты управляющих действий: removed, saved, commented и addFile."
             code={`import { File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '600px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 600px)' }}>
     <File
       label="${FILE_NAME}"
       removed
@@ -135,11 +136,12 @@ export default  App = () => (
           />
 
           <Editor
+            stacked
             description="AttachFiles без заголовка для отображения списка вложений."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '600px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 600px)' }}>
     <AttachFiles>
       <File
         commented
@@ -162,7 +164,7 @@ export default  App = () => (
             description="AttachFiles с заголовком через свойство title."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <AttachFiles title={<File label="${FILES_WITH_TITLE}" checked />}>
       <File label="${FILE_NAME}" />
@@ -176,12 +178,13 @@ export default  App = () => (
           />
 
           <Editor
+            stacked
             minHeight={500}
             description="AttachFiles с кнопкой добавления файла в заголовке."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '600px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 600px)' }}>
     <AttachFiles title={<File label="${FILE_NAME}" addFile />}>
       <File label="${FILE_NAME}" />
       <File label="${FILE_NAME}" checked />
@@ -194,12 +197,13 @@ export default  App = () => (
           />
 
           <Editor
+            stacked
             minHeight={400}
             description="AttachFiles с групповым выбором: checked и indeterminate."
             code={`import { AttachFiles, File } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '600px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 600px)' }}>
     <AttachFiles
       title={
         <File
@@ -225,7 +229,7 @@ export default  App = () => (
             `}
           />
 
-          <Properties argsTypes={argsTypes} />
+          <Properties argsTypes={argsTypes} related={[{ name: 'File', component: File, args: fileArgs }]} />
         </>
       )}
       {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}

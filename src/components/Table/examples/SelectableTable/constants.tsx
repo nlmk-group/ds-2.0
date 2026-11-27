@@ -41,14 +41,14 @@ export const columns: ColumnDef<ISelectableData>[] = [
     }
   },
   {
-    header: 'Name',
+    header: 'Материал',
     accessorKey: 'name',
     meta: {
       className: styles.notSortable
     }
   },
   {
-    header: 'Age',
+    header: 'Срок, лет',
     accessorKey: 'age',
     meta: {
       className: styles.notSortable,
@@ -56,14 +56,14 @@ export const columns: ColumnDef<ISelectableData>[] = [
     }
   },
   {
-    header: 'Production Date',
+    header: 'Дата производства',
     accessorKey: 'productionDate',
     meta: {
       className: styles.notSortable
     }
   },
   {
-    header: 'Status',
+    header: 'Статус',
     accessorKey: 'status',
     meta: {
       className: styles.notSortable

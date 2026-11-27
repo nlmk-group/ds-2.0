@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
-import { IconMultipleChoice24 } from '@components/Icon/IconsDirectory';
-import { Cell, Filter, Row, Table, Tbody, Thead, Top } from '@components/index';
+import { Cell, Filter, IconMultipleChoice24, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -18,19 +18,13 @@ import { data as sharedData } from '../FilteringTable/constants';
 import { TData } from '../FilteringTable/types';
 import { getCellProps } from '../utils';
 
-const multiselectFilterOperations = [
-  {
-    value: 'one_of',
-    label: 'Один из',
-    icon: <IconMultipleChoice24 />
-  }
-];
-
 const oneOfFilterFn: FilterFn<TData> = (row, columnId, filterValue) => {
   const values = filterValue as string[] | undefined;
   if (!values || values.length === 0) return true;
   return values.includes(String(row.getValue(columnId)));
 };
+
+const filterTypes = [{ value: 'oneOf', label: 'Один из', icon: <IconMultipleChoice24 /> }];
 
 const multiselectColumns: Array<ColumnDef<TData, any>> = [
   {
@@ -109,7 +103,7 @@ const FilterableMultiselectTableExample = () => {
   }, []);
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={styles.tableContainer}>
       <Table horizontalBorders verticalBorders style={{ tableLayout: 'fixed', width: table.getCenterTotalSize() }}>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -130,14 +124,15 @@ const FilterableMultiselectTableExample = () => {
                     {canFilter && (
                       <Filter
                         mode="multiselect"
-                        filterTypeOptions={multiselectFilterOperations}
-                        filterValueOptions={uniqueValuesByColumn[columnId] ?? []}
+                        aria-label={`Фильтр: ${header.column.columnDef.header}`}
+                        placeholder="Все значения"
+                        filterTypeOptions={filterTypes}
+                        filterValueOptions={uniqueValuesByColumn[columnId]}
                         selectedValues={selectedValues}
-                        onSelectedValuesChange={next => {
-                          header.column.setFilterValue(next.length ? next : undefined);
-                        }}
-                        placeholder="Фильтр"
-                        withPortal={false}
+                        onSelectedValuesChange={values =>
+                          header.column.setFilterValue(values.length ? values : undefined)
+                        }
+                        withPortal
                       />
                     )}
                   </Top>
@@ -147,6 +142,11 @@ const FilterableMultiselectTableExample = () => {
           ))}
         </Thead>
         <Tbody>
+          {table.getRowModel().rows.length === 0 && (
+            <Row>
+              <Cell colSpan={multiselectColumns.length} text="Нет строк с выбранными значениями" />
+            </Row>
+          )}
           {table.getRowModel().rows.map(row => (
             <Row key={row.id}>
               {row.getVisibleCells().map((cell, index) => (
@@ -161,7 +161,7 @@ const FilterableMultiselectTableExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

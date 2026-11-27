@@ -38,8 +38,12 @@ const Checkbox: FC<ICheckboxProps> = ({
   onChange,
   value,
   className,
-  style
+  style,
+  defaultChecked,
+  ...inputProps
 }) => {
+  const markColor = color === ECheckboxColors.brand ? 'var(--steel-10)' : 'var(--unique-white)';
+
   return (
     <label
       className={clsx(styles.label, { [styles.colored]: colored }, className)}
@@ -49,23 +53,24 @@ const Checkbox: FC<ICheckboxProps> = ({
     >
       <div className={styles.wrapper} data-ui-checkbox-wrapper>
         <input
+          {...inputProps}
           type="checkbox"
           id={id}
           checked={onChange ? checked : undefined}
-          defaultChecked={!onChange ? checked : undefined}
+          defaultChecked={onChange && checked !== undefined ? undefined : (checked ?? defaultChecked)}
           disabled={disabled}
           className={styles.checkbox}
           onChange={onChange}
           value={value}
-          aria-label={label || 'checkbox'}
+          aria-label={inputProps['aria-label'] ?? (label || 'checkbox')}
           data-ui-checkbox-input
           data-color={color}
         />
         <span className={styles.checkmark} data-ui-checkbox-checkmark>
           {multiple ? (
-            <IconDeleteMinusFilled16 htmlColor="var(--unique-white)" data-ui-checkbox-icon />
+            <IconDeleteMinusFilled16 htmlColor={markColor} data-ui-checkbox-icon />
           ) : (
-            <IconDoneCheckFilled16 htmlColor="var(--unique-white)" data-ui-checkbox-icon />
+            <IconDoneCheckFilled16 htmlColor={markColor} data-ui-checkbox-icon />
           )}
         </span>
       </div>

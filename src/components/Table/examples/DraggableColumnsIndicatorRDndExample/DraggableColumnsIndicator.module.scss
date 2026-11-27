@@ -1,8 +1,11 @@
 .tableContainer {
+  box-sizing: border-box;
+  overflow: auto;
   position: relative;
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   border: 1px solid var(--unique-divider);
+  border-radius: 4px;
 }
 
 .insertLine {

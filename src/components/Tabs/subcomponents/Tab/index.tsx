@@ -67,7 +67,11 @@ const Tab: FC<ITabProps> = ({
         isVertical && styles['tab-wrapper--vertical'],
         className
       )}
+      role="tab"
+      aria-selected={Boolean(active)}
+      aria-disabled={props.disabled || undefined}
       {...props}
+      onClick={props.disabled ? undefined : props.onClick}
       data-ui-tab
     >
       <span

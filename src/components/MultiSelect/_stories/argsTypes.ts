@@ -18,6 +18,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Дочерние элементы селекта (опции меню)',
     control: { type: 'text' }
   },
@@ -26,6 +27,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   placeholder: {
+    table: { type: { summary: 'string' } },
     description: 'Плейсхолдер для инпута селекта',
     control: { type: 'text' }
   },

@@ -1,8 +1,31 @@
 import React from 'react';
 
-import { Button, Chip, Link, Typography } from '@components/index';
+import { Badge, Button, Link, Typography } from '@components/index';
 
 import styles from './Welcome.module.scss';
+
+function ReleaseItem({ title, children }: { title: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <li>
+      • {title}
+      <ul className={styles.releaseDetails}>{children}</ul>
+    </li>
+  );
+}
+
+function ComponentLink({
+  name,
+  page = 'components-' + name.toLowerCase() + '-info--docs'
+}: {
+  name: string;
+  page?: string;
+}) {
+  return (
+    <Link href={'./?path=/docs/' + page} target="blank" className={styles['link-changelog']}>
+      {name}
+    </Link>
+  );
+}
 
 export const Changelog = () => {
   return (
@@ -20,6 +43,381 @@ export const Changelog = () => {
               NPM
             </Button>
           </Link>
+        </div>
+        <div className={styles.history}>
+          <Typography variant="Subheading3-Medium">
+            v2.33.0 - <span className={styles.date}>27.11.26</span>
+          </Typography>
+          <ul className={styles.list}>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены <ComponentLink name="Input" />, <ComponentLink name="Radio" /> и{' '}
+                  <ComponentLink name="Switch" />.
+                </>
+              }
+            >
+              <li>Input связывает подсказку с полем и поддерживает нативную проверку обязательного значения.</li>
+              <li>В примере формы нажатие на сообщение в сводке ошибок переводит фокус в соответствующее поле.</li>
+              <li>
+                Radio с общим свойством <code>name</code> образуют группу. Switch переключается с клавиатуры.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены <ComponentLink name="Tabs" /> и <ComponentLink name="DragAndDrop" />.
+                </>
+              }
+            >
+              <li>Вкладки поддерживают стрелки, Home и End.</li>
+              <li>
+                При выборе и перетаскивании файлов проверяются формат и количество. Во время загрузки доступна отмена.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem title={<>Исправлен компонент DateTime.</>}>
+              <li>Время обновляется в начале следующей минуты.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент <ComponentLink name="Modal" />.
+                </>
+              }
+            >
+              <li>Кнопка закрытия остаётся в пределах экрана при перетаскивании и на узких экранах.</li>
+              <li>Во вложенных Modal и Drawer клавиша Escape закрывает верхнее окно и возвращает фокус.</li>
+              <li>Длинное содержимое прокручивается внутри окна.</li>
+              <li>
+                Диалогам Modal и Drawer можно задать доступное имя через <code>aria-label</code> или{' '}
+                <code>aria-labelledby</code>.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлён компонент <ComponentLink name="Checkbox" />.
+                </>
+              }
+            >
+              <li>Повышен контраст границы флажка.</li>
+              <li>
+                Атрибуты <code>aria-label</code>, <code>aria-labelledby</code> и <code>aria-describedby</code>{' '}
+                применяются к самому флажку. Скринридер озвучивает его имя и описание.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены компоненты <ComponentLink name="Badge" /> и <ComponentLink name="Status" />.
+                </>
+              }
+            >
+              <li>Повышен контраст текста на цветном фоне.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлён компонент <ComponentLink name="Pagination" />.
+                </>
+              }
+            >
+              <li>
+                Номер страницы можно выбрать клавишами Tab и Enter или пробелом. Текущая страница отмечена атрибутом{' '}
+                <code>{'aria-current="page"'}</code>.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент <ComponentLink name="Accordion" />.
+                </>
+              }
+            >
+              <li>
+                Заголовок получает фокус и раскрывается по Enter или пробелу. Скринридеру доступно состояние раскрытия.
+              </li>
+              <li>
+                Раскрытие секции занимает 280 мс, сворачивание — 210 мс. При системной настройке уменьшения движения
+                переключение происходит сразу.
+              </li>
+              <li>Открытая секция сохраняется при перерисовке родителя.</li>
+              <li>
+                Стрелка поворачивается в такт панели. Повторное нажатие меняет направление анимации с текущей высоты.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент <ComponentLink name="Avatar" />.
+                </>
+              }
+            >
+              <li>
+                Повышен контраст инициалов в светлой теме. В узком flex-контейнере аватар сохраняет круглую форму.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент{' '}
+                  <ComponentLink name="SegmentButton" page="components-segmentbuttongroup-info--docs" />.
+                </>
+              }
+            >
+              <li>Повышен контраст текста в тёмной теме в обычном состоянии, при наведении и при выборе сегмента.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент <ComponentLink name="Table" page="table-stories--docs" />.
+                </>
+              }
+            >
+              <li>
+                Горизонтальные разделители между строками имеют толщину 1 px. При смене темы цвета ячеек и заголовков
+                обновляются сразу.
+              </li>
+              <li>
+                Повышен контраст выбранных ячеек. Указатель появляется над заголовками и ячейками с обработчиком
+                нажатия.
+              </li>
+              <li>
+                В примере с пагинацией подписи столбцов выровнены с данными. В заголовках с мультивыбором используются
+                табличные фильтры с флажками.
+              </li>
+              <li>
+                В примере журнала ОТК перетаскивается только код дефекта. Его можно назначить партии мышью или с
+                клавиатуры. Результат виден в ячейке «Код дефекта».
+              </li>
+              <li>
+                Добавлены пример компактных строк высотой 32 px и реестр поставок с групповым назначением, пустым
+                состоянием и повторной загрузкой после ошибки.
+              </li>
+              <li>
+                В примерах перетаскивания строк и столбцов углы таблицы скруглены на 4 px. Рамка и ячейки обрезаются по
+                одному контуру.
+              </li>
+              <li>При автозаполнении ячеек обводка маркера учитывает тему таблицы.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены компоненты <ComponentLink name="SimpleSelect" />, <ComponentLink name="MultiSelect" />,{' '}
+                  <ComponentLink name="ComboBox" /> и <ComponentLink name="Tabs" />.
+                </>
+              }
+            >
+              <li>
+                Над полем поиска курсор принимает форму текстовой каретки. Над полем выбора и вкладками появляется
+                указатель.
+              </li>
+              <li>
+                Длинные названия в списке MultiSelect переносятся внутри своего пункта. При наведении соседние строки
+                остаются читаемыми.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлен компонент <ComponentLink name="Header" />.
+                </>
+              }
+            >
+              <li>При нехватке ширины навигация и действия переносятся на следующую строку.</li>
+              <li>
+                На узких экранах Breadcrumbs и заголовок SlideToggle допускают перенос, а иллюстрация ErrorPage
+                помещается по ширине контейнера.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Исправлены компоненты Scrollbar и <ComponentLink name="Spinner" />.
+                </>
+              }
+            >
+              <li>Scrollbar учитывает настройки прокрутки по каждой оси.</li>
+              <li>Spinner показывает индикатор загрузки при передаче дочернего элемента произвольного типа.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Добавлен компактный индикатор для <ComponentLink name="Spinner" /> и <ComponentLink name="Button" />.
+                </>
+              }
+            >
+              <li>
+                Размер <code>{'size="s"'}</code> выводит спиннер диаметром 16 px.
+              </li>
+              <li>
+                Свойство <code>loading</code> показывает индикатор внутри кнопки и блокирует повторное нажатие.
+              </li>
+              <li>
+                Пример подготовки сменного отчёта показывает, как задать цвет дуги и дорожки спиннера токенами темы.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены примеры <ComponentLink name="Card" />.
+                </>
+              }
+            >
+              <li>
+                Вертикальная карточка показывает выпуск за смену. В горизонтальной карточке можно взять заявку в работу
+                и вернуть её в очередь. Полоса состояния меняется вместе с текстом.
+              </li>
+              <li>В разделе Stories можно настроить карточку операции и сравнить две ориентации на одних данных.</li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлён <ComponentLink name="Splitter" />.
+                </>
+              }
+            >
+              <li>
+                Разделитель учитывает ширину или высоту ручки при расчёте размеров панелей. Поддерживается
+                перетаскивание мышью и касанием.
+              </li>
+              <li>
+                В примере с логотипом ползунок проходит поверх изображения и открывает его светлую или тёмную версию.
+              </li>
+              <li>
+                В вертикальном примере таблица прокручивается внутри своей панели, а паспорт позиции подстраивается под
+                доступную ширину.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены <ComponentLink name="Grid" /> и примеры <ComponentLink name="Box" />.
+                </>
+              }
+            >
+              <li>
+                Grid учитывает промежутки между колонками при расчёте ширины. В примерах можно проверить перенос ячеек и
+                раскладку при смене ширины окна.
+              </li>
+              <li>
+                Для Box добавлены примеры карточки задания, изменения отступов, переноса элементов и центрирования
+                пустого состояния.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлён <ComponentLink name="ToggleButtonGroup" />.
+                </>
+              }
+            >
+              <li>
+                Активную кнопку можно задавать через <code>active</code>. Кнопки поддерживают Enter и пробел, сообщают
+                состояние выбора скринридеру и учитывают <code>disabled</code> группы.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Переработан каталог <ComponentLink name="Icon" />.
+                </>
+              }
+            >
+              <li>
+                Размеры одной иконки собраны в одной карточке. Каталог поддерживает поиск по имени, фильтр по размеру и
+                пагинацию.
+              </li>
+              <li>
+                В карточке можно выбрать размер и цвет, скопировать имя компонента или готовый JSX с подсветкой
+                синтаксиса.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлены примеры <ComponentLink name="NotificationCard" /> и <ComponentLink name="PdfPreview" />.
+                </>
+              }
+            >
+              <li>
+                В центре уведомлений счётчики вкладок и фильтр непрочитанных обновляются при отметке сообщений как
+                прочитанных. Видно, когда раздел прочитан целиком.
+              </li>
+              <li>Предпросмотр PDF занимает ширину примера при выборе и замене файла.</li>
+            </ReleaseItem>
+            <ReleaseItem title="Обновлён компонент ThemeSwitcher.">
+              <li>
+                По умолчанию выбор темы хранится до конца сессии. Свойство <code>{'storage="local"'}</code> сохраняет
+                выбор между сессиями и добавляет кнопку «Вернуть системную тему».
+              </li>
+              <li>
+                Демонстрация переключения и возврата к теме устройства собрана в разделе{' '}
+                <ComponentLink name="Theme" page="introduction-theme--docs" />. Дублирующая история ThemeSwitcher
+                удалена.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem title="Обновлён пакет дизайн-системы.">
+              <li>
+                Доступен прямой импорт JavaScript-модулей <code>@nlmk/ds-2.0/Table</code> и{' '}
+                <code>@nlmk/ds-2.0/TreeList</code>.
+              </li>
+              <li>
+                Добавлены три начертания PT Root UI в формате WOFF2. Для локальной загрузки подключите{' '}
+                <code>@nlmk/ds-2.0/css/pt-root-ui.css</code>.
+              </li>
+              <li>
+                Путь <code>@nlmk/ds-2.0/css/style.css</code> указывает на основной файл стилей пакета.
+              </li>
+              <li>
+                Типы JSX в объявлениях компонентов используют пространство имён <code>React.JSX</code>.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem
+              title={
+                <>
+                  Обновлён пример <ComponentLink name="SlideToggle" />.
+                </>
+              }
+            >
+              <li>
+                В примере проверки оборудования раскрывается инструкция перед запуском. Ширина панели и положение
+                заголовка по горизонтали сохраняются при переключении.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem title="Обновлена документация Storybook.">
+              <li>
+                Во время загрузки страниц и отложенных примеров отображаются скелетоны заголовков, полей и содержимого.
+                При повторной загрузке реестра скелетон заменяет только данные.
+              </li>
+              <li>
+                В справочниках свойств обновлено оформление типов и значений по умолчанию. В примерах Button можно
+                скопировать JSX с текущими параметрами.
+              </li>
+              <li>
+                Главная страница адаптируется к ширине окна. У команд установки появилась короткая подсказка «Копировать
+                команду». После копирования появляется галочка. Версия пакета отображается внизу бокового меню.
+              </li>
+              <li>При публикации Storybook сохраняются файлы предыдущей сборки для уже открытых вкладок.</li>
+            </ReleaseItem>
+            <ReleaseItem title="Добавлены браузерные проверки Storybook.">
+              <li>
+                Команда <code>yarn test:e2e</code> запускает Playwright в Chromium на настольной и мобильной ширине. В
+                CI проверяются собранные истории, управление с клавиатуры, загрузка и взаимодействие с компонентами.
+              </li>
+              <li>
+                Подключено дополнение Storybook для проверки доступности. Ошибка Jest при подготовке результатов тестов
+                прерывает сборку.
+              </li>
+            </ReleaseItem>
+            <ReleaseItem title="Удалены устаревшие компоненты Chip и Select.">
+              <li>
+                Для меток используйте <ComponentLink name="Badge" /> или <ComponentLink name="Status" />. Для выбора
+                одного значения используйте <ComponentLink name="SimpleSelect" />, нескольких —{' '}
+                <ComponentLink name="MultiSelect" />.
+              </li>
+            </ReleaseItem>
+          </ul>
         </div>
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
@@ -191,15 +589,8 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Добавлено свойство style — инлайн-стили области наведения</li>
             </li>
             <li>
-              • Исправлен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .<li className={styles['left-padding']}>- Исправлено позиционирование списка в модальном окне</li>
+              • Исправлен компонент Select .
+              <li className={styles['left-padding']}>- Исправлено позиционирование списка в модальном окне</li>
               <li className={styles['left-padding']}>- Исправлено закрытие списка при скролле вне селекта</li>
             </li>
           </ul>
@@ -985,15 +1376,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .<li className={styles['left-padding']}>- Добавлено свойство reset для сброса выбранного значения</li>
+              • Изменен компонент Select .
+              <li className={styles['left-padding']}>- Добавлено свойство reset для сброса выбранного значения</li>
             </li>
           </ul>
         </div>
@@ -1025,15 +1409,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
+              • Изменен компонент Select .
               <li className={styles['left-padding']}>
                 - Добавлена поддержка HTML атрибута required для валидации форм
               </li>
@@ -1335,15 +1711,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Исправлена типизация свойства color у компонентов{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>{' '}
-              и{' '}
+              • Исправлена типизация свойства color у компонентов Select и{' '}
               <Link
                 href="./?path=/docs/components-input-info--docs"
                 target="blank"
@@ -1520,9 +1888,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.24.1 - <span className={styles.date}>20.05.25</span>
           </Typography>
-          <Chip variant="outline" color="error">
+          <Badge variant="outline" color="error">
             Broken - Do Not Use
-          </Chip>
+          </Badge>
           <ul className={styles.list}>
             <li>
               • Исправлены проблемы сборки библиотеки.
@@ -1536,9 +1904,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.24.0 - <span className={styles.date}>15.05.25</span>
           </Typography>
-          <Chip variant="outline" color="error">
+          <Badge variant="outline" color="error">
             Broken - Do Not Use
-          </Chip>
+          </Badge>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
@@ -1867,15 +2235,8 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .<li className={styles['left-padding']}>- Добавлена поддержка асинхронной загрузки опций через onOpen</li>
+              • Изменен компонент Select .
+              <li className={styles['left-padding']}>- Добавлена поддержка асинхронной загрузки опций через onOpen</li>
               <li className={styles['left-padding']}>- Добавлена поддержка асинхронного поиска через onSearch</li>
               <li className={styles['left-padding']}>
                 - Добавлен индикатор загрузки (isLoading) при асинхронных операциях
@@ -1908,9 +2269,9 @@ export const Changelog = () => {
           <Typography variant="Subheading3-Medium">
             v2.22.0 - <span className={styles.date}>27.03.25</span>
           </Typography>
-          <Chip variant="outline" color="warning">
+          <Badge variant="outline" color="warning">
             Breaking Changes
-          </Chip>
+          </Badge>
           <ul className={styles.list}>
             <li>
               • Изменен компонент{' '}
@@ -2173,9 +2534,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.20.0 - <span className={styles.date}>12.03.25</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -2947,9 +3308,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.12.0 - <span className={styles.date}>12.12.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -3032,9 +3393,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.10.0 - <span className={styles.date}>01.12.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -3135,9 +3496,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.9.0 - <span className={styles.date}>22.11.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -3149,11 +3510,7 @@ export const Changelog = () => {
               >
                 Badge
               </Link>
-              ,{' '}
-              <Link href="./?path=/docs/components-chip-info--docs" target="blank" className={styles['link-changelog']}>
-                Chip
-              </Link>
-              ,{' '}
+              , Chip ,{' '}
               <Link
                 href="./?path=/docs/components-checkbox-info--docs"
                 target="blank"
@@ -3425,9 +3782,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.5.22 - <span className={styles.date}>30.10.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -3690,9 +4047,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.5.8 - <span className={styles.date}>12.09.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -3731,15 +4088,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
+              • Изменен компонент Select .
               <li className={styles['left-padding']}>
                 - Добавлен флаг isClearInputOnSelect для удаления содержимого Input после выбора
               </li>
@@ -3996,15 +4345,7 @@ export const Changelog = () => {
           </Typography>
           <ul className={styles.list}>
             <li>
-              • Изменен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
+              • Изменен компонент Select .
               <li className={styles['left-padding']}>
                 - Добавлен флаг autoSelectSingleOnEnter для автоматического выбора по Enter, если найдена 1 опция
               </li>
@@ -4093,9 +4434,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.1.0 - <span className={styles.date}>07.08.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -4114,9 +4455,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v2.0.0 - <span className={styles.date}>05.08.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>• Переход на новые цвета DS 3.0</li>
@@ -4136,11 +4477,7 @@ export const Changelog = () => {
               <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
             <li>
-              • Обновлен компонент{' '}
-              <Link href="./?path=/docs/components-chip-info--docs" target="blank" className={styles['link-changelog']}>
-                Chip
-              </Link>
-              . Добавлены новые пропсы и изменена структура компонента.
+              • Обновлен компонент Chip . Добавлены новые пропсы и изменена структура компонента.
               <li className={styles['left-padding']}>- Изменено свойство color по умолчанию</li>
               <li className={styles['left-padding']}>- Изменены цвета и размеры шрифтов</li>
             </li>
@@ -4391,17 +4728,7 @@ export const Changelog = () => {
             v1.8.12 - <span className={styles.date}>18.06.24</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Исправлена ширина меню компонента{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлена ширина меню компонента Select .</li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -4435,17 +4762,7 @@ export const Changelog = () => {
               .
             </li>
             <li className={styles['left-padding']}>- Formula</li>
-            <li>
-              • Исправлен тип кнопки в компоненте{' '}
-              <Link
-                href="./?path=/docs/components-select-stories--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлен тип кнопки в компоненте Select .</li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -4464,17 +4781,7 @@ export const Changelog = () => {
               </Link>
               .
             </li>
-            <li>
-              • Исправлен hover для компонента{' '}
-              <Link
-                href="./?path=/docs/components-select-stories--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлен hover для компонента Select .</li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -4605,17 +4912,7 @@ export const Changelog = () => {
             v1.8.3 - <span className={styles.date}>20.05.24</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Исправлен скроллбар в компоненте{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлен скроллбар в компоненте Select .</li>
           </ul>
         </div>
         <div className={styles.history}>
@@ -4786,17 +5083,7 @@ export const Changelog = () => {
             v1.5.9 - <span className={styles.date}>07.05.24</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Исправлено поведение withPortal и ClickAwayListener в компоненте{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлено поведение withPortal и ClickAwayListener в компоненте Select .</li>
             <li>
               • Исправлено поведение при hover эффекте в состоянии disabled компонента{' '}
               <Link
@@ -4839,15 +5126,7 @@ export const Changelog = () => {
               >
                 Input
               </Link>{' '}
-              и{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
+              и Select .
             </li>
           </ul>
         </div>
@@ -4906,17 +5185,7 @@ export const Changelog = () => {
             v1.5.5 - <span className={styles.date}>10.04.24</span>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Исправлена логика работы withPortal в компоненте{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              .
-            </li>
+            <li>• Исправлена логика работы withPortal в компоненте Select .</li>
             <li>
               • Добавлена возможность переноса длинного заголовка в компоненте{' '}
               <Link
@@ -5064,33 +5333,13 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v1.4.10 - <span className={styles.date}>01.04.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
-            <li>
-              • Исправлен компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>
-              . Компонент стал контролируемым.
-            </li>
-            <li>
-              • Обновленный компонент{' '}
-              <Link
-                href="./?path=/docs/components-select-info--docs"
-                target="blank"
-                className={styles['link-changelog']}
-              >
-                Select
-              </Link>{' '}
-              содержит:
-            </li>
+            <li>• Исправлен компонент Select . Компонент стал контролируемым.</li>
+            <li>• Обновленный компонент Select содержит:</li>
             <li className={styles['left-padding']}>- Анимированную иконку раскрытия</li>
             <li className={styles['left-padding']}>- Настраиваемый скроллбар</li>
             <li className={styles['left-padding']}>- Автофокус на активном элементе</li>
@@ -5306,9 +5555,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v1.4.0 - <span className={styles.date}>04.03.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -5419,9 +5668,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v1.3.0 - <span className={styles.date}>27.02.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>• Исправлены переменные токенов и работа внутри компонентов.</li>
@@ -5452,9 +5701,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v1.2.0 - <span className={styles.date}>09.02.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>
@@ -5515,9 +5764,9 @@ export const Changelog = () => {
         <div className={styles.history}>
           <Typography variant="Subheading3-Medium">
             v1.1.0 - <span className={styles.date}>17.01.24</span>
-            <Chip variant="outline" color="warning">
+            <Badge variant="outline" color="warning">
               Breaking Changes
-            </Chip>
+            </Badge>
           </Typography>
           <ul className={styles.list}>
             <li>

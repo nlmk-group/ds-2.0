@@ -29,7 +29,7 @@ const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusC
           <Typography className={styles['small-title-helper']} variant="Heading3" data-ui-dnd-small-text-title>
             {title}
           </Typography>
-          {cancelUpload !== null && (
+          {cancelUpload && (
             <div style={{ pointerEvents: disabled ? 'none' : 'all' }}>
               <Button
                 type="button"
@@ -38,6 +38,8 @@ const SmallText: FC<ISmallTextProps> = ({ title, loading, percentUpload, statusC
                 variant="secondary"
                 size="s"
                 iconButton={<IconCloseOutlined24 />}
+                aria-label="Отменить загрузку"
+                disabled={disabled}
                 onClick={cancelUpload}
                 data-ui-dnd-small-text-button
               />

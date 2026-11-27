@@ -18,6 +18,7 @@ export default {
 };
 
 export const RadioDefault = ({ checked: initialChecked, ...args }: IRadioProps): JSX.Element => {
+  const name = React.useId();
   const [checked, setChecked] = useState(initialChecked ? args.value : '');
 
   useEffect(() => {
@@ -30,8 +31,14 @@ export const RadioDefault = ({ checked: initialChecked, ...args }: IRadioProps):
 
   return (
     <Box flexDirection="column" gap="8px">
-      <Radio {...args} checked={checked === args.value} onChange={handleChange} />
-      <Radio checked={checked === 'option 2'} onChange={handleChange} value="option 2" label="Москва" />
+      <Radio name={name} {...args} checked={checked === args.value} onChange={handleChange} />
+      <Radio
+        name={args.name ?? name}
+        checked={checked === 'option 2'}
+        onChange={handleChange}
+        value="option 2"
+        label="Москва"
+      />
       <Typography variant="Body1-Bold" color="var(--steel-90)">
         Выбранная опция: {checked}
       </Typography>
@@ -39,7 +46,7 @@ export const RadioDefault = ({ checked: initialChecked, ...args }: IRadioProps):
   );
 };
 
-RadioDefault.storyName = 'Переключение Radio по умолчанию';
+RadioDefault.storyName = 'Переключатель вариантов · Radio';
 RadioDefault.args = {
   value: 'option 1',
   label: 'Липецк',
@@ -47,6 +54,7 @@ RadioDefault.args = {
 };
 
 export const RadioColors = (): JSX.Element => {
+  const prefix = React.useId();
   const [selectedValues, setSelectedValues] = useState<Record<string, string>>(() =>
     Object.values(ERadioColors).reduce(
       (acc, color) => ({
@@ -73,6 +81,7 @@ export const RadioColors = (): JSX.Element => {
           </Typography>
           <Box flexDirection="column" gap="8px">
             <Radio
+              name={prefix + color}
               color={color}
               value={`${color}-1`}
               label="Анализ содержания углерода"
@@ -80,6 +89,7 @@ export const RadioColors = (): JSX.Element => {
               onChange={handleChange(color)}
             />
             <Radio
+              name={prefix + color}
               color={color}
               value={`${color}-2`}
               label="Коррозионные испытания"
@@ -87,6 +97,7 @@ export const RadioColors = (): JSX.Element => {
               onChange={handleChange(color)}
             />
             <Radio
+              name={prefix + color}
               color={color}
               value={`${color}-3`}
               label="Тест на твердость (disabled)"

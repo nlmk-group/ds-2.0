@@ -1,6 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
 
 import { Cell, Icon, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   DndContext,
   DragEndEvent,
@@ -21,7 +22,7 @@ import { IOperationRow } from './types';
 
 import styles from './DraggableRowsIndicator.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, initialData } from './constants';
 
 const HANDLE_COL_WIDTH = 40;
@@ -189,7 +190,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div ref={containerRef} className={styles.tableContainer}>
+      <Scrollbar ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders style={{ width: '100%' }}>
           <Thead>
             {table.getHeaderGroups().map(hg => (
@@ -213,7 +214,7 @@ const DraggableRowsIndicatorDndKitExample: FC = () => {
           </Tbody>
         </Table>
         {indicator && <div className={styles.insertLine} style={{ top: indicator.lineY }} />}
-      </div>
+      </Scrollbar>
       <DragOverlay dropAnimation={null}>
         {activeRow ? (
           <DragOverlayPreview row={activeRow} width={sourceSize.current.width} height={sourceSize.current.height} />

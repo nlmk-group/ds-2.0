@@ -1,34 +1,61 @@
-import React, { FC } from 'react';
+import React, { FC, useLayoutEffect, useRef } from 'react';
 
-import { Button, Chip, Link, Typography } from '@components/index';
+import { Button, Link, Status, Typography } from '@components/index';
 
 import { HeaderProps } from './types';
 
 import styles from '../Stories.module.scss';
 
 const Header: FC<HeaderProps> = ({ title, description, isBeta, isStable, figmaLink, codeLink, isDeprecated }) => {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const heading = rowRef.current?.firstElementChild as HTMLElement | null;
+    if (!heading || !title || !globalThis.CSS?.supports('text-box', 'trim-both cap alphabetic')) return;
+    const context = document.createElement('canvas').getContext('2d');
+    if (!context) return;
+
+    // Include the actual glyphs above the cap line and below the baseline in the flex alignment.
+    const alignTitle = () => {
+      const { fontWeight, fontSize, fontFamily } = getComputedStyle(heading);
+      context.font = `${fontWeight} ${fontSize} ${fontFamily}`;
+      const ink = context.measureText(title);
+      const capHeight = context.measureText('H').actualBoundingBoxAscent;
+      heading.style.paddingBlockStart = `${Math.max(0, ink.actualBoundingBoxAscent - capHeight)}px`;
+      heading.style.paddingBlockEnd = `${Math.max(0, ink.actualBoundingBoxDescent)}px`;
+    };
+    alignTitle();
+    document.fonts.addEventListener('loadingdone', alignTitle);
+    const compact = window.matchMedia('(max-width: 480px)');
+    compact.addEventListener('change', alignTitle);
+    return () => {
+      document.fonts.removeEventListener('loadingdone', alignTitle);
+      compact.removeEventListener('change', alignTitle);
+    };
+  }, [title]);
+
   return (
     <div className={styles['header-wrapper']}>
-      <Typography variant="Heading1" color="primary">
-        <div className={styles.header}>
-          <span>{title ?? 'Напиши заголовок компонента'}</span>
-          {isDeprecated && (
-            <Chip color="error" variant="outline" suffix="не использовать">
-              Deprecated
-            </Chip>
-          )}
-          {isBeta && (
-            <Chip color="warning" variant="outline" suffix="тестовый режим">
-              Beta
-            </Chip>
-          )}
-          {isStable && (
-            <Chip color="success" variant="outline" suffix="можно использовать">
-              Stable
-            </Chip>
-          )}
-        </div>
-      </Typography>
+      <div className={styles.header} ref={rowRef}>
+        <Typography variant="Heading1" color="primary">
+          {title}
+        </Typography>
+        {isDeprecated && (
+          <Status size="s" color="error" icon="IconBlockCloseOutlined16">
+            Устарел
+          </Status>
+        )}
+        {isBeta && (
+          <Status size="s" color="warning" icon="IconInfoOutlined16">
+            Бета-версия
+          </Status>
+        )}
+        {isStable && (
+          <Status size="s" color="success" icon="IconDoneCheckOutlined16">
+            Стабильный
+          </Status>
+        )}
+      </div>
       <div className={styles.description}>
         <Typography>{description ?? 'Напишите описание компонента'}</Typography>
       </div>

@@ -2,13 +2,15 @@ import React from 'react';
 
 import { TIconName } from '@components/Icon/IconsDirectory/unionType';
 import { Cell, Row, Status, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { EStatusColor } from '@components/Status/enums';
 import { ECellStatus } from '@components/Table/Cell/types';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from '../Example.module.scss';
 
-import { defaultColumns, defaultData, getCellProps } from '..';
+import { defaultColumns, defaultData, statusLabels } from '../constants';
+import { getCellProps } from '../utils';
 
 const TableWithStickyHeader = () => {
   const table = useReactTable({
@@ -41,7 +43,7 @@ const TableWithStickyHeader = () => {
   };
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={`${styles.tableContainer} ${styles.stickyTable}`}>
       <Table horizontalBorders verticalBorders>
         <Thead style={{ position: 'sticky', top: 0, zIndex: 1 }}>
           {table.getHeaderGroups().map(headerGroup => (
@@ -63,7 +65,7 @@ const TableWithStickyHeader = () => {
               {row.getVisibleCells().map((cell, index) =>
                 cell.column.id === 'status' ? (
                   <Cell key={cell.id} {...getCellProps(cell)}>
-                    <Status {...getStatusConfig(row.original.status)}>{row.original.status}</Status>
+                    <Status {...getStatusConfig(row.original.status)}>{statusLabels[row.original.status]}</Status>
                   </Cell>
                 ) : (
                   <Cell key={cell.id} align={index === 0 ? 'left' : undefined} {...getCellProps(cell)} />
@@ -73,7 +75,7 @@ const TableWithStickyHeader = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

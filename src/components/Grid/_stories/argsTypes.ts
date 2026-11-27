@@ -1,8 +1,14 @@
-import { sizesMappingInput } from '@components/declaration';
-
 export const argsTypes = {
+  container: {
+    description: 'Создаёт строку сетки для вложенных колонок.',
+    control: { type: 'boolean' }
+  },
+  size: {
+    description: 'Количество колонок из 12. Для адаптивной ширины передайте объект с ключами xs, sm, md, lg или xl.',
+    table: { type: { summary: 'TGridSize | IGridSize' } }
+  },
   children: {
-    description: 'Элементы и компоненты внутри Box',
+    description: 'Содержимое ячейки или вложенные колонки сетки.',
     control: { type: 'text' }
   },
   className: {
@@ -17,19 +23,6 @@ export const argsTypes = {
     description: 'В компонент можно передать цвет',
     control: { type: 'color' }
   },
-  paddingSpace: {
-    description: `Размер отступов - <b>${Object.values(sizesMappingInput).join(' | ')}</b>`,
-    table: {
-      defaultValue: {
-        summary: sizesMappingInput.m
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(sizesMappingInput),
-    control: { type: 'select' }
-  },
   height: {
     description: 'В компонент можно передать кастомное значение высоты в пикселях.',
     control: { type: 'text' }
@@ -43,11 +36,11 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   gap: {
-    description: 'В компонент можно передать кастомное значение отступов по умолчанию <b>24px</b>.',
+    description: 'Расстояние между ячейками. В режиме container по умолчанию 0, в обычном Grid — 24 px.',
     control: { type: 'text' },
     table: {
       defaultValue: {
-        summary: '24px'
+        summary: 'container ? 0 : 24px'
       },
       type: {
         summary: 'string'

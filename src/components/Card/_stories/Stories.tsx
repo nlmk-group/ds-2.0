@@ -38,171 +38,58 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) == 0 && (
         <>
           <Editor
-            minHeight={350}
-            description="Базовая карточка с контентом и индикатором состояния."
-            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
+            stacked
+            minHeight={240}
+            description="Итоги смены. У вертикальной карточки полоса статуса проходит по верхнему краю."
+            code={`import { Box, Card, Typography } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <>
-    <div style={{
-      backgroundColor: 'var(--steel-10)',
-      width: 'fit-content',
-      padding: '20px'
-  }}>
-    <Card indicatorStatus="info">
-      <div
-        style={{
-          height: '200px',
-          width: '300px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px'
-        }}
-      >
-        <Typography variant='Heading3'>
-          Заголовок
-        </Typography>
-
-        <Select
-          label="Выберите язык программирования"
-          options={[
-            {
-              label: 'C++',
-              value: 'C++'
-            },
-            {
-              label: 'C#',
-              value: 'C#'
-            }]}
-        />
-
-        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-          <Button type="button">
-            Button
-          </Button>
-          <Button type="button" variant="secondary">
-            Button
-          </Button>
-        </div>
-      </div>
+export default () => (
+  <Box justifyContent="center" width="100%" background="var(--steel-10)" p={16}>
+    <Card indicatorStatus="success" indicatorSize="m">
+      <Box flexDirection="column" gap={4}>
+        <Typography variant="Caption">Прокатный цех · Смена № 2</Typography>
+        <Typography variant="Heading4">Выпуск проката</Typography>
+      </Box>
+      <Box flexDirection="column" gap={4}>
+        <Typography variant="Heading2">186 т</Typography>
+        <Typography>103% от плана · План 180 т</Typography>
+      </Box>
     </Card>
-  </div>
-</>
-)
-`}
-          />
-
-          <Editor
-            minHeight={400}
-            description="Сравнение вертикальной и горизонтальной ориентации карточки."
-            code={`import { Button, Card, Typography, Select } from '@nlmk/ds-2.0';
-
-export default  App = () => (
-  <div style={{
-    backgroundColor: 'var(--steel-10)',
-    width: 'fit-content',
-    padding: '20px',
-    display: 'flex',
-    gap: '20px'
-  }}>
-    <Card indicatorStatus="info">
-    <div
-        style={{
-          height: '200px',
-          width: '300px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px'
-        }}
-      >
-        <Typography variant='Heading3'>
-          Заголовок
-        </Typography>
-
-        <Select
-          label="Выберите язык программирования"
-          options={[
-            {
-              label: 'C++',
-              value: 'C++'
-            },
-            {
-              label: 'C#',
-              value: 'C#'
-            }]}
-        />
-
-        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-          <Button type="button">
-            Button
-          </Button>
-          <Button type="button" variant="secondary">
-            Button
-          </Button>
-        </div>
-      </div>
-    </Card>
-
-    <Card orientation="horizontal" indicatorStatus="info">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px'}}>
-        <Typography variant='Heading3'>
-          Заголовок
-        </Typography>
-
-        <Select
-          label="Выберите язык программирования"
-          options={[
-            {
-              label: 'C++',
-              value: 'C++'
-            },
-            {
-              label: 'C#',
-              value: 'C#'
-            }]}
-        />
-
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <Button type="button">
-            Button
-          </Button>
-          <Button type="button" variant="secondary">
-            Button
-          </Button>
-        </div>
-      </div>
-    </Card>
-  </div>
-)
-`}
+  </Box>
+);`}
           />
           <Editor
-            minHeight={320}
-            description="Настройка статуса и размера индикатора, а также className."
-            code={`import { Card, Typography } from '@nlmk/ds-2.0';
+            stacked
+            minHeight={210}
+            description="Горизонтальная карточка заявки. Возьмите заявку в работу, чтобы изменить подпись, цвет и толщину боковой полосы."
+            code={`import { useState } from 'react';
+import { Box, Button, Card, Typography } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <div style={{
-    backgroundColor: 'var(--steel-10)',
-    width: 'fit-content',
-    padding: '20px',
-    display: 'flex',
-    gap: '20px'
-  }}>
-    <Card indicatorStatus="default" indicatorSize="s">
-      <Typography variant="Body1-Bold">Default</Typography>
-    </Card>
+export default () => {
+  const [inProgress, setInProgress] = useState(false);
 
-    <Card indicatorStatus="info" indicatorSize="m">
-      <Typography variant="Body1-Bold">Info</Typography>
-    </Card>
-
-    <Card indicatorStatus="warning" indicatorSize="l" className="custom-card">
-      <Typography variant="Body1-Bold">Warning</Typography>
-    </Card>
-  </div>
-)
-`}
+  return (
+    <Box justifyContent="center" width="100%" background="var(--steel-10)" p={16}>
+      <Card orientation="horizontal"
+        indicatorStatus={inProgress ? 'info' : 'warning'}
+        indicatorSize={inProgress ? 's' : 'l'}>
+        <Box flexDirection="column" alignItems="flex-start" gap={8}>
+          <Typography variant="Caption">Заявка ТО-214</Typography>
+          <Typography variant="Heading4">Замена датчика давления</Typography>
+          <Typography role="status">
+            {inProgress ? 'В работе' : 'Ожидает исполнителя'}
+          </Typography>
+        </Box>
+        <Box alignItems="center">
+          <Button type="button" variant={inProgress ? 'secondary' : 'primary'}
+            onClick={() => setInProgress(!inProgress)}>
+            {inProgress ? 'Вернуть в очередь' : 'Взять в работу'}
+          </Button>
+        </Box>
+      </Card>
+    </Box>
+  );
+};`}
           />
 
           <Properties argsTypes={argsTypes} />

@@ -3,6 +3,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import clsx from 'clsx';
 
 import styles from './SwapCells.module.scss';
@@ -45,7 +46,7 @@ const SwappableOrderCell: FC<ISwappableOrderCellProps> = ({ row, onSwap }) => {
       <Typography variant="Body1Table-Medium" color="var(--steel-90)">
         {row.order}
       </Typography>
-      <Typography variant="Caption-Medium" color="var(--steel-60)">
+      <Typography variant="Caption-Medium" color="var(--steel-70)">
         {row.priority}
       </Typography>
     </td>
@@ -70,14 +71,15 @@ const SwapCellsTableExample: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className={styles.tableContainer}>
+      <Typography variant="Body2-Medium">Перетащите заказ на другой заказ, чтобы поменять их местами.</Typography>
+      <Scrollbar className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders>
           <Thead>
             <Row>
               <Top title="Станок" style={{ width: 180 }} />
               <Top title="Смена" style={{ width: 100 }} />
               <Top title="Оператор" style={{ width: 180 }} />
-              <Top title="Заказ (столбец с интерактивными ячейками)" style={{ width: 200 }} />
+              <Top title="Заказ" style={{ width: 200 }} />
             </Row>
           </Thead>
           <Tbody>
@@ -91,7 +93,7 @@ const SwapCellsTableExample: FC = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </DndProvider>
   );
 };

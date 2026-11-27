@@ -7,7 +7,7 @@ import { ESizeMapping } from './enum';
 export type TSize = `${ESizeMapping}`;
 
 export interface ISlideToggleBaseProps extends PropsWithChildren {
-  title: string | JSX.Element;
+  title: string | React.JSX.Element;
   after?: ReactNode;
   className?: string;
   size?: TSize;

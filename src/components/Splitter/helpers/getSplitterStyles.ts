@@ -1,6 +1,6 @@
 import { CSSProperties, RefObject } from 'react';
 
-const HANDLE_HEIGHT = 12;
+const DIVIDER_SIZE = 12;
 
 export interface IGetSplitterStylesParams {
   bothSizesSet: boolean;
@@ -46,8 +46,8 @@ export const getSplitterStyles = ({
   topSizeStyle: React.CSSProperties;
   bottomSizeStyle: React.CSSProperties;
 } => {
-  const handleHeight =
-    splitterRef.current?.querySelector<HTMLElement>('[data-ui-splitter-handle]')?.offsetHeight ?? HANDLE_HEIGHT;
+  const dividerSize =
+    (isVertical ? splitterRef.current?.offsetWidth : splitterRef.current?.offsetHeight) || DIVIDER_SIZE;
 
   const sizeProp = isVertical ? 'width' : 'height';
 
@@ -57,7 +57,7 @@ export const getSplitterStyles = ({
     }
 
     if (bothSizesSet) {
-      const totalSize = topComponentSize + bottomComponentSize + (isVertical ? 0 : handleHeight);
+      const totalSize = topComponentSize + bottomComponentSize + dividerSize;
       return { [sizeProp]: totalSize };
     }
 

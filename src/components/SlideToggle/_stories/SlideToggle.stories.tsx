@@ -22,31 +22,33 @@ import { ESizeMapping } from '../enum';
 import { ISlideToggleBaseProps, ISlideToggleWithButtonProps } from '../types';
 import argsTypes from './argsTypes';
 
-const withWrapper = (Story: any) => <div className={styles.wrapper}>{<Story />}</div>;
+const withWrapper = (Story: React.ComponentType) => (
+  <div className={`${styles.wrapper} ${style.wrapper}`}>
+    <Story />
+  </div>
+);
 
 export default {
   title: 'Components/SlideToggle/Stories',
   component: SlideToggle,
   decorators: [withWrapper],
+  parameters: { layout: 'padded' },
   argTypes: argsTypes
 } as Meta<typeof SlideToggle>;
 
-const loremIpsum =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus tellus non arcu dignissim, sed venenatis tortor sollicitudin. Phasellus sodales urna ut mi porttitor blandit. Integer id ligula quis ante ultrices rhoncus. Aenean mi augue, venenatis id volutpat a, vehicula vitae massa. Nullam aliquam diam eu dui imperdiet rutrum. Nam porta quam eu dolor malesuada consequat. Cras non lacinia orci, scelerisque tincidunt mi. Praesent velit turpis, euismod a dictum et, viverra et diam. Morbi feugiat erat a bibendum commodo. Nullam facilisis pulvinar justo, et posuere leo dapibus et. Morbi quam mi, rutrum sed egestas eu, rutrum vitae ipsum. Integer dignissim ex in mauris suscipit volutpat. Donec nec ipsum rutrum lectus venenatis pulvinar. Sed molestie id ex a tristique. Sed arcu augue, rhoncus at commodo ut, rutrum in libero';
+const inspectionNote = 'Осмотрите режущую кромку и защитный кожух. Запишите результат проверки в журнал смены.';
 
 export const SlideToggleDefault = (args: ISlideToggleBaseProps): JSX.Element => {
   const [show, setShow] = useState<boolean>(false);
   return (
     <SlideToggle {...args} isShow={show} onToggle={() => setShow(!show)}>
-      <Typography variant="Body2-Medium" color="primary">
-        {loremIpsum}
-      </Typography>
+      <Typography variant="Body2-Medium">{inspectionNote}</Typography>
     </SlideToggle>
   );
 };
-SlideToggleDefault.storyName = 'SlideToggle по умолчанию';
+SlideToggleDefault.storyName = 'Раскрывающаяся панель · SlideToggle';
 SlideToggleDefault.args = {
-  title: 'Заголовок'
+  title: 'Проверка оборудования перед запуском'
 };
 
 export const SlideToggleSizes = (args: ISlideToggleBaseProps): JSX.Element => {
@@ -62,7 +64,7 @@ export const SlideToggleSizes = (args: ISlideToggleBaseProps): JSX.Element => {
         size={ESizeMapping.default}
       >
         <Typography variant="Body2-Medium" color="primary">
-          {loremIpsum}
+          {inspectionNote}
         </Typography>
       </SlideToggle>
       <SlideToggle
@@ -73,7 +75,7 @@ export const SlideToggleSizes = (args: ISlideToggleBaseProps): JSX.Element => {
         size={ESizeMapping.compact}
       >
         <Typography variant="Body2-Medium" color="primary">
-          {loremIpsum}
+          {inspectionNote}
         </Typography>
       </SlideToggle>
     </>
@@ -148,7 +150,7 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
         after={actionBlockDefault}
       >
         <Typography variant="Body2-Medium" color="primary">
-          {loremIpsum}
+          {inspectionNote}
         </Typography>
       </SlideToggle>
 
@@ -161,7 +163,7 @@ export const SlideToggleWithButton = (args: ISlideToggleWithButtonProps): JSX.El
         after={actionBlockCompact}
       >
         <Typography variant="Body2-Medium" color="primary">
-          {loremIpsum}
+          {inspectionNote}
         </Typography>
       </SlideToggle>
     </>
@@ -210,7 +212,7 @@ export const SlideToggleCustomized = (args: ISlideToggleBaseProps): JSX.Element 
   return (
     <SlideToggle {...args} isShow={show} onToggle={() => setShow(!show)} title={title} after={actionBlock}>
       <Typography variant="Body2-Medium" color="primary">
-        {loremIpsum}
+        {inspectionNote}
       </Typography>
     </SlideToggle>
   );

@@ -8,7 +8,8 @@ export enum ESizesSpinner {
   xxl = '2xl',
   xl = 'xl',
   l = 'l',
-  m = 'm'
+  m = 'm',
+  s = 's'
 }
 
 /**
@@ -29,7 +30,7 @@ export interface ISpinnerProps {
   percent?: number | null;
 
   /** Содержимое спиннера (например, иконка) */
-  children?: JSX.Element;
+  children?: React.JSX.Element;
 
   /** Процент заполнения круга спиннера. Значение от 0 до 0.9 */
   progressPercentage?: number;

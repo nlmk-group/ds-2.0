@@ -1,6 +1,7 @@
 import {
   CSSProperties,
   FC,
+  HTMLAttributes,
   MouseEvent,
   ReactNode,
   TableHTMLAttributes,
@@ -112,7 +113,7 @@ export interface ICellProps extends TdHTMLAttributes<HTMLTableDataCellElement> {
 /**
  * Пропсы для компонента строки таблицы
  */
-export interface IRowProps {
+export interface IRowProps extends HTMLAttributes<HTMLTableRowElement> {
   /** Дочерние элементы */
   children: ReactNode;
   

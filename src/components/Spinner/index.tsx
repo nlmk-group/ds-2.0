@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Typography } from '@components/index';
+import Typography from '@components/Typography';
 
 import { ISpinnerProps } from './types';
 
@@ -8,7 +8,7 @@ import styles from './Spinner.module.scss';
 
 import { ESizesSpinner } from './enums';
 
-const spinnerSizes: { [key: string]: number } = { '2xl': 96, 'xl': 56, 'l': 40, 'm': 32 };
+const spinnerSizes: { [key: string]: number } = { '2xl': 96, 'xl': 56, 'l': 40, 'm': 32, 's': 16 };
 /**
  * Компонент Spinner отображает индикатор загрузки с различными размерами, цветами и процентами выполнения.
  *
@@ -30,7 +30,7 @@ const Spinner: FC<ISpinnerProps> = ({
   progressPercentage = 0.8 // По умолчанию 80%
 }) => {
   const spinnerSize = typeof size === 'string' ? spinnerSizes[size] : size;
-  const isIcon = children?.type.name.includes('Icon');
+  const isIcon = children?.type?.name?.includes('Icon');
 
   const typographyOptionHelper = () => {
     switch (size) {
@@ -48,7 +48,7 @@ const Spinner: FC<ISpinnerProps> = ({
 
   // Константы и расчеты для SVG
   const viewBoxSize = 100;
-  const desiredStrokeWidth = 4; // Желаемая толщина линии в пикселях
+  const desiredStrokeWidth = size === ESizesSpinner.s ? 2 : 4;
   const strokeWidth = (desiredStrokeWidth * viewBoxSize) / spinnerSize;
   const radius = (viewBoxSize - strokeWidth) / 2;
   const center = viewBoxSize / 2;

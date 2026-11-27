@@ -1,12 +1,12 @@
 import React, { useMemo, useRef } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import styles from '../Example.module.scss';
 
-import { ECellStatus } from '../../Cell/types';
 import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
@@ -33,12 +33,12 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
   const virtualPaddingRight = columnVirtualizer.getTotalSize() - (virtualColumns[virtualColumns.length - 1]?.end ?? 0);
 
   return (
-    <div>
+    <div className={styles.virtualExample}>
       <Typography variant="Body1-Bold" color="var(--steel-90)">
-        (Виртуализированная таблица: {columns.length} columns)
+        {columns.length.toLocaleString('ru-RU')} столбцов
       </Typography>
 
-      <div className={styles.tableContainer} ref={tableContainerRef}>
+      <Scrollbar className={styles.tableContainer} ref={tableContainerRef}>
         <Table style={{ width: `${columnVirtualizer.getTotalSize()}px` }} horizontalBorders verticalBorders>
           <Thead
             style={{
@@ -56,7 +56,7 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                 }}
               >
                 {virtualPaddingLeft > 0 && <Top style={{ width: virtualPaddingLeft }} />}
-                {virtualColumns.map((virtualColumn, index) => {
+                {virtualColumns.map(virtualColumn => {
                   const header = headerGroup.headers[virtualColumn.index];
                   return (
                     <Top
@@ -65,7 +65,7 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                         width: header.getSize()
                       }}
                       title={flexRender(header.column.columnDef.header, header.getContext())}
-                      right={header.column.columnDef.meta?.isNumeric && index !== 0}
+                      number
                       className={styles.notSortable}
                     />
                   );
@@ -90,11 +90,10 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
                   return (
                     <Cell
                       key={cell.id}
-                      color={ECellStatus.WARNING}
                       style={{
                         width: cell.column.getSize()
                       }}
-                      align={index === 0 ? 'left' : undefined}
+                      align="center"
                       {...getCellProps(cell)}
                     />
                   );
@@ -104,7 +103,7 @@ const VirtualizedTableWithHorizontalVirtualizationExample = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </div>
   );
 };

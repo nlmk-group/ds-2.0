@@ -63,7 +63,7 @@ const items = [
   {
     id: 2,
     title: 'Требования',
-    content: 'Список обязательных условий'
+    content: 'Перед началом смены мастер проверяет состояние линии и допуски бригады. Результаты проверки фиксируются в журнале. Если оборудование требует обслуживания, запуск откладывают до подтверждения от ремонтной службы.'
   },
   {
     id: 3,
@@ -72,8 +72,8 @@ const items = [
   }
 ];
 
-export default App = () => (
-  <Accordion items={items} />
+export default () => (
+  <Accordion items={items} endIcon="arrow" />
 )
               `}
           />
@@ -102,7 +102,7 @@ const items = [
   }
 ];
 
-export default App = () => (
+export default () => (
   <Box display="flex" flexDirection="column" gap={12} width="100%">
     <Accordion size="m" items={items} />
     <Accordion size="s" items={items} />
@@ -144,7 +144,7 @@ const itemsForEndIcon = [
   }
 ];
 
-export default App = () => (
+export default () => (
   <Box display="flex" flexDirection="column" gap={12} width="100%">
     <Accordion startIcon="arrow" items={items} />
     <Accordion startIcon="plus" items={items} />
@@ -174,7 +174,7 @@ const items = [
   }
 ];
 
-export default App = () => (
+export default () => (
   <Box display="flex" flexDirection="column" gap={12} width="100%">
     <Accordion variant="default" items={items} />
     <Accordion variant="paper" items={items} />
@@ -209,7 +209,7 @@ const items = [
   }
 ];
 
-export default App = () => (
+export default () => (
   <Accordion
     items={items}
     multipleExpanded

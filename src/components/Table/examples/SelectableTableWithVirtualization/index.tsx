@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ECellState } from '@components/Table/Cell/types';
 import {
   flexRender,
@@ -85,13 +86,13 @@ const SelectableTableWithVirtualizationExample = () => {
   });
 
   return (
-    <div>
+    <div className={styles.virtualExample}>
       <Typography variant="Body1-Bold" color="var(--steel-90)">
-        (Виртуализированная таблица: {data.length} rows)
+        Поставки сырья · {data.length.toLocaleString('ru-RU')} строк · Выбрано {Object.keys(rowSelection).length}
       </Typography>
 
-      <div className={clsx(styles.tableContainer, styles.tableContainer_autoWidth)} ref={tableContainerRef}>
-        <Table style={{ display: 'grid' }} horizontalBorders verticalBorders>
+      <Scrollbar className={clsx(styles.tableContainer, styles.tableContainer_autoWidth)} ref={tableContainerRef}>
+        <Table style={{ display: 'grid', minWidth: table.getTotalSize() }} horizontalBorders verticalBorders>
           <Thead
             style={{
               display: 'grid',
@@ -116,7 +117,7 @@ const SelectableTableWithVirtualizationExample = () => {
                       key={header.id}
                       style={{
                         display: 'flex',
-                        width: size
+                        flex: isSelectColumn ? '0 0 56px' : `${size} 1 0`
                       }}
                       className={clsx({ [styles.notSortable]: !isSelectColumn })}
                       title={
@@ -145,11 +146,8 @@ const SelectableTableWithVirtualizationExample = () => {
               return (
                 <Row
                   key={row.id}
-                  ref={node => {
-                    if (node) {
-                      rowVirtualizer.measureElement(node);
-                    }
-                  }}
+                  data-index={virtualRow.index}
+                  ref={rowVirtualizer.measureElement}
                   style={{
                     position: 'absolute',
                     transform: `translateY(${virtualRow.start}px)`,
@@ -164,7 +162,7 @@ const SelectableTableWithVirtualizationExample = () => {
                         key={cell.id}
                         state={isSelected ? ECellState.SELECTED : ECellState.DEFAULT}
                         style={{
-                          width: cell.column.getSize()
+                          flex: cell.column.id === 'select' ? '0 0 56px' : `${cell.column.getSize()} 1 0`
                         }}
                         align={index === 1 ? 'left' : undefined}
                         {...(cell.column.id !== 'select' ? getCellProps(cell) : {})}
@@ -178,7 +176,7 @@ const SelectableTableWithVirtualizationExample = () => {
             })}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </div>
   );
 };

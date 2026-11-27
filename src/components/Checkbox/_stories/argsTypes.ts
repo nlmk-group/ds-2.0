@@ -11,7 +11,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   label: {
-    description: 'Текст метки чекбокса',
+    description: 'Подпись рядом с флажком. Нажатие на подпись переключает флажок.',
     table: {
       defaultValue: {
         summary: ''
@@ -32,7 +32,7 @@ export const argsTypes = {
     action: 'изменено состояние чекбокса'
   },
   value: {
-    description: 'Значение чекбокса',
+    description: 'Значение поля, передаваемое при отправке формы.',
     table: {
       type: {
         summary: 'string'

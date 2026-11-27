@@ -14,7 +14,7 @@ export type TSize = `${ESizeMapping}`;
  */
 export interface ISlideToggleBaseProps extends PropsWithChildren {
   /** Заголовок свайдера */
-  title: string | JSX.Element;
+  title: string | React.JSX.Element;
   /** Элемент после заголовка */
   after?: ReactNode;
   /** Дополнительные CSS классы */

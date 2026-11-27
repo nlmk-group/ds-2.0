@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -35,22 +35,30 @@ export const Accordion: React.FC<IAccordionProps> = ({
   disabled = false,
   ...props
 }) => {
-  const [expandedItemIds, setExpandedItemIds] = useState<TAccordionItem['id'][]>([]);
-
-  const handleExpand = (id: TAccordionItem['id']) => {
-    const isExpanded = expandedItemIds.includes(id);
-
-    if (multipleExpanded) {
-      setExpandedItemIds(prev => (isExpanded ? prev.filter(item => item !== id) : [...prev, id]));
-    } else {
-      setExpandedItemIds(() => (isExpanded ? [] : [id]));
-    }
-  };
+  const [expandedItemIds, setExpandedItemIds] = useState(() =>
+    items.filter(item => item.initiallyExpanded).map(item => item.id)
+  );
+  const previousItems = useRef(items);
 
   useEffect(() => {
-    const expandedOnStartIds = items.filter(i => i.initiallyExpanded).map(i => i.id);
-    setExpandedItemIds(expandedOnStartIds);
-  }, [items]);
+    const previousIds = new Set(previousItems.current.map(item => item.id));
+    const currentIds = new Set(items.map(item => item.id));
+    const additions = items.filter(item => item.initiallyExpanded && !previousIds.has(item.id));
+    previousItems.current = items;
+    setExpandedItemIds(previous => {
+      const retained = previous.filter(id => currentIds.has(id));
+      if (!additions.length && retained.length === previous.length) return previous;
+      if (!multipleExpanded && additions.length) return [additions[0].id];
+      return [...retained, ...additions.map(item => item.id)];
+    });
+  }, [items, multipleExpanded]);
+
+  const handleExpand = (id: TAccordionItem['id']) => {
+    setExpandedItemIds(previous => {
+      if (previous.includes(id)) return previous.filter(expandedId => expandedId !== id);
+      return multipleExpanded ? [...previous, id] : [id];
+    });
+  };
 
   return (
     <div className={clsx(styles.wrapper, className)} {...props} data-ui-accordion>

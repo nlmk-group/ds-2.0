@@ -10,6 +10,8 @@
 }
 
 .modalWrapper {
+  --modal-side-gap: 48px;
+  --modal-vertical-gap: 16px;
   position: fixed;
   top: 0;
   left: 0;
@@ -25,20 +27,22 @@
 
 .modalInner {
   position: relative;
-  display: inline-block;
-  max-width: 90%;
-  max-height: 90%;
+  display: flex;
+  min-width: 0;
+  max-width: calc(100% - 2 * var(--modal-side-gap));
 }
 
 .modal {
+  box-sizing: border-box;
   border-radius: 4px;
   background: var(--steel-10);
   padding: 0 32px 32px;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
+  overscroll-behavior: contain;
   pointer-events: auto;
   max-width: 100%;
-  max-height: 100%;
+  max-height: calc(100dvh - 2 * var(--modal-vertical-gap));
   &.resizable {
     resize: both;
     overflow: auto;
@@ -71,6 +75,23 @@
 
   &:hover {
     background: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .modalWrapper {
+    --modal-side-gap: 12px;
+    --modal-vertical-gap: 48px;
+  }
+
+  .modal {
+    padding-inline: 16px;
+  }
+
+  .modalClose {
+    top: auto;
+    bottom: calc(100% + 4px);
+    right: 0;
   }
 }
 

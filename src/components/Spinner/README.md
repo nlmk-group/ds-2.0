@@ -7,7 +7,7 @@
 ## Использование
 
 ```jsx
-import Spinner from '@nlmk/ds-2.0';
+import { Spinner } from '@nlmk/ds-2.0';
 
 const App = () => {
   return (
@@ -36,6 +36,7 @@ export default App;
 - `ESizesSpinner.xl`
 - `ESizesSpinner.l`
 - `ESizesSpinner.m`
+- `ESizesSpinner.s` — 16 px, для строки текста и слота `startIcon` кнопки.
 
 ## Стилизация
 

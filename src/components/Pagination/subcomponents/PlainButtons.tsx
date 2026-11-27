@@ -14,11 +14,12 @@ const PlainButtons = ({ maxPageCount, currentPage, setCurrentPage, start, zoomOu
       {Array.from({ length: maxPageCount }).map((_, i) => {
         const pageNumber = start + i + 1;
         return (
-          <div
+          <button
             key={i}
             onClick={() => setCurrentPage(pageNumber)}
             className={clsx(styles.btn, styles.withHover, currentPage === pageNumber && styles.selected)}
-            role="button"
+            type="button"
+            aria-current={currentPage === pageNumber ? 'page' : undefined}
           >
             <Typography
               variant={ETypographyVariants['Body1Mono-Medium']}
@@ -27,7 +28,7 @@ const PlainButtons = ({ maxPageCount, currentPage, setCurrentPage, start, zoomOu
             >
               {pageNumber}
             </Typography>
-          </div>
+          </button>
         );
       })}
     </>

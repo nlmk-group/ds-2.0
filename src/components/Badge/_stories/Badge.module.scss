@@ -2,7 +2,8 @@
   background-color: var(--unique-background);
   padding: 24px;
   border-radius: 10px;
-  width: 900px;
+  width: min(948px, 100%);
+  box-sizing: border-box;
 }
 
 .variants {
@@ -21,6 +22,7 @@
 }
 
 .grid {
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;

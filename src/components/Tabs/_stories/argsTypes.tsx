@@ -59,31 +59,38 @@ const argsTypes = {
         summary: 200
       }
     }
-  },
+  }
+};
+
+export const tabArgs = {
   label: {
-    description: 'Текст метки для таба',
+    table: { type: { summary: 'string' } },
+    description: 'Tabs.Tab. Текст метки для таба',
     control: { type: 'text' }
   },
   active: {
-    description: 'Флаг, указывающий, активен ли текущий таб',
+    description: 'Tabs.Tab. Флаг, указывающий, активен ли текущий таб',
     control: { type: 'boolean' },
     table: {
+      type: { summary: 'boolean' },
       defaultValue: {
         summary: false
       }
     }
   },
   hasBadge: {
-    description: 'Флаг, указывающий, должен ли таб отображать бейдж',
+    description: 'Tabs.Tab. Флаг, указывающий, должен ли таб отображать бейдж',
     control: { type: 'boolean' },
     table: {
+      type: { summary: 'boolean' },
       defaultValue: {
         summary: false
       }
     }
   },
   badgeChildren: {
-    description: 'Содержимое Badge',
+    table: { type: { summary: 'string | number' } },
+    description: 'Tabs.Tab. Содержимое Badge',
     control: { type: 'text' }
   },
   badgeColor: {
@@ -92,9 +99,10 @@ const argsTypes = {
     control: { type: 'select' }
   },
   hasIcon: {
-    description: 'Флаг, указывающий, должен ли таб отображать иконку',
+    description: 'Tabs.Tab. Флаг, указывающий, должен ли таб отображать иконку',
     control: { type: 'boolean' },
     table: {
+      type: { summary: 'boolean' },
       defaultValue: {
         summary: false
       }

@@ -30,7 +30,7 @@ export const FilterTipDefault = () => {
 
   return <FilterTip {...args} onClick={onClick} />;
 };
-FilterTipDefault.storyName = 'FilterTip по умолчанию';
+FilterTipDefault.storyName = 'Метка фильтра · FilterTip';
 FilterTipDefault.args = {
   text: 'ГК Партии'
 };

@@ -161,6 +161,6 @@ export interface IAutocompleteProps extends Omit<TInputProps, 'onChange' | 'colo
   style?: CSSProperties;
 }
 
-declare const Autocomplete: (props: IAutocompleteProps) => JSX.Element;
+declare const Autocomplete: (props: IAutocompleteProps) => React.JSX.Element;
 
 export default Autocomplete;

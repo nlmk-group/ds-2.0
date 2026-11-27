@@ -19,9 +19,9 @@ const Stories = (): JSX.Element => {
 
   const statusCustomIconCode = `import { Status, IconCloudDoneOutlined24 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Status icon={<IconCloudDoneOutlined24 htmlColor="var(--spectrum-green-50)" />} color="success">
-    Published
+    Опубликован
   </Status>
 )`;
 
@@ -50,8 +50,8 @@ export default App = () => (
             description="Базовое отображение статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <Status icon="IconCloudDoneOutlined24">Published</Status>
+export default () => (
+  <Status icon="IconCloudDoneOutlined24">Опубликован</Status>
 )`}
           />
 
@@ -59,13 +59,13 @@ export default  App = () => (
             description="Цветовые состояния статуса через prop color."
             code={`import { Status } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
-    <Status icon="IconCloudDoneOutlined24">Published</Status>
-    <Status icon="IconBlockCloseOutlined24" color="error">Cancelled</Status>
-    <Status icon="IconAllDoneDoubleCheckOutlined24" color="success">Pinned</Status>
-    <Status icon="IconPeopleCheckDoneOutlined24" color="warning">In progress</Status>
-    <Status icon="IconEditPenOutlined24" color="grey">Draft</Status>
+    <Status icon="IconCloudDoneOutlined24">Опубликован</Status>
+    <Status icon="IconBlockCloseOutlined24" color="error">Отменён</Status>
+    <Status icon="IconAllDoneDoubleCheckOutlined24" color="success">Закреплён</Status>
+    <Status icon="IconPeopleCheckDoneOutlined24" color="warning">В работе</Status>
+    <Status icon="IconEditPenOutlined24" color="grey">Черновик</Status>
   </>
 )`}
           />
@@ -74,10 +74,10 @@ export default  App = () =>(
             description="Варианты заливки фона через prop fill."
             code={`import { Status } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
-    <Status icon="IconCloudDoneOutlined24" fill="solid">Published</Status>
-    <Status icon="IconCloudDoneOutlined24" fill="clear">Published</Status>
+    <Status icon="IconCloudDoneOutlined24" fill="solid">Опубликован</Status>
+    <Status icon="IconCloudDoneOutlined24" fill="clear">Опубликован</Status>
   </>
 )`}
           />
@@ -87,11 +87,11 @@ export default  App = () =>(
             description="Сравнение размеров статуса."
             code={`import { Status } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
-    <Status icon="IconCloudDoneOutlined16" size="s">Published</Status>
-    <Status icon="IconCloudDoneOutlined24" size="m">Published</Status>
-    <Status icon="IconCloudDoneOutlined24" size="l">Published</Status>
+    <Status icon="IconCloudDoneOutlined16" size="s">Опубликован</Status>
+    <Status icon="IconCloudDoneOutlined24" size="m">Опубликован</Status>
+    <Status icon="IconCloudDoneOutlined24" size="l">Опубликован</Status>
   </>
 )`}
           />

@@ -81,10 +81,10 @@ export const argsTypes = {
         summary: 'false'
       },
       type: {
-        summary: '"day" | "month" | "year"'
+        summary: '"day" | "month" | "quarter" | "year"'
       }
     },
-    options: ['day', 'month', 'year'],
+    options: ['day', 'month', 'quarter', 'year'],
     control: { type: 'select' }
   },
   disableChange: {
@@ -137,10 +137,10 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   error: {
-    description: 'С ошибкой или нет'
+    description: 'Выделяет поле даты как ошибочное.'
   },
   disabled: {
-    description: 'Заблокирован ли инпут'
+    description: 'Запрещает ввод и выбор даты.'
   },
   withPortal: {
     description: 'Оборачивать ли компонент в react портал (например, для корректного отображения в модальных окнах)'
@@ -233,6 +233,7 @@ export const argsTypes = {
     action: 'изменена панель дней, месяца, квартала или года'
   },
   onSelect: {
+    table: { type: { summary: '(date: Date) => void' } },
     description: 'Callback, который будет вызван при нажатии на любое значение дня/месяца/квартала/года в календаре',
     action: 'изменен день/месяц/квартал/год'
   },

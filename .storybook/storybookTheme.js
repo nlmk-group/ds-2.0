@@ -19,7 +19,7 @@ export const storybookLightTheme = create({
   appBorderRadius: 4,
 
   // Typography
-  fontBase: '"PTRootUIWeb", sans-serif',
+  fontBase: '"PT Root UI", sans-serif',
   fontCode: 'monospace',
 
   // Text colors
@@ -47,12 +47,13 @@ export const storybookDarkTheme = create({
 
   // UI
   appBg: '#455161',
+  appPreviewBg: '#455161',
   appContentBg: '#455161ff',
   appBorderColor: '#6C7581',
   appBorderRadius: 4,
 
   // Typography
-  fontBase: '"PTRootUIWeb", sans-serif',
+  fontBase: '"PT Root UI", sans-serif',
   fontCode: 'monospace',
 
   // Text colors

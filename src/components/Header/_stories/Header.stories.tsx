@@ -58,7 +58,7 @@ export const DefaultHeader = (argTypes: IHeaderProps): ReactNode => {
   return <Header {...argTypes} />;
 };
 
-DefaultHeader.storyName = 'Header по умолчанию';
+DefaultHeader.storyName = 'Шапка страницы · Header';
 DefaultHeader.args = {
   title: 'Заголовок',
   showBack: false,

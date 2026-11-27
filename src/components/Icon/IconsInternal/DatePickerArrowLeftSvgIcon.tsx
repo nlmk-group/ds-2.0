@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 const DatePickerArrowLeftSvgIcon: FC<{
   className?: string;
   onClick?: () => void;
-}> = ({ onClick, className, ...props }): JSX.Element => {
+}> = ({ onClick, className, ...props }): React.JSX.Element => {
   return (
     <svg
       onClick={onClick}

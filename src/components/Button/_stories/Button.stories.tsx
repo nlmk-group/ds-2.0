@@ -9,7 +9,7 @@ import styles from './Button.module.scss';
 import { EButtonColor, EButtonSize, EButtonVariant } from '../enums';
 import { Button } from '../index';
 import { IButtonProps } from '../types';
-import argsTypes from './argsTypes';
+import argsTypes, { iconOptions } from './argsTypes';
 
 export default {
   title: 'Components/Button/Stories',
@@ -17,18 +17,32 @@ export default {
   argTypes: argsTypes
 };
 
-export const ButtonDefault = (args: IButtonProps): JSX.Element => {
-  return (
+export const ButtonDefault = (args: IButtonProps): JSX.Element => (
+  <Button type="button" {...args} aria-label={args.iconButton ? 'Сохранить' : undefined} />
+);
+ButtonDefault.decorators = [
+  (Story: React.ComponentType) => (
     <div className={styles.wrapper}>
-      <Button type="button" {...args}>
-        {args.children}
-      </Button>
+      <Story />
     </div>
-  );
-};
-ButtonDefault.storyName = 'Button по умолчанию';
-ButtonDefault.args = {
-  children: 'Button'
+  )
+];
+ButtonDefault.storyName = 'Основная кнопка';
+ButtonDefault.args = { children: 'Сохранить' };
+ButtonDefault.parameters = {
+  jsx: {
+    displayName: (element: React.ReactElement) =>
+      Object.entries(iconOptions).find(([, icon]) => icon?.type === element.type)?.[0] || 'Button'
+  },
+  docs: {
+    source: {
+      type: 'dynamic',
+      transform: (jsx: string) => {
+        const names = new Set(['Button', ...Array.from(jsx.matchAll(/<(Icon\w+)/g), match => match[1])]);
+        return `import { ${Array.from(names).join(', ')} } from '@nlmk/ds-2.0';\n\nexport default () => (\n  ${jsx}\n);`;
+      }
+    }
+  }
 };
 
 const sizeToIcon = {
@@ -57,6 +71,7 @@ export const IconButtons = () => {
                   color={color}
                   variant={variant}
                   size={size}
+                  aria-label="Добавить в избранное"
                   iconButton={sizeToIcon[size]}
                 />
               ))}
@@ -69,6 +84,16 @@ export const IconButtons = () => {
 };
 IconButtons.storyName = 'Кнопки-иконки';
 IconButtons.parameters = {
+  docs: {
+    description: { story: 'В галерее показаны цвета и размеры. В примере кода — основная кнопка размером m.' },
+    source: {
+      code: `import { Button, IconStarOutlined24 } from '@nlmk/ds-2.0';
+
+export default () => (
+  <Button type="button" aria-label="Добавить в избранное" iconButton={<IconStarOutlined24 />} />
+);`
+    }
+  },
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
@@ -99,10 +124,10 @@ export const ButtonsWithElements = () => {
                     startIcon={sizeToIcon[size]}
                     endIcon={sizeToIcon[size]}
                   >
-                    With Icons
+                    С иконками
                   </Button>
                   <Button type="button" color={color} variant={variant} size={size} startBadge="1" endBadge="2">
-                    With Badges
+                    С метками
                   </Button>
                   <Button
                     type="button"
@@ -114,7 +139,7 @@ export const ButtonsWithElements = () => {
                     startBadge="1"
                     endBadge="2"
                   >
-                    All Elements
+                    С иконками и метками
                   </Button>
                 </div>
               ))}
@@ -127,6 +152,30 @@ export const ButtonsWithElements = () => {
 };
 ButtonsWithElements.storyName = 'Button с элементами';
 ButtonsWithElements.parameters = {
+  docs: {
+    description: { story: 'Код показывает три кнопки из первого ряда галереи.' },
+    source: {
+      code: `import { Button, IconStarOutlined24 } from '@nlmk/ds-2.0';
+
+export default () => (
+  <>
+    <Button type="button" startIcon={<IconStarOutlined24 />} endIcon={<IconStarOutlined24 />}>
+      С иконками
+    </Button>
+    <Button type="button" startBadge="1" endBadge="2">С метками</Button>
+    <Button
+      type="button"
+      startIcon={<IconStarOutlined24 />}
+      endIcon={<IconStarOutlined24 />}
+      startBadge="1"
+      endBadge="2"
+    >
+      С иконками и метками
+    </Button>
+  </>
+);`
+    }
+  },
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };

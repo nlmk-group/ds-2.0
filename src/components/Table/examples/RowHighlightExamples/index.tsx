@@ -2,22 +2,22 @@ import React, { useMemo, useState } from 'react';
 
 import { Box, Input, OptionItem, SimpleSelect, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 
 import styles from './RowHighlightExamples.module.scss';
 
-import { defaultData } from '../constants';
 import { EditableRow, initialData, statusOptions } from '../EditableCellsTableExample/constants';
 import { getCellProps } from '../utils';
 
-const simpleData = defaultData.slice(0, 5).map(item => ({
-  ...item,
-  category: item.id % 2 === 0 ? 'Цветные металлы' : 'Черные металлы',
-  density: (Math.random() * 10 + 1).toFixed(2),
-  meltingPoint: Math.floor(Math.random() * 2000 + 500),
-  country: ['Россия', 'Китай', 'США', 'Германия', 'Япония'][Math.floor(Math.random() * 5)]
-}));
+const simpleData = [
+  { id: 1, name: 'Алюминий', category: 'Цветные металлы', density: 2.7, meltingPoint: 660, country: 'Россия' },
+  { id: 2, name: 'Медь', category: 'Цветные металлы', density: 8.96, meltingPoint: 1085, country: 'Чили' },
+  { id: 3, name: 'Железо', category: 'Чёрные металлы', density: 7.87, meltingPoint: 1538, country: 'Китай' },
+  { id: 4, name: 'Никель', category: 'Цветные металлы', density: 8.9, meltingPoint: 1455, country: 'Россия' },
+  { id: 5, name: 'Цинк', category: 'Цветные металлы', density: 7.14, meltingPoint: 420, country: 'Казахстан' }
+];
 
 const simpleColumns = [
   { header: 'ID', accessorKey: 'id', meta: { isNumeric: true } },
@@ -28,12 +28,6 @@ const simpleColumns = [
   { header: 'Страна производства', accessorKey: 'country' }
 ];
 
-/**
- * 1. Ховер на всей строке при наведении на ячейку
- * 2. Чередование цвета строк без ховера
- * 3. Ховер на всей строке И столбце одновременно
- * 4. Таблица с редактируемыми ячейками и усиленным ховером на инпутах
- */
 const RowHighlightExamples = () => {
   const table1 = useReactTable({
     data: simpleData,
@@ -157,17 +151,17 @@ const RowHighlightExamples = () => {
   });
 
   return (
-    <Box gap={40} flexDirection="column" st={{ padding: '20px' }}>
+    <Box gap={32} flexDirection="column">
       <Box gap={12} flexDirection="column">
         <Box gap={4} flexDirection="column">
           <Typography variant="Heading4" color="var(--steel-90)">
-            1. Ховер на всей строке
+            Подсветка строки
           </Typography>
           <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
             При наведении на любую ячейку подсвечивается вся строка
           </Typography>
         </Box>
-        <div className={styles.tableWrapper}>
+        <Scrollbar className={styles.tableWrapper}>
           <Table horizontalBorders verticalBorders className={styles.rowHoverTable}>
             <Thead>
               {table1.getHeaderGroups().map(headerGroup => (
@@ -192,19 +186,19 @@ const RowHighlightExamples = () => {
               ))}
             </Tbody>
           </Table>
-        </div>
+        </Scrollbar>
       </Box>
 
       <Box gap={12} flexDirection="column">
         <Box gap={4} flexDirection="column">
           <Typography variant="Heading4" color="var(--steel-90)">
-            2. Чередование строк без ховера
+            Чередование строк
           </Typography>
           <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
             Четные и нечетные строки имеют разный цвет фона, ховер отключен
           </Typography>
         </Box>
-        <div className={styles.tableWrapper}>
+        <Scrollbar className={styles.tableWrapper}>
           <Table horizontalBorders verticalBorders className={styles.stripedTable}>
             <Thead>
               {table2.getHeaderGroups().map(headerGroup => (
@@ -229,19 +223,19 @@ const RowHighlightExamples = () => {
               ))}
             </Tbody>
           </Table>
-        </div>
+        </Scrollbar>
       </Box>
 
       <Box gap={12} flexDirection="column">
         <Box gap={4} flexDirection="column">
           <Typography variant="Heading4" color="var(--steel-90)">
-            3. Ховер на строке и столбце одновременно
+            Подсветка строки и столбца
           </Typography>
           <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
             При наведении на ячейку подсвечивается вся строка и весь столбец
           </Typography>
         </Box>
-        <div className={styles.tableWrapper}>
+        <Scrollbar className={styles.tableWrapper}>
           <Table horizontalBorders verticalBorders className={styles.crosshairTable}>
             <Thead>
               {table3.getHeaderGroups().map(headerGroup => (
@@ -275,19 +269,19 @@ const RowHighlightExamples = () => {
               ))}
             </Tbody>
           </Table>
-        </div>
+        </Scrollbar>
       </Box>
 
       <Box gap={12} flexDirection="column">
         <Box gap={4} flexDirection="column">
           <Typography variant="Heading4" color="var(--steel-90)">
-            4. Таблица с редактируемыми ячейками
+            Редактируемые ячейки
           </Typography>
           <Typography variant="Body1-Medium" style={{ color: 'var(--steel-70)' }}>
             Ховер на всей строке, но ячейки с инпутами имеют более насыщенный цвет
           </Typography>
         </Box>
-        <div className={styles.tableWrapper}>
+        <Scrollbar className={styles.tableWrapper}>
           <Table horizontalBorders verticalBorders className={styles.editableRowHoverTable}>
             <Thead>
               {table4.getHeaderGroups().map(headerGroup => (
@@ -341,7 +335,7 @@ const RowHighlightExamples = () => {
               ))}
             </Tbody>
           </Table>
-        </div>
+        </Scrollbar>
       </Box>
     </Box>
   );

@@ -34,7 +34,7 @@ export const DatePickerDefault = (argTypes: any): JSX.Element => {
     </div>
   );
 };
-DatePickerDefault.storyName = 'DatePicker по умолчанию';
+DatePickerDefault.storyName = 'Выбор даты · DatePicker';
 DatePickerDefault.args = {};
 
 export const DatePickerDefaultWithError = (argTypes: any): JSX.Element => {

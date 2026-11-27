@@ -14,6 +14,7 @@ $white: var(--unique-white);
 }
 
 .avatar {
+  flex-shrink: 0;
   position: relative;
   background-color: var(--steel-50);
   color: var(--unique-white);
@@ -116,6 +117,7 @@ $white: var(--unique-white);
 }
 
 .letters {
+  color: var(--ac-avatar-placeholder-default-initials);
   @include flex-center;
   cursor: default;
   width: 100%;

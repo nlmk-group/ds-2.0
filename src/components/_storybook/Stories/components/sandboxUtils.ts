@@ -14,9 +14,7 @@ const getParameters = (parameters: ICodeSandboxParameters) => {
 };
 
 export const openCodeSandbox = (code: string, theme: Themes = Themes.LIGHT) => {
-  const { origin, pathname } = window.parent.location;
-  const path = pathname === '/' ? '' : pathname;
-  const url = `${origin}${path}`;
+  const stylesUrl = new URL('css/', document.baseURI).href;
 
   const parameters = getParameters({
     files: {
@@ -39,8 +37,8 @@ export const openCodeSandbox = (code: string, theme: Themes = Themes.LIGHT) => {
       },
       'styles.css': {
         content: `
-            @import url('${url}/css/main.css');
-            @import url('https://fonts.cdnfonts.com/css/pt-root-ui');
+            @import url('${stylesUrl}main.css');
+            @import url('${stylesUrl}pt-root-ui.css');
             html, body {
                 font-family: 'PT Root UI', sans-serif;
             }

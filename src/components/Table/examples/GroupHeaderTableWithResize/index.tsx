@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ColumnResizeMode, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const GroupHeaderTableWithResizeExample = () => {
@@ -24,12 +25,12 @@ const GroupHeaderTableWithResizeExample = () => {
   });
 
   return (
-    <div className={styles.tableContainer} style={{ width: table.getCenterTotalSize(), height: '500px' }}>
+    <Scrollbar className={styles.tableContainer} style={{ maxHeight: 500 }}>
       <Table verticalBorders horizontalBorders style={{ width: table.getCenterTotalSize() }}>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Row key={headerGroup.id}>
-              {headerGroup.headers.map((header, index) => {
+              {headerGroup.headers.map(header => {
                 if (!header || !header.column) return null;
 
                 const columnRelativeDepth = header.depth - header.column.depth;
@@ -62,7 +63,8 @@ const GroupHeaderTableWithResizeExample = () => {
                     onTouchStart={header.getResizeHandler()}
                     onDoubleClick={() => header.column.resetSize()}
                     title={flexRender(header.column.columnDef.header, header.getContext())}
-                    right={header.column.columnDef.meta?.isNumeric && index !== 0}
+                    number={header.colSpan > 1}
+                    right={header.column.columnDef.meta?.isNumeric && header.column.id !== 'id'}
                   />
                 );
               })}
@@ -86,7 +88,7 @@ const GroupHeaderTableWithResizeExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

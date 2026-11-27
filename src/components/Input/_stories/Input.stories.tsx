@@ -11,6 +11,8 @@ import Input from '..';
 import { DefaultHelper, ErrorHelper, SuccessHelper, WarningHelper } from '../mock/helpers';
 import { TInputProps } from '../types';
 import argsTypes from './argsTypes';
+import FormValidationExample from './FormValidationExample';
+import formSource from './FormValidationExample.tsx?raw';
 
 const labelText = 'Label';
 const helperText = 'Helper text';
@@ -58,7 +60,7 @@ export const InputDefault = (args: TInputProps): JSX.Element => {
   );
 };
 
-InputDefault.storyName = 'Input по умолчанию';
+InputDefault.storyName = 'Поле ввода · Input';
 InputDefault.args = {
   label: labelText,
   placeholder: '',
@@ -282,4 +284,10 @@ InputWithAllIcons.storyName = 'Input со всеми иконками';
 InputWithAllIcons.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
+};
+
+export const FormValidation = () => <FormValidationExample />;
+FormValidation.storyName = 'Заявка со сводкой ошибок';
+FormValidation.parameters = {
+  docs: { source: { code: formSource.replace("'@components/index'", "'@nlmk/ds-2.0'") } }
 };

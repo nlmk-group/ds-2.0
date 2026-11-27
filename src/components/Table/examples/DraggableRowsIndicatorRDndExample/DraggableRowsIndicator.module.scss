@@ -1,14 +1,27 @@
 .tableContainer {
+  box-sizing: border-box;
+  overflow: auto;
   position: relative;
-  width: 800px;
+  width: 100%;
   max-width: 100%;
   border: 1px solid var(--unique-divider);
+  border-radius: 4px;
 }
 
 .handle {
   display: inline-flex;
   align-items: center;
   cursor: grab;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  padding: 4px;
+  &:focus-visible {
+    outline: 2px solid var(--brand-sapphire-60);
+  }
+  &:active {
+    cursor: grabbing;
+  }
 
   path {
     fill: var(--steel-70);

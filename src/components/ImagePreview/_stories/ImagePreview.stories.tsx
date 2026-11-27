@@ -65,7 +65,7 @@ export const ImagePreviewDefault = (argTypes: IImagePreviewProps): JSX.Element =
   return <ImagePreview {...argTypes} />;
 };
 
-ImagePreviewDefault.storyName = 'ImagePreview c несколькими изображениями';
+ImagePreviewDefault.storyName = 'Просмотр изображений · ImagePreview';
 ImagePreviewDefault.args = {
   items: makeItems(MOCK_ITEMS, 15),
   previewImgSize: 180

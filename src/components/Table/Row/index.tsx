@@ -1,9 +1,7 @@
-import React, { CSSProperties, forwardRef, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
-interface IRowProps {
+interface IRowProps extends HTMLAttributes<HTMLTableRowElement> {
   children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
 }
 
 const Row = forwardRef<HTMLTableRowElement, IRowProps>(({ children, className, style, ...props }, ref) => (

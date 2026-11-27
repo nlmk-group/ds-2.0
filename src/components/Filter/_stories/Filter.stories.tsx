@@ -52,7 +52,7 @@ const hiddenControlsParams = {
 export const FilterDefault = (args: IFilterProps): JSX.Element => {
   return <Filter {...args} filterTypeOptions={filterTypeOptions} filterValueOptions={filterValueOptions} />;
 };
-FilterDefault.storyName = 'Filter по умолчанию';
+FilterDefault.storyName = 'Фильтр · Filter';
 FilterDefault.args = {
   defaultValue: '',
   defaultFilterType: 'contains',

@@ -6,7 +6,7 @@ import Dropdown from './index';
 
 jest.mock('@components/Button', () => {
   const MockButton = (
-    props: JSX.IntrinsicAttributes &
+    props: React.JSX.IntrinsicAttributes &
       ClassAttributes<HTMLButtonElement> &
       ButtonHTMLAttributes<HTMLButtonElement> & {
         startIcon?: React.ReactNode;

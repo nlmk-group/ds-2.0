@@ -1,7 +1,7 @@
-import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import { ComponentReference } from '@components/_storybook/ArgumentsTable/ComponentReference';
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
 
 import { ImagePreview } from '..';
-import { DecoratorDefault } from '../../_storybook/Decorator.stories';
 import Stories from './Stories';
 
 <Meta
@@ -17,8 +17,8 @@ import Stories from './Stories';
   }}
 />
 
-<Story of={DecoratorDefault} name="Декоратор" />
-
 <Unstyled>
-  <Stories />
+  <ComponentReference.Provider value={ImagePreview}>
+    <Stories />
+  </ComponentReference.Provider>
 </Unstyled>

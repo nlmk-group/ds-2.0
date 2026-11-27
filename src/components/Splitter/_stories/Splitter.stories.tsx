@@ -27,9 +27,9 @@ const WrapperDecorator = (Story: any) => {
   return (
     <Box
       alignItems="flex-start"
-      justifyContent="center"
-      st={{ height: '530px', maxWidth: '1400px', marginTop: '40px', borderRadius: '10px' }}
-      className={styles.wrapper}
+      justifyContent="safe center"
+      st={{ overflow: 'auto', height: 'clamp(320px, 60vh, 480px)', borderRadius: '10px' }}
+      className={`${styles.wrapper} ${style.stage}`}
     >
       <Story />
     </Box>
@@ -135,54 +135,39 @@ export const SplitterDefault = (): ReactNode => {
 
   return <Splitter topComponent={<TopComponent />} bottomComponent={bottomComponent} />;
 };
-SplitterDefault.storyName = 'Splitter по умолчанию';
+SplitterDefault.storyName = 'Разделение панелей · Splitter';
 
-export const SplitterImages = (): ReactNode => {
-  const topComponent = (
-    <div className={style['wrapper-light']}>
-      <IconLogotype className={style['icon-light']} />
-    </div>
-  );
-
-  const bottomComponent = (
-    <div className={style['wrapper-dark']}>
-      <IconLogotype className={style['icon-dark']} />
-    </div>
-  );
-
-  return <Splitter bottomComponent={bottomComponent} topComponent={topComponent} />;
-};
-SplitterImages.storyName = 'Splitter c логотипами';
+export const SplitterImages = (): ReactNode => (
+  <div className={style.comparison} role="group" aria-label="Сравнение логотипа на тёмном и светлом фоне">
+    <Splitter
+      topComponent={
+        <div className={style.darkLayer}>
+          <IconLogotype />
+        </div>
+      }
+      bottomComponent={
+        <div className={style.lightLayer}>
+          <IconLogotype />
+        </div>
+      }
+    />
+  </div>
+);
+SplitterImages.storyName = 'Сравнение логотипа · Splitter';
 
 export const SplitterVertical = (): ReactNode => {
   const leftComponent = (
-    <div
-      className={style['wrapper-light']}
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
-    >
-      <Box flexDirection="column" alignItems="center" gap="16px">
-        <IconLogotype className={style['icon-light']} />
-        <Typography variant="Heading4">Левая панель</Typography>
-        <Typography variant="Body1-Medium">Содержимое левой части</Typography>
-      </Box>
-    </div>
+    <Box className={style.pane} flexDirection="column" justifyContent="center" alignItems="center" gap={8}>
+      <Typography variant="Heading4">Задание смены</Typography>
+      <Typography>Проверить линию прокатки перед запуском.</Typography>
+    </Box>
   );
 
   const rightComponent = (
-    <div
-      className={style['wrapper-dark']}
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
-    >
-      <Box flexDirection="column" alignItems="center" gap="16px">
-        <IconLogotype className={style['icon-dark']} />
-        <Typography variant="Heading4" className={style['text-dark']}>
-          Правая панель
-        </Typography>
-        <Typography variant="Body1-Medium" className={style['text-dark']}>
-          Содержимое правой части
-        </Typography>
-      </Box>
-    </div>
+    <Box className={style.pane} flexDirection="column" justifyContent="center" alignItems="center" gap={8}>
+      <Typography variant="Heading4">Исполнитель</Typography>
+      <Typography>Мастер участка</Typography>
+    </Box>
   );
 
   return <Splitter topComponent={leftComponent} bottomComponent={rightComponent} orientation="vertical" />;
@@ -203,8 +188,8 @@ export const VerticalSplitterWithSizes = (): ReactNode => (
   <Splitter
     topComponent={<TopComponent />}
     bottomComponent={<BottomComponent />}
-    topComponentSize={700}
-    bottomComponentSize={240}
+    topComponentSize={520}
+    bottomComponentSize={340}
     orientation={ESplitterOrientation.vertical}
   />
 );

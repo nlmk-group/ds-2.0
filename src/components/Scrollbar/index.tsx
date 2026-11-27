@@ -7,12 +7,9 @@ import { EOverflow, IScrollbarProps } from './types';
 import styles from './Scrollbar.module.scss';
 
 const Scrollbar = forwardRef<HTMLDivElement, IScrollbarProps>(
-  (
-    { className, style, children, overflowX = EOverflow.hidden, overflowY = EOverflow.auto, overflow = EOverflow.auto },
-    ref
-  ) => {
+  ({ className, style, children, overflowX = EOverflow.auto, overflowY = EOverflow.auto, overflow }, ref) => {
     const isSafari = () => {
-      const userAgent = navigator.userAgent;
+      const userAgent = typeof navigator === 'undefined' ? '' : navigator.userAgent;
       return /^((?!chrome|android).)*safari/i.test(userAgent);
     };
 
@@ -20,9 +17,8 @@ const Scrollbar = forwardRef<HTMLDivElement, IScrollbarProps>(
 
     const combinedStyle: CSSProperties = {
       ...style,
-      overflowX,
-      overflowY,
-      overflow
+      overflowX: overflow ?? overflowX,
+      overflowY: overflow ?? overflowY
     };
 
     return (

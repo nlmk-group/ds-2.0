@@ -59,13 +59,13 @@ const File: FC<IFileProps> = ({
   indeterminate,
   className
 }) => {
-  const TickIcon = (): JSX.Element => (
+  const TickIcon = (): React.JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="TICK_ICON">
       <IconTaskOutlined32 htmlColor={'var(--brand-sapphire-60)'} />
     </div>
   );
 
-  const CheckedIcon = (): JSX.Element => (
+  const CheckedIcon = (): React.JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="CHECKED_ICON">
       <Checkbox
         checked={checkedValue !== undefined ? checkedValue : checked}
@@ -75,13 +75,13 @@ const File: FC<IFileProps> = ({
     </div>
   );
 
-  const DefaultIcon = (): JSX.Element => (
+  const DefaultIcon = (): React.JSX.Element => (
     <div className={styles['icon-wrapper']} data-testid="DEFAULT_ICON">
       <IconInsertDriveFileOutlined32 htmlColor={'var(--steel-70)'} />
     </div>
   );
 
-  const IconHelper = (): JSX.Element => {
+  const IconHelper = (): React.JSX.Element => {
     if (empty) return <></>;
     if (checked) return <CheckedIcon />;
     if (tick) return <TickIcon />;

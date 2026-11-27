@@ -2,7 +2,7 @@ import { ERadioColors } from '../enums';
 
 export const argsTypes = {
   disabled: {
-    description: 'Условие блокировки доступа к компоненту',
+    description: 'Запрещает выбирать этот вариант мышью и с клавиатуры.',
     table: {
       defaultValue: {
         summary: 'false'
@@ -14,11 +14,8 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   value: {
-    description: 'Значение для однозначной идентификации какой из компонентов Radio был выбран пользователем',
+    description: 'Значение варианта. После выбора оно доступно в event.target.value.',
     table: {
-      defaultValue: {
-        summary: ''
-      },
       type: {
         summary: 'string'
       }
@@ -26,7 +23,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   label: {
-    description: 'Необязательное свойство. Текст справа от radio button',
+    description: 'Подпись рядом с переключателем. Нажатие на подпись выбирает вариант.',
     table: {
       defaultValue: {
         summary: ''
@@ -38,7 +35,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   checked: {
-    description: 'Состояние активного компонента',
+    description: 'Отмечает вариант как выбранный. В управляемой группе сравните value с текущим значением.',
     table: {
       defaultValue: {
         summary: 'false'
@@ -50,7 +47,7 @@ export const argsTypes = {
     control: { type: 'boolean' }
   },
   color: {
-    description: 'Цветовой вариант компонента',
+    description: 'Цвет индикатора выбранного варианта.',
     table: {
       defaultValue: {
         summary: 'brand'
@@ -65,6 +62,6 @@ export const argsTypes = {
     }
   },
   onChange: {
-    description: 'Callback для обработчки события изменения состояния Radio'
+    description: 'Вызывается при выборе варианта. Запишите event.target.value в состояние группы.'
   }
 };

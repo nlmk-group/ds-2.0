@@ -74,3 +74,8 @@ describe('src/components/Checkbox', () => {
     expect(handleChange).toHaveBeenCalled();
   });
 });
+
+test('forwards the explicit accessible name and description to the native input', () => {
+  const { getByRole } = render(<Checkbox label="Строка" aria-label="Выбрать партию" aria-describedby="details" />);
+  expect(getByRole('checkbox', { name: 'Выбрать партию' })).toHaveAttribute('aria-describedby', 'details');
+});

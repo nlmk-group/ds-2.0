@@ -70,7 +70,7 @@ const Tooltip: FC<ITooltipProps> = ({
     }
   };
 
-  const renderTitle = (title: string): JSX.Element => {
+  const renderTitle = (title: string): React.JSX.Element => {
     return (
       <Typography
         className={styles['tooltip-title']}
@@ -82,7 +82,7 @@ const Tooltip: FC<ITooltipProps> = ({
     );
   };
 
-  const renderDescription = (description: string): JSX.Element => {
+  const renderDescription = (description: string): React.JSX.Element => {
     return (
       <Typography
         className={styles['tooltip-description']}

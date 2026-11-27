@@ -1,10 +1,15 @@
 .tableContainer {
-  width: 1200px;
+  box-sizing: border-box;
+  width: 100%;
   max-width: 100%;
   overflow: auto;
   position: relative;
   border: 1px solid var(--unique-divider);
   border-radius: 4px;
+}
+
+tr > :has(+ .pinnedColumnRight) {
+  border-right-width: 0;
 }
 
 .pinnedColumnRight {

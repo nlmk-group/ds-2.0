@@ -10,7 +10,7 @@ import { Tabs } from '@components/index';
 
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
-import argsTypes from './argsTypes';
+import argsTypes, { tabArgs } from './argsTypes';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=45-1167';
 
@@ -214,7 +214,7 @@ export default App;
           />
           <Editor description="Вертикальные табы с расположением слева от контента." code={verticalTabsCode} />
           <Editor description="Вертикальные табы с расположением справа от контента." code={verticalTabsRightCode} />
-          <Properties argsTypes={argsTypes} />
+          <Properties argsTypes={argsTypes} related={[{ name: 'Tabs.Tab', component: Tabs.Tab, args: tabArgs }]} />
         </>
       )}
       {Number(activeTab) == 1 && <FigmaEmbed url={FIGMA_LINK} />}

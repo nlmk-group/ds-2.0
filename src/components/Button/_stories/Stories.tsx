@@ -11,6 +11,7 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import argsTypes from './argsTypes';
+import { loadingButtonExample } from './loadingButtonExample';
 
 const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?node-id=117-712';
 
@@ -41,56 +42,61 @@ const Stories = (): JSX.Element => {
             description="Сравнение размеров кнопки."
             code={`import { Button } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Button type="button">
-      Button
+      Подтвердить
     </Button>
     <Button type="button" size="s">
-      Button
+      Подтвердить
     </Button>
     <Button type="button" size="xs">
-      Button
+      Подтвердить
     </Button>
   </>
 )`}
           />
 
           <Editor
+            minHeight={200}
+            description="Компактная кнопка с индикатором 16 px. Нажмите «Сохранить», чтобы увидеть состояние загрузки."
+            code={loadingButtonExample}
+          />
+          <Editor
             minHeight={500}
             description="Цветовые схемы и варианты отображения кнопки."
             code={`import { Button, Box } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box display="flex" flexDirection="column" gap={12}>
     <Box display="flex" gap={8}>
-      <Button type="button" color="brand">Brand Primary</Button>
-      <Button type="button" color="brand" variant="secondary">Brand Secondary</Button>
+      <Button type="button" color="brand">Основная · сплошная</Button>
+      <Button type="button" color="brand" variant="secondary">Основная · вторичная</Button>
     </Box>
 
     <Box display="flex" gap={8}>
-      <Button type="button" color="grey">Grey Primary</Button>
-      <Button type="button" color="grey" variant="secondary">Grey Secondary</Button>
+      <Button type="button" color="grey">Нейтральная · сплошная</Button>
+      <Button type="button" color="grey" variant="secondary">Нейтральная · вторичная</Button>
     </Box>
 
     <Box display="flex" gap={8}>
-      <Button type="button" color="ghost">Ghost Primary</Button>
-      <Button type="button" color="ghost" variant="secondary">Ghost Secondary</Button>
+      <Button type="button" color="ghost">Прозрачная · сплошная</Button>
+      <Button type="button" color="ghost" variant="secondary">Прозрачная · вторичная</Button>
     </Box>
 
     <Box display="flex" gap={8}>
-      <Button type="button" color="error">Error Primary</Button>
-      <Button type="button" color="error" variant="secondary">Error Secondary</Button>
+      <Button type="button" color="error">Ошибка · сплошная</Button>
+      <Button type="button" color="error" variant="secondary">Ошибка · вторичная</Button>
     </Box>
 
     <Box display="flex" gap={8}>
-      <Button type="button" color="warning">Warning Primary</Button>
-      <Button type="button" color="warning" variant="secondary">Warning Secondary</Button>
+      <Button type="button" color="warning">Предупреждение · сплошная</Button>
+      <Button type="button" color="warning" variant="secondary">Предупреждение · вторичная</Button>
     </Box>
 
     <Box display="flex" gap={8}>
-      <Button type="button" color="success">Success Primary</Button>
-      <Button type="button" color="success" variant="secondary">Success Secondary</Button>
+      <Button type="button" color="success">Успех · сплошная</Button>
+      <Button type="button" color="success" variant="secondary">Успех · вторичная</Button>
     </Box>
   </Box>
 )`}
@@ -99,7 +105,7 @@ export default App = () => (
             description="Кнопка с иконкой в начале и в конце текста."
             code={`import { Button, IconArrowLeftOutlined24, IconArrowRightOutlined24 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Button
       type="button"
@@ -121,7 +127,7 @@ export default App = () => (
             description="Кнопка с бейджами в начале и в конце текста."
             code={`import { Button } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Button type="button" startBadge={2}>
       Входящие
@@ -136,7 +142,7 @@ export default App = () => (
             description="Режим iconButton для компактных действий."
             code={`import { Button, IconDeleteBinOutlined24, IconArticleOutlined24 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Button
       type="button"
@@ -157,7 +163,7 @@ export default App = () => (
             description="Состояние disabled для блокировки действия."
             code={`import { Button } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Button type="button" disabled>
       Недоступно
@@ -172,7 +178,7 @@ export default App = () => (
             description="Кастомизация кнопки через className и style."
             code={`import { Button } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Button
     type="button"
     className="custom-button"

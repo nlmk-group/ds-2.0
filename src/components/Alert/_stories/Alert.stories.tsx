@@ -63,7 +63,7 @@ export const AlertDefault = ({
     </Alert>
   );
 };
-AlertDefault.storyName = 'Alert по умолчанию';
+AlertDefault.storyName = 'Предупреждение · Alert';
 AlertDefault.args = {
   title: 'Alert по умолчанию',
   showChildren: false,

@@ -15,6 +15,7 @@ const argsTypes = {
     control: { type: 'select' }
   },
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Компонент отображаемый при раскрытии компонента',
     control: { type: 'object' }
   },

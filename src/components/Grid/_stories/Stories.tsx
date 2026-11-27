@@ -14,642 +14,94 @@ import { argsTypes } from './argsTypes';
 
 const FIGMA_LINK = 'https://www.figma.com/design/UrNaiI72SjVg0aHW6NYVCi/NLMK-Grid?node-id=207-40301';
 
-const gridExampleCode = `import { Grid, Box } from '@nlmk/ds-2.0';
+const summaryCode = `import { Box, Grid, Typography } from '@nlmk/ds-2.0';
 
-const App = () => (
-    <Grid borderRadius="4px" st={{ width: "100%", padding: 0 }}>
-      {Array.from({ length: 3 }, (_, index) => (
-        <Box
-          key={index}
-          px="8px"
-          py="16px"
-          borderRadius="4px"
-          background="var(--spectrum-sky-40)"
-          st={{ flex: '1' }}
-        >
-          Контент {index + 1}
+const metrics = [
+  { label: 'План смены', value: '1 200 т' },
+  { label: 'Выпущено', value: '960 т' },
+  { label: 'До конца смены', value: '240 т' }
+];
+
+export default () => (
+  <Grid container gap={16}>
+    {metrics.map(({ label, value }) => (
+      <Grid key={label} size={{ xs: 12, sm: 4 }}>
+        <Box p={16} flexDirection="column" gap={8} background="var(--steel-20)" borderRadius={4}>
+          <Typography variant="Body2-Medium">{label}</Typography>
+          <Typography variant="Heading3">{value}</Typography>
         </Box>
-      ))}
-    </Grid>
-);
-export default App;
-`;
+      </Grid>
+    ))}
+  </Grid>
+)`;
 
-const equalWidthColumnsCode = `import { Grid, Box } from '@nlmk/ds-2.0';
+const detailsCode = `import { Box, Grid, Typography } from '@nlmk/ds-2.0';
 
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 2
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            2 из 2
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            2 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            3 из 3
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const settingOneColumnWidthCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            2 из 3 (шире)
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            3 из 3
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="58.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            2 из 3 (шире)
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            3 из 3
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const variableWidthContentCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="16.67%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="auto">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Переменная ширина контента
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="16.67%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            3 из 3
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            1 из 3
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="auto">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Переменная ширина контента
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="16.67%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            3 из 3
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const equalWidthMultiRowCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Колонка
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Колонка
-          </Box>
-        </Grid.Column>
-        <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" width="100%" />
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Колонка
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Колонка
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const verticalAlignmentCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" alignItems="start">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" alignItems="center">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" alignItems="end">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из трех колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const horizontalAlignmentCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" justifyContent="center">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" justifyContent="space-around">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" justifyContent="space-between">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Одна из двух колонок
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const columnWrappingCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="75%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-9
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="33.33%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-4
-          </Box>
-          <br />
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Поскольку 9 + 4 = 13 &gt; 12, этот div шириной 4 колонки переносится на новую строку как единое целое.
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-6
-          </Box>
-          <br />
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            Последующие колонки продолжаются на новой строке.
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const columnBreaksCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
-    <Grid borderRadius="4px">
-      <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)">
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-6
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-6
-          </Box>
-        </Grid.Column>
-        <Grid.Row borderRadius="4px" background="var(--spectrum-red-30)" width="100%" />
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-6
-          </Box>
-        </Grid.Column>
-        <Grid.Column borderRadius="4px" background="var(--spectrum-sky-40)" width="50%">
-          <Box
-            st={{ flex: '1' }}
-            px="8px"
-            py="16px"
-            borderRadius="4px"
-            background="var(--spectrum-sky-40)"
-          >
-            .col-6
-          </Box>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-);
-export default App;
-`;
-
-const responsiveContainerCode = `import { Grid, Box } from '@nlmk/ds-2.0';
-
-const App = () => (
+export default () => (
   <Grid container gap={16}>
     <Grid size={{ xs: 12, md: 8 }}>
-      <Box background="var(--spectrum-sky-40)" borderRadius="4px" px="8px" py="16px">
-        Основной блок: 12 колонок на xs, 8 колонок на md+
+      <Box p={16} flexDirection="column" gap={8} background="var(--steel-20)" borderRadius={4}>
+        <Typography variant="Heading4">План отгрузки</Typography>
+        <Typography>До 14:00 подготовить рулоны к погрузке на второй путь.</Typography>
       </Box>
     </Grid>
     <Grid size={{ xs: 12, md: 4 }}>
-      <Box background="var(--spectrum-red-30)" borderRadius="4px" px="8px" py="16px">
-        Боковой блок: 12 колонок на xs, 4 колонки на md+
+      <Box p={16} flexDirection="column" gap={8} background="var(--steel-20)" borderRadius={4}>
+        <Typography variant="Heading4">Ответственный</Typography>
+        <Typography>Мастер смены</Typography>
       </Box>
     </Grid>
   </Grid>
-);
-export default App;
-`;
+)`;
+
+const wrappingCode = `import { useState } from 'react';
+import { Box, Grid, ToggleButtonGroup } from '@nlmk/ds-2.0';
+
+const stations = ['Резка', 'Прокатка', 'Отделка', 'Упаковка'];
+
+export default () => {
+  const [columns, setColumns] = useState(2);
+
+  return (
+    <Box width="100%" flexDirection="column" gap={16}>
+      <div role="group" aria-label="Колонок в строке">
+        <ToggleButtonGroup size="s">
+          {[1, 2, 3].map(count => (
+            <ToggleButtonGroup.Button key={count} active={columns === count} onClick={() => setColumns(count)}>
+              <ToggleButtonGroup.Button.Label>{count}</ToggleButtonGroup.Button.Label>
+            </ToggleButtonGroup.Button>
+          ))}
+        </ToggleButtonGroup>
+      </div>
+      <Grid container gap={12}>
+        {stations.map(station => (
+          <Grid key={station} size={columns === 1 ? 12 : columns === 2 ? 6 : 4}>
+            <Box p={8} background="var(--steel-20)" borderRadius={4}>{station}</Box>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+}`;
+
+const rowsCode = `import { Grid, Typography } from '@nlmk/ds-2.0';
+
+export default () => (
+  <Grid width="100%" flexDirection="column" gap={12}>
+    {['Утренняя', 'Вечерняя'].map((shift, index) => (
+      <Grid.Row key={shift} justifyContent="space-between" alignItems="center" gap={8}
+        p={16} background="var(--steel-20)" borderRadius={4} st={{ boxSizing: 'border-box' }}>
+        <Grid.Column gap={4}>
+          <Typography variant="Heading4">{shift} смена</Typography>
+          <Typography variant="Body2-Medium">{index === 0 ? '07:00 — 15:00' : '15:00 — 23:00'}</Typography>
+        </Grid.Column>
+        <Grid.Column>
+          <Typography>{index === 0 ? '18 сотрудников' : '16 сотрудников'}</Typography>
+        </Grid.Column>
+      </Grid.Row>
+    ))}
+  </Grid>
+)`;
 
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
@@ -675,46 +127,24 @@ const Stories = (): JSX.Element => {
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            minHeight={400}
-            description="Базовая настройка контейнера через стандартные пропсы и проп st."
-            code={gridExampleCode}
-          />
-          <Editor minHeight={400} description="Колонки равной ширины в строках." code={equalWidthColumnsCode} />
-          <Editor
-            minHeight={400}
-            description="Настройка ширины одной колонки внутри строки."
-            code={settingOneColumnWidthCode}
+            stacked
+            description="Сводка смены. При ширине окна от 600 px три показателя стоят в ряд, на телефоне — друг под другом."
+            code={summaryCode}
           />
           <Editor
-            minHeight={400}
-            description="Колонка с переменной шириной контента."
-            code={variableWidthContentCode}
+            stacked
+            description="Основной блок и боковая колонка. От 960 px они занимают 8 и 4 доли сетки из 12. Ниже этого порога каждый блок занимает всю строку."
+            code={detailsCode}
           />
           <Editor
-            minHeight={400}
-            description="Колонки равной ширины с переносом на несколько строк."
-            code={equalWidthMultiRowCode}
+            stacked
+            description="Перенос ячеек. Выберите, сколько участков помещать в строку, и проследите, куда переместится упаковка."
+            code={wrappingCode}
           />
           <Editor
-            minHeight={400}
-            description="Вертикальное выравнивание колонок через alignItems."
-            code={verticalAlignmentCode}
-          />
-          <Editor
-            minHeight={400}
-            description="Горизонтальное выравнивание колонок через justifyContent."
-            code={horizontalAlignmentCode}
-          />
-          <Editor
-            minHeight={400}
-            description="Перенос колонок при превышении ширины строки."
-            code={columnWrappingCode}
-          />
-          <Editor minHeight={400} description="Явный разрыв строки между группами колонок." code={columnBreaksCode} />
-          <Editor
-            minHeight={400}
-            description="Адаптивная сетка через container и size по брейкпоинтам."
-            code={responsiveContainerCode}
+            stacked
+            description="Строки и вложенные колонки. Название смены и время сгруппированы слева, численность выровнена по правому краю."
+            code={rowsCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

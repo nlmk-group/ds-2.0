@@ -1,4 +1,8 @@
 export const argsTypes = {
+  children: {
+    description: 'Элементы Breadcrumbs.Crumb в порядке от главной страницы до текущей.',
+    table: { type: { summary: 'ReactNode' } }
+  },
   width: {
     description: 'Ширина компонента',
     control: { type: 'text' }

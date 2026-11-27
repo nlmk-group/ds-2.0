@@ -4,7 +4,7 @@ import styles from './IconsInternal.module.scss';
 
 import { ISvgProps } from '../types';
 
-const StarSvgIcon: FC<ISvgProps> = (props: ISvgProps): JSX.Element => {
+const StarSvgIcon: FC<ISvgProps> = (props: ISvgProps): React.JSX.Element => {
   return (
     <svg
       width="20"

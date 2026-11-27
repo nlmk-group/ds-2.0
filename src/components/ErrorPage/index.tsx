@@ -22,7 +22,7 @@ const ErrorPage: FC<ErrorPageProps> = memo(
     const ImageSrc = errorImagesByCode[errorCode as ErrorKeys] || errorImagesByCode.default;
     return (
       <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%" {...props}>
-        <Box display="flex" flexDirection="column" alignItems="center" gap="60px">
+        <Box display="flex" flexDirection="column" alignItems="center" gap="60px" className={styles.content}>
           <ImageSrc />
           <Box display="flex" flexDirection="column" gap="32px" className={styles.text}>
             <Typography variant="Heading1" color="textPrimary">

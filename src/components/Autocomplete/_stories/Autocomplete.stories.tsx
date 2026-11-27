@@ -71,7 +71,7 @@ export const AutocompleteDefault = (args: IAutocompleteProps): JSX.Element => {
     />
   );
 };
-AutocompleteDefault.storyName = 'Autocomplete по умолчанию';
+AutocompleteDefault.storyName = 'Автодополнение · Autocomplete';
 
 export const AutocompleteWithCustomTotalText = (): JSX.Element => {
   const [items] = useState<IAutocompleteValue[]>(defaultOptions);

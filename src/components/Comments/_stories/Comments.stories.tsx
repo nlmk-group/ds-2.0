@@ -61,7 +61,7 @@ export const CommentsThread = (argTypes: ICommentsProps<CommentExtraData>): JSX.
   );
 };
 
-CommentsThread.storyName = 'Comments: комментарий с вложенными ответами';
+CommentsThread.storyName = 'Комментарии · Comments';
 CommentsThread.args = {
   comments: [
     {

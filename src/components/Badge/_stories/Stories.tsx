@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
             description="Базовый Badge со значениями по умолчанию."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <Badge>1</Badge>
 )`}
           />
@@ -51,7 +51,7 @@ export default  App = () =>(
             description="Цветовые варианты Badge: brand, grey, error, warning и success."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Badge>1</Badge>
     <Badge color="grey">1</Badge>
@@ -66,7 +66,7 @@ export default  App = () =>(
             description="Варианты отображения Badge: solid и outline."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Badge variant="outline">1</Badge>
     <Badge color="grey" variant="outline">1</Badge>
@@ -81,7 +81,7 @@ export default  App = () =>(
             description="Размеры Badge"
             code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Badge size="l">1</Badge>
     <Badge size="m">1</Badge>
@@ -94,7 +94,7 @@ export default  App = () =>(
             description="Кастомизация Badge через className и style."
             code={`import { Badge } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <Badge
     className="custom-badge"
     style={{ marginRight: 8 }}

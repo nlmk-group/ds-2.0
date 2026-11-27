@@ -24,7 +24,7 @@ export const DividerDefault = (argTypes: IDividerProps): ReactNode => {
   );
 };
 
-DividerDefault.storyName = 'Divider по умолчанию';
+DividerDefault.storyName = 'Разделитель · Divider';
 DividerDefault.args = {
   children: <Typography>Divider по умолчанию</Typography>
 };
@@ -117,7 +117,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
     <div className={clsx(styles.wrapper, style['show-divider-group'])}>
       <Divider {...argTypes} dashed />
 
-      <div style={{ display: 'flex', gap: '16px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
         <Typography className={style['divider-content']}>Текст №1</Typography>
         <Divider {...argTypes} type={EDividerType.vertical} />
         <Typography className={style['divider-content']}>Текст №2</Typography>
@@ -131,7 +131,7 @@ export const DividerType = (argTypes: IDividerProps): ReactNode => {
         </Button>
       </Divider>
 
-      <div style={{ display: 'flex', gap: '16px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography className={style['divider-content']}>Текст №1</Typography>
         </div>

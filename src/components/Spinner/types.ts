@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { ESizesSpinner } from './enums';
 
 export interface ISpinnerProps {

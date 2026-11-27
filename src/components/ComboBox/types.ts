@@ -61,7 +61,9 @@ export interface IComboBoxProps {
   dropdownStyle?: CSSProperties;
   inputClassName?: string;
   inputStyle?: CSSProperties;
+  /** Открывает выпадающий список в портале. */
   withPortal?: boolean;
+  /** Идентификатор контейнера для портала выпадающего списка. */
   portalContainerId?: string;
   autoFocusSearch?: boolean;
   autoExpandOnSearch?: boolean;

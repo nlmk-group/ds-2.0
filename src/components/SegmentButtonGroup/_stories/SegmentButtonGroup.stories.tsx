@@ -40,7 +40,7 @@ export const SegmentButtonGroupDefault = (argTypes: ISegmentButtonGroupProps): R
   );
 };
 
-SegmentButtonGroupDefault.storyName = 'SegmentButtonGroup по умолчанию';
+SegmentButtonGroupDefault.storyName = 'Сегментированные кнопки · SegmentButtonGroup';
 
 export const SegmentButtonGroupWithTypography = (argTypes: ISegmentButtonGroupProps): ReactNode => {
   return (
@@ -288,7 +288,7 @@ export const SegmentButtonGroupControlled = (): ReactNode => {
           </SegmentButton>
         </SegmentButtonGroup>
 
-        <Box flexDirection="row" gap={8} pt={16}>
+        <Box flexDirection="row" flexWrap="wrap" gap={8} pt={16}>
           <Button onClick={() => setActiveButton('steel')}>Активировать Сталь через state</Button>
           <Button onClick={() => setActiveButton('zinc')}>Активировать Цинк через state</Button>
           <Button onClick={() => setActiveButton('iron')}>Активировать Чугун через state</Button>

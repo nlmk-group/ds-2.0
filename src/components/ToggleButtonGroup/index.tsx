@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, createContext, isValidElement, ReactNode, useEffect, useState } from 'react';
+import React, { Children, cloneElement, createContext, isValidElement, useState } from 'react';
 
 import { clsx } from 'clsx';
 
@@ -33,31 +33,20 @@ const ToggleButtonGroup = ({
   children,
   style
 }: IToggleButtonGroupProps) => {
-  const [activeId, setActiveId] = useState<number | null>(null);
-  const [childrenWithProps, setChildrenWithProps] = useState<ReactNode | ReactNode[]>(null);
-
-  const handleToggle = (index: number) => {
-    setActiveId(activeId === index ? null : index);
-  };
-
-  useEffect(() => {
-    setChildrenWithProps(
-      Children.map(children, (child, index) => {
-        if (isValidElement(child)) {
-          const childProps = child.props as any;
-          if (childProps.active) {
-            setActiveId(index);
-          }
-          return cloneElement(child, {
-            active: activeId === index,
-            isLast: index === Children.toArray(children).length - 1,
-            onToggle: () => handleToggle(index)
-          } as IToggleButtonGroupItemWithProps);
-        }
-        return child;
-      })
-    );
-  }, [activeId]);
+  const [toggledIndex, setToggledIndex] = useState<number | null>(null);
+  const buttons = Children.toArray(children);
+  const selectedIndex = buttons.findIndex(
+    child => isValidElement<IToggleButtonGroupItemWithProps>(child) && child.props.active
+  );
+  const activeIndex = selectedIndex < 0 ? toggledIndex : selectedIndex;
+  const childrenWithProps = buttons.map((child, index) => {
+    if (!isValidElement<IToggleButtonGroupItemWithProps>(child)) return child;
+    return cloneElement(child, {
+      active: activeIndex === index,
+      isLast: index === buttons.length - 1,
+      onToggle: () => setToggledIndex(previous => (previous === index ? null : index))
+    });
+  });
 
   const defaultProperties = {
     size,

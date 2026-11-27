@@ -39,3 +39,6 @@ docs
 CLAUDE.md
 GEMINI.md
 .aider*
+
+/test-results/
+/playwright-report/

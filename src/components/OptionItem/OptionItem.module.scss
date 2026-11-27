@@ -2,8 +2,11 @@
   position: relative;
   color: var(--steel-90);
   white-space: normal;
-  word-wrap: break-word;
-  text-wrap: balance;
+  overflow-wrap: anywhere;
+
+  > * {
+    min-width: 0;
+  }
 
   &:hover {
     background-color: var(--steel-30);

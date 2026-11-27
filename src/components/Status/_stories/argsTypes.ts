@@ -6,6 +6,7 @@ import { IStatusProps } from '../types';
 
 export const argsTypes = {
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Текст статуса',
     control: { type: 'text' }
   },
@@ -19,7 +20,7 @@ export const argsTypes = {
         summary: 'string'
       }
     },
-    options: [...Object.keys({ ...icons[16], ...icons[24], ...icons[32] })],
+    options: Object.values(icons).flatMap(group => Object.keys(group)),
     control: { type: 'select' }
   },
   size: {

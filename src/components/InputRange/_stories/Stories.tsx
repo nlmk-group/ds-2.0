@@ -20,7 +20,7 @@ const Stories = (): JSX.Element => {
   const basicInputRangeCode = `import { InputRange } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [value, setInputRangeValue] = useState({ min: 20, max: 80 });
 
   const handleValuesChange = (newValues: { min: number; max: number }) => {
@@ -28,7 +28,7 @@ export default App = () => {
   };
 
   return (
-    <div style={{ width: '500px', padding: '30px 12px' }}>
+    <div style={{ width: 'min(100%, 500px)', boxSizing: 'border-box', padding: '30px 12px' }}>
       <InputRange
         min={0}
         max={100}
@@ -44,13 +44,13 @@ export default App = () => {
   const thumbValuePositionCode = `import { InputRange } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [valueTop, setValueTop] = useState({ min: 15, max: 65 });
   const [valueBottom, setValueBottom] = useState({ min: 25, max: 90 });
   const [valueNone, setValueNone] = useState({ min: 10, max: 40 });
 
   return (
-    <div style={{ width: '500px', padding: '30px 12px', display: 'grid', gap: '44px' }}>
+    <div style={{ width: 'min(100%, 500px)', boxSizing: 'border-box', padding: '30px 12px', display: 'grid', gap: '44px' }}>
       <div style={{ paddingTop: '8px' }}>
         <InputRange min={0} max={100} value={valueTop} onChange={setValueTop} thumbValuePosition="top" />
       </div>
@@ -68,11 +68,11 @@ export default App = () => {
   const stepInputRangeCode = `import { InputRange } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [value, setInputRangeValue] = useState({ min: 100, max: 700 });
 
   return (
-    <div style={{ width: '500px', padding: '30px 12px' }}>
+    <div style={{ width: 'min(100%, 500px)', boxSizing: 'border-box', padding: '30px 12px' }}>
       <InputRange
         min={0}
         max={1000}
@@ -114,7 +114,7 @@ export default App = () => {
             code={`import { InputRange } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [value, setInputRangeValue] = useState({ min: 20, max: 80 });
 
   const handleValuesChange = (newValues: { min: number; max: number }) => {
@@ -122,7 +122,7 @@ export default App = () => {
   };
 
   return (
-    <div style={{ width: '500px', padding: '30px 12px' }}>
+    <div style={{ width: 'min(100%, 500px)', boxSizing: 'border-box', padding: '30px 12px' }}>
       <InputRange
         min={0}
         max={100}

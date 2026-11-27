@@ -74,3 +74,8 @@
   transform: translate(-50%, -50%);
   color: var(--steel-90);
 }
+
+.spinner .bg svg,
+.spinner .loader svg {
+  color: inherit;
+}

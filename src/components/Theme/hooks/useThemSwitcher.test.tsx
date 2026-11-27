@@ -65,3 +65,16 @@ describe('useThemeSwitcher', () => {
     expect(secondRender.current.theme).toBe(Themes.DARK);
   });
 });
+
+test('local preference survives remount and can return to system mode', () => {
+  localStorage.clear();
+  const first = renderHook(() => useThemeSwitcher(undefined, 'local'));
+  act(() => first.result.current.toggleTheme());
+  first.unmount();
+  const second = renderHook(() => useThemeSwitcher(undefined, 'local'));
+  expect(second.result.current.theme).toBe(Themes.DARK);
+  act(() => second.result.current.resetToSystem());
+  expect(localStorage.getItem('theme')).toBeNull();
+  expect(second.result.current.isSystem).toBe(true);
+  expect(second.result.current.theme).toBe(Themes.LIGHT);
+});

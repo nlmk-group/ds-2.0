@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { variantsMapping } from '@components/declaration/enums';
-import { Typography } from '@components/index';
+import Typography from '@components/Typography';
 import { ETypographyVariants } from '@components/Typography/enums';
 import clsx from 'clsx';
 

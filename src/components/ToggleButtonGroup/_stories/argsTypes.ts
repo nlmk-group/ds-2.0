@@ -54,20 +54,6 @@ export const argsTypes = {
     description: 'В компонент можно передать альтернативные стили',
     control: { type: 'string' }
   },
-  status: {
-    description:
-      'Необязательный атрибут. Строка, указывающая статус кнопкок-переключателей. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из EToggleButtonGroupSizeMapping. В btnGroup могут быть переданы кнопки с собственными значениями status.',
-    table: {
-      defaultValue: {
-        summary: EToggleButtonGroupSizeMapping.m
-      },
-      type: {
-        summary: 'string'
-      }
-    },
-    options: Object.values(EToggleButtonGroupSizeMapping),
-    control: { type: 'select' }
-  },
   size: {
     description:
       'Необязательный атрибут. Cтрока, указывающая размер кнопок-переключателей в группе. Это свойство необязательно, и если оно не указано, будет использоваться значение по умолчанию из sizeMapping.',

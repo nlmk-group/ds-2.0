@@ -23,9 +23,16 @@ export const defaultData: IData[] = [
   { id: 16, name: 'Хром', age: 29, status: ECellStatus.DEFAULT }
 ];
 
+export const statusLabels: Record<ECellStatus, string> = {
+  [ECellStatus.DEFAULT]: 'В работе',
+  [ECellStatus.SUCCESS]: 'Принято',
+  [ECellStatus.ERROR]: 'Отклонено',
+  [ECellStatus.WARNING]: 'На проверке'
+};
+
 export const defaultColumns: ColumnDef<IData>[] = [
   { header: 'ID', accessorKey: 'id', meta: { isNumeric: true } },
-  { header: 'Name', accessorKey: 'name' },
-  { header: 'Age', accessorKey: 'age', meta: { isNumeric: true } },
-  { header: 'Status', accessorKey: 'status' }
+  { header: 'Материал', accessorKey: 'name' },
+  { header: 'Срок, лет', accessorKey: 'age', meta: { isNumeric: true } },
+  { header: 'Статус', accessorKey: 'status' }
 ];

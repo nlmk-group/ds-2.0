@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import { DragAndDrop, Icon } from '@components/index';
 import { action } from 'storybook/actions';
@@ -21,48 +21,35 @@ export default {
 };
 
 export const dndDefault = (argTypes: IDragAndDropProps): ReactNode => {
-  const [files, setFiles] = useState<FileList[0] | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [uploadingFile, setUploadingFile] = useState<string>('');
-  const [percent, setPercent] = useState<number>(0);
-  const intervalID = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const handleOnUpload = async (a: FileList) => {
-    setLoading(true);
-    setUploadingFile(`${a[0].name}, ${a[0].size}`);
-    await new Promise(() =>
-      setTimeout(() => {
-        setLoading(false);
-        setFiles(a[0]);
-      }, 2000)
-    );
-  };
-
+  const [file, setFile] = useState<File | null>(null);
+  const [percent, setPercent] = useState(0);
   useEffect(() => {
-    if (loading && percent < 100) {
-      intervalID.current = setInterval(() => {
-        setPercent(percent => percent + 1);
-      }, 20);
-    } else {
-      setPercent(0);
-    }
-
-    return () => {
-      clearInterval(intervalID.current as ReturnType<typeof setInterval>);
-    };
-  }, [loading, percent]);
+    if (!file) return;
+    const timer = setInterval(() => setPercent(value => Math.min(value + 10, 100)), 200);
+    return () => clearInterval(timer);
+  }, [file]);
+  useEffect(() => {
+    if (percent === 100) setFile(null);
+  }, [percent]);
 
   return (
     <DragAndDrop
-      loading={loading}
-      percentUpload={percent}
-      description={loading ? uploadingFile : undefined}
       {...argTypes}
-      onUpload={handleOnUpload}
+      loading={Boolean(file)}
+      percentUpload={percent}
+      description={file?.name ?? (percent === 100 ? 'Файл загружен' : undefined)}
+      cancelUpload={() => {
+        setFile(null);
+        setPercent(0);
+      }}
+      onUpload={files => {
+        setPercent(0);
+        setFile(files[0]);
+      }}
     />
   );
 };
-dndDefault.storyName = 'DragNDrop по умолчанию';
+dndDefault.storyName = 'Перетаскивание файлов · DragAndDrop';
 
 export const dndSizes = (argTypes: IDragAndDropProps): ReactNode => {
   return (

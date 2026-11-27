@@ -11,22 +11,40 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
+import { LiveContext, LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import * as ReactRouterDom from 'react-router-dom';
 
 import * as UI from '@components/index';
 import { Box, Button, Typography } from '@components/index';
 import { Themes } from '@components/Theme/types';
-import { darkThemeStyles } from '@components/ThemeSwitcher/DarkTheme';
 import clsx from 'clsx';
 import { themes } from 'prism-react-renderer';
 
 import styles from '../Stories.module.scss';
 
+import PreviewSkeleton from '../../PreviewSkeleton';
+import { usePreviewTheme } from '../usePreviewTheme';
 import CopyCodeButton from './CopyCodeButton';
 import { openCodeSandbox } from './sandboxUtils';
 
 const MemoizedLivePreview = memo(LivePreview);
+
+function CompiledPreview() {
+  const { element, error } = useContext(LiveContext);
+  if (error) return <LiveError className={styles['live-error']} />;
+  if (!element) return <PreviewSkeleton kind="component" />;
+
+  return (
+    <MemoizedLivePreview
+      Component={Box}
+      display="flex"
+      alignItems="center"
+      gap={20}
+      flexWrap="wrap"
+      st={{ margin: 20 }}
+    />
+  );
+}
 
 const Editor: FC<{
   code: string;
@@ -34,7 +52,8 @@ const Editor: FC<{
   minHeight?: number;
   maxHeight?: number;
   previewPaneWidth?: string;
-}> = ({ code, description, minHeight = 280, maxHeight, previewPaneWidth = '50%' }) => {
+  stacked?: boolean;
+}> = ({ code, description, minHeight = 280, maxHeight, previewPaneWidth = '50%', stacked = false }) => {
   // Переменные доступные в live-редакторе при выполнении кода примеров.
   // react-live компилирует код через sucrase (CJS-трансформ) и выполняет через new Function(...scopeKeys, code),
   // поэтому всё что нужно в примерах — должно быть здесь.
@@ -61,29 +80,33 @@ const Editor: FC<{
     []
   );
 
-  const [theme, setTheme] = useState<Themes>(Themes.LIGHT);
+  const theme = usePreviewTheme();
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isNearViewport, setNearViewport] = useState(false);
   const [editorCode, setEditorCode] = useState(code);
 
   useEffect(() => {
     setEditorCode(code);
   }, [code]);
 
-  useEffect(() => {
-    // Отслеживаем изменение темы
-    const checkTheme = () => {
-      const hasDarkStyle = !!document.getElementById('dark');
-      const htmlHasDarkAttr = document.documentElement.getAttribute('data-theme');
-      const isDark = hasDarkStyle || (htmlHasDarkAttr && htmlHasDarkAttr.includes('dark'));
-      setTheme(isDark ? Themes.DARK : Themes.LIGHT);
-    };
-
-    const observer = new MutationObserver(checkTheme);
-
-    observer.observe(document.head, { childList: true, subtree: true });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
-    checkTheme();
-
+  useLayoutEffect(() => {
+    const element = contentRef.current;
+    if (!element) return;
+    const { top, bottom } = element.getBoundingClientRect();
+    if ((top < window.innerHeight + 240 && bottom > -240) || !window.IntersectionObserver) {
+      setNearViewport(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          setNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '240px' }
+    );
+    observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
@@ -111,8 +134,6 @@ const Editor: FC<{
     openCodeSandbox(editorCode, theme as Themes);
   };
 
-  const scopedDarkTheme = darkThemeStyles.replace(/:root/g, '.dark-theme-wrapper');
-
   const lineCount = editorCode.split('\n').length;
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1).join('\n');
 
@@ -124,92 +145,92 @@ const Editor: FC<{
         </div>
       )}
 
-      <LiveProvider
-        code={editorCode}
-        transformCode={transformCode}
-        scope={scope}
-        noInline={true}
-        theme={theme === Themes.DARK ? themes.vsDark : themes.github}
-      >
-        <div className={styles['editor-container']}>
-          <div className={styles.toolbar}>
-            <CopyCodeButton code={editorCode} />
+      <div className={styles['editor-container']}>
+        <div className={styles.toolbar}>
+          <CopyCodeButton code={editorCode} />
 
-            <Button size="s" variant="secondary" onClick={openSandbox}>
-              Open in CodeSandbox
-            </Button>
-          </div>
+          <Button size="s" variant="secondary" onClick={openSandbox}>
+            Открыть в CodeSandbox
+          </Button>
+        </div>
 
-          <div
-            className={styles['content-area']}
-            style={
-              {
-                '--preview-pane-width': previewPaneWidth,
-                '--preview-min-height': `${minHeight}px`
-              } as CSSProperties
-            }
-          >
-            <div
-              className={styles['editor-pane']}
-              style={{
-                backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                minHeight: `${minHeight}px`,
-                maxHeight: maxHeight !== undefined ? `${maxHeight}px` : undefined
-              }}
+        <div
+          ref={contentRef}
+          className={clsx(styles['content-area'], stacked && styles.stacked)}
+          style={
+            {
+              '--preview-pane-width': previewPaneWidth,
+              '--preview-min-height': `${minHeight}px`
+            } as CSSProperties
+          }
+        >
+          {isNearViewport ? (
+            <LiveProvider
+              code={editorCode}
+              transformCode={transformCode}
+              scope={scope}
+              noInline={true}
+              theme={theme === Themes.DARK ? themes.vsDark : themes.github}
             >
               <div
-                className={styles['line-numbers']}
+                className={styles['editor-pane']}
                 style={{
-                  color: theme === Themes.DARK ? '#858585' : '#ccc',
                   backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
-                  borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
+                  minHeight: `${minHeight}px`,
+                  maxHeight: maxHeight !== undefined ? `${maxHeight}px` : undefined
                 }}
               >
-                {lineNumbers}
-              </div>
-
-              <div className={styles['code-editor-wrapper']}>
-                <LiveEditor
-                  onChange={setEditorCode}
-                  className={styles['code-editor']}
+                <div
+                  className={styles['line-numbers']}
                   style={{
-                    fontSize: 16,
-                    lineHeight: 1.5,
-                    minHeight: '100%',
-                    backgroundColor: 'transparent',
-                    outline: 'none'
+                    color: theme === Themes.DARK ? '#858585' : '#ccc',
+                    backgroundColor: theme === Themes.DARK ? '#1e1e1e' : '#f6f8fa',
+                    borderRight: `1px solid ${theme === Themes.DARK ? '#333' : '#eee'}`
                   }}
-                />
+                >
+                  {lineNumbers}
+                </div>
+
+                <div className={styles['code-editor-wrapper']}>
+                  <LiveEditor
+                    onChange={setEditorCode}
+                    className={styles['code-editor']}
+                    style={{
+                      fontSize: 16,
+                      lineHeight: 1.5,
+                      minHeight: '100%',
+                      backgroundColor: 'transparent',
+                      outline: 'none'
+                    }}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div
-              className={clsx(
-                'preview-container',
-                styles['preview-pane'],
-                theme === Themes.DARK && 'dark-theme-wrapper'
-              )}
-              style={{
-                backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)',
-                width: previewPaneWidth
-              }}
-            >
-              {theme === Themes.DARK && <style>{scopedDarkTheme}</style>}
-
-              <LiveError className={styles['live-error']} />
-
-              <MemoizedLivePreview
-                Component={Box}
-                display="flex"
-                alignItems="center"
-                gap={20}
-                flexWrap="wrap"
-                st={{ margin: 20 }}
-              />
-            </div>
-          </div>
+              <div
+                className={clsx(
+                  'preview-container',
+                  styles['preview-pane'],
+                  theme === Themes.DARK && 'dark-theme-wrapper'
+                )}
+                style={{
+                  backgroundColor: theme === Themes.DARK ? 'var(--background-default)' : 'var(--steel-10)'
+                }}
+              >
+                <CompiledPreview />
+              </div>
+            </LiveProvider>
+          ) : (
+            <>
+              <div className={styles['editor-pane']}>
+                <PreviewSkeleton kind="code" />
+              </div>
+              <div className={styles['preview-pane']}>
+                <PreviewSkeleton kind="component" />
+              </div>
+            </>
+          )}
         </div>
-      </LiveProvider>
+      </div>
     </div>
   );
 };

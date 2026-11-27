@@ -1,12 +1,87 @@
+.story {
+  width: 100%;
+  --example-inset: clamp(16px, 2vw, 24px);
+  box-sizing: border-box;
+  max-width: calc(1200px + 2 * var(--example-inset));
+  margin-inline: auto;
+  padding: 16px var(--example-inset);
+  gap: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  color-scheme: light;
+
+  // The scroll container already draws the outer edge of each example.
+  table > tbody:last-child > tr:last-child > td {
+    border-bottom-width: 0;
+  }
+
+  :global([data-theme="dark-theme"]) & {
+    color-scheme: dark;
+  }
+}
+
+:global(#storybook-root) .story {
+  min-height: 100dvh;
+  justify-content: center;
+}
+
+.compactExample {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 880px;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:global(.innerZoomElementWrapper):has(.story) > * {
+  width: 100% !important;
+}
+
+.virtualExample {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .tableContainer {
-  width: 800px;
-  height: 600px;
-  overflow-y: auto;
-  overflow-x: auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  max-height: min(600px, 75vh);
+  overflow: auto;
+  border-radius: 4px;
   border: 1px solid var(--unique-divider);
 
   &_autoWidth {
     width: auto;
+  }
+}
+
+.story .basicTable {
+  height: auto;
+  max-height: none;
+  scrollbar-gutter: auto;
+}
+
+.story .tableContainer {
+  scrollbar-gutter: auto;
+
+  @supports selector(::-webkit-scrollbar) {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background: var(--steel-70);
+    }
   }
 }
 
@@ -65,4 +140,12 @@
   [data-ui-cell-content] {
     padding: 0;
   }
+}
+
+.story table {
+  min-width: 100%;
+}
+
+:global(#storybook-root) .stickyTable {
+  max-height: calc(100dvh - 32px);
 }

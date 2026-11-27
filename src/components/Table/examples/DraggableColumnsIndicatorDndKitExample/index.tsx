@@ -1,6 +1,7 @@
 import React, { FC, MouseEvent, TouchEvent, useRef, useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   DndContext,
   DragEndEvent,
@@ -26,7 +27,7 @@ import clsx from 'clsx';
 
 import styles from './DraggableColumnsIndicator.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { initialColumns, initialData, IShiftRow } from './constants';
 
 interface IIndicator {
@@ -161,9 +162,9 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
     const hoveredMiddleX = hoveredRect.left + hoveredRect.width / 2;
     const position: 'before' | 'after' = activeCenterX < hoveredMiddleX ? 'before' : 'after';
     const lineX =
-      position === 'before'
-        ? hoveredRect.left - containerRect.left
-        : hoveredRect.left + hoveredRect.width - containerRect.left;
+      (position === 'before' ? hoveredRect.left : hoveredRect.right) -
+      containerRect.left +
+      containerRef.current.scrollLeft;
     updateIndicator({ overColumnId: String(over.id), position, lineX });
   };
 
@@ -218,7 +219,7 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div ref={containerRef} className={styles.tableContainer}>
+      <Scrollbar ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders style={{ tableLayout: 'fixed', width: table.getCenterTotalSize() }}>
           <Thead>
             {table.getHeaderGroups().map(hg => (
@@ -251,7 +252,7 @@ const DraggableColumnsIndicatorDndKitExample: FC = () => {
           </Tbody>
         </Table>
         {indicator && <div className={styles.insertLine} style={{ left: indicator.lineX }} />}
-      </div>
+      </Scrollbar>
       <DragOverlay dropAnimation={null}>
         {activeHeader ? (
           <DragOverlayPreview label={activeLabel} width={sourceSize.current.width} height={sourceSize.current.height} />

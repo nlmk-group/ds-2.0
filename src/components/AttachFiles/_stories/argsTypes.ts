@@ -1,5 +1,6 @@
 export const argsTypes = {
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description:
       'Свойство компонента AttachFiles, которое позволяет передавать массив компонентов File (JSX.Element[]) для отображения в контейнере',
     control: { type: 'text' }
@@ -7,64 +8,87 @@ export const argsTypes = {
   title: {
     description: 'Заголовок секции AttachFiles — принимает ReactNode',
     control: { type: 'text' }
+  }
+};
+
+export const fileArgs = {
+  title: {
+    description: 'Зарезервировано в типе File. Для видимого имени файла используйте label.',
+    table: { type: { summary: 'string' } }
   },
   label: {
-    description: 'Название файла',
+    table: { type: { summary: 'string' } },
+    description: 'File. Название файла',
     control: { type: 'text' }
   },
   checked: {
-    description: 'Условие отображения чекбокса',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения чекбокса',
     control: { type: 'boolean' }
   },
   removed: {
-    description: 'Условие отображения кнопки удаления',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения кнопки удаления',
     control: { type: 'boolean' }
   },
   commented: {
-    description: 'Условие отображения кнопки комментирования',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения кнопки комментирования',
     control: { type: 'boolean' }
   },
   saved: {
-    description: 'Условие отображения кнопки сохранения документа',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения кнопки сохранения документа',
     control: { type: 'boolean' }
   },
   addFile: {
-    description: 'Условие отображения кнопки "Добавить файл"',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения кнопки "Добавить файл"',
     control: { type: 'boolean' }
   },
   removedOnClick: {
-    description: 'Callback, который будет вызван при нажатии на кнопку удаления',
+    table: { type: { summary: '() => void' } },
+    description: 'File. Callback, который будет вызван при нажатии на кнопку удаления',
     onClick: { action: 'clicked' }
   },
   commentedOnClick: {
-    description: 'Callback, который будет вызван при нажатии на кнопку комментировать'
+    table: { type: { summary: '() => void' } },
+    description: 'File. Callback, который будет вызван при нажатии на кнопку комментировать'
   },
   savedOnClick: {
-    description: 'Callback, который будет вызван при нажатии на кнопку сохранения'
+    table: { type: { summary: '() => void' } },
+    description: 'File. Callback, который будет вызван при нажатии на кнопку сохранения'
   },
   addFileOnClick: {
-    description: 'Callback, который будет вызван при нажатии на "Добавить файл"'
+    table: { type: { summary: '() => void' } },
+    description: 'File. Callback, который будет вызван при нажатии на "Добавить файл"'
   },
   description: {
-    description: 'Дополнительное описание',
+    table: { type: { summary: 'string' } },
+    description: 'File. Дополнительное описание',
     control: { type: 'text' }
   },
   empty: {
-    description: 'Условие, позволяющее не отображать никакой иконки слева',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие, позволяющее не отображать никакой иконки слева',
     control: { type: 'boolean' }
   },
   checkedValue: {
-    description: 'Состояние checkbox слева',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Состояние checkbox слева',
     control: { type: 'boolean' }
   },
   onCheckedChange: {
-    description: 'Callback, который будет вызван при изменении состояния чекбокса'
+    table: { type: { summary: '(event: ChangeEvent<HTMLInputElement>) => void' } },
+    description: 'File. Callback, который будет вызван при изменении состояния чекбокса'
   },
   indeterminate: {
-    description: 'Свойство, позволяющее включить промежуточное состояние чекбокса'
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Свойство, позволяющее включить промежуточное состояние чекбокса'
   },
   tick: {
-    description: 'Условие отображения IconTick24 слева',
+    table: { type: { summary: 'boolean' } },
+    description: 'File. Условие отображения IconTick24 слева',
     control: { type: 'boolean' }
   }
 };

@@ -49,7 +49,7 @@ export const Comment = <TData,>({
   itemTemplate,
   renderReplies,
   hasActiveReply
-}: CommentInternalProps<TData>): JSX.Element => {
+}: CommentInternalProps<TData>): React.JSX.Element => {
   const contextValue: ICommentContextValue<TData> = {
     comment,
     isReply,
@@ -140,7 +140,7 @@ export const Comment = <TData,>({
                   )}
 
                   {hasHeaderMain && (
-                    <Box gap={8} justifyContent="flex-start" alignItems="center">
+                    <Box gap={8} flexWrap="wrap" justifyContent="flex-start" alignItems="center">
                       {headerMain}
                     </Box>
                   )}

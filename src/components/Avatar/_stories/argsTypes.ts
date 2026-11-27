@@ -8,7 +8,7 @@ export const argsTypes = {
         summary: EAvatarSize.m
       },
       type: {
-        summary: 'string'
+        summary: Object.values(EAvatarSize).join(' | ')
       }
     },
     options: Object.values(EAvatarSize),
@@ -81,7 +81,7 @@ export const argsTypes = {
         summary: 'undefined'
       },
       type: {
-        summary: 'string'
+        summary: 'ReactNode'
       }
     },
     control: { type: 'boolean' }

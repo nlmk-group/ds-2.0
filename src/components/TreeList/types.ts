@@ -6,7 +6,7 @@ import { DataNode, EventDataNode, Key } from 'rc-tree/lib/interface';
 export type TTreeItem<R extends object = object> = R & DataNode;
 
 export type TСhildrenProps = {
-  rightSideControls?: JSX.Element;
+  rightSideControls?: React.JSX.Element;
   id?: number | string;
   parentId?: number | string;
   children?: TNodeItem[];
@@ -53,10 +53,12 @@ export type TTreeListProps = {
   onDataAfterDrag?: (e: TNodeItem[]) => void;
   onDragStart?: (e: TDragEvent) => void;
   onDragEnd?: (e: TDragEvent) => void;
+  /** Вызывается при завершении переноса узла на новую позицию. */
   onDrop?: (e: TDropEvent) => void;
   checkable?: boolean;
   draggable?: boolean;
   checkableSimple?: boolean;
+  /** Ограничивает перенос узла его уровнем вложенности. */
   sameLevelDragOnly?: boolean;
   rowHeight?: `${ERowHeight}`;
   initialCheckedKeys?: Key[];

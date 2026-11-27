@@ -6,6 +6,7 @@
 
 // Стили основного компонента
 .breadcrumbs {
+  flex-wrap: wrap;
   display: flex;
   gap: 8px;
   width: inherit;

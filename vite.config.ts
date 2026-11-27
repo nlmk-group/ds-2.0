@@ -8,6 +8,8 @@ import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
+import packageMetadata from './package.json';
+
 const isLibBuild = process.env.BUILD_MODE === 'lib';
 
 /**
@@ -68,6 +70,14 @@ const buildPostProcessPlugin = () => ({
     if (fs.existsSync(publicCssDir)) {
       fs.cpSync(publicCssDir, cssDir, { recursive: true });
       console.log('✅ Скопированы CSS токены и main.css');
+    }
+
+    // The optional PT Root UI stylesheet resolves these files relative to lib/css.
+    const fontsDir = resolve(libPath, 'fonts');
+    fs.mkdirSync(fontsDir, { recursive: true });
+    for (const face of ['Regular', 'Medium', 'Bold']) {
+      const filename = `PT_Root_${face}.woff2`;
+      fs.copyFileSync(resolve(__dirname, 'public/fonts', filename), resolve(fontsDir, filename));
     }
 
     const packageJson = {
@@ -160,7 +170,14 @@ export default defineConfig({
   ...(isLibBuild && {
     build: {
       lib: {
-        entry: resolve(__dirname, 'src/components/index.ts'),
+        entry: Object.fromEntries(
+          Object.entries(packageMetadata.exports)
+            .filter(([key, target]) => !key.includes('*') && typeof target === 'object' && 'import' in target)
+            .map(([key]) => {
+              const name = key === '.' ? 'index' : `${key.slice(2)}/index`;
+              return [name, resolve(__dirname, 'src/components', name)];
+            })
+        ),
         formats: ['es'],
         fileName: () => '[name].js'
       },
@@ -175,6 +192,7 @@ export default defineConfig({
           })
         ],
         external: id => {
+          if (id === 'rc-tree/assets/index.css') return false;
           if (['react', 'react-dom', 'react/jsx-runtime'].includes(id)) return true;
           if (id.startsWith('react/') || id.startsWith('react-dom/')) return true;
 

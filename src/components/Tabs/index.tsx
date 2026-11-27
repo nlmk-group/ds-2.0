@@ -101,9 +101,51 @@ const Tabs: FC<ITabsProps> &
   // либо принудительно через prop scrollable (для обратной совместимости).
   const showHorizontalScroll = !isVertical && (isOverflowing || scrollable === true);
 
+  const tabs = React.Children.toArray(children).filter(
+    child => isValidElement<ITabProps>(child) && child.type === Tab
+  ) as React.ReactElement<ITabProps>[];
+  const enabled = tabs.filter(tab => !tab.props.disabled && tab.props['aria-disabled'] !== true);
+  const entry = enabled.find(tab => tab.props.active) ?? enabled[0];
+  let tabIndex = 0;
+  const handleNavigation = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.defaultPrevented) return;
+    const items = Array.from(
+      event.currentTarget.querySelectorAll<HTMLElement>(':scope > [role="tab"]:not([aria-disabled="true"])')
+    );
+    const current = items.indexOf(event.target as HTMLElement);
+    if (current < 0) return;
+    const previous = isVertical ? 'ArrowUp' : 'ArrowLeft';
+    const next = isVertical ? 'ArrowDown' : 'ArrowRight';
+    let index: number;
+    switch (event.key) {
+      case previous:
+        index = (current + items.length - 1) % items.length;
+        break;
+      case next:
+        index = (current + 1) % items.length;
+        break;
+      case 'Home':
+        index = 0;
+        break;
+      case 'End':
+        index = items.length - 1;
+        break;
+      case 'Enter':
+      case ' ':
+        index = current;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault();
+    items[index].focus();
+    items[index].click();
+  };
+
   const childrenWithProps = React.Children.map(children, child => {
     if (isValidElement<ITabProps>(child) && child.type === Tab) {
       return React.cloneElement(child, {
+        tabIndex: tabs[tabIndex++] === entry ? 0 : -1,
         orientation,
         indicatorPosition: resolvedIndicatorPosition,
         fixedWidth: hasFixedWidth
@@ -135,6 +177,7 @@ const Tabs: FC<ITabsProps> &
           variant="secondary"
           size="s"
           className={styles['scroll-arrow-left']}
+          aria-label="Прокрутить вкладки влево"
           onClick={scrollLeft}
           iconButton={<IconChevronArrowLeftOutlined24 />}
           data-ui-tabs-button-scroll-left
@@ -150,6 +193,9 @@ const Tabs: FC<ITabsProps> &
         data-ui-tabs
       >
         <div
+          role="tablist"
+          aria-orientation={orientation}
+          onKeyDown={handleNavigation}
           ref={!isVertical ? tabsWrapperRef : undefined}
           className={clsx(styles['tabs-wrapper'], {
             [styles['tabs-wrapper__scrollable']]: !isVertical,
@@ -168,6 +214,7 @@ const Tabs: FC<ITabsProps> &
           variant="secondary"
           size="s"
           className={styles['scroll-arrow-right']}
+          aria-label="Прокрутить вкладки вправо"
           onClick={scrollRight}
           iconButton={<IconChevronArrowRightOutlined24 />}
           data-ui-tabs-button-scroll-right

@@ -14,10 +14,10 @@ export const TopComponentSelect = ({
   options: { value: string; label: string }[];
 }) => {
   return (
-    <Box style={{ minWidth: 420, gap: 16, display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="Body-Bold">Выберите сырье, чтобы открыть нижнюю панель</Typography>
+    <Box width="100%" flexDirection="column" gap={12}>
+      <Typography variant="Body-Bold">Выберите сырье, чтобы открыть справку</Typography>
       <SimpleSelect
-        style={{ width: 350 }}
+        style={{ width: '100%', maxWidth: 350 }}
         label="Выбрать сырье"
         withPortal
         value={selected}

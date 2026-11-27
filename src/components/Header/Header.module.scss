@@ -7,6 +7,7 @@
 }
 
 .breadcrumbs-wrapper {
+  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
@@ -15,10 +16,17 @@
 
   > div:first-child {
     flex-grow: 1;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  [data-ui-breadcrumbs] {
+    flex-wrap: wrap;
   }
 }
 
 .right {
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-self: flex-end;
@@ -33,6 +41,7 @@
   justify-content: space-between;
 }
 .wrapper-default {
+  box-sizing: border-box;
   width: 100%;
   padding: 16px 24px;
 }
@@ -82,5 +91,14 @@
 
   [data-ui-badge] {
     cursor: inherit;
+  }
+}
+
+@media (max-width: 650px) {
+  .title-button-wrapper,
+  .title-button-wrapper-with-crumbs,
+  .title-container {
+    flex-wrap: wrap;
+    max-width: 100%;
   }
 }

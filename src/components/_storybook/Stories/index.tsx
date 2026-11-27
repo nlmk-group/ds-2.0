@@ -41,7 +41,7 @@ const Stories = (): JSX.Element => {
             code={`import { useState } from 'react';
 import { Radio } from '@nlmk/ds-2.0';
 
-export default  App = () => {
+export default () => {
   const [checked, setChecked] = useState('yes');
   const handleChange = (event) => {
     setChecked(event.target.value);
@@ -67,7 +67,7 @@ export default  App = () => {
             description="Компонент может быть неактивным для пользователя (disabled)."
             code={`import { Radio, Typography } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Radio disabled />
     <Typography variant="Body1-Bold" color="disabled">Я Радиокнопка</Typography>

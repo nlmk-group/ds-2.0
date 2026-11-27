@@ -8,18 +8,16 @@ import styles from './Grid.module.scss';
 
 import { GridColumn, GridRow } from './subcomponents';
 
-const updateRootVars = (gap: number | string) => {
-  const root = document.documentElement;
-  const gapValue = typeof gap === 'number' ? gap : parseInt(gap.toString()) || 0;
-  root.style.setProperty('--gap', `${gapValue}px`);
-};
-
-const Grid = ({ children, container, size, gap = 0, ...props }: IGrid) => {
+const Grid = ({ children, container, size, gap, className, st, ...props }: IGrid) => {
   if (container) {
-    updateRootVars(gap);
-
+    const gutter = typeof gap === 'number' ? `${gap}px` : (gap ?? '0px');
     return (
-      <Box className={clsx(styles.grid, styles.container)} {...props}>
+      <Box
+        {...props}
+        className={clsx(styles.grid, styles.container, className)}
+        gap={0}
+        st={{ '--grid-gap': gutter, ...st } as React.CSSProperties}
+      >
         {children}
       </Box>
     );
@@ -36,13 +34,17 @@ const Grid = ({ children, container, size, gap = 0, ...props }: IGrid) => {
     });
 
     return (
-      <Box className={clsx(classNames)} {...props}>
+      <Box {...props} className={clsx(classNames, className)} gap={gap} st={st}>
         {children}
       </Box>
     );
   }
 
-  return <Box {...props}>{children}</Box>;
+  return (
+    <Box {...props} className={className} gap={gap} st={st}>
+      {children}
+    </Box>
+  );
 };
 
 Grid.Column = GridColumn;

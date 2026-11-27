@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 import VideoWindow from '..';
 
-const TitleExample = (): JSX.Element => {
+const TitleExample = (): React.JSX.Element => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <Icon name={'IconEyeOutlined24'} color="success" containerSize={24} />

@@ -18,13 +18,13 @@ const SimpleSelectStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
   const optionsExample = `const options = [
-  { value: 'steel', label: 'High-Strength Low-Alloy Steel' },
-  { value: 'aluminum', label: 'Aluminum' },
-  { value: 'copper', label: 'Copper', disabled: true },
-  { value: 'nickel', label: 'Nickel' },
-  { value: 'zinc', label: 'Zinc' },
-  { value: 'lead', label: 'Lead' },
-  { value: 'tin', label: 'Tin' }
+  { value: 'steel', label: 'Высокопрочная низколегированная сталь' },
+  { value: 'aluminum', label: 'Алюминий' },
+  { value: 'copper', label: 'Медь', disabled: true },
+  { value: 'nickel', label: 'Никель' },
+  { value: 'zinc', label: 'Цинк' },
+  { value: 'lead', label: 'Свинец' },
+  { value: 'tin', label: 'Олово' }
   ];`;
 
   const simpleSelectDefaultCode = `
@@ -34,7 +34,7 @@ const SimpleSelectStories = (): JSX.Element => {
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Одиночный выбор">
       {options.map(({value, label, disabled}) => (
@@ -55,9 +55,9 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
-    <SimpleSelect value={value} onChange={setValue} label="Disabled" disabled>
+    <SimpleSelect value={value} onChange={setValue} label="Недоступно" disabled>
       {options.map(({value, label, disabled}) => (
         <OptionItem key={value} value={value} label={label}>
           {label}
@@ -76,7 +76,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Размер xs" size="xs">
       {options.map(({value, label, disabled}) => (
@@ -97,7 +97,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Скролл" scrollingItems={2}>
       {options.map(({value, label, disabled}) => (
@@ -118,7 +118,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Цвет success" color="success">
       {options.map(({value, label, disabled}) => (
@@ -139,7 +139,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('steel');
+  const [value, setValue] = useState<string | number>('steel');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Кастомное отображение" displayValue="Выбран металл">
       {options.map(({value, label, disabled}) => (
@@ -160,7 +160,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect
       value={value}
@@ -186,7 +186,7 @@ export default App;
   import { useState } from 'react';
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | number>('');
   return (
     <SimpleSelect value={value} onChange={setValue} label="Пустой select">
       {/* No options */}

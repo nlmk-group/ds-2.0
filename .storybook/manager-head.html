@@ -8,6 +8,18 @@
         --border-bar-color: #D6DADD;
     }
 
+    html[data-theme] body,
+    html[data-theme] #root:empty,
+    html[data-theme] #storybook-preview-wrapper,
+    html[data-theme] #storybook-preview-iframe {
+        background-color: var(--sb-loading-bg);
+    }
+
+    /* The iframe owns the DS loading indicator throughout preview initialization. */
+    :has(> #preview-loader) {
+        display: none;
+    }
+
     .dark {
         --border-bar-color: #6C7581;
     }
@@ -17,8 +29,36 @@
         justify-content: center;
     }
 
-    a:active,
-    a:focus {
+    .ds-package-label {
+        flex: none;
+        align-self: flex-start;
+        margin: 4px 10px 8px;
+        max-width: calc(100% - 20px);
+        box-sizing: border-box;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 3px 6px;
+        border: 1px solid var(--border-bar-color);
+        border-radius: 4px;
+        background: var(--sb-loading-bg);
+        color: inherit;
+        font-size: 12px;
+        cursor: text;
+        user-select: text;
+    }
+
+    .ds-package-label span {
+        user-select: all;
+    }
+
+    .ds-package-label::selection,
+    .ds-package-label span::selection {
+        background-color: #1952b6;
+        color: white;
+    }
+
+    a:active {
         outline: 0;
         border-color: transparent !important;
         -moz-outline-style: none;
@@ -33,7 +73,13 @@
         width: 13px !important;
     }
 
+    #storybook-sidebar-region > div:has(.sidebar-header) {
+        flex: 1;
+        min-height: 0;
+    }
+
     .sidebar-container {
+        flex-direction: column;
         border-right: 1px solid var(--border-bar-color);
     }
 </style>

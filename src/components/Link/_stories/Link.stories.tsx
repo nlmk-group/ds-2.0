@@ -49,6 +49,7 @@ export const LinkTargets = (argTypes: ILink): ReactNode => {
     <div
       style={{
         display: 'flex',
+        flexWrap: 'wrap',
         flexDirection: 'column',
         gap: '8px'
       }}
@@ -86,6 +87,7 @@ export const LinkSizes = (argTypes: ILink): ReactNode => {
     <div
       style={{
         display: 'flex',
+        flexWrap: 'wrap',
         gap: '8px',
         alignItems: 'center'
       }}

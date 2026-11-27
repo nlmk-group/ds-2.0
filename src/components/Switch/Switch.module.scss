@@ -57,7 +57,16 @@ $track-bg-colors-off: (
 }
 
 .checkbox {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+
+  &:focus-visible + .controller {
+    outline: 2px solid var(--brand-sapphire-60);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 .controller {

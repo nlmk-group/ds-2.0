@@ -1,136 +1,132 @@
-import React, { FC, useCallback, useRef, useState } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, { useState } from 'react';
 
-import { Cell, Divider, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
-import clsx from 'clsx';
+import { Box, Button, Cell, Row, Scrollbar, Table, Tbody, Thead, Top, Typography } from '@components/index';
 
-import styles from './CrossTable.module.scss';
+import { defectCodes, initialJournal } from './constants';
 
-import { defectCodes, IDefectCode, IJournalRow, initialJournal } from './constants';
+const dragType = 'application/x-defect-code';
 
-const DRAG_TYPE = 'defect-code';
+export default function CrossTableCellTransferExample() {
+  const [selected, setSelected] = useState('');
+  const [journal, setJournal] = useState(initialJournal);
+  const [dropRow, setDropRow] = useState('');
+  const [status, setStatus] = useState('');
 
-interface IDragItem {
-  code: string;
-}
-
-const DraggableCodeCell: FC<{ code: IDefectCode }> = ({ code }) => {
-  const ref = useRef<HTMLTableCellElement>(null);
-  const [{ isDragging }, drag] = useDrag({
-    type: DRAG_TYPE,
-    item: { code: code.code } as IDragItem,
-    collect: m => ({ isDragging: m.isDragging() })
-  });
-  drag(ref);
+  function assign(target: (typeof initialJournal)[number], code: string) {
+    if (!defectCodes.some(defect => defect.code === code)) return;
+    setJournal(rows => rows.map(row => (row.id === target.id ? { ...row, defectCode: code } : row)));
+    setStatus(`Партии ${target.batch} назначен код ${code}.`);
+    setSelected('');
+    setDropRow('');
+  }
 
   return (
-    <td ref={ref} className={clsx(styles.codeCell, isDragging && styles.dragging)}>
-      <Typography variant="Body1Table-Medium" color="var(--steel-90)">
-        {code.code}
+    <Box flexDirection="column" gap={16}>
+      <Typography variant="Body2-Medium">
+        Перетащите код из первого столбца на нужную партию в журнале. Также можно нажать на код, затем на партию.
       </Typography>
-    </td>
+      <Box display="grid" gap={20} st={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))' }}>
+        <Box flexDirection="column" gap={8}>
+          <Typography variant="Subheading3-Medium">Справочник кодов дефектов</Typography>
+          <Scrollbar style={{ height: 'auto', border: '1px solid var(--unique-divider)', borderRadius: 4 }}>
+            <Table verticalBorders aria-label="Справочник кодов дефектов">
+              <Thead>
+                <Row>
+                  <Top title="Код" />
+                  <Top title="Название" />
+                  <Top title="Категория" />
+                </Row>
+              </Thead>
+              <Tbody>
+                {defectCodes.map(defect => (
+                  <Row key={defect.id}>
+                    <Cell>
+                      <Button
+                        draggable
+                        style={{ cursor: 'grab' }}
+                        onClick={() => setSelected(defect.code)}
+                        onDragStart={event => {
+                          // The other examples on the docs page also listen for native drag events.
+                          event.stopPropagation();
+                          event.dataTransfer.effectAllowed = 'copy';
+                          event.dataTransfer.setData(dragType, defect.code);
+                        }}
+                        onDragEnd={() => setDropRow('')}
+                        size="s"
+                        variant={selected === defect.code ? 'primary' : 'secondary'}
+                        aria-pressed={selected === defect.code}
+                        type="button"
+                      >
+                        {defect.code}
+                      </Button>
+                    </Cell>
+                    <Cell text={defect.name} />
+                    <Cell text={defect.category} />
+                  </Row>
+                ))}
+              </Tbody>
+            </Table>
+          </Scrollbar>
+        </Box>
+        <Box flexDirection="column" gap={8}>
+          <Typography variant="Subheading3-Medium">Журнал ОТК</Typography>
+          <Scrollbar style={{ height: 'auto', border: '1px solid var(--unique-divider)', borderRadius: 4 }}>
+            <Table verticalBorders aria-label="Журнал ОТК">
+              <Thead>
+                <Row>
+                  <Top title="Партия" />
+                  <Top title="Продукт" />
+                  <Top title="Код дефекта" />
+                </Row>
+              </Thead>
+              <Tbody>
+                {journal.map(row => (
+                  <Row
+                    key={row.id}
+                    onClick={() => assign(row, selected)}
+                    onDragOver={event => {
+                      if (!event.dataTransfer.types.includes(dragType)) return;
+                      event.preventDefault();
+                      event.stopPropagation();
+                      event.dataTransfer.dropEffect = 'copy';
+                      setDropRow(row.id);
+                    }}
+                    onDragLeave={event => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropRow('');
+                    }}
+                    onDrop={event => {
+                      if (!event.dataTransfer.types.includes(dragType)) return;
+                      event.preventDefault();
+                      event.stopPropagation();
+                      assign(row, event.dataTransfer.getData(dragType));
+                    }}
+                    style={{ cursor: selected ? 'pointer' : undefined }}
+                  >
+                    <Cell text={row.batch} />
+                    <Cell text={row.product} />
+                    <Cell state={dropRow === row.id ? 'selected' : 'default'}>
+                      <Box alignItems="center" gap={8} flexWrap="wrap">
+                        <Typography>{row.defectCode || 'Не назначен'}</Typography>
+                        {selected && (
+                          <Button
+                            type="button"
+                            size="s"
+                            variant="secondary"
+                            aria-label={`Назначить ${selected} партии ${row.batch}`}
+                          >
+                            Назначить
+                          </Button>
+                        )}
+                      </Box>
+                    </Cell>
+                  </Row>
+                ))}
+              </Tbody>
+            </Table>
+          </Scrollbar>
+        </Box>
+      </Box>
+      <Typography role="status">{status}</Typography>
+    </Box>
   );
-};
-
-interface IDropCellProps {
-  row: IJournalRow;
-  onAssign: (rowId: string, code: string) => void;
 }
-
-const DroppableJournalCell: FC<IDropCellProps> = ({ row, onAssign }) => {
-  const ref = useRef<HTMLTableCellElement>(null);
-  const [{ isOver }, drop] = useDrop({
-    accept: DRAG_TYPE,
-    drop: (item: IDragItem) => onAssign(row.id, item.code),
-    collect: m => ({ isOver: m.isOver() })
-  });
-  drop(ref);
-  const filled = row.defectCode !== null;
-  return (
-    <td
-      ref={ref}
-      className={clsx(styles.dropTarget, isOver && styles.dropTargetOver, filled && styles.dropTargetFilled)}
-    >
-      {filled ? (
-        <Typography variant="Body1Table-Medium" color="var(--steel-90)">
-          {row.defectCode}
-        </Typography>
-      ) : (
-        <Typography variant="Caption-Medium" color="var(--steel-60)">
-          перетащите код
-        </Typography>
-      )}
-    </td>
-  );
-};
-
-const CrossTableCellTransferExample: FC = () => {
-  const [journal, setJournal] = useState<IJournalRow[]>(initialJournal);
-
-  const onAssign = useCallback((rowId: string, code: string) => {
-    setJournal(prev => prev.map(r => (r.id === rowId ? { ...r, defectCode: code } : r)));
-  }, []);
-
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <div className={styles.wrapper}>
-        <div className={styles.tableBlock}>
-          <Typography className={styles.caption} variant="Subheading3-Medium">
-            Справочник кодов дефектов
-          </Typography>
-          <div className={styles.tableContainer}>
-            <Table horizontalBorders verticalBorders>
-              <Thead>
-                <Row>
-                  <Top title="Код" style={{ width: 120 }} />
-                  <Top title="Название" style={{ width: 220 }} />
-                  <Top title="Категория" style={{ width: 140 }} />
-                </Row>
-              </Thead>
-              <Tbody>
-                {defectCodes.map(c => (
-                  <Row key={c.id}>
-                    <DraggableCodeCell code={c} />
-                    <Cell text={c.name} align="left" />
-                    <Cell text={c.category} />
-                  </Row>
-                ))}
-              </Tbody>
-            </Table>
-          </div>
-        </div>
-
-        <Divider type="vertical" />
-
-        <div className={styles.tableBlock}>
-          <Typography className={styles.caption} variant="Subheading3-Medium">
-            Журнал ОТК
-          </Typography>
-          <div className={styles.tableContainer}>
-            <Table horizontalBorders verticalBorders>
-              <Thead>
-                <Row>
-                  <Top title="Партия" style={{ width: 140 }} />
-                  <Top title="Продукт" style={{ width: 220 }} />
-                  <Top title="Код дефекта" style={{ width: 160 }} />
-                </Row>
-              </Thead>
-              <Tbody>
-                {journal.map(r => (
-                  <Row key={r.id}>
-                    <Cell text={r.batch} align="left" />
-                    <Cell text={r.product} />
-                    <DroppableJournalCell row={r} onAssign={onAssign} />
-                  </Row>
-                ))}
-              </Tbody>
-            </Table>
-          </div>
-        </div>
-      </div>
-    </DndProvider>
-  );
-};
-
-export default CrossTableCellTransferExample;

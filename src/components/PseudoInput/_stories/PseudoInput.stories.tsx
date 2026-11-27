@@ -29,7 +29,7 @@ export const PseudoInputDefault = (argTypes: IPseudoInputProps): JSX.Element => 
 PseudoInputDefault.args = {
   label: labelText
 };
-PseudoInputDefault.storyName = 'PseudoInput по умолчанию';
+PseudoInputDefault.storyName = 'Псевдополе ввода · PseudoInput';
 
 export const PseudoInputSizes = (): JSX.Element => {
   const sizes = Object.values(EPseudoInputSizes);

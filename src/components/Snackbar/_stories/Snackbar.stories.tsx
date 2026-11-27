@@ -24,7 +24,7 @@ export default {
 export const DefaultSnackbar = (argTypes: ISnackbarProps): ReactNode => {
   return <Snackbar {...argTypes}>Snackbar по умолчанию</Snackbar>;
 };
-DefaultSnackbar.storyName = 'Snackbar по умолчанию';
+DefaultSnackbar.storyName = 'Всплывающее сообщение · Snackbar';
 
 export const SnackbarColors = (argTypes: ISnackbarProps): ReactNode => {
   const colors = Object.values(ESnackbarColors);

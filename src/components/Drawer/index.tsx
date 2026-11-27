@@ -3,6 +3,8 @@ import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { EButtonSize } from '@components/Button/enums';
 import { EClickAwayEvent } from '@components/ClickAwayListener/types';
 import { Button, IconCloseOutlined24 } from '@components/index';
+import { useDialogFocus } from '@components/utils/useDialogFocus';
+import { FloatingFocusManager } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IDrawerProps } from './types';
@@ -32,6 +34,8 @@ import { EDrawerPosition } from './enums';
 
 const Drawer: FC<IDrawerProps> = ({
   isOpen,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   onClose,
   position = EDrawerPosition.right,
   className,
@@ -47,9 +51,12 @@ const Drawer: FC<IDrawerProps> = ({
   const [isClosing, setIsClosing] = useState(false);
   const justOpenedRef = useRef(false);
 
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const handleClose = useCallback(() => {
+    if (closeTimer.current !== undefined) return;
     setIsClosing(true);
-    setTimeout(() => {
+    closeTimer.current = setTimeout(() => {
+      closeTimer.current = undefined;
       setIsClosing(false);
       onClose();
     }, 300);
@@ -67,21 +74,14 @@ const Drawer: FC<IDrawerProps> = ({
     }
   }, [isOpen]);
 
+  const { panel, setPanel, context, opener } = useDialogFocus(isOpen, handleClose);
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen && !isClosing) {
-        handleClose();
-      }
-    };
-
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-
+    if (!isOpen) setIsClosing(false);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      clearTimeout(closeTimer.current);
+      closeTimer.current = undefined;
     };
-  }, [isOpen, isClosing, handleClose]);
+  }, [isOpen]);
 
   if (!isOpen && !isClosing) return null;
 
@@ -114,36 +114,47 @@ const Drawer: FC<IDrawerProps> = ({
       data-ui-drawer
       data-testid="DRAWER"
     >
-      <div
-        className={clsx(styles.wrapper, styles[position], {
-          [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
-          [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,
-          [styles.slideOutTop]: isClosing && position === EDrawerPosition.top,
-          [styles.slideOutBottom]: isClosing && position === EDrawerPosition.bottom
-        })}
-      >
-        <div className={clsx(styles.drawer, styles[position], className)} style={isHorizontal ? { width } : { height }}>
-          <div className={clsx(styles.drawerContent, styles[position])} data-ui-drawer-content>
-            {children}
+      <FloatingFocusManager context={context} modal={overlay} returnFocus={opener} initialFocus={panel}>
+        <div
+          ref={setPanel}
+          role="dialog"
+          aria-modal={overlay || undefined}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          tabIndex={-1}
+          className={clsx(styles.wrapper, styles[position], {
+            [styles.slideOutLeft]: isClosing && position === EDrawerPosition.left,
+            [styles.slideOutRight]: isClosing && position === EDrawerPosition.right,
+            [styles.slideOutTop]: isClosing && position === EDrawerPosition.top,
+            [styles.slideOutBottom]: isClosing && position === EDrawerPosition.bottom
+          })}
+        >
+          <div
+            className={clsx(styles.drawer, styles[position], className)}
+            style={isHorizontal ? { width } : { height }}
+          >
+            <div className={clsx(styles.drawerContent, styles[position])} data-ui-drawer-content>
+              {children}
+            </div>
           </div>
+          {!isClosing && isViewCloseButton && (
+            <div className={clsx(styles.close, styles[position])}>
+              <Button
+                type="button"
+                iconButton={<IconCloseOutlined24 htmlColor={overlay ? 'var(--unique-white)' : 'var(--steel-90)'} />}
+                color="ghost"
+                variant="secondary"
+                className={clsx(styles.drawerClose, styles[position])}
+                onClick={handleClose}
+                aria-label="Close"
+                size={EButtonSize.s}
+                style={dynamicStyleForCloseButton}
+                data-ui-drawer-close-button
+              />
+            </div>
+          )}
         </div>
-        {!isClosing && isViewCloseButton && (
-          <div className={clsx(styles.close, styles[position])}>
-            <Button
-              type="button"
-              iconButton={<IconCloseOutlined24 htmlColor={overlay ? 'var(--unique-white)' : 'var(--steel-90)'} />}
-              color="ghost"
-              variant="secondary"
-              className={clsx(styles.drawerClose, styles[position])}
-              onClick={handleClose}
-              aria-label="Close"
-              size={EButtonSize.s}
-              style={dynamicStyleForCloseButton}
-              data-ui-drawer-close-button
-            />
-          </div>
-        )}
-      </div>
+      </FloatingFocusManager>
     </div>
   );
 };

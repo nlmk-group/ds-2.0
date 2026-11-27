@@ -53,7 +53,7 @@ export const DefaultNotificationCard = (argTypes: INotificationCardProps) => {
   );
 };
 
-DefaultNotificationCard.storyName = 'NotificationCard по умолчанию';
+DefaultNotificationCard.storyName = 'Карточка уведомления · NotificationCard';
 DefaultNotificationCard.args = {
   title: 'Планирование графика отпусков на следующий год',
   body: longBody,

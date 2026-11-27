@@ -22,21 +22,21 @@ import { Splitter, Box, Typography } from '@nlmk/ds-2.0';
 
 const SplitterExample = () => {
   const leftPanel = (
-    <Box alignItems="flex-start" gap="12px" style={{ height: '100%', padding: '16px', background: 'var(--unique-background)' }}>
+    <Box alignItems="flex-start" gap="12px" style={{ minHeight: '100%', boxSizing: 'border-box', padding: '16px', background: 'var(--unique-background)' }}>
       <Typography variant="Heading4" color="var(--steel-90)">Левая панель</Typography>
       <Typography variant="Body1-Medium" color="var(--steel-90)">Контент для левой части вертикального разделителя.</Typography>
     </Box>
   );
 
   const rightPanel = (
-    <Box alignItems="flex-start" gap="12px" style={{ height: '100%', padding: '16px', background: 'var(--unique-background)' }}>
+    <Box alignItems="flex-start" gap="12px" style={{ minHeight: '100%', boxSizing: 'border-box', padding: '16px', background: 'var(--unique-background)' }}>
       <Typography variant="Heading4" color="var(--steel-90)">Правая панель</Typography>
       <Typography variant="Body1-Medium" color="var(--steel-90)">Контент для правой части вертикального разделителя.</Typography>
     </Box>
   );
 
   return (
-    <div style={{ height: '360px' }}>
+    <div style={{ width: '100%', height: '300px' }}>
       <Splitter
         orientation="vertical"
         topComponent={leftPanel}
@@ -69,10 +69,11 @@ export default SplitterExample;`;
       {Number(activeTab) === 0 && (
         <>
           <Editor
-            minHeight={550}
+            stacked
+            minHeight={280}
             description="Базовое использование Splitter в горизонтальной ориентации."
             code={`import React from 'react';
-import { Splitter, Box, Typography, ImagePicture } from '@nlmk/ds-2.0';
+import { Splitter, Box, Typography } from '@nlmk/ds-2.0';
 
 const SplitterExample = () => {
   const topComponent = (
@@ -80,7 +81,8 @@ const SplitterExample = () => {
       alignItems="flex-start"
       gap="16px"
       style={{
-        height: '100%',
+        minHeight: '100%',
+        boxSizing: 'border-box',
         padding: '16px',
         background: 'var(--unique-background)'
       }}
@@ -100,7 +102,8 @@ const SplitterExample = () => {
       alignItems="flex-start"
       gap="16px"
       style={{
-        height: '100%',
+        minHeight: '100%',
+        boxSizing: 'border-box',
         padding: '16px',
         background: 'var(--unique-background)'
       }}
@@ -117,7 +120,7 @@ const SplitterExample = () => {
 
   return (
     <>
-      <div style={{ height: '450px' }}>
+      <div style={{ width: '100%', height: '320px' }}>
         <Splitter
           topComponent={topComponent}
           bottomComponent={bottomComponent}
@@ -130,7 +133,8 @@ const SplitterExample = () => {
 export default SplitterExample;`}
           />
           <Editor
-            minHeight={470}
+            stacked
+            minHeight={280}
             description="Вертикальная ориентация разделителя через orientation='vertical'."
             code={verticalSplitterCode}
           />

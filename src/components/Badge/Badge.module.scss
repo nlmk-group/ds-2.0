@@ -44,11 +44,11 @@ $variants: brand, grey, error, warning, success;
 
 // Соответствующие цвета для каждого варианта
 $bg-colors: (
-  brand: var(--brand-sapphire-30),
-  grey: var(--steel-50),
+  brand: var(--brand-sapphire-20),
+  grey: var(--steel-40),
   error: var(--spectrum-red-40),
-  warning: var(--spectrum-yellow-40),
-  success: var(--spectrum-green-40)
+  warning: var(--spectrum-yellow-10),
+  success: var(--spectrum-green-30)
 );
 
 $outline-colors: (

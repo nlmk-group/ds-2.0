@@ -65,7 +65,7 @@ export const SelectDefault = (args: ISelectProps): JSX.Element => {
 SelectDefault.args = {
   label: 'Select по умолчанию'
 };
-SelectDefault.storyName = 'Select по умолчанию';
+SelectDefault.storyName = 'Одиночный выбор · SimpleSelect';
 
 export const SelectWithSearch = (args: ISelectProps): JSX.Element => {
   const [value, setValue] = useState(args.value || '');

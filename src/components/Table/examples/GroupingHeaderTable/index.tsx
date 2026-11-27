@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const GroupingTableExample = () => {
@@ -17,7 +18,7 @@ const GroupingTableExample = () => {
   });
 
   return (
-    <div className={clsx(styles.tableContainer, styles.tableGrouping)}>
+    <Scrollbar className={clsx(styles.tableContainer, styles.tableGrouping)}>
       <Table verticalBorders horizontalBorders>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -86,7 +87,7 @@ const GroupingTableExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

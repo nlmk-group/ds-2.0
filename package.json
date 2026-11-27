@@ -1,6 +1,6 @@
 {
   "name": "@nlmk/ds-2.0",
-  "version": "2.32.3",
+  "version": "2.33.0",
   "author": "NLMK IT",
   "public": false,
   "type": "module",
@@ -29,8 +29,9 @@
     "test": "jest",
     "test:clear-cache": "jest --clearCache",
     "test:ci": "jest --watchAll=false --ci --config=jest.config.cjs",
+    "test:e2e": "playwright test",
     "test:coverage": "jest --coverage",
-    "test:generate-output": "jest --json --env=jsdom --outputFile=.jest-test-results.json || true",
+    "test:generate-output": "jest --json --env=jsdom --outputFile=.jest-test-results.json",
     "prebuild:storybook": "yarn test:generate-output",
     "storybook": "yarn convert:dark-theme-tokens && yarn prebuild:storybook && storybook dev -p 6006",
     "storybook:dev": "yarn convert:dark-theme-tokens && storybook dev -p 6006",
@@ -97,8 +98,10 @@
     "@codesandbox/sandpack-react": "^2.9.0",
     "@dnd-kit/core": "^6.3.1",
     "@eslint/compat": "^1.2.3",
+    "@playwright/test": "1.64.1",
     "@popperjs/core": "^2.11.8",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@storybook/addon-a11y": "10.6.9",
     "@storybook/addon-docs": "^10.6.9",
     "@storybook/addon-links": "^10.6.9",
     "@storybook/react-vite": "^10.6.9",
@@ -237,10 +240,6 @@
     "./Checkbox": {
       "import": "./lib/Checkbox/index.js",
       "types": "./lib/Checkbox/index.d.ts"
-    },
-    "./Chip": {
-      "import": "./lib/Chip/index.js",
-      "types": "./lib/Chip/index.d.ts"
     },
     "./ClickAwayListener": {
       "import": "./lib/ClickAwayListener/index.js",
@@ -402,10 +401,6 @@
       "import": "./lib/SegmentButtonGroup/index.js",
       "types": "./lib/SegmentButtonGroup/index.d.ts"
     },
-    "./Select": {
-      "import": "./lib/Select/index.js",
-      "types": "./lib/Select/index.d.ts"
-    },
     "./Sidebar": {
       "import": "./lib/Sidebar/index.js",
       "types": "./lib/Sidebar/index.d.ts"
@@ -503,7 +498,7 @@
       "types": "./lib/*.d.ts"
     },
     "./css/main.css": "./lib/css/main.css",
-    "./css/style.css": "./lib/css/style.css",
+    "./css/style.css": "./lib/css/main.css",
     "./css/*": "./lib/css/*"
   }
 }

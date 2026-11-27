@@ -6,7 +6,11 @@ import styles from '../Divider.module.scss';
 
 import { IHorizontalBorder } from '../types';
 
-const HorizontalBorder: FC<IHorizontalBorder> = ({ isSmall, dashed = false, orientationSpace = 0 }): JSX.Element => (
+const HorizontalBorder: FC<IHorizontalBorder> = ({
+  isSmall,
+  dashed = false,
+  orientationSpace = 0
+}): React.JSX.Element => (
   <div
     style={isSmall && orientationSpace !== 0 ? { width: `${orientationSpace}px` } : {}}
     className={clsx(styles['border-horizontal-wrapper'], isSmall && styles['border-horizontal-small'])}

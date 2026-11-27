@@ -1,25 +1,22 @@
-import { ILLUSTRATION_PICTURES } from '../constants';
 import { EPictureNames, EPictureSizes } from '../enums';
 
 export const argsTypes = {
   name: {
-    description: 'Название картинки',
+    description:
+      'Имя иллюстрации. Набор изображений зависит от размера. Если изображения нет в этом размере, компонент ищет вариант no-image.',
     table: {
-      defaultValue: {
-        summary: EPictureNames.Error404
-      },
       type: {
         summary: Object.values(EPictureNames).join(' | ')
       }
     },
-    options: Object.keys(ILLUSTRATION_PICTURES[EPictureSizes.Medium]),
+    options: Object.values(EPictureNames),
     control: { type: 'select' }
   },
   size: {
     description: 'Размеры картинки',
     table: {
       defaultValue: {
-        summary: EPictureSizes.Medium
+        summary: EPictureSizes.Small
       },
       type: {
         summary: Object.values(EPictureSizes).join(' | ')

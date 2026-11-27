@@ -26,7 +26,7 @@ function getContext<T = string>(defaultState?: T) {
   };
 }
 
-const compose = (providers: (({ children }: IContextProviderProps) => JSX.Element)[]) => {
+const compose = (providers: (({ children }: IContextProviderProps) => React.JSX.Element)[]) => {
   const ComposedProviders = providers.reduce((Previous, Current) => {
     const ProviderComponent = ({ children }: IContextProviderProps) => (
       <Previous>

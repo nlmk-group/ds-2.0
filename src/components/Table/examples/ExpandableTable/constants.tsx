@@ -40,13 +40,13 @@ export const columns: ColumnDef<IExpandableData>[] = [
     }
   },
   {
-    header: 'Name',
+    header: 'Материал',
     accessorKey: 'name',
     size: 150,
     enableSorting: true
   },
   {
-    header: 'Age',
+    header: 'Срок, лет',
     accessorKey: 'age',
     size: 100,
     enableSorting: true,
@@ -55,7 +55,7 @@ export const columns: ColumnDef<IExpandableData>[] = [
     }
   },
   {
-    header: 'Status',
+    header: 'Статус',
     accessorKey: 'status',
     size: 120,
     enableSorting: false

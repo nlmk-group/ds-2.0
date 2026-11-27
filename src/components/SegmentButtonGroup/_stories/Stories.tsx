@@ -27,7 +27,7 @@ const Stories = (): JSX.Element => {
   const defaultGroupCode = `import { useState } from 'react';
 import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [active, setActive] = useState(0);
 
   return (
@@ -49,7 +49,7 @@ export default App = () => {
   const sizeGroupCode = `import { useState } from 'react';
 import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [activeM, setActiveM] = useState(0);
   const [activeS, setActiveS] = useState(0);
 
@@ -79,7 +79,7 @@ export default App = () => {
 
   const disabledGroupCode = `import { SegmentButtonGroup, SegmentButton, Typography } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ display: 'grid', gap: '16px' }}>
     <SegmentButtonGroup disabled>
       <SegmentButton buttonIndex={0}>

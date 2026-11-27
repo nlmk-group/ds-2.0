@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
             description="Базовый Checkbox в неконтролируемом режиме."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <Checkbox onChange={() => console.log('Changed!')} />
 )`}
           />
@@ -51,7 +51,7 @@ export default  App = () => (
             description="Цветовые варианты Checkbox."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Checkbox />
     <Checkbox color="error"/>
@@ -65,12 +65,12 @@ export default  App = () =>(
             description="Сценарии checked, disabled и multiple с подписью label."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
-    <Checkbox label="default" />
-    <Checkbox label="disabled" disabled />
-    <Checkbox label="multiple" multiple checked />
-    <Checkbox label="multiple disabled" disabled multiple checked />
+    <Checkbox label="Обычный" />
+    <Checkbox label="Недоступно" disabled />
+    <Checkbox label="Частичный выбор" multiple checked />
+    <Checkbox label="Частичный выбор недоступен" disabled multiple checked />
   </>
 )`}
           />
@@ -80,7 +80,7 @@ export default  App = () =>(
             code={`import { useState } from 'react';
 import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () => {
+export default () => {
   const [checked, setChecked] = useState([true, false]);
 
   const handleChange1 = (event: { target: { checked: boolean } }) => {
@@ -100,18 +100,18 @@ export default  App = () => {
   return (
             <>
               <Checkbox
-                label="Parent"
+                label="Все цеха"
                 checked={isCheckedMultiple || (checked[0] && checked[1])}
                 multiple={isCheckedMultiple}
                 onChange={handleChange1}
               />
               <Checkbox
-                label="Child 1"
+                label="Прокатный цех"
                 checked={checked[0]}
                 onChange={handleChange2}
               />
               <Checkbox
-                label="Child 2"
+                label="Литейный цех"
                 checked={checked[1]}
                 onChange={handleChange3}
               />
@@ -122,7 +122,7 @@ export default  App = () => {
             description="Кастомизация через colored, className и style."
             code={`import { Checkbox } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <>
     <Checkbox label="С цветовой индикацией" checked colored />
     <Checkbox

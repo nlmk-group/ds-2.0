@@ -5,17 +5,16 @@ import Header from '@components/_storybook/Stories/components/Header';
 import Properties from '@components/_storybook/Stories/components/Properties';
 import Tests from '@components/_storybook/Stories/components/Tests';
 import '@components/_storybook/Stories/styles.css';
-import { Tabs, Typography } from '@components/index';
+import { Tabs } from '@components/index';
 
-import localStyles from './Icon.module.scss';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
-import { AllIcons } from './Icon.stories';
+import IconCatalog from './IconCatalog';
 
 enum TabIds {
   dev,
-  design,
+  catalog,
   tests
 }
 
@@ -67,7 +66,7 @@ export default App;
 `;
 
 const Stories = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState<TabIds>(TabIds.dev);
+  const [activeTab, setActiveTab] = useState<TabIds>(TabIds.catalog);
 
   const isActive = (tab: TabIds) => {
     return activeTab === tab;
@@ -81,51 +80,24 @@ const Stories = (): JSX.Element => {
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
       />
-      <div className={styles['header-wrapper']}>
-        <Typography variant="Heading2" color="var(--steel-90)">
-          Иконки
-        </Typography>
-        <p>Существует два способа добавить иконку в проект:</p>
-
-        <ol>
-          <li>Использовать компонент Icon.</li>
-          <li>Использовать отдельный компонент конкретной иконки.</li>
-        </ol>
-
-        <Typography variant="Heading2" color="var(--steel-90)">
-          Примеры
-        </Typography>
-        <p>
-          Компонент Icon рендерит иконку в контейнере, размер которого по умолчанию совпадает с размером иконки.
-          Название иконки должно соответствовать имени в макете Figma.
-        </p>
-      </div>
-
       <div className={styles.tabs}>
         <Tabs>
-          <Tabs.Tab label="Разработчику" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
+          <Tabs.Tab label="Каталог" active={isActive(TabIds.catalog)} onClick={() => setActiveTab(TabIds.catalog)} />
+          <Tabs.Tab label="Примеры кода" active={isActive(TabIds.dev)} onClick={() => setActiveTab(TabIds.dev)} />
           <Tabs.Tab label="Тестирование" active={isActive(TabIds.tests)} onClick={() => setActiveTab(TabIds.tests)} />
         </Tabs>
       </div>
 
+      {isActive(TabIds.catalog) && <IconCatalog />}
       {activeTab == TabIds.dev && (
         <>
           <Editor description="Базовое отображение иконки через компонент Icon." code={defaultIconCode} />
           <Editor description="Пользовательский цвет через color=inherit и htmlColor." code={inheritColorCode} />
           <Editor description="Отображение бейджа поверх иконки через prop badge." code={badgeIconCode} />
           <Editor description="Использование иконки как отдельного React-компонента." code={standaloneIconCode} />
-          <br />
-          <Typography color="var(--steel-90)" variant="Heading3">
-            Все доступные иконки
-          </Typography>
-          <br />
-          <div className={localStyles['wrapper-info']}>
-            <AllIcons />
-          </div>
-
-          <Properties argsTypes={argsTypes} />
         </>
       )}
+      {activeTab !== TabIds.tests && <Properties argsTypes={argsTypes} />}
       {activeTab == TabIds.tests && <Tests componentName={COMPONENT_NAME} />}
     </div>
   );

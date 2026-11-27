@@ -13,7 +13,6 @@ import {
   SimpleSelect,
   Typography
 } from '@components/index';
-import { positions } from '@components/Select/_stories/mocks';
 import { Meta } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
@@ -54,6 +53,16 @@ const options = [
   { value: 'tin', label: 'Tin' }
 ];
 
+const positions = [
+  { value: 'Сталь' },
+  { value: 'Железо' },
+  { value: 'Чугун', disabled: true },
+  { value: 'Медь' },
+  { value: 'Цинк' },
+  { value: 'Титан' },
+  { value: 'Хром' }
+];
+
 export default {
   title: 'Components/Modal/Stories',
   component: Modal,
@@ -80,7 +89,7 @@ export const ModalDefault = (argsTypes: IModalProps): ReactNode => {
     </div>
   );
 };
-ModalDefault.storyName = 'Модальное окно по умолчанию';
+ModalDefault.storyName = 'Модальное окно · Modal';
 
 export const ModalScroll = (argsTypes: IModalProps): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);

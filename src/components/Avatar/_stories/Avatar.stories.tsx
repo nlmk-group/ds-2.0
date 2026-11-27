@@ -72,7 +72,7 @@ export const AvatarDefault = (argsTypes: IAvatarProps): JSX.Element => {
     </div>
   );
 };
-AvatarDefault.storyName = 'Дефолтный аватар';
+AvatarDefault.storyName = 'Аватар · Avatar';
 
 export const DefaultAvatarsWithSizes = (argsTypes: IAvatarProps): JSX.Element => {
   return (

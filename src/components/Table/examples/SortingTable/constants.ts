@@ -13,12 +13,12 @@ export const columns: ColumnDef<ISortingData>[] = [
     }
   },
   {
-    header: 'Name',
+    header: 'Материал',
     accessorKey: 'name',
     enableSorting: true
   },
   {
-    header: 'Age',
+    header: 'Срок, лет',
     accessorKey: 'age',
     enableSorting: true,
     meta: {
@@ -26,7 +26,7 @@ export const columns: ColumnDef<ISortingData>[] = [
     }
   },
   {
-    header: 'Production Date',
+    header: 'Дата производства',
     accessorKey: 'productionDate',
     enableSorting: true,
     cell: info => {
@@ -35,7 +35,7 @@ export const columns: ColumnDef<ISortingData>[] = [
     }
   },
   {
-    header: 'Status',
+    header: 'Статус',
     accessorKey: 'status',
     enableSorting: false
   }

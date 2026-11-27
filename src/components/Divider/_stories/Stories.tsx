@@ -57,7 +57,7 @@ const Stories = (): JSX.Element => {
             description="Базовый горизонтальный Divider с текстом."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <div style=${style}>
     <Divider>
       <span style={{color: "var(--steel-90)"}}>
@@ -73,7 +73,7 @@ export default  App = () => (
             description="Пунктирный Divider через dashed."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <div style=${style}>
     <Divider dashed>
       <span style={{color: "var(--steel-90)"}}>
@@ -89,7 +89,7 @@ export default  App = () => (
             description="Позиционирование контента: left, center и right."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <div style=${style}>
     <Divider orientation="left">
       <span style={{color: "var(--steel-90)"}}>
@@ -117,7 +117,7 @@ export default  App = () => (
             description="Кастомный отступ контента через orientationSpace."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <div style=${style}>
     <Divider
       orientation="left"
@@ -145,7 +145,7 @@ export default  App = () => (
             description="Вертикальный Divider для inline/flex-контейнера."
             code={`import { Divider } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <div style=${style}>
     <div
       style={{
@@ -180,7 +180,7 @@ export default  App = () => (
             description="Комбинированные сценарии с текстом, кнопками и иконками."
             code={`import { Divider, Button, Icon, IconChemical24 } from '@nlmk/ds-2.0';
 
-export default  App = () =>(
+export default () =>(
   <div style=${styleVariations}>
     <Divider dashed />
     <div

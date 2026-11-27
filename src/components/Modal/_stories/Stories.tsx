@@ -19,7 +19,7 @@ const ModalStories = (): JSX.Element => {
   const modalDefaultCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -41,7 +41,7 @@ export default  App = () => {
   const modalDraggableCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -64,7 +64,7 @@ export default  App = () => {
   const modalResizableCode = `import { Button, Modal, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
       <>
@@ -86,7 +86,7 @@ export default  App = () => {
   const modalCloseBehaviorCode = `import { Button, Modal, Typography } from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

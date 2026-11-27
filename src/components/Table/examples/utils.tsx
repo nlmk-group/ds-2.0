@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { Typography } from '@components/index';
+import Typography from '@components/Typography';
 import { flexRender } from '@tanstack/react-table';
+
+import { ECellStatus } from '../Cell/types';
+import { statusLabels } from './constants';
 
 export const getCellProps = (cell: any) => {
   const value = cell.getValue();
@@ -9,7 +12,7 @@ export const getCellProps = (cell: any) => {
   if (value instanceof Date) {
     const date = new Date(value);
     if (!isNaN(date.getTime())) {
-      return { text: date.toLocaleDateString() };
+      return { text: date.toLocaleDateString('ru-RU') };
     }
   }
 
@@ -18,7 +21,8 @@ export const getCellProps = (cell: any) => {
   }
 
   if (typeof value === 'string') {
-    return { text: value };
+    const status = cell.column.id === 'status' && Object.prototype.hasOwnProperty.call(statusLabels, value);
+    return { text: status ? statusLabels[value as ECellStatus] : value };
   }
 
   return {

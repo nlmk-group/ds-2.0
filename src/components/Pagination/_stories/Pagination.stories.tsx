@@ -20,18 +20,18 @@ export const PaginationDefault = (argsTypes: IPaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div style={{ width: '800px' }}>
+    <div style={{ width: 'min(800px, 100%)' }}>
       <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
 };
-PaginationDefault.storyName = 'Pagination по умолчанию';
+PaginationDefault.storyName = 'Разбивка на страницы · Pagination';
 
 export const PaginationWithGap = (argsTypes: IPaginationProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(7);
 
   return (
-    <div style={{ width: '800px' }}>
+    <div style={{ width: 'min(800px, 100%)' }}>
       <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
@@ -43,7 +43,7 @@ export const PaginationWithLeftGap = (argsTypes: IPaginationProps): JSX.Element 
   const [currentPage, setCurrentPage] = useState(17);
 
   return (
-    <div style={{ width: '800px' }}>
+    <div style={{ width: 'min(800px, 100%)' }}>
       <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
@@ -55,7 +55,7 @@ export const PaginationWithRightGap = (argsTypes: IPaginationProps): JSX.Element
   const [currentPage, setCurrentPage] = useState(4);
 
   return (
-    <div style={{ width: '800px' }}>
+    <div style={{ width: 'min(800px, 100%)' }}>
       <Pagination {...argsTypes} currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={20} />
     </div>
   );
@@ -68,7 +68,7 @@ export const PaginationWithSelect = (argsTypes: IPaginationProps): JSX.Element =
   const [elementsPerPage, setElementsPerPage] = useState(10);
 
   return (
-    <div style={{ width: '800px' }}>
+    <div style={{ width: 'min(800px, 100%)' }}>
       <Pagination
         {...argsTypes}
         currentPage={currentPage}

@@ -3,22 +3,24 @@ import { CSSProperties, ReactNode } from 'react';
 import { ESwitchColors } from './enums';
 
 export interface ISwitchProps {
+  /** Доступное имя для переключателя без видимой подписи. */
+  'aria-label'?: string;
   /** Дополнительный CSS-класс */
-  className?: string;
+  'className'?: string;
   /** Состояние переключателя */
-  checked: boolean;
+  'checked': boolean;
   /** Функция обработки изменения состояния */
-  onChange: (checked: boolean) => void;
+  'onChange': (checked: boolean) => void;
   /** Отключает переключатель */
-  disabled?: boolean;
+  'disabled'?: boolean;
   /** Метка для переключателя */
-  label?: string;
+  'label'?: string;
   /** Иконка для активного состояния */
-  activeIcon?: ReactNode;
+  'activeIcon'?: ReactNode;
   /** Иконка для неактивного состояния */
-  inactiveIcon?: ReactNode;
+  'inactiveIcon'?: ReactNode;
   /** Цвет switch */
-  color?: `${ESwitchColors}`;
+  'color'?: `${ESwitchColors}`;
   /** Inline стили для кастомизации компонента */
-  style?: CSSProperties;
+  'style'?: CSSProperties;
 }

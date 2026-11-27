@@ -4,13 +4,14 @@ import { EIndicatorStatusMapping, EOrientationMapping } from '../enums';
 
 const argsTypes = {
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description:
       'Свойство компонента Card, которое позволяет передавать элементы JSX или ReactNode для отображения в Card',
     control: { type: 'text' }
   },
   className: {
     description: 'Пользовательский класс для настройки стилей Card.',
-    control: { type: 'string' }
+    control: { type: 'text' }
   },
   orientation: {
     description: 'Определяет позиции элементов для компонента Card. По умолчанию vertical',
@@ -42,7 +43,7 @@ const argsTypes = {
     description: 'Необязательный атрибут. Цвет индикатора.',
     table: {
       defaultValue: {
-        summary: EIndicatorStatusMapping.success
+        summary: EIndicatorStatusMapping.default
       },
       type: {
         summary: 'string'

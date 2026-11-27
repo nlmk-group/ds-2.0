@@ -6,29 +6,31 @@ import icons from '../IconsDirectory';
 
 const argsTypes = {
   name: {
-    description: 'Имя иконки',
+    description: 'Имя иконки из каталога, включая размер. Например, IconSearchOutlined24.',
     table: {
       defaultValue: {
         summary: ''
       },
       type: {
-        summary: 'string'
+        summary: 'TIconName',
+        catalog: { href: './?path=/story/components-icon-stories--all-icons', label: 'Открыть каталог' }
       }
     },
-    options: [...Object.keys({ ...icons[16], ...icons[24], ...icons[32] })],
+    options: Object.values(icons).flatMap(group => Object.keys(group)),
     control: { type: 'select' }
   },
   color: {
     description: 'Цвет иконки',
     table: {
       defaultValue: {
-        summary: 'primary'
+        summary: 'inherit'
       },
       type: {
-        summary: '"action" | "disabled" | "error" | "primary" | "secondary" | "inherit" | "success" | "warning"'
+        summary:
+          '"action" | "disabled" | "error" | "primary" | "secondary" | "inherit" | "success" | "warning" | "default"'
       }
     },
-    options: ['action', 'disabled', 'error', 'primary', 'secondary', 'inherit', 'success', 'warning'],
+    options: ['action', 'disabled', 'error', 'primary', 'secondary', 'inherit', 'success', 'warning', 'default'],
     control: { type: 'select' }
   },
   htmlColor: {

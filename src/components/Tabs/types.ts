@@ -2,7 +2,7 @@ import { ETabsIndicatorPosition, ETabsOrientation, ETabsTabPosition } from './en
 
 export interface ITabsProps {
   /** Дочерние элементы, представляющие содержимое вкладок */
-  children: JSX.Element | JSX.Element[];
+  children: React.JSX.Element | React.JSX.Element[];
 
   /** Дополнительный CSS класс для стилизации компонента вкладок */
   className?: string;

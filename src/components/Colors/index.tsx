@@ -20,7 +20,7 @@ const Colors: FC<IColors> = ({ colors, groupColorKey, title, subTitle }) => {
 
   const formatDescription = (description: string) => description?.split('\n').slice(-1).join('');
 
-  const renderColor = (value: string, label?: string): JSX.Element => {
+  const renderColor = (value: string, label?: string): React.JSX.Element => {
     const color = value.toUpperCase();
     const isWhite = color.startsWith('#FFFFFF');
 

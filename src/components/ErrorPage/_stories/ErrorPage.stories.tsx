@@ -20,7 +20,7 @@ export default {
 export const ErrorPageDefault = (argTypes: ErrorPageProps) => {
   return <ErrorPage {...argTypes} />;
 };
-ErrorPageDefault.storyName = 'Страница ошибки по умолчанию';
+ErrorPageDefault.storyName = 'Страница ошибки · ErrorPage';
 ErrorPageDefault.args = {
   description: 'Произошла ошибка',
   hint: 'Попробуйте обновить страницу'

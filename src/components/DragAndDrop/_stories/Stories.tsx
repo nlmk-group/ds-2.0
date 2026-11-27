@@ -42,7 +42,7 @@ const Stories = (): JSX.Element => {
             description="Базовый DragAndDrop для загрузки файла."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <DragAndDrop
     onUpload={() => {}}
     percentUpload={0}
@@ -55,7 +55,7 @@ export default  App = () => (
             description="Статусы компонента: default, info, error."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
     <DragAndDrop onUpload={() => {}} statusColor="default" />
     <DragAndDrop onUpload={() => {}} statusColor="info" />
@@ -69,7 +69,7 @@ export default  App = () => (
             description="Размеры и типы загружаемых файлов."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
     <DragAndDrop onUpload={() => {}} size="l" fileType="image" />
     <DragAndDrop onUpload={() => {}} size="m" fileType="file" />
@@ -83,7 +83,7 @@ export default  App = () => (
             description="Состояние загрузки и возможность отмены загрузки."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <DragAndDrop
     onUpload={() => {}}
     loading
@@ -101,7 +101,7 @@ export default  App = () => (
             description="Компактные режимы отображения: smallText и smallIcon."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
     <DragAndDrop onUpload={() => {}} smallText title="Быстрая загрузка" />
     <DragAndDrop onUpload={() => {}} smallIcon statusColor="info" />
@@ -113,7 +113,7 @@ export default  App = () => (
             description="Настройка форматов загрузки и одиночного выбора файла."
             code={`import { DragAndDrop } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <DragAndDrop
     onUpload={() => {}}
     fileType="file"
@@ -129,7 +129,7 @@ export default  App = () => (
             description="Кастомная иконка и отключённое состояние."
             code={`import { DragAndDrop, IconUploadFile32 } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
     <DragAndDrop
       onUpload={() => {}}
@@ -150,7 +150,7 @@ export default  App = () => (
             description="Полностью кастомный контент через children."
             code={`import { DragAndDrop, Typography } from '@nlmk/ds-2.0'
 
-export default  App = () => (
+export default () => (
   <DragAndDrop onUpload={() => {}}>
     <div style={{ padding: 16, textAlign: 'center' }}>
       <Typography variant="Body1-Bold">Кастомная зона загрузки</Typography>

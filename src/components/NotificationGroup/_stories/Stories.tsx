@@ -57,7 +57,7 @@ const body1 = 'Сервис «График отпусков». Добрый де
 const body2 = 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00.';
 const body3 = 'Бухгалтерия сформировала справку 2-НДФЛ за 2025 год. Документ доступен для скачивания в личном кабинете.';
 
-export default App = () => (
+export default () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup>
       <NotificationCard title="Планирование графика отпусков на следующий год" body={body1} timestamp="сегодня, 14:13" unread />
@@ -76,7 +76,7 @@ const body1 = 'Сервис «График отпусков». Добрый де
 const body2 = 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00.';
 const body3 = 'Бухгалтерия сформировала справку 2-НДФЛ за 2025 год. Документ доступен для скачивания в личном кабинете.';
 
-export default App = () => (
+export default () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup defaultOpen>
       <NotificationCard title="Планирование графика отпусков на следующий год" body={body1} timestamp="сегодня, 14:13" unread />
@@ -91,7 +91,7 @@ export default App = () => (
             description="NotificationGroup из 2 карточек."
             code={`import { Box, NotificationCard, NotificationGroup } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box st={{ maxWidth: 772, padding: 24 }}>
     <NotificationGroup>
       <NotificationCard title="Заявка на отпуск ожидает согласования" body="Анна Иванова отправила заявку на отпуск с 12 по 25 мая. Требуется ваше согласование." timestamp="сегодня, 14:13" unread />
@@ -137,7 +137,7 @@ const groups = [
   }
 ];
 
-export default App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [unreadOnly, setUnreadOnly] = useState(true);

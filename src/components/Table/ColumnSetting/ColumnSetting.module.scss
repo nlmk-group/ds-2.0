@@ -3,7 +3,6 @@
   align-items: center;
   gap: 4px;
   padding: 16px 8px;
-  transition: background-color 0.2s ease;
   border-radius: 4px;
 
   &:hover:not(.disabled) {
@@ -36,7 +35,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .columnTitle {

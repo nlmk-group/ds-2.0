@@ -1,6 +1,5 @@
-import React, { ChangeEvent, DragEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, DragEvent, FC, useId, useRef, useState } from 'react';
 
-import { generateUUID } from '@components/declaration';
 import { clsx } from 'clsx';
 
 import { IDragAndDropProps } from './types';
@@ -70,7 +69,38 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
   if (loading) {
     actualBtnLabel = cancelUploadLabel;
   }
-  const inputId = generateUUID();
+  const inputId = useId();
+  const acceptedTypes = accept || fileTypes[fileType];
+  const [rejection, setRejection] = useState('');
+  const unavailable = disabled || loading;
+
+  const upload = (files: FileList | null) => {
+    if (unavailable || !files?.length) return;
+    if (!multiple && files.length > 1) {
+      setRejection('Выберите один файл.');
+      return;
+    }
+    const patterns = acceptedTypes
+      .toLowerCase()
+      .split(',')
+      .map(value => value.trim())
+      .filter(Boolean);
+    const rejected = Array.from(files).find(
+      file =>
+        !patterns.some(pattern => {
+          if (pattern === '*' || pattern === '*/*') return true;
+          if (pattern.startsWith('.')) return file.name.toLowerCase().endsWith(pattern);
+          if (pattern.endsWith('/*')) return file.type.toLowerCase().startsWith(pattern.slice(0, -1));
+          return file.type.toLowerCase() === pattern;
+        })
+    );
+    if (rejected) {
+      setRejection(`Файл «${rejected.name}» имеет неподходящий формат. Допустимые форматы: ${acceptedTypes}.`);
+      return;
+    }
+    setRejection('');
+    onUpload(files);
+  };
   // drag state
   const [dragActive, setDragActive] = useState<boolean>(false);
   // ref
@@ -79,6 +109,7 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
   const handleDrag = (e: DragEvent<HTMLDivElement> | DragEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    if (unavailable) return;
     if (e.type === 'dragenter' || e.type === 'dragover') {
       setDragActive(true);
     } else if (e.type === 'dragleave') {
@@ -87,36 +118,33 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
   };
 
   // triggers when file is dropped
-  const handleDrop = (e: DragEvent<HTMLInputElement>) => {
+  const handleDrop = (e: DragEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      onUpload(e.dataTransfer.files);
-    }
+    upload(e.dataTransfer.files);
   };
 
   // triggers when file is selected with click
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      onUpload(e.target.files);
-    }
+    upload(e.target.files);
+    e.target.value = '';
   };
 
   // triggers the input when the button is clicked
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    if (loading && cancelUpload !== null) {
-      cancelUpload();
-    } else {
-      if (inputRef.current !== null) inputRef.current.click();
-    }
+    e.preventDefault();
+    if (disabled) return;
+    if (loading) cancelUpload?.();
+    else inputRef.current?.click();
   };
 
   return (
     <form
-      style={{ pointerEvents: loading ? 'none' : 'all' }}
+      onDrop={handleDrop}
+      onDragOver={handleDrag}
       className={clsx(styles['form-file-upload'], disabled && styles.disabled, className)}
       onDragEnter={handleDrag}
       onSubmit={e => e.preventDefault()}
@@ -127,7 +155,8 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
         id={`input-file-upload-${inputId}`}
         className={styles['input-file-upload']}
         multiple={multiple}
-        accept={accept || fileTypes[fileType]}
+        accept={acceptedTypes}
+        disabled={unavailable}
         onChange={handleChange}
       />
       <label
@@ -178,13 +207,13 @@ const DragAndDrop: FC<IDragAndDropProps> = ({
           />
         )}
       </label>
-      {dragActive && (
+      {rejection && <div role="alert">{rejection}</div>}
+      {dragActive && !unavailable && (
         <div
           className={styles['drag-file-element']}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
-          onDrop={handleDrop}
           data-ui-dnd-drag-file-element
         />
       )}

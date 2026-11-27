@@ -2,11 +2,15 @@ import React, { FC, SyntheticEvent, useCallback, useEffect, useRef, useState } f
 
 import { EButtonSize } from '@components/Button/enums';
 import { Button, IconCloseOutlined24 } from '@components/index';
+import { useDialogFocus } from '@components/utils/useDialogFocus';
+import { FloatingFocusManager } from '@floating-ui/react';
 import clsx from 'clsx';
 
 import { IModalProps } from './types';
 
 import styles from './Modal.module.scss';
+
+let scrollLocks = 0;
 
 /**
  * Компонент Modal для отображения модального окна.
@@ -26,6 +30,8 @@ import styles from './Modal.module.scss';
 const Modal: FC<IModalProps> = ({
   children,
   isOpen,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   onClose,
   onEscapeDown,
   isDraggable = false,
@@ -34,23 +40,36 @@ const Modal: FC<IModalProps> = ({
   disablePageScroll = false,
   className
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const {
+    panel: modalRef,
+    setPanel,
+    context,
+    opener
+  } = useDialogFocus(isOpen, () => {
+    onEscapeDown?.();
+    onClose();
+  });
   const dragHandleRef = useRef<HTMLDivElement>(null);
-  const position = useRef({ left: 0, top: 0, dragStartX: 0, dragStartY: 0 });
+  const pointer = useRef({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!isDragging) return;
-      const { dragStartX, dragStartY } = position.current;
-      position.current.left += e.clientX - dragStartX;
-      position.current.top += e.clientY - dragStartY;
-      position.current.dragStartX = e.clientX;
-      position.current.dragStartY = e.clientY;
-      if (modalRef.current) {
-        modalRef.current.style.left = `${position.current.left}px`;
-        modalRef.current.style.top = `${position.current.top}px`;
-      }
+      const panel = modalRef.current;
+      if (!isDragging || !panel) return;
+      const bounds = panel.getBoundingClientRect();
+      const close = panel.lastElementChild!.getBoundingClientRect();
+      const dx = Math.max(
+        -bounds.left,
+        Math.min(e.clientX - pointer.current.x, window.innerWidth - Math.max(bounds.right, close.right))
+      );
+      const dy = Math.max(
+        -Math.min(bounds.top, close.top),
+        Math.min(e.clientY - pointer.current.y, window.innerHeight - bounds.bottom)
+      );
+      panel.style.left = `${(parseFloat(panel.style.left) || 0) + dx}px`;
+      panel.style.top = `${(parseFloat(panel.style.top) || 0) + dy}px`;
+      pointer.current = { x: e.clientX, y: e.clientY };
     },
     [isDragging]
   );
@@ -61,8 +80,7 @@ const Modal: FC<IModalProps> = ({
     (e: React.MouseEvent) => {
       if (!isDraggable || e.target !== dragHandleRef.current) return;
       setIsDragging(true);
-      position.current.dragStartX = e.clientX;
-      position.current.dragStartY = e.clientY;
+      pointer.current = { x: e.clientX, y: e.clientY };
     },
     [isDraggable]
   );
@@ -74,39 +92,28 @@ const Modal: FC<IModalProps> = ({
   };
 
   useEffect(() => {
-    if (isOpen && disablePageScroll) {
-      document.body.classList.add(styles['no-scroll']);
-    } else {
-      document.body.classList.remove(styles['no-scroll']);
-    }
+    if (!isOpen || !disablePageScroll) return;
+    scrollLocks += 1;
+    document.body.classList.add(styles['no-scroll']);
 
     return () => {
-      document.body.classList.remove(styles['no-scroll']);
+      scrollLocks -= 1;
+      if (scrollLocks === 0) document.body.classList.remove(styles['no-scroll']);
     };
-  }, [isOpen]);
+  }, [isOpen, disablePageScroll]);
 
   useEffect(() => {
+    if (!isOpen) return;
     if (isDraggable) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
     }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (onEscapeDown) {
-          onEscapeDown();
-        }
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isDraggable, handleMouseMove, handleMouseUp, onClose, onEscapeDown]);
+  }, [isOpen, isDraggable, handleMouseMove, handleMouseUp]);
 
   if (!isOpen) return null;
 
@@ -126,23 +133,34 @@ const Modal: FC<IModalProps> = ({
     <>
       <div className={styles.backdrop} onClick={handleBackdropClick} data-ui-modal-backdrop />
       <div className={styles.modalWrapper} data-ui-modal>
-        <div className={styles.modalInner} ref={modalRef} onMouseDown={handleMouseDown}>
-          <div className={modalClasses}>
-            {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
-            {children}
+        <FloatingFocusManager context={context} returnFocus={opener} initialFocus={modalRef}>
+          <div
+            role="dialog"
+            tabIndex={-1}
+            aria-modal="true"
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            className={styles.modalInner}
+            ref={setPanel}
+            onMouseDown={handleMouseDown}
+          >
+            <div className={modalClasses}>
+              {isDraggable && <div ref={dragHandleRef} className={dragHandleClasses} />}
+              {children}
+            </div>
+            <Button
+              type="button"
+              iconButton={<IconCloseOutlined24 htmlColor="var(--unique-white)" />}
+              color="ghost"
+              variant="secondary"
+              className={styles.modalClose}
+              aria-label="Close"
+              onClick={e => onClose(e)}
+              size={EButtonSize.s}
+              data-ui-modal-button
+            />
           </div>
-          <Button
-            type="button"
-            iconButton={<IconCloseOutlined24 htmlColor="var(--unique-white)" />}
-            color="ghost"
-            variant="secondary"
-            className={styles.modalClose}
-            aria-label="Close"
-            onClick={e => onClose(e)}
-            size={EButtonSize.s}
-            data-ui-modal-button
-          />
-        </div>
+        </FloatingFocusManager>
       </div>
     </>
   );

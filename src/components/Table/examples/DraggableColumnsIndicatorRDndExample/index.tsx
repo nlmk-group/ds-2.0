@@ -3,6 +3,7 @@ import { DndProvider, useDrag, useDragLayer, useDrop } from 'react-dnd';
 import { getEmptyImage, HTML5Backend } from 'react-dnd-html5-backend';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   ColumnOrderState,
   ColumnResizeMode,
@@ -14,7 +15,7 @@ import {
 
 import styles from './DraggableColumnsIndicator.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { initialColumns, initialData, IShiftRow } from './constants';
 
 const DRAG_TYPE = 'shift-column-indicator-rdnd';
@@ -76,7 +77,9 @@ const DraggableHeader: FC<IDraggableHeaderProps> = ({ header, containerRef, inde
       const hoveredMiddleX = hoveredRect.left + hoveredRect.width / 2;
       const position: 'before' | 'after' = pointerOffset.x < hoveredMiddleX ? 'before' : 'after';
       const lineX =
-        position === 'before' ? hoveredRect.left - containerRect.left : hoveredRect.right - containerRect.left;
+        (position === 'before' ? hoveredRect.left : hoveredRect.right) -
+        containerRect.left +
+        containerRef.current.scrollLeft;
       onHover({ overColumnId: columnId, position, lineX });
     },
     drop: (item: IDragItem) => onDrop(item.columnId)
@@ -215,7 +218,7 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div ref={containerRef} className={styles.tableContainer}>
+      <Scrollbar ref={containerRef} className={styles.tableContainer}>
         <Table horizontalBorders verticalBorders style={{ tableLayout: 'fixed', width: table.getCenterTotalSize() }}>
           <Thead>
             {table.getHeaderGroups().map(hg => (
@@ -250,7 +253,7 @@ const DraggableColumnsIndicatorRDndExample: FC = () => {
           </Tbody>
         </Table>
         {indicator && <div className={styles.insertLine} style={{ left: indicator.lineX }} />}
-      </div>
+      </Scrollbar>
       <DragPreviewLayer />
     </DndProvider>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Cell, Filter, Row, Table, tableFilterOperations, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   ColumnFiltersState,
   ColumnResizeMode,
@@ -60,7 +61,7 @@ const FilterableTableExample = () => {
   };
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={styles.tableContainer}>
       <Table
         horizontalBorders
         verticalBorders
@@ -142,7 +143,7 @@ const FilterableTableExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

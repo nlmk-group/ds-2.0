@@ -177,7 +177,7 @@ export const SidebarDefault = (argTypes: ISidebarProps): JSX.Element => {
     </Sidebar>
   );
 };
-SidebarDefault.storyName = 'Sidebar по умолчанию';
+SidebarDefault.storyName = 'Боковая навигация · Sidebar';
 SidebarDefault.args = {
   keyboardNavigation: false,
   userName: 'Иван',

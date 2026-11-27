@@ -38,10 +38,21 @@
 }
 
 .row {
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 16px;
   background: var(--steel-10);
   border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+  .container,
+  .section,
+  .row {
+    padding: 8px;
+    gap: 12px;
+    min-width: 0;
+  }
 }

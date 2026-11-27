@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { ISvgProps } from '../types';
 
-const LogoSvgIcon: FC<ISvgProps> = (): JSX.Element => {
+const LogoSvgIcon: FC<ISvgProps> = (): React.JSX.Element => {
   return (
     <svg width="40" height="22" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

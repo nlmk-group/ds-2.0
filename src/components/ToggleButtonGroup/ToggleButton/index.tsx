@@ -25,6 +25,7 @@ const ToggleButton = ({
   const [isHovered, setIsHovered] = useState(false);
   const defaultProps = useContext<IButtonGroupPropertiesProps>(ButtonGroupProperties);
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (defaultProps.disabled || disabled) return;
     onToggle?.();
     onClick?.(e);
   };
@@ -36,6 +37,16 @@ const ToggleButton = ({
   return (
     <ButtonProperties.Provider value={buttonProps}>
       <div
+        role="button"
+        aria-pressed={active}
+        aria-disabled={Boolean(defaultProps.disabled || disabled)}
+        tabIndex={defaultProps.disabled || disabled ? -1 : 0}
+        onKeyDown={event => {
+          if (event.target === event.currentTarget && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault();
+            if (!event.repeat) event.currentTarget.click();
+          }
+        }}
         onClick={handleClick}
         data-testid="TOGGLE_BUTTON"
         onMouseEnter={() => setIsHovered(true)}

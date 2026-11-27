@@ -477,7 +477,7 @@
   --ac-avatar-icon-hover-bg: #ccd1d4;
   --ac-avatar-icon-hover-icon: #ffffff;
   --ac-avatar-placeholder-default-bg: #ccd1d4;
-  --ac-avatar-placeholder-default-initials: #ffffff;
+  --ac-avatar-placeholder-default-initials: var(--steel-90);
   --ac-avatar-placeholder-hover-bg: #ccd1d4;
   --ac-avatar-placeholder-hover-initials: #ffffff;
   --ac-treelist-opened-default-text: #167ffb;

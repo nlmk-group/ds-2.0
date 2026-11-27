@@ -82,7 +82,7 @@ export const DefaultNotificationGroup = (argTypes: INotificationGroupProps) => {
   );
 };
 
-DefaultNotificationGroup.storyName = 'NotificationGroup по умолчанию';
+DefaultNotificationGroup.storyName = 'Группа уведомлений · NotificationGroup';
 DefaultNotificationGroup.args = {
   open: false
 };

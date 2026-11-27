@@ -19,7 +19,7 @@ const DrawerStories = (): JSX.Element => {
   const drawerDefaultCode = `import { Button, Drawer, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -41,7 +41,7 @@ export default  App = () => {
   const drawerLeftCode = `import { Button, Drawer, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -64,7 +64,7 @@ export default  App = () => {
   const drawerVerticalCode = `import { Button, Drawer, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [topOpen, setTopOpen] = useState(false);
   const [bottomOpen, setBottomOpen] = useState(false);
 
@@ -98,7 +98,7 @@ export default  App = () => {
   const drawerBehaviorCode = `import { Button, Drawer, Typography }  from '@nlmk/ds-2.0';
 import { useState } from 'react';
 
-export default  App = () => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

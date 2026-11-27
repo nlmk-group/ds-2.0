@@ -1,14 +1,12 @@
+@use "../Input/select-cursor" as select;
+
 .select {
   position: relative;
-
-  &__input {
-    cursor: pointer;
+  > [data-ui-input] {
+    @include select.field;
   }
 }
 
-.input-helper {
-  input {
-    cursor: pointer;
-    text-overflow: ellipsis;
-  }
+.input-helper input {
+  text-overflow: ellipsis;
 }

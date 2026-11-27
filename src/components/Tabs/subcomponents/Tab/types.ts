@@ -12,7 +12,7 @@ export interface ITabProps extends PropsWithChildren<any> {
   active?: boolean;
 
   /** Дочерний элемент, представляющий содержимое вкладки */
-  children?: JSX.Element;
+  children?: React.JSX.Element;
 
   /** Флаг, указывающий, нужно ли отображать значок (бейдж) на вкладке */
   hasBadge?: boolean;

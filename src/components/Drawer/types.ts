@@ -6,27 +6,29 @@ import { EDrawerPosition } from './enums';
 
 export interface IDrawerProps {
   /** Состояние открытия/закрытия панели */
-  isOpen: boolean;
+  'isOpen': boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   /** Функция для закрытия панели */
-  onClose: () => void;
+  'onClose': () => void;
   /** Позиция панели */
-  position?: `${EDrawerPosition}`;
+  'position'?: `${EDrawerPosition}`;
   /** Дополнительные CSS классы для панели */
-  className?: string;
+  'className'?: string;
   /** Дополнительные CSS классы для оверлея */
-  overlayClassName?: string;
+  'overlayClassName'?: string;
   /** Содержимое панели */
-  children: ReactNode;
+  'children': ReactNode;
   /** Ширина панели (если позиция 'left' или 'right') */
-  width?: CSSProperties['width'];
+  'width'?: CSSProperties['width'];
   /** Высота панели (если позиция 'top' или 'bottom') */
-  height?: CSSProperties['height'];
+  'height'?: CSSProperties['height'];
   /** Отключает закрытие панели по клику вне её области */
-  disableBackdropClick?: boolean;
+  'disableBackdropClick'?: boolean;
   /** Отображает кнопку закрытия */
-  isViewCloseButton?: boolean;
+  'isViewCloseButton'?: boolean;
   /** Отображает оверлей */
-  overlay?: boolean;
+  'overlay'?: boolean;
   /** Тип события для закрытия панели при клике вне её области */
-  clickAwayEventType?: TClickAwayEvent;
+  'clickAwayEventType'?: TClickAwayEvent;
 }

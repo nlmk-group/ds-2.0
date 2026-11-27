@@ -10,7 +10,7 @@ export const argsTypes = {
     control: { type: 'text' }
   },
   behavior: {
-    description: 'Поведение тултипа',
+    description: 'Действие, открывающее подсказку: наведение, нажатие или фокус.',
     table: {
       defaultValue: {
         summary: ETooltipBehaviorType.hover
@@ -30,7 +30,7 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   type: {
-    description: 'Размер тултипа',
+    description: 'Обычное или инверсное оформление подсказки.',
     table: {
       defaultValue: {
         summary: ETooltipType.default

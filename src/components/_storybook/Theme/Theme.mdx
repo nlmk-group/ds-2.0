@@ -1,13 +1,13 @@
-import { Meta, Story, Unstyled } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 
-import { DecoratorDefault } from '../Decorator.stories';
+import * as ThemeStories from './Theme.stories';
 
-import Stories from './Stories';
+<Meta of={ThemeStories} />
 
-<Meta title="Introduction/Theme" />
+# Переключение темы
 
-<Story of={DecoratorDefault} />
+Включите или выключите тёмную тему. Фон панели и цвет текста меняются сразу. Перезагрузите страницу, чтобы проверить сохранение выбора.
 
-<Unstyled>
-  <Stories />
-</Unstyled>
+<Canvas of={ThemeStories.Settings} sourceState="shown" />
+
+Хук `useThemeSwitcher()` по умолчанию сохраняет выбор до закрытия вкладки. В примере передан режим `local`, поэтому настройка сохраняется и при следующем посещении. Кнопка «Вернуть системную тему» вызывает `resetToSystem()` и снова включает автоматическую смену темы вслед за устройством.

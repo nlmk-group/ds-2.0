@@ -67,7 +67,7 @@ export default App
             description="Размеры Avatar"
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="2xl" />
     <Avatar imageSrc="${AVATAR_MOCK_SRC}" size="xl" />
@@ -82,7 +82,7 @@ export default App = () => (
             description="Варианты контента: иконка, изображение и инициалы."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Avatar />
     <Avatar imageSrc="${AVATAR_MOCK_SRC}" />
@@ -95,7 +95,7 @@ export default App = () => (
             description="Fallback при ошибке загрузки imageSrc: переход к иконке."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Avatar imageSrc="https://invalid-image-url.png" />
     <Avatar imageSrc="https://invalid-image-url.png" userName="Антон" userSurname="Валуев" />
@@ -107,7 +107,7 @@ export default App = () => (
             description="Индикаторы состояния: online/offline и numberIndicator."
             code={`import { Avatar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Avatar online />
     <Avatar online={false} />
@@ -120,7 +120,7 @@ export default App = () => (
             description="Бейдж Avatar: стандартный и специальный через badgeSpecialIcon."
             code={`import { Avatar, IconDoneCheckFilled16, IconBirthday16 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Avatar badgeIconName={<IconDoneCheckFilled16 htmlColor="white" />} />
     <Avatar badgeIconName={<IconBirthday16 htmlColor="white" />} badgeSpecialIcon />

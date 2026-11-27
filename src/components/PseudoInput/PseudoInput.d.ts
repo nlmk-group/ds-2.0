@@ -11,7 +11,7 @@ export interface IPseudoInputProps extends TBadgeProps {
   /**
    * Текст или элемент для лейбла PseudoInput
    */
-  label: JSX.Element | string;
+  label: React.JSX.Element | string;
 
   /**
    * Содержимое PseudoInput

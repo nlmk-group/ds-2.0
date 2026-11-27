@@ -18,7 +18,7 @@ const InputStories = (): JSX.Element => {
 
   const inputDefaultCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Input />
   </>
@@ -27,25 +27,25 @@ export default App = () => (
 
   const inputWithLabelCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-    <Input label="Label" />
+    <Input label="Наименование" />
   </>
 );
 `;
 
   const inputWithHelperCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-    <Input label="Label" helperText="Helper text" />
+    <Input label="Наименование" helperText="Введите наименование материала" />
   </>
 );
 `;
 
   const inputDisabledCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Input disabled value="Disabled Input" />
   </>
@@ -54,34 +54,34 @@ export default App = () => (
 
   const inputErrorCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-    <Input color="error" helperText="Error message" />
+    <Input color="error" helperText="Проверьте введённое значение" />
   </>
 );
 `;
 
   const inputWarningCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-    <Input color="warning" helperText="Warning message" />
+    <Input color="warning" helperText="Требуется проверка" />
   </>
 );
 `;
 
   const inputSuccessCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
-    <Input color="success" helperText="Success message" />
+    <Input color="success" helperText="Данные сохранены" />
   </>
 );
 `;
 
   const inputTextareaCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Input multiline />
   </>
@@ -90,7 +90,7 @@ export default App = () => (
 
   const inputTextareaResizeCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <>
     <Input multiline resize />
   </>
@@ -120,7 +120,7 @@ export default App;
 
   const inputSizeAndRequiredCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ display: 'grid', gap: '12px' }}>
     <Input size="m" label="Размер m" required />
     <Input size="s" label="Размер s" />
@@ -131,7 +131,7 @@ export default App = () => (
 
   const inputColoredCode = `import { Input } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Input
     label="Input с цветным фоном"
     value="Текст в поле"
@@ -156,7 +156,7 @@ const App = () => {
     return (
         <>
             <div style={{display: 'flex', flexDirection: 'column'}}>
-                <Input pseudo={isPseudo} value={innerValue} label='Label' onChange={handleChange} />
+                <Input pseudo={isPseudo} value={innerValue} label='Наименование' onChange={handleChange} />
                 <Button type="button" onClick={() => setIsPseudo(!isPseudo)} style={{ marginTop: '10px' }}>
                     Переключить
                 </Button>
@@ -233,7 +233,7 @@ export default App;
             description="Иконка слева внутри инпута через startIcon."
             code={`import { Input, IconSearchOutlined24 } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Input
     label="Поиск"
     startIcon={<IconSearchOutlined24 htmlColor="var(--steel-70)" />}
@@ -247,10 +247,10 @@ export default App = () => (
             description="Иконка-подсказка справа от инпута. Размещается рядом с компонентом через flex-контейнер Box."
             code={`import { Box, Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box display="flex" alignItems="center" gap={8} width={320}>
     <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
-      <Input label="Email" placeholder="steel@nlmk.com" />
+      <Input label="Электронная почта" placeholder="steel@nlmk.com" />
     </Box>
     <Box display="flex" st={{ lineHeight: 0 }}>
       <Tooltip description="Введите корпоративную почту вида steel@nlmk.com">
@@ -266,10 +266,10 @@ export default App = () => (
             description="Иконка-подсказка справа от textarea. Иконка выровнена по верхнему краю через alignItems flex-start."
             code={`import { Box, Input, IconInfoOutlined24, Tooltip } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box display="flex" alignItems="flex-start" gap={8} width={320}>
     <Box display="block" gap={0} st={{ flex: 1, minWidth: 0 }}>
-      <Input multiline label="Label" />
+      <Input multiline label="Наименование" />
     </Box>
     <Box display="flex" st={{ lineHeight: 0 }}>
       <Tooltip description="Подсказка к полю ввода">

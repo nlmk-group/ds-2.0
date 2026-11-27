@@ -76,7 +76,7 @@ export const MultiSelectDefault = (args: IMultiSelectProps): JSX.Element => {
 MultiSelectDefault.args = {
   label: 'MultiSelect по умолчанию'
 };
-MultiSelectDefault.storyName = 'MultiSelect по умолчанию';
+MultiSelectDefault.storyName = 'Множественный выбор · MultiSelect';
 
 export const MultiSelectWithSearch = (args: IMultiSelectProps): JSX.Element => {
   const [value, setValue] = useState<Array<string | number>>(args.value || []);

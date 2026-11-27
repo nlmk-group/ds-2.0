@@ -19,16 +19,16 @@ export default {
 
 export const ProgressBarDefault = (argsTypes: IProgressBarProps): JSX.Element => {
   return (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: 'min(400px, 100%)' }}>
       <ProgressBar {...argsTypes} />
     </div>
   );
 };
-ProgressBarDefault.storyName = 'ProgressBar по умолчанию';
+ProgressBarDefault.storyName = 'Индикатор прогресса · ProgressBar';
 
 export const ProgressBarWithLabel = (argsTypes: IProgressBarProps): JSX.Element => {
   return (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: 'min(400px, 100%)' }}>
       <ProgressBar label="Общий прогресс" {...argsTypes} />
     </div>
   );

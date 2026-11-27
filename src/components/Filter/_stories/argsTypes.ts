@@ -49,6 +49,7 @@ export const argsTypes = {
     action: 'onSelectedValuesChange'
   },
   placeholder: {
+    table: { type: { summary: 'string' } },
     description: 'Placeholder для инпута',
     control: { type: 'text' }
   },

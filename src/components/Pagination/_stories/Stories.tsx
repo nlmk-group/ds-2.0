@@ -31,7 +31,7 @@ const Stories = (): JSX.Element => {
   const defaultPaginationCode = `import { Pagination } from '@nlmk/ds-2.0';
 import React, { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25} />;
@@ -41,7 +41,7 @@ export default App = () => {
   const collapsedPaginationCode = `import { Pagination } from '@nlmk/ds-2.0';
 import React, { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [currentPage, setCurrentPage] = useState(12);
 
   return <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} maxPageCount={25} />;
@@ -51,7 +51,7 @@ export default App = () => {
   const paginationWithSelectCode = `import { Pagination } from '@nlmk/ds-2.0';
 import React, { useState } from 'react';
 
-export default App = () => {
+export default () => {
   const [currentPage, setCurrentPage] = useState(3);
   const [pageSize, setPageSize] = useState(20);
 
@@ -98,7 +98,7 @@ export default App = () => {
           <Editor
             description="Пагинация с выбором количества элементов через withSelect."
             code={paginationWithSelectCode}
-            previewPaneWidth="60%"
+            stacked
           />
           <Properties argsTypes={argsTypes} />
         </>

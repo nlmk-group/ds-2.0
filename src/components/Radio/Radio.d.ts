@@ -1,6 +1,8 @@
 import { ChangeEvent, CSSProperties, FC } from 'react';
 
 export type IRadioProps = {
+  name?: string;
+  id?: string;
   /**
    * Значение радио-кнопки
    */

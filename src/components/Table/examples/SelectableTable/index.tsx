@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ECellState } from '@components/Table/Cell/types';
 import { flexRender, getCoreRowModel, RowSelectionState, useReactTable } from '@tanstack/react-table';
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const SelectableTableExample = () => {
@@ -24,7 +25,7 @@ const SelectableTableExample = () => {
   });
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={styles.tableContainer}>
       <Table horizontalBorders verticalBorders>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -67,7 +68,7 @@ const SelectableTableExample = () => {
           })}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

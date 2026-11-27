@@ -1,42 +1,71 @@
 import React from 'react';
 
-import {
-  CrossTableCellTransferExample,
-  DraggableColumnsIndicatorDndKitExample,
-  DraggableColumnsIndicatorRDndExample,
-  DraggableRowsIndicatorDndKitExample,
-  DraggableRowsIndicatorRDndExample,
-  EditableCellsTableExample,
-  ExpandableTableExample,
-  FillCellTableExample,
-  FilterableMultiselectTableExample,
-  FilterableTableExample,
-  GroupHeaderTableWithResizeExample,
-  GroupingHeaderTableExample,
-  LocalStorageTableExample,
-  PinnedColumnsTableExample,
-  RowHighlightExamples,
-  SelectableTableExample,
-  SelectableTableWithGroupingHeaderExample,
-  SelectableTableWithPaginationExample,
-  SelectableTableWithVirtualizationExample,
-  SettingsTableExample,
-  SortableTableExample,
-  SortingPaginationExample,
-  SwapCellsTableExample,
-  TableWithStickyHeader,
-  TableWithTanStackExample,
-  VirtualizedTableWithDynamicRowHeightExample,
-  VirtualizedTableWithHorizontalVirtualizationExample
-} from '../examples';
+import styles from '../examples/Example.module.scss';
+
+import PreviewSkeleton from '../../_storybook/PreviewSkeleton';
+import Scrollbar from '../../Scrollbar';
+import Typography from '../../Typography';
+import CompactTableExample from '../examples/CompactTable';
+import compactTableSource from '../examples/CompactTable/index.tsx?raw';
+import transferData from '../examples/CrossTableCellTransferExample/constants.ts?raw';
+import transferSource from '../examples/CrossTableCellTransferExample/index.tsx?raw';
+import SupplyRegistryExample from '../examples/SupplyRegistry';
+import supplyRegistrySource from '../examples/SupplyRegistry/index.tsx?raw';
+import TableWithTanStackExample from '../examples/TableDefault';
 import Table from '../Table';
 
-const withPadding = (Story: () => any) => <div style={{ minHeight: 80 }}>{<Story />}</div>;
+const CrossTableCellTransferExample = React.lazy(() => import('../examples/CrossTableCellTransferExample'));
+const DraggableColumnsIndicatorDndKitExample = React.lazy(
+  () => import('../examples/DraggableColumnsIndicatorDndKitExample')
+);
+const DraggableColumnsIndicatorRDndExample = React.lazy(
+  () => import('../examples/DraggableColumnsIndicatorRDndExample')
+);
+const DraggableRowsIndicatorDndKitExample = React.lazy(() => import('../examples/DraggableRowsIndicatorDndKitExample'));
+const DraggableRowsIndicatorRDndExample = React.lazy(() => import('../examples/DraggableRowsIndicatorRDndExample'));
+const EditableCellsTableExample = React.lazy(() => import('../examples/EditableCellsTableExample'));
+const ExpandableTableExample = React.lazy(() => import('../examples/ExpandableTable'));
+const FillCellTableExample = React.lazy(() => import('../examples/FillCellTableExample'));
+const FilterableMultiselectTableExample = React.lazy(() => import('../examples/FilterableMultiselectTable'));
+const FilterableTableExample = React.lazy(() => import('../examples/FilteringTable'));
+const GroupHeaderTableWithResizeExample = React.lazy(() => import('../examples/GroupHeaderTableWithResize'));
+const GroupingHeaderTableExample = React.lazy(() => import('../examples/GroupingHeaderTable'));
+const LocalStorageTableExample = React.lazy(() => import('../examples/LocalStorageTableExample'));
+const PinnedColumnsTableExample = React.lazy(() => import('../examples/PinnedColumnsTableExample'));
+const RowHighlightExamples = React.lazy(() => import('../examples/RowHighlightExamples'));
+const SelectableTableExample = React.lazy(() => import('../examples/SelectableTable'));
+const SelectableTableWithGroupingHeaderExample = React.lazy(
+  () => import('../examples/SelectableTableWithGroupingHeader')
+);
+const SelectableTableWithPaginationExample = React.lazy(() => import('../examples/SelectableTableWithPagination'));
+const SelectableTableWithVirtualizationExample = React.lazy(
+  () => import('../examples/SelectableTableWithVirtualization')
+);
+const SettingsTableExample = React.lazy(() => import('../examples/SettingsTableExample'));
+const SortableTableExample = React.lazy(() => import('../examples/SortingTable'));
+const SortingPaginationExample = React.lazy(() => import('../examples/CommonTableExample'));
+const SwapCellsTableExample = React.lazy(() => import('../examples/SwapCellsTableExample'));
+const TableWithStickyHeader = React.lazy(() => import('../examples/TableWithStickyHeader'));
+const VirtualizedTableWithDynamicRowHeightExample = React.lazy(
+  () => import('../examples/VirtualizedTableWithDynamicRowHeight')
+);
+const VirtualizedTableWithHorizontalVirtualizationExample = React.lazy(
+  () => import('../examples/VirtualizedTableColumns')
+);
+
+const withTableLayout = (Story: React.ComponentType) => (
+  <div className={styles.story}>
+    <React.Suspense fallback={<PreviewSkeleton kind="table" />}>
+      <Story />
+    </React.Suspense>
+  </div>
+);
 
 export default {
   title: 'Table/Stories',
   component: Table,
-  decorators: [withPadding]
+  parameters: { layout: 'fullscreen' },
+  decorators: [withTableLayout]
 };
 
 const hiddenControlsParams = {
@@ -47,6 +76,33 @@ const hiddenControlsParams = {
 export const BasicTable = () => <TableWithTanStackExample />;
 BasicTable.storyName = 'Таблица по умолчанию';
 BasicTable.parameters = hiddenControlsParams;
+
+export const CompactTable = () => (
+  <section className={styles.compactExample}>
+    <Typography variant="Subheading3-Medium">Остатки металлопроката</Typography>
+    <Scrollbar className={styles.tableContainer}>
+      <CompactTableExample />
+    </Scrollbar>
+  </section>
+);
+CompactTable.storyName = 'Таблица с компактными строками (32 px)';
+CompactTable.parameters = {
+  ...hiddenControlsParams,
+  docs: {
+    description: { story: 'Для плотных реестров задайте size="xs" заголовкам Top и ячейкам Cell.' },
+    source: { code: compactTableSource.replace("'@components/Table'", "'@nlmk/ds-2.0/Table'") }
+  }
+};
+
+export const SupplyRegistry = (args: React.ComponentProps<typeof SupplyRegistryExample>) => (
+  <SupplyRegistryExample key={args.initialState} {...args} />
+);
+SupplyRegistry.args = { initialState: 'ready' };
+SupplyRegistry.argTypes = { initialState: { options: ['ready', 'empty', 'error'], control: 'radio' } };
+SupplyRegistry.storyName = 'Реестр поставок и массовое назначение';
+SupplyRegistry.parameters = {
+  docs: { source: { code: supplyRegistrySource.replace("'@components/index'", "'@nlmk/ds-2.0'") } }
+};
 
 export const StickyHeader = () => <TableWithStickyHeader />;
 StickyHeader.storyName = 'Таблица с закрепленным заголовком';
@@ -155,5 +211,17 @@ SwapCellsTable.storyName = 'Таблица с обменом значений м
 SwapCellsTable.parameters = hiddenControlsParams;
 
 export const CrossTableCellTransfer = () => <CrossTableCellTransferExample />;
-CrossTableCellTransfer.storyName = 'Перенос значений между двумя таблицами';
-CrossTableCellTransfer.parameters = hiddenControlsParams;
+CrossTableCellTransfer.storyName = 'Назначение кода дефекта партии';
+CrossTableCellTransfer.parameters = {
+  ...hiddenControlsParams,
+  docs: {
+    source: {
+      language: 'tsx',
+      code: transferSource
+        .replace("'@components/index'", "'@nlmk/ds-2.0'")
+        .replace("import { defectCodes, initialJournal } from './constants';", () =>
+          transferData.replace(/^export /gm, '').trim()
+        )
+    }
+  }
+};

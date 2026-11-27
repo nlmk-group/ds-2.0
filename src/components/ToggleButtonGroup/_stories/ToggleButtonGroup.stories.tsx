@@ -35,7 +35,7 @@ export const DefaultBtnGroup = (argTypes: IToggleButtonGroupProps): ReactNode =>
   );
 };
 
-DefaultBtnGroup.storyName = 'Toggle Button по умолчанию';
+DefaultBtnGroup.storyName = 'Группа кнопок · ToggleButtonGroup';
 
 export const BtnGroupTooltip = (argTypes: IToggleButtonGroupProps): ReactNode => {
   return (

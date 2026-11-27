@@ -80,12 +80,32 @@ describe('src/components/Modal', () => {
   });
 
   it('It should not render when isOpen is false', () => {
+    const onClose = jest.fn();
     render(
-      <Modal isOpen={false} onClose={() => {}}>
+      <Modal isOpen={false} onClose={onClose}>
         <div>Test Content</div>
       </Modal>
     );
 
     expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('keeps the page locked until the last scroll-locking modal closes', () => {
+    const first = render(
+      <Modal isOpen disablePageScroll onClose={jest.fn()}>
+        First
+      </Modal>
+    );
+    const second = render(
+      <Modal isOpen disablePageScroll onClose={jest.fn()}>
+        Second
+      </Modal>
+    );
+    first.unmount();
+    expect(document.body).toHaveClass('no-scroll');
+    second.unmount();
+    expect(document.body).not.toHaveClass('no-scroll');
   });
 });

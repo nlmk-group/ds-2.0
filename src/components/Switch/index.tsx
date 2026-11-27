@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, MouseEvent } from 'react';
+import React, { FC, useId } from 'react';
 
 import Typography from '@components/Typography';
 import { clsx } from 'clsx';
@@ -34,33 +34,30 @@ const Switch: FC<ISwitchProps> = ({
   activeIcon = null,
   inactiveIcon = null,
   color = ESwitchColors.brand,
-  style
+  style,
+  'aria-label': ariaLabel
 }) => {
-  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (disabled) {
-      e.preventDefault();
-      return;
-    }
-    onChange(!checked);
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) {
-      e.preventDefault();
-      return;
-    }
-    onChange(e.target.checked);
-  };
+  const inputId = useId();
 
   return (
     <div
       className={clsx(styles.switch, className, { [styles.disabled]: disabled })}
       style={style}
-      role="switch"
       data-testid="SWITCH"
       data-ui-switch
     >
-      <div className={styles.controller} onClick={handleClick} data-ui-switch-controller data-testid="CONTROLLER">
+      <input
+        id={inputId}
+        role="switch"
+        type="checkbox"
+        aria-label={ariaLabel}
+        checked={checked}
+        disabled={disabled}
+        onChange={event => onChange(event.target.checked)}
+        className={styles.checkbox}
+        data-ui-switch-input
+      />
+      <label htmlFor={inputId} className={styles.controller} data-ui-switch-controller data-testid="CONTROLLER">
         <div
           className={clsx(styles.track, styles[`track-${color}`], {
             [styles[`track-active-${color}`]]: checked,
@@ -92,20 +89,14 @@ const Switch: FC<ISwitchProps> = ({
             data-testid="FOCUS"
           />
         )}
-      </div>
+      </label>
       {label && (
         <label
+          htmlFor={inputId}
           className={clsx(styles.label, { [styles['label-disabled']]: disabled })}
           data-ui-switch-label
           data-testid="LABEL"
         >
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={handleInputChange}
-            className={styles.checkbox}
-            data-ui-switch-input
-          />
           <Typography variant="Body1-Medium">{label}</Typography>
         </label>
       )}

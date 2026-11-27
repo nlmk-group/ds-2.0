@@ -37,7 +37,7 @@ export const DefaultNotificationItem = (argTypes: INotificationItemProps) => {
   );
 };
 
-DefaultNotificationItem.storyName = 'NotificationItem по умолчанию';
+DefaultNotificationItem.storyName = 'Уведомление · NotificationItem';
 DefaultNotificationItem.args = {
   label: 'Отпуска и отгулы',
   count: 4,

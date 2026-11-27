@@ -22,18 +22,14 @@ import { InputSlider } from '@nlmk/ds-2.0';
 const App = () => {
     const [value, setValue] = useState(20);
 
-    const handleChange = (newValue) => {
-      setValue(newValue);
-    };
-
     return (
-        <div style={{width: '400px', marginTop: '50px'}}>
+        <div style={{width: 'min(100%, 400px)', marginTop: '50px'}}>
             <InputSlider
                 min={0}
                 max={100}
                 step={1}
                 value={value}
-                onChange={handleChange}
+                onChange={setValue}
             />
         </div>
     );
@@ -50,7 +46,7 @@ const App = () => {
   const [valueRight, setValueRight] = useState(70);
 
   return (
-    <div style={{ width: '400px', marginTop: '50px', display: 'grid', gap: '52px' }}>
+    <div style={{ width: 'min(100%, 400px)', marginTop: '50px', display: 'grid', gap: '52px' }}>
       <div style={{ paddingRight: '48px' }}>
         <InputSlider
           label="Позиция значения сверху"
@@ -87,7 +83,7 @@ const App = () => {
   const [value, setValue] = useState(450);
 
   return (
-    <div style={{ width: '400px', marginTop: '50px' }}>
+    <div style={{ width: 'min(100%, 400px)', marginTop: '50px' }}>
       <InputSlider
         label="Бюджет"
         min={0}
@@ -111,18 +107,14 @@ import { InputSlider } from '@nlmk/ds-2.0';
 const App = () => {
     const [value, setValue] = useState(500);
 
-    const handleChange = (newValue) => {
-      setValue(newValue);
-    };
-
     return (
-        <div style={{width: '400px', marginTop: '50px'}}>
+        <div style={{width: 'min(100%, 400px)', marginTop: '50px'}}>
             <InputSlider
                 min={100}
                 max={1000}
                 step={10}
                 value={value}
-                onChange={handleChange}
+                onChange={setValue}
                 disabled
             />
         </div>

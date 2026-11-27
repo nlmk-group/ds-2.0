@@ -32,11 +32,11 @@ const App = () => {
   const [currentStep, setCurrentStep] = React.useState(1);
 
   const baseSteps = [
-    { stepName: 'Шаг 1', index: 0 },
-    { stepName: 'Шаг 2', index: 1 },
-    { stepName: 'Шаг 3', index: 2 },
-    { stepName: 'Шаг 4', index: 3 },
-    { stepName: 'Шаг 5', index: 4, state: EStepState.disabled }
+    { stepName: 'Заявка', index: 0 },
+    { stepName: 'Материалы', index: 1 },
+    { stepName: 'Проверка', index: 2 },
+    { stepName: 'Согласование', index: 3 },
+    { stepName: 'Отгрузка', index: 4, state: EStepState.disabled }
   ];
 
   const steps = baseSteps.map(step => ({
@@ -77,10 +77,10 @@ import { EStepState, EStepColor } from '@nlmk/ds-2.0';
 
 const App = () => {
   const steps = [
-    { stepName: 'Шаг 1', state: EStepState.filled, color: EStepColor.success },
-    { stepName: 'Шаг 2', state: EStepState.filled, color: EStepColor.success },
-    { stepName: 'Шаг 3', state: EStepState.error, color: EStepColor.error },
-    { stepName: 'Шаг 4', state: EStepState.notFilled, color: EStepColor.brand }
+    { stepName: 'Заявка', state: EStepState.filled, color: EStepColor.success },
+    { stepName: 'Материалы', state: EStepState.filled, color: EStepColor.success },
+    { stepName: 'Проверка', state: EStepState.error, color: EStepColor.error },
+    { stepName: 'Согласование', state: EStepState.notFilled, color: EStepColor.brand }
   ];
 
   return (
@@ -129,8 +129,8 @@ export default App;
 
       {activeTab == TabIds.dev && (
         <>
-          <Editor description="Интерактивный stepper с переходом между шагами." code={filledStepperCode} />
-          <Editor description="Состояния stepper с ошибкой и цветовым акцентом." code={errorStepperCode} />
+          <Editor stacked description="Интерактивный stepper с переходом между шагами." code={filledStepperCode} />
+          <Editor stacked description="Состояния stepper с ошибкой и цветовым акцентом." code={errorStepperCode} />
 
           <Properties argsTypes={argsTypes} />
         </>

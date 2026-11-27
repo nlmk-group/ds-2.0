@@ -18,13 +18,13 @@ const MultiSelectStories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
   const optionsExample = `const options = [
-  { value: 'steel', label: 'High-Strength Low-Alloy Steel' },
-  { value: 'aluminum', label: 'Aluminum' },
-  { value: 'copper', label: 'Copper', disabled: true },
-  { value: 'nickel', label: 'Nickel' },
-  { value: 'zinc', label: 'Zinc' },
-  { value: 'lead', label: 'Lead' },
-  { value: 'tin', label: 'Tin' }
+  { value: 'steel', label: 'Высокопрочная низколегированная сталь' },
+  { value: 'aluminum', label: 'Алюминий' },
+  { value: 'copper', label: 'Медь', disabled: true },
+  { value: 'nickel', label: 'Никель' },
+  { value: 'zinc', label: 'Цинк' },
+  { value: 'lead', label: 'Свинец' },
+  { value: 'tin', label: 'Олово' }
   ];`;
 
   const multiSelectDefaultCode = `
@@ -34,7 +34,7 @@ const MultiSelectStories = (): JSX.Element => {
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="Мультивыбор">
       {options.map((option) => (
@@ -63,7 +63,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="MultiSelect с поиском" searchable>
       {options.map((option) => (
@@ -92,9 +92,9 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
-    <MultiSelect value={value} onChange={setValue} label="Disabled" disabled>
+    <MultiSelect value={value} onChange={setValue} label="Недоступно" disabled>
       {options.map((option) => (
         <OptionItem key={option.value} value={option.value} label={option.label}>
           <Box alignItems="center" gap="8px">
@@ -121,7 +121,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="С кнопкой выбрать все" showSelectAll>
       {options.map((option) => (
@@ -150,7 +150,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="С очисткой поиска" searchable clearSearchOnSelect>
       {options.map((option) => (
@@ -179,7 +179,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState(['steel', 'aluminum']);
+  const [value, setValue] = useState<Array<string | number>>(['steel', 'aluminum']);
   return (
     <MultiSelect value={value} onChange={setValue} label="С кнопкой сброса" reset onReset={() => setValue([])}>
       {options.map((option) => (
@@ -206,7 +206,7 @@ export default App;
   import { useState } from 'react';
 
 const App = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<Array<string | number>>([]);
   return (
     <MultiSelect value={value} onChange={setValue} label="Пустой MultiSelect">
       {/* No options */}
@@ -223,7 +223,7 @@ export default App;
 ${optionsExample}
 
 const App = () => {
-  const [value, setValue] = useState(['steel', 'aluminum', 'nickel']);
+  const [value, setValue] = useState<Array<string | number>>(['steel', 'aluminum', 'nickel']);
   return (
     <MultiSelect
       value={value}

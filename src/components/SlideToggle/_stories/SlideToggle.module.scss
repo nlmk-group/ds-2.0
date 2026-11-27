@@ -1,8 +1,6 @@
 .wrapper {
-  background-color: black;
-  padding: 30px;
-  border-radius: 10px;
-  width: 900px;
+  max-width: 640px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;

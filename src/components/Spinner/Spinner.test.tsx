@@ -7,9 +7,18 @@ describe('src/components/Spinner', () => {
   const { container } = render(<Spinner />);
   const loader = container.getElementsByTagName('div')[0];
 
+  it('renders the standard loader for a non-icon child', () => {
+    const { container } = render(
+      <Spinner>
+        <span />
+      </Spinner>
+    );
+    expect(container.querySelector('[data-ui-spinner-loader]')).toBeInTheDocument();
+  });
+
   // Check render spinner loader at DOM
   test('It should render an Spinner', () => {
-    expect(loader).toBeInTheDocument();
+    expect(render(<Spinner />).getByTestId('SPINNER')).toBeInTheDocument();
   });
 
   // Check width, height property in spinner at DOM - L

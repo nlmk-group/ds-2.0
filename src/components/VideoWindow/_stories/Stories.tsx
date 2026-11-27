@@ -59,7 +59,7 @@ const App = () => {
       {isVideoOpen && (
         <VideoWindow
           videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
-          title="Demo video"
+          title="Демонстрация оборудования"
           locale="en"
           autoPlay={false}
           style={{ position: 'absolute', left: 0, top: 56 }}

@@ -26,10 +26,10 @@ const App = () => {
       previewSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
       fullSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
       title: 'Этап 1',
-      description: 'Название фото 1',
+      description: 'Добыча сырья в карьере',
       previewTitle: 'Фото',
       downloadName: 'photo-1.jpg',
-      alt: 'Mock photo 1'
+      alt: 'Карьер'
     }
   ];
 
@@ -49,7 +49,7 @@ const App = () => {
       fullSrc: '${getStorybookImageSrc('/img/image_career.jpg')}',
       title: 'Этап 1',
       previewTitle: 'Фото 1',
-      description: 'Название фото 1',
+      description: 'Добыча сырья в карьере',
       downloadName: 'photo-1.jpg'
     },
     {
@@ -58,7 +58,7 @@ const App = () => {
       fullSrc: '${getStorybookImageSrc('/img/image_warehouse.png')}',
       title: 'Этап 2',
       previewTitle: 'Фото 2',
-      description: 'Название фото 2',
+      description: 'Хранение продукции на складе',
       downloadName: 'photo-2.jpg'
     },
     {
@@ -67,7 +67,7 @@ const App = () => {
       fullSrc: '${getStorybookImageSrc('/img/image_rolled_steel_sheet.png')}',
       title: 'Этап 3',
       previewTitle: 'Фото 3',
-      description: 'Название фото 3',
+      description: 'Готовый листовой прокат',
       downloadName: 'photo-3.jpg'
     }
   ];
@@ -78,13 +78,20 @@ const App = () => {
 export default App;
 `;
 
-  const imagePreviewEmptyCode = `import { ImagePreview } from '@nlmk/ds-2.0';
+  const imagePreviewEmptyCode = `import { useState } from 'react';
+import { Button, ImagePreview, Typography } from '@nlmk/ds-2.0';
 
-const App = () => {
-  return <ImagePreview items={[]} />;
-};
+export default function InspectionPhotos() {
+  const [items, setItems] = useState([]);
+  const photo = { id: 1, previewSrc: '${getStorybookImageSrc('/img/image_career.jpg')}', title: 'Карьер' };
 
-export default App;
+  return items.length ? <ImagePreview items={items} /> : (
+    <>
+      <Typography>К осмотру пока не приложены фотографии.</Typography>
+      <Button onClick={() => setItems([photo])}>Добавить пример фотографии</Button>
+    </>
+  );
+}
 `;
 
   return (
@@ -116,7 +123,7 @@ export default App;
 
           <Editor
             minHeight={260}
-            description="Пустое состояние (если items пустой, компонент ничего не рисует)."
+            description="Пустая галерея. Добавьте первую фотографию, чтобы открыть предпросмотр."
             code={imagePreviewEmptyCode}
           />
 

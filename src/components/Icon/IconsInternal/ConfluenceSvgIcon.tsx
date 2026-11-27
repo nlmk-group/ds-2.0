@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { ISvgProps } from '@components/Icon/types';
 
-const ConfluenceSvgIcon: FC<ISvgProps> = (): JSX.Element => {
+const ConfluenceSvgIcon: FC<ISvgProps> = (): React.JSX.Element => {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

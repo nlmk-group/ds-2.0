@@ -44,7 +44,6 @@ const OptionItem: FC<IOptionItemProps> = ({
 
   const itemStyles = {
     cursor: disabled ? 'default' : 'pointer',
-    height: `${heightMap[size]}px`,
     minHeight: `${heightMap[size]}px`,
     ...style
   };
@@ -59,7 +58,7 @@ const OptionItem: FC<IOptionItemProps> = ({
   return (
     <ListItem
       ref={itemRef}
-      title={label}
+      title=""
       className={clsx(
         styles.item,
         {
@@ -76,7 +75,7 @@ const OptionItem: FC<IOptionItemProps> = ({
       data-size={size}
       data-ui-option-item
     >
-      {enhancedChildren}
+      {enhancedChildren ?? label}
     </ListItem>
   );
 };

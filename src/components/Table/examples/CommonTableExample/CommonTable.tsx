@@ -1,7 +1,8 @@
-import React from 'react';
-import { SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 
-import { Box, Pagination, Spinner } from '@components/index';
+import PreviewSkeleton from '@components/_storybook/PreviewSkeleton';
+import { Pagination } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/Table';
 import { ESize } from '@components/Table/Top/types';
 import {
@@ -72,11 +73,9 @@ const CommonTable = <T,>({
 
   return (
     <>
-      <div style={{ height: '100%' }}>
+      <Scrollbar className={styles.tableContainer}>
         {isLoading ? (
-          <Box justifyContent="center">
-            <Spinner />
-          </Box>
+          <PreviewSkeleton kind="table" />
         ) : (
           <Table>
             <Thead className={clsx(stickyHeader && styles.tableHeaderSticky)}>
@@ -84,7 +83,7 @@ const CommonTable = <T,>({
                 <Row key={headerGroup.id}>
                   {headerGroup.headers.map(header => (
                     <Top
-                      align="left"
+                      right={header.index > 0 && Boolean(header.column.columnDef.meta?.isNumeric)}
                       key={header.id}
                       onClick={() => handleChangeSorting(header)}
                       size={size}
@@ -99,12 +98,11 @@ const CommonTable = <T,>({
             <Tbody>
               {table.getRowModel().rows.map(row => (
                 <Row key={row.id}>
-                  {row.getVisibleCells().map(cell => (
+                  {row.getVisibleCells().map((cell, index) => (
                     <Cell
-                      align="right"
+                      align={index > 0 && cell.column.columnDef.meta?.isNumeric ? 'right' : 'left'}
                       key={cell.id}
                       size={size}
-                      width={cell.column.getSize()}
                       {...getCellProps(cell)}
                     />
                   ))}
@@ -113,7 +111,7 @@ const CommonTable = <T,>({
             </Tbody>
           </Table>
         )}
-      </div>
+      </Scrollbar>
       {withPagination && (
         <Pagination
           currentPage={tablePagination.pageIndex + 1}

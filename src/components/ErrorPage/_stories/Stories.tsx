@@ -17,7 +17,7 @@ const FIGMA_LINK = 'https://www.figma.com/design/kldVs3ebNRcxsgYGttpDbU/NLMK-UI?
 
 const forbiddenCodeExample = `import { ErrorPage } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ minHeight: '560px' }}>
     <ErrorPage
       errorCode={403}
@@ -30,7 +30,7 @@ export default App = () => (
 
 const notFoundCodeExample = `import { ErrorPage } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ minHeight: '560px' }}>
     <ErrorPage
       errorCode={404}
@@ -43,7 +43,7 @@ export default App = () => (
 
 const customTextExample = `import { ErrorPage } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ minHeight: '560px' }}>
     <ErrorPage
       errorCode={500}
@@ -56,7 +56,7 @@ export default App = () => (
 
 const defaultValuesExample = `import { ErrorPage } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ minHeight: '560px' }}>
     <ErrorPage />
   </div>

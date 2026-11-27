@@ -50,79 +50,27 @@ const Stories = (): JSX.Element => {
         <>
           <Editor
             minHeight={280}
-            description="Сборка панели с Header."
-            code={`import { useCallback, useEffect, useRef, useState } from 'react';
+            description="Откройте список уведомлений в шапке и выберите категорию."
+            code={`import { useState } from 'react';
 import { Box, Header, NotificationItem, Typography } from '@nlmk/ds-2.0';
 
-const items = [
-  { label: 'Требуется сделать', count: 2, badgeColor: 'error' },
-  { label: 'Важно ознакомиться', count: 7, badgeColor: 'error' },
-  { label: 'Для информации', count: 115, badgeColor: 'brand' }
-];
-
-export default App = () => {
+export default function Notifications() {
   const [open, setOpen] = useState(false);
-  const panelRef = useRef(null);
-  const closeTimer = useRef(null);
-
-  useEffect(() => {
-    const bell = document.querySelector('[data-testid="HEADER_NOTIFICATION"]');
-    const amount = document.querySelector('[data-testid="HEADER_NOTIFICATION_AMOUNT"]');
-    if (!bell) return;
-    bell.style.cursor = 'pointer';
-    if (amount) amount.style.pointerEvents = 'none';
-
-    const pointIn = (x, y, r) => r && x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
-
-    const handleMove = (e) => {
-      const inside =
-        pointIn(e.clientX, e.clientY, bell.getBoundingClientRect()) ||
-        pointIn(e.clientX, e.clientY, amount?.getBoundingClientRect()) ||
-        pointIn(e.clientX, e.clientY, panelRef.current?.getBoundingClientRect());
-
-      if (inside) {
-        if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
-        setOpen(true);
-      } else if (!closeTimer.current) {
-        closeTimer.current = setTimeout(() => { setOpen(false); closeTimer.current = null; }, 200);
-      }
-    };
-
-    document.addEventListener('mousemove', handleMove);
-    return () => document.removeEventListener('mousemove', handleMove);
-  }, []);
+  const [category, setCategory] = useState('');
+  const items = [
+    { label: 'На согласование', count: 2 },
+    { label: 'Для ознакомления', count: 7 }
+  ];
 
   return (
-    <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="Портал сотрудника" showNotification notificationAmount={115} />
-      {open && (
-        <div ref={panelRef} style={{ position: 'absolute', top: '100%', right: 0, zIndex: 1100 }}>
-          <Box
-            flexDirection="column"
-            gap={4}
-            st={{
-              padding: '8px 0',
-              minWidth: 270,
-              background: 'var(--steel-10)',
-              borderRadius: 8,
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)'
-            }}
-          >
-            <Box st={{ padding: '6px 12px' }}>
-              <Typography variant="Heading4">Уведомления</Typography>
-            </Box>
-            {items.map((item, idx) => (
-              <NotificationItem
-                key={item.label}
-                label={item.label}
-                count={item.count}
-                badgeColor={item.badgeColor}
-                onClick={(v) => console.log(v, idx)}
-              />
-            ))}
-          </Box>
-        </div>
-      )}
+    <Box flexDirection="column" gap={12} width="100%">
+      <Header title="Рабочий кабинет" showNotification notificationAmount={9}
+        onNotificationClick={() => setOpen(current => !current)} />
+      {open && items.map(item => (
+        <NotificationItem key={item.label} label={item.label} count={item.count}
+          active={category === item.label} onClick={setCategory} />
+      ))}
+      {category && <Typography>Выбрана категория «{category}»</Typography>}
     </Box>
   );
 }`}
@@ -132,7 +80,7 @@ export default App = () => {
             description="NotificationItem по умолчанию."
             code={`import { NotificationItem } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 270 }}>
     <NotificationItem label="Отпуска и отгулы" count={4} active onClick={(v) => console.log(v)} />
     <NotificationItem label="Обучение и развитие" count={12} onClick={(v) => console.log(v)} />

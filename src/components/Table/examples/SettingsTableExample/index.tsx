@@ -1,6 +1,7 @@
 import React, { CSSProperties, useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import type { Header } from '@tanstack/react-table';
 import {
   ColumnFiltersState,
@@ -253,7 +254,7 @@ const SettingsTableExample = () => {
         onPinChange={handlePinChange}
       />
 
-      <div className={styles.tableContainer} style={{ width: '100%', height: 'auto', maxHeight: 500 }}>
+      <Scrollbar className={styles.tableContainer} style={{ width: '100%', height: 'auto', maxHeight: 500 }}>
         <Table horizontalBorders verticalBorders style={{ minWidth: 1200 }}>
           <Thead style={{ position: 'sticky', top: 0, zIndex: 3 }}>
             {table.getHeaderGroups().map(headerGroup => (
@@ -323,7 +324,7 @@ const SettingsTableExample = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </div>
   );
 };

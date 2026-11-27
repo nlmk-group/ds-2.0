@@ -13,6 +13,8 @@ export enum EDrawerPosition {
 export interface IDrawerProps {
   /** Состояние открытия/закрытия панели */
   isOpen: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   /** Функция для закрытия панели */
   onClose: () => void;
   /** Позиция панели */

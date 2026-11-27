@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { ISvgProps } from '../types';
 
-const WhiteStarSvgIcon: FC<ISvgProps> = (): JSX.Element => {
+const WhiteStarSvgIcon: FC<ISvgProps> = (): React.JSX.Element => {
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

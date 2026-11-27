@@ -1,52 +1,36 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { RefObject } from 'react';
+import { useRef, useState } from 'react';
+import type { PointerEvent, RefObject } from 'react';
 
 import { ESplitterOrientation } from '../enums';
 
 export const useSplitter = (
   containerRef: RefObject<HTMLDivElement | null>,
   setTopHeight: (height: number) => void,
-  orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal,
-  splitterRef: RefObject<HTMLDivElement | null>
+  orientation: `${ESplitterOrientation}` = ESplitterOrientation.horizontal
 ) => {
-  const [isDragging, setIsDragging] = useState(false); // Новое состояние
+  const [isDragging, setIsDragging] = useState(false);
+  const grabOffset = useRef(0);
   const isVertical = orientation === ESplitterOrientation.vertical;
 
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      const container = containerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
+  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 || !event.isPrimary) return;
+    const divider = event.currentTarget;
+    const rect = divider.getBoundingClientRect();
+    grabOffset.current = isVertical ? event.clientX - rect.left : event.clientY - rect.top;
+    divider.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+  };
 
-      const pos = isVertical ? e.clientX : e.clientY;
-      const start = isVertical ? rect.left : rect.top;
-      const size = isVertical ? rect.width : rect.height;
+  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId) || !containerRef.current) return;
+    const container = containerRef.current.getBoundingClientRect();
+    const divider = event.currentTarget;
+    const available = isVertical ? container.width - divider.offsetWidth : container.height - divider.offsetHeight;
+    if (available <= 0) return;
+    const position = isVertical ? event.clientX - container.left : event.clientY - container.top;
+    setTopHeight(Math.max(0, Math.min(100, ((position - grabOffset.current) / available) * 100)));
+  };
 
-      if (size <= 0) return;
-
-      setTopHeight(Math.max(0, Math.min(100, ((pos - start) / size) * 100)));
-    },
-    [containerRef, setTopHeight, isVertical]
-  );
-
-  useEffect(() => {
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-
-    const handleMouseDown = (e: MouseEvent) => {
-      e.preventDefault();
-      setIsDragging(true);
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    };
-
-    const splitter = splitterRef.current;
-    splitter?.addEventListener('mousedown', handleMouseDown);
-    return () => splitter?.removeEventListener('mousedown', handleMouseDown);
-  }, [handleMouseMove]);
-
-  return { splitterRef, isDragging };
+  const onLostPointerCapture = () => setIsDragging(false);
+  return { isDragging, dividerEvents: { onPointerDown, onPointerMove, onLostPointerCapture } };
 };

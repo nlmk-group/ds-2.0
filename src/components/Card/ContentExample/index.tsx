@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { Badge, Select, Typography } from '@components/index';
+import { Badge, OptionItem, SimpleSelect, Typography } from '@components/index';
 import { clsx } from 'clsx';
 
 import { IContentExample } from './types';
@@ -20,7 +20,7 @@ const ContentExample: FC<IContentExample> = ({
   checked,
   href
 }) => {
-  const [selected, setSelected] = useState<string | string[]>('');
+  const [selected, setSelected] = useState<string | number>('');
   return (
     <>
       <ImageHelper imageURL={imageURL} badges={badges} />
@@ -34,12 +34,13 @@ const ContentExample: FC<IContentExample> = ({
 
         <Badge className={styles['badge-helper']}>12</Badge>
 
-        <Select
-          selected={selected}
-          label={selector.label || ''}
-          onSelectionChange={setSelected}
-          options={selector.options}
-        />
+        <SimpleSelect value={selected} label={selector.label} onChange={setSelected}>
+          {selector.options.map(option => (
+            <OptionItem key={option.value} {...option}>
+              {option.label}
+            </OptionItem>
+          ))}
+        </SimpleSelect>
 
         <BtnGroup primaryButton={primaryButton} secondaryButton={secondaryButton} />
       </div>

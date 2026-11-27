@@ -6,6 +6,8 @@ import { FC, ReactNode } from 'react';
 export interface IModalProps {
   /** Состояние открытия/закрытия модального окна */
   isOpen: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   /** Функция для закрытия модального окна */
   onClose: () => void;
   /** Содержимое модального окна */

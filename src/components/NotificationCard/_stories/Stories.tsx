@@ -11,6 +11,7 @@ import { Tabs } from '@components/index';
 import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
+import { inboxExample } from './inboxExample';
 
 enum TabIds {
   dev,
@@ -32,7 +33,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title={COMPONENT_NAME}
-        description="Большая карточка уведомления для истории в Drawer или Dialog. Содержит заголовок, текст и время, красной точкой помечает непрочитанные. Длинный текст автоматически сворачивается до двух строк — кнопка «Показать больше / Свернуть» появляется только если текст действительно обрезается, и раскрывает содержимое плавной анимацией в обе стороны."
+        description="Большая карточка уведомления для истории в Drawer или Dialog. Содержит заголовок, текст и время, точкой помечает непрочитанные. Длинный текст автоматически сворачивается до двух строк — кнопка «Показать больше / Свернуть» появляется только если текст действительно обрезается, и раскрывает содержимое плавной анимацией в обе стороны."
         isStable
         codeLink={`https://github.com/nlmk-group/ds-2.0/tree/main/src/components/${COMPONENT_NAME}`}
         figmaLink={FIGMA_LINK}
@@ -53,7 +54,7 @@ const Stories = (): JSX.Element => {
             description="NotificationCard по умолчанию."
             code={`import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box st={{ maxWidth: 772 }}>
     <NotificationCard
       title="Планирование графика отпусков на следующий год"
@@ -69,7 +70,7 @@ export default App = () => (
             description="Пример с коротким текстом."
             code={`import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Box st={{ maxWidth: 772 }}>
     <NotificationCard
       title="Заявка на отпуск одобрена"
@@ -80,84 +81,10 @@ export default App = () => (
 )`}
           />
           <Editor
-            minHeight={500}
-            description="NotificationCard в Drawer."
-            code={`import { useState } from 'react';
-import { Badge, Box, Button, Drawer, Header, NotificationCard, Switch, Tabs, Typography } from '@nlmk/ds-2.0';
-
-const tabItems = [
-  { label: 'Требуется сделать', count: 2, badgeColor: 'error' },
-  { label: 'Важно ознакомиться', count: 7, badgeColor: 'error' },
-  { label: 'Для информации', count: 115, badgeColor: 'brand' }
-];
-
-const groups = [
-  {
-    id: '1',
-    category: 'График отпусков',
-    title: 'Планирование графика отпусков на следующий год',
-    unread: true,
-    body: 'Сервис «График отпусков». Добрый день, Иван Петрович. Мария Смирнова делегировала вам согласование графика отпусков на 2026 год по сотрудникам отдела маркетинга. Подробная информация доступна по ссылке. Обратите, пожалуйста, внимание на сроки согласования — до 30 апреля.',
-    timestamp: 'сегодня, 14:13'
-  },
-  {
-    id: '2',
-    category: 'Обучение',
-    title: 'Новый корпоративный курс доступен для записи',
-    unread: true,
-    body: 'Открыта запись на курс «Эффективное общение в команде». Обучение состоится онлайн 20 апреля с 10:00 до 17:00. Количество мест ограничено — успейте записаться до 18 апреля.',
-    timestamp: 'сегодня, 11:45'
-  }
-];
-
-export default App = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
-  const [unreadOnly, setUnreadOnly] = useState(true);
-
-  return (
-    <Box st={{ position: 'relative', width: '100%' }}>
-      <Header title="Портал сотрудника" showNotification notificationAmount={115} onNotificationClick={() => setIsOpen((p) => !p)} />
-      <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)} position="right" width="820px">
-        <Box flexDirection="column" gap={32} st={{ padding: '32px 32px 48px' }} color="var(--steel-90)">
-          <Typography variant="Heading2">Уведомления</Typography>
-
-          <Box flexDirection="column" gap={24}>
-            <Tabs>
-              {tabItems.map((item, idx) => (
-                <Tabs.Tab key={item.label} label={item.label} hasBadge badgeChildren={item.count > 99 ? '99+' : item.count} badgeColor={item.badgeColor} active={activeTab === idx} onClick={() => setActiveTab(idx)} />
-              ))}
-            </Tabs>
-
-            <Box alignItems="center" justifyContent="flex-end" gap={8}>
-              <Switch checked={unreadOnly} onChange={() => setUnreadOnly((p) => !p)} />
-              <Typography variant="Body1-Medium">Только непрочитанные</Typography>
-            </Box>
-          </Box>
-
-          <Box flexDirection="column" gap={32}>
-            {groups.map((group) => (
-              <Box key={group.id} flexDirection="column" gap={16}>
-                <Box flexDirection="column" gap={8} py={12}>
-                  <Box>
-                    <Badge color="brand" variant="solid" size="l">{group.category}</Badge>
-                  </Box>
-                  <Box alignItems="center" justifyContent="space-between">
-                    <Box alignItems="center">
-                      <Typography variant="Subheading3-Medium" color="var(--brand-sapphire-50)">{group.title}</Typography>
-                    </Box>
-                    <Button type="button" size="xs" variant="primary" color="ghost">Отметить все как прочитанные</Button>
-                  </Box>
-                </Box>
-                <NotificationCard title={group.title} body={group.body} timestamp={group.timestamp} unread={group.unread} />
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      </Drawer>
-    </Box>
-  );
-}`}
+            stacked
+            minHeight={260}
+            description="Центр уведомлений. Откройте панель, выберите раздел и отметьте сообщения как прочитанные."
+            code={inboxExample}
           />
           <Editor
             minHeight={220}
@@ -165,7 +92,7 @@ export default App = () => {
             code={`import { useState } from 'react';
 import { Box, NotificationCard } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [expanded, setExpanded] = useState(false);
 
   return (

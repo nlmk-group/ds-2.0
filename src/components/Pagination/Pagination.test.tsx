@@ -2,6 +2,7 @@ import React from 'react';
 
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Pagination from '.';
 
@@ -80,4 +81,18 @@ describe('src/components/Pagination', () => {
     render(<Pagination currentPage={9999} setCurrentPage={setCurrentPageMock} maxPageCount={10000} />);
     expect(screen.getByText('9999')).toHaveClass('zoomOut');
   });
+});
+
+test.each([5, 12])('page buttons support Tab, Enter and Space (%i pages)', async maxPageCount => {
+  const user = userEvent.setup();
+  const change = jest.fn();
+  render(<Pagination currentPage={1} maxPageCount={maxPageCount} onPageChange={change} />);
+  await user.tab();
+  expect(screen.getByRole('button', { name: '1' })).toHaveFocus();
+  await user.tab();
+  await user.keyboard('{Enter}');
+  expect(change).toHaveBeenLastCalledWith(2);
+  screen.getByRole('button', { name: String(maxPageCount) }).focus();
+  await user.keyboard(' ');
+  expect(change).toHaveBeenLastCalledWith(maxPageCount);
 });

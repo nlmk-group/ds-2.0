@@ -40,14 +40,13 @@ const Splitter: FC<ISplitterProps> = props => {
     orientation = ESplitterOrientation.horizontal
   } = props;
 
-  const { isDragging } = useSplitter(
+  const { isDragging, dividerEvents } = useSplitter(
     containerRef,
     height => {
       setDidUserResize(true);
       setTopHeight(height);
     },
-    orientation,
-    splitterRef
+    orientation
   );
 
   const shouldAnimate = !isDragging;
@@ -75,6 +74,8 @@ const Splitter: FC<ISplitterProps> = props => {
       <div
         className={clsx(styles.splitter, { [styles.vertical]: isVertical })}
         ref={splitterRef}
+        {...dividerEvents}
+        data-ui-splitter-divider
         style={!isShowBottomComponent ? { display: 'none' } : undefined}
       >
         {handleElement}

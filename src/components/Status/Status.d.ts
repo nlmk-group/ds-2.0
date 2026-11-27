@@ -30,7 +30,7 @@ export interface IStatusProps {
   /**
    * Иконка статуса
    */
-  icon: TIconName | JSX.Element;
+  icon: TIconName | React.JSX.Element;
 
   /**
    * Дополнительный CSS-класс

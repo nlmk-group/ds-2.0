@@ -3,7 +3,7 @@ import { ChangeEvent, MouseEvent, PropsWithChildren, ReactNode } from 'react';
 import { EDnDFileType, EDnDSizes, EDnDStatusColor } from './enums';
 
 export interface IFileProps extends PropsWithChildren<any> {
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   title?: string;
   label?: string;
   checked?: boolean;
@@ -34,7 +34,7 @@ export interface IDragAndDropProps extends PropsWithChildren<{
   fileType?: `${EDnDFileType}`;
   statusColor?: `${EDnDStatusColor}`;
   withIcon?: boolean;
-  customIcon?: JSX.Element;
+  customIcon?: React.JSX.Element;
   size?: `${EDnDSizes}`;
   multiple?: boolean;
   loading?: boolean;
@@ -70,7 +70,7 @@ export interface IDefaultDnDProps {
   size: `${EDnDSizes}`;
   percentUpload: number;
   withIcon: boolean;
-  customIcon: JSX.Element | null;
+  customIcon: React.JSX.Element | null;
   fileType: `${EDnDFileType}`;
   title: string | ReactNode;
   statusColor: `${EDnDStatusColor}`;
@@ -83,5 +83,5 @@ export interface ISmallIconProps {
   loading: boolean;
   percentUpload: number;
   statusColor: `${EDnDStatusColor}`;
-  customIcon: JSX.Element | null;
+  customIcon: React.JSX.Element | null;
 }

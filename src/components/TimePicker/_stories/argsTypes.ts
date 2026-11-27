@@ -111,18 +111,6 @@ export const argsTypes = {
     },
     control: { type: 'text' }
   },
-  error: {
-    description: 'С ошибкой или нет',
-    table: {
-      defaultValue: {
-        summary: 'false'
-      },
-      type: {
-        summary: 'boolean'
-      }
-    },
-    control: { type: 'boolean' }
-  },
   disabled: {
     description: 'Заблокирован ли инпут',
     table: {

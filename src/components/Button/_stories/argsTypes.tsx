@@ -4,17 +4,22 @@ import { IconArticleOutlined16, IconArticleOutlined24, IconArticleOutlined32 } f
 
 import { EButtonColor, EButtonSize, EButtonVariant } from '../enums';
 
-const iconOptions = {
-  IconArticleOutlined32: <IconArticleOutlined32 />,
-  IconArticleOutlined24: <IconArticleOutlined24 />,
-  IconArticleOutlined16: <IconArticleOutlined16 />
+export const iconOptions = {
+  'Без иконки': undefined,
+  'IconArticleOutlined32': <IconArticleOutlined32 />,
+  'IconArticleOutlined24': <IconArticleOutlined24 />,
+  'IconArticleOutlined16': <IconArticleOutlined16 />
 };
 
 const argsTypes = {
+  loading: {
+    description: 'Индикатор загрузки 16 px. Блокирует повторное нажатие и сохраняет размер кнопки.',
+    control: { type: 'boolean' },
+    table: { defaultValue: { summary: 'false' } }
+  },
   children: {
-    description: 'Текстовое содержимое кнопки',
-    control: { type: 'text' },
-    defaultValue: 'Button'
+    description: 'Содержимое кнопки, обычно текст действия.',
+    control: { type: 'text' }
   },
   color: {
     description: `Цветовая схема кнопки – <b>${Object.values(EButtonColor).join(' | ')}</b>`,
@@ -52,7 +57,8 @@ const argsTypes = {
     control: { type: 'boolean' }
   },
   startIcon: {
-    description: 'Иконка в начале кнопки',
+    description:
+      'Иконка перед текстом. Передайте JSX-элемент иконки ДС или свою SVG-иконку, например <code>&lt;IconArrowLeftOutlined24 /&gt;</code>.',
     table: {
       type: { summary: 'ReactNode' }
     },
@@ -61,10 +67,17 @@ const argsTypes = {
     mapping: iconOptions
   },
   endIcon: {
-    description: 'Иконка в конце кнопки',
+    description: 'Иконка после текста, например <code>&lt;IconArrowRightOutlined24 /&gt;</code>.',
     table: {
       type: { summary: 'ReactNode' }
     },
+    options: Object.keys(iconOptions),
+    control: { type: 'select' },
+    mapping: iconOptions
+  },
+  iconButton: {
+    description: 'Показывает только переданную иконку. Задайте кнопке доступное имя через <code>aria-label</code>.',
+    table: { type: { summary: 'ReactNode' } },
     options: Object.keys(iconOptions),
     control: { type: 'select' },
     mapping: iconOptions

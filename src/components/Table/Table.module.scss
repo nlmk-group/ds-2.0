@@ -10,13 +10,6 @@
 }
 
 .horizontal-borders {
-  tbody tr {
-    border-bottom: 1px solid var(--unique-divider);
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
   td {
     border-bottom: 1px solid var(--unique-divider);
   }

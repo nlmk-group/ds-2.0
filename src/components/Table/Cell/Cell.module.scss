@@ -1,6 +1,5 @@
 .cell {
   position: relative;
-  transition: background-color 0.2s ease;
   border: none;
   box-sizing: border-box;
 
@@ -36,7 +35,7 @@
       background-color: var(--spectrum-red-20);
     }
     &.warning:hover {
-      background-color: var(--spectrum-yellow-20);
+      background-color: var(--spectrum-yellow-10);
     }
     &.success:hover {
       background-color: var(--spectrum-green-20);
@@ -93,7 +92,7 @@
     &.selected {
       background-color: var(--spectrum-green-30);
       &:hover {
-        background-color: var(--spectrum-green-40);
+        background-color: color-mix(in srgb, var(--spectrum-green-30) 75%, var(--spectrum-green-40));
       }
     }
 
@@ -104,16 +103,16 @@
   }
 
   &.warning {
-    background-color: var(--spectrum-yellow-20);
+    background-color: var(--spectrum-yellow-10);
 
     &:hover {
-      background-color: var(--spectrum-yellow-10);
+      background-color: color-mix(in srgb, var(--spectrum-yellow-10) 80%, var(--spectrum-yellow-20));
     }
 
     &.selected {
-      background-color: var(--spectrum-yellow-30);
+      background-color: color-mix(in srgb, var(--spectrum-yellow-10) 65%, var(--spectrum-yellow-20));
       &:hover {
-        background-color: var(--spectrum-yellow-40);
+        background-color: color-mix(in srgb, var(--spectrum-yellow-10) 55%, var(--spectrum-yellow-20));
       }
     }
 
@@ -179,4 +178,8 @@
   &:hover [data-ui-textfield]:not(:disabled):not(:focus) {
     border-color: transparent;
   }
+}
+
+.clickable {
+  cursor: pointer;
 }

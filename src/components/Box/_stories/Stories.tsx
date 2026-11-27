@@ -11,6 +11,75 @@ import styles from '@components/_storybook/Stories/Stories.module.scss';
 
 import { argsTypes } from './argsTypes';
 
+const taskCode = `import { Box, Status, Typography } from '@nlmk/ds-2.0';
+
+export default () => (
+  <Box width="100%" maxWidth={480} p={20} gap={12} flexDirection="column"
+    border="1px solid var(--unique-divider)" borderRadius={8}
+    background="var(--steel-10)" st={{ boxSizing: 'border-box' }}>
+    <Box justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={8}>
+      <Typography variant="Heading4">Осмотр линии</Typography>
+      <Status color="success" size="s">Назначено</Status>
+    </Box>
+    <Typography>Проверить ограждение перед запуском прокатного стана.</Typography>
+  </Box>
+);`;
+
+const spacingCode = `import { useState } from 'react';
+import { Box, Switch, Typography } from '@nlmk/ds-2.0';
+
+export default () => {
+  const [compact, setCompact] = useState(false);
+
+  return (
+    <Box width="100%" flexDirection="column" gap={16}>
+      <Switch label="Компактные строки" checked={compact} onChange={() => setCompact(!compact)} />
+      <Box flexDirection="column" gap={0} border="1px solid var(--unique-divider)" borderRadius={8}>
+        {['Приёмка металла', 'Контроль качества'].map((step, index) => (
+          <Box key={step} p={16} py={compact ? 6 : 16} pl={24}
+            st={{ borderTop: index ? '1px solid var(--unique-divider)' : undefined }}>
+            <Typography>{step}</Typography>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};`;
+
+const wrapCode = `import { useState } from 'react';
+import { Box, Switch, Typography } from '@nlmk/ds-2.0';
+
+const stations = ['Резка металла', 'Прокатка', 'Термообработка', 'Упаковка'];
+
+export default () => {
+  const [narrow, setNarrow] = useState(false);
+
+  return (
+    <Box width="100%" flexDirection="column" gap={16}>
+      <Switch label="Узкая панель" checked={narrow} onChange={() => setNarrow(!narrow)} />
+      <Box width="100%" maxWidth={narrow ? 240 : 720} p={12} flexWrap="wrap" gap={8}
+        border="1px solid var(--unique-divider)" borderRadius={8} st={{ boxSizing: 'border-box' }}>
+        {stations.map(name => (
+          <Box key={name} px={12} py={8} background="var(--steel-20)" borderRadius={4}>
+            <Typography>{name}</Typography>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};`;
+
+const emptyCode = `import { Box, Typography } from '@nlmk/ds-2.0';
+
+export default () => (
+  <Box width="100%" flexDirection="column" justifyContent="center" alignItems="center"
+    gap={8} p={16} background="var(--steel-20)" borderRadius={8}
+    st={{ minHeight: 144, boxSizing: 'border-box', textAlign: 'center' }}>
+    <Typography variant="Heading4">Заявок пока нет</Typography>
+    <Typography>Здесь появятся заявки текущей смены.</Typography>
+  </Box>
+);`;
+
 const Stories = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -18,7 +87,7 @@ const Stories = (): JSX.Element => {
     <div className={styles.wrapper}>
       <Header
         title="Box"
-        description="Box — универсальный контейнер для компоновки и стилизации контента. Компонент объединяет управление отступами, размерами, визуальными стилями и flex-layout через единый набор пропсов."
+        description="Box — универсальный контейнер для компоновки и стилизации контента. Поддерживает отступы, размеры, выравнивание и стандартные атрибуты div, включая id, aria-атрибуты и обработчики событий."
         isStable
         codeLink="https://github.com/nlmk-group/ds-2.0/tree/main/src/components/Box"
       />
@@ -33,124 +102,21 @@ const Stories = (): JSX.Element => {
       {activeTab === 0 && (
         <>
           <Editor
-            minHeight={500}
-            description="Базовая конфигурация Box через пропсы layout и визуальных стилей."
-            code={`import { Box, Button, Divider } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <div style={{ width: "100%", padding: 0 }}>
-    <Box
-      border="1px solid var(--steel-90)"
-      borderRadius="8px"
-      p="8px"
-    >
-      <Button type="button">Заполнить</Button>
-      <Button type="button" color="grey">Посмотреть</Button>
-    </Box>
-    <br />
-    <Divider dashed />
-    <br />
-    <Box justifyContent="center">
-      <Box
-        width="250px"
-        flexDirection="column"
-        borderRadius="4px"
-        alignItems="center"
-        background="var(--spectrum-sky-10)"
-        py="60px"
-        px="60px"
-        st={{
-          boxShadow: "0 10px 10px var(--unique-background)"
-        }}
-      >
-        <Button type="button">Заполнить</Button>
-      </Box>
-    </Box>
-  </div>
-)`}
+            description="Карточка задания. Box собирает заголовок, статус и описание в колонку с общими отступами."
+            code={taskCode}
           />
           <Editor
-            minHeight={260}
-            description="Приоритет отступов: p → px/py → pt/pr/pb/pl."
-            code={`import { Box } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Box
-    p={24}
-    px={16}
-    py={12}
-    pl={32}
-    border="1px solid var(--steel-40)"
-    borderRadius={8}
-    background="var(--steel-10)"
-  >
-    top: 12px, right: 16px, bottom: 12px, left: 32px
-  </Box>
-)`}
+            description="Отступы внутри строки. Переключите плотность и сравните расстояние от текста до рамки."
+            code={spacingCode}
           />
           <Editor
-            minHeight={260}
-            description="Flex-layout контейнер с выравниванием и переносом элементов."
-            code={`import { Box, Button } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Box
-    width={520}
-    p={12}
-    border="1px solid var(--steel-40)"
-    borderRadius={8}
-    justifyContent="space-between"
-    alignItems="center"
-    flexWrap="wrap"
-    gap={12}
-  >
-    <Button type="button">Создать</Button>
-    <Button type="button" color="grey">Редактировать</Button>
-    <Button type="button" color="ghost">Удалить</Button>
-    <Button type="button" color="success">Применить</Button>
-  </Box>
-)`}
+            stacked
+            description="Перенос при сужении. Измените ширину панели и посмотрите, как участки распределятся по строкам."
+            code={wrapCode}
           />
           <Editor
-            minHeight={240}
-            description="Настройка размеров и визуального оформления контейнера."
-            code={`import { Box } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Box
-    width={320}
-    maxWidth="100%"
-    minHeight={120}
-    border="1px dashed var(--steel-50)"
-    borderRadius={12}
-    background="var(--spectrum-sky-10)"
-    color="var(--steel-90)"
-    justifyContent="center"
-    alignItems="center"
-  >
-    Карточка с ограничением ширины
-  </Box>
-)`}
-          />
-          <Editor
-            minHeight={260}
-            description="Локальное переопределение стилей через st."
-            code={`import { Box } from '@nlmk/ds-2.0';
-
-export default App = () => (
-  <Box
-    p={16}
-    background="var(--steel-10)"
-    borderRadius={8}
-    st={{
-      backgroundColor: 'var(--spectrum-green-10)',
-      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)',
-      transform: 'translateY(0)'
-    }}
-  >
-    Стиль background переопределён через st
-  </Box>
-)`}
+            description="Пустое состояние. Контейнер центрирует сообщение по обеим осям и растёт вместе с текстом."
+            code={emptyCode}
           />
           <Properties argsTypes={argsTypes} />
         </>

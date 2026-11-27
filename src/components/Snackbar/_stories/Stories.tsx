@@ -31,7 +31,7 @@ const Stories = (): JSX.Element => {
 
   const snackbarActionCode = `import { Snackbar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Snackbar
     color="light-sky"
     startIcon
@@ -45,7 +45,7 @@ export default App = () => (
 
   const snackbarCountdownCode = `import { Snackbar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Snackbar
     color="red"
     type="fill"
@@ -81,7 +81,7 @@ export default App = () => (
             description="Базовое отображение уведомления."
             code={`import { Snackbar } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <Snackbar>Snackbar по умолчанию</Snackbar>
 )
               `}
@@ -95,7 +95,7 @@ export default App = () => (
 const colors = [${Object.values(ESnackbarColors)
               .map(c => `"${c}"`)
               .join(', ')}]
-export default App = () => (
+export default () => (
   <>
     {colors.map(color => {
       return <Snackbar key={color} color={color}>Варианты цвета Snackbar</Snackbar>

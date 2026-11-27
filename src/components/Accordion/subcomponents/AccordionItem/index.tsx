@@ -5,7 +5,7 @@ import { IconChevronArrowUpOutlined24, IconCloseOutlined16 } from '@components/I
 import Typography from '@components/Typography';
 import clsx from 'clsx';
 
-import { IAccordionItemProps, TAccordionItem } from './types';
+import { IAccordionItemProps } from './types';
 
 import styles from './AccordionItem.module.scss';
 
@@ -55,7 +55,7 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
     const Icon = icon === EIconsAccordion.plus ? IconCloseOutlined16 : IconChevronArrowUpOutlined24;
 
     return (
-      <div
+      <span
         data-testid={testid}
         className={clsx(
           styles['icon_helper'],
@@ -63,50 +63,60 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({
         )}
       >
         <Icon {...iconProps} />
-      </div>
+      </span>
     );
   };
 
-  const handleClick = (id: TAccordionItem['id']): void => {
-    if (disabled) {
-      return;
-    }
-    onExpand(id);
-  };
+  const panelId = React.useId();
 
   return (
     <div
       className={clsx(styles.item, styles[size], styles[variant], { [styles.disabled]: disabled }, className)}
       {...props}
+      data-expanded={isExpanded}
       data-ui-accordion-item
     >
-      <div className={styles.header} onClick={() => handleClick(id)} data-ui-accordion-header>
+      <button
+        type="button"
+        className={styles.header}
+        aria-expanded={isExpanded}
+        aria-controls={panelId}
+        disabled={disabled}
+        onClick={() => onExpand(id)}
+        data-ui-accordion-header
+      >
         {startIcon ? (
-          <div className={styles.icon} data-ui-accordion-start-icon>
+          <span className={styles.icon} data-ui-accordion-start-icon>
             {getExpandIcon(startIcon, 'ACCORDION_LEFT_ICON')}
-          </div>
+          </span>
         ) : null}
-        <div style={{ flexGrow: 1 }} data-ui-accordion-title>
+        <span style={{ flexGrow: 1 }} data-ui-accordion-title>
           <Typography variant={TYPOGRAPHY_TITLE_VARIANTS[size]}>{title}</Typography>
-        </div>
+        </span>
         {endIcon ? (
-          <div className={styles.icon} data-ui-accordion-end-icon>
+          <span className={styles.icon} data-ui-accordion-end-icon>
             {getExpandIcon(endIcon, 'ACCORDION_RIGHT_ICON')}
-          </div>
+          </span>
         ) : null}
-      </div>
-      <div className={clsx(styles.expandable, isExpanded && styles.expanded)} data-ui-accordion-content-container>
-        <Typography
-          variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
-          className={clsx(
-            styles['content_basic'],
-            isExpanded && styles.content,
-            variant === EVariantsAccordion.paper && styles['content_paper']
-          )}
-          data-ui-accordion-content
-        >
-          {children}
-        </Typography>
+      </button>
+      <div
+        ref={panel => {
+          panel?.toggleAttribute('inert', !isExpanded);
+        }}
+        id={panelId}
+        aria-hidden={!isExpanded}
+        className={clsx(styles.expandable, isExpanded && styles.expanded)}
+        data-ui-accordion-content-container
+      >
+        <div className={styles.clip}>
+          <Typography
+            variant={TYPOGRAPHY_CONTENT_VARIANTS[size]}
+            className={clsx(styles.content, variant === EVariantsAccordion.paper && styles['content_paper'])}
+            data-ui-accordion-content
+          >
+            {children}
+          </Typography>
+        </div>
       </div>
     </div>
   );

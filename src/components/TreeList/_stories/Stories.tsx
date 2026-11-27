@@ -95,24 +95,7 @@ const defaultTreeData = [
 ];
 
 const App = () => {
-  const [data, setData] = useState(defaultTreeData);
-
-  const onSelectedNode = (e) => {
-    console.log('Выбранный узел:', e);
-  };
-
-  const onDataAfterDrag = (newData) => {
-    console.log('Структура после перемещения:', newData);
-    setData(newData);
-  };
-
-  const onDragStart = (e) => {
-    console.log('Событие начала перетаскивания: ',  e.event)
-  }
-
-  const onDragEnd = (e) => {
-    console.log('Событие конца перетаскивания: ', e.event)
-  }
+  const [data, setData] = useState<React.ComponentProps<typeof TreeList>['data']>(defaultTreeData);
 
   return (
     <TreeList
@@ -120,10 +103,8 @@ const App = () => {
       checkable
       draggable
       rowHeight="s"
-      onSelectedNode={onSelectedNode}
-      onDataAfterDrag={onDataAfterDrag}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
+      onSelectedNode={event => console.log('Выбранный узел', event)}
+      onDataAfterDrag={setData}
     />
   );
 };

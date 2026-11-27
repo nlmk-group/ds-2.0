@@ -85,7 +85,7 @@ const App = () => (
     <Tooltip description="Для disabled-элементов добавьте обертку">
       <span>
         <Button variant="secondary" disabled>
-          Disabled button
+          Недоступная кнопка
         </Button>
       </span>
     </Tooltip>

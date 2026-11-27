@@ -6,12 +6,13 @@
 
 .wrapper {
   background-color: var(--unique-background);
-  padding: 30px;
   border-radius: 10px;
-  width: 900px;
+  width: min(960px, 100%);
+  box-sizing: border-box;
+  padding: clamp(12px, 3vw, 30px);
 
   &--small {
-    width: 400px;
+    width: min(460px, 100%);
   }
 }
 
@@ -24,6 +25,7 @@
 
 .wrapper-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   align-items: center;
 }

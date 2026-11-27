@@ -35,10 +35,10 @@
 $colors: default, error, success, warning, grey;
 
 $bg-colors: (
-  default: var(--brand-sapphire-30),
+  default: var(--brand-sapphire-20),
   error: var(--spectrum-red-20),
   success: var(--spectrum-green-20),
-  warning: var(--spectrum-yellow-20),
+  warning: var(--spectrum-yellow-10),
   grey: var(--steel-40)
 );
 

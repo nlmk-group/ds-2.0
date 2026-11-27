@@ -61,7 +61,7 @@ function generateExports(components) {
   };
 
   exports['./css/main.css'] = './lib/css/main.css';
-  exports['./css/style.css'] = './lib/css/style.css';
+  exports['./css/style.css'] = './lib/css/main.css';
   exports['./css/*'] = './lib/css/*';
 
   exports['./fonts/*'] = './lib/fonts/*';

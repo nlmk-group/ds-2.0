@@ -5,7 +5,7 @@ import TreeList from '../TreeList';
 import { TDragEvent, TNodeItem } from '../types';
 import { DEFAULT_CHECKED_KEYS, DEFAULT_EXPANDED_KEYS, DEFAULT_TREE_DATA } from './constants';
 
-export const TreeListExample = (): JSX.Element => {
+export const TreeListExample = (): React.JSX.Element => {
   const [data, setData] = useState(DEFAULT_TREE_DATA);
 
   const onSelectedNode = () => {

@@ -32,7 +32,7 @@ export const StepperDefault = (argTypes: IStepperProps): JSX.Element => {
     </div>
   );
 };
-StepperDefault.storyName = 'Stepper по умолчанию';
+StepperDefault.storyName = 'Шаги · Stepper';
 StepperDefault.args = {
   stepName: 'Шаг 1',
   index: 0,
@@ -54,7 +54,7 @@ export const StepperWithSteps = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Box flexDirection="row" width="100%" gap={16}>
+      <Box flexDirection="row" width="100%" gap={16} st={{ overflowX: 'auto' }}>
         {steps.map((step, i) => (
           <Stepper
             currentStep={currentStep}
@@ -100,7 +100,7 @@ export const StepperWithInteractive = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Box flexDirection="row" width="100%" gap={16}>
+      <Box flexDirection="row" width="100%" gap={16} st={{ overflowX: 'auto' }}>
         {steps.map((step, i) => (
           <Stepper
             currentStep={currentStep}
@@ -146,7 +146,7 @@ export const StepperWithError = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Box flexDirection="row" width="100%" gap={16}>
+      <Box flexDirection="row" width="100%" gap={16} st={{ overflowX: 'auto' }}>
         {steps.map((step, i) => (
           <Stepper
             currentStep={currentStep}

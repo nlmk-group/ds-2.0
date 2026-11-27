@@ -29,7 +29,7 @@ export const CheckboxDefault = (argTypes: ICheckboxProps): JSX.Element => {
 
   return <Checkbox {...argTypes} checked={args.checked} onChange={handleChange} />;
 };
-CheckboxDefault.storyName = 'Checkbox по умолчанию';
+CheckboxDefault.storyName = 'Флажок · Checkbox';
 
 export const CheckboxColors = (): JSX.Element => {
   const [selectedValues, setSelectedValues] = useState<Record<string, boolean>>({});

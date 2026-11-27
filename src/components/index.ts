@@ -30,8 +30,6 @@ export { default as Card } from './Card';
 
 export { default as Checkbox } from './Checkbox';
 
-export { default as Chip } from './Chip';
-
 export { default as ClickAwayListener } from './ClickAwayListener';
 
 export { default as Comments } from './Comments';
@@ -128,9 +126,6 @@ export { default as Scrollbar } from './Scrollbar';
 
 export { default as SegmentButton } from './SegmentButtonGroup/SegmentButton';
 export { default as SegmentButtonGroup } from './SegmentButtonGroup';
-
-export { default as Select } from './Select';
-export * from './Select/types';
 
 export { default as Sidebar } from './Sidebar';
 export { default as MenuItem } from './Sidebar';

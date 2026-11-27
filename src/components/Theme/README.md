@@ -11,11 +11,12 @@ import { Themes, useThemeSwitcher } from '@nlmk/ds-2.0';
 
 // В функциональном компоненте:
 const App = () => {
-  const { theme, toggleTheme } = useThemeSwitcher();
+  const { theme, toggleTheme, resetToSystem } = useThemeSwitcher(undefined, 'local');
   return (
     <div>
       <span>Текущая тема: {theme}</span>
       <button onClick={toggleTheme}>Сменить тему</button>
+      <button onClick={resetToSystem}>Вернуть системную тему</button>
     </div>
   );
 };
@@ -30,7 +31,7 @@ export default App;
 | ----------- | -------- | ----------- | --------------------------------------------------- |
 | customTheme | `Themes` | `undefined` | Принудительная тема (переопределяет sessionStorage) |
 
-> **Примечание:** Хук автоматически сохраняет выбранную тему в `sessionStorage` и восстанавливает её при следующей загрузке страницы.
+Второй аргумент задаёт хранилище. По умолчанию используется `'session'`, для сохранения между сессиями передайте `'local'`. Метод `resetToSystem()` удаляет ручной выбор из выбранного хранилища и возобновляет отслеживание `prefers-color-scheme`. Флаг `isSystem` указывает на системный режим.
 
 > **Примечание:** Хук `useThemeSwitcher` возвращает объект `{ theme, toggleTheme }`, где:
 >
@@ -40,8 +41,8 @@ export default App;
 > **Приоритет инициализации темы:**
 >
 > 1. `customTheme` (если передан)
-> 2. Сохранённая тема из `sessionStorage`
-> 3. `Themes.LIGHT` (по умолчанию)
+> 2. Сохранённая тема из выбранного хранилища
+> 3. Тема ОС, при отсутствии поддержки — `Themes.LIGHT`
 
 ---
 
@@ -99,7 +100,7 @@ export enum Themes {
 export type Theme = Themes;
 ```
 
-- Текущая тема сохраняется в `sessionStorage` и применяется при монтировании компонента.
+- Ручной выбор восстанавливается из выбранного хранилища при монтировании.
 
 ---
 

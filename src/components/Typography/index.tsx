@@ -33,7 +33,7 @@ const Typography: FC<ITypographyProps> = ({
   className?: string;
   color?: CSSProperties['color'];
   style?: CSSProperties;
-}): JSX.Element => {
+}): React.JSX.Element => {
   const variantClass = styles[`typography--variant-${variant}`];
 
   return (

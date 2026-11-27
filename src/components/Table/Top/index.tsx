@@ -1,7 +1,9 @@
 import React, { forwardRef } from 'react';
 
-import { TIconName } from '@components/Icon/IconsDirectory/unionType';
-import { Icon, Typography } from '@components/index';
+import ArrowDown from '@components/Icon/IconsDirectory/System/ArrowDownOutlined/16';
+import ArrowUp from '@components/Icon/IconsDirectory/System/ArrowUpOutlined/16';
+import IconContainer from '@components/Icon/subcomponent/IconContainer';
+import Typography from '@components/Typography';
 import clsx from 'clsx';
 
 import { ESize, ITopProps } from './types';
@@ -32,12 +34,7 @@ const Top = forwardRef<HTMLTableCellElement, ITopProps>(
     },
     ref
   ) => {
-    let arrowIcon: TIconName | null = null;
-    if (sortDirection === 'asc') {
-      arrowIcon = 'IconArrowUpOutlined16';
-    } else if (sortDirection === 'desc') {
-      arrowIcon = 'IconArrowDownOutlined16';
-    }
+    const SortArrow = sortDirection === 'asc' ? ArrowUp : ArrowDown;
 
     const handleClick = () => {
       if (!disable && onClick) {
@@ -66,6 +63,7 @@ const Top = forwardRef<HTMLTableCellElement, ITopProps>(
               onClick={handleClick}
               className={clsx(
                 styles.content,
+                !disable && onClick && styles.clickable,
                 number && styles.number,
                 sort && number && styles['sort-with-number'],
                 sort && sortDirection && styles.sort,
@@ -75,9 +73,11 @@ const Top = forwardRef<HTMLTableCellElement, ITopProps>(
               <div className={styles.label}>
                 <Typography variant="Body2-Medium">{title}</Typography>
               </div>
-              {sort && arrowIcon && (
+              {sort && sortDirection && (
                 <div className={styles.arrow}>
-                  <Icon name={arrowIcon} containerSize={16} htmlColor="currentColor" />
+                  <IconContainer containerSize={16}>
+                    <SortArrow htmlColor="currentColor" />
+                  </IconContainer>
                 </div>
               )}
             </div>

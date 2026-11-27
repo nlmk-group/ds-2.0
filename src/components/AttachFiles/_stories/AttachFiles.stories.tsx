@@ -35,7 +35,7 @@ export const AttachFilesDefault = (argTypes: IFileProps): JSX.Element => {
   );
 };
 
-AttachFilesDefault.storyName = 'File по умолчанию';
+AttachFilesDefault.storyName = 'Прикрепление файлов · AttachFiles';
 AttachFilesDefault.args = {
   label: 'Название файла.pdf'
 };

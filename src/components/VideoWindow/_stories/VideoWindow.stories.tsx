@@ -47,7 +47,7 @@ VideoWindowDefault.args = {
   resizable: false,
   draggable: false
 };
-VideoWindowDefault.storyName = 'VideoWindow по умолчанию';
+VideoWindowDefault.storyName = 'Видео · VideoWindow';
 
 export const VideoWindowWithDragAndResize = (argTypes: TVideoWindowProps): JSX.Element => {
   const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
@@ -55,7 +55,7 @@ export const VideoWindowWithDragAndResize = (argTypes: TVideoWindowProps): JSX.E
   return (
     <div className={styles.main}>
       <Button onClick={() => setIsVideoOpen(true)} variant="primary" size="s">
-        Открыть видео с возможностью перетаскивания и изменения размера
+        Открыть окно видео
       </Button>
 
       {isVideoOpen && (

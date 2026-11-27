@@ -2,6 +2,7 @@ import React, { CSSProperties, useMemo, useState } from 'react';
 
 import { Box, Button, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ColumnPinningState, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from './PinnedColumnsTableExample.module.scss';
@@ -143,35 +144,33 @@ const PinnedColumnsTableExample = () => {
     const right = columnPinning.right || [];
     return {
       left: left.length,
-      right: right.length,
-      total: left.length + right.length
+      right: right.length
     };
   }, [columnPinning]);
 
   return (
-    <Box maxWidth="1024px" flexDirection="column">
-      <Box gap={8} style={{ marginBottom: '16px' }} justifyContent="space-between" alignItems="center">
-        <Box gap={8} pb={16}>
-          <Button size="s" onClick={() => togglePinLeft('id')}>
+    <Box width="100%" flexDirection="column" gap={16}>
+      <Box display="flex" gap={12} flexWrap="wrap" justifyContent="space-between" alignItems="center">
+        <Box display="flex" gap={8} flexWrap="wrap">
+          <Button variant="secondary" size="s" onClick={() => togglePinLeft('id')}>
             {columnPinning.left?.includes('id') ? 'Открепить' : 'Закрепить'} ID слева
           </Button>
-          <Button size="s" onClick={() => togglePinLeft('name')}>
+          <Button variant="secondary" size="s" onClick={() => togglePinLeft('name')}>
             {columnPinning.left?.includes('name') ? 'Открепить' : 'Закрепить'} Название слева
           </Button>
-          <Button size="s" onClick={() => togglePinRight('description')}>
+          <Button variant="secondary" size="s" onClick={() => togglePinRight('description')}>
             {columnPinning.right?.includes('description') ? 'Открепить' : 'Закрепить'} Описание справа
           </Button>
           <Button variant="secondary" size="s" onClick={resetPinning}>
-            Сбросить все закрепления
+            Сбросить
           </Button>
         </Box>
         <Typography variant="Body2-Medium" style={{ color: 'var(--steel-70)' }}>
-          Закреплено: {pinnedColumnsInfo.total} столбцов (слева: {pinnedColumnsInfo.left}, справа:{' '}
-          {pinnedColumnsInfo.right})
+          Слева · {pinnedColumnsInfo.left} · Справа · {pinnedColumnsInfo.right}
         </Typography>
       </Box>
 
-      <div className={styles.tableContainer}>
+      <Scrollbar className={styles.tableContainer}>
         <Table
           horizontalBorders
           verticalBorders
@@ -235,7 +234,7 @@ const PinnedColumnsTableExample = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </Box>
   );
 };

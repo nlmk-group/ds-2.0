@@ -22,7 +22,7 @@ export const defaultIllustration = (args: IIllustrationProps) => (
     <Illustration {...args} />
   </div>
 );
-defaultIllustration.storyName = 'Иллюстрация по умолчанию';
+defaultIllustration.storyName = 'Иллюстрация · Illustration';
 defaultIllustration.args = {
   size: EPictureSizes.Medium,
   name: 'error404'

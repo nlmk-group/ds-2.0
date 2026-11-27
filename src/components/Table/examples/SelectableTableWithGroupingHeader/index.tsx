@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ECellState } from '@components/Table/Cell/types';
 import { flexRender, getCoreRowModel, RowSelectionState, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const SelectableTableWithGroupingHeaderExample = () => {
@@ -27,7 +28,7 @@ const SelectableTableWithGroupingHeaderExample = () => {
   const flexRenderCells = useMemo(() => ['select', 'status'], []);
 
   return (
-    <div className={clsx(styles.tableContainer, styles.tableGrouping)}>
+    <Scrollbar className={clsx(styles.tableContainer, styles.tableGrouping)}>
       <Table horizontalBorders verticalBorders>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -111,7 +112,7 @@ const SelectableTableWithGroupingHeaderExample = () => {
           })}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

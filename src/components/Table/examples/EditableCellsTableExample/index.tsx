@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import { Box, Button, IconDeleteBinFilled24, Typography } from '@components/index';
 import { Cell, Row, Table, Tbody, Thead, Top } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ColumnResizeMode, ColumnSizingState, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from './EditableCellsTableExample.module.scss';
@@ -90,7 +91,13 @@ const EditableCellsTableExample = () => {
         cell: (info: any) => {
           const rowId = info.row.original.id;
           return (
-            <Button size="s" color="error" startIcon={<IconDeleteBinFilled24 />} onClick={() => handleDeleteRow(rowId)}>
+            <Button
+              size="s"
+              variant="secondary"
+              color="error"
+              startIcon={<IconDeleteBinFilled24 />}
+              onClick={() => handleDeleteRow(rowId)}
+            >
               Удалить
             </Button>
           );
@@ -144,7 +151,7 @@ const EditableCellsTableExample = () => {
         </Box>
       </Box>
 
-      <div className={styles.tableContainer}>
+      <Scrollbar className={styles.tableContainer}>
         <Table
           horizontalBorders
           verticalBorders
@@ -215,7 +222,7 @@ const EditableCellsTableExample = () => {
             ))}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </Box>
   );
 };

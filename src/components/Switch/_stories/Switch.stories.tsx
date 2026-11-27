@@ -44,10 +44,11 @@ export const DefaultSwitch = (argTypes: ISwitchProps): ReactNode => {
   );
 };
 
-DefaultSwitch.storyName = 'Switch по умолчанию';
+DefaultSwitch.storyName = 'Переключатель · Switch';
 DefaultSwitch.args = {
-  checked: false,
-  onChange: handleOnChange
+  'aria-label': 'Уведомления',
+  'checked': false,
+  'onChange': handleOnChange
 };
 
 export const SwitchShowcase = (argTypes: ISwitchProps): ReactNode => {

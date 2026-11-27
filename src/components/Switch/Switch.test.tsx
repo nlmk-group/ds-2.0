@@ -15,7 +15,9 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch is inactive', () => {
-    const InactiveSwitch = (): JSX.Element => <Switch checked={false} color={defaultColor} onChange={mockCallBack} />;
+    const InactiveSwitch = (): React.JSX.Element => (
+      <Switch checked={false} color={defaultColor} onChange={mockCallBack} />
+    );
 
     test('It should render inactive track', () => {
       render(<InactiveSwitch />);
@@ -34,7 +36,9 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch is active', () => {
-    const ActiveSwitch = (): JSX.Element => <Switch checked={true} color={defaultColor} onChange={mockCallBack} />;
+    const ActiveSwitch = (): React.JSX.Element => (
+      <Switch checked={true} color={defaultColor} onChange={mockCallBack} />
+    );
 
     test('It should render active track', () => {
       render(<ActiveSwitch />);
@@ -73,19 +77,19 @@ describe('src/components/Switch', () => {
   });
 
   describe('While Switch has icons', () => {
-    const ActiveIcon = (): JSX.Element => (
+    const ActiveIcon = (): React.JSX.Element => (
       <div data-testid="ACTIVE_ICON">
         <Icon containerSize={16} htmlColor="var(--steel-10)" name="IconMetallalomScrapFilled16" />
       </div>
     );
 
-    const InactiveIcon = (): JSX.Element => (
+    const InactiveIcon = (): React.JSX.Element => (
       <div data-testid="INACTIVE_ICON">
         <Icon containerSize={16} htmlColor="var(--brand-sapphire-60)" name="IconMetallalomScrap16" />
       </div>
     );
 
-    const SwitchIcons: FC<{ checked?: boolean }> = ({ checked = false }): JSX.Element => (
+    const SwitchIcons: FC<{ checked?: boolean }> = ({ checked = false }): React.JSX.Element => (
       <Switch checked={checked} activeIcon={<ActiveIcon />} inactiveIcon={<InactiveIcon />} onChange={mockCallBack} />
     );
 

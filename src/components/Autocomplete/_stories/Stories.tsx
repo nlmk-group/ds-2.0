@@ -32,7 +32,7 @@ const options = [
 ];
 
 export default function App() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
   return (
     <Autocomplete
       items={options}
@@ -102,7 +102,7 @@ const options = [
 ];
 
 export default function CustomTotalTextExample() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
   return (
     <Autocomplete
       items={options}
@@ -135,7 +135,7 @@ const defaultOptions = [
 
 export default function AsyncLoadingExample() {
   const [items, setItems] = useState([]);
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoadOptions = (query) => {
@@ -184,7 +184,7 @@ const options = [
 ];
 
 export default function CustomRenderingExample() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
 
   const renderCustomLabel = (item) => {
     return (
@@ -275,7 +275,7 @@ const options = [
 ];
 
 export default function PortalExample() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', height: '200px' }}>
@@ -392,7 +392,7 @@ const options = [
 ];
 
 export default function DebounceExample() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
   const [query, setQuery] = useState('');
 
   return (
@@ -463,7 +463,7 @@ const options = [
 ];
 
 export default function TotalCountVisibilityExample() {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<React.ComponentProps<typeof Autocomplete>['selected']>();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

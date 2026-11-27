@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
 import { getDate, getTime } from '.';
 import DateTime from './index';
@@ -11,6 +11,22 @@ describe('src/components/DateTime', () => {
     const { container } = render(<DateTime />);
     const headerComponent = container.getElementsByTagName('div')[0];
     expect(headerComponent).toBeInTheDocument();
+  });
+
+  test('updates when the wall clock crosses a minute boundary', () => {
+    jest.useFakeTimers();
+    try {
+      jest.setSystemTime(new Date(2026, 10, 27, 12, 59, 59, 900));
+      const { unmount } = render(<DateTime />);
+      expect(screen.getByTestId('DATETIME_TIME')).toHaveTextContent('12:59');
+      act(() => {
+        jest.advanceTimersByTime(100);
+      });
+      expect(screen.getByTestId('DATETIME_TIME')).toHaveTextContent('13:00');
+      unmount();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   test('function getDate deliver correct date (ru locale)', () => {

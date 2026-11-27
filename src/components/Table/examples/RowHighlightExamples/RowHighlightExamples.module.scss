@@ -8,8 +8,6 @@
 
 .rowHoverTable {
   tbody tr {
-    transition: background-color 0.2s ease;
-
     &:hover {
       td {
         background-color: var(--steel-30) !important;
@@ -52,8 +50,6 @@
 
 .editableRowHoverTable {
   tbody tr {
-    transition: background-color 0.2s ease;
-
     &:hover {
       td {
         background-color: var(--steel-20) !important;

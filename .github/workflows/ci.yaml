@@ -36,3 +36,9 @@ jobs:
 
       - name: Build Storybook
         run: yarn storybook:build
+
+      - name: Install Chromium for browser tests
+        run: yarn playwright install --with-deps chromium
+
+      - name: Test built Storybook in Chromium
+        run: yarn test:e2e

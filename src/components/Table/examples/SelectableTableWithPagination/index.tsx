@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Cell, Pagination, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { ECellState } from '@components/Table/Cell/types';
 import {
   flexRender,
@@ -12,7 +13,7 @@ import {
 
 import styles from '../Example.module.scss';
 
-import { getCellProps } from '..';
+import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
 const SelectableTableWithPaginationExample = () => {
@@ -45,7 +46,7 @@ const SelectableTableWithPaginationExample = () => {
           ? `Выбрано элементов: ${selectedCount} из ${data.length}`
           : `Всего элементов: ${data.length}`}
       </Typography>
-      <div className={styles.tableContainer} style={{ height: '100%' }}>
+      <Scrollbar className={styles.tableContainer} style={{ height: '100%' }}>
         <Table horizontalBorders verticalBorders>
           <Thead>
             {table.getHeaderGroups().map(headerGroup => (
@@ -97,7 +98,7 @@ const SelectableTableWithPaginationExample = () => {
           withSelect
           maxPageCount={Math.ceil(data.length / pageSize)}
         />
-      </div>
+      </Scrollbar>
     </>
   );
 };

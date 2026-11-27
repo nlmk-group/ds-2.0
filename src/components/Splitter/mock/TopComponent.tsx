@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
-import { getCellProps } from '@components/Table/examples';
+import { getCellProps } from '@components/Table/examples/utils';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from './TopComponent.module.scss';
@@ -38,7 +38,7 @@ export const TopComponent = () => {
   });
 
   return (
-    <Box width={900} flexDirection="column">
+    <Box width="100%" height="100%" flexDirection="column" gap={8} p={8} st={{ boxSizing: 'border-box' }}>
       <Typography variant="Body-Bold" color="var(--steel-90)">
         Требования клиента
       </Typography>

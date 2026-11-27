@@ -8,9 +8,12 @@ export interface IPaginationProps {
   maxPageCount: number;
   className?: string;
   withSelect?: boolean;
+  /** Варианты количества записей на странице в списке выбора. */
   pageSizes?: number[];
   onPageChange?: (page: number) => void;
+  /** Вызывается при выборе другого количества записей на странице. */
   onPageSizeChange?: (pageSize: number) => void;
+  /** Подпись после числа в списке размеров страницы. */
   itemsLabel?: string;
 }
 

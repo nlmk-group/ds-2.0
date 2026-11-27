@@ -9,7 +9,7 @@ const ListItem = forwardRef<HTMLDivElement, IListItemProps>(({ children, classNa
   <div
     ref={ref}
     className={clsx(styles.item, className)}
-    title={title || (typeof children === 'string' ? children : undefined)}
+    title={title ?? (typeof children === 'string' ? children : undefined)}
     {...props}
   >
     {children}

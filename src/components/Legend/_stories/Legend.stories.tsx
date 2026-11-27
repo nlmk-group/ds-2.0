@@ -37,7 +37,7 @@ LegendDefault.args = {
   label: 'Анализ стали с УНРС',
   color: { default: 'var(--spectrum-red-20)', hover: 'var(--spectrum-red-30)', active: 'var(--spectrum-red-10)' }
 };
-LegendDefault.storyName = 'Legend по умолчанию';
+LegendDefault.storyName = 'Легенда · Legend';
 
 export const LegendEdit = (props: ILegendProps): JSX.Element => {
   const [, updateArgs] = useArgs();

@@ -191,6 +191,7 @@ const argsTypes = {
     control: { type: 'text' }
   },
   placeholder: {
+    table: { type: { summary: 'string' } },
     description: 'Текст плейсхолдера. Отображается при фокусе, если есть label, или всегда, если label отсутствует',
     control: { type: 'text' }
   },

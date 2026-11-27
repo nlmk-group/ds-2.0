@@ -1,4 +1,4 @@
-import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle } from '../constants';
+import { dragNDropBtnLabel, dragNDropDescription, dragNDropTitle, dragNDropTitleError } from '../constants';
 import { EDnDFileType, EDnDSizes, EDnDStatusColor } from '../enums';
 
 export const argsTypes = {
@@ -7,15 +7,16 @@ export const argsTypes = {
     control: { type: 'string' }
   },
   children: {
-    description: 'DragAndDrop может иметь собвственный контекст.',
+    table: { type: { summary: 'ReactNode' } },
+    description: 'Собственное содержимое области загрузки.',
     control: { type: 'ReactNode' }
   },
   title: {
-    description:
-      'Заголовок компонента. Если пустая строка, то заголовок отображаться не будет. Так же можно передать компонент типа ReactNode.',
+    description: `Заголовок области загрузки. При statusColor="error" по умолчанию отображается «${dragNDropTitleError}». Пустая строка скрывает заголовок.`,
     table: {
       defaultValue: {
-        summary: dragNDropTitle
+        summary: dragNDropTitle,
+        expression: 'statusColor === EDnDStatusColor.error ? dragNDropTitleError : dragNDropTitle'
       },
       type: {
         summary: 'string'
@@ -52,7 +53,8 @@ export const argsTypes = {
     description: 'Необязательное свойство. Тип расширения загружаемого файла.',
     table: {
       defaultValue: {
-        summary: EDnDFileType.image
+        summary: EDnDFileType.image,
+        expression: 'EDnDFileType.image'
       },
       type: {
         summary: Object.values(EDnDFileType).join(' | ')
@@ -65,7 +67,8 @@ export const argsTypes = {
     description: 'Необязательное свойство. Цвета заливки компонента.',
     table: {
       defaultValue: {
-        summary: EDnDStatusColor.default
+        summary: EDnDStatusColor.default,
+        expression: 'EDnDStatusColor.default'
       },
       type: {
         summary: Object.values(EDnDStatusColor).join(' | ')
@@ -75,13 +78,12 @@ export const argsTypes = {
     control: { type: 'select' }
   },
   size: {
-    description: 'Размер компонента – <b>M | S</b>',
+    description: 'Размер области загрузки.',
     table: {
-      defaultValue: { summary: 'M' },
+      defaultValue: { summary: EDnDSizes.M, expression: 'EDnDSizes.M' },
       type: { summary: 'string' }
     },
-    options: ['M', 'S'],
-    mapping: { M: EDnDSizes.M, S: EDnDSizes.S },
+    options: [EDnDSizes.M, EDnDSizes.S],
     control: { type: 'select' }
   },
   withIcon: {
@@ -116,7 +118,7 @@ export const argsTypes = {
     description: 'Необязательное свойство. Показать статус процесса загрузки файла.',
     table: {
       defaultValue: {
-        summary: true
+        summary: false
       },
       type: {
         summary: 'boolean'
@@ -140,7 +142,7 @@ export const argsTypes = {
     description: 'Необязательное свойство. Показать DragAndDrop только малого размера с текстом.',
     table: {
       defaultValue: {
-        summary: true
+        summary: false
       },
       type: {
         summary: 'boolean'
@@ -152,7 +154,7 @@ export const argsTypes = {
     description: 'Необязательное свойство. Показать DragAndDrop только малого размера с иконкой.',
     table: {
       defaultValue: {
-        summary: true
+        summary: false
       },
       type: {
         summary: 'boolean'

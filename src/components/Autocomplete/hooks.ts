@@ -61,7 +61,7 @@ export const useScrollPagination = ({
  */
 export const useDebounce = <T extends (...args: any[]) => any>(delay: number, callback?: T): DebouncedFunc<T> => {
   const callbackRef = useRef(callback);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     callbackRef.current = callback;

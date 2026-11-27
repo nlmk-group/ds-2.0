@@ -1,6 +1,8 @@
 .tableContainer {
   width: fit-content;
   max-width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
   border: 1px solid var(--unique-divider);
 }
 
@@ -50,7 +52,7 @@
   width: 8px;
   height: 8px;
   background: var(--brand-sapphire-50);
-  border: 1px solid var(--background-white);
+  border: 1px solid var(--steel-10);
   cursor: crosshair;
   z-index: 3;
 }

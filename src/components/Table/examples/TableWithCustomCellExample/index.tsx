@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { CellContext, ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import styles from '../Example.module.scss';
 
-import { defaultColumns, defaultData, IData } from '..';
+import { defaultColumns, defaultData } from '../constants';
+import { IData } from '../types';
 
 const CustomCell = ({ row }: CellContext<IData, unknown>) => (
   <div style={{ width: '100%', height: '100%', background: 'var(--spectrum-green-20)' }}>{row.original.name}</div>
@@ -31,7 +33,7 @@ export const TableWithCustomCellExample = () => {
   });
 
   return (
-    <div style={{ width: '800px', height: '600px', overflowY: 'auto', overflowX: 'auto' }}>
+    <Scrollbar className={styles.tableContainer}>
       <Table horizontalBorders verticalBorders>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -79,6 +81,6 @@ export const TableWithCustomCellExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };

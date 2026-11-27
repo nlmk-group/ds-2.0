@@ -119,7 +119,7 @@ DefaultDropdown.args = {
   menuStyle: { minWidth: '200px' }
 };
 
-DefaultDropdown.storyName = 'Dropdown по умолчанию';
+DefaultDropdown.storyName = 'Выпадающее меню · Dropdown';
 
 export const PortalDropdown = (args: IDropdownProps): ReactNode => {
   return (

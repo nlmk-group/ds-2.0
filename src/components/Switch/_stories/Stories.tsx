@@ -27,7 +27,7 @@ const Stories = (): JSX.Element => {
   const switchColorCode = `import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [brand, setBrand] = useState(true);
   const [success, setSuccess] = useState(true);
   const [warning, setWarning] = useState(false);
@@ -35,10 +35,10 @@ export default App = () => {
 
   return (
     <div style={{ display: 'grid', gap: '12px' }}>
-      <Switch checked={brand} onChange={setBrand} label="Brand" color="brand" />
-      <Switch checked={success} onChange={setSuccess} label="Success" color="success" />
-      <Switch checked={warning} onChange={setWarning} label="Warning" color="warning" />
-      <Switch checked={error} onChange={setError} label="Error" color="error" />
+      <Switch checked={brand} onChange={setBrand} label="Основной" color="brand" />
+      <Switch checked={success} onChange={setSuccess} label="Успешно" color="success" />
+      <Switch checked={warning} onChange={setWarning} label="Предупреждение" color="warning" />
+      <Switch checked={error} onChange={setError} label="Ошибка" color="error" />
     </div>
   )
 }
@@ -73,7 +73,7 @@ export default App = () => {
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [isChecked, setIsChecked] = useState(true);
 
   return (
@@ -89,7 +89,7 @@ export default App = () => {
             description="Недоступное состояние переключателя."
             code={`import { Switch } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   return (
     <Switch
       checked={false}
@@ -105,7 +105,7 @@ export default App = () => {
             code={`import { useState } from 'react'
 import { Switch } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isSecondChecked, setIsSecondChecked] = useState(true);
   const [isThirdChecked, setIsThirdChecked] = useState(false);
@@ -139,7 +139,7 @@ export default App = () => {
             code={`import { useState } from 'react'
 import { Switch, Icon } from '@nlmk/ds-2.0';
 
-export default App = () => {
+export default () => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (

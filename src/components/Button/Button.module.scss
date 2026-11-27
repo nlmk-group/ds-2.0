@@ -196,8 +196,16 @@
 .ghost-primary {
   background: transparent;
   color: var(--unique-bluewhite);
-  outline: 2px solid var(--brand-sapphire-60);
-  outline-offset: -2px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--brand-sapphire-60);
+    border-radius: inherit;
+    pointer-events: none;
+  }
 
   &:hover:not(:disabled) {
     background: var(--brand-sapphire-10);
@@ -363,4 +371,20 @@
   .icon-button-extra-compact {
     @include touch-target;
   }
+}
+
+.loading {
+  position: relative;
+
+  > :not(.indicator) {
+    opacity: 0;
+  }
+}
+
+.indicator {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
 }

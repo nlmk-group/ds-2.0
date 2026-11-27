@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Link, Typography } from '@components/index';
+import Link from '@components/Link';
+import Typography from '@components/Typography';
 
 import styles from './Welcome.module.scss';
 

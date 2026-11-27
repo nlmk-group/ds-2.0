@@ -20,8 +20,37 @@
 
 .header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 8px 12px;
+
+  [data-ui-status] {
+    min-height: 32px;
+    border-radius: 16px;
+    padding-inline: 12px;
+  }
+
+  > :first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-box: trim-both cap alphabetic;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding-inline: 8px;
+  }
+
+  .header {
+    column-gap: 8px;
+
+    > :first-child {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
 }
 
 .tabs {
@@ -48,39 +77,30 @@
 .properties {
   position: fixed;
   bottom: 20px;
-  z-index: 100000;
+  z-index: calc(var(--z-sidebar) + 1);
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: (0, 0, 0, 0.1) 0px 1px 3px 0px;
+}
 
-  .arguments {
-    position: fixed;
-    bottom: 50px;
-    background: var(--unique-background);
-    width: 800px;
-    max-height: 400px;
-    overflow: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid var(--unique-divider);
-    border-radius: 6px;
+.propertiesLayer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+}
 
-    table {
-      color: var(--steel-90);
-      margin-bottom: 0;
-      border-radius: 6px;
-      border-spacing: 0;
-      border-collapse: collapse;
-      border-style: hidden;
-      box-shadow: 0 0 0 1px var(--background-blue);
+.propertiesDialog {
+  box-sizing: border-box;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: min(85dvh, calc(100dvh - 2 * var(--modal-vertical-gap)));
+  color: var(--steel-90);
+}
 
-      td {
-        border: 1px solid var(--unique-divider);
-        background: var(--unique-background);
-        padding: 10px 15px;
-      }
-    }
-  }
+.arguments {
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .tests {
@@ -195,6 +215,7 @@ $sandpack-black: #21252b;
 }
 
 .editor-container {
+  container: live-example / inline-size;
   border: 1px solid var(--steel-30);
   border-radius: 8px;
   overflow: hidden;
@@ -214,6 +235,7 @@ $sandpack-black: #21252b;
 }
 
 .content-area {
+  min-height: var(--preview-min-height, 280px);
   display: flex;
   position: relative;
 }
@@ -255,11 +277,40 @@ $sandpack-black: #21252b;
 }
 
 .preview-pane {
+  width: var(--preview-pane-width);
   margin-left: auto;
   min-height: var(--preview-min-height, 280px);
   position: relative;
   overflow: auto;
-  transition: background-color 0.2s ease;
+}
+
+@mixin stacked-preview {
+  flex-direction: column;
+
+  .preview-pane {
+    order: -1;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .editor-pane {
+    position: relative;
+    width: 100%;
+    height: var(--preview-min-height);
+    box-sizing: border-box;
+    border-right: 0;
+    border-top: 1px solid var(--steel-30);
+  }
+}
+
+.stacked {
+  @include stacked-preview;
+}
+
+@container live-example (max-width: 760px) {
+  .content-area {
+    @include stacked-preview;
+  }
 }
 
 .live-error {

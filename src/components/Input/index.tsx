@@ -1,6 +1,6 @@
-import React, { FC, Ref, useMemo, useRef } from 'react';
+import React, { FC, Ref, useId, useRef } from 'react';
 
-import { customInputColors, generateUUID, sizesMappingInput } from '@components/declaration';
+import { customInputColors, sizesMappingInput } from '@components/declaration';
 import { Icon, PseudoInput, Typography } from '@components/index';
 import clsx from 'clsx';
 
@@ -39,7 +39,7 @@ import styles from './Input.module.scss';
  * @returns {JSX.Element} Компонент Input.
  */
 const Input: FC<TInputProps> = ({
-  id,
+  'id': suppliedId,
   value,
   disabled = false,
   label,
@@ -62,10 +62,15 @@ const Input: FC<TInputProps> = ({
   required = false,
   pseudoInputStyle,
   resetIconRef,
+  'aria-describedby': describedBy,
   ...props
 }) => {
-  const ref = inputRef || useRef<HTMLInputElement | HTMLTextAreaElement>(null);
-  id = useMemo(() => `Input-${(id && id.toString()) || generateUUID()}`, [id]);
+  const localRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const ref = inputRef || localRef;
+  const generatedId = useId();
+  const id = suppliedId ?? `Input-${generatedId}`;
+  const helperId = helperText ? `${id}-helper-text` : undefined;
+  const descriptionIds = [describedBy, helperId].filter(Boolean).join(' ') || undefined;
 
   const sizeStyles = {
     [sizesMappingInput.m]: undefined,
@@ -111,6 +116,8 @@ const Input: FC<TInputProps> = ({
             colorClassName,
             colored && styles.colored
           )}
+          aria-describedby={descriptionIds}
+          required={required}
           data-ui-textfield
           disabled={disabled}
           value={value}
@@ -135,6 +142,8 @@ const Input: FC<TInputProps> = ({
             colorClassName,
             colored && styles.colored
           )}
+          aria-describedby={descriptionIds}
+          required={required}
           data-ui-textfield
           disabled={disabled}
           type="text"
@@ -184,7 +193,7 @@ const Input: FC<TInputProps> = ({
       {helperText && (
         <Typography
           variant="Caption-Medium"
-          id={`${id}-helper-text`}
+          id={helperId}
           className={clsx(styles.helper, colorClassName)}
           data-ui-input-helper-text
         >

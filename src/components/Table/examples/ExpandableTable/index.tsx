@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import {
   ExpandedState,
   flexRender,
@@ -40,7 +41,7 @@ const ExpandableTableExample = () => {
   });
 
   return (
-    <div className={clsx(styles.tableContainer, styles.tableContainerExpandable)}>
+    <Scrollbar className={clsx(styles.tableContainer, styles.tableContainerExpandable)}>
       <Table horizontalBorders verticalBorders>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -111,7 +112,7 @@ const ExpandableTableExample = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

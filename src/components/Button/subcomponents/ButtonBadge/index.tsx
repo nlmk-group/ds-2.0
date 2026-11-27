@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
+import Badge from '@components/Badge';
 import { EBadgeSizes } from '@components/Badge/enums';
 import { variantsMapping } from '@components/declaration';
-import { Badge } from '@components/index';
 
 import { IButtonBadgeProps } from './types';
 

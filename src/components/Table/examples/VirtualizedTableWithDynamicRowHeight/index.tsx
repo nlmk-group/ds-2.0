@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 
 import { Cell, Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import { flexRender, getCoreRowModel, Row as TableRowType, useReactTable } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
@@ -8,7 +9,6 @@ import { IVirtualizedData } from './types';
 
 import styles from '../Example.module.scss';
 
-import { ECellStatus } from '../../Cell/types';
 import { getCellProps } from '../utils';
 import { columns, data } from './constants';
 
@@ -71,13 +71,13 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
   });
 
   return (
-    <div>
+    <div className={styles.virtualExample}>
       <Typography variant="Body1-Bold" color="var(--steel-90)">
-        (Виртуализированная таблица: {data.length} rows)
+        {data.length.toLocaleString('ru-RU')} строк
       </Typography>
 
-      <div className={styles.tableContainer} ref={tableContainerRef}>
-        <Table style={{ display: 'grid' }} horizontalBorders verticalBorders>
+      <Scrollbar className={styles.tableContainer} ref={tableContainerRef}>
+        <Table style={{ display: 'grid', minWidth: table.getTotalSize() }} horizontalBorders verticalBorders>
           <Thead
             style={{
               display: 'grid',
@@ -94,17 +94,17 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                   width: '100%'
                 }}
               >
-                {headerGroup.headers.map((header, index) => {
+                {headerGroup.headers.map(header => {
                   const size = header.getSize();
                   return (
                     <Top
                       key={header.id}
                       style={{
                         display: 'flex',
-                        width: size
+                        flex: `${size} 0 ${size}px`
                       }}
                       title={flexRender(header.column.columnDef.header, header.getContext())}
-                      right={header.column.columnDef.meta?.isNumeric && index !== 0}
+                      number
                       className={styles.notSortable}
                     />
                   );
@@ -126,11 +126,8 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
               return (
                 <Row
                   key={row.id}
-                  ref={node => {
-                    if (node) {
-                      rowVirtualizer.measureElement(node);
-                    }
-                  }}
+                  data-index={virtualRow.index}
+                  ref={rowVirtualizer.measureElement}
                   style={{
                     position: 'absolute',
                     transform: `translateY(${virtualRow.start}px)`,
@@ -138,17 +135,16 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
                     width: '100%'
                   }}
                 >
-                  {row.getVisibleCells().map((cell, index) => {
+                  {row.getVisibleCells().map(cell => {
                     const size = cell.column.getSize();
 
                     return (
                       <Cell
                         key={cell.id}
-                        color={ECellStatus.WARNING}
                         style={{
-                          width: size
+                          flex: `${size} 0 ${size}px`
                         }}
-                        align={index === 0 ? 'left' : undefined}
+                        align="center"
                         {...getCellProps(cell)}
                       />
                     );
@@ -158,7 +154,7 @@ const VirtualizedTableWithDynamicRowHeightExample = () => {
             })}
           </Tbody>
         </Table>
-      </div>
+      </Scrollbar>
     </div>
   );
 };

@@ -15,11 +15,11 @@ import clsx from 'clsx';
 
 import s from './Comments.module.scss';
 
-type HeaderComponent = (props: ICommentHeaderProps) => JSX.Element;
-type HeaderExtraComponent = <TData = unknown>(props: ICommentHeaderExtraProps<TData>) => JSX.Element;
-type ItemComponent = (props: ICommentProps) => JSX.Element;
+type HeaderComponent = (props: ICommentHeaderProps) => React.JSX.Element;
+type HeaderExtraComponent = <TData = unknown>(props: ICommentHeaderExtraProps<TData>) => React.JSX.Element;
+type ItemComponent = (props: ICommentProps) => React.JSX.Element;
 
-type CommentsComponent = (<TData = unknown>(props: ICommentsProps<TData>) => JSX.Element) & {
+type CommentsComponent = (<TData = unknown>(props: ICommentsProps<TData>) => React.JSX.Element) & {
   Item: ItemComponent;
   Header: HeaderComponent;
   HeaderExtra: HeaderExtraComponent;
@@ -29,9 +29,9 @@ type CommentsComponent = (<TData = unknown>(props: ICommentsProps<TData>) => JSX
   Actions: typeof ActionsSlot;
 };
 
-const CommentsTemplateItem = ({ children }: ICommentProps): JSX.Element => <>{children}</>;
+const CommentsTemplateItem = ({ children }: ICommentProps): React.JSX.Element => <>{children}</>;
 
-const CommentsHeader = ({ children }: ICommentHeaderProps): JSX.Element => <>{children}</>;
+const CommentsHeader = ({ children }: ICommentHeaderProps): React.JSX.Element => <>{children}</>;
 
 const CommentsHeaderExtra = <TData,>(_props: ICommentHeaderExtraProps<TData>): React.ReactElement | null => null;
 
@@ -43,7 +43,7 @@ const CommentsRoot = <TData,>({
   handleRefresh,
   className,
   isLoading = false
-}: ICommentsProps<TData>): JSX.Element => {
+}: ICommentsProps<TData>): React.JSX.Element => {
   const {
     editingCommentId,
     replyingToCommentId,

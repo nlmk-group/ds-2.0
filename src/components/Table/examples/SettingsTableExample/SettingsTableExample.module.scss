@@ -3,6 +3,10 @@
   border-right: 1px solid var(--steel-40);
 }
 
+tr > :has(+ .pinnedColumnRight) {
+  border-right-width: 0;
+}
+
 .pinnedColumnRight {
   background-color: var(--steel-10);
   border-left: 1px solid var(--steel-40);

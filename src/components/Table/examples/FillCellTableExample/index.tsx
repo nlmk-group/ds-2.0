@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Row, Table, Tbody, Thead, Top, Typography } from '@components/index';
+import Scrollbar from '@components/Scrollbar';
 import clsx from 'clsx';
 
 import styles from './FillCell.module.scss';
@@ -102,7 +103,7 @@ const FillCellTableExample: FC = () => {
   );
 
   return (
-    <div className={styles.tableContainer}>
+    <Scrollbar className={styles.tableContainer}>
       <Table horizontalBorders verticalBorders>
         <Thead>
           <Row>
@@ -164,7 +165,7 @@ const FillCellTableExample: FC = () => {
           ))}
         </Tbody>
       </Table>
-    </div>
+    </Scrollbar>
   );
 };
 

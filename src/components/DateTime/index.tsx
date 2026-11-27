@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ELocaleMapping } from '@components/declaration';
 import Typography from '@components/Typography';
@@ -31,16 +31,17 @@ export const getTime = (currentDate: Date): string => {
   return `${hh < 10 ? `0${hh}` : hh}:${mm < 10 ? `0${mm}` : mm}`;
 };
 
-const DateTime = ({ locale = ELocaleMapping.ru }: IDateTimeProps): JSX.Element => {
+const DateTime = ({ locale = ELocaleMapping.ru }: IDateTimeProps): React.JSX.Element => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const refTimer = useRef<NodeJS.Timeout | undefined>(undefined);
-
   useEffect(() => {
-    refTimer.current = setInterval(() => setCurrentDate(new Date()), 60000);
-
-    return () => {
-      clearInterval(refTimer.current);
+    let timer: ReturnType<typeof setTimeout>;
+    const update = () => {
+      const now = new Date();
+      setCurrentDate(now);
+      timer = setTimeout(update, 60000 - (now.getTime() % 60000));
     };
+    update();
+    return () => clearTimeout(timer);
   }, []);
 
   return (

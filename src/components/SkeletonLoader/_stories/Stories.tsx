@@ -20,7 +20,7 @@ const Stories = (): JSX.Element => {
 
   const skeletonLoaderSizeCode = `import { SkeletonLoader } from '@nlmk/ds-2.0';
 
-export default App = () => (
+export default () => (
   <div style={{ display: 'grid', gap: '12px' }}>
     <SkeletonLoader width="100%" height="24px" />
     <SkeletonLoader width="260px" height="48px" />
@@ -53,7 +53,7 @@ export default App = () => (
             description="Базовый skeleton-loader с анимацией wave."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <SkeletonLoader width="350px" />
   </>
@@ -65,7 +65,7 @@ export default  App = () => (
             description="Skeleton-loader с анимацией pulse."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <SkeletonLoader width="350px" animation="pulse" />
   </>
@@ -77,7 +77,7 @@ export default  App = () => (
             description="Отображение нескольких skeleton-блоков через count."
             code={`import { SkeletonLoader } from '@nlmk/ds-2.0';
 
-export default  App = () => (
+export default () => (
   <>
     <SkeletonLoader width="115px" count={3} height="50px" />
     <SkeletonLoader width="177px" count={2} height="50px" />

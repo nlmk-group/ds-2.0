@@ -69,7 +69,8 @@ export default App;
             code={pdfPreviewLoadingCode}
           />
           <Editor
-            minHeight={1200}
+            stacked
+            minHeight={280}
             description="Интерактивный пример загрузки и предпросмотра PDF-файла."
             code={`import { useEffect, useState, useRef } from "react";
 import { PdfPreview, AttachFiles, File } from "@nlmk/ds-2.0";
@@ -150,7 +151,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ width: "100%", minWidth: 0 }}>
       <AttachFiles>
         <File
           label={fileName || "Нажмите, чтобы выбрать PDF"}
@@ -181,7 +182,7 @@ const App = () => {
           data={pdfData}
           loading={loading}
           errorMessage={error}
-          style={{ height: "80vh", width: "100%" }}
+          style={{ height: "clamp(360px, 72vh, 840px)", width: "100%" }}
         />
       </div>
     </div>

@@ -50,7 +50,7 @@ export const Status: FC<IStatusProps> = ({
   icon,
   children,
   className
-}): JSX.Element => {
+}): React.JSX.Element => {
   const classes = clsx(
     styles.status,
     className,

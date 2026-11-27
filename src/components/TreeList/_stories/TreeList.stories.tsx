@@ -60,7 +60,7 @@ TreeListDefault.parameters = {
   controls: { disable: true },
   previewTabs: { controls: { hidden: true } }
 };
-TreeListDefault.storyName = 'TreeList по умолчанию';
+TreeListDefault.storyName = 'Дерево · TreeList';
 
 export const TreeListCheckableOnly = (): JSX.Element => <TreeList data={DEFAULT_TREE_DATA} checkable rowHeight="s" />;
 TreeListCheckableOnly.storyName = 'TreeList только с чекбоксами';

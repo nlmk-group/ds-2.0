@@ -38,7 +38,7 @@
   margin: 0px;
   cursor: pointer;
   place-content: center;
-  transition: background 0.3s ease-in-out;
+  color: var(--steel-90);
   background: var(--steel-10);
   &-s {
     padding: 6px 3px;
@@ -48,10 +48,10 @@
     pointer-events: none;
   }
   &.active {
-    background: var(--spectrum-sky-30);
+    background: var(--spectrum-sky-20);
   }
   &:hover {
-    background: var(--steel-50);
+    background: var(--steel-40);
   }
 
   &:disabled {

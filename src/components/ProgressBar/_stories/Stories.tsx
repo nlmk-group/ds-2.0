@@ -18,8 +18,8 @@ const ProgressBarStories = (): JSX.Element => {
 
   const progressBarDefaultCode = `import { ProgressBar } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '400px', marginTop: '50px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 400px)', marginTop: '50px' }}>
     <ProgressBar percentage={60} />
   </div>
 );
@@ -27,8 +27,8 @@ export default  App = () => (
 
   const progressBarWithLabelCode = `import { ProgressBar } from '@nlmk/ds-2.0';
 
-export default  App = () => (
-  <div style={{ width: '400px', marginTop: '50px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 400px)', marginTop: '50px' }}>
     <ProgressBar percentage={50} label="Прогресс" />
   </div>
 );
@@ -36,8 +36,8 @@ export default  App = () => (
 
   const progressBarBoundaryValuesCode = `import { ProgressBar } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <div style={{ width: '400px', marginTop: '50px', display: 'grid', gap: '16px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 400px)', marginTop: '50px', display: 'grid', gap: '16px' }}>
     <ProgressBar percentage={0} label="Начало процесса" />
     <ProgressBar percentage={100} label="Процесс завершен" />
   </div>
@@ -46,8 +46,8 @@ export default App = () => (
 
   const progressBarOverflowCode = `import { ProgressBar } from '@nlmk/ds-2.0';
 
-export default App = () => (
-  <div style={{ width: '400px', marginTop: '50px' }}>
+export default () => (
+  <div style={{ width: 'min(100%, 400px)', marginTop: '50px' }}>
     <ProgressBar percentage={135} label="Значение ограничивается 100%" />
   </div>
 );

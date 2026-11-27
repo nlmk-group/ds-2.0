@@ -73,8 +73,11 @@ export const useSplitterResize = (props: ISplitterProps) => {
     const container = containerRef.current;
     if (!container) return;
 
-    const axisPx = isVertical ? container.clientWidth : container.clientHeight;
-    if (!axisPx) return;
+    const divider = splitterRef.current;
+    const axisPx = isVertical
+      ? container.clientWidth - (divider?.offsetWidth ?? 0)
+      : container.clientHeight - (divider?.offsetHeight ?? 0);
+    if (axisPx <= 0) return;
 
     if (hasTopSize) {
       setTopHeight(clamp((topComponentSize! / axisPx) * 100));

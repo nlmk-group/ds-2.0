@@ -11,7 +11,7 @@ export interface ILink extends PropsWithChildren<{
   size?: string;
   target?: string;
   disabled?: boolean;
-  leftIcon?: JSX.Element | ReactNode;
-  rightIcon?: JSX.Element | ReactNode;
+  leftIcon?: React.JSX.Element | ReactNode;
+  rightIcon?: React.JSX.Element | ReactNode;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 }

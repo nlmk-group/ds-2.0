@@ -22,7 +22,7 @@ export const TypographyDefault = (argsTypes: Record<string, unknown>): JSX.Eleme
     <Typography {...argsTypes}>Default Typography Component</Typography>
   </div>
 );
-TypographyDefault.storyName = 'Типография по умолчанию';
+TypographyDefault.storyName = 'Типографика · Typography';
 
 const SECTIONS: { title: string; variants: ETypographyVariants[] }[] = [
   {

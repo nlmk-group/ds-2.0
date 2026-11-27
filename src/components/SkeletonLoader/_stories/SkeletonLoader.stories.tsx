@@ -16,9 +16,9 @@ export default {
 };
 
 export const SkeletonLoaderDefault = (argTypes: ISkeletonLoadingProps): JSX.Element => {
-  return <SkeletonLoader width="900px" {...argTypes} />;
+  return <SkeletonLoader width="min(900px, 100%)" {...argTypes} />;
 };
-SkeletonLoaderDefault.storyName = 'Skeleton loader состояние по умолчанию';
+SkeletonLoaderDefault.storyName = 'Скелетон загрузки · SkeletonLoader';
 
 export const SkeletonLoaderPulseAnimation = (argsTypes: ISkeletonLoadingProps): JSX.Element => {
   return <SkeletonLoaderDefault {...argsTypes} />;
@@ -29,16 +29,16 @@ SkeletonLoaderPulseAnimation.args = { animation: 'pulse' };
 export const SkeletonLoaderMulti = (argTypes: ISkeletonLoadingProps): JSX.Element => {
   const skeletonArgs = { height: '50px', ...argTypes };
   return (
-    <div style={{ width: '900px' }}>
-      <Box gap={20}>
-        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
-        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
-        <SkeletonLoader width="780px" count={2} {...skeletonArgs} />
+    <div style={{ width: 'min(900px, 100%)' }}>
+      <Box display="grid" gap={12} st={{ gridTemplateColumns: '50px 50px minmax(0, 1fr)' }}>
+        {[0, 1, 2].map(column => (
+          <SkeletonLoader key={column} width="100%" count={2} {...skeletonArgs} />
+        ))}
       </Box>
-      <Box gap={20}>
-        <SkeletonLoader width="600px" count={4} {...skeletonArgs} />
-        <SkeletonLoader width="230px" count={4} {...skeletonArgs} />
-        <SkeletonLoader width="50px" count={4} {...skeletonArgs} />
+      <Box display="grid" gap={12} st={{ gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 1fr) 50px' }}>
+        {[0, 1, 2].map(column => (
+          <SkeletonLoader key={column} width="100%" count={4} {...skeletonArgs} />
+        ))}
       </Box>
     </div>
   );
@@ -48,16 +48,16 @@ SkeletonLoaderMulti.storyName = 'Skeleton loader с множественными
 export const SkeletonLoaderMultiPulseAnimation = (argTypes: ISkeletonLoadingProps): JSX.Element => {
   const skeletonArgs = { height: '50px', animation: ESkeletonAnimation.pulse, ...argTypes };
   return (
-    <div style={{ width: '900px' }}>
-      <Box gap={20}>
-        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
-        <SkeletonLoader width="50px" count={2} {...skeletonArgs} />
-        <SkeletonLoader width="780px" count={2} {...skeletonArgs} />
+    <div style={{ width: 'min(900px, 100%)' }}>
+      <Box display="grid" gap={12} st={{ gridTemplateColumns: '50px 50px minmax(0, 1fr)' }}>
+        {[0, 1, 2].map(column => (
+          <SkeletonLoader key={column} width="100%" count={2} {...skeletonArgs} />
+        ))}
       </Box>
-      <Box gap={20}>
-        <SkeletonLoader width="600px" count={4} {...skeletonArgs} />
-        <SkeletonLoader width="230px" count={4} {...skeletonArgs} />
-        <SkeletonLoader width="50px" count={4} {...skeletonArgs} />
+      <Box display="grid" gap={12} st={{ gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 1fr) 50px' }}>
+        {[0, 1, 2].map(column => (
+          <SkeletonLoader key={column} width="100%" count={4} {...skeletonArgs} />
+        ))}
       </Box>
     </div>
   );

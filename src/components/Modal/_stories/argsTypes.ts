@@ -9,6 +9,7 @@ export const argsTypes = {
     action: 'modalClosed'
   },
   children: {
+    table: { type: { summary: 'ReactNode' } },
     description: 'Содержимое модального окна',
     control: { type: 'text' }
   },
@@ -23,7 +24,7 @@ export const argsTypes = {
     defaultValue: false
   },
   disableBackdropClick: {
-    description: 'Указывает, можно ли закрыть модальное окно только по клику на крестик',
+    description: 'Игнорирует нажатие на фон. Окно по-прежнему можно закрыть крестиком или клавишей Escape.',
     control: { type: 'boolean' },
     defaultValue: false
   },

@@ -21,8 +21,7 @@ function unsecuredCopyToClipboard(value: string, onSuccess?: () => void) {
   textArea.focus();
   textArea.select();
   try {
-    document.execCommand('copy');
-    onSuccess?.();
+    if (document.execCommand('copy')) onSuccess?.();
   } catch (err) {
     console.error('Unable to copy to clipboard', err);
   } finally {

@@ -1,3 +1,5 @@
+@use "../../mixins" as *;
+
 @mixin flex-align-center {
   display: flex;
   align-items: center;
@@ -32,6 +34,8 @@
   &:hover {
     background: var(--brand-jeans-10);
   }
+
+  @include focus-ring;
 }
 
 .collapseIcon {

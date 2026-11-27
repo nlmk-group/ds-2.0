@@ -1,3 +1,5 @@
+@use "../../mixins" as *;
+
 :root {
   --submenu-width: 363px;
   --submenu-height: 80vh;
@@ -138,6 +140,8 @@
 .switch-position {
   position: relative;
   top: 4px;
+
+  @include focus-ring(var(--brand-sapphire-60), 2px);
 }
 
 .title {
